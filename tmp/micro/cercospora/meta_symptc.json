@@ -1,0 +1,1000 @@
+{
+ "id": "cercospora",
+ "candidates": [
+  {
+   "k": "c1",
+   "source": "epmc",
+   "score": 11,
+   "pmcid": "PMC11981980",
+   "doi": "10.1002/ps.8239",
+   "title": "Discovery and biological profile of pyridachlometyl.",
+   "authors": [
+    {
+     "last": "Matsuzaki",
+     "initials": "Y",
+     "first": "Yuichi",
+     "full": "Matsuzaki Y",
+     "collective": null
+    },
+    {
+     "last": "Kurahashi",
+     "initials": "M",
+     "first": "Makoto",
+     "full": "Kurahashi M",
+     "collective": null
+    },
+    {
+     "last": "Watanabe",
+     "initials": "S",
+     "first": "Satoshi",
+     "full": "Watanabe S",
+     "collective": null
+    },
+    {
+     "last": "Kiguchi",
+     "initials": "S",
+     "first": "So",
+     "full": "Kiguchi S",
+     "collective": null
+    },
+    {
+     "last": "Harada",
+     "initials": "T",
+     "first": "Toshiyuki",
+     "full": "Harada T",
+     "collective": null
+    },
+    {
+     "last": "Iwahashi",
+     "initials": "F",
+     "first": "Fukumatsu",
+     "full": "Iwahashi F",
+     "collective": null
+    }
+   ],
+   "journal": "Pest management science",
+   "journal_iso": "Pest Manag Sci",
+   "volume": "81",
+   "issue": "5",
+   "year": 2025,
+   "pages": "2442-2449",
+   "license": "cc by",
+   "first_pub": "2024-06-09",
+   "fig_label": "Figure 9",
+   "caption": "Translaminar activity of pyridachlometyl against cercospora leaf spot. 17 Adaxial–adaxial: Test plants were inoculated with a conidial suspension of Cercospora beticola on the adaxial surface of the leaves 3 days after a fungicide had been applied to the adaxial surface. Abaxial–adaxial: Test plants were inoculated on the adaxial surface of leaves 3 days after the fungicide had been applied to the abaxial surface. Both tests were conducted in triplicate, with four leaves being assessed for each plant. Statistical differences were assessed using t ‐tests. * P < 0.05, ** P < 0.01.",
+   "href": "PS-81-2442-g015.jpg",
+   "img_url": "https://cdn.ncbi.nlm.nih.gov/pmc/blobs/44cc/11981980/83397d915b6b/PS-81-2442-g015.jpg",
+   "orig_size": [
+    638,
+    300
+   ],
+   "crossref": {
+    "title": "Discovery and biological profile of pyridachlometyl",
+    "container": "Pest Management Science",
+    "volume": "81",
+    "issue": "5",
+    "page": "2442-2449",
+    "article_number": null,
+    "authors": [
+     {
+      "given": "Yuichi",
+      "family": "Matsuzaki",
+      "name": null
+     },
+     {
+      "given": "Makoto",
+      "family": "Kurahashi",
+      "name": null
+     },
+     {
+      "given": "Satoshi",
+      "family": "Watanabe",
+      "name": null
+     },
+     {
+      "given": "So",
+      "family": "Kiguchi",
+      "name": null
+     },
+     {
+      "given": "Toshiyuki",
+      "family": "Harada",
+      "name": null
+     },
+     {
+      "given": "Fukumatsu",
+      "family": "Iwahashi",
+      "name": null
+     }
+    ],
+    "issued": [
+     2024,
+     6,
+     9
+    ],
+    "published_online": [
+     2024,
+     6,
+     9
+    ],
+    "published_print": [
+     2025,
+     5
+    ]
+   }
+  },
+  {
+   "k": "c2",
+   "source": "epmc",
+   "score": 11,
+   "pmcid": "PMC10204640",
+   "doi": "10.3389/fpls.2023.1100595",
+   "title": "An in-field heat treatment to reduce <i>Cercospora beticola</i> survival in plant residue and improve Cercospora leaf spot management in sugarbeet.",
+   "authors": [
+    {
+     "last": "Hernandez",
+     "initials": "AP",
+     "first": "Alexandra P",
+     "full": "Hernandez AP",
+     "collective": null
+    },
+    {
+     "last": "Bublitz",
+     "initials": "DM",
+     "first": "Daniel M",
+     "full": "Bublitz DM",
+     "collective": null
+    },
+    {
+     "last": "Wenzel",
+     "initials": "TJ",
+     "first": "Thomas J",
+     "full": "Wenzel TJ",
+     "collective": null
+    },
+    {
+     "last": "Ruth",
+     "initials": "SK",
+     "first": "Sarah K",
+     "full": "Ruth SK",
+     "collective": null
+    },
+    {
+     "last": "Bloomingdale",
+     "initials": "C",
+     "first": "Chris",
+     "full": "Bloomingdale C",
+     "collective": null
+    },
+    {
+     "last": "Mettler",
+     "initials": "DC",
+     "first": "David C",
+     "full": "Mettler DC",
+     "collective": null
+    },
+    {
+     "last": "Bloomquist",
+     "initials": "MW",
+     "first": "Mark W",
+     "full": "Bloomquist MW",
+     "collective": null
+    },
+    {
+     "last": "Hanson",
+     "initials": "LE",
+     "first": "Linda E",
+     "full": "Hanson LE",
+     "collective": null
+    },
+    {
+     "last": "Willbur",
+     "initials": "JF",
+     "first": "Jaime F",
+     "full": "Willbur JF",
+     "collective": null
+    }
+   ],
+   "journal": "Frontiers in plant science",
+   "journal_iso": "Front Plant Sci",
+   "volume": "14",
+   "issue": null,
+   "year": 2023,
+   "pages": "1100595",
+   "license": "cc by",
+   "first_pub": "2023-05-09",
+   "fig_label": "Figure 4",
+   "caption": "Mean Cercospora leaf spot severity progression in (A) 2019, (B) 2020, and (C) 2021, following spring-applied treatments evaluated in Renville, MN. Treatments included a non-treated control, tillage with a rotary tiller in the spring (prior to planting) to a depth of 10 cm to bury the residue, and heat treatment of residue using a propane-fueled using a handheld Flame King Heavy Duty Propane Torch Weed Burner (Pico Rivera CA 90660) immediately prior to planting. CLS ratings were based on the KWS severity scale (0-10) where 0 is 0.1% severity (1-5 spots per leaf) and 10 is 50% severity. Each point represents a mean of four replicate field plots. Date axes start at the planting date and end August 15 for each year as trials were not harvested.",
+   "href": "fpls-14-1100595-g004.jpg",
+   "img_url": "https://www.frontiersin.org/files/Articles/1100595/fpls-14-1100595-HTML/image_m/fpls-14-1100595-g004.jpg",
+   "orig_size": [
+    1417,
+    2006
+   ],
+   "crossref": {
+    "title": "An in-field heat treatment to reduce Cercospora beticola survival in plant residue and improve Cercospora leaf spot management in sugarbeet",
+    "container": "Frontiers in Plant Science",
+    "volume": "14",
+    "issue": null,
+    "page": null,
+    "article_number": "1100595",
+    "authors": [
+     {
+      "given": "Alexandra P.",
+      "family": "Hernandez",
+      "name": null
+     },
+     {
+      "given": "Daniel M.",
+      "family": "Bublitz",
+      "name": null
+     },
+     {
+      "given": "Thomas J.",
+      "family": "Wenzel",
+      "name": null
+     },
+     {
+      "given": "Sarah K.",
+      "family": "Ruth",
+      "name": null
+     },
+     {
+      "given": "Chris",
+      "family": "Bloomingdale",
+      "name": null
+     },
+     {
+      "given": "David C.",
+      "family": "Mettler",
+      "name": null
+     },
+     {
+      "given": "Mark W.",
+      "family": "Bloomquist",
+      "name": null
+     },
+     {
+      "given": "Linda E.",
+      "family": "Hanson",
+      "name": null
+     },
+     {
+      "given": "Jaime F.",
+      "family": "Willbur",
+      "name": null
+     }
+    ],
+    "issued": [
+     2023,
+     5,
+     9
+    ],
+    "published_online": [
+     2023,
+     5,
+     9
+    ],
+    "published_print": [
+     null
+    ]
+   }
+  },
+  {
+   "k": "c3",
+   "source": "epmc",
+   "score": 10,
+   "pmcid": "PMC12443802",
+   "doi": "10.3389/fpls.2025.1648690",
+   "title": "Identification of &lt;i&gt;Pseudocercospora mori&lt;/i&gt; as the causal agent of grey leaf spot disease in mulberry (&lt;i&gt;Morus atropurpurea&lt;/i&gt;) from various localities in Guangdong Province, China.",
+   "authors": [
+    {
+     "last": "Qazi",
+     "initials": "IH",
+     "first": "Izhar Hyder",
+     "full": "Qazi IH",
+     "collective": null
+    },
+    {
+     "last": "Yuan",
+     "initials": "T",
+     "first": "Ting",
+     "full": "Yuan T",
+     "collective": null
+    },
+    {
+     "last": "Liu",
+     "initials": "X",
+     "first": "Xi",
+     "full": "Liu X",
+     "collective": null
+    },
+    {
+     "last": "Liu",
+     "initials": "J",
+     "first": "Jiping",
+     "full": "Liu J",
+     "collective": null
+    }
+   ],
+   "journal": "Frontiers in plant science",
+   "journal_iso": "Front Plant Sci",
+   "volume": "16",
+   "issue": null,
+   "year": 2025,
+   "pages": "1648690",
+   "license": "cc by",
+   "first_pub": "2025-09-04",
+   "fig_label": "Figure 2",
+   "caption": "Symptoms of mulberry leaf spot disease in samples collected from different areas of Guangdong Province. (a, b) are diseased leaves collected from mulberry demonstration base of South China Agricultural University, Guangzhou city. (c, d) are diseased leaves collected from mulberry orchard of silkworm farmers in Wengyuan county, Shaoguan city. (e, f) are diseased leaves collected from mulberry orchard at the silkworm extension center of Yangshan county, Qingyuan city. (g, h) are diseased leaves collected from mulberry orchard at the silkworm extension center of Liannan Yao Autonomous county, Qingyuan city. (i, j) are diseased leaves collected from mulberry orchard at Yingde silkworm seed farm, Yingde city, Qingyuan city. (k, l) are diseased leaves collected from mulberry orchard at the silkworm extension center of Huazhou city, Maoming city.",
+   "href": "fpls-16-1648690-g002.jpg",
+   "img_url": "https://www.frontiersin.org/files/Articles/1648690/fpls-16-1648690-HTML/image_m/fpls-16-1648690-g002.jpg",
+   "orig_size": [
+    3078,
+    1366
+   ],
+   "crossref": {
+    "title": "Identification of Pseudocercospora mori as the causal agent of grey leaf spot disease in mulberry (Morus atropurpurea) from various localities in Guangdong Province, China",
+    "container": "Frontiers in Plant Science",
+    "volume": "16",
+    "issue": null,
+    "page": null,
+    "article_number": "1648690",
+    "authors": [
+     {
+      "given": "Izhar Hyder",
+      "family": "Qazi",
+      "name": null
+     },
+     {
+      "given": "Ting",
+      "family": "Yuan",
+      "name": null
+     },
+     {
+      "given": "Xi",
+      "family": "Liu",
+      "name": null
+     },
+     {
+      "given": "Jiping",
+      "family": "Liu",
+      "name": null
+     }
+    ],
+    "issued": [
+     2025,
+     9,
+     4
+    ],
+    "published_online": [
+     2025,
+     9,
+     4
+    ],
+    "published_print": [
+     null
+    ]
+   }
+  },
+  {
+   "k": "c4",
+   "source": "epmc",
+   "score": 10,
+   "pmcid": "PMC11161989",
+   "doi": "10.1186/s13007-024-01215-1",
+   "title": "Hyperspectral imaging for quantifying Magnaporthe oryzae sporulation on rice genotypes.",
+   "authors": [
+    {
+     "last": "Maina",
+     "initials": "AW",
+     "first": "Angeline Wanjiku",
+     "full": "Maina AW",
+     "collective": null
+    },
+    {
+     "last": "Oerke",
+     "initials": "EC",
+     "first": "Erich-Christian",
+     "full": "Oerke EC",
+     "collective": null
+    }
+   ],
+   "journal": "Plant methods",
+   "journal_iso": "Plant Methods",
+   "volume": "20",
+   "issue": "1",
+   "year": 2024,
+   "pages": "87",
+   "license": "cc by",
+   "first_pub": "2024-06-08",
+   "fig_label": "Fig. 4",
+   "caption": "Phenotypes of leaf blast symptoms on rice genotypes CO 39, Nipponbare, and IR64 infected with M. oryzae isolates Guy 11, and Li1497, respectively. Images were recorded after incubation of rice plants under 100% RH for 2 days to induce sporulation, corresponding to 9 days post inoculation (bar size = 10 mm)",
+   "href": "13007_2024_1215_Fig4_HTML.jpg",
+   "img_url": "https://cdn.ncbi.nlm.nih.gov/pmc/blobs/c8ec/11161989/1921520e467c/13007_2024_1215_Fig4_HTML.jpg",
+   "orig_size": [
+    798,
+    638
+   ],
+   "crossref": {
+    "title": "Hyperspectral imaging for quantifying Magnaporthe oryzae sporulation on rice genotypes",
+    "container": "Plant Methods",
+    "volume": "20",
+    "issue": "1",
+    "page": null,
+    "article_number": "87",
+    "authors": [
+     {
+      "given": "Angeline Wanjiku",
+      "family": "Maina",
+      "name": null
+     },
+     {
+      "given": "Erich-Christian",
+      "family": "Oerke",
+      "name": null
+     }
+    ],
+    "issued": [
+     2024,
+     6,
+     8
+    ],
+    "published_online": [
+     2024,
+     6,
+     8
+    ],
+    "published_print": [
+     null
+    ]
+   }
+  },
+  {
+   "k": "c5",
+   "source": "epmc",
+   "score": 10,
+   "pmcid": "PMC11161989",
+   "doi": "10.1186/s13007-024-01215-1",
+   "title": "Hyperspectral imaging for quantifying Magnaporthe oryzae sporulation on rice genotypes.",
+   "authors": [
+    {
+     "last": "Maina",
+     "initials": "AW",
+     "first": "Angeline Wanjiku",
+     "full": "Maina AW",
+     "collective": null
+    },
+    {
+     "last": "Oerke",
+     "initials": "EC",
+     "first": "Erich-Christian",
+     "full": "Oerke EC",
+     "collective": null
+    }
+   ],
+   "journal": "Plant methods",
+   "journal_iso": "Plant Methods",
+   "volume": "20",
+   "issue": "1",
+   "year": 2024,
+   "pages": "87",
+   "license": "cc by",
+   "first_pub": "2024-06-08",
+   "fig_label": "Fig. 6",
+   "caption": "Sporulation of M. oryzae isolate Guy 11 on leaves of the rice genotypes CO 39, Nipponbare, and IR64 as quantified by hyperspectral imaging. Images illustrate RGB picture and pseudo-color results of spectral angle mapper (SAM) classification of blast lesions before induction of sporulation (7 days post inoculation) and with sporulation (9 d.p.i.) induced by incubation of rice plants under 100% RH for 2 days. Different subareas of blast symptom types were classified for each rice genotype × M. oryzae interaction",
+   "href": "13007_2024_1215_Fig6_HTML.jpg",
+   "img_url": "https://cdn.ncbi.nlm.nih.gov/pmc/blobs/c8ec/11161989/448e7b571ad2/13007_2024_1215_Fig6_HTML.jpg",
+   "orig_size": [
+    798,
+    509
+   ],
+   "crossref": {
+    "title": "Hyperspectral imaging for quantifying Magnaporthe oryzae sporulation on rice genotypes",
+    "container": "Plant Methods",
+    "volume": "20",
+    "issue": "1",
+    "page": null,
+    "article_number": "87",
+    "authors": [
+     {
+      "given": "Angeline Wanjiku",
+      "family": "Maina",
+      "name": null
+     },
+     {
+      "given": "Erich-Christian",
+      "family": "Oerke",
+      "name": null
+     }
+    ],
+    "issued": [
+     2024,
+     6,
+     8
+    ],
+    "published_online": [
+     2024,
+     6,
+     8
+    ],
+    "published_print": [
+     null
+    ]
+   }
+  },
+  {
+   "k": "c6",
+   "source": "epmc",
+   "score": 9,
+   "pmcid": "PMC10204640",
+   "doi": "10.3389/fpls.2023.1100595",
+   "title": "An in-field heat treatment to reduce <i>Cercospora beticola</i> survival in plant residue and improve Cercospora leaf spot management in sugarbeet.",
+   "authors": [
+    {
+     "last": "Hernandez",
+     "initials": "AP",
+     "first": "Alexandra P",
+     "full": "Hernandez AP",
+     "collective": null
+    },
+    {
+     "last": "Bublitz",
+     "initials": "DM",
+     "first": "Daniel M",
+     "full": "Bublitz DM",
+     "collective": null
+    },
+    {
+     "last": "Wenzel",
+     "initials": "TJ",
+     "first": "Thomas J",
+     "full": "Wenzel TJ",
+     "collective": null
+    },
+    {
+     "last": "Ruth",
+     "initials": "SK",
+     "first": "Sarah K",
+     "full": "Ruth SK",
+     "collective": null
+    },
+    {
+     "last": "Bloomingdale",
+     "initials": "C",
+     "first": "Chris",
+     "full": "Bloomingdale C",
+     "collective": null
+    },
+    {
+     "last": "Mettler",
+     "initials": "DC",
+     "first": "David C",
+     "full": "Mettler DC",
+     "collective": null
+    },
+    {
+     "last": "Bloomquist",
+     "initials": "MW",
+     "first": "Mark W",
+     "full": "Bloomquist MW",
+     "collective": null
+    },
+    {
+     "last": "Hanson",
+     "initials": "LE",
+     "first": "Linda E",
+     "full": "Hanson LE",
+     "collective": null
+    },
+    {
+     "last": "Willbur",
+     "initials": "JF",
+     "first": "Jaime F",
+     "full": "Willbur JF",
+     "collective": null
+    }
+   ],
+   "journal": "Frontiers in plant science",
+   "journal_iso": "Front Plant Sci",
+   "volume": "14",
+   "issue": null,
+   "year": 2023,
+   "pages": "1100595",
+   "license": "cc by",
+   "first_pub": "2023-05-09",
+   "fig_label": "Figure 2",
+   "caption": "Mean Cercospora leaf spot severity progression on sugarbeet in (A) 2020, (B) 2021, and (C) 2022, following fall-applied treatments evaluated in Frankenmuth, MI. Treatments included a non-treated control, plow with a 3-m tandem disc set to invert soil 15 cm. immediately post-harvest, heat treatment using a propane-fueled burner (Multi-Trail Enterprises LLC) calibrated to heat foliage to 649-871°C at 1.6 kmph and 4.8 kmph prior to defoliation, and a desiccant (Sharpen 0.07 L/ha, methylated seed oil 1% v/v, ammonium sulfate 2037 g/L) applied seven days pre-harvest. In 2020 and 2021, CLS ratings were based on the KWS severity scale (0-10) in 2020 and 2021 where 0 is 0.1% severity (1-5 spots per leaf) and 10 is 50% severity. In 2022, the CLS ratings were based on the Agronomica (Battilani et al., 1990) severity scale standardized to 0-10 scale where 0 is completely healthy foliage and 10 is completely destroyed original foliage with respect to CLS. Each point represents a mean of four replicate field plots. Date axes start at the planting date and end at the harvest date for each year.",
+   "href": "fpls-14-1100595-g002.jpg",
+   "img_url": "https://www.frontiersin.org/files/Articles/1100595/fpls-14-1100595-HTML/image_m/fpls-14-1100595-g002.jpg",
+   "orig_size": [
+    1417,
+    1996
+   ],
+   "crossref": {
+    "title": "An in-field heat treatment to reduce Cercospora beticola survival in plant residue and improve Cercospora leaf spot management in sugarbeet",
+    "container": "Frontiers in Plant Science",
+    "volume": "14",
+    "issue": null,
+    "page": null,
+    "article_number": "1100595",
+    "authors": [
+     {
+      "given": "Alexandra P.",
+      "family": "Hernandez",
+      "name": null
+     },
+     {
+      "given": "Daniel M.",
+      "family": "Bublitz",
+      "name": null
+     },
+     {
+      "given": "Thomas J.",
+      "family": "Wenzel",
+      "name": null
+     },
+     {
+      "given": "Sarah K.",
+      "family": "Ruth",
+      "name": null
+     },
+     {
+      "given": "Chris",
+      "family": "Bloomingdale",
+      "name": null
+     },
+     {
+      "given": "David C.",
+      "family": "Mettler",
+      "name": null
+     },
+     {
+      "given": "Mark W.",
+      "family": "Bloomquist",
+      "name": null
+     },
+     {
+      "given": "Linda E.",
+      "family": "Hanson",
+      "name": null
+     },
+     {
+      "given": "Jaime F.",
+      "family": "Willbur",
+      "name": null
+     }
+    ],
+    "issued": [
+     2023,
+     5,
+     9
+    ],
+    "published_online": [
+     2023,
+     5,
+     9
+    ],
+    "published_print": [
+     null
+    ]
+   }
+  },
+  {
+   "k": "c7",
+   "source": "epmc",
+   "score": 8,
+   "pmcid": "PMC13318929",
+   "doi": "10.1111/mpp.70306",
+   "title": "To Beet or Not (Just) to Beet: Ecology, Virulence and Genomic Insights Into the Leaf Spot Disease Causative Pseudomonas syringae pv. aptata.",
+   "authors": [
+    {
+     "last": "Nikolić",
+     "initials": "I",
+     "first": "Ivan",
+     "full": "Nikolić I",
+     "collective": null
+    },
+    {
+     "last": "Rosić",
+     "initials": "I",
+     "first": "Iva",
+     "full": "Rosić I",
+     "collective": null
+    },
+    {
+     "last": "Medić",
+     "initials": "O",
+     "first": "Olja",
+     "full": "Medić O",
+     "collective": null
+    },
+    {
+     "last": "Ranković",
+     "initials": "T",
+     "first": "Tamara",
+     "full": "Ranković T",
+     "collective": null
+    },
+    {
+     "last": "Sokić",
+     "initials": "M",
+     "first": "Marina",
+     "full": "Sokić M",
+     "collective": null
+    },
+    {
+     "last": "Berić",
+     "initials": "T",
+     "first": "Tanja",
+     "full": "Berić T",
+     "collective": null
+    },
+    {
+     "last": "Lozo",
+     "initials": "J",
+     "first": "Jelena",
+     "full": "Lozo J",
+     "collective": null
+    },
+    {
+     "last": "Stanković",
+     "initials": "S",
+     "first": "Slaviša",
+     "full": "Stanković S",
+     "collective": null
+    }
+   ],
+   "journal": "Molecular plant pathology",
+   "journal_iso": "Mol Plant Pathol",
+   "volume": "27",
+   "issue": "7",
+   "year": 2026,
+   "pages": "e70306",
+   "license": "cc by",
+   "first_pub": "2026-07-01",
+   "fig_label": "FIGURE 3",
+   "caption": "Bacterial leaf spot disease symptoms on sugar beet (Beta vulgaris subsp. vulgaris var. altissima) in Serbian commercial fields at Vojvodina Province (Stojšin et al. 2015), associated with Pseudomonas syringae pv. aptata infection.",
+   "href": "MPP-27-e70306-g002.jpg",
+   "img_url": "https://cdn.ncbi.nlm.nih.gov/pmc/blobs/ccfd/13318929/d9cd8a92209c/MPP-27-e70306-g002.jpg",
+   "orig_size": [
+    709,
+    441
+   ],
+   "crossref": {
+    "title": "To Beet or Not (Just) to Beet: Ecology, Virulence and Genomic Insights Into the Leaf Spot Disease Causative\n                    <i>Pseudomonas syringae</i>\n                    pv.\n                    <i>aptata</i>",
+    "container": "Molecular Plant Pathology",
+    "volume": "27",
+    "issue": "7",
+    "page": null,
+    "article_number": "e70306",
+    "authors": [
+     {
+      "given": "Ivan",
+      "family": "Nikolić",
+      "name": null
+     },
+     {
+      "given": "Iva",
+      "family": "Rosić",
+      "name": null
+     },
+     {
+      "given": "Olja",
+      "family": "Medić",
+      "name": null
+     },
+     {
+      "given": "Tamara",
+      "family": "Ranković",
+      "name": null
+     },
+     {
+      "given": "Marina",
+      "family": "Sokić",
+      "name": null
+     },
+     {
+      "given": "Tanja",
+      "family": "Berić",
+      "name": null
+     },
+     {
+      "given": "Jelena",
+      "family": "Lozo",
+      "name": null
+     },
+     {
+      "given": "Slaviša",
+      "family": "Stanković",
+      "name": null
+     }
+    ],
+    "issued": [
+     2026,
+     6,
+     30
+    ],
+    "published_online": [
+     2026,
+     6,
+     30
+    ],
+    "published_print": [
+     2026,
+     7
+    ]
+   }
+  },
+  {
+   "k": "c8",
+   "source": "epmc",
+   "score": 8,
+   "pmcid": "PMC11943282",
+   "doi": "10.3390/jof11030211",
+   "title": "Intra-Leaf Variability of Incubation Period Sheds New Light on the Lifestyle of &lt;i&gt;Cercospora beticola&lt;/i&gt; in Sugar Beets.",
+   "authors": [
+    {
+     "last": "Oerke",
+     "initials": "EC",
+     "first": "Erich-Christian",
+     "full": "Oerke EC",
+     "collective": null
+    },
+    {
+     "last": "Steiner",
+     "initials": "U",
+     "first": "Ulrike",
+     "full": "Steiner U",
+     "collective": null
+    }
+   ],
+   "journal": "Journal of fungi (Basel, Switzerland)",
+   "journal_iso": "J Fungi (Basel)",
+   "volume": "11",
+   "issue": "3",
+   "year": 2025,
+   "pages": "211",
+   "license": "cc by",
+   "first_pub": "2025-03-09",
+   "fig_label": "Figure 5",
+   "caption": "Development of CLS lesions on leaves of four sugar beet cultivars in time. Increase in the number of CLS lesions per leaf in the period 9 to 27 d p.i. (A); relative growth rate (RGR) of lesion number over time (B); increase in the total leaf area diseased in the period 9 to 27 d p.i. (C); relative growth rate (RGR) of diseased leaf area (D); effect of the length of incubation period on the initial area of CLS lesions (E); growth of CLS lesions within the period of 7 days after the time of appearance (F); box-and-whisker plots of the relative growth rate of individual CLS lesions on cv. Debora (G) and Pauletta (H) in response to the time after lesion appearance. Assessment of lesions appearing 10 and 11 d p.i. (cv. Debora) and 10 and 12 d p.i. (cv. Pauletta), respectively. Lower case letters indicate significant differences (p ≤ 0.05) among cultivars (E, F).",
+   "href": "jof-11-00211-g005.jpg",
+   "img_url": "https://cdn.ncbi.nlm.nih.gov/pmc/blobs/6e7e/11943282/808011558f01/jof-11-00211-g005.jpg",
+   "orig_size": [
+    738,
+    1206
+   ],
+   "crossref": {
+    "title": "Intra-Leaf Variability of Incubation Period Sheds New Light on the Lifestyle of Cercospora beticola in Sugar Beets",
+    "container": "Journal of Fungi",
+    "volume": "11",
+    "issue": "3",
+    "page": "211",
+    "article_number": null,
+    "authors": [
+     {
+      "given": "Erich-Christian",
+      "family": "Oerke",
+      "name": null
+     },
+     {
+      "given": "Ulrike",
+      "family": "Steiner",
+      "name": null
+     }
+    ],
+    "issued": [
+     2025,
+     3,
+     9
+    ],
+    "published_online": [
+     2025,
+     3,
+     9
+    ],
+    "published_print": [
+     null
+    ]
+   }
+  },
+  {
+   "k": "c9",
+   "source": "epmc",
+   "score": 8,
+   "pmcid": "PMC12443802",
+   "doi": "10.3389/fpls.2025.1648690",
+   "title": "Identification of &lt;i&gt;Pseudocercospora mori&lt;/i&gt; as the causal agent of grey leaf spot disease in mulberry (&lt;i&gt;Morus atropurpurea&lt;/i&gt;) from various localities in Guangdong Province, China.",
+   "authors": [
+    {
+     "last": "Qazi",
+     "initials": "IH",
+     "first": "Izhar Hyder",
+     "full": "Qazi IH",
+     "collective": null
+    },
+    {
+     "last": "Yuan",
+     "initials": "T",
+     "first": "Ting",
+     "full": "Yuan T",
+     "collective": null
+    },
+    {
+     "last": "Liu",
+     "initials": "X",
+     "first": "Xi",
+     "full": "Liu X",
+     "collective": null
+    },
+    {
+     "last": "Liu",
+     "initials": "J",
+     "first": "Jiping",
+     "full": "Liu J",
+     "collective": null
+    }
+   ],
+   "journal": "Frontiers in plant science",
+   "journal_iso": "Front Plant Sci",
+   "volume": "16",
+   "issue": null,
+   "year": 2025,
+   "pages": "1648690",
+   "license": "cc by",
+   "first_pub": "2025-09-04",
+   "fig_label": "Figure 1",
+   "caption": "Map showing sampling locations across Guangdong province and number of samples of leaf spot-infected mulberry leaves. This map shows the administrative divisions of Guangdong Province, China. Landmarks represent sampling locations in this study. Samples were collected in six locations across three cities: Guangzhou City, Shaoguan City, Qingyuan City, and Maoming City. Color intensity represents the number of samples collected. For further details, readers can refer to Table 1.",
+   "href": "fpls-16-1648690-g001.jpg",
+   "img_url": "https://www.frontiersin.org/files/Articles/1648690/fpls-16-1648690-HTML/image_m/fpls-16-1648690-g001.jpg",
+   "orig_size": [
+    4409,
+    3455
+   ],
+   "crossref": {
+    "title": "Identification of Pseudocercospora mori as the causal agent of grey leaf spot disease in mulberry (Morus atropurpurea) from various localities in Guangdong Province, China",
+    "container": "Frontiers in Plant Science",
+    "volume": "16",
+    "issue": null,
+    "page": null,
+    "article_number": "1648690",
+    "authors": [
+     {
+      "given": "Izhar Hyder",
+      "family": "Qazi",
+      "name": null
+     },
+     {
+      "given": "Ting",
+      "family": "Yuan",
+      "name": null
+     },
+     {
+      "given": "Xi",
+      "family": "Liu",
+      "name": null
+     },
+     {
+      "given": "Jiping",
+      "family": "Liu",
+      "name": null
+     }
+    ],
+    "issued": [
+     2025,
+     9,
+     4
+    ],
+    "published_online": [
+     2025,
+     9,
+     4
+    ],
+    "published_print": [
+     null
+    ]
+   }
+  }
+ ]
+}

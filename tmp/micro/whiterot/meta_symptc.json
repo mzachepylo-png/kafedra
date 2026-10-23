@@ -1,0 +1,392 @@
+{
+ "id": "whiterot",
+ "candidates": [
+  {
+   "k": "c1",
+   "source": "epmc",
+   "score": 11,
+   "pmcid": "PMC12389406",
+   "doi": "10.3390/plants14162478",
+   "title": "Morphological, Pathogenic and Molecular Characterization of &lt;i&gt;Sclerotinia sclerotiorum&lt;/i&gt;, the Causal Agent of White Rot of Cabbage (&lt;i&gt;Brassica oleracea&lt;/i&gt; var. &lt;i&gt;capitata&lt;/i&gt;), in Serbia.",
+   "authors": [
+    {
+     "last": "Pešić",
+     "initials": "B",
+     "first": "Brankica",
+     "full": "Pešić B",
+     "collective": null
+    },
+    {
+     "last": "Mitrović",
+     "initials": "P",
+     "first": "Petar",
+     "full": "Mitrović P",
+     "collective": null
+    },
+    {
+     "last": "Marjanović Jeromela",
+     "initials": "A",
+     "first": "Ana",
+     "full": "Marjanović Jeromela A",
+     "collective": null
+    },
+    {
+     "last": "Zanetti",
+     "initials": "F",
+     "first": "Federica",
+     "full": "Zanetti F",
+     "collective": null
+    },
+    {
+     "last": "Mihajlović",
+     "initials": "M",
+     "first": "Milica",
+     "full": "Mihajlović M",
+     "collective": null
+    },
+    {
+     "last": "Hrustić",
+     "initials": "J",
+     "first": "Jovana",
+     "full": "Hrustić J",
+     "collective": null
+    },
+    {
+     "last": "Vojvodić",
+     "initials": "M",
+     "first": "Mira",
+     "full": "Vojvodić M",
+     "collective": null
+    },
+    {
+     "last": "Grkinić",
+     "initials": "M",
+     "first": "Miljan",
+     "full": "Grkinić M",
+     "collective": null
+    },
+    {
+     "last": "Bulajić",
+     "initials": "A",
+     "first": "Aleksandra",
+     "full": "Bulajić A",
+     "collective": null
+    }
+   ],
+   "journal": "Plants (Basel, Switzerland)",
+   "journal_iso": "Plants (Basel)",
+   "volume": "14",
+   "issue": "16",
+   "year": 2025,
+   "pages": "2478",
+   "license": "cc by",
+   "first_pub": "2025-08-10",
+   "fig_label": "Figure 6",
+   "caption": "Comparative analysis of susceptibility levels in various host plants to Sclerotinia sclerotiorum isolates (B, B1-3, M, M1-7, SC) based on disease severity index calculated as an average symptom appearance rated using the following scale: 0—no reaction; 1—necrosis length up to 0.5 cm; 2—necrosis length 0.5–1 cm; 3—necrosis length 1–2 cm; and 4—necrosis length > 2 cm.",
+   "href": "plants-14-02478-g006.jpg",
+   "img_url": "https://cdn.ncbi.nlm.nih.gov/pmc/blobs/788b/12389406/8d794e3e0701/plants-14-02478-g006.jpg",
+   "orig_size": [
+    779,
+    496
+   ],
+   "crossref": {
+    "title": "Morphological, Pathogenic and Molecular Characterization of Sclerotinia sclerotiorum, the Causal Agent of White Rot of Cabbage (Brassica oleracea var. capitata), in Serbia",
+    "container": "Plants",
+    "volume": "14",
+    "issue": "16",
+    "page": "2478",
+    "article_number": null,
+    "authors": [
+     {
+      "given": "Brankica",
+      "family": "Pešić",
+      "name": null
+     },
+     {
+      "given": "Petar",
+      "family": "Mitrović",
+      "name": null
+     },
+     {
+      "given": "Ana",
+      "family": "Marjanović Jeromela",
+      "name": null
+     },
+     {
+      "given": "Federica",
+      "family": "Zanetti",
+      "name": null
+     },
+     {
+      "given": "Milica",
+      "family": "Mihajlović",
+      "name": null
+     },
+     {
+      "given": "Jovana",
+      "family": "Hrustić",
+      "name": null
+     },
+     {
+      "given": "Mira",
+      "family": "Vojvodić",
+      "name": null
+     },
+     {
+      "given": "Miljan",
+      "family": "Grkinić",
+      "name": null
+     },
+     {
+      "given": "Aleksandra",
+      "family": "Bulajić",
+      "name": null
+     }
+    ],
+    "issued": [
+     2025,
+     8,
+     10
+    ],
+    "published_online": [
+     2025,
+     8,
+     10
+    ],
+    "published_print": [
+     null
+    ]
+   }
+  },
+  {
+   "k": "c2",
+   "source": "epmc",
+   "score": 11,
+   "pmcid": "PMC12389406",
+   "doi": "10.3390/plants14162478",
+   "title": "Morphological, Pathogenic and Molecular Characterization of &lt;i&gt;Sclerotinia sclerotiorum&lt;/i&gt;, the Causal Agent of White Rot of Cabbage (&lt;i&gt;Brassica oleracea&lt;/i&gt; var. &lt;i&gt;capitata&lt;/i&gt;), in Serbia.",
+   "authors": [
+    {
+     "last": "Pešić",
+     "initials": "B",
+     "first": "Brankica",
+     "full": "Pešić B",
+     "collective": null
+    },
+    {
+     "last": "Mitrović",
+     "initials": "P",
+     "first": "Petar",
+     "full": "Mitrović P",
+     "collective": null
+    },
+    {
+     "last": "Marjanović Jeromela",
+     "initials": "A",
+     "first": "Ana",
+     "full": "Marjanović Jeromela A",
+     "collective": null
+    },
+    {
+     "last": "Zanetti",
+     "initials": "F",
+     "first": "Federica",
+     "full": "Zanetti F",
+     "collective": null
+    },
+    {
+     "last": "Mihajlović",
+     "initials": "M",
+     "first": "Milica",
+     "full": "Mihajlović M",
+     "collective": null
+    },
+    {
+     "last": "Hrustić",
+     "initials": "J",
+     "first": "Jovana",
+     "full": "Hrustić J",
+     "collective": null
+    },
+    {
+     "last": "Vojvodić",
+     "initials": "M",
+     "first": "Mira",
+     "full": "Vojvodić M",
+     "collective": null
+    },
+    {
+     "last": "Grkinić",
+     "initials": "M",
+     "first": "Miljan",
+     "full": "Grkinić M",
+     "collective": null
+    },
+    {
+     "last": "Bulajić",
+     "initials": "A",
+     "first": "Aleksandra",
+     "full": "Bulajić A",
+     "collective": null
+    }
+   ],
+   "journal": "Plants (Basel, Switzerland)",
+   "journal_iso": "Plants (Basel)",
+   "volume": "14",
+   "issue": "16",
+   "year": 2025,
+   "pages": "2478",
+   "license": "cc by",
+   "first_pub": "2025-08-10",
+   "fig_label": "Figure 7",
+   "caption": "Sensitivity profiles of the host plants to Sclerotinia sclerotiorum isolates expressed as cumulative disease severity, calculated as the sum of the average disease severity index values (calculated as an average symptom appearance rated using the following scale: 0—no reaction; 1—necrosis length up to 0.5 cm; 2—necrosis length 0.5–1 cm; 3—necrosis length 1–2 cm; and 4—necrosis length > 2 cm) for all isolates combined.",
+   "href": "plants-14-02478-g007.jpg",
+   "img_url": "https://cdn.ncbi.nlm.nih.gov/pmc/blobs/788b/12389406/113b542a9f66/plants-14-02478-g007.jpg",
+   "orig_size": [
+    784,
+    490
+   ],
+   "crossref": {
+    "title": "Morphological, Pathogenic and Molecular Characterization of Sclerotinia sclerotiorum, the Causal Agent of White Rot of Cabbage (Brassica oleracea var. capitata), in Serbia",
+    "container": "Plants",
+    "volume": "14",
+    "issue": "16",
+    "page": "2478",
+    "article_number": null,
+    "authors": [
+     {
+      "given": "Brankica",
+      "family": "Pešić",
+      "name": null
+     },
+     {
+      "given": "Petar",
+      "family": "Mitrović",
+      "name": null
+     },
+     {
+      "given": "Ana",
+      "family": "Marjanović Jeromela",
+      "name": null
+     },
+     {
+      "given": "Federica",
+      "family": "Zanetti",
+      "name": null
+     },
+     {
+      "given": "Milica",
+      "family": "Mihajlović",
+      "name": null
+     },
+     {
+      "given": "Jovana",
+      "family": "Hrustić",
+      "name": null
+     },
+     {
+      "given": "Mira",
+      "family": "Vojvodić",
+      "name": null
+     },
+     {
+      "given": "Miljan",
+      "family": "Grkinić",
+      "name": null
+     },
+     {
+      "given": "Aleksandra",
+      "family": "Bulajić",
+      "name": null
+     }
+    ],
+    "issued": [
+     2025,
+     8,
+     10
+    ],
+    "published_online": [
+     2025,
+     8,
+     10
+    ],
+    "published_print": [
+     null
+    ]
+   }
+  },
+  {
+   "k": "c3",
+   "source": "epmc",
+   "score": 11,
+   "pmcid": "PMC12235320",
+   "doi": "10.3389/fpls.2025.1616824",
+   "title": "Comparative insights into soybean and other oilseed crops' defense mechanisms against &lt;i&gt;Sclerotinia sclerotiorum&lt;/i&gt;.",
+   "authors": [
+    {
+     "last": "Talmo",
+     "initials": "N",
+     "first": "Nick",
+     "full": "Talmo N",
+     "collective": null
+    },
+    {
+     "last": "Ranjan",
+     "initials": "A",
+     "first": "Ashish",
+     "full": "Ranjan A",
+     "collective": null
+    }
+   ],
+   "journal": "Frontiers in plant science",
+   "journal_iso": "Front Plant Sci",
+   "volume": "16",
+   "issue": null,
+   "year": 2025,
+   "pages": "1616824",
+   "license": "cc by",
+   "first_pub": "2025-06-24",
+   "fig_label": "Figure 2",
+   "caption": "Disease Cycle of S. sclerotiorum on soybean, canola, and sunflower. (A) S. sclerotiorum survives in the soil and within infected debris as sclerotia, remaining viable for up to eight years. (B) Under conducive conditions, these sclerotia germinate carpogenically in the spring, to form a fruiting structure known as apothecia. Each apothecia can produce more than 10 million ascospores which are then wind disseminated to the host plant. (C) Alternatively, sclerotia can germinate myceliogenically, producing hyphae that will grow outward in the soil towards plant roots. In soybean (D), under natural conditions, the ascospores will land on senescing flowers, which release nutrients utilized by the germinating ascospore. Following germination, germ tubes form, and mycelia begin to colonize the plant tissues. (E) Mycelia will continue spreading from the point of infection, colonizing and macerating the stem tissues. (F) The water-soaked lesions will begin to dry out as the pathogen radiates from the point of infection, girdling the stem and replacing the pith with sclerotia, which will be deposited back into the soil for subsequent seasons. In canola (G), like soybean, the ascospores are deposited on senescing flowers during the rosette phase, where the released nutrients are utilized for hyphal formation. (H) Following infection of the flower, the pathogen can spread to the stem directly from the flower. Alternatively, the flower petals may detach before reaching the stem. However, if the infected petal lands on a leaf below, the mycelia will penetrate the leaf and spread to the remainder of the plant. (I) Further colonization of the stem results in a destruction of vascular tissue, death of the plant, and formation of sclerotia internally and externally, which can be deposited into the soil for the following year. In sunflower (J), ascospores can be deposited on the flower head, where they utilize nutrients from saccharose glands to germinate. (K) The ascospores can also be deposited and initiate infection on the stems, leaves, and petioles of the plant. (L) Alternatively, the sclerotia can directly produce hyphae via myceliogenic germination which can penetrate the sunflower roots, starting its colonization of the host from the base. (M) Infection of the roots results in the disease known as basal stalk rot, where the mycelia destroy the root system and work upwards along the stem. (N) Infection of the main stem results in the disease, mid stalk rot, which rapidly colonizes and destroys the vascular system, similar to what is seen in soybean and canola. (O) Finally, infection of the flower results in sclerotinia head rot of sunflower, where the flower tissues are destroyed, prior to colonization of the stem tissue. Sclerotia formed from all three diseases of sunflower will be deposited into the soil during harvest, where the sclerotia can overwinter and begin its cycle again the following year. Created with BioRender.com.",
+   "href": "fpls-16-1616824-g002.jpg",
+   "img_url": "https://www.frontiersin.org/files/Articles/1616824/fpls-16-1616824-HTML/image_m/fpls-16-1616824-g002.jpg",
+   "orig_size": [
+    3898,
+    3850
+   ],
+   "crossref": {
+    "title": "Comparative insights into soybean and other oilseed crops’ defense mechanisms against Sclerotinia sclerotiorum",
+    "container": "Frontiers in Plant Science",
+    "volume": "16",
+    "issue": null,
+    "page": null,
+    "article_number": "1616824",
+    "authors": [
+     {
+      "given": "Nick",
+      "family": "Talmo",
+      "name": null
+     },
+     {
+      "given": "Ashish",
+      "family": "Ranjan",
+      "name": null
+     }
+    ],
+    "issued": [
+     2025,
+     6,
+     24
+    ],
+    "published_online": [
+     2025,
+     6,
+     24
+    ],
+    "published_print": [
+     null
+    ]
+   }
+  }
+ ]
+}

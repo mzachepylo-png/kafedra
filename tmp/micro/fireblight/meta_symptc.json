@@ -1,0 +1,738 @@
+{
+ "id": "fireblight",
+ "candidates": [
+  {
+   "k": "c1",
+   "source": "epmc",
+   "score": 10,
+   "pmcid": "PMC11385024",
+   "doi": "10.1016/j.dib.2024.110826",
+   "title": "Annotated image dataset of fire blight symptoms for object detection in orchards.",
+   "authors": [
+    {
+     "last": "Maß",
+     "initials": "V",
+     "first": "Virginia",
+     "full": "Maß V",
+     "collective": null
+    },
+    {
+     "last": "Alirezazadeh",
+     "initials": "P",
+     "first": "Pendar",
+     "full": "Alirezazadeh P",
+     "collective": null
+    },
+    {
+     "last": "Seidl-Schulz",
+     "initials": "J",
+     "first": "Johannes",
+     "full": "Seidl-Schulz J",
+     "collective": null
+    },
+    {
+     "last": "Leipnitz",
+     "initials": "M",
+     "first": "Matthias",
+     "full": "Leipnitz M",
+     "collective": null
+    },
+    {
+     "last": "Fritzsche",
+     "initials": "E",
+     "first": "Eric",
+     "full": "Fritzsche E",
+     "collective": null
+    },
+    {
+     "last": "Ibraheem",
+     "initials": "RAA",
+     "first": "Rasheed Ali Adam",
+     "full": "Ibraheem RAA",
+     "collective": null
+    },
+    {
+     "last": "Geyer",
+     "initials": "M",
+     "first": "Martin",
+     "full": "Geyer M",
+     "collective": null
+    },
+    {
+     "last": "Pflanz",
+     "initials": "M",
+     "first": "Michael",
+     "full": "Pflanz M",
+     "collective": null
+    },
+    {
+     "last": "Reim",
+     "initials": "S",
+     "first": "Stefanie",
+     "full": "Reim S",
+     "collective": null
+    }
+   ],
+   "journal": "Data in brief",
+   "journal_iso": "Data Brief",
+   "volume": "56",
+   "issue": null,
+   "year": 2024,
+   "pages": "110826",
+   "license": "cc by",
+   "first_pub": "2024-08-10",
+   "fig_label": "Fig. 6",
+   "caption": "Examples of annotated images with fire blight infected leaves (red bounding boxes), flowers (purple bounding boxes) and shoots (rose bounding boxes), as well as the class ``MAYBE_'' (blue bounding boxes), used for the ERWIAM dataset. Images were recorded in the experimental greenhouse (Quedlinburg - QLB) in 2021 (A) and 2022 (B) and in the experimental orchard (Kirschgartshausen - KGH) in 2021 (C) and 2022 (D).",
+   "href": "gr6.jpg",
+   "img_url": "https://cdn.ncbi.nlm.nih.gov/pmc/blobs/ec46/11385024/d822cd9fe884/gr6.jpg",
+   "orig_size": [
+    694,
+    697
+   ],
+   "crossref": {
+    "title": "Annotated image dataset of fire blight symptoms for object detection in orchards",
+    "container": "Data in Brief",
+    "volume": "56",
+    "issue": null,
+    "page": "110826",
+    "article_number": "110826",
+    "authors": [
+     {
+      "given": "Virginia",
+      "family": "Maß",
+      "name": null
+     },
+     {
+      "given": "Pendar",
+      "family": "Alirezazadeh",
+      "name": null
+     },
+     {
+      "given": "Johannes",
+      "family": "Seidl-Schulz",
+      "name": null
+     },
+     {
+      "given": "Matthias",
+      "family": "Leipnitz",
+      "name": null
+     },
+     {
+      "given": "Eric",
+      "family": "Fritzsche",
+      "name": null
+     },
+     {
+      "given": "Rasheed Ali Adam",
+      "family": "Ibraheem",
+      "name": null
+     },
+     {
+      "given": "Martin",
+      "family": "Geyer",
+      "name": null
+     },
+     {
+      "given": "Michael",
+      "family": "Pflanz",
+      "name": null
+     },
+     {
+      "given": "Stefanie",
+      "family": "Reim",
+      "name": null
+     }
+    ],
+    "issued": [
+     2024,
+     10
+    ],
+    "published_online": [
+     null
+    ],
+    "published_print": [
+     2024,
+     10
+    ]
+   }
+  },
+  {
+   "k": "c2",
+   "source": "epmc",
+   "score": 10,
+   "pmcid": "PMC12656757",
+   "doi": "10.3390/v17111487",
+   "title": "Multi-Omic Analysis of Bacteriophage-Insensitive Mutants Reveals a Putative Role for the Rcs Two-Component Phosphorelay System in Phage Resistance Development in &lt;i&gt;Erwinia amylovora&lt;/i&gt;.",
+   "authors": [
+    {
+     "last": "Ibrahim",
+     "initials": "N",
+     "first": "Nassereldin",
+     "full": "Ibrahim N",
+     "collective": null
+    },
+    {
+     "last": "Lin",
+     "initials": "JT",
+     "first": "Janet T",
+     "full": "Lin JT",
+     "collective": null
+    },
+    {
+     "last": "Nesbitt",
+     "initials": "D",
+     "first": "Darlene",
+     "full": "Nesbitt D",
+     "collective": null
+    },
+    {
+     "last": "Tang",
+     "initials": "J",
+     "first": "Joshua",
+     "full": "Tang J",
+     "collective": null
+    },
+    {
+     "last": "Singh",
+     "initials": "D",
+     "first": "Dharamdeo",
+     "full": "Singh D",
+     "collective": null
+    },
+    {
+     "last": "Goodridge",
+     "initials": "LD",
+     "first": "Lawrence D",
+     "full": "Goodridge LD",
+     "collective": null
+    },
+    {
+     "last": "Lepp",
+     "initials": "D",
+     "first": "Dion",
+     "full": "Lepp D",
+     "collective": null
+    },
+    {
+     "last": "Svircev",
+     "initials": "AM",
+     "first": "Antonet M",
+     "full": "Svircev AM",
+     "collective": null
+    },
+    {
+     "last": "Weadge",
+     "initials": "JT",
+     "first": "Joel T",
+     "full": "Weadge JT",
+     "collective": null
+    },
+    {
+     "last": "Anany",
+     "initials": "H",
+     "first": "Hany",
+     "full": "Anany H",
+     "collective": null
+    }
+   ],
+   "journal": "Viruses",
+   "journal_iso": "Viruses",
+   "volume": "17",
+   "issue": "11",
+   "year": 2025,
+   "pages": "1487",
+   "license": "cc by",
+   "first_pub": "2025-11-09",
+   "fig_label": "Figure 6",
+   "caption": "Pathogenicity of E. amylovora D7 and the B6-2 BIM strains on apple seedlings. Apple seedlings were inoculated with sodium phosphate buffer (SPB, negative control), E. amylovora D7 (positive control), and BIM B6-2 using the “dirty scissors” technique by dipping scissors into each solution at 10 9 CFU/mL or SPB and snipping the primary leaf. After 5 d incubation, the negative control and the B6-2 inoculated seedlings showed no fire blight symptoms, while the wildtype E. amylovora D7 showed characteristic fire blight symptoms of shoot tip wilt and necrosis.",
+   "href": "viruses-17-01487-g006.jpg",
+   "img_url": "https://cdn.ncbi.nlm.nih.gov/pmc/blobs/0219/12656757/fffe444d4f2f/viruses-17-01487-g006.jpg",
+   "orig_size": [
+    788,
+    429
+   ],
+   "crossref": {
+    "title": "Multi-Omic Analysis of Bacteriophage-Insensitive Mutants Reveals a Putative Role for the Rcs Two-Component Phosphorelay System in Phage Resistance Development in Erwinia amylovora",
+    "container": "Viruses",
+    "volume": "17",
+    "issue": "11",
+    "page": "1487",
+    "article_number": null,
+    "authors": [
+     {
+      "given": "Nassereldin",
+      "family": "Ibrahim",
+      "name": null
+     },
+     {
+      "given": "Janet T.",
+      "family": "Lin",
+      "name": null
+     },
+     {
+      "given": "Darlene",
+      "family": "Nesbitt",
+      "name": null
+     },
+     {
+      "given": "Joshua",
+      "family": "Tang",
+      "name": null
+     },
+     {
+      "given": "Dharamdeo",
+      "family": "Singh",
+      "name": null
+     },
+     {
+      "given": "Lawrence D.",
+      "family": "Goodridge",
+      "name": null
+     },
+     {
+      "given": "Dion",
+      "family": "Lepp",
+      "name": null
+     },
+     {
+      "given": "Antonet M.",
+      "family": "Svircev",
+      "name": null
+     },
+     {
+      "given": "Joel T.",
+      "family": "Weadge",
+      "name": null
+     },
+     {
+      "given": "Hany",
+      "family": "Anany",
+      "name": null
+     }
+    ],
+    "issued": [
+     2025,
+     11,
+     9
+    ],
+    "published_online": [
+     2025,
+     11,
+     9
+    ],
+    "published_print": [
+     null
+    ]
+   }
+  },
+  {
+   "k": "c3",
+   "source": "epmc",
+   "score": 9,
+   "pmcid": "PMC12567397",
+   "doi": "10.3390/plants14203192",
+   "title": "Antibiotic and Copper Sensitivity in &lt;i&gt;Erwinia amylovora&lt;/i&gt; Isolates from Northern Saudi Arabia, and the Induction of Fire Blight Suppression by Salicylic Acid.",
+   "authors": [
+    {
+     "last": "Al Masrahi",
+     "initials": "AA",
+     "first": "Ali A",
+     "full": "Al Masrahi AA",
+     "collective": null
+    },
+    {
+     "last": "Rafique",
+     "initials": "AM",
+     "first": "Abdurrehman M",
+     "full": "Rafique AM",
+     "collective": null
+    },
+    {
+     "last": "Al Hashel",
+     "initials": "AF",
+     "first": "Abdullah F",
+     "full": "Al Hashel AF",
+     "collective": null
+    },
+    {
+     "last": "Al Saleh",
+     "initials": "MA",
+     "first": "Mohammed A",
+     "full": "Al Saleh MA",
+     "collective": null
+    },
+    {
+     "last": "Ibrahim",
+     "initials": "YE",
+     "first": "Yasser E",
+     "full": "Ibrahim YE",
+     "collective": null
+    }
+   ],
+   "journal": "Plants (Basel, Switzerland)",
+   "journal_iso": "Plants (Basel)",
+   "volume": "14",
+   "issue": "20",
+   "year": 2025,
+   "pages": "3192",
+   "license": "cc by",
+   "first_pub": "2025-10-17",
+   "fig_label": "Figure 4",
+   "caption": "Effect of different treatments on fire blight canker extension in ‘Gala’ apple (Malus domestica) shoots inoculated with Erwinia amylovora strain Ea06 (1 × 10 9 CFU/mL). Bars represent the mean percentage of canker extension measured two weeks post-inoculation. Treatments included streptomycin, salicylic acid applied weekly or biweekly, a combination of salicylic acid and streptomycin, and an infected untreated control. The combination treatment showed the greatest reduction in canker development compared with all other treatments. Bars with different letters indicate statistically significant differences according to Duncan’s multiple range least significant difference (LSD) test at p ≤ 0.05.",
+   "href": "plants-14-03192-g004.jpg",
+   "img_url": "https://cdn.ncbi.nlm.nih.gov/pmc/blobs/e1eb/12567397/c4336005c721/plants-14-03192-g004.jpg",
+   "orig_size": [
+    742,
+    456
+   ],
+   "crossref": {
+    "title": "Antibiotic and Copper Sensitivity in Erwinia amylovora Isolates from Northern Saudi Arabia, and the Induction of Fire Blight Suppression by Salicylic Acid",
+    "container": "Plants",
+    "volume": "14",
+    "issue": "20",
+    "page": "3192",
+    "article_number": null,
+    "authors": [
+     {
+      "given": "Ali A.",
+      "family": "Al Masrahi",
+      "name": null
+     },
+     {
+      "given": "Abdurrehman M.",
+      "family": "Rafique",
+      "name": null
+     },
+     {
+      "given": "Abdullah F.",
+      "family": "Al Hashel",
+      "name": null
+     },
+     {
+      "given": "Mohammed A.",
+      "family": "Al Saleh",
+      "name": null
+     },
+     {
+      "given": "Yasser E.",
+      "family": "Ibrahim",
+      "name": null
+     }
+    ],
+    "issued": [
+     2025,
+     10,
+     17
+    ],
+    "published_online": [
+     2025,
+     10,
+     17
+    ],
+    "published_print": [
+     null
+    ]
+   }
+  },
+  {
+   "k": "c4",
+   "source": "epmc",
+   "score": 8,
+   "pmcid": "PMC13208058",
+   "doi": "10.3390/insects17050487",
+   "title": "Systematic Characterization of &lt;i&gt;Cacopsylla chinensis&lt;/i&gt; as a Potential Vector of &lt;i&gt;Erwinia amylovora&lt;/i&gt; on Korla Fragrant Pear in Xinjiang, China.",
+   "authors": [
+    {
+     "last": "Yuan",
+     "initials": "Y",
+     "first": "Yulin",
+     "full": "Yuan Y",
+     "collective": null
+    },
+    {
+     "last": "He",
+     "initials": "Z",
+     "first": "Zhe",
+     "full": "He Z",
+     "collective": null
+    },
+    {
+     "last": "Wang",
+     "initials": "L",
+     "first": "Luwei",
+     "full": "Wang L",
+     "collective": null
+    },
+    {
+     "last": "Liu",
+     "initials": "X",
+     "first": "Xinlu",
+     "full": "Liu X",
+     "collective": null
+    },
+    {
+     "last": "Liu",
+     "initials": "Z",
+     "first": "Zhenya",
+     "full": "Liu Z",
+     "collective": null
+    },
+    {
+     "last": "Li",
+     "initials": "Y",
+     "first": "Yapeng",
+     "full": "Li Y",
+     "collective": null
+    },
+    {
+     "last": "Liu",
+     "initials": "H",
+     "first": "Huimin",
+     "full": "Liu H",
+     "collective": null
+    },
+    {
+     "last": "Zhang",
+     "initials": "W",
+     "first": "Wangbin",
+     "full": "Zhang W",
+     "collective": null
+    }
+   ],
+   "journal": "Insects",
+   "journal_iso": "Insects",
+   "volume": "17",
+   "issue": "5",
+   "year": 2026,
+   "pages": "487",
+   "license": "cc by",
+   "first_pub": "2026-05-09",
+   "fig_label": "Figure 2",
+   "caption": "Detection, colony isolation and pathogenicity of E. amylovora carried by C. chinensis. (A) Detection of E. amylovora in C. chinensis and pear leaves. (B) Colonies of E. amylovora from internal and external parts of C. chinensis. Panels (a – f) correspond to isolates from ML, RW, CW, RN, CN, and Y-1, respectively. (C) Disease symptoms on pear tissues inoculated with corresponding E. amylovora strains: (a) pear shoots, (b) young fruits, and (c) young leaves.",
+   "href": "insects-17-00487-g002.jpg",
+   "img_url": "https://cdn.ncbi.nlm.nih.gov/pmc/blobs/aaa7/13208058/489061bad17e/insects-17-00487-g002.jpg",
+   "orig_size": [
+    769,
+    326
+   ],
+   "crossref": {
+    "title": "Systematic Characterization of Cacopsylla chinensis as a Potential Vector of Erwinia amylovora on Korla Fragrant Pear in Xinjiang, China",
+    "container": "Insects",
+    "volume": "17",
+    "issue": "5",
+    "page": "487",
+    "article_number": null,
+    "authors": [
+     {
+      "given": "Yulin",
+      "family": "Yuan",
+      "name": null
+     },
+     {
+      "given": "Zhe",
+      "family": "He",
+      "name": null
+     },
+     {
+      "given": "Luwei",
+      "family": "Wang",
+      "name": null
+     },
+     {
+      "given": "Xinlu",
+      "family": "Liu",
+      "name": null
+     },
+     {
+      "given": "Zhenya",
+      "family": "Liu",
+      "name": null
+     },
+     {
+      "given": "Yapeng",
+      "family": "Li",
+      "name": null
+     },
+     {
+      "given": "Huimin",
+      "family": "Liu",
+      "name": null
+     },
+     {
+      "given": "Wangbin",
+      "family": "Zhang",
+      "name": null
+     }
+    ],
+    "issued": [
+     2026,
+     5,
+     9
+    ],
+    "published_online": [
+     2026,
+     5,
+     9
+    ],
+    "published_print": [
+     null
+    ]
+   }
+  },
+  {
+   "k": "c5",
+   "source": "epmc",
+   "score": 8,
+   "pmcid": "PMC11385024",
+   "doi": "10.1016/j.dib.2024.110826",
+   "title": "Annotated image dataset of fire blight symptoms for object detection in orchards.",
+   "authors": [
+    {
+     "last": "Maß",
+     "initials": "V",
+     "first": "Virginia",
+     "full": "Maß V",
+     "collective": null
+    },
+    {
+     "last": "Alirezazadeh",
+     "initials": "P",
+     "first": "Pendar",
+     "full": "Alirezazadeh P",
+     "collective": null
+    },
+    {
+     "last": "Seidl-Schulz",
+     "initials": "J",
+     "first": "Johannes",
+     "full": "Seidl-Schulz J",
+     "collective": null
+    },
+    {
+     "last": "Leipnitz",
+     "initials": "M",
+     "first": "Matthias",
+     "full": "Leipnitz M",
+     "collective": null
+    },
+    {
+     "last": "Fritzsche",
+     "initials": "E",
+     "first": "Eric",
+     "full": "Fritzsche E",
+     "collective": null
+    },
+    {
+     "last": "Ibraheem",
+     "initials": "RAA",
+     "first": "Rasheed Ali Adam",
+     "full": "Ibraheem RAA",
+     "collective": null
+    },
+    {
+     "last": "Geyer",
+     "initials": "M",
+     "first": "Martin",
+     "full": "Geyer M",
+     "collective": null
+    },
+    {
+     "last": "Pflanz",
+     "initials": "M",
+     "first": "Michael",
+     "full": "Pflanz M",
+     "collective": null
+    },
+    {
+     "last": "Reim",
+     "initials": "S",
+     "first": "Stefanie",
+     "full": "Reim S",
+     "collective": null
+    }
+   ],
+   "journal": "Data in brief",
+   "journal_iso": "Data Brief",
+   "volume": "56",
+   "issue": null,
+   "year": 2024,
+   "pages": "110826",
+   "license": "cc by",
+   "first_pub": "2024-08-10",
+   "fig_label": "Fig. 2",
+   "caption": "Example of images with fire blight infected leaves used for the annotation of the class “LEAF__” in the ERWIAM dataset. Images were taken in the experimental greenhouse in Quedlinburg (samples in the top row) and experimental orchard in Kirschgartshausen (samples in bottom row).",
+   "href": "gr2.jpg",
+   "img_url": "https://cdn.ncbi.nlm.nih.gov/pmc/blobs/ec46/11385024/4c8bfb875ebf/gr2.jpg",
+   "orig_size": [
+    733,
+    561
+   ],
+   "crossref": {
+    "title": "Annotated image dataset of fire blight symptoms for object detection in orchards",
+    "container": "Data in Brief",
+    "volume": "56",
+    "issue": null,
+    "page": "110826",
+    "article_number": "110826",
+    "authors": [
+     {
+      "given": "Virginia",
+      "family": "Maß",
+      "name": null
+     },
+     {
+      "given": "Pendar",
+      "family": "Alirezazadeh",
+      "name": null
+     },
+     {
+      "given": "Johannes",
+      "family": "Seidl-Schulz",
+      "name": null
+     },
+     {
+      "given": "Matthias",
+      "family": "Leipnitz",
+      "name": null
+     },
+     {
+      "given": "Eric",
+      "family": "Fritzsche",
+      "name": null
+     },
+     {
+      "given": "Rasheed Ali Adam",
+      "family": "Ibraheem",
+      "name": null
+     },
+     {
+      "given": "Martin",
+      "family": "Geyer",
+      "name": null
+     },
+     {
+      "given": "Michael",
+      "family": "Pflanz",
+      "name": null
+     },
+     {
+      "given": "Stefanie",
+      "family": "Reim",
+      "name": null
+     }
+    ],
+    "issued": [
+     2024,
+     10
+    ],
+    "published_online": [
+     null
+    ],
+    "published_print": [
+     2024,
+     10
+    ]
+   }
+  }
+ ]
+}

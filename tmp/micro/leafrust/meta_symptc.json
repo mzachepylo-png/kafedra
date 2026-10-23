@@ -1,0 +1,705 @@
+{
+ "id": "leafrust",
+ "candidates": [
+  {
+   "k": "c1",
+   "source": "epmc",
+   "score": 10,
+   "pmcid": "PMC12043647",
+   "doi": "10.3389/fpls.2025.1566298",
+   "title": "Identification of &lt;i&gt;Thalictrum squarrosum&lt;/i&gt; as an alternate host for &lt;i&gt;Puccinia triticina&lt;/i&gt; and pathogen analysis of &lt;i&gt;Thalictrum squarrosum&lt;/i&gt; rust.",
+   "authors": [
+    {
+     "last": "Zhao",
+     "initials": "N",
+     "first": "Na",
+     "full": "Zhao N",
+     "collective": null
+    },
+    {
+     "last": "Huang",
+     "initials": "L",
+     "first": "Liang",
+     "full": "Huang L",
+     "collective": null
+    },
+    {
+     "last": "Ren",
+     "initials": "J",
+     "first": "Jun",
+     "full": "Ren J",
+     "collective": null
+    },
+    {
+     "last": "Zhang",
+     "initials": "M",
+     "first": "Mengya",
+     "full": "Zhang M",
+     "collective": null
+    },
+    {
+     "last": "Yi",
+     "initials": "T",
+     "first": "Ting",
+     "full": "Yi T",
+     "collective": null
+    },
+    {
+     "last": "Li",
+     "initials": "H",
+     "first": "Hongfu",
+     "full": "Li H",
+     "collective": null
+    },
+    {
+     "last": "Zhang",
+     "initials": "H",
+     "first": "Hao",
+     "full": "Zhang H",
+     "collective": null
+    },
+    {
+     "last": "Liu",
+     "initials": "B",
+     "first": "Bo",
+     "full": "Liu B",
+     "collective": null
+    },
+    {
+     "last": "Gao",
+     "initials": "L",
+     "first": "Li",
+     "full": "Gao L",
+     "collective": null
+    },
+    {
+     "last": "Yan",
+     "initials": "H",
+     "first": "Hongfei",
+     "full": "Yan H",
+     "collective": null
+    },
+    {
+     "last": "Chen",
+     "initials": "W",
+     "first": "Wanquan",
+     "full": "Chen W",
+     "collective": null
+    },
+    {
+     "last": "Liu",
+     "initials": "T",
+     "first": "Taiguo",
+     "full": "Liu T",
+     "collective": null
+    }
+   ],
+   "journal": "Frontiers in plant science",
+   "journal_iso": "Front Plant Sci",
+   "volume": "16",
+   "issue": null,
+   "year": 2025,
+   "pages": "1566298",
+   "license": "cc by",
+   "first_pub": "2025-04-17",
+   "fig_label": "Figure 1",
+   "caption": "Statistical graph of the diseased leaf incidence, diseased plant incidence and severity of rust disease on T. squarrosum. Diseased leaf incidence represents the proportion of leaves with rust symptoms among the total examined leaves of T. squarrosum plants. It fluctuated 15%-20% from 2015-2023 and dropped to 8% in 2024. Diseased plant incidence is the proportion of infected T. squarrosum plants among the total surveyed plants. It ranged 30%-36% in 2015-2023 and decreased to 20% in 2024. Disease severity is measured by the percentage of leaf area covered by rust lesions on diseased leaves. It was 20%-25% from 2015-2023 and dropped to 10% in 2024.",
+   "href": "fpls-16-1566298-g001.jpg",
+   "img_url": "https://www.frontiersin.org/files/Articles/1566298/fpls-16-1566298-HTML/image_m/fpls-16-1566298-g001.jpg",
+   "orig_size": [
+    1456,
+    984
+   ],
+   "crossref": {
+    "title": "Identification of Thalictrum squarrosum as an alternate host for Puccinia triticina and pathogen analysis of Thalictrum squarrosum rust",
+    "container": "Frontiers in Plant Science",
+    "volume": "16",
+    "issue": null,
+    "page": null,
+    "article_number": "1566298",
+    "authors": [
+     {
+      "given": "Na",
+      "family": "Zhao",
+      "name": null
+     },
+     {
+      "given": "Liang",
+      "family": "Huang",
+      "name": null
+     },
+     {
+      "given": "Jun",
+      "family": "Ren",
+      "name": null
+     },
+     {
+      "given": "Mengya",
+      "family": "Zhang",
+      "name": null
+     },
+     {
+      "given": "Ting",
+      "family": "Yi",
+      "name": null
+     },
+     {
+      "given": "Hongfu",
+      "family": "Li",
+      "name": null
+     },
+     {
+      "given": "Hao",
+      "family": "Zhang",
+      "name": null
+     },
+     {
+      "given": "Bo",
+      "family": "Liu",
+      "name": null
+     },
+     {
+      "given": "Li",
+      "family": "Gao",
+      "name": null
+     },
+     {
+      "given": "Hongfei",
+      "family": "Yan",
+      "name": null
+     },
+     {
+      "given": "Wanquan",
+      "family": "Chen",
+      "name": null
+     },
+     {
+      "given": "Taiguo",
+      "family": "Liu",
+      "name": null
+     }
+    ],
+    "issued": [
+     2025,
+     4,
+     17
+    ],
+    "published_online": [
+     2025,
+     4,
+     17
+    ],
+    "published_print": [
+     null
+    ]
+   }
+  },
+  {
+   "k": "c2",
+   "source": "epmc",
+   "score": 8,
+   "pmcid": "PMC12043647",
+   "doi": "10.3389/fpls.2025.1566298",
+   "title": "Identification of &lt;i&gt;Thalictrum squarrosum&lt;/i&gt; as an alternate host for &lt;i&gt;Puccinia triticina&lt;/i&gt; and pathogen analysis of &lt;i&gt;Thalictrum squarrosum&lt;/i&gt; rust.",
+   "authors": [
+    {
+     "last": "Zhao",
+     "initials": "N",
+     "first": "Na",
+     "full": "Zhao N",
+     "collective": null
+    },
+    {
+     "last": "Huang",
+     "initials": "L",
+     "first": "Liang",
+     "full": "Huang L",
+     "collective": null
+    },
+    {
+     "last": "Ren",
+     "initials": "J",
+     "first": "Jun",
+     "full": "Ren J",
+     "collective": null
+    },
+    {
+     "last": "Zhang",
+     "initials": "M",
+     "first": "Mengya",
+     "full": "Zhang M",
+     "collective": null
+    },
+    {
+     "last": "Yi",
+     "initials": "T",
+     "first": "Ting",
+     "full": "Yi T",
+     "collective": null
+    },
+    {
+     "last": "Li",
+     "initials": "H",
+     "first": "Hongfu",
+     "full": "Li H",
+     "collective": null
+    },
+    {
+     "last": "Zhang",
+     "initials": "H",
+     "first": "Hao",
+     "full": "Zhang H",
+     "collective": null
+    },
+    {
+     "last": "Liu",
+     "initials": "B",
+     "first": "Bo",
+     "full": "Liu B",
+     "collective": null
+    },
+    {
+     "last": "Gao",
+     "initials": "L",
+     "first": "Li",
+     "full": "Gao L",
+     "collective": null
+    },
+    {
+     "last": "Yan",
+     "initials": "H",
+     "first": "Hongfei",
+     "full": "Yan H",
+     "collective": null
+    },
+    {
+     "last": "Chen",
+     "initials": "W",
+     "first": "Wanquan",
+     "full": "Chen W",
+     "collective": null
+    },
+    {
+     "last": "Liu",
+     "initials": "T",
+     "first": "Taiguo",
+     "full": "Liu T",
+     "collective": null
+    }
+   ],
+   "journal": "Frontiers in plant science",
+   "journal_iso": "Front Plant Sci",
+   "volume": "16",
+   "issue": null,
+   "year": 2025,
+   "pages": "1566298",
+   "license": "cc by",
+   "first_pub": "2025-04-17",
+   "fig_label": "Figure 2",
+   "caption": "Morphology and rust symptoms of T. squarrosum. (A) The flowers of T. squarrosum; (B) The achenes; (C, D) The symptoms of rust disease on the stems and leaves of T. squarrosum.",
+   "href": "fpls-16-1566298-g002.jpg",
+   "img_url": "https://www.frontiersin.org/files/Articles/1566298/fpls-16-1566298-HTML/image_m/fpls-16-1566298-g002.jpg",
+   "orig_size": [
+    2209,
+    2126
+   ],
+   "crossref": {
+    "title": "Identification of Thalictrum squarrosum as an alternate host for Puccinia triticina and pathogen analysis of Thalictrum squarrosum rust",
+    "container": "Frontiers in Plant Science",
+    "volume": "16",
+    "issue": null,
+    "page": null,
+    "article_number": "1566298",
+    "authors": [
+     {
+      "given": "Na",
+      "family": "Zhao",
+      "name": null
+     },
+     {
+      "given": "Liang",
+      "family": "Huang",
+      "name": null
+     },
+     {
+      "given": "Jun",
+      "family": "Ren",
+      "name": null
+     },
+     {
+      "given": "Mengya",
+      "family": "Zhang",
+      "name": null
+     },
+     {
+      "given": "Ting",
+      "family": "Yi",
+      "name": null
+     },
+     {
+      "given": "Hongfu",
+      "family": "Li",
+      "name": null
+     },
+     {
+      "given": "Hao",
+      "family": "Zhang",
+      "name": null
+     },
+     {
+      "given": "Bo",
+      "family": "Liu",
+      "name": null
+     },
+     {
+      "given": "Li",
+      "family": "Gao",
+      "name": null
+     },
+     {
+      "given": "Hongfei",
+      "family": "Yan",
+      "name": null
+     },
+     {
+      "given": "Wanquan",
+      "family": "Chen",
+      "name": null
+     },
+     {
+      "given": "Taiguo",
+      "family": "Liu",
+      "name": null
+     }
+    ],
+    "issued": [
+     2025,
+     4,
+     17
+    ],
+    "published_online": [
+     2025,
+     4,
+     17
+    ],
+    "published_print": [
+     null
+    ]
+   }
+  },
+  {
+   "k": "c3",
+   "source": "epmc",
+   "score": 6,
+   "pmcid": "PMC12267166",
+   "doi": "10.3389/fmicb.2025.1596282",
+   "title": "Multiple patho-phenotyping and molecular analysis to characterize wide-spectrum durable leaf rust resistance in wheat collections from India.",
+   "authors": [
+    {
+     "last": "Mohan",
+     "initials": "R",
+     "first": "Ram",
+     "full": "Mohan R",
+     "collective": null
+    },
+    {
+     "last": "Singh",
+     "initials": "VK",
+     "first": "Vaibhav Kumar",
+     "full": "Singh VK",
+     "collective": null
+    },
+    {
+     "last": "Chetan",
+     "initials": "KK",
+     "first": "K K",
+     "full": "Chetan KK",
+     "collective": null
+    },
+    {
+     "last": "Rani",
+     "initials": "LU",
+     "first": "Lingareddy Usha",
+     "full": "Rani LU",
+     "collective": null
+    },
+    {
+     "last": "Sameriya",
+     "initials": "KK",
+     "first": "Koshal K",
+     "full": "Sameriya KK",
+     "collective": null
+    },
+    {
+     "last": "Kumar",
+     "initials": "S",
+     "first": "Subodh",
+     "full": "Kumar S",
+     "collective": null
+    },
+    {
+     "last": "Bainsla",
+     "initials": "NK",
+     "first": "Naresh Kumar",
+     "full": "Bainsla NK",
+     "collective": null
+    },
+    {
+     "last": "Senthilraja",
+     "initials": "G",
+     "first": "Govindasamy",
+     "full": "Senthilraja G",
+     "collective": null
+    },
+    {
+     "last": "Saharan",
+     "initials": "MS",
+     "first": "Mahender Singh",
+     "full": "Saharan MS",
+     "collective": null
+    }
+   ],
+   "journal": "Frontiers in microbiology",
+   "journal_iso": "Front Microbiol",
+   "volume": "16",
+   "issue": null,
+   "year": 2025,
+   "pages": "1596282",
+   "license": "cc by",
+   "first_pub": "2025-07-03",
+   "fig_label": "Figure 3",
+   "caption": "Graphical representation of the overall performance of the 86 wheat materials assessed for adult plant slow rusting resistance against leaf rust based on the values of different APR parameters recorded in the field conditions: (A) host response/adult plant reaction/ITs; (B) final disease severity (FDS); (C) coefficient of infection (CI); (D) rAUDPC; (E) apparent infection rate (r).",
+   "href": "fmicb-16-1596282-g003.jpg",
+   "img_url": "https://www.frontiersin.org/files/Articles/1596282/fmicb-16-1596282-HTML/image_m/fmicb-16-1596282-g003.jpg",
+   "orig_size": [
+    1892,
+    2283
+   ],
+   "crossref": {
+    "title": "Multiple patho-phenotyping and molecular analysis to characterize wide-spectrum durable leaf rust resistance in wheat collections from India",
+    "container": "Frontiers in Microbiology",
+    "volume": "16",
+    "issue": null,
+    "page": null,
+    "article_number": "1596282",
+    "authors": [
+     {
+      "given": "Ram",
+      "family": "Mohan",
+      "name": null
+     },
+     {
+      "given": "Vaibhav Kumar",
+      "family": "Singh",
+      "name": null
+     },
+     {
+      "given": "K. K.",
+      "family": "Chetan",
+      "name": null
+     },
+     {
+      "given": "Lingareddy Usha",
+      "family": "Rani",
+      "name": null
+     },
+     {
+      "given": "Koshal K.",
+      "family": "Sameriya",
+      "name": null
+     },
+     {
+      "given": "Subodh",
+      "family": "Kumar",
+      "name": null
+     },
+     {
+      "given": "Naresh Kumar",
+      "family": "Bainsla",
+      "name": null
+     },
+     {
+      "given": "Govindasamy",
+      "family": "Senthilraja",
+      "name": null
+     },
+     {
+      "given": "Mahender Singh",
+      "family": "Saharan",
+      "name": null
+     }
+    ],
+    "issued": [
+     2025,
+     7,
+     3
+    ],
+    "published_online": [
+     2025,
+     7,
+     3
+    ],
+    "published_print": [
+     null
+    ]
+   }
+  },
+  {
+   "k": "c4",
+   "source": "epmc",
+   "score": 6,
+   "pmcid": "PMC12267166",
+   "doi": "10.3389/fmicb.2025.1596282",
+   "title": "Multiple patho-phenotyping and molecular analysis to characterize wide-spectrum durable leaf rust resistance in wheat collections from India.",
+   "authors": [
+    {
+     "last": "Mohan",
+     "initials": "R",
+     "first": "Ram",
+     "full": "Mohan R",
+     "collective": null
+    },
+    {
+     "last": "Singh",
+     "initials": "VK",
+     "first": "Vaibhav Kumar",
+     "full": "Singh VK",
+     "collective": null
+    },
+    {
+     "last": "Chetan",
+     "initials": "KK",
+     "first": "K K",
+     "full": "Chetan KK",
+     "collective": null
+    },
+    {
+     "last": "Rani",
+     "initials": "LU",
+     "first": "Lingareddy Usha",
+     "full": "Rani LU",
+     "collective": null
+    },
+    {
+     "last": "Sameriya",
+     "initials": "KK",
+     "first": "Koshal K",
+     "full": "Sameriya KK",
+     "collective": null
+    },
+    {
+     "last": "Kumar",
+     "initials": "S",
+     "first": "Subodh",
+     "full": "Kumar S",
+     "collective": null
+    },
+    {
+     "last": "Bainsla",
+     "initials": "NK",
+     "first": "Naresh Kumar",
+     "full": "Bainsla NK",
+     "collective": null
+    },
+    {
+     "last": "Senthilraja",
+     "initials": "G",
+     "first": "Govindasamy",
+     "full": "Senthilraja G",
+     "collective": null
+    },
+    {
+     "last": "Saharan",
+     "initials": "MS",
+     "first": "Mahender Singh",
+     "full": "Saharan MS",
+     "collective": null
+    }
+   ],
+   "journal": "Frontiers in microbiology",
+   "journal_iso": "Front Microbiol",
+   "volume": "16",
+   "issue": null,
+   "year": 2025,
+   "pages": "1596282",
+   "license": "cc by",
+   "first_pub": "2025-07-03",
+   "fig_label": "Figure 7",
+   "caption": "Chord diagram illustrating the relationships between wheat genotypes and leaf rust resistance responses. The chord diagram represents the interaction between different wheat genotypes (labeled around the circumference) and their associated leaf rust resistance metrics. Each colored chord reflects the relationship between wheat cultivars and the severity of leaf rust based on parameters such as final disease severity (FDS), coefficient of infection (CI), and relative area under the disease progress curve (rAUDPC). Thicker and more intense lines correspond to higher disease susceptibility, while thinner or fewer lines indicate stronger resistance in certain genotypes. The diagram also highlights the clustering of genotypes that share similar resistance profiles, potentially linked to the presence of specific Lr genes. This visual representation aids in understanding the distribution of resistance traits among the wheat cultivars, providing insights into the genetic diversity and potential for breeding programs aimed at improving leaf rust resistance.",
+   "href": "fmicb-16-1596282-g007.jpg",
+   "img_url": "https://www.frontiersin.org/files/Articles/1596282/fmicb-16-1596282-HTML/image_m/fmicb-16-1596282-g007.jpg",
+   "orig_size": [
+    1892,
+    1679
+   ],
+   "crossref": {
+    "title": "Multiple patho-phenotyping and molecular analysis to characterize wide-spectrum durable leaf rust resistance in wheat collections from India",
+    "container": "Frontiers in Microbiology",
+    "volume": "16",
+    "issue": null,
+    "page": null,
+    "article_number": "1596282",
+    "authors": [
+     {
+      "given": "Ram",
+      "family": "Mohan",
+      "name": null
+     },
+     {
+      "given": "Vaibhav Kumar",
+      "family": "Singh",
+      "name": null
+     },
+     {
+      "given": "K. K.",
+      "family": "Chetan",
+      "name": null
+     },
+     {
+      "given": "Lingareddy Usha",
+      "family": "Rani",
+      "name": null
+     },
+     {
+      "given": "Koshal K.",
+      "family": "Sameriya",
+      "name": null
+     },
+     {
+      "given": "Subodh",
+      "family": "Kumar",
+      "name": null
+     },
+     {
+      "given": "Naresh Kumar",
+      "family": "Bainsla",
+      "name": null
+     },
+     {
+      "given": "Govindasamy",
+      "family": "Senthilraja",
+      "name": null
+     },
+     {
+      "given": "Mahender Singh",
+      "family": "Saharan",
+      "name": null
+     }
+    ],
+    "issued": [
+     2025,
+     7,
+     3
+    ],
+    "published_online": [
+     2025,
+     7,
+     3
+    ],
+    "published_print": [
+     null
+    ]
+   }
+  }
+ ]
+}

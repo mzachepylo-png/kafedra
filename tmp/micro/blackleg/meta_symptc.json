@@ -1,0 +1,791 @@
+{
+ "id": "blackleg",
+ "candidates": [
+  {
+   "k": "c1",
+   "source": "epmc",
+   "score": 10,
+   "pmcid": "PMC12362201",
+   "doi": "10.3389/fmicb.2025.1655235",
+   "title": "First detection of &lt;i&gt;Dickeya fangzhongdai&lt;/i&gt; in Italy: double-edged role from virulent on vegetables to potent VOC-mediated anti-&lt;i&gt;Xylella fastidiosa&lt;/i&gt; activity.",
+   "authors": [
+    {
+     "last": "Sabri",
+     "initials": "M",
+     "first": "Miloud",
+     "full": "Sabri M",
+     "collective": null
+    },
+    {
+     "last": "El Handi",
+     "initials": "K",
+     "first": "Kaoutar",
+     "full": "El Handi K",
+     "collective": null
+    },
+    {
+     "last": "Mektoubi",
+     "initials": "K",
+     "first": "Khaoula",
+     "full": "Mektoubi K",
+     "collective": null
+    },
+    {
+     "last": "Trani",
+     "initials": "A",
+     "first": "Antonio",
+     "full": "Trani A",
+     "collective": null
+    },
+    {
+     "last": "Cara",
+     "initials": "O",
+     "first": "Orges",
+     "full": "Cara O",
+     "collective": null
+    },
+    {
+     "last": "Elbeaino",
+     "initials": "T",
+     "first": "Toufic",
+     "full": "Elbeaino T",
+     "collective": null
+    }
+   ],
+   "journal": "Frontiers in microbiology",
+   "journal_iso": "Front Microbiol",
+   "volume": "16",
+   "issue": null,
+   "year": 2025,
+   "pages": "1655235",
+   "license": "cc by",
+   "first_pub": "2025-08-05",
+   "fig_label": "Figure 7",
+   "caption": "Pathogenicity assay showing the disease symptoms caused by Dickeya fangzhongdai strain C7 on various host plant tissues. Inoculated pear fruits, potato tubers, and onion bulbs exhibited characteristic soft rot symptoms, including tissue maceration and water-soaking. Tobacco plants developed blackleg symptoms, and cauliflower plants showed vascular tissue browning. In contrast, broccoli plants remained symptomless under the tested conditions.",
+   "href": "fmicb-16-1655235-g007.jpg",
+   "img_url": "https://www.frontiersin.org/files/Articles/1655235/fmicb-16-1655235-HTML/image_m/fmicb-16-1655235-g007.jpg",
+   "orig_size": [
+    1227,
+    2599
+   ],
+   "crossref": {
+    "title": "First detection of Dickeya fangzhongdai in Italy: double-edged role from virulent on vegetables to potent VOC-mediated anti-Xylella fastidiosa activity",
+    "container": "Frontiers in Microbiology",
+    "volume": "16",
+    "issue": null,
+    "page": null,
+    "article_number": "1655235",
+    "authors": [
+     {
+      "given": "Miloud",
+      "family": "Sabri",
+      "name": null
+     },
+     {
+      "given": "Kaoutar",
+      "family": "El Handi",
+      "name": null
+     },
+     {
+      "given": "Khaoula",
+      "family": "Mektoubi",
+      "name": null
+     },
+     {
+      "given": "Antonio",
+      "family": "Trani",
+      "name": null
+     },
+     {
+      "given": "Orges",
+      "family": "Cara",
+      "name": null
+     },
+     {
+      "given": "Toufic",
+      "family": "Elbeaino",
+      "name": null
+     }
+    ],
+    "issued": [
+     2025,
+     8,
+     5
+    ],
+    "published_online": [
+     2025,
+     8,
+     5
+    ],
+    "published_print": [
+     null
+    ]
+   }
+  },
+  {
+   "k": "c2",
+   "source": "epmc",
+   "score": 8,
+   "pmcid": "PMC12886445",
+   "doi": "10.3389/fmicb.2026.1748314",
+   "title": "Tailored phage cocktail with resistance management for controlling &lt;i&gt;Dickeya solani&lt;/i&gt; in potatoes.",
+   "authors": [
+    {
+     "last": "Sabri",
+     "initials": "M",
+     "first": "Miloud",
+     "full": "Sabri M",
+     "collective": null
+    },
+    {
+     "last": "Mektoubi",
+     "initials": "K",
+     "first": "Khaoula",
+     "full": "Mektoubi K",
+     "collective": null
+    },
+    {
+     "last": "Habbadi",
+     "initials": "K",
+     "first": "Khaoula",
+     "full": "Habbadi K",
+     "collective": null
+    },
+    {
+     "last": "Cara",
+     "initials": "O",
+     "first": "Orges",
+     "full": "Cara O",
+     "collective": null
+    },
+    {
+     "last": "El Handi",
+     "initials": "K",
+     "first": "Kaoutar",
+     "full": "El Handi K",
+     "collective": null
+    },
+    {
+     "last": "De Stradis",
+     "initials": "A",
+     "first": "Angelo",
+     "full": "De Stradis A",
+     "collective": null
+    },
+    {
+     "last": "Elbeaino",
+     "initials": "T",
+     "first": "Toufic",
+     "full": "Elbeaino T",
+     "collective": null
+    }
+   ],
+   "journal": "Frontiers in microbiology",
+   "journal_iso": "Front Microbiol",
+   "volume": "17",
+   "issue": null,
+   "year": 2026,
+   "pages": "1748314",
+   "license": "cc by",
+   "first_pub": "2026-01-27",
+   "fig_label": "Figure 9",
+   "caption": "Ex vivo assays showing the biocontrol efficacy of the phage cocktail (LMST, PDS1, and PDS2) against Dickeya solani infections in potato tubers 7 dpi. (A) Untreated tubers inoculated with D. solani, exhibiting severe soft rot symptoms. (B) Healthy tubers serve as negative controls, showing no disease symptoms. (C,D) Tubers inoculated with D. solani and treated with the phage cocktail preventively (C) or curatively (D), exhibiting mild disease symptoms.",
+   "href": "fmicb-17-1748314-g009.jpg",
+   "img_url": "https://www.frontiersin.org/files/Articles/1748314/fmicb-17-1748314-HTML/image_m/fmicb-17-1748314-g009.jpg",
+   "orig_size": [
+    1902,
+    789
+   ],
+   "crossref": {
+    "title": "Tailored phage cocktail with resistance management for controlling Dickeya solani in potatoes",
+    "container": "Frontiers in Microbiology",
+    "volume": "17",
+    "issue": null,
+    "page": null,
+    "article_number": "1748314",
+    "authors": [
+     {
+      "given": "Miloud",
+      "family": "Sabri",
+      "name": null
+     },
+     {
+      "given": "Khaoula",
+      "family": "Mektoubi",
+      "name": null
+     },
+     {
+      "given": "Khaoula",
+      "family": "Habbadi",
+      "name": null
+     },
+     {
+      "given": "Orges",
+      "family": "Cara",
+      "name": null
+     },
+     {
+      "given": "Kaoutar",
+      "family": "El Handi",
+      "name": null
+     },
+     {
+      "given": "Angelo",
+      "family": "De Stradis",
+      "name": null
+     },
+     {
+      "given": "Toufic",
+      "family": "Elbeaino",
+      "name": null
+     }
+    ],
+    "issued": [
+     2026,
+     1,
+     27
+    ],
+    "published_online": [
+     2026,
+     1,
+     27
+    ],
+    "published_print": [
+     null
+    ]
+   }
+  },
+  {
+   "k": "c3",
+   "source": "epmc",
+   "score": 8,
+   "pmcid": "PMC12429155",
+   "doi": "10.3390/ijms26178370",
+   "title": "New Insights into the Role of Secondary Metabolic Pathways in Resistance of Potato to &lt;i&gt;Dickeya solani&lt;/i&gt;.",
+   "authors": [
+    {
+     "last": "Grupa-Urbańska",
+     "initials": "A",
+     "first": "Anna",
+     "full": "Grupa-Urbańska A",
+     "collective": null
+    },
+    {
+     "last": "Szajko",
+     "initials": "K",
+     "first": "Katarzyna",
+     "full": "Szajko K",
+     "collective": null
+    },
+    {
+     "last": "Marczewski",
+     "initials": "W",
+     "first": "Waldemar",
+     "full": "Marczewski W",
+     "collective": null
+    },
+    {
+     "last": "Lebecka",
+     "initials": "R",
+     "first": "Renata",
+     "full": "Lebecka R",
+     "collective": null
+    }
+   ],
+   "journal": "International journal of molecular sciences",
+   "journal_iso": "Int J Mol Sci",
+   "volume": "26",
+   "issue": "17",
+   "year": 2025,
+   "pages": "8370",
+   "license": "cc by",
+   "first_pub": "2025-08-28",
+   "fig_label": "Figure 1",
+   "caption": "Phenotypic assessment of potato tubers infected with D. solani, according to method described by Lebecka et al. [9]. (A) Representative images of tubers from the resistant genotype DS-13-86 (left) and the susceptible genotype DS-13-34 (right). Rotten tissue was removed before photography. (B) Phenotypic assessment of 5 resistant (green) and 5 susceptible (orange) potato genotypes that were obtained in seven independent experiments, 41 tubers per genotype, from four growing seasons; mean weight of rotten tissue of tubers with symptoms of infection; the dashed line represents the number of tubers with rot symptoms (disease incidence, DI); means followed by the same letter are not significantly different at p ≤ 0.05 according to Duncan’s test. (B) Error bars indicate the standard deviations.",
+   "href": "ijms-26-08370-g001.jpg",
+   "img_url": "https://cdn.ncbi.nlm.nih.gov/pmc/blobs/f11f/12429155/bb5e234dd2ff/ijms-26-08370-g001.jpg",
+   "orig_size": [
+    767,
+    301
+   ],
+   "crossref": {
+    "title": "New Insights into the Role of Secondary Metabolic Pathways in Resistance of Potato to Dickeya solani",
+    "container": "International Journal of Molecular Sciences",
+    "volume": "26",
+    "issue": "17",
+    "page": "8370",
+    "article_number": null,
+    "authors": [
+     {
+      "given": "Anna",
+      "family": "Grupa-Urbańska",
+      "name": null
+     },
+     {
+      "given": "Katarzyna",
+      "family": "Szajko",
+      "name": null
+     },
+     {
+      "given": "Waldemar",
+      "family": "Marczewski",
+      "name": null
+     },
+     {
+      "given": "Renata",
+      "family": "Lebecka",
+      "name": null
+     }
+    ],
+    "issued": [
+     2025,
+     8,
+     28
+    ],
+    "published_online": [
+     2025,
+     8,
+     28
+    ],
+    "published_print": [
+     null
+    ]
+   }
+  },
+  {
+   "k": "c4",
+   "source": "epmc",
+   "score": 7,
+   "pmcid": "PMC11116658",
+   "doi": "10.3389/fmicb.2024.1362283",
+   "title": "Comparative genomic and transcriptome analyses of two <i>Pectobacterium brasiliense</i> strains revealed distinct virulence determinants and phenotypic features.",
+   "authors": [
+    {
+     "last": "Sun",
+     "initials": "Y",
+     "first": "Yue",
+     "full": "Sun Y",
+     "collective": null
+    },
+    {
+     "last": "Utpal",
+     "initials": "H",
+     "first": "Handique",
+     "full": "Utpal H",
+     "collective": null
+    },
+    {
+     "last": "Wu",
+     "initials": "Y",
+     "first": "Yajuan",
+     "full": "Wu Y",
+     "collective": null
+    },
+    {
+     "last": "Sun",
+     "initials": "Q",
+     "first": "Qinghua",
+     "full": "Sun Q",
+     "collective": null
+    },
+    {
+     "last": "Feng",
+     "initials": "Z",
+     "first": "Zhiwen",
+     "full": "Feng Z",
+     "collective": null
+    },
+    {
+     "last": "Shen",
+     "initials": "Y",
+     "first": "Yue",
+     "full": "Shen Y",
+     "collective": null
+    },
+    {
+     "last": "Zhang",
+     "initials": "R",
+     "first": "Ruofang",
+     "full": "Zhang R",
+     "collective": null
+    },
+    {
+     "last": "Zhou",
+     "initials": "X",
+     "first": "Xiaofeng",
+     "full": "Zhou X",
+     "collective": null
+    },
+    {
+     "last": "Wu",
+     "initials": "J",
+     "first": "Jian",
+     "full": "Wu J",
+     "collective": null
+    }
+   ],
+   "journal": "Frontiers in microbiology",
+   "journal_iso": "Front Microbiol",
+   "volume": "15",
+   "issue": null,
+   "year": 2024,
+   "pages": "1362283",
+   "license": "cc by",
+   "first_pub": "2024-05-10",
+   "fig_label": "Figure 1",
+   "caption": "The pathogenicity of Pectobacterium brasiliense SM and DQ strains. (A) Pathogenicity assay of SM and DQ causing aerial stem rot on potatoes. Bacterial suspensions (10 8 CFU/mL) were injected into potato stem by a syringe. Photographs were taken 3 days after inoculation. (B) Pathogenicity assay of SM and DQ causing blackleg on potatoes. Bacterial suspensions (10 8 CFU/mL) were inoculated to each pot by soil drench approach. Photographs were taken 2 weeks after infection. (C) Potato soft rot assay caused by SM and DQ of OD = 0.1 and 0.3. Maceration areas of potato slice were measured after 24 h infection. (D) Disease index of SM and DQ inoculated domestic cultivars, including QS9, LS6, L7, DF3, SY1, JZ1, YS108, and SY2. (E) Disease index of SM and DQ inoculated foreign resource varieties, including 398160.105, AY, A79, A292, R91121-16 and RA517-69. 398160.105 is the variety from Peru. AY is an introduced variety from Australia. A79 and A292 are a series of resource species from Argentina. R91121-16 and RA517-69 are introduced varieties from Chile. Means ± SE errors are indicated, n ≥ 3 for (C–E). The asterisk represents a significant difference between SM and DQ from Student’s t-test (p < 0.05).",
+   "href": "fmicb-15-1362283-g001.jpg",
+   "img_url": "https://www.frontiersin.org/files/Articles/1362283/fmicb-15-1362283-HTML/image_m/fmicb-15-1362283-g001.jpg",
+   "orig_size": [
+    1777,
+    2418
+   ],
+   "crossref": {
+    "title": "Comparative genomic and transcriptome analyses of two Pectobacterium brasiliense strains revealed distinct virulence determinants and phenotypic features",
+    "container": "Frontiers in Microbiology",
+    "volume": "15",
+    "issue": null,
+    "page": null,
+    "article_number": "1362283",
+    "authors": [
+     {
+      "given": "Yue",
+      "family": "Sun",
+      "name": null
+     },
+     {
+      "given": "Handique",
+      "family": "Utpal",
+      "name": null
+     },
+     {
+      "given": "Yajuan",
+      "family": "Wu",
+      "name": null
+     },
+     {
+      "given": "Qinghua",
+      "family": "Sun",
+      "name": null
+     },
+     {
+      "given": "Zhiwen",
+      "family": "Feng",
+      "name": null
+     },
+     {
+      "given": "Yue",
+      "family": "Shen",
+      "name": null
+     },
+     {
+      "given": "Ruofang",
+      "family": "Zhang",
+      "name": null
+     },
+     {
+      "given": "Xiaofeng",
+      "family": "Zhou",
+      "name": null
+     },
+     {
+      "given": "Jian",
+      "family": "Wu",
+      "name": null
+     }
+    ],
+    "issued": [
+     2024,
+     5,
+     10
+    ],
+    "published_online": [
+     2024,
+     5,
+     10
+    ],
+    "published_print": [
+     null
+    ]
+   }
+  },
+  {
+   "k": "c5",
+   "source": "epmc",
+   "score": 7,
+   "pmcid": "PMC11231085",
+   "doi": "10.3389/fmicb.2024.1431047",
+   "title": "&lt;i&gt;Dickeya fangzhongdai&lt;/i&gt; was prevalent and caused taro soft rot when coexisting with the &lt;i&gt;Pectobacterium&lt;/i&gt; complex, with a preference for Araceae plants.",
+   "authors": [
+    {
+     "last": "Zhang",
+     "initials": "J",
+     "first": "Jingxin",
+     "full": "Zhang J",
+     "collective": null
+    },
+    {
+     "last": "Sun",
+     "initials": "D",
+     "first": "Dayuan",
+     "full": "Sun D",
+     "collective": null
+    },
+    {
+     "last": "Shen",
+     "initials": "H",
+     "first": "Huifang",
+     "full": "Shen H",
+     "collective": null
+    },
+    {
+     "last": "Pu",
+     "initials": "X",
+     "first": "Xiaoming",
+     "full": "Pu X",
+     "collective": null
+    },
+    {
+     "last": "Liu",
+     "initials": "P",
+     "first": "Pingping",
+     "full": "Liu P",
+     "collective": null
+    },
+    {
+     "last": "Lin",
+     "initials": "B",
+     "first": "Birun",
+     "full": "Lin B",
+     "collective": null
+    },
+    {
+     "last": "Yang",
+     "initials": "Q",
+     "first": "Qiyun",
+     "full": "Yang Q",
+     "collective": null
+    }
+   ],
+   "journal": "Frontiers in microbiology",
+   "journal_iso": "Front Microbiol",
+   "volume": "15",
+   "issue": null,
+   "year": 2024,
+   "pages": "1431047",
+   "license": "cc by",
+   "first_pub": "2024-06-25",
+   "fig_label": "Figure 2",
+   "caption": "Differences in taro pathogenicity and temperature-dependent growth between D. fangzhongdai and Pectobacterium spp. (A) Symptoms observed in different parts of the same field-collected taro plant and between D. fangzhongdai and P. aroidearum were only isolated from tissues of developing corms and mother tubers, respectively. (B) Differences in virulence between taro corms under conditions of exogenous infection with different SRP strains. (C) Differences in growth of strains of D. fangzhongdai J21-2, P. aroidearum B2-6 and T25-1, and P. colocasium MT27-1 and WLW13-1 under different temperatures.",
+   "href": "fmicb-15-1431047-g002.jpg",
+   "img_url": "https://www.frontiersin.org/files/Articles/1431047/fmicb-15-1431047-HTML/image_m/fmicb-15-1431047-g002.jpg",
+   "orig_size": [
+    1738,
+    1557
+   ],
+   "crossref": {
+    "title": "Dickeya fangzhongdai was prevalent and caused taro soft rot when coexisting with the Pectobacterium complex, with a preference for Araceae plants",
+    "container": "Frontiers in Microbiology",
+    "volume": "15",
+    "issue": null,
+    "page": null,
+    "article_number": "1431047",
+    "authors": [
+     {
+      "given": "Jingxin",
+      "family": "Zhang",
+      "name": null
+     },
+     {
+      "given": "Dayuan",
+      "family": "Sun",
+      "name": null
+     },
+     {
+      "given": "Huifang",
+      "family": "Shen",
+      "name": null
+     },
+     {
+      "given": "Xiaoming",
+      "family": "Pu",
+      "name": null
+     },
+     {
+      "given": "Pingping",
+      "family": "Liu",
+      "name": null
+     },
+     {
+      "given": "Birun",
+      "family": "Lin",
+      "name": null
+     },
+     {
+      "given": "Qiyun",
+      "family": "Yang",
+      "name": null
+     }
+    ],
+    "issued": [
+     2024,
+     6,
+     25
+    ],
+    "published_online": [
+     2024,
+     6,
+     25
+    ],
+    "published_print": [
+     null
+    ]
+   }
+  },
+  {
+   "k": "c6",
+   "source": "epmc",
+   "score": 6,
+   "pmcid": "PMC13395407",
+   "doi": "10.1371/journal.ppat.1014429",
+   "title": "Auxin biosynthesis and signaling drive virulence and plant adaptation in Dickeya dadantii.",
+   "authors": [
+    {
+     "last": "Roca",
+     "initials": "A",
+     "first": "Amalia",
+     "full": "Roca A",
+     "collective": null
+    },
+    {
+     "last": "Santamaría-Hernando",
+     "initials": "S",
+     "first": "Saray",
+     "full": "Santamaría-Hernando S",
+     "collective": null
+    },
+    {
+     "last": "Udaondo",
+     "initials": "Z",
+     "first": "Zulema",
+     "full": "Udaondo Z",
+     "collective": null
+    },
+    {
+     "last": "Cabrera",
+     "initials": "JJ",
+     "first": "Juan J",
+     "full": "Cabrera JJ",
+     "collective": null
+    },
+    {
+     "last": "Godoy",
+     "initials": "P",
+     "first": "Patricia",
+     "full": "Godoy P",
+     "collective": null
+    },
+    {
+     "last": "Nogueira",
+     "initials": "A",
+     "first": "Ana",
+     "full": "Nogueira A",
+     "collective": null
+    },
+    {
+     "last": "López-Solanilla",
+     "initials": "E",
+     "first": "Emilia",
+     "full": "López-Solanilla E",
+     "collective": null
+    },
+    {
+     "last": "Matilla",
+     "initials": "MA",
+     "first": "Miguel A",
+     "full": "Matilla MA",
+     "collective": null
+    }
+   ],
+   "journal": "PLoS pathogens",
+   "journal_iso": "PLoS Pathog",
+   "volume": "22",
+   "issue": "7",
+   "year": 2026,
+   "pages": "e1014429",
+   "license": "cc by",
+   "first_pub": "2026-07-17",
+   "fig_label": "Fig 7",
+   "caption": "Role of IAA synthesis in the virulence and competitive colonization fitness of D. dadantii 3937 in potato plants. A, Virulence of D. dadantii 3937 strains in potato leaves, expressed in CFU/cm 2. Virulence was assessed based on bacterial population sizes in potato leaves at 72 h after syringe-infiltration (5 x 10 7 CFU/mL). Data were corrected based on the initial inoculum and are means and standard errors from three independent experiments conducted in triplicate. * P < 0.05, Kruskal-Wallis test. B, Representative image of symptoms observed 72 h after inoculation in the virulence assays shown in panel (A). C, Competitive colonization fitness of D. dadantii strains. Shown are the proportions of CFU recovered 72 h after co-inoculation in potato leaves. Data were corrected based on the initial inoculum and are means and standard errors from three independent experiments conducted in triplicate. * P < 0.01, Kruskal-Wallis test.",
+   "href": "ppat.1014429.g007.jpg",
+   "img_url": "https://journals.plos.org/plospathogens/article/figure/image?size=large&id=10.1371/journal.ppat.1014429.g007",
+   "orig_size": [
+    2579,
+    851
+   ],
+   "crossref": {
+    "title": "Auxin biosynthesis and signaling drive virulence and plant adaptation in Dickeya dadantii",
+    "container": "PLOS Pathogens",
+    "volume": "22",
+    "issue": "7",
+    "page": "e1014429",
+    "article_number": null,
+    "authors": [
+     {
+      "given": "Amalia",
+      "family": "Roca",
+      "name": null
+     },
+     {
+      "given": "Saray",
+      "family": "Santamaría-Hernando",
+      "name": null
+     },
+     {
+      "given": "Zulema",
+      "family": "Udaondo",
+      "name": null
+     },
+     {
+      "given": "Juan J.",
+      "family": "Cabrera",
+      "name": null
+     },
+     {
+      "given": "Patricia",
+      "family": "Godoy",
+      "name": null
+     },
+     {
+      "given": "Ana",
+      "family": "Nogueira",
+      "name": null
+     },
+     {
+      "given": "Emilia",
+      "family": "López-Solanilla",
+      "name": null
+     },
+     {
+      "given": "Miguel A.",
+      "family": "Matilla",
+      "name": null
+     }
+    ],
+    "issued": [
+     2026,
+     7,
+     17
+    ],
+    "published_online": [
+     2026,
+     7,
+     17
+    ],
+    "published_print": [
+     null
+    ]
+   }
+  }
+ ]
+}
