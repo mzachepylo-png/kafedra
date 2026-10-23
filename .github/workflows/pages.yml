@@ -32,7 +32,7 @@ jobs:
       - name: Build (minify)
         run: |
           mkdir dist
-          cp -r index.html modeling assets dist/
+          cp -r index.html modeling microscope assets dist/
           cd dist
           npx --yes html-minifier-terser@7.2.0 --collapse-whitespace --remove-comments \
             --minify-css true --minify-js true --input-dir . --output-dir . --file-ext html
