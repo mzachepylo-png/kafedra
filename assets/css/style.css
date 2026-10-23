@@ -63,6 +63,7 @@ p { margin: 0 0 1em; }
   font-weight: 600;
 }
 .alert-bar .container { display: flex; gap: 10px; align-items: center; padding-top: 8px; padding-bottom: 8px; }
+.alert-bar a { color: inherit; }
 .alert-bar__tag {
   background: #2B1E00; color: var(--alert);
   padding: 2px 8px; border-radius: 6px; font-size: .78rem; letter-spacing: .04em; text-transform: uppercase;
@@ -81,12 +82,12 @@ p { margin: 0 0 1em; }
 .brand__logo { width: 40px; height: 40px; flex-shrink: 0; }
 .brand__text { display: flex; flex-direction: column; line-height: 1.15; min-width: 0; }
 .brand__title { font-weight: 800; font-size: .98rem; }
-.brand__sub { font-size: .76rem; color: var(--ink-soft); font-weight: 600; }
+.brand__sub { font-size: .76rem; color: var(--ink-soft); font-weight: 600; max-width: 235px; }
 
 .nav { display: flex; align-items: center; gap: 4px; }
 .nav a {
   text-decoration: none; color: var(--ink); font-weight: 600; font-size: .93rem;
-  padding: 8px 12px; border-radius: 10px;
+  padding: 8px 10px; border-radius: 10px;
 }
 .nav a:hover { background: var(--lab); color: var(--primary); }
 .nav a[aria-current="page"] { color: var(--primary); background: #E6F2E7; }
@@ -96,13 +97,15 @@ p { margin: 0 0 1em; }
 }
 .nav .nav__tab:hover { background: var(--primary-dark); color: #fff; }
 .nav .nav__tab[aria-current="page"] { background: var(--primary-dark); color: #fff; }
+.nav .nav__tab--science { background: var(--science); }
+.nav .nav__tab--science:hover, .nav .nav__tab--science[aria-current="page"] { background: #004D40; }
 
 .nav-toggle {
   display: none; border: 1px solid var(--line); background: #fff; border-radius: 10px;
   width: 44px; height: 44px; cursor: pointer; color: var(--primary);
 }
 
-@media (max-width: 900px) {
+@media (max-width: 1100px) {
   .nav-toggle { display: inline-grid; place-items: center; }
   .nav {
     position: absolute; left: 0; right: 0; top: 100%;
@@ -112,8 +115,8 @@ p { margin: 0 0 1em; }
   }
   .nav.is-open { display: flex; }
   .nav a { padding: 12px; }
-  .brand__sub { display: none; }
 }
+@media (max-width: 600px) { .brand__sub { display: none; } }
 
 /* ---------- Hero ---------- */
 .hero {
@@ -134,12 +137,12 @@ p { margin: 0 0 1em; }
 .hero__eyebrow::before { content: ""; width: 24px; height: 2px; background: var(--accent); }
 .hero__lead { font-size: 1.12rem; color: rgba(255, 255, 255, .86); max-width: 58ch; }
 .hero__actions { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 28px; }
-.hero__art { width: 100%; max-width: 420px; justify-self: end; }
+.hero__art { width: 100%; max-width: 480px; height: auto; justify-self: end; }
 
 @media (max-width: 900px) {
   .hero { padding: 48px 0 64px; }
   .hero .container { grid-template-columns: 1fr; gap: 32px; }
-  .hero__art { max-width: 280px; justify-self: center; }
+  .hero__art { max-width: 400px; justify-self: center; }
 }
 
 .btn {
@@ -313,6 +316,67 @@ p { margin: 0 0 1em; }
 .empty p { color: var(--ink-soft); margin: 0 auto; max-width: 52ch; }
 
 .models-grid:empty { display: none; }
+
+/* ---------- Microscope page ---------- */
+.page-hero--science { background: var(--science); }
+
+.subnav { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 36px; }
+.subnav a {
+  display: inline-flex; align-items: center; gap: 8px; padding: 10px 16px; border-radius: 999px;
+  border: 1px solid var(--line); background: #fff; color: var(--ink); font-weight: 700; text-decoration: none;
+}
+.subnav a[aria-current="true"] { background: var(--science); border-color: var(--science); color: #fff; }
+.subnav__count { font-size: .78rem; background: rgba(255, 255, 255, .22); padding: 1px 8px; border-radius: 999px; }
+
+.filters { display: flex; flex-wrap: wrap; gap: 8px; margin: 0 0 24px; }
+.filters button {
+  font: inherit; font-size: .88rem; font-weight: 700; padding: 6px 14px; border-radius: 999px;
+  border: 1px solid var(--line); background: #fff; color: var(--ink-soft); cursor: pointer;
+}
+.filters button:hover { border-color: var(--accent); color: var(--primary); }
+.filters button[aria-pressed="true"] { background: var(--primary); border-color: var(--primary); color: #fff; }
+
+.micro-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; align-items: start; }
+@media (max-width: 1000px) { .micro-grid { grid-template-columns: repeat(2, 1fr); } }
+@media (max-width: 640px) { .micro-grid { grid-template-columns: 1fr; } }
+
+.micro {
+  background: var(--card); border: 1px solid var(--line); border-radius: var(--radius);
+  overflow: hidden; display: flex; flex-direction: column; height: 100%;
+}
+.micro[hidden] { display: none; }
+.micro__fig { margin: 0; background: #0E1A12; }
+.micro__fig a { display: block; }
+.micro__fig img { width: 100%; height: auto; aspect-ratio: 4 / 3; object-fit: cover; }
+.micro__fig figcaption { padding: 8px 14px; font-size: .8rem; line-height: 1.45; color: #CFE3D2; }
+.micro__body { padding: 18px 20px 20px; display: flex; flex-direction: column; gap: 10px; flex: 1; }
+.micro__tags { display: flex; flex-wrap: wrap; gap: 6px; }
+.micro__body h3 { margin: 0; }
+.micro__latin { margin: -6px 0 0; color: var(--science); font-weight: 600; font-size: .95rem; }
+.micro__body p { margin: 0; font-size: .93rem; color: var(--ink-soft); }
+.micro__body .micro__ref {
+  margin-top: auto; padding-top: 12px; border-top: 1px solid var(--line);
+  font-size: .8rem; line-height: 1.5; overflow-wrap: anywhere;
+}
+.micro__lic { display: block; margin-top: 4px; }
+
+.badge--fungi { background: #E6F2E7; color: var(--primary); }
+.badge--oomycetes { background: #EEF6D8; color: #3F5F12; }
+.badge--bacteria { background: #FFF1CC; color: #6B4A00; }
+.badge--viruses { background: #DDF0EC; color: var(--science); }
+.badge--crop { background: var(--lab); color: var(--ink-soft); }
+
+.source-note { margin-top: 32px; font-size: .88rem; color: var(--ink-soft); max-width: 820px; }
+
+.cta-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+@media (max-width: 900px) { .cta-grid { grid-template-columns: 1fr; } }
+.cta-grid .cta { grid-template-columns: 1fr; align-content: space-between; }
+.cta-grid .cta .btn { justify-self: start; }
+.cta--science {
+  background:
+    radial-gradient(500px 220px at 100% 0%, rgba(111, 211, 199, .3), transparent 70%),
+    var(--science);
+}
 
 @media (prefers-reduced-motion: reduce) {
   html { scroll-behavior: auto; }

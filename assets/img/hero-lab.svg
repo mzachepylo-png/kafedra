@@ -1,0 +1,205 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 96 480 296" fill="none">
+  <defs>
+    <radialGradient id="spot" cx=".5" cy=".5" r=".5">
+      <stop offset="0" stop-color="#fff" stop-opacity=".16"/>
+      <stop offset="1" stop-color="#fff" stop-opacity="0"/>
+    </radialGradient>
+    <radialGradient id="shadow" cx=".5" cy=".5" r=".5">
+      <stop offset="0" stop-color="#000" stop-opacity=".45"/>
+      <stop offset="1" stop-color="#000" stop-opacity="0"/>
+    </radialGradient>
+    <radialGradient id="bench" cx=".5" cy=".5" r=".5">
+      <stop offset="0" stop-color="#fff" stop-opacity=".13"/>
+      <stop offset=".7" stop-color="#fff" stop-opacity=".04"/>
+      <stop offset="1" stop-color="#fff" stop-opacity="0"/>
+    </radialGradient>
+    <radialGradient id="glowLime" cx=".5" cy=".5" r=".5">
+      <stop offset="0" stop-color="#9CE59F" stop-opacity=".45"/>
+      <stop offset="1" stop-color="#9CE59F" stop-opacity="0"/>
+    </radialGradient>
+    <radialGradient id="glowTeal" cx=".5" cy=".5" r=".5">
+      <stop offset="0" stop-color="#7FE0D5" stop-opacity=".4"/>
+      <stop offset="1" stop-color="#7FE0D5" stop-opacity="0"/>
+    </radialGradient>
+    <linearGradient id="edge" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0" stop-color="#fff" stop-opacity="0"/>
+      <stop offset=".25" stop-color="#fff" stop-opacity=".3"/>
+      <stop offset=".75" stop-color="#fff" stop-opacity=".3"/>
+      <stop offset="1" stop-color="#fff" stop-opacity="0"/>
+    </linearGradient>
+    <linearGradient id="glass" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0" stop-color="#fff" stop-opacity=".26"/>
+      <stop offset=".18" stop-color="#fff" stop-opacity=".07"/>
+      <stop offset=".62" stop-color="#fff" stop-opacity=".03"/>
+      <stop offset=".88" stop-color="#fff" stop-opacity=".12"/>
+      <stop offset="1" stop-color="#fff" stop-opacity=".24"/>
+    </linearGradient>
+    <linearGradient id="lime" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0" stop-color="#2E7D32"/>
+      <stop offset=".3" stop-color="#8BD48F"/>
+      <stop offset=".55" stop-color="#66BB6A"/>
+      <stop offset="1" stop-color="#1F6B24"/>
+    </linearGradient>
+    <linearGradient id="amber" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0" stop-color="#B86E00"/>
+      <stop offset=".3" stop-color="#FFD54F"/>
+      <stop offset=".55" stop-color="#FFB300"/>
+      <stop offset="1" stop-color="#9A5A00"/>
+    </linearGradient>
+    <linearGradient id="teal" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0" stop-color="#00594E"/>
+      <stop offset=".3" stop-color="#6FD3C7"/>
+      <stop offset=".55" stop-color="#26A69A"/>
+      <stop offset="1" stop-color="#004D43"/>
+    </linearGradient>
+    <linearGradient id="depth" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#fff" stop-opacity=".18"/>
+      <stop offset=".35" stop-color="#fff" stop-opacity="0"/>
+      <stop offset="1" stop-color="#000" stop-opacity=".22"/>
+    </linearGradient>
+    <linearGradient id="tray" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#3A4A52"/>
+      <stop offset="1" stop-color="#182226"/>
+    </linearGradient>
+    <linearGradient id="trayTop" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#5B6E77"/>
+      <stop offset="1" stop-color="#2C3A40"/>
+    </linearGradient>
+    <radialGradient id="soil" cx=".45" cy=".3" r=".8">
+      <stop offset="0" stop-color="#6D4C41"/>
+      <stop offset="1" stop-color="#3E2723"/>
+    </radialGradient>
+    <linearGradient id="leafFill" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0" stop-color="#4E8A2A"/>
+      <stop offset=".6" stop-color="#8BC34A"/>
+      <stop offset="1" stop-color="#B5DB7E"/>
+    </linearGradient>
+    <linearGradient id="cork" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#B08968"/>
+      <stop offset="1" stop-color="#6D4C3A"/>
+    </linearGradient>
+    <linearGradient id="cotton" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0" stop-color="#E9EEE6"/>
+      <stop offset=".4" stop-color="#FFFFFF"/>
+      <stop offset="1" stop-color="#C9D3C6"/>
+    </linearGradient>
+
+    <path id="leaf" d="M0 0C8-11 24-11 34 0C24 9 8 9 0 0Z"/>
+    <path id="coty" d="M0 0C4-8 15-9 20-1C15 7 4 7 0 0Z"/>
+
+    <clipPath id="erlClip"><path d="M89 150V205L42 334Q37 351 54 351H156Q173 351 168 334L121 205V150Z"/></clipPath>
+    <clipPath id="rbClip"><path d="M205 128V201A57 57 0 1 0 225 201V128Z"/></clipPath>
+    <clipPath id="bkClip"><path d="M181 287L185 351Q186 361 195 361H235Q244 361 245 351L249 287Z"/></clipPath>
+  </defs>
+
+  <ellipse cx="240" cy="250" rx="232" ry="140" fill="url(#spot)"/>
+  <ellipse cx="240" cy="354" rx="236" ry="36" fill="url(#bench)"/>
+  <rect x="10" y="329" width="460" height="1.5" fill="url(#edge)"/>
+
+  <!-- Кругла колба з бурштиновим реактивом на корковому кільці -->
+  <ellipse cx="215" cy="331" rx="62" ry="7" fill="url(#shadow)"/>
+  <ellipse cx="215" cy="318" rx="40" ry="10" fill="#5D4033"/>
+  <g clip-path="url(#rbClip)">
+    <rect x="150" y="262" width="130" height="70" fill="url(#amber)"/>
+    <rect x="150" y="262" width="130" height="70" fill="url(#depth)"/>
+    <ellipse cx="215" cy="262" rx="58" ry="6" fill="#FFE082" opacity=".9"/>
+    <g fill="#fff" opacity=".45">
+      <circle cx="196" cy="290" r="2.4"/><circle cx="231" cy="301" r="1.8"/><circle cx="214" cy="281" r="1.4"/><circle cx="240" cy="279" r="2.2"/>
+    </g>
+  </g>
+  <path d="M204 128V201A58 58 0 1 0 226 201V128Z" fill="url(#glass)" stroke="#fff" stroke-opacity=".7" stroke-width="2"/>
+  <path d="M166 252A50 50 0 0 1 196 212" stroke="#fff" stroke-opacity=".5" stroke-width="6" stroke-linecap="round"/>
+  <path d="M209 136V196" stroke="#fff" stroke-opacity=".35" stroke-width="3" stroke-linecap="round"/>
+  <circle cx="245" cy="232" r="4" fill="#fff" fill-opacity=".35"/>
+  <rect x="199" y="120" width="32" height="10" rx="3" fill="url(#glass)" stroke="#fff" stroke-opacity=".75" stroke-width="2"/>
+  <path d="M175 318A40 10 0 0 0 255 318H246A31 6 0 0 1 184 318Z" fill="url(#cork)"/>
+
+  <!-- Колба Ерленмеєра з культуральним середовищем і ватним корком -->
+  <ellipse cx="105" cy="352" rx="80" ry="7" fill="url(#shadow)"/>
+  <ellipse cx="122" cy="356" rx="70" ry="9" fill="url(#glowLime)"/>
+  <g clip-path="url(#erlClip)">
+    <rect x="30" y="272" width="150" height="85" fill="url(#lime)"/>
+    <rect x="30" y="272" width="150" height="85" fill="url(#depth)"/>
+    <ellipse cx="105" cy="272" rx="42" ry="6" fill="#B9E8BB" opacity=".9"/>
+    <g fill="#fff" opacity=".5">
+      <circle cx="84" cy="318" r="3"/><circle cx="92" cy="300" r="2"/><circle cx="122" cy="330" r="2.6"/><circle cx="133" cy="296" r="1.6"/><circle cx="100" cy="337" r="1.8"/><circle cx="111" cy="289" r="1.4"/>
+    </g>
+  </g>
+  <path d="M88 148V205L41 334Q36 352 54 352H156Q174 352 169 334L122 205V148" fill="url(#glass)" stroke="#fff" stroke-opacity=".7" stroke-width="2" stroke-linejoin="round"/>
+  <path d="M95 160V207L55 318" stroke="#fff" stroke-opacity=".42" stroke-width="5" stroke-linecap="round"/>
+  <path d="M157 328L134 268" stroke="#fff" stroke-opacity=".2" stroke-width="3" stroke-linecap="round"/>
+  <g stroke="#fff" stroke-opacity=".55" stroke-width="1.5" stroke-linecap="round">
+    <path d="M64 300H76M60 312H70M56 324H68M52 336H62"/>
+  </g>
+  <path d="M86 150C84 138 90 126 100 128C103 120 114 120 117 128C127 126 128 140 124 150Z" fill="url(#cotton)"/>
+  <rect x="82" y="141" width="46" height="11" rx="4" fill="url(#glass)" stroke="#fff" stroke-opacity=".75" stroke-width="2"/>
+
+  <!-- Хімічна склянка з бірюзовим розчином і скляною паличкою -->
+  <ellipse cx="215" cy="362" rx="44" ry="5" fill="url(#shadow)"/>
+  <ellipse cx="226" cy="365" rx="40" ry="7" fill="url(#glowTeal)"/>
+  <path d="M187 270L234 354" stroke="#fff" stroke-opacity=".75" stroke-width="3" stroke-linecap="round"/>
+  <g clip-path="url(#bkClip)">
+    <rect x="170" y="318" width="90" height="50" fill="url(#teal)" opacity=".92"/>
+    <rect x="170" y="318" width="90" height="50" fill="url(#depth)"/>
+    <ellipse cx="215" cy="318" rx="33" ry="4" fill="#A7E9E1" opacity=".9"/>
+  </g>
+  <path d="M180 286L185 351Q186 362 195 362H235Q245 362 245 351L250 286" fill="url(#glass)" stroke="#fff" stroke-opacity=".7" stroke-width="2" stroke-linejoin="round"/>
+  <path d="M176 284Q178 282 182 285H250" stroke="#fff" stroke-opacity=".8" stroke-width="2" stroke-linecap="round"/>
+  <path d="M188 294L192 352" stroke="#fff" stroke-opacity=".4" stroke-width="4" stroke-linecap="round"/>
+  <g stroke="#fff" stroke-opacity=".55" stroke-width="1.5" stroke-linecap="round">
+    <path d="M234 300H242M235 314H241M235 328H243M236 342H241"/>
+  </g>
+
+  <!-- Розсадна касета з сіянцями -->
+  <ellipse cx="370" cy="378" rx="108" ry="7" fill="url(#shadow)"/>
+  <g fill="url(#tray)">
+    <path d="M273 331L277 371Q278 376 283 376H310Q315 376 316 371L320 331Z"/>
+    <path d="M322 331L326 371Q327 376 332 376H359Q364 376 365 371L369 331Z"/>
+    <path d="M371 331L375 371Q376 376 381 376H408Q413 376 414 371L418 331Z"/>
+    <path d="M420 331L424 371Q425 376 430 376H457Q462 376 463 371L467 331Z"/>
+  </g>
+  <g fill="#fff" fill-opacity=".08">
+    <path d="M276 333L279 368H284L281 333Z"/><path d="M325 333L328 368H333L330 333Z"/><path d="M374 333L377 368H382L379 333Z"/><path d="M423 333L426 368H431L428 333Z"/>
+  </g>
+  <rect x="270" y="320" width="200" height="12" rx="4" fill="url(#trayTop)"/>
+  <g fill="url(#soil)">
+    <path d="M274 322Q296 310 319 322Z"/><path d="M323 322Q345 309 368 322Z"/><path d="M372 322Q394 310 417 322Z"/><path d="M421 322Q443 309 466 322Z"/>
+  </g>
+  <g fill="#8D6E63" opacity=".8">
+    <circle cx="286" cy="319" r="1.2"/><circle cx="305" cy="318" r="1"/><circle cx="336" cy="318" r="1.3"/><circle cx="356" cy="319" r="1"/><circle cx="384" cy="319" r="1.2"/><circle cx="406" cy="318" r="1"/><circle cx="432" cy="318" r="1.3"/><circle cx="455" cy="319" r="1"/>
+  </g>
+
+  <g stroke-linecap="round" fill="none">
+    <path d="M296 316C296 306 294 300 296 292" stroke="#9CCC65" stroke-width="2.6"/>
+    <path d="M345 316C344 300 347 286 345 268" stroke="#9CCC65" stroke-width="3"/>
+    <path d="M394 316C392 296 397 270 394 244" stroke="#8BC34A" stroke-width="3.2"/>
+    <path d="M443 316C440 290 447 252 442 220" stroke="#8BC34A" stroke-width="3.4"/>
+  </g>
+
+  <g fill="url(#leafFill)">
+    <use xlink:href="#coty" transform="translate(296 292) rotate(-150)"/>
+    <use xlink:href="#coty" transform="translate(296 292) rotate(-30)"/>
+
+    <use xlink:href="#coty" transform="translate(345 298) rotate(-160) scale(.9)"/>
+    <use xlink:href="#coty" transform="translate(345 298) rotate(-20) scale(.9)"/>
+    <use xlink:href="#leaf" transform="translate(345 268) rotate(-140) scale(.78)"/>
+    <use xlink:href="#leaf" transform="translate(345 268) rotate(-40) scale(.78)"/>
+
+    <use xlink:href="#coty" transform="translate(394 300) rotate(-165) scale(.9)"/>
+    <use xlink:href="#coty" transform="translate(394 300) rotate(-15) scale(.9)"/>
+    <use xlink:href="#leaf" transform="translate(394 274) rotate(-155) scale(.9)"/>
+    <use xlink:href="#leaf" transform="translate(394 274) rotate(-25) scale(.9)"/>
+    <use xlink:href="#leaf" transform="translate(394 245) rotate(-125) scale(.95)"/>
+    <use xlink:href="#leaf" transform="translate(394 245) rotate(-55) scale(.95)"/>
+
+    <use xlink:href="#leaf" transform="translate(442 292) rotate(-160) scale(.95)"/>
+    <use xlink:href="#leaf" transform="translate(443 270) rotate(-20) scale(1.05)"/>
+    <use xlink:href="#leaf" transform="translate(442 248) rotate(-165) scale(1.1)"/>
+    <use xlink:href="#leaf" transform="translate(444 232) rotate(-30) scale(.95)"/>
+    <use xlink:href="#leaf" transform="translate(442 221) rotate(-120) scale(.7)"/>
+    <use xlink:href="#leaf" transform="translate(442 221) rotate(-70) scale(.65)"/>
+  </g>
+  <g stroke="#DCEDC8" stroke-opacity=".55" stroke-width="1" stroke-linecap="round">
+    <path d="M345 268l-18-15M345 268l20-16M394 274l-26-11M394 274l26-11M394 245l-17-22M394 245l17-22M442 292l-29-10M443 270l32-11M442 248l-34-9M444 232l27-15"/>
+  </g>
+</svg>

@@ -15,7 +15,7 @@
   <div class="alert-bar" role="status">
     <div class="container">
       <span class="alert-bar__tag">Увага!</span>
-      <span>Розділ «Моделювання» для дистанційних лабораторних робіт наповнюється — моделі з’являтимуться поступово.</span>
+      <span>Новий розділ <a href="microscope/">«Під мікроскопом»</a> — мікрофото збудників 15 поширених хвороб рослин. Розділ «Моделювання» наповнюється.</span>
     </div>
   </div>
 
@@ -32,7 +32,6 @@
         <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M4 7h16M4 12h16M4 17h16"/></svg>
       </button>
       <nav class="nav" id="site-nav" aria-label="Головна навігація">
-        <a href="./" aria-current="page">Головна</a>
         <a href="#about">Про кафедру</a>
         <a href="#disciplines">Дисципліни</a>
         <a href="#team">Колектив</a>
@@ -40,6 +39,10 @@
         <a class="nav__tab" href="modeling/">
           <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 3v18h18"/><path d="m7 15 4-6 4 4 5-8"/></svg>
           Моделювання
+        </a>
+        <a class="nav__tab nav__tab--science" href="microscope/">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 18h8"/><path d="M3 22h18"/><path d="M14 22a7 7 0 1 0 0-14h-1"/><path d="M9 14h2"/><path d="M9 12a2 2 0 0 1-2-2V6h6v4a2 2 0 0 1-2 2Z"/><path d="M12 6V3a1 1 0 0 0-1-1H9a1 1 0 0 0-1 1v3"/></svg>
+          Під мікроскопом
         </a>
       </nav>
     </div>
@@ -62,34 +65,7 @@
           </div>
         </div>
 
-        <svg class="hero__art" viewBox="0 0 400 400" fill="none" aria-hidden="true">
-          <circle cx="200" cy="200" r="180" stroke="rgba(255,255,255,.12)" stroke-width="2"/>
-          <circle cx="200" cy="200" r="130" stroke="rgba(102,187,106,.35)" stroke-width="2" stroke-dasharray="4 10"/>
-          <!-- хлоропласт -->
-          <ellipse cx="200" cy="200" rx="120" ry="70" transform="rotate(-24 200 200)" fill="rgba(102,187,106,.18)" stroke="#66BB6A" stroke-width="3"/>
-          <g transform="rotate(-24 200 200)" fill="#66BB6A">
-            <rect x="120" y="184" width="34" height="8" rx="4"/><rect x="120" y="196" width="34" height="8" rx="4"/><rect x="120" y="208" width="34" height="8" rx="4"/>
-            <rect x="183" y="172" width="34" height="8" rx="4"/><rect x="183" y="184" width="34" height="8" rx="4"/><rect x="183" y="196" width="34" height="8" rx="4"/><rect x="183" y="208" width="34" height="8" rx="4"/><rect x="183" y="220" width="34" height="8" rx="4"/>
-            <rect x="246" y="184" width="34" height="8" rx="4"/><rect x="246" y="196" width="34" height="8" rx="4"/><rect x="246" y="208" width="34" height="8" rx="4"/>
-          </g>
-          <g stroke="#66BB6A" stroke-width="2" transform="rotate(-24 200 200)">
-            <path d="M154 200h29M217 200h29"/>
-          </g>
-          <!-- сонце / фотони -->
-          <circle cx="78" cy="78" r="22" fill="#FFB300"/>
-          <g stroke="#FFB300" stroke-width="3" stroke-linecap="round">
-            <path d="M110 104l26 22"/><path d="M118 88l30 10" opacity=".7"/><path d="M96 116l16 28" opacity=".7"/>
-          </g>
-          <!-- АТФ -->
-          <g font-family="JetBrains Mono, monospace" font-weight="700" font-size="16">
-            <rect x="282" y="290" width="70" height="30" rx="15" fill="#00695C"/>
-            <text x="317" y="310" fill="#fff" text-anchor="middle">АТФ</text>
-            <rect x="48" y="282" width="70" height="30" rx="15" fill="rgba(255,255,255,.14)"/>
-            <text x="83" y="302" fill="#fff" text-anchor="middle">CO₂</text>
-            <rect x="300" y="70" width="56" height="30" rx="15" fill="rgba(255,255,255,.14)"/>
-            <text x="328" y="90" fill="#fff" text-anchor="middle">O₂</text>
-          </g>
-        </svg>
+        <img class="hero__art" src="assets/img/hero-lab.svg" width="480" height="296" alt="Лабораторні колби з реактивами та розсада рослин у касетах">
       </div>
     </section>
 
@@ -499,13 +475,23 @@
     <!-- Remote labs CTA -->
     <section class="section">
       <div class="container">
-        <div class="cta">
-          <div>
-            <span class="section__kicker">Дистанційні лабораторні роботи</span>
-            <h2>Моделювання біологічних процесів</h2>
-            <p>Інтерактивні моделі та наочні приклади для виконання лабораторних робіт онлайн. Розділ наповнюється.</p>
+        <div class="cta-grid">
+          <div class="cta">
+            <div>
+              <span class="section__kicker">Дистанційні лабораторні роботи</span>
+              <h2>Моделювання біологічних процесів</h2>
+              <p>Інтерактивні моделі та наочні приклади для виконання лабораторних робіт онлайн. Розділ наповнюється.</p>
+            </div>
+            <a class="btn btn--accent" href="modeling/">Відкрити розділ</a>
           </div>
-          <a class="btn btn--accent" href="modeling/">Відкрити розділ</a>
+          <div class="cta cta--science">
+            <div>
+              <span class="section__kicker">Мікрофото з наукових статей</span>
+              <h2>Під мікроскопом</h2>
+              <p>Збудники поширених хвороб сільськогосподарських рослин: гіфи й спори грибів, бактерії, віруси — з описом хвороби та посиланням на джерело.</p>
+            </div>
+            <a class="btn btn--accent" href="microscope/">Відкрити розділ</a>
+          </div>
         </div>
       </div>
     </section>
