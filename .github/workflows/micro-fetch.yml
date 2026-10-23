@@ -5,11 +5,11 @@ on:
   workflow_dispatch:
     inputs:
       mode:
-        description: candidates або final
+        description: candidates, articles або final
         required: true
         default: candidates
         type: choice
-        options: [candidates, final]
+        options: [candidates, articles, final]
       only:
         description: id хвороб через кому (порожньо — усі)
         required: false
@@ -40,4 +40,5 @@ jobs:
           git add -A assets/img/micro 2>/dev/null || true
           if git diff --cached --quiet; then echo "nothing to commit"; exit 0; fi
           git commit -m "Fetch micrographs: ${{ inputs.mode }}"
+          git pull --rebase origin "${{ github.ref_name }}"
           git push origin "HEAD:${{ github.ref_name }}"

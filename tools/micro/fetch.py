@@ -283,6 +283,51 @@ def candidates(only):
         fh.write("\n".join(lines))
 
 
+def articles(only):
+    """Усі рисунки з мікроскопією з конкретних статей (tools/micro/articles.json: {id: [PMCID, ...]})."""
+    spec = json.load(open("tools/micro/articles.json", encoding="utf-8"))
+    ds = {d["id"]: d for d in json.load(open("tools/micro/candidates.json", encoding="utf-8"))}
+    for did, pmcids in spec.items():
+        if only and did not in only:
+            continue
+        d = ds.get(did, {"id": did, "terms": [did], "bonus": []})
+        outdir = f"tmp/micro/{did}"
+        os.makedirs(outdir, exist_ok=True)
+        for f in os.listdir(outdir):
+            if f.startswith("a"):
+                os.remove(os.path.join(outdir, f))
+        cands, k = [], 0
+        for pmcid in pmcids:
+            url = f"{EPMC}/search?" + urllib.parse.urlencode(
+                {"query": f"PMCID:{pmcid}", "format": "json", "resultType": "core"})
+            try:
+                res = jget(url)["resultList"]["result"]
+                meta = art_meta(res[0]) if res else {"pmcid": pmcid}
+                figs = figures(pmcid)
+            except Exception as e:
+                print("  error", pmcid, e)
+                continue
+            scored = sorted(((score(f["caption"], d, meta.get("title") or ""), f) for f in figs), key=lambda x: -x[0])
+            for sc, f in scored[:4]:
+                if sc < 3:
+                    continue
+                im, img_url = fig_image(pmcid, f["href"])
+                if im is None:
+                    print("  image fail", pmcid, f["href"])
+                    continue
+                k += 1
+                save_thumb(im, f"{outdir}/a{k}.jpg")
+                cands.append({"k": f"a{k}", "source": "epmc", "score": sc, **meta, "fig_label": f["label"],
+                              "caption": f["caption"], "href": f["href"], "img_url": img_url,
+                              "orig_size": [im.width, im.height],
+                              "crossref": crossref(meta["doi"]) if meta.get("doi") else {}})
+        with open(f"{outdir}/meta_articles.json", "w", encoding="utf-8") as fh:
+            json.dump({"id": did, "candidates": cands}, fh, ensure_ascii=False, indent=1)
+        print(f"== {did}: {len(cands)} figures")
+        for c in cands:
+            print(f"  [{c['k']}] s={c['score']} {c.get('license')} {c['pmcid']} | {c['fig_label']} | {c['caption'][:300]}")
+
+
 def final():
     sel = json.load(open("tools/micro/selection.json", encoding="utf-8"))
     os.makedirs("assets/img/micro", exist_ok=True)
@@ -311,8 +356,10 @@ def final():
 
 if __name__ == "__main__":
     mode = sys.argv[1] if len(sys.argv) > 1 else "candidates"
+    only = {x for x in (sys.argv[2] if len(sys.argv) > 2 else "").split(",") if x}
     if mode == "final":
         final()
+    elif mode == "articles":
+        articles(only)
     else:
-        only = {x for x in (sys.argv[2] if len(sys.argv) > 2 else "").split(",") if x}
         candidates(only)
