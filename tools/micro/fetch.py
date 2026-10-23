@@ -424,12 +424,14 @@ def _save_cand(outdir, name, im, meta, f, sc, url):
             "crossref": crossref(meta["doi"]) if meta.get("doi") else {}}
 
 
-def sympt(only, search=False):
-    """Фото симптомів: з конкретних статей (sympt.json) або пошуком у Europe PMC."""
+def sympt(only, search=False, custom=False):
+    """Фото симптомів: з конкретних статей (sympt.json), пошуком у Europe PMC або власними запитами (symptq.json)."""
     ds = {d["id"]: d for d in json.load(open("tools/micro/candidates.json", encoding="utf-8"))}
+    queries = json.load(open("tools/micro/symptq.json", encoding="utf-8")) if custom else {}
     spec = {} if search else json.load(open("tools/micro/sympt.json", encoding="utf-8"))
-    ids = [i for i in (ds if search else spec) if not only or i in only]
-    prefix, metafile = ("q", "meta_symptq.json") if search else ("s", "meta_sympt.json")
+    ids = [i for i in (queries if custom else ds if search else spec) if not only or i in only]
+    prefix, metafile = ("c", "meta_symptc.json") if custom else ("q", "meta_symptq.json") if search else ("s", "meta_sympt.json")
+    search = search or custom
     for did in ids:
         d = ds.get(did, {"id": did, "terms": [did], "bonus": []})
         outdir = f"tmp/micro/{did}"
@@ -441,14 +443,17 @@ def sympt(only, search=False):
         if search:
             t = " OR ".join(f'"{x}"' for x in d["terms"])
             q = f"(TITLE:({t}) OR ABSTRACT:({t})) AND OPEN_ACCESS:y AND IN_EPMC:y AND {SYMPTQ}"
+            if custom:
+                q = f"({queries[did]}) AND OPEN_ACCESS:y AND IN_EPMC:y"
             url = f"{EPMC}/search?" + urllib.parse.urlencode(
-                {"query": q, "format": "json", "resultType": "core", "pageSize": 30, "synonym": "false"})
+                {"query": q, "format": "json", "resultType": "core", "pageSize": 40 if custom else 30, "synonym": "false"})
             try:
                 res = jget(url)["resultList"]["result"]
             except Exception as e:
                 print("  search error", e)
                 res = []
-            arts = [(r.get("pmcid"), r) for r in res if (r.get("license") or "").lower() in OK_LIC and r.get("pmcid")][:10]
+            arts = [(r.get("pmcid"), r) for r in res
+                    if (r.get("license") or "").lower() in OK_LIC and r.get("pmcid")][:(16 if custom else 10)]
         else:
             arts = []
             for pmcid in spec[did]:
@@ -466,11 +471,11 @@ def sympt(only, search=False):
                 print("  xml error", pmcid, e)
                 continue
             scored = sorted(((score_sympt(f["caption"], d, meta.get("title") or ""), f) for f in figs), key=lambda x: -x[0])
-            pool += [(sc, meta, f) for sc, f in scored[:(1 if search else 3)] if sc >= 4]
+            pool += [(sc, meta, f) for sc, f in scored[:(2 if custom else 1 if search else 3)] if sc >= 4]
             time.sleep(0.2)
         pool.sort(key=lambda x: -x[0])
         cands, k = [], 0
-        for sc, meta, f in pool[: (4 if search else 12)]:
+        for sc, meta, f in pool[: (10 if custom else 4 if search else 12)]:
             im, url = fig_image(meta["pmcid"], f["href"])
             if im is None:
                 continue
@@ -483,10 +488,48 @@ def sympt(only, search=False):
             print(f"  [{c['k']}] s={c['score']} {c.get('license')} {c['pmcid']} | {c['fig_label']} | {c['caption'][:260]}")
 
 
+def figs_mode(only):
+    """Усі рисунки вказаних статей (figs.json: id → PMCID або DOI:...) — для ручного вибору панелей."""
+    spec = json.load(open("tools/micro/figs.json", encoding="utf-8"))
+    for did, refs in spec.items():
+        if only and did not in only:
+            continue
+        outdir = f"tmp/micro/{did}"
+        os.makedirs(outdir, exist_ok=True)
+        cands, k = [], 0
+        for ref in refs:
+            q = ref.replace("DOI:", 'DOI:"') + '"' if ref.startswith("DOI:") else f"PMCID:{ref}"
+            try:
+                res = jget(f"{EPMC}/search?" + urllib.parse.urlencode(
+                    {"query": q, "format": "json", "resultType": "core"}))["resultList"]["result"]
+            except Exception as e:
+                print("  meta error", ref, e)
+                continue
+            if not res or not res[0].get("pmcid"):
+                print("  no pmcid", ref)
+                continue
+            meta = art_meta(res[0])
+            try:
+                fl = figures(meta["pmcid"])
+            except Exception as e:
+                print("  xml error", ref, e)
+                continue
+            for f in fl[:12]:
+                im, url = fig_image(meta["pmcid"], f["href"])
+                if im is None:
+                    continue
+                k += 1
+                cands.append(_save_cand(outdir, f"f{k}", im, meta, f, 0, url))
+        with open(f"{outdir}/meta_figs.json", "w", encoding="utf-8") as fh:
+            json.dump({"id": did, "candidates": cands}, fh, ensure_ascii=False, indent=1)
+        print(f"== {did}: {len(cands)}")
+        for c in cands:
+            print(f"  [{c['k']}] {c.get('license')} {c['pmcid']} | {c['fig_label']} | {c['caption'][:200]}")
+
+
 def final():
     """Обрані рисунки → обрізані фрагменти (одна чи кілька панелей поруч) → WebP."""
     sel = json.load(open("tools/micro/selection.json", encoding="utf-8"))
-    os.makedirs("assets/img/micro", exist_ok=True)
     report = []
     for s in sel:
         im, src = None, None
@@ -520,7 +563,9 @@ def final():
         w = s.get("width", 900)
         if im.width > w:
             im = im.resize((w, round(im.height * w / im.width)), Image.LANCZOS)
-        out = f"assets/img/micro/{s['id']}.webp"
+        outdir = s.get("out", "assets/img/micro")
+        os.makedirs(outdir, exist_ok=True)
+        out = f"{outdir}/{s['id']}.webp"
         im.save(out, "WEBP", quality=s.get("quality", 76), method=6)
         report.append({"id": s["id"], "size": list(im.size), "bytes": os.path.getsize(out), "src": src,
                        "orig": [_ for _ in parts[0].size]})
@@ -540,5 +585,9 @@ if __name__ == "__main__":
         sympt(only)
     elif mode == "sympt-search":
         sympt(only, search=True)
+    elif mode == "sympt-custom":
+        sympt(only, custom=True)
+    elif mode == "figs":
+        figs_mode(only)
     else:
         candidates(only)

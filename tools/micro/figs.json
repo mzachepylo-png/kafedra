@@ -1,0 +1,8 @@
+{
+  "greyrot": ["PMC7238070"],
+  "whiterot": ["DOI:10.1038/s41598-024-79574-x"],
+  "lateblight": ["DOI:10.1038/s41598-023-43510-2"],
+  "cercospora": ["PMC3616835"],
+  "blackleg": ["PMC8469291", "PMC7912877"],
+  "leafrust": ["PMC8950986"]
+}

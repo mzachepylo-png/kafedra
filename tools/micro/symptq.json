@@ -1,0 +1,8 @@
+{
+  "fireblight": "(\"fire blight\" OR \"Erwinia amylovora\") AND FIG:(symptom* OR shoot* OR blossom* OR \"shepherd's crook\" OR orchard OR ooze)",
+  "blackleg": "(blackleg OR \"black leg\" OR \"soft rot\") AND (potato OR \"Solanum tuberosum\") AND (Pectobacterium OR Dickeya) AND FIG:(symptom* OR blackleg OR stem* OR field)",
+  "whiterot": "\"Sclerotinia sclerotiorum\" AND (sunflower OR \"Helianthus annuus\" OR rapeseed OR \"Brassica napus\" OR soybean) AND FIG:(symptom* OR field OR \"stem rot\" OR \"head rot\" OR \"white mold\" OR \"white mould\")",
+  "greyrot": "\"Botrytis cinerea\" AND (grape* OR grapevine OR \"Vitis vinifera\" OR sunflower) AND FIG:(symptom* OR bunch* OR berr* OR \"grey mould\" OR \"gray mold\")",
+  "leafrust": "\"Puccinia triticina\" AND FIG:(symptom* OR pustule* OR \"infection type*\" OR \"leaf rust\")",
+  "cercospora": "\"Cercospora beticola\" AND FIG:(symptom* OR \"leaf spot\" OR lesion* OR field)"
+}
