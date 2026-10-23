@@ -4,118 +4,185 @@
   {
    "k": "a1",
    "source": "epmc",
-   "score": 10,
-   "pmcid": "PMC11944609",
-   "doi": "10.3390/plants14060908",
-   "title": "Carvacrol and Streptomycin in Combination Weaken Streptomycin Resistance in &lt;i&gt;Pectobacterium carotovorum&lt;/i&gt; subsp. &lt;i&gt;carotovorum&lt;/i&gt;.",
+   "score": 12,
+   "pmcid": "PMC10181212",
+   "doi": "10.3390/plants12091817",
+   "title": "Synergistic Action of Biosynthesized Silver Nanoparticles and Culture Supernatant of <i>Bacillus amyloliquefacience</i> against the Soft Rot Pathogen <i>Dickeya dadantii</i>.",
    "authors": [
     {
-     "last": "Shen",
-     "initials": "Y",
-     "first": "Yue",
-     "full": "Shen Y",
+     "last": "Hossain",
+     "initials": "A",
+     "first": "Afsana",
+     "full": "Hossain A",
+     "collective": null
+    },
+    {
+     "last": "Luo",
+     "initials": "J",
+     "first": "Jinyan",
+     "full": "Luo J",
+     "collective": null
+    },
+    {
+     "last": "Ali",
+     "initials": "MA",
+     "first": "Md Arshad",
+     "full": "Ali MA",
+     "collective": null
+    },
+    {
+     "last": "Chai",
+     "initials": "R",
+     "first": "Rongyao",
+     "full": "Chai R",
+     "collective": null
+    },
+    {
+     "last": "Shahid",
+     "initials": "M",
+     "first": "Muhammad",
+     "full": "Shahid M",
+     "collective": null
+    },
+    {
+     "last": "Shahid",
+     "initials": "M",
+     "first": "Muhammad",
+     "full": "Shahid M",
+     "collective": null
+    },
+    {
+     "last": "Ahmed",
+     "initials": "T",
+     "first": "Temoor",
+     "full": "Ahmed T",
+     "collective": null
+    },
+    {
+     "last": "M Hassan",
+     "initials": "M",
+     "first": "Mohamed",
+     "full": "M Hassan M",
+     "collective": null
+    },
+    {
+     "last": "H Kadi",
+     "initials": "R",
+     "first": "Roqayah",
+     "full": "H Kadi R",
+     "collective": null
+    },
+    {
+     "last": "An",
+     "initials": "Q",
+     "first": "Qianli",
+     "full": "An Q",
      "collective": null
     },
     {
      "last": "Li",
-     "initials": "Y",
-     "first": "Yiying",
-     "full": "Li Y",
+     "initials": "B",
+     "first": "Bin",
+     "full": "Li B",
      "collective": null
     },
     {
      "last": "Wang",
-     "initials": "L",
-     "first": "Litao",
-     "full": "Wang L",
-     "collective": null
-    },
-    {
-     "last": "Wu",
-     "initials": "C",
-     "first": "Chenying",
-     "full": "Wu C",
-     "collective": null
-    },
-    {
-     "last": "Su",
-     "initials": "X",
-     "first": "Xu",
-     "full": "Su X",
-     "collective": null
-    },
-    {
-     "last": "Tian",
      "initials": "Y",
-     "first": "Yongqiang",
-     "full": "Tian Y",
+     "first": "Yanli",
+     "full": "Wang Y",
      "collective": null
     }
    ],
    "journal": "Plants (Basel, Switzerland)",
    "journal_iso": "Plants (Basel)",
-   "volume": "14",
-   "issue": "6",
-   "year": 2025,
-   "pages": "908",
+   "volume": "12",
+   "issue": "9",
+   "year": 2023,
+   "pages": "1817",
    "license": "cc by",
-   "first_pub": "2025-03-14",
+   "first_pub": "2023-04-28",
    "fig_label": "Figure 5",
-   "caption": "The effects of carvacrol, streptomycin, and their combinations applied at various concentrations (ranging from 1/4 MIC to MIC) on the altered membrane permeability of SP cells were investigated using CLSM. An untreated bacterial suspension served as the control group (CK).",
-   "href": "plants-14-00908-g005.jpg",
-   "img_url": "https://cdn.ncbi.nlm.nih.gov/pmc/blobs/47f9/11944609/9b663b995333/plants-14-00908-g005.jpg",
+   "caption": "Transmission electron micrograph (TEM) images showing Dickeya dadantii cells without treatment (a, b) and those treated with the combination of silver nanoparticles (12 µL) and cell-free culture supernatant (12%) (c, d). Intact cell walls and dense cytoplasm characterized the control cells without treatment (a, b). Disintegration and clearing of the cytoplasm were evident in cells after 4 h of treatment (c, d).",
+   "href": "plants-12-01817-g005.jpg",
+   "img_url": "https://cdn.ncbi.nlm.nih.gov/pmc/blobs/ad19/10181212/d06c78a0ea3d/plants-12-01817-g005.jpg",
    "orig_size": [
-    760,
-    415
+    678,
+    664
    ],
    "crossref": {
-    "title": "Carvacrol and Streptomycin in Combination Weaken Streptomycin Resistance in Pectobacterium carotovorum subsp. carotovorum",
+    "title": "Synergistic Action of Biosynthesized Silver Nanoparticles and Culture Supernatant of Bacillus amyloliquefacience against the Soft Rot Pathogen Dickeya dadantii",
     "container": "Plants",
-    "volume": "14",
-    "issue": "6",
-    "page": "908",
+    "volume": "12",
+    "issue": "9",
+    "page": "1817",
     "article_number": null,
     "authors": [
      {
-      "given": "Yue",
-      "family": "Shen",
+      "given": "Afsana",
+      "family": "Hossain",
       "name": null
      },
      {
-      "given": "Yiying",
+      "given": "Jinyan",
+      "family": "Luo",
+      "name": null
+     },
+     {
+      "given": "Md. Arshad",
+      "family": "Ali",
+      "name": null
+     },
+     {
+      "given": "Rongyao",
+      "family": "Chai",
+      "name": null
+     },
+     {
+      "given": "Muhammad",
+      "family": "Shahid",
+      "name": null
+     },
+     {
+      "given": "Temoor",
+      "family": "Ahmed",
+      "name": null
+     },
+     {
+      "given": "Mohamed",
+      "family": "M. Hassan",
+      "name": null
+     },
+     {
+      "given": "Roqayah",
+      "family": "H. Kadi",
+      "name": null
+     },
+     {
+      "given": "Qianli",
+      "family": "An",
+      "name": null
+     },
+     {
+      "given": "Bin",
       "family": "Li",
       "name": null
      },
      {
-      "given": "Litao",
+      "given": "Yanli",
       "family": "Wang",
-      "name": null
-     },
-     {
-      "given": "Chenying",
-      "family": "Wu",
-      "name": null
-     },
-     {
-      "given": "Xu",
-      "family": "Su",
-      "name": null
-     },
-     {
-      "given": "Yongqiang",
-      "family": "Tian",
       "name": null
      }
     ],
     "issued": [
-     2025,
-     3,
-     14
+     2023,
+     4,
+     28
     ],
     "published_online": [
-     2025,
-     3,
-     14
+     2023,
+     4,
+     28
     ],
     "published_print": [
      null
@@ -125,118 +192,185 @@
   {
    "k": "a2",
    "source": "epmc",
-   "score": 4,
-   "pmcid": "PMC11944609",
-   "doi": "10.3390/plants14060908",
-   "title": "Carvacrol and Streptomycin in Combination Weaken Streptomycin Resistance in &lt;i&gt;Pectobacterium carotovorum&lt;/i&gt; subsp. &lt;i&gt;carotovorum&lt;/i&gt;.",
+   "score": 5,
+   "pmcid": "PMC10181212",
+   "doi": "10.3390/plants12091817",
+   "title": "Synergistic Action of Biosynthesized Silver Nanoparticles and Culture Supernatant of <i>Bacillus amyloliquefacience</i> against the Soft Rot Pathogen <i>Dickeya dadantii</i>.",
    "authors": [
     {
-     "last": "Shen",
-     "initials": "Y",
-     "first": "Yue",
-     "full": "Shen Y",
+     "last": "Hossain",
+     "initials": "A",
+     "first": "Afsana",
+     "full": "Hossain A",
+     "collective": null
+    },
+    {
+     "last": "Luo",
+     "initials": "J",
+     "first": "Jinyan",
+     "full": "Luo J",
+     "collective": null
+    },
+    {
+     "last": "Ali",
+     "initials": "MA",
+     "first": "Md Arshad",
+     "full": "Ali MA",
+     "collective": null
+    },
+    {
+     "last": "Chai",
+     "initials": "R",
+     "first": "Rongyao",
+     "full": "Chai R",
+     "collective": null
+    },
+    {
+     "last": "Shahid",
+     "initials": "M",
+     "first": "Muhammad",
+     "full": "Shahid M",
+     "collective": null
+    },
+    {
+     "last": "Shahid",
+     "initials": "M",
+     "first": "Muhammad",
+     "full": "Shahid M",
+     "collective": null
+    },
+    {
+     "last": "Ahmed",
+     "initials": "T",
+     "first": "Temoor",
+     "full": "Ahmed T",
+     "collective": null
+    },
+    {
+     "last": "M Hassan",
+     "initials": "M",
+     "first": "Mohamed",
+     "full": "M Hassan M",
+     "collective": null
+    },
+    {
+     "last": "H Kadi",
+     "initials": "R",
+     "first": "Roqayah",
+     "full": "H Kadi R",
+     "collective": null
+    },
+    {
+     "last": "An",
+     "initials": "Q",
+     "first": "Qianli",
+     "full": "An Q",
      "collective": null
     },
     {
      "last": "Li",
-     "initials": "Y",
-     "first": "Yiying",
-     "full": "Li Y",
+     "initials": "B",
+     "first": "Bin",
+     "full": "Li B",
      "collective": null
     },
     {
      "last": "Wang",
-     "initials": "L",
-     "first": "Litao",
-     "full": "Wang L",
-     "collective": null
-    },
-    {
-     "last": "Wu",
-     "initials": "C",
-     "first": "Chenying",
-     "full": "Wu C",
-     "collective": null
-    },
-    {
-     "last": "Su",
-     "initials": "X",
-     "first": "Xu",
-     "full": "Su X",
-     "collective": null
-    },
-    {
-     "last": "Tian",
      "initials": "Y",
-     "first": "Yongqiang",
-     "full": "Tian Y",
+     "first": "Yanli",
+     "full": "Wang Y",
      "collective": null
     }
    ],
    "journal": "Plants (Basel, Switzerland)",
    "journal_iso": "Plants (Basel)",
-   "volume": "14",
-   "issue": "6",
-   "year": 2025,
-   "pages": "908",
+   "volume": "12",
+   "issue": "9",
+   "year": 2023,
+   "pages": "1817",
    "license": "cc by",
-   "first_pub": "2025-03-14",
-   "fig_label": "Figure 7",
-   "caption": "Therapeutic effects of carvacrol, streptomycin, and their combined application at different concentrations (ranging from 1/4 MIC to MIC) were evaluated in vegetables against soft rot. No chemicals were applied to the control group. (a) Chinese cabbage, (b) carrot, and (c) potato.",
-   "href": "plants-14-00908-g007.jpg",
-   "img_url": "https://cdn.ncbi.nlm.nih.gov/pmc/blobs/47f9/11944609/eefc1c844f1f/plants-14-00908-g007.jpg",
+   "first_pub": "2023-04-28",
+   "fig_label": "Figure 2",
+   "caption": "Characterization of cell-free culture supernatant (CFCS) of Bacillus amyloliquefaciens mediated silver nanoparticles (a) X-ray diffraction spectrum demonstrating the nanosize and crystalline nature of the AgNPs (b) TEM displaying AgNPs with a diameter of 20–100 nm and spherical form.",
+   "href": "plants-12-01817-g002.jpg",
+   "img_url": "https://cdn.ncbi.nlm.nih.gov/pmc/blobs/ad19/10181212/193bfb308409/plants-12-01817-g002.jpg",
    "orig_size": [
-    754,
-    956
+    714,
+    340
    ],
    "crossref": {
-    "title": "Carvacrol and Streptomycin in Combination Weaken Streptomycin Resistance in Pectobacterium carotovorum subsp. carotovorum",
+    "title": "Synergistic Action of Biosynthesized Silver Nanoparticles and Culture Supernatant of Bacillus amyloliquefacience against the Soft Rot Pathogen Dickeya dadantii",
     "container": "Plants",
-    "volume": "14",
-    "issue": "6",
-    "page": "908",
+    "volume": "12",
+    "issue": "9",
+    "page": "1817",
     "article_number": null,
     "authors": [
      {
-      "given": "Yue",
-      "family": "Shen",
+      "given": "Afsana",
+      "family": "Hossain",
       "name": null
      },
      {
-      "given": "Yiying",
+      "given": "Jinyan",
+      "family": "Luo",
+      "name": null
+     },
+     {
+      "given": "Md. Arshad",
+      "family": "Ali",
+      "name": null
+     },
+     {
+      "given": "Rongyao",
+      "family": "Chai",
+      "name": null
+     },
+     {
+      "given": "Muhammad",
+      "family": "Shahid",
+      "name": null
+     },
+     {
+      "given": "Temoor",
+      "family": "Ahmed",
+      "name": null
+     },
+     {
+      "given": "Mohamed",
+      "family": "M. Hassan",
+      "name": null
+     },
+     {
+      "given": "Roqayah",
+      "family": "H. Kadi",
+      "name": null
+     },
+     {
+      "given": "Qianli",
+      "family": "An",
+      "name": null
+     },
+     {
+      "given": "Bin",
       "family": "Li",
       "name": null
      },
      {
-      "given": "Litao",
+      "given": "Yanli",
       "family": "Wang",
-      "name": null
-     },
-     {
-      "given": "Chenying",
-      "family": "Wu",
-      "name": null
-     },
-     {
-      "given": "Xu",
-      "family": "Su",
-      "name": null
-     },
-     {
-      "given": "Yongqiang",
-      "family": "Tian",
       "name": null
      }
     ],
     "issued": [
-     2025,
-     3,
-     14
+     2023,
+     4,
+     28
     ],
     "published_online": [
-     2025,
-     3,
-     14
+     2023,
+     4,
+     28
     ],
     "published_print": [
      null
@@ -246,142 +380,190 @@
   {
    "k": "a3",
    "source": "epmc",
-   "score": 6,
-   "pmcid": "PMC10421472",
-   "doi": "10.3390/plants12152826",
-   "title": "Zinc Oxide Nanoparticles Biosynthesized by <i>Eriobotrya japonica</i> Leaf Extract: Characterization, Insecticidal and Antibacterial Properties.",
+   "score": 7,
+   "pmcid": "PMC10169776",
+   "doi": "10.1038/s41598-023-34803-7",
+   "title": "Spontaneous mutations in hlyD and tuf genes result in resistance of Dickeya solani IPO 2222 to phage ϕD5 but cause decreased bacterial fitness and virulence in planta.",
    "authors": [
     {
-     "last": "Hamdy",
-     "initials": "E",
-     "first": "Esraa",
-     "full": "Hamdy E",
+     "last": "Sokolova",
+     "initials": "D",
+     "first": "Daryna",
+     "full": "Sokolova D",
      "collective": null
     },
     {
-     "last": "Al-Askar",
-     "initials": "AA",
-     "first": "Abdulaziz A",
-     "full": "Al-Askar AA",
-     "collective": null
-    },
-    {
-     "last": "El-Gendi",
-     "initials": "H",
-     "first": "Hamada",
-     "full": "El-Gendi H",
-     "collective": null
-    },
-    {
-     "last": "Khamis",
-     "initials": "WM",
-     "first": "Wael M",
-     "full": "Khamis WM",
-     "collective": null
-    },
-    {
-     "last": "Behiry",
-     "initials": "SI",
-     "first": "Said I",
-     "full": "Behiry SI",
-     "collective": null
-    },
-    {
-     "last": "Valentini",
-     "initials": "F",
-     "first": "Franco",
-     "full": "Valentini F",
-     "collective": null
-    },
-    {
-     "last": "Abd-Elsalam",
-     "initials": "KA",
-     "first": "Kamel A",
-     "full": "Abd-Elsalam KA",
-     "collective": null
-    },
-    {
-     "last": "Abdelkhalek",
+     "last": "Smolarska",
      "initials": "A",
-     "first": "Ahmed",
-     "full": "Abdelkhalek A",
+     "first": "Anna",
+     "full": "Smolarska A",
+     "collective": null
+    },
+    {
+     "last": "Bartnik",
+     "initials": "P",
+     "first": "Przemysław",
+     "full": "Bartnik P",
+     "collective": null
+    },
+    {
+     "last": "Rabalski",
+     "initials": "L",
+     "first": "Lukasz",
+     "full": "Rabalski L",
+     "collective": null
+    },
+    {
+     "last": "Kosinski",
+     "initials": "M",
+     "first": "Maciej",
+     "full": "Kosinski M",
+     "collective": null
+    },
+    {
+     "last": "Narajczyk",
+     "initials": "M",
+     "first": "Magdalena",
+     "full": "Narajczyk M",
+     "collective": null
+    },
+    {
+     "last": "Krzyżanowska",
+     "initials": "DM",
+     "first": "Dorota M",
+     "full": "Krzyżanowska DM",
+     "collective": null
+    },
+    {
+     "last": "Rajewska",
+     "initials": "M",
+     "first": "Magdalena",
+     "full": "Rajewska M",
+     "collective": null
+    },
+    {
+     "last": "Mruk",
+     "initials": "I",
+     "first": "Inez",
+     "full": "Mruk I",
+     "collective": null
+    },
+    {
+     "last": "Czaplewska",
+     "initials": "P",
+     "first": "Paulina",
+     "full": "Czaplewska P",
+     "collective": null
+    },
+    {
+     "last": "Jafra",
+     "initials": "S",
+     "first": "Sylwia",
+     "full": "Jafra S",
+     "collective": null
+    },
+    {
+     "last": "Czajkowski",
+     "initials": "R",
+     "first": "Robert",
+     "full": "Czajkowski R",
      "collective": null
     }
    ],
-   "journal": "Plants (Basel, Switzerland)",
-   "journal_iso": "Plants (Basel)",
-   "volume": "12",
-   "issue": "15",
+   "journal": "Scientific reports",
+   "journal_iso": "Sci Rep",
+   "volume": "13",
+   "issue": "1",
    "year": 2023,
-   "pages": "2826",
+   "pages": "7534",
    "license": "cc by",
-   "first_pub": "2023-07-31",
-   "fig_label": "Figure 2",
-   "caption": "The scanning electron microscopy (SEM) of the prepared ZnO-NPs with corresponding particle size was retrieved through ImageJ software (A – C).",
-   "href": "plants-12-02826-g002.jpg",
-   "img_url": "https://cdn.ncbi.nlm.nih.gov/pmc/blobs/00c5/10421472/9460f92385c5/plants-12-02826-g002.jpg",
+   "first_pub": "2023-05-09",
+   "fig_label": "Figure 3",
+   "caption": "Morphology of D. solani IPO 2222 WT strain and phage-resistant DsR34 and DsR207 mutants visualized by atomic force microscopy (AFM). Panel (A) Height of bacterial cells and peak force error, Panels (B) and (C) Images of the analyzed cells. (D) Dimensions of the bacteria were measured for N = 12 to 20 cells, for their height, length, and width are shown as means with standard deviation (SD) for each strain.",
+   "href": "41598_2023_34803_Fig3_HTML.jpg",
+   "img_url": "https://cdn.ncbi.nlm.nih.gov/pmc/blobs/e3be/10169776/8e43e7db5e60/41598_2023_34803_Fig3_HTML.jpg",
    "orig_size": [
-    739,
-    249
+    749,
+    1044
    ],
    "crossref": {
-    "title": "Zinc Oxide Nanoparticles Biosynthesized by Eriobotrya japonica Leaf Extract: Characterization, Insecticidal and Antibacterial Properties",
-    "container": "Plants",
-    "volume": "12",
-    "issue": "15",
-    "page": "2826",
-    "article_number": null,
+    "title": "Spontaneous mutations in hlyD and tuf genes result in resistance of Dickeya solani IPO 2222 to phage ϕD5 but cause decreased bacterial fitness and virulence in planta",
+    "container": "Scientific Reports",
+    "volume": "13",
+    "issue": "1",
+    "page": null,
+    "article_number": "7534",
     "authors": [
      {
-      "given": "Esraa",
-      "family": "Hamdy",
+      "given": "Daryna",
+      "family": "Sokolova",
       "name": null
      },
      {
-      "given": "Abdulaziz",
-      "family": "Al-Askar",
+      "given": "Anna",
+      "family": "Smolarska",
       "name": null
      },
      {
-      "given": "Hamada",
-      "family": "El-Gendi",
+      "given": "Przemysław",
+      "family": "Bartnik",
       "name": null
      },
      {
-      "given": "Wael",
-      "family": "Khamis",
+      "given": "Lukasz",
+      "family": "Rabalski",
       "name": null
      },
      {
-      "given": "Said",
-      "family": "Behiry",
+      "given": "Maciej",
+      "family": "Kosinski",
       "name": null
      },
      {
-      "given": "Franco",
-      "family": "Valentini",
+      "given": "Magdalena",
+      "family": "Narajczyk",
       "name": null
      },
      {
-      "given": "Kamel",
-      "family": "Abd-Elsalam",
+      "given": "Dorota M.",
+      "family": "Krzyżanowska",
       "name": null
      },
      {
-      "given": "Ahmed",
-      "family": "Abdelkhalek",
+      "given": "Magdalena",
+      "family": "Rajewska",
+      "name": null
+     },
+     {
+      "given": "Inez",
+      "family": "Mruk",
+      "name": null
+     },
+     {
+      "given": "Paulina",
+      "family": "Czaplewska",
+      "name": null
+     },
+     {
+      "given": "Sylwia",
+      "family": "Jafra",
+      "name": null
+     },
+     {
+      "given": "Robert",
+      "family": "Czajkowski",
       "name": null
      }
     ],
     "issued": [
      2023,
-     7,
-     31
+     5,
+     9
     ],
     "published_online": [
      2023,
-     7,
-     31
+     5,
+     9
     ],
     "published_print": [
      null
@@ -392,141 +574,807 @@
    "k": "a4",
    "source": "epmc",
    "score": 6,
-   "pmcid": "PMC10421472",
-   "doi": "10.3390/plants12152826",
-   "title": "Zinc Oxide Nanoparticles Biosynthesized by <i>Eriobotrya japonica</i> Leaf Extract: Characterization, Insecticidal and Antibacterial Properties.",
+   "pmcid": "PMC10169776",
+   "doi": "10.1038/s41598-023-34803-7",
+   "title": "Spontaneous mutations in hlyD and tuf genes result in resistance of Dickeya solani IPO 2222 to phage ϕD5 but cause decreased bacterial fitness and virulence in planta.",
    "authors": [
     {
-     "last": "Hamdy",
-     "initials": "E",
-     "first": "Esraa",
-     "full": "Hamdy E",
+     "last": "Sokolova",
+     "initials": "D",
+     "first": "Daryna",
+     "full": "Sokolova D",
      "collective": null
     },
     {
-     "last": "Al-Askar",
-     "initials": "AA",
-     "first": "Abdulaziz A",
-     "full": "Al-Askar AA",
-     "collective": null
-    },
-    {
-     "last": "El-Gendi",
-     "initials": "H",
-     "first": "Hamada",
-     "full": "El-Gendi H",
-     "collective": null
-    },
-    {
-     "last": "Khamis",
-     "initials": "WM",
-     "first": "Wael M",
-     "full": "Khamis WM",
-     "collective": null
-    },
-    {
-     "last": "Behiry",
-     "initials": "SI",
-     "first": "Said I",
-     "full": "Behiry SI",
-     "collective": null
-    },
-    {
-     "last": "Valentini",
-     "initials": "F",
-     "first": "Franco",
-     "full": "Valentini F",
-     "collective": null
-    },
-    {
-     "last": "Abd-Elsalam",
-     "initials": "KA",
-     "first": "Kamel A",
-     "full": "Abd-Elsalam KA",
-     "collective": null
-    },
-    {
-     "last": "Abdelkhalek",
+     "last": "Smolarska",
      "initials": "A",
-     "first": "Ahmed",
-     "full": "Abdelkhalek A",
+     "first": "Anna",
+     "full": "Smolarska A",
+     "collective": null
+    },
+    {
+     "last": "Bartnik",
+     "initials": "P",
+     "first": "Przemysław",
+     "full": "Bartnik P",
+     "collective": null
+    },
+    {
+     "last": "Rabalski",
+     "initials": "L",
+     "first": "Lukasz",
+     "full": "Rabalski L",
+     "collective": null
+    },
+    {
+     "last": "Kosinski",
+     "initials": "M",
+     "first": "Maciej",
+     "full": "Kosinski M",
+     "collective": null
+    },
+    {
+     "last": "Narajczyk",
+     "initials": "M",
+     "first": "Magdalena",
+     "full": "Narajczyk M",
+     "collective": null
+    },
+    {
+     "last": "Krzyżanowska",
+     "initials": "DM",
+     "first": "Dorota M",
+     "full": "Krzyżanowska DM",
+     "collective": null
+    },
+    {
+     "last": "Rajewska",
+     "initials": "M",
+     "first": "Magdalena",
+     "full": "Rajewska M",
+     "collective": null
+    },
+    {
+     "last": "Mruk",
+     "initials": "I",
+     "first": "Inez",
+     "full": "Mruk I",
+     "collective": null
+    },
+    {
+     "last": "Czaplewska",
+     "initials": "P",
+     "first": "Paulina",
+     "full": "Czaplewska P",
+     "collective": null
+    },
+    {
+     "last": "Jafra",
+     "initials": "S",
+     "first": "Sylwia",
+     "full": "Jafra S",
+     "collective": null
+    },
+    {
+     "last": "Czajkowski",
+     "initials": "R",
+     "first": "Robert",
+     "full": "Czajkowski R",
      "collective": null
     }
    ],
-   "journal": "Plants (Basel, Switzerland)",
-   "journal_iso": "Plants (Basel)",
-   "volume": "12",
-   "issue": "15",
+   "journal": "Scientific reports",
+   "journal_iso": "Sci Rep",
+   "volume": "13",
+   "issue": "1",
    "year": 2023,
-   "pages": "2826",
+   "pages": "7534",
    "license": "cc by",
-   "first_pub": "2023-07-31",
-   "fig_label": "Figure 5",
-   "caption": "Shows the effect of Eriobotrya japonica -derived zinc oxide nanoparticles (ZnO-NPs) on various bacterial isolates.",
-   "href": "plants-12-02826-g005.jpg",
-   "img_url": "https://cdn.ncbi.nlm.nih.gov/pmc/blobs/00c5/10421472/d7d1869bb27f/plants-12-02826-g005.jpg",
+   "first_pub": "2023-05-09",
+   "fig_label": "Figure 2",
+   "caption": "Transmission electron microscope images of D. solani IPO 2222 wild-type strain and phage-resistant DsR34 and DsR207 mutants. Photos were taken directly after the collection of the bacteria from liquid cultures. At least ten images were taken per analyzed strain. The figure shows representative images. The bar represents 200 nm.",
+   "href": "41598_2023_34803_Fig2_HTML.jpg",
+   "img_url": "https://cdn.ncbi.nlm.nih.gov/pmc/blobs/e3be/10169776/0d393e64ad77/41598_2023_34803_Fig2_HTML.jpg",
    "orig_size": [
-    784,
-    271
+    749,
+    266
    ],
    "crossref": {
-    "title": "Zinc Oxide Nanoparticles Biosynthesized by Eriobotrya japonica Leaf Extract: Characterization, Insecticidal and Antibacterial Properties",
-    "container": "Plants",
-    "volume": "12",
-    "issue": "15",
-    "page": "2826",
-    "article_number": null,
+    "title": "Spontaneous mutations in hlyD and tuf genes result in resistance of Dickeya solani IPO 2222 to phage ϕD5 but cause decreased bacterial fitness and virulence in planta",
+    "container": "Scientific Reports",
+    "volume": "13",
+    "issue": "1",
+    "page": null,
+    "article_number": "7534",
     "authors": [
      {
-      "given": "Esraa",
-      "family": "Hamdy",
+      "given": "Daryna",
+      "family": "Sokolova",
       "name": null
      },
      {
-      "given": "Abdulaziz",
-      "family": "Al-Askar",
+      "given": "Anna",
+      "family": "Smolarska",
       "name": null
      },
      {
-      "given": "Hamada",
-      "family": "El-Gendi",
+      "given": "Przemysław",
+      "family": "Bartnik",
       "name": null
      },
      {
-      "given": "Wael",
-      "family": "Khamis",
+      "given": "Lukasz",
+      "family": "Rabalski",
       "name": null
      },
      {
-      "given": "Said",
-      "family": "Behiry",
+      "given": "Maciej",
+      "family": "Kosinski",
       "name": null
      },
      {
-      "given": "Franco",
-      "family": "Valentini",
+      "given": "Magdalena",
+      "family": "Narajczyk",
       "name": null
      },
      {
-      "given": "Kamel",
-      "family": "Abd-Elsalam",
+      "given": "Dorota M.",
+      "family": "Krzyżanowska",
       "name": null
      },
      {
-      "given": "Ahmed",
-      "family": "Abdelkhalek",
+      "given": "Magdalena",
+      "family": "Rajewska",
+      "name": null
+     },
+     {
+      "given": "Inez",
+      "family": "Mruk",
+      "name": null
+     },
+     {
+      "given": "Paulina",
+      "family": "Czaplewska",
+      "name": null
+     },
+     {
+      "given": "Sylwia",
+      "family": "Jafra",
+      "name": null
+     },
+     {
+      "given": "Robert",
+      "family": "Czajkowski",
       "name": null
      }
     ],
     "issued": [
      2023,
-     7,
-     31
+     5,
+     9
     ],
     "published_online": [
      2023,
+     5,
+     9
+    ],
+    "published_print": [
+     null
+    ]
+   }
+  },
+  {
+   "k": "a5",
+   "source": "epmc",
+   "score": 16,
+   "pmcid": "PMC8469291",
+   "doi": "10.3390/microorganisms9091918",
+   "title": "Isolation and Characterization of Outer Membrane Vesicles of <i>Pectobacterium brasiliense</i> 1692.",
+   "authors": [
+    {
+     "last": "Maphosa",
+     "initials": "S",
+     "first": "Silindile",
+     "full": "Maphosa S",
+     "collective": null
+    },
+    {
+     "last": "Moleleki",
+     "initials": "LN",
+     "first": "Lucy Novungayo",
+     "full": "Moleleki LN",
+     "collective": null
+    }
+   ],
+   "journal": "Microorganisms",
+   "journal_iso": "Microorganisms",
+   "volume": "9",
+   "issue": "9",
+   "year": 2021,
+   "pages": "1918",
+   "license": "cc by",
+   "first_pub": "2021-09-09",
+   "fig_label": "Figure 1",
+   "caption": "Identification of OMVs produced by Pbr1692. (A, B) In the SEM images, gold arrows indicate OMVs of cells and OMV aggregates in the exponential growth phase. The white arrows show vesiculation “hot spots”. (C) The image of cells in stationary growth shows OMVs at the surface of the bacteria indicated by white arrows. Gold arrows indicate OMV aggregates and “hot spots”. (D) The image shows OMVs embedded in the biofilm matrix-like backbone. Scale bars = 1 µm.",
+   "href": "microorganisms-09-01918-g001.jpg",
+   "img_url": "https://cdn.ncbi.nlm.nih.gov/pmc/blobs/2980/8469291/1b96544d652b/microorganisms-09-01918-g001.jpg",
+   "orig_size": [
+    735,
+    497
+   ],
+   "crossref": {
+    "title": "Isolation and Characterization of Outer Membrane Vesicles of Pectobacterium brasiliense 1692",
+    "container": "Microorganisms",
+    "volume": "9",
+    "issue": "9",
+    "page": "1918",
+    "article_number": null,
+    "authors": [
+     {
+      "given": "Silindile",
+      "family": "Maphosa",
+      "name": null
+     },
+     {
+      "given": "Lucy Novungayo",
+      "family": "Moleleki",
+      "name": null
+     }
+    ],
+    "issued": [
+     2021,
+     9,
+     9
+    ],
+    "published_online": [
+     2021,
+     9,
+     9
+    ],
+    "published_print": [
+     null
+    ]
+   }
+  },
+  {
+   "k": "a6",
+   "source": "epmc",
+   "score": 9,
+   "pmcid": "PMC8469291",
+   "doi": "10.3390/microorganisms9091918",
+   "title": "Isolation and Characterization of Outer Membrane Vesicles of <i>Pectobacterium brasiliense</i> 1692.",
+   "authors": [
+    {
+     "last": "Maphosa",
+     "initials": "S",
+     "first": "Silindile",
+     "full": "Maphosa S",
+     "collective": null
+    },
+    {
+     "last": "Moleleki",
+     "initials": "LN",
+     "first": "Lucy Novungayo",
+     "full": "Moleleki LN",
+     "collective": null
+    }
+   ],
+   "journal": "Microorganisms",
+   "journal_iso": "Microorganisms",
+   "volume": "9",
+   "issue": "9",
+   "year": 2021,
+   "pages": "1918",
+   "license": "cc by",
+   "first_pub": "2021-09-09",
+   "fig_label": "Figure 2",
+   "caption": "TEM identification of budding vesicles on Pbr1692 cells and isolated OMV size and distribution. (A) The arrow indicates an OMV budding from a Pbr1692 cell. Bar: 200 nm. (B) NTA size distribution and quantification of isolated OMV assessment shows the distribution of Pbr1692 OMVs with an average size of 173.7 ± 1.9 nm isolated in the stationary growth phase.",
+   "href": "microorganisms-09-01918-g002.jpg",
+   "img_url": "https://cdn.ncbi.nlm.nih.gov/pmc/blobs/2980/8469291/8eeaec3f87d6/microorganisms-09-01918-g002.jpg",
+   "orig_size": [
+    736,
+    225
+   ],
+   "crossref": {
+    "title": "Isolation and Characterization of Outer Membrane Vesicles of Pectobacterium brasiliense 1692",
+    "container": "Microorganisms",
+    "volume": "9",
+    "issue": "9",
+    "page": "1918",
+    "article_number": null,
+    "authors": [
+     {
+      "given": "Silindile",
+      "family": "Maphosa",
+      "name": null
+     },
+     {
+      "given": "Lucy Novungayo",
+      "family": "Moleleki",
+      "name": null
+     }
+    ],
+    "issued": [
+     2021,
+     9,
+     9
+    ],
+    "published_online": [
+     2021,
+     9,
+     9
+    ],
+    "published_print": [
+     null
+    ]
+   }
+  },
+  {
+   "k": "a7",
+   "source": "epmc",
+   "score": 12,
+   "pmcid": "PMC8304393",
+   "doi": "10.3390/ijms22147346",
+   "title": "<i>Pectobacterium parmentieri</i> SCC 3193 Mutants with Altered Synthesis of Cell Surface Polysaccharides Are Resistant to N4-Like Lytic Bacteriophage ϕA38 (vB_Ppp_A38) but Express Decreased Virulence in Potato (<i>Solanum tuberosum</i> L.) Plants.",
+   "authors": [
+    {
+     "last": "Bartnik",
+     "initials": "P",
+     "first": "Przemyslaw",
+     "full": "Bartnik P",
+     "collective": null
+    },
+    {
+     "last": "Jafra",
+     "initials": "S",
+     "first": "Sylwia",
+     "full": "Jafra S",
+     "collective": null
+    },
+    {
+     "last": "Narajczyk",
+     "initials": "M",
+     "first": "Magdalena",
+     "full": "Narajczyk M",
+     "collective": null
+    },
+    {
+     "last": "Czaplewska",
+     "initials": "P",
+     "first": "Paulina",
+     "full": "Czaplewska P",
+     "collective": null
+    },
+    {
+     "last": "Czajkowski",
+     "initials": "R",
+     "first": "Robert",
+     "full": "Czajkowski R",
+     "collective": null
+    }
+   ],
+   "journal": "International journal of molecular sciences",
+   "journal_iso": "Int J Mol Sci",
+   "volume": "22",
+   "issue": "14",
+   "year": 2021,
+   "pages": "7346",
+   "license": "cc by",
+   "first_pub": "2021-07-08",
+   "fig_label": "Figure 2",
+   "caption": "Visualization of adsorption of ϕA38 phage particles to wild-type P. parmentieri and phage-resistant mutants by transmission electron microscopy (TEM). Bacterial cells and phage particles were mixed at MOI of 10 and incubated for 20 min at 20–22 °C to allow the phages to attach to host cells. At least 10 individual images were collected for each strain, and the experiment was repeated once (two biological replicates of the assay). Representative photos are shown. Scale bar—200 nm.",
+   "href": "ijms-22-07346-g002.jpg",
+   "img_url": "https://cdn.ncbi.nlm.nih.gov/pmc/blobs/af90/8304393/4b320a1e23ff/ijms-22-07346-g002.jpg",
+   "orig_size": [
+    706,
+    604
+   ],
+   "crossref": {
+    "title": "Pectobacterium parmentieri SCC 3193 Mutants with Altered Synthesis of Cell Surface Polysaccharides Are Resistant to N4-Like Lytic Bacteriophage ϕA38 (vB_Ppp_A38) but Express Decreased Virulence in Potato (Solanum tuberosum L.) Plants",
+    "container": "International Journal of Molecular Sciences",
+    "volume": "22",
+    "issue": "14",
+    "page": "7346",
+    "article_number": null,
+    "authors": [
+     {
+      "given": "Przemyslaw",
+      "family": "Bartnik",
+      "name": null
+     },
+     {
+      "given": "Sylwia",
+      "family": "Jafra",
+      "name": null
+     },
+     {
+      "given": "Magdalena",
+      "family": "Narajczyk",
+      "name": null
+     },
+     {
+      "given": "Paulina",
+      "family": "Czaplewska",
+      "name": null
+     },
+     {
+      "given": "Robert",
+      "family": "Czajkowski",
+      "name": null
+     }
+    ],
+    "issued": [
+     2021,
      7,
-     31
+     8
+    ],
+    "published_online": [
+     2021,
+     7,
+     8
+    ],
+    "published_print": [
+     null
+    ]
+   }
+  },
+  {
+   "k": "a8",
+   "source": "epmc",
+   "score": 15,
+   "pmcid": "PMC7912877",
+   "doi": "10.3390/microorganisms9020295",
+   "title": "Biosensors Used for Epifluorescence and Confocal Laser Scanning Microscopies to Study &lt;i&gt;Dickeya&lt;/i&gt; and &lt;i&gt;Pectobacterium&lt;/i&gt; Virulence and Biocontrol.",
+   "authors": [
+    {
+     "last": "Bourigault",
+     "initials": "Y",
+     "first": "Yvann",
+     "full": "Bourigault Y",
+     "collective": null
+    },
+    {
+     "last": "Chane",
+     "initials": "A",
+     "first": "Andrea",
+     "full": "Chane A",
+     "collective": null
+    },
+    {
+     "last": "Barbey",
+     "initials": "C",
+     "first": "Corinne",
+     "full": "Barbey C",
+     "collective": null
+    },
+    {
+     "last": "Jafra",
+     "initials": "S",
+     "first": "Sylwia",
+     "full": "Jafra S",
+     "collective": null
+    },
+    {
+     "last": "Czajkowski",
+     "initials": "R",
+     "first": "Robert",
+     "full": "Czajkowski R",
+     "collective": null
+    },
+    {
+     "last": "Latour",
+     "initials": "X",
+     "first": "Xavier",
+     "full": "Latour X",
+     "collective": null
+    }
+   ],
+   "journal": "Microorganisms",
+   "journal_iso": "Microorganisms",
+   "volume": "9",
+   "issue": "2",
+   "year": 2021,
+   "pages": "295",
+   "license": "cc by",
+   "first_pub": "2021-02-01",
+   "fig_label": "Figure 3",
+   "caption": "Simultaneous observation of the location and quorum-sensing communication of Pectobacterium atrosepticum during potato tuber soft-rot. Tubers were wounded and inoculated axenically with the P. atrosepticum CFBP6276 dual-colored strain (see Table 1): the constitutively produced cyan fluorescent protein served as a cell tag (blue fluorescing cells), whereas reporter fusion based on the green fluorescent protein (GFP) enabled the simultaneous recording of the production and presence of N -acyl-homoserine lactone (AHL) signaling molecules (green fluorescing cells). Confocal microscopy observations of the bottom surface of the tuber wound were achieved at two days post-inoculation with an ultrathin cross-section. Images were combined in the blue and red channels (A1, B1), supplemented with the green channel (A2, B2). In these conditions, slight blue (A1, B1) or celadon (A2, B2) autofluorescence revealed the cell wall structure of the pith, as well as translucent parenchyma cells containing opaque and oval amyloplasts. Close-ups (delineated by squares) of clustered and embedded pectobacterial cells in (A1, A2) are shown in (B1, B2), respectively. Legend: CȻ, communicating cell, SȻ, silent cell. For technical experimental details please see reference [103].",
+   "href": "microorganisms-09-00295-g003.jpg",
+   "img_url": "https://cdn.ncbi.nlm.nih.gov/pmc/blobs/087f/7912877/ae7ca147347e/microorganisms-09-00295-g003.jpg",
+   "orig_size": [
+    726,
+    725
+   ],
+   "crossref": {
+    "title": "Biosensors Used for Epifluorescence and Confocal Laser Scanning Microscopies to Study Dickeya and Pectobacterium Virulence and Biocontrol",
+    "container": "Microorganisms",
+    "volume": "9",
+    "issue": "2",
+    "page": "295",
+    "article_number": null,
+    "authors": [
+     {
+      "given": "Yvann",
+      "family": "Bourigault",
+      "name": null
+     },
+     {
+      "given": "Andrea",
+      "family": "Chane",
+      "name": null
+     },
+     {
+      "given": "Corinne",
+      "family": "Barbey",
+      "name": null
+     },
+     {
+      "given": "Sylwia",
+      "family": "Jafra",
+      "name": null
+     },
+     {
+      "given": "Robert",
+      "family": "Czajkowski",
+      "name": null
+     },
+     {
+      "given": "Xavier",
+      "family": "Latour",
+      "name": null
+     }
+    ],
+    "issued": [
+     2021,
+     2,
+     1
+    ],
+    "published_online": [
+     2021,
+     2,
+     1
+    ],
+    "published_print": [
+     null
+    ]
+   }
+  },
+  {
+   "k": "a9",
+   "source": "epmc",
+   "score": 14,
+   "pmcid": "PMC7912877",
+   "doi": "10.3390/microorganisms9020295",
+   "title": "Biosensors Used for Epifluorescence and Confocal Laser Scanning Microscopies to Study &lt;i&gt;Dickeya&lt;/i&gt; and &lt;i&gt;Pectobacterium&lt;/i&gt; Virulence and Biocontrol.",
+   "authors": [
+    {
+     "last": "Bourigault",
+     "initials": "Y",
+     "first": "Yvann",
+     "full": "Bourigault Y",
+     "collective": null
+    },
+    {
+     "last": "Chane",
+     "initials": "A",
+     "first": "Andrea",
+     "full": "Chane A",
+     "collective": null
+    },
+    {
+     "last": "Barbey",
+     "initials": "C",
+     "first": "Corinne",
+     "full": "Barbey C",
+     "collective": null
+    },
+    {
+     "last": "Jafra",
+     "initials": "S",
+     "first": "Sylwia",
+     "full": "Jafra S",
+     "collective": null
+    },
+    {
+     "last": "Czajkowski",
+     "initials": "R",
+     "first": "Robert",
+     "full": "Czajkowski R",
+     "collective": null
+    },
+    {
+     "last": "Latour",
+     "initials": "X",
+     "first": "Xavier",
+     "full": "Latour X",
+     "collective": null
+    }
+   ],
+   "journal": "Microorganisms",
+   "journal_iso": "Microorganisms",
+   "volume": "9",
+   "issue": "2",
+   "year": 2021,
+   "pages": "295",
+   "license": "cc by",
+   "first_pub": "2021-02-01",
+   "fig_label": "Figure 1",
+   "caption": "Colonization of potato roots with green fluorescent protein (GFP)-tagged Dickeya solani. Bacterial colonization of roots can be evaluated using either epifluorescence stereo microscopy to visualize the spread of the D. solani strain IPO2254 (see Table 1) on the scale of the organ (microcolonies on the rhizoplane and invasion of the vascular tissue, (A1, A2), respectively) or by confocal scanning laser microscopy to locate the bacterium on the level of the plant cell (intercellular and intracellular colonization, (B1, B2), respectively). For technical experimental details please see reference [97]. (Courtesy of Dr. Jan van der Wolf, WUR-PRI, Wageningen, the Netherlands).",
+   "href": "microorganisms-09-00295-g001.jpg",
+   "img_url": "https://cdn.ncbi.nlm.nih.gov/pmc/blobs/087f/7912877/0eff89de07ca/microorganisms-09-00295-g001.jpg",
+   "orig_size": [
+    795,
+    793
+   ],
+   "crossref": {
+    "title": "Biosensors Used for Epifluorescence and Confocal Laser Scanning Microscopies to Study Dickeya and Pectobacterium Virulence and Biocontrol",
+    "container": "Microorganisms",
+    "volume": "9",
+    "issue": "2",
+    "page": "295",
+    "article_number": null,
+    "authors": [
+     {
+      "given": "Yvann",
+      "family": "Bourigault",
+      "name": null
+     },
+     {
+      "given": "Andrea",
+      "family": "Chane",
+      "name": null
+     },
+     {
+      "given": "Corinne",
+      "family": "Barbey",
+      "name": null
+     },
+     {
+      "given": "Sylwia",
+      "family": "Jafra",
+      "name": null
+     },
+     {
+      "given": "Robert",
+      "family": "Czajkowski",
+      "name": null
+     },
+     {
+      "given": "Xavier",
+      "family": "Latour",
+      "name": null
+     }
+    ],
+    "issued": [
+     2021,
+     2,
+     1
+    ],
+    "published_online": [
+     2021,
+     2,
+     1
+    ],
+    "published_print": [
+     null
+    ]
+   }
+  },
+  {
+   "k": "a10",
+   "source": "epmc",
+   "score": 10,
+   "pmcid": "PMC5872005",
+   "doi": "10.3389/fpls.2018.00374",
+   "title": "Oxygen Availability Influences Expression of <i>Dickeya solani</i> Genes Associated With Virulence in Potato (<i>Solanum tuberosum</i> L.) and Chicory (<i>Cichorium intybus</i> L.).",
+   "authors": [
+    {
+     "last": "Lisicka",
+     "initials": "W",
+     "first": "Wioletta",
+     "full": "Lisicka W",
+     "collective": null
+    },
+    {
+     "last": "Fikowicz-Krosko",
+     "initials": "J",
+     "first": "Jakub",
+     "full": "Fikowicz-Krosko J",
+     "collective": null
+    },
+    {
+     "last": "Jafra",
+     "initials": "S",
+     "first": "Sylwia",
+     "full": "Jafra S",
+     "collective": null
+    },
+    {
+     "last": "Narajczyk",
+     "initials": "M",
+     "first": "Magdalena",
+     "full": "Narajczyk M",
+     "collective": null
+    },
+    {
+     "last": "Czaplewska",
+     "initials": "P",
+     "first": "Paulina",
+     "full": "Czaplewska P",
+     "collective": null
+    },
+    {
+     "last": "Czajkowski",
+     "initials": "R",
+     "first": "Robert",
+     "full": "Czajkowski R",
+     "collective": null
+    }
+   ],
+   "journal": "Frontiers in plant science",
+   "journal_iso": "Front Plant Sci",
+   "volume": "9",
+   "issue": null,
+   "year": 2018,
+   "pages": "374",
+   "license": "cc by",
+   "first_pub": "2018-03-21",
+   "fig_label": "FIGURE 1",
+   "caption": "Morphology of Dickeya solani IPO2222 Tn5 transposon mutants B7 and B18 colonies grown on M9 agar with glucose for 24 h at 28°C visualized with stereomicroscopy with low magnification (10–40×); size bar: black – 150 mm, white – 5 mm (A) and individual bacterial cells visualized by transmission electron microscopy (TEM); size bar: 1000 nm. TEM analyses were conducted on wild type and Tn5 mutant cells of D. solani IPO2222 grown overnight in Tryptone Soya Broth (TSB) with shaking (200 rpm) at 28°C. Photos were taken directly after bacteria collection from liquid cultures. For this, bacteria were adsorbed onto carbon-coated grids (Sigma) stained with 1.5% uranyl acetate and directly examined with electron microscope (Tecnai Spirit BioTWIN, FEI) (B). The figure shows representative colonies and cells.",
+   "href": "fpls-09-00374-g001.jpg",
+   "img_url": "https://cdn.ncbi.nlm.nih.gov/pmc/blobs/9eea/5872005/833d74eec45d/fpls-09-00374-g001.jpg",
+   "orig_size": [
+    800,
+    1068
+   ],
+   "crossref": {
+    "title": "Oxygen Availability Influences Expression of Dickeya solani Genes Associated With Virulence in Potato (Solanum tuberosum L.) and Chicory (Cichorium intybus L.)",
+    "container": "Frontiers in Plant Science",
+    "volume": "9",
+    "issue": null,
+    "page": null,
+    "article_number": "374",
+    "authors": [
+     {
+      "given": "Wioletta",
+      "family": "Lisicka",
+      "name": null
+     },
+     {
+      "given": "Jakub",
+      "family": "Fikowicz-Krosko",
+      "name": null
+     },
+     {
+      "given": "Sylwia",
+      "family": "Jafra",
+      "name": null
+     },
+     {
+      "given": "Magdalena",
+      "family": "Narajczyk",
+      "name": null
+     },
+     {
+      "given": "Paulina",
+      "family": "Czaplewska",
+      "name": null
+     },
+     {
+      "given": "Robert",
+      "family": "Czajkowski",
+      "name": null
+     }
+    ],
+    "issued": [
+     2018,
+     3,
+     21
+    ],
+    "published_online": [
+     2018,
+     3,
+     21
     ],
     "published_print": [
      null

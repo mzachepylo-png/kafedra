@@ -1,0 +1,1323 @@
+{
+ "id": "earlyblight",
+ "candidates": [
+  {
+   "k": "a1",
+   "source": "epmc",
+   "score": 6,
+   "pmcid": "PMC11538111",
+   "doi": "10.1186/s13568-024-01774-5",
+   "title": "Compatibility and antimicrobial activity of silver nanoparticles synthesized using Lycopersicon esculentum peels.",
+   "authors": [
+    {
+     "last": "Ali",
+     "initials": "E",
+     "first": "Esraa",
+     "full": "Ali E",
+     "collective": null
+    },
+    {
+     "last": "Abu-Hussien",
+     "initials": "SH",
+     "first": "Samah H",
+     "full": "Abu-Hussien SH",
+     "collective": null
+    },
+    {
+     "last": "Hesham",
+     "initials": "E",
+     "first": "Esraa",
+     "full": "Hesham E",
+     "collective": null
+    },
+    {
+     "last": "Ahmed",
+     "initials": "S",
+     "first": "Shimaa",
+     "full": "Ahmed S",
+     "collective": null
+    },
+    {
+     "last": "Mostafa",
+     "initials": "H",
+     "first": "Habiba",
+     "full": "Mostafa H",
+     "collective": null
+    },
+    {
+     "last": "Gamal",
+     "initials": "A",
+     "first": "Ahmed",
+     "full": "Gamal A",
+     "collective": null
+    },
+    {
+     "last": "El-Sayed",
+     "initials": "SM",
+     "first": "Salwa M",
+     "full": "El-Sayed SM",
+     "collective": null
+    },
+    {
+     "last": "Hemdan",
+     "initials": "B",
+     "first": "Bahaa",
+     "full": "Hemdan B",
+     "collective": null
+    },
+    {
+     "last": "Bakry",
+     "initials": "A",
+     "first": "Ashraf",
+     "full": "Bakry A",
+     "collective": null
+    },
+    {
+     "last": "Ebeed",
+     "initials": "NM",
+     "first": "Naglaa M",
+     "full": "Ebeed NM",
+     "collective": null
+    },
+    {
+     "last": "Elhariry",
+     "initials": "H",
+     "first": "Hesham",
+     "full": "Elhariry H",
+     "collective": null
+    },
+    {
+     "last": "Galal",
+     "initials": "A",
+     "first": "Ahmed",
+     "full": "Galal A",
+     "collective": null
+    },
+    {
+     "last": "Abd-Elhalim",
+     "initials": "BT",
+     "first": "Basma T",
+     "full": "Abd-Elhalim BT",
+     "collective": null
+    }
+   ],
+   "journal": "AMB Express",
+   "journal_iso": "AMB Express",
+   "volume": "14",
+   "issue": "1",
+   "year": 2024,
+   "pages": "120",
+   "license": "cc by",
+   "first_pub": "2024-11-05",
+   "fig_label": "Fig. 1",
+   "caption": "A Preparation of L. esculentum peel extract (LPAE) (control); B L. esculentum peels extract-AgNO 3 mixture before and after biosynthesis of Le-AgNPs. C Uv–vis spectroscopy characterization of Le-AgNPs and LPAE (control). D Dynamic light scattering (DLS) investigation of Le-AgNPs fabricated using LPAE. E Zeta potential characterization of Le-AgNPs fabricated using LPAE. F High resolution transmission electron microscope (HR-TEM) investigation of Le-AgNPs fabricated using L. esculentum peels extract",
+   "href": "13568_2024_1774_Fig1_HTML.jpg",
+   "img_url": "https://cdn.ncbi.nlm.nih.gov/pmc/blobs/f5c3/11538111/bb6ff85df1a4/13568_2024_1774_Fig1_HTML.jpg",
+   "orig_size": [
+    784,
+    932
+   ],
+   "crossref": {
+    "title": "Compatibility and antimicrobial activity of silver nanoparticles synthesized using Lycopersicon esculentum peels",
+    "container": "AMB Express",
+    "volume": "14",
+    "issue": "1",
+    "page": null,
+    "article_number": "120",
+    "authors": [
+     {
+      "given": "Esraa",
+      "family": "Ali",
+      "name": null
+     },
+     {
+      "given": "Samah H.",
+      "family": "Abu-Hussien",
+      "name": null
+     },
+     {
+      "given": "Esraa",
+      "family": "Hesham",
+      "name": null
+     },
+     {
+      "given": "Shimaa",
+      "family": "Ahmed",
+      "name": null
+     },
+     {
+      "given": "Habiba",
+      "family": "Mostafa",
+      "name": null
+     },
+     {
+      "given": "Ahmed",
+      "family": "Gamal",
+      "name": null
+     },
+     {
+      "given": "Salwa M.",
+      "family": "El-Sayed",
+      "name": null
+     },
+     {
+      "given": "Bahaa",
+      "family": "Hemdan",
+      "name": null
+     },
+     {
+      "given": "Ashraf",
+      "family": "Bakry",
+      "name": null
+     },
+     {
+      "given": "Naglaa M.",
+      "family": "Ebeed",
+      "name": null
+     },
+     {
+      "given": "Hesham",
+      "family": "Elhariry",
+      "name": null
+     },
+     {
+      "given": "Ahmed",
+      "family": "Galal",
+      "name": null
+     },
+     {
+      "given": "Basma T.",
+      "family": "Abd-Elhalim",
+      "name": null
+     }
+    ],
+    "issued": [
+     2024,
+     11,
+     5
+    ],
+    "published_online": [
+     2024,
+     11,
+     5
+    ],
+    "published_print": [
+     null
+    ]
+   }
+  },
+  {
+   "k": "a2",
+   "source": "epmc",
+   "score": 5,
+   "pmcid": "PMC11538111",
+   "doi": "10.1186/s13568-024-01774-5",
+   "title": "Compatibility and antimicrobial activity of silver nanoparticles synthesized using Lycopersicon esculentum peels.",
+   "authors": [
+    {
+     "last": "Ali",
+     "initials": "E",
+     "first": "Esraa",
+     "full": "Ali E",
+     "collective": null
+    },
+    {
+     "last": "Abu-Hussien",
+     "initials": "SH",
+     "first": "Samah H",
+     "full": "Abu-Hussien SH",
+     "collective": null
+    },
+    {
+     "last": "Hesham",
+     "initials": "E",
+     "first": "Esraa",
+     "full": "Hesham E",
+     "collective": null
+    },
+    {
+     "last": "Ahmed",
+     "initials": "S",
+     "first": "Shimaa",
+     "full": "Ahmed S",
+     "collective": null
+    },
+    {
+     "last": "Mostafa",
+     "initials": "H",
+     "first": "Habiba",
+     "full": "Mostafa H",
+     "collective": null
+    },
+    {
+     "last": "Gamal",
+     "initials": "A",
+     "first": "Ahmed",
+     "full": "Gamal A",
+     "collective": null
+    },
+    {
+     "last": "El-Sayed",
+     "initials": "SM",
+     "first": "Salwa M",
+     "full": "El-Sayed SM",
+     "collective": null
+    },
+    {
+     "last": "Hemdan",
+     "initials": "B",
+     "first": "Bahaa",
+     "full": "Hemdan B",
+     "collective": null
+    },
+    {
+     "last": "Bakry",
+     "initials": "A",
+     "first": "Ashraf",
+     "full": "Bakry A",
+     "collective": null
+    },
+    {
+     "last": "Ebeed",
+     "initials": "NM",
+     "first": "Naglaa M",
+     "full": "Ebeed NM",
+     "collective": null
+    },
+    {
+     "last": "Elhariry",
+     "initials": "H",
+     "first": "Hesham",
+     "full": "Elhariry H",
+     "collective": null
+    },
+    {
+     "last": "Galal",
+     "initials": "A",
+     "first": "Ahmed",
+     "full": "Galal A",
+     "collective": null
+    },
+    {
+     "last": "Abd-Elhalim",
+     "initials": "BT",
+     "first": "Basma T",
+     "full": "Abd-Elhalim BT",
+     "collective": null
+    }
+   ],
+   "journal": "AMB Express",
+   "journal_iso": "AMB Express",
+   "volume": "14",
+   "issue": "1",
+   "year": 2024,
+   "pages": "120",
+   "license": "cc by",
+   "first_pub": "2024-11-05",
+   "fig_label": "Fig. 4",
+   "caption": "SEM images of antimicrobial investigation using A Bacillus subtilis, and B E. coli, cells control treated with phosphate buffer (pH = 7.0), C Bacillus subtilis treated with 1000 μg/ml Le-AgNPs, and D E. coli cells treated with 1000 μg/ml Le-AgNPs",
+   "href": "13568_2024_1774_Fig4_HTML.jpg",
+   "img_url": "https://cdn.ncbi.nlm.nih.gov/pmc/blobs/f5c3/11538111/aa22df7b5f28/13568_2024_1774_Fig4_HTML.jpg",
+   "orig_size": [
+    1770,
+    1541
+   ],
+   "crossref": {
+    "title": "Compatibility and antimicrobial activity of silver nanoparticles synthesized using Lycopersicon esculentum peels",
+    "container": "AMB Express",
+    "volume": "14",
+    "issue": "1",
+    "page": null,
+    "article_number": "120",
+    "authors": [
+     {
+      "given": "Esraa",
+      "family": "Ali",
+      "name": null
+     },
+     {
+      "given": "Samah H.",
+      "family": "Abu-Hussien",
+      "name": null
+     },
+     {
+      "given": "Esraa",
+      "family": "Hesham",
+      "name": null
+     },
+     {
+      "given": "Shimaa",
+      "family": "Ahmed",
+      "name": null
+     },
+     {
+      "given": "Habiba",
+      "family": "Mostafa",
+      "name": null
+     },
+     {
+      "given": "Ahmed",
+      "family": "Gamal",
+      "name": null
+     },
+     {
+      "given": "Salwa M.",
+      "family": "El-Sayed",
+      "name": null
+     },
+     {
+      "given": "Bahaa",
+      "family": "Hemdan",
+      "name": null
+     },
+     {
+      "given": "Ashraf",
+      "family": "Bakry",
+      "name": null
+     },
+     {
+      "given": "Naglaa M.",
+      "family": "Ebeed",
+      "name": null
+     },
+     {
+      "given": "Hesham",
+      "family": "Elhariry",
+      "name": null
+     },
+     {
+      "given": "Ahmed",
+      "family": "Galal",
+      "name": null
+     },
+     {
+      "given": "Basma T.",
+      "family": "Abd-Elhalim",
+      "name": null
+     }
+    ],
+    "issued": [
+     2024,
+     11,
+     5
+    ],
+    "published_online": [
+     2024,
+     11,
+     5
+    ],
+    "published_print": [
+     null
+    ]
+   }
+  },
+  {
+   "k": "a3",
+   "source": "epmc",
+   "score": 16,
+   "pmcid": "PMC10961351",
+   "doi": "10.3389/fmicb.2024.1357579",
+   "title": "Multi-omics approaches to understand pathogenicity during potato early blight disease caused by <i>Alternaria solani</i>.",
+   "authors": [
+    {
+     "last": "Li",
+     "initials": "Q",
+     "first": "Qing",
+     "full": "Li Q",
+     "collective": null
+    },
+    {
+     "last": "Feng",
+     "initials": "Y",
+     "first": "Yan",
+     "full": "Feng Y",
+     "collective": null
+    },
+    {
+     "last": "Li",
+     "initials": "J",
+     "first": "Jianmei",
+     "full": "Li J",
+     "collective": null
+    },
+    {
+     "last": "Hai",
+     "initials": "Y",
+     "first": "Yang",
+     "full": "Hai Y",
+     "collective": null
+    },
+    {
+     "last": "Si",
+     "initials": "L",
+     "first": "Liping",
+     "full": "Si L",
+     "collective": null
+    },
+    {
+     "last": "Tan",
+     "initials": "C",
+     "first": "Chen",
+     "full": "Tan C",
+     "collective": null
+    },
+    {
+     "last": "Peng",
+     "initials": "J",
+     "first": "Jing",
+     "full": "Peng J",
+     "collective": null
+    },
+    {
+     "last": "Hu",
+     "initials": "Z",
+     "first": "Zuo",
+     "full": "Hu Z",
+     "collective": null
+    },
+    {
+     "last": "Li",
+     "initials": "Z",
+     "first": "Zhou",
+     "full": "Li Z",
+     "collective": null
+    },
+    {
+     "last": "Li",
+     "initials": "C",
+     "first": "Canhui",
+     "full": "Li C",
+     "collective": null
+    },
+    {
+     "last": "Hao",
+     "initials": "D",
+     "first": "Dahai",
+     "full": "Hao D",
+     "collective": null
+    },
+    {
+     "last": "Tang",
+     "initials": "W",
+     "first": "Wei",
+     "full": "Tang W",
+     "collective": null
+    }
+   ],
+   "journal": "Frontiers in microbiology",
+   "journal_iso": "Front Microbiol",
+   "volume": "15",
+   "issue": null,
+   "year": 2024,
+   "pages": "1357579",
+   "license": "cc by",
+   "first_pub": "2024-03-11",
+   "fig_label": "FIGURE 4",
+   "caption": "Scanning electron microscopy images (600×) of C88 leaf cells infected with TA-0410 and TB-1129. (A) Healthy cells not infiltrated by TB-1129. (B) Healthy cells not infiltrated by TA-0410. (C) TB-1129-infected C88 leaf cells observed after 4 h. (D) TA-0410-infected C88 leaf cells observed after 4 h, arrows point to conidia. (E) TB-1129-infected C88 leaf cells observed after 8 h. (F) TA-0410-infected C88 leaf cells observed after 8 h, the arrow pointed to conidia. (G) TB-1129-infected C88 leaf cells observed after 12 h. (H) TA-0410-infected C88 leaf cells observed after 12 h, arrows pointing to mycelium. (I) TB-1129-infected C88 leaf cells observed after 24 h, arrows point to conidia. (J) TA-0410-infected C88 leaf cells observed after 24 h, arrows point to conidia.",
+   "href": "fmicb-15-1357579-g004.jpg",
+   "img_url": "https://cdn.ncbi.nlm.nih.gov/pmc/blobs/6d51/10961351/539673418881/fmicb-15-1357579-g004.jpg",
+   "orig_size": [
+    566,
+    1076
+   ],
+   "crossref": {
+    "title": "Multi-omics approaches to understand pathogenicity during potato early blight disease caused by Alternaria solani",
+    "container": "Frontiers in Microbiology",
+    "volume": "15",
+    "issue": null,
+    "page": null,
+    "article_number": "1357579",
+    "authors": [
+     {
+      "given": "Qing",
+      "family": "Li",
+      "name": null
+     },
+     {
+      "given": "Yan",
+      "family": "Feng",
+      "name": null
+     },
+     {
+      "given": "Jianmei",
+      "family": "Li",
+      "name": null
+     },
+     {
+      "given": "Yang",
+      "family": "Hai",
+      "name": null
+     },
+     {
+      "given": "Liping",
+      "family": "Si",
+      "name": null
+     },
+     {
+      "given": "Chen",
+      "family": "Tan",
+      "name": null
+     },
+     {
+      "given": "Jing",
+      "family": "Peng",
+      "name": null
+     },
+     {
+      "given": "Zuo",
+      "family": "Hu",
+      "name": null
+     },
+     {
+      "given": "Zhou",
+      "family": "Li",
+      "name": null
+     },
+     {
+      "given": "Canhui",
+      "family": "Li",
+      "name": null
+     },
+     {
+      "given": "Dahai",
+      "family": "Hao",
+      "name": null
+     },
+     {
+      "given": "Wei",
+      "family": "Tang",
+      "name": null
+     }
+    ],
+    "issued": [
+     2024,
+     3,
+     11
+    ],
+    "published_online": [
+     2024,
+     3,
+     11
+    ],
+    "published_print": [
+     null
+    ]
+   }
+  },
+  {
+   "k": "a4",
+   "source": "epmc",
+   "score": 16,
+   "pmcid": "PMC10961351",
+   "doi": "10.3389/fmicb.2024.1357579",
+   "title": "Multi-omics approaches to understand pathogenicity during potato early blight disease caused by <i>Alternaria solani</i>.",
+   "authors": [
+    {
+     "last": "Li",
+     "initials": "Q",
+     "first": "Qing",
+     "full": "Li Q",
+     "collective": null
+    },
+    {
+     "last": "Feng",
+     "initials": "Y",
+     "first": "Yan",
+     "full": "Feng Y",
+     "collective": null
+    },
+    {
+     "last": "Li",
+     "initials": "J",
+     "first": "Jianmei",
+     "full": "Li J",
+     "collective": null
+    },
+    {
+     "last": "Hai",
+     "initials": "Y",
+     "first": "Yang",
+     "full": "Hai Y",
+     "collective": null
+    },
+    {
+     "last": "Si",
+     "initials": "L",
+     "first": "Liping",
+     "full": "Si L",
+     "collective": null
+    },
+    {
+     "last": "Tan",
+     "initials": "C",
+     "first": "Chen",
+     "full": "Tan C",
+     "collective": null
+    },
+    {
+     "last": "Peng",
+     "initials": "J",
+     "first": "Jing",
+     "full": "Peng J",
+     "collective": null
+    },
+    {
+     "last": "Hu",
+     "initials": "Z",
+     "first": "Zuo",
+     "full": "Hu Z",
+     "collective": null
+    },
+    {
+     "last": "Li",
+     "initials": "Z",
+     "first": "Zhou",
+     "full": "Li Z",
+     "collective": null
+    },
+    {
+     "last": "Li",
+     "initials": "C",
+     "first": "Canhui",
+     "full": "Li C",
+     "collective": null
+    },
+    {
+     "last": "Hao",
+     "initials": "D",
+     "first": "Dahai",
+     "full": "Hao D",
+     "collective": null
+    },
+    {
+     "last": "Tang",
+     "initials": "W",
+     "first": "Wei",
+     "full": "Tang W",
+     "collective": null
+    }
+   ],
+   "journal": "Frontiers in microbiology",
+   "journal_iso": "Front Microbiol",
+   "volume": "15",
+   "issue": null,
+   "year": 2024,
+   "pages": "1357579",
+   "license": "cc by",
+   "first_pub": "2024-03-11",
+   "fig_label": "FIGURE 5",
+   "caption": "Conidia counts and germination morphology of leaves infected with TA-0410 and TB-1129. (A) TA-0410 and TB-1129 conidia production. (B) TA-0410 and TB-1129 conidia germination rate in PDA liquid medium. (C) TA-0410 and TB-1129 conidia germination rate after infection of C88 leaf cells. (D) Scanning electron micrographs of TB-1129 conidia 24 h after germination, arrow pointed to conidia. (E) Morphology of TB-1129 conidia, arrows pointed to areas of conidial germination. (F) Scanning electron micrograph of TA-0410 conidia 4 h after germination, arrows pointed to conidia and appressoria. (G) Morphology of TA-0410 conidia, arrows point to areas of conidial germination. One-way ANOVA; ** p < 0.01; *** p < 0.001; **** p < 0.0001.",
+   "href": "fmicb-15-1357579-g005.jpg",
+   "img_url": "https://cdn.ncbi.nlm.nih.gov/pmc/blobs/6d51/10961351/3d8f3a5d9bfe/fmicb-15-1357579-g005.jpg",
+   "orig_size": [
+    708,
+    508
+   ],
+   "crossref": {
+    "title": "Multi-omics approaches to understand pathogenicity during potato early blight disease caused by Alternaria solani",
+    "container": "Frontiers in Microbiology",
+    "volume": "15",
+    "issue": null,
+    "page": null,
+    "article_number": "1357579",
+    "authors": [
+     {
+      "given": "Qing",
+      "family": "Li",
+      "name": null
+     },
+     {
+      "given": "Yan",
+      "family": "Feng",
+      "name": null
+     },
+     {
+      "given": "Jianmei",
+      "family": "Li",
+      "name": null
+     },
+     {
+      "given": "Yang",
+      "family": "Hai",
+      "name": null
+     },
+     {
+      "given": "Liping",
+      "family": "Si",
+      "name": null
+     },
+     {
+      "given": "Chen",
+      "family": "Tan",
+      "name": null
+     },
+     {
+      "given": "Jing",
+      "family": "Peng",
+      "name": null
+     },
+     {
+      "given": "Zuo",
+      "family": "Hu",
+      "name": null
+     },
+     {
+      "given": "Zhou",
+      "family": "Li",
+      "name": null
+     },
+     {
+      "given": "Canhui",
+      "family": "Li",
+      "name": null
+     },
+     {
+      "given": "Dahai",
+      "family": "Hao",
+      "name": null
+     },
+     {
+      "given": "Wei",
+      "family": "Tang",
+      "name": null
+     }
+    ],
+    "issued": [
+     2024,
+     3,
+     11
+    ],
+    "published_online": [
+     2024,
+     3,
+     11
+    ],
+    "published_print": [
+     null
+    ]
+   }
+  },
+  {
+   "k": "a5",
+   "source": "epmc",
+   "score": 12,
+   "pmcid": "PMC10149959",
+   "doi": "10.3389/fmicb.2023.1159251",
+   "title": "Biogenic synthesis, characterization, and evaluation of synthesized nanoparticles against the pathogenic fungus &lt;i&gt;Alternaria solani&lt;/i&gt;.",
+   "authors": [
+    {
+     "last": "Narware",
+     "initials": "J",
+     "first": "Jeetu",
+     "full": "Narware J",
+     "collective": null
+    },
+    {
+     "last": "Singh",
+     "initials": "SP",
+     "first": "Satyendra P",
+     "full": "Singh SP",
+     "collective": null
+    },
+    {
+     "last": "Singh",
+     "initials": "SP",
+     "first": "Satyendra P",
+     "full": "Singh SP",
+     "collective": null
+    },
+    {
+     "last": "Manzar",
+     "initials": "N",
+     "first": "Nazia",
+     "full": "Manzar N",
+     "collective": null
+    },
+    {
+     "last": "Kashyap",
+     "initials": "AS",
+     "first": "Abhijeet Shankar",
+     "full": "Kashyap AS",
+     "collective": null
+    }
+   ],
+   "journal": "Frontiers in microbiology",
+   "journal_iso": "Front Microbiol",
+   "volume": "14",
+   "issue": null,
+   "year": 2023,
+   "pages": "1159251",
+   "license": "cc by",
+   "first_pub": "2023-04-17",
+   "fig_label": "Figure 10",
+   "caption": "SEM of A. solani hyphae treated with different concentrations of silver nanoparticles (Ag NPs) (4, 8, 12, 16, and 20 ppm) with growing fungi but control was without Ag NPs (scale bar = 5 μm).",
+   "href": "fmicb-14-1159251-g0010.jpg",
+   "img_url": "https://cdn.ncbi.nlm.nih.gov/pmc/blobs/2e50/10149959/9d65af8039e5/fmicb-14-1159251-g0010.jpg",
+   "orig_size": [
+    708,
+    471
+   ],
+   "crossref": {
+    "title": "Biogenic synthesis, characterization, and evaluation of synthesized nanoparticles against the pathogenic fungus Alternaria solani",
+    "container": "Frontiers in Microbiology",
+    "volume": "14",
+    "issue": null,
+    "page": null,
+    "article_number": "1159251",
+    "authors": [
+     {
+      "given": "Jeetu",
+      "family": "Narware",
+      "name": null
+     },
+     {
+      "given": "Satyendra P.",
+      "family": "Singh",
+      "name": null
+     },
+     {
+      "given": "Nazia",
+      "family": "Manzar",
+      "name": null
+     },
+     {
+      "given": "Abhijeet Shankar",
+      "family": "Kashyap",
+      "name": null
+     }
+    ],
+    "issued": [
+     2023,
+     4,
+     17
+    ],
+    "published_online": [
+     2023,
+     4,
+     17
+    ],
+    "published_print": [
+     null
+    ]
+   }
+  },
+  {
+   "k": "a6",
+   "source": "epmc",
+   "score": 8,
+   "pmcid": "PMC10149959",
+   "doi": "10.3389/fmicb.2023.1159251",
+   "title": "Biogenic synthesis, characterization, and evaluation of synthesized nanoparticles against the pathogenic fungus &lt;i&gt;Alternaria solani&lt;/i&gt;.",
+   "authors": [
+    {
+     "last": "Narware",
+     "initials": "J",
+     "first": "Jeetu",
+     "full": "Narware J",
+     "collective": null
+    },
+    {
+     "last": "Singh",
+     "initials": "SP",
+     "first": "Satyendra P",
+     "full": "Singh SP",
+     "collective": null
+    },
+    {
+     "last": "Singh",
+     "initials": "SP",
+     "first": "Satyendra P",
+     "full": "Singh SP",
+     "collective": null
+    },
+    {
+     "last": "Manzar",
+     "initials": "N",
+     "first": "Nazia",
+     "full": "Manzar N",
+     "collective": null
+    },
+    {
+     "last": "Kashyap",
+     "initials": "AS",
+     "first": "Abhijeet Shankar",
+     "full": "Kashyap AS",
+     "collective": null
+    }
+   ],
+   "journal": "Frontiers in microbiology",
+   "journal_iso": "Front Microbiol",
+   "volume": "14",
+   "issue": null,
+   "year": 2023,
+   "pages": "1159251",
+   "license": "cc by",
+   "first_pub": "2023-04-17",
+   "fig_label": "Figure 3",
+   "caption": "(A) Scanning electron microscopy (SEM) micrographs of a variation in the size of the biosynthesized Ag NPs with different ratios of AgNO 3 and the CF of 4:1, 3:2, 2:3, and 1:4. (B) Energy dispersive x-ray (EDX) spectrum of the biosynthesized Ag NPs.",
+   "href": "fmicb-14-1159251-g0003.jpg",
+   "img_url": "https://cdn.ncbi.nlm.nih.gov/pmc/blobs/2e50/10149959/95ebe517bb0f/fmicb-14-1159251-g0003.jpg",
+   "orig_size": [
+    688,
+    992
+   ],
+   "crossref": {
+    "title": "Biogenic synthesis, characterization, and evaluation of synthesized nanoparticles against the pathogenic fungus Alternaria solani",
+    "container": "Frontiers in Microbiology",
+    "volume": "14",
+    "issue": null,
+    "page": null,
+    "article_number": "1159251",
+    "authors": [
+     {
+      "given": "Jeetu",
+      "family": "Narware",
+      "name": null
+     },
+     {
+      "given": "Satyendra P.",
+      "family": "Singh",
+      "name": null
+     },
+     {
+      "given": "Nazia",
+      "family": "Manzar",
+      "name": null
+     },
+     {
+      "given": "Abhijeet Shankar",
+      "family": "Kashyap",
+      "name": null
+     }
+    ],
+    "issued": [
+     2023,
+     4,
+     17
+    ],
+    "published_online": [
+     2023,
+     4,
+     17
+    ],
+    "published_print": [
+     null
+    ]
+   }
+  },
+  {
+   "k": "a7",
+   "source": "epmc",
+   "score": 5,
+   "pmcid": "PMC11027421",
+   "doi": "10.1186/s12870-024-05008-5",
+   "title": "Green-fabricated silver nanoparticles from Quercus incana leaf extract to control the early blight of tomatoes caused by Alternaria solani.",
+   "authors": [
+    {
+     "last": "Khatoon",
+     "initials": "J",
+     "first": "Javaria",
+     "full": "Khatoon J",
+     "collective": null
+    },
+    {
+     "last": "Mehmood",
+     "initials": "A",
+     "first": "Ansar",
+     "full": "Mehmood A",
+     "collective": null
+    },
+    {
+     "last": "Khalid",
+     "initials": "AUR",
+     "first": "Abd Ur Rehman",
+     "full": "Khalid AUR",
+     "collective": null
+    },
+    {
+     "last": "Khan",
+     "initials": "MAR",
+     "first": "Muhammad Abdul Rauf",
+     "full": "Khan MAR",
+     "collective": null
+    },
+    {
+     "last": "Ahmad",
+     "initials": "KS",
+     "first": "Khawaja Shafique",
+     "full": "Ahmad KS",
+     "collective": null
+    },
+    {
+     "last": "Amjad",
+     "initials": "MS",
+     "first": "Muhammad Shoaib",
+     "full": "Amjad MS",
+     "collective": null
+    },
+    {
+     "last": "Bashir",
+     "initials": "U",
+     "first": "Urooj",
+     "full": "Bashir U",
+     "collective": null
+    },
+    {
+     "last": "Raffi",
+     "initials": "M",
+     "first": "Muhammad",
+     "full": "Raffi M",
+     "collective": null
+    },
+    {
+     "last": "Proćków",
+     "initials": "J",
+     "first": "Jarosław",
+     "full": "Proćków J",
+     "collective": null
+    }
+   ],
+   "journal": "BMC plant biology",
+   "journal_iso": "BMC Plant Biol",
+   "volume": "24",
+   "issue": "1",
+   "year": 2024,
+   "pages": "302",
+   "license": "cc by",
+   "first_pub": "2024-04-19",
+   "fig_label": "Fig. 1",
+   "caption": "Isolation of A. solani, (a) growth in PDA and (b) microscopic identification",
+   "href": "12870_2024_5008_Fig1_HTML.jpg",
+   "img_url": "https://cdn.ncbi.nlm.nih.gov/pmc/blobs/e439/11027421/a525b22d3eb8/12870_2024_5008_Fig1_HTML.jpg",
+   "orig_size": [
+    731,
+    410
+   ],
+   "crossref": {
+    "title": "Green-fabricated silver nanoparticles from Quercus incana leaf extract to control the early blight of tomatoes caused by Alternaria solani",
+    "container": "BMC Plant Biology",
+    "volume": "24",
+    "issue": "1",
+    "page": null,
+    "article_number": "302",
+    "authors": [
+     {
+      "given": "Javaria",
+      "family": "Khatoon",
+      "name": null
+     },
+     {
+      "given": "Ansar",
+      "family": "Mehmood",
+      "name": null
+     },
+     {
+      "given": "Abd ur Rehman",
+      "family": "Khalid",
+      "name": null
+     },
+     {
+      "given": "Muhammad Abdul Rauf",
+      "family": "Khan",
+      "name": null
+     },
+     {
+      "given": "Khawaja Shafique",
+      "family": "Ahmad",
+      "name": null
+     },
+     {
+      "given": "Muhammad Shoaib",
+      "family": "Amjad",
+      "name": null
+     },
+     {
+      "given": "Urooj",
+      "family": "Bashir",
+      "name": null
+     },
+     {
+      "given": "Muhammad",
+      "family": "Raffi",
+      "name": null
+     },
+     {
+      "given": "Jarosław",
+      "family": "Proćków",
+      "name": null
+     }
+    ],
+    "issued": [
+     2024,
+     4,
+     19
+    ],
+    "published_online": [
+     2024,
+     4,
+     19
+    ],
+    "published_print": [
+     null
+    ]
+   }
+  },
+  {
+   "k": "a8",
+   "source": "epmc",
+   "score": 5,
+   "pmcid": "PMC11027421",
+   "doi": "10.1186/s12870-024-05008-5",
+   "title": "Green-fabricated silver nanoparticles from Quercus incana leaf extract to control the early blight of tomatoes caused by Alternaria solani.",
+   "authors": [
+    {
+     "last": "Khatoon",
+     "initials": "J",
+     "first": "Javaria",
+     "full": "Khatoon J",
+     "collective": null
+    },
+    {
+     "last": "Mehmood",
+     "initials": "A",
+     "first": "Ansar",
+     "full": "Mehmood A",
+     "collective": null
+    },
+    {
+     "last": "Khalid",
+     "initials": "AUR",
+     "first": "Abd Ur Rehman",
+     "full": "Khalid AUR",
+     "collective": null
+    },
+    {
+     "last": "Khan",
+     "initials": "MAR",
+     "first": "Muhammad Abdul Rauf",
+     "full": "Khan MAR",
+     "collective": null
+    },
+    {
+     "last": "Ahmad",
+     "initials": "KS",
+     "first": "Khawaja Shafique",
+     "full": "Ahmad KS",
+     "collective": null
+    },
+    {
+     "last": "Amjad",
+     "initials": "MS",
+     "first": "Muhammad Shoaib",
+     "full": "Amjad MS",
+     "collective": null
+    },
+    {
+     "last": "Bashir",
+     "initials": "U",
+     "first": "Urooj",
+     "full": "Bashir U",
+     "collective": null
+    },
+    {
+     "last": "Raffi",
+     "initials": "M",
+     "first": "Muhammad",
+     "full": "Raffi M",
+     "collective": null
+    },
+    {
+     "last": "Proćków",
+     "initials": "J",
+     "first": "Jarosław",
+     "full": "Proćków J",
+     "collective": null
+    }
+   ],
+   "journal": "BMC plant biology",
+   "journal_iso": "BMC Plant Biol",
+   "volume": "24",
+   "issue": "1",
+   "year": 2024,
+   "pages": "302",
+   "license": "cc by",
+   "first_pub": "2024-04-19",
+   "fig_label": "Fig. 5",
+   "caption": "Morphological envision of Ag-NPs, (a) SEM image, and (b) particle size distribution",
+   "href": "12870_2024_5008_Fig5_HTML.jpg",
+   "img_url": "https://cdn.ncbi.nlm.nih.gov/pmc/blobs/e439/11027421/726766de72d6/12870_2024_5008_Fig5_HTML.jpg",
+   "orig_size": [
+    669,
+    301
+   ],
+   "crossref": {
+    "title": "Green-fabricated silver nanoparticles from Quercus incana leaf extract to control the early blight of tomatoes caused by Alternaria solani",
+    "container": "BMC Plant Biology",
+    "volume": "24",
+    "issue": "1",
+    "page": null,
+    "article_number": "302",
+    "authors": [
+     {
+      "given": "Javaria",
+      "family": "Khatoon",
+      "name": null
+     },
+     {
+      "given": "Ansar",
+      "family": "Mehmood",
+      "name": null
+     },
+     {
+      "given": "Abd ur Rehman",
+      "family": "Khalid",
+      "name": null
+     },
+     {
+      "given": "Muhammad Abdul Rauf",
+      "family": "Khan",
+      "name": null
+     },
+     {
+      "given": "Khawaja Shafique",
+      "family": "Ahmad",
+      "name": null
+     },
+     {
+      "given": "Muhammad Shoaib",
+      "family": "Amjad",
+      "name": null
+     },
+     {
+      "given": "Urooj",
+      "family": "Bashir",
+      "name": null
+     },
+     {
+      "given": "Muhammad",
+      "family": "Raffi",
+      "name": null
+     },
+     {
+      "given": "Jarosław",
+      "family": "Proćków",
+      "name": null
+     }
+    ],
+    "issued": [
+     2024,
+     4,
+     19
+    ],
+    "published_online": [
+     2024,
+     4,
+     19
+    ],
+    "published_print": [
+     null
+    ]
+   }
+  }
+ ]
+}
