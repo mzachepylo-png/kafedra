@@ -171,6 +171,22 @@ def fig_image(pmcid, href):
     stem = IMG_EXT.sub("", base)
     names = [base] if base != stem else [stem + ".jpg", stem + ".png", stem + ".gif"]
     errors = []
+    # Оригінали вищої роздільності з сайтів видавців (MDPI, PLOS)
+    pub = []
+    m = re.match(r"^([a-z]+)-\d{2}-\d{5}-g\d{3}[a-z]?$", stem)
+    if m:
+        art = re.sub(r"-g\d{3}[a-z]?$", "", stem)
+        pub.append(f"https://www.mdpi.com/{m.group(1)}/{art}/article_deploy/html/images/{stem}.png")
+    m = re.match(r"^(pone|ppat|pbio|pgen|pcbi|pntd)\.\d{7}\.g\d{3}$", stem)
+    if m:
+        j = {"pone": "plosone", "ppat": "plospathogens", "pbio": "plosbiology", "pgen": "plosgenetics",
+             "pcbi": "ploscompbiol", "pntd": "plosntds"}[m.group(1)]
+        pub.append(f"https://journals.plos.org/{j}/article/figure/image?size=large&id=10.1371/journal.{stem}")
+    for url in pub:
+        try:
+            return _open(http(url, tries=1, ua=BROWSER_UA)), url
+        except Exception as e:
+            errors.append(_err("pub", e))
     for n in names:
         url = f"https://europepmc.org/articles/{pmcid}/bin/{n}"
         try:
@@ -299,7 +315,7 @@ def candidates(only):
         order += [item for item in pool if item not in order]
         cands, k, tried = [], 0, 0
         for sc, meta, f in order:
-            if k >= 4 or tried >= 10:
+            if k >= 3 or tried >= 10:
                 break
             tried += 1
             im, url = fig_image(meta["pmcid"], f["href"])
@@ -311,8 +327,8 @@ def candidates(only):
                           "caption": f["caption"], "href": f["href"], "img_url": url,
                           "orig_size": [im.width, im.height],
                           "crossref": crossref(meta["doi"]) if meta.get("doi") else {}})
-        if len(cands) < 3:
-            cands += commons(d, k, outdir, 3 - len(cands))
+        if len(cands) < 2:
+            cands += commons(d, k, outdir, 2 - len(cands))
         with open(f"{outdir}/meta.json", "w", encoding="utf-8") as fh:
             json.dump({"id": d["id"], "name": d["name"], "candidates": cands}, fh, ensure_ascii=False, indent=1)
         print(f"  saved {len(cands)} candidates")
@@ -360,8 +376,8 @@ def articles(only):
                 print("  error", pmcid, e)
                 continue
             scored = sorted(((score(f["caption"], d, meta.get("title") or ""), f) for f in figs), key=lambda x: -x[0])
-            for sc, f in scored[:4]:
-                if sc < 3:
+            for sc, f in scored[:2]:
+                if sc < 5:
                     continue
                 im, img_url = fig_image(pmcid, f["href"])
                 if im is None:
