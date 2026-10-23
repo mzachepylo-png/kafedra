@@ -1,23 +1,10 @@
 [
  {
-  "id": "septoria",
-  "pmcid": "PMC11452041",
-  "href": "pone.0308116.g001.jpg",
-  "urls": [],
-  "crop": [
-   0.833,
-   0.505,
-   0.997,
-   0.993
-  ],
-  "width": 900
- },
- {
   "id": "powdery",
   "pmcid": "PMC4339710",
   "href": "BMRI2015-462645.005.jpg",
   "urls": [
-   "https://downloads.hindawi.com/journals/bmri/2015/462645.fig.005.jpg"
+   "https://cdn.ncbi.nlm.nih.gov/pmc/blobs/c461/4339710/c20b0d994ced/BMRI2015-462645.005.jpg"
   ],
   "crop": [
    0.005,
@@ -28,28 +15,11 @@
   "width": 900
  },
  {
-  "id": "leafrust",
-  "pmcid": "PMC8950986",
-  "href": "jof-08-00304-g005.jpg",
-  "urls": [
-   "https://mdpi-res.com/jof/jof-08-00304/article_deploy/html/images/jof-08-00304-g005.png",
-   "https://mdpi-res.com/d_attachment/jof/jof-08-00304/article_deploy/html/images/jof-08-00304-g005.png"
-  ],
-  "crop": [
-   0.0,
-   0.493,
-   0.487,
-   0.998
-  ],
-  "width": 900
- },
- {
   "id": "tanspot",
   "pmcid": "PMC8136220",
   "href": "13007_2021_751_Fig4_HTML.jpg",
   "urls": [
-   "https://media.springernature.com/full/springer-static/image/art%3A10.1186%2Fs13007-021-00751-4/MediaObjects/13007_2021_751_Fig4_HTML.png",
-   "https://media.springernature.com/full/springer-static/image/art%3A10.1186%2Fs13007-021-00751-4/MediaObjects/13007_2021_751_Fig4_HTML.jpg"
+   "https://cdn.ncbi.nlm.nih.gov/pmc/blobs/6e85/8136220/38309fd16ca7/13007_2021_751_Fig4_HTML.jpg"
   ],
   "crop": [
    0.006,
@@ -60,178 +30,11 @@
   "width": 900
  },
  {
-  "id": "fhb",
-  "pmcid": "PMC3946419",
-  "href": "pone.0091135.g005.jpg",
-  "urls": [],
-  "crop": [
-   0.042,
-   0.004,
-   0.533,
-   0.563
-  ],
-  "width": 900
- },
- {
-  "id": "wsmv",
-  "pmcid": "PMC9229632",
-  "href": "viruses-14-01220-g004.jpg",
-  "urls": [
-   "https://mdpi-res.com/viruses/viruses-14-01220/article_deploy/html/images/viruses-14-01220-g004.png",
-   "https://mdpi-res.com/d_attachment/viruses/viruses-14-01220/article_deploy/html/images/viruses-14-01220-g004.png"
-  ],
-  "crop": [
-   0.0,
-   0.0,
-   0.477,
-   0.935
-  ],
-  "width": 900
- },
- {
-  "id": "nclb",
-  "pmcid": "PMC11324496",
-  "href": "fpls-15-1404483-g004.jpg",
-  "urls": [],
-  "panels": [
-   [
-    0.0,
-    0.0,
-    0.232,
-    0.515
-   ],
-   [
-    0.0,
-    0.547,
-    0.232,
-    0.995
-   ]
-  ],
-  "width": 900
- },
- {
-  "id": "whiterot",
-  "pmcid": "PMC11704303",
-  "href": "41598_2024_79574_Fig10_HTML.jpg",
-  "urls": [
-   "https://media.springernature.com/full/springer-static/image/art%3A10.1038%2Fs41598-024-79574-x/MediaObjects/41598_2024_79574_Fig10_HTML.png",
-   "https://media.springernature.com/full/springer-static/image/art%3A10.1038%2Fs41598-024-79574-x/MediaObjects/41598_2024_79574_Fig10_HTML.jpg"
-  ],
-  "panels": [
-   [
-    0.337,
-    0.0,
-    0.665,
-    0.49
-   ],
-   [
-    0.682,
-    0.0,
-    1.0,
-    0.49
-   ]
-  ],
-  "width": 900
- },
- {
-  "id": "downysun",
-  "pmcid": "PMC10144485",
-  "href": "microorganisms-11-00821-g002.jpg",
-  "urls": [
-   "https://mdpi-res.com/microorganisms/microorganisms-11-00821/article_deploy/html/images/microorganisms-11-00821-g002.png",
-   "https://mdpi-res.com/d_attachment/microorganisms/microorganisms-11-00821/article_deploy/html/images/microorganisms-11-00821-g002.png"
-  ],
-  "crop": [
-   0.0,
-   0.0,
-   1.0,
-   0.356
-  ],
-  "width": 900
- },
- {
-  "id": "greyrot",
-  "pmcid": "PMC7238070",
-  "href": "pathogens-09-00253-g002.jpg",
-  "urls": [
-   "https://mdpi-res.com/pathogens/pathogens-09-00253/article_deploy/html/images/pathogens-09-00253-g002.png",
-   "https://mdpi-res.com/d_attachment/pathogens/pathogens-09-00253/article_deploy/html/images/pathogens-09-00253-g002.png"
-  ],
-  "crop": [
-   0.493,
-   0.735,
-   0.997,
-   0.998
-  ],
-  "width": 900
- },
- {
-  "id": "cercospora",
-  "pmcid": "PMC3616835",
-  "href": "1471-2229-13-50-7.jpg",
-  "urls": [],
-  "crop": [
-   0.0,
-   0.035,
-   0.497,
-   0.545
-  ],
-  "width": 900
- },
- {
-  "id": "lateblight",
-  "pmcid": "PMC10541906",
-  "href": "41598_2023_43510_Fig4_HTML.jpg",
-  "urls": [
-   "https://media.springernature.com/full/springer-static/image/art%3A10.1038%2Fs41598-023-43510-z/MediaObjects/41598_2023_43510_Fig4_HTML.png",
-   "https://media.springernature.com/full/springer-static/image/art%3A10.1038%2Fs41598-023-43510-z/MediaObjects/41598_2023_43510_Fig4_HTML.jpg"
-  ],
-  "crop": [
-   0.0,
-   0.0,
-   0.497,
-   1.0
-  ],
-  "width": 900
- },
- {
-  "id": "grapedowny",
-  "pmcid": "PMC12195438",
-  "href": "microorganisms-13-01279-g001.jpg",
-  "urls": [
-   "https://mdpi-res.com/microorganisms/microorganisms-13-01279/article_deploy/html/images/microorganisms-13-01279-g001.png",
-   "https://mdpi-res.com/d_attachment/microorganisms/microorganisms-13-01279/article_deploy/html/images/microorganisms-13-01279-g001.png"
-  ],
-  "crop": [
-   0.505,
-   0.0,
-   1.0,
-   0.497
-  ],
-  "width": 900
- },
- {
-  "id": "blackleg",
-  "pmcid": "PMC8469291",
-  "href": "microorganisms-09-01918-g001.jpg",
-  "urls": [
-   "https://mdpi-res.com/microorganisms/microorganisms-09-01918/article_deploy/html/images/microorganisms-09-01918-g001.png",
-   "https://mdpi-res.com/d_attachment/microorganisms/microorganisms-09-01918/article_deploy/html/images/microorganisms-09-01918-g001.png"
-  ],
-  "crop": [
-   0.0,
-   0.0,
-   0.497,
-   0.497
-  ],
-  "width": 900
- },
- {
   "id": "fireblight",
   "pmcid": "PMC13217557",
   "href": "es5c16698_0002.jpg",
   "urls": [
-   "https://pubs.acs.org/cms/10.1021/acs.est.5c16698/asset/images/large/es5c16698_0002.jpg"
+   "https://cdn.ncbi.nlm.nih.gov/pmc/blobs/a6b2/13217557/f69b72725086/es5c16698_0002.jpg"
   ],
   "crop": [
    0.01,
