@@ -1,0 +1,17 @@
+{
+  "septoria": ["PMC11452041"],
+  "powdery": ["PMC4339710", "PMC12095171"],
+  "leafrust": ["PMC8950986", "PMC10073493"],
+  "tanspot": ["PMC8136220", "PMC9866197", "PMC11950905"],
+  "fhb": ["PMC3946419", "PMC11204721"],
+  "wsmv": ["PMC8508189", "PMC9229632"],
+  "nclb": ["PMC11324496", "PMC10532967"],
+  "whiterot": ["PMC11898685", "PMC12774355"],
+  "downysun": ["PMC10144485", "PMC6756549"],
+  "greyrot": ["PMC7238070"],
+  "cercospora": ["PMC3616835", "PMC11943282", "PMC12711715"],
+  "lateblight": ["PMC10541906"],
+  "blackleg": ["PMC7912877", "PMC8650274", "PMC8469291"],
+  "grapedowny": ["PMC12195438"],
+  "fireblight": ["PMC13217557", "PMC13123061"]
+}
