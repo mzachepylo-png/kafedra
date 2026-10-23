@@ -1,0 +1,25 @@
+{
+ "id": "powdery",
+ "name": "Борошниста роса пшениці",
+ "candidates": [
+  {
+   "k": 1,
+   "source": "commons",
+   "score": 8,
+   "file": "File:NFDI4BIOIMAGE Calendar May 2025 - lower image.png",
+   "page": "https://commons.wikimedia.org/wiki/File:NFDI4BIOIMAGE_Calendar_May_2025_-_lower_image.png",
+   "img_url": "https://upload.wikimedia.org/wikipedia/commons/c/c5/NFDI4BIOIMAGE_Calendar_May_2025_-_lower_image.png?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+   "thumb_url": "https://thumb.wikimedia.org/wikipedia/commons/thumb/c/c5/NFDI4BIOIMAGE_Calendar_May_2025_-_lower_image.png/960px-NFDI4BIOIMAGE_Calendar_May_2025_-_lower_image.png?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
+   "orig_size": [
+    6064,
+    2864
+   ],
+   "artist": "Lück, Stefanie (ORCID: 0000-0003-0536-835X)",
+   "license": "CC BY 4.0",
+   "license_url": "https://creativecommons.org/licenses/by/4.0",
+   "credit": "https://zenodo.org/records/16991961",
+   "description": "Image from the NFDI4BIOIMAGE Calendar May 2025.\nThe microscopy image captures the interaction between the barley cv. Golden Promise and the barley powdery mildew fungus Blumeria graminis f.sp. hordei, observed 48 hours post-inoculation. The fungus was stained with Coomassie dye, enhancing its visibility against the barley leaves. The leaves were prepared and fixed onto slides, followed by scanning with a Zeiss Axio Scan Z.1 microscope scanner using a 5x objective lens.\n\nThe upper section of the image displays the hyphal colonies, which were automatically segmented, highlighting the fungal structures (black) against the plant tissue (white). The lower section presents a machine learning-based",
+   "date": "2025-09-15"
+  }
+ ]
+}

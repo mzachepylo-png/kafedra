@@ -1,0 +1,44 @@
+{
+ "id": "applescab",
+ "name": "Парша яблуні",
+ "candidates": [
+  {
+   "k": 1,
+   "source": "commons",
+   "score": 14,
+   "file": "File:Para Wiki.jpg",
+   "page": "https://commons.wikimedia.org/wiki/File:Para_Wiki.jpg",
+   "img_url": "https://upload.wikimedia.org/wikipedia/commons/d/da/Para_Wiki.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+   "thumb_url": "https://upload.wikimedia.org/wikipedia/commons/d/da/Para_Wiki.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail_unscaled",
+   "orig_size": [
+    587,
+    513
+   ],
+   "artist": "Minerva S Ponce",
+   "license": "CC BY-SA 4.0",
+   "license_url": "https://creativecommons.org/licenses/by-sa/4.0",
+   "credit": "Own work",
+   "description": "Acervulo observed in a permanent preparation of the asexual phase of Ventura inaequalis at 10xGoogle Lens Ai overviewThe image shows a micrograph of a plant tissue infected by the fungus Venturia inaequalis, the causative agent of apple scab. \nThe image highlights key structures of the pathogen within the host tissue:\nConidióforos cortos conidios: These are short conidiophores bearing conidia (asexual spores), which are the reproductive structures of the fungus found just beneath the host cuticle during the growing season. \nPlecténquima: This refers to the fungal tissue, or a type of fungal mycelial aggregation, that colonizes the host plant's tissue. \nTranslation:\nConidióforos cortos conidi",
+   "date": "2019-10-21"
+  },
+  {
+   "k": 2,
+   "source": "commons",
+   "score": 5,
+   "file": "File:Apple scab SEM.jpg",
+   "page": "https://commons.wikimedia.org/wiki/File:Apple_scab_SEM.jpg",
+   "img_url": "https://upload.wikimedia.org/wikipedia/commons/1/15/Apple_scab_SEM.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+   "thumb_url": "https://upload.wikimedia.org/wikipedia/commons/1/15/Apple_scab_SEM.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail_unscaled",
+   "orig_size": [
+    640,
+    433
+   ],
+   "artist": "",
+   "license": "Public domain",
+   "license_url": "",
+   "credit": "",
+   "description": "",
+   "date": ""
+  }
+ ]
+}

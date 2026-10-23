@@ -1,0 +1,25 @@
+{
+ "id": "earlyblight",
+ "name": "Альтернаріоз картоплі",
+ "candidates": [
+  {
+   "k": 1,
+   "source": "commons",
+   "score": 5,
+   "file": "File:American Journal of Botany Volume IV Plate XIX Elliott Alternaria and Macrosporium N540 w1150.jpg",
+   "page": "https://commons.wikimedia.org/wiki/File:American_Journal_of_Botany_Volume_IV_Plate_XIX_Elliott_Alternaria_and_Macrosporium_N540_w1150.jpg",
+   "img_url": "https://upload.wikimedia.org/wikipedia/commons/3/37/American_Journal_of_Botany_Volume_IV_Plate_XIX_Elliott_Alternaria_and_Macrosporium_N540_w1150.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+   "thumb_url": "https://thumb.wikimedia.org/wikipedia/commons/thumb/3/37/American_Journal_of_Botany_Volume_IV_Plate_XIX_Elliott_Alternaria_and_Macrosporium_N540_w1150.jpg/960px-American_Journal_of_Botany_Volume_IV_Plate_XIX_Elliott_Alternaria_and_Macrosporium_N540_w1150.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
+   "orig_size": [
+    1481,
+    2386
+   ],
+   "artist": "Biodiversity Heritage Library",
+   "license": "Public domain",
+   "license_url": "",
+   "credit": "https://www.flickr.com/photos/biodivlibrary/50720436466/",
+   "description": "American Journal of Botany.\nVolume IV, Plate XIX.\nElliott: Alternaria and Macrosporium.\nLancaster, Pa. :Published in cooperation with the Botanical Society of America by the Brooklyn Botanic Gardens,1914-\nhttps://biodiversitylibrary.org/page/47142704\nPlate XIX\nAll drawings were made with camera lucida to scale shown on the plates.\n1. Alternaria brassicae var. nigrescens (now Alternaria brassicae f. nigrescens) on leached agar.\n2. Alternaria brassicae var. nigrescens (now Alternaria brassicae f. nigrescens) spores showing stages in secondary development.\n3. Alternaria solani from Datura on leached sugar.\n4. Alternaria solani from Datura, spores from bean agar culture.\n5. Alternaria solani fro",
+   "date": "1917"
+  }
+ ]
+}

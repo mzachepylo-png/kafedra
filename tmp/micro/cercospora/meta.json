@@ -1,0 +1,82 @@
+{
+ "id": "cercospora",
+ "name": "Церкоспороз цукрових буряків",
+ "candidates": [
+  {
+   "k": 1,
+   "source": "commons",
+   "score": 7,
+   "file": "File:Spinach- Cercospora leaf spot - 6.jpg",
+   "page": "https://commons.wikimedia.org/wiki/File:Spinach-_Cercospora_leaf_spot_-_6.jpg",
+   "img_url": "https://upload.wikimedia.org/wikipedia/commons/e/e5/Spinach-_Cercospora_leaf_spot_-_6.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+   "thumb_url": "https://thumb.wikimedia.org/wikipedia/commons/thumb/e/e5/Spinach-_Cercospora_leaf_spot_-_6.jpg/960px-Spinach-_Cercospora_leaf_spot_-_6.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
+   "orig_size": [
+    1024,
+    768
+   ],
+   "artist": "Plant pests and diseases",
+   "license": "CC0",
+   "license_url": "http://creativecommons.org/publicdomain/zero/1.0/deed.en",
+   "credit": "https://www.flickr.com/photos/62295966@N07/42591778111/",
+   "description": "Pathogen: Cercospora beticola\nAfter 22 hours of incubation in high humidity, the lesions sporulated profusely. The conidia (spores) appear long and slivery in this light, as a stubble of grey whiskers.",
+   "date": "2018-06-05"
+  },
+  {
+   "k": 2,
+   "source": "commons",
+   "score": 7,
+   "file": "File:Spinach- Cercospora leaf spot - 7.jpg",
+   "page": "https://commons.wikimedia.org/wiki/File:Spinach-_Cercospora_leaf_spot_-_7.jpg",
+   "img_url": "https://upload.wikimedia.org/wikipedia/commons/7/7b/Spinach-_Cercospora_leaf_spot_-_7.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+   "thumb_url": "https://thumb.wikimedia.org/wikipedia/commons/thumb/7/7b/Spinach-_Cercospora_leaf_spot_-_7.jpg/960px-Spinach-_Cercospora_leaf_spot_-_7.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
+   "orig_size": [
+    1024,
+    768
+   ],
+   "artist": "Plant pests and diseases",
+   "license": "CC0",
+   "license_url": "http://creativecommons.org/publicdomain/zero/1.0/deed.en",
+   "credit": "https://www.flickr.com/photos/62295966@N07/42591788551/",
+   "description": "Pathogen: Cercospora beticola\nAfter 22 hours of incubation in high humidity, the lesions sporulated profusely. The conidia (spores) appear long and slivery in this light, as a stubble of grey whiskers.",
+   "date": "2018-06-05"
+  },
+  {
+   "k": 3,
+   "source": "commons",
+   "score": 7,
+   "file": "File:Spinach- Cercospora leaf spot - 8.jpg",
+   "page": "https://commons.wikimedia.org/wiki/File:Spinach-_Cercospora_leaf_spot_-_8.jpg",
+   "img_url": "https://upload.wikimedia.org/wikipedia/commons/3/30/Spinach-_Cercospora_leaf_spot_-_8.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+   "thumb_url": "https://thumb.wikimedia.org/wikipedia/commons/thumb/3/30/Spinach-_Cercospora_leaf_spot_-_8.jpg/960px-Spinach-_Cercospora_leaf_spot_-_8.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
+   "orig_size": [
+    1024,
+    768
+   ],
+   "artist": "Plant pests and diseases",
+   "license": "CC0",
+   "license_url": "http://creativecommons.org/publicdomain/zero/1.0/deed.en",
+   "credit": "https://www.flickr.com/photos/62295966@N07/42591785321/",
+   "description": "Pathogen: Cercospora beticola\nAfter 22 hours of incubation in high humidity, the lesions sporulated profusely. The conidia (spores) appear long and slivery in this light, as a stubble of grey whiskers.",
+   "date": "2018-06-05"
+  },
+  {
+   "k": 4,
+   "source": "commons",
+   "score": 7,
+   "file": "File:Spinach- Cercospora leaf spot - 9.jpg",
+   "page": "https://commons.wikimedia.org/wiki/File:Spinach-_Cercospora_leaf_spot_-_9.jpg",
+   "img_url": "https://upload.wikimedia.org/wikipedia/commons/3/36/Spinach-_Cercospora_leaf_spot_-_9.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+   "thumb_url": "https://thumb.wikimedia.org/wikipedia/commons/thumb/3/36/Spinach-_Cercospora_leaf_spot_-_9.jpg/960px-Spinach-_Cercospora_leaf_spot_-_9.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
+   "orig_size": [
+    1024,
+    768
+   ],
+   "artist": "Plant pests and diseases",
+   "license": "CC0",
+   "license_url": "http://creativecommons.org/publicdomain/zero/1.0/deed.en",
+   "credit": "https://www.flickr.com/photos/62295966@N07/42591783271/",
+   "description": "Pathogen: Cercospora beticola\nAfter 22 hours of incubation in high humidity, the lesions sporulated profusely. The conidia (spores) appear long and slivery in this light, as a stubble of grey whiskers.",
+   "date": "2018-06-05"
+  }
+ ]
+}

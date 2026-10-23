@@ -1,0 +1,63 @@
+{
+ "id": "fireblight",
+ "name": "Бактеріальний опік плодових",
+ "candidates": [
+  {
+   "k": 1,
+   "source": "commons",
+   "score": 7,
+   "file": "File:Fire blight of apple caused by Erwinia amylovora (14415442736).jpg",
+   "page": "https://commons.wikimedia.org/wiki/File:Fire_blight_of_apple_caused_by_Erwinia_amylovora_(14415442736).jpg",
+   "img_url": "https://upload.wikimedia.org/wikipedia/commons/8/8a/Fire_blight_of_apple_caused_by_Erwinia_amylovora_%2814415442736%29.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+   "thumb_url": "https://thumb.wikimedia.org/wikipedia/commons/thumb/8/8a/Fire_blight_of_apple_caused_by_Erwinia_amylovora_%2814415442736%29.jpg/960px-Fire_blight_of_apple_caused_by_Erwinia_amylovora_%2814415442736%29.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
+   "orig_size": [
+    1214,
+    1214
+   ],
+   "artist": "Scot Nelson",
+   "license": "CC0",
+   "license_url": "http://creativecommons.org/publicdomain/zero/1.0/deed.en",
+   "credit": "Fire blight of apple caused by Erwinia amylovora",
+   "description": "Bacterial ooze from infected fruit\n\n\n\nIn an email to Wikimedia Commons' Volunteer Response Team, Scot Nelson has released all content from their Flickr photostream under the Creative Commons Zero license.\n\n\n\n\n\n \n\nThis file is made available under the Creative Commons CC0 1.0 Universal Public Domain Dedication.\n\n\nThe person who associated a work with this deed has dedicated the work to the public domain by waiving all of their rights to the work worldwide under copyright law, including all related and neighboring rights, to the extent allowed by law. You can copy, modify, distribute and perform the work, even for commercial purposes, all without asking permission.\nhttp://creativecommons.org/p",
+   "date": "2014-06-16 09:03"
+  },
+  {
+   "k": 2,
+   "source": "commons",
+   "score": 5,
+   "file": "File:Erwinia amylovora (bacterium) (12071183125).jpg",
+   "page": "https://commons.wikimedia.org/wiki/File:Erwinia_amylovora_(bacterium)_(12071183125).jpg",
+   "img_url": "https://upload.wikimedia.org/wikipedia/commons/c/cc/Erwinia_amylovora_%28bacterium%29_%2812071183125%29.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+   "thumb_url": "https://upload.wikimedia.org/wikipedia/commons/c/cc/Erwinia_amylovora_%28bacterium%29_%2812071183125%29.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail_unscaled",
+   "orig_size": [
+    737,
+    1164
+   ],
+   "artist": "Scot Nelson",
+   "license": "CC0",
+   "license_url": "http://creativecommons.org/publicdomain/zero/1.0/deed.en",
+   "credit": "Pear: Fire blight (bacterial ooze)",
+   "description": "Pathogen: Erwinia amylovora (bacterium)\n\n\n\nIn an email to Wikimedia Commons' Volunteer Response Team, Scot Nelson has released all content from their Flickr photostream under the Creative Commons Zero license.\n\n\n\n\n\n \n\nThis file is made available under the Creative Commons CC0 1.0 Universal Public Domain Dedication.\n\n\nThe person who associated a work with this deed has dedicated the work to the public domain by waiving all of their rights to the work worldwide under copyright law, including all related and neighboring rights, to the extent allowed by law. You can copy, modify, distribute and perform the work, even for commercial purposes, all without asking permission.\nhttp://creativecommons.",
+   "date": "2014-01-21 06:00"
+  },
+  {
+   "k": 3,
+   "source": "commons",
+   "score": 4,
+   "file": "File:FBnecrosetige.JPG",
+   "page": "https://commons.wikimedia.org/wiki/File:FBnecrosetige.JPG",
+   "img_url": "https://upload.wikimedia.org/wikipedia/commons/f/fd/FBnecrosetige.JPG?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+   "thumb_url": "https://upload.wikimedia.org/wikipedia/commons/f/fd/FBnecrosetige.JPG?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail_unscaled",
+   "orig_size": [
+    337,
+    496
+   ],
+   "artist": "UMR Pathologie Végétale Angers",
+   "license": "CC BY-SA 3.0",
+   "license_url": "http://creativecommons.org/licenses/by-sa/3.0/",
+   "credit": "UMR Pathologie Végétale Angers",
+   "description": "Een puistje word veroorzaak door bacterien. Deze kunnen worden bestreden met een speciale creme genaamd eucerin. (plaatje plant eucerin). Dit gaat zo in zijn werk:\n\nalle bacterien strijden tegen de anderen, en duwen tegen het puistje aan. Deze word langzaam uitgeknepen door bacterien waardoor het soms wel binnen 3 weken verdwijnt!",
+   "date": "2001"
+  }
+ ]
+}

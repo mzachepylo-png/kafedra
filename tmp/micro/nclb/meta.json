@@ -1,0 +1,63 @@
+{
+ "id": "nclb",
+ "name": "Гельмінтоспоріоз кукурудзи",
+ "candidates": [
+  {
+   "k": 1,
+   "source": "commons",
+   "score": 8,
+   "file": "File:Conidia of Exserohilum turcicum.jpg",
+   "page": "https://commons.wikimedia.org/wiki/File:Conidia_of_Exserohilum_turcicum.jpg",
+   "img_url": "https://upload.wikimedia.org/wikipedia/commons/3/3b/Conidia_of_Exserohilum_turcicum.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+   "thumb_url": "https://upload.wikimedia.org/wikipedia/commons/3/3b/Conidia_of_Exserohilum_turcicum.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail_unscaled",
+   "orig_size": [
+    720,
+    540
+   ],
+   "artist": "Wanich Khampanich, Department of Agriculture, Thailand",
+   "license": "CC BY 3.0 au",
+   "license_url": "https://creativecommons.org/licenses/by/3.0/au/deed.en",
+   "credit": "This image is found here at PaDIL, a source of images designed for Biosecurity and Biodiversity.This tag does not indicate the copyright status of the attached work. A normal copyright tag is still required. See Commons:Licensing for more information.\n\nPaDIL",
+   "description": "Conidia of Exserohilum turcicum. Scale bar = 10 µm.",
+   "date": ""
+  },
+  {
+   "k": 2,
+   "source": "commons",
+   "score": 7,
+   "file": "File:Conidiophore of Exerohilum turcicum2.jpg",
+   "page": "https://commons.wikimedia.org/wiki/File:Conidiophore_of_Exerohilum_turcicum2.jpg",
+   "img_url": "https://upload.wikimedia.org/wikipedia/commons/d/da/Conidiophore_of_Exerohilum_turcicum2.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+   "thumb_url": "https://upload.wikimedia.org/wikipedia/commons/d/da/Conidiophore_of_Exerohilum_turcicum2.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail_unscaled",
+   "orig_size": [
+    720,
+    540
+   ],
+   "artist": "Wanich Khampanich, Department of Agriculture, Thailand",
+   "license": "CC BY 3.0 au",
+   "license_url": "https://creativecommons.org/licenses/by/3.0/au/deed.en",
+   "credit": "This image is found here at PaDIL, a source of images designed for Biosecurity and Biodiversity.This tag does not indicate the copyright status of the attached work. A normal copyright tag is still required. See Commons:Licensing for more information.\n\nPaDIL",
+   "description": "Conidiophore of Exerohilum turcicum. Scale bar = 20 µm.",
+   "date": ""
+  },
+  {
+   "k": 3,
+   "source": "commons",
+   "score": 4,
+   "file": "File:Exserohilum turcicum on Zea mays.jpg",
+   "page": "https://commons.wikimedia.org/wiki/File:Exserohilum_turcicum_on_Zea_mays.jpg",
+   "img_url": "https://upload.wikimedia.org/wikipedia/commons/1/10/Exserohilum_turcicum_on_Zea_mays.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+   "thumb_url": "https://upload.wikimedia.org/wikipedia/commons/1/10/Exserohilum_turcicum_on_Zea_mays.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail_unscaled",
+   "orig_size": [
+    720,
+    540
+   ],
+   "artist": "Wanich Khampanich, Department of Agriculture, Thailand",
+   "license": "CC BY 3.0 au",
+   "license_url": "https://creativecommons.org/licenses/by/3.0/au/deed.en",
+   "credit": "This image is found here at PaDIL, a source of images designed for Biosecurity and Biodiversity.This tag does not indicate the copyright status of the attached work. A normal copyright tag is still required. See Commons:Licensing for more information.\n\nPaDIL",
+   "description": "Exserohilum turcicum on Zea mays. Scale bar = 2 cm.",
+   "date": ""
+  }
+ ]
+}

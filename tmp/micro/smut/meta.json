@@ -1,0 +1,25 @@
+{
+ "id": "smut",
+ "name": "Пухирчаста сажка кукурудзи",
+ "candidates": [
+  {
+   "k": 1,
+   "source": "commons",
+   "score": 5,
+   "file": "File:Ustilago maydis at 'Tasty Sweet' teleutospores (3).jpg",
+   "page": "https://commons.wikimedia.org/wiki/File:Ustilago_maydis_at_%27Tasty_Sweet%27_teleutospores_(3).jpg",
+   "img_url": "https://upload.wikimedia.org/wikipedia/commons/0/04/Ustilago_maydis_at_%27Tasty_Sweet%27_teleutospores_%283%29.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+   "thumb_url": "https://upload.wikimedia.org/wikipedia/commons/0/04/Ustilago_maydis_at_%27Tasty_Sweet%27_teleutospores_%283%29.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail_unscaled",
+   "orig_size": [
+    800,
+    600
+   ],
+   "artist": "Rasbak",
+   "license": "CC BY-SA 3.0",
+   "license_url": "https://creativecommons.org/licenses/by-sa/3.0",
+   "credit": "Own work",
+   "description": "Teleutospores of Corn smut (Ustilago maydis), on a 'Tasty Sweet'maize plant. (400x)",
+   "date": "2017-09-05"
+  }
+ ]
+}

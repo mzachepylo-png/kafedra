@@ -1,0 +1,25 @@
+{
+ "id": "downysun",
+ "name": "Несправжня борошниста роса соняшнику",
+ "candidates": [
+  {
+   "k": 1,
+   "source": "commons",
+   "score": 7,
+   "file": "File:Moon alike fungal infestation.jpg",
+   "page": "https://commons.wikimedia.org/wiki/File:Moon_alike_fungal_infestation.jpg",
+   "img_url": "https://upload.wikimedia.org/wikipedia/commons/f/f6/Moon_alike_fungal_infestation.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+   "thumb_url": "https://thumb.wikimedia.org/wikipedia/commons/thumb/f/f6/Moon_alike_fungal_infestation.jpg/960px-Moon_alike_fungal_infestation.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
+   "orig_size": [
+    3264,
+    2448
+   ],
+   "artist": "Simone Castellana",
+   "license": "CC BY-SA 4.0",
+   "license_url": "https://creativecommons.org/licenses/by-sa/4.0",
+   "credit": "Own work",
+   "description": "Plasmopara halstedi (Plasmopara elianthii) is a mushroom belonging to the Oomycota genus. It grows on the Sunflower, causing necorosis on the leafs of the plant, bringing it to death. In this picture we can see the mushroom hyphae and round spores. In a first look the picture gives the effect of the moon with is craters. I took this picture during an exercise. We were studing mushrooms that causes damage on agronomic species, such as sunflower, lettuce, potato and tobacco.",
+   "date": "2015-10-06"
+  }
+ ]
+}

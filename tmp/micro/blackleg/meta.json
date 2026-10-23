@@ -1,0 +1,44 @@
+{
+ "id": "blackleg",
+ "name": "Чорна ніжка та м'яка гниль картоплі",
+ "candidates": [
+  {
+   "k": 1,
+   "source": "commons",
+   "score": 7,
+   "file": "File:Blackleg of Potato Stem Wilt.png",
+   "page": "https://commons.wikimedia.org/wiki/File:Blackleg_of_Potato_Stem_Wilt.png",
+   "img_url": "https://upload.wikimedia.org/wikipedia/commons/a/aa/Blackleg_of_Potato_Stem_Wilt.png?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+   "thumb_url": "https://upload.wikimedia.org/wikipedia/commons/a/aa/Blackleg_of_Potato_Stem_Wilt.png?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail_unscaled",
+   "orig_size": [
+    688,
+    693
+   ],
+   "artist": "Amy Charkowski",
+   "license": "CC BY-SA 3.0",
+   "license_url": "https://creativecommons.org/licenses/by-sa/3.0",
+   "credit": "lecture",
+   "description": "Blackleg of potato symptoms showing darkened stem and leaf wilt on potato caused by the plant pathogen Pectobacterium atrosepticum.",
+   "date": "2013-11-27 13:29:48"
+  },
+  {
+   "k": 2,
+   "source": "commons",
+   "score": 7,
+   "file": "File:Blackleg of Potato Wilt in Field.png",
+   "page": "https://commons.wikimedia.org/wiki/File:Blackleg_of_Potato_Wilt_in_Field.png",
+   "img_url": "https://upload.wikimedia.org/wikipedia/commons/3/3e/Blackleg_of_Potato_Wilt_in_Field.png?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+   "thumb_url": "https://upload.wikimedia.org/wikipedia/commons/3/3e/Blackleg_of_Potato_Wilt_in_Field.png?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail_unscaled",
+   "orig_size": [
+    517,
+    879
+   ],
+   "artist": "Amy Charkowski",
+   "license": "CC BY-SA 3.0",
+   "license_url": "https://creativecommons.org/licenses/by-sa/3.0",
+   "credit": "lecture",
+   "description": "Blackleg of potato symptoms showing complete plant wilt and death in the field caused by the plant pathogen Pectobacterium atrosepticum.",
+   "date": "2013-11-27 13:29:48"
+  }
+ ]
+}

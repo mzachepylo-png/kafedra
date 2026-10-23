@@ -1,0 +1,44 @@
+{
+ "id": "fhb",
+ "name": "Фузаріоз колосу",
+ "candidates": [
+  {
+   "k": 1,
+   "source": "commons",
+   "score": 9,
+   "file": "File:Eaay9634.F1B.large.jpg",
+   "page": "https://commons.wikimedia.org/wiki/File:Eaay9634.F1B.large.jpg",
+   "img_url": "https://upload.wikimedia.org/wikipedia/commons/b/be/Eaay9634.F1B.large.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+   "thumb_url": "https://upload.wikimedia.org/wikipedia/commons/b/be/Eaay9634.F1B.large.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail_unscaled",
+   "orig_size": [
+    374,
+    380
+   ],
+   "artist": "Pengfei Li, Shuangchao Wang, Lihang Zhang, Dewen Qiu, Xueping Zhou, Lihua Guo",
+   "license": "CC BY-SA 4.0",
+   "license_url": "https://creativecommons.org/licenses/by-sa/4.0",
+   "credit": "Fig. 1B at https://advances.sciencemag.org/content/6/14/eaay9634 A tripartite ssDNA mycovirus from a plant pathogenic fungus is infectious as cloned DNA and purified virions. In: Science Advances Vol. 6, no. 14, eaay9634, doi:10.1126/sciadv.aay9634",
+   "description": "Virions of species Gemytripvirus fugra1(alias Fusarium graminearum gemytripvirus 1, FgGMTV1, Genomoviridae) observed under transmission electron microscopy. Photo credit: Pengfei Li, Institute of Plant Protection, Chinese Academy of Agricultural Sciences.",
+   "date": "2020-03-27 19:41:41"
+  },
+  {
+   "k": 2,
+   "source": "commons",
+   "score": 5,
+   "file": "File:F.graminearum.JPG",
+   "page": "https://commons.wikimedia.org/wiki/File:F.graminearum.JPG",
+   "img_url": "https://upload.wikimedia.org/wikipedia/commons/6/6a/F.graminearum.JPG?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+   "thumb_url": "https://upload.wikimedia.org/wikipedia/commons/6/6a/F.graminearum.JPG?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail_unscaled",
+   "orig_size": [
+    360,
+    360
+   ],
+   "artist": "fk",
+   "license": "CC BY-SA 3.0",
+   "license_url": "https://creativecommons.org/licenses/by-sa/3.0",
+   "credit": "Own work",
+   "description": "Macroconidia of Fusarium graminearum sensu stricto",
+   "date": "11/1/2009"
+  }
+ ]
+}

@@ -1,0 +1,44 @@
+{
+ "id": "grapedowny",
+ "name": "Мілдью винограду",
+ "candidates": [
+  {
+   "k": 1,
+   "source": "commons",
+   "score": 6,
+   "file": "File:Downy Mildew on 'Valiant' cultivar (Vitis vinifera x Vitis labrusca x Vitis riparia).jpg",
+   "page": "https://commons.wikimedia.org/wiki/File:Downy_Mildew_on_%27Valiant%27_cultivar_(Vitis_vinifera_x_Vitis_labrusca_x_Vitis_riparia).jpg",
+   "img_url": "https://upload.wikimedia.org/wikipedia/commons/5/53/Downy_Mildew_on_%27Valiant%27_cultivar_%28Vitis_vinifera_x_Vitis_labrusca_x_Vitis_riparia%29.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+   "thumb_url": "https://thumb.wikimedia.org/wikipedia/commons/thumb/5/53/Downy_Mildew_on_%27Valiant%27_cultivar_%28Vitis_vinifera_x_Vitis_labrusca_x_Vitis_riparia%29.jpg/960px-Downy_Mildew_on_%27Valiant%27_cultivar_%28Vitis_vinifera_x_Vitis_labrusca_x_Vitis_riparia%29.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
+   "orig_size": [
+    1836,
+    3264
+   ],
+   "artist": "David S. Jones, Patricia McManus",
+   "license": "CC BY-SA 4.0",
+   "license_url": "https://creativecommons.org/licenses/by-sa/4.0",
+   "credit": "UW-Extension",
+   "description": "Sporangia and sporangiophores protruding from the stomas of the grape berries",
+   "date": "2015-06-16 13:06:27"
+  },
+  {
+   "k": 2,
+   "source": "commons",
+   "score": 5,
+   "file": "File:Conidophores and Sporangia of Plasmopara viticola.jpg",
+   "page": "https://commons.wikimedia.org/wiki/File:Conidophores_and_Sporangia_of_Plasmopara_viticola.jpg",
+   "img_url": "https://upload.wikimedia.org/wikipedia/commons/4/49/Conidophores_and_Sporangia_of_Plasmopara_viticola.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+   "thumb_url": "https://thumb.wikimedia.org/wikipedia/commons/thumb/4/49/Conidophores_and_Sporangia_of_Plasmopara_viticola.jpg/960px-Conidophores_and_Sporangia_of_Plasmopara_viticola.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
+   "orig_size": [
+    1150,
+    1878
+   ],
+   "artist": "Tashkoskip",
+   "license": "CC BY-SA 4.0",
+   "license_url": "https://creativecommons.org/licenses/by-sa/4.0",
+   "credit": "Own work",
+   "description": "Conidophores and Sporangia of Plasmopara viticola",
+   "date": "2015-12-12 23:36:54"
+  }
+ ]
+}

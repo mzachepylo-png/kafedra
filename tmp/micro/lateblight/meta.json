@@ -1,0 +1,101 @@
+{
+ "id": "lateblight",
+ "name": "Фітофтороз картоплі й томатів",
+ "candidates": [
+  {
+   "k": 1,
+   "source": "commons",
+   "score": 9,
+   "file": "File:Phytophthora infestans Sporangium zoospores.jpg",
+   "page": "https://commons.wikimedia.org/wiki/File:Phytophthora_infestans_Sporangium_zoospores.jpg",
+   "img_url": "https://upload.wikimedia.org/wikipedia/commons/0/04/Phytophthora_infestans_Sporangium_zoospores.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+   "thumb_url": "https://thumb.wikimedia.org/wikipedia/commons/thumb/0/04/Phytophthora_infestans_Sporangium_zoospores.jpg/960px-Phytophthora_infestans_Sporangium_zoospores.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
+   "orig_size": [
+    1960,
+    736
+   ],
+   "artist": "Engler, Adolf; Prantl, Karl Anton Eugen; Pilger, Robert Knuds Friedrich; Krause, Kurt",
+   "license": "Public domain",
+   "license_url": "",
+   "credit": "https://www.flickr.com/photos/internetarchivebookimages/20910185836/in/photolist-xEYwcB-xjxNaA-wKEcor-xtHrEC-xRLaKs-xjV2aH-xv9Jw6-xzhKvV-xgs9ZK-xogFZh-xyt7ML-xEff3N-xEvv6m-xi6b8e-xotc75-xUvPcT-x3Gcj4-x1Rn4Q-xB1Wmr-xnutjt-xoe3ky-xhYSFd-xd2LoB-oujwRA-wEoHHG-x3ZxwE-wYgxt5-wCHFpg-xozxwF-xhFgNj-xng3yS-vdB4Aw-wGifH3-xCL4Xd-xgs7fM-wxDVZ6-xhGem5-xGzBXx-xwZgP9-wCq8sp-wGip9b-wZsp92-wYVAcR-wYb2SU-xuwR4a-xCBb",
+   "description": "Phytophthora infestans Sporangium and zoospores",
+   "date": "1897"
+  },
+  {
+   "k": 2,
+   "source": "commons",
+   "score": 8,
+   "file": "File:Journal of botany, British and foreign (1875) (14584290097).jpg",
+   "page": "https://commons.wikimedia.org/wiki/File:Journal_of_botany,_British_and_foreign_(1875)_(14584290097).jpg",
+   "img_url": "https://upload.wikimedia.org/wikipedia/commons/2/2b/Journal_of_botany%2C_British_and_foreign_%281875%29_%2814584290097%29.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+   "thumb_url": "https://thumb.wikimedia.org/wikipedia/commons/thumb/2/2b/Journal_of_botany%2C_British_and_foreign_%281875%29_%2814584290097%29.jpg/960px-Journal_of_botany%2C_British_and_foreign_%281875%29_%2814584290097%29.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
+   "orig_size": [
+    1860,
+    3420
+   ],
+   "artist": "Internet Archive Book Images",
+   "license": "No restrictions",
+   "license_url": "https://www.flickr.com/commons/usage/",
+   "credit": "https://www.flickr.com/photos/internetarchivebookimages/14584290097/\n\nSource book page: https://archive.org/stream/journalofbotanyb13trim/journalofbotanyb13trim#page/n374/mode/1up",
+   "description": "Identifier: journalofbotanyb13trim (find matches)\nTitle: Journal of botany, British and foreign\nYear: 1863 (1860s)\nAuthors:  Trimen, Henry, 1843-1896 Britten, James, 1846-1924 Ramsbottom, John, 1885- Seemann, Berthold, 1825-1871 Rendle, A. B. (Alfred Barton), 1865-1938\nSubjects:  Plants Plants -- Great Britain\nPublisher:  London : Robert Hardwicke\nContributing Library:  The LuEsther T Mertz Library, the New York Botanical Garden\nDigitizing Sponsor:  The LuEsther T Mertz Library, the New York Botanical Garden\n\nView Book Page: Book Viewer\nAbout This Book: Catalog Entry\nView All Images: All Images From Book\nClick here to view book online to see this illustration in context in a browseable onlin",
+   "date": "1875"
+  },
+  {
+   "k": 3,
+   "source": "commons",
+   "score": 8,
+   "file": "File:Journal of botany, British and foreign (1875) (14767592881).jpg",
+   "page": "https://commons.wikimedia.org/wiki/File:Journal_of_botany,_British_and_foreign_(1875)_(14767592881).jpg",
+   "img_url": "https://upload.wikimedia.org/wikipedia/commons/f/fd/Journal_of_botany%2C_British_and_foreign_%281875%29_%2814767592881%29.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+   "thumb_url": "https://thumb.wikimedia.org/wikipedia/commons/thumb/f/fd/Journal_of_botany%2C_British_and_foreign_%281875%29_%2814767592881%29.jpg/960px-Journal_of_botany%2C_British_and_foreign_%281875%29_%2814767592881%29.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
+   "orig_size": [
+    2192,
+    2908
+   ],
+   "artist": "Internet Archive Book Images",
+   "license": "No restrictions",
+   "license_url": "https://www.flickr.com/commons/usage/",
+   "credit": "https://www.flickr.com/photos/internetarchivebookimages/14767592881/\n\nSource book page: https://archive.org/stream/journalofbotanyb13trim/journalofbotanyb13trim#page/n376/mode/1up",
+   "description": "Identifier: journalofbotanyb13trim (find matches)\nTitle: Journal of botany, British and foreign\nYear: 1863 (1860s)\nAuthors:  Trimen, Henry, 1843-1896 Britten, James, 1846-1924 Ramsbottom, John, 1885- Seemann, Berthold, 1825-1871 Rendle, A. B. (Alfred Barton), 1865-1938\nSubjects:  Plants Plants -- Great Britain\nPublisher:  London : Robert Hardwicke\nContributing Library:  The LuEsther T Mertz Library, the New York Botanical Garden\nDigitizing Sponsor:  The LuEsther T Mertz Library, the New York Botanical Garden\n\nView Book Page: Book Viewer\nAbout This Book: Catalog Entry\nView All Images: All Images From Book\nClick here to view book online to see this illustration in context in a browseable onlin",
+   "date": "1875"
+  },
+  {
+   "k": 4,
+   "source": "commons",
+   "score": 7,
+   "file": "File:Oospore of Phytophthora infestans.jpg",
+   "page": "https://commons.wikimedia.org/wiki/File:Oospore_of_Phytophthora_infestans.jpg",
+   "img_url": "https://upload.wikimedia.org/wikipedia/commons/d/de/Oospore_of_Phytophthora_infestans.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+   "thumb_url": "https://upload.wikimedia.org/wikipedia/commons/d/de/Oospore_of_Phytophthora_infestans.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail_unscaled",
+   "orig_size": [
+    229,
+    162
+   ],
+   "artist": "No machine-readable author provided. Fk assumed (based on copyright claims).",
+   "license": "CC BY-SA 2.5",
+   "license_url": "https://creativecommons.org/licenses/by-sa/2.5",
+   "credit": "No machine-readable source provided. Own work assumed (based on copyright claims).",
+   "description": "An oospore of Phytophthora infestans - the causal agent of potato late blight.\n\nPhoto by Fk.",
+   "date": "14 January 2007 (original upload date)"
+  },
+  {
+   "k": 5,
+   "source": "commons",
+   "score": 5,
+   "file": "File:Tomato with Phytophthora infestans (late blight).jpg",
+   "page": "https://commons.wikimedia.org/wiki/File:Tomato_with_Phytophthora_infestans_(late_blight).jpg",
+   "img_url": "https://upload.wikimedia.org/wikipedia/commons/d/d9/Tomato_with_Phytophthora_infestans_%28late_blight%29.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+   "thumb_url": "https://thumb.wikimedia.org/wikipedia/commons/thumb/d/d9/Tomato_with_Phytophthora_infestans_%28late_blight%29.jpg/960px-Tomato_with_Phytophthora_infestans_%28late_blight%29.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
+   "orig_size": [
+    1440,
+    726
+   ],
+   "artist": "Downtowngal",
+   "license": "CC BY-SA 3.0",
+   "license_url": "https://creativecommons.org/licenses/by-sa/3.0",
+   "credit": "Own work",
+   "description": "Garden tomato (variety \"Ace\") with Phytophthora infestans (late blight or potato blight). Los Angeles, California",
+   "date": "2011-08-03"
+  }
+ ]
+}
