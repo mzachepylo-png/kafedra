@@ -1,0 +1,332 @@
+{
+ "id": "downysun",
+ "candidates": [
+  {
+   "k": "a1",
+   "source": "epmc",
+   "score": 15,
+   "pmcid": "PMC10144485",
+   "doi": "10.3390/microorganisms11040821",
+   "title": "Assessing the Sensitivity of <i>Plasmopara halstedii</i> Isolates to Mefenoxam through Host Responses.",
+   "authors": [
+    {
+     "last": "Nisha",
+     "initials": "N",
+     "first": "Nisha",
+     "full": "Nisha N",
+     "collective": null
+    },
+    {
+     "last": "Vinogradov",
+     "initials": "S",
+     "first": "Sergey",
+     "full": "Vinogradov S",
+     "collective": null
+    },
+    {
+     "last": "Körösi",
+     "initials": "K",
+     "first": "Katalin",
+     "full": "Körösi K",
+     "collective": null
+    },
+    {
+     "last": "Berisha",
+     "initials": "A",
+     "first": "Arbnora",
+     "full": "Berisha A",
+     "collective": null
+    },
+    {
+     "last": "Bán",
+     "initials": "R",
+     "first": "Rita",
+     "full": "Bán R",
+     "collective": null
+    }
+   ],
+   "journal": "Microorganisms",
+   "journal_iso": "Microorganisms",
+   "volume": "11",
+   "issue": "4",
+   "year": 2023,
+   "pages": "821",
+   "license": "cc by",
+   "first_pub": "2023-03-23",
+   "fig_label": "Figure 2",
+   "caption": "Light micrographs of mefenoxam-activated resistance responses in hypocotyl cross-sections of sunflower. Hyphae of Plasmopara halstedii invade cells of non-treated, inoculated susceptible plants (cv. Iregi szürke csíkos) without any host responses in normal (a) and in UV light (b) (λ = 485 nm) at 21 dpi. Browning (c), autofluorescence (hypersensitive reaction) (d), and necrosis with intensive cell division (e: normal light, f: UV light) of cortical parenchyma cells neighboring invaded cells as a host response to the pathogenic attack of mefenoxam-treated inoculated plants at 21 dpi. Scale bar = 100 µm.",
+   "href": "microorganisms-11-00821-g002.jpg",
+   "img_url": "https://cdn.ncbi.nlm.nih.gov/pmc/blobs/f82b/10144485/ae076550cac8/microorganisms-11-00821-g002.jpg",
+   "orig_size": [
+    774,
+    995
+   ],
+   "crossref": {
+    "title": "Assessing the Sensitivity of Plasmopara halstedii Isolates to Mefenoxam through Host Responses",
+    "container": "Microorganisms",
+    "volume": "11",
+    "issue": "4",
+    "page": "821",
+    "article_number": null,
+    "authors": [
+     {
+      "given": "Nisha",
+      "family": "Nisha",
+      "name": null
+     },
+     {
+      "given": "Sergey",
+      "family": "Vinogradov",
+      "name": null
+     },
+     {
+      "given": "Katalin",
+      "family": "Körösi",
+      "name": null
+     },
+     {
+      "given": "Arbnora",
+      "family": "Berisha",
+      "name": null
+     },
+     {
+      "given": "Rita",
+      "family": "Bán",
+      "name": null
+     }
+    ],
+    "issued": [
+     2023,
+     3,
+     23
+    ],
+    "published_online": [
+     2023,
+     3,
+     23
+    ],
+    "published_print": [
+     null
+    ]
+   }
+  },
+  {
+   "k": "a2",
+   "source": "epmc",
+   "score": 7,
+   "pmcid": "PMC10144485",
+   "doi": "10.3390/microorganisms11040821",
+   "title": "Assessing the Sensitivity of <i>Plasmopara halstedii</i> Isolates to Mefenoxam through Host Responses.",
+   "authors": [
+    {
+     "last": "Nisha",
+     "initials": "N",
+     "first": "Nisha",
+     "full": "Nisha N",
+     "collective": null
+    },
+    {
+     "last": "Vinogradov",
+     "initials": "S",
+     "first": "Sergey",
+     "full": "Vinogradov S",
+     "collective": null
+    },
+    {
+     "last": "Körösi",
+     "initials": "K",
+     "first": "Katalin",
+     "full": "Körösi K",
+     "collective": null
+    },
+    {
+     "last": "Berisha",
+     "initials": "A",
+     "first": "Arbnora",
+     "full": "Berisha A",
+     "collective": null
+    },
+    {
+     "last": "Bán",
+     "initials": "R",
+     "first": "Rita",
+     "full": "Bán R",
+     "collective": null
+    }
+   ],
+   "journal": "Microorganisms",
+   "journal_iso": "Microorganisms",
+   "volume": "11",
+   "issue": "4",
+   "year": 2023,
+   "pages": "821",
+   "license": "cc by",
+   "first_pub": "2023-03-23",
+   "fig_label": "Figure 3",
+   "caption": "Occurrence of pathogen hyphae (a, b) and host reactions such as hypersensitive reaction (c, d) and necrosis (e, f) in the cortical and pith parenchyma of mefenoxam-treated and non-treated sunflower plants inoculated with Plasmopara halstedii. Treatment: non-treated and treated with mefenoxam (3 mg/kg seed). Isolate: code of Plasmopara halstedii isolates used in the experiment (1, 4, 5, 6, 7, 8, 9, and 11) (for more details, see Table 1). The infection rate and the rate of the host reaction were measured on a 0–4 scale. Vertical lines represent 95% confidence intervals (95% CI) of the mean values of disease rates and heights.",
+   "href": "microorganisms-11-00821-g003.jpg",
+   "img_url": "https://cdn.ncbi.nlm.nih.gov/pmc/blobs/f82b/10144485/fc2a4fd89860/microorganisms-11-00821-g003.jpg",
+   "orig_size": [
+    743,
+    727
+   ],
+   "crossref": {
+    "title": "Assessing the Sensitivity of Plasmopara halstedii Isolates to Mefenoxam through Host Responses",
+    "container": "Microorganisms",
+    "volume": "11",
+    "issue": "4",
+    "page": "821",
+    "article_number": null,
+    "authors": [
+     {
+      "given": "Nisha",
+      "family": "Nisha",
+      "name": null
+     },
+     {
+      "given": "Sergey",
+      "family": "Vinogradov",
+      "name": null
+     },
+     {
+      "given": "Katalin",
+      "family": "Körösi",
+      "name": null
+     },
+     {
+      "given": "Arbnora",
+      "family": "Berisha",
+      "name": null
+     },
+     {
+      "given": "Rita",
+      "family": "Bán",
+      "name": null
+     }
+    ],
+    "issued": [
+     2023,
+     3,
+     23
+    ],
+    "published_online": [
+     2023,
+     3,
+     23
+    ],
+    "published_print": [
+     null
+    ]
+   }
+  },
+  {
+   "k": "a3",
+   "source": "epmc",
+   "score": 5,
+   "pmcid": "PMC10144485",
+   "doi": "10.3390/microorganisms11040821",
+   "title": "Assessing the Sensitivity of <i>Plasmopara halstedii</i> Isolates to Mefenoxam through Host Responses.",
+   "authors": [
+    {
+     "last": "Nisha",
+     "initials": "N",
+     "first": "Nisha",
+     "full": "Nisha N",
+     "collective": null
+    },
+    {
+     "last": "Vinogradov",
+     "initials": "S",
+     "first": "Sergey",
+     "full": "Vinogradov S",
+     "collective": null
+    },
+    {
+     "last": "Körösi",
+     "initials": "K",
+     "first": "Katalin",
+     "full": "Körösi K",
+     "collective": null
+    },
+    {
+     "last": "Berisha",
+     "initials": "A",
+     "first": "Arbnora",
+     "full": "Berisha A",
+     "collective": null
+    },
+    {
+     "last": "Bán",
+     "initials": "R",
+     "first": "Rita",
+     "full": "Bán R",
+     "collective": null
+    }
+   ],
+   "journal": "Microorganisms",
+   "journal_iso": "Microorganisms",
+   "volume": "11",
+   "issue": "4",
+   "year": 2023,
+   "pages": "821",
+   "license": "cc by",
+   "first_pub": "2023-03-23",
+   "fig_label": "Figure 1",
+   "caption": "Disease rates (a, b) and heights (c, d) of mefenoxam-treated and non-treated sunflower plants inoculated with different Plasmopara halstedii isolates. Disease 1: ratio of sporulating pre-emergence damped-off plants and healthy sunflowers nine days after inoculation. Disease 2: ratio of chlorotic post-emergence damped-off plants and healthy sunflowers 21 days after inoculation. Height 1: height of sunflowers nine days after inoculation (heights of damped-off plants were taken as zero). Height 2: height of sunflowers 21 days after inoculation (heights of damped-off plants were taken as zero). Treatment: non-treated and treated with mefenoxam (3 mg/kg seed). Isolate: code of Plasmopara halstedii isolates used in the experiment (1, 4, 5, 6, 7, 8, 9, and 11) (for more details, see Table 1). Vertical lines represent 95% confidence intervals (95% CI) of the mean values of disease rates and heights.",
+   "href": "microorganisms-11-00821-g001.jpg",
+   "img_url": "https://cdn.ncbi.nlm.nih.gov/pmc/blobs/f82b/10144485/50aeb521b47b/microorganisms-11-00821-g001.jpg",
+   "orig_size": [
+    733,
+    474
+   ],
+   "crossref": {
+    "title": "Assessing the Sensitivity of Plasmopara halstedii Isolates to Mefenoxam through Host Responses",
+    "container": "Microorganisms",
+    "volume": "11",
+    "issue": "4",
+    "page": "821",
+    "article_number": null,
+    "authors": [
+     {
+      "given": "Nisha",
+      "family": "Nisha",
+      "name": null
+     },
+     {
+      "given": "Sergey",
+      "family": "Vinogradov",
+      "name": null
+     },
+     {
+      "given": "Katalin",
+      "family": "Körösi",
+      "name": null
+     },
+     {
+      "given": "Arbnora",
+      "family": "Berisha",
+      "name": null
+     },
+     {
+      "given": "Rita",
+      "family": "Bán",
+      "name": null
+     }
+    ],
+    "issued": [
+     2023,
+     3,
+     23
+    ],
+    "published_online": [
+     2023,
+     3,
+     23
+    ],
+    "published_print": [
+     null
+    ]
+   }
+  }
+ ]
+}

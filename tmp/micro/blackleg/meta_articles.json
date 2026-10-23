@@ -1,0 +1,537 @@
+{
+ "id": "blackleg",
+ "candidates": [
+  {
+   "k": "a1",
+   "source": "epmc",
+   "score": 10,
+   "pmcid": "PMC11944609",
+   "doi": "10.3390/plants14060908",
+   "title": "Carvacrol and Streptomycin in Combination Weaken Streptomycin Resistance in &lt;i&gt;Pectobacterium carotovorum&lt;/i&gt; subsp. &lt;i&gt;carotovorum&lt;/i&gt;.",
+   "authors": [
+    {
+     "last": "Shen",
+     "initials": "Y",
+     "first": "Yue",
+     "full": "Shen Y",
+     "collective": null
+    },
+    {
+     "last": "Li",
+     "initials": "Y",
+     "first": "Yiying",
+     "full": "Li Y",
+     "collective": null
+    },
+    {
+     "last": "Wang",
+     "initials": "L",
+     "first": "Litao",
+     "full": "Wang L",
+     "collective": null
+    },
+    {
+     "last": "Wu",
+     "initials": "C",
+     "first": "Chenying",
+     "full": "Wu C",
+     "collective": null
+    },
+    {
+     "last": "Su",
+     "initials": "X",
+     "first": "Xu",
+     "full": "Su X",
+     "collective": null
+    },
+    {
+     "last": "Tian",
+     "initials": "Y",
+     "first": "Yongqiang",
+     "full": "Tian Y",
+     "collective": null
+    }
+   ],
+   "journal": "Plants (Basel, Switzerland)",
+   "journal_iso": "Plants (Basel)",
+   "volume": "14",
+   "issue": "6",
+   "year": 2025,
+   "pages": "908",
+   "license": "cc by",
+   "first_pub": "2025-03-14",
+   "fig_label": "Figure 5",
+   "caption": "The effects of carvacrol, streptomycin, and their combinations applied at various concentrations (ranging from 1/4 MIC to MIC) on the altered membrane permeability of SP cells were investigated using CLSM. An untreated bacterial suspension served as the control group (CK).",
+   "href": "plants-14-00908-g005.jpg",
+   "img_url": "https://cdn.ncbi.nlm.nih.gov/pmc/blobs/47f9/11944609/9b663b995333/plants-14-00908-g005.jpg",
+   "orig_size": [
+    760,
+    415
+   ],
+   "crossref": {
+    "title": "Carvacrol and Streptomycin in Combination Weaken Streptomycin Resistance in Pectobacterium carotovorum subsp. carotovorum",
+    "container": "Plants",
+    "volume": "14",
+    "issue": "6",
+    "page": "908",
+    "article_number": null,
+    "authors": [
+     {
+      "given": "Yue",
+      "family": "Shen",
+      "name": null
+     },
+     {
+      "given": "Yiying",
+      "family": "Li",
+      "name": null
+     },
+     {
+      "given": "Litao",
+      "family": "Wang",
+      "name": null
+     },
+     {
+      "given": "Chenying",
+      "family": "Wu",
+      "name": null
+     },
+     {
+      "given": "Xu",
+      "family": "Su",
+      "name": null
+     },
+     {
+      "given": "Yongqiang",
+      "family": "Tian",
+      "name": null
+     }
+    ],
+    "issued": [
+     2025,
+     3,
+     14
+    ],
+    "published_online": [
+     2025,
+     3,
+     14
+    ],
+    "published_print": [
+     null
+    ]
+   }
+  },
+  {
+   "k": "a2",
+   "source": "epmc",
+   "score": 4,
+   "pmcid": "PMC11944609",
+   "doi": "10.3390/plants14060908",
+   "title": "Carvacrol and Streptomycin in Combination Weaken Streptomycin Resistance in &lt;i&gt;Pectobacterium carotovorum&lt;/i&gt; subsp. &lt;i&gt;carotovorum&lt;/i&gt;.",
+   "authors": [
+    {
+     "last": "Shen",
+     "initials": "Y",
+     "first": "Yue",
+     "full": "Shen Y",
+     "collective": null
+    },
+    {
+     "last": "Li",
+     "initials": "Y",
+     "first": "Yiying",
+     "full": "Li Y",
+     "collective": null
+    },
+    {
+     "last": "Wang",
+     "initials": "L",
+     "first": "Litao",
+     "full": "Wang L",
+     "collective": null
+    },
+    {
+     "last": "Wu",
+     "initials": "C",
+     "first": "Chenying",
+     "full": "Wu C",
+     "collective": null
+    },
+    {
+     "last": "Su",
+     "initials": "X",
+     "first": "Xu",
+     "full": "Su X",
+     "collective": null
+    },
+    {
+     "last": "Tian",
+     "initials": "Y",
+     "first": "Yongqiang",
+     "full": "Tian Y",
+     "collective": null
+    }
+   ],
+   "journal": "Plants (Basel, Switzerland)",
+   "journal_iso": "Plants (Basel)",
+   "volume": "14",
+   "issue": "6",
+   "year": 2025,
+   "pages": "908",
+   "license": "cc by",
+   "first_pub": "2025-03-14",
+   "fig_label": "Figure 7",
+   "caption": "Therapeutic effects of carvacrol, streptomycin, and their combined application at different concentrations (ranging from 1/4 MIC to MIC) were evaluated in vegetables against soft rot. No chemicals were applied to the control group. (a) Chinese cabbage, (b) carrot, and (c) potato.",
+   "href": "plants-14-00908-g007.jpg",
+   "img_url": "https://cdn.ncbi.nlm.nih.gov/pmc/blobs/47f9/11944609/eefc1c844f1f/plants-14-00908-g007.jpg",
+   "orig_size": [
+    754,
+    956
+   ],
+   "crossref": {
+    "title": "Carvacrol and Streptomycin in Combination Weaken Streptomycin Resistance in Pectobacterium carotovorum subsp. carotovorum",
+    "container": "Plants",
+    "volume": "14",
+    "issue": "6",
+    "page": "908",
+    "article_number": null,
+    "authors": [
+     {
+      "given": "Yue",
+      "family": "Shen",
+      "name": null
+     },
+     {
+      "given": "Yiying",
+      "family": "Li",
+      "name": null
+     },
+     {
+      "given": "Litao",
+      "family": "Wang",
+      "name": null
+     },
+     {
+      "given": "Chenying",
+      "family": "Wu",
+      "name": null
+     },
+     {
+      "given": "Xu",
+      "family": "Su",
+      "name": null
+     },
+     {
+      "given": "Yongqiang",
+      "family": "Tian",
+      "name": null
+     }
+    ],
+    "issued": [
+     2025,
+     3,
+     14
+    ],
+    "published_online": [
+     2025,
+     3,
+     14
+    ],
+    "published_print": [
+     null
+    ]
+   }
+  },
+  {
+   "k": "a3",
+   "source": "epmc",
+   "score": 6,
+   "pmcid": "PMC10421472",
+   "doi": "10.3390/plants12152826",
+   "title": "Zinc Oxide Nanoparticles Biosynthesized by <i>Eriobotrya japonica</i> Leaf Extract: Characterization, Insecticidal and Antibacterial Properties.",
+   "authors": [
+    {
+     "last": "Hamdy",
+     "initials": "E",
+     "first": "Esraa",
+     "full": "Hamdy E",
+     "collective": null
+    },
+    {
+     "last": "Al-Askar",
+     "initials": "AA",
+     "first": "Abdulaziz A",
+     "full": "Al-Askar AA",
+     "collective": null
+    },
+    {
+     "last": "El-Gendi",
+     "initials": "H",
+     "first": "Hamada",
+     "full": "El-Gendi H",
+     "collective": null
+    },
+    {
+     "last": "Khamis",
+     "initials": "WM",
+     "first": "Wael M",
+     "full": "Khamis WM",
+     "collective": null
+    },
+    {
+     "last": "Behiry",
+     "initials": "SI",
+     "first": "Said I",
+     "full": "Behiry SI",
+     "collective": null
+    },
+    {
+     "last": "Valentini",
+     "initials": "F",
+     "first": "Franco",
+     "full": "Valentini F",
+     "collective": null
+    },
+    {
+     "last": "Abd-Elsalam",
+     "initials": "KA",
+     "first": "Kamel A",
+     "full": "Abd-Elsalam KA",
+     "collective": null
+    },
+    {
+     "last": "Abdelkhalek",
+     "initials": "A",
+     "first": "Ahmed",
+     "full": "Abdelkhalek A",
+     "collective": null
+    }
+   ],
+   "journal": "Plants (Basel, Switzerland)",
+   "journal_iso": "Plants (Basel)",
+   "volume": "12",
+   "issue": "15",
+   "year": 2023,
+   "pages": "2826",
+   "license": "cc by",
+   "first_pub": "2023-07-31",
+   "fig_label": "Figure 2",
+   "caption": "The scanning electron microscopy (SEM) of the prepared ZnO-NPs with corresponding particle size was retrieved through ImageJ software (A – C).",
+   "href": "plants-12-02826-g002.jpg",
+   "img_url": "https://cdn.ncbi.nlm.nih.gov/pmc/blobs/00c5/10421472/9460f92385c5/plants-12-02826-g002.jpg",
+   "orig_size": [
+    739,
+    249
+   ],
+   "crossref": {
+    "title": "Zinc Oxide Nanoparticles Biosynthesized by Eriobotrya japonica Leaf Extract: Characterization, Insecticidal and Antibacterial Properties",
+    "container": "Plants",
+    "volume": "12",
+    "issue": "15",
+    "page": "2826",
+    "article_number": null,
+    "authors": [
+     {
+      "given": "Esraa",
+      "family": "Hamdy",
+      "name": null
+     },
+     {
+      "given": "Abdulaziz",
+      "family": "Al-Askar",
+      "name": null
+     },
+     {
+      "given": "Hamada",
+      "family": "El-Gendi",
+      "name": null
+     },
+     {
+      "given": "Wael",
+      "family": "Khamis",
+      "name": null
+     },
+     {
+      "given": "Said",
+      "family": "Behiry",
+      "name": null
+     },
+     {
+      "given": "Franco",
+      "family": "Valentini",
+      "name": null
+     },
+     {
+      "given": "Kamel",
+      "family": "Abd-Elsalam",
+      "name": null
+     },
+     {
+      "given": "Ahmed",
+      "family": "Abdelkhalek",
+      "name": null
+     }
+    ],
+    "issued": [
+     2023,
+     7,
+     31
+    ],
+    "published_online": [
+     2023,
+     7,
+     31
+    ],
+    "published_print": [
+     null
+    ]
+   }
+  },
+  {
+   "k": "a4",
+   "source": "epmc",
+   "score": 6,
+   "pmcid": "PMC10421472",
+   "doi": "10.3390/plants12152826",
+   "title": "Zinc Oxide Nanoparticles Biosynthesized by <i>Eriobotrya japonica</i> Leaf Extract: Characterization, Insecticidal and Antibacterial Properties.",
+   "authors": [
+    {
+     "last": "Hamdy",
+     "initials": "E",
+     "first": "Esraa",
+     "full": "Hamdy E",
+     "collective": null
+    },
+    {
+     "last": "Al-Askar",
+     "initials": "AA",
+     "first": "Abdulaziz A",
+     "full": "Al-Askar AA",
+     "collective": null
+    },
+    {
+     "last": "El-Gendi",
+     "initials": "H",
+     "first": "Hamada",
+     "full": "El-Gendi H",
+     "collective": null
+    },
+    {
+     "last": "Khamis",
+     "initials": "WM",
+     "first": "Wael M",
+     "full": "Khamis WM",
+     "collective": null
+    },
+    {
+     "last": "Behiry",
+     "initials": "SI",
+     "first": "Said I",
+     "full": "Behiry SI",
+     "collective": null
+    },
+    {
+     "last": "Valentini",
+     "initials": "F",
+     "first": "Franco",
+     "full": "Valentini F",
+     "collective": null
+    },
+    {
+     "last": "Abd-Elsalam",
+     "initials": "KA",
+     "first": "Kamel A",
+     "full": "Abd-Elsalam KA",
+     "collective": null
+    },
+    {
+     "last": "Abdelkhalek",
+     "initials": "A",
+     "first": "Ahmed",
+     "full": "Abdelkhalek A",
+     "collective": null
+    }
+   ],
+   "journal": "Plants (Basel, Switzerland)",
+   "journal_iso": "Plants (Basel)",
+   "volume": "12",
+   "issue": "15",
+   "year": 2023,
+   "pages": "2826",
+   "license": "cc by",
+   "first_pub": "2023-07-31",
+   "fig_label": "Figure 5",
+   "caption": "Shows the effect of Eriobotrya japonica -derived zinc oxide nanoparticles (ZnO-NPs) on various bacterial isolates.",
+   "href": "plants-12-02826-g005.jpg",
+   "img_url": "https://cdn.ncbi.nlm.nih.gov/pmc/blobs/00c5/10421472/d7d1869bb27f/plants-12-02826-g005.jpg",
+   "orig_size": [
+    784,
+    271
+   ],
+   "crossref": {
+    "title": "Zinc Oxide Nanoparticles Biosynthesized by Eriobotrya japonica Leaf Extract: Characterization, Insecticidal and Antibacterial Properties",
+    "container": "Plants",
+    "volume": "12",
+    "issue": "15",
+    "page": "2826",
+    "article_number": null,
+    "authors": [
+     {
+      "given": "Esraa",
+      "family": "Hamdy",
+      "name": null
+     },
+     {
+      "given": "Abdulaziz",
+      "family": "Al-Askar",
+      "name": null
+     },
+     {
+      "given": "Hamada",
+      "family": "El-Gendi",
+      "name": null
+     },
+     {
+      "given": "Wael",
+      "family": "Khamis",
+      "name": null
+     },
+     {
+      "given": "Said",
+      "family": "Behiry",
+      "name": null
+     },
+     {
+      "given": "Franco",
+      "family": "Valentini",
+      "name": null
+     },
+     {
+      "given": "Kamel",
+      "family": "Abd-Elsalam",
+      "name": null
+     },
+     {
+      "given": "Ahmed",
+      "family": "Abdelkhalek",
+      "name": null
+     }
+    ],
+    "issued": [
+     2023,
+     7,
+     31
+    ],
+    "published_online": [
+     2023,
+     7,
+     31
+    ],
+    "published_print": [
+     null
+    ]
+   }
+  }
+ ]
+}

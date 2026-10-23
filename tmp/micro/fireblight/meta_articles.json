@@ -1,0 +1,453 @@
+{
+ "id": "fireblight",
+ "candidates": [
+  {
+   "k": "a1",
+   "source": "epmc",
+   "score": 14,
+   "pmcid": "PMC6423407",
+   "doi": "10.3389/fmicb.2019.00468",
+   "title": "Physiological and Microscopic Characterization of Cyclic-di-GMP-Mediated Autoaggregation in <i>Erwinia amylovora</i>.",
+   "authors": [
+    {
+     "last": "Kharadi",
+     "initials": "RR",
+     "first": "Roshni R",
+     "full": "Kharadi RR",
+     "collective": null
+    },
+    {
+     "last": "Sundin",
+     "initials": "GW",
+     "first": "George W",
+     "full": "Sundin GW",
+     "collective": null
+    }
+   ],
+   "journal": "Frontiers in microbiology",
+   "journal_iso": "Front Microbiol",
+   "volume": "10",
+   "issue": null,
+   "year": 2019,
+   "pages": "468",
+   "license": "cc by",
+   "first_pub": "2019-03-12",
+   "fig_label": "FIGURE 5",
+   "caption": "Confocal laser scanning microscopy images showing E. amylovora strains expressing gfp. Biofilm formation within the flow channels was assessed for (Aa) WT Ea1189, (b) Ea1189Δ pdeAC, and (c) Ea1189Δ pdeABC, under static conditions with an initial incubation with inoculum for 1 h, followed by a 5 h incubation after the inoculum was flushed out of the flow channel. (Ba) WT Ea1189, (b) Ea1189Δ pdeAC, (c) Ea1189Δ pdeABC, under conditions of constant confined flow with an initial incubation with inoculum for 1 h, followed by a 5 h continual flow of 0.5X LB through the flow channels. Three dimensional representations of the attached cells and the multilayer biofilms formed by them are presented adjacent to the CLSM Z-stack images (measurements on all axes are presented in μm).",
+   "href": "fmicb-10-00468-g005.jpg",
+   "img_url": "https://cdn.ncbi.nlm.nih.gov/pmc/blobs/8ab4/6423407/f11c76bec12a/fmicb-10-00468-g005.jpg",
+   "orig_size": [
+    780,
+    473
+   ],
+   "crossref": {
+    "title": "Physiological and Microscopic Characterization of Cyclic-di-GMP-Mediated Autoaggregation in Erwinia amylovora",
+    "container": "Frontiers in Microbiology",
+    "volume": "10",
+    "issue": null,
+    "page": null,
+    "article_number": "468",
+    "authors": [
+     {
+      "given": "Roshni R.",
+      "family": "Kharadi",
+      "name": null
+     },
+     {
+      "given": "George W.",
+      "family": "Sundin",
+      "name": null
+     }
+    ],
+    "issued": [
+     2019,
+     3,
+     12
+    ],
+    "published_online": [
+     2019,
+     3,
+     12
+    ],
+    "published_print": [
+     null
+    ]
+   }
+  },
+  {
+   "k": "a2",
+   "source": "epmc",
+   "score": 12,
+   "pmcid": "PMC6423407",
+   "doi": "10.3389/fmicb.2019.00468",
+   "title": "Physiological and Microscopic Characterization of Cyclic-di-GMP-Mediated Autoaggregation in <i>Erwinia amylovora</i>.",
+   "authors": [
+    {
+     "last": "Kharadi",
+     "initials": "RR",
+     "first": "Roshni R",
+     "full": "Kharadi RR",
+     "collective": null
+    },
+    {
+     "last": "Sundin",
+     "initials": "GW",
+     "first": "George W",
+     "full": "Sundin GW",
+     "collective": null
+    }
+   ],
+   "journal": "Frontiers in microbiology",
+   "journal_iso": "Front Microbiol",
+   "volume": "10",
+   "issue": null,
+   "year": 2019,
+   "pages": "468",
+   "license": "cc by",
+   "first_pub": "2019-03-12",
+   "fig_label": "FIGURE 2",
+   "caption": "Scanning electron microscopy images of E. amylovora strains grown in LB for 18 h. (A) WT Ea1189 shows cells embedded in a diffused EPS organization. (B) Ea1189Δ pdeAC cells show a relatively diffused arrangement. (C) Ea1189Δ pdeABC cells are highly organized in an aggregate with most EPS bound within it. Elongated cells are interspersed in and around the aggregate. (D) Ea1189Δ pdeABC Δ ams Δ bcsA cells show a diffused arrangement with a reduced prevalence of EPS around the cells.",
+   "href": "fmicb-10-00468-g002.jpg",
+   "img_url": "https://cdn.ncbi.nlm.nih.gov/pmc/blobs/8ab4/6423407/88dd4397da0e/fmicb-10-00468-g002.jpg",
+   "orig_size": [
+    780,
+    608
+   ],
+   "crossref": {
+    "title": "Physiological and Microscopic Characterization of Cyclic-di-GMP-Mediated Autoaggregation in Erwinia amylovora",
+    "container": "Frontiers in Microbiology",
+    "volume": "10",
+    "issue": null,
+    "page": null,
+    "article_number": "468",
+    "authors": [
+     {
+      "given": "Roshni R.",
+      "family": "Kharadi",
+      "name": null
+     },
+     {
+      "given": "George W.",
+      "family": "Sundin",
+      "name": null
+     }
+    ],
+    "issued": [
+     2019,
+     3,
+     12
+    ],
+    "published_online": [
+     2019,
+     3,
+     12
+    ],
+    "published_print": [
+     null
+    ]
+   }
+  },
+  {
+   "k": "a3",
+   "source": "epmc",
+   "score": 10,
+   "pmcid": "PMC6423407",
+   "doi": "10.3389/fmicb.2019.00468",
+   "title": "Physiological and Microscopic Characterization of Cyclic-di-GMP-Mediated Autoaggregation in <i>Erwinia amylovora</i>.",
+   "authors": [
+    {
+     "last": "Kharadi",
+     "initials": "RR",
+     "first": "Roshni R",
+     "full": "Kharadi RR",
+     "collective": null
+    },
+    {
+     "last": "Sundin",
+     "initials": "GW",
+     "first": "George W",
+     "full": "Sundin GW",
+     "collective": null
+    }
+   ],
+   "journal": "Frontiers in microbiology",
+   "journal_iso": "Front Microbiol",
+   "volume": "10",
+   "issue": null,
+   "year": 2019,
+   "pages": "468",
+   "license": "cc by",
+   "first_pub": "2019-03-12",
+   "fig_label": "FIGURE 4",
+   "caption": "Scanning electron microscopy images showing biofilm formation on gold grids incubated with E. amylovora strains for 72 h. (A) Ea1189, (B) Ea1189Δ pdeA, (C) Ea1189Δ pdeB, (D) Ea1189Δ pdeC, (E) Ea1189Δ pdeAB, (F) Ea1189Δ pdeBC, (G) Ea1189Δ pdeAC, (H) Ea1189Δ pdeABC.",
+   "href": "fmicb-10-00468-g004.jpg",
+   "img_url": "https://cdn.ncbi.nlm.nih.gov/pmc/blobs/8ab4/6423407/4beb726e9283/fmicb-10-00468-g004.jpg",
+   "orig_size": [
+    780,
+    318
+   ],
+   "crossref": {
+    "title": "Physiological and Microscopic Characterization of Cyclic-di-GMP-Mediated Autoaggregation in Erwinia amylovora",
+    "container": "Frontiers in Microbiology",
+    "volume": "10",
+    "issue": null,
+    "page": null,
+    "article_number": "468",
+    "authors": [
+     {
+      "given": "Roshni R.",
+      "family": "Kharadi",
+      "name": null
+     },
+     {
+      "given": "George W.",
+      "family": "Sundin",
+      "name": null
+     }
+    ],
+    "issued": [
+     2019,
+     3,
+     12
+    ],
+    "published_online": [
+     2019,
+     3,
+     12
+    ],
+    "published_print": [
+     null
+    ]
+   }
+  },
+  {
+   "k": "a4",
+   "source": "epmc",
+   "score": 6,
+   "pmcid": "PMC6034870",
+   "doi": "10.1371/journal.pone.0200202",
+   "title": "Characterization of two related Erwinia myoviruses that are distant relatives of the PhiKZ-like Jumbo phages.",
+   "authors": [
+    {
+     "last": "Arens",
+     "initials": "DK",
+     "first": "Daniel K",
+     "full": "Arens DK",
+     "collective": null
+    },
+    {
+     "last": "Brady",
+     "initials": "TS",
+     "first": "T Scott",
+     "full": "Brady TS",
+     "collective": null
+    },
+    {
+     "last": "Carter",
+     "initials": "JL",
+     "first": "John L",
+     "full": "Carter JL",
+     "collective": null
+    },
+    {
+     "last": "Pape",
+     "initials": "JA",
+     "first": "Jenny A",
+     "full": "Pape JA",
+     "collective": null
+    },
+    {
+     "last": "Robinson",
+     "initials": "DM",
+     "first": "David M",
+     "full": "Robinson DM",
+     "collective": null
+    },
+    {
+     "last": "Russell",
+     "initials": "KA",
+     "first": "Kerri A",
+     "full": "Russell KA",
+     "collective": null
+    },
+    {
+     "last": "Staley",
+     "initials": "LA",
+     "first": "Lyndsay A",
+     "full": "Staley LA",
+     "collective": null
+    },
+    {
+     "last": "Stettler",
+     "initials": "JM",
+     "first": "Jason M",
+     "full": "Stettler JM",
+     "collective": null
+    },
+    {
+     "last": "Tateoka",
+     "initials": "OB",
+     "first": "Olivia B",
+     "full": "Tateoka OB",
+     "collective": null
+    },
+    {
+     "last": "Townsend",
+     "initials": "MH",
+     "first": "Michelle H",
+     "full": "Townsend MH",
+     "collective": null
+    },
+    {
+     "last": "Whitley",
+     "initials": "KV",
+     "first": "Kiara V",
+     "full": "Whitley KV",
+     "collective": null
+    },
+    {
+     "last": "Wienclaw",
+     "initials": "TM",
+     "first": "Trevor M",
+     "full": "Wienclaw TM",
+     "collective": null
+    },
+    {
+     "last": "Williamson",
+     "initials": "TL",
+     "first": "Taryn L",
+     "full": "Williamson TL",
+     "collective": null
+    },
+    {
+     "last": "Johnson",
+     "initials": "SM",
+     "first": "Steven M",
+     "full": "Johnson SM",
+     "collective": null
+    },
+    {
+     "last": "Grose",
+     "initials": "JH",
+     "first": "Julianne H",
+     "full": "Grose JH",
+     "collective": null
+    }
+   ],
+   "journal": "PloS one",
+   "journal_iso": "PLoS One",
+   "volume": "13",
+   "issue": "7",
+   "year": 2018,
+   "pages": "e0200202",
+   "license": "cc by",
+   "first_pub": "2018-07-06",
+   "fig_label": "Fig 1",
+   "caption": "Transmission electron microscopy revealed (A) RisingSun and (B) Joad as Myoviridae.",
+   "href": "pone.0200202.g001.jpg",
+   "img_url": "https://cdn.ncbi.nlm.nih.gov/pmc/blobs/000f/6034870/affd0af02687/pone.0200202.g001.jpg",
+   "orig_size": [
+    660,
+    303
+   ],
+   "crossref": {
+    "title": "Characterization of two related Erwinia myoviruses that are distant relatives of the PhiKZ-like Jumbo phages",
+    "container": "PLOS ONE",
+    "volume": "13",
+    "issue": "7",
+    "page": "e0200202",
+    "article_number": null,
+    "authors": [
+     {
+      "given": "Daniel K.",
+      "family": "Arens",
+      "name": null
+     },
+     {
+      "given": "T. Scott",
+      "family": "Brady",
+      "name": null
+     },
+     {
+      "given": "John L.",
+      "family": "Carter",
+      "name": null
+     },
+     {
+      "given": "Jenny A.",
+      "family": "Pape",
+      "name": null
+     },
+     {
+      "given": "David M.",
+      "family": "Robinson",
+      "name": null
+     },
+     {
+      "given": "Kerri A.",
+      "family": "Russell",
+      "name": null
+     },
+     {
+      "given": "Lyndsay A.",
+      "family": "Staley",
+      "name": null
+     },
+     {
+      "given": "Jason M.",
+      "family": "Stettler",
+      "name": null
+     },
+     {
+      "given": "Olivia B.",
+      "family": "Tateoka",
+      "name": null
+     },
+     {
+      "given": "Michelle H.",
+      "family": "Townsend",
+      "name": null
+     },
+     {
+      "given": "Kiara V.",
+      "family": "Whitley",
+      "name": null
+     },
+     {
+      "given": "Trevor M.",
+      "family": "Wienclaw",
+      "name": null
+     },
+     {
+      "given": "Taryn L.",
+      "family": "Williamson",
+      "name": null
+     },
+     {
+      "given": "Steven M.",
+      "family": "Johnson",
+      "name": null
+     },
+     {
+      "given": "Julianne H.",
+      "family": "Grose",
+      "name": null
+     }
+    ],
+    "issued": [
+     2018,
+     7,
+     6
+    ],
+    "published_online": [
+     2018,
+     7,
+     6
+    ],
+    "published_print": [
+     null
+    ]
+   }
+  }
+ ]
+}
