@@ -10,7 +10,9 @@ import json
 import os
 import re
 import sys
+import tarfile
 import time
+import urllib.error
 import urllib.parse
 import urllib.request
 import xml.etree.ElementTree as ET
@@ -21,6 +23,7 @@ from PIL import Image
 Image.MAX_IMAGE_PIXELS = 200_000_000
 
 UA = "kafedra-site/1.0 (+https://github.com/mzachepylo-png/kafedra)"
+BROWSER_UA = "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/126.0 Safari/537.36"
 EPMC = "https://www.ebi.ac.uk/europepmc/webservices/rest"
 XLINK = "{http://www.w3.org/1999/xlink}href"
 OK_LIC = {"cc by", "cc0", "cc by-sa"}
@@ -46,13 +49,18 @@ NEG = ["phylogen", " tree", "qpcr", "rt-pcr", "pcr product", "electrophoresis", 
        "distribution map", "flowchart", "model of", "transcript", "mutant", "knockout", "deletion"]
 
 
-def http(url, tries=3, timeout=90):
+def http(url, tries=3, timeout=60, ua=UA):
     last = None
     for i in range(tries):
         try:
-            req = urllib.request.Request(url, headers={"User-Agent": UA})
+            req = urllib.request.Request(url, headers={"User-Agent": ua, "Accept": "*/*"})
             with urllib.request.urlopen(req, timeout=timeout) as r:
                 return r.read()
+        except urllib.error.HTTPError as e:
+            last = e
+            if e.code in (403, 404, 410):
+                break
+            time.sleep(1.5 * (i + 1))
         except Exception as e:  # мережеві збої — повторюємо
             last = e
             time.sleep(1.5 * (i + 1))
@@ -143,16 +151,64 @@ def crossref(doi):
             "issued": dp("issued"), "published_online": dp("published-online"), "published_print": dp("published-print")}
 
 
+_PAGE, _TGZ = {}, {}
+IMG_EXT = re.compile(r"\.(jpe?g|png|gif|tiff?)$", re.I)
+
+
+def _open(data):
+    im = Image.open(BytesIO(data))
+    im.load()
+    return im
+
+
+def _err(tag, e):
+    return f"{tag}:{type(e).__name__}:{getattr(e, 'code', '')}"
+
+
 def fig_image(pmcid, href):
-    names = [href] if re.search(r"\.(jpe?g|png|gif|tiff?)$", href, re.I) else [f"{href}.jpg", f"{href}.png", f"{href}.gif"]
+    """Рисунок статті: Europe PMC → сторінка PMC (CDN) → архів OA-пакета."""
+    base = href.rsplit("/", 1)[-1]
+    stem = IMG_EXT.sub("", base)
+    names = [base] if base != stem else [stem + ".jpg", stem + ".png", stem + ".gif"]
+    errors = []
     for n in names:
-        for base in (f"https://europepmc.org/articles/{pmcid}/bin/", f"https://www.ncbi.nlm.nih.gov/pmc/articles/{pmcid}/bin/"):
-            try:
-                im = Image.open(BytesIO(http(base + n, tries=2)))
-                im.load()
-                return im, base + n
-            except Exception:
-                continue
+        url = f"https://europepmc.org/articles/{pmcid}/bin/{n}"
+        try:
+            return _open(http(url, tries=1, ua=BROWSER_UA)), url
+        except Exception as e:
+            errors.append(_err("epmc", e))
+    try:
+        if pmcid not in _PAGE:
+            _PAGE[pmcid] = http(f"https://pmc.ncbi.nlm.nih.gov/articles/{pmcid}/", tries=2,
+                                ua=BROWSER_UA).decode("utf-8", "replace")
+        m = re.search(r"https://cdn\.ncbi\.nlm\.nih\.gov/pmc/blobs/[^\"'\s]+/" + re.escape(stem)
+                      + r"\.(?:jpe?g|png|gif)", _PAGE[pmcid])
+        if m:
+            return _open(http(m.group(0), tries=2, ua=BROWSER_UA)), m.group(0)
+        errors.append("pmc:no-link")
+    except Exception as e:
+        _PAGE.setdefault(pmcid, "")
+        errors.append(_err("pmc", e))
+    try:
+        if pmcid not in _TGZ:
+            _TGZ[pmcid] = None
+            oa = http(f"https://www.ncbi.nlm.nih.gov/pmc/utils/oa/oa.fcgi?id={pmcid}", tries=2).decode()
+            m = re.search(r'href="([^"]+\.tar\.gz)"', oa)
+            if m:
+                link = m.group(1).replace("ftp://", "https://")
+                _TGZ[pmcid] = tarfile.open(fileobj=BytesIO(http(link, tries=2, timeout=240)), mode="r:gz")
+        tf = _TGZ[pmcid]
+        if tf is not None:
+            for mem in tf.getmembers():
+                nm = mem.name.rsplit("/", 1)[-1]
+                if mem.isfile() and IMG_EXT.sub("", nm) == stem and IMG_EXT.search(nm):
+                    return _open(tf.extractfile(mem).read()), f"oa-package:{pmcid}/{nm}"
+            errors.append("tgz:no-member")
+        else:
+            errors.append("tgz:no-link")
+    except Exception as e:
+        errors.append(_err("tgz", e))
+    print("  image fail", pmcid, base, " ".join(errors))
     return None, None
 
 
@@ -235,23 +291,19 @@ def candidates(only):
                     pool.append((sc, meta, f))
             time.sleep(0.3)
         pool.sort(key=lambda x: -x[0])
-        chosen, seen = [], set()
+        order, seen = [], set()
         for item in pool:
             if item[1]["pmcid"] not in seen:
-                chosen.append(item)
+                order.append(item)
                 seen.add(item[1]["pmcid"])
-            if len(chosen) == 4:
+        order += [item for item in pool if item not in order]
+        cands, k, tried = [], 0, 0
+        for sc, meta, f in order:
+            if k >= 4 or tried >= 10:
                 break
-        for item in pool:
-            if len(chosen) >= 4:
-                break
-            if item not in chosen:
-                chosen.append(item)
-        cands, k = [], 0
-        for sc, meta, f in chosen:
+            tried += 1
             im, url = fig_image(meta["pmcid"], f["href"])
             if im is None:
-                print("  image fail", meta["pmcid"], f["href"])
                 continue
             k += 1
             save_thumb(im, f"{outdir}/{k}.jpg")
@@ -259,8 +311,8 @@ def candidates(only):
                           "caption": f["caption"], "href": f["href"], "img_url": url,
                           "orig_size": [im.width, im.height],
                           "crossref": crossref(meta["doi"]) if meta.get("doi") else {}})
-        if len(cands) < 4:
-            cands += commons(d, k, outdir, 5 - len(cands))
+        if len(cands) < 3:
+            cands += commons(d, k, outdir, 3 - len(cands))
         with open(f"{outdir}/meta.json", "w", encoding="utf-8") as fh:
             json.dump({"id": d["id"], "name": d["name"], "candidates": cands}, fh, ensure_ascii=False, indent=1)
         print(f"  saved {len(cands)} candidates")
@@ -313,7 +365,6 @@ def articles(only):
                     continue
                 im, img_url = fig_image(pmcid, f["href"])
                 if im is None:
-                    print("  image fail", pmcid, f["href"])
                     continue
                 k += 1
                 save_thumb(im, f"{outdir}/a{k}.jpg")
@@ -333,13 +384,15 @@ def final():
     os.makedirs("assets/img/micro", exist_ok=True)
     for s in sel:
         im = None
-        for url in [s["img_url"]] + s.get("fallback_urls", []):
-            try:
-                im = Image.open(BytesIO(http(url)))
-                im.load()
-                break
-            except Exception as e:
-                print("  fail", s["id"], url, e)
+        if s.get("pmcid"):
+            im, _ = fig_image(s["pmcid"], s["href"])
+        else:
+            for url in [s["img_url"]] + s.get("fallback_urls", []):
+                try:
+                    im = _open(http(url))
+                    break
+                except Exception as e:
+                    print("  fail", s["id"], url, e)
         if im is None:
             continue
         im = im.convert("RGB")
