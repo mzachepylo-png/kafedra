@@ -1,0 +1,102 @@
+{
+ "id": "fhb",
+ "candidates": [
+  {
+   "k": "q1",
+   "source": "epmc",
+   "score": 10,
+   "pmcid": "PMC13188882",
+   "doi": "10.1128/aem.02342-25",
+   "title": "The evolution of azole resistance through a reduced spore dormancy pathway associated with loss of SUMOylation function in &lt;i&gt;Fusarium graminearum&lt;/i&gt;.",
+   "authors": [
+    {
+     "last": "Wog",
+     "initials": "K",
+     "first": "Kelsey",
+     "full": "Wog K",
+     "collective": null
+    },
+    {
+     "last": "Sumanarathne",
+     "initials": "AS",
+     "first": "Aruni S",
+     "full": "Sumanarathne AS",
+     "collective": null
+    },
+    {
+     "last": "Gerstein",
+     "initials": "AC",
+     "first": "Aleeza C",
+     "full": "Gerstein AC",
+     "collective": null
+    },
+    {
+     "last": "Bakker",
+     "initials": "MG",
+     "first": "Matthew G",
+     "full": "Bakker MG",
+     "collective": null
+    }
+   ],
+   "journal": "Applied and environmental microbiology",
+   "journal_iso": "Appl Environ Microbiol",
+   "volume": "92",
+   "issue": "5",
+   "year": 2026,
+   "pages": "e0234225",
+   "license": "cc by",
+   "first_pub": "2026-04-17",
+   "fig_label": "Fig 3",
+   "caption": "Evolved strain phenotypes in the absence of drug. (A) Colony growth area for evolved strains grown on azole-free V8 agar after 72 h, started from a mycelium plug. (B) A typical diseased wheat head from the experiment, showing four symptomatic spikelets (arrows). (C) The area under the disease progress curve (AUDPC), based on counts of symptomatic spikelets at days 4, 7, and 10 post-inoculation. The mean ± SE is shown.",
+   "href": "aem.02342-25.f003.jpg",
+   "img_url": "https://cdn.ncbi.nlm.nih.gov/pmc/blobs/6b74/13188882/3fd555b10259/aem.02342-25.f003.jpg",
+   "orig_size": [
+    769,
+    669
+   ],
+   "crossref": {
+    "title": "The evolution of azole resistance through a reduced spore dormancy pathway associated with loss of SUMOylation function in\n                    <i>Fusarium graminearum</i>",
+    "container": "Applied and Environmental Microbiology",
+    "volume": "92",
+    "issue": "5",
+    "page": null,
+    "article_number": "e02342-25",
+    "authors": [
+     {
+      "given": "Kelsey",
+      "family": "Wog",
+      "name": null
+     },
+     {
+      "given": "Aruni S.",
+      "family": "Sumanarathne",
+      "name": null
+     },
+     {
+      "given": "Aleeza C.",
+      "family": "Gerstein",
+      "name": null
+     },
+     {
+      "given": "Matthew G.",
+      "family": "Bakker",
+      "name": null
+     }
+    ],
+    "issued": [
+     2026,
+     5,
+     20
+    ],
+    "published_online": [
+     null
+    ],
+    "published_print": [
+     2026,
+     5,
+     20
+    ]
+   }
+  }
+ ]
+}

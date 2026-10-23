@@ -1,0 +1,479 @@
+{
+ "id": "cercospora",
+ "candidates": [
+  {
+   "k": "q1",
+   "source": "epmc",
+   "score": 11,
+   "pmcid": "PMC5031787",
+   "doi": "10.3389/fpls.2016.01377",
+   "title": "Non-invasive Presymptomatic Detection of <i>Cercospora beticola</i> Infection and Identification of Early Metabolic Responses in Sugar Beet.",
+   "authors": [
+    {
+     "last": "Arens",
+     "initials": "N",
+     "first": "Nadja",
+     "full": "Arens N",
+     "collective": null
+    },
+    {
+     "last": "Backhaus",
+     "initials": "A",
+     "first": "Andreas",
+     "full": "Backhaus A",
+     "collective": null
+    },
+    {
+     "last": "Döll",
+     "initials": "S",
+     "first": "Stefanie",
+     "full": "Döll S",
+     "collective": null
+    },
+    {
+     "last": "Fischer",
+     "initials": "S",
+     "first": "Sandra",
+     "full": "Fischer S",
+     "collective": null
+    },
+    {
+     "last": "Seiffert",
+     "initials": "U",
+     "first": "Udo",
+     "full": "Seiffert U",
+     "collective": null
+    },
+    {
+     "last": "Mock",
+     "initials": "HP",
+     "first": "Hans-Peter",
+     "full": "Mock HP",
+     "collective": null
+    }
+   ],
+   "journal": "Frontiers in plant science",
+   "journal_iso": "Front Plant Sci",
+   "volume": "7",
+   "issue": null,
+   "year": 2016,
+   "pages": "1377",
+   "license": "cc by",
+   "first_pub": "2016-09-22",
+   "fig_label": "FIGURE 6",
+   "caption": "Distinction between cultivars obtained by hyperspectral imaging of leaves sampled at a presymptomatic stage (4 dpi) of a Cercospora leaf spot disease. Comparison of the normalized relative reflectance spectra between non-infected and infected plants, the profiles differ only marginally from one another (A,C,E). The mapping of the spectral information onto one dimension resulting from a multi-model LDA depicts the distribution of pixels belonging to “non-infected” or “infected”: the less the extent of overlap, the more well-separated are the groups (B,D,F).",
+   "href": "fpls-07-01377-g006.jpg",
+   "img_url": "https://cdn.ncbi.nlm.nih.gov/pmc/blobs/488e/5031787/fed34966b6a7/fpls-07-01377-g006.jpg",
+   "orig_size": [
+    708,
+    730
+   ],
+   "crossref": {
+    "title": "Non-invasive Presymptomatic Detection of Cercospora beticola Infection and Identification of Early Metabolic Responses in Sugar Beet",
+    "container": "Frontiers in Plant Science",
+    "volume": "07",
+    "issue": null,
+    "page": null,
+    "article_number": null,
+    "authors": [
+     {
+      "given": "Nadja",
+      "family": "Arens",
+      "name": null
+     },
+     {
+      "given": "Andreas",
+      "family": "Backhaus",
+      "name": null
+     },
+     {
+      "given": "Stefanie",
+      "family": "Döll",
+      "name": null
+     },
+     {
+      "given": "Sandra",
+      "family": "Fischer",
+      "name": null
+     },
+     {
+      "given": "Udo",
+      "family": "Seiffert",
+      "name": null
+     },
+     {
+      "given": "Hans-Peter",
+      "family": "Mock",
+      "name": null
+     }
+    ],
+    "issued": [
+     2016,
+     9,
+     22
+    ],
+    "published_online": [
+     2016,
+     9,
+     22
+    ],
+    "published_print": [
+     null
+    ]
+   }
+  },
+  {
+   "k": "q2",
+   "source": "epmc",
+   "score": 11,
+   "pmcid": "PMC6858659",
+   "doi": "10.1186/s13007-019-0521-x",
+   "title": "Sensory assessment of <i>Cercospora beticola</i> sporulation for phenotyping the partial disease resistance of sugar beet genotypes.",
+   "authors": [
+    {
+     "last": "Oerke",
+     "initials": "EC",
+     "first": "Erich-Christian",
+     "full": "Oerke EC",
+     "collective": null
+    },
+    {
+     "last": "Leucker",
+     "initials": "M",
+     "first": "Marlene",
+     "full": "Leucker M",
+     "collective": null
+    },
+    {
+     "last": "Steiner",
+     "initials": "U",
+     "first": "Ulrike",
+     "full": "Steiner U",
+     "collective": null
+    }
+   ],
+   "journal": "Plant methods",
+   "journal_iso": "Plant Methods",
+   "volume": "15",
+   "issue": null,
+   "year": 2019,
+   "pages": "133",
+   "license": "cc by",
+   "first_pub": "2019-11-16",
+   "fig_label": "Fig. 6",
+   "caption": "Sporulation of Cercospora beticola on sugar beet leaves as quantified by hyperspectral imaging. a RGB images of Cercospora leaf spot (CLS) lesions on five sugar beet genotypes differing in CLS resistance before (19 days post inoculation; dpi) and with (21 dpi) sporulation induced by incubation under 100% relative humidity (RH). b Spectral signatures of healthy control tissue and CLS lesions (n ≥ 10)",
+   "href": "13007_2019_521_Fig6_HTML.jpg",
+   "img_url": "https://cdn.ncbi.nlm.nih.gov/pmc/blobs/3a35/6858659/9921623249ed/13007_2019_521_Fig6_HTML.jpg",
+   "orig_size": [
+    794,
+    636
+   ],
+   "crossref": {
+    "title": "Sensory assessment of Cercospora beticola sporulation for phenotyping the partial disease resistance of sugar beet genotypes",
+    "container": "Plant Methods",
+    "volume": "15",
+    "issue": "1",
+    "page": null,
+    "article_number": "133",
+    "authors": [
+     {
+      "given": "Erich-Christian",
+      "family": "Oerke",
+      "name": null
+     },
+     {
+      "given": "Marlene",
+      "family": "Leucker",
+      "name": null
+     },
+     {
+      "given": "Ulrike",
+      "family": "Steiner",
+      "name": null
+     }
+    ],
+    "issued": [
+     2019,
+     11,
+     16
+    ],
+    "published_online": [
+     2019,
+     11,
+     16
+    ],
+    "published_print": [
+     2019,
+     12
+    ]
+   }
+  },
+  {
+   "k": "q3",
+   "source": "epmc",
+   "score": 10,
+   "pmcid": "PMC7662947",
+   "doi": "10.3390/ijms21218070",
+   "title": "The RsRlpA Effector Is a Protease Inhibitor Promoting <i>Rhizoctonia solani</i> Virulence through Suppression of the Hypersensitive Response.",
+   "authors": [
+    {
+     "last": "Charova",
+     "initials": "SN",
+     "first": "Spyridoula N",
+     "full": "Charova SN",
+     "collective": null
+    },
+    {
+     "last": "Dölfors",
+     "initials": "F",
+     "first": "Fredrik",
+     "full": "Dölfors F",
+     "collective": null
+    },
+    {
+     "last": "Holmquist",
+     "initials": "L",
+     "first": "Louise",
+     "full": "Holmquist L",
+     "collective": null
+    },
+    {
+     "last": "Moschou",
+     "initials": "PN",
+     "first": "Panagiotis N",
+     "full": "Moschou PN",
+     "collective": null
+    },
+    {
+     "last": "Dixelius",
+     "initials": "C",
+     "first": "Christina",
+     "full": "Dixelius C",
+     "collective": null
+    },
+    {
+     "last": "Tzelepis",
+     "initials": "G",
+     "first": "Georgios",
+     "full": "Tzelepis G",
+     "collective": null
+    }
+   ],
+   "journal": "International journal of molecular sciences",
+   "journal_iso": "Int J Mol Sci",
+   "volume": "21",
+   "issue": "21",
+   "year": 2020,
+   "pages": "E8070",
+   "license": "cc by",
+   "first_pub": "2020-10-29",
+   "fig_label": "Figure 2",
+   "caption": "Expression of RsRlpA in Arabidopsis thaliana promotes fungal infection. (a) Symptoms of A. thaliana leaves from wild type (Col-0) and overexpression RsRplA lines after infection with Botrytis cinerea conidia. Images taken 3 dpi. (b) Lesion area on A. thaliana leaves infected with B. cinerea 3 dpi. Different letters (a, b) indicate significant differences according to Tukey’s test (p < 0.05). Error bars represent SD of four biological replicates, containing four infected leaves from four plants.",
+   "href": "ijms-21-08070-g002.jpg",
+   "img_url": "https://cdn.ncbi.nlm.nih.gov/pmc/blobs/e42b/7662947/8173365878f1/ijms-21-08070-g002.jpg",
+   "orig_size": [
+    742,
+    683
+   ],
+   "crossref": {
+    "title": "The RsRlpA Effector Is a Protease Inhibitor Promoting Rhizoctonia solani Virulence through Suppression of the Hypersensitive Response",
+    "container": "International Journal of Molecular Sciences",
+    "volume": "21",
+    "issue": "21",
+    "page": "8070",
+    "article_number": null,
+    "authors": [
+     {
+      "given": "Spyridoula N.",
+      "family": "Charova",
+      "name": null
+     },
+     {
+      "given": "Fredrik",
+      "family": "Dölfors",
+      "name": null
+     },
+     {
+      "given": "Louise",
+      "family": "Holmquist",
+      "name": null
+     },
+     {
+      "given": "Panagiotis N.",
+      "family": "Moschou",
+      "name": null
+     },
+     {
+      "given": "Christina",
+      "family": "Dixelius",
+      "name": null
+     },
+     {
+      "given": "Georgios",
+      "family": "Tzelepis",
+      "name": null
+     }
+    ],
+    "issued": [
+     2020,
+     10,
+     29
+    ],
+    "published_online": [
+     2020,
+     10,
+     29
+    ],
+    "published_print": [
+     null
+    ]
+   }
+  },
+  {
+   "k": "q4",
+   "source": "epmc",
+   "score": 10,
+   "pmcid": "PMC4585413",
+   "doi": "10.1093/jxb/erv109",
+   "title": "Magnetic resonance imaging of sugar beet taproots in soil reveals growth reduction and morphological changes during foliar Cercospora beticola infestation.",
+   "authors": [
+    {
+     "last": "Schmittgen",
+     "initials": "S",
+     "first": "Simone",
+     "full": "Schmittgen S",
+     "collective": null
+    },
+    {
+     "last": "Metzner",
+     "initials": "R",
+     "first": "Ralf",
+     "full": "Metzner R",
+     "collective": null
+    },
+    {
+     "last": "Van Dusschoten",
+     "initials": "D",
+     "first": "Dagmar",
+     "full": "Van Dusschoten D",
+     "collective": null
+    },
+    {
+     "last": "Jansen",
+     "initials": "M",
+     "first": "Marcus",
+     "full": "Jansen M",
+     "collective": null
+    },
+    {
+     "last": "Fiorani",
+     "initials": "F",
+     "first": "Fabio",
+     "full": "Fiorani F",
+     "collective": null
+    },
+    {
+     "last": "Jahnke",
+     "initials": "S",
+     "first": "Siegfried",
+     "full": "Jahnke S",
+     "collective": null
+    },
+    {
+     "last": "Rascher",
+     "initials": "U",
+     "first": "Uwe",
+     "full": "Rascher U",
+     "collective": null
+    },
+    {
+     "last": "Schurr",
+     "initials": "U",
+     "first": "Ulrich",
+     "full": "Schurr U",
+     "collective": null
+    }
+   ],
+   "journal": "Journal of experimental botany",
+   "journal_iso": "J Exp Bot",
+   "volume": "66",
+   "issue": "18",
+   "year": 2015,
+   "pages": "5543-5553",
+   "license": "cc by",
+   "first_pub": "2015-04-01",
+   "fig_label": "Fig. 2.",
+   "caption": "Shoot and root development of the HS and LS sugar beet plants. (A) Representative, visually scored leaf samples illustrating different levels of disease severity (% infected leaf area per leaf). Due to tissue sampling, two leaves (with 3% and 30% disease severity) showed punched holes. (B) Disease severity progression (mean ±SE) with increasing average number of infected leaves per plant (ILP a), 1–16 leaves for LS and 7–20 leaves for HS from 14 to 89 dpi. (C) Leaf area development during –28 to 89 dpi; asterisks indicate statistically significant differences between the inoculated (+ C.b.) and non-inoculated (– C.b.) treatment of the HS and LS genotype at 89 dpi analysed by a t -test, P <0.05. (D) Taproot volume measured non-invasively with MRI; asterisks indicate statistically significant differences between the treatments of the HS and LS plants analysed at 90 dpi with one-way ANOVA, P <0.01. The + C.b. and – C.b. treatments of each genotype did not differ significantly (P =0.159 between the treatments of LS and P =0.165 of HS). (E) Taproot fresh weight after harvest at 90 dpi. Comparing the HS and LS genotypes, asterisks indicate statistically significant differences between the + C.b. plants (P <0.001) and the – C.b. plants of the HS and LS genotype (P <0.01) analysed by a t -test. (C, D, E) The arithmetic mean of each plant was calculated during –14 dpi to 90 dpi (mean ±SE; n =5 per treatment). The two dates of inoculation with C. beticola are indicated by grey arrows.",
+   "href": "exbotj_erv109_f0002.jpg",
+   "img_url": "https://cdn.ncbi.nlm.nih.gov/pmc/blobs/6491/4585413/90c6f3749e3a/exbotj_erv109_f0002.jpg",
+   "orig_size": [
+    750,
+    667
+   ],
+   "crossref": {
+    "title": "Magnetic resonance imaging of sugar beet taproots in soil reveals growth reduction and morphological changes during foliar<i>Cercospora beticola</i>infestation",
+    "container": "Journal of Experimental Botany",
+    "volume": "66",
+    "issue": "18",
+    "page": "5543-5553",
+    "article_number": null,
+    "authors": [
+     {
+      "given": "Simone",
+      "family": "Schmittgen",
+      "name": null
+     },
+     {
+      "given": "Ralf",
+      "family": "Metzner",
+      "name": null
+     },
+     {
+      "given": "Dagmar",
+      "family": "Van Dusschoten",
+      "name": null
+     },
+     {
+      "given": "Marcus",
+      "family": "Jansen",
+      "name": null
+     },
+     {
+      "given": "Fabio",
+      "family": "Fiorani",
+      "name": null
+     },
+     {
+      "given": "Siegfried",
+      "family": "Jahnke",
+      "name": null
+     },
+     {
+      "given": "Uwe",
+      "family": "Rascher",
+      "name": null
+     },
+     {
+      "given": "Ulrich",
+      "family": "Schurr",
+      "name": null
+     }
+    ],
+    "issued": [
+     2015,
+     4,
+     1
+    ],
+    "published_online": [
+     2015,
+     4,
+     1
+    ],
+    "published_print": [
+     2015,
+     9
+    ]
+   }
+  }
+ ]
+}

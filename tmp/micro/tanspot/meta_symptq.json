@@ -1,0 +1,395 @@
+{
+ "id": "tanspot",
+ "candidates": [
+  {
+   "k": "q1",
+   "source": "epmc",
+   "score": 10,
+   "pmcid": "PMC10915091",
+   "doi": "10.3389/fmicb.2024.1287721",
+   "title": "Unraveling the dynamics of wheat leaf blight complex: isolation, characterization, and insights into pathogen population under Indian conditions.",
+   "authors": [
+    {
+     "last": "Aditya",
+     "initials": "S",
+     "first": "Sanghmitra",
+     "full": "Aditya S",
+     "collective": null
+    },
+    {
+     "last": "Aggarwal",
+     "initials": "R",
+     "first": "Rashmi",
+     "full": "Aggarwal R",
+     "collective": null
+    },
+    {
+     "last": "Bashyal",
+     "initials": "BM",
+     "first": "Bishnu Maya",
+     "full": "Bashyal BM",
+     "collective": null
+    },
+    {
+     "last": "Gurjar",
+     "initials": "MS",
+     "first": "Malkhan Singh",
+     "full": "Gurjar MS",
+     "collective": null
+    },
+    {
+     "last": "Saharan",
+     "initials": "MS",
+     "first": "Mahender Singh",
+     "full": "Saharan MS",
+     "collective": null
+    },
+    {
+     "last": "Aggarwal",
+     "initials": "S",
+     "first": "Shweta",
+     "full": "Aggarwal S",
+     "collective": null
+    }
+   ],
+   "journal": "Frontiers in microbiology",
+   "journal_iso": "Front Microbiol",
+   "volume": "15",
+   "issue": null,
+   "year": 2024,
+   "pages": "1287721",
+   "license": "cc by",
+   "first_pub": "2024-02-21",
+   "fig_label": "Figure 5",
+   "caption": "Varietal difference between two wheat varieties, HD2733 (moderately resistant) and Sonalika (susceptible), on the basis of (A) disease severity (in percentage), and (B) lesion size (in cm 2) produced by 32 leaf blight/spot blotch isolates taken for the study.",
+   "href": "fmicb-15-1287721-g005.jpg",
+   "img_url": "https://www.frontiersin.org/files/Articles/1287721/fmicb-15-1287721-HTML/image_m/fmicb-15-1287721-g005.jpg",
+   "orig_size": [
+    847,
+    543
+   ],
+   "crossref": {
+    "title": "Unraveling the dynamics of wheat leaf blight complex: isolation, characterization, and insights into pathogen population under Indian conditions",
+    "container": "Frontiers in Microbiology",
+    "volume": "15",
+    "issue": null,
+    "page": null,
+    "article_number": "1287721",
+    "authors": [
+     {
+      "given": "Sanghmitra",
+      "family": "Aditya",
+      "name": null
+     },
+     {
+      "given": "Rashmi",
+      "family": "Aggarwal",
+      "name": null
+     },
+     {
+      "given": "Bishnu Maya",
+      "family": "Bashyal",
+      "name": null
+     },
+     {
+      "given": "Malkhan Singh",
+      "family": "Gurjar",
+      "name": null
+     },
+     {
+      "given": "Mahender Singh",
+      "family": "Saharan",
+      "name": null
+     },
+     {
+      "given": "Shweta",
+      "family": "Aggarwal",
+      "name": null
+     }
+    ],
+    "issued": [
+     2024,
+     2,
+     21
+    ],
+    "published_online": [
+     2024,
+     2,
+     21
+    ],
+    "published_print": [
+     null
+    ]
+   }
+  },
+  {
+   "k": "q2",
+   "source": "epmc",
+   "score": 8,
+   "pmcid": "PMC11950905",
+   "doi": "10.1111/plb.13746",
+   "title": "Omic characterisation of multi-component defences against the necrotrophic pathogen Pyrenophora tritici-repentis in wheat.",
+   "authors": [
+    {
+     "last": "Ferreira",
+     "initials": "LC",
+     "first": "L C",
+     "full": "Ferreira LC",
+     "collective": null
+    },
+    {
+     "last": "Santana",
+     "initials": "FM",
+     "first": "F M",
+     "full": "Santana FM",
+     "collective": null
+    },
+    {
+     "last": "Scagliusi",
+     "initials": "SMM",
+     "first": "S M M",
+     "full": "Scagliusi SMM",
+     "collective": null
+    },
+    {
+     "last": "Beckmann",
+     "initials": "M",
+     "first": "M",
+     "full": "Beckmann M",
+     "collective": null
+    },
+    {
+     "last": "Mur",
+     "initials": "LAJ",
+     "first": "L A J",
+     "full": "Mur LAJ",
+     "collective": null
+    }
+   ],
+   "journal": "Plant biology (Stuttgart, Germany)",
+   "journal_iso": "Plant Biol (Stuttg)",
+   "volume": "27",
+   "issue": "3",
+   "year": 2025,
+   "pages": "347-361",
+   "license": "cc by",
+   "first_pub": "2025-02-07",
+   "fig_label": "Fig. 1",
+   "caption": "Phenotypic characterisation of MAGIC population founder lines regarding their reactions to Tan Spot (TS) disease. A: Mean scores (± SD) from seedlings and adult plants challenged with Pyrenophora tririci‐repentis strains BR13, BR29 and BR154. * P = 0.0039. B: Wheat leaves showing characteristic TS symptoms at 336 h post inoculation (hpi). Scale bar = 1 cm.",
+   "href": "PLB-27-347-g005.jpg",
+   "img_url": "https://cdn.ncbi.nlm.nih.gov/pmc/blobs/6eee/11950905/8460a7b9f47c/PLB-27-347-g005.jpg",
+   "orig_size": [
+    622,
+    1221
+   ],
+   "crossref": {
+    "title": "Omic characterisation of multi‐component defences against the necrotrophic pathogen <i>Pyrenophora tritici‐repentis</i> in wheat",
+    "container": "Plant Biology",
+    "volume": "27",
+    "issue": "3",
+    "page": "347-361",
+    "article_number": null,
+    "authors": [
+     {
+      "given": "L. C.",
+      "family": "Ferreira",
+      "name": null
+     },
+     {
+      "given": "F. M.",
+      "family": "Santana",
+      "name": null
+     },
+     {
+      "given": "S. M. M.",
+      "family": "Scagliusi",
+      "name": null
+     },
+     {
+      "given": "M.",
+      "family": "Beckmann",
+      "name": null
+     },
+     {
+      "given": "L. A. J.",
+      "family": "Mur",
+      "name": null
+     }
+    ],
+    "issued": [
+     2025,
+     2,
+     7
+    ],
+    "published_online": [
+     2025,
+     2,
+     7
+    ],
+    "published_print": [
+     2025,
+     4
+    ]
+   }
+  },
+  {
+   "k": "q3",
+   "source": "epmc",
+   "score": 8,
+   "pmcid": "PMC10433925",
+   "doi": "10.1093/jxb/erad183",
+   "title": "Spatiotemporal patterns of wheat response to Pyrenophora tritici-repentis in asymptomatic regions revealed by transcriptomic and X-ray fluorescence microscopy analyses.",
+   "authors": [
+    {
+     "last": "Moolhuijzen",
+     "initials": "P",
+     "first": "Paula",
+     "full": "Moolhuijzen P",
+     "collective": null
+    },
+    {
+     "last": "Sanglard",
+     "initials": "LMVP",
+     "first": "Lilian M V P",
+     "full": "Sanglard LMVP",
+     "collective": null
+    },
+    {
+     "last": "Paterson",
+     "initials": "DJ",
+     "first": "David J",
+     "full": "Paterson DJ",
+     "collective": null
+    },
+    {
+     "last": "Gray",
+     "initials": "S",
+     "first": "Sean",
+     "full": "Gray S",
+     "collective": null
+    },
+    {
+     "last": "Khambatta",
+     "initials": "K",
+     "first": "Karina",
+     "full": "Khambatta K",
+     "collective": null
+    },
+    {
+     "last": "Hackett",
+     "initials": "MJ",
+     "first": "Mark J",
+     "full": "Hackett MJ",
+     "collective": null
+    },
+    {
+     "last": "Zerihun",
+     "initials": "A",
+     "first": "Ayalsew",
+     "full": "Zerihun A",
+     "collective": null
+    },
+    {
+     "last": "Gibberd",
+     "initials": "MR",
+     "first": "Mark R",
+     "full": "Gibberd MR",
+     "collective": null
+    },
+    {
+     "last": "Naim",
+     "initials": "F",
+     "first": "Fatima",
+     "full": "Naim F",
+     "collective": null
+    }
+   ],
+   "journal": "Journal of experimental botany",
+   "journal_iso": "J Exp Bot",
+   "volume": "74",
+   "issue": "15",
+   "year": 2023,
+   "pages": "4707-4720",
+   "license": "cc by",
+   "first_pub": "2023-08-01",
+   "fig_label": "Fig. 4.",
+   "caption": "Disease progression after disease disruption in susceptible to very susceptible (SVS) wheat inoculated with Ptr and treated with fungicide. (A) Chlorophyll fluorescence images of dark adapted representative susceptible to very susceptible (SVS) wheat leaves showing lesion development over 14 days post-inoculation (dpi) with Ptr and treated with or without fungicide. Inoculated leaves were treated with fungicide at 2 dpi and lesion length imaged and measured at 2, 4, 7, 10, and 14 dpi. (B) Corresponding plot of lesion length measured from RGB images of leaves. The plot and the images show that the lesion continues to expand in untreated leaves beyond 10 dpi. Error bars are standard error of mean (n = 5).",
+   "href": "erad183_fig4.jpg",
+   "img_url": "https://cdn.ncbi.nlm.nih.gov/pmc/blobs/dca5/10433925/21eff83c29c1/erad183_fig4.jpg",
+   "orig_size": [
+    750,
+    481
+   ],
+   "crossref": {
+    "title": "Spatiotemporal patterns of wheat response to<i>Pyrenophora tritici-repentis</i>in asymptomatic regions revealed by transcriptomic and X-ray fluorescence microscopy analyses",
+    "container": "Journal of Experimental Botany",
+    "volume": "74",
+    "issue": "15",
+    "page": "4707-4720",
+    "article_number": null,
+    "authors": [
+     {
+      "given": "Paula",
+      "family": "Moolhuijzen",
+      "name": null
+     },
+     {
+      "given": "Lilian M V P",
+      "family": "Sanglard",
+      "name": null
+     },
+     {
+      "given": "David J",
+      "family": "Paterson",
+      "name": null
+     },
+     {
+      "given": "Sean",
+      "family": "Gray",
+      "name": null
+     },
+     {
+      "given": "Karina",
+      "family": "Khambatta",
+      "name": null
+     },
+     {
+      "given": "Mark J",
+      "family": "Hackett",
+      "name": null
+     },
+     {
+      "given": "Ayalsew",
+      "family": "Zerihun",
+      "name": null
+     },
+     {
+      "given": "Mark R",
+      "family": "Gibberd",
+      "name": null
+     },
+     {
+      "given": "Fatima",
+      "family": "Naim",
+      "name": null
+     }
+    ],
+    "issued": [
+     2023,
+     5,
+     18
+    ],
+    "published_online": [
+     2023,
+     5,
+     18
+    ],
+    "published_print": [
+     2023,
+     8,
+     17
+    ]
+   }
+  }
+ ]
+}

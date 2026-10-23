@@ -1,0 +1,283 @@
+{
+ "id": "blackleg",
+ "candidates": [
+  {
+   "k": "q1",
+   "source": "epmc",
+   "score": 10,
+   "pmcid": "PMC9405460",
+   "doi": "10.3390/antibiotics11081117",
+   "title": "Microbial Profiling of Potato-Associated Rhizosphere Bacteria under Bacteriophage Therapy.",
+   "authors": [
+    {
+     "last": "Mousa",
+     "initials": "S",
+     "first": "Samar",
+     "full": "Mousa S",
+     "collective": null
+    },
+    {
+     "last": "Magdy",
+     "initials": "M",
+     "first": "Mahmoud",
+     "full": "Magdy M",
+     "collective": null
+    },
+    {
+     "last": "Xiong",
+     "initials": "D",
+     "first": "Dongyan",
+     "full": "Xiong D",
+     "collective": null
+    },
+    {
+     "last": "Nyaruabaa",
+     "initials": "R",
+     "first": "Raphael",
+     "full": "Nyaruabaa R",
+     "collective": null
+    },
+    {
+     "last": "Rizk",
+     "initials": "SM",
+     "first": "Samah Mohamed",
+     "full": "Rizk SM",
+     "collective": null
+    },
+    {
+     "last": "Yu",
+     "initials": "J",
+     "first": "Junping",
+     "full": "Yu J",
+     "collective": null
+    },
+    {
+     "last": "Wei",
+     "initials": "H",
+     "first": "Hongping",
+     "full": "Wei H",
+     "collective": null
+    }
+   ],
+   "journal": "Antibiotics (Basel, Switzerland)",
+   "journal_iso": "Antibiotics (Basel)",
+   "volume": "11",
+   "issue": "8",
+   "year": 2022,
+   "pages": "1117",
+   "license": "cc by",
+   "first_pub": "2022-08-18",
+   "fig_label": "Figure 1",
+   "caption": "Effects of phage therapy on the incidence of potato bacterial disease in terms of healthy: infected plants for all treatments (A) and Percentage of disease symptoms after different treatments (B). Positive control or pathogen groups: inoculated with R. solanacearum (Rs), P. carotovorum (Pc), or P. atrosepticum (Pa), respectively; Single phage groups (SRs, SPc, and SPa): inoculated with R. solanacearum (Rs), P. carotovorum (Pc) or P. atrosepticum (Pa) and then treated with a single phage, respectively; Phage cocktail groups (RsPck, PcPck, and PaPck): inoculated with R. solanacearum (Rs), P. carotovorum (Pc) or P. atrosepticum (Pa) and then treated with phage cocktails, respectively. “n” is representing the number of healthy: infected plants and “%” is indicating the percentage of the disease symptoms revealed on the infected plants.",
+   "href": "antibiotics-11-01117-g001.jpg",
+   "img_url": "https://cdn.ncbi.nlm.nih.gov/pmc/blobs/4f9b/9405460/535ab6e94463/antibiotics-11-01117-g001.jpg",
+   "orig_size": [
+    751,
+    259
+   ],
+   "crossref": {
+    "title": "Microbial Profiling of Potato-Associated Rhizosphere Bacteria under Bacteriophage Therapy",
+    "container": "Antibiotics",
+    "volume": "11",
+    "issue": "8",
+    "page": "1117",
+    "article_number": null,
+    "authors": [
+     {
+      "given": "Samar",
+      "family": "Mousa",
+      "name": null
+     },
+     {
+      "given": "Mahmoud",
+      "family": "Magdy",
+      "name": null
+     },
+     {
+      "given": "Dongyan",
+      "family": "Xiong",
+      "name": null
+     },
+     {
+      "given": "Raphael",
+      "family": "Nyaruabaa",
+      "name": null
+     },
+     {
+      "given": "Samah Mohamed",
+      "family": "Rizk",
+      "name": null
+     },
+     {
+      "given": "Junping",
+      "family": "Yu",
+      "name": null
+     },
+     {
+      "given": "Hongping",
+      "family": "Wei",
+      "name": null
+     }
+    ],
+    "issued": [
+     2022,
+     8,
+     18
+    ],
+    "published_online": [
+     2022,
+     8,
+     18
+    ],
+    "published_print": [
+     null
+    ]
+   }
+  },
+  {
+   "k": "q2",
+   "source": "epmc",
+   "score": 9,
+   "pmcid": "PMC13097337",
+   "doi": "10.1111/mpp.70250",
+   "title": "Protein Language Model-Driven Optimisation of Antimicrobial Peptide Pth-Ca1 Against Pectobacterium brasiliense Using ESMFold-Predicted Structures and the ESM-3 Model.",
+   "authors": [
+    {
+     "last": "Song",
+     "initials": "L",
+     "first": "Linhui",
+     "full": "Song L",
+     "collective": null
+    },
+    {
+     "last": "Zhang",
+     "initials": "G",
+     "first": "Ge",
+     "full": "Zhang G",
+     "collective": null
+    },
+    {
+     "last": "Hua",
+     "initials": "M",
+     "first": "Mengying",
+     "full": "Hua M",
+     "collective": null
+    },
+    {
+     "last": "Yuan",
+     "initials": "J",
+     "first": "Jingna",
+     "full": "Yuan J",
+     "collective": null
+    },
+    {
+     "last": "Wu",
+     "initials": "J",
+     "first": "Jian",
+     "full": "Wu J",
+     "collective": null
+    },
+    {
+     "last": "Wang",
+     "initials": "H",
+     "first": "Huan",
+     "full": "Wang H",
+     "collective": null
+    },
+    {
+     "last": "Yan",
+     "initials": "F",
+     "first": "Fei",
+     "full": "Yan F",
+     "collective": null
+    },
+    {
+     "last": "Peng",
+     "initials": "J",
+     "first": "Jiejun",
+     "full": "Peng J",
+     "collective": null
+    }
+   ],
+   "journal": "Molecular plant pathology",
+   "journal_iso": "Mol Plant Pathol",
+   "volume": "27",
+   "issue": "3",
+   "year": 2026,
+   "pages": "e70250",
+   "license": "cc by",
+   "first_pub": "2026-03-01",
+   "fig_label": "FIGURE 4",
+   "caption": "Investigation of the inhibitory effect of Design_1867 against Pectobacterium brasiliense in Nicotiana benthamiana. (a) Toxicity study on N. benthamiana leaves injected with 2× MIC (62.5 μg/mL) of Design_1867 or water for 6 h. No significant necrotic lesions were observed in leaves injected with Design_1867. (b) P. brasiliense bacterial suspension (OD 600 = 0.1) was mixed with an equal volume of Design_1867 (62.5 μg/mL) and injected into N. benthamiana leaves for 6 h. The control side exhibited water‐soaked rot, whereas the Design_1867‐treated side showed no or only mild rot. (c) Absolute quantitative PCR detection of P. brasiliense copy numbers in control and Design_1867‐treated leaves indicated that the bacterial load in the Design_1867‐treated group was significantly lower than that in the control group (three biological replicates were included and one representative is shown, ** p < 0.01, *** p < 0.001).",
+   "href": "MPP-27-e70250-g003.jpg",
+   "img_url": "https://cdn.ncbi.nlm.nih.gov/pmc/blobs/0c63/13097337/9e17cd1be55b/MPP-27-e70250-g003.jpg",
+   "orig_size": [
+    709,
+    958
+   ],
+   "crossref": {
+    "title": "Protein Language Model‐Driven Optimisation of Antimicrobial Peptide Pth‐Ca1 Against\n                    <i>Pectobacterium brasiliense</i>\n                    Using\n                    <scp>ESMFold</scp>\n                    ‐Predicted Structures and the\n                    <scp>ESM</scp>\n                    ‐3 Model",
+    "container": "Molecular Plant Pathology",
+    "volume": "27",
+    "issue": "3",
+    "page": null,
+    "article_number": "e70250",
+    "authors": [
+     {
+      "given": "Linhui",
+      "family": "Song",
+      "name": null
+     },
+     {
+      "given": "Ge",
+      "family": "Zhang",
+      "name": null
+     },
+     {
+      "given": "Mengying",
+      "family": "Hua",
+      "name": null
+     },
+     {
+      "given": "Jingna",
+      "family": "Yuan",
+      "name": null
+     },
+     {
+      "given": "Jian",
+      "family": "Wu",
+      "name": null
+     },
+     {
+      "given": "Huan",
+      "family": "Wang",
+      "name": null
+     },
+     {
+      "given": "Fei",
+      "family": "Yan",
+      "name": null
+     },
+     {
+      "given": "Jiejun",
+      "family": "Peng",
+      "name": null
+     }
+    ],
+    "issued": [
+     2026,
+     3
+    ],
+    "published_online": [
+     2026,
+     3,
+     19
+    ],
+    "published_print": [
+     2026,
+     3
+    ]
+   }
+  }
+ ]
+}

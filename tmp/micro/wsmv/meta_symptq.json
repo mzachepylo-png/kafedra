@@ -1,0 +1,114 @@
+{
+ "id": "wsmv",
+ "candidates": [
+  {
+   "k": "q1",
+   "source": "epmc",
+   "score": 11,
+   "pmcid": "PMC11750876",
+   "doi": "10.3389/fpls.2024.1504482",
+   "title": "Synergistic interaction between wheat streak mosaic virus and Triticum mosaic virus modulates wheat transcriptome to favor disease severity.",
+   "authors": [
+    {
+     "last": "Nunna",
+     "initials": "H",
+     "first": "Haritha",
+     "full": "Nunna H",
+     "collective": null
+    },
+    {
+     "last": "Palmer",
+     "initials": "NA",
+     "first": "Nathan A",
+     "full": "Palmer NA",
+     "collective": null
+    },
+    {
+     "last": "Sarath",
+     "initials": "G",
+     "first": "Gautam",
+     "full": "Sarath G",
+     "collective": null
+    },
+    {
+     "last": "Wegulo",
+     "initials": "SN",
+     "first": "Stephen N",
+     "full": "Wegulo SN",
+     "collective": null
+    },
+    {
+     "last": "Tatineni",
+     "initials": "S",
+     "first": "Satyanarayana",
+     "full": "Tatineni S",
+     "collective": null
+    }
+   ],
+   "journal": "Frontiers in plant science",
+   "journal_iso": "Front Plant Sci",
+   "volume": "15",
+   "issue": null,
+   "year": 2024,
+   "pages": "1504482",
+   "license": "cc by",
+   "first_pub": "2025-01-08",
+   "fig_label": "Figure 1",
+   "caption": "Symptom phenotype of wheat streak mosaic virus (WSMV), Triticum mosaic virus (TriMV), and Dual infection (WSMV+TriMV) in wheat cv. Tomahawk. (A) Wheat leaves showing symptoms of TriMV, WSMV, or both at 21 dpi. (B) Wheat plants showing the stunting symptoms elicited by WSMV, TriMV, or WSMV+TriMV at 21 dpi.",
+   "href": "fpls-15-1504482-g001.jpg",
+   "img_url": "https://www.frontiersin.org/files/Articles/1504482/fpls-15-1504482-HTML/image_m/fpls-15-1504482-g001.jpg",
+   "orig_size": [
+    1894,
+    2128
+   ],
+   "crossref": {
+    "title": "Synergistic interaction between wheat streak mosaic virus and Triticum mosaic virus modulates wheat transcriptome to favor disease severity",
+    "container": "Frontiers in Plant Science",
+    "volume": "15",
+    "issue": null,
+    "page": null,
+    "article_number": "1504482",
+    "authors": [
+     {
+      "given": "Haritha",
+      "family": "Nunna",
+      "name": null
+     },
+     {
+      "given": "Nathan A.",
+      "family": "Palmer",
+      "name": null
+     },
+     {
+      "given": "Gautam",
+      "family": "Sarath",
+      "name": null
+     },
+     {
+      "given": "Stephen N.",
+      "family": "Wegulo",
+      "name": null
+     },
+     {
+      "given": "Satyanarayana",
+      "family": "Tatineni",
+      "name": null
+     }
+    ],
+    "issued": [
+     2025,
+     1,
+     8
+    ],
+    "published_online": [
+     2025,
+     1,
+     8
+    ],
+    "published_print": [
+     null
+    ]
+   }
+  }
+ ]
+}

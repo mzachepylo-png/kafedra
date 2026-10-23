@@ -1,0 +1,502 @@
+{
+ "id": "lateblight",
+ "candidates": [
+  {
+   "k": "q1",
+   "source": "epmc",
+   "score": 11,
+   "pmcid": "PMC13239315",
+   "doi": "10.1002/mbo3.70316",
+   "title": "Pyoverdine Plays Only a Minor, Strain-Specific Role in the Inhibition of Phytophthora infestans by Pseudomonas Strains.",
+   "authors": [
+    {
+     "last": "Jerjen",
+     "initials": "L",
+     "first": "Livia",
+     "full": "Jerjen L",
+     "collective": null
+    },
+    {
+     "last": "L'Haridon",
+     "initials": "F",
+     "first": "Floriane",
+     "full": "L'Haridon F",
+     "collective": null
+    },
+    {
+     "last": "Weisskopf",
+     "initials": "L",
+     "first": "Laure",
+     "full": "Weisskopf L",
+     "collective": null
+    }
+   ],
+   "journal": "MicrobiologyOpen",
+   "journal_iso": "Microbiologyopen",
+   "volume": "15",
+   "issue": "3",
+   "year": 2026,
+   "pages": "e70316",
+   "license": "cc by",
+   "first_pub": "2026-06-01",
+   "fig_label": "Figure 7",
+   "caption": "Leaf disc infection assay in the presence of Pseudomonas donghuensis R32 and Pseudomonas chlororaphis R47. Leaf discs from the Bintje cultivar were infected with Phytophthora infestans GFP zoospores and, at the same time, inoculated with different genotypes of R32 and R47. Each treatment was tested on 20 individual leaf discs. (A) Lesion formation was scored from 1 (no lesion) to 5 (full necrosis) at 4 dpi. Statistical analysis was performed with a Kruskal–Wallis test followed by Dunn's test. (B) Mycelium formation was scored from 1 (no mycelium) to 5 (extensive mycelium) at 5 dpi. The same statistical analysis as for the lesion score was performed. (C) Pictures from one representative leaf disc per treatment are shown. GFP, green fluorescent protein; WT, wild type.",
+   "href": "MBO3-15-e70316-g007.jpg",
+   "img_url": "https://cdn.ncbi.nlm.nih.gov/pmc/blobs/5bc1/13239315/73ab388ad2b5/MBO3-15-e70316-g007.jpg",
+   "orig_size": [
+    702,
+    603
+   ],
+   "crossref": {
+    "title": "Pyoverdine Plays Only a Minor, Strain‐Specific Role in the Inhibition of\n                    <i>Phytophthora infestans</i>\n                    by\n                    <i>Pseudomonas</i>\n                    Strains",
+    "container": "MicrobiologyOpen",
+    "volume": "15",
+    "issue": "3",
+    "page": null,
+    "article_number": "e70316",
+    "authors": [
+     {
+      "given": "Livia",
+      "family": "Jerjen",
+      "name": null
+     },
+     {
+      "given": "Floriane",
+      "family": "L'Haridon",
+      "name": null
+     },
+     {
+      "given": "Laure",
+      "family": "Weisskopf",
+      "name": null
+     }
+    ],
+    "issued": [
+     2026,
+     5,
+     28
+    ],
+    "published_online": [
+     2026,
+     5,
+     28
+    ],
+    "published_print": [
+     2026,
+     6
+    ]
+   }
+  },
+  {
+   "k": "q2",
+   "source": "epmc",
+   "score": 11,
+   "pmcid": "PMC12427655",
+   "doi": "10.3390/ijms26178153",
+   "title": "Deciphering the Molecular Interplay Between RXLR-Encoded &lt;i&gt;Avr&lt;/i&gt; Genes and NLRs During &lt;i&gt;Phytophthora infestans&lt;/i&gt; Infection in Potato: A Comprehensive Review.",
+   "authors": [
+    {
+     "last": "Juma",
+     "initials": "BS",
+     "first": "Bicko S",
+     "full": "Juma BS",
+     "collective": null
+    },
+    {
+     "last": "Oxholm",
+     "initials": "OA",
+     "first": "Olga A",
+     "full": "Oxholm OA",
+     "collective": null
+    },
+    {
+     "last": "Abuley",
+     "initials": "IK",
+     "first": "Isaac K",
+     "full": "Abuley IK",
+     "collective": null
+    },
+    {
+     "last": "Sørensen",
+     "initials": "CK",
+     "first": "Chris K",
+     "full": "Sørensen CK",
+     "collective": null
+    },
+    {
+     "last": "Hebelstrup",
+     "initials": "KH",
+     "first": "Kim H",
+     "full": "Hebelstrup KH",
+     "collective": null
+    }
+   ],
+   "journal": "International journal of molecular sciences",
+   "journal_iso": "Int J Mol Sci",
+   "volume": "26",
+   "issue": "17",
+   "year": 2025,
+   "pages": "8153",
+   "license": "cc by",
+   "first_pub": "2025-08-22",
+   "fig_label": "Figure 1",
+   "caption": "Typical symptoms of late blight disease (Phytophthora infestans). (A 1, A 2): White sporulation and lesion seen on the underside of the leaf. (B 1, B 2): Brown lesions on stem and petioles attacked by P. infestans. (C): An oily necrotic spot, surrounded by pale green on the upper side of the leaf. (D): Infected tuber with soft necrotic edges.",
+   "href": "ijms-26-08153-g001.jpg",
+   "img_url": "https://cdn.ncbi.nlm.nih.gov/pmc/blobs/b992/12427655/44e02429aa35/ijms-26-08153-g001.jpg",
+   "orig_size": [
+    727,
+    570
+   ],
+   "crossref": {
+    "title": "Deciphering the Molecular Interplay Between RXLR-Encoded Avr Genes and NLRs During Phytophthora infestans Infection in Potato: A Comprehensive Review",
+    "container": "International Journal of Molecular Sciences",
+    "volume": "26",
+    "issue": "17",
+    "page": "8153",
+    "article_number": null,
+    "authors": [
+     {
+      "given": "Bicko S.",
+      "family": "Juma",
+      "name": null
+     },
+     {
+      "given": "Olga A.",
+      "family": "Oxholm",
+      "name": null
+     },
+     {
+      "given": "Isaac K.",
+      "family": "Abuley",
+      "name": null
+     },
+     {
+      "given": "Chris K.",
+      "family": "Sørensen",
+      "name": null
+     },
+     {
+      "given": "Kim H.",
+      "family": "Hebelstrup",
+      "name": null
+     }
+    ],
+    "issued": [
+     2025,
+     8,
+     22
+    ],
+    "published_online": [
+     2025,
+     8,
+     22
+    ],
+    "published_print": [
+     null
+    ]
+   }
+  },
+  {
+   "k": "q3",
+   "source": "epmc",
+   "score": 9,
+   "pmcid": "PMC11588465",
+   "doi": "10.3389/fpls.2024.1481165",
+   "title": "Pectinesterase activity and gene expression correlate with pathogenesis of <i>Phytophthora infestans</i>.",
+   "authors": [
+    {
+     "last": "Deng",
+     "initials": "L",
+     "first": "Linmei",
+     "full": "Deng L",
+     "collective": null
+    },
+    {
+     "last": "Huang",
+     "initials": "X",
+     "first": "Xun",
+     "full": "Huang X",
+     "collective": null
+    },
+    {
+     "last": "Dao",
+     "initials": "J",
+     "first": "Jian",
+     "full": "Dao J",
+     "collective": null
+    },
+    {
+     "last": "Xu",
+     "initials": "Y",
+     "first": "Yajin",
+     "full": "Xu Y",
+     "collective": null
+    },
+    {
+     "last": "Zhou",
+     "initials": "K",
+     "first": "Kunyan",
+     "full": "Zhou K",
+     "collective": null
+    },
+    {
+     "last": "Wang",
+     "initials": "W",
+     "first": "Wenping",
+     "full": "Wang W",
+     "collective": null
+    },
+    {
+     "last": "Liu",
+     "initials": "C",
+     "first": "Chunjiang",
+     "full": "Liu C",
+     "collective": null
+    },
+    {
+     "last": "Chen",
+     "initials": "M",
+     "first": "Meng",
+     "full": "Chen M",
+     "collective": null
+    },
+    {
+     "last": "Zhang",
+     "initials": "S",
+     "first": "Shunhong",
+     "full": "Zhang S",
+     "collective": null
+    },
+    {
+     "last": "Zhang",
+     "initials": "Y",
+     "first": "Yue",
+     "full": "Zhang Y",
+     "collective": null
+    },
+    {
+     "last": "Hao",
+     "initials": "J",
+     "first": "Jianjun",
+     "full": "Hao J",
+     "collective": null
+    },
+    {
+     "last": "Liu",
+     "initials": "X",
+     "first": "Xia",
+     "full": "Liu X",
+     "collective": null
+    },
+    {
+     "last": "Yang",
+     "initials": "Y",
+     "first": "Yanli",
+     "full": "Yang Y",
+     "collective": null
+    }
+   ],
+   "journal": "Frontiers in plant science",
+   "journal_iso": "Front Plant Sci",
+   "volume": "15",
+   "issue": null,
+   "year": 2024,
+   "pages": "1481165",
+   "license": "cc by",
+   "first_pub": "2024-11-12",
+   "fig_label": "Figure 2",
+   "caption": "Effects of pectinesterase (PE) treatment and Phytophthora infestans DL04 and HJG02 inoculation on potato leaves and tubers. (A) Visualization of potato leaf and tuber inoculation; (B) Lesion area of infected potato leaves and tubers. B: sporangial suspension of P. infestans at 8,000/mL, Y: leaf, S: tuber. Different letters on the bars indicate significant differences between treatments (p < 0.05).",
+   "href": "fpls-15-1481165-g002.jpg",
+   "img_url": "https://www.frontiersin.org/files/Articles/1481165/fpls-15-1481165-HTML/image_m/fpls-15-1481165-g002.jpg",
+   "orig_size": [
+    3284,
+    1856
+   ],
+   "crossref": {
+    "title": "Pectinesterase activity and gene expression correlate with pathogenesis of Phytophthora infestans",
+    "container": "Frontiers in Plant Science",
+    "volume": "15",
+    "issue": null,
+    "page": null,
+    "article_number": "1481165",
+    "authors": [
+     {
+      "given": "Linmei",
+      "family": "Deng",
+      "name": null
+     },
+     {
+      "given": "Xun",
+      "family": "Huang",
+      "name": null
+     },
+     {
+      "given": "Jian",
+      "family": "Dao",
+      "name": null
+     },
+     {
+      "given": "Yajin",
+      "family": "Xu",
+      "name": null
+     },
+     {
+      "given": "Kunyan",
+      "family": "Zhou",
+      "name": null
+     },
+     {
+      "given": "Wenping",
+      "family": "Wang",
+      "name": null
+     },
+     {
+      "given": "Chunjiang",
+      "family": "Liu",
+      "name": null
+     },
+     {
+      "given": "Meng",
+      "family": "Chen",
+      "name": null
+     },
+     {
+      "given": "Shunhong",
+      "family": "Zhang",
+      "name": null
+     },
+     {
+      "given": "Yue",
+      "family": "Zhang",
+      "name": null
+     },
+     {
+      "given": "Jianjun",
+      "family": "Hao",
+      "name": null
+     },
+     {
+      "given": "Xia",
+      "family": "Liu",
+      "name": null
+     },
+     {
+      "given": "Yanli",
+      "family": "Yang",
+      "name": null
+     }
+    ],
+    "issued": [
+     2024,
+     11,
+     12
+    ],
+    "published_online": [
+     2024,
+     11,
+     12
+    ],
+    "published_print": [
+     null
+    ]
+   }
+  },
+  {
+   "k": "q4",
+   "source": "epmc",
+   "score": 6,
+   "pmcid": "PMC13125175",
+   "doi": "10.3389/fpls.2026.1794332",
+   "title": "Exploration of anti-oomycete components from wild plants against &lt;i&gt;Phytophthora infestans&lt;/i&gt;.",
+   "authors": [
+    {
+     "last": "Chang",
+     "initials": "S",
+     "first": "Saili",
+     "full": "Chang S",
+     "collective": null
+    },
+    {
+     "last": "Bai",
+     "initials": "H",
+     "first": "He",
+     "full": "Bai H",
+     "collective": null
+    },
+    {
+     "last": "Qiao",
+     "initials": "A",
+     "first": "Anjin",
+     "full": "Qiao A",
+     "collective": null
+    },
+    {
+     "last": "Liu",
+     "initials": "L",
+     "first": "Liangyan",
+     "full": "Liu L",
+     "collective": null
+    }
+   ],
+   "journal": "Frontiers in plant science",
+   "journal_iso": "Front Plant Sci",
+   "volume": "17",
+   "issue": null,
+   "year": 2026,
+   "pages": "1794332",
+   "license": "cc by",
+   "first_pub": "2026-04-15",
+   "fig_label": "Figure 7",
+   "caption": "PE of A. lavandulaefolia and AQ of C. repens reduce the pathogenicity of T30-4. (A) Effect of different concentrations of PE from A. lavandulaefolia on potato tuber late blight. (B) Effect of different concentrations of AQ from C. repens on potato tuber late blight. (C) Lesion ratio of potato tubers infected with T30–4 after treatment with different concentrations of PE from A. lavandulaefolia. (D) Lesion ratio of potato tubers infected with T30–4 after treatment with different concentrations of AQ from C. repens. Different lowercase letters indicate significant differences (P < 0.05). P-values were calculated using one-way ANOVA. Each value represents the mean ± SD.",
+   "href": "fpls-17-1794332-g007.jpg",
+   "img_url": "https://www.frontiersin.org/files/Articles/1794332/fpls-17-1794332-HTML/image_m/fpls-17-1794332-g007.jpg",
+   "orig_size": [
+    3071,
+    2541
+   ],
+   "crossref": {
+    "title": "Exploration of anti-oomycete components from wild plants against Phytophthora infestans",
+    "container": "Frontiers in Plant Science",
+    "volume": "17",
+    "issue": null,
+    "page": null,
+    "article_number": "1794332",
+    "authors": [
+     {
+      "given": "Saili",
+      "family": "Chang",
+      "name": null
+     },
+     {
+      "given": "He",
+      "family": "Bai",
+      "name": null
+     },
+     {
+      "given": "Anjin",
+      "family": "Qiao",
+      "name": null
+     },
+     {
+      "given": "Liangyan",
+      "family": "Liu",
+      "name": null
+     }
+    ],
+    "issued": [
+     2026,
+     4,
+     15
+    ],
+    "published_online": [
+     2026,
+     4,
+     15
+    ],
+    "published_print": [
+     null
+    ]
+   }
+  }
+ ]
+}

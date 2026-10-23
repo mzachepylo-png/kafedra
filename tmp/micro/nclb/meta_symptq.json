@@ -1,0 +1,501 @@
+{
+ "id": "nclb",
+ "candidates": [
+  {
+   "k": "q1",
+   "source": "epmc",
+   "score": 11,
+   "pmcid": "PMC11324496",
+   "doi": "10.3389/fpls.2024.1404483",
+   "title": "Recent advances in the population biology and management of maize foliar fungal pathogens <i>Exserohilum turcicum</i>, <i>Cercospora zeina</i> and <i>Bipolaris maydis</i> in Africa.",
+   "authors": [
+    {
+     "last": "Nsibo",
+     "initials": "DL",
+     "first": "David L",
+     "full": "Nsibo DL",
+     "collective": null
+    },
+    {
+     "last": "Barnes",
+     "initials": "I",
+     "first": "Irene",
+     "full": "Barnes I",
+     "collective": null
+    },
+    {
+     "last": "Berger",
+     "initials": "DK",
+     "first": "Dave K",
+     "full": "Berger DK",
+     "collective": null
+    }
+   ],
+   "journal": "Frontiers in plant science",
+   "journal_iso": "Front Plant Sci",
+   "volume": "15",
+   "issue": null,
+   "year": 2024,
+   "pages": "1404483",
+   "license": "cc by",
+   "first_pub": "2024-08-01",
+   "fig_label": "Figure 2",
+   "caption": "Asexual life cycles of Exserohilum turcicum, Cercospora zeina, and Bipolaris maydis. (A) Primary inoculum overwinters on maize debris as conidiophores until the next growing season, when they are dispersed in the form of conidia. (B) Under favorable conditions, conidia are dispersed and land on young maize plants. (C) Conidia germinate, penetrate plant cells, and later develop into small chlorotic spots. (D, E) Mature lesions develop from the lower leaves to younger leaves. These later give rise to conidia (secondary inoculum), which disperse to the younger plants, and the cycle repeats. Et, E. turcicum (Leonard, 1977b; Levy and Cohen, 1983; Bentolila et al., 1991; White, 1999; Kotze et al., 2019); Cz, C. zeina (Beckman and Payne, 1982; Latterell and Rossi, 1983; Ward et al., 1999; Wisser et al., 2011) and Bm, B. maydis (Jeffers, 2004; Wisser et al., 2011; Singh and Srivastava, 2012). Citations refer to sources for details of each pathogen’s disease cycle. (C) leaf cross sections were adapted from Supplementary Figure S1 of Wisser et al. (2011). The unit for free water is hours. RH = relative humidity.",
+   "href": "fpls-15-1404483-g002.jpg",
+   "img_url": "https://www.frontiersin.org/files/Articles/1404483/fpls-15-1404483-HTML/image_m/fpls-15-1404483-g002.jpg",
+   "orig_size": [
+    1653,
+    2217
+   ],
+   "crossref": {
+    "title": "Recent advances in the population biology and management of maize foliar fungal pathogens Exserohilum turcicum, Cercospora zeina and Bipolaris maydis in Africa",
+    "container": "Frontiers in Plant Science",
+    "volume": "15",
+    "issue": null,
+    "page": null,
+    "article_number": "1404483",
+    "authors": [
+     {
+      "given": "David L.",
+      "family": "Nsibo",
+      "name": null
+     },
+     {
+      "given": "Irene",
+      "family": "Barnes",
+      "name": null
+     },
+     {
+      "given": "Dave K.",
+      "family": "Berger",
+      "name": null
+     }
+    ],
+    "issued": [
+     2024,
+     8,
+     1
+    ],
+    "published_online": [
+     2024,
+     8,
+     1
+    ],
+    "published_print": [
+     null
+    ]
+   }
+  },
+  {
+   "k": "q2",
+   "source": "epmc",
+   "score": 11,
+   "pmcid": "PMC7773694",
+   "doi": "10.3389/fpls.2020.607850",
+   "title": "Diversity of Expression Types of <i>Ht</i> Genes Conferring Resistance in Maize to <i>Exserohilum turcicum</i>.",
+   "authors": [
+    {
+     "last": "Navarro",
+     "initials": "BL",
+     "first": "Barbara Ludwig",
+     "full": "Navarro BL",
+     "collective": null
+    },
+    {
+     "last": "Hanekamp",
+     "initials": "H",
+     "first": "Hendrik",
+     "full": "Hanekamp H",
+     "collective": null
+    },
+    {
+     "last": "Koopmann",
+     "initials": "B",
+     "first": "Birger",
+     "full": "Koopmann B",
+     "collective": null
+    },
+    {
+     "last": "von Tiedemann",
+     "initials": "A",
+     "first": "Andreas",
+     "full": "von Tiedemann A",
+     "collective": null
+    }
+   ],
+   "journal": "Frontiers in plant science",
+   "journal_iso": "Front Plant Sci",
+   "volume": "11",
+   "issue": null,
+   "year": 2020,
+   "pages": "607850",
+   "license": "cc by",
+   "first_pub": "2020-12-17",
+   "fig_label": "FIGURE 2",
+   "caption": "Symptomology of Exserohilum turcicum leaf infection on maize differential lines B37 without resistance genes and with the resistance genes Ht1, Ht2, Ht3, and Htn1. Symptom development in a compatible interaction (race 1 or race 23N) one-day post inoculation (dpi) (A), 3 dpi (B), 10 dpi (C), and 14 dpi (D). In the incompatible interaction (race 0 isolate), B37 Ht1 small soaked lesions are present at 6 dpi (E) and strong necrosis surrounded by chlorosis occurs at 14 dpi (F). Symptoms of an incompatible interaction at 14 dpi on B37 Ht2 (G,H), B37 Ht3 (I), and B37 Htn1 (J). B37 Htn1 plants display yellow spots on older leaves (K). Strong necrosis with brownish lesions was observed in the compatible interaction with B37 Htn1 (L).",
+   "href": "fpls-11-607850-g002.jpg",
+   "img_url": "https://www.frontiersin.org/files/Articles/607850/fpls-11-607850-HTML/image_m/fpls-11-607850-g002.jpg",
+   "orig_size": [
+    950,
+    2408
+   ],
+   "crossref": {
+    "title": "Diversity of Expression Types of Ht Genes Conferring Resistance in Maize to Exserohilum turcicum",
+    "container": "Frontiers in Plant Science",
+    "volume": "11",
+    "issue": null,
+    "page": null,
+    "article_number": "607850",
+    "authors": [
+     {
+      "given": "Barbara Ludwig",
+      "family": "Navarro",
+      "name": null
+     },
+     {
+      "given": "Hendrik",
+      "family": "Hanekamp",
+      "name": null
+     },
+     {
+      "given": "Birger",
+      "family": "Koopmann",
+      "name": null
+     },
+     {
+      "given": "Andreas",
+      "family": "von Tiedemann",
+      "name": null
+     }
+    ],
+    "issued": [
+     2020,
+     12,
+     17
+    ],
+    "published_online": [
+     2020,
+     12,
+     17
+    ],
+    "published_print": [
+     null
+    ]
+   }
+  },
+  {
+   "k": "q3",
+   "source": "epmc",
+   "score": 8,
+   "pmcid": "PMC8342955",
+   "doi": "10.3389/fmicb.2021.706349",
+   "title": "Effect of Osmotic Stress on the Growth, Development and Pathogenicity of <i>Setosphaeria turcica</i>.",
+   "authors": [
+    {
+     "last": "Liu",
+     "initials": "Y",
+     "first": "Yuwei",
+     "full": "Liu Y",
+     "collective": null
+    },
+    {
+     "last": "Gong",
+     "initials": "X",
+     "first": "Xiaodong",
+     "full": "Gong X",
+     "collective": null
+    },
+    {
+     "last": "Li",
+     "initials": "M",
+     "first": "Moxiao",
+     "full": "Li M",
+     "collective": null
+    },
+    {
+     "last": "Si",
+     "initials": "H",
+     "first": "Helong",
+     "full": "Si H",
+     "collective": null
+    },
+    {
+     "last": "Zhou",
+     "initials": "Q",
+     "first": "Qihui",
+     "full": "Zhou Q",
+     "collective": null
+    },
+    {
+     "last": "Liu",
+     "initials": "X",
+     "first": "Xingchen",
+     "full": "Liu X",
+     "collective": null
+    },
+    {
+     "last": "Fan",
+     "initials": "Y",
+     "first": "Yu",
+     "full": "Fan Y",
+     "collective": null
+    },
+    {
+     "last": "Zhang",
+     "initials": "X",
+     "first": "Xiaoyu",
+     "full": "Zhang X",
+     "collective": null
+    },
+    {
+     "last": "Han",
+     "initials": "J",
+     "first": "Jianmin",
+     "full": "Han J",
+     "collective": null
+    },
+    {
+     "last": "Gu",
+     "initials": "S",
+     "first": "Shouqin",
+     "full": "Gu S",
+     "collective": null
+    },
+    {
+     "last": "Dong",
+     "initials": "J",
+     "first": "Jingao",
+     "full": "Dong J",
+     "collective": null
+    }
+   ],
+   "journal": "Frontiers in microbiology",
+   "journal_iso": "Front Microbiol",
+   "volume": "12",
+   "issue": null,
+   "year": 2021,
+   "pages": "706349",
+   "license": "cc by",
+   "first_pub": "2021-07-23",
+   "fig_label": "FIGURE 6",
+   "caption": "Pathogenicity of S. turcica after 20 days of culture under the 0.4 M KCl and control (PDA). (A) Conidial suspensions were inoculated on maize B73 seedling whorl at the 4–6 leaf stage, and results were scored at 12 days post-inoculation and (B) the mean size of the lesion. ** P < 0.01, bar = 1 cm.",
+   "href": "fmicb-12-706349-g006.jpg",
+   "img_url": "https://www.frontiersin.org/files/Articles/706349/fmicb-12-706349-HTML/image_m/fmicb-12-706349-g006.jpg",
+   "orig_size": [
+    1350,
+    734
+   ],
+   "crossref": {
+    "title": "Effect of Osmotic Stress on the Growth, Development and Pathogenicity of Setosphaeria turcica",
+    "container": "Frontiers in Microbiology",
+    "volume": "12",
+    "issue": null,
+    "page": null,
+    "article_number": "706349",
+    "authors": [
+     {
+      "given": "Yuwei",
+      "family": "Liu",
+      "name": null
+     },
+     {
+      "given": "Xiaodong",
+      "family": "Gong",
+      "name": null
+     },
+     {
+      "given": "Moxiao",
+      "family": "Li",
+      "name": null
+     },
+     {
+      "given": "Helong",
+      "family": "Si",
+      "name": null
+     },
+     {
+      "given": "Qihui",
+      "family": "Zhou",
+      "name": null
+     },
+     {
+      "given": "Xingchen",
+      "family": "Liu",
+      "name": null
+     },
+     {
+      "given": "Yu",
+      "family": "Fan",
+      "name": null
+     },
+     {
+      "given": "Xiaoyu",
+      "family": "Zhang",
+      "name": null
+     },
+     {
+      "given": "Jianmin",
+      "family": "Han",
+      "name": null
+     },
+     {
+      "given": "Shouqin",
+      "family": "Gu",
+      "name": null
+     },
+     {
+      "given": "Jingao",
+      "family": "Dong",
+      "name": null
+     }
+    ],
+    "issued": [
+     2021,
+     7,
+     23
+    ],
+    "published_online": [
+     2021,
+     7,
+     23
+    ],
+    "published_print": [
+     null
+    ]
+   }
+  },
+  {
+   "k": "q4",
+   "source": "epmc",
+   "score": 6,
+   "pmcid": "PMC9304870",
+   "doi": "10.3389/fmicb.2022.941991",
+   "title": "The Secreted Ribonuclease SRE1 Contributes to <i>Setosphaeria turcica</i> Virulence and Activates Plant Immunity.",
+   "authors": [
+    {
+     "last": "He",
+     "initials": "S",
+     "first": "Shidao",
+     "full": "He S",
+     "collective": null
+    },
+    {
+     "last": "Huang",
+     "initials": "Y",
+     "first": "Yufei",
+     "full": "Huang Y",
+     "collective": null
+    },
+    {
+     "last": "Sun",
+     "initials": "Y",
+     "first": "Yanqiu",
+     "full": "Sun Y",
+     "collective": null
+    },
+    {
+     "last": "Liu",
+     "initials": "B",
+     "first": "Bo",
+     "full": "Liu B",
+     "collective": null
+    },
+    {
+     "last": "Wang",
+     "initials": "S",
+     "first": "Suna",
+     "full": "Wang S",
+     "collective": null
+    },
+    {
+     "last": "Xuan",
+     "initials": "Y",
+     "first": "Yuanhu",
+     "full": "Xuan Y",
+     "collective": null
+    },
+    {
+     "last": "Gao",
+     "initials": "Z",
+     "first": "Zenggui",
+     "full": "Gao Z",
+     "collective": null
+    }
+   ],
+   "journal": "Frontiers in microbiology",
+   "journal_iso": "Front Microbiol",
+   "volume": "13",
+   "issue": null,
+   "year": 2022,
+   "pages": "941991",
+   "license": "cc by",
+   "first_pub": "2022-07-08",
+   "fig_label": "Figure 6",
+   "caption": "SRE1 induces cell necrosis through the degradation of total plant RNA. (A) Coomassie brilliant blue detection and immunoblot analysis of SRE1-GST and SRE1 67A -GST. Asterisks represent the location of the target proteins. (B) Maize total RNA was used to determine the RNase activity of SRE1 and SRE1 67A recombinant proteins. Buffer and GST were negative controls, and RNase A was used as a positive control. The final concentrations of GST, RNase A, SRE1, and SRE1 67A were 100 μg/mL. (C) Effects of different concentrations of SRE1 on the degradation of maize total RNA. (D) N. benthamiana and maize leaves were treated with recombinant proteins SRE1 and SRE1 67A at a concentration of 0.4 mg/mL. The buffer solution was used as a negative control.",
+   "href": "fmicb-13-941991-g0006.jpg",
+   "img_url": "https://cdn.ncbi.nlm.nih.gov/pmc/blobs/5b65/9304870/ae50aa702591/fmicb-13-941991-g0006.jpg",
+   "orig_size": [
+    708,
+    417
+   ],
+   "crossref": {
+    "title": "The Secreted Ribonuclease SRE1 Contributes to Setosphaeria turcica Virulence and Activates Plant Immunity",
+    "container": "Frontiers in Microbiology",
+    "volume": "13",
+    "issue": null,
+    "page": null,
+    "article_number": "941991",
+    "authors": [
+     {
+      "given": "Shidao",
+      "family": "He",
+      "name": null
+     },
+     {
+      "given": "Yufei",
+      "family": "Huang",
+      "name": null
+     },
+     {
+      "given": "Yanqiu",
+      "family": "Sun",
+      "name": null
+     },
+     {
+      "given": "Bo",
+      "family": "Liu",
+      "name": null
+     },
+     {
+      "given": "Suna",
+      "family": "Wang",
+      "name": null
+     },
+     {
+      "given": "Yuanhu",
+      "family": "Xuan",
+      "name": null
+     },
+     {
+      "given": "Zenggui",
+      "family": "Gao",
+      "name": null
+     }
+    ],
+    "issued": [
+     2022,
+     7,
+     8
+    ],
+    "published_online": [
+     2022,
+     7,
+     8
+    ],
+    "published_print": [
+     null
+    ]
+   }
+  }
+ ]
+}

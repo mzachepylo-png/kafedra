@@ -1,0 +1,549 @@
+{
+ "id": "powdery",
+ "candidates": [
+  {
+   "k": "q1",
+   "source": "epmc",
+   "score": 10,
+   "pmcid": "PMC13031799",
+   "doi": "10.1038/s41598-026-40869-w",
+   "title": "Coumarin compounds as fungicidal agents against powdery mildew and rust in cereals.",
+   "authors": [
+    {
+     "last": "Rząd",
+     "initials": "K",
+     "first": "Klaudia",
+     "full": "Rząd K",
+     "collective": null
+    },
+    {
+     "last": "Nucia",
+     "initials": "A",
+     "first": "Aleksandra",
+     "full": "Nucia A",
+     "collective": null
+    },
+    {
+     "last": "Szwaczko",
+     "initials": "K",
+     "first": "Katarzyna",
+     "full": "Szwaczko K",
+     "collective": null
+    },
+    {
+     "last": "Matwijczuk",
+     "initials": "A",
+     "first": "Arkadiusz",
+     "full": "Matwijczuk A",
+     "collective": null
+    },
+    {
+     "last": "Okoń",
+     "initials": "S",
+     "first": "Sylwia",
+     "full": "Okoń S",
+     "collective": null
+    }
+   ],
+   "journal": "Scientific reports",
+   "journal_iso": "Sci Rep",
+   "volume": "16",
+   "issue": "1",
+   "year": 2026,
+   "pages": "10385",
+   "license": "cc by",
+   "first_pub": "2026-02-24",
+   "fig_label": "Fig. 7",
+   "caption": "Example result of host-pathogen test conducted in vitro on leaf fragments in the presence of tested compounds. (A) control conditions - leaves of a susceptible oat variety (Fuchs) placed in a medium with DMSO additive inoculated with B. graminis f.sp. avenae spores. Clear symptoms of the disease are visible on the leaves in the form of a white, floury coating. (B) leaves of a susceptible oat variety (Fuchs) placed in a medium with 4 mg∙mL-1 coumarin derivative 6 inoculated with B. graminis f.sp. avenae spores. The leaves are green, with no visible symptoms of disease and no necrosis. (C) leaves of a susceptible oat variety (Fuchs) placed in a medium with 5 mg∙mL-1 coumarin derivative 6 inoculated with B. graminis f.sp. avenae. Numerous chloroses on leaves preventing proper assessment of the growth and development of the pathogen.",
+   "href": "41598_2026_40869_Fig7_HTML.jpg",
+   "img_url": "https://cdn.ncbi.nlm.nih.gov/pmc/blobs/94a5/13031799/1032b9cbd524/41598_2026_40869_Fig7_HTML.jpg",
+   "orig_size": [
+    669,
+    210
+   ],
+   "crossref": {
+    "title": "Coumarin compounds as fungicidal agents against powdery mildew and rust in cereals",
+    "container": "Scientific Reports",
+    "volume": "16",
+    "issue": "1",
+    "page": null,
+    "article_number": "10385",
+    "authors": [
+     {
+      "given": "Klaudia",
+      "family": "Rząd",
+      "name": null
+     },
+     {
+      "given": "Aleksandra",
+      "family": "Nucia",
+      "name": null
+     },
+     {
+      "given": "Katarzyna",
+      "family": "Szwaczko",
+      "name": null
+     },
+     {
+      "given": "Arkadiusz",
+      "family": "Matwijczuk",
+      "name": null
+     },
+     {
+      "given": "Sylwia",
+      "family": "Okoń",
+      "name": null
+     }
+    ],
+    "issued": [
+     2026,
+     2,
+     24
+    ],
+    "published_online": [
+     2026,
+     2,
+     24
+    ],
+    "published_print": [
+     null
+    ]
+   }
+  },
+  {
+   "k": "q2",
+   "source": "epmc",
+   "score": 10,
+   "pmcid": "PMC10381680",
+   "doi": "10.3390/jof9070708",
+   "title": "Natural Urease Inhibitors Reduce the Severity of Disease Symptoms, Dependent on the Lifestyle of the Pathogens.",
+   "authors": [
+    {
+     "last": "Aliyeva-Schnorr",
+     "initials": "L",
+     "first": "Lala",
+     "full": "Aliyeva-Schnorr L",
+     "collective": null
+    },
+    {
+     "last": "Schuster",
+     "initials": "C",
+     "first": "Carola",
+     "full": "Schuster C",
+     "collective": null
+    },
+    {
+     "last": "Deising",
+     "initials": "HB",
+     "first": "Holger B",
+     "full": "Deising HB",
+     "collective": null
+    }
+   ],
+   "journal": "Journal of fungi (Basel, Switzerland)",
+   "journal_iso": "J Fungi (Basel)",
+   "volume": "9",
+   "issue": "7",
+   "year": 2023,
+   "pages": "708",
+   "license": "cc by",
+   "first_pub": "2023-06-28",
+   "fig_label": "Figure 7",
+   "caption": "Effect of urease inhibitors on the necrotrophs B. cinerea and C. heterostrophus. Strawberry fruits were spray-inoculated with compound-containing spore suspensions and photographed at 72 hai. Disease symptoms caused by C. heterostrophus were photographed at 48 pi. All inhibitors were applied at a concentration of 10 mM; mock-treated plants and untreated inoculated plants served as controls. Arrows indicate water-soaked lesions, arrowheads indicate necrotic tissue.",
+   "href": "jof-09-00708-g007.jpg",
+   "img_url": "https://cdn.ncbi.nlm.nih.gov/pmc/blobs/9874/10381680/d8c61c0f47a3/jof-09-00708-g007.jpg",
+   "orig_size": [
+    675,
+    557
+   ],
+   "crossref": {
+    "title": "Natural Urease Inhibitors Reduce the Severity of Disease Symptoms, Dependent on the Lifestyle of the Pathogens",
+    "container": "Journal of Fungi",
+    "volume": "9",
+    "issue": "7",
+    "page": "708",
+    "article_number": null,
+    "authors": [
+     {
+      "given": "Lala",
+      "family": "Aliyeva-Schnorr",
+      "name": null
+     },
+     {
+      "given": "Carola",
+      "family": "Schuster",
+      "name": null
+     },
+     {
+      "given": "Holger B.",
+      "family": "Deising",
+      "name": null
+     }
+    ],
+    "issued": [
+     2023,
+     6,
+     28
+    ],
+    "published_online": [
+     2023,
+     6,
+     28
+    ],
+    "published_print": [
+     null
+    ]
+   }
+  },
+  {
+   "k": "q3",
+   "source": "epmc",
+   "score": 8,
+   "pmcid": "PMC13402475",
+   "doi": "10.3389/fmicb.2026.1799394",
+   "title": "&lt;i&gt;Pseudomonas simiae&lt;/i&gt;-induced resistance in barley is subject to pathogen-dependent gene expression regulation and not associated with major changes in the phyllosphere microbiome.",
+   "authors": [
+    {
+     "last": "Sommer",
+     "initials": "A",
+     "first": "Anna",
+     "full": "Sommer A",
+     "collective": null
+    },
+    {
+     "last": "Bagheri",
+     "initials": "S",
+     "first": "Samaneh",
+     "full": "Bagheri S",
+     "collective": null
+    },
+    {
+     "last": "Dey",
+     "initials": "S",
+     "first": "Sanjukta",
+     "full": "Dey S",
+     "collective": null
+    },
+    {
+     "last": "Knappe",
+     "initials": "C",
+     "first": "Claudia",
+     "full": "Knappe C",
+     "collective": null
+    },
+    {
+     "last": "Wenig",
+     "initials": "M",
+     "first": "Marion",
+     "full": "Wenig M",
+     "collective": null
+    },
+    {
+     "last": "Heuschmann",
+     "initials": "C",
+     "first": "Carina",
+     "full": "Heuschmann C",
+     "collective": null
+    },
+    {
+     "last": "Kublik",
+     "initials": "S",
+     "first": "Susanne",
+     "full": "Kublik S",
+     "collective": null
+    },
+    {
+     "last": "Stempfl",
+     "initials": "T",
+     "first": "Thomas",
+     "full": "Stempfl T",
+     "collective": null
+    },
+    {
+     "last": "Schloter",
+     "initials": "M",
+     "first": "Michael",
+     "full": "Schloter M",
+     "collective": null
+    },
+    {
+     "last": "Vlot",
+     "initials": "AC",
+     "first": "A Corina",
+     "full": "Vlot AC",
+     "collective": null
+    }
+   ],
+   "journal": "Frontiers in microbiology",
+   "journal_iso": "Front Microbiol",
+   "volume": "17",
+   "issue": null,
+   "year": 2026,
+   "pages": "1799394",
+   "license": "cc by",
+   "first_pub": "2026-07-13",
+   "fig_label": "FIGURE 1",
+   "caption": "Pseudomonas simiae WCS417r does not significantly impact growth parameters and triggers induced resistance (IR) in barley against Blumeria graminis f. sp. hordei (Bgh). Sterile-grown barley seedlings (cultivar Golden Promise) were treated at the roots with P. simiae WCS417r (WCS417) or an appropriate control solution and transferred to soil. Three weeks later, the plants’ digital biomass (A), height (B), and Normalized Difference Vegetation Index (NDVI) (C) were determined, and the plants were inoculated with Bgh. At 7 days post-inoculation (dpi), the leaves were photographed (D) and fungal hyphae were stained with the fluorescent dye DAF-FM-DA (E) and quantified by fluorescence microscopy (F). (D,E) Representative photograph of powdery mildew pustules (D) and microscopy images of stained Bgh hyphae (E) on control (a) and WCS417r-treated (b) plants. (F) Fluorescence units of Bgh- infected plants of the treatment groups indicated below the panel are shown relative to those of uninfected control plants. (A–C,F) Bars represent the mean of three biologically independent replicate experiments, each including data from four plants (A–C) or 12 leaf disks (F) per treatment ± SE. Asterisks indicate a statistically significant difference between the treatments (t -test, **** p < 0.0001).",
+   "href": "fmicb-17-1799394-g001.jpg",
+   "img_url": "https://cdn.ncbi.nlm.nih.gov/pmc/blobs/6bf1/13402475/e27b726817d5/fmicb-17-1799394-g001.jpg",
+   "orig_size": [
+    700,
+    460
+   ],
+   "crossref": {
+    "title": "Pseudomonas simiae-induced resistance in barley is subject to pathogen-dependent gene expression regulation and not associated with major changes in the phyllosphere microbiome",
+    "container": "Frontiers in Microbiology",
+    "volume": "17",
+    "issue": null,
+    "page": null,
+    "article_number": "1799394",
+    "authors": [
+     {
+      "given": "Anna",
+      "family": "Sommer",
+      "name": null
+     },
+     {
+      "given": "Samaneh",
+      "family": "Bagheri",
+      "name": null
+     },
+     {
+      "given": "Sanjukta",
+      "family": "Dey",
+      "name": null
+     },
+     {
+      "given": "Claudia",
+      "family": "Knappe",
+      "name": null
+     },
+     {
+      "given": "Marion",
+      "family": "Wenig",
+      "name": null
+     },
+     {
+      "given": "Carina",
+      "family": "Heuschmann",
+      "name": null
+     },
+     {
+      "given": "Susanne",
+      "family": "Kublik",
+      "name": null
+     },
+     {
+      "given": "Thomas",
+      "family": "Stempfl",
+      "name": null
+     },
+     {
+      "given": "Michael",
+      "family": "Schloter",
+      "name": null
+     },
+     {
+      "given": "A. Corina",
+      "family": "Vlot",
+      "name": null
+     }
+    ],
+    "issued": [
+     2026,
+     7,
+     13
+    ],
+    "published_online": [
+     2026,
+     7,
+     13
+    ],
+    "published_print": [
+     null
+    ]
+   }
+  },
+  {
+   "k": "q4",
+   "source": "epmc",
+   "score": 8,
+   "pmcid": "PMC12430440",
+   "doi": "10.3390/plants14172652",
+   "title": "Genetic Basis Identification of a &lt;i&gt;NLR&lt;/i&gt; Gene, &lt;i&gt;TaRPM1-2D&lt;/i&gt;, That Confers Powdery Mildew Resistance in Wheat Cultivar 'Brock'.",
+   "authors": [
+    {
+     "last": "Liu",
+     "initials": "X",
+     "first": "Xiaoying",
+     "full": "Liu X",
+     "collective": null
+    },
+    {
+     "last": "Wang",
+     "initials": "C",
+     "first": "Congying",
+     "full": "Wang C",
+     "collective": null
+    },
+    {
+     "last": "Wang",
+     "initials": "Y",
+     "first": "Yikun",
+     "full": "Wang Y",
+     "collective": null
+    },
+    {
+     "last": "Wu",
+     "initials": "S",
+     "first": "Siqi",
+     "full": "Wu S",
+     "collective": null
+    },
+    {
+     "last": "Dong",
+     "initials": "H",
+     "first": "Huixuan",
+     "full": "Dong H",
+     "collective": null
+    },
+    {
+     "last": "Shang",
+     "initials": "Y",
+     "first": "Yuntao",
+     "full": "Shang Y",
+     "collective": null
+    },
+    {
+     "last": "Dang",
+     "initials": "C",
+     "first": "Chen",
+     "full": "Dang C",
+     "collective": null
+    },
+    {
+     "last": "Xie",
+     "initials": "C",
+     "first": "Chaojie",
+     "full": "Xie C",
+     "collective": null
+    },
+    {
+     "last": "Fan",
+     "initials": "B",
+     "first": "Baoli",
+     "full": "Fan B",
+     "collective": null
+    },
+    {
+     "last": "Tong",
+     "initials": "Y",
+     "first": "Yana",
+     "full": "Tong Y",
+     "collective": null
+    },
+    {
+     "last": "Wang",
+     "initials": "Z",
+     "first": "Zhenying",
+     "full": "Wang Z",
+     "collective": null
+    }
+   ],
+   "journal": "Plants (Basel, Switzerland)",
+   "journal_iso": "Plants (Basel)",
+   "volume": "14",
+   "issue": "17",
+   "year": 2025,
+   "pages": "2652",
+   "license": "cc by",
+   "first_pub": "2025-08-26",
+   "fig_label": "Figure 7",
+   "caption": "Over-expression of TaRPM1-2D in susceptible wheat variety ‘Jinqiang5’. (A) Phenotype of TaRPM1-2D OE and control wheat leaves inoculated with Bgt E09 for 7 dpi. (B) Lesion area of OE and control wheat leaves. (C) Bgt conidia on TaRPM1-2D OE leaves. WT: ‘Jinqiang5’; OE-1,3, 4: transgenic ‘Jinqiang5’ wheat containing the recombinant vector pTCK303: TaRPM1-2D (** p < 0.01).",
+   "href": "plants-14-02652-g007.jpg",
+   "img_url": "https://cdn.ncbi.nlm.nih.gov/pmc/blobs/1b80/12430440/b361542f28de/plants-14-02652-g007.jpg",
+   "orig_size": [
+    713,
+    599
+   ],
+   "crossref": {
+    "title": "Genetic Basis Identification of a NLR Gene, TaRPM1-2D, That Confers Powdery Mildew Resistance in Wheat Cultivar ‘Brock’",
+    "container": "Plants",
+    "volume": "14",
+    "issue": "17",
+    "page": "2652",
+    "article_number": null,
+    "authors": [
+     {
+      "given": "Xiaoying",
+      "family": "Liu",
+      "name": null
+     },
+     {
+      "given": "Congying",
+      "family": "Wang",
+      "name": null
+     },
+     {
+      "given": "Yikun",
+      "family": "Wang",
+      "name": null
+     },
+     {
+      "given": "Siqi",
+      "family": "Wu",
+      "name": null
+     },
+     {
+      "given": "Huixuan",
+      "family": "Dong",
+      "name": null
+     },
+     {
+      "given": "Yuntao",
+      "family": "Shang",
+      "name": null
+     },
+     {
+      "given": "Chen",
+      "family": "Dang",
+      "name": null
+     },
+     {
+      "given": "Chaojie",
+      "family": "Xie",
+      "name": null
+     },
+     {
+      "given": "Baoli",
+      "family": "Fan",
+      "name": null
+     },
+     {
+      "given": "Yana",
+      "family": "Tong",
+      "name": null
+     },
+     {
+      "given": "Zhenying",
+      "family": "Wang",
+      "name": null
+     }
+    ],
+    "issued": [
+     2025,
+     8,
+     26
+    ],
+    "published_online": [
+     2025,
+     8,
+     26
+    ],
+    "published_print": [
+     null
+    ]
+   }
+  }
+ ]
+}

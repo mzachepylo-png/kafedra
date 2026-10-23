@@ -1,0 +1,523 @@
+{
+ "id": "septoria",
+ "candidates": [
+  {
+   "k": "q1",
+   "source": "epmc",
+   "score": 11,
+   "pmcid": "PMC12235572",
+   "doi": "10.3389/fpls.2025.1605156",
+   "title": "Real-time quantitative PCR method for assessing wheat cultivars for resistance to &lt;i&gt;Zymoseptoria tritici&lt;/i&gt;.",
+   "authors": [
+    {
+     "last": "Adhikari",
+     "initials": "TB",
+     "first": "Tika B",
+     "full": "Adhikari TB",
+     "collective": null
+    },
+    {
+     "last": "Balaji",
+     "initials": "B",
+     "first": "Boovaraghan",
+     "full": "Balaji B",
+     "collective": null
+    },
+    {
+     "last": "Goodwin",
+     "initials": "SB",
+     "first": "Stephen B",
+     "full": "Goodwin SB",
+     "collective": null
+    }
+   ],
+   "journal": "Frontiers in plant science",
+   "journal_iso": "Front Plant Sci",
+   "volume": "16",
+   "issue": null,
+   "year": 2025,
+   "pages": "1605156",
+   "license": "cc by",
+   "first_pub": "2025-06-24",
+   "fig_label": "Figure 3",
+   "caption": "Determination of Septoria tritici blotch (STB) progression and fungal DNA in two resistant (Tadinia and W7984, containing the Stb4 and Stb8 genes, respectively) and two susceptible (Opata 85 and Yecora Rojo) wheat cultivars inoculated with Zymoseptoria tritici isolate T48 in a greenhouse. (A), Progression of STB in the two susceptible cultivars. (B), Progression of STB in the two resistant cultivars. Disease severities (DS) in panels (A, B) were expressed as percentage leaf area of necrotic lesions for each cultivar. Each data point represents the mean of three replicate plants. (C), DNA of Z. tritici in the two susceptible cultivars as measured by real-time polymerase chain reaction (PCR). (D), DNA of Z. tritici in the two resistant cultivars. Each sample for real-time PCR in panels (C, D) contained pooled leaves collected from three inoculated plants grown in individual plastic pots. Each data point represents the average of three PCR analyses (technical replications) of the same DNA sample to estimate the assay variance. Data for each cultivar and the mean over both cultivars are plotted separately on each figure. Error bars indicate the 95% confidence intervals of the means of the two susceptible or two resistant cultivars averaged at each time point.",
+   "href": "fpls-16-1605156-g003.jpg",
+   "img_url": "https://www.frontiersin.org/files/Articles/1605156/fpls-16-1605156-HTML/image_m/fpls-16-1605156-g003.jpg",
+   "orig_size": [
+    1654,
+    1298
+   ],
+   "crossref": {
+    "title": "Real-time quantitative PCR method for assessing wheat cultivars for resistance to Zymoseptoria tritici",
+    "container": "Frontiers in Plant Science",
+    "volume": "16",
+    "issue": null,
+    "page": null,
+    "article_number": "1605156",
+    "authors": [
+     {
+      "given": "Tika B.",
+      "family": "Adhikari",
+      "name": null
+     },
+     {
+      "given": "Boovaraghan",
+      "family": "Balaji",
+      "name": null
+     },
+     {
+      "given": "Stephen B.",
+      "family": "Goodwin",
+      "name": null
+     }
+    ],
+    "issued": [
+     2025,
+     6,
+     24
+    ],
+    "published_online": [
+     2025,
+     6,
+     24
+    ],
+    "published_print": [
+     null
+    ]
+   }
+  },
+  {
+   "k": "q2",
+   "source": "epmc",
+   "score": 11,
+   "pmcid": "PMC12049020",
+   "doi": "10.1186/s12870-025-06620-9",
+   "title": "Plant genotype-specific modulation of Clonostachys rosea-mediated biocontrol of septoria tritici blotch disease in wheat.",
+   "authors": [
+    {
+     "last": "Chaudhary",
+     "initials": "S",
+     "first": "Sidhant",
+     "full": "Chaudhary S",
+     "collective": null
+    },
+    {
+     "last": "Zakieh",
+     "initials": "M",
+     "first": "Mustafa",
+     "full": "Zakieh M",
+     "collective": null
+    },
+    {
+     "last": "Dubey",
+     "initials": "M",
+     "first": "Mukesh",
+     "full": "Dubey M",
+     "collective": null
+    },
+    {
+     "last": "Jensen",
+     "initials": "DF",
+     "first": "Dan Funck",
+     "full": "Jensen DF",
+     "collective": null
+    },
+    {
+     "last": "Grenville-Briggs",
+     "initials": "L",
+     "first": "Laura",
+     "full": "Grenville-Briggs L",
+     "collective": null
+    },
+    {
+     "last": "Chawade",
+     "initials": "A",
+     "first": "Aakash",
+     "full": "Chawade A",
+     "collective": null
+    },
+    {
+     "last": "Karlsson",
+     "initials": "M",
+     "first": "Magnus",
+     "full": "Karlsson M",
+     "collective": null
+    }
+   ],
+   "journal": "BMC plant biology",
+   "journal_iso": "BMC Plant Biol",
+   "volume": "25",
+   "issue": "1",
+   "year": 2025,
+   "pages": "576",
+   "license": "cc by",
+   "first_pub": "2025-05-02",
+   "fig_label": "Fig. 1",
+   "caption": "A Septoria tritici blotch (STB) disease severity symptoms ranging from no necrosis (left) to complete leaf necrosis (right). B Biological control of septoria tritici blotch disease on wheat. Four winter wheat genotypes with low (Nimbus and Kask) and high (SW_150428 and Festival) disease resistance, respectively, were inoculated with varying concentrations of the biological control agent C. rosea and Z. tritici. Relative area under disease progress curve (rAUDPC) was used as an estimate of disease severity. Grey points represent raw estimates of rAUDPC values from technical replicates. Black points represent the model estimated means and error bars represent 95% confidence intervals. Treatments not sharing the same letters indicate significant difference (P < 0.05) across genotypes as determined by Tukey’s post-hoc pairwise comparisons test",
+   "href": "12870_2025_6620_Fig1_HTML.jpg",
+   "img_url": "https://cdn.ncbi.nlm.nih.gov/pmc/blobs/5938/12049020/cdba98e8fdce/12870_2025_6620_Fig1_HTML.jpg",
+   "orig_size": [
+    778,
+    714
+   ],
+   "crossref": {
+    "title": "Plant genotype-specific modulation of Clonostachys rosea-mediated biocontrol of septoria tritici blotch disease in wheat",
+    "container": "BMC Plant Biology",
+    "volume": "25",
+    "issue": "1",
+    "page": null,
+    "article_number": "576",
+    "authors": [
+     {
+      "given": "Sidhant",
+      "family": "Chaudhary",
+      "name": null
+     },
+     {
+      "given": "Mustafa",
+      "family": "Zakieh",
+      "name": null
+     },
+     {
+      "given": "Mukesh",
+      "family": "Dubey",
+      "name": null
+     },
+     {
+      "given": "Dan Funck",
+      "family": "Jensen",
+      "name": null
+     },
+     {
+      "given": "Laura",
+      "family": "Grenville-Briggs",
+      "name": null
+     },
+     {
+      "given": "Aakash",
+      "family": "Chawade",
+      "name": null
+     },
+     {
+      "given": "Magnus",
+      "family": "Karlsson",
+      "name": null
+     }
+    ],
+    "issued": [
+     2025,
+     5,
+     2
+    ],
+    "published_online": [
+     2025,
+     5,
+     2
+    ],
+    "published_print": [
+     null
+    ]
+   }
+  },
+  {
+   "k": "q3",
+   "source": "epmc",
+   "score": 10,
+   "pmcid": "PMC9637935",
+   "doi": "10.3389/fpls.2022.990915",
+   "title": "Multi-stage resistance to <i>Zymoseptoria tritici</i> revealed by GWAS in an Australian bread wheat diversity panel.",
+   "authors": [
+    {
+     "last": "Yang",
+     "initials": "N",
+     "first": "Nannan",
+     "full": "Yang N",
+     "collective": null
+    },
+    {
+     "last": "Ovenden",
+     "initials": "B",
+     "first": "Ben",
+     "full": "Ovenden B",
+     "collective": null
+    },
+    {
+     "last": "Baxter",
+     "initials": "B",
+     "first": "Brad",
+     "full": "Baxter B",
+     "collective": null
+    },
+    {
+     "last": "McDonald",
+     "initials": "MC",
+     "first": "Megan C",
+     "full": "McDonald MC",
+     "collective": null
+    },
+    {
+     "last": "Solomon",
+     "initials": "PS",
+     "first": "Peter S",
+     "full": "Solomon PS",
+     "collective": null
+    },
+    {
+     "last": "Milgate",
+     "initials": "A",
+     "first": "Andrew",
+     "full": "Milgate A",
+     "collective": null
+    }
+   ],
+   "journal": "Frontiers in plant science",
+   "journal_iso": "Front Plant Sci",
+   "volume": "13",
+   "issue": null,
+   "year": 2022,
+   "pages": "990915",
+   "license": "cc by",
+   "first_pub": "2022-10-24",
+   "fig_label": "Figure 2",
+   "caption": "Frequency distributions of 31 BLUEs from the AusSTB panel. (A) Traits at the seedling stage include the percentage of necrotic leaf area (Nec) on the infected leaves, the pycnidia density (Pyc) in the necrotic leaf area, and the STB_S Scale 1 to 5 using the three STB isolates WAI161, WAI251, and WAI332. (B) Traits at the adult-plant stage include Plant Height (HT), Relative maturity (Zadoks scale), STB_A scale 1-9, and the percentage of STB infected leaf area on the whole plant (STB%). Traits HT and Zadoks were only measured at the site of Wagga Wagga.",
+   "href": "fpls-13-990915-g002.jpg",
+   "img_url": "https://www.frontiersin.org/files/Articles/990915/fpls-13-990915-HTML/image_m/fpls-13-990915-g002.jpg",
+   "orig_size": [
+    1535,
+    977
+   ],
+   "crossref": {
+    "title": "Multi-stage resistance to Zymoseptoria tritici revealed by GWAS in an Australian bread wheat diversity panel",
+    "container": "Frontiers in Plant Science",
+    "volume": "13",
+    "issue": null,
+    "page": null,
+    "article_number": "990915",
+    "authors": [
+     {
+      "given": "Nannan",
+      "family": "Yang",
+      "name": null
+     },
+     {
+      "given": "Ben",
+      "family": "Ovenden",
+      "name": null
+     },
+     {
+      "given": "Brad",
+      "family": "Baxter",
+      "name": null
+     },
+     {
+      "given": "Megan C.",
+      "family": "McDonald",
+      "name": null
+     },
+     {
+      "given": "Peter S.",
+      "family": "Solomon",
+      "name": null
+     },
+     {
+      "given": "Andrew",
+      "family": "Milgate",
+      "name": null
+     }
+    ],
+    "issued": [
+     2022,
+     10,
+     24
+    ],
+    "published_online": [
+     2022,
+     10,
+     24
+    ],
+    "published_print": [
+     null
+    ]
+   }
+  },
+  {
+   "k": "q4",
+   "source": "epmc",
+   "score": 9,
+   "pmcid": "PMC11919375",
+   "doi": "10.1016/j.dib.2025.111404",
+   "title": "Early detection of &lt;i&gt;Zymoseptoria tritici&lt;/i&gt; infection on wheat leaves using hyperspectral imaging data.",
+   "authors": [
+    {
+     "last": "Latchoumane",
+     "initials": "L",
+     "first": "Lorraine",
+     "full": "Latchoumane L",
+     "collective": null
+    },
+    {
+     "last": "Ecarnot",
+     "initials": "M",
+     "first": "Martin",
+     "full": "Ecarnot M",
+     "collective": null
+    },
+    {
+     "last": "Bendoula",
+     "initials": "R",
+     "first": "Ryad",
+     "full": "Bendoula R",
+     "collective": null
+    },
+    {
+     "last": "Roger",
+     "initials": "JM",
+     "first": "Jean-Michel",
+     "full": "Roger JM",
+     "collective": null
+    },
+    {
+     "last": "Mas-Garcia",
+     "initials": "S",
+     "first": "Silvia",
+     "full": "Mas-Garcia S",
+     "collective": null
+    },
+    {
+     "last": "Villesseche",
+     "initials": "H",
+     "first": "Heloïse",
+     "full": "Villesseche H",
+     "collective": null
+    },
+    {
+     "last": "Tavernier",
+     "initials": "F",
+     "first": "Flora",
+     "full": "Tavernier F",
+     "collective": null
+    },
+    {
+     "last": "Ryckewaert",
+     "initials": "M",
+     "first": "Maxime",
+     "full": "Ryckewaert M",
+     "collective": null
+    },
+    {
+     "last": "Gorretta",
+     "initials": "N",
+     "first": "Nathalie",
+     "full": "Gorretta N",
+     "collective": null
+    },
+    {
+     "last": "Roumet",
+     "initials": "P",
+     "first": "Pierre",
+     "full": "Roumet P",
+     "collective": null
+    },
+    {
+     "last": "Ballini",
+     "initials": "E",
+     "first": "Elsa",
+     "full": "Ballini E",
+     "collective": null
+    }
+   ],
+   "journal": "Data in brief",
+   "journal_iso": "Data Brief",
+   "volume": "59",
+   "issue": null,
+   "year": 2025,
+   "pages": "111404",
+   "license": "cc by",
+   "first_pub": "2025-02-18",
+   "fig_label": "Fig. 4",
+   "caption": "VNIR hyperspectral images (label 45_G) illustrating Leaf blotch disease symptoms of wheat leaves infected with Zymoseptoria tritici at 12 dpi (A), 13 dpi (B) and 14 dpi (C). Necrosis and pycnidia (black dots) caused by the disease are highlighted in the white inset.",
+   "href": "gr4.jpg",
+   "img_url": "https://cdn.ncbi.nlm.nih.gov/pmc/blobs/4385/11919375/7d847d3f4398/gr4.jpg",
+   "orig_size": [
+    709,
+    250
+   ],
+   "crossref": {
+    "title": "Early detection of Zymoseptoria tritici infection on wheat leaves using hyperspectral imaging data",
+    "container": "Data in Brief",
+    "volume": "59",
+    "issue": null,
+    "page": "111404",
+    "article_number": "111404",
+    "authors": [
+     {
+      "given": "Lorraine",
+      "family": "Latchoumane",
+      "name": null
+     },
+     {
+      "given": "Martin",
+      "family": "Ecarnot",
+      "name": null
+     },
+     {
+      "given": "Ryad",
+      "family": "Bendoula",
+      "name": null
+     },
+     {
+      "given": "Jean-Michel",
+      "family": "Roger",
+      "name": null
+     },
+     {
+      "given": "Silvia",
+      "family": "Mas-Garcia",
+      "name": null
+     },
+     {
+      "given": "Heloïse",
+      "family": "Villesseche",
+      "name": null
+     },
+     {
+      "given": "Flora",
+      "family": "Tavernier",
+      "name": null
+     },
+     {
+      "given": "Maxime",
+      "family": "Ryckewaert",
+      "name": null
+     },
+     {
+      "given": "Nathalie",
+      "family": "Gorretta",
+      "name": null
+     },
+     {
+      "given": "Pierre",
+      "family": "Roumet",
+      "name": null
+     },
+     {
+      "given": "Elsa",
+      "family": "Ballini",
+      "name": null
+     }
+    ],
+    "issued": [
+     2025,
+     4
+    ],
+    "published_online": [
+     null
+    ],
+    "published_print": [
+     2025,
+     4
+    ]
+   }
+  }
+ ]
+}

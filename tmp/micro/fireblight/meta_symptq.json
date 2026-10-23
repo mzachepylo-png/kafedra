@@ -1,0 +1,92 @@
+{
+ "id": "fireblight",
+ "candidates": [
+  {
+   "k": "q1",
+   "source": "epmc",
+   "score": 10,
+   "pmcid": "PMC13123061",
+   "doi": "10.1080/21505594.2026.2664987",
+   "title": "Pathogenicity and virulence of &lt;i&gt;Erwinia amylovora&lt;/i&gt;.",
+   "authors": [
+    {
+     "last": "Sundin",
+     "initials": "GW",
+     "first": "George W",
+     "full": "Sundin GW",
+     "collective": null
+    },
+    {
+     "last": "Castiblanco",
+     "initials": "LF",
+     "first": "Luisa F",
+     "full": "Castiblanco LF",
+     "collective": null
+    },
+    {
+     "last": "Zeng",
+     "initials": "Q",
+     "first": "Quan",
+     "full": "Zeng Q",
+     "collective": null
+    }
+   ],
+   "journal": "Virulence",
+   "journal_iso": "Virulence",
+   "volume": "17",
+   "issue": "1",
+   "year": 2026,
+   "pages": "2664987",
+   "license": "cc by",
+   "first_pub": "2026-04-27",
+   "fig_label": "Figure 2.",
+   "caption": "Flower infection process during fire blight pathogenesis. (a) E. amylovora grows epiphytically in the intercellular spaces of the papillae cells of the stigmas, where a subpopulation employs its hrp -T3SS to translocate effector proteins, promoting bacterial multiplication in the stigma surface. (b) Directed by flagellar-mediated chemotaxis to organic acids found in nectar, E. amylovora migrates down the stylar groove from the stigma to the hypanthium. (c) Upon reaching the base of the flower, the pathogen invades the nectaries, which serve as natural openings for nectar secretion, and (d) continues its systemic invasion of the host, leading to the development of blossom blight. Figure created in https://biorender.com.",
+   "href": "KVIR_A_2664987_F0002_OC.jpg",
+   "img_url": "https://cdn.ncbi.nlm.nih.gov/pmc/blobs/faa8/13123061/840f82171d76/KVIR_A_2664987_F0002_OC.jpg",
+   "orig_size": [
+    800,
+    445
+   ],
+   "crossref": {
+    "title": "Pathogenicity and virulence of\n                    <i>Erwinia amylovora</i>",
+    "container": "Virulence",
+    "volume": "17",
+    "issue": "1",
+    "page": null,
+    "article_number": "2664987",
+    "authors": [
+     {
+      "given": "George W.",
+      "family": "Sundin",
+      "name": null
+     },
+     {
+      "given": "Luisa F.",
+      "family": "Castiblanco",
+      "name": null
+     },
+     {
+      "given": "Quan",
+      "family": "Zeng",
+      "name": null
+     }
+    ],
+    "issued": [
+     2026,
+     4,
+     27
+    ],
+    "published_online": [
+     2026,
+     4,
+     27
+    ],
+    "published_print": [
+     2026,
+     12,
+     31
+    ]
+   }
+  }
+ ]
+}

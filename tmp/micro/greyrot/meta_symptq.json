@@ -1,0 +1,476 @@
+{
+ "id": "greyrot",
+ "candidates": [
+  {
+   "k": "q1",
+   "source": "epmc",
+   "score": 8,
+   "pmcid": "PMC13165056",
+   "doi": "10.3390/plants15091360",
+   "title": "Multi-Omics Analysis Identifies SlLhcb13 as a Key Regulator of Tomato Resistance to &lt;i&gt;Botrytis cinerea&lt;/i&gt;.",
+   "authors": [
+    {
+     "last": "Luo",
+     "initials": "D",
+     "first": "Dan",
+     "full": "Luo D",
+     "collective": null
+    },
+    {
+     "last": "Peng",
+     "initials": "X",
+     "first": "Xiaojie",
+     "full": "Peng X",
+     "collective": null
+    },
+    {
+     "last": "Yan",
+     "initials": "W",
+     "first": "Weiqiang",
+     "full": "Yan W",
+     "collective": null
+    },
+    {
+     "last": "Wang",
+     "initials": "Y",
+     "first": "Yujin",
+     "full": "Wang Y",
+     "collective": null
+    },
+    {
+     "last": "Liu",
+     "initials": "K",
+     "first": "Ke",
+     "full": "Liu K",
+     "collective": null
+    },
+    {
+     "last": "Li",
+     "initials": "L",
+     "first": "Lixia",
+     "full": "Li L",
+     "collective": null
+    },
+    {
+     "last": "Wu",
+     "initials": "Z",
+     "first": "Zhe",
+     "full": "Wu Z",
+     "collective": null
+    },
+    {
+     "last": "Nie",
+     "initials": "H",
+     "first": "Hongmei",
+     "full": "Nie H",
+     "collective": null
+    },
+    {
+     "last": "Sun",
+     "initials": "S",
+     "first": "Sheng",
+     "full": "Sun S",
+     "collective": null
+    },
+    {
+     "last": "Sun",
+     "initials": "W",
+     "first": "Wenhui",
+     "full": "Sun W",
+     "collective": null
+    },
+    {
+     "last": "Cai",
+     "initials": "J",
+     "first": "Jun",
+     "full": "Cai J",
+     "collective": null
+    }
+   ],
+   "journal": "Plants (Basel, Switzerland)",
+   "journal_iso": "Plants (Basel)",
+   "volume": "15",
+   "issue": "9",
+   "year": 2026,
+   "pages": "1360",
+   "license": "cc by",
+   "first_pub": "2026-04-29",
+   "fig_label": "Figure 1",
+   "caption": "Effects of B. cinerea infection on tomato physiological indices and phenotypes. (A – E) Temporal dynamics of physiological and biochemical parameters in tomato leaves after infection with B. cinerea at 0 (control), 24, and 48 h, including the activities of superoxide dismutase (SOD), peroxidase (POD), and catalase (CAT), as well as the contents of malondialdehyde (MDA) and hydrogen peroxide (H 2 O 2). (F) Representative disease symptoms of tomato plants at 0 h (control) and 72 h post-inoculation with B. cinerea. Data are presented as the mean ± standard deviation (n = 3). Statistical differences were assessed by one-way ANOVA followed by Duncan’s multiple range test. Different lowercase letters indicate significant differences (p < 0.05) among time points for the same parameter. Bar = 1 cm.",
+   "href": "plants-15-01360-g001.jpg",
+   "img_url": "https://cdn.ncbi.nlm.nih.gov/pmc/blobs/60b0/13165056/8a00bd75a88b/plants-15-01360-g001.jpg",
+   "orig_size": [
+    734,
+    449
+   ],
+   "crossref": {
+    "title": "Multi-Omics Analysis Identifies SlLhcb13 as a Key Regulator of Tomato Resistance to Botrytis cinerea",
+    "container": "Plants",
+    "volume": "15",
+    "issue": "9",
+    "page": "1360",
+    "article_number": null,
+    "authors": [
+     {
+      "given": "Dan",
+      "family": "Luo",
+      "name": null
+     },
+     {
+      "given": "Xiaojie",
+      "family": "Peng",
+      "name": null
+     },
+     {
+      "given": "Weiqiang",
+      "family": "Yan",
+      "name": null
+     },
+     {
+      "given": "Yujin",
+      "family": "Wang",
+      "name": null
+     },
+     {
+      "given": "Ke",
+      "family": "Liu",
+      "name": null
+     },
+     {
+      "given": "Lixia",
+      "family": "Li",
+      "name": null
+     },
+     {
+      "given": "Zhe",
+      "family": "Wu",
+      "name": null
+     },
+     {
+      "given": "Hongmei",
+      "family": "Nie",
+      "name": null
+     },
+     {
+      "given": "Sheng",
+      "family": "Sun",
+      "name": null
+     },
+     {
+      "given": "Wenhui",
+      "family": "Sun",
+      "name": null
+     },
+     {
+      "given": "Jun",
+      "family": "Cai",
+      "name": null
+     }
+    ],
+    "issued": [
+     2026,
+     4,
+     29
+    ],
+    "published_online": [
+     2026,
+     4,
+     29
+    ],
+    "published_print": [
+     null
+    ]
+   }
+  },
+  {
+   "k": "q2",
+   "source": "epmc",
+   "score": 8,
+   "pmcid": "PMC13290904",
+   "doi": "10.3389/fmicb.2026.1839241",
+   "title": "Genomic analysis of &lt;i&gt;Botrytis cinerea&lt;/i&gt; causing postharvest strawberry rot and the control effect of pydiflumetofen.",
+   "authors": [
+    {
+     "last": "Yan",
+     "initials": "H",
+     "first": "Haohao",
+     "full": "Yan H",
+     "collective": null
+    },
+    {
+     "last": "Jiang",
+     "initials": "L",
+     "first": "Lili",
+     "full": "Jiang L",
+     "collective": null
+    },
+    {
+     "last": "Guo",
+     "initials": "T",
+     "first": "Tianyu",
+     "full": "Guo T",
+     "collective": null
+    },
+    {
+     "last": "Wang",
+     "initials": "C",
+     "first": "Chao",
+     "full": "Wang C",
+     "collective": null
+    },
+    {
+     "last": "Motelica-Heino",
+     "initials": "M",
+     "first": "Mikael",
+     "full": "Motelica-Heino M",
+     "collective": null
+    },
+    {
+     "last": "Wu",
+     "initials": "C",
+     "first": "Chong",
+     "full": "Wu C",
+     "collective": null
+    }
+   ],
+   "journal": "Frontiers in microbiology",
+   "journal_iso": "Front Microbiol",
+   "volume": "17",
+   "issue": null,
+   "year": 2026,
+   "pages": "1839241",
+   "license": "cc by",
+   "first_pub": "2026-06-10",
+   "fig_label": "Figure 1",
+   "caption": "Microbial community of strawberry fruits. (A) Collected healthy strawberry fruit; (B) Typical symptoms of postharvest fruit rot on collected strawberry fruit; Phylum (C), genus (D), Chao1 (E), and Shannon (F) of fungal communities of healthy and diseased strawberry fruits; Phylum (G), genus (H), Chao1 (I), and Shannon (J) of bacterial communities of healthy and diseased strawberry fruits. Group H: healthy (unrotten) strawberry fruits; Group I: infected by pathogen (rotten) strawberry fruits.",
+   "href": "fmicb-17-1839241-g001.jpg",
+   "img_url": "https://cdn.ncbi.nlm.nih.gov/pmc/blobs/cb6c/13290904/dc6edbbaa114/fmicb-17-1839241-g001.jpg",
+   "orig_size": [
+    767,
+    449
+   ],
+   "crossref": {
+    "title": "Genomic analysis of Botrytis cinerea causing postharvest strawberry rot and the control effect of pydiflumetofen",
+    "container": "Frontiers in Microbiology",
+    "volume": "17",
+    "issue": null,
+    "page": null,
+    "article_number": "1839241",
+    "authors": [
+     {
+      "given": "Haohao",
+      "family": "Yan",
+      "name": null
+     },
+     {
+      "given": "Lili",
+      "family": "Jiang",
+      "name": null
+     },
+     {
+      "given": "Tianyu",
+      "family": "Guo",
+      "name": null
+     },
+     {
+      "given": "Chao",
+      "family": "Wang",
+      "name": null
+     },
+     {
+      "given": "Mikael",
+      "family": "Motelica-Heino",
+      "name": null
+     },
+     {
+      "given": "Chong",
+      "family": "Wu",
+      "name": null
+     }
+    ],
+    "issued": [
+     2026,
+     6,
+     10
+    ],
+    "published_online": [
+     2026,
+     6,
+     10
+    ],
+    "published_print": [
+     null
+    ]
+   }
+  },
+  {
+   "k": "q3",
+   "source": "epmc",
+   "score": 6,
+   "pmcid": "PMC13153071",
+   "doi": "10.3389/fpls.2026.1797378",
+   "title": "CtChi19: a valuable gene for improving resistance to Botrytis cinerea and Alternaria alternata in Carthamus tinctorius.",
+   "authors": [
+    {
+     "last": "Ma",
+     "initials": "K",
+     "first": "Kang",
+     "full": "Ma K",
+     "collective": null
+    },
+    {
+     "last": "Wang",
+     "initials": "X",
+     "first": "Xiaoyan",
+     "full": "Wang X",
+     "collective": null
+    },
+    {
+     "last": "Fan",
+     "initials": "K",
+     "first": "Kangjun",
+     "full": "Fan K",
+     "collective": null
+    },
+    {
+     "last": "Zhang",
+     "initials": "K",
+     "first": "Kehui",
+     "full": "Zhang K",
+     "collective": null
+    },
+    {
+     "last": "Lv",
+     "initials": "L",
+     "first": "Lu",
+     "full": "Lv L",
+     "collective": null
+    },
+    {
+     "last": "Wei",
+     "initials": "Z",
+     "first": "Zhaojun",
+     "full": "Wei Z",
+     "collective": null
+    },
+    {
+     "last": "Liu",
+     "initials": "J",
+     "first": "Jiao",
+     "full": "Liu J",
+     "collective": null
+    },
+    {
+     "last": "Liu",
+     "initials": "H",
+     "first": "Hong",
+     "full": "Liu H",
+     "collective": null
+    },
+    {
+     "last": "Wei",
+     "initials": "J",
+     "first": "Jian",
+     "full": "Wei J",
+     "collective": null
+    },
+    {
+     "last": "Qin",
+     "initials": "R",
+     "first": "Rui",
+     "full": "Qin R",
+     "collective": null
+    }
+   ],
+   "journal": "Frontiers in plant science",
+   "journal_iso": "Front Plant Sci",
+   "volume": "17",
+   "issue": null,
+   "year": 2026,
+   "pages": "1797378",
+   "license": "cc by",
+   "first_pub": "2026-04-24",
+   "fig_label": "Figure 5",
+   "caption": "Transgenic validation of CtChi19 -mediated enhanced resistance to A. alternata: (A) and (B) Inoculation of safflower seedlings with A. alternata mycelia, including 6 plants each of OE-CtChi19 transgenic plants and WT plants; (C) RT-qPCR analysis confirmed that the CtChi19 was upregulated in all 6 OE- CtChi19 transgenic plants used for the infection assay, compared with the wild-type plants; (D) Lesion areas on leaves were measured using ImageJ at 4 days post-inoculation. The lesion areas of OE- CtChi19 plants were significantly smaller than those of WT plants, indicating that overexpression of CtChi19 significantly enhances safflower resistance to A. alternata. This experiment was repeated three times with consistent results. (E) Chitinase activity in leaf tissues was determined at 24 h and 48 h post-inoculation, comparing inoculated and mock-treated groups of WT and OE- CtChi19 transgenic plants. Mixed samples from 6 plants were used for enzyme activity detection in each group. This experiment was repeated three times with consistent results. (F) β-1,3-glucanase activity in leaf tissues was determined at 24 h and 48 h post-inoculation, comparing inoculated and mock-treated groups of WT and OE- CtChi19 transgenic plants. Mixed samples from 6 plants were used for enzyme activity detection in each group. This experiment was repeated three times with consistent results. ***p < 0.001; ****p < 0.0001.",
+   "href": "fpls-17-1797378-g005.jpg",
+   "img_url": "https://www.frontiersin.org/files/Articles/1797378/fpls-17-1797378-HTML/image_m/fpls-17-1797378-g005.jpg",
+   "orig_size": [
+    2559,
+    2855
+   ],
+   "crossref": {
+    "title": "CtChi19: a valuable gene for improving resistance to Botrytis cinerea and Alternaria alternata in Carthamus tinctorius",
+    "container": "Frontiers in Plant Science",
+    "volume": "17",
+    "issue": null,
+    "page": null,
+    "article_number": "1797378",
+    "authors": [
+     {
+      "given": "Kang",
+      "family": "Ma",
+      "name": null
+     },
+     {
+      "given": "Xiaoyan",
+      "family": "Wang",
+      "name": null
+     },
+     {
+      "given": "Kangjun",
+      "family": "Fan",
+      "name": null
+     },
+     {
+      "given": "Kehui",
+      "family": "Zhang",
+      "name": null
+     },
+     {
+      "given": "Lu",
+      "family": "Lv",
+      "name": null
+     },
+     {
+      "given": "Zhaojun",
+      "family": "Wei",
+      "name": null
+     },
+     {
+      "given": "Jiao",
+      "family": "Liu",
+      "name": null
+     },
+     {
+      "given": "Hong",
+      "family": "Liu",
+      "name": null
+     },
+     {
+      "given": "Jian",
+      "family": "Wei",
+      "name": null
+     },
+     {
+      "given": "Rui",
+      "family": "Qin",
+      "name": null
+     }
+    ],
+    "issued": [
+     2026,
+     4,
+     24
+    ],
+    "published_online": [
+     2026,
+     4,
+     24
+    ],
+    "published_print": [
+     null
+    ]
+   }
+  }
+ ]
+}

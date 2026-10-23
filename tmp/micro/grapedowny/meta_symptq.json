@@ -1,0 +1,536 @@
+{
+ "id": "grapedowny",
+ "candidates": [
+  {
+   "k": "q1",
+   "source": "epmc",
+   "score": 9,
+   "pmcid": "PMC13035788",
+   "doi": "10.3389/fmicb.2026.1805591",
+   "title": "Phenylpropanoid metabolites from grape leaves contribute to strong defense roles against downy mildew based on physiological and transcriptomic analyses.",
+   "authors": [
+    {
+     "last": "Xun",
+     "initials": "Z",
+     "first": "Zhili",
+     "full": "Xun Z",
+     "collective": null
+    },
+    {
+     "last": "Qin",
+     "initials": "H",
+     "first": "Haijin",
+     "full": "Qin H",
+     "collective": null
+    },
+    {
+     "last": "Li",
+     "initials": "F",
+     "first": "Feng",
+     "full": "Li F",
+     "collective": null
+    },
+    {
+     "last": "Yao",
+     "initials": "Z",
+     "first": "Zhaoqian",
+     "full": "Yao Z",
+     "collective": null
+    },
+    {
+     "last": "Xu",
+     "initials": "Y",
+     "first": "Yifan",
+     "full": "Xu Y",
+     "collective": null
+    },
+    {
+     "last": "Wang",
+     "initials": "M",
+     "first": "Min",
+     "full": "Wang M",
+     "collective": null
+    },
+    {
+     "last": "Huang",
+     "initials": "L",
+     "first": "Liping",
+     "full": "Huang L",
+     "collective": null
+    },
+    {
+     "last": "Zhu",
+     "initials": "Y",
+     "first": "Yue",
+     "full": "Zhu Y",
+     "collective": null
+    },
+    {
+     "last": "Geng",
+     "initials": "X",
+     "first": "Xueqing",
+     "full": "Geng X",
+     "collective": null
+    },
+    {
+     "last": "Zhao",
+     "initials": "Q",
+     "first": "Qifeng",
+     "full": "Zhao Q",
+     "collective": null
+    }
+   ],
+   "journal": "Frontiers in microbiology",
+   "journal_iso": "Front Microbiol",
+   "volume": "17",
+   "issue": null,
+   "year": 2026,
+   "pages": "1805591",
+   "license": "cc by",
+   "first_pub": "2026-03-17",
+   "fig_label": "Figure 1",
+   "caption": "The phenotypic symptoms of leaves infected by Plasmopara viticola after 5 days. The picture showed the phenotypic images of 12 representative leaf disks after infection with Plasmopara viticola from the grape variety of Moldova (A) and Red Globe (B). The disease index of the leaves was recorded 5 days after inoculation with Plasmopara viticola according to the grading standard (C) (Supplementary Table S1). Data are shown as mean ± SD (n = 3). Statistical significance was determined by Student's t -test (* p < 0.05, ** p < 0.01, *** p < 0.001).",
+   "href": "fmicb-17-1805591-g0001.jpg",
+   "img_url": "https://cdn.ncbi.nlm.nih.gov/pmc/blobs/f339/13035788/0ccc1aa86167/fmicb-17-1805591-g0001.jpg",
+   "orig_size": [
+    767,
+    759
+   ],
+   "crossref": {
+    "title": "Phenylpropanoid metabolites from grape leaves contribute to strong defense roles against downy mildew based on physiological and transcriptomic analyses",
+    "container": "Frontiers in Microbiology",
+    "volume": "17",
+    "issue": null,
+    "page": null,
+    "article_number": "1805591",
+    "authors": [
+     {
+      "given": "Zhili",
+      "family": "Xun",
+      "name": null
+     },
+     {
+      "given": "Haijin",
+      "family": "Qin",
+      "name": null
+     },
+     {
+      "given": "Feng",
+      "family": "Li",
+      "name": null
+     },
+     {
+      "given": "Zhaoqian",
+      "family": "Yao",
+      "name": null
+     },
+     {
+      "given": "Yifan",
+      "family": "Xu",
+      "name": null
+     },
+     {
+      "given": "Min",
+      "family": "Wang",
+      "name": null
+     },
+     {
+      "given": "Liping",
+      "family": "Huang",
+      "name": null
+     },
+     {
+      "given": "Yue",
+      "family": "Zhu",
+      "name": null
+     },
+     {
+      "given": "Xueqing",
+      "family": "Geng",
+      "name": null
+     },
+     {
+      "given": "Qifeng",
+      "family": "Zhao",
+      "name": null
+     }
+    ],
+    "issued": [
+     2026,
+     3,
+     17
+    ],
+    "published_online": [
+     2026,
+     3,
+     17
+    ],
+    "published_print": [
+     null
+    ]
+   }
+  },
+  {
+   "k": "q2",
+   "source": "epmc",
+   "score": 8,
+   "pmcid": "PMC13195864",
+   "doi": "10.1186/s12870-026-08718-0",
+   "title": "Silica nanoparticles enhance resistance of Vitis vinifera to downy mildew.",
+   "authors": [
+    {
+     "last": "Alfonso",
+     "initials": "E",
+     "first": "Esteban",
+     "full": "Alfonso E",
+     "collective": null
+    },
+    {
+     "last": "Jaccard",
+     "initials": "A",
+     "first": "Augustine",
+     "full": "Jaccard A",
+     "collective": null
+    },
+    {
+     "last": "Schnée",
+     "initials": "S",
+     "first": "Sylvain",
+     "full": "Schnée S",
+     "collective": null
+    },
+    {
+     "last": "Malvessi Cattani",
+     "initials": "A",
+     "first": "Amanda",
+     "full": "Malvessi Cattani A",
+     "collective": null
+    },
+    {
+     "last": "Chevalley",
+     "initials": "C",
+     "first": "Clara",
+     "full": "Chevalley C",
+     "collective": null
+    },
+    {
+     "last": "Michellod",
+     "initials": "E",
+     "first": "Emilie",
+     "full": "Michellod E",
+     "collective": null
+    },
+    {
+     "last": "Farny",
+     "initials": "M",
+     "first": "Michaël",
+     "full": "Farny M",
+     "collective": null
+    },
+    {
+     "last": "Sonnard",
+     "initials": "R",
+     "first": "Robin",
+     "full": "Sonnard R",
+     "collective": null
+    },
+    {
+     "last": "Remolif",
+     "initials": "E",
+     "first": "Eric",
+     "full": "Remolif E",
+     "collective": null
+    },
+    {
+     "last": "Gindro",
+     "initials": "K",
+     "first": "Katia",
+     "full": "Gindro K",
+     "collective": null
+    },
+    {
+     "last": "Rienth",
+     "initials": "M",
+     "first": "Markus",
+     "full": "Rienth M",
+     "collective": null
+    }
+   ],
+   "journal": "BMC plant biology",
+   "journal_iso": "BMC Plant Biol",
+   "volume": "26",
+   "issue": "1",
+   "year": 2026,
+   "pages": "906",
+   "license": "cc by",
+   "first_pub": "2026-04-15",
+   "fig_label": "Fig. 2",
+   "caption": "Disease incidence and severity of downy mildew in V. vinifera cv. Chasselas from field experimental trials in (A) 2023, (B) 2024 and (C) 2025. For each BBCH stage (sampling date), data represent means ± SE of four biological replicates (blocks). Each block assessment consisted of 100 leaves and 50 bunches. Different letters indicate significant differences at P < 0.05 (One-Way ANOVA followed by Tukey’s Honest Significant Difference post hoc test)",
+   "href": "12870_2026_8718_Fig2_HTML.jpg",
+   "img_url": "https://cdn.ncbi.nlm.nih.gov/pmc/blobs/6d11/13195864/e8d6464bc846/12870_2026_8718_Fig2_HTML.jpg",
+   "orig_size": [
+    646,
+    1414
+   ],
+   "crossref": {
+    "title": "Silica nanoparticles enhance resistance of Vitis vinifera to downy mildew",
+    "container": "BMC Plant Biology",
+    "volume": "26",
+    "issue": "1",
+    "page": null,
+    "article_number": "906",
+    "authors": [
+     {
+      "given": "Esteban",
+      "family": "Alfonso",
+      "name": null
+     },
+     {
+      "given": "Augustine",
+      "family": "Jaccard",
+      "name": null
+     },
+     {
+      "given": "Sylvain",
+      "family": "Schnée",
+      "name": null
+     },
+     {
+      "given": "Amanda",
+      "family": "Malvessi Cattani",
+      "name": null
+     },
+     {
+      "given": "Clara",
+      "family": "Chevalley",
+      "name": null
+     },
+     {
+      "given": "Emilie",
+      "family": "Michellod",
+      "name": null
+     },
+     {
+      "given": "Michaël",
+      "family": "Farny",
+      "name": null
+     },
+     {
+      "given": "Robin",
+      "family": "Sonnard",
+      "name": null
+     },
+     {
+      "given": "Eric",
+      "family": "Remolif",
+      "name": null
+     },
+     {
+      "given": "Katia",
+      "family": "Gindro",
+      "name": null
+     },
+     {
+      "given": "Markus",
+      "family": "Rienth",
+      "name": null
+     }
+    ],
+    "issued": [
+     2026,
+     4,
+     15
+    ],
+    "published_online": [
+     2026,
+     4,
+     15
+    ],
+    "published_print": [
+     null
+    ]
+   }
+  },
+  {
+   "k": "q3",
+   "source": "epmc",
+   "score": 6,
+   "pmcid": "PMC13101533",
+   "doi": "10.1128/aem.02152-25",
+   "title": "Automated air-flow cytometry enables real-time monitoring of &lt;i&gt;Plasmopara viticola&lt;/i&gt; sporangia in vineyards.",
+   "authors": [
+    {
+     "last": "Malvessi Cattani",
+     "initials": "A",
+     "first": "Amanda",
+     "full": "Malvessi Cattani A",
+     "collective": null
+    },
+    {
+     "last": "Zeder",
+     "initials": "Y",
+     "first": "Yanick",
+     "full": "Zeder Y",
+     "collective": null
+    },
+    {
+     "last": "Graf",
+     "initials": "E",
+     "first": "Elias",
+     "full": "Graf E",
+     "collective": null
+    },
+    {
+     "last": "Schwendimann",
+     "initials": "A",
+     "first": "Andreas",
+     "full": "Schwendimann A",
+     "collective": null
+    },
+    {
+     "last": "Coronelli",
+     "initials": "R",
+     "first": "Roberta",
+     "full": "Coronelli R",
+     "collective": null
+    },
+    {
+     "last": "Smit-Sadki",
+     "initials": "T",
+     "first": "Tara",
+     "full": "Smit-Sadki T",
+     "collective": null
+    },
+    {
+     "last": "Burdet",
+     "initials": "J-P",
+     "first": "Jean-Philippe",
+     "full": "Burdet J-P",
+     "collective": null
+    },
+    {
+     "last": "Alfonso",
+     "initials": "E",
+     "first": "Esteban",
+     "full": "Alfonso E",
+     "collective": null
+    },
+    {
+     "last": "Jaccard",
+     "initials": "A",
+     "first": "Augustine",
+     "full": "Jaccard A",
+     "collective": null
+    },
+    {
+     "last": "Niederberger",
+     "initials": "E",
+     "first": "Erny",
+     "full": "Niederberger E",
+     "collective": null
+    },
+    {
+     "last": "Rienth",
+     "initials": "M",
+     "first": "Markus",
+     "full": "Rienth M",
+     "collective": null
+    }
+   ],
+   "journal": "Applied and environmental microbiology",
+   "journal_iso": "Appl Environ Microbiol",
+   "volume": "92",
+   "issue": "4",
+   "year": 2026,
+   "pages": "e0215225",
+   "license": "cc by",
+   "first_pub": "2026-03-30",
+   "fig_label": "Fig 8",
+   "caption": "Correlation between airborne P. viticola sporangium concentrations and downy mildew disease incidence and severity in treated (T) and non-treated (NT) vineyard plots. (A) Field observations of disease incidence (percentage of leaves showing downy mildew symptoms (white bars for treated plots and black bars for non-treated plots) and disease severity (blue and red lines, for T and NT vines, respectively). Spearman’s correlation was calculated (P < 0.05) between measurements of airborne P. viticola sporangium concentration obtained with the SwisensPoleno system located in non-treated (Pol-NT) (B), and treated plot (Pol-T) (C) and compared with P. viticola DNA quantification and downy mildew disease Incidence (infectedLF) and severity in the respective plot. Asterisks (*) indicate statistically significant correlations.",
+   "href": "aem.02152-25.f008.jpg",
+   "img_url": "https://cdn.ncbi.nlm.nih.gov/pmc/blobs/4881/13101533/d0040401bd6f/aem.02152-25.f008.jpg",
+   "orig_size": [
+    702,
+    528
+   ],
+   "crossref": {
+    "title": "Automated air-flow cytometry enables real-time monitoring of\n                    <i>Plasmopara viticola</i>\n                    sporangia in vineyards",
+    "container": "Applied and Environmental Microbiology",
+    "volume": "92",
+    "issue": "4",
+    "page": null,
+    "article_number": "e02152-25",
+    "authors": [
+     {
+      "given": "Amanda",
+      "family": "Malvessi Cattani",
+      "name": null
+     },
+     {
+      "given": "Yanick",
+      "family": "Zeder",
+      "name": null
+     },
+     {
+      "given": "Elias",
+      "family": "Graf",
+      "name": null
+     },
+     {
+      "given": "Andreas",
+      "family": "Schwendimann",
+      "name": null
+     },
+     {
+      "given": "Roberta",
+      "family": "Coronelli",
+      "name": null
+     },
+     {
+      "given": "Tara",
+      "family": "Smit-Sadki",
+      "name": null
+     },
+     {
+      "given": "Jean-Philippe",
+      "family": "Burdet",
+      "name": null
+     },
+     {
+      "given": "Esteban",
+      "family": "Alfonso",
+      "name": null
+     },
+     {
+      "given": "Augustine",
+      "family": "Jaccard",
+      "name": null
+     },
+     {
+      "given": "Erny",
+      "family": "Niederberger",
+      "name": null
+     },
+     {
+      "given": "Markus",
+      "family": "Rienth",
+      "name": null
+     }
+    ],
+    "issued": [
+     2026,
+     4,
+     22
+    ],
+    "published_online": [
+     null
+    ],
+    "published_print": [
+     2026,
+     4,
+     22
+    ]
+   }
+  }
+ ]
+}

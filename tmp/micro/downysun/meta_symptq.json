@@ -1,0 +1,538 @@
+{
+ "id": "downysun",
+ "candidates": [
+  {
+   "k": "q1",
+   "source": "epmc",
+   "score": 11,
+   "pmcid": "PMC8306969",
+   "doi": "10.3390/jof7070549",
+   "title": "New and High Virulent Pathotypes of Sunflower Downy Mildew (&lt;i&gt;Plasmopara halstedii&lt;/i&gt;) in Seven Countries in Europe.",
+   "authors": [
+    {
+     "last": "Bán",
+     "initials": "R",
+     "first": "Rita",
+     "full": "Bán R",
+     "collective": null
+    },
+    {
+     "last": "Kovács",
+     "initials": "A",
+     "first": "Attila",
+     "full": "Kovács A",
+     "collective": null
+    },
+    {
+     "last": "Nisha",
+     "initials": "N",
+     "first": "Nisha",
+     "full": "Nisha N",
+     "collective": null
+    },
+    {
+     "last": "Pálinkás",
+     "initials": "Z",
+     "first": "Zoltán",
+     "full": "Pálinkás Z",
+     "collective": null
+    },
+    {
+     "last": "Zalai",
+     "initials": "M",
+     "first": "Mihály",
+     "full": "Zalai M",
+     "collective": null
+    },
+    {
+     "last": "Yousif",
+     "initials": "AIA",
+     "first": "Ahmed Ibrahim Alrashid",
+     "full": "Yousif AIA",
+     "collective": null
+    },
+    {
+     "last": "Körösi",
+     "initials": "K",
+     "first": "Katalin",
+     "full": "Körösi K",
+     "collective": null
+    }
+   ],
+   "journal": "Journal of fungi (Basel, Switzerland)",
+   "journal_iso": "J Fungi (Basel)",
+   "volume": "7",
+   "issue": "7",
+   "year": 2021,
+   "pages": "549",
+   "license": "cc by",
+   "first_pub": "2021-07-10",
+   "fig_label": "Figure 1",
+   "caption": "The pathotyping process of Plasmopara halstedii (photo: R. Bán). (A) The differential sunflower set. Except for the first line, each possesses specific resistance genes against P. halstedii. Differential lines are grouped into three sets of three lines. If the sunflower line is susceptible, a value of 1, 2, and 4 is assigned to the first, second, and third lines within each group, respectively. In the case of resistant reaction, the value is 0. The values are added within each group, which results in a three-digit code (coded virulence formula, CVF). The identification of pathotype 724 is shown as an example. (B) Signs of P. halstedii on the cotyledons. The disease was first assessed based on the formation of white sporulation. (C) Symptoms of P. halstedii on the true leaves. A second evaluation was made 21 days after inoculation based on the appearance of white coating and chlorotic lesions on true leaves and stunting of plants. Differential lines were assessed as susceptible if sporulation occurred on the cotyledons and/or chlorosis appeared along the veins of the true leaves.",
+   "href": "jof-07-00549-g001.jpg",
+   "img_url": "https://cdn.ncbi.nlm.nih.gov/pmc/blobs/9834/8306969/847eaaebc68b/jof-07-00549-g001.jpg",
+   "orig_size": [
+    719,
+    648
+   ],
+   "crossref": {
+    "title": "New and High Virulent Pathotypes of Sunflower Downy Mildew (Plasmopara halstedii) in Seven Countries in Europe",
+    "container": "Journal of Fungi",
+    "volume": "7",
+    "issue": "7",
+    "page": "549",
+    "article_number": null,
+    "authors": [
+     {
+      "given": "Rita",
+      "family": "Bán",
+      "name": null
+     },
+     {
+      "given": "Attila",
+      "family": "Kovács",
+      "name": null
+     },
+     {
+      "given": "Nisha",
+      "family": "Nisha",
+      "name": null
+     },
+     {
+      "given": "Zoltán",
+      "family": "Pálinkás",
+      "name": null
+     },
+     {
+      "given": "Mihály",
+      "family": "Zalai",
+      "name": null
+     },
+     {
+      "given": "Ahmed Ibrahim Alrashid",
+      "family": "Yousif",
+      "name": null
+     },
+     {
+      "given": "Katalin",
+      "family": "Körösi",
+      "name": null
+     }
+    ],
+    "issued": [
+     2021,
+     7,
+     10
+    ],
+    "published_online": [
+     2021,
+     7,
+     10
+    ],
+    "published_print": [
+     null
+    ]
+   }
+  },
+  {
+   "k": "q2",
+   "source": "epmc",
+   "score": 7,
+   "pmcid": "PMC13164585",
+   "doi": "10.3390/plants15091310",
+   "title": "Virulence of Hungarian &lt;i&gt;Plasmopara halstedii&lt;/i&gt; Isolates on Sunflower Differential Lines Carrying &lt;i&gt;Pl6&lt;/i&gt;, &lt;i&gt;Pl8&lt;/i&gt;, and &lt;i&gt;Pl&lt;sub&gt;Arg&lt;/sub&gt;&lt;/i&gt; Resistance Genes with Specific Instability of &lt;i&gt;Pl8-Mediated&lt;/i&gt; Resistance.",
+   "authors": [
+    {
+     "last": "Berisha",
+     "initials": "A",
+     "first": "Arbnora",
+     "full": "Berisha A",
+     "collective": null
+    },
+    {
+     "last": "Kovács",
+     "initials": "A",
+     "first": "Attila",
+     "full": "Kovács A",
+     "collective": null
+    },
+    {
+     "last": "Körösi",
+     "initials": "K",
+     "first": "Katalin",
+     "full": "Körösi K",
+     "collective": null
+    },
+    {
+     "last": "Ludányi",
+     "initials": "Á",
+     "first": "Ádám",
+     "full": "Ludányi Á",
+     "collective": null
+    },
+    {
+     "last": "Skornyik",
+     "initials": "A",
+     "first": "András",
+     "full": "Skornyik A",
+     "collective": null
+    },
+    {
+     "last": "Berisha",
+     "initials": "A",
+     "first": "Altin",
+     "full": "Berisha A",
+     "collective": null
+    },
+    {
+     "last": "Bán",
+     "initials": "R",
+     "first": "Rita",
+     "full": "Bán R",
+     "collective": null
+    }
+   ],
+   "journal": "Plants (Basel, Switzerland)",
+   "journal_iso": "Plants (Basel)",
+   "volume": "15",
+   "issue": "9",
+   "year": 2026,
+   "pages": "1310",
+   "license": "cc by",
+   "first_pub": "2026-04-24",
+   "fig_label": "Figure 1",
+   "caption": "Symptoms and signs of sunflower downy mildew. (a) Sporulation of P. halstedii on cotyledons of RHA-340 (Pl8) following inoculation with isolate I3, visible as a white coating made of sporangiophores and sporangia. (b) Chlorosis and necrotic lesions on true leaves of HA-335 (Pl6) after inoculation with isolate 3/2. (c) Damping-off in the susceptible control genotype Iregi after inoculation with isolate 3/1. (d) Abnormal leaf development and growth distortion in RHA-419 (Pl Arg) following inoculation with isolate I1. Pictures are representative examples chosen to illustrate different symptom types and are not meant to show all isolate-genotype combinations. Scale bars represent 2 cm (a), 3 cm (b), 4 cm (c) and 4.5 cm (d).",
+   "href": "plants-15-01310-g001.jpg",
+   "img_url": "https://cdn.ncbi.nlm.nih.gov/pmc/blobs/466c/13164585/8eedf85eeacf/plants-15-01310-g001.jpg",
+   "orig_size": [
+    726,
+    716
+   ],
+   "crossref": {
+    "title": "Virulence of Hungarian Plasmopara halstedii Isolates on Sunflower Differential Lines Carrying Pl6, Pl8, and PlArg Resistance Genes with Specific Instability of Pl8-Mediated Resistance",
+    "container": "Plants",
+    "volume": "15",
+    "issue": "9",
+    "page": "1310",
+    "article_number": null,
+    "authors": [
+     {
+      "given": "Arbnora",
+      "family": "Berisha",
+      "name": null
+     },
+     {
+      "given": "Attila",
+      "family": "Kovács",
+      "name": null
+     },
+     {
+      "given": "Katalin",
+      "family": "Körösi",
+      "name": null
+     },
+     {
+      "given": "Ádám",
+      "family": "Ludányi",
+      "name": null
+     },
+     {
+      "given": "András",
+      "family": "Skornyik",
+      "name": null
+     },
+     {
+      "given": "Altin",
+      "family": "Berisha",
+      "name": null
+     },
+     {
+      "given": "Rita",
+      "family": "Bán",
+      "name": null
+     }
+    ],
+    "issued": [
+     2026,
+     4,
+     24
+    ],
+    "published_online": [
+     2026,
+     4,
+     24
+    ],
+    "published_print": [
+     null
+    ]
+   }
+  },
+  {
+   "k": "q3",
+   "source": "epmc",
+   "score": 7,
+   "pmcid": "PMC6756549",
+   "doi": "10.1371/journal.pone.0222827",
+   "title": "Novel synergistic fungicidal mixtures of oxathiapiprolin protect sunflower seeds from downy mildew caused by Plasmopara halstedii.",
+   "authors": [
+    {
+     "last": "Cohen",
+     "initials": "Y",
+     "first": "Yigal",
+     "full": "Cohen Y",
+     "collective": null
+    },
+    {
+     "last": "Rubin",
+     "initials": "AE",
+     "first": "Avia E",
+     "full": "Rubin AE",
+     "collective": null
+    },
+    {
+     "last": "Galperin",
+     "initials": "M",
+     "first": "Mariana",
+     "full": "Galperin M",
+     "collective": null
+    }
+   ],
+   "journal": "PloS one",
+   "journal_iso": "PLoS One",
+   "volume": "14",
+   "issue": "9",
+   "year": 2019,
+   "pages": "e0222827",
+   "license": "cc by",
+   "first_pub": "2019-09-23",
+   "fig_label": "Fig 7",
+   "caption": "Control of downy mildew in sunflower cultivar Bacardi by seed treatment with Plenaris, Bion and Apron. Mean of three experiment. A- Doses of the fungicides applied per seed. B- Percent plants showing sporulation of Plasmopara halstedii at 7 dpi. Different letters on bars indicate on significant differences between treatments at α = 0.05.",
+   "href": "pone.0222827.g007.jpg",
+   "img_url": "https://journals.plos.org/plosone/article/figure/image?size=large&id=10.1371/journal.pone.0222827.g007",
+   "orig_size": [
+    2220,
+    2111
+   ],
+   "crossref": {
+    "title": "Novel synergistic fungicidal mixtures of oxathiapiprolin protect sunflower seeds from downy mildew caused by Plasmopara halstedii",
+    "container": "PLOS ONE",
+    "volume": "14",
+    "issue": "9",
+    "page": "e0222827",
+    "article_number": null,
+    "authors": [
+     {
+      "given": "Yigal",
+      "family": "Cohen",
+      "name": null
+     },
+     {
+      "given": "Avia E.",
+      "family": "Rubin",
+      "name": null
+     },
+     {
+      "given": "Mariana",
+      "family": "Galperin",
+      "name": null
+     }
+    ],
+    "issued": [
+     2019,
+     9,
+     23
+    ],
+    "published_online": [
+     2019,
+     9,
+     23
+    ],
+    "published_print": [
+     null
+    ]
+   }
+  },
+  {
+   "k": "q4",
+   "source": "epmc",
+   "score": 6,
+   "pmcid": "PMC6849628",
+   "doi": "10.1111/tpj.14157",
+   "title": "Sunflower resistance to multiple downy mildew pathotypes revealed by recognition of conserved effectors of the oomycete Plasmopara halstedii.",
+   "authors": [
+    {
+     "last": "Pecrix",
+     "initials": "Y",
+     "first": "Yann",
+     "full": "Pecrix Y",
+     "collective": null
+    },
+    {
+     "last": "Buendia",
+     "initials": "L",
+     "first": "Luis",
+     "full": "Buendia L",
+     "collective": null
+    },
+    {
+     "last": "Penouilh-Suzette",
+     "initials": "C",
+     "first": "Charlotte",
+     "full": "Penouilh-Suzette C",
+     "collective": null
+    },
+    {
+     "last": "Maréchaux",
+     "initials": "M",
+     "first": "Maude",
+     "full": "Maréchaux M",
+     "collective": null
+    },
+    {
+     "last": "Legrand",
+     "initials": "L",
+     "first": "Ludovic",
+     "full": "Legrand L",
+     "collective": null
+    },
+    {
+     "last": "Bouchez",
+     "initials": "O",
+     "first": "Olivier",
+     "full": "Bouchez O",
+     "collective": null
+    },
+    {
+     "last": "Rengel",
+     "initials": "D",
+     "first": "David",
+     "full": "Rengel D",
+     "collective": null
+    },
+    {
+     "last": "Gouzy",
+     "initials": "J",
+     "first": "Jérôme",
+     "full": "Gouzy J",
+     "collective": null
+    },
+    {
+     "last": "Cottret",
+     "initials": "L",
+     "first": "Ludovic",
+     "full": "Cottret L",
+     "collective": null
+    },
+    {
+     "last": "Vear",
+     "initials": "F",
+     "first": "Felicity",
+     "full": "Vear F",
+     "collective": null
+    },
+    {
+     "last": "Godiard",
+     "initials": "L",
+     "first": "Laurence",
+     "full": "Godiard L",
+     "collective": null
+    }
+   ],
+   "journal": "The Plant journal : for cell and molecular biology",
+   "journal_iso": "Plant J",
+   "volume": "97",
+   "issue": "4",
+   "year": 2019,
+   "pages": "730-748",
+   "license": "cc by",
+   "first_pub": "2019-01-07",
+   "fig_label": "Figure 6",
+   "caption": "The Pl22 downy mildew resistance gene and recognition of the core effector Ph RXLR ‐C01 co‐segregate on chromosome 13 of sunflower.(a) Thirty‐five Pl22 resistant (left graph) and 35 susceptible (right graph) F3 progenies of the cross PMI3 (Pl22) × GH (susceptible) were tested by agroinfiltration with the core RXLR effector PhRXLR‐C01 and with the empty vector as control. The infiltrated leaf sectors were scored at 4, 8, and 12 days post infiltration using a scoring necrotic scale from 0 (no visible effect) to 5 (confluent HR) (Gascuel et al., 2016b). Error bars represent means ± SD (two independent biological replicates, each performed on two leaves of 12 plants). Pictures of corresponding infiltrated leaves with PhRXLR‐C01 are shown below each graph.(b) Genetic (yellow) and physical (blue) maps of the Pl22 resistance gene on chromosome 13, obtained with PMI3 × GH (left map) and with PMI3 × Idaho (right map) crosses, only the non‐redundant SNP markers are indicated. The central panel is an enlarged view of the physical map showing all the genetically redundant but physically distant markers for both crosses. The chromosomal region in red containing Pl22 is defined by the overlap between both maps. The polymorphic SNP markers of the sunflower AXIOM array denominated AX‐xxxxxxxxx are indicated with their genetic and physical positions on the sunflower XRQ genomic sequence (Badouin et al., 2017).",
+   "href": "TPJ-97-730-g006.jpg",
+   "img_url": "https://cdn.ncbi.nlm.nih.gov/pmc/blobs/2d74/6849628/aa3a9f68e861/TPJ-97-730-g006.jpg",
+   "orig_size": [
+    709,
+    732
+   ],
+   "crossref": {
+    "title": "Sunflower resistance to multiple downy mildew pathotypes revealed by recognition of conserved effectors of the oomycete <i>Plasmopara halstedii</i>",
+    "container": "The Plant Journal",
+    "volume": "97",
+    "issue": "4",
+    "page": "730-748",
+    "article_number": null,
+    "authors": [
+     {
+      "given": "Yann",
+      "family": "Pecrix",
+      "name": null
+     },
+     {
+      "given": "Luis",
+      "family": "Buendia",
+      "name": null
+     },
+     {
+      "given": "Charlotte",
+      "family": "Penouilh‐Suzette",
+      "name": null
+     },
+     {
+      "given": "Maude",
+      "family": "Maréchaux",
+      "name": null
+     },
+     {
+      "given": "Ludovic",
+      "family": "Legrand",
+      "name": null
+     },
+     {
+      "given": "Olivier",
+      "family": "Bouchez",
+      "name": null
+     },
+     {
+      "given": "David",
+      "family": "Rengel",
+      "name": null
+     },
+     {
+      "given": "Jérôme",
+      "family": "Gouzy",
+      "name": null
+     },
+     {
+      "given": "Ludovic",
+      "family": "Cottret",
+      "name": null
+     },
+     {
+      "given": "Felicity",
+      "family": "Vear",
+      "name": null
+     },
+     {
+      "given": "Laurence",
+      "family": "Godiard",
+      "name": null
+     }
+    ],
+    "issued": [
+     2019,
+     1,
+     7
+    ],
+    "published_online": [
+     2019,
+     1,
+     7
+    ],
+    "published_print": [
+     2019,
+     2
+    ]
+   }
+  }
+ ]
+}

@@ -1,0 +1,367 @@
+{
+ "id": "leafrust",
+ "candidates": [
+  {
+   "k": "q1",
+   "source": "epmc",
+   "score": 10,
+   "pmcid": "PMC11478885",
+   "doi": "10.3390/plants13192792",
+   "title": "Gamma-Aminobutyric Acid (GABA) as a Defense Booster for Wheat against Leaf Rust Pathogen (<i>Puccinia triticina</i>).",
+   "authors": [
+    {
+     "last": "Khalil",
+     "initials": "HB",
+     "first": "Hala Badr",
+     "full": "Khalil HB",
+     "collective": null
+    },
+    {
+     "last": "Lutfi",
+     "initials": "AM",
+     "first": "Abdullah Mohsen",
+     "full": "Lutfi AM",
+     "collective": null
+    },
+    {
+     "last": "Sayed",
+     "initials": "AR",
+     "first": "Ahmed Reyad",
+     "full": "Sayed AR",
+     "collective": null
+    },
+    {
+     "last": "Mahmoud",
+     "initials": "MT",
+     "first": "Mohamed Tharwat",
+     "full": "Mahmoud MT",
+     "collective": null
+    },
+    {
+     "last": "Mostafa",
+     "initials": "SA",
+     "first": "Salah Abdelfatah",
+     "full": "Mostafa SA",
+     "collective": null
+    },
+    {
+     "last": "Ibrahim",
+     "initials": "ZA",
+     "first": "Zeyad Ahmed",
+     "full": "Ibrahim ZA",
+     "collective": null
+    },
+    {
+     "last": "Sharf-Eldin",
+     "initials": "AA",
+     "first": "Asmaa A",
+     "full": "Sharf-Eldin AA",
+     "collective": null
+    },
+    {
+     "last": "Abou-Zeid",
+     "initials": "MA",
+     "first": "Mohamed A",
+     "full": "Abou-Zeid MA",
+     "collective": null
+    },
+    {
+     "last": "Ibrahim",
+     "initials": "MFM",
+     "first": "Mohamed F M",
+     "full": "Ibrahim MFM",
+     "collective": null
+    },
+    {
+     "last": "Thabet",
+     "initials": "M",
+     "first": "Marian",
+     "full": "Thabet M",
+     "collective": null
+    }
+   ],
+   "journal": "Plants (Basel, Switzerland)",
+   "journal_iso": "Plants (Basel)",
+   "volume": "13",
+   "issue": "19",
+   "year": 2024,
+   "pages": "2792",
+   "license": "cc by",
+   "first_pub": "2024-10-05",
+   "fig_label": "Figure 1",
+   "caption": "Impact of exogenous GABA applied to wheat-seedling leaves on the symptoms of leaf rust disease. The infection types induced by Pt race PTKTT on both the susceptible, Morocco (A1–A3), and moderately resistant, Sakha 94 (B1–B3), wheat cultivars were recorded and photographed. The treatments encompass mock-treated plants (A1 and B1), pre-GABA-treated plants (A2 and B2), and pre-/post-GABA-treated plants (A3 and B3). GABA treatment altered the infection types (ITs) of Morocco cultivar as follows: IT4 for mock (A1), IT3 for pre-GABA (A2), and IT2 for pre-/post-GABA (A3). On Sakha 94, GABA treatment shifted the ITs: IT3 for mock (B1), IT2 for pre-GABA (B2), and IT1 for pre-/post-GABA (B3). The mock-treated plants, H 2 O foliar-sprayed plants; pre-GABA, plants received 1 mM GABA treatment, as a foliar spray, twenty-four hours prior to infection; pre-/post-GABA, plants received 1 mM GABA treatment both 24 h before and after infection.",
+   "href": "plants-13-02792-g001.jpg",
+   "img_url": "https://cdn.ncbi.nlm.nih.gov/pmc/blobs/2973/11478885/103728bf4808/plants-13-02792-g001.jpg",
+   "orig_size": [
+    710,
+    814
+   ],
+   "crossref": {
+    "title": "Gamma-Aminobutyric Acid (GABA) as a Defense Booster for Wheat against Leaf Rust Pathogen (Puccinia triticina)",
+    "container": "Plants",
+    "volume": "13",
+    "issue": "19",
+    "page": "2792",
+    "article_number": null,
+    "authors": [
+     {
+      "given": "Hala Badr",
+      "family": "Khalil",
+      "name": null
+     },
+     {
+      "given": "Abdullah Mohsen",
+      "family": "Lutfi",
+      "name": null
+     },
+     {
+      "given": "Ahmed Reyad",
+      "family": "Sayed",
+      "name": null
+     },
+     {
+      "given": "Mohamed Tharwat",
+      "family": "Mahmoud",
+      "name": null
+     },
+     {
+      "given": "Salah Abdelfatah",
+      "family": "Mostafa",
+      "name": null
+     },
+     {
+      "given": "Zeyad Ahmed",
+      "family": "Ibrahim",
+      "name": null
+     },
+     {
+      "given": "Asmaa A.",
+      "family": "Sharf-Eldin",
+      "name": null
+     },
+     {
+      "given": "Mohamed A.",
+      "family": "Abou-Zeid",
+      "name": null
+     },
+     {
+      "given": "Mohamed F. M.",
+      "family": "Ibrahim",
+      "name": null
+     },
+     {
+      "given": "Marian",
+      "family": "Thabet",
+      "name": null
+     }
+    ],
+    "issued": [
+     2024,
+     10,
+     5
+    ],
+    "published_online": [
+     2024,
+     10,
+     5
+    ],
+    "published_print": [
+     null
+    ]
+   }
+  },
+  {
+   "k": "q2",
+   "source": "epmc",
+   "score": 10,
+   "pmcid": "PMC12043647",
+   "doi": "10.3389/fpls.2025.1566298",
+   "title": "Identification of &lt;i&gt;Thalictrum squarrosum&lt;/i&gt; as an alternate host for &lt;i&gt;Puccinia triticina&lt;/i&gt; and pathogen analysis of &lt;i&gt;Thalictrum squarrosum&lt;/i&gt; rust.",
+   "authors": [
+    {
+     "last": "Zhao",
+     "initials": "N",
+     "first": "Na",
+     "full": "Zhao N",
+     "collective": null
+    },
+    {
+     "last": "Huang",
+     "initials": "L",
+     "first": "Liang",
+     "full": "Huang L",
+     "collective": null
+    },
+    {
+     "last": "Ren",
+     "initials": "J",
+     "first": "Jun",
+     "full": "Ren J",
+     "collective": null
+    },
+    {
+     "last": "Zhang",
+     "initials": "M",
+     "first": "Mengya",
+     "full": "Zhang M",
+     "collective": null
+    },
+    {
+     "last": "Yi",
+     "initials": "T",
+     "first": "Ting",
+     "full": "Yi T",
+     "collective": null
+    },
+    {
+     "last": "Li",
+     "initials": "H",
+     "first": "Hongfu",
+     "full": "Li H",
+     "collective": null
+    },
+    {
+     "last": "Zhang",
+     "initials": "H",
+     "first": "Hao",
+     "full": "Zhang H",
+     "collective": null
+    },
+    {
+     "last": "Liu",
+     "initials": "B",
+     "first": "Bo",
+     "full": "Liu B",
+     "collective": null
+    },
+    {
+     "last": "Gao",
+     "initials": "L",
+     "first": "Li",
+     "full": "Gao L",
+     "collective": null
+    },
+    {
+     "last": "Yan",
+     "initials": "H",
+     "first": "Hongfei",
+     "full": "Yan H",
+     "collective": null
+    },
+    {
+     "last": "Chen",
+     "initials": "W",
+     "first": "Wanquan",
+     "full": "Chen W",
+     "collective": null
+    },
+    {
+     "last": "Liu",
+     "initials": "T",
+     "first": "Taiguo",
+     "full": "Liu T",
+     "collective": null
+    }
+   ],
+   "journal": "Frontiers in plant science",
+   "journal_iso": "Front Plant Sci",
+   "volume": "16",
+   "issue": null,
+   "year": 2025,
+   "pages": "1566298",
+   "license": "cc by",
+   "first_pub": "2025-04-17",
+   "fig_label": "Figure 1",
+   "caption": "Statistical graph of the diseased leaf incidence, diseased plant incidence and severity of rust disease on T. squarrosum. Diseased leaf incidence represents the proportion of leaves with rust symptoms among the total examined leaves of T. squarrosum plants. It fluctuated 15%-20% from 2015-2023 and dropped to 8% in 2024. Diseased plant incidence is the proportion of infected T. squarrosum plants among the total surveyed plants. It ranged 30%-36% in 2015-2023 and decreased to 20% in 2024. Disease severity is measured by the percentage of leaf area covered by rust lesions on diseased leaves. It was 20%-25% from 2015-2023 and dropped to 10% in 2024.",
+   "href": "fpls-16-1566298-g001.jpg",
+   "img_url": "https://www.frontiersin.org/files/Articles/1566298/fpls-16-1566298-HTML/image_m/fpls-16-1566298-g001.jpg",
+   "orig_size": [
+    1456,
+    984
+   ],
+   "crossref": {
+    "title": "Identification of Thalictrum squarrosum as an alternate host for Puccinia triticina and pathogen analysis of Thalictrum squarrosum rust",
+    "container": "Frontiers in Plant Science",
+    "volume": "16",
+    "issue": null,
+    "page": null,
+    "article_number": "1566298",
+    "authors": [
+     {
+      "given": "Na",
+      "family": "Zhao",
+      "name": null
+     },
+     {
+      "given": "Liang",
+      "family": "Huang",
+      "name": null
+     },
+     {
+      "given": "Jun",
+      "family": "Ren",
+      "name": null
+     },
+     {
+      "given": "Mengya",
+      "family": "Zhang",
+      "name": null
+     },
+     {
+      "given": "Ting",
+      "family": "Yi",
+      "name": null
+     },
+     {
+      "given": "Hongfu",
+      "family": "Li",
+      "name": null
+     },
+     {
+      "given": "Hao",
+      "family": "Zhang",
+      "name": null
+     },
+     {
+      "given": "Bo",
+      "family": "Liu",
+      "name": null
+     },
+     {
+      "given": "Li",
+      "family": "Gao",
+      "name": null
+     },
+     {
+      "given": "Hongfei",
+      "family": "Yan",
+      "name": null
+     },
+     {
+      "given": "Wanquan",
+      "family": "Chen",
+      "name": null
+     },
+     {
+      "given": "Taiguo",
+      "family": "Liu",
+      "name": null
+     }
+    ],
+    "issued": [
+     2025,
+     4,
+     17
+    ],
+    "published_online": [
+     2025,
+     4,
+     17
+    ],
+    "published_print": [
+     null
+    ]
+   }
+  }
+ ]
+}
