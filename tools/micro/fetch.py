@@ -286,7 +286,8 @@ def candidates(only):
         outdir = f"tmp/micro/{d['id']}"
         os.makedirs(outdir, exist_ok=True)
         for f in os.listdir(outdir):
-            os.remove(os.path.join(outdir, f))
+            if not f.startswith(("a", "meta_articles")):
+                os.remove(os.path.join(outdir, f))
         pool, checked = [], 0
         for r in epmc_search(d):
             lic = (r.get("license") or "").lower()
