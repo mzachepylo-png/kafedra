@@ -400,31 +400,49 @@ def articles(only):
 
 
 def final():
+    """Обрані рисунки → обрізані фрагменти (одна чи кілька панелей поруч) → WebP."""
     sel = json.load(open("tools/micro/selection.json", encoding="utf-8"))
     os.makedirs("assets/img/micro", exist_ok=True)
+    report = []
     for s in sel:
-        im = None
-        if s.get("pmcid"):
-            im, _ = fig_image(s["pmcid"], s["href"])
-        else:
-            for url in [s["img_url"]] + s.get("fallback_urls", []):
-                try:
-                    im = _open(http(url))
-                    break
-                except Exception as e:
-                    print("  fail", s["id"], url, e)
+        im, src = None, None
+        for url in s.get("urls", []):
+            try:
+                im, src = _open(http(url, tries=2, ua=BROWSER_UA)), url
+                break
+            except Exception as e:
+                print("  fail", s["id"], url, _err("url", e))
+        if im is None and s.get("pmcid"):
+            im, src = fig_image(s["pmcid"], s["href"])
         if im is None:
+            print("  SKIP", s["id"])
             continue
         im = im.convert("RGB")
-        if s.get("crop"):
-            x0, y0, x1, y1 = s["crop"]
-            im = im.crop((round(x0 * im.width), round(y0 * im.height), round(x1 * im.width), round(y1 * im.height)))
-        w = s.get("width", 960)
+        boxes = s.get("panels") or ([s["crop"]] if s.get("crop") else [[0, 0, 1, 1]])
+        parts = [im.crop((round(x0 * im.width), round(y0 * im.height), round(x1 * im.width), round(y1 * im.height)))
+                 for x0, y0, x1, y1 in boxes]
+        if len(parts) > 1:
+            h = min(p.height for p in parts)
+            parts = [p.resize((round(p.width * h / p.height), h), Image.LANCZOS) for p in parts]
+            gap = max(4, h // 100)
+            out_im = Image.new("RGB", (sum(p.width for p in parts) + gap * (len(parts) - 1), h), (14, 26, 18))
+            x = 0
+            for p in parts:
+                out_im.paste(p, (x, 0))
+                x += p.width + gap
+            im = out_im
+        else:
+            im = parts[0]
+        w = s.get("width", 900)
         if im.width > w:
             im = im.resize((w, round(im.height * w / im.width)), Image.LANCZOS)
         out = f"assets/img/micro/{s['id']}.webp"
-        im.save(out, "WEBP", quality=s.get("quality", 74), method=6)
-        print(s["id"], im.size, os.path.getsize(out))
+        im.save(out, "WEBP", quality=s.get("quality", 76), method=6)
+        report.append({"id": s["id"], "size": list(im.size), "bytes": os.path.getsize(out), "src": src,
+                       "orig": [_ for _ in parts[0].size]})
+        print(s["id"], im.size, os.path.getsize(out), src)
+    with open("tmp/micro/final.json", "w", encoding="utf-8") as fh:
+        json.dump(report, fh, indent=1)
 
 
 if __name__ == "__main__":
