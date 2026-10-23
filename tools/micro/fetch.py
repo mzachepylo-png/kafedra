@@ -177,6 +177,9 @@ def fig_image(pmcid, href):
     if m:
         art = re.sub(r"-g\d{3}[a-z]?$", "", stem)
         pub.append(f"https://www.mdpi.com/{m.group(1)}/{art}/article_deploy/html/images/{stem}.png")
+    m = re.match(r"^(f[a-z]+-\d{2}-(\d{6,7}))-g\d{3}$", stem)
+    if m:
+        pub.append(f"https://www.frontiersin.org/files/Articles/{m.group(2)}/{m.group(1)}-HTML/image_m/{stem}.jpg")
     m = re.match(r"^(pone|ppat|pbio|pgen|pcbi|pntd)\.\d{7}\.g\d{3}$", stem)
     if m:
         j = {"pone": "plosone", "ppat": "plospathogens", "pbio": "plosbiology", "pgen": "plosgenetics",
