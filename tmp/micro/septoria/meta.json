@@ -1,5 +1,405 @@
 {
  "id": "septoria",
  "name": "Септоріоз листя пшениці",
- "candidates": []
+ "candidates": [
+  {
+   "k": 1,
+   "source": "epmc",
+   "score": 18,
+   "pmcid": "PMC9271956",
+   "doi": "10.3389/fpls.2022.921074",
+   "title": "Blocked at the Stomatal Gate, a Key Step of Wheat <i>Stb16q</i>-Mediated Resistance to <i>Zymoseptoria tritici</i>.",
+   "authors": [
+    {
+     "last": "Battache",
+     "initials": "M",
+     "first": "Mélissa",
+     "full": "Battache M",
+     "collective": null
+    },
+    {
+     "last": "Lebrun",
+     "initials": "MH",
+     "first": "Marc-Henri",
+     "full": "Lebrun MH",
+     "collective": null
+    },
+    {
+     "last": "Sakai",
+     "initials": "K",
+     "first": "Kaori",
+     "full": "Sakai K",
+     "collective": null
+    },
+    {
+     "last": "Soudière",
+     "initials": "O",
+     "first": "Olivier",
+     "full": "Soudière O",
+     "collective": null
+    },
+    {
+     "last": "Cambon",
+     "initials": "F",
+     "first": "Florence",
+     "full": "Cambon F",
+     "collective": null
+    },
+    {
+     "last": "Langin",
+     "initials": "T",
+     "first": "Thierry",
+     "full": "Langin T",
+     "collective": null
+    },
+    {
+     "last": "Saintenac",
+     "initials": "C",
+     "first": "Cyrille",
+     "full": "Saintenac C",
+     "collective": null
+    }
+   ],
+   "journal": "Frontiers in plant science",
+   "journal_iso": "Front Plant Sci",
+   "volume": "13",
+   "issue": null,
+   "year": 2022,
+   "pages": "921074",
+   "license": "cc by",
+   "first_pub": "2022-06-27",
+   "fig_label": "FIGURE 2",
+   "caption": "Quantitative cytological assessment of the different stages of infection of the CFZ008 virulent (dotted bars) or the IPO9415 avirulent (stripped bars) Z. tritici GFP-labeled isolates inoculated on NIL Stb16q (black bars) and NIL stb (gray bars). (A) Germination (= number of germinated spores relative to the total number of spores). (B) Reached stomata (= number of stomata with hyphae in contact relative to the total number of stomata). (C) A penetration attempt (= number of stomata with hyphae diving into the ostiole relative to the total number of stomata). (D) Successful penetration (= number of stomata with hyphae going through the ostiole and in the sub-stomatal cavity relative to the total number of stomata). (G) Secondary sub-stomatal cavities colonization (= number of stomata with hyphae only in the sub-stomatal cavity, without hyphae above the ostiole, relative to the total number of stomata). (H) Early-stage pycnidia (= number of stomata with branching and ring-forming hyphae in the sub-stomatal cavity relative to the total number of stomata). (I) Young and mature pycnidia (= number of stomata with densified hyphae structure, in the form of the GFP halo, relative to the total number of stomata). Values are means ± SEM (n = 6). Different letters indicate significantly different values (Van der Waerden test, p < 0.05). Representative confocal images of penetration events at 6 dpi for NIL stb (E) and NIL Stb16q (F), inoculated with the GFP-labeled IPO9415 isolate (green) and stained with the fungal surface-dye calcofluor (blue). Red and pink arrows indicate hyphae on the leaf surface (green and blue) and internal hyphae (only green), respectively. Bar = 50 μm.",
+   "href": "fpls-13-921074-g002.jpg",
+   "img_url": "https://www.frontiersin.org/files/Articles/921074/fpls-13-921074-HTML/image_m/fpls-13-921074-g002.jpg",
+   "orig_size": [
+    4550,
+    2219
+   ],
+   "crossref": {
+    "title": "Blocked at the Stomatal Gate, a Key Step of Wheat Stb16q-Mediated Resistance to Zymoseptoria tritici",
+    "container": "Frontiers in Plant Science",
+    "volume": "13",
+    "issue": null,
+    "page": null,
+    "article_number": "921074",
+    "authors": [
+     {
+      "given": "Mélissa",
+      "family": "Battache",
+      "name": null
+     },
+     {
+      "given": "Marc-Henri",
+      "family": "Lebrun",
+      "name": null
+     },
+     {
+      "given": "Kaori",
+      "family": "Sakai",
+      "name": null
+     },
+     {
+      "given": "Olivier",
+      "family": "Soudière",
+      "name": null
+     },
+     {
+      "given": "Florence",
+      "family": "Cambon",
+      "name": null
+     },
+     {
+      "given": "Thierry",
+      "family": "Langin",
+      "name": null
+     },
+     {
+      "given": "Cyrille",
+      "family": "Saintenac",
+      "name": null
+     }
+    ],
+    "issued": [
+     2022,
+     6,
+     27
+    ],
+    "published_online": [
+     2022,
+     6,
+     27
+    ],
+    "published_print": [
+     null
+    ]
+   }
+  },
+  {
+   "k": 2,
+   "source": "epmc",
+   "score": 16,
+   "pmcid": "PMC11452041",
+   "doi": "10.1371/journal.pone.0308116",
+   "title": "Physiological and molecular responses of a resistant and susceptible wheat cultivar to the fungal wheat pathogen Zymoseptoria tritici.",
+   "authors": [
+    {
+     "last": "Mirzadi Gohari",
+     "initials": "A",
+     "first": "Amir",
+     "full": "Mirzadi Gohari A",
+     "collective": null
+    },
+    {
+     "last": "Ghiasi Noei",
+     "initials": "F",
+     "first": "Fateme",
+     "full": "Ghiasi Noei F",
+     "collective": null
+    },
+    {
+     "last": "Ebrahimi",
+     "initials": "A",
+     "first": "Amin",
+     "full": "Ebrahimi A",
+     "collective": null
+    },
+    {
+     "last": "Ghanbari",
+     "initials": "MA",
+     "first": "Mohammad Amin",
+     "full": "Ghanbari MA",
+     "collective": null
+    },
+    {
+     "last": "Didaran",
+     "initials": "F",
+     "first": "Fardad",
+     "full": "Didaran F",
+     "collective": null
+    },
+    {
+     "last": "Farzaneh",
+     "initials": "M",
+     "first": "Mohsen",
+     "full": "Farzaneh M",
+     "collective": null
+    },
+    {
+     "last": "Mehrabi",
+     "initials": "R",
+     "first": "Rahim",
+     "full": "Mehrabi R",
+     "collective": null
+    }
+   ],
+   "journal": "PloS one",
+   "journal_iso": "PLoS One",
+   "volume": "19",
+   "issue": "10",
+   "year": 2024,
+   "pages": "e0308116",
+   "license": "cc by",
+   "first_pub": "2024-10-04",
+   "fig_label": "Fig 1",
+   "caption": "Histopathological development occurred in the cv. Shafir (incompatible interaction), and Taichung 29 (compatible interaction) infected by WT IPO323 strain. (A and F) The fungal strain germinated by 2 dpi and pierced directly through stomata (S stands for the stomata and arrow reflects the germinated spores). (B and G) Accumulation of H 2 O 2 as observed by the formation of red-brown staining in the incompatible context (upper panel) and intercellular growth of the penetrated infective hyphae in the compatible interaction (lower panel), respectively at 4 dpi. (C and H) Extensive accumulation of H 2 O 2 in the cv. Shafir infected by Zymoseptoria tritici IPO323, blocks further hyphal growth while intercellular hyphal growth of WT strain was seen in the cv. Taichung 29 at 8 dpi. (D) Cytoplasmic-like shrinkage happened in the incompatible context at 8 dpi. (I) Initiating the formation of the immature asexual flask-shaped fruiting bodies in the compatible interaction at 12 dpi. (E and J) Healthy cells were observed in the incompatible context while the release of asexual spores (pycnidiospore) was found in the compatible interaction at 21 dpi. The scale bars are 20 μm.",
+   "href": "pone.0308116.g001.jpg",
+   "img_url": "https://journals.plos.org/plosone/article/figure/image?size=large&id=10.1371/journal.pone.0308116.g001",
+   "orig_size": [
+    2859,
+    767
+   ],
+   "crossref": {
+    "title": "Physiological and molecular responses of a resistant and susceptible wheat cultivar to the fungal wheat pathogen Zymoseptoria tritici",
+    "container": "PLOS ONE",
+    "volume": "19",
+    "issue": "10",
+    "page": "e0308116",
+    "article_number": null,
+    "authors": [
+     {
+      "given": "Amir",
+      "family": "Mirzadi Gohari",
+      "name": null
+     },
+     {
+      "given": "Fateme",
+      "family": "Ghiasi Noei",
+      "name": null
+     },
+     {
+      "given": "Amin",
+      "family": "Ebrahimi",
+      "name": null
+     },
+     {
+      "given": "Mohammad Amin",
+      "family": "Ghanbari",
+      "name": null
+     },
+     {
+      "given": "Fardad",
+      "family": "Didaran",
+      "name": null
+     },
+     {
+      "given": "Mohsen",
+      "family": "Farzaneh",
+      "name": null
+     },
+     {
+      "given": "Rahim",
+      "family": "Mehrabi",
+      "name": null
+     }
+    ],
+    "issued": [
+     2024,
+     10,
+     4
+    ],
+    "published_online": [
+     2024,
+     10,
+     4
+    ],
+    "published_print": [
+     null
+    ]
+   }
+  },
+  {
+   "k": 3,
+   "source": "epmc",
+   "score": 16,
+   "pmcid": "PMC12595949",
+   "doi": "10.7717/peerj.20177",
+   "title": "Biocontrol-relevant diversity of wheat-associated &lt;i&gt;Pseudomonas&lt;/i&gt;: prevalence of &lt;i&gt;P. sivasensis&lt;/i&gt; and identification of the novel species &lt;i&gt;P. arvensis&lt;/i&gt; sp. nov.",
+   "authors": [
+    {
+     "last": "Delitte",
+     "initials": "M",
+     "first": "Mathieu",
+     "full": "Delitte M",
+     "collective": null
+    },
+    {
+     "last": "Dubois",
+     "initials": "B",
+     "first": "Benjamin",
+     "full": "Dubois B",
+     "collective": null
+    },
+    {
+     "last": "Morandini",
+     "initials": "L",
+     "first": "Louis",
+     "full": "Morandini L",
+     "collective": null
+    },
+    {
+     "last": "Bultreys",
+     "initials": "A",
+     "first": "Alain",
+     "full": "Bultreys A",
+     "collective": null
+    },
+    {
+     "last": "Mahillon",
+     "initials": "J",
+     "first": "Jacques",
+     "full": "Mahillon J",
+     "collective": null
+    },
+    {
+     "last": "Debode",
+     "initials": "F",
+     "first": "Frederic",
+     "full": "Debode F",
+     "collective": null
+    },
+    {
+     "last": "Bragard",
+     "initials": "C",
+     "first": "Claude",
+     "full": "Bragard C",
+     "collective": null
+    }
+   ],
+   "journal": "PeerJ",
+   "journal_iso": "PeerJ",
+   "volume": "13",
+   "issue": null,
+   "year": 2025,
+   "pages": "e20177",
+   "license": "cc by",
+   "first_pub": "2025-11-05",
+   "fig_label": "Figure 5",
+   "caption": "Translocation and colonization abilities of Pseudomonas strains. (A) Exit of all tested strains through hydathodes after translocation from seed, visualized by spreading hydathode droplets on Petri dishes with CFC medium (bacteria applied exclusively via seed coating). (B–E) Colonization pattern of CF10PS3 on wheat leaves visualized by confocal microscopy of GFP-expressing cells: (B) initial homogeneous distribution of single cells after foliar spray; (C) aggregation on trichomes and their bases; (D) colonization of veins; (E) preferential localization around stomata. All confocal images were taken at 630X magnification and share the same scale bar shown in (B).",
+   "href": "peerj-13-20177-g005.jpg",
+   "img_url": "https://cdn.ncbi.nlm.nih.gov/pmc/blobs/5ecb/12595949/1522fdee2f06/peerj-13-20177-g005.jpg",
+   "orig_size": [
+    652,
+    571
+   ],
+   "crossref": {
+    "title": "Biocontrol-relevant diversity of wheat-associated\n                    <i>Pseudomonas</i>\n                    : prevalence of\n                    <i>P. sivasensis</i>\n                    and identification of the novel species\n                    <i>P. arvensis</i>\n                    sp. nov.",
+    "container": "PeerJ",
+    "volume": "13",
+    "issue": null,
+    "page": "e20177",
+    "article_number": "e20177",
+    "authors": [
+     {
+      "given": "Mathieu",
+      "family": "Delitte",
+      "name": null
+     },
+     {
+      "given": "Benjamin",
+      "family": "Dubois",
+      "name": null
+     },
+     {
+      "given": "Louis",
+      "family": "Morandini",
+      "name": null
+     },
+     {
+      "given": "Alain",
+      "family": "Bultreys",
+      "name": null
+     },
+     {
+      "given": "Jacques",
+      "family": "Mahillon",
+      "name": null
+     },
+     {
+      "given": "Frederic",
+      "family": "Debode",
+      "name": null
+     },
+     {
+      "given": "Claude",
+      "family": "Bragard",
+      "name": null
+     }
+    ],
+    "issued": [
+     2025,
+     11,
+     5
+    ],
+    "published_online": [
+     2025,
+     11,
+     5
+    ],
+    "published_print": [
+     null
+    ]
+   }
+  }
+ ]
 }

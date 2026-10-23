@@ -4,98 +4,570 @@
  "candidates": [
   {
    "k": 1,
-   "source": "commons",
-   "score": 7,
-   "file": "File:Rettich Sclerotinia-1-Josef Schlaghecken.jpg",
-   "page": "https://commons.wikimedia.org/wiki/File:Rettich_Sclerotinia-1-Josef_Schlaghecken.jpg",
-   "img_url": "https://upload.wikimedia.org/wikipedia/commons/c/c4/Rettich_Sclerotinia-1-Josef_Schlaghecken.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
-   "thumb_url": "https://thumb.wikimedia.org/wikipedia/commons/thumb/c/c4/Rettich_Sclerotinia-1-Josef_Schlaghecken.jpg/960px-Rettich_Sclerotinia-1-Josef_Schlaghecken.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
-   "orig_size": [
-    4624,
-    3468
+   "source": "epmc",
+   "score": 18,
+   "pmcid": "PMC12774355",
+   "doi": "10.1371/journal.ppat.1013813",
+   "title": "Sclerotinia sclerotiorum growth and aggressiveness are regulated by a mycoviral REP protein.",
+   "authors": [
+    {
+     "last": "Shu",
+     "initials": "P",
+     "first": "Peihan",
+     "full": "Shu P",
+     "collective": null
+    },
+    {
+     "last": "Tseng",
+     "initials": "YW",
+     "first": "Yi-Wen",
+     "full": "Tseng YW",
+     "collective": null
+    },
+    {
+     "last": "Lawrence",
+     "initials": "AJ",
+     "first": "Alexander J",
+     "full": "Lawrence AJ",
+     "collective": null
+    },
+    {
+     "last": "Feng",
+     "initials": "C",
+     "first": "Chenchen",
+     "full": "Feng C",
+     "collective": null
+    },
+    {
+     "last": "Kiani",
+     "initials": "Y",
+     "first": "Yasi",
+     "full": "Kiani Y",
+     "collective": null
+    },
+    {
+     "last": "Knopke-Mooney",
+     "initials": "O",
+     "first": "Olivia",
+     "full": "Knopke-Mooney O",
+     "collective": null
+    },
+    {
+     "last": "Chowdhury",
+     "initials": "RN",
+     "first": "Rawnaq N",
+     "full": "Chowdhury RN",
+     "collective": null
+    },
+    {
+     "last": "Lasky",
+     "initials": "D",
+     "first": "Danny",
+     "full": "Lasky D",
+     "collective": null
+    },
+    {
+     "last": "Groves",
+     "initials": "C",
+     "first": "Carol",
+     "full": "Groves C",
+     "collective": null
+    },
+    {
+     "last": "Smith",
+     "initials": "DL",
+     "first": "Damon L",
+     "full": "Smith DL",
+     "collective": null
+    },
+    {
+     "last": "Majumder",
+     "initials": "K",
+     "first": "Kinjal",
+     "full": "Majumder K",
+     "collective": null
+    },
+    {
+     "last": "Marzano",
+     "initials": "SL",
+     "first": "Shin-Yi Lee",
+     "full": "Marzano SL",
+     "collective": null
+    },
+    {
+     "last": "Rakotondrafara",
+     "initials": "AM",
+     "first": "Aurélie M",
+     "full": "Rakotondrafara AM",
+     "collective": null
+    }
    ],
-   "artist": "Schlaghecken Josef",
-   "license": "CC BY 4.0",
-   "license_url": "https://creativecommons.org/licenses/by/4.0",
-   "credit": "Own work",
-   "description": "Due to the Sclerotinia infestation on the radish turnip, a white fungal mycelium has formed on the dead tissue.",
-   "date": "2024-09-25 17:19:04"
+   "journal": "PLoS pathogens",
+   "journal_iso": "PLoS Pathog",
+   "volume": "21",
+   "issue": "12",
+   "year": 2025,
+   "pages": "e1013813",
+   "license": "cc0",
+   "first_pub": "2025-12-26",
+   "fig_label": "Fig 7",
+   "caption": "SsHADV1 REP Reduces Oxalic Acid Production and Enhances Fungal Susceptibility to Sublethal Fungicide Concentrations. (A) A standard plate assay was performed. At 48 hpi, three same-sized agar plugs from each treatment were collected. Each plug was placed in 500 µL of nuclease-free water and the solution was then collected as a sample for analysis using the Oxalate Assay Kit. The estimated Oxalic Acid level of each treatment is presented. Error bars represent the SEM (n = 7). Statistical significance analyzed using a one-tailed t-test, is indicated as follows: “*” for P < 0.05 and “**” for P < 0.01. (B) A plate assay was conducted with S. sclerotiorum 1980 strain using PDA plates amended with boscalid at final concentrations of 0.1 ppm and 0.01 ppm. PDA medium with 0.01% (vol/vol) acetone was used as a control. Statistical analysis of mycelium diameter at 24 and 48 hours, along with photographs of the plates taken at 48 hours, are presented. Statistical significance (n = 6) was determined using ANOVA followed by Tukey’s HSD test, with significance groups indicated by letters. (C) Representative images under light microscope of S. sclerotiorum 1980 hyphae at 48 hpi treated with the supernatants of RIK1285(EV), RIK1285(CP), and RIK1285(REP), and the measurement of the hyphae width. Healthy wild-type S. sclerotiorum serves as the control. Scale bar = 300 μm. Hyphal bundle width was measured using ImageJ software. For each plate, three regions were randomly selected, and measurements were taken based on the scale bar provided in the image (n = 10).",
+   "href": "ppat.1013813.g007.jpg",
+   "img_url": "https://journals.plos.org/plospathogens/article/figure/image?size=large&id=10.1371/journal.ppat.1013813.g007",
+   "orig_size": [
+    4398,
+    2107
+   ],
+   "crossref": {
+    "title": "Sclerotinia sclerotiorum growth and aggressiveness are regulated by a mycoviral REP protein",
+    "container": "PLOS Pathogens",
+    "volume": "21",
+    "issue": "12",
+    "page": "e1013813",
+    "article_number": null,
+    "authors": [
+     {
+      "given": "Peihan",
+      "family": "Shu",
+      "name": null
+     },
+     {
+      "given": "Yi-Wen",
+      "family": "Tseng",
+      "name": null
+     },
+     {
+      "given": "Alexander J.",
+      "family": "Lawrence",
+      "name": null
+     },
+     {
+      "given": "Chenchen",
+      "family": "Feng",
+      "name": null
+     },
+     {
+      "given": "Yasi",
+      "family": "Kiani",
+      "name": null
+     },
+     {
+      "given": "Olivia",
+      "family": "Knopke-Mooney",
+      "name": null
+     },
+     {
+      "given": "Rawnaq N.",
+      "family": "Chowdhury",
+      "name": null
+     },
+     {
+      "given": "Danny",
+      "family": "Lasky",
+      "name": null
+     },
+     {
+      "given": "Carol",
+      "family": "Groves",
+      "name": null
+     },
+     {
+      "given": "Damon L.",
+      "family": "Smith",
+      "name": null
+     },
+     {
+      "given": "Kinjal",
+      "family": "Majumder",
+      "name": null
+     },
+     {
+      "given": "Shin-Yi Lee",
+      "family": "Marzano",
+      "name": null
+     },
+     {
+      "given": "Aurélie M.",
+      "family": "Rakotondrafara",
+      "name": null
+     }
+    ],
+    "issued": [
+     2025,
+     12,
+     26
+    ],
+    "published_online": [
+     2025,
+     12,
+     26
+    ],
+    "published_print": [
+     null
+    ]
+   }
   },
   {
    "k": 2,
-   "source": "commons",
-   "score": 7,
-   "file": "File:Rettich Sclerotinia-4-Josef Schlaghecken.jpg",
-   "page": "https://commons.wikimedia.org/wiki/File:Rettich_Sclerotinia-4-Josef_Schlaghecken.jpg",
-   "img_url": "https://upload.wikimedia.org/wikipedia/commons/c/c5/Rettich_Sclerotinia-4-Josef_Schlaghecken.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
-   "thumb_url": "https://thumb.wikimedia.org/wikipedia/commons/thumb/c/c5/Rettich_Sclerotinia-4-Josef_Schlaghecken.jpg/960px-Rettich_Sclerotinia-4-Josef_Schlaghecken.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
-   "orig_size": [
-    4624,
-    3468
+   "source": "epmc",
+   "score": 18,
+   "pmcid": "PMC13030711",
+   "doi": "10.3390/plants15060957",
+   "title": "Genome-Wide Identification of CFEM Proteins in &lt;i&gt;Sclerotinia sclerotiorum&lt;/i&gt; Reveals Effector Candidates with Cell Death Suppression Activity.",
+   "authors": [
+    {
+     "last": "Li",
+     "initials": "X",
+     "first": "Xihong",
+     "full": "Li X",
+     "collective": null
+    },
+    {
+     "last": "Wu",
+     "initials": "Y",
+     "first": "Yuting",
+     "full": "Wu Y",
+     "collective": null
+    },
+    {
+     "last": "Liu",
+     "initials": "L",
+     "first": "Linxuan",
+     "full": "Liu L",
+     "collective": null
+    },
+    {
+     "last": "Liu",
+     "initials": "S",
+     "first": "Shuang",
+     "full": "Liu S",
+     "collective": null
+    },
+    {
+     "last": "Zhang",
+     "initials": "D",
+     "first": "Dan",
+     "full": "Zhang D",
+     "collective": null
+    },
+    {
+     "last": "Yi",
+     "initials": "X",
+     "first": "Xianfeng",
+     "full": "Yi X",
+     "collective": null
+    },
+    {
+     "last": "Wang",
+     "initials": "L",
+     "first": "Lele",
+     "full": "Wang L",
+     "collective": null
+    },
+    {
+     "last": "Liu",
+     "initials": "S",
+     "first": "Shan",
+     "full": "Liu S",
+     "collective": null
+    },
+    {
+     "last": "Jia",
+     "initials": "R",
+     "first": "Rongchao",
+     "full": "Jia R",
+     "collective": null
+    },
+    {
+     "last": "Shi",
+     "initials": "J",
+     "first": "Jinpeng",
+     "full": "Shi J",
+     "collective": null
+    },
+    {
+     "last": "Olsson",
+     "initials": "S",
+     "first": "Stefan",
+     "full": "Olsson S",
+     "collective": null
+    },
+    {
+     "last": "Lu",
+     "initials": "C",
+     "first": "Congcong",
+     "full": "Lu C",
+     "collective": null
+    },
+    {
+     "last": "Wang",
+     "initials": "A",
+     "first": "Airong",
+     "full": "Wang A",
+     "collective": null
+    },
+    {
+     "last": "Li",
+     "initials": "Y",
+     "first": "Ya",
+     "full": "Li Y",
+     "collective": null
+    }
    ],
-   "artist": "Schlaghecken Josef",
-   "license": "CC BY 4.0",
-   "license_url": "https://creativecommons.org/licenses/by/4.0",
-   "credit": "Own work",
-   "description": "Due to the Sclerotinia infestation on the radish turnip, a white fungal mycelium has formed on the dead tissue.",
-   "date": "2024-09-25 17:18:56"
+   "journal": "Plants (Basel, Switzerland)",
+   "journal_iso": "Plants (Basel)",
+   "volume": "15",
+   "issue": "6",
+   "year": 2026,
+   "pages": "957",
+   "license": "cc by",
+   "first_pub": "2026-03-20",
+   "fig_label": "Figure 1",
+   "caption": "Subcellular localization of SsCFEM4, SsCFEM8, and SsCFEM9 in S. sclerotiorum. Fluorescence microscopy images show the localization of SsCFEM-GFP fusion proteins in hyphae of S. sclerotiorum. Stable transformants were generated by PEG-mediated protoplast transformation using linearized DNA fragments carrying the respective SsCFEM-GFP fusion construct and a G418 resistance marker, followed by selection on PDA medium containing 100 µg/mL G418. Mycelial plugs from genetically stable strains were cultured on PDA plates for 36 h and observed using laser scanning confocal microscopy (Nikon E100, Tokyo, Japan). (A) All three proteins display a cytoplasmic distribution characterized by a fine reticular network (indicated by arrows) and numerous punctate structures (marked by asterisks). The reticular pattern suggests association with the endoplasmic reticulum, whereas the puncta may correspond to vesicles, lysosomes, or vacuolar compartments. Scale bars = 10 µm. (B) The vacuoles were stained with 10 mM CellTracker™ Blue CMAC (7-amino-4-chloromethylcoumarin, Invitrogen) for 45 min at room temperature in the dark and visualized using confocal microscopy. Green fluorescence indicates the localization of CFEM protein, and blue fluorescence represents the vacuole marker. Scale bars = 10 µm.",
+   "href": "plants-15-00957-g001.jpg",
+   "img_url": "https://cdn.ncbi.nlm.nih.gov/pmc/blobs/3c1b/13030711/aa4f734aadeb/plants-15-00957-g001.jpg",
+   "orig_size": [
+    780,
+    626
+   ],
+   "crossref": {
+    "title": "Genome-Wide Identification of CFEM Proteins in Sclerotinia sclerotiorum Reveals Effector Candidates with Cell Death Suppression Activity",
+    "container": "Plants",
+    "volume": "15",
+    "issue": "6",
+    "page": "957",
+    "article_number": null,
+    "authors": [
+     {
+      "given": "Xihong",
+      "family": "Li",
+      "name": null
+     },
+     {
+      "given": "Yuting",
+      "family": "Wu",
+      "name": null
+     },
+     {
+      "given": "Linxuan",
+      "family": "Liu",
+      "name": null
+     },
+     {
+      "given": "Shuang",
+      "family": "Liu",
+      "name": null
+     },
+     {
+      "given": "Dan",
+      "family": "Zhang",
+      "name": null
+     },
+     {
+      "given": "Xianfeng",
+      "family": "Yi",
+      "name": null
+     },
+     {
+      "given": "Lele",
+      "family": "Wang",
+      "name": null
+     },
+     {
+      "given": "Shan",
+      "family": "Liu",
+      "name": null
+     },
+     {
+      "given": "Rongchao",
+      "family": "Jia",
+      "name": null
+     },
+     {
+      "given": "Jinpeng",
+      "family": "Shi",
+      "name": null
+     },
+     {
+      "given": "Stefan",
+      "family": "Olsson",
+      "name": null
+     },
+     {
+      "given": "Congcong",
+      "family": "Lu",
+      "name": null
+     },
+     {
+      "given": "Airong",
+      "family": "Wang",
+      "name": null
+     },
+     {
+      "given": "Ya",
+      "family": "Li",
+      "name": null
+     }
+    ],
+    "issued": [
+     2026,
+     3,
+     20
+    ],
+    "published_online": [
+     2026,
+     3,
+     20
+    ],
+    "published_print": [
+     null
+    ]
+   }
   },
   {
    "k": 3,
-   "source": "commons",
-   "score": 7,
-   "file": "File:Sclerotinia sclerotiorum (Pennsylvania, USA) 1.jpg",
-   "page": "https://commons.wikimedia.org/wiki/File:Sclerotinia_sclerotiorum_(Pennsylvania,_USA)_1.jpg",
-   "img_url": "https://upload.wikimedia.org/wikipedia/commons/c/c8/Sclerotinia_sclerotiorum_%28Pennsylvania%2C_USA%29_1.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
-   "thumb_url": "https://thumb.wikimedia.org/wikipedia/commons/thumb/c/c8/Sclerotinia_sclerotiorum_%28Pennsylvania%2C_USA%29_1.jpg/960px-Sclerotinia_sclerotiorum_%28Pennsylvania%2C_USA%29_1.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
-   "orig_size": [
-    1280,
-    1024
+   "source": "epmc",
+   "score": 18,
+   "pmcid": "PMC11898685",
+   "doi": "10.1128/mbio.03365-24",
+   "title": "Exploring the interaction between endornavirus and &lt;i&gt;Sclerotinia sclerotiorum&lt;/i&gt;: mechanisms of phytopathogenic fungal virulence and antivirus.",
+   "authors": [
+    {
+     "last": "Mu",
+     "initials": "F",
+     "first": "Fan",
+     "full": "Mu F",
+     "collective": null
+    },
+    {
+     "last": "Xia",
+     "initials": "J",
+     "first": "Jinsheng",
+     "full": "Xia J",
+     "collective": null
+    },
+    {
+     "last": "Jia",
+     "initials": "J",
+     "first": "Jichun",
+     "full": "Jia J",
+     "collective": null
+    },
+    {
+     "last": "Jiang",
+     "initials": "D",
+     "first": "Daohong",
+     "full": "Jiang D",
+     "collective": null
+    },
+    {
+     "last": "Zhang",
+     "initials": "B",
+     "first": "Baojun",
+     "full": "Zhang B",
+     "collective": null
+    },
+    {
+     "last": "Fu",
+     "initials": "Y",
+     "first": "Yanping",
+     "full": "Fu Y",
+     "collective": null
+    },
+    {
+     "last": "Cheng",
+     "initials": "J",
+     "first": "Jiaseng",
+     "full": "Cheng J",
+     "collective": null
+    },
+    {
+     "last": "Xie",
+     "initials": "J",
+     "first": "Jiatao",
+     "full": "Xie J",
+     "collective": null
+    }
    ],
-   "artist": "billyd",
-   "license": "CC BY-SA 4.0",
-   "license_url": "https://creativecommons.org/licenses/by-sa/4.0",
-   "credit": "Mushroom Observer",
-   "description": "Sclerotinia sclerotiorum (Lib.) de Bary, photographed in Capital Area Greenbelt, Harrisburg, Pennsylvania, USA\nNotes: Partially buried soil in oak, maple, birch forest. Caps measure &lt;3 mm across, stipe no more than 4mm long. Some sclerotium round, flattened, oblong. Spores smooth, no oil drops, ovoid. Paraphyses slender, septate, thickening at tip. Spore measure:(10.6) 11.4 - 13.89 (13.9) Ã- (6.1) 6.6 - 7.6 (8.2) Âµm Q = (1.5) 1.6 - 2 (2.1); N = 22; Me = 12.4 Ã- 7.2 Âµm; Qe = 1.7",
-   "date": "2019-05-07"
-  },
-  {
-   "k": 4,
-   "source": "commons",
-   "score": 7,
-   "file": "File:Sclerotinia sclerotiorum (Pennsylvania, USA) 2.jpg",
-   "page": "https://commons.wikimedia.org/wiki/File:Sclerotinia_sclerotiorum_(Pennsylvania,_USA)_2.jpg",
-   "img_url": "https://upload.wikimedia.org/wikipedia/commons/c/c5/Sclerotinia_sclerotiorum_%28Pennsylvania%2C_USA%29_2.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
-   "thumb_url": "https://thumb.wikimedia.org/wikipedia/commons/thumb/c/c5/Sclerotinia_sclerotiorum_%28Pennsylvania%2C_USA%29_2.jpg/960px-Sclerotinia_sclerotiorum_%28Pennsylvania%2C_USA%29_2.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
+   "journal": "mBio",
+   "journal_iso": "mBio",
+   "volume": "16",
+   "issue": "3",
+   "year": 2025,
+   "pages": "e0336524",
+   "license": "cc by",
+   "first_pub": "2025-02-19",
+   "fig_label": "Fig 2",
+   "caption": "Sclerotial and cellular ultrastructure of virus-free and SsEV3-infected strains. (a) Sclerotia of strains SCH941A1 and SCH941A1V. Sclerotia from 10 PDA plates of each strain were collected and photographed together. (b) Average sclerotial number of strains SCH941A1 and SCH941A1V obtained from 10 PDA plates. (c) Average sclerotial weight of strains SCH941A1 and SCH941A1V obtained from 10 plates. (d) Cellular ultrastructure of virus-free and SsEV3-infected strains. Transmission electron microscopy images of the hyphae of strains SCH941A1 and SCH941A1V were taken after being cultured for 2 days on PDA. (e) The average proportion of abnormal cells in strains SCH941A1 and SCH941A1V. The total number of cells in the five visual fields and the number of abnormal cells were counted, and the proportion of abnormal cells was calculated.",
+   "href": "mbio.03365-24.f002.jpg",
+   "img_url": "https://cdn.ncbi.nlm.nih.gov/pmc/blobs/ccaf/11898685/9d1f5979a704/mbio.03365-24.f002.jpg",
    "orig_size": [
-    1280,
-    1024
+    776,
+    859
    ],
-   "artist": "billyd",
-   "license": "CC BY-SA 4.0",
-   "license_url": "https://creativecommons.org/licenses/by-sa/4.0",
-   "credit": "Mushroom Observer",
-   "description": "Sclerotinia sclerotiorum (Lib.) de Bary, photographed in Capital Area Greenbelt, Harrisburg, Pennsylvania, USA\nNotes: Partially buried soil in oak, maple, birch forest. Caps measure &lt;3 mm across, stipe no more than 4mm long. Some sclerotium round, flattened, oblong. Spores smooth, no oil drops, ovoid. Paraphyses slender, septate, thickening at tip. Spore measure:(10.6) 11.4 - 13.89 (13.9) Ã- (6.1) 6.6 - 7.6 (8.2) Âµm Q = (1.5) 1.6 - 2 (2.1); N = 22; Me = 12.4 Ã- 7.2 Âµm; Qe = 1.7",
-   "date": "2019-05-07"
-  },
-  {
-   "k": 5,
-   "source": "commons",
-   "score": 7,
-   "file": "File:Sclerotinia sclerotiorum (Pennsylvania, USA) 3.jpg",
-   "page": "https://commons.wikimedia.org/wiki/File:Sclerotinia_sclerotiorum_(Pennsylvania,_USA)_3.jpg",
-   "img_url": "https://upload.wikimedia.org/wikipedia/commons/1/14/Sclerotinia_sclerotiorum_%28Pennsylvania%2C_USA%29_3.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
-   "thumb_url": "https://thumb.wikimedia.org/wikipedia/commons/thumb/1/14/Sclerotinia_sclerotiorum_%28Pennsylvania%2C_USA%29_3.jpg/960px-Sclerotinia_sclerotiorum_%28Pennsylvania%2C_USA%29_3.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
-   "orig_size": [
-    1280,
-    1024
-   ],
-   "artist": "billyd",
-   "license": "CC BY-SA 4.0",
-   "license_url": "https://creativecommons.org/licenses/by-sa/4.0",
-   "credit": "Mushroom Observer",
-   "description": "Sclerotinia sclerotiorum (Lib.) de Bary, photographed in Capital Area Greenbelt, Harrisburg, Pennsylvania, USA\nNotes: Partially buried soil in oak, maple, birch forest. Caps measure &lt;3 mm across, stipe no more than 4mm long. Some sclerotium round, flattened, oblong. Spores smooth, no oil drops, ovoid. Paraphyses slender, septate, thickening at tip. Spore measure:(10.6) 11.4 - 13.89 (13.9) Ã- (6.1) 6.6 - 7.6 (8.2) Âµm Q = (1.5) 1.6 - 2 (2.1); N = 22; Me = 12.4 Ã- 7.2 Âµm; Qe = 1.7",
-   "date": "2019-05-07"
+   "crossref": {
+    "title": "Exploring the interaction between endornavirus and\n            <i>Sclerotinia sclerotiorum</i>\n            : mechanisms of phytopathogenic fungal virulence and antivirus",
+    "container": "mBio",
+    "volume": "16",
+    "issue": "3",
+    "page": null,
+    "article_number": "e03365-24",
+    "authors": [
+     {
+      "given": "Fan",
+      "family": "Mu",
+      "name": null
+     },
+     {
+      "given": "Jinsheng",
+      "family": "Xia",
+      "name": null
+     },
+     {
+      "given": "Jichun",
+      "family": "Jia",
+      "name": null
+     },
+     {
+      "given": "Daohong",
+      "family": "Jiang",
+      "name": null
+     },
+     {
+      "given": "Baojun",
+      "family": "Zhang",
+      "name": null
+     },
+     {
+      "given": "Yanping",
+      "family": "Fu",
+      "name": null
+     },
+     {
+      "given": "Jiaseng",
+      "family": "Cheng",
+      "name": null
+     },
+     {
+      "given": "Jiatao",
+      "family": "Xie",
+      "name": null
+     }
+    ],
+    "issued": [
+     2025,
+     3,
+     12
+    ],
+    "published_online": [
+     null
+    ],
+    "published_print": [
+     2025,
+     3,
+     12
+    ]
+   }
   }
  ]
 }

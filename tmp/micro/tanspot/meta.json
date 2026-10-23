@@ -1,5 +1,299 @@
 {
  "id": "tanspot",
  "name": "Піренофороз пшениці",
- "candidates": []
+ "candidates": [
+  {
+   "k": 1,
+   "source": "epmc",
+   "score": 15,
+   "pmcid": "PMC11950905",
+   "doi": "10.1111/plb.13746",
+   "title": "Omic characterisation of multi-component defences against the necrotrophic pathogen Pyrenophora tritici-repentis in wheat.",
+   "authors": [
+    {
+     "last": "Ferreira",
+     "initials": "LC",
+     "first": "L C",
+     "full": "Ferreira LC",
+     "collective": null
+    },
+    {
+     "last": "Santana",
+     "initials": "FM",
+     "first": "F M",
+     "full": "Santana FM",
+     "collective": null
+    },
+    {
+     "last": "Scagliusi",
+     "initials": "SMM",
+     "first": "S M M",
+     "full": "Scagliusi SMM",
+     "collective": null
+    },
+    {
+     "last": "Beckmann",
+     "initials": "M",
+     "first": "M",
+     "full": "Beckmann M",
+     "collective": null
+    },
+    {
+     "last": "Mur",
+     "initials": "LAJ",
+     "first": "L A J",
+     "full": "Mur LAJ",
+     "collective": null
+    }
+   ],
+   "journal": "Plant biology (Stuttgart, Germany)",
+   "journal_iso": "Plant Biol (Stuttg)",
+   "volume": "27",
+   "issue": "3",
+   "year": 2025,
+   "pages": "347-361",
+   "license": "cc by",
+   "first_pub": "2025-02-07",
+   "fig_label": "Fig. 2",
+   "caption": "Reactions of wheat lines to Pyrenophora tritrici‐repentis infection. A: Number of lesions displayed in each wheat line at 72, 120 and 168 h post inoculation (hpi). B: Fluorescence microscopy showing categories of reactions observed, namely cell death, hyphal neck‐collar, papilla, infected stoma and callose stoma. Scale bar = 2 μm.",
+   "href": "PLB-27-347-g004.jpg",
+   "img_url": "https://cdn.ncbi.nlm.nih.gov/pmc/blobs/6eee/11950905/f2a1f2017864/PLB-27-347-g004.jpg",
+   "orig_size": [
+    709,
+    718
+   ],
+   "crossref": {
+    "title": "Omic characterisation of multi‐component defences against the necrotrophic pathogen <i>Pyrenophora tritici‐repentis</i> in wheat",
+    "container": "Plant Biology",
+    "volume": "27",
+    "issue": "3",
+    "page": "347-361",
+    "article_number": null,
+    "authors": [
+     {
+      "given": "L. C.",
+      "family": "Ferreira",
+      "name": null
+     },
+     {
+      "given": "F. M.",
+      "family": "Santana",
+      "name": null
+     },
+     {
+      "given": "S. M. M.",
+      "family": "Scagliusi",
+      "name": null
+     },
+     {
+      "given": "M.",
+      "family": "Beckmann",
+      "name": null
+     },
+     {
+      "given": "L. A. J.",
+      "family": "Mur",
+      "name": null
+     }
+    ],
+    "issued": [
+     2025,
+     2,
+     7
+    ],
+    "published_online": [
+     2025,
+     2,
+     7
+    ],
+    "published_print": [
+     2025,
+     4
+    ]
+   }
+  },
+  {
+   "k": 2,
+   "source": "epmc",
+   "score": 13,
+   "pmcid": "PMC8136220",
+   "doi": "10.1186/s13007-021-00751-4",
+   "title": "An optimized sporulation method for the wheat fungal pathogen Pyrenophora tritici-repentis.",
+   "authors": [
+    {
+     "last": "Jacques",
+     "initials": "S",
+     "first": "Silke",
+     "full": "Jacques S",
+     "collective": null
+    },
+    {
+     "last": "Lenzo",
+     "initials": "L",
+     "first": "Leon",
+     "full": "Lenzo L",
+     "collective": null
+    },
+    {
+     "last": "Stevens",
+     "initials": "K",
+     "first": "Kofi",
+     "full": "Stevens K",
+     "collective": null
+    },
+    {
+     "last": "Lawrence",
+     "initials": "J",
+     "first": "Julie",
+     "full": "Lawrence J",
+     "collective": null
+    },
+    {
+     "last": "Tan",
+     "initials": "KC",
+     "first": "Kar-Chun",
+     "full": "Tan KC",
+     "collective": null
+    }
+   ],
+   "journal": "Plant methods",
+   "journal_iso": "Plant Methods",
+   "volume": "17",
+   "issue": "1",
+   "year": 2021,
+   "pages": "52",
+   "license": "cc by",
+   "first_pub": "2021-05-19",
+   "fig_label": "Fig. 4",
+   "caption": "Mycelial contamination was avoided with the optimized sporulation method. Microscopy images show the mycelial impurities (H = hyphae) of the harvested conidia (C) with the traditional Lamari and Bernier sporulation method (a). Using our optimized protocol, mycelial strands can be avoided and pure DW5 (b) and M4 (c) Ptr spores are obtained. Scale represents 0.1 mm on all images",
+   "href": "13007_2021_751_Fig4_HTML.jpg",
+   "img_url": "https://cdn.ncbi.nlm.nih.gov/pmc/blobs/6e85/8136220/38309fd16ca7/13007_2021_751_Fig4_HTML.jpg",
+   "orig_size": [
+    795,
+    752
+   ],
+   "crossref": {
+    "title": "An optimized sporulation method for the wheat fungal pathogen Pyrenophora tritici-repentis",
+    "container": "Plant Methods",
+    "volume": "17",
+    "issue": "1",
+    "page": null,
+    "article_number": "52",
+    "authors": [
+     {
+      "given": "Silke",
+      "family": "Jacques",
+      "name": null
+     },
+     {
+      "given": "Leon",
+      "family": "Lenzo",
+      "name": null
+     },
+     {
+      "given": "Kofi",
+      "family": "Stevens",
+      "name": null
+     },
+     {
+      "given": "Julie",
+      "family": "Lawrence",
+      "name": null
+     },
+     {
+      "given": "Kar-Chun",
+      "family": "Tan",
+      "name": null
+     }
+    ],
+    "issued": [
+     2021,
+     5,
+     19
+    ],
+    "published_online": [
+     2021,
+     5,
+     19
+    ],
+    "published_print": [
+     2021,
+     12
+    ]
+   }
+  },
+  {
+   "k": 3,
+   "source": "epmc",
+   "score": 13,
+   "pmcid": "PMC4386829",
+   "doi": "10.1371/journal.pone.0123548",
+   "title": "Necrotrophic effector epistasis in the Pyrenophora tritici-repentis-wheat interaction.",
+   "authors": [
+    {
+     "last": "Manning",
+     "initials": "VA",
+     "first": "Viola A",
+     "full": "Manning VA",
+     "collective": null
+    },
+    {
+     "last": "Ciuffetti",
+     "initials": "LM",
+     "first": "Lynda M",
+     "full": "Ciuffetti LM",
+     "collective": null
+    }
+   ],
+   "journal": "PloS one",
+   "journal_iso": "PLoS One",
+   "volume": "10",
+   "issue": "4",
+   "year": 2015,
+   "pages": "e0123548",
+   "license": "cc0",
+   "first_pub": "2015-04-06",
+   "fig_label": "Fig 7",
+   "caption": "Mycelial growth in planta of D308 and D308 transformants. Isolates were inoculated on the ToxA- and ToxC-sensitive cultivars (A) ‘TAM 105’ and (B) ‘6B365’, respectively. One centimeter leaf sections harvested from inoculated leaves 6 days post inoculation were scanned (Leaf section), chlorophyll concentration estimated (Chl.), and mycelia stained with WGA-FITC. Stained leaves were imaged with a fluorescent microscope and the whole leaf image is a montage of 6 separate panels that cover the entire 1 cm leaf section. The bottom row represents increased magnification of the same size of select (numbered) lesions. Arrows point to multiple conidia.",
+   "href": "pone.0123548.g007.jpg",
+   "img_url": "https://journals.plos.org/plosone/article/figure/image?size=large&id=10.1371/journal.pone.0123548.g007",
+   "orig_size": [
+    3483,
+    3044
+   ],
+   "crossref": {
+    "title": "Necrotrophic Effector Epistasis in the Pyrenophora tritici-repentis-Wheat Interaction",
+    "container": "PLOS ONE",
+    "volume": "10",
+    "issue": "4",
+    "page": "e0123548",
+    "article_number": null,
+    "authors": [
+     {
+      "given": "Viola A.",
+      "family": "Manning",
+      "name": null
+     },
+     {
+      "given": "Lynda M.",
+      "family": "Ciuffetti",
+      "name": null
+     }
+    ],
+    "issued": [
+     2015,
+     4,
+     6
+    ],
+    "published_online": [
+     2015,
+     4,
+     6
+    ],
+    "published_print": [
+     null
+    ]
+   }
+  }
+ ]
 }
