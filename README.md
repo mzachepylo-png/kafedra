@@ -13,6 +13,7 @@ assets/css/style.css  — стилі та кольорова палітра
 assets/js/main.js     — мобільне меню
 assets/js/models.js   — реєстр моделей для вкладки «Моделювання»
 assets/img/logo.svg   — логотип / favicon
+.github/workflows/pages.yml — мінімізація та публікація на GitHub Pages
 ```
 
 ## Запуск локально
@@ -22,7 +23,15 @@ python3 -m http.server 8000
 # відкрити http://localhost:8000
 ```
 
-Сайт можна розмістити на GitHub Pages (гілка, корінь репозиторію).
+## Публікація
+
+GitHub Actions при кожному push мінімізує HTML/CSS/JS і публікує сайт на GitHub Pages.
+Один раз увімкніть: **Settings → Pages → Source: GitHub Actions**.
+
+## Вага сторінки
+
+Без веб-шрифтів, фреймворків і зображень (лише вбудовані SVG). Після мінімізації та gzip
+головна сторінка разом зі стилями і скриптами — близько 8 КБ.
 
 ## Як додати модель
 

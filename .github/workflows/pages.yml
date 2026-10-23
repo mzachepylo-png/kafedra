@@ -1,0 +1,47 @@
+# Мінімізує HTML/CSS/JS і публікує сайт на GitHub Pages.
+# Увімкнення: Settings → Pages → Source: GitHub Actions.
+name: Deploy to GitHub Pages
+
+on:
+  push:
+    branches: [main, claude/biotech-department-landing-85ytoa]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: pages
+  cancel-in-progress: true
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+
+      - name: Build (minify)
+        run: |
+          mkdir dist
+          cp -r index.html modeling assets dist/
+          cd dist
+          npx --yes html-minifier-terser@7.2.0 --collapse-whitespace --remove-comments \
+            --minify-css true --minify-js true --input-dir . --output-dir . --file-ext html
+          npx --yes clean-css-cli@5.6.3 -O1 -o assets/css/style.css assets/css/style.css
+          for f in assets/js/*.js; do npx --yes terser@5.36.0 "$f" -c -m -o "$f"; done
+
+      - uses: actions/upload-pages-artifact@v3
+        with:
+          path: dist
+
+      - id: deployment
+        uses: actions/deploy-pages@v4

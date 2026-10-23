@@ -16,8 +16,9 @@
   --radius: 14px;
   --shadow: 0 1px 2px rgba(20, 38, 26, .06), 0 8px 24px rgba(20, 38, 26, .06);
   --max: 1160px;
-  --font: "Manrope", system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
-  --mono: "JetBrains Mono", ui-monospace, Menlo, monospace;
+  /* Системні шрифти — без завантаження веб-шрифтів */
+  --font: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  --mono: ui-monospace, "SF Mono", Menlo, Consolas, monospace;
 }
 
 *, *::before, *::after { box-sizing: border-box; }
@@ -71,8 +72,7 @@ p { margin: 0 0 1em; }
 /* ---------- Header ---------- */
 .site-header {
   position: sticky; top: 0; z-index: 50;
-  background: rgba(255, 255, 255, .94);
-  backdrop-filter: saturate(1.4) blur(10px);
+  background: #fff;
   border-bottom: 1px solid var(--line);
 }
 .site-header .container { display: flex; align-items: center; justify-content: space-between; gap: 16px; min-height: 68px; }
@@ -182,7 +182,6 @@ p { margin: 0 0 1em; }
   font-size: .8rem; font-weight: 800; letter-spacing: .08em; text-transform: uppercase;
   color: var(--accent); margin-bottom: 8px; display: block;
 }
-.section__kicker--science { color: var(--science); }
 .section__lead { color: var(--ink-soft); font-size: 1.05rem; }
 
 @media (max-width: 760px) { .section { padding: 56px 0; } }
@@ -227,23 +226,12 @@ p { margin: 0 0 1em; }
   display: inline-block; font-size: .74rem; font-weight: 800; letter-spacing: .04em; text-transform: uppercase;
   padding: 3px 8px; border-radius: 6px; background: #E6F2E7; color: var(--primary); align-self: flex-start;
 }
-.badge--science { background: #DDF0EC; color: var(--science); }
 .badge--alert { background: #FFF1CC; color: #6B4A00; }
 
 /* ---------- Programs ---------- */
 .program { border-top: 4px solid var(--primary); }
 .program__code { font-family: var(--mono); font-weight: 700; color: var(--accent); font-size: 1.6rem; line-height: 1; }
 .program--featured { border-top-color: var(--accent); background: linear-gradient(180deg, #F2FAF2, #fff 60%); }
-
-/* ---------- Science ---------- */
-.science { background: var(--science); color: #fff; }
-.science h2, .science h3 { color: #fff; }
-.science .section__lead { color: rgba(255, 255, 255, .82); }
-.science .section__kicker { color: #9FE0D4; }
-.science .card { background: rgba(255, 255, 255, .06); border-color: rgba(255, 255, 255, .16); }
-.science .card:hover { border-color: #9FE0D4; box-shadow: none; }
-.science .card p { color: rgba(255, 255, 255, .8); }
-.science .card__icon { background: rgba(255, 255, 255, .12); color: #9FE0D4; }
 
 /* ---------- Team ---------- */
 .person { flex-direction: row; align-items: flex-start; gap: 16px; }
