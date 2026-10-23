@@ -1,0 +1,271 @@
+{
+ "id": "smut",
+ "candidates": [
+  {
+   "k": "a1",
+   "source": "epmc",
+   "score": 16,
+   "pmcid": "PMC4917244",
+   "doi": "10.1371/journal.ppat.1005697",
+   "title": "The WOPR Protein Ros1 Is a Master Regulator of Sporogenesis and Late Effector Gene Expression in the Maize Pathogen Ustilago maydis.",
+   "authors": [
+    {
+     "last": "Tollot",
+     "initials": "M",
+     "first": "Marie",
+     "full": "Tollot M",
+     "collective": null
+    },
+    {
+     "last": "Assmann",
+     "initials": "D",
+     "first": "Daniela",
+     "full": "Assmann D",
+     "collective": null
+    },
+    {
+     "last": "Becker",
+     "initials": "C",
+     "first": "Christian",
+     "full": "Becker C",
+     "collective": null
+    },
+    {
+     "last": "Altmüller",
+     "initials": "J",
+     "first": "Janine",
+     "full": "Altmüller J",
+     "collective": null
+    },
+    {
+     "last": "Dutheil",
+     "initials": "JY",
+     "first": "Julien Y",
+     "full": "Dutheil JY",
+     "collective": null
+    },
+    {
+     "last": "Wegner",
+     "initials": "CE",
+     "first": "Carl-Eric",
+     "full": "Wegner CE",
+     "collective": null
+    },
+    {
+     "last": "Kahmann",
+     "initials": "R",
+     "first": "Regine",
+     "full": "Kahmann R",
+     "collective": null
+    }
+   ],
+   "journal": "PLoS pathogens",
+   "journal_iso": "PLoS Pathog",
+   "volume": "12",
+   "issue": "6",
+   "year": 2016,
+   "pages": "e1005697",
+   "license": "cc by",
+   "first_pub": "2016-06-22",
+   "fig_label": "Fig 6",
+   "caption": "Premature expression of ros1 triggers an early arrest of filamentous growth and induces septation. Maize seedlings were infected with a combination of FB1 x FB2 (A, B) or FB1Δros1 Pmig2-6 Ros1 x FB2Δros1 Pmig2-6 Ros1 strains expressing ros1 from the mig2-6 promoter which is induced two days after colonization (C, D). A and C show macroscopic symptoms on leaves at 8 dpi. Only very small tumors are visible on plants infected with FB1Δros1 Pmig2-6 Ros1 x FB2Δros1 Pmig2-6 Ros1. B and D panels show confocal microscopy pictures obtained from 3 dpi plant samples. The fungal cell wall was stained with wheat germ agglutinin-Alexa Fluor 488 (green fluorescence) and the plant cell wall was stained with propidium iodide (red fluorescence). Growth of the strains expressing ros1 prematurely is restricted to a small area surrounding the penetration site and hyphae exhibit an altered morphology. The inserts depict enlargements of biotrophic hyphae displaying increased septation when Ros1 is prematurely expressed. Bar = 10 μm.",
+   "href": "ppat.1005697.g006.jpg",
+   "img_url": "https://journals.plos.org/plospathogens/article/figure/image?size=large&id=10.1371/journal.ppat.1005697.g006",
+   "orig_size": [
+    1351,
+    1063
+   ],
+   "crossref": {
+    "title": "The WOPR Protein Ros1 Is a Master Regulator of Sporogenesis and Late Effector Gene Expression in the Maize Pathogen Ustilago maydis",
+    "container": "PLOS Pathogens",
+    "volume": "12",
+    "issue": "6",
+    "page": "e1005697",
+    "article_number": null,
+    "authors": [
+     {
+      "given": "Marie",
+      "family": "Tollot",
+      "name": null
+     },
+     {
+      "given": "Daniela",
+      "family": "Assmann",
+      "name": null
+     },
+     {
+      "given": "Christian",
+      "family": "Becker",
+      "name": null
+     },
+     {
+      "given": "Janine",
+      "family": "Altmüller",
+      "name": null
+     },
+     {
+      "given": "Julien Y.",
+      "family": "Dutheil",
+      "name": null
+     },
+     {
+      "given": "Carl-Eric",
+      "family": "Wegner",
+      "name": null
+     },
+     {
+      "given": "Regine",
+      "family": "Kahmann",
+      "name": null
+     }
+    ],
+    "issued": [
+     2016,
+     6,
+     22
+    ],
+    "published_online": [
+     2016,
+     6,
+     22
+    ],
+    "published_print": [
+     null
+    ]
+   }
+  },
+  {
+   "k": "a2",
+   "source": "epmc",
+   "score": 14,
+   "pmcid": "PMC4917244",
+   "doi": "10.1371/journal.ppat.1005697",
+   "title": "The WOPR Protein Ros1 Is a Master Regulator of Sporogenesis and Late Effector Gene Expression in the Maize Pathogen Ustilago maydis.",
+   "authors": [
+    {
+     "last": "Tollot",
+     "initials": "M",
+     "first": "Marie",
+     "full": "Tollot M",
+     "collective": null
+    },
+    {
+     "last": "Assmann",
+     "initials": "D",
+     "first": "Daniela",
+     "full": "Assmann D",
+     "collective": null
+    },
+    {
+     "last": "Becker",
+     "initials": "C",
+     "first": "Christian",
+     "full": "Becker C",
+     "collective": null
+    },
+    {
+     "last": "Altmüller",
+     "initials": "J",
+     "first": "Janine",
+     "full": "Altmüller J",
+     "collective": null
+    },
+    {
+     "last": "Dutheil",
+     "initials": "JY",
+     "first": "Julien Y",
+     "full": "Dutheil JY",
+     "collective": null
+    },
+    {
+     "last": "Wegner",
+     "initials": "CE",
+     "first": "Carl-Eric",
+     "full": "Wegner CE",
+     "collective": null
+    },
+    {
+     "last": "Kahmann",
+     "initials": "R",
+     "first": "Regine",
+     "full": "Kahmann R",
+     "collective": null
+    }
+   ],
+   "journal": "PLoS pathogens",
+   "journal_iso": "PLoS Pathog",
+   "volume": "12",
+   "issue": "6",
+   "year": 2016,
+   "pages": "e1005697",
+   "license": "cc by",
+   "first_pub": "2016-06-22",
+   "fig_label": "Fig 2",
+   "caption": "ros1 deletion strains fail to aggregate and form spores. Tumor samples from maize seedlings infected with the wild type strains FB1 x FB2 and the corresponding ros1 deletion strains were collected at 4, 6, 8, 10, 12 dpi, stained with wheat germ agglutinin-Alexa Fluor 488 and analyzed by laser scanning confocal microscopy (bar = 50 μm). In the FB1 x FB2 infection (left column), spore formation starts at 6 dpi with the formation of hyphal aggregates which expand (8 dpi), begin to fragment (10 dpi) and develop into teliospores (12 dpi). In comparison, the ros1 deletion strains are locked in the filamentous state, do not aggregate and do not develop teliospores (right column). The size bar corresponds to 50 μM.",
+   "href": "ppat.1005697.g002.jpg",
+   "img_url": "https://journals.plos.org/plospathogens/article/figure/image?size=large&id=10.1371/journal.ppat.1005697.g002",
+   "orig_size": [
+    1134,
+    2359
+   ],
+   "crossref": {
+    "title": "The WOPR Protein Ros1 Is a Master Regulator of Sporogenesis and Late Effector Gene Expression in the Maize Pathogen Ustilago maydis",
+    "container": "PLOS Pathogens",
+    "volume": "12",
+    "issue": "6",
+    "page": "e1005697",
+    "article_number": null,
+    "authors": [
+     {
+      "given": "Marie",
+      "family": "Tollot",
+      "name": null
+     },
+     {
+      "given": "Daniela",
+      "family": "Assmann",
+      "name": null
+     },
+     {
+      "given": "Christian",
+      "family": "Becker",
+      "name": null
+     },
+     {
+      "given": "Janine",
+      "family": "Altmüller",
+      "name": null
+     },
+     {
+      "given": "Julien Y.",
+      "family": "Dutheil",
+      "name": null
+     },
+     {
+      "given": "Carl-Eric",
+      "family": "Wegner",
+      "name": null
+     },
+     {
+      "given": "Regine",
+      "family": "Kahmann",
+      "name": null
+     }
+    ],
+    "issued": [
+     2016,
+     6,
+     22
+    ],
+    "published_online": [
+     2016,
+     6,
+     22
+    ],
+    "published_print": [
+     null
+    ]
+   }
+  }
+ ]
+}

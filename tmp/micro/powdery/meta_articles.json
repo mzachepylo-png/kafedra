@@ -1,0 +1,989 @@
+{
+ "id": "powdery",
+ "candidates": [
+  {
+   "k": "a1",
+   "source": "epmc",
+   "score": 12,
+   "pmcid": "PMC9691835",
+   "doi": "10.3389/fmicb.2022.1045796",
+   "title": "Key infection stages defending heat stress in high-temperature-resistant <i>Blumeria graminis</i> f. sp. <i>tritici</i> isolates.",
+   "authors": [
+    {
+     "last": "Zhang",
+     "initials": "M",
+     "first": "Meihui",
+     "full": "Zhang M",
+     "collective": null
+    },
+    {
+     "last": "Wang",
+     "initials": "A",
+     "first": "Aolin",
+     "full": "Wang A",
+     "collective": null
+    },
+    {
+     "last": "Zhang",
+     "initials": "C",
+     "first": "Cheng",
+     "full": "Zhang C",
+     "collective": null
+    },
+    {
+     "last": "Xu",
+     "initials": "F",
+     "first": "Fei",
+     "full": "Xu F",
+     "collective": null
+    },
+    {
+     "last": "Liu",
+     "initials": "W",
+     "first": "Wei",
+     "full": "Liu W",
+     "collective": null
+    },
+    {
+     "last": "Fan",
+     "initials": "J",
+     "first": "Jieru",
+     "full": "Fan J",
+     "collective": null
+    },
+    {
+     "last": "Ma",
+     "initials": "Z",
+     "first": "Zhanhong",
+     "full": "Ma Z",
+     "collective": null
+    },
+    {
+     "last": "Zhou",
+     "initials": "Y",
+     "first": "Yilin",
+     "full": "Zhou Y",
+     "collective": null
+    }
+   ],
+   "journal": "Frontiers in microbiology",
+   "journal_iso": "Front Microbiol",
+   "volume": "13",
+   "issue": null,
+   "year": 2022,
+   "pages": "1045796",
+   "license": "cc by",
+   "first_pub": "2022-11-11",
+   "fig_label": "Figure 3",
+   "caption": "Differences in infection stages of high-temperature-sensitive and resistant isolates of B. graminis f. sp. tritici at 18°C and 25°C. (A) Germination frequencies of conidia; (B) Formation frequencies of appressoria; (C) Formation frequencies of abnormal appressoria; (D) Lengths of appressorial germ tube (AGT); (E) Formation frequencies of haustoria; (F) Inhibition rate of haustoria formation; (G) Major axis of microcolonies; (H) Disease severity. The inhibition rate of haustoria formation was analyzed by one-way analysis of variance (ANOVA), while other data were analyzed using two-way ANOVA with Duncan’s multiple range test. The error bar showed standard error of three independent repeats. The different letters above the error bars indicated significant differences (p ≤ 0.05).",
+   "href": "fmicb-13-1045796-g003.jpg",
+   "img_url": "https://cdn.ncbi.nlm.nih.gov/pmc/blobs/25f0/9691835/e054edde1691/fmicb-13-1045796-g003.jpg",
+   "orig_size": [
+    767,
+    1076
+   ],
+   "crossref": {
+    "title": "Key infection stages defending heat stress in high-temperature-resistant Blumeria graminis f. sp. tritici isolates",
+    "container": "Frontiers in Microbiology",
+    "volume": "13",
+    "issue": null,
+    "page": null,
+    "article_number": "1045796",
+    "authors": [
+     {
+      "given": "Meihui",
+      "family": "Zhang",
+      "name": null
+     },
+     {
+      "given": "Aolin",
+      "family": "Wang",
+      "name": null
+     },
+     {
+      "given": "Cheng",
+      "family": "Zhang",
+      "name": null
+     },
+     {
+      "given": "Fei",
+      "family": "Xu",
+      "name": null
+     },
+     {
+      "given": "Wei",
+      "family": "Liu",
+      "name": null
+     },
+     {
+      "given": "Jieru",
+      "family": "Fan",
+      "name": null
+     },
+     {
+      "given": "Zhanhong",
+      "family": "Ma",
+      "name": null
+     },
+     {
+      "given": "Yilin",
+      "family": "Zhou",
+      "name": null
+     }
+    ],
+    "issued": [
+     2022,
+     11,
+     11
+    ],
+    "published_online": [
+     2022,
+     11,
+     11
+    ],
+    "published_print": [
+     null
+    ]
+   }
+  },
+  {
+   "k": "a2",
+   "source": "epmc",
+   "score": 10,
+   "pmcid": "PMC9691835",
+   "doi": "10.3389/fmicb.2022.1045796",
+   "title": "Key infection stages defending heat stress in high-temperature-resistant <i>Blumeria graminis</i> f. sp. <i>tritici</i> isolates.",
+   "authors": [
+    {
+     "last": "Zhang",
+     "initials": "M",
+     "first": "Meihui",
+     "full": "Zhang M",
+     "collective": null
+    },
+    {
+     "last": "Wang",
+     "initials": "A",
+     "first": "Aolin",
+     "full": "Wang A",
+     "collective": null
+    },
+    {
+     "last": "Zhang",
+     "initials": "C",
+     "first": "Cheng",
+     "full": "Zhang C",
+     "collective": null
+    },
+    {
+     "last": "Xu",
+     "initials": "F",
+     "first": "Fei",
+     "full": "Xu F",
+     "collective": null
+    },
+    {
+     "last": "Liu",
+     "initials": "W",
+     "first": "Wei",
+     "full": "Liu W",
+     "collective": null
+    },
+    {
+     "last": "Fan",
+     "initials": "J",
+     "first": "Jieru",
+     "full": "Fan J",
+     "collective": null
+    },
+    {
+     "last": "Ma",
+     "initials": "Z",
+     "first": "Zhanhong",
+     "full": "Ma Z",
+     "collective": null
+    },
+    {
+     "last": "Zhou",
+     "initials": "Y",
+     "first": "Yilin",
+     "full": "Zhou Y",
+     "collective": null
+    }
+   ],
+   "journal": "Frontiers in microbiology",
+   "journal_iso": "Front Microbiol",
+   "volume": "13",
+   "issue": null,
+   "year": 2022,
+   "pages": "1045796",
+   "license": "cc by",
+   "first_pub": "2022-11-11",
+   "fig_label": "Figure 2",
+   "caption": "Histological observation on key infection stages of B. graminis f. sp. tritici isolates at 18°C. (A) Appressorium, (B,C) Abnormal appressoria, (D) Primary haustoria, (E) Finger-like matured haustoria, (F) Microcolony. AP = appressorium; AAP = abnormal appressorium; PH = primary haustorium; H = haustorium; MC = microcolony. A-E bars=60µm, F bar=130µm.",
+   "href": "fmicb-13-1045796-g002.jpg",
+   "img_url": "https://cdn.ncbi.nlm.nih.gov/pmc/blobs/25f0/9691835/4b8aa0cf04fa/fmicb-13-1045796-g002.jpg",
+   "orig_size": [
+    767,
+    294
+   ],
+   "crossref": {
+    "title": "Key infection stages defending heat stress in high-temperature-resistant Blumeria graminis f. sp. tritici isolates",
+    "container": "Frontiers in Microbiology",
+    "volume": "13",
+    "issue": null,
+    "page": null,
+    "article_number": "1045796",
+    "authors": [
+     {
+      "given": "Meihui",
+      "family": "Zhang",
+      "name": null
+     },
+     {
+      "given": "Aolin",
+      "family": "Wang",
+      "name": null
+     },
+     {
+      "given": "Cheng",
+      "family": "Zhang",
+      "name": null
+     },
+     {
+      "given": "Fei",
+      "family": "Xu",
+      "name": null
+     },
+     {
+      "given": "Wei",
+      "family": "Liu",
+      "name": null
+     },
+     {
+      "given": "Jieru",
+      "family": "Fan",
+      "name": null
+     },
+     {
+      "given": "Zhanhong",
+      "family": "Ma",
+      "name": null
+     },
+     {
+      "given": "Yilin",
+      "family": "Zhou",
+      "name": null
+     }
+    ],
+    "issued": [
+     2022,
+     11,
+     11
+    ],
+    "published_online": [
+     2022,
+     11,
+     11
+    ],
+    "published_print": [
+     null
+    ]
+   }
+  },
+  {
+   "k": "a3",
+   "source": "epmc",
+   "score": 7,
+   "pmcid": "PMC9630935",
+   "doi": "10.3389/fpls.2022.1039090",
+   "title": "Comparison of microscopic and metagenomic approaches to identify cereal pathogens and track fungal spore release in the field.",
+   "authors": [
+    {
+     "last": "Pilo",
+     "initials": "P",
+     "first": "Paola",
+     "full": "Pilo P",
+     "collective": null
+    },
+    {
+     "last": "Lawless",
+     "initials": "C",
+     "first": "Colleen",
+     "full": "Lawless C",
+     "collective": null
+    },
+    {
+     "last": "Tiley",
+     "initials": "AMM",
+     "first": "Anna M M",
+     "full": "Tiley AMM",
+     "collective": null
+    },
+    {
+     "last": "Karki",
+     "initials": "SJ",
+     "first": "Sujit J",
+     "full": "Karki SJ",
+     "collective": null
+    },
+    {
+     "last": "Burke",
+     "initials": "JI",
+     "first": "James I",
+     "full": "Burke JI",
+     "collective": null
+    },
+    {
+     "last": "Feechan",
+     "initials": "A",
+     "first": "Angela",
+     "full": "Feechan A",
+     "collective": null
+    }
+   ],
+   "journal": "Frontiers in plant science",
+   "journal_iso": "Front Plant Sci",
+   "volume": "13",
+   "issue": null,
+   "year": 2022,
+   "pages": "1039090",
+   "license": "cc by",
+   "first_pub": "2022-10-20",
+   "fig_label": "Figure 2",
+   "caption": "Schematic summarizing the preparation of the spore trap tapes for microscopy and metagenomic analysis. (A) the full tape was split longitudinally and divided ½ for microscopy and ½ for DNA extraction; (B) the microscopy half was divided into 7 sections (48 mm wide), each representing one day of collection; (C) tape sections were stained with solution of 10% Trypan-blue-lactophenol 90% colorless glycerin, and mounted on microscope slides, which were segmented in 12 parts 2mm wide. Each 2mm section represents 2 hours of collection; (D) Representative images of different fungal spores from the spore trap tape microscope slides. Red arrows indicate: [A] Zymoseptoria spp. ascospores, [B] Cladosporium spp., [C] Torula herbarum [D] Fusarium spp. Ascospores, [E] Puccinia spp. [F] Alternaria spp. (left), Blumeria graminis (right); (E) Two half tapes from two consecutive weeks of collection were used for monthly DNA extraction; (F) tape sections were used for DNA extraction using the Qiagen DNeasy Soil Kit and 400 – 600 µm acid – washed beads; (G) DNA extracted was sent for NGS and DNA reads analyzed for metagenomic of fungal pathogens.",
+   "href": "fpls-13-1039090-g002.jpg",
+   "img_url": "https://cdn.ncbi.nlm.nih.gov/pmc/blobs/ed05/9630935/6975e03f5818/fpls-13-1039090-g002.jpg",
+   "orig_size": [
+    656,
+    354
+   ],
+   "crossref": {
+    "title": "Comparison of microscopic and metagenomic approaches to identify cereal pathogens and track fungal spore release in the field",
+    "container": "Frontiers in Plant Science",
+    "volume": "13",
+    "issue": null,
+    "page": null,
+    "article_number": "1039090",
+    "authors": [
+     {
+      "given": "Paola",
+      "family": "Pilo",
+      "name": null
+     },
+     {
+      "given": "Colleen",
+      "family": "Lawless",
+      "name": null
+     },
+     {
+      "given": "Anna M. M.",
+      "family": "Tiley",
+      "name": null
+     },
+     {
+      "given": "Sujit J.",
+      "family": "Karki",
+      "name": null
+     },
+     {
+      "given": "James I.",
+      "family": "Burke",
+      "name": null
+     },
+     {
+      "given": "Angela",
+      "family": "Feechan",
+      "name": null
+     }
+    ],
+    "issued": [
+     2022,
+     10,
+     20
+    ],
+    "published_online": [
+     2022,
+     10,
+     20
+    ],
+    "published_print": [
+     null
+    ]
+   }
+  },
+  {
+   "k": "a4",
+   "source": "epmc",
+   "score": 5,
+   "pmcid": "PMC9630935",
+   "doi": "10.3389/fpls.2022.1039090",
+   "title": "Comparison of microscopic and metagenomic approaches to identify cereal pathogens and track fungal spore release in the field.",
+   "authors": [
+    {
+     "last": "Pilo",
+     "initials": "P",
+     "first": "Paola",
+     "full": "Pilo P",
+     "collective": null
+    },
+    {
+     "last": "Lawless",
+     "initials": "C",
+     "first": "Colleen",
+     "full": "Lawless C",
+     "collective": null
+    },
+    {
+     "last": "Tiley",
+     "initials": "AMM",
+     "first": "Anna M M",
+     "full": "Tiley AMM",
+     "collective": null
+    },
+    {
+     "last": "Karki",
+     "initials": "SJ",
+     "first": "Sujit J",
+     "full": "Karki SJ",
+     "collective": null
+    },
+    {
+     "last": "Burke",
+     "initials": "JI",
+     "first": "James I",
+     "full": "Burke JI",
+     "collective": null
+    },
+    {
+     "last": "Feechan",
+     "initials": "A",
+     "first": "Angela",
+     "full": "Feechan A",
+     "collective": null
+    }
+   ],
+   "journal": "Frontiers in plant science",
+   "journal_iso": "Front Plant Sci",
+   "volume": "13",
+   "issue": null,
+   "year": 2022,
+   "pages": "1039090",
+   "license": "cc by",
+   "first_pub": "2022-10-20",
+   "fig_label": "Figure 3",
+   "caption": "Weekly percentages of spores from the six major pathogens recognized and detected with the microscopic analysis at the four sites. Asterisk (*) denotes missing data in week 5 from the Bishop Burton field site and at week 7 at the Lenham field site due to mechanical failure of the spore trap.",
+   "href": "fpls-13-1039090-g003.jpg",
+   "img_url": "https://cdn.ncbi.nlm.nih.gov/pmc/blobs/ed05/9630935/9e916f53f577/fpls-13-1039090-g003.jpg",
+   "orig_size": [
+    787,
+    340
+   ],
+   "crossref": {
+    "title": "Comparison of microscopic and metagenomic approaches to identify cereal pathogens and track fungal spore release in the field",
+    "container": "Frontiers in Plant Science",
+    "volume": "13",
+    "issue": null,
+    "page": null,
+    "article_number": "1039090",
+    "authors": [
+     {
+      "given": "Paola",
+      "family": "Pilo",
+      "name": null
+     },
+     {
+      "given": "Colleen",
+      "family": "Lawless",
+      "name": null
+     },
+     {
+      "given": "Anna M. M.",
+      "family": "Tiley",
+      "name": null
+     },
+     {
+      "given": "Sujit J.",
+      "family": "Karki",
+      "name": null
+     },
+     {
+      "given": "James I.",
+      "family": "Burke",
+      "name": null
+     },
+     {
+      "given": "Angela",
+      "family": "Feechan",
+      "name": null
+     }
+    ],
+    "issued": [
+     2022,
+     10,
+     20
+    ],
+    "published_online": [
+     2022,
+     10,
+     20
+    ],
+    "published_print": [
+     null
+    ]
+   }
+  },
+  {
+   "k": "a5",
+   "source": "epmc",
+   "score": 16,
+   "pmcid": "PMC7350345",
+   "doi": "10.3390/pathogens9060418",
+   "title": "A Post-Haustorial Defense Mechanism is Mediated by the Powdery Mildew Resistance Gene, <i>PmG3M</i>, Derived from Wild Emmer Wheat.",
+   "authors": [
+    {
+     "last": "Wei",
+     "initials": "ZZ",
+     "first": "Zhen-Zhen",
+     "full": "Wei ZZ",
+     "collective": null
+    },
+    {
+     "last": "Klymiuk",
+     "initials": "V",
+     "first": "Valentyna",
+     "full": "Klymiuk V",
+     "collective": null
+    },
+    {
+     "last": "Bocharova",
+     "initials": "V",
+     "first": "Valeria",
+     "full": "Bocharova V",
+     "collective": null
+    },
+    {
+     "last": "Pozniak",
+     "initials": "C",
+     "first": "Curtis",
+     "full": "Pozniak C",
+     "collective": null
+    },
+    {
+     "last": "Fahima",
+     "initials": "T",
+     "first": "Tzion",
+     "full": "Fahima T",
+     "collective": null
+    }
+   ],
+   "journal": "Pathogens (Basel, Switzerland)",
+   "journal_iso": "Pathogens",
+   "volume": "9",
+   "issue": "6",
+   "year": 2020,
+   "pages": "E418",
+   "license": "cc by",
+   "first_pub": "2020-05-28",
+   "fig_label": "Figure 2",
+   "caption": "Disease cycle of Bgt #70 on leaf segments of LDN (susceptible parent). All samples were stained with WGA prior to observation under fluorescence microscope; (a–c) germination of Bgt conidia at 4 hpi; (d–g) initial stages of appressorial germ tube formation at 8 hpi; (h,i) advanced stages of appressorial germ tubes formation at 12 hpi; (j–l) initial stages of penetration and invasion of Bgt into wheat cells at 18 hpi; (m) development of mature haustoria at 24 hpi; (n) formation of Bgt colonies at 72 dpi. A high-resolution close-up image of the mature feeding structure of Bgt with central body and digitate processes (finger-like projections) is shown in the red box; (o,p) feeding structures of Bgt at 96 hpi (4 dpi). Bgt haustorium within the invaded plant host cell under fluorescence microscopy (o) and superimposition of fluorescence and bright field images with visible multiple haustoria with multi-digits in individual epidermal cells (p); (q–t) images of massive colonization and reproduction of Bgt on wheat leaves at 120 hpi (5 dpi) observed under fluorescence microscopy (q,s,t) and superimposed on a bright field images; (r) colonies with numerous conidiophores and haustoria are shown. The high-resolution close-up image is derived from the red box in q; (u–x) observation of Bgt symptoms and conidiophores developed at 240 hpi (10 dpi). Powdery mildew symptoms on intact leaves (u) and leaf segments (v), observation under fluorescence microscopy of Bgt conidiophores, aerial hyphae under light microscopy. AL: apical lobe; App: appressorium; AC: apical conidium; CB: central body; Con: conidium; Cp: conidiophores; CW: cell wall; DP: digitate processes (finger-like projections); BC: bulbous conidiophore; MH: mature haustorium; HP: haustorial primordium; Hy: hyphae; NB: neckband; Sep: septum; St: stomata. Scale bars: (a–m) and (n) red, 10 µm; (o–t) and (n) white, 50 µm; (w), 100 µm; (x), 250 µm.",
+   "href": "pathogens-09-00418-g002.jpg",
+   "img_url": "https://cdn.ncbi.nlm.nih.gov/pmc/blobs/ce18/7350345/ed622010dd89/pathogens-09-00418-g002.jpg",
+   "orig_size": [
+    710,
+    755
+   ],
+   "crossref": {
+    "title": "A Post-Haustorial Defense Mechanism is Mediated by the Powdery Mildew Resistance Gene, PmG3M, Derived from Wild Emmer Wheat",
+    "container": "Pathogens",
+    "volume": "9",
+    "issue": "6",
+    "page": "418",
+    "article_number": null,
+    "authors": [
+     {
+      "given": "Zhen-Zhen",
+      "family": "Wei",
+      "name": null
+     },
+     {
+      "given": "Valentyna",
+      "family": "Klymiuk",
+      "name": null
+     },
+     {
+      "given": "Valeria",
+      "family": "Bocharova",
+      "name": null
+     },
+     {
+      "given": "Curtis",
+      "family": "Pozniak",
+      "name": null
+     },
+     {
+      "given": "Tzion",
+      "family": "Fahima",
+      "name": null
+     }
+    ],
+    "issued": [
+     2020,
+     5,
+     28
+    ],
+    "published_online": [
+     2020,
+     5,
+     28
+    ],
+    "published_print": [
+     null
+    ]
+   }
+  },
+  {
+   "k": "a6",
+   "source": "epmc",
+   "score": 16,
+   "pmcid": "PMC7350345",
+   "doi": "10.3390/pathogens9060418",
+   "title": "A Post-Haustorial Defense Mechanism is Mediated by the Powdery Mildew Resistance Gene, <i>PmG3M</i>, Derived from Wild Emmer Wheat.",
+   "authors": [
+    {
+     "last": "Wei",
+     "initials": "ZZ",
+     "first": "Zhen-Zhen",
+     "full": "Wei ZZ",
+     "collective": null
+    },
+    {
+     "last": "Klymiuk",
+     "initials": "V",
+     "first": "Valentyna",
+     "full": "Klymiuk V",
+     "collective": null
+    },
+    {
+     "last": "Bocharova",
+     "initials": "V",
+     "first": "Valeria",
+     "full": "Bocharova V",
+     "collective": null
+    },
+    {
+     "last": "Pozniak",
+     "initials": "C",
+     "first": "Curtis",
+     "full": "Pozniak C",
+     "collective": null
+    },
+    {
+     "last": "Fahima",
+     "initials": "T",
+     "first": "Tzion",
+     "full": "Fahima T",
+     "collective": null
+    }
+   ],
+   "journal": "Pathogens (Basel, Switzerland)",
+   "journal_iso": "Pathogens",
+   "volume": "9",
+   "issue": "6",
+   "year": 2020,
+   "pages": "E418",
+   "license": "cc by",
+   "first_pub": "2020-05-28",
+   "fig_label": "Figure 3",
+   "caption": "Microscopy of Bgt -wheat interactions on infected leaves in resistant versus susceptible lines. Segments of G305-3M and LDN leaves were observed under fluorescence microscopy after staining with wheat germ agglutinin (WGA) at 13 time points post inoculation. Scale bar is 50 μm. App: appressorium; Cp: conidiophore; Con: conidium; DP: digitate processes (finger-like projections); HP: haustorial primordium; Hy: hyphae; MH: mature haustorium; PGT: primary germ tube; Sep: septum; SGT: secondary germ tube.",
+   "href": "pathogens-09-00418-g003.jpg",
+   "img_url": "https://cdn.ncbi.nlm.nih.gov/pmc/blobs/ce18/7350345/2ce728b101d6/pathogens-09-00418-g003.jpg",
+   "orig_size": [
+    768,
+    977
+   ],
+   "crossref": {
+    "title": "A Post-Haustorial Defense Mechanism is Mediated by the Powdery Mildew Resistance Gene, PmG3M, Derived from Wild Emmer Wheat",
+    "container": "Pathogens",
+    "volume": "9",
+    "issue": "6",
+    "page": "418",
+    "article_number": null,
+    "authors": [
+     {
+      "given": "Zhen-Zhen",
+      "family": "Wei",
+      "name": null
+     },
+     {
+      "given": "Valentyna",
+      "family": "Klymiuk",
+      "name": null
+     },
+     {
+      "given": "Valeria",
+      "family": "Bocharova",
+      "name": null
+     },
+     {
+      "given": "Curtis",
+      "family": "Pozniak",
+      "name": null
+     },
+     {
+      "given": "Tzion",
+      "family": "Fahima",
+      "name": null
+     }
+    ],
+    "issued": [
+     2020,
+     5,
+     28
+    ],
+    "published_online": [
+     2020,
+     5,
+     28
+    ],
+    "published_print": [
+     null
+    ]
+   }
+  },
+  {
+   "k": "a7",
+   "source": "epmc",
+   "score": 15,
+   "pmcid": "PMC4339710",
+   "doi": "10.1155/2015/462645",
+   "title": "Endophytic Bacillus subtilis strain E1R-J is a promising biocontrol agent for wheat powdery mildew.",
+   "authors": [
+    {
+     "last": "Gao",
+     "initials": "X",
+     "first": "Xiaoning",
+     "full": "Gao X",
+     "collective": null
+    },
+    {
+     "last": "Gong",
+     "initials": "Y",
+     "first": "Yufei",
+     "full": "Gong Y",
+     "collective": null
+    },
+    {
+     "last": "Huo",
+     "initials": "Y",
+     "first": "Yunxia",
+     "full": "Huo Y",
+     "collective": null
+    },
+    {
+     "last": "Han",
+     "initials": "Q",
+     "first": "Qingmei",
+     "full": "Han Q",
+     "collective": null
+    },
+    {
+     "last": "Kang",
+     "initials": "Z",
+     "first": "Zhensheng",
+     "full": "Kang Z",
+     "collective": null
+    },
+    {
+     "last": "Huang",
+     "initials": "L",
+     "first": "Lili",
+     "full": "Huang L",
+     "collective": null
+    }
+   ],
+   "journal": "BioMed research international",
+   "journal_iso": "Biomed Res Int",
+   "volume": "2015",
+   "issue": null,
+   "year": 2015,
+   "pages": "462645",
+   "license": "cc by",
+   "first_pub": "2015-02-11",
+   "fig_label": "Figure 4",
+   "caption": "Conidial germination of Blumeria graminis f. sp. tritici (Bgt) on leaves of wheat cultivar “Xiaoyan 6” 12 h after inoculation of Bgt observed by scanning electron microscope. (a) Germination of conidia in the water control, also showing the germ tube formed; (b-c) conidia and germ tubes were destroyed by E1R-j cell suspension (b) and fermentation liquid (c). Bar = 10 μ m.",
+   "href": "BMRI2015-462645.004.jpg",
+   "img_url": "https://cdn.ncbi.nlm.nih.gov/pmc/blobs/c461/4339710/0b6b33766454/BMRI2015-462645.004.jpg",
+   "orig_size": [
+    704,
+    603
+   ],
+   "crossref": {
+    "title": "Endophytic<i>Bacillus subtilis</i>Strain E1R-J Is a Promising Biocontrol Agent for Wheat Powdery Mildew",
+    "container": "BioMed Research International",
+    "volume": "2015",
+    "issue": null,
+    "page": "1-8",
+    "article_number": null,
+    "authors": [
+     {
+      "given": "Xiaoning",
+      "family": "Gao",
+      "name": null
+     },
+     {
+      "given": "Yufei",
+      "family": "Gong",
+      "name": null
+     },
+     {
+      "given": "Yunxia",
+      "family": "Huo",
+      "name": null
+     },
+     {
+      "given": "Qingmei",
+      "family": "Han",
+      "name": null
+     },
+     {
+      "given": "Zhensheng",
+      "family": "Kang",
+      "name": null
+     },
+     {
+      "given": "Lili",
+      "family": "Huang",
+      "name": null
+     }
+    ],
+    "issued": [
+     2015
+    ],
+    "published_online": [
+     null
+    ],
+    "published_print": [
+     2015
+    ]
+   }
+  },
+  {
+   "k": "a8",
+   "source": "epmc",
+   "score": 15,
+   "pmcid": "PMC4339710",
+   "doi": "10.1155/2015/462645",
+   "title": "Endophytic Bacillus subtilis strain E1R-J is a promising biocontrol agent for wheat powdery mildew.",
+   "authors": [
+    {
+     "last": "Gao",
+     "initials": "X",
+     "first": "Xiaoning",
+     "full": "Gao X",
+     "collective": null
+    },
+    {
+     "last": "Gong",
+     "initials": "Y",
+     "first": "Yufei",
+     "full": "Gong Y",
+     "collective": null
+    },
+    {
+     "last": "Huo",
+     "initials": "Y",
+     "first": "Yunxia",
+     "full": "Huo Y",
+     "collective": null
+    },
+    {
+     "last": "Han",
+     "initials": "Q",
+     "first": "Qingmei",
+     "full": "Han Q",
+     "collective": null
+    },
+    {
+     "last": "Kang",
+     "initials": "Z",
+     "first": "Zhensheng",
+     "full": "Kang Z",
+     "collective": null
+    },
+    {
+     "last": "Huang",
+     "initials": "L",
+     "first": "Lili",
+     "full": "Huang L",
+     "collective": null
+    }
+   ],
+   "journal": "BioMed research international",
+   "journal_iso": "Biomed Res Int",
+   "volume": "2015",
+   "issue": null,
+   "year": 2015,
+   "pages": "462645",
+   "license": "cc by",
+   "first_pub": "2015-02-11",
+   "fig_label": "Figure 5",
+   "caption": "Morphological changes of Blumeria graminis f. sp. tritici (Bgt) treated with strain E1R-j on leaves of wheat cultivar “Xiaoyan 6” 7 days after inoculation of Bgt observed by scanning electron microscope. (a) The water control showing normal conidia morphology; (b) and (c) mycelia and conidiophore were destroyed and showed shrinking by fermentation liquid (b) and E1R-j cell suspension (c). Bar = 10 μ m.",
+   "href": "BMRI2015-462645.005.jpg",
+   "img_url": "https://cdn.ncbi.nlm.nih.gov/pmc/blobs/c461/4339710/c20b0d994ced/BMRI2015-462645.005.jpg",
+   "orig_size": [
+    667,
+    618
+   ],
+   "crossref": {
+    "title": "Endophytic<i>Bacillus subtilis</i>Strain E1R-J Is a Promising Biocontrol Agent for Wheat Powdery Mildew",
+    "container": "BioMed Research International",
+    "volume": "2015",
+    "issue": null,
+    "page": "1-8",
+    "article_number": null,
+    "authors": [
+     {
+      "given": "Xiaoning",
+      "family": "Gao",
+      "name": null
+     },
+     {
+      "given": "Yufei",
+      "family": "Gong",
+      "name": null
+     },
+     {
+      "given": "Yunxia",
+      "family": "Huo",
+      "name": null
+     },
+     {
+      "given": "Qingmei",
+      "family": "Han",
+      "name": null
+     },
+     {
+      "given": "Zhensheng",
+      "family": "Kang",
+      "name": null
+     },
+     {
+      "given": "Lili",
+      "family": "Huang",
+      "name": null
+     }
+    ],
+    "issued": [
+     2015
+    ],
+    "published_online": [
+     null
+    ],
+    "published_print": [
+     2015
+    ]
+   }
+  }
+ ]
+}

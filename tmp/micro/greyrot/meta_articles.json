@@ -1,0 +1,998 @@
+{
+ "id": "greyrot",
+ "candidates": [
+  {
+   "k": "a1",
+   "source": "epmc",
+   "score": 5,
+   "pmcid": "PMC12028413",
+   "doi": "10.3390/jof11040265",
+   "title": "The Antifungal Activity and Mechanism of Dehydroabietic Acid Against &lt;i&gt;Alternaria alternata&lt;/i&gt; Causing Poplar Leaf Spot.",
+   "authors": [
+    {
+     "last": "Chen",
+     "initials": "YZ",
+     "first": "Yun-Ze",
+     "full": "Chen YZ",
+     "collective": null
+    },
+    {
+     "last": "Zhang",
+     "initials": "YD",
+     "first": "Yun-Di",
+     "full": "Zhang YD",
+     "collective": null
+    },
+    {
+     "last": "Chen",
+     "initials": "C",
+     "first": "Cheng",
+     "full": "Chen C",
+     "collective": null
+    },
+    {
+     "last": "Sa",
+     "initials": "QE",
+     "first": "Qiu-Er",
+     "full": "Sa QE",
+     "collective": null
+    },
+    {
+     "last": "Yang",
+     "initials": "J",
+     "first": "Jing",
+     "full": "Yang J",
+     "collective": null
+    },
+    {
+     "last": "Zhang",
+     "initials": "GC",
+     "first": "Guo-Cai",
+     "full": "Zhang GC",
+     "collective": null
+    }
+   ],
+   "journal": "Journal of fungi (Basel, Switzerland)",
+   "journal_iso": "J Fungi (Basel)",
+   "volume": "11",
+   "issue": "4",
+   "year": 2025,
+   "pages": "265",
+   "license": "cc by",
+   "first_pub": "2025-03-28",
+   "fig_label": "Figure 4",
+   "caption": "SEM images. (A) Mycelial morphology of A. alternata cultured under normal conditions (blank control); (B) mycelial morphology of A. alternata after treatment with DMSO (solvent control); (C) mycelial morphology of A. alternata after treatment with 56.015 mg/L (EC 50) DHA. Bar = 1 μm.",
+   "href": "jof-11-00265-g004.jpg",
+   "img_url": "https://cdn.ncbi.nlm.nih.gov/pmc/blobs/c3be/12028413/594ffc2f8b3e/jof-11-00265-g004.jpg",
+   "orig_size": [
+    799,
+    219
+   ],
+   "crossref": {
+    "title": "The Antifungal Activity and Mechanism of Dehydroabietic Acid Against Alternaria alternata Causing Poplar Leaf Spot",
+    "container": "Journal of Fungi",
+    "volume": "11",
+    "issue": "4",
+    "page": "265",
+    "article_number": null,
+    "authors": [
+     {
+      "given": "Yun-Ze",
+      "family": "Chen",
+      "name": null
+     },
+     {
+      "given": "Yun-Di",
+      "family": "Zhang",
+      "name": null
+     },
+     {
+      "given": "Cheng",
+      "family": "Chen",
+      "name": null
+     },
+     {
+      "given": "Qiu-Er",
+      "family": "Sa",
+      "name": null
+     },
+     {
+      "given": "Jing",
+      "family": "Yang",
+      "name": null
+     },
+     {
+      "given": "Guo-Cai",
+      "family": "Zhang",
+      "name": null
+     }
+    ],
+    "issued": [
+     2025,
+     3,
+     28
+    ],
+    "published_online": [
+     2025,
+     3,
+     28
+    ],
+    "published_print": [
+     null
+    ]
+   }
+  },
+  {
+   "k": "a2",
+   "source": "epmc",
+   "score": 6,
+   "pmcid": "PMC9605287",
+   "doi": "10.3390/jof8101037",
+   "title": "Peptaibol Production and Characterization from <i>Trichoderma asperellum</i> and Their Action as Biofungicide.",
+   "authors": [
+    {
+     "last": "Alfaro-Vargas",
+     "initials": "P",
+     "first": "Pamela",
+     "full": "Alfaro-Vargas P",
+     "collective": null
+    },
+    {
+     "last": "Bastos-Salas",
+     "initials": "A",
+     "first": "Alisson",
+     "full": "Bastos-Salas A",
+     "collective": null
+    },
+    {
+     "last": "Muñoz-Arrieta",
+     "initials": "R",
+     "first": "Rodrigo",
+     "full": "Muñoz-Arrieta R",
+     "collective": null
+    },
+    {
+     "last": "Pereira-Reyes",
+     "initials": "R",
+     "first": "Reinaldo",
+     "full": "Pereira-Reyes R",
+     "collective": null
+    },
+    {
+     "last": "Redondo-Solano",
+     "initials": "M",
+     "first": "Mauricio",
+     "full": "Redondo-Solano M",
+     "collective": null
+    },
+    {
+     "last": "Fernández",
+     "initials": "J",
+     "first": "Julián",
+     "full": "Fernández J",
+     "collective": null
+    },
+    {
+     "last": "Mora-Villalobos",
+     "initials": "A",
+     "first": "Aníbal",
+     "full": "Mora-Villalobos A",
+     "collective": null
+    },
+    {
+     "last": "López-Gómez",
+     "initials": "JP",
+     "first": "José Pablo",
+     "full": "López-Gómez JP",
+     "collective": null
+    }
+   ],
+   "journal": "Journal of fungi (Basel, Switzerland)",
+   "journal_iso": "J Fungi (Basel)",
+   "volume": "8",
+   "issue": "10",
+   "year": 2022,
+   "pages": "1037",
+   "license": "cc by",
+   "first_pub": "2022-09-29",
+   "fig_label": "Figure 7",
+   "caption": "Scanning electron microscope images showing the effects of P aib over the morphology of untreated fungus (1) and fungi treated with P aib (2). (A) C. gloeosporioides; (B) B. cinerea; (C) A. alternata and (D) F. oxysporum.",
+   "href": "jof-08-01037-g007.jpg",
+   "img_url": "https://cdn.ncbi.nlm.nih.gov/pmc/blobs/ec64/9605287/f98966357003/jof-08-01037-g007.jpg",
+   "orig_size": [
+    725,
+    1083
+   ],
+   "crossref": {
+    "title": "Peptaibol Production and Characterization from Trichoderma asperellum and Their Action as Biofungicide",
+    "container": "Journal of Fungi",
+    "volume": "8",
+    "issue": "10",
+    "page": "1037",
+    "article_number": null,
+    "authors": [
+     {
+      "given": "Pamela",
+      "family": "Alfaro-Vargas",
+      "name": null
+     },
+     {
+      "given": "Alisson",
+      "family": "Bastos-Salas",
+      "name": null
+     },
+     {
+      "given": "Rodrigo",
+      "family": "Muñoz-Arrieta",
+      "name": null
+     },
+     {
+      "given": "Reinaldo",
+      "family": "Pereira-Reyes",
+      "name": null
+     },
+     {
+      "given": "Mauricio",
+      "family": "Redondo-Solano",
+      "name": null
+     },
+     {
+      "given": "Julián",
+      "family": "Fernández",
+      "name": null
+     },
+     {
+      "given": "Aníbal",
+      "family": "Mora-Villalobos",
+      "name": null
+     },
+     {
+      "given": "José Pablo",
+      "family": "López-Gómez",
+      "name": null
+     }
+    ],
+    "issued": [
+     2022,
+     9,
+     29
+    ],
+    "published_online": [
+     2022,
+     9,
+     29
+    ],
+    "published_print": [
+     null
+    ]
+   }
+  },
+  {
+   "k": "a3",
+   "source": "epmc",
+   "score": 8,
+   "pmcid": "PMC9537556",
+   "doi": "10.3389/fmicb.2022.1000526",
+   "title": "Inhibitory effect and mechanism of action of juniper essential oil on gray mold in cherry tomatoes.",
+   "authors": [
+    {
+     "last": "Wu",
+     "initials": "YX",
+     "first": "Yu-Xuan",
+     "full": "Wu YX",
+     "collective": null
+    },
+    {
+     "last": "Zhang",
+     "initials": "YD",
+     "first": "Yun-Di",
+     "full": "Zhang YD",
+     "collective": null
+    },
+    {
+     "last": "Li",
+     "initials": "N",
+     "first": "Na",
+     "full": "Li N",
+     "collective": null
+    },
+    {
+     "last": "Wu",
+     "initials": "DD",
+     "first": "De-Dong",
+     "full": "Wu DD",
+     "collective": null
+    },
+    {
+     "last": "Li",
+     "initials": "QM",
+     "first": "Qi-Meng",
+     "full": "Li QM",
+     "collective": null
+    },
+    {
+     "last": "Chen",
+     "initials": "YZ",
+     "first": "Yun-Ze",
+     "full": "Chen YZ",
+     "collective": null
+    },
+    {
+     "last": "Zhang",
+     "initials": "GC",
+     "first": "Guo-Cai",
+     "full": "Zhang GC",
+     "collective": null
+    },
+    {
+     "last": "Yang",
+     "initials": "J",
+     "first": "Jing",
+     "full": "Yang J",
+     "collective": null
+    }
+   ],
+   "journal": "Frontiers in microbiology",
+   "journal_iso": "Front Microbiol",
+   "volume": "13",
+   "issue": null,
+   "year": 2022,
+   "pages": "1000526",
+   "license": "cc by",
+   "first_pub": "2022-09-23",
+   "fig_label": "FIGURE 8",
+   "caption": "Effect of JEO on the morphology of B. cinerea. Mycelia treated with sterilized distilled water as the control (A) and EC 50 of JEO (B) were observed by scanning electron microscopy (SEM) at 10,000× magnification. JEO, juniper essential oil.",
+   "href": "fmicb-13-1000526-g008.jpg",
+   "img_url": "https://cdn.ncbi.nlm.nih.gov/pmc/blobs/ad55/9537556/fd5535bea423/fmicb-13-1000526-g008.jpg",
+   "orig_size": [
+    700,
+    286
+   ],
+   "crossref": {
+    "title": "Inhibitory effect and mechanism of action of juniper essential oil on gray mold in cherry tomatoes",
+    "container": "Frontiers in Microbiology",
+    "volume": "13",
+    "issue": null,
+    "page": null,
+    "article_number": "1000526",
+    "authors": [
+     {
+      "given": "Yu-Xuan",
+      "family": "Wu",
+      "name": null
+     },
+     {
+      "given": "Yun-Di",
+      "family": "Zhang",
+      "name": null
+     },
+     {
+      "given": "Na",
+      "family": "Li",
+      "name": null
+     },
+     {
+      "given": "De-Dong",
+      "family": "Wu",
+      "name": null
+     },
+     {
+      "given": "Qi-Meng",
+      "family": "Li",
+      "name": null
+     },
+     {
+      "given": "Yun-Ze",
+      "family": "Chen",
+      "name": null
+     },
+     {
+      "given": "Guo-Cai",
+      "family": "Zhang",
+      "name": null
+     },
+     {
+      "given": "Jing",
+      "family": "Yang",
+      "name": null
+     }
+    ],
+    "issued": [
+     2022,
+     9,
+     23
+    ],
+    "published_online": [
+     2022,
+     9,
+     23
+    ],
+    "published_print": [
+     null
+    ]
+   }
+  },
+  {
+   "k": "a4",
+   "source": "epmc",
+   "score": 9,
+   "pmcid": "PMC9099842",
+   "doi": "10.3390/ijms23094611",
+   "title": "Isolation of Potato Endophytes and Screening of <i>Chaetomium globosum</i> Antimicrobial Genes.",
+   "authors": [
+    {
+     "last": "Zhang",
+     "initials": "J",
+     "first": "Jiaxin",
+     "full": "Zhang J",
+     "collective": null
+    },
+    {
+     "last": "Islam",
+     "initials": "MS",
+     "first": "Md Samiul",
+     "full": "Islam MS",
+     "collective": null
+    },
+    {
+     "last": "Wang",
+     "initials": "J",
+     "first": "Jieyu",
+     "full": "Wang J",
+     "collective": null
+    },
+    {
+     "last": "Zhao",
+     "initials": "Y",
+     "first": "Yang",
+     "full": "Zhao Y",
+     "collective": null
+    },
+    {
+     "last": "Dong",
+     "initials": "W",
+     "first": "Wubei",
+     "full": "Dong W",
+     "collective": null
+    }
+   ],
+   "journal": "International journal of molecular sciences",
+   "journal_iso": "Int J Mol Sci",
+   "volume": "23",
+   "issue": "9",
+   "year": 2022,
+   "pages": "4611",
+   "license": "cc by",
+   "first_pub": "2022-04-21",
+   "fig_label": "Figure 2",
+   "caption": "Microscopic observation of endophyte F5 under light microscope. (A) perithecium; (B) ascus; (C) ascospores, and (D) appendage. Bars: A = 80 μm, B = 60 μm, C = 20 μm, and D = 40 μm.",
+   "href": "ijms-23-04611-g002.jpg",
+   "img_url": "https://cdn.ncbi.nlm.nih.gov/pmc/blobs/58f8/9099842/5ed79ccb3b20/ijms-23-04611-g002.jpg",
+   "orig_size": [
+    749,
+    549
+   ],
+   "crossref": {
+    "title": "Isolation of Potato Endophytes and Screening of Chaetomium globosum Antimicrobial Genes",
+    "container": "International Journal of Molecular Sciences",
+    "volume": "23",
+    "issue": "9",
+    "page": "4611",
+    "article_number": null,
+    "authors": [
+     {
+      "given": "Jiaxin",
+      "family": "Zhang",
+      "name": null
+     },
+     {
+      "given": "Md. Samiul",
+      "family": "Islam",
+      "name": null
+     },
+     {
+      "given": "Jieyu",
+      "family": "Wang",
+      "name": null
+     },
+     {
+      "given": "Yang",
+      "family": "Zhao",
+      "name": null
+     },
+     {
+      "given": "Wubei",
+      "family": "Dong",
+      "name": null
+     }
+    ],
+    "issued": [
+     2022,
+     4,
+     21
+    ],
+    "published_online": [
+     2022,
+     4,
+     21
+    ],
+    "published_print": [
+     null
+    ]
+   }
+  },
+  {
+   "k": "a5",
+   "source": "epmc",
+   "score": 8,
+   "pmcid": "PMC9099842",
+   "doi": "10.3390/ijms23094611",
+   "title": "Isolation of Potato Endophytes and Screening of <i>Chaetomium globosum</i> Antimicrobial Genes.",
+   "authors": [
+    {
+     "last": "Zhang",
+     "initials": "J",
+     "first": "Jiaxin",
+     "full": "Zhang J",
+     "collective": null
+    },
+    {
+     "last": "Islam",
+     "initials": "MS",
+     "first": "Md Samiul",
+     "full": "Islam MS",
+     "collective": null
+    },
+    {
+     "last": "Wang",
+     "initials": "J",
+     "first": "Jieyu",
+     "full": "Wang J",
+     "collective": null
+    },
+    {
+     "last": "Zhao",
+     "initials": "Y",
+     "first": "Yang",
+     "full": "Zhao Y",
+     "collective": null
+    },
+    {
+     "last": "Dong",
+     "initials": "W",
+     "first": "Wubei",
+     "full": "Dong W",
+     "collective": null
+    }
+   ],
+   "journal": "International journal of molecular sciences",
+   "journal_iso": "Int J Mol Sci",
+   "volume": "23",
+   "issue": "9",
+   "year": 2022,
+   "pages": "4611",
+   "license": "cc by",
+   "first_pub": "2022-04-21",
+   "fig_label": "Figure 4",
+   "caption": "Injury effect of antimicrobial genes of C. globosum on B. subtilis cells. B. subtilis strains (SCK6-e) containing the empty vector and autolytic strains (CgR2150 and CgR3101) were placed on Luria-Bertani (LB) plates and incubated at 37 °C. (A-I) B. subtilis SCK6-e strain, (B-I) CgR2150 and (C-I) CgR3101 after 12 h of incubation, and (A-II) B. subtilis SCK6-e strain, (B-II) CgR2150, and (C-II) CgR3101 after 48 h of incubation, while (A-III) B. subtilis SCK6-e strain, (B-III) CgR2150, and (C-III) CgR3101 after 192 h of incubation. (A-IV) B. subtilis SCK6-e strain, (B-IV) CgR2150, and (C-IV) CgR3101 were observed under a scanning electron microscope.",
+   "href": "ijms-23-04611-g004.jpg",
+   "img_url": "https://cdn.ncbi.nlm.nih.gov/pmc/blobs/58f8/9099842/4e3ba7b60d3c/ijms-23-04611-g004.jpg",
+   "orig_size": [
+    792,
+    558
+   ],
+   "crossref": {
+    "title": "Isolation of Potato Endophytes and Screening of Chaetomium globosum Antimicrobial Genes",
+    "container": "International Journal of Molecular Sciences",
+    "volume": "23",
+    "issue": "9",
+    "page": "4611",
+    "article_number": null,
+    "authors": [
+     {
+      "given": "Jiaxin",
+      "family": "Zhang",
+      "name": null
+     },
+     {
+      "given": "Md. Samiul",
+      "family": "Islam",
+      "name": null
+     },
+     {
+      "given": "Jieyu",
+      "family": "Wang",
+      "name": null
+     },
+     {
+      "given": "Yang",
+      "family": "Zhao",
+      "name": null
+     },
+     {
+      "given": "Wubei",
+      "family": "Dong",
+      "name": null
+     }
+    ],
+    "issued": [
+     2022,
+     4,
+     21
+    ],
+    "published_online": [
+     2022,
+     4,
+     21
+    ],
+    "published_print": [
+     null
+    ]
+   }
+  },
+  {
+   "k": "a6",
+   "source": "epmc",
+   "score": 7,
+   "pmcid": "PMC8041821",
+   "doi": "10.1038/s41598-021-86509-3",
+   "title": "Novel Prosopis juliflora leaf ethanolic extract as natural antimicrobial agent against food spoiling microorganisms.",
+   "authors": [
+    {
+     "last": "Saleh",
+     "initials": "I",
+     "first": "Iman",
+     "full": "Saleh I",
+     "collective": null
+    },
+    {
+     "last": "Abu-Dieyeh",
+     "initials": "MH",
+     "first": "Mohammed H",
+     "full": "Abu-Dieyeh MH",
+     "collective": null
+    }
+   ],
+   "journal": "Scientific reports",
+   "journal_iso": "Sci Rep",
+   "volume": "11",
+   "issue": "1",
+   "year": 2021,
+   "pages": "7871",
+   "license": "cc by",
+   "first_pub": "2021-04-12",
+   "fig_label": "Figure 6",
+   "caption": "SEM images of the hyphae of control fungi and fungi treated with 8 mg/ml PJ-WS-LE extract. A. niger: non-treated (a) and treated (b) (5.000×). B. cinerea: non-treated (c) and treated (d) (5.000×). G. candidum: non-treated (e) and treated (f) (5.000×). C. gloeosporioides: non-treated (g) and treated (h) (10.000×). A. alternata: non-treated (i) and treated (j) (5.000×).",
+   "href": "41598_2021_86509_Fig6_HTML.jpg",
+   "img_url": "https://cdn.ncbi.nlm.nih.gov/pmc/blobs/cd93/8041821/e579b82f077f/41598_2021_86509_Fig6_HTML.jpg",
+   "orig_size": [
+    668,
+    708
+   ],
+   "crossref": {
+    "title": "Novel Prosopis juliflora leaf ethanolic extract as natural antimicrobial agent against food spoiling microorganisms",
+    "container": "Scientific Reports",
+    "volume": "11",
+    "issue": "1",
+    "page": null,
+    "article_number": "7871",
+    "authors": [
+     {
+      "given": "Iman",
+      "family": "Saleh",
+      "name": null
+     },
+     {
+      "given": "Mohammed H.",
+      "family": "Abu-Dieyeh",
+      "name": null
+     }
+    ],
+    "issued": [
+     2021,
+     4,
+     12
+    ],
+    "published_online": [
+     2021,
+     4,
+     12
+    ],
+    "published_print": [
+     null
+    ]
+   }
+  },
+  {
+   "k": "a7",
+   "source": "epmc",
+   "score": 5,
+   "pmcid": "PMC8041821",
+   "doi": "10.1038/s41598-021-86509-3",
+   "title": "Novel Prosopis juliflora leaf ethanolic extract as natural antimicrobial agent against food spoiling microorganisms.",
+   "authors": [
+    {
+     "last": "Saleh",
+     "initials": "I",
+     "first": "Iman",
+     "full": "Saleh I",
+     "collective": null
+    },
+    {
+     "last": "Abu-Dieyeh",
+     "initials": "MH",
+     "first": "Mohammed H",
+     "full": "Abu-Dieyeh MH",
+     "collective": null
+    }
+   ],
+   "journal": "Scientific reports",
+   "journal_iso": "Sci Rep",
+   "volume": "11",
+   "issue": "1",
+   "year": 2021,
+   "pages": "7871",
+   "license": "cc by",
+   "first_pub": "2021-04-12",
+   "fig_label": "Figure 7",
+   "caption": "SEM images of the spores of control fungi and fungi treated with 8 mg/ml PJ-WS-LE extract. A. niger: non-treated (a) and treated (b) (25.000 ×). P. citrinum: non-treated (c) and treated (d) (25.000×). C. cladosporioides: non-treated (e) and treated (f) (20.000×). G. candidum: non-treated (g) and treated (h) (10.000×). F. oxysporum: non-treated (i) and treated (j). C. gloeosporioides: non-treated (k) and treated (l) (10.000×).",
+   "href": "41598_2021_86509_Fig7_HTML.jpg",
+   "img_url": "https://cdn.ncbi.nlm.nih.gov/pmc/blobs/cd93/8041821/f3a043a56ba6/41598_2021_86509_Fig7_HTML.jpg",
+   "orig_size": [
+    782,
+    684
+   ],
+   "crossref": {
+    "title": "Novel Prosopis juliflora leaf ethanolic extract as natural antimicrobial agent against food spoiling microorganisms",
+    "container": "Scientific Reports",
+    "volume": "11",
+    "issue": "1",
+    "page": null,
+    "article_number": "7871",
+    "authors": [
+     {
+      "given": "Iman",
+      "family": "Saleh",
+      "name": null
+     },
+     {
+      "given": "Mohammed H.",
+      "family": "Abu-Dieyeh",
+      "name": null
+     }
+    ],
+    "issued": [
+     2021,
+     4,
+     12
+    ],
+    "published_online": [
+     2021,
+     4,
+     12
+    ],
+    "published_print": [
+     null
+    ]
+   }
+  },
+  {
+   "k": "a8",
+   "source": "epmc",
+   "score": 8,
+   "pmcid": "PMC7238070",
+   "doi": "10.3390/pathogens9040253",
+   "title": "Histochemical and Microscopic Studies Predict that Grapevine Genotype \"Ju mei gui\" is Highly Resistant against <i>Botrytis cinerea</i>.",
+   "authors": [
+    {
+     "last": "Rahman",
+     "initials": "MU",
+     "first": "Mati Ur",
+     "full": "Rahman MU",
+     "collective": null
+    },
+    {
+     "last": "Ma",
+     "initials": "Q",
+     "first": "Qingqing",
+     "full": "Ma Q",
+     "collective": null
+    },
+    {
+     "last": "Ahmad",
+     "initials": "B",
+     "first": "Bilal",
+     "full": "Ahmad B",
+     "collective": null
+    },
+    {
+     "last": "Hanif",
+     "initials": "M",
+     "first": "Muhammad",
+     "full": "Hanif M",
+     "collective": null
+    },
+    {
+     "last": "Zhang",
+     "initials": "Y",
+     "first": "Youlin",
+     "full": "Zhang Y",
+     "collective": null
+    }
+   ],
+   "journal": "Pathogens (Basel, Switzerland)",
+   "journal_iso": "Pathogens",
+   "volume": "9",
+   "issue": "4",
+   "year": 2020,
+   "pages": "E253",
+   "license": "cc by",
+   "first_pub": "2020-03-31",
+   "fig_label": "Figure 2",
+   "caption": "Showing the highly susceptible (HS) “Summer black” leaf and berry post B. cinerea inoculation comparison by phenotypic (A, B), microscopic (C, D) and electron microscopic (E, F) study. Scale bars (C, D): 50 µm; (E, F): 20 µm. Samples were collected 72 hpi and 8 dpi, respectively.",
+   "href": "pathogens-09-00253-g002.jpg",
+   "img_url": "https://cdn.ncbi.nlm.nih.gov/pmc/blobs/7d58/7238070/0549ca12f20a/pathogens-09-00253-g002.jpg",
+   "orig_size": [
+    729,
+    842
+   ],
+   "crossref": {
+    "title": "Histochemical and Microscopic Studies Predict that Grapevine Genotype “Ju mei gui” is Highly Resistant against Botrytis cinerea",
+    "container": "Pathogens",
+    "volume": "9",
+    "issue": "4",
+    "page": "253",
+    "article_number": null,
+    "authors": [
+     {
+      "given": "Mati Ur",
+      "family": "Rahman",
+      "name": null
+     },
+     {
+      "given": "Qingqing",
+      "family": "Ma",
+      "name": null
+     },
+     {
+      "given": "Bilal",
+      "family": "Ahmad",
+      "name": null
+     },
+     {
+      "given": "Muhammad",
+      "family": "Hanif",
+      "name": null
+     },
+     {
+      "given": "Youlin",
+      "family": "Zhang",
+      "name": null
+     }
+    ],
+    "issued": [
+     2020,
+     3,
+     31
+    ],
+    "published_online": [
+     2020,
+     3,
+     31
+    ],
+    "published_print": [
+     null
+    ]
+   }
+  },
+  {
+   "k": "a9",
+   "source": "epmc",
+   "score": 8,
+   "pmcid": "PMC7238070",
+   "doi": "10.3390/pathogens9040253",
+   "title": "Histochemical and Microscopic Studies Predict that Grapevine Genotype \"Ju mei gui\" is Highly Resistant against <i>Botrytis cinerea</i>.",
+   "authors": [
+    {
+     "last": "Rahman",
+     "initials": "MU",
+     "first": "Mati Ur",
+     "full": "Rahman MU",
+     "collective": null
+    },
+    {
+     "last": "Ma",
+     "initials": "Q",
+     "first": "Qingqing",
+     "full": "Ma Q",
+     "collective": null
+    },
+    {
+     "last": "Ahmad",
+     "initials": "B",
+     "first": "Bilal",
+     "full": "Ahmad B",
+     "collective": null
+    },
+    {
+     "last": "Hanif",
+     "initials": "M",
+     "first": "Muhammad",
+     "full": "Hanif M",
+     "collective": null
+    },
+    {
+     "last": "Zhang",
+     "initials": "Y",
+     "first": "Youlin",
+     "full": "Zhang Y",
+     "collective": null
+    }
+   ],
+   "journal": "Pathogens (Basel, Switzerland)",
+   "journal_iso": "Pathogens",
+   "volume": "9",
+   "issue": "4",
+   "year": 2020,
+   "pages": "E253",
+   "license": "cc by",
+   "first_pub": "2020-03-31",
+   "fig_label": "Figure 3",
+   "caption": "Showing the HR “Ju mei gui” leaf and berry post B. cinerea inoculation comparison by phenotypic (A, B), microscopic (C, D) and electron microscopic (E, F) study. Scale bars (C, D): 50 µm; (E, F): 20 µm. Samples were collected 72 hpi and 8 dpi respectively.",
+   "href": "pathogens-09-00253-g003.jpg",
+   "img_url": "https://cdn.ncbi.nlm.nih.gov/pmc/blobs/7d58/7238070/cf47c278e8d3/pathogens-09-00253-g003.jpg",
+   "orig_size": [
+    781,
+    928
+   ],
+   "crossref": {
+    "title": "Histochemical and Microscopic Studies Predict that Grapevine Genotype “Ju mei gui” is Highly Resistant against Botrytis cinerea",
+    "container": "Pathogens",
+    "volume": "9",
+    "issue": "4",
+    "page": "253",
+    "article_number": null,
+    "authors": [
+     {
+      "given": "Mati Ur",
+      "family": "Rahman",
+      "name": null
+     },
+     {
+      "given": "Qingqing",
+      "family": "Ma",
+      "name": null
+     },
+     {
+      "given": "Bilal",
+      "family": "Ahmad",
+      "name": null
+     },
+     {
+      "given": "Muhammad",
+      "family": "Hanif",
+      "name": null
+     },
+     {
+      "given": "Youlin",
+      "family": "Zhang",
+      "name": null
+     }
+    ],
+    "issued": [
+     2020,
+     3,
+     31
+    ],
+    "published_online": [
+     2020,
+     3,
+     31
+    ],
+    "published_print": [
+     null
+    ]
+   }
+  }
+ ]
+}

@@ -1,0 +1,284 @@
+{
+ "id": "wsmv",
+ "candidates": [
+  {
+   "k": "a1",
+   "source": "epmc",
+   "score": 8,
+   "pmcid": "PMC5979330",
+   "doi": "10.3390/ijms19041187",
+   "title": "Molecular and Ultrastructural Mechanisms Underlying Yellow Dwarf Symptom Formation in Wheat after Infection of Barley Yellow Dwarf Virus.",
+   "authors": [
+    {
+     "last": "Rong",
+     "initials": "W",
+     "first": "Wei",
+     "full": "Rong W",
+     "collective": null
+    },
+    {
+     "last": "Wang",
+     "initials": "X",
+     "first": "Xindong",
+     "full": "Wang X",
+     "collective": null
+    },
+    {
+     "last": "Wang",
+     "initials": "X",
+     "first": "Xifeng",
+     "full": "Wang X",
+     "collective": null
+    },
+    {
+     "last": "Massart",
+     "initials": "S",
+     "first": "Sebastien",
+     "full": "Massart S",
+     "collective": null
+    },
+    {
+     "last": "Zhang",
+     "initials": "Z",
+     "first": "Zengyan",
+     "full": "Zhang Z",
+     "collective": null
+    }
+   ],
+   "journal": "International journal of molecular sciences",
+   "journal_iso": "Int J Mol Sci",
+   "volume": "19",
+   "issue": "4",
+   "year": 2018,
+   "pages": "E1187",
+   "license": "cc by",
+   "first_pub": "2018-04-13",
+   "fig_label": "Figure 2",
+   "caption": "Transmission electron microscopy (TEM) observation on Zhong8601 after BYDV-GAV inoculation (A) and mock inoculation (B) for 28 d. (A1, B1) comparing the number of chloroplasts in one cell between in BYDV-GAV and mock inoculated Zhong8601. Each arrow is pointing at one chloroplast, respectively; (A2, B2) comparing integrity of chloroplasts between in BYDV-GAV and mock inoculated Zhong8601. The arrows indicate grana; (A3, B3) comparing densities of thylakoids in chloroplasts between BYDV-GAV and mock inoculated Zhong8601. Arrow indicates the thylakoid.",
+   "href": "ijms-19-01187-g002.jpg",
+   "img_url": "https://cdn.ncbi.nlm.nih.gov/pmc/blobs/041c/5979330/8698c6e38ab9/ijms-19-01187-g002.jpg",
+   "orig_size": [
+    763,
+    675
+   ],
+   "crossref": {
+    "title": "Molecular and Ultrastructural Mechanisms Underlying Yellow Dwarf Symptom Formation in Wheat after Infection of Barley Yellow Dwarf Virus",
+    "container": "International Journal of Molecular Sciences",
+    "volume": "19",
+    "issue": "4",
+    "page": "1187",
+    "article_number": null,
+    "authors": [
+     {
+      "given": "Wei",
+      "family": "Rong",
+      "name": null
+     },
+     {
+      "given": "Xindong",
+      "family": "Wang",
+      "name": null
+     },
+     {
+      "given": "Xifeng",
+      "family": "Wang",
+      "name": null
+     },
+     {
+      "given": "Sebastien",
+      "family": "Massart",
+      "name": null
+     },
+     {
+      "given": "Zengyan",
+      "family": "Zhang",
+      "name": null
+     }
+    ],
+    "issued": [
+     2018,
+     4,
+     13
+    ],
+    "published_online": [
+     2018,
+     4,
+     13
+    ],
+    "published_print": [
+     null
+    ]
+   }
+  },
+  {
+   "k": "a2",
+   "source": "epmc",
+   "score": 10,
+   "pmcid": "PMC6600368",
+   "doi": "10.3390/ijms20112741",
+   "title": "The Respiratory Burst Oxidase Homolog D (RbohD) Cell and Tissue Distribution in Potato-Potato Virus Y (PVY<sup>NTN</sup>) Hypersensitive and Susceptible Reactions.",
+   "authors": [
+    {
+     "last": "Otulak-Kozieł",
+     "initials": "K",
+     "first": "Katarzyna",
+     "full": "Otulak-Kozieł K",
+     "collective": null
+    },
+    {
+     "last": "Kozieł",
+     "initials": "E",
+     "first": "Edmund",
+     "full": "Kozieł E",
+     "collective": null
+    },
+    {
+     "last": "Valverde",
+     "initials": "RA",
+     "first": "Rodrigo A",
+     "full": "Valverde RA",
+     "collective": null
+    }
+   ],
+   "journal": "International journal of molecular sciences",
+   "journal_iso": "Int J Mol Sci",
+   "volume": "20",
+   "issue": "11",
+   "year": 2019,
+   "pages": "E2741",
+   "license": "cc by",
+   "first_pub": "2019-06-04",
+   "fig_label": "Figure 6",
+   "caption": "Immunogold labeling of RbohD protein in a compatible interaction of potato Irys plants with PVY NTN. (A) Gold particles indicating the presence of RbohD in the xylem tracheary element. Deposition of gold particles in chloroplast and cytoplasm of xylem parenchyma cell in mock-inoculated potato Irys plant. Bar 0.5 µm. (B) RbohD localization in cell wall near plasmodesmata (arrows), along with vesicular structures (*) and in phloem cells 7 days after PVY NTN -inoculation. Bar 1 µm. (C) RbohD localization in chloroplast, mitochondria, and vacuole in a mesophyll cell 7 days after PVY NTN -inoculation. Gold particles present in the cytoplasm near virus cytoplasmic inclusions. Bar 1 µm. (D) Gold particles indicating the presence of RbohD in phloem cells at the early stage of necrosis, 21 days after PVY NTN -inoculation. Gold particles in chloroplast and cytoplasm. Bar 2 µm. (E) Gold deposition along cell wall (arrows) of necrotic epidermis cell 21 days after PVY NTN -inoculation. RbohD located in the necrotized cell, chloroplast, and vacuole. Bar 2 µm. (F) Gold particles indicating RbohD in necrotic mesophyll cells. Deposition in chloroplast and vesicles (*) 21 days after PVY NTN -inoculation. Bar 1 µm. CC—companion cell, Ch—chloroplast, CI—virus cytoplasmic inclusion, CW—cell wall, M—mitochondria, Ne—necrosis, V—vacuole, X—xylem tracheary element, XP—xylem parenchyma.",
+   "href": "ijms-20-02741-g006.jpg",
+   "img_url": "https://cdn.ncbi.nlm.nih.gov/pmc/blobs/2492/6600368/caec617e00cb/ijms-20-02741-g006.jpg",
+   "orig_size": [
+    703,
+    865
+   ],
+   "crossref": {
+    "title": "The Respiratory Burst Oxidase Homolog D (RbohD) Cell and Tissue Distribution in Potato–Potato Virus Y (PVYNTN) Hypersensitive and Susceptible Reactions",
+    "container": "International Journal of Molecular Sciences",
+    "volume": "20",
+    "issue": "11",
+    "page": "2741",
+    "article_number": null,
+    "authors": [
+     {
+      "given": "Katarzyna",
+      "family": "Otulak-Kozieł",
+      "name": null
+     },
+     {
+      "given": "Edmund",
+      "family": "Kozieł",
+      "name": null
+     },
+     {
+      "given": "Rodrigo A.",
+      "family": "Valverde",
+      "name": null
+     }
+    ],
+    "issued": [
+     2019,
+     6,
+     4
+    ],
+    "published_online": [
+     2019,
+     6,
+     4
+    ],
+    "published_print": [
+     null
+    ]
+   }
+  },
+  {
+   "k": "a3",
+   "source": "epmc",
+   "score": 10,
+   "pmcid": "PMC6600368",
+   "doi": "10.3390/ijms20112741",
+   "title": "The Respiratory Burst Oxidase Homolog D (RbohD) Cell and Tissue Distribution in Potato-Potato Virus Y (PVY<sup>NTN</sup>) Hypersensitive and Susceptible Reactions.",
+   "authors": [
+    {
+     "last": "Otulak-Kozieł",
+     "initials": "K",
+     "first": "Katarzyna",
+     "full": "Otulak-Kozieł K",
+     "collective": null
+    },
+    {
+     "last": "Kozieł",
+     "initials": "E",
+     "first": "Edmund",
+     "full": "Kozieł E",
+     "collective": null
+    },
+    {
+     "last": "Valverde",
+     "initials": "RA",
+     "first": "Rodrigo A",
+     "full": "Valverde RA",
+     "collective": null
+    }
+   ],
+   "journal": "International journal of molecular sciences",
+   "journal_iso": "Int J Mol Sci",
+   "volume": "20",
+   "issue": "11",
+   "year": 2019,
+   "pages": "E2741",
+   "license": "cc by",
+   "first_pub": "2019-06-04",
+   "fig_label": "Figure 7",
+   "caption": "Ultrastructural detection of H 2 O 2 in an incompatible (B–E, G–H) and compatible (J,K) interactions of potato with PVY NTN. (A) H 2 O 2 deposits (*) along the cell wall in the vacuole (arrow) and of mock-inoculated Sárpo Mira leaf (control). Bar 2 µm. (B) H 2 O 2 deposits (arrows) in stained membranous, vesicular structures inside the vacuole 1 day after PVY NTN -inoculation of potato Sárpo Mira. Bar 1 µm. (C) Electron dense deposits of cerium perhydroxide precipitate along with the Golgi apparatus, along the cell wall and in the vacuole 1 day after PVY NTN -inoculation in mesophyll cell potato Sárpo Mira. Bar 1 µm. (D) H 2 O 2 deposits (arrows) between the cell wall and plasmalemma and along the cell wall 7 days after PVY inoculation of potato Sárpo Mira mesophyll cell. Bar 1 µm. (E) H 2 O 2 along cell wall and in vacuole along tonoplast (arrows) of a mesophyll cell 7 days after PVY NTN inoculation of potato Sárpo Mira mesophyll cell. Bar 2 µm. (F) H 2 O 2 in the vacuole in mock-inoculated potato Rywal plant. Bar 1 µm. (G) Vacuole, cytoplasm, peroxisomes, and cell wall near the plasmodesmata stained with cerium perhydroxide (*) in mesophyll cells 1 day after PVY NTN -inoculation potato Rywal. Virus particles in the cytoplasm. Bar 1 µm. (H) H 2 O 2 deposition along the cell wall (*) in xylem tracheary elements 3 days after PVY NTN inoculation of potato Rywal. Bar 2 µm. (I) Weak deposition of H 2 O 2 (*) in the vacuole of mesophyll cell of mock-inoculated potato Irys plant. Bar 2 µm. (J) H 2 O 2 (arrows) along the cell wall between necrotized and non-necrotized cells. H 2 O 2 also in the vacuole (*) 7 days after virus inoculation of potato Irys mesophyll cell. Bar 2 µm. (K) H 2 O 2 precipitates (*) in non-necrotized cells in changed mitochondria, along membranes of multivesicular bodies as well as cell wall (arrows). H 2 O 2 inside distorted peroxisomes and in the cytoplasm (arrowhead) with PVY particles and cytoplasmic inclusions 21 days after PVY NTN -inoculation of Irys mesophyll cells. Bar 1 µm. CI—virus cytoplasmic inclusion, Ch—chloroplast, CW—cell wall, GA—Golgi apparatus, M—mitochondria, Pr—peroxisome, PD—plasmodesmata, V—vacuole, VP—virus particles, X—xylem tracheary elements, XP—xylem parenchyma.",
+   "href": "ijms-20-02741-g007.jpg",
+   "img_url": "https://cdn.ncbi.nlm.nih.gov/pmc/blobs/2492/6600368/3c99c0aefe2e/ijms-20-02741-g007.jpg",
+   "orig_size": [
+    752,
+    950
+   ],
+   "crossref": {
+    "title": "The Respiratory Burst Oxidase Homolog D (RbohD) Cell and Tissue Distribution in Potato–Potato Virus Y (PVYNTN) Hypersensitive and Susceptible Reactions",
+    "container": "International Journal of Molecular Sciences",
+    "volume": "20",
+    "issue": "11",
+    "page": "2741",
+    "article_number": null,
+    "authors": [
+     {
+      "given": "Katarzyna",
+      "family": "Otulak-Kozieł",
+      "name": null
+     },
+     {
+      "given": "Edmund",
+      "family": "Kozieł",
+      "name": null
+     },
+     {
+      "given": "Rodrigo A.",
+      "family": "Valverde",
+      "name": null
+     }
+    ],
+    "issued": [
+     2019,
+     6,
+     4
+    ],
+    "published_online": [
+     2019,
+     6,
+     4
+    ],
+    "published_print": [
+     null
+    ]
+   }
+  }
+ ]
+}

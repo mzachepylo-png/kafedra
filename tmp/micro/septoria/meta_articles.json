@@ -1,0 +1,803 @@
+{
+ "id": "septoria",
+ "candidates": [
+  {
+   "k": "a1",
+   "source": "epmc",
+   "score": 8,
+   "pmcid": "PMC13353992",
+   "doi": "10.1371/journal.pone.0353375",
+   "title": "Field evaluation of spring wheat genotypes reveals differential resistance to Zymoseptoria tritici in Ethiopia.",
+   "authors": [
+    {
+     "last": "Kifelew",
+     "initials": "H",
+     "first": "Habtewold",
+     "full": "Kifelew H",
+     "collective": null
+    },
+    {
+     "last": "Terefe",
+     "initials": "H",
+     "first": "Habtamu",
+     "full": "Terefe H",
+     "collective": null
+    },
+    {
+     "last": "Kasa",
+     "initials": "B",
+     "first": "Bekele",
+     "full": "Kasa B",
+     "collective": null
+    },
+    {
+     "last": "Mekonen",
+     "initials": "T",
+     "first": "Tilahun",
+     "full": "Mekonen T",
+     "collective": null
+    },
+    {
+     "last": "Bekeko",
+     "initials": "Z",
+     "first": "Zelalem",
+     "full": "Bekeko Z",
+     "collective": null
+    },
+    {
+     "last": "Tesso",
+     "initials": "B",
+     "first": "Bulti",
+     "full": "Tesso B",
+     "collective": null
+    }
+   ],
+   "journal": "PloS one",
+   "journal_iso": "PLoS One",
+   "volume": "21",
+   "issue": "7",
+   "year": 2026,
+   "pages": "e0353375",
+   "license": "cc by",
+   "first_pub": "2026-07-10",
+   "fig_label": "Fig 3",
+   "caption": "Pycnidia density scores of 45 spring bread wheat genotypes grouped by resistance levels (R, MR, MS, and S) during the 2022 and 2023 cropping seasons. Density was rated on a 0–5 scale, where 0–1(0% − 2.5%) indicates resistance and 4–5 (35.5% − 45.5%) indicates high susceptibility. The faceted arrangement highlights the differential capacity of genotypes to suppress fungal sporulation across varying levels of host resistance.",
+   "href": "pone.0353375.g003.jpg",
+   "img_url": "https://journals.plos.org/plosone/article/figure/image?size=large&id=10.1371/journal.pone.0353375.g003",
+   "orig_size": [
+    2210,
+    689
+   ],
+   "crossref": {
+    "title": "Field evaluation of spring wheat genotypes reveals differential resistance to Zymoseptoria tritici in Ethiopia",
+    "container": "PLOS One",
+    "volume": "21",
+    "issue": "7",
+    "page": "e0353375",
+    "article_number": null,
+    "authors": [
+     {
+      "given": "Habtewold",
+      "family": "Kifelew",
+      "name": null
+     },
+     {
+      "given": "Habtamu",
+      "family": "Terefe",
+      "name": null
+     },
+     {
+      "given": "Bekele",
+      "family": "Kasa",
+      "name": null
+     },
+     {
+      "given": "Tilahun",
+      "family": "Mekonen",
+      "name": null
+     },
+     {
+      "given": "Zelalem",
+      "family": "Bekeko",
+      "name": null
+     },
+     {
+      "given": "Bulti",
+      "family": "Tesso",
+      "name": null
+     }
+    ],
+    "issued": [
+     2026,
+     7,
+     10
+    ],
+    "published_online": [
+     2026,
+     7,
+     10
+    ],
+    "published_print": [
+     null
+    ]
+   }
+  },
+  {
+   "k": "a2",
+   "source": "epmc",
+   "score": 8,
+   "pmcid": "PMC13353992",
+   "doi": "10.1371/journal.pone.0353375",
+   "title": "Field evaluation of spring wheat genotypes reveals differential resistance to Zymoseptoria tritici in Ethiopia.",
+   "authors": [
+    {
+     "last": "Kifelew",
+     "initials": "H",
+     "first": "Habtewold",
+     "full": "Kifelew H",
+     "collective": null
+    },
+    {
+     "last": "Terefe",
+     "initials": "H",
+     "first": "Habtamu",
+     "full": "Terefe H",
+     "collective": null
+    },
+    {
+     "last": "Kasa",
+     "initials": "B",
+     "first": "Bekele",
+     "full": "Kasa B",
+     "collective": null
+    },
+    {
+     "last": "Mekonen",
+     "initials": "T",
+     "first": "Tilahun",
+     "full": "Mekonen T",
+     "collective": null
+    },
+    {
+     "last": "Bekeko",
+     "initials": "Z",
+     "first": "Zelalem",
+     "full": "Bekeko Z",
+     "collective": null
+    },
+    {
+     "last": "Tesso",
+     "initials": "B",
+     "first": "Bulti",
+     "full": "Tesso B",
+     "collective": null
+    }
+   ],
+   "journal": "PloS one",
+   "journal_iso": "PLoS One",
+   "volume": "21",
+   "issue": "7",
+   "year": 2026,
+   "pages": "e0353375",
+   "license": "cc by",
+   "first_pub": "2026-07-10",
+   "fig_label": "Fig 5",
+   "caption": "Scatter plot matrix showing mean severity scored from pycnidia bearing necrosis starting from early grain filling stage to flag leaf infection reach 70% with pycnidia bearing necrosis and AUDPC relation with yield and yield related trait on 45 spring wheat genotypes evaluated during 2022 and 2023 cropping season.",
+   "href": "pone.0353375.g005.jpg",
+   "img_url": "https://journals.plos.org/plosone/article/figure/image?size=large&id=10.1371/journal.pone.0353375.g005",
+   "orig_size": [
+    2250,
+    1061
+   ],
+   "crossref": {
+    "title": "Field evaluation of spring wheat genotypes reveals differential resistance to Zymoseptoria tritici in Ethiopia",
+    "container": "PLOS One",
+    "volume": "21",
+    "issue": "7",
+    "page": "e0353375",
+    "article_number": null,
+    "authors": [
+     {
+      "given": "Habtewold",
+      "family": "Kifelew",
+      "name": null
+     },
+     {
+      "given": "Habtamu",
+      "family": "Terefe",
+      "name": null
+     },
+     {
+      "given": "Bekele",
+      "family": "Kasa",
+      "name": null
+     },
+     {
+      "given": "Tilahun",
+      "family": "Mekonen",
+      "name": null
+     },
+     {
+      "given": "Zelalem",
+      "family": "Bekeko",
+      "name": null
+     },
+     {
+      "given": "Bulti",
+      "family": "Tesso",
+      "name": null
+     }
+    ],
+    "issued": [
+     2026,
+     7,
+     10
+    ],
+    "published_online": [
+     2026,
+     7,
+     10
+    ],
+    "published_print": [
+     null
+    ]
+   }
+  },
+  {
+   "k": "a3",
+   "source": "epmc",
+   "score": 9,
+   "pmcid": "PMC12314099",
+   "doi": "10.1038/s41598-025-13035-x",
+   "title": "Efficacy of Stb resistance genes and pathotype diversity in Zymoseptoria tritici from Ethiopia.",
+   "authors": [
+    {
+     "last": "Tucho",
+     "initials": "A",
+     "first": "Ayantu",
+     "full": "Tucho A",
+     "collective": null
+    },
+    {
+     "last": "Mekonnen",
+     "initials": "T",
+     "first": "Tilahun",
+     "full": "Mekonnen T",
+     "collective": null
+    },
+    {
+     "last": "Tesfaye",
+     "initials": "K",
+     "first": "Kassahun",
+     "full": "Tesfaye K",
+     "collective": null
+    },
+    {
+     "last": "Muleta",
+     "initials": "D",
+     "first": "Diriba",
+     "full": "Muleta D",
+     "collective": null
+    },
+    {
+     "last": "Alemu",
+     "initials": "T",
+     "first": "Tesfaye",
+     "full": "Alemu T",
+     "collective": null
+    },
+    {
+     "last": "Ghadamgahi",
+     "initials": "F",
+     "first": "Farideh",
+     "full": "Ghadamgahi F",
+     "collective": null
+    },
+    {
+     "last": "Chawade",
+     "initials": "A",
+     "first": "Aakash",
+     "full": "Chawade A",
+     "collective": null
+    },
+    {
+     "last": "Vetukuri",
+     "initials": "RR",
+     "first": "Ramesh Raju",
+     "full": "Vetukuri RR",
+     "collective": null
+    }
+   ],
+   "journal": "Scientific reports",
+   "journal_iso": "Sci Rep",
+   "volume": "15",
+   "issue": "1",
+   "year": 2025,
+   "pages": "28030",
+   "license": "cc by",
+   "first_pub": "2025-07-31",
+   "fig_label": "Fig. 1",
+   "caption": "The mean percentage necrotic leaf area (NLA) and pycnidia coverage (PC) caused by six Zymoseptoria tritici isolates tested on eight wheat genotypes grouped by Tukey grouping for mean of isolate at Alpha = 0.05.",
+   "href": "41598_2025_13035_Fig1_HTML.jpg",
+   "img_url": "https://cdn.ncbi.nlm.nih.gov/pmc/blobs/4a36/12314099/7371a44b5c37/41598_2025_13035_Fig1_HTML.jpg",
+   "orig_size": [
+    669,
+    350
+   ],
+   "crossref": {
+    "title": "Efficacy of Stb resistance genes and pathotype diversity in Zymoseptoria tritici from Ethiopia",
+    "container": "Scientific Reports",
+    "volume": "15",
+    "issue": "1",
+    "page": null,
+    "article_number": "28030",
+    "authors": [
+     {
+      "given": "Ayantu",
+      "family": "Tucho",
+      "name": null
+     },
+     {
+      "given": "Tilahun",
+      "family": "Mekonnen",
+      "name": null
+     },
+     {
+      "given": "Kassahun",
+      "family": "Tesfaye",
+      "name": null
+     },
+     {
+      "given": "Diriba",
+      "family": "Muleta",
+      "name": null
+     },
+     {
+      "given": "Tesfaye",
+      "family": "Alemu",
+      "name": null
+     },
+     {
+      "given": "Farideh",
+      "family": "Ghadamgahi",
+      "name": null
+     },
+     {
+      "given": "Aakash",
+      "family": "Chawade",
+      "name": null
+     },
+     {
+      "given": "Ramesh Raju",
+      "family": "Vetukuri",
+      "name": null
+     }
+    ],
+    "issued": [
+     2025,
+     7,
+     31
+    ],
+    "published_online": [
+     2025,
+     7,
+     31
+    ],
+    "published_print": [
+     null
+    ]
+   }
+  },
+  {
+   "k": "a4",
+   "source": "epmc",
+   "score": 9,
+   "pmcid": "PMC12314099",
+   "doi": "10.1038/s41598-025-13035-x",
+   "title": "Efficacy of Stb resistance genes and pathotype diversity in Zymoseptoria tritici from Ethiopia.",
+   "authors": [
+    {
+     "last": "Tucho",
+     "initials": "A",
+     "first": "Ayantu",
+     "full": "Tucho A",
+     "collective": null
+    },
+    {
+     "last": "Mekonnen",
+     "initials": "T",
+     "first": "Tilahun",
+     "full": "Mekonnen T",
+     "collective": null
+    },
+    {
+     "last": "Tesfaye",
+     "initials": "K",
+     "first": "Kassahun",
+     "full": "Tesfaye K",
+     "collective": null
+    },
+    {
+     "last": "Muleta",
+     "initials": "D",
+     "first": "Diriba",
+     "full": "Muleta D",
+     "collective": null
+    },
+    {
+     "last": "Alemu",
+     "initials": "T",
+     "first": "Tesfaye",
+     "full": "Alemu T",
+     "collective": null
+    },
+    {
+     "last": "Ghadamgahi",
+     "initials": "F",
+     "first": "Farideh",
+     "full": "Ghadamgahi F",
+     "collective": null
+    },
+    {
+     "last": "Chawade",
+     "initials": "A",
+     "first": "Aakash",
+     "full": "Chawade A",
+     "collective": null
+    },
+    {
+     "last": "Vetukuri",
+     "initials": "RR",
+     "first": "Ramesh Raju",
+     "full": "Vetukuri RR",
+     "collective": null
+    }
+   ],
+   "journal": "Scientific reports",
+   "journal_iso": "Sci Rep",
+   "volume": "15",
+   "issue": "1",
+   "year": 2025,
+   "pages": "28030",
+   "license": "cc by",
+   "first_pub": "2025-07-31",
+   "fig_label": "Fig. 4",
+   "caption": "The distribution of necrotic leaf area (NLA, a) and pycnidia coverage (PC, b) caused by six Zymoseptoria tritici isolates on eight wheat Septoria differential lines.",
+   "href": "41598_2025_13035_Fig4_HTML.jpg",
+   "img_url": "https://cdn.ncbi.nlm.nih.gov/pmc/blobs/4a36/12314099/110d6d88d6b6/41598_2025_13035_Fig4_HTML.jpg",
+   "orig_size": [
+    669,
+    440
+   ],
+   "crossref": {
+    "title": "Efficacy of Stb resistance genes and pathotype diversity in Zymoseptoria tritici from Ethiopia",
+    "container": "Scientific Reports",
+    "volume": "15",
+    "issue": "1",
+    "page": null,
+    "article_number": "28030",
+    "authors": [
+     {
+      "given": "Ayantu",
+      "family": "Tucho",
+      "name": null
+     },
+     {
+      "given": "Tilahun",
+      "family": "Mekonnen",
+      "name": null
+     },
+     {
+      "given": "Kassahun",
+      "family": "Tesfaye",
+      "name": null
+     },
+     {
+      "given": "Diriba",
+      "family": "Muleta",
+      "name": null
+     },
+     {
+      "given": "Tesfaye",
+      "family": "Alemu",
+      "name": null
+     },
+     {
+      "given": "Farideh",
+      "family": "Ghadamgahi",
+      "name": null
+     },
+     {
+      "given": "Aakash",
+      "family": "Chawade",
+      "name": null
+     },
+     {
+      "given": "Ramesh Raju",
+      "family": "Vetukuri",
+      "name": null
+     }
+    ],
+    "issued": [
+     2025,
+     7,
+     31
+    ],
+    "published_online": [
+     2025,
+     7,
+     31
+    ],
+    "published_print": [
+     null
+    ]
+   }
+  },
+  {
+   "k": "a5",
+   "source": "epmc",
+   "score": 18,
+   "pmcid": "PMC9271956",
+   "doi": "10.3389/fpls.2022.921074",
+   "title": "Blocked at the Stomatal Gate, a Key Step of Wheat <i>Stb16q</i>-Mediated Resistance to <i>Zymoseptoria tritici</i>.",
+   "authors": [
+    {
+     "last": "Battache",
+     "initials": "M",
+     "first": "Mélissa",
+     "full": "Battache M",
+     "collective": null
+    },
+    {
+     "last": "Lebrun",
+     "initials": "MH",
+     "first": "Marc-Henri",
+     "full": "Lebrun MH",
+     "collective": null
+    },
+    {
+     "last": "Sakai",
+     "initials": "K",
+     "first": "Kaori",
+     "full": "Sakai K",
+     "collective": null
+    },
+    {
+     "last": "Soudière",
+     "initials": "O",
+     "first": "Olivier",
+     "full": "Soudière O",
+     "collective": null
+    },
+    {
+     "last": "Cambon",
+     "initials": "F",
+     "first": "Florence",
+     "full": "Cambon F",
+     "collective": null
+    },
+    {
+     "last": "Langin",
+     "initials": "T",
+     "first": "Thierry",
+     "full": "Langin T",
+     "collective": null
+    },
+    {
+     "last": "Saintenac",
+     "initials": "C",
+     "first": "Cyrille",
+     "full": "Saintenac C",
+     "collective": null
+    }
+   ],
+   "journal": "Frontiers in plant science",
+   "journal_iso": "Front Plant Sci",
+   "volume": "13",
+   "issue": null,
+   "year": 2022,
+   "pages": "921074",
+   "license": "cc by",
+   "first_pub": "2022-06-27",
+   "fig_label": "FIGURE 2",
+   "caption": "Quantitative cytological assessment of the different stages of infection of the CFZ008 virulent (dotted bars) or the IPO9415 avirulent (stripped bars) Z. tritici GFP-labeled isolates inoculated on NIL Stb16q (black bars) and NIL stb (gray bars). (A) Germination (= number of germinated spores relative to the total number of spores). (B) Reached stomata (= number of stomata with hyphae in contact relative to the total number of stomata). (C) A penetration attempt (= number of stomata with hyphae diving into the ostiole relative to the total number of stomata). (D) Successful penetration (= number of stomata with hyphae going through the ostiole and in the sub-stomatal cavity relative to the total number of stomata). (G) Secondary sub-stomatal cavities colonization (= number of stomata with hyphae only in the sub-stomatal cavity, without hyphae above the ostiole, relative to the total number of stomata). (H) Early-stage pycnidia (= number of stomata with branching and ring-forming hyphae in the sub-stomatal cavity relative to the total number of stomata). (I) Young and mature pycnidia (= number of stomata with densified hyphae structure, in the form of the GFP halo, relative to the total number of stomata). Values are means ± SEM (n = 6). Different letters indicate significantly different values (Van der Waerden test, p < 0.05). Representative confocal images of penetration events at 6 dpi for NIL stb (E) and NIL Stb16q (F), inoculated with the GFP-labeled IPO9415 isolate (green) and stained with the fungal surface-dye calcofluor (blue). Red and pink arrows indicate hyphae on the leaf surface (green and blue) and internal hyphae (only green), respectively. Bar = 50 μm.",
+   "href": "fpls-13-921074-g002.jpg",
+   "img_url": "https://cdn.ncbi.nlm.nih.gov/pmc/blobs/631b/9271956/e83c8fb4e9d0/fpls-13-921074-g002.jpg",
+   "orig_size": [
+    708,
+    345
+   ],
+   "crossref": {
+    "title": "Blocked at the Stomatal Gate, a Key Step of Wheat Stb16q-Mediated Resistance to Zymoseptoria tritici",
+    "container": "Frontiers in Plant Science",
+    "volume": "13",
+    "issue": null,
+    "page": null,
+    "article_number": "921074",
+    "authors": [
+     {
+      "given": "Mélissa",
+      "family": "Battache",
+      "name": null
+     },
+     {
+      "given": "Marc-Henri",
+      "family": "Lebrun",
+      "name": null
+     },
+     {
+      "given": "Kaori",
+      "family": "Sakai",
+      "name": null
+     },
+     {
+      "given": "Olivier",
+      "family": "Soudière",
+      "name": null
+     },
+     {
+      "given": "Florence",
+      "family": "Cambon",
+      "name": null
+     },
+     {
+      "given": "Thierry",
+      "family": "Langin",
+      "name": null
+     },
+     {
+      "given": "Cyrille",
+      "family": "Saintenac",
+      "name": null
+     }
+    ],
+    "issued": [
+     2022,
+     6,
+     27
+    ],
+    "published_online": [
+     2022,
+     6,
+     27
+    ],
+    "published_print": [
+     null
+    ]
+   }
+  },
+  {
+   "k": "a6",
+   "source": "epmc",
+   "score": 13,
+   "pmcid": "PMC9271956",
+   "doi": "10.3389/fpls.2022.921074",
+   "title": "Blocked at the Stomatal Gate, a Key Step of Wheat <i>Stb16q</i>-Mediated Resistance to <i>Zymoseptoria tritici</i>.",
+   "authors": [
+    {
+     "last": "Battache",
+     "initials": "M",
+     "first": "Mélissa",
+     "full": "Battache M",
+     "collective": null
+    },
+    {
+     "last": "Lebrun",
+     "initials": "MH",
+     "first": "Marc-Henri",
+     "full": "Lebrun MH",
+     "collective": null
+    },
+    {
+     "last": "Sakai",
+     "initials": "K",
+     "first": "Kaori",
+     "full": "Sakai K",
+     "collective": null
+    },
+    {
+     "last": "Soudière",
+     "initials": "O",
+     "first": "Olivier",
+     "full": "Soudière O",
+     "collective": null
+    },
+    {
+     "last": "Cambon",
+     "initials": "F",
+     "first": "Florence",
+     "full": "Cambon F",
+     "collective": null
+    },
+    {
+     "last": "Langin",
+     "initials": "T",
+     "first": "Thierry",
+     "full": "Langin T",
+     "collective": null
+    },
+    {
+     "last": "Saintenac",
+     "initials": "C",
+     "first": "Cyrille",
+     "full": "Saintenac C",
+     "collective": null
+    }
+   ],
+   "journal": "Frontiers in plant science",
+   "journal_iso": "Front Plant Sci",
+   "volume": "13",
+   "issue": null,
+   "year": 2022,
+   "pages": "921074",
+   "license": "cc by",
+   "first_pub": "2022-06-27",
+   "fig_label": "FIGURE 4",
+   "caption": "Impact of 100% relative humidity (RH) and toxins on NIL Stb16q stomatal aperture and disease development. (A) Percentage of opened stomata on the second leaf of non-inoculated 14-day-old NIL Stb16q grown 3 days at 100% RH, followed by 4 days at 80% RH (standard conditions) or 7 days at 100% RH. (B) Percentage of opened stomata on the second leaf of non-inoculated NIL Stb16q, 30 min, 2 h or 4 h after being sprayed with water/4% DMSO (v/v) (Control), coronatine (Cor) or fusicoccin (Fusi). (C) Symptoms (chlorosis and necrosis) and pycnidia evaluated as the area under disease progression curve (AUDPC) from the second leaves of NIL Stb16q brush-inoculated with control solution [water/Tween-20, 0.05% (v/v), Mock], the CFZ008 virulent or the IPO9415 avirulent Z. tritici isolates and sprayed twice at 4-h interval at 4 dpi, with water/4% DMSO (v/v) (empty bars) or with fusicoccin (stripped bars). (D) Percentage of opened stomata on the second leaves of NIL Stb16q brush-inoculated with the Z. tritici IPO9415 isolate and 2 h after the second spray of water/4% DMSO (v/v) (Control) or fusicoccin (Fusi). Values are means ± SEM [n = 4 for (A,C); n = 3 for (B,D)]. Different letters indicate significantly different values (ART ANOVA, p < 0.05).",
+   "href": "fpls-13-921074-g004.jpg",
+   "img_url": "https://cdn.ncbi.nlm.nih.gov/pmc/blobs/631b/9271956/a8bec56a7de2/fpls-13-921074-g004.jpg",
+   "orig_size": [
+    708,
+    420
+   ],
+   "crossref": {
+    "title": "Blocked at the Stomatal Gate, a Key Step of Wheat Stb16q-Mediated Resistance to Zymoseptoria tritici",
+    "container": "Frontiers in Plant Science",
+    "volume": "13",
+    "issue": null,
+    "page": null,
+    "article_number": "921074",
+    "authors": [
+     {
+      "given": "Mélissa",
+      "family": "Battache",
+      "name": null
+     },
+     {
+      "given": "Marc-Henri",
+      "family": "Lebrun",
+      "name": null
+     },
+     {
+      "given": "Kaori",
+      "family": "Sakai",
+      "name": null
+     },
+     {
+      "given": "Olivier",
+      "family": "Soudière",
+      "name": null
+     },
+     {
+      "given": "Florence",
+      "family": "Cambon",
+      "name": null
+     },
+     {
+      "given": "Thierry",
+      "family": "Langin",
+      "name": null
+     },
+     {
+      "given": "Cyrille",
+      "family": "Saintenac",
+      "name": null
+     }
+    ],
+    "issued": [
+     2022,
+     6,
+     27
+    ],
+    "published_online": [
+     2022,
+     6,
+     27
+    ],
+    "published_print": [
+     null
+    ]
+   }
+  }
+ ]
+}

@@ -1,0 +1,861 @@
+{
+ "id": "tanspot",
+ "candidates": [
+  {
+   "k": "a1",
+   "source": "epmc",
+   "score": 13,
+   "pmcid": "PMC8136220",
+   "doi": "10.1186/s13007-021-00751-4",
+   "title": "An optimized sporulation method for the wheat fungal pathogen Pyrenophora tritici-repentis.",
+   "authors": [
+    {
+     "last": "Jacques",
+     "initials": "S",
+     "first": "Silke",
+     "full": "Jacques S",
+     "collective": null
+    },
+    {
+     "last": "Lenzo",
+     "initials": "L",
+     "first": "Leon",
+     "full": "Lenzo L",
+     "collective": null
+    },
+    {
+     "last": "Stevens",
+     "initials": "K",
+     "first": "Kofi",
+     "full": "Stevens K",
+     "collective": null
+    },
+    {
+     "last": "Lawrence",
+     "initials": "J",
+     "first": "Julie",
+     "full": "Lawrence J",
+     "collective": null
+    },
+    {
+     "last": "Tan",
+     "initials": "KC",
+     "first": "Kar-Chun",
+     "full": "Tan KC",
+     "collective": null
+    }
+   ],
+   "journal": "Plant methods",
+   "journal_iso": "Plant Methods",
+   "volume": "17",
+   "issue": "1",
+   "year": 2021,
+   "pages": "52",
+   "license": "cc by",
+   "first_pub": "2021-05-19",
+   "fig_label": "Fig. 4",
+   "caption": "Mycelial contamination was avoided with the optimized sporulation method. Microscopy images show the mycelial impurities (H = hyphae) of the harvested conidia (C) with the traditional Lamari and Bernier sporulation method (a). Using our optimized protocol, mycelial strands can be avoided and pure DW5 (b) and M4 (c) Ptr spores are obtained. Scale represents 0.1 mm on all images",
+   "href": "13007_2021_751_Fig4_HTML.jpg",
+   "img_url": "https://cdn.ncbi.nlm.nih.gov/pmc/blobs/6e85/8136220/38309fd16ca7/13007_2021_751_Fig4_HTML.jpg",
+   "orig_size": [
+    795,
+    752
+   ],
+   "crossref": {
+    "title": "An optimized sporulation method for the wheat fungal pathogen Pyrenophora tritici-repentis",
+    "container": "Plant Methods",
+    "volume": "17",
+    "issue": "1",
+    "page": null,
+    "article_number": "52",
+    "authors": [
+     {
+      "given": "Silke",
+      "family": "Jacques",
+      "name": null
+     },
+     {
+      "given": "Leon",
+      "family": "Lenzo",
+      "name": null
+     },
+     {
+      "given": "Kofi",
+      "family": "Stevens",
+      "name": null
+     },
+     {
+      "given": "Julie",
+      "family": "Lawrence",
+      "name": null
+     },
+     {
+      "given": "Kar-Chun",
+      "family": "Tan",
+      "name": null
+     }
+    ],
+    "issued": [
+     2021,
+     5,
+     19
+    ],
+    "published_online": [
+     2021,
+     5,
+     19
+    ],
+    "published_print": [
+     2021,
+     12
+    ]
+   }
+  },
+  {
+   "k": "a2",
+   "source": "epmc",
+   "score": 11,
+   "pmcid": "PMC8136220",
+   "doi": "10.1186/s13007-021-00751-4",
+   "title": "An optimized sporulation method for the wheat fungal pathogen Pyrenophora tritici-repentis.",
+   "authors": [
+    {
+     "last": "Jacques",
+     "initials": "S",
+     "first": "Silke",
+     "full": "Jacques S",
+     "collective": null
+    },
+    {
+     "last": "Lenzo",
+     "initials": "L",
+     "first": "Leon",
+     "full": "Lenzo L",
+     "collective": null
+    },
+    {
+     "last": "Stevens",
+     "initials": "K",
+     "first": "Kofi",
+     "full": "Stevens K",
+     "collective": null
+    },
+    {
+     "last": "Lawrence",
+     "initials": "J",
+     "first": "Julie",
+     "full": "Lawrence J",
+     "collective": null
+    },
+    {
+     "last": "Tan",
+     "initials": "KC",
+     "first": "Kar-Chun",
+     "full": "Tan KC",
+     "collective": null
+    }
+   ],
+   "journal": "Plant methods",
+   "journal_iso": "Plant Methods",
+   "volume": "17",
+   "issue": "1",
+   "year": 2021,
+   "pages": "52",
+   "license": "cc by",
+   "first_pub": "2021-05-19",
+   "fig_label": "Fig. 5",
+   "caption": "Conidial germination rate of Ptr M4 and DW5. Viability of harvested spores was followed every 15 min under the microscope by counting the spores that formed a protruding germination tube. Within 30 min, M4 reached 44.9% germination rate whilst for DW5 this took 75 min. All M4 spores germinated within 1.5 h of harvesting whereas 100% germination rate of DW5 was achieved within 2 h",
+   "href": "13007_2021_751_Fig5_HTML.jpg",
+   "img_url": "https://cdn.ncbi.nlm.nih.gov/pmc/blobs/6e85/8136220/12995d662f7e/13007_2021_751_Fig5_HTML.jpg",
+   "orig_size": [
+    797,
+    406
+   ],
+   "crossref": {
+    "title": "An optimized sporulation method for the wheat fungal pathogen Pyrenophora tritici-repentis",
+    "container": "Plant Methods",
+    "volume": "17",
+    "issue": "1",
+    "page": null,
+    "article_number": "52",
+    "authors": [
+     {
+      "given": "Silke",
+      "family": "Jacques",
+      "name": null
+     },
+     {
+      "given": "Leon",
+      "family": "Lenzo",
+      "name": null
+     },
+     {
+      "given": "Kofi",
+      "family": "Stevens",
+      "name": null
+     },
+     {
+      "given": "Julie",
+      "family": "Lawrence",
+      "name": null
+     },
+     {
+      "given": "Kar-Chun",
+      "family": "Tan",
+      "name": null
+     }
+    ],
+    "issued": [
+     2021,
+     5,
+     19
+    ],
+    "published_online": [
+     2021,
+     5,
+     19
+    ],
+    "published_print": [
+     2021,
+     12
+    ]
+   }
+  },
+  {
+   "k": "a3",
+   "source": "epmc",
+   "score": 7,
+   "pmcid": "PMC10433925",
+   "doi": "10.1093/jxb/erad183",
+   "title": "Spatiotemporal patterns of wheat response to Pyrenophora tritici-repentis in asymptomatic regions revealed by transcriptomic and X-ray fluorescence microscopy analyses.",
+   "authors": [
+    {
+     "last": "Moolhuijzen",
+     "initials": "P",
+     "first": "Paula",
+     "full": "Moolhuijzen P",
+     "collective": null
+    },
+    {
+     "last": "Sanglard",
+     "initials": "LMVP",
+     "first": "Lilian M V P",
+     "full": "Sanglard LMVP",
+     "collective": null
+    },
+    {
+     "last": "Paterson",
+     "initials": "DJ",
+     "first": "David J",
+     "full": "Paterson DJ",
+     "collective": null
+    },
+    {
+     "last": "Gray",
+     "initials": "S",
+     "first": "Sean",
+     "full": "Gray S",
+     "collective": null
+    },
+    {
+     "last": "Khambatta",
+     "initials": "K",
+     "first": "Karina",
+     "full": "Khambatta K",
+     "collective": null
+    },
+    {
+     "last": "Hackett",
+     "initials": "MJ",
+     "first": "Mark J",
+     "full": "Hackett MJ",
+     "collective": null
+    },
+    {
+     "last": "Zerihun",
+     "initials": "A",
+     "first": "Ayalsew",
+     "full": "Zerihun A",
+     "collective": null
+    },
+    {
+     "last": "Gibberd",
+     "initials": "MR",
+     "first": "Mark R",
+     "full": "Gibberd MR",
+     "collective": null
+    },
+    {
+     "last": "Naim",
+     "initials": "F",
+     "first": "Fatima",
+     "full": "Naim F",
+     "collective": null
+    }
+   ],
+   "journal": "Journal of experimental botany",
+   "journal_iso": "J Exp Bot",
+   "volume": "74",
+   "issue": "15",
+   "year": 2023,
+   "pages": "4707-4720",
+   "license": "cc by",
+   "first_pub": "2023-08-01",
+   "fig_label": "Fig. 1.",
+   "caption": "XFM-generated K, Ca, and Mn elemental maps show similarities and contrasting redistribution of elements in response to Ptr infection. High-resolution elemental maps generated for representative wheat leaves infected with Ptr and harvested 8 d post-inoculation and imaged. (A, C) Light images of the region of the leaf imaged with XFM for susceptible to very susceptible (SVS) (A) and moderately resistant (MR) (C) cultivars. (B, D) The corresponding tricolour overlay of elemental maps for Mn (red), Ca (green), and K (blue) shown for SVS (B) and MR (D) cultivars. Mn is hyper-accumulated in the centre of the symptomatic region whereas Ca is hyper-accumulated, and K is depleted, in the symptomatic region. The AGR apical to the symptomatic region is indicated by the white dashed rectangle. Each map is false-coloured to help visualize the patterns of elemental redistribution, and brightness and contrast were kept consistent for each element. Scale bar: 1 mm; elemental maps are expressed in units of ng cm −2.",
+   "href": "erad183_fig1.jpg",
+   "img_url": "https://cdn.ncbi.nlm.nih.gov/pmc/blobs/dca5/10433925/82d1b20fc14d/erad183_fig1.jpg",
+   "orig_size": [
+    636,
+    336
+   ],
+   "crossref": {
+    "title": "Spatiotemporal patterns of wheat response to<i>Pyrenophora tritici-repentis</i>in asymptomatic regions revealed by transcriptomic and X-ray fluorescence microscopy analyses",
+    "container": "Journal of Experimental Botany",
+    "volume": "74",
+    "issue": "15",
+    "page": "4707-4720",
+    "article_number": null,
+    "authors": [
+     {
+      "given": "Paula",
+      "family": "Moolhuijzen",
+      "name": null
+     },
+     {
+      "given": "Lilian M V P",
+      "family": "Sanglard",
+      "name": null
+     },
+     {
+      "given": "David J",
+      "family": "Paterson",
+      "name": null
+     },
+     {
+      "given": "Sean",
+      "family": "Gray",
+      "name": null
+     },
+     {
+      "given": "Karina",
+      "family": "Khambatta",
+      "name": null
+     },
+     {
+      "given": "Mark J",
+      "family": "Hackett",
+      "name": null
+     },
+     {
+      "given": "Ayalsew",
+      "family": "Zerihun",
+      "name": null
+     },
+     {
+      "given": "Mark R",
+      "family": "Gibberd",
+      "name": null
+     },
+     {
+      "given": "Fatima",
+      "family": "Naim",
+      "name": null
+     }
+    ],
+    "issued": [
+     2023,
+     5,
+     18
+    ],
+    "published_online": [
+     2023,
+     5,
+     18
+    ],
+    "published_print": [
+     2023,
+     8,
+     17
+    ]
+   }
+  },
+  {
+   "k": "a4",
+   "source": "epmc",
+   "score": 7,
+   "pmcid": "PMC10433925",
+   "doi": "10.1093/jxb/erad183",
+   "title": "Spatiotemporal patterns of wheat response to Pyrenophora tritici-repentis in asymptomatic regions revealed by transcriptomic and X-ray fluorescence microscopy analyses.",
+   "authors": [
+    {
+     "last": "Moolhuijzen",
+     "initials": "P",
+     "first": "Paula",
+     "full": "Moolhuijzen P",
+     "collective": null
+    },
+    {
+     "last": "Sanglard",
+     "initials": "LMVP",
+     "first": "Lilian M V P",
+     "full": "Sanglard LMVP",
+     "collective": null
+    },
+    {
+     "last": "Paterson",
+     "initials": "DJ",
+     "first": "David J",
+     "full": "Paterson DJ",
+     "collective": null
+    },
+    {
+     "last": "Gray",
+     "initials": "S",
+     "first": "Sean",
+     "full": "Gray S",
+     "collective": null
+    },
+    {
+     "last": "Khambatta",
+     "initials": "K",
+     "first": "Karina",
+     "full": "Khambatta K",
+     "collective": null
+    },
+    {
+     "last": "Hackett",
+     "initials": "MJ",
+     "first": "Mark J",
+     "full": "Hackett MJ",
+     "collective": null
+    },
+    {
+     "last": "Zerihun",
+     "initials": "A",
+     "first": "Ayalsew",
+     "full": "Zerihun A",
+     "collective": null
+    },
+    {
+     "last": "Gibberd",
+     "initials": "MR",
+     "first": "Mark R",
+     "full": "Gibberd MR",
+     "collective": null
+    },
+    {
+     "last": "Naim",
+     "initials": "F",
+     "first": "Fatima",
+     "full": "Naim F",
+     "collective": null
+    }
+   ],
+   "journal": "Journal of experimental botany",
+   "journal_iso": "J Exp Bot",
+   "volume": "74",
+   "issue": "15",
+   "year": 2023,
+   "pages": "4707-4720",
+   "license": "cc by",
+   "first_pub": "2023-08-01",
+   "fig_label": "Fig. 2.",
+   "caption": "Semi-quantitative Ca images reveal differences in redistribution of Ca in the symptomatic and asymptomatic green region of SVS and MR wheat infected with Ptr. XFM Ca maps for susceptible to very susceptible (SVS) (A) and moderately resistant (MR) (B) wheat infected with Ptr and harvested 8 d post-inoculation. The Ca maps are false-coloured to help visualize the patterns of elemental redistribution, and brightness and contrast were kept consistent for the two cultivars. The concentration of Ca is measured across the leaf indicated by the yellow dashed regions; upper panel is infected leaf section and lower panel is paired control leaf section. The corresponding Ca concentration plots show a large increase in the symptomatic region with levels returning to control levels for the asymptomatic region for the SVS cultivar, whereas the MR cultivar shows increase in Ca within the imaged 5 mm region of AGR, apical to the symptomatic region. The accumulated Ca is surrounded by halos of depletion in the SVS wheat leaf section. Scale bar: 1 mm; elemental maps are expressed in units of ng cm −2.",
+   "href": "erad183_fig2.jpg",
+   "img_url": "https://cdn.ncbi.nlm.nih.gov/pmc/blobs/dca5/10433925/595aa60e4c16/erad183_fig2.jpg",
+   "orig_size": [
+    634,
+    307
+   ],
+   "crossref": {
+    "title": "Spatiotemporal patterns of wheat response to<i>Pyrenophora tritici-repentis</i>in asymptomatic regions revealed by transcriptomic and X-ray fluorescence microscopy analyses",
+    "container": "Journal of Experimental Botany",
+    "volume": "74",
+    "issue": "15",
+    "page": "4707-4720",
+    "article_number": null,
+    "authors": [
+     {
+      "given": "Paula",
+      "family": "Moolhuijzen",
+      "name": null
+     },
+     {
+      "given": "Lilian M V P",
+      "family": "Sanglard",
+      "name": null
+     },
+     {
+      "given": "David J",
+      "family": "Paterson",
+      "name": null
+     },
+     {
+      "given": "Sean",
+      "family": "Gray",
+      "name": null
+     },
+     {
+      "given": "Karina",
+      "family": "Khambatta",
+      "name": null
+     },
+     {
+      "given": "Mark J",
+      "family": "Hackett",
+      "name": null
+     },
+     {
+      "given": "Ayalsew",
+      "family": "Zerihun",
+      "name": null
+     },
+     {
+      "given": "Mark R",
+      "family": "Gibberd",
+      "name": null
+     },
+     {
+      "given": "Fatima",
+      "family": "Naim",
+      "name": null
+     }
+    ],
+    "issued": [
+     2023,
+     5,
+     18
+    ],
+    "published_online": [
+     2023,
+     5,
+     18
+    ],
+    "published_print": [
+     2023,
+     8,
+     17
+    ]
+   }
+  },
+  {
+   "k": "a5",
+   "source": "epmc",
+   "score": 7,
+   "pmcid": "PMC8006550",
+   "doi": "10.1093/jxb/erab005",
+   "title": "Synchrotron X-ray fluorescence microscopy-enabled elemental mapping illuminates the 'battle for nutrients' between plant and pathogen.",
+   "authors": [
+    {
+     "last": "Naim",
+     "initials": "F",
+     "first": "Fatima",
+     "full": "Naim F",
+     "collective": null
+    },
+    {
+     "last": "Khambatta",
+     "initials": "K",
+     "first": "Karina",
+     "full": "Khambatta K",
+     "collective": null
+    },
+    {
+     "last": "Sanglard",
+     "initials": "LMVP",
+     "first": "Lilian M V P",
+     "full": "Sanglard LMVP",
+     "collective": null
+    },
+    {
+     "last": "Sauzier",
+     "initials": "G",
+     "first": "Georgina",
+     "full": "Sauzier G",
+     "collective": null
+    },
+    {
+     "last": "Reinhardt",
+     "initials": "J",
+     "first": "Juliane",
+     "full": "Reinhardt J",
+     "collective": null
+    },
+    {
+     "last": "Paterson",
+     "initials": "DJ",
+     "first": "David J",
+     "full": "Paterson DJ",
+     "collective": null
+    },
+    {
+     "last": "Zerihun",
+     "initials": "A",
+     "first": "Ayalsew",
+     "full": "Zerihun A",
+     "collective": null
+    },
+    {
+     "last": "Hackett",
+     "initials": "MJ",
+     "first": "Mark J",
+     "full": "Hackett MJ",
+     "collective": null
+    },
+    {
+     "last": "Gibberd",
+     "initials": "MR",
+     "first": "Mark R",
+     "full": "Gibberd MR",
+     "collective": null
+    }
+   ],
+   "journal": "Journal of experimental botany",
+   "journal_iso": "J Exp Bot",
+   "volume": "72",
+   "issue": "7",
+   "year": 2021,
+   "pages": "2757-2768",
+   "license": "cc by",
+   "first_pub": "2021-03-01",
+   "fig_label": "Fig. 1",
+   "caption": ". XFM-generated elemental maps of a control wheat leaf (A–H) and an age-matched Ptr-infected wheat leaf (I–P), harvested 8 days post-inoculation (dpi). (A, I) Light image of the region of the leaf scanned, (B, J) Compton scatter map of leaf density, (C, K) K, (D, L) Ca, (E, M) Mn, (F, N) Fe, (G, O) Cu, and (H, P) Zn elemental maps. The necrotic (Nec.) and chlorotic (Chl.) zones forming the symptomatic zone are indicated by a dashed white line with the asymptomatic (Asy.) zone defined outside this region (A). Each map is false coloured to help visualize the patterns of elemental distribution, with colour maps provided. To best highlight the Cu distribution in mycelia, a binary colour scale was used (i.e. 1000–1000). Scale bar=1 mm, and elemental maps are expressed in units of ng cm –2.",
+   "href": "erab005f0001.jpg",
+   "img_url": "https://cdn.ncbi.nlm.nih.gov/pmc/blobs/ca42/8006550/35417185cb88/erab005f0001.jpg",
+   "orig_size": [
+    783,
+    572
+   ],
+   "crossref": {
+    "title": "Synchrotron X-ray fluorescence microscopy-enabled elemental mapping illuminates the ‘battle for nutrients’ between plant and pathogen",
+    "container": "Journal of Experimental Botany",
+    "volume": "72",
+    "issue": "7",
+    "page": "2757-2768",
+    "article_number": null,
+    "authors": [
+     {
+      "given": "Fatima",
+      "family": "Naim",
+      "name": null
+     },
+     {
+      "given": "Karina",
+      "family": "Khambatta",
+      "name": null
+     },
+     {
+      "given": "Lilian M V P",
+      "family": "Sanglard",
+      "name": null
+     },
+     {
+      "given": "Georgina",
+      "family": "Sauzier",
+      "name": null
+     },
+     {
+      "given": "Juliane",
+      "family": "Reinhardt",
+      "name": null
+     },
+     {
+      "given": "David J",
+      "family": "Paterson",
+      "name": null
+     },
+     {
+      "given": "Ayalsew",
+      "family": "Zerihun",
+      "name": null
+     },
+     {
+      "given": "Mark J",
+      "family": "Hackett",
+      "name": null
+     },
+     {
+      "given": "Mark R",
+      "family": "Gibberd",
+      "name": null
+     }
+    ],
+    "issued": [
+     2021,
+     1,
+     13
+    ],
+    "published_online": [
+     2021,
+     1,
+     13
+    ],
+    "published_print": [
+     2021,
+     3,
+     29
+    ]
+   }
+  },
+  {
+   "k": "a6",
+   "source": "epmc",
+   "score": 7,
+   "pmcid": "PMC8006550",
+   "doi": "10.1093/jxb/erab005",
+   "title": "Synchrotron X-ray fluorescence microscopy-enabled elemental mapping illuminates the 'battle for nutrients' between plant and pathogen.",
+   "authors": [
+    {
+     "last": "Naim",
+     "initials": "F",
+     "first": "Fatima",
+     "full": "Naim F",
+     "collective": null
+    },
+    {
+     "last": "Khambatta",
+     "initials": "K",
+     "first": "Karina",
+     "full": "Khambatta K",
+     "collective": null
+    },
+    {
+     "last": "Sanglard",
+     "initials": "LMVP",
+     "first": "Lilian M V P",
+     "full": "Sanglard LMVP",
+     "collective": null
+    },
+    {
+     "last": "Sauzier",
+     "initials": "G",
+     "first": "Georgina",
+     "full": "Sauzier G",
+     "collective": null
+    },
+    {
+     "last": "Reinhardt",
+     "initials": "J",
+     "first": "Juliane",
+     "full": "Reinhardt J",
+     "collective": null
+    },
+    {
+     "last": "Paterson",
+     "initials": "DJ",
+     "first": "David J",
+     "full": "Paterson DJ",
+     "collective": null
+    },
+    {
+     "last": "Zerihun",
+     "initials": "A",
+     "first": "Ayalsew",
+     "full": "Zerihun A",
+     "collective": null
+    },
+    {
+     "last": "Hackett",
+     "initials": "MJ",
+     "first": "Mark J",
+     "full": "Hackett MJ",
+     "collective": null
+    },
+    {
+     "last": "Gibberd",
+     "initials": "MR",
+     "first": "Mark R",
+     "full": "Gibberd MR",
+     "collective": null
+    }
+   ],
+   "journal": "Journal of experimental botany",
+   "journal_iso": "J Exp Bot",
+   "volume": "72",
+   "issue": "7",
+   "year": 2021,
+   "pages": "2757-2768",
+   "license": "cc by",
+   "first_pub": "2021-03-01",
+   "fig_label": "Fig. 3.",
+   "caption": "Representative three-colour overlay of XFM elemental maps for Cu (red), Zn (green), and Mn (blue) to monitor the spread of Ptr in wheat leaves over 8 d. Elemental maps for control (A, D, G) and Ptr-inoculated leaf sections (B, E, H) are shown. Representative staining of fungal mycelia within infected wheat leaf sections is also shown (C, F, I). Leaves were harvested 2 (A–C), 4 (D–F), and 8 dpi (G–I). XFM-generated Cu maps and staining of fungal mycelia in infected wheat leaf samples show that Ptr grows significantly by 2 dpi. Similarly, Mn accumulation is consistent with the browning of leaf tissue. The contrast and brightness of each elemental map are uniform in all of the representative images, with increasing and decreasing coloration or intensity depicting higher and lower concentrations of that element. To best highlight the Cu distribution in mycelia, a binary colour scale was used (i.e. 1000–1000). Scale bar=2 mm.",
+   "href": "erab005f0003.jpg",
+   "img_url": "https://cdn.ncbi.nlm.nih.gov/pmc/blobs/ca42/8006550/e65ef92176e5/erab005f0003.jpg",
+   "orig_size": [
+    780,
+    628
+   ],
+   "crossref": {
+    "title": "Synchrotron X-ray fluorescence microscopy-enabled elemental mapping illuminates the ‘battle for nutrients’ between plant and pathogen",
+    "container": "Journal of Experimental Botany",
+    "volume": "72",
+    "issue": "7",
+    "page": "2757-2768",
+    "article_number": null,
+    "authors": [
+     {
+      "given": "Fatima",
+      "family": "Naim",
+      "name": null
+     },
+     {
+      "given": "Karina",
+      "family": "Khambatta",
+      "name": null
+     },
+     {
+      "given": "Lilian M V P",
+      "family": "Sanglard",
+      "name": null
+     },
+     {
+      "given": "Georgina",
+      "family": "Sauzier",
+      "name": null
+     },
+     {
+      "given": "Juliane",
+      "family": "Reinhardt",
+      "name": null
+     },
+     {
+      "given": "David J",
+      "family": "Paterson",
+      "name": null
+     },
+     {
+      "given": "Ayalsew",
+      "family": "Zerihun",
+      "name": null
+     },
+     {
+      "given": "Mark J",
+      "family": "Hackett",
+      "name": null
+     },
+     {
+      "given": "Mark R",
+      "family": "Gibberd",
+      "name": null
+     }
+    ],
+    "issued": [
+     2021,
+     1,
+     13
+    ],
+    "published_online": [
+     2021,
+     1,
+     13
+    ],
+    "published_print": [
+     2021,
+     3,
+     29
+    ]
+   }
+  }
+ ]
+}
