@@ -1,0 +1,43 @@
+# Тимчасово: завантаження мікрофото з відкритих джерел для сторінки «Під мікроскопом».
+name: Fetch micrographs (temporary)
+
+on:
+  workflow_dispatch:
+    inputs:
+      mode:
+        description: candidates або final
+        required: true
+        default: candidates
+        type: choice
+        options: [candidates, final]
+      only:
+        description: id хвороб через кому (порожньо — усі)
+        required: false
+        default: ""
+
+permissions:
+  contents: write
+
+jobs:
+  fetch:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - run: pip install pillow==11.0.0
+
+      - run: python tools/micro/fetch.py "${{ inputs.mode }}" "${{ inputs.only }}"
+
+      - name: Commit results
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add -A tmp/micro 2>/dev/null || true
+          git add -A assets/img/micro 2>/dev/null || true
+          if git diff --cached --quiet; then echo "nothing to commit"; exit 0; fi
+          git commit -m "Fetch micrographs: ${{ inputs.mode }}"
+          git push origin "HEAD:${{ github.ref_name }}"
