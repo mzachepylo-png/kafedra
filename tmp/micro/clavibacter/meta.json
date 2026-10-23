@@ -4,98 +4,484 @@
  "candidates": [
   {
    "k": 1,
-   "source": "commons",
-   "score": 7,
-   "file": "File:Clavibacter michiganensis symptoms on tomato.jpg",
-   "page": "https://commons.wikimedia.org/wiki/File:Clavibacter_michiganensis_symptoms_on_tomato.jpg",
-   "img_url": "https://upload.wikimedia.org/wikipedia/commons/7/75/Clavibacter_michiganensis_symptoms_on_tomato.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
-   "thumb_url": "https://thumb.wikimedia.org/wikipedia/commons/thumb/7/75/Clavibacter_michiganensis_symptoms_on_tomato.jpg/960px-Clavibacter_michiganensis_symptoms_on_tomato.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
-   "orig_size": [
-    3072,
-    1924
+   "source": "epmc",
+   "score": 14,
+   "pmcid": "PMC12445707",
+   "doi": "10.1016/j.tcsw.2025.100151",
+   "title": "Localization characteristics of cell wall synthesis protein Wag31 and penicillin binding protein C in &lt;i&gt;Clavibacter michiganensis&lt;/i&gt;.",
+   "authors": [
+    {
+     "last": "Yu",
+     "initials": "C",
+     "first": "Chengxuan",
+     "full": "Yu C",
+     "collective": null
+    },
+    {
+     "last": "Xu",
+     "initials": "X",
+     "first": "Xiaoli",
+     "full": "Xu X",
+     "collective": null
+    },
+    {
+     "last": "Shi",
+     "initials": "J",
+     "first": "Jia",
+     "full": "Shi J",
+     "collective": null
+    },
+    {
+     "last": "Chu",
+     "initials": "W",
+     "first": "Wenqing",
+     "full": "Chu W",
+     "collective": null
+    },
+    {
+     "last": "Jiang",
+     "initials": "N",
+     "first": "Na",
+     "full": "Jiang N",
+     "collective": null
+    },
+    {
+     "last": "Li",
+     "initials": "J",
+     "first": "Jianqiang",
+     "full": "Li J",
+     "collective": null
+    },
+    {
+     "last": "Luo",
+     "initials": "L",
+     "first": "Laixin",
+     "full": "Luo L",
+     "collective": null
+    }
    ],
-   "artist": "Mary Ann Hansen, Virginia Polytechnic Institute and State University, Bugwood.org",
-   "license": "CC BY 3.0 us",
-   "license_url": "https://creativecommons.org/licenses/by/3.0/us/deed.en",
-   "credit": "This image is Image Number 5333076 at Insect Images, a source for entomological images operated by The Bugwood Network at the University of Georgia and the USDA Forest Service.\nCheck archived versions at web.archive/archive.is",
-   "description": "Symptoms of Clavibacter michiganensis infection on tomato, causing a disease known as bacterial canker.",
-   "date": "2008-10-29"
+   "journal": "Cell surface (Amsterdam, Netherlands)",
+   "journal_iso": "Cell Surf",
+   "volume": "14",
+   "issue": null,
+   "year": 2025,
+   "pages": "100151",
+   "license": "cc by-nc",
+   "first_pub": "2025-08-26",
+   "fig_label": "Fig. 2",
+   "caption": "Subcellular localization of CmWag31 and CmPBPC in E. coli and C. michiganensis (n = 3). A. E. coli strain DH-5α carried the plasmid vector pHN216 expressing mCherry protein (Up) or Wag31-mCherry fusion proteins (Down). Merge images of bacteria cells are shown as bright-field with overlaid fluorescence in red (Scale bar = 2 μm). B. C. michiganensis strain BT-0505 carried the plasmid vector pHN216 expressing mCherry protein (Up) or Wag31-mCherry fusion proteins (Down) (Scale bar = 2 μm). C. E. coli strain DH-5α carried the plasmid vector pHN216 expressing mCherry and GFP proteins (Up), a co-localization plasmid producing both GFP-PBPC (green) and mCherry-Wag31 (red) transferred to an E. coli strain DH-5α demonstrated the co-localization of PBPC and Wag31 (Down). Merge images of bacteria cells are shown as phase-contrast image with overlaid fluorescence both in green and red (Scale bar = 2 μm). D. C. michiganensis strain BT-0505 carrying empty vector pHN216 with mCherry and GFP (Up), a co-localization plasmid producing both GFP-PBPC (green) and mCherry-Wag31 (red) transferred to a C. michiganensis strain BT-0505 demonstrated the co-localization of PBPC and Wag31 (Down) (Scale bar = 2 μm).",
+   "href": "gr2a.jpg",
+   "img_url": "https://cdn.ncbi.nlm.nih.gov/pmc/blobs/0522/12445707/4f7c50a24d14/gr2a.jpg",
+   "orig_size": [
+    789,
+    1072
+   ],
+   "crossref": {
+    "title": "Localization characteristics of cell wall synthesis protein Wag31 and penicillin binding protein C in Clavibacter michiganensis",
+    "container": "The Cell Surface",
+    "volume": "14",
+    "issue": null,
+    "page": "100151",
+    "article_number": "100151",
+    "authors": [
+     {
+      "given": "Chengxuan",
+      "family": "Yu",
+      "name": null
+     },
+     {
+      "given": "Xiaoli",
+      "family": "Xu",
+      "name": null
+     },
+     {
+      "given": "Jia",
+      "family": "Shi",
+      "name": null
+     },
+     {
+      "given": "Wenqing",
+      "family": "Chu",
+      "name": null
+     },
+     {
+      "given": "Na",
+      "family": "Jiang",
+      "name": null
+     },
+     {
+      "given": "Jianqiang",
+      "family": "Li",
+      "name": null
+     },
+     {
+      "given": "Laixin",
+      "family": "Luo",
+      "name": null
+     }
+    ],
+    "issued": [
+     2025,
+     12
+    ],
+    "published_online": [
+     null
+    ],
+    "published_print": [
+     2025,
+     12
+    ]
+   }
   },
   {
    "k": 2,
-   "source": "commons",
-   "score": 6,
-   "file": "File:Bacterial canker of tomato caused by Corynebacterium michiganense pv. michiganense (9777392932).jpg",
-   "page": "https://commons.wikimedia.org/wiki/File:Bacterial_canker_of_tomato_caused_by_Corynebacterium_michiganense_pv._michiganense_(9777392932).jpg",
-   "img_url": "https://upload.wikimedia.org/wikipedia/commons/6/61/Bacterial_canker_of_tomato_caused_by_Corynebacterium_michiganense_pv._michiganense_%289777392932%29.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
-   "thumb_url": "https://thumb.wikimedia.org/wikipedia/commons/thumb/6/61/Bacterial_canker_of_tomato_caused_by_Corynebacterium_michiganense_pv._michiganense_%289777392932%29.jpg/960px-Bacterial_canker_of_tomato_caused_by_Corynebacterium_michiganense_pv._michiganense_%289777392932%29.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
-   "orig_size": [
-    1317,
-    862
+   "source": "epmc",
+   "score": 14,
+   "pmcid": "PMC11672578",
+   "doi": "10.3390/antibiotics13121127",
+   "title": "Cloning and Functional Analysis of Skin Host Defense Peptides from Yakushima Tago's Brown Frog (<i>Rana tagoi yakushimensis</i>) and Development of Serum Endotoxin Detection System.",
+   "authors": [
+    {
+     "last": "Aono",
+     "initials": "T",
+     "first": "Taichi",
+     "full": "Aono T",
+     "collective": null
+    },
+    {
+     "last": "Tamura",
+     "initials": "S",
+     "first": "Saki",
+     "full": "Tamura S",
+     "collective": null
+    },
+    {
+     "last": "Suzuki",
+     "initials": "Y",
+     "first": "Yua",
+     "full": "Suzuki Y",
+     "collective": null
+    },
+    {
+     "last": "Imanara",
+     "initials": "T",
+     "first": "Taichi",
+     "full": "Imanara T",
+     "collective": null
+    },
+    {
+     "last": "Niwa",
+     "initials": "R",
+     "first": "Ryosei",
+     "full": "Niwa R",
+     "collective": null
+    },
+    {
+     "last": "Yamane",
+     "initials": "Y",
+     "first": "Yoshie",
+     "full": "Yamane Y",
+     "collective": null
+    },
+    {
+     "last": "Kobayashi",
+     "initials": "T",
+     "first": "Tetsuya",
+     "full": "Kobayashi T",
+     "collective": null
+    },
+    {
+     "last": "Kikuyama",
+     "initials": "S",
+     "first": "Sakae",
+     "full": "Kikuyama S",
+     "collective": null
+    },
+    {
+     "last": "Hasunuma",
+     "initials": "I",
+     "first": "Itaru",
+     "full": "Hasunuma I",
+     "collective": null
+    },
+    {
+     "last": "Iwamuro",
+     "initials": "S",
+     "first": "Shawichi",
+     "full": "Iwamuro S",
+     "collective": null
+    }
    ],
-   "artist": "Scot Nelson",
-   "license": "CC0",
-   "license_url": "http://creativecommons.org/publicdomain/zero/1.0/deed.en",
-   "credit": "Bacterial canker of tomato caused by Corynebacterium michiganense pv. michiganense",
-   "description": "In an email to Wikimedia Commons' Volunteer Response Team, Scot Nelson has released all content from their Flickr photostream under the Creative Commons Zero license.\n\n\n\n\n\n \n\nThis file is made available under the Creative Commons CC0 1.0 Universal Public Domain Dedication.\n\n\nThe person who associated a work with this deed has dedicated the work to the public domain by waiving all of their rights to the work worldwide under copyright law, including all related and neighboring rights, to the extent allowed by law. You can copy, modify, distribute and perform the work, even for commercial purposes, all without asking permission.\nhttp://creativecommons.org/publicdomain/zero/1.0/deed.enCC0Creativ",
-   "date": "2006-03-10 06:33"
+   "journal": "Antibiotics (Basel, Switzerland)",
+   "journal_iso": "Antibiotics (Basel)",
+   "volume": "13",
+   "issue": "12",
+   "year": 2024,
+   "pages": "1127",
+   "license": "cc by",
+   "first_pub": "2024-11-24",
+   "fig_label": "Figure 3",
+   "caption": "(A) Effects of various concentrations of yakushimin-TYa (blue), amurin-9TYa (green), and brevinin-1TYa (orange) on the growth of Escherichia coli and Staphylococcus aureus. Bacterial cells were incubated with twofold serially diluted peptides for 20 h at 37 °C. Points and vertical bars represent the mean ± standard error of the mean (SE); n = 4. Values with the same superscripts are not significantly different (p ≥ 0.05). (B) Scanning electron microscopy (SEM) analysis of E. coli and S. aureus cells treated with yakushimin-TYa, amurin-9TYa, or brevinin-1TYa. Bacterial cultures in the mid-log phase were incubated with the various peptides (128 μg/mL) for 1 h at 25 °C and examined by SEM. Abnormally shaped cells indicating cell destruction (arrows) are visible in amurin-9TYa-treated E. coli and S. aureus, and brevinin-1TYa-treated S. aureus, compared to the myoglobin-treated controls. Scale bar = 1 μm.",
+   "href": "antibiotics-13-01127-g003.jpg",
+   "img_url": "https://cdn.ncbi.nlm.nih.gov/pmc/blobs/af51/11672578/62f427eeb6ab/antibiotics-13-01127-g003.jpg",
+   "orig_size": [
+    704,
+    599
+   ],
+   "crossref": {
+    "title": "Cloning and Functional Analysis of Skin Host Defense Peptides from Yakushima Tago’s Brown Frog (Rana tagoi yakushimensis) and Development of Serum Endotoxin Detection System",
+    "container": "Antibiotics",
+    "volume": "13",
+    "issue": "12",
+    "page": "1127",
+    "article_number": null,
+    "authors": [
+     {
+      "given": "Taichi",
+      "family": "Aono",
+      "name": null
+     },
+     {
+      "given": "Saki",
+      "family": "Tamura",
+      "name": null
+     },
+     {
+      "given": "Yua",
+      "family": "Suzuki",
+      "name": null
+     },
+     {
+      "given": "Taichi",
+      "family": "Imanara",
+      "name": null
+     },
+     {
+      "given": "Ryosei",
+      "family": "Niwa",
+      "name": null
+     },
+     {
+      "given": "Yoshie",
+      "family": "Yamane",
+      "name": null
+     },
+     {
+      "given": "Tetsuya",
+      "family": "Kobayashi",
+      "name": null
+     },
+     {
+      "given": "Sakae",
+      "family": "Kikuyama",
+      "name": null
+     },
+     {
+      "given": "Itaru",
+      "family": "Hasunuma",
+      "name": null
+     },
+     {
+      "given": "Shawichi",
+      "family": "Iwamuro",
+      "name": null
+     }
+    ],
+    "issued": [
+     2024,
+     11,
+     24
+    ],
+    "published_online": [
+     2024,
+     11,
+     24
+    ],
+    "published_print": [
+     null
+    ]
+   }
   },
   {
    "k": 3,
-   "source": "commons",
-   "score": 5,
-   "file": "File:AlfalfaPP300.jpg",
-   "page": "https://commons.wikimedia.org/wiki/File:AlfalfaPP300.jpg",
-   "img_url": "https://upload.wikimedia.org/wikipedia/commons/f/f1/AlfalfaPP300.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
-   "thumb_url": "https://thumb.wikimedia.org/wikipedia/commons/thumb/f/f1/AlfalfaPP300.jpg/960px-AlfalfaPP300.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
-   "orig_size": [
-    3024,
-    4032
+   "source": "epmc",
+   "score": 14,
+   "pmcid": "PMC10663603",
+   "doi": "10.1038/s41598-023-47236-z",
+   "title": "Solanum lycopersicum heme-binding protein 2 as a potent antimicrobial weapon against plant pathogens.",
+   "authors": [
+    {
+     "last": "Farvardin",
+     "initials": "A",
+     "first": "Atefeh",
+     "full": "Farvardin A",
+     "collective": null
+    },
+    {
+     "last": "Llorens",
+     "initials": "E",
+     "first": "Eugenio",
+     "full": "Llorens E",
+     "collective": null
+    },
+    {
+     "last": "Liu-Xu",
+     "initials": "L",
+     "first": "Luisa",
+     "full": "Liu-Xu L",
+     "collective": null
+    },
+    {
+     "last": "Sánchez-Giménez",
+     "initials": "L",
+     "first": "Lorena",
+     "full": "Sánchez-Giménez L",
+     "collective": null
+    },
+    {
+     "last": "Wong",
+     "initials": "A",
+     "first": "Aloysius",
+     "full": "Wong A",
+     "collective": null
+    },
+    {
+     "last": "Biosca",
+     "initials": "EG",
+     "first": "Elena G",
+     "full": "Biosca EG",
+     "collective": null
+    },
+    {
+     "last": "Pedra",
+     "initials": "JM",
+     "first": "José M",
+     "full": "Pedra JM",
+     "collective": null
+    },
+    {
+     "last": "Falomir",
+     "initials": "E",
+     "first": "Eva",
+     "full": "Falomir E",
+     "collective": null
+    },
+    {
+     "last": "Camañes",
+     "initials": "G",
+     "first": "Gemma",
+     "full": "Camañes G",
+     "collective": null
+    },
+    {
+     "last": "Scalschi",
+     "initials": "L",
+     "first": "Loredana",
+     "full": "Scalschi L",
+     "collective": null
+    },
+    {
+     "last": "Vicedo",
+     "initials": "B",
+     "first": "Begonya",
+     "full": "Vicedo B",
+     "collective": null
+    }
    ],
-   "artist": "Karalynne32",
-   "license": "CC BY-SA 4.0",
-   "license_url": "https://creativecommons.org/licenses/by-sa/4.0",
-   "credit": "Own work",
-   "description": "Alfalfa with bacteria wilt caused by Clavibacter michiganensis subsp. insidiosus",
-   "date": "2019-11-13"
-  },
-  {
-   "k": 4,
-   "source": "commons",
-   "score": 5,
-   "file": "File:Alfalfaclavbacterialwilt.jpg",
-   "page": "https://commons.wikimedia.org/wiki/File:Alfalfaclavbacterialwilt.jpg",
-   "img_url": "https://upload.wikimedia.org/wikipedia/commons/1/1a/Alfalfaclavbacterialwilt.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
-   "thumb_url": "https://thumb.wikimedia.org/wikipedia/commons/thumb/1/1a/Alfalfaclavbacterialwilt.jpg/960px-Alfalfaclavbacterialwilt.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
+   "journal": "Scientific reports",
+   "journal_iso": "Sci Rep",
+   "volume": "13",
+   "issue": "1",
+   "year": 2023,
+   "pages": "20336",
+   "license": "cc by",
+   "first_pub": "2023-11-20",
+   "fig_label": "Figure 4",
+   "caption": "Localization of SlHBP2. Fluorescence confocal microscopy images of bacteria treated with SlHBP2 and stained with Alexa Fluor 647-conjugated anti-His secondary antibody and with Hoeschst 33,342. Pink fluorescence indicates the localization of the SlHBP2 in the cells. Blue fluorescence shows cytoplasmic DNA stained with Hoeschst 33,342.",
+   "href": "41598_2023_47236_Fig4_HTML.jpg",
+   "img_url": "https://cdn.ncbi.nlm.nih.gov/pmc/blobs/b9e5/10663603/10ee34ff814b/41598_2023_47236_Fig4_HTML.jpg",
    "orig_size": [
-    2478,
-    3586
+    628,
+    557
    ],
-   "artist": "Karalynne32",
-   "license": "CC BY-SA 4.0",
-   "license_url": "https://creativecommons.org/licenses/by-sa/4.0",
-   "credit": "Own work",
-   "description": "Alfalfa with bacterial wilt caused by Clavibacter michiganensis subsp. insidiosus",
-   "date": "2019-11-13"
-  },
-  {
-   "k": 5,
-   "source": "commons",
-   "score": 5,
-   "file": "File:Flétrissure bactéreinne Clavibacter michiganensis ssp sepedonicus 5357042.jpg",
-   "page": "https://commons.wikimedia.org/wiki/File:Fl%C3%A9trissure_bact%C3%A9reinne_Clavibacter_michiganensis_ssp_sepedonicus_5357042.jpg",
-   "img_url": "https://upload.wikimedia.org/wikipedia/commons/0/0d/Fl%C3%A9trissure_bact%C3%A9reinne_Clavibacter_michiganensis_ssp_sepedonicus_5357042.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
-   "thumb_url": "https://upload.wikimedia.org/wikipedia/commons/0/0d/Fl%C3%A9trissure_bact%C3%A9reinne_Clavibacter_michiganensis_ssp_sepedonicus_5357042.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail_unscaled",
-   "orig_size": [
-    768,
-    509
-   ],
-   "artist": "William M. Brown Jr., Bugwood.org",
-   "license": "CC BY 3.0 us",
-   "license_url": "https://creativecommons.org/licenses/by/3.0/us/deed.en",
-   "credit": "This image is Image Number 5357042 at Forestry Images, a source for forest health, natural resources and silviculture images operated by The Bugwood Network at the University of Georgia and the USDA Forest Service.\nCheck archived versions at web.archive/archive.is or on insectimages.org",
-   "description": "Potato plant infected with bacterial ring rot of potato (Clavibacter michiganensis subsp. sepedonicus), United States . Pied de pomme de terre atteint de flétrissure bactérienne (Clavibacter michiganensis subsp. sepedonicus), États-Unis",
-   "date": "2008-04-15"
+   "crossref": {
+    "title": "Solanum lycopersicum heme-binding protein 2 as a potent antimicrobial weapon against plant pathogens",
+    "container": "Scientific Reports",
+    "volume": "13",
+    "issue": "1",
+    "page": null,
+    "article_number": "20336",
+    "authors": [
+     {
+      "given": "Atefeh",
+      "family": "Farvardin",
+      "name": null
+     },
+     {
+      "given": "Eugenio",
+      "family": "Llorens",
+      "name": null
+     },
+     {
+      "given": "Luisa",
+      "family": "Liu-Xu",
+      "name": null
+     },
+     {
+      "given": "Lorena",
+      "family": "Sánchez-Giménez",
+      "name": null
+     },
+     {
+      "given": "Aloysius",
+      "family": "Wong",
+      "name": null
+     },
+     {
+      "given": "Elena G.",
+      "family": "Biosca",
+      "name": null
+     },
+     {
+      "given": "José M.",
+      "family": "Pedra",
+      "name": null
+     },
+     {
+      "given": "Eva",
+      "family": "Falomir",
+      "name": null
+     },
+     {
+      "given": "Gemma",
+      "family": "Camañes",
+      "name": null
+     },
+     {
+      "given": "Loredana",
+      "family": "Scalschi",
+      "name": null
+     },
+     {
+      "given": "Begonya",
+      "family": "Vicedo",
+      "name": null
+     }
+    ],
+    "issued": [
+     2023,
+     11,
+     20
+    ],
+    "published_online": [
+     2023,
+     11,
+     20
+    ],
+    "published_print": [
+     null
+    ]
+   }
   }
  ]
 }

@@ -4,22 +4,486 @@
  "candidates": [
   {
    "k": 1,
-   "source": "commons",
-   "score": 5,
-   "file": "File:American Journal of Botany Volume IV Plate XIX Elliott Alternaria and Macrosporium N540 w1150.jpg",
-   "page": "https://commons.wikimedia.org/wiki/File:American_Journal_of_Botany_Volume_IV_Plate_XIX_Elliott_Alternaria_and_Macrosporium_N540_w1150.jpg",
-   "img_url": "https://upload.wikimedia.org/wikipedia/commons/3/37/American_Journal_of_Botany_Volume_IV_Plate_XIX_Elliott_Alternaria_and_Macrosporium_N540_w1150.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
-   "thumb_url": "https://thumb.wikimedia.org/wikipedia/commons/thumb/3/37/American_Journal_of_Botany_Volume_IV_Plate_XIX_Elliott_Alternaria_and_Macrosporium_N540_w1150.jpg/960px-American_Journal_of_Botany_Volume_IV_Plate_XIX_Elliott_Alternaria_and_Macrosporium_N540_w1150.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
-   "orig_size": [
-    1481,
-    2386
+   "source": "epmc",
+   "score": 16,
+   "pmcid": "PMC10961351",
+   "doi": "10.3389/fmicb.2024.1357579",
+   "title": "Multi-omics approaches to understand pathogenicity during potato early blight disease caused by <i>Alternaria solani</i>.",
+   "authors": [
+    {
+     "last": "Li",
+     "initials": "Q",
+     "first": "Qing",
+     "full": "Li Q",
+     "collective": null
+    },
+    {
+     "last": "Feng",
+     "initials": "Y",
+     "first": "Yan",
+     "full": "Feng Y",
+     "collective": null
+    },
+    {
+     "last": "Li",
+     "initials": "J",
+     "first": "Jianmei",
+     "full": "Li J",
+     "collective": null
+    },
+    {
+     "last": "Hai",
+     "initials": "Y",
+     "first": "Yang",
+     "full": "Hai Y",
+     "collective": null
+    },
+    {
+     "last": "Si",
+     "initials": "L",
+     "first": "Liping",
+     "full": "Si L",
+     "collective": null
+    },
+    {
+     "last": "Tan",
+     "initials": "C",
+     "first": "Chen",
+     "full": "Tan C",
+     "collective": null
+    },
+    {
+     "last": "Peng",
+     "initials": "J",
+     "first": "Jing",
+     "full": "Peng J",
+     "collective": null
+    },
+    {
+     "last": "Hu",
+     "initials": "Z",
+     "first": "Zuo",
+     "full": "Hu Z",
+     "collective": null
+    },
+    {
+     "last": "Li",
+     "initials": "Z",
+     "first": "Zhou",
+     "full": "Li Z",
+     "collective": null
+    },
+    {
+     "last": "Li",
+     "initials": "C",
+     "first": "Canhui",
+     "full": "Li C",
+     "collective": null
+    },
+    {
+     "last": "Hao",
+     "initials": "D",
+     "first": "Dahai",
+     "full": "Hao D",
+     "collective": null
+    },
+    {
+     "last": "Tang",
+     "initials": "W",
+     "first": "Wei",
+     "full": "Tang W",
+     "collective": null
+    }
    ],
-   "artist": "Biodiversity Heritage Library",
-   "license": "Public domain",
-   "license_url": "",
-   "credit": "https://www.flickr.com/photos/biodivlibrary/50720436466/",
-   "description": "American Journal of Botany.\nVolume IV, Plate XIX.\nElliott: Alternaria and Macrosporium.\nLancaster, Pa. :Published in cooperation with the Botanical Society of America by the Brooklyn Botanic Gardens,1914-\nhttps://biodiversitylibrary.org/page/47142704\nPlate XIX\nAll drawings were made with camera lucida to scale shown on the plates.\n1. Alternaria brassicae var. nigrescens (now Alternaria brassicae f. nigrescens) on leached agar.\n2. Alternaria brassicae var. nigrescens (now Alternaria brassicae f. nigrescens) spores showing stages in secondary development.\n3. Alternaria solani from Datura on leached sugar.\n4. Alternaria solani from Datura, spores from bean agar culture.\n5. Alternaria solani fro",
-   "date": "1917"
+   "journal": "Frontiers in microbiology",
+   "journal_iso": "Front Microbiol",
+   "volume": "15",
+   "issue": null,
+   "year": 2024,
+   "pages": "1357579",
+   "license": "cc by",
+   "first_pub": "2024-03-11",
+   "fig_label": "FIGURE 4",
+   "caption": "Scanning electron microscopy images (600×) of C88 leaf cells infected with TA-0410 and TB-1129. (A) Healthy cells not infiltrated by TB-1129. (B) Healthy cells not infiltrated by TA-0410. (C) TB-1129-infected C88 leaf cells observed after 4 h. (D) TA-0410-infected C88 leaf cells observed after 4 h, arrows point to conidia. (E) TB-1129-infected C88 leaf cells observed after 8 h. (F) TA-0410-infected C88 leaf cells observed after 8 h, the arrow pointed to conidia. (G) TB-1129-infected C88 leaf cells observed after 12 h. (H) TA-0410-infected C88 leaf cells observed after 12 h, arrows pointing to mycelium. (I) TB-1129-infected C88 leaf cells observed after 24 h, arrows point to conidia. (J) TA-0410-infected C88 leaf cells observed after 24 h, arrows point to conidia.",
+   "href": "fmicb-15-1357579-g004.jpg",
+   "img_url": "https://cdn.ncbi.nlm.nih.gov/pmc/blobs/6d51/10961351/539673418881/fmicb-15-1357579-g004.jpg",
+   "orig_size": [
+    566,
+    1076
+   ],
+   "crossref": {
+    "title": "Multi-omics approaches to understand pathogenicity during potato early blight disease caused by Alternaria solani",
+    "container": "Frontiers in Microbiology",
+    "volume": "15",
+    "issue": null,
+    "page": null,
+    "article_number": "1357579",
+    "authors": [
+     {
+      "given": "Qing",
+      "family": "Li",
+      "name": null
+     },
+     {
+      "given": "Yan",
+      "family": "Feng",
+      "name": null
+     },
+     {
+      "given": "Jianmei",
+      "family": "Li",
+      "name": null
+     },
+     {
+      "given": "Yang",
+      "family": "Hai",
+      "name": null
+     },
+     {
+      "given": "Liping",
+      "family": "Si",
+      "name": null
+     },
+     {
+      "given": "Chen",
+      "family": "Tan",
+      "name": null
+     },
+     {
+      "given": "Jing",
+      "family": "Peng",
+      "name": null
+     },
+     {
+      "given": "Zuo",
+      "family": "Hu",
+      "name": null
+     },
+     {
+      "given": "Zhou",
+      "family": "Li",
+      "name": null
+     },
+     {
+      "given": "Canhui",
+      "family": "Li",
+      "name": null
+     },
+     {
+      "given": "Dahai",
+      "family": "Hao",
+      "name": null
+     },
+     {
+      "given": "Wei",
+      "family": "Tang",
+      "name": null
+     }
+    ],
+    "issued": [
+     2024,
+     3,
+     11
+    ],
+    "published_online": [
+     2024,
+     3,
+     11
+    ],
+    "published_print": [
+     null
+    ]
+   }
+  },
+  {
+   "k": 2,
+   "source": "epmc",
+   "score": 16,
+   "pmcid": "PMC8793485",
+   "doi": "10.3389/fmicb.2021.808337",
+   "title": "Mechanism of a Volatile Organic Compound (6-Methyl-2-Heptanone) Emitted From <i>Bacillus subtilis</i> ZD01 Against <i>Alternaria solani</i> in Potato.",
+   "authors": [
+    {
+     "last": "Zhang",
+     "initials": "D",
+     "first": "Dai",
+     "full": "Zhang D",
+     "collective": null
+    },
+    {
+     "last": "Qiang",
+     "initials": "R",
+     "first": "Ran",
+     "full": "Qiang R",
+     "collective": null
+    },
+    {
+     "last": "Zhao",
+     "initials": "J",
+     "first": "Jing",
+     "full": "Zhao J",
+     "collective": null
+    },
+    {
+     "last": "Zhang",
+     "initials": "J",
+     "first": "Jinglin",
+     "full": "Zhang J",
+     "collective": null
+    },
+    {
+     "last": "Cheng",
+     "initials": "J",
+     "first": "Jianing",
+     "full": "Cheng J",
+     "collective": null
+    },
+    {
+     "last": "Zhao",
+     "initials": "D",
+     "first": "Dongmei",
+     "full": "Zhao D",
+     "collective": null
+    },
+    {
+     "last": "Fan",
+     "initials": "Y",
+     "first": "Yaning",
+     "full": "Fan Y",
+     "collective": null
+    },
+    {
+     "last": "Yang",
+     "initials": "Z",
+     "first": "Zhihui",
+     "full": "Yang Z",
+     "collective": null
+    },
+    {
+     "last": "Zhu",
+     "initials": "J",
+     "first": "Jiehua",
+     "full": "Zhu J",
+     "collective": null
+    }
+   ],
+   "journal": "Frontiers in microbiology",
+   "journal_iso": "Front Microbiol",
+   "volume": "12",
+   "issue": null,
+   "year": 2021,
+   "pages": "808337",
+   "license": "cc by",
+   "first_pub": "2022-01-13",
+   "fig_label": "FIGURE 4",
+   "caption": "Effects of 6-methyl-2-heptanone on conidia of A. solani. Here, 100 μL of A. solani HWC-168 spore suspension (10 5 cfu/mL) was spread onto 1.0% water agar medium on a divided dish, and the other side of the dish was inoculated with an EC 50 value of 6-methyl-2-heptanone. (A, B) The conidial germination of A. solani in the control and 6-methyl-2-heptanone-treated groups, respectively. The “black arrow” represented conidia germinating normally with long germ tubes in the control sample; the “blue arrow” represented conidia with irregular germ tubes exposed to 6-methyl-2-heptanone. (C, D) Transmission electron micrographs of A. solani conidia in control samples and co-cultured with 6-methyl-2-heptanone samples. The results are presented as the means ± SDs (n = 3). *** above points represent significant differences (p < 0.01).",
+   "href": "fmicb-12-808337-g004.jpg",
+   "img_url": "https://cdn.ncbi.nlm.nih.gov/pmc/blobs/01c3/8793485/e2fec8852c5b/fmicb-12-808337-g004.jpg",
+   "orig_size": [
+    708,
+    457
+   ],
+   "crossref": {
+    "title": "Mechanism of a Volatile Organic Compound (6-Methyl-2-Heptanone) Emitted From Bacillus subtilis ZD01 Against Alternaria solani in Potato",
+    "container": "Frontiers in Microbiology",
+    "volume": "12",
+    "issue": null,
+    "page": null,
+    "article_number": "808337",
+    "authors": [
+     {
+      "given": "Dai",
+      "family": "Zhang",
+      "name": null
+     },
+     {
+      "given": "Ran",
+      "family": "Qiang",
+      "name": null
+     },
+     {
+      "given": "Jing",
+      "family": "Zhao",
+      "name": null
+     },
+     {
+      "given": "Jinglin",
+      "family": "Zhang",
+      "name": null
+     },
+     {
+      "given": "Jianing",
+      "family": "Cheng",
+      "name": null
+     },
+     {
+      "given": "Dongmei",
+      "family": "Zhao",
+      "name": null
+     },
+     {
+      "given": "Yaning",
+      "family": "Fan",
+      "name": null
+     },
+     {
+      "given": "Zhihui",
+      "family": "Yang",
+      "name": null
+     },
+     {
+      "given": "Jiehua",
+      "family": "Zhu",
+      "name": null
+     }
+    ],
+    "issued": [
+     2022,
+     1,
+     13
+    ],
+    "published_online": [
+     2022,
+     1,
+     13
+    ],
+    "published_print": [
+     null
+    ]
+   }
+  },
+  {
+   "k": 3,
+   "source": "epmc",
+   "score": 14,
+   "pmcid": "PMC10459136",
+   "doi": "10.3390/microorganisms11082055",
+   "title": "Genome and Transcriptome Analysis to Elucidate the Biocontrol Mechanism of <i>Bacillus amyloliquefaciens</i> XJ5 against <i>Alternaria solani</i>.",
+   "authors": [
+    {
+     "last": "Mu",
+     "initials": "F",
+     "first": "Fan",
+     "full": "Mu F",
+     "collective": null
+    },
+    {
+     "last": "Chen",
+     "initials": "X",
+     "first": "Xu",
+     "full": "Chen X",
+     "collective": null
+    },
+    {
+     "last": "Fu",
+     "initials": "Z",
+     "first": "Zhenxin",
+     "full": "Fu Z",
+     "collective": null
+    },
+    {
+     "last": "Wang",
+     "initials": "X",
+     "first": "Xue",
+     "full": "Wang X",
+     "collective": null
+    },
+    {
+     "last": "Guo",
+     "initials": "J",
+     "first": "Jiexin",
+     "full": "Guo J",
+     "collective": null
+    },
+    {
+     "last": "Zhao",
+     "initials": "X",
+     "first": "Xiaojun",
+     "full": "Zhao X",
+     "collective": null
+    },
+    {
+     "last": "Zhang",
+     "initials": "B",
+     "first": "Baojun",
+     "full": "Zhang B",
+     "collective": null
+    }
+   ],
+   "journal": "Microorganisms",
+   "journal_iso": "Microorganisms",
+   "volume": "11",
+   "issue": "8",
+   "year": 2023,
+   "pages": "2055",
+   "license": "cc by",
+   "first_pub": "2023-08-10",
+   "fig_label": "Figure 2",
+   "caption": "Microscopic morphology observations of A. solani treated with crude protein extracts from XJ5. (A) Conidia morphology of treating A. solani with crude protein extracts from XJ5 for 48 h; (B – E) SEM images showing hyphal morphology of A. solani treated with XJ5 crude protein extracts for 6 h, 12 h, 24 h, and 48 h, respectively. Red arrows indicate hyphal malformation. (F) The hyphae of A. solani grown on PDA plate observed by scanning electron microscopes were used as the negative control.",
+   "href": "microorganisms-11-02055-g002.jpg",
+   "img_url": "https://cdn.ncbi.nlm.nih.gov/pmc/blobs/935d/10459136/a53b9949b37a/microorganisms-11-02055-g002.jpg",
+   "orig_size": [
+    780,
+    400
+   ],
+   "crossref": {
+    "title": "Genome and Transcriptome Analysis to Elucidate the Biocontrol Mechanism of Bacillus amyloliquefaciens XJ5 against Alternaria solani",
+    "container": "Microorganisms",
+    "volume": "11",
+    "issue": "8",
+    "page": "2055",
+    "article_number": null,
+    "authors": [
+     {
+      "given": "Fan",
+      "family": "Mu",
+      "name": null
+     },
+     {
+      "given": "Xu",
+      "family": "Chen",
+      "name": null
+     },
+     {
+      "given": "Zhenxin",
+      "family": "Fu",
+      "name": null
+     },
+     {
+      "given": "Xue",
+      "family": "Wang",
+      "name": null
+     },
+     {
+      "given": "Jiexin",
+      "family": "Guo",
+      "name": null
+     },
+     {
+      "given": "Xiaojun",
+      "family": "Zhao",
+      "name": null
+     },
+     {
+      "given": "Baojun",
+      "family": "Zhang",
+      "name": null
+     }
+    ],
+    "issued": [
+     2023,
+     8,
+     10
+    ],
+    "published_online": [
+     2023,
+     8,
+     10
+    ],
+    "published_print": [
+     null
+    ]
+   }
   }
  ]
 }

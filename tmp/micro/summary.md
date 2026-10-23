@@ -4,23 +4,30 @@
 [1] s=8 commons CC BY 4.0 File:NFDI4BIOIMAGE Calendar May 2025 - lower image.png | Image from the NFDI4BIOIMAGE Calendar May 2025.
 The microscopy image captures the interaction between the barley cv. Golden Promise and the barley powdery mildew fungus Blumeria graminis f.sp. hordei, observed 48 hours post-inoculation. The fungus was stained with Coomassie dye, enhancing its visibi
 
-## leafrust — Бура листкова іржа пшениці (0)
+## leafrust — Бура листкова іржа пшениці (3)
+[1] s=18 cc by PMC12313645 Frontiers in microbiology 2025 | FIGURE 7 | Silencing of Pt31812 results in loss of Lr42 -mediated cell death in wheat. (A–D): Confocal imaging of Pt. -THSN infected leaf cells of Lr42 -harboring wheat line at 24 hpi and 48 hpi. Wheat leaves were treated with BSMV empty vector (BSMV:00) or silencing vector (BSMV: Pt31812) followed by inoculation of Pt.-THSN uredospores. AP: appresorium; IH: infection hypha; SV: substomatal vesicle; HMC: haustorial mother cell;
+[2] s=15 cc by PMC10073493 Frontiers in microbiology 2023 | Figure 1 | Lr19 provides prehaustoria resistance against Pt. (A) Infected leaves of susceptible cultivar Chinese Spring (Lr19 -) and resistant line TcLr19 (Lr19 +) were observed; NC: negative control, non-inoculation. (B) Fungal infection hyphae (IH) (stained blue) entered the leaf mesophyll tissue (stained blue) through the plant stoma (S) in both wheat lines at 24 hpi. Fungal haustoria (H) developed only in susceptible Chines
+[3] s=14 cc by PMC11478885 Plants (Basel, Switzerland) 2024 | Figure 4 | Microscopic analysis of Morocco and Sakha 94 wheat epidermal leaves, illustrating the localization of O 2 ●− and H 2 O 2 surrounding stomatal cells. Microscopic images in two panels. The first panel depicts the localization of O 2 ●− in mock and pre-/post-GABA-treated Morocco plants for Pt -infected and -uninfected plants, respectively. Blue arrows indicate regions contributing to stomatal closure and the hypersensit
 
 ## tanspot — Піренофороз пшениці (0)
 
 ## fhb — Фузаріоз колосу (2)
-[1] s=9 commons CC BY-SA 4.0 File:Eaay9634.F1B.large.jpg | Virions of species Gemytripvirus fugra1(alias Fusarium graminearum gemytripvirus 1, FgGMTV1, Genomoviridae) observed under transmission electron microscopy. Photo credit: Pengfei Li, Institute of Plant Protection, Chinese Academy of Agricultural Sciences.
-[2] s=5 commons CC BY-SA 3.0 File:F.graminearum.JPG | Macroconidia of Fusarium graminearum sensu stricto
+[1] s=14 cc by PMC13396691 Molecular plant pathology 2026 | FIGURE 1 | Multiple defects of the Fgcot1 mutant in vegetative growth, hyphal branching, reproduction and pathogenesis. (a) Colony morphology of the wild‐type strain (PH‐1), Fgcot1 mutant and complemented transformant (COT1 ‐C) grown on potato dextrose agar (PDA) or complete medium (CM) plate for 3 days. (b) 24‐h‐old hyphae of PH‐1 and Fgcot1 mutant were stained with Calcofluor White (CFW) and visualized by epifluorescence micr
+[2] s=12 cc by PMC13294386 Frontiers in plant science 2026 | Figure 3 | FgMob1 is involved in sexual and asexual development in Fusarium graminearum. (A) Conidiation of PH-1, Δ Fgmob1 and Δ Fgmob1 - C strains. Error bars represent mean ± SD from three replicates, and bars with the same letters are not significantly different at P < 0.05. (B) Conidial morphologies and number of septa in the PH-1, Δ Fgmob1, and Δ Fgmob1-C strains after incubation in liquid CMC for 3 days. Conidia were stai
 
-## wsmv — Смугаста мозаїка пшениці (0)
+## wsmv — Смугаста мозаїка пшениці (2)
+[1] s=11 cc by PMC9229632 Viruses 2022 | Figure 4 | Morphology of viruses detected in sap of symptomatic winter wheat plants as detected by transmission electron microscopy: wheat streak mosaic virus (WSMV) monoinfection (a) and mixed infection of WSMV + High Plains wheat mosaic virus (HPWMoV) (b). Bars are indicated on images.
+[2] s=9 cc by PMC6072864 Frontiers in plant science 2018 | FIGURE 1 | Scanning electron microscopy (SEM) image of wheat curl mite (Aceria tosichella) specimens on a wheat leaf.
 
 ## nclb — Гельмінтоспоріоз кукурудзи (3)
-[1] s=8 commons CC BY 3.0 au File:Conidia of Exserohilum turcicum.jpg | Conidia of Exserohilum turcicum. Scale bar = 10 µm.
-[2] s=7 commons CC BY 3.0 au File:Conidiophore of Exerohilum turcicum2.jpg | Conidiophore of Exerohilum turcicum. Scale bar = 20 µm.
-[3] s=4 commons CC BY 3.0 au File:Exserohilum turcicum on Zea mays.jpg | Exserohilum turcicum on Zea mays. Scale bar = 2 cm.
+[1] s=18 cc by PMC10804457 Frontiers in microbiology 2023 | Figure 3 | StRab4 regulates conidial germination and hyphal penetration. (A) Micrographs depicting germ tube, appressorium, and penetration peg formation from individual conidia of the WT and StRab4i strains growing on a cellophane layer over PDA. Images were taken at 6, 12, and 24 h post-inoculation (hpi) (scale bar, 10 μm). (B) Quantification of germ tubes, appressoria, and penetration pegs from conidia of WT and StRab4i stra
+[2] s=15 cc by PMC8342955 Frontiers in microbiology 2021 | FIGURE 4 | Observation of conidia germination after 20 days of culture under the three osmotic conditions (0.4 M NaCl, 0.4 M KCl, and 0.6 M sorbitol) and control (PDA). (A) The number of conidia produced by the hyphae under the four media. (B) The conidial suspension was incubated on cellophane at 25°C in the dark and observed at 3, 6, 9, and 11 h after inoculation under a microscope and (C) the quantitative statistics from thr
+[3] s=12 cc by PMC11324496 Frontiers in plant science 2024 | Figure 4 | Asexual structures of Exserohilum turcicum, Cercospora zeina, and Bipolaris maydis in maize. (A–C) illustrates the conidiophores for (A) E. turcicum; (B) C. zeina; (C) B. maydis. (D–F) illustrate conidia of (D) E. turcicum; (E) C. zeina; (F) B. maydis. (G–I) Conidiophores of (G) E. turcicum, (H) C. zeina and (I) B. maydis on the surfaces of maize leaves Scale bars: (A–F) = 10 µm, (G–I) = 100 µm. (C, F, I) photos prov
 
-## smut — Пухирчаста сажка кукурудзи (1)
-[1] s=5 commons CC BY-SA 3.0 File:Ustilago maydis at 'Tasty Sweet' teleutospores (3).jpg | Teleutospores of Corn smut (Ustilago maydis), on a 'Tasty Sweet'maize plant. (400x)
+## smut — Пухирчаста сажка кукурудзи (3)
+[1] s=8 cc by PMC11941951 International journal of molecular sciences 2025 | Figure 5 | The effects of sorbitol addition to solid medium on the growth of uded1 mutants. Single colonies of each U. maydis strain were streaked onto YEPA and YEPA containing 1 M sorbitol plates and incubated at 28 °C for 3 days. Microscopic images were taken of the growth on the plate (40×) and of the cells resuspended in sterile dH 2 O (400× magnification). Scale bar indicates 500 µm (plate micrographs) and 10 µm (cell micr
+[2] s=8 cc by PMC10593772 Nature communications 2023 | Fig. 1 | Sts2 regulates the hyperplastic tumor cell formation. a Photo shows the difference of the phenotype between SG200 and CR-Sts2 infected GB maize cultivar at 12 dpi, representative leaves were photographed. b Microscopic photos show the infected maize cells from SG200 and CR-Sts2 at 2 and 6 dpi. Green indicates hyphae from WGA-AF488 staining, and red is cell wall stained by propidium iodide. The experiments were repeat
+[3] s=8 cc by PMC10140897 Journal of fungi (Basel, Switzerland) 2023 | Figure 4 | Quantitative monitoring of infections symptoms in maize infection assays. (A) Symptom scoring of infected maize plants at 12 dpi. As expected, pathogenicity increased from AB33 (nonvirulent) via SG200-pit1Δ (virulent up to entry) to SG200 (fully virulent). (B) Luminescence-based analysis of fungal proliferation in plant tissue. Symptoms of each sample were scored and are indicated by colored dots. The non-pathogenic 
 
 ## whiterot — Біла гниль соняшнику (5)
 [1] s=7 commons CC BY 4.0 File:Rettich Sclerotinia-1-Josef Schlaghecken.jpg | Due to the Sclerotinia infestation on the radish turnip, a white fungal mycelium has formed on the dead tissue.
@@ -32,111 +39,64 @@ Notes: Partially buried soil in oak, maple, birch forest. Caps measure &lt;3 mm 
 [5] s=7 commons CC BY-SA 4.0 File:Sclerotinia sclerotiorum (Pennsylvania, USA) 3.jpg | Sclerotinia sclerotiorum (Lib.) de Bary, photographed in Capital Area Greenbelt, Harrisburg, Pennsylvania, USA
 Notes: Partially buried soil in oak, maple, birch forest. Caps measure &lt;3 mm across, stipe no more than 4mm long. Some sclerotium round, flattened, oblong. Spores smooth, no oil drops, o
 
-## downysun — Несправжня борошниста роса соняшнику (1)
-[1] s=7 commons CC BY-SA 4.0 File:Moon alike fungal infestation.jpg | Plasmopara halstedi (Plasmopara elianthii) is a mushroom belonging to the Oomycota genus. It grows on the Sunflower, causing necorosis on the leafs of the plant, bringing it to death. In this picture we can see the mushroom hyphae and round spores. In a first look the picture gives the effect of the
+## downysun — Несправжня борошниста роса соняшнику (3)
+[1] s=16 cc by PMC6756549 PloS one 2019 | Fig 1 | The effect of Plenaris on: A- Zoospore release. B- Cystospore germination. Sporangia of Plasmopara halstedii were incubated at 15°C in water containing various concentrations of Plenaris and examined microscopically after 2 h for zoospore release and after 20h for cystospore germination. Different letters on bars indicate on significant differences between treatments at α = 0.05.
+[2] s=15 cc by PMC10144485 Microorganisms 2023 | Figure 2 | Light micrographs of mefenoxam-activated resistance responses in hypocotyl cross-sections of sunflower. Hyphae of Plasmopara halstedii invade cells of non-treated, inoculated susceptible plants (cv. Iregi szürke csíkos) without any host responses in normal (a) and in UV light (b) (λ = 485 nm) at 21 dpi. Browning (c), autofluorescence (hypersensitive reaction) (d), and necrosis with intensive cell division (e: normal 
+[3] s=13 cc by PMC5132302 PloS one 2016 | Fig 1 | Theoretical modes of parasexual genetic exchange in Plasmopara halstedii within host-independent (A-C) and host-dependent (D) stages of infection. A, uptake of nucleus from bursted zoospore of strain I into zoospore of strain II (as proposed by Gu and Ko [16]); B, zoospore fusion (as suggested by Ersek et al. [15]); C, fusion of germtubes from sporocysts; D, hyphal anastomosis (as proposed by Hammer and Spring [17]).
 
 ## greyrot — Сіра гниль (0)
 
-## cercospora — Церкоспороз цукрових буряків (4)
-[1] s=7 commons CC0 File:Spinach- Cercospora leaf spot - 6.jpg | Pathogen: Cercospora beticola
-After 22 hours of incubation in high humidity, the lesions sporulated profusely. The conidia (spores) appear long and slivery in this light, as a stubble of grey whiskers.
-[2] s=7 commons CC0 File:Spinach- Cercospora leaf spot - 7.jpg | Pathogen: Cercospora beticola
-After 22 hours of incubation in high humidity, the lesions sporulated profusely. The conidia (spores) appear long and slivery in this light, as a stubble of grey whiskers.
-[3] s=7 commons CC0 File:Spinach- Cercospora leaf spot - 8.jpg | Pathogen: Cercospora beticola
-After 22 hours of incubation in high humidity, the lesions sporulated profusely. The conidia (spores) appear long and slivery in this light, as a stubble of grey whiskers.
-[4] s=7 commons CC0 File:Spinach- Cercospora leaf spot - 9.jpg | Pathogen: Cercospora beticola
-After 22 hours of incubation in high humidity, the lesions sporulated profusely. The conidia (spores) appear long and slivery in this light, as a stubble of grey whiskers.
+## cercospora — Церкоспороз цукрових буряків (3)
+[1] s=18 cc by PMC3616835 BMC plant biology 2013 | Figure 7 | Colonization and penetration of sugar beet leaves by Ahlburg wild type DsRed and Ahlburg ctb2 disruption strain 2-1 -DsRed. Fluorescence microscopy was performed with a Zeiss fluorescence microscope, using the DsRed filter for detection of the hyphae and UV light to excite blue autofluorescence of the plant cell wall. At 4 days after inoculation, A Ahlburg wild type-DsRed mycelia and B Ahlburg ctb2 disruption strain 
+[2] s=16 cc by PMC11943282 Journal of fungi (Basel, Switzerland) 2025 | Figure 7 | Characteristics of sugar beet leaves infected by C. beticola. Surface of cleared leaf tissue without disease symptoms, 8 d p.i.; st, stoma; cr, crystal inclusions (A); same site with focus a little bit lower demonstrating intensive colonization by C. beticola hyphae (h; (B)); close-up of non-melanized intercellular hyphae with a diameter about double that of epicuticular germ tubes (C, D); subareas of sugar beet leaf
+[3] s=14 cc by PMC12711715 Frontiers in plant science 2025 | Figure 9 | ABA-mediated stomatal defense in sugar beet leaves against Cercospora beticola infection. (A) CLS conidia on leaf stomata (50 µm scale bar). (B) Open stomata with turgid guard cells in healthy leaves. (C) Guard cell detail of healthy leaves (100 µm scale bar). (D) Partial stomatal closure at early infection. (E) Complete stomatal closure with guard cell collapse (effective ABA signaling). (F) Persistent stomatal open
 
-## lateblight — Фітофтороз картоплі й томатів (5)
-[1] s=9 commons Public domain File:Phytophthora infestans Sporangium zoospores.jpg | Phytophthora infestans Sporangium and zoospores
-[2] s=8 commons No restrictions File:Journal of botany, British and foreign (1875) (14584290097).jpg | Identifier: journalofbotanyb13trim (find matches)
-Title: Journal of botany, British and foreign
-Year: 1863 (1860s)
-Authors:  Trimen, Henry, 1843-1896 Britten, James, 1846-1924 Ramsbottom, John, 1885- Seemann, Berthold, 1825-1871 Rendle, A. B. (Alfred Barton), 1865-1938
-Subjects:  Plants Plants -- Gr
-[3] s=8 commons No restrictions File:Journal of botany, British and foreign (1875) (14767592881).jpg | Identifier: journalofbotanyb13trim (find matches)
-Title: Journal of botany, British and foreign
-Year: 1863 (1860s)
-Authors:  Trimen, Henry, 1843-1896 Britten, James, 1846-1924 Ramsbottom, John, 1885- Seemann, Berthold, 1825-1871 Rendle, A. B. (Alfred Barton), 1865-1938
-Subjects:  Plants Plants -- Gr
-[4] s=7 commons CC BY-SA 2.5 File:Oospore of Phytophthora infestans.jpg | An oospore of Phytophthora infestans - the causal agent of potato late blight.
+## lateblight — Фітофтороз картоплі й томатів (3)
+[1] s=19 cc by PMC10541906 Scientific reports 2023 | Figure 4 | Features of P. infestans using scanning electron micrographs (A) A lemon-shaped sporangia 30.6µm in diameter that produces zoospores. (B) Arrows indicate Phytophthora apophyses in sporangiophores as seen in SEM and light microscopy. The following parameters were used to establish electron micrographs: 20.0 kV, 8000x, and 10µm for both images.
+[2] s=14 cc by PMC12457093 Journal of extracellular vesicles 2025 | FIGURE 6 | PiMDP and RxLR proteins co‐localise in vesicle‐like structures in hyphae during infection. Projection images from confocal z series of hyphae from transformed P. infestans isolates expressing fluorescent protein fusions infecting N. benthamiana leaves. The mCitrine (green) and mCherry (pink) channels are shown separately and merged with three numbered arrows indicating transects drawn using single optical sections to
+[3] s=14 cc by PMC12034721 Frontiers in microbiology 2025 | Figure 4 | Impact of plant extract (PE) and formulated version (FV) at different concentrations on zoospores germination after 4 h of incubation (A,B and C,D, respectively). (A,C) The bars represent the average percentage of zoospore germination with standard errors of 9 replicates (pooled from three independent experiments, each with three replicates). Letters indicate significant differences between treatments (Kruskal-Wallis
 
-Photo by Fk.
-[5] s=5 commons CC BY-SA 3.0 File:Tomato with Phytophthora infestans (late blight).jpg | Garden tomato (variety "Ace") with Phytophthora infestans (late blight or potato blight). Los Angeles, California
+## earlyblight — Альтернаріоз картоплі (3)
+[1] s=16 cc by PMC10961351 Frontiers in microbiology 2024 | FIGURE 4 | Scanning electron microscopy images (600×) of C88 leaf cells infected with TA-0410 and TB-1129. (A) Healthy cells not infiltrated by TB-1129. (B) Healthy cells not infiltrated by TA-0410. (C) TB-1129-infected C88 leaf cells observed after 4 h. (D) TA-0410-infected C88 leaf cells observed after 4 h, arrows point to conidia. (E) TB-1129-infected C88 leaf cells observed after 8 h. (F) TA-0410-infected C88 leaf cells obs
+[2] s=16 cc by PMC8793485 Frontiers in microbiology 2021 | FIGURE 4 | Effects of 6-methyl-2-heptanone on conidia of A. solani. Here, 100 μL of A. solani HWC-168 spore suspension (10 5 cfu/mL) was spread onto 1.0% water agar medium on a divided dish, and the other side of the dish was inoculated with an EC 50 value of 6-methyl-2-heptanone. (A, B) The conidial germination of A. solani in the control and 6-methyl-2-heptanone-treated groups, respectively. The “black arrow” represented coni
+[3] s=14 cc by PMC10459136 Microorganisms 2023 | Figure 2 | Microscopic morphology observations of A. solani treated with crude protein extracts from XJ5. (A) Conidia morphology of treating A. solani with crude protein extracts from XJ5 for 48 h; (B – E) SEM images showing hyphal morphology of A. solani treated with XJ5 crude protein extracts for 6 h, 12 h, 24 h, and 48 h, respectively. Red arrows indicate hyphal malformation. (F) The hyphae of A. solani grown on PDA plate ob
 
-## earlyblight — Альтернаріоз картоплі (1)
-[1] s=5 commons Public domain File:American Journal of Botany Volume IV Plate XIX Elliott Alternaria and Macrosporium N540 w1150.jpg | American Journal of Botany.
-Volume IV, Plate XIX.
-Elliott: Alternaria and Macrosporium.
-Lancaster, Pa. :Published in cooperation with the Botanical Society of America by the Brooklyn Botanic Gardens,1914-
-https://biodiversitylibrary.org/page/47142704
-Plate XIX
-All drawings were made with camera luci
+## phomasun — Фомоз соняшнику (3)
+[1] s=5 cc by PMC5649070 BMC plant biology 2017 | Fig. 1 | Correspondence between the scoring of Phoma macdonaldii PR disease and the symptoms observed on sunflower (a: score 0; b: score 1; c: score 2; d: score 3; e: score 4)
+[2] s=5 cc by PMC5649070 BMC plant biology 2017 | Fig. 2 | Phenotypic variability of the symptoms of Phoma macdonaldii at the stem base observed on the sunflower core-collection trial in 2010 (a: SF061; b: SF057; c: SF334; d: SF110)
+[3] s=5 cc by PMC5649070 BMC plant biology 2017 | Fig. 3 | Evolution of the Phoma macdonaldii PR plants percentage (disease score ≥ 3) for a subset of the 20 sunflower inbred lines of the core-collection trial (2010) between the end of flowering (F4) and the complete maturity (M4) developmental stages
 
-## phomasun — Фомоз соняшнику (0)
+## phomarape — Фомоз ріпаку (3)
+[1] s=19 cc by PMC11603210 Environmental microbiology reports 2024 | FIGURE 2 | Comparison of the infection process of three Leptosphaeria maculans isolates on Brassica carinata (line D5.6.12) and Brassica napus (cv. Yudal). (A) Macroscopic symptoms at 12 days post‐inoculation (dpi) of the three isolates inoculated on B. napus and B. carinata. (B) Microscopic observation of the infection. Isolates were coloured with trypan blue. (C) Biomass quantification of the isolates. Quantification from sam
+[2] s=13 cc by PMC8125341 International journal of molecular sciences 2021 | Figure 3 | Fungal growth and development on the cotyledons of B. napus cv. Westar, Surpass400, and 01-23-2-1 inoculated with L. maculans isolates H75 8-1/H77 7-2, as shown by trypan blue staining. Hyphae (red arrows) started to grow on the cotyledon tissue at 5 dpi. The compatible (Westar–H75 8-1/–H77 7-2) and intermediate incompatible (Surpass400–H75 8-1) interactions allowed for the formation of pycnidia (black hollow arrows)
+[3] s=7 cc by PMC4877020 PloS one 2016 | Fig 4 | SYTOX green (0.5 μM) uptake into hyphae treated with 50 μg/ml pterostilbene. Bright field and fluorescent images for (a) control, (b) hyphae treated for 2 hours and (c) 4 hours. Black arrowheads indicate coagulation of the cytosol within the cytoplasm. White arrowheads indicate SYTOX green staining in the nuclei. Scale bar = 20 μm.
 
-## phomarape — Фомоз ріпаку (0)
-
-## blackleg — Чорна ніжка та м'яка гниль картоплі (2)
-[1] s=7 commons CC BY-SA 3.0 File:Blackleg of Potato Stem Wilt.png | Blackleg of potato symptoms showing darkened stem and leaf wilt on potato caused by the plant pathogen Pectobacterium atrosepticum.
-[2] s=7 commons CC BY-SA 3.0 File:Blackleg of Potato Wilt in Field.png | Blackleg of potato symptoms showing complete plant wilt and death in the field caused by the plant pathogen Pectobacterium atrosepticum.
+## blackleg — Чорна ніжка та м'яка гниль картоплі (3)
+[1] s=13 cc by PMC13431327 Polymers 2026 | Figure 2 | Morphological photographs and scanning electron microscope photos (400×) of ramie fibers degummed by Pectobacterium carotovorum HG-49. (a 1, a 2) Ramie bast fibers, RBF; (b 1, b 2) ramie fibers degummed for 2 h; (c 1, c 2) ramie fibers degummed for 4 h; (d 1, d 2) ramie fibers degummed for 6 h; (e 1, e 2) ramie fibers degummed for 8 h; (f 1, f 2) ramie fibers degummed for 10 h; (g 1, g 2) ramie fibers degummed for 12
+[2] s=13 cc by PMC8650274 BMC microbiology 2021 | Fig. 4 | Maceration assay in tuber slices. Maceration tissue halos measured (mm) on tuber slices inoculated with Pectobacterium carotovorum subsp. carotovorum and Pectobacterium atrosepticum. These at a concentration of 10 8 cells/mL in combination with Streptomyces sp. A2R31 and Streptomyces sp. TP199 at a concentration of 10 8 spores/mL, incubated at 28 °C for 72 h; the treatments were: (i) P. carotovorum subsp. carotovorum
+[3] s=12 cc by PMC12935840 Archives of virology 2026 | Fig. 3 | Morphology and growth kinetics of phage Mimer. a Transmission electron microscopy of phage Mimer shows Bullavirus morphology. White arrows indicate capsid spikes. b Growth kinetics of phage Mimer. The PFU/ml is given on the Y-axis and time in minutes is given on the X-axis. Phage addition to cells at timepoint −5 min. The latent period (defined from adsorption to end of rise period) and stable plateau are annotated o
 
 ## fireblight — Бактеріальний опік плодових (3)
-[1] s=7 commons CC0 File:Fire blight of apple caused by Erwinia amylovora (14415442736).jpg | Bacterial ooze from infected fruit
+[1] s=17 cc by PMC13123061 Virulence 2026 | Figure 6. | (a) Scanning electron micrograph showing a schizogenous cavity formed during the longitudinal migration of Erwinia amylovora cells in an infected branch (used with permission from [dougherty et al 2025]. (b) Erumpent mound on a “Gala” apple branch, site of internal pressure buildup of E. amylovora cells prior to generating a wound enabling bacterial ooze to exude onto the surface. (c) Exudation of an E. amylovora ooz
+[2] s=15 cc by PMC13217557 Environmental science & technology 2026 | 2 | Scanning-electron micrographs illustrating the effect of CAase on the EPS matrix of Erwinia amylovora EA273 biofilms. Left-hand panels (A and C) show cells incubated 24 h in KB broth without enzyme. Right-hand panels (B and D) depict parallel cultures exposed for 24 h to 13.0 μM CAase. Scale bars: 2 μm (10,000 ×) and 5 μm (25,000 ×).
+[3] s=12 cc by PMC12116044 Viruses 2025 | Figure 1 | Photos of the plaques of the phages Ea PF 7 (a) and Ea PF9 (b). Transmission electron micrographs of phage Ea PF 7; scale bar = 50 nm (c). Transmission electron micrographs of phage Ea PF 7 contracted position; scale bar = 100 nm. Red circle highlight theEaPf7 bacteriophage with a contracted tail. (d).
 
+## basalbact — Базальний бактеріоз пшениці (3)
+[1] s=13 cc by PMC10780974 Plants (Basel, Switzerland) 2023 | Figure 7 | Knockdown of Pst_9302 attenuated Pst growth and development. The Pst structures in Pst_9302 knockdown plants and the control plants were stained with wheat germ agglutinin conjugated to Alexa 488 (WGA) at 48 hpi and 120 hpi and observed under a fluorescence microscope. (A) Histological observation of Pst growth in Pst_9302 -silenced wheat plants at 48 hpi. SV, sub-stomatal vesicle; IH, infection hyphae; HMC, haustori
+[2] s=11 cc by PMC13172538 Nature communications 2026 | Fig. 3 | Distinct spatial expression patterns of immune genes in different epidermal cell types upon B. hordei infection. A–C Representative images showing expression patterns of ICS1 and EDS5 in pavement and guard cells following B. hordei infection at 24 hpi. Images were acquired from transgenic lines co-expressing pICS1::NLS-3 × mVENUS and pEDS5::NLS-mSCARLET (A), pICS1::NLS-3 × mVENUS and CENH3-mRFP (B), and pEDS5::NLS-mS
+[3] s=11 cc by PMC11430752 Biomolecules 2024 | Figure 5 | Pst development in HIGS-mediated Pst-18220 silencing leaves in wheat (A) The observation of Pst infection under fluorescence microscopy at 120 hpi. Left panels: fluorescence, right panels: bright. HMC, haustorial mother cell; IH, initial hyphae; SV, substomatal vesicle. Bars, 50 μm. The development of Pst infection in Pst-18220 silencing leaves exhibiting in (B) the hyphal length, (C) the number of haustorial mother 
 
+## applescab — Парша яблуні (3)
+[1] s=19 cc by PMC10269774 Microbiology spectrum 2023 | FIG 6 | Labeling of chitin on Venturia inaequalis cellular morphotypes developed in culture and in planta. (A) Cellular morphotypes developed in culture in and on cellophane membranes (CMs) overlaying potato dextrose agar labeled with wheat germ agglutinin-Alexa Fluor 488 (WGA 488) (green pseudocolor). Scale bars are 20 μm. (B) Plot profile of pixel intensity along a line (magenta) in panel A (top middle image) made with Ima
+[2] s=18 cc by PMC11676478 Journal of fungi (Basel, Switzerland) 2024 | Figure 1 | Formation of early subcuticular infection structures by V. inaequalis. Primary stroma (ps) 72 h p.i. (a) and 96 h p.i. (b) with knob-like structures (arrows) at the interface with the epidermal layer; details of the advancing hyphal tip between cuticle (cu) and cell wall (pcw), which is partially degraded, matrix material (asterisk) at the hyphal tip, cavities (arrow heads) at the interface, formation of vesicles at 
+[3] s=18 cc by PMC12295304 Journal of fungi (Basel, Switzerland) 2025 | Figure 2 | Morphological and microscopic characteristics of representative V. inaequalis isolates from Moroccan apple orchards. (a) Colony morphology of isolate ViIF01 on PDA after 28 days of incubation at 20 ± 2 °C in darkness (surface view). (b) Colony morphology of isolate ViAZ on PDA after 14 days at 20 ± 2 °C in darkness (surface view). (c) Colony morphology of isolate ViIM on PDA after 14 days at 20 ± 2 °C in darkness (su
 
-In an email to Wikimedia Commons' Volunteer Response Team, Scot Nelson has released all content from their Flickr photostream under the Creative Commons Zero license.
+## grapedowny — Мілдью винограду (3)
+[1] s=18 cc by PMC13101533 Applied and environmental microbiology 2026 | Fig 1 | P. viticola data set creation using the SwisensPoleno airflow cytometer. (A) Light microscopy image of a field population of P. viticola sporangia. Mycelium from an infected grapevine leaf was removed and suspended in solution. The cell suspension was mixed with 0.4% trypan blue at a 1:1 ratio and analyzed under a light microscope. Cell length and width were measured. (B) Holographic image from the SwisensPoleno inst
+[2] s=18 cc by PMC12195438 Microorganisms 2025 | Figure 1 | Scanning electron micrographs of grapevine leaves infected by P. viticola. (A) Sporangiophores and sporangia of P. viticola; the position indicated by the arrow indicates a zoospore with a germ tube. (B, C) Sporangia. (D) An encysted zoospore infecting a leaf through a stoma.
+[3] s=18 cc by PMC10127535 Frontiers in microbiology 2023 | Figure 1 | Confocal laser scanning microscopy (CLSM) micrograph in combination with fluorescence in situ hybridization showing bacterial colonization on grapevine phyllosphere. Confocal laser scanning micrographs of Vitis riparia leaves showing bacterial colonization patterns on nearby a trichome (A) and young, freshly emerged stomata (B) White arrows: Rhizobiales, red: other bacteria. Vitis riparia is considered to be highly r
 
-
-
-
-
- 
-
-This file is made available under the Creative Commons CC0 1.0 Universal Public Domain 
-[2] s=5 commons CC0 File:Erwinia amylovora (bacterium) (12071183125).jpg | Pathogen: Erwinia amylovora (bacterium)
-
-
-
-In an email to Wikimedia Commons' Volunteer Response Team, Scot Nelson has released all content from their Flickr photostream under the Creative Commons Zero license.
-
-
-
-
-
- 
-
-This file is made available under the Creative Commons CC0 1.0 Universal Public Do
-[3] s=4 commons CC BY-SA 3.0 File:FBnecrosetige.JPG | Een puistje word veroorzaak door bacterien. Deze kunnen worden bestreden met een speciale creme genaamd eucerin. (plaatje plant eucerin). Dit gaat zo in zijn werk:
-
-alle bacterien strijden tegen de anderen, en duwen tegen het puistje aan. Deze word langzaam uitgeknepen door bacterien waardoor het so
-
-## basalbact — Базальний бактеріоз пшениці (0)
-
-## applescab — Парша яблуні (2)
-[1] s=14 commons CC BY-SA 4.0 File:Para Wiki.jpg | Acervulo observed in a permanent preparation of the asexual phase of Ventura inaequalis at 10xGoogle Lens Ai overviewThe image shows a micrograph of a plant tissue infected by the fungus Venturia inaequalis, the causative agent of apple scab. 
-The image highlights key structures of the pathogen with
-[2] s=5 commons Public domain File:Apple scab SEM.jpg | 
-
-## grapedowny — Мілдью винограду (2)
-[1] s=6 commons CC BY-SA 4.0 File:Downy Mildew on 'Valiant' cultivar (Vitis vinifera x Vitis labrusca x Vitis riparia).jpg | Sporangia and sporangiophores protruding from the stomas of the grape berries
-[2] s=5 commons CC BY-SA 4.0 File:Conidophores and Sporangia of Plasmopara viticola.jpg | Conidophores and Sporangia of Plasmopara viticola
-
-## clavibacter — Бактеріальний рак томатів (5)
-[1] s=7 commons CC BY 3.0 us File:Clavibacter michiganensis symptoms on tomato.jpg | Symptoms of Clavibacter michiganensis infection on tomato, causing a disease known as bacterial canker.
-[2] s=6 commons CC0 File:Bacterial canker of tomato caused by Corynebacterium michiganense pv. michiganense (9777392932).jpg | In an email to Wikimedia Commons' Volunteer Response Team, Scot Nelson has released all content from their Flickr photostream under the Creative Commons Zero license.
-
-
-
-
-
- 
-
-This file is made available under the Creative Commons CC0 1.0 Universal Public Domain Dedication.
-
-
-The person who associate
-[3] s=5 commons CC BY-SA 4.0 File:AlfalfaPP300.jpg | Alfalfa with bacteria wilt caused by Clavibacter michiganensis subsp. insidiosus
-[4] s=5 commons CC BY-SA 4.0 File:Alfalfaclavbacterialwilt.jpg | Alfalfa with bacterial wilt caused by Clavibacter michiganensis subsp. insidiosus
-[5] s=5 commons CC BY 3.0 us File:Flétrissure bactéreinne Clavibacter michiganensis ssp sepedonicus 5357042.jpg | Potato plant infected with bacterial ring rot of potato (Clavibacter michiganensis subsp. sepedonicus), United States . Pied de pomme de terre atteint de flétrissure bactérienne (Clavibacter michiganensis subsp. sepedonicus), États-Unis
+## clavibacter — Бактеріальний рак томатів (3)
+[1] s=14 cc by-nc PMC12445707 Cell surface (Amsterdam, Netherlands) 2025 | Fig. 2 | Subcellular localization of CmWag31 and CmPBPC in E. coli and C. michiganensis (n = 3). A. E. coli strain DH-5α carried the plasmid vector pHN216 expressing mCherry protein (Up) or Wag31-mCherry fusion proteins (Down). Merge images of bacteria cells are shown as bright-field with overlaid fluorescence in red (Scale bar = 2 μm). B. C. michiganensis strain BT-0505 carried the plasmid vector pHN216 expressing mCherry pr
+[2] s=14 cc by PMC11672578 Antibiotics (Basel, Switzerland) 2024 | Figure 3 | (A) Effects of various concentrations of yakushimin-TYa (blue), amurin-9TYa (green), and brevinin-1TYa (orange) on the growth of Escherichia coli and Staphylococcus aureus. Bacterial cells were incubated with twofold serially diluted peptides for 20 h at 37 °C. Points and vertical bars represent the mean ± standard error of the mean (SE); n = 4. Values with the same superscripts are not significantly different (p ≥ 0
+[3] s=14 cc by PMC10663603 Scientific reports 2023 | Figure 4 | Localization of SlHBP2. Fluorescence confocal microscopy images of bacteria treated with SlHBP2 and stained with Alexa Fluor 647-conjugated anti-His secondary antibody and with Hoeschst 33,342. Pink fluorescence indicates the localization of the SlHBP2 in the cells. Blue fluorescence shows cytoplasmic DNA stained with Hoeschst 33,342.

@@ -4,41 +4,475 @@
  "candidates": [
   {
    "k": 1,
-   "source": "commons",
-   "score": 7,
-   "file": "File:Blackleg of Potato Stem Wilt.png",
-   "page": "https://commons.wikimedia.org/wiki/File:Blackleg_of_Potato_Stem_Wilt.png",
-   "img_url": "https://upload.wikimedia.org/wikipedia/commons/a/aa/Blackleg_of_Potato_Stem_Wilt.png?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
-   "thumb_url": "https://upload.wikimedia.org/wikipedia/commons/a/aa/Blackleg_of_Potato_Stem_Wilt.png?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail_unscaled",
-   "orig_size": [
-    688,
-    693
+   "source": "epmc",
+   "score": 13,
+   "pmcid": "PMC13431327",
+   "doi": "10.3390/polym18141775",
+   "title": "Degumming of Ramie Bast Fibers by &lt;i&gt;Pectobacterium carotovorum&lt;/i&gt; HG-49: Mechanisms and High-Efficiency Strategies.",
+   "authors": [
+    {
+     "last": "Shu",
+     "initials": "T",
+     "first": "Tong",
+     "full": "Shu T",
+     "collective": null
+    },
+    {
+     "last": "Yu",
+     "initials": "T",
+     "first": "Tianyi",
+     "full": "Yu T",
+     "collective": null
+    },
+    {
+     "last": "Li",
+     "initials": "P",
+     "first": "Pandeng",
+     "full": "Li P",
+     "collective": null
+    },
+    {
+     "last": "Hou",
+     "initials": "Z",
+     "first": "Ziqi",
+     "full": "Hou Z",
+     "collective": null
+    },
+    {
+     "last": "Wang",
+     "initials": "H",
+     "first": "Huihui",
+     "full": "Wang H",
+     "collective": null
+    },
+    {
+     "last": "Chen",
+     "initials": "Y",
+     "first": "Yulong",
+     "full": "Chen Y",
+     "collective": null
+    },
+    {
+     "last": "Fu",
+     "initials": "C",
+     "first": "Chunhua",
+     "full": "Fu C",
+     "collective": null
+    },
+    {
+     "last": "Yu",
+     "initials": "L",
+     "first": "Longjiang",
+     "full": "Yu L",
+     "collective": null
+    }
    ],
-   "artist": "Amy Charkowski",
-   "license": "CC BY-SA 3.0",
-   "license_url": "https://creativecommons.org/licenses/by-sa/3.0",
-   "credit": "lecture",
-   "description": "Blackleg of potato symptoms showing darkened stem and leaf wilt on potato caused by the plant pathogen Pectobacterium atrosepticum.",
-   "date": "2013-11-27 13:29:48"
+   "journal": "Polymers",
+   "journal_iso": "Polymers (Basel)",
+   "volume": "18",
+   "issue": "14",
+   "year": 2026,
+   "pages": "1775",
+   "license": "cc by",
+   "first_pub": "2026-07-20",
+   "fig_label": "Figure 2",
+   "caption": "Morphological photographs and scanning electron microscope photos (400×) of ramie fibers degummed by Pectobacterium carotovorum HG-49. (a 1, a 2) Ramie bast fibers, RBF; (b 1, b 2) ramie fibers degummed for 2 h; (c 1, c 2) ramie fibers degummed for 4 h; (d 1, d 2) ramie fibers degummed for 6 h; (e 1, e 2) ramie fibers degummed for 8 h; (f 1, f 2) ramie fibers degummed for 10 h; (g 1, g 2) ramie fibers degummed for 12 h; (h 1, h 2) ramie fibers degummed for 14 h; (i 1, i 2) ramie fibers degummed for 16 h; (j 1, j 2) refined ramie fibers.",
+   "href": "polymers-18-01775-g002.jpg",
+   "img_url": "https://cdn.ncbi.nlm.nih.gov/pmc/blobs/2275/13431327/4064f3a9d49b/polymers-18-01775-g002.jpg",
+   "orig_size": [
+    734,
+    503
+   ],
+   "crossref": {
+    "title": "Degumming of Ramie Bast Fibers by Pectobacterium carotovorum HG-49: Mechanisms and High-Efficiency Strategies",
+    "container": "Polymers",
+    "volume": "18",
+    "issue": "14",
+    "page": "1775",
+    "article_number": null,
+    "authors": [
+     {
+      "given": "Tong",
+      "family": "Shu",
+      "name": null
+     },
+     {
+      "given": "Tianyi",
+      "family": "Yu",
+      "name": null
+     },
+     {
+      "given": "Pandeng",
+      "family": "Li",
+      "name": null
+     },
+     {
+      "given": "Ziqi",
+      "family": "Hou",
+      "name": null
+     },
+     {
+      "given": "Huihui",
+      "family": "Wang",
+      "name": null
+     },
+     {
+      "given": "Yulong",
+      "family": "Chen",
+      "name": null
+     },
+     {
+      "given": "Chunhua",
+      "family": "Fu",
+      "name": null
+     },
+     {
+      "given": "Longjiang",
+      "family": "Yu",
+      "name": null
+     }
+    ],
+    "issued": [
+     2026,
+     7,
+     20
+    ],
+    "published_online": [
+     2026,
+     7,
+     20
+    ],
+    "published_print": [
+     null
+    ]
+   }
   },
   {
    "k": 2,
-   "source": "commons",
-   "score": 7,
-   "file": "File:Blackleg of Potato Wilt in Field.png",
-   "page": "https://commons.wikimedia.org/wiki/File:Blackleg_of_Potato_Wilt_in_Field.png",
-   "img_url": "https://upload.wikimedia.org/wikipedia/commons/3/3e/Blackleg_of_Potato_Wilt_in_Field.png?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
-   "thumb_url": "https://upload.wikimedia.org/wikipedia/commons/3/3e/Blackleg_of_Potato_Wilt_in_Field.png?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail_unscaled",
-   "orig_size": [
-    517,
-    879
+   "source": "epmc",
+   "score": 13,
+   "pmcid": "PMC8650274",
+   "doi": "10.1186/s12866-021-02393-x",
+   "title": "Antagonistic activity of endophytic actinobacteria from native potatoes (Solanum tuberosum subsp. tuberosum L.) against Pectobacterium carotovorum subsp. carotovorum and Pectobacterium atrosepticum.",
+   "authors": [
+    {
+     "last": "Padilla-Gálvez",
+     "initials": "N",
+     "first": "Natalia",
+     "full": "Padilla-Gálvez N",
+     "collective": null
+    },
+    {
+     "last": "Luengo-Uribe",
+     "initials": "P",
+     "first": "Paola",
+     "full": "Luengo-Uribe P",
+     "collective": null
+    },
+    {
+     "last": "Mancilla",
+     "initials": "S",
+     "first": "Sandra",
+     "full": "Mancilla S",
+     "collective": null
+    },
+    {
+     "last": "Maurin",
+     "initials": "A",
+     "first": "Amandine",
+     "full": "Maurin A",
+     "collective": null
+    },
+    {
+     "last": "Torres",
+     "initials": "C",
+     "first": "Claudia",
+     "full": "Torres C",
+     "collective": null
+    },
+    {
+     "last": "Ruiz",
+     "initials": "P",
+     "first": "Pamela",
+     "full": "Ruiz P",
+     "collective": null
+    },
+    {
+     "last": "France",
+     "initials": "A",
+     "first": "Andrés",
+     "full": "France A",
+     "collective": null
+    },
+    {
+     "last": "Acuña",
+     "initials": "I",
+     "first": "Ivette",
+     "full": "Acuña I",
+     "collective": null
+    },
+    {
+     "last": "Urrutia",
+     "initials": "H",
+     "first": "Homero",
+     "full": "Urrutia H",
+     "collective": null
+    }
    ],
-   "artist": "Amy Charkowski",
-   "license": "CC BY-SA 3.0",
-   "license_url": "https://creativecommons.org/licenses/by-sa/3.0",
-   "credit": "lecture",
-   "description": "Blackleg of potato symptoms showing complete plant wilt and death in the field caused by the plant pathogen Pectobacterium atrosepticum.",
-   "date": "2013-11-27 13:29:48"
+   "journal": "BMC microbiology",
+   "journal_iso": "BMC Microbiol",
+   "volume": "21",
+   "issue": "1",
+   "year": 2021,
+   "pages": "335",
+   "license": "cc by",
+   "first_pub": "2021-12-07",
+   "fig_label": "Fig. 4",
+   "caption": "Maceration assay in tuber slices. Maceration tissue halos measured (mm) on tuber slices inoculated with Pectobacterium carotovorum subsp. carotovorum and Pectobacterium atrosepticum. These at a concentration of 10 8 cells/mL in combination with Streptomyces sp. A2R31 and Streptomyces sp. TP199 at a concentration of 10 8 spores/mL, incubated at 28 °C for 72 h; the treatments were: (i) P. carotovorum subsp. carotovorum, (ii) P. atrosepticum, (iii) Streptomyces sp. A2R31, (iv) Streptomyces sp. (v) P. carotovorum subsp. carotovorum + Streptomyces sp. A2R31 and (vi) P. carotovorum subsp. carotovorum + Streptomyces sp. TP199. Error bars indicate standard deviation of the media. CN: Sterile Nutrient Broth. Pba: P. atrosepticum. Pcc: P. carotovorum subsp. carotovorum. Plot mean with SD. Different letters on the top of error bars indicates statistical significative differences (Tukey-test, p ≤ 0,05), n = 3",
+   "href": "12866_2021_2393_Fig4_HTML.jpg",
+   "img_url": "https://cdn.ncbi.nlm.nih.gov/pmc/blobs/f360/8650274/f74d950b2702/12866_2021_2393_Fig4_HTML.jpg",
+   "orig_size": [
+    786,
+    863
+   ],
+   "crossref": {
+    "title": "Antagonistic activity of endophytic actinobacteria from native potatoes (Solanum tuberosum subsp. tuberosum L.) against Pectobacterium carotovorum subsp. carotovorum and Pectobacterium atrosepticum",
+    "container": "BMC Microbiology",
+    "volume": "21",
+    "issue": "1",
+    "page": null,
+    "article_number": "335",
+    "authors": [
+     {
+      "given": "Natalia",
+      "family": "Padilla-Gálvez",
+      "name": null
+     },
+     {
+      "given": "Paola",
+      "family": "Luengo-Uribe",
+      "name": null
+     },
+     {
+      "given": "Sandra",
+      "family": "Mancilla",
+      "name": null
+     },
+     {
+      "given": "Amandine",
+      "family": "Maurin",
+      "name": null
+     },
+     {
+      "given": "Claudia",
+      "family": "Torres",
+      "name": null
+     },
+     {
+      "given": "Pamela",
+      "family": "Ruiz",
+      "name": null
+     },
+     {
+      "given": "Andrés",
+      "family": "France",
+      "name": null
+     },
+     {
+      "given": "Ivette",
+      "family": "Acuña",
+      "name": null
+     },
+     {
+      "given": "Homero",
+      "family": "Urrutia",
+      "name": null
+     }
+    ],
+    "issued": [
+     2021,
+     12
+    ],
+    "published_online": [
+     2021,
+     12,
+     7
+    ],
+    "published_print": [
+     2021,
+     12
+    ]
+   }
+  },
+  {
+   "k": 3,
+   "source": "epmc",
+   "score": 12,
+   "pmcid": "PMC12935840",
+   "doi": "10.1007/s00705-026-06543-2",
+   "title": "The first single-stranded DNA virus targeting Pectobacterium belongs to the family Microviridae and demonstrates a broad host range to Pectobacterium brasiliense soft rot pathogens.",
+   "authors": [
+    {
+     "last": "Pedersen",
+     "initials": "JS",
+     "first": "Julie Stenberg",
+     "full": "Pedersen JS",
+     "collective": null
+    },
+    {
+     "last": "Carstens",
+     "initials": "AB",
+     "first": "Alexander Byth",
+     "full": "Carstens AB",
+     "collective": null
+    },
+    {
+     "last": "Rothgardt",
+     "initials": "M",
+     "first": "Magnus",
+     "full": "Rothgardt M",
+     "collective": null
+    },
+    {
+     "last": "Viry",
+     "initials": "A",
+     "first": "Anouk",
+     "full": "Viry A",
+     "collective": null
+    },
+    {
+     "last": "Hille",
+     "initials": "F",
+     "first": "Frank",
+     "full": "Hille F",
+     "collective": null
+    },
+    {
+     "last": "Franz",
+     "initials": "CMAP",
+     "first": "Charles M A P",
+     "full": "Franz CMAP",
+     "collective": null
+    },
+    {
+     "last": "Kot",
+     "initials": "W",
+     "first": "Witold",
+     "full": "Kot W",
+     "collective": null
+    },
+    {
+     "last": "Egorov",
+     "initials": "A",
+     "first": "Artyom",
+     "full": "Egorov A",
+     "collective": null
+    },
+    {
+     "last": "Atkinson",
+     "initials": "G",
+     "first": "Gemma",
+     "full": "Atkinson G",
+     "collective": null
+    },
+    {
+     "last": "Hansen",
+     "initials": "LH",
+     "first": "Lars Hestbjerg",
+     "full": "Hansen LH",
+     "collective": null
+    }
+   ],
+   "journal": "Archives of virology",
+   "journal_iso": "Arch Virol",
+   "volume": "171",
+   "issue": "3",
+   "year": 2026,
+   "pages": "97",
+   "license": "cc by",
+   "first_pub": "2026-02-25",
+   "fig_label": "Fig. 3",
+   "caption": "Morphology and growth kinetics of phage Mimer. a Transmission electron microscopy of phage Mimer shows Bullavirus morphology. White arrows indicate capsid spikes. b Growth kinetics of phage Mimer. The PFU/ml is given on the Y-axis and time in minutes is given on the X-axis. Phage addition to cells at timepoint −5 min. The latent period (defined from adsorption to end of rise period) and stable plateau are annotated on the graph. For each time point the PFU/ml is shown with SD (standard deviation) based on triplicates",
+   "href": "705_2026_6543_Fig3_HTML.jpg",
+   "img_url": "https://cdn.ncbi.nlm.nih.gov/pmc/blobs/4684/12935840/2c63db8efcc0/705_2026_6543_Fig3_HTML.jpg",
+   "orig_size": [
+    759,
+    1140
+   ],
+   "crossref": {
+    "title": "The first single-stranded DNA virus targeting Pectobacterium belongs to the family Microviridae and demonstrates a broad host range to Pectobacterium brasiliense soft rot pathogens",
+    "container": "Archives of Virology",
+    "volume": "171",
+    "issue": "3",
+    "page": null,
+    "article_number": "97",
+    "authors": [
+     {
+      "given": "Julie Stenberg",
+      "family": "Pedersen",
+      "name": null
+     },
+     {
+      "given": "Alexander Byth",
+      "family": "Carstens",
+      "name": null
+     },
+     {
+      "given": "Magnus",
+      "family": "Rothgardt",
+      "name": null
+     },
+     {
+      "given": "Anouk",
+      "family": "Viry",
+      "name": null
+     },
+     {
+      "given": "Frank",
+      "family": "Hille",
+      "name": null
+     },
+     {
+      "given": "Charles M.A.P.",
+      "family": "Franz",
+      "name": null
+     },
+     {
+      "given": "Witold",
+      "family": "Kot",
+      "name": null
+     },
+     {
+      "given": "Artyom",
+      "family": "Egorov",
+      "name": null
+     },
+     {
+      "given": "Gemma",
+      "family": "Atkinson",
+      "name": null
+     },
+     {
+      "given": "Lars Hestbjerg",
+      "family": "Hansen",
+      "name": null
+     }
+    ],
+    "issued": [
+     2026,
+     2,
+     25
+    ],
+    "published_online": [
+     2026,
+     2,
+     25
+    ],
+    "published_print": [
+     2026,
+     3
+    ]
+   }
   }
  ]
 }

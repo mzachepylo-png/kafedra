@@ -1,5 +1,444 @@
 {
  "id": "phomasun",
  "name": "Фомоз соняшнику",
- "candidates": []
+ "candidates": [
+  {
+   "k": 1,
+   "source": "epmc",
+   "score": 5,
+   "pmcid": "PMC5649070",
+   "doi": "10.1186/s12870-017-1116-1",
+   "title": "Different genetic architectures underlie crop responses to the same pathogen: the {Helianthus annuus * Phoma macdonaldii} interaction case for black stem disease and premature ripening.",
+   "authors": [
+    {
+     "last": "Bordat",
+     "initials": "A",
+     "first": "Amandine",
+     "full": "Bordat A",
+     "collective": null
+    },
+    {
+     "last": "Marchand",
+     "initials": "G",
+     "first": "Gwenaëlle",
+     "full": "Marchand G",
+     "collective": null
+    },
+    {
+     "last": "Langlade",
+     "initials": "NB",
+     "first": "Nicolas B",
+     "full": "Langlade NB",
+     "collective": null
+    },
+    {
+     "last": "Pouilly",
+     "initials": "N",
+     "first": "Nicolas",
+     "full": "Pouilly N",
+     "collective": null
+    },
+    {
+     "last": "Muños",
+     "initials": "S",
+     "first": "Stéphane",
+     "full": "Muños S",
+     "collective": null
+    },
+    {
+     "last": "Dechamp-Guillaume",
+     "initials": "G",
+     "first": "Grégory",
+     "full": "Dechamp-Guillaume G",
+     "collective": null
+    },
+    {
+     "last": "Vincourt",
+     "initials": "P",
+     "first": "Patrick",
+     "full": "Vincourt P",
+     "collective": null
+    },
+    {
+     "last": "Bret-Mestries",
+     "initials": "E",
+     "first": "Emmanuelle",
+     "full": "Bret-Mestries E",
+     "collective": null
+    }
+   ],
+   "journal": "BMC plant biology",
+   "journal_iso": "BMC Plant Biol",
+   "volume": "17",
+   "issue": "1",
+   "year": 2017,
+   "pages": "167",
+   "license": "cc by",
+   "first_pub": "2017-10-19",
+   "fig_label": "Fig. 1",
+   "caption": "Correspondence between the scoring of Phoma macdonaldii PR disease and the symptoms observed on sunflower (a: score 0; b: score 1; c: score 2; d: score 3; e: score 4)",
+   "href": "12870_2017_1116_Fig1_HTML.jpg",
+   "img_url": "https://cdn.ncbi.nlm.nih.gov/pmc/blobs/439e/5649070/ae181b9f67f0/12870_2017_1116_Fig1_HTML.jpg",
+   "orig_size": [
+    778,
+    159
+   ],
+   "crossref": {
+    "title": "Different genetic architectures underlie crop responses to the same pathogen: the {Helianthus annuus * Phoma macdonaldii} interaction case for black stem disease and premature ripening",
+    "container": "BMC Plant Biology",
+    "volume": "17",
+    "issue": "1",
+    "page": null,
+    "article_number": "167",
+    "authors": [
+     {
+      "given": "Amandine",
+      "family": "Bordat",
+      "name": null
+     },
+     {
+      "given": "Gwenaëlle",
+      "family": "Marchand",
+      "name": null
+     },
+     {
+      "given": "Nicolas B.",
+      "family": "Langlade",
+      "name": null
+     },
+     {
+      "given": "Nicolas",
+      "family": "Pouilly",
+      "name": null
+     },
+     {
+      "given": "Stéphane",
+      "family": "Muños",
+      "name": null
+     },
+     {
+      "given": "Grégory",
+      "family": "Dechamp-Guillaume",
+      "name": null
+     },
+     {
+      "given": "Patrick",
+      "family": "Vincourt",
+      "name": null
+     },
+     {
+      "given": "Emmanuelle",
+      "family": "Bret-Mestries",
+      "name": null
+     }
+    ],
+    "issued": [
+     2017,
+     10,
+     19
+    ],
+    "published_online": [
+     2017,
+     10,
+     19
+    ],
+    "published_print": [
+     2017,
+     12
+    ]
+   }
+  },
+  {
+   "k": 2,
+   "source": "epmc",
+   "score": 5,
+   "pmcid": "PMC5649070",
+   "doi": "10.1186/s12870-017-1116-1",
+   "title": "Different genetic architectures underlie crop responses to the same pathogen: the {Helianthus annuus * Phoma macdonaldii} interaction case for black stem disease and premature ripening.",
+   "authors": [
+    {
+     "last": "Bordat",
+     "initials": "A",
+     "first": "Amandine",
+     "full": "Bordat A",
+     "collective": null
+    },
+    {
+     "last": "Marchand",
+     "initials": "G",
+     "first": "Gwenaëlle",
+     "full": "Marchand G",
+     "collective": null
+    },
+    {
+     "last": "Langlade",
+     "initials": "NB",
+     "first": "Nicolas B",
+     "full": "Langlade NB",
+     "collective": null
+    },
+    {
+     "last": "Pouilly",
+     "initials": "N",
+     "first": "Nicolas",
+     "full": "Pouilly N",
+     "collective": null
+    },
+    {
+     "last": "Muños",
+     "initials": "S",
+     "first": "Stéphane",
+     "full": "Muños S",
+     "collective": null
+    },
+    {
+     "last": "Dechamp-Guillaume",
+     "initials": "G",
+     "first": "Grégory",
+     "full": "Dechamp-Guillaume G",
+     "collective": null
+    },
+    {
+     "last": "Vincourt",
+     "initials": "P",
+     "first": "Patrick",
+     "full": "Vincourt P",
+     "collective": null
+    },
+    {
+     "last": "Bret-Mestries",
+     "initials": "E",
+     "first": "Emmanuelle",
+     "full": "Bret-Mestries E",
+     "collective": null
+    }
+   ],
+   "journal": "BMC plant biology",
+   "journal_iso": "BMC Plant Biol",
+   "volume": "17",
+   "issue": "1",
+   "year": 2017,
+   "pages": "167",
+   "license": "cc by",
+   "first_pub": "2017-10-19",
+   "fig_label": "Fig. 2",
+   "caption": "Phenotypic variability of the symptoms of Phoma macdonaldii at the stem base observed on the sunflower core-collection trial in 2010 (a: SF061; b: SF057; c: SF334; d: SF110)",
+   "href": "12870_2017_1116_Fig2_HTML.jpg",
+   "img_url": "https://cdn.ncbi.nlm.nih.gov/pmc/blobs/439e/5649070/f6df79b70bf9/12870_2017_1116_Fig2_HTML.jpg",
+   "orig_size": [
+    567,
+    232
+   ],
+   "crossref": {
+    "title": "Different genetic architectures underlie crop responses to the same pathogen: the {Helianthus annuus * Phoma macdonaldii} interaction case for black stem disease and premature ripening",
+    "container": "BMC Plant Biology",
+    "volume": "17",
+    "issue": "1",
+    "page": null,
+    "article_number": "167",
+    "authors": [
+     {
+      "given": "Amandine",
+      "family": "Bordat",
+      "name": null
+     },
+     {
+      "given": "Gwenaëlle",
+      "family": "Marchand",
+      "name": null
+     },
+     {
+      "given": "Nicolas B.",
+      "family": "Langlade",
+      "name": null
+     },
+     {
+      "given": "Nicolas",
+      "family": "Pouilly",
+      "name": null
+     },
+     {
+      "given": "Stéphane",
+      "family": "Muños",
+      "name": null
+     },
+     {
+      "given": "Grégory",
+      "family": "Dechamp-Guillaume",
+      "name": null
+     },
+     {
+      "given": "Patrick",
+      "family": "Vincourt",
+      "name": null
+     },
+     {
+      "given": "Emmanuelle",
+      "family": "Bret-Mestries",
+      "name": null
+     }
+    ],
+    "issued": [
+     2017,
+     10,
+     19
+    ],
+    "published_online": [
+     2017,
+     10,
+     19
+    ],
+    "published_print": [
+     2017,
+     12
+    ]
+   }
+  },
+  {
+   "k": 3,
+   "source": "epmc",
+   "score": 5,
+   "pmcid": "PMC5649070",
+   "doi": "10.1186/s12870-017-1116-1",
+   "title": "Different genetic architectures underlie crop responses to the same pathogen: the {Helianthus annuus * Phoma macdonaldii} interaction case for black stem disease and premature ripening.",
+   "authors": [
+    {
+     "last": "Bordat",
+     "initials": "A",
+     "first": "Amandine",
+     "full": "Bordat A",
+     "collective": null
+    },
+    {
+     "last": "Marchand",
+     "initials": "G",
+     "first": "Gwenaëlle",
+     "full": "Marchand G",
+     "collective": null
+    },
+    {
+     "last": "Langlade",
+     "initials": "NB",
+     "first": "Nicolas B",
+     "full": "Langlade NB",
+     "collective": null
+    },
+    {
+     "last": "Pouilly",
+     "initials": "N",
+     "first": "Nicolas",
+     "full": "Pouilly N",
+     "collective": null
+    },
+    {
+     "last": "Muños",
+     "initials": "S",
+     "first": "Stéphane",
+     "full": "Muños S",
+     "collective": null
+    },
+    {
+     "last": "Dechamp-Guillaume",
+     "initials": "G",
+     "first": "Grégory",
+     "full": "Dechamp-Guillaume G",
+     "collective": null
+    },
+    {
+     "last": "Vincourt",
+     "initials": "P",
+     "first": "Patrick",
+     "full": "Vincourt P",
+     "collective": null
+    },
+    {
+     "last": "Bret-Mestries",
+     "initials": "E",
+     "first": "Emmanuelle",
+     "full": "Bret-Mestries E",
+     "collective": null
+    }
+   ],
+   "journal": "BMC plant biology",
+   "journal_iso": "BMC Plant Biol",
+   "volume": "17",
+   "issue": "1",
+   "year": 2017,
+   "pages": "167",
+   "license": "cc by",
+   "first_pub": "2017-10-19",
+   "fig_label": "Fig. 3",
+   "caption": "Evolution of the Phoma macdonaldii PR plants percentage (disease score ≥ 3) for a subset of the 20 sunflower inbred lines of the core-collection trial (2010) between the end of flowering (F4) and the complete maturity (M4) developmental stages",
+   "href": "12870_2017_1116_Fig3_HTML.jpg",
+   "img_url": "https://cdn.ncbi.nlm.nih.gov/pmc/blobs/439e/5649070/2fafead60ceb/12870_2017_1116_Fig3_HTML.jpg",
+   "orig_size": [
+    472,
+    250
+   ],
+   "crossref": {
+    "title": "Different genetic architectures underlie crop responses to the same pathogen: the {Helianthus annuus * Phoma macdonaldii} interaction case for black stem disease and premature ripening",
+    "container": "BMC Plant Biology",
+    "volume": "17",
+    "issue": "1",
+    "page": null,
+    "article_number": "167",
+    "authors": [
+     {
+      "given": "Amandine",
+      "family": "Bordat",
+      "name": null
+     },
+     {
+      "given": "Gwenaëlle",
+      "family": "Marchand",
+      "name": null
+     },
+     {
+      "given": "Nicolas B.",
+      "family": "Langlade",
+      "name": null
+     },
+     {
+      "given": "Nicolas",
+      "family": "Pouilly",
+      "name": null
+     },
+     {
+      "given": "Stéphane",
+      "family": "Muños",
+      "name": null
+     },
+     {
+      "given": "Grégory",
+      "family": "Dechamp-Guillaume",
+      "name": null
+     },
+     {
+      "given": "Patrick",
+      "family": "Vincourt",
+      "name": null
+     },
+     {
+      "given": "Emmanuelle",
+      "family": "Bret-Mestries",
+      "name": null
+     }
+    ],
+    "issued": [
+     2017,
+     10,
+     19
+    ],
+    "published_online": [
+     2017,
+     10,
+     19
+    ],
+    "published_print": [
+     2017,
+     12
+    ]
+   }
+  }
+ ]
 }

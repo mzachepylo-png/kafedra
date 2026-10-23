@@ -1,5 +1,441 @@
 {
  "id": "basalbact",
  "name": "Базальний бактеріоз пшениці",
- "candidates": []
+ "candidates": [
+  {
+   "k": 1,
+   "source": "epmc",
+   "score": 13,
+   "pmcid": "PMC10780974",
+   "doi": "10.3390/plants13010094",
+   "title": "Stripe Rust Effector Pst_9302 Inhibits Wheat Immunity to Promote Susceptibility.",
+   "authors": [
+    {
+     "last": "Zhao",
+     "initials": "H",
+     "first": "Haibin",
+     "full": "Zhao H",
+     "collective": null
+    },
+    {
+     "last": "Huang",
+     "initials": "J",
+     "first": "Jiangyu",
+     "full": "Huang J",
+     "collective": null
+    },
+    {
+     "last": "Zhao",
+     "initials": "X",
+     "first": "Xiaoyan",
+     "full": "Zhao X",
+     "collective": null
+    },
+    {
+     "last": "Yu",
+     "initials": "L",
+     "first": "Ligang",
+     "full": "Yu L",
+     "collective": null
+    },
+    {
+     "last": "Wang",
+     "initials": "X",
+     "first": "Xiaodong",
+     "full": "Wang X",
+     "collective": null
+    },
+    {
+     "last": "Zhao",
+     "initials": "C",
+     "first": "Congcong",
+     "full": "Zhao C",
+     "collective": null
+    },
+    {
+     "last": "Nasab",
+     "initials": "HR",
+     "first": "Hojjatollah Rabbani",
+     "full": "Nasab HR",
+     "collective": null
+    },
+    {
+     "last": "Tang",
+     "initials": "C",
+     "first": "Chunlei",
+     "full": "Tang C",
+     "collective": null
+    },
+    {
+     "last": "Wang",
+     "initials": "X",
+     "first": "Xiaojie",
+     "full": "Wang X",
+     "collective": null
+    }
+   ],
+   "journal": "Plants (Basel, Switzerland)",
+   "journal_iso": "Plants (Basel)",
+   "volume": "13",
+   "issue": "1",
+   "year": 2023,
+   "pages": "94",
+   "license": "cc by",
+   "first_pub": "2023-12-27",
+   "fig_label": "Figure 7",
+   "caption": "Knockdown of Pst_9302 attenuated Pst growth and development. The Pst structures in Pst_9302 knockdown plants and the control plants were stained with wheat germ agglutinin conjugated to Alexa 488 (WGA) at 48 hpi and 120 hpi and observed under a fluorescence microscope. (A) Histological observation of Pst growth in Pst_9302 -silenced wheat plants at 48 hpi. SV, sub-stomatal vesicle; IH, infection hyphae; HMC, haustorial mother cell; H, haustorium. Bars = 20 µm. (B, C) The hyphal branch and haustorium numbers of Pst per infection site at 48 hpi were measured using CellSens Entry software (Olympus, Tokyo, Japan) (D, E) Infection area of Pst in Pst_9302 -silenced wheat plants at 48 and 120 hpi measured using CellSens Entry software (Olympus, Tokyo, Japan). Data are means ± SD (n = 50). *, p < 0.05; **, p < 0.01 using an unpaired two-tailed Student’s t -test.",
+   "href": "plants-13-00094-g007.jpg",
+   "img_url": "https://cdn.ncbi.nlm.nih.gov/pmc/blobs/d371/10780974/bcaaca2e2f57/plants-13-00094-g007.jpg",
+   "orig_size": [
+    749,
+    731
+   ],
+   "crossref": {
+    "title": "Stripe Rust Effector Pst_9302 Inhibits Wheat Immunity to Promote Susceptibility",
+    "container": "Plants",
+    "volume": "13",
+    "issue": "1",
+    "page": "94",
+    "article_number": null,
+    "authors": [
+     {
+      "given": "Haibin",
+      "family": "Zhao",
+      "name": null
+     },
+     {
+      "given": "Jiangyu",
+      "family": "Huang",
+      "name": null
+     },
+     {
+      "given": "Xiaoyan",
+      "family": "Zhao",
+      "name": null
+     },
+     {
+      "given": "Ligang",
+      "family": "Yu",
+      "name": null
+     },
+     {
+      "given": "Xiaodong",
+      "family": "Wang",
+      "name": null
+     },
+     {
+      "given": "Congcong",
+      "family": "Zhao",
+      "name": null
+     },
+     {
+      "given": "Hojjatollah Rabbani",
+      "family": "nasab",
+      "name": null
+     },
+     {
+      "given": "Chunlei",
+      "family": "Tang",
+      "name": null
+     },
+     {
+      "given": "Xiaojie",
+      "family": "Wang",
+      "name": null
+     }
+    ],
+    "issued": [
+     2023,
+     12,
+     27
+    ],
+    "published_online": [
+     2023,
+     12,
+     27
+    ],
+    "published_print": [
+     null
+    ]
+   }
+  },
+  {
+   "k": 2,
+   "source": "epmc",
+   "score": 11,
+   "pmcid": "PMC13172538",
+   "doi": "10.1038/s41467-026-70843-z",
+   "title": "Cell-type-specific immune programs orchestrate spatial defense in the Arabidopsis leaf epidermis.",
+   "authors": [
+    {
+     "last": "Song",
+     "initials": "J",
+     "first": "Jingpu",
+     "full": "Song J",
+     "collective": null
+    },
+    {
+     "last": "Modareszadeh",
+     "initials": "M",
+     "first": "Mahsa",
+     "full": "Modareszadeh M",
+     "collective": null
+    },
+    {
+     "last": "Kumarapeli",
+     "initials": "D",
+     "first": "Dinithi",
+     "full": "Kumarapeli D",
+     "collective": null
+    },
+    {
+     "last": "Acosta",
+     "initials": "WA",
+     "first": "Wilson Andres",
+     "full": "Acosta WA",
+     "collective": null
+    },
+    {
+     "last": "Cui",
+     "initials": "Y",
+     "first": "Yuhai",
+     "full": "Cui Y",
+     "collective": null
+    },
+    {
+     "last": "Wei",
+     "initials": "Y",
+     "first": "Yangdou",
+     "full": "Wei Y",
+     "collective": null
+    }
+   ],
+   "journal": "Nature communications",
+   "journal_iso": "Nat Commun",
+   "volume": "17",
+   "issue": "1",
+   "year": 2026,
+   "pages": "4296",
+   "license": "cc by",
+   "first_pub": "2026-03-21",
+   "fig_label": "Fig. 3",
+   "caption": "Distinct spatial expression patterns of immune genes in different epidermal cell types upon B. hordei infection. A–C Representative images showing expression patterns of ICS1 and EDS5 in pavement and guard cells following B. hordei infection at 24 hpi. Images were acquired from transgenic lines co-expressing pICS1::NLS-3 × mVENUS and pEDS5::NLS-mSCARLET (A), pICS1::NLS-3 × mVENUS and CENH3-mRFP (B), and pEDS5::NLS-mSCARLET and N7 (C). Fluorescent images are shown as maximal intensity projections of Z-stacks. At least ten single-infection sites were examined per reporter line. An enlarged view of guard cells adjacent to infected pavement cells is shown in the right panels. Infected cells are outlined with red dashed lines. mVENUS signals are depicted in cyan; mSCARLET and mRFP in magenta; GFP in green. Scale bars: 50 μm. D Representative image showing the expression pattern of pICS1::NLS-3 × mVENUS in pavement cells surrounding a guard cell penetrated by B. hordei. At least ten single-infection sites were examined. The enlarged inset provides a close-up view of the infected guard cell. A diagram illustrates the details of the infection site. Observations were made at a minimum of ten single-infection sites. Cell walls and fungal structures stained with PI are shown in white. The red arrow indicates the haustorium. Scale bars, 20 μm. E Representative images showing the expression pattern of the immune gene FRK1 following B. hordei infection at 24 hpi. Images were obtained from transgenic plants co-expressing pFRK1::NLS-3 × mCITRINE and CENH3-mRFP. The enlarged inset shows a close-up of a guard cell adjacent to the penetrated pavement cell. Fluorescent signals are displayed as maximal intensity projections of Z-stacks. A minimum of ten single-infection sites were analyzed. The infected cell is outlined with a red dashed line. mCITRINE signals are shown in cyan; mRFP signals in magenta. Scale bars: 50 μm. F Representative images showing the expression pattern of the immune gene LipoP1 following B. hordei infection at 24 hpi. Images were obtained from transgenic plants co-expressing pLipoP1::NLS-3 × mCITRINE and CENH3-mRFP. The enlarged inset highlights a guard cell adjacent to a penetrated pavement cell, showing a co-localization of mCITRINE and mRFP signals in guard cells. Fluorescent signals are presented as maximal intensity projections of Z-stacks. A minimum of ten single-infection sites were analyzed. The infected cell is outlined with a red dashed line. mCITRINE signals are shown in cyan; mRFP signals in magenta. Scale bars: 50 μm. A – F Guard cells adjacent to infected pavement cells are indicated by asterisks. ic infected cell; igc infected guard cell; pc pavement cell; app appressorium; ha haustorium.",
+   "href": "41467_2026_70843_Fig3_HTML.jpg",
+   "img_url": "https://cdn.ncbi.nlm.nih.gov/pmc/blobs/1380/13172538/cb5243fb3cf8/41467_2026_70843_Fig3_HTML.jpg",
+   "orig_size": [
+    748,
+    999
+   ],
+   "crossref": {
+    "title": "Cell-type-specific immune programs orchestrate spatial defense in the Arabidopsis leaf epidermis",
+    "container": "Nature Communications",
+    "volume": "17",
+    "issue": "1",
+    "page": null,
+    "article_number": "4296",
+    "authors": [
+     {
+      "given": "Jingpu",
+      "family": "Song",
+      "name": null
+     },
+     {
+      "given": "Mahsa",
+      "family": "Modareszadeh",
+      "name": null
+     },
+     {
+      "given": "Dinithi",
+      "family": "Kumarapeli",
+      "name": null
+     },
+     {
+      "given": "Wilson Andres",
+      "family": "Acosta",
+      "name": null
+     },
+     {
+      "given": "Yuhai",
+      "family": "Cui",
+      "name": null
+     },
+     {
+      "given": "Yangdou",
+      "family": "Wei",
+      "name": null
+     }
+    ],
+    "issued": [
+     2026,
+     3,
+     21
+    ],
+    "published_online": [
+     2026,
+     3,
+     21
+    ],
+    "published_print": [
+     null
+    ]
+   }
+  },
+  {
+   "k": 3,
+   "source": "epmc",
+   "score": 11,
+   "pmcid": "PMC11430752",
+   "doi": "10.3390/biom14091092",
+   "title": "A Putative Effector Pst-18220, from &lt;i&gt;Puccinia striiformis&lt;/i&gt; f. sp. &lt;i&gt;tritici&lt;/i&gt;, Participates in Rust Pathogenicity and Plant Defense Suppression.",
+   "authors": [
+    {
+     "last": "Tian",
+     "initials": "M",
+     "first": "Mengfan",
+     "full": "Tian M",
+     "collective": null
+    },
+    {
+     "last": "Zhang",
+     "initials": "Z",
+     "first": "Zhen",
+     "full": "Zhang Z",
+     "collective": null
+    },
+    {
+     "last": "Bi",
+     "initials": "X",
+     "first": "Xiaorui",
+     "full": "Bi X",
+     "collective": null
+    },
+    {
+     "last": "Xue",
+     "initials": "Y",
+     "first": "Yan",
+     "full": "Xue Y",
+     "collective": null
+    },
+    {
+     "last": "Zhou",
+     "initials": "J",
+     "first": "Jiahui",
+     "full": "Zhou J",
+     "collective": null
+    },
+    {
+     "last": "Yuan",
+     "initials": "B",
+     "first": "Bo",
+     "full": "Yuan B",
+     "collective": null
+    },
+    {
+     "last": "Feng",
+     "initials": "Z",
+     "first": "Zhaozhong",
+     "full": "Feng Z",
+     "collective": null
+    },
+    {
+     "last": "Li",
+     "initials": "L",
+     "first": "Lianwei",
+     "full": "Li L",
+     "collective": null
+    },
+    {
+     "last": "Wang",
+     "initials": "J",
+     "first": "Junjuan",
+     "full": "Wang J",
+     "collective": null
+    }
+   ],
+   "journal": "Biomolecules",
+   "journal_iso": "Biomolecules",
+   "volume": "14",
+   "issue": "9",
+   "year": 2024,
+   "pages": "1092",
+   "license": "cc by",
+   "first_pub": "2024-08-31",
+   "fig_label": "Figure 5",
+   "caption": "Pst development in HIGS-mediated Pst-18220 silencing leaves in wheat (A) The observation of Pst infection under fluorescence microscopy at 120 hpi. Left panels: fluorescence, right panels: bright. HMC, haustorial mother cell; IH, initial hyphae; SV, substomatal vesicle. Bars, 50 μm. The development of Pst infection in Pst-18220 silencing leaves exhibiting in (B) the hyphal length, (C) the number of haustorial mother cell and (D) the number of uredinium. Hpi: hours post inoculation. The values are the means from 20–50 infection sites. The error bars indicate standard errors. Analysis of variance (ANOVA) was conducted by Duncan’s multiple range test (p < 0.05). The means do not differ significantly if they contain at least one common lowercase letter for each treatment.",
+   "href": "biomolecules-14-01092-g005.jpg",
+   "img_url": "https://cdn.ncbi.nlm.nih.gov/pmc/blobs/1b98/11430752/e222574cdc61/biomolecules-14-01092-g005.jpg",
+   "orig_size": [
+    740,
+    978
+   ],
+   "crossref": {
+    "title": "A Putative Effector Pst-18220, from Puccinia striiformis f. sp. tritici, Participates in Rust Pathogenicity and Plant Defense Suppression",
+    "container": "Biomolecules",
+    "volume": "14",
+    "issue": "9",
+    "page": "1092",
+    "article_number": null,
+    "authors": [
+     {
+      "given": "Mengfan",
+      "family": "Tian",
+      "name": null
+     },
+     {
+      "given": "Zhen",
+      "family": "Zhang",
+      "name": null
+     },
+     {
+      "given": "Xiaorui",
+      "family": "Bi",
+      "name": null
+     },
+     {
+      "given": "Yan",
+      "family": "Xue",
+      "name": null
+     },
+     {
+      "given": "Jiahui",
+      "family": "Zhou",
+      "name": null
+     },
+     {
+      "given": "Bo",
+      "family": "Yuan",
+      "name": null
+     },
+     {
+      "given": "Zhaozhong",
+      "family": "Feng",
+      "name": null
+     },
+     {
+      "given": "Lianwei",
+      "family": "Li",
+      "name": null
+     },
+     {
+      "given": "Junjuan",
+      "family": "Wang",
+      "name": null
+     }
+    ],
+    "issued": [
+     2024,
+     8,
+     31
+    ],
+    "published_online": [
+     2024,
+     8,
+     31
+    ],
+    "published_print": [
+     null
+    ]
+   }
+  }
+ ]
 }
