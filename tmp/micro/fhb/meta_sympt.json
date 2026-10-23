@@ -1,0 +1,332 @@
+{
+ "id": "fhb",
+ "candidates": [
+  {
+   "k": "s1",
+   "source": "epmc",
+   "score": 7,
+   "pmcid": "PMC3946419",
+   "doi": "10.1371/journal.pone.0091135",
+   "title": "The adenylyl cyclase plays a regulatory role in the morphogenetic switch from vegetative to pathogenic lifestyle of Fusarium graminearum on wheat.",
+   "authors": [
+    {
+     "last": "Bormann",
+     "initials": "J",
+     "first": "Jörg",
+     "full": "Bormann J",
+     "collective": null
+    },
+    {
+     "last": "Boenisch",
+     "initials": "MJ",
+     "first": "Marike Johanne",
+     "full": "Boenisch MJ",
+     "collective": null
+    },
+    {
+     "last": "Brückner",
+     "initials": "E",
+     "first": "Elena",
+     "full": "Brückner E",
+     "collective": null
+    },
+    {
+     "last": "Firat",
+     "initials": "D",
+     "first": "Demet",
+     "full": "Firat D",
+     "collective": null
+    },
+    {
+     "last": "Schäfer",
+     "initials": "W",
+     "first": "Wilhelm",
+     "full": "Schäfer W",
+     "collective": null
+    }
+   ],
+   "journal": "PloS one",
+   "journal_iso": "PLoS One",
+   "volume": "9",
+   "issue": "3",
+   "year": 2014,
+   "pages": "e91135",
+   "license": "cc by",
+   "first_pub": "2014-03-06",
+   "fig_label": "Figure 6",
+   "caption": "Pathogenicity assay on wheat. Wheat heads of the susceptible cultivar Nandu were inoculated with conidia of the wild type (WT:PH1), the Δ Fgac1, the complemented Δ Fgac1 mutant (c Fgac1) and one ectopic mutant (ECT), respectively, and incubated 21 days. The Δ Fgac1 mutant strain was drastically reduced in virulence. The inoculated spikelet showed necrotic lesions (close-up of the Δ Fgac1 -inoculated spike). The wild-type, the c Fgac1 and the ectopic strains caused symptoms typical for Fusarium head blight (FHB) disease. The wheat infections were performed 30 times for each strain.",
+   "href": "pone.0091135.g006.jpg",
+   "img_url": "https://journals.plos.org/plosone/article/figure/image?size=large&id=10.1371/journal.pone.0091135.g006",
+   "orig_size": [
+    2049,
+    736
+   ],
+   "crossref": {
+    "title": "The Adenylyl Cyclase Plays a Regulatory Role in the Morphogenetic Switch from Vegetative to Pathogenic Lifestyle of Fusarium graminearum on Wheat",
+    "container": "PLoS ONE",
+    "volume": "9",
+    "issue": "3",
+    "page": "e91135",
+    "article_number": null,
+    "authors": [
+     {
+      "given": "Jörg",
+      "family": "Bormann",
+      "name": null
+     },
+     {
+      "given": "Marike Johanne",
+      "family": "Boenisch",
+      "name": null
+     },
+     {
+      "given": "Elena",
+      "family": "Brückner",
+      "name": null
+     },
+     {
+      "given": "Demet",
+      "family": "Firat",
+      "name": null
+     },
+     {
+      "given": "Wilhelm",
+      "family": "Schäfer",
+      "name": null
+     }
+    ],
+    "issued": [
+     2014,
+     3,
+     6
+    ],
+    "published_online": [
+     2014,
+     3,
+     6
+    ],
+    "published_print": [
+     null
+    ]
+   }
+  },
+  {
+   "k": "s2",
+   "source": "epmc",
+   "score": 4,
+   "pmcid": "PMC3946419",
+   "doi": "10.1371/journal.pone.0091135",
+   "title": "The adenylyl cyclase plays a regulatory role in the morphogenetic switch from vegetative to pathogenic lifestyle of Fusarium graminearum on wheat.",
+   "authors": [
+    {
+     "last": "Bormann",
+     "initials": "J",
+     "first": "Jörg",
+     "full": "Bormann J",
+     "collective": null
+    },
+    {
+     "last": "Boenisch",
+     "initials": "MJ",
+     "first": "Marike Johanne",
+     "full": "Boenisch MJ",
+     "collective": null
+    },
+    {
+     "last": "Brückner",
+     "initials": "E",
+     "first": "Elena",
+     "full": "Brückner E",
+     "collective": null
+    },
+    {
+     "last": "Firat",
+     "initials": "D",
+     "first": "Demet",
+     "full": "Firat D",
+     "collective": null
+    },
+    {
+     "last": "Schäfer",
+     "initials": "W",
+     "first": "Wilhelm",
+     "full": "Schäfer W",
+     "collective": null
+    }
+   ],
+   "journal": "PloS one",
+   "journal_iso": "PLoS One",
+   "volume": "9",
+   "issue": "3",
+   "year": 2014,
+   "pages": "e91135",
+   "license": "cc by",
+   "first_pub": "2014-03-06",
+   "fig_label": "Figure 1",
+   "caption": "Colony morphology of the wild type (WT:PH1) and the Δ Fgac1 on complete medium (CM) and CM supplemented with the cAMP analogon 8-(4-Chlorophenylthio)adenosine 3',5'-cyclic monophosphate sodium salt (8-CPT). Addition of 8-CPT partially complements the growth phenotype.",
+   "href": "pone.0091135.g001.jpg",
+   "img_url": "https://journals.plos.org/plosone/article/figure/image?size=large&id=10.1371/journal.pone.0091135.g001",
+   "orig_size": [
+    2046,
+    1931
+   ],
+   "crossref": {
+    "title": "The Adenylyl Cyclase Plays a Regulatory Role in the Morphogenetic Switch from Vegetative to Pathogenic Lifestyle of Fusarium graminearum on Wheat",
+    "container": "PLoS ONE",
+    "volume": "9",
+    "issue": "3",
+    "page": "e91135",
+    "article_number": null,
+    "authors": [
+     {
+      "given": "Jörg",
+      "family": "Bormann",
+      "name": null
+     },
+     {
+      "given": "Marike Johanne",
+      "family": "Boenisch",
+      "name": null
+     },
+     {
+      "given": "Elena",
+      "family": "Brückner",
+      "name": null
+     },
+     {
+      "given": "Demet",
+      "family": "Firat",
+      "name": null
+     },
+     {
+      "given": "Wilhelm",
+      "family": "Schäfer",
+      "name": null
+     }
+    ],
+    "issued": [
+     2014,
+     3,
+     6
+    ],
+    "published_online": [
+     2014,
+     3,
+     6
+    ],
+    "published_print": [
+     null
+    ]
+   }
+  },
+  {
+   "k": "s3",
+   "source": "epmc",
+   "score": 4,
+   "pmcid": "PMC3946419",
+   "doi": "10.1371/journal.pone.0091135",
+   "title": "The adenylyl cyclase plays a regulatory role in the morphogenetic switch from vegetative to pathogenic lifestyle of Fusarium graminearum on wheat.",
+   "authors": [
+    {
+     "last": "Bormann",
+     "initials": "J",
+     "first": "Jörg",
+     "full": "Bormann J",
+     "collective": null
+    },
+    {
+     "last": "Boenisch",
+     "initials": "MJ",
+     "first": "Marike Johanne",
+     "full": "Boenisch MJ",
+     "collective": null
+    },
+    {
+     "last": "Brückner",
+     "initials": "E",
+     "first": "Elena",
+     "full": "Brückner E",
+     "collective": null
+    },
+    {
+     "last": "Firat",
+     "initials": "D",
+     "first": "Demet",
+     "full": "Firat D",
+     "collective": null
+    },
+    {
+     "last": "Schäfer",
+     "initials": "W",
+     "first": "Wilhelm",
+     "full": "Schäfer W",
+     "collective": null
+    }
+   ],
+   "journal": "PloS one",
+   "journal_iso": "PLoS One",
+   "volume": "9",
+   "issue": "3",
+   "year": 2014,
+   "pages": "e91135",
+   "license": "cc by",
+   "first_pub": "2014-03-06",
+   "fig_label": "Figure 7",
+   "caption": "Pathogenicity assay on maize. Maize cobs of the inbreed line A188 were inoculated with conidia of the wild type (WT:PH1) and the Δ Fgac1, respectively, and incubated 35 days. The Δ Fgac1 mutant strain and the wild type caused typical symptoms of cob rot disease. The maize infections were performed 20 times for each strain.",
+   "href": "pone.0091135.g007.jpg",
+   "img_url": "https://journals.plos.org/plosone/article/figure/image?size=large&id=10.1371/journal.pone.0091135.g007",
+   "orig_size": [
+    2031,
+    1165
+   ],
+   "crossref": {
+    "title": "The Adenylyl Cyclase Plays a Regulatory Role in the Morphogenetic Switch from Vegetative to Pathogenic Lifestyle of Fusarium graminearum on Wheat",
+    "container": "PLoS ONE",
+    "volume": "9",
+    "issue": "3",
+    "page": "e91135",
+    "article_number": null,
+    "authors": [
+     {
+      "given": "Jörg",
+      "family": "Bormann",
+      "name": null
+     },
+     {
+      "given": "Marike Johanne",
+      "family": "Boenisch",
+      "name": null
+     },
+     {
+      "given": "Elena",
+      "family": "Brückner",
+      "name": null
+     },
+     {
+      "given": "Demet",
+      "family": "Firat",
+      "name": null
+     },
+     {
+      "given": "Wilhelm",
+      "family": "Schäfer",
+      "name": null
+     }
+    ],
+    "issued": [
+     2014,
+     3,
+     6
+    ],
+    "published_online": [
+     2014,
+     3,
+     6
+    ],
+    "published_print": [
+     null
+    ]
+   }
+  }
+ ]
+}

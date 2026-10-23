@@ -1,0 +1,369 @@
+{
+ "id": "nclb",
+ "candidates": [
+  {
+   "k": "s1",
+   "source": "epmc",
+   "score": 11,
+   "pmcid": "PMC11324496",
+   "doi": "10.3389/fpls.2024.1404483",
+   "title": "Recent advances in the population biology and management of maize foliar fungal pathogens <i>Exserohilum turcicum</i>, <i>Cercospora zeina</i> and <i>Bipolaris maydis</i> in Africa.",
+   "authors": [
+    {
+     "last": "Nsibo",
+     "initials": "DL",
+     "first": "David L",
+     "full": "Nsibo DL",
+     "collective": null
+    },
+    {
+     "last": "Barnes",
+     "initials": "I",
+     "first": "Irene",
+     "full": "Barnes I",
+     "collective": null
+    },
+    {
+     "last": "Berger",
+     "initials": "DK",
+     "first": "Dave K",
+     "full": "Berger DK",
+     "collective": null
+    }
+   ],
+   "journal": "Frontiers in plant science",
+   "journal_iso": "Front Plant Sci",
+   "volume": "15",
+   "issue": null,
+   "year": 2024,
+   "pages": "1404483",
+   "license": "cc by",
+   "first_pub": "2024-08-01",
+   "fig_label": "Figure 2",
+   "caption": "Asexual life cycles of Exserohilum turcicum, Cercospora zeina, and Bipolaris maydis. (A) Primary inoculum overwinters on maize debris as conidiophores until the next growing season, when they are dispersed in the form of conidia. (B) Under favorable conditions, conidia are dispersed and land on young maize plants. (C) Conidia germinate, penetrate plant cells, and later develop into small chlorotic spots. (D, E) Mature lesions develop from the lower leaves to younger leaves. These later give rise to conidia (secondary inoculum), which disperse to the younger plants, and the cycle repeats. Et, E. turcicum (Leonard, 1977b; Levy and Cohen, 1983; Bentolila et al., 1991; White, 1999; Kotze et al., 2019); Cz, C. zeina (Beckman and Payne, 1982; Latterell and Rossi, 1983; Ward et al., 1999; Wisser et al., 2011) and Bm, B. maydis (Jeffers, 2004; Wisser et al., 2011; Singh and Srivastava, 2012). Citations refer to sources for details of each pathogen’s disease cycle. (C) leaf cross sections were adapted from Supplementary Figure S1 of Wisser et al. (2011). The unit for free water is hours. RH = relative humidity.",
+   "href": "fpls-15-1404483-g002.jpg",
+   "img_url": "https://www.frontiersin.org/files/Articles/1404483/fpls-15-1404483-HTML/image_m/fpls-15-1404483-g002.jpg",
+   "orig_size": [
+    1653,
+    2217
+   ],
+   "crossref": {
+    "title": "Recent advances in the population biology and management of maize foliar fungal pathogens Exserohilum turcicum, Cercospora zeina and Bipolaris maydis in Africa",
+    "container": "Frontiers in Plant Science",
+    "volume": "15",
+    "issue": null,
+    "page": null,
+    "article_number": "1404483",
+    "authors": [
+     {
+      "given": "David L.",
+      "family": "Nsibo",
+      "name": null
+     },
+     {
+      "given": "Irene",
+      "family": "Barnes",
+      "name": null
+     },
+     {
+      "given": "Dave K.",
+      "family": "Berger",
+      "name": null
+     }
+    ],
+    "issued": [
+     2024,
+     8,
+     1
+    ],
+    "published_online": [
+     2024,
+     8,
+     1
+    ],
+    "published_print": [
+     null
+    ]
+   }
+  },
+  {
+   "k": "s2",
+   "source": "epmc",
+   "score": 7,
+   "pmcid": "PMC11324496",
+   "doi": "10.3389/fpls.2024.1404483",
+   "title": "Recent advances in the population biology and management of maize foliar fungal pathogens <i>Exserohilum turcicum</i>, <i>Cercospora zeina</i> and <i>Bipolaris maydis</i> in Africa.",
+   "authors": [
+    {
+     "last": "Nsibo",
+     "initials": "DL",
+     "first": "David L",
+     "full": "Nsibo DL",
+     "collective": null
+    },
+    {
+     "last": "Barnes",
+     "initials": "I",
+     "first": "Irene",
+     "full": "Barnes I",
+     "collective": null
+    },
+    {
+     "last": "Berger",
+     "initials": "DK",
+     "first": "Dave K",
+     "full": "Berger DK",
+     "collective": null
+    }
+   ],
+   "journal": "Frontiers in plant science",
+   "journal_iso": "Front Plant Sci",
+   "volume": "15",
+   "issue": null,
+   "year": 2024,
+   "pages": "1404483",
+   "license": "cc by",
+   "first_pub": "2024-08-01",
+   "fig_label": "Figure 3",
+   "caption": "Symptomatic differences in NLB, GLS, and SCLB in maize. Each pathogen causes distinct disease symptoms during the intermediate and late stages of the infection cycle. Symptoms are prone to misidentification at early stages. All three diseases exhibit chlorotic spots in their early stages, making them difficult to diagnose. In the intermediate to late stages, each disease assumes its distinct lesion shape (i.e., cigar-shaped lesions for NLB, fine rectangular lesions for GLS, and rectangular lesions with irregular margins for SCLB symptoms, especially at the late stage). SCLB and GLS are not as clearly distinct as NLB. Scale bars = 2 cm.",
+   "href": "fpls-15-1404483-g003.jpg",
+   "img_url": "https://www.frontiersin.org/files/Articles/1404483/fpls-15-1404483-HTML/image_m/fpls-15-1404483-g003.jpg",
+   "orig_size": [
+    1390,
+    2359
+   ],
+   "crossref": {
+    "title": "Recent advances in the population biology and management of maize foliar fungal pathogens Exserohilum turcicum, Cercospora zeina and Bipolaris maydis in Africa",
+    "container": "Frontiers in Plant Science",
+    "volume": "15",
+    "issue": null,
+    "page": null,
+    "article_number": "1404483",
+    "authors": [
+     {
+      "given": "David L.",
+      "family": "Nsibo",
+      "name": null
+     },
+     {
+      "given": "Irene",
+      "family": "Barnes",
+      "name": null
+     },
+     {
+      "given": "Dave K.",
+      "family": "Berger",
+      "name": null
+     }
+    ],
+    "issued": [
+     2024,
+     8,
+     1
+    ],
+    "published_online": [
+     2024,
+     8,
+     1
+    ],
+    "published_print": [
+     null
+    ]
+   }
+  },
+  {
+   "k": "s3",
+   "source": "epmc",
+   "score": 7,
+   "pmcid": "PMC10532967",
+   "doi": "10.3390/jof9090936",
+   "title": "Biocontrol Potential of <i>Trichoderma asperellum</i> Strain 576 against <i>Exserohilum turcicum</i> in <i>Zea mays</i>.",
+   "authors": [
+    {
+     "last": "Ma",
+     "initials": "Y",
+     "first": "Yukun",
+     "full": "Ma Y",
+     "collective": null
+    },
+    {
+     "last": "Li",
+     "initials": "Y",
+     "first": "Yetong",
+     "full": "Li Y",
+     "collective": null
+    },
+    {
+     "last": "Yang",
+     "initials": "S",
+     "first": "Shijia",
+     "full": "Yang S",
+     "collective": null
+    },
+    {
+     "last": "Li",
+     "initials": "Y",
+     "first": "Yu",
+     "full": "Li Y",
+     "collective": null
+    },
+    {
+     "last": "Zhu",
+     "initials": "Z",
+     "first": "Zhaoxiang",
+     "full": "Zhu Z",
+     "collective": null
+    }
+   ],
+   "journal": "Journal of fungi (Basel, Switzerland)",
+   "journal_iso": "J Fungi (Basel)",
+   "volume": "9",
+   "issue": "9",
+   "year": 2023,
+   "pages": "936",
+   "license": "cc by",
+   "first_pub": "2023-09-16",
+   "fig_label": "Figure 8",
+   "caption": "Effects of Trichoderma asperellum 576 on maize seedlings growth. T1: control plants (plants without T. asperellum 576 or Exserohilum turcicum 101; T2: T. asperellum 576-treated plants; T3: E. turcicum 101-inoculated plants; and T4: E. turcicum 101 and T. asperellum 576-inoculated/treated plants. Bar = 10 cm.",
+   "href": "jof-09-00936-g008.jpg",
+   "img_url": "https://cdn.ncbi.nlm.nih.gov/pmc/blobs/a95c/10532967/44f9dc26c220/jof-09-00936-g008.jpg",
+   "orig_size": [
+    720,
+    568
+   ],
+   "crossref": {
+    "title": "Biocontrol Potential of Trichoderma asperellum Strain 576 against Exserohilum turcicum in Zea mays",
+    "container": "Journal of Fungi",
+    "volume": "9",
+    "issue": "9",
+    "page": "936",
+    "article_number": null,
+    "authors": [
+     {
+      "given": "Yukun",
+      "family": "Ma",
+      "name": null
+     },
+     {
+      "given": "Yetong",
+      "family": "Li",
+      "name": null
+     },
+     {
+      "given": "Shijia",
+      "family": "Yang",
+      "name": null
+     },
+     {
+      "given": "Yu",
+      "family": "Li",
+      "name": null
+     },
+     {
+      "given": "Zhaoxiang",
+      "family": "Zhu",
+      "name": null
+     }
+    ],
+    "issued": [
+     2023,
+     9,
+     16
+    ],
+    "published_online": [
+     2023,
+     9,
+     16
+    ],
+    "published_print": [
+     null
+    ]
+   }
+  },
+  {
+   "k": "s4",
+   "source": "epmc",
+   "score": 6,
+   "pmcid": "PMC11324496",
+   "doi": "10.3389/fpls.2024.1404483",
+   "title": "Recent advances in the population biology and management of maize foliar fungal pathogens <i>Exserohilum turcicum</i>, <i>Cercospora zeina</i> and <i>Bipolaris maydis</i> in Africa.",
+   "authors": [
+    {
+     "last": "Nsibo",
+     "initials": "DL",
+     "first": "David L",
+     "full": "Nsibo DL",
+     "collective": null
+    },
+    {
+     "last": "Barnes",
+     "initials": "I",
+     "first": "Irene",
+     "full": "Barnes I",
+     "collective": null
+    },
+    {
+     "last": "Berger",
+     "initials": "DK",
+     "first": "Dave K",
+     "full": "Berger DK",
+     "collective": null
+    }
+   ],
+   "journal": "Frontiers in plant science",
+   "journal_iso": "Front Plant Sci",
+   "volume": "15",
+   "issue": null,
+   "year": 2024,
+   "pages": "1404483",
+   "license": "cc by",
+   "first_pub": "2024-08-01",
+   "fig_label": "Figure 1",
+   "caption": "Distribution of three Maize leaf diseases in Africa. Northern leaf blight (NLB) is indicated in green, gray leaf spot (GLS) in red and southern corn leaf blight (SCLB) in blue. GLS is the most widely distributed disease in Africa, followed by NLB. Citations of the reports of the diseases in African countries are listed in Table 1 and from the USDA database https://fungi.ars.usda.gov/.",
+   "href": "fpls-15-1404483-g001.jpg",
+   "img_url": "https://www.frontiersin.org/files/Articles/1404483/fpls-15-1404483-HTML/image_m/fpls-15-1404483-g001.jpg",
+   "orig_size": [
+    1625,
+    1956
+   ],
+   "crossref": {
+    "title": "Recent advances in the population biology and management of maize foliar fungal pathogens Exserohilum turcicum, Cercospora zeina and Bipolaris maydis in Africa",
+    "container": "Frontiers in Plant Science",
+    "volume": "15",
+    "issue": null,
+    "page": null,
+    "article_number": "1404483",
+    "authors": [
+     {
+      "given": "David L.",
+      "family": "Nsibo",
+      "name": null
+     },
+     {
+      "given": "Irene",
+      "family": "Barnes",
+      "name": null
+     },
+     {
+      "given": "Dave K.",
+      "family": "Berger",
+      "name": null
+     }
+    ],
+    "issued": [
+     2024,
+     8,
+     1
+    ],
+    "published_online": [
+     2024,
+     8,
+     1
+    ],
+    "published_print": [
+     null
+    ]
+   }
+  }
+ ]
+}

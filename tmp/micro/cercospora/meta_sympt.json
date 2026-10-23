@@ -1,0 +1,224 @@
+{
+ "id": "cercospora",
+ "candidates": [
+  {
+   "k": "s1",
+   "source": "epmc",
+   "score": 8,
+   "pmcid": "PMC11943282",
+   "doi": "10.3390/jof11030211",
+   "title": "Intra-Leaf Variability of Incubation Period Sheds New Light on the Lifestyle of &lt;i&gt;Cercospora beticola&lt;/i&gt; in Sugar Beets.",
+   "authors": [
+    {
+     "last": "Oerke",
+     "initials": "EC",
+     "first": "Erich-Christian",
+     "full": "Oerke EC",
+     "collective": null
+    },
+    {
+     "last": "Steiner",
+     "initials": "U",
+     "first": "Ulrike",
+     "full": "Steiner U",
+     "collective": null
+    }
+   ],
+   "journal": "Journal of fungi (Basel, Switzerland)",
+   "journal_iso": "J Fungi (Basel)",
+   "volume": "11",
+   "issue": "3",
+   "year": 2025,
+   "pages": "211",
+   "license": "cc by",
+   "first_pub": "2025-03-09",
+   "fig_label": "Figure 5",
+   "caption": "Development of CLS lesions on leaves of four sugar beet cultivars in time. Increase in the number of CLS lesions per leaf in the period 9 to 27 d p.i. (A); relative growth rate (RGR) of lesion number over time (B); increase in the total leaf area diseased in the period 9 to 27 d p.i. (C); relative growth rate (RGR) of diseased leaf area (D); effect of the length of incubation period on the initial area of CLS lesions (E); growth of CLS lesions within the period of 7 days after the time of appearance (F); box-and-whisker plots of the relative growth rate of individual CLS lesions on cv. Debora (G) and Pauletta (H) in response to the time after lesion appearance. Assessment of lesions appearing 10 and 11 d p.i. (cv. Debora) and 10 and 12 d p.i. (cv. Pauletta), respectively. Lower case letters indicate significant differences (p ≤ 0.05) among cultivars (E, F).",
+   "href": "jof-11-00211-g005.jpg",
+   "img_url": "https://cdn.ncbi.nlm.nih.gov/pmc/blobs/6e7e/11943282/808011558f01/jof-11-00211-g005.jpg",
+   "orig_size": [
+    738,
+    1206
+   ],
+   "crossref": {
+    "title": "Intra-Leaf Variability of Incubation Period Sheds New Light on the Lifestyle of Cercospora beticola in Sugar Beets",
+    "container": "Journal of Fungi",
+    "volume": "11",
+    "issue": "3",
+    "page": "211",
+    "article_number": null,
+    "authors": [
+     {
+      "given": "Erich-Christian",
+      "family": "Oerke",
+      "name": null
+     },
+     {
+      "given": "Ulrike",
+      "family": "Steiner",
+      "name": null
+     }
+    ],
+    "issued": [
+     2025,
+     3,
+     9
+    ],
+    "published_online": [
+     2025,
+     3,
+     9
+    ],
+    "published_print": [
+     null
+    ]
+   }
+  },
+  {
+   "k": "s2",
+   "source": "epmc",
+   "score": 6,
+   "pmcid": "PMC11943282",
+   "doi": "10.3390/jof11030211",
+   "title": "Intra-Leaf Variability of Incubation Period Sheds New Light on the Lifestyle of &lt;i&gt;Cercospora beticola&lt;/i&gt; in Sugar Beets.",
+   "authors": [
+    {
+     "last": "Oerke",
+     "initials": "EC",
+     "first": "Erich-Christian",
+     "full": "Oerke EC",
+     "collective": null
+    },
+    {
+     "last": "Steiner",
+     "initials": "U",
+     "first": "Ulrike",
+     "full": "Steiner U",
+     "collective": null
+    }
+   ],
+   "journal": "Journal of fungi (Basel, Switzerland)",
+   "journal_iso": "J Fungi (Basel)",
+   "volume": "11",
+   "issue": "3",
+   "year": 2025,
+   "pages": "211",
+   "license": "cc by",
+   "first_pub": "2025-03-09",
+   "fig_label": "Figure 1",
+   "caption": "Increase in the number of CLS lesions of sugar beet leaves depending on the disease susceptibility of cultivars (A) and the ontogenetic stage of leaves (B). Two cultivars with low (score 2) and moderate (score 5) CLS susceptibility, respectively, and three leaf ages (young; level 2 from top); intermediate, level 4 from trop; old, level 6 from top) were assessed for typical CLS lesions over a period of 8 to 27 d p.i. (4 cvs. × 3 leaf levels × 5 replicates).",
+   "href": "jof-11-00211-g001.jpg",
+   "img_url": "https://cdn.ncbi.nlm.nih.gov/pmc/blobs/6e7e/11943282/95d705f5707b/jof-11-00211-g001.jpg",
+   "orig_size": [
+    759,
+    900
+   ],
+   "crossref": {
+    "title": "Intra-Leaf Variability of Incubation Period Sheds New Light on the Lifestyle of Cercospora beticola in Sugar Beets",
+    "container": "Journal of Fungi",
+    "volume": "11",
+    "issue": "3",
+    "page": "211",
+    "article_number": null,
+    "authors": [
+     {
+      "given": "Erich-Christian",
+      "family": "Oerke",
+      "name": null
+     },
+     {
+      "given": "Ulrike",
+      "family": "Steiner",
+      "name": null
+     }
+    ],
+    "issued": [
+     2025,
+     3,
+     9
+    ],
+    "published_online": [
+     2025,
+     3,
+     9
+    ],
+    "published_print": [
+     null
+    ]
+   }
+  },
+  {
+   "k": "s3",
+   "source": "epmc",
+   "score": 6,
+   "pmcid": "PMC11943282",
+   "doi": "10.3390/jof11030211",
+   "title": "Intra-Leaf Variability of Incubation Period Sheds New Light on the Lifestyle of &lt;i&gt;Cercospora beticola&lt;/i&gt; in Sugar Beets.",
+   "authors": [
+    {
+     "last": "Oerke",
+     "initials": "EC",
+     "first": "Erich-Christian",
+     "full": "Oerke EC",
+     "collective": null
+    },
+    {
+     "last": "Steiner",
+     "initials": "U",
+     "first": "Ulrike",
+     "full": "Steiner U",
+     "collective": null
+    }
+   ],
+   "journal": "Journal of fungi (Basel, Switzerland)",
+   "journal_iso": "J Fungi (Basel)",
+   "volume": "11",
+   "issue": "3",
+   "year": 2025,
+   "pages": "211",
+   "license": "cc by",
+   "first_pub": "2025-03-09",
+   "fig_label": "Figure 4",
+   "caption": "Appearance and development of individual CLS lesions on leaves of four sugar beet cultivars; (A) cv. Carsta in the period 10 to 17 d p.i.; (B) cv. Debora in the period 10 to 17 d p.i.; (C) cv. Emilia in the period 10 to 27 d p.i.; (D) cv. Pauletta in the period 10 to 17 d p.i. The colour code represents the time of lesion appearance; the size of lesions represents lesion growth in time. As shape and area of leaves were affected by disease and time, two leaf outlines are given for the leaf of cvs. Debora, Emilia, and Pauletta, respectively. Numbers within lesions indicate the numbering of lesions during data processing.",
+   "href": "jof-11-00211-g004.jpg",
+   "img_url": "https://cdn.ncbi.nlm.nih.gov/pmc/blobs/6e7e/11943282/d6b92ae82c99/jof-11-00211-g004.jpg",
+   "orig_size": [
+    725,
+    974
+   ],
+   "crossref": {
+    "title": "Intra-Leaf Variability of Incubation Period Sheds New Light on the Lifestyle of Cercospora beticola in Sugar Beets",
+    "container": "Journal of Fungi",
+    "volume": "11",
+    "issue": "3",
+    "page": "211",
+    "article_number": null,
+    "authors": [
+     {
+      "given": "Erich-Christian",
+      "family": "Oerke",
+      "name": null
+     },
+     {
+      "given": "Ulrike",
+      "family": "Steiner",
+      "name": null
+     }
+    ],
+    "issued": [
+     2025,
+     3,
+     9
+    ],
+    "published_online": [
+     2025,
+     3,
+     9
+    ],
+    "published_print": [
+     null
+    ]
+   }
+  }
+ ]
+}

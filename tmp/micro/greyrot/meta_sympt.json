@@ -1,0 +1,332 @@
+{
+ "id": "greyrot",
+ "candidates": [
+  {
+   "k": "s1",
+   "source": "epmc",
+   "score": 7,
+   "pmcid": "PMC7238070",
+   "doi": "10.3390/pathogens9040253",
+   "title": "Histochemical and Microscopic Studies Predict that Grapevine Genotype \"Ju mei gui\" is Highly Resistant against <i>Botrytis cinerea</i>.",
+   "authors": [
+    {
+     "last": "Rahman",
+     "initials": "MU",
+     "first": "Mati Ur",
+     "full": "Rahman MU",
+     "collective": null
+    },
+    {
+     "last": "Ma",
+     "initials": "Q",
+     "first": "Qingqing",
+     "full": "Ma Q",
+     "collective": null
+    },
+    {
+     "last": "Ahmad",
+     "initials": "B",
+     "first": "Bilal",
+     "full": "Ahmad B",
+     "collective": null
+    },
+    {
+     "last": "Hanif",
+     "initials": "M",
+     "first": "Muhammad",
+     "full": "Hanif M",
+     "collective": null
+    },
+    {
+     "last": "Zhang",
+     "initials": "Y",
+     "first": "Youlin",
+     "full": "Zhang Y",
+     "collective": null
+    }
+   ],
+   "journal": "Pathogens (Basel, Switzerland)",
+   "journal_iso": "Pathogens",
+   "volume": "9",
+   "issue": "4",
+   "year": 2020,
+   "pages": "E253",
+   "license": "cc by",
+   "first_pub": "2020-03-31",
+   "fig_label": "Figure 8",
+   "caption": "Jasmonic acid (JA) activities of protein extracts from “Ju mei gui” and “Summer black” leaves (A) and berries (B) at 0, 8, 24, 48, 72 h post-inoculation (hpi) and 0, 2, 4, 6, 8 days post-inoculation (dpi), respectively, with Botrytis suspension and using sterile water as the control. The letter “C” with variety name stands for control. Three independent experiments were used for the means and standard errors. Small letters indicate significant differences according to an LSD test (p < 0.05) between “Ju mei gui” and “Summer black.”",
+   "href": "pathogens-09-00253-g008.jpg",
+   "img_url": "https://cdn.ncbi.nlm.nih.gov/pmc/blobs/7d58/7238070/2ed5e12f215c/pathogens-09-00253-g008.jpg",
+   "orig_size": [
+    738,
+    277
+   ],
+   "crossref": {
+    "title": "Histochemical and Microscopic Studies Predict that Grapevine Genotype “Ju mei gui” is Highly Resistant against Botrytis cinerea",
+    "container": "Pathogens",
+    "volume": "9",
+    "issue": "4",
+    "page": "253",
+    "article_number": null,
+    "authors": [
+     {
+      "given": "Mati Ur",
+      "family": "Rahman",
+      "name": null
+     },
+     {
+      "given": "Qingqing",
+      "family": "Ma",
+      "name": null
+     },
+     {
+      "given": "Bilal",
+      "family": "Ahmad",
+      "name": null
+     },
+     {
+      "given": "Muhammad",
+      "family": "Hanif",
+      "name": null
+     },
+     {
+      "given": "Youlin",
+      "family": "Zhang",
+      "name": null
+     }
+    ],
+    "issued": [
+     2020,
+     3,
+     31
+    ],
+    "published_online": [
+     2020,
+     3,
+     31
+    ],
+    "published_print": [
+     null
+    ]
+   }
+  },
+  {
+   "k": "s2",
+   "source": "epmc",
+   "score": 5,
+   "pmcid": "PMC7238070",
+   "doi": "10.3390/pathogens9040253",
+   "title": "Histochemical and Microscopic Studies Predict that Grapevine Genotype \"Ju mei gui\" is Highly Resistant against <i>Botrytis cinerea</i>.",
+   "authors": [
+    {
+     "last": "Rahman",
+     "initials": "MU",
+     "first": "Mati Ur",
+     "full": "Rahman MU",
+     "collective": null
+    },
+    {
+     "last": "Ma",
+     "initials": "Q",
+     "first": "Qingqing",
+     "full": "Ma Q",
+     "collective": null
+    },
+    {
+     "last": "Ahmad",
+     "initials": "B",
+     "first": "Bilal",
+     "full": "Ahmad B",
+     "collective": null
+    },
+    {
+     "last": "Hanif",
+     "initials": "M",
+     "first": "Muhammad",
+     "full": "Hanif M",
+     "collective": null
+    },
+    {
+     "last": "Zhang",
+     "initials": "Y",
+     "first": "Youlin",
+     "full": "Zhang Y",
+     "collective": null
+    }
+   ],
+   "journal": "Pathogens (Basel, Switzerland)",
+   "journal_iso": "Pathogens",
+   "volume": "9",
+   "issue": "4",
+   "year": 2020,
+   "pages": "E253",
+   "license": "cc by",
+   "first_pub": "2020-03-31",
+   "fig_label": "Figure 4",
+   "caption": "Superoxide dismutase (SOD) activities of “Ju mei gui” and “Summer black” leaves (A) and berries (B) at 0, 8, 24, 48, 72 h post-inoculation (hpi) and 0, 2, 4, 6, 8 days post-inoculation (dpi), respectively, with Botrytis suspension and using sterile water as the control. The letter “C” with variety name stands for control. Small letters indicate significant differences according to an LSD test (p < 0.05) between “Ju mei gui” and “Summer black.”",
+   "href": "pathogens-09-00253-g004.jpg",
+   "img_url": "https://cdn.ncbi.nlm.nih.gov/pmc/blobs/7d58/7238070/547702c0788a/pathogens-09-00253-g004.jpg",
+   "orig_size": [
+    720,
+    295
+   ],
+   "crossref": {
+    "title": "Histochemical and Microscopic Studies Predict that Grapevine Genotype “Ju mei gui” is Highly Resistant against Botrytis cinerea",
+    "container": "Pathogens",
+    "volume": "9",
+    "issue": "4",
+    "page": "253",
+    "article_number": null,
+    "authors": [
+     {
+      "given": "Mati Ur",
+      "family": "Rahman",
+      "name": null
+     },
+     {
+      "given": "Qingqing",
+      "family": "Ma",
+      "name": null
+     },
+     {
+      "given": "Bilal",
+      "family": "Ahmad",
+      "name": null
+     },
+     {
+      "given": "Muhammad",
+      "family": "Hanif",
+      "name": null
+     },
+     {
+      "given": "Youlin",
+      "family": "Zhang",
+      "name": null
+     }
+    ],
+    "issued": [
+     2020,
+     3,
+     31
+    ],
+    "published_online": [
+     2020,
+     3,
+     31
+    ],
+    "published_print": [
+     null
+    ]
+   }
+  },
+  {
+   "k": "s3",
+   "source": "epmc",
+   "score": 5,
+   "pmcid": "PMC7238070",
+   "doi": "10.3390/pathogens9040253",
+   "title": "Histochemical and Microscopic Studies Predict that Grapevine Genotype \"Ju mei gui\" is Highly Resistant against <i>Botrytis cinerea</i>.",
+   "authors": [
+    {
+     "last": "Rahman",
+     "initials": "MU",
+     "first": "Mati Ur",
+     "full": "Rahman MU",
+     "collective": null
+    },
+    {
+     "last": "Ma",
+     "initials": "Q",
+     "first": "Qingqing",
+     "full": "Ma Q",
+     "collective": null
+    },
+    {
+     "last": "Ahmad",
+     "initials": "B",
+     "first": "Bilal",
+     "full": "Ahmad B",
+     "collective": null
+    },
+    {
+     "last": "Hanif",
+     "initials": "M",
+     "first": "Muhammad",
+     "full": "Hanif M",
+     "collective": null
+    },
+    {
+     "last": "Zhang",
+     "initials": "Y",
+     "first": "Youlin",
+     "full": "Zhang Y",
+     "collective": null
+    }
+   ],
+   "journal": "Pathogens (Basel, Switzerland)",
+   "journal_iso": "Pathogens",
+   "volume": "9",
+   "issue": "4",
+   "year": 2020,
+   "pages": "E253",
+   "license": "cc by",
+   "first_pub": "2020-03-31",
+   "fig_label": "Figure 5",
+   "caption": "Peroxidase (POD) activities of “Ju mei gui” and “Summer black” leaves (A) and berries (B) at 0, 8, 24, 48, 72 h post-inoculation (hpi) and 0, 2, 4, 6, 8 days post-inoculation (dpi), respectively, with Botrytis suspension and using sterile water as the control. The letter “C” with variety name stands for control. Small letters indicate significant differences according to an LSD test (p < 0.05) between “Ju mei gui” and “Summer black.”",
+   "href": "pathogens-09-00253-g005.jpg",
+   "img_url": "https://cdn.ncbi.nlm.nih.gov/pmc/blobs/7d58/7238070/b4108e22344b/pathogens-09-00253-g005.jpg",
+   "orig_size": [
+    739,
+    314
+   ],
+   "crossref": {
+    "title": "Histochemical and Microscopic Studies Predict that Grapevine Genotype “Ju mei gui” is Highly Resistant against Botrytis cinerea",
+    "container": "Pathogens",
+    "volume": "9",
+    "issue": "4",
+    "page": "253",
+    "article_number": null,
+    "authors": [
+     {
+      "given": "Mati Ur",
+      "family": "Rahman",
+      "name": null
+     },
+     {
+      "given": "Qingqing",
+      "family": "Ma",
+      "name": null
+     },
+     {
+      "given": "Bilal",
+      "family": "Ahmad",
+      "name": null
+     },
+     {
+      "given": "Muhammad",
+      "family": "Hanif",
+      "name": null
+     },
+     {
+      "given": "Youlin",
+      "family": "Zhang",
+      "name": null
+     }
+    ],
+    "issued": [
+     2020,
+     3,
+     31
+    ],
+    "published_online": [
+     2020,
+     3,
+     31
+    ],
+    "published_print": [
+     null
+    ]
+   }
+  }
+ ]
+}

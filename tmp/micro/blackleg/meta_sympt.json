@@ -1,0 +1,622 @@
+{
+ "id": "blackleg",
+ "candidates": [
+  {
+   "k": "s1",
+   "source": "epmc",
+   "score": 7,
+   "pmcid": "PMC8650274",
+   "doi": "10.1186/s12866-021-02393-x",
+   "title": "Antagonistic activity of endophytic actinobacteria from native potatoes (Solanum tuberosum subsp. tuberosum L.) against Pectobacterium carotovorum subsp. carotovorum and Pectobacterium atrosepticum.",
+   "authors": [
+    {
+     "last": "Padilla-Gálvez",
+     "initials": "N",
+     "first": "Natalia",
+     "full": "Padilla-Gálvez N",
+     "collective": null
+    },
+    {
+     "last": "Luengo-Uribe",
+     "initials": "P",
+     "first": "Paola",
+     "full": "Luengo-Uribe P",
+     "collective": null
+    },
+    {
+     "last": "Mancilla",
+     "initials": "S",
+     "first": "Sandra",
+     "full": "Mancilla S",
+     "collective": null
+    },
+    {
+     "last": "Maurin",
+     "initials": "A",
+     "first": "Amandine",
+     "full": "Maurin A",
+     "collective": null
+    },
+    {
+     "last": "Torres",
+     "initials": "C",
+     "first": "Claudia",
+     "full": "Torres C",
+     "collective": null
+    },
+    {
+     "last": "Ruiz",
+     "initials": "P",
+     "first": "Pamela",
+     "full": "Ruiz P",
+     "collective": null
+    },
+    {
+     "last": "France",
+     "initials": "A",
+     "first": "Andrés",
+     "full": "France A",
+     "collective": null
+    },
+    {
+     "last": "Acuña",
+     "initials": "I",
+     "first": "Ivette",
+     "full": "Acuña I",
+     "collective": null
+    },
+    {
+     "last": "Urrutia",
+     "initials": "H",
+     "first": "Homero",
+     "full": "Urrutia H",
+     "collective": null
+    }
+   ],
+   "journal": "BMC microbiology",
+   "journal_iso": "BMC Microbiol",
+   "volume": "21",
+   "issue": "1",
+   "year": 2021,
+   "pages": "335",
+   "license": "cc by",
+   "first_pub": "2021-12-07",
+   "fig_label": "Fig. 4",
+   "caption": "Maceration assay in tuber slices. Maceration tissue halos measured (mm) on tuber slices inoculated with Pectobacterium carotovorum subsp. carotovorum and Pectobacterium atrosepticum. These at a concentration of 10 8 cells/mL in combination with Streptomyces sp. A2R31 and Streptomyces sp. TP199 at a concentration of 10 8 spores/mL, incubated at 28 °C for 72 h; the treatments were: (i) P. carotovorum subsp. carotovorum, (ii) P. atrosepticum, (iii) Streptomyces sp. A2R31, (iv) Streptomyces sp. (v) P. carotovorum subsp. carotovorum + Streptomyces sp. A2R31 and (vi) P. carotovorum subsp. carotovorum + Streptomyces sp. TP199. Error bars indicate standard deviation of the media. CN: Sterile Nutrient Broth. Pba: P. atrosepticum. Pcc: P. carotovorum subsp. carotovorum. Plot mean with SD. Different letters on the top of error bars indicates statistical significative differences (Tukey-test, p ≤ 0,05), n = 3",
+   "href": "12866_2021_2393_Fig4_HTML.jpg",
+   "img_url": "https://cdn.ncbi.nlm.nih.gov/pmc/blobs/f360/8650274/f74d950b2702/12866_2021_2393_Fig4_HTML.jpg",
+   "orig_size": [
+    786,
+    863
+   ],
+   "crossref": {
+    "title": "Antagonistic activity of endophytic actinobacteria from native potatoes (Solanum tuberosum subsp. tuberosum L.) against Pectobacterium carotovorum subsp. carotovorum and Pectobacterium atrosepticum",
+    "container": "BMC Microbiology",
+    "volume": "21",
+    "issue": "1",
+    "page": null,
+    "article_number": "335",
+    "authors": [
+     {
+      "given": "Natalia",
+      "family": "Padilla-Gálvez",
+      "name": null
+     },
+     {
+      "given": "Paola",
+      "family": "Luengo-Uribe",
+      "name": null
+     },
+     {
+      "given": "Sandra",
+      "family": "Mancilla",
+      "name": null
+     },
+     {
+      "given": "Amandine",
+      "family": "Maurin",
+      "name": null
+     },
+     {
+      "given": "Claudia",
+      "family": "Torres",
+      "name": null
+     },
+     {
+      "given": "Pamela",
+      "family": "Ruiz",
+      "name": null
+     },
+     {
+      "given": "Andrés",
+      "family": "France",
+      "name": null
+     },
+     {
+      "given": "Ivette",
+      "family": "Acuña",
+      "name": null
+     },
+     {
+      "given": "Homero",
+      "family": "Urrutia",
+      "name": null
+     }
+    ],
+    "issued": [
+     2021,
+     12
+    ],
+    "published_online": [
+     2021,
+     12,
+     7
+    ],
+    "published_print": [
+     2021,
+     12
+    ]
+   }
+  },
+  {
+   "k": "s2",
+   "source": "epmc",
+   "score": 6,
+   "pmcid": "PMC8650274",
+   "doi": "10.1186/s12866-021-02393-x",
+   "title": "Antagonistic activity of endophytic actinobacteria from native potatoes (Solanum tuberosum subsp. tuberosum L.) against Pectobacterium carotovorum subsp. carotovorum and Pectobacterium atrosepticum.",
+   "authors": [
+    {
+     "last": "Padilla-Gálvez",
+     "initials": "N",
+     "first": "Natalia",
+     "full": "Padilla-Gálvez N",
+     "collective": null
+    },
+    {
+     "last": "Luengo-Uribe",
+     "initials": "P",
+     "first": "Paola",
+     "full": "Luengo-Uribe P",
+     "collective": null
+    },
+    {
+     "last": "Mancilla",
+     "initials": "S",
+     "first": "Sandra",
+     "full": "Mancilla S",
+     "collective": null
+    },
+    {
+     "last": "Maurin",
+     "initials": "A",
+     "first": "Amandine",
+     "full": "Maurin A",
+     "collective": null
+    },
+    {
+     "last": "Torres",
+     "initials": "C",
+     "first": "Claudia",
+     "full": "Torres C",
+     "collective": null
+    },
+    {
+     "last": "Ruiz",
+     "initials": "P",
+     "first": "Pamela",
+     "full": "Ruiz P",
+     "collective": null
+    },
+    {
+     "last": "France",
+     "initials": "A",
+     "first": "Andrés",
+     "full": "France A",
+     "collective": null
+    },
+    {
+     "last": "Acuña",
+     "initials": "I",
+     "first": "Ivette",
+     "full": "Acuña I",
+     "collective": null
+    },
+    {
+     "last": "Urrutia",
+     "initials": "H",
+     "first": "Homero",
+     "full": "Urrutia H",
+     "collective": null
+    }
+   ],
+   "journal": "BMC microbiology",
+   "journal_iso": "BMC Microbiol",
+   "volume": "21",
+   "issue": "1",
+   "year": 2021,
+   "pages": "335",
+   "license": "cc by",
+   "first_pub": "2021-12-07",
+   "fig_label": "Fig. 5",
+   "caption": "Tuber slice assay. a. Wells inoculated with P. carotovorum subsp. carotovorum. b. Wells inoculated with Streptomyces sp. TP199. c. Wells inoculated with P. carotovorum subsp. carotovorum + Streptomyces sp. TP199. d. Wells inoculated with sterile nutrient broth. e. Uninoculated slice of the tuber",
+   "href": "12866_2021_2393_Fig5_HTML.jpg",
+   "img_url": "https://cdn.ncbi.nlm.nih.gov/pmc/blobs/f360/8650274/cbd176c21035/12866_2021_2393_Fig5_HTML.jpg",
+   "orig_size": [
+    777,
+    127
+   ],
+   "crossref": {
+    "title": "Antagonistic activity of endophytic actinobacteria from native potatoes (Solanum tuberosum subsp. tuberosum L.) against Pectobacterium carotovorum subsp. carotovorum and Pectobacterium atrosepticum",
+    "container": "BMC Microbiology",
+    "volume": "21",
+    "issue": "1",
+    "page": null,
+    "article_number": "335",
+    "authors": [
+     {
+      "given": "Natalia",
+      "family": "Padilla-Gálvez",
+      "name": null
+     },
+     {
+      "given": "Paola",
+      "family": "Luengo-Uribe",
+      "name": null
+     },
+     {
+      "given": "Sandra",
+      "family": "Mancilla",
+      "name": null
+     },
+     {
+      "given": "Amandine",
+      "family": "Maurin",
+      "name": null
+     },
+     {
+      "given": "Claudia",
+      "family": "Torres",
+      "name": null
+     },
+     {
+      "given": "Pamela",
+      "family": "Ruiz",
+      "name": null
+     },
+     {
+      "given": "Andrés",
+      "family": "France",
+      "name": null
+     },
+     {
+      "given": "Ivette",
+      "family": "Acuña",
+      "name": null
+     },
+     {
+      "given": "Homero",
+      "family": "Urrutia",
+      "name": null
+     }
+    ],
+    "issued": [
+     2021,
+     12
+    ],
+    "published_online": [
+     2021,
+     12,
+     7
+    ],
+    "published_print": [
+     2021,
+     12
+    ]
+   }
+  },
+  {
+   "k": "s3",
+   "source": "epmc",
+   "score": 6,
+   "pmcid": "PMC8469291",
+   "doi": "10.3390/microorganisms9091918",
+   "title": "Isolation and Characterization of Outer Membrane Vesicles of <i>Pectobacterium brasiliense</i> 1692.",
+   "authors": [
+    {
+     "last": "Maphosa",
+     "initials": "S",
+     "first": "Silindile",
+     "full": "Maphosa S",
+     "collective": null
+    },
+    {
+     "last": "Moleleki",
+     "initials": "LN",
+     "first": "Lucy Novungayo",
+     "full": "Moleleki LN",
+     "collective": null
+    }
+   ],
+   "journal": "Microorganisms",
+   "journal_iso": "Microorganisms",
+   "volume": "9",
+   "issue": "9",
+   "year": 2021,
+   "pages": "1918",
+   "license": "cc by",
+   "first_pub": "2021-09-09",
+   "fig_label": "Figure 7",
+   "caption": "Virulence activities of Pbr1692 OMVs. (A) OMV protease activity. A 12% SDS PAGE zymogram gel shows Pbr1692 OMV digestion of gelatine via protease activity. Gelatinase digestion by the OMVs is demonstrated by the white band clearing zone corresponding to a ~55 kDa protein by visualization using Coomassie Brilliant blue staining. Denatured OMVs were used as a negative control. M = marker; dOMVs = denatured OMVs. (B) Soft rot of potato tubers by Pbr1692 OMVs. The figure shows OMV-associated maceration of potato tuber tissue three days post-inoculation. The cell-free supernatant was used as the positive control, while PBS was used as a negative control. The results show the means of two independent experiments. Error bars represent the standard deviations from the data. Differences between the effect of the control and OMVs were determined to be statistically significant with p < 0.01. (C) OMVs elicited a hypersensitive response (HR) in 2-week-old seedlings of N. benthamiana 24 hpi. The OMV wash step SN and cell-free supernatant were used as controls.",
+   "href": "microorganisms-09-01918-g007.jpg",
+   "img_url": "https://cdn.ncbi.nlm.nih.gov/pmc/blobs/2980/8469291/2a5e0fe3eacf/microorganisms-09-01918-g007.jpg",
+   "orig_size": [
+    729,
+    258
+   ],
+   "crossref": {
+    "title": "Isolation and Characterization of Outer Membrane Vesicles of Pectobacterium brasiliense 1692",
+    "container": "Microorganisms",
+    "volume": "9",
+    "issue": "9",
+    "page": "1918",
+    "article_number": null,
+    "authors": [
+     {
+      "given": "Silindile",
+      "family": "Maphosa",
+      "name": null
+     },
+     {
+      "given": "Lucy Novungayo",
+      "family": "Moleleki",
+      "name": null
+     }
+    ],
+    "issued": [
+     2021,
+     9,
+     9
+    ],
+    "published_online": [
+     2021,
+     9,
+     9
+    ],
+    "published_print": [
+     null
+    ]
+   }
+  },
+  {
+   "k": "s4",
+   "source": "epmc",
+   "score": 4,
+   "pmcid": "PMC8650274",
+   "doi": "10.1186/s12866-021-02393-x",
+   "title": "Antagonistic activity of endophytic actinobacteria from native potatoes (Solanum tuberosum subsp. tuberosum L.) against Pectobacterium carotovorum subsp. carotovorum and Pectobacterium atrosepticum.",
+   "authors": [
+    {
+     "last": "Padilla-Gálvez",
+     "initials": "N",
+     "first": "Natalia",
+     "full": "Padilla-Gálvez N",
+     "collective": null
+    },
+    {
+     "last": "Luengo-Uribe",
+     "initials": "P",
+     "first": "Paola",
+     "full": "Luengo-Uribe P",
+     "collective": null
+    },
+    {
+     "last": "Mancilla",
+     "initials": "S",
+     "first": "Sandra",
+     "full": "Mancilla S",
+     "collective": null
+    },
+    {
+     "last": "Maurin",
+     "initials": "A",
+     "first": "Amandine",
+     "full": "Maurin A",
+     "collective": null
+    },
+    {
+     "last": "Torres",
+     "initials": "C",
+     "first": "Claudia",
+     "full": "Torres C",
+     "collective": null
+    },
+    {
+     "last": "Ruiz",
+     "initials": "P",
+     "first": "Pamela",
+     "full": "Ruiz P",
+     "collective": null
+    },
+    {
+     "last": "France",
+     "initials": "A",
+     "first": "Andrés",
+     "full": "France A",
+     "collective": null
+    },
+    {
+     "last": "Acuña",
+     "initials": "I",
+     "first": "Ivette",
+     "full": "Acuña I",
+     "collective": null
+    },
+    {
+     "last": "Urrutia",
+     "initials": "H",
+     "first": "Homero",
+     "full": "Urrutia H",
+     "collective": null
+    }
+   ],
+   "journal": "BMC microbiology",
+   "journal_iso": "BMC Microbiol",
+   "volume": "21",
+   "issue": "1",
+   "year": 2021,
+   "pages": "335",
+   "license": "cc by",
+   "first_pub": "2021-12-07",
+   "fig_label": "Fig. 2",
+   "caption": "Assessment of the antagonistic activity of Streptomyces sp. TP199 and Streptomyces sp. A2R31. Isolates against P. carotovorum subsp. carotovorum and P. atrosepticum in vitro. A Inhibition growth of pathogens using the cross-streak method, negative control: pathogens without antagonistic; B agar plug method, positive control: ampicillin disc (10 μg). Plot mean with SD. Different letters on the top of error bars indicate significative statistical differences (Tukey-test, p ≤ 0,05), n = 4",
+   "href": "12866_2021_2393_Fig2_HTML.jpg",
+   "img_url": "https://cdn.ncbi.nlm.nih.gov/pmc/blobs/f360/8650274/c77548e7a72e/12866_2021_2393_Fig2_HTML.jpg",
+   "orig_size": [
+    777,
+    291
+   ],
+   "crossref": {
+    "title": "Antagonistic activity of endophytic actinobacteria from native potatoes (Solanum tuberosum subsp. tuberosum L.) against Pectobacterium carotovorum subsp. carotovorum and Pectobacterium atrosepticum",
+    "container": "BMC Microbiology",
+    "volume": "21",
+    "issue": "1",
+    "page": null,
+    "article_number": "335",
+    "authors": [
+     {
+      "given": "Natalia",
+      "family": "Padilla-Gálvez",
+      "name": null
+     },
+     {
+      "given": "Paola",
+      "family": "Luengo-Uribe",
+      "name": null
+     },
+     {
+      "given": "Sandra",
+      "family": "Mancilla",
+      "name": null
+     },
+     {
+      "given": "Amandine",
+      "family": "Maurin",
+      "name": null
+     },
+     {
+      "given": "Claudia",
+      "family": "Torres",
+      "name": null
+     },
+     {
+      "given": "Pamela",
+      "family": "Ruiz",
+      "name": null
+     },
+     {
+      "given": "Andrés",
+      "family": "France",
+      "name": null
+     },
+     {
+      "given": "Ivette",
+      "family": "Acuña",
+      "name": null
+     },
+     {
+      "given": "Homero",
+      "family": "Urrutia",
+      "name": null
+     }
+    ],
+    "issued": [
+     2021,
+     12
+    ],
+    "published_online": [
+     2021,
+     12,
+     7
+    ],
+    "published_print": [
+     2021,
+     12
+    ]
+   }
+  },
+  {
+   "k": "s5",
+   "source": "epmc",
+   "score": 4,
+   "pmcid": "PMC8469291",
+   "doi": "10.3390/microorganisms9091918",
+   "title": "Isolation and Characterization of Outer Membrane Vesicles of <i>Pectobacterium brasiliense</i> 1692.",
+   "authors": [
+    {
+     "last": "Maphosa",
+     "initials": "S",
+     "first": "Silindile",
+     "full": "Maphosa S",
+     "collective": null
+    },
+    {
+     "last": "Moleleki",
+     "initials": "LN",
+     "first": "Lucy Novungayo",
+     "full": "Moleleki LN",
+     "collective": null
+    }
+   ],
+   "journal": "Microorganisms",
+   "journal_iso": "Microorganisms",
+   "volume": "9",
+   "issue": "9",
+   "year": 2021,
+   "pages": "1918",
+   "license": "cc by",
+   "first_pub": "2021-09-09",
+   "fig_label": "Figure 5",
+   "caption": "OMV protein molecular functions and protein COG classification. (A). The graph shows the molecular ontology entries against the number and percentage of associated proteins. (B) The chart shows protein functional group categories and the corresponding number of proteins associated with each cluster.",
+   "href": "microorganisms-09-01918-g005.jpg",
+   "img_url": "https://cdn.ncbi.nlm.nih.gov/pmc/blobs/2980/8469291/cc1ef487c556/microorganisms-09-01918-g005.jpg",
+   "orig_size": [
+    734,
+    208
+   ],
+   "crossref": {
+    "title": "Isolation and Characterization of Outer Membrane Vesicles of Pectobacterium brasiliense 1692",
+    "container": "Microorganisms",
+    "volume": "9",
+    "issue": "9",
+    "page": "1918",
+    "article_number": null,
+    "authors": [
+     {
+      "given": "Silindile",
+      "family": "Maphosa",
+      "name": null
+     },
+     {
+      "given": "Lucy Novungayo",
+      "family": "Moleleki",
+      "name": null
+     }
+    ],
+    "issued": [
+     2021,
+     9,
+     9
+    ],
+    "published_online": [
+     2021,
+     9,
+     9
+    ],
+    "published_print": [
+     null
+    ]
+   }
+  }
+ ]
+}

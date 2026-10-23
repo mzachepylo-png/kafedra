@@ -1,0 +1,814 @@
+{
+ "id": "wsmv",
+ "candidates": [
+  {
+   "k": "s1",
+   "source": "epmc",
+   "score": 11,
+   "pmcid": "PMC9229632",
+   "doi": "10.3390/v14061220",
+   "title": "Occurrence and Characterization of Wheat Streak Mosaic Virus Found in Mono- and Mixed Infection with High Plains Wheat Mosaic Virus in Winter Wheat in Ukraine.",
+   "authors": [
+    {
+     "last": "Pozhylov",
+     "initials": "I",
+     "first": "Illia",
+     "full": "Pozhylov I",
+     "collective": null
+    },
+    {
+     "last": "Snihur",
+     "initials": "H",
+     "first": "Halyna",
+     "full": "Snihur H",
+     "collective": null
+    },
+    {
+     "last": "Shevchenko",
+     "initials": "T",
+     "first": "Tetiana",
+     "full": "Shevchenko T",
+     "collective": null
+    },
+    {
+     "last": "Budzanivska",
+     "initials": "I",
+     "first": "Irena",
+     "full": "Budzanivska I",
+     "collective": null
+    },
+    {
+     "last": "Liu",
+     "initials": "W",
+     "first": "Wenwen",
+     "full": "Liu W",
+     "collective": null
+    },
+    {
+     "last": "Wang",
+     "initials": "X",
+     "first": "Xifeng",
+     "full": "Wang X",
+     "collective": null
+    },
+    {
+     "last": "Shevchenko",
+     "initials": "O",
+     "first": "Oleksiy",
+     "full": "Shevchenko O",
+     "collective": null
+    }
+   ],
+   "journal": "Viruses",
+   "journal_iso": "Viruses",
+   "volume": "14",
+   "issue": "6",
+   "year": 2022,
+   "pages": "1220",
+   "license": "cc by",
+   "first_pub": "2022-06-03",
+   "fig_label": "Figure 1",
+   "caption": "Symptoms of leaf mosaic on winter wheat plants naturally monoinfected with wheat streak mosaic virus (WSMV) only (a) and mixed infected with WSMV + High Plains wheat mosaic virus (HPWMoV) (b), and gall mite found on wheat plants (instrumental magnification ×625) (c).",
+   "href": "viruses-14-01220-g001.jpg",
+   "img_url": "https://cdn.ncbi.nlm.nih.gov/pmc/blobs/f565/9229632/e8628a108d56/viruses-14-01220-g001.jpg",
+   "orig_size": [
+    733,
+    308
+   ],
+   "crossref": {
+    "title": "Occurrence and Characterization of Wheat Streak Mosaic Virus Found in Mono- and Mixed Infection with High Plains Wheat Mosaic Virus in Winter Wheat in Ukraine",
+    "container": "Viruses",
+    "volume": "14",
+    "issue": "6",
+    "page": "1220",
+    "article_number": null,
+    "authors": [
+     {
+      "given": "Illia",
+      "family": "Pozhylov",
+      "name": null
+     },
+     {
+      "given": "Halyna",
+      "family": "Snihur",
+      "name": null
+     },
+     {
+      "given": "Tetiana",
+      "family": "Shevchenko",
+      "name": null
+     },
+     {
+      "given": "Irena",
+      "family": "Budzanivska",
+      "name": null
+     },
+     {
+      "given": "Wenwen",
+      "family": "Liu",
+      "name": null
+     },
+     {
+      "given": "Xifeng",
+      "family": "Wang",
+      "name": null
+     },
+     {
+      "given": "Oleksiy",
+      "family": "Shevchenko",
+      "name": null
+     }
+    ],
+    "issued": [
+     2022,
+     6,
+     3
+    ],
+    "published_online": [
+     2022,
+     6,
+     3
+    ],
+    "published_print": [
+     null
+    ]
+   }
+  },
+  {
+   "k": "s2",
+   "source": "epmc",
+   "score": 10,
+   "pmcid": "PMC8508189",
+   "doi": "10.3390/ijms221910218",
+   "title": "Impact of Wheat Streak Mosaic Virus on Peroxisome Proliferation, Redox Reactions, and Resistance Responses in Wheat.",
+   "authors": [
+    {
+     "last": "Mishchenko",
+     "initials": "L",
+     "first": "Lidiya",
+     "full": "Mishchenko L",
+     "collective": null
+    },
+    {
+     "last": "Nazarov",
+     "initials": "T",
+     "first": "Taras",
+     "full": "Nazarov T",
+     "collective": null
+    },
+    {
+     "last": "Dunich",
+     "initials": "A",
+     "first": "Alina",
+     "full": "Dunich A",
+     "collective": null
+    },
+    {
+     "last": "Mishchenko",
+     "initials": "I",
+     "first": "Ivan",
+     "full": "Mishchenko I",
+     "collective": null
+    },
+    {
+     "last": "Ryshchakova",
+     "initials": "O",
+     "first": "Olga",
+     "full": "Ryshchakova O",
+     "collective": null
+    },
+    {
+     "last": "Motsnyi",
+     "initials": "I",
+     "first": "Ivan",
+     "full": "Motsnyi I",
+     "collective": null
+    },
+    {
+     "last": "Dashchenko",
+     "initials": "A",
+     "first": "Anna",
+     "full": "Dashchenko A",
+     "collective": null
+    },
+    {
+     "last": "Bezkrovna",
+     "initials": "L",
+     "first": "Lidiya",
+     "full": "Bezkrovna L",
+     "collective": null
+    },
+    {
+     "last": "Fanin",
+     "initials": "Y",
+     "first": "Yaroslav",
+     "full": "Fanin Y",
+     "collective": null
+    },
+    {
+     "last": "Molodchenkova",
+     "initials": "O",
+     "first": "Olga",
+     "full": "Molodchenkova O",
+     "collective": null
+    },
+    {
+     "last": "Smertenko",
+     "initials": "A",
+     "first": "Andrei",
+     "full": "Smertenko A",
+     "collective": null
+    }
+   ],
+   "journal": "International journal of molecular sciences",
+   "journal_iso": "Int J Mol Sci",
+   "volume": "22",
+   "issue": "19",
+   "year": 2021,
+   "pages": "10218",
+   "license": "cc by",
+   "first_pub": "2021-09-23",
+   "fig_label": "Figure 2",
+   "caption": "Impact of WSMV infection on yield and chlorophyll content. (A), Average seed number per spike in healthy and WSMV-infected plants. (B), Average weight of 1000 grains of healthy and WSMV-infected plants (C), Average weight of grains per spike in healthy and WSMV-infected plants (D), Relative protein content in leaves of healthy and WSMV-infected plants. (E, F), Chlorophyll a (E) and Chlorophyll b (F) content in leaves of health and WSMV-infected plants per 100 g of fresh leaf weight. Ten biological replicates (individual plants) were measured in A and six biological replicates (individual plants) were measured in (D – F). p values were calculated using non-paired t -test.",
+   "href": "ijms-22-10218-g002.jpg",
+   "img_url": "https://cdn.ncbi.nlm.nih.gov/pmc/blobs/d16e/8508189/9345f2d30822/ijms-22-10218-g002.jpg",
+   "orig_size": [
+    734,
+    489
+   ],
+   "crossref": {
+    "title": "Impact of Wheat Streak Mosaic Virus on Peroxisome Proliferation, Redox Reactions, and Resistance Responses in Wheat",
+    "container": "International Journal of Molecular Sciences",
+    "volume": "22",
+    "issue": "19",
+    "page": "10218",
+    "article_number": null,
+    "authors": [
+     {
+      "given": "Lidiya",
+      "family": "Mishchenko",
+      "name": null
+     },
+     {
+      "given": "Taras",
+      "family": "Nazarov",
+      "name": null
+     },
+     {
+      "given": "Alina",
+      "family": "Dunich",
+      "name": null
+     },
+     {
+      "given": "Ivan",
+      "family": "Mishchenko",
+      "name": null
+     },
+     {
+      "given": "Olga",
+      "family": "Ryshchakova",
+      "name": null
+     },
+     {
+      "given": "Ivan",
+      "family": "Motsnyi",
+      "name": null
+     },
+     {
+      "given": "Anna",
+      "family": "Dashchenko",
+      "name": null
+     },
+     {
+      "given": "Lidiya",
+      "family": "Bezkrovna",
+      "name": null
+     },
+     {
+      "given": "Yaroslav",
+      "family": "Fanin",
+      "name": null
+     },
+     {
+      "given": "Olga",
+      "family": "Molodchenkova",
+      "name": null
+     },
+     {
+      "given": "Andrei",
+      "family": "Smertenko",
+      "name": null
+     }
+    ],
+    "issued": [
+     2021,
+     9,
+     23
+    ],
+    "published_online": [
+     2021,
+     9,
+     23
+    ],
+    "published_print": [
+     null
+    ]
+   }
+  },
+  {
+   "k": "s3",
+   "source": "epmc",
+   "score": 10,
+   "pmcid": "PMC8508189",
+   "doi": "10.3390/ijms221910218",
+   "title": "Impact of Wheat Streak Mosaic Virus on Peroxisome Proliferation, Redox Reactions, and Resistance Responses in Wheat.",
+   "authors": [
+    {
+     "last": "Mishchenko",
+     "initials": "L",
+     "first": "Lidiya",
+     "full": "Mishchenko L",
+     "collective": null
+    },
+    {
+     "last": "Nazarov",
+     "initials": "T",
+     "first": "Taras",
+     "full": "Nazarov T",
+     "collective": null
+    },
+    {
+     "last": "Dunich",
+     "initials": "A",
+     "first": "Alina",
+     "full": "Dunich A",
+     "collective": null
+    },
+    {
+     "last": "Mishchenko",
+     "initials": "I",
+     "first": "Ivan",
+     "full": "Mishchenko I",
+     "collective": null
+    },
+    {
+     "last": "Ryshchakova",
+     "initials": "O",
+     "first": "Olga",
+     "full": "Ryshchakova O",
+     "collective": null
+    },
+    {
+     "last": "Motsnyi",
+     "initials": "I",
+     "first": "Ivan",
+     "full": "Motsnyi I",
+     "collective": null
+    },
+    {
+     "last": "Dashchenko",
+     "initials": "A",
+     "first": "Anna",
+     "full": "Dashchenko A",
+     "collective": null
+    },
+    {
+     "last": "Bezkrovna",
+     "initials": "L",
+     "first": "Lidiya",
+     "full": "Bezkrovna L",
+     "collective": null
+    },
+    {
+     "last": "Fanin",
+     "initials": "Y",
+     "first": "Yaroslav",
+     "full": "Fanin Y",
+     "collective": null
+    },
+    {
+     "last": "Molodchenkova",
+     "initials": "O",
+     "first": "Olga",
+     "full": "Molodchenkova O",
+     "collective": null
+    },
+    {
+     "last": "Smertenko",
+     "initials": "A",
+     "first": "Andrei",
+     "full": "Smertenko A",
+     "collective": null
+    }
+   ],
+   "journal": "International journal of molecular sciences",
+   "journal_iso": "Int J Mol Sci",
+   "volume": "22",
+   "issue": "19",
+   "year": 2021,
+   "pages": "10218",
+   "license": "cc by",
+   "first_pub": "2021-09-23",
+   "fig_label": "Figure 5",
+   "caption": "Response of ROS scavenging system to WSMV infection. (A – D), Activity of catalase (A); peroxidase (B); ascorbate peroxidase (C); and glutathione peroxidase (D) in leaves of healthy or WSMV-infected plants. (E, F), Content of reduced glutathione (E) and flavonoids (F) per one gram of leaf fresh weight from healthy or WSMV-infected plants. (G) Content of soluble sugars (monosaccharides and oligosaccharides) in leaves of healthy or WSMV-infected plants. Six biological replicates (individual plants) were measured per each treatment. p values were calculated using non-paired t -test.",
+   "href": "ijms-22-10218-g005.jpg",
+   "img_url": "https://cdn.ncbi.nlm.nih.gov/pmc/blobs/d16e/8508189/f089c7311896/ijms-22-10218-g005.jpg",
+   "orig_size": [
+    785,
+    479
+   ],
+   "crossref": {
+    "title": "Impact of Wheat Streak Mosaic Virus on Peroxisome Proliferation, Redox Reactions, and Resistance Responses in Wheat",
+    "container": "International Journal of Molecular Sciences",
+    "volume": "22",
+    "issue": "19",
+    "page": "10218",
+    "article_number": null,
+    "authors": [
+     {
+      "given": "Lidiya",
+      "family": "Mishchenko",
+      "name": null
+     },
+     {
+      "given": "Taras",
+      "family": "Nazarov",
+      "name": null
+     },
+     {
+      "given": "Alina",
+      "family": "Dunich",
+      "name": null
+     },
+     {
+      "given": "Ivan",
+      "family": "Mishchenko",
+      "name": null
+     },
+     {
+      "given": "Olga",
+      "family": "Ryshchakova",
+      "name": null
+     },
+     {
+      "given": "Ivan",
+      "family": "Motsnyi",
+      "name": null
+     },
+     {
+      "given": "Anna",
+      "family": "Dashchenko",
+      "name": null
+     },
+     {
+      "given": "Lidiya",
+      "family": "Bezkrovna",
+      "name": null
+     },
+     {
+      "given": "Yaroslav",
+      "family": "Fanin",
+      "name": null
+     },
+     {
+      "given": "Olga",
+      "family": "Molodchenkova",
+      "name": null
+     },
+     {
+      "given": "Andrei",
+      "family": "Smertenko",
+      "name": null
+     }
+    ],
+    "issued": [
+     2021,
+     9,
+     23
+    ],
+    "published_online": [
+     2021,
+     9,
+     23
+    ],
+    "published_print": [
+     null
+    ]
+   }
+  },
+  {
+   "k": "s4",
+   "source": "epmc",
+   "score": 8,
+   "pmcid": "PMC8508189",
+   "doi": "10.3390/ijms221910218",
+   "title": "Impact of Wheat Streak Mosaic Virus on Peroxisome Proliferation, Redox Reactions, and Resistance Responses in Wheat.",
+   "authors": [
+    {
+     "last": "Mishchenko",
+     "initials": "L",
+     "first": "Lidiya",
+     "full": "Mishchenko L",
+     "collective": null
+    },
+    {
+     "last": "Nazarov",
+     "initials": "T",
+     "first": "Taras",
+     "full": "Nazarov T",
+     "collective": null
+    },
+    {
+     "last": "Dunich",
+     "initials": "A",
+     "first": "Alina",
+     "full": "Dunich A",
+     "collective": null
+    },
+    {
+     "last": "Mishchenko",
+     "initials": "I",
+     "first": "Ivan",
+     "full": "Mishchenko I",
+     "collective": null
+    },
+    {
+     "last": "Ryshchakova",
+     "initials": "O",
+     "first": "Olga",
+     "full": "Ryshchakova O",
+     "collective": null
+    },
+    {
+     "last": "Motsnyi",
+     "initials": "I",
+     "first": "Ivan",
+     "full": "Motsnyi I",
+     "collective": null
+    },
+    {
+     "last": "Dashchenko",
+     "initials": "A",
+     "first": "Anna",
+     "full": "Dashchenko A",
+     "collective": null
+    },
+    {
+     "last": "Bezkrovna",
+     "initials": "L",
+     "first": "Lidiya",
+     "full": "Bezkrovna L",
+     "collective": null
+    },
+    {
+     "last": "Fanin",
+     "initials": "Y",
+     "first": "Yaroslav",
+     "full": "Fanin Y",
+     "collective": null
+    },
+    {
+     "last": "Molodchenkova",
+     "initials": "O",
+     "first": "Olga",
+     "full": "Molodchenkova O",
+     "collective": null
+    },
+    {
+     "last": "Smertenko",
+     "initials": "A",
+     "first": "Andrei",
+     "full": "Smertenko A",
+     "collective": null
+    }
+   ],
+   "journal": "International journal of molecular sciences",
+   "journal_iso": "Int J Mol Sci",
+   "volume": "22",
+   "issue": "19",
+   "year": 2021,
+   "pages": "10218",
+   "license": "cc by",
+   "first_pub": "2021-09-23",
+   "fig_label": "Figure 4",
+   "caption": "Analysis of oxidative stress in leaves of plants infected by WSMV. (A), Content of hydrogen peroxide per gram of leaf fresh weight in healthy and WSMV-infected plants. (B, C), Content of malondialdehyde (MDA; B) and nitrogen monoxide (NO; C) per 100 g of leaf fresh weight in healthy and WSMV-infected plants. Six biological replicates (individual plants) were measured per each treatment. p values were calculated using non-paired t -test.",
+   "href": "ijms-22-10218-g004.jpg",
+   "img_url": "https://cdn.ncbi.nlm.nih.gov/pmc/blobs/d16e/8508189/4a12e4d13989/ijms-22-10218-g004.jpg",
+   "orig_size": [
+    717,
+    311
+   ],
+   "crossref": {
+    "title": "Impact of Wheat Streak Mosaic Virus on Peroxisome Proliferation, Redox Reactions, and Resistance Responses in Wheat",
+    "container": "International Journal of Molecular Sciences",
+    "volume": "22",
+    "issue": "19",
+    "page": "10218",
+    "article_number": null,
+    "authors": [
+     {
+      "given": "Lidiya",
+      "family": "Mishchenko",
+      "name": null
+     },
+     {
+      "given": "Taras",
+      "family": "Nazarov",
+      "name": null
+     },
+     {
+      "given": "Alina",
+      "family": "Dunich",
+      "name": null
+     },
+     {
+      "given": "Ivan",
+      "family": "Mishchenko",
+      "name": null
+     },
+     {
+      "given": "Olga",
+      "family": "Ryshchakova",
+      "name": null
+     },
+     {
+      "given": "Ivan",
+      "family": "Motsnyi",
+      "name": null
+     },
+     {
+      "given": "Anna",
+      "family": "Dashchenko",
+      "name": null
+     },
+     {
+      "given": "Lidiya",
+      "family": "Bezkrovna",
+      "name": null
+     },
+     {
+      "given": "Yaroslav",
+      "family": "Fanin",
+      "name": null
+     },
+     {
+      "given": "Olga",
+      "family": "Molodchenkova",
+      "name": null
+     },
+     {
+      "given": "Andrei",
+      "family": "Smertenko",
+      "name": null
+     }
+    ],
+    "issued": [
+     2021,
+     9,
+     23
+    ],
+    "published_online": [
+     2021,
+     9,
+     23
+    ],
+    "published_print": [
+     null
+    ]
+   }
+  },
+  {
+   "k": "s5",
+   "source": "epmc",
+   "score": 5,
+   "pmcid": "PMC9229632",
+   "doi": "10.3390/v14061220",
+   "title": "Occurrence and Characterization of Wheat Streak Mosaic Virus Found in Mono- and Mixed Infection with High Plains Wheat Mosaic Virus in Winter Wheat in Ukraine.",
+   "authors": [
+    {
+     "last": "Pozhylov",
+     "initials": "I",
+     "first": "Illia",
+     "full": "Pozhylov I",
+     "collective": null
+    },
+    {
+     "last": "Snihur",
+     "initials": "H",
+     "first": "Halyna",
+     "full": "Snihur H",
+     "collective": null
+    },
+    {
+     "last": "Shevchenko",
+     "initials": "T",
+     "first": "Tetiana",
+     "full": "Shevchenko T",
+     "collective": null
+    },
+    {
+     "last": "Budzanivska",
+     "initials": "I",
+     "first": "Irena",
+     "full": "Budzanivska I",
+     "collective": null
+    },
+    {
+     "last": "Liu",
+     "initials": "W",
+     "first": "Wenwen",
+     "full": "Liu W",
+     "collective": null
+    },
+    {
+     "last": "Wang",
+     "initials": "X",
+     "first": "Xifeng",
+     "full": "Wang X",
+     "collective": null
+    },
+    {
+     "last": "Shevchenko",
+     "initials": "O",
+     "first": "Oleksiy",
+     "full": "Shevchenko O",
+     "collective": null
+    }
+   ],
+   "journal": "Viruses",
+   "journal_iso": "Viruses",
+   "volume": "14",
+   "issue": "6",
+   "year": 2022,
+   "pages": "1220",
+   "license": "cc by",
+   "first_pub": "2022-06-03",
+   "fig_label": "Figure 2",
+   "caption": "Dynamics of infection patterns induced by wheat streak mosaic virus (WSMV) and High Plains wheat mosaic virus (HPWMoV) in winter wheat in 2018 and 2019.",
+   "href": "viruses-14-01220-g002.jpg",
+   "img_url": "https://cdn.ncbi.nlm.nih.gov/pmc/blobs/f565/9229632/195a48a8170b/viruses-14-01220-g002.jpg",
+   "orig_size": [
+    745,
+    544
+   ],
+   "crossref": {
+    "title": "Occurrence and Characterization of Wheat Streak Mosaic Virus Found in Mono- and Mixed Infection with High Plains Wheat Mosaic Virus in Winter Wheat in Ukraine",
+    "container": "Viruses",
+    "volume": "14",
+    "issue": "6",
+    "page": "1220",
+    "article_number": null,
+    "authors": [
+     {
+      "given": "Illia",
+      "family": "Pozhylov",
+      "name": null
+     },
+     {
+      "given": "Halyna",
+      "family": "Snihur",
+      "name": null
+     },
+     {
+      "given": "Tetiana",
+      "family": "Shevchenko",
+      "name": null
+     },
+     {
+      "given": "Irena",
+      "family": "Budzanivska",
+      "name": null
+     },
+     {
+      "given": "Wenwen",
+      "family": "Liu",
+      "name": null
+     },
+     {
+      "given": "Xifeng",
+      "family": "Wang",
+      "name": null
+     },
+     {
+      "given": "Oleksiy",
+      "family": "Shevchenko",
+      "name": null
+     }
+    ],
+    "issued": [
+     2022,
+     6,
+     3
+    ],
+    "published_online": [
+     2022,
+     6,
+     3
+    ],
+    "published_print": [
+     null
+    ]
+   }
+  }
+ ]
+}

@@ -1,0 +1,478 @@
+{
+ "id": "downysun",
+ "candidates": [
+  {
+   "k": "s1",
+   "source": "epmc",
+   "score": 11,
+   "pmcid": "PMC10144485",
+   "doi": "10.3390/microorganisms11040821",
+   "title": "Assessing the Sensitivity of <i>Plasmopara halstedii</i> Isolates to Mefenoxam through Host Responses.",
+   "authors": [
+    {
+     "last": "Nisha",
+     "initials": "N",
+     "first": "Nisha",
+     "full": "Nisha N",
+     "collective": null
+    },
+    {
+     "last": "Vinogradov",
+     "initials": "S",
+     "first": "Sergey",
+     "full": "Vinogradov S",
+     "collective": null
+    },
+    {
+     "last": "Körösi",
+     "initials": "K",
+     "first": "Katalin",
+     "full": "Körösi K",
+     "collective": null
+    },
+    {
+     "last": "Berisha",
+     "initials": "A",
+     "first": "Arbnora",
+     "full": "Berisha A",
+     "collective": null
+    },
+    {
+     "last": "Bán",
+     "initials": "R",
+     "first": "Rita",
+     "full": "Bán R",
+     "collective": null
+    }
+   ],
+   "journal": "Microorganisms",
+   "journal_iso": "Microorganisms",
+   "volume": "11",
+   "issue": "4",
+   "year": 2023,
+   "pages": "821",
+   "license": "cc by",
+   "first_pub": "2023-03-23",
+   "fig_label": "Figure 1",
+   "caption": "Disease rates (a, b) and heights (c, d) of mefenoxam-treated and non-treated sunflower plants inoculated with different Plasmopara halstedii isolates. Disease 1: ratio of sporulating pre-emergence damped-off plants and healthy sunflowers nine days after inoculation. Disease 2: ratio of chlorotic post-emergence damped-off plants and healthy sunflowers 21 days after inoculation. Height 1: height of sunflowers nine days after inoculation (heights of damped-off plants were taken as zero). Height 2: height of sunflowers 21 days after inoculation (heights of damped-off plants were taken as zero). Treatment: non-treated and treated with mefenoxam (3 mg/kg seed). Isolate: code of Plasmopara halstedii isolates used in the experiment (1, 4, 5, 6, 7, 8, 9, and 11) (for more details, see Table 1). Vertical lines represent 95% confidence intervals (95% CI) of the mean values of disease rates and heights.",
+   "href": "microorganisms-11-00821-g001.jpg",
+   "img_url": "https://cdn.ncbi.nlm.nih.gov/pmc/blobs/f82b/10144485/50aeb521b47b/microorganisms-11-00821-g001.jpg",
+   "orig_size": [
+    733,
+    474
+   ],
+   "crossref": {
+    "title": "Assessing the Sensitivity of Plasmopara halstedii Isolates to Mefenoxam through Host Responses",
+    "container": "Microorganisms",
+    "volume": "11",
+    "issue": "4",
+    "page": "821",
+    "article_number": null,
+    "authors": [
+     {
+      "given": "Nisha",
+      "family": "Nisha",
+      "name": null
+     },
+     {
+      "given": "Sergey",
+      "family": "Vinogradov",
+      "name": null
+     },
+     {
+      "given": "Katalin",
+      "family": "Körösi",
+      "name": null
+     },
+     {
+      "given": "Arbnora",
+      "family": "Berisha",
+      "name": null
+     },
+     {
+      "given": "Rita",
+      "family": "Bán",
+      "name": null
+     }
+    ],
+    "issued": [
+     2023,
+     3,
+     23
+    ],
+    "published_online": [
+     2023,
+     3,
+     23
+    ],
+    "published_print": [
+     null
+    ]
+   }
+  },
+  {
+   "k": "s2",
+   "source": "epmc",
+   "score": 9,
+   "pmcid": "PMC10144485",
+   "doi": "10.3390/microorganisms11040821",
+   "title": "Assessing the Sensitivity of <i>Plasmopara halstedii</i> Isolates to Mefenoxam through Host Responses.",
+   "authors": [
+    {
+     "last": "Nisha",
+     "initials": "N",
+     "first": "Nisha",
+     "full": "Nisha N",
+     "collective": null
+    },
+    {
+     "last": "Vinogradov",
+     "initials": "S",
+     "first": "Sergey",
+     "full": "Vinogradov S",
+     "collective": null
+    },
+    {
+     "last": "Körösi",
+     "initials": "K",
+     "first": "Katalin",
+     "full": "Körösi K",
+     "collective": null
+    },
+    {
+     "last": "Berisha",
+     "initials": "A",
+     "first": "Arbnora",
+     "full": "Berisha A",
+     "collective": null
+    },
+    {
+     "last": "Bán",
+     "initials": "R",
+     "first": "Rita",
+     "full": "Bán R",
+     "collective": null
+    }
+   ],
+   "journal": "Microorganisms",
+   "journal_iso": "Microorganisms",
+   "volume": "11",
+   "issue": "4",
+   "year": 2023,
+   "pages": "821",
+   "license": "cc by",
+   "first_pub": "2023-03-23",
+   "fig_label": "Figure 3",
+   "caption": "Occurrence of pathogen hyphae (a, b) and host reactions such as hypersensitive reaction (c, d) and necrosis (e, f) in the cortical and pith parenchyma of mefenoxam-treated and non-treated sunflower plants inoculated with Plasmopara halstedii. Treatment: non-treated and treated with mefenoxam (3 mg/kg seed). Isolate: code of Plasmopara halstedii isolates used in the experiment (1, 4, 5, 6, 7, 8, 9, and 11) (for more details, see Table 1). The infection rate and the rate of the host reaction were measured on a 0–4 scale. Vertical lines represent 95% confidence intervals (95% CI) of the mean values of disease rates and heights.",
+   "href": "microorganisms-11-00821-g003.jpg",
+   "img_url": "https://cdn.ncbi.nlm.nih.gov/pmc/blobs/f82b/10144485/fc2a4fd89860/microorganisms-11-00821-g003.jpg",
+   "orig_size": [
+    743,
+    727
+   ],
+   "crossref": {
+    "title": "Assessing the Sensitivity of Plasmopara halstedii Isolates to Mefenoxam through Host Responses",
+    "container": "Microorganisms",
+    "volume": "11",
+    "issue": "4",
+    "page": "821",
+    "article_number": null,
+    "authors": [
+     {
+      "given": "Nisha",
+      "family": "Nisha",
+      "name": null
+     },
+     {
+      "given": "Sergey",
+      "family": "Vinogradov",
+      "name": null
+     },
+     {
+      "given": "Katalin",
+      "family": "Körösi",
+      "name": null
+     },
+     {
+      "given": "Arbnora",
+      "family": "Berisha",
+      "name": null
+     },
+     {
+      "given": "Rita",
+      "family": "Bán",
+      "name": null
+     }
+    ],
+    "issued": [
+     2023,
+     3,
+     23
+    ],
+    "published_online": [
+     2023,
+     3,
+     23
+    ],
+    "published_print": [
+     null
+    ]
+   }
+  },
+  {
+   "k": "s3",
+   "source": "epmc",
+   "score": 7,
+   "pmcid": "PMC6756549",
+   "doi": "10.1371/journal.pone.0222827",
+   "title": "Novel synergistic fungicidal mixtures of oxathiapiprolin protect sunflower seeds from downy mildew caused by Plasmopara halstedii.",
+   "authors": [
+    {
+     "last": "Cohen",
+     "initials": "Y",
+     "first": "Yigal",
+     "full": "Cohen Y",
+     "collective": null
+    },
+    {
+     "last": "Rubin",
+     "initials": "AE",
+     "first": "Avia E",
+     "full": "Rubin AE",
+     "collective": null
+    },
+    {
+     "last": "Galperin",
+     "initials": "M",
+     "first": "Mariana",
+     "full": "Galperin M",
+     "collective": null
+    }
+   ],
+   "journal": "PloS one",
+   "journal_iso": "PLoS One",
+   "volume": "14",
+   "issue": "9",
+   "year": 2019,
+   "pages": "e0222827",
+   "license": "cc by",
+   "first_pub": "2019-09-23",
+   "fig_label": "Fig 7",
+   "caption": "Control of downy mildew in sunflower cultivar Bacardi by seed treatment with Plenaris, Bion and Apron. Mean of three experiment. A- Doses of the fungicides applied per seed. B- Percent plants showing sporulation of Plasmopara halstedii at 7 dpi. Different letters on bars indicate on significant differences between treatments at α = 0.05.",
+   "href": "pone.0222827.g007.jpg",
+   "img_url": "https://journals.plos.org/plosone/article/figure/image?size=large&id=10.1371/journal.pone.0222827.g007",
+   "orig_size": [
+    2220,
+    2111
+   ],
+   "crossref": {
+    "title": "Novel synergistic fungicidal mixtures of oxathiapiprolin protect sunflower seeds from downy mildew caused by Plasmopara halstedii",
+    "container": "PLOS ONE",
+    "volume": "14",
+    "issue": "9",
+    "page": "e0222827",
+    "article_number": null,
+    "authors": [
+     {
+      "given": "Yigal",
+      "family": "Cohen",
+      "name": null
+     },
+     {
+      "given": "Avia E.",
+      "family": "Rubin",
+      "name": null
+     },
+     {
+      "given": "Mariana",
+      "family": "Galperin",
+      "name": null
+     }
+    ],
+    "issued": [
+     2019,
+     9,
+     23
+    ],
+    "published_online": [
+     2019,
+     9,
+     23
+    ],
+    "published_print": [
+     null
+    ]
+   }
+  },
+  {
+   "k": "s4",
+   "source": "epmc",
+   "score": 7,
+   "pmcid": "PMC6756549",
+   "doi": "10.1371/journal.pone.0222827",
+   "title": "Novel synergistic fungicidal mixtures of oxathiapiprolin protect sunflower seeds from downy mildew caused by Plasmopara halstedii.",
+   "authors": [
+    {
+     "last": "Cohen",
+     "initials": "Y",
+     "first": "Yigal",
+     "full": "Cohen Y",
+     "collective": null
+    },
+    {
+     "last": "Rubin",
+     "initials": "AE",
+     "first": "Avia E",
+     "full": "Rubin AE",
+     "collective": null
+    },
+    {
+     "last": "Galperin",
+     "initials": "M",
+     "first": "Mariana",
+     "full": "Galperin M",
+     "collective": null
+    }
+   ],
+   "journal": "PloS one",
+   "journal_iso": "PLoS One",
+   "volume": "14",
+   "issue": "9",
+   "year": 2019,
+   "pages": "e0222827",
+   "license": "cc by",
+   "first_pub": "2019-09-23",
+   "fig_label": "Fig 8",
+   "caption": "Control of downy mildew in sunflower cultivar Bacardi by seed treatment with Plenaris, Bion and Apron. Mean of 11 experiments. A- Doses of the fungicides applied per seed. B- Percent plants showing sporulation of Plasmopara halstedii at 7 dpi. Different letters on bars indicate on a significant differences between treatments at α = 0.05. C- Synergy factor calculated for the mixtures according to the Abbott formula [35, 36].",
+   "href": "pone.0222827.g008.jpg",
+   "img_url": "https://journals.plos.org/plosone/article/figure/image?size=large&id=10.1371/journal.pone.0222827.g008",
+   "orig_size": [
+    2220,
+    1941
+   ],
+   "crossref": {
+    "title": "Novel synergistic fungicidal mixtures of oxathiapiprolin protect sunflower seeds from downy mildew caused by Plasmopara halstedii",
+    "container": "PLOS ONE",
+    "volume": "14",
+    "issue": "9",
+    "page": "e0222827",
+    "article_number": null,
+    "authors": [
+     {
+      "given": "Yigal",
+      "family": "Cohen",
+      "name": null
+     },
+     {
+      "given": "Avia E.",
+      "family": "Rubin",
+      "name": null
+     },
+     {
+      "given": "Mariana",
+      "family": "Galperin",
+      "name": null
+     }
+    ],
+    "issued": [
+     2019,
+     9,
+     23
+    ],
+    "published_online": [
+     2019,
+     9,
+     23
+    ],
+    "published_print": [
+     null
+    ]
+   }
+  },
+  {
+   "k": "s5",
+   "source": "epmc",
+   "score": 7,
+   "pmcid": "PMC6756549",
+   "doi": "10.1371/journal.pone.0222827",
+   "title": "Novel synergistic fungicidal mixtures of oxathiapiprolin protect sunflower seeds from downy mildew caused by Plasmopara halstedii.",
+   "authors": [
+    {
+     "last": "Cohen",
+     "initials": "Y",
+     "first": "Yigal",
+     "full": "Cohen Y",
+     "collective": null
+    },
+    {
+     "last": "Rubin",
+     "initials": "AE",
+     "first": "Avia E",
+     "full": "Rubin AE",
+     "collective": null
+    },
+    {
+     "last": "Galperin",
+     "initials": "M",
+     "first": "Mariana",
+     "full": "Galperin M",
+     "collective": null
+    }
+   ],
+   "journal": "PloS one",
+   "journal_iso": "PLoS One",
+   "volume": "14",
+   "issue": "9",
+   "year": 2019,
+   "pages": "e0222827",
+   "license": "cc by",
+   "first_pub": "2019-09-23",
+   "fig_label": "Fig 9",
+   "caption": "Control of downy mildew in sunflower cultivar June by seed treatment with Plenaris, Bion and Apron. Mean of 13 experiments. A- Doses of the fungicides applied per seed. B- Percent plants showing sporulation of Plasmopara halstedii at 7 dpi. Different letters on bars indicate on a significant difference between treatments at α = 0.05. C- Synergy factor calculated for the mixtures according to Abbott formula.",
+   "href": "pone.0222827.g009.jpg",
+   "img_url": "https://journals.plos.org/plosone/article/figure/image?size=large&id=10.1371/journal.pone.0222827.g009",
+   "orig_size": [
+    2220,
+    1848
+   ],
+   "crossref": {
+    "title": "Novel synergistic fungicidal mixtures of oxathiapiprolin protect sunflower seeds from downy mildew caused by Plasmopara halstedii",
+    "container": "PLOS ONE",
+    "volume": "14",
+    "issue": "9",
+    "page": "e0222827",
+    "article_number": null,
+    "authors": [
+     {
+      "given": "Yigal",
+      "family": "Cohen",
+      "name": null
+     },
+     {
+      "given": "Avia E.",
+      "family": "Rubin",
+      "name": null
+     },
+     {
+      "given": "Mariana",
+      "family": "Galperin",
+      "name": null
+     }
+    ],
+    "issued": [
+     2019,
+     9,
+     23
+    ],
+    "published_online": [
+     2019,
+     9,
+     23
+    ],
+    "published_print": [
+     null
+    ]
+   }
+  }
+ ]
+}

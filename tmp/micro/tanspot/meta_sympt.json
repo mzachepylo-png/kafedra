@@ -1,0 +1,225 @@
+{
+ "id": "tanspot",
+ "candidates": [
+  {
+   "k": "s1",
+   "source": "epmc",
+   "score": 8,
+   "pmcid": "PMC8136220",
+   "doi": "10.1186/s13007-021-00751-4",
+   "title": "An optimized sporulation method for the wheat fungal pathogen Pyrenophora tritici-repentis.",
+   "authors": [
+    {
+     "last": "Jacques",
+     "initials": "S",
+     "first": "Silke",
+     "full": "Jacques S",
+     "collective": null
+    },
+    {
+     "last": "Lenzo",
+     "initials": "L",
+     "first": "Leon",
+     "full": "Lenzo L",
+     "collective": null
+    },
+    {
+     "last": "Stevens",
+     "initials": "K",
+     "first": "Kofi",
+     "full": "Stevens K",
+     "collective": null
+    },
+    {
+     "last": "Lawrence",
+     "initials": "J",
+     "first": "Julie",
+     "full": "Lawrence J",
+     "collective": null
+    },
+    {
+     "last": "Tan",
+     "initials": "KC",
+     "first": "Kar-Chun",
+     "full": "Tan KC",
+     "collective": null
+    }
+   ],
+   "journal": "Plant methods",
+   "journal_iso": "Plant Methods",
+   "volume": "17",
+   "issue": "1",
+   "year": 2021,
+   "pages": "52",
+   "license": "cc by",
+   "first_pub": "2021-05-19",
+   "fig_label": "Fig. 6",
+   "caption": "Ptr spore inoculum obtained from the improved protocol remained infectious on wheat. An attached leaf infection assay with viable M4 Ptr spores (1 × 10 5 /ml) demonstrated typical tan spot symptoms (a) whereas the negative controls sprayed with 0.02% Tween 20 solution did not (b)",
+   "href": "13007_2021_751_Fig6_HTML.jpg",
+   "img_url": "https://cdn.ncbi.nlm.nih.gov/pmc/blobs/6e85/8136220/cf2ae0aab387/13007_2021_751_Fig6_HTML.jpg",
+   "orig_size": [
+    597,
+    551
+   ],
+   "crossref": {
+    "title": "An optimized sporulation method for the wheat fungal pathogen Pyrenophora tritici-repentis",
+    "container": "Plant Methods",
+    "volume": "17",
+    "issue": "1",
+    "page": null,
+    "article_number": "52",
+    "authors": [
+     {
+      "given": "Silke",
+      "family": "Jacques",
+      "name": null
+     },
+     {
+      "given": "Leon",
+      "family": "Lenzo",
+      "name": null
+     },
+     {
+      "given": "Kofi",
+      "family": "Stevens",
+      "name": null
+     },
+     {
+      "given": "Julie",
+      "family": "Lawrence",
+      "name": null
+     },
+     {
+      "given": "Kar-Chun",
+      "family": "Tan",
+      "name": null
+     }
+    ],
+    "issued": [
+     2021,
+     5,
+     19
+    ],
+    "published_online": [
+     2021,
+     5,
+     19
+    ],
+    "published_print": [
+     2021,
+     12
+    ]
+   }
+  },
+  {
+   "k": "s2",
+   "source": "epmc",
+   "score": 4,
+   "pmcid": "PMC8136220",
+   "doi": "10.1186/s13007-021-00751-4",
+   "title": "An optimized sporulation method for the wheat fungal pathogen Pyrenophora tritici-repentis.",
+   "authors": [
+    {
+     "last": "Jacques",
+     "initials": "S",
+     "first": "Silke",
+     "full": "Jacques S",
+     "collective": null
+    },
+    {
+     "last": "Lenzo",
+     "initials": "L",
+     "first": "Leon",
+     "full": "Lenzo L",
+     "collective": null
+    },
+    {
+     "last": "Stevens",
+     "initials": "K",
+     "first": "Kofi",
+     "full": "Stevens K",
+     "collective": null
+    },
+    {
+     "last": "Lawrence",
+     "initials": "J",
+     "first": "Julie",
+     "full": "Lawrence J",
+     "collective": null
+    },
+    {
+     "last": "Tan",
+     "initials": "KC",
+     "first": "Kar-Chun",
+     "full": "Tan KC",
+     "collective": null
+    }
+   ],
+   "journal": "Plant methods",
+   "journal_iso": "Plant Methods",
+   "volume": "17",
+   "issue": "1",
+   "year": 2021,
+   "pages": "52",
+   "license": "cc by",
+   "first_pub": "2021-05-19",
+   "fig_label": "Fig. 2",
+   "caption": "An overview of the optimized sporulation protocol. One-week old vegetative growth V8-PDA plates (a = M4; b = DW5 Ptr isolates) are plugged with the end of a 200 µl pipettip (c) about 0.5 cm from the outer rim of the mycelial growth (d). A total of 16 plugs are transferred with a sterile blade (e) onto a fresh V8-PDA plate and plugs are evenly spaced (5 mm) along the edge of the plate (f). Plates are incubated without lids under N-UV light (g) for 24 h which induces conidiophore production (h). After 18 h incubation in the dark at 15 °C the excessive agar is removed and spores are brushed off in a 0.02% Tween 20 solution (i). The flow chart on the right summarizes the three main phases and steps involved in the optimized sporulation protocol",
+   "href": "13007_2021_751_Fig2_HTML.jpg",
+   "img_url": "https://cdn.ncbi.nlm.nih.gov/pmc/blobs/6e85/8136220/440a78842441/13007_2021_751_Fig2_HTML.jpg",
+   "orig_size": [
+    707,
+    490
+   ],
+   "crossref": {
+    "title": "An optimized sporulation method for the wheat fungal pathogen Pyrenophora tritici-repentis",
+    "container": "Plant Methods",
+    "volume": "17",
+    "issue": "1",
+    "page": null,
+    "article_number": "52",
+    "authors": [
+     {
+      "given": "Silke",
+      "family": "Jacques",
+      "name": null
+     },
+     {
+      "given": "Leon",
+      "family": "Lenzo",
+      "name": null
+     },
+     {
+      "given": "Kofi",
+      "family": "Stevens",
+      "name": null
+     },
+     {
+      "given": "Julie",
+      "family": "Lawrence",
+      "name": null
+     },
+     {
+      "given": "Kar-Chun",
+      "family": "Tan",
+      "name": null
+     }
+    ],
+    "issued": [
+     2021,
+     5,
+     19
+    ],
+    "published_online": [
+     2021,
+     5,
+     19
+    ],
+    "published_print": [
+     2021,
+     12
+    ]
+   }
+  }
+ ]
+}

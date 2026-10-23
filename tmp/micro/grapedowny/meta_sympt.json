@@ -1,0 +1,114 @@
+{
+ "id": "grapedowny",
+ "candidates": [
+  {
+   "k": "s1",
+   "source": "epmc",
+   "score": 6,
+   "pmcid": "PMC12195438",
+   "doi": "10.3390/microorganisms13061279",
+   "title": "Review of the Pathogenic Mechanism of Grape Downy Mildew (&lt;i&gt;Plasmopara viticola&lt;/i&gt;) and Strategies for Its Control.",
+   "authors": [
+    {
+     "last": "Zhang",
+     "initials": "Z",
+     "first": "Zhichao",
+     "full": "Zhang Z",
+     "collective": null
+    },
+    {
+     "last": "Niu",
+     "initials": "Z",
+     "first": "Zaozhu",
+     "full": "Niu Z",
+     "collective": null
+    },
+    {
+     "last": "Chen",
+     "initials": "Z",
+     "first": "Zhan",
+     "full": "Chen Z",
+     "collective": null
+    },
+    {
+     "last": "Zhao",
+     "initials": "Y",
+     "first": "Yanzhuo",
+     "full": "Zhao Y",
+     "collective": null
+    },
+    {
+     "last": "Yang",
+     "initials": "L",
+     "first": "Lili",
+     "full": "Yang L",
+     "collective": null
+    }
+   ],
+   "journal": "Microorganisms",
+   "journal_iso": "Microorganisms",
+   "volume": "13",
+   "issue": "6",
+   "year": 2025,
+   "pages": "1279",
+   "license": "cc by",
+   "first_pub": "2025-05-30",
+   "fig_label": "Figure 2",
+   "caption": "Symptoms caused by P. viticola. (A) Lesions on the surface of a grapevine leaf. (B) Pathogen development on the bottom of a grapevine leaf. (C, D) Infected grapevines in a vineyard. (E) Peduncle of grapes infected by P. viticola.",
+   "href": "microorganisms-13-01279-g002.jpg",
+   "img_url": "https://cdn.ncbi.nlm.nih.gov/pmc/blobs/4780/12195438/a0921213f613/microorganisms-13-01279-g002.jpg",
+   "orig_size": [
+    759,
+    496
+   ],
+   "crossref": {
+    "title": "Review of the Pathogenic Mechanism of Grape Downy Mildew (Plasmopara viticola) and Strategies for Its Control",
+    "container": "Microorganisms",
+    "volume": "13",
+    "issue": "6",
+    "page": "1279",
+    "article_number": null,
+    "authors": [
+     {
+      "given": "Zhichao",
+      "family": "Zhang",
+      "name": null
+     },
+     {
+      "given": "Zaozhu",
+      "family": "Niu",
+      "name": null
+     },
+     {
+      "given": "Zhan",
+      "family": "Chen",
+      "name": null
+     },
+     {
+      "given": "Yanzhuo",
+      "family": "Zhao",
+      "name": null
+     },
+     {
+      "given": "Lili",
+      "family": "Yang",
+      "name": null
+     }
+    ],
+    "issued": [
+     2025,
+     5,
+     30
+    ],
+    "published_online": [
+     2025,
+     5,
+     30
+    ],
+    "published_print": [
+     null
+    ]
+   }
+  }
+ ]
+}

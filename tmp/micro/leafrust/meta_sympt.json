@@ -1,0 +1,145 @@
+{
+ "id": "leafrust",
+ "candidates": [
+  {
+   "k": "s1",
+   "source": "epmc",
+   "score": 5,
+   "pmcid": "PMC8950986",
+   "doi": "10.3390/jof8030304",
+   "title": "Mechanism of Wheat Leaf Rust Control Using Chitosan Nanoparticles and Salicylic Acid.",
+   "authors": [
+    {
+     "last": "Elsharkawy",
+     "initials": "MM",
+     "first": "Mohsen Mohamed",
+     "full": "Elsharkawy MM",
+     "collective": null
+    },
+    {
+     "last": "Omara",
+     "initials": "RI",
+     "first": "Reda Ibrahim",
+     "full": "Omara RI",
+     "collective": null
+    },
+    {
+     "last": "Mostafa",
+     "initials": "YS",
+     "first": "Yasser Sabry",
+     "full": "Mostafa YS",
+     "collective": null
+    },
+    {
+     "last": "Alamri",
+     "initials": "SA",
+     "first": "Saad Abdulrahman",
+     "full": "Alamri SA",
+     "collective": null
+    },
+    {
+     "last": "Alamri",
+     "initials": "SA",
+     "first": "Saad Abdulrahman",
+     "full": "Alamri SA",
+     "collective": null
+    },
+    {
+     "last": "Hashem",
+     "initials": "M",
+     "first": "Mohamed",
+     "full": "Hashem M",
+     "collective": null
+    },
+    {
+     "last": "Alrumman",
+     "initials": "SA",
+     "first": "Sulaiman A",
+     "full": "Alrumman SA",
+     "collective": null
+    },
+    {
+     "last": "Ahmad",
+     "initials": "AA",
+     "first": "Abdelmonim Ali",
+     "full": "Ahmad AA",
+     "collective": null
+    }
+   ],
+   "journal": "Journal of fungi (Basel, Switzerland)",
+   "journal_iso": "J Fungi (Basel)",
+   "volume": "8",
+   "issue": "3",
+   "year": 2022,
+   "pages": "304",
+   "license": "cc by",
+   "first_pub": "2022-03-16",
+   "fig_label": "Figure 7",
+   "caption": "Effect of salicylic acid (I) and chitosan nanoparticles (II) on hydrogen peroxide (A) and superoxide anion (B) in infected plants with Puccinia triticina with three application methods (1 = spray before inoculation by 24 h, 2 = spray after inoculation by 24 h and 3 = spray before and after inoculation by 24 h). The letters (a, b and c) denote significant difference.",
+   "href": "jof-08-00304-g007.jpg",
+   "img_url": "https://cdn.ncbi.nlm.nih.gov/pmc/blobs/0522/8950986/389cf1e6cee9/jof-08-00304-g007.jpg",
+   "orig_size": [
+    719,
+    384
+   ],
+   "crossref": {
+    "title": "Mechanism of Wheat Leaf Rust Control Using Chitosan Nanoparticles and Salicylic Acid",
+    "container": "Journal of Fungi",
+    "volume": "8",
+    "issue": "3",
+    "page": "304",
+    "article_number": null,
+    "authors": [
+     {
+      "given": "Mohsen",
+      "family": "Elsharkawy",
+      "name": null
+     },
+     {
+      "given": "Reda",
+      "family": "Omara",
+      "name": null
+     },
+     {
+      "given": "Yasser",
+      "family": "Mostafa",
+      "name": null
+     },
+     {
+      "given": "Saad",
+      "family": "Alamri",
+      "name": null
+     },
+     {
+      "given": "Mohamed",
+      "family": "Hashem",
+      "name": null
+     },
+     {
+      "given": "Sulaiman",
+      "family": "Alrumman",
+      "name": null
+     },
+     {
+      "given": "Abdelmonim",
+      "family": "Ahmad",
+      "name": null
+     }
+    ],
+    "issued": [
+     2022,
+     3,
+     16
+    ],
+    "published_online": [
+     2022,
+     3,
+     16
+    ],
+    "published_print": [
+     null
+    ]
+   }
+  }
+ ]
+}

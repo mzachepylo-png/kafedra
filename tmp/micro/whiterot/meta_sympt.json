@@ -1,0 +1,765 @@
+{
+ "id": "whiterot",
+ "candidates": [
+  {
+   "k": "s1",
+   "source": "epmc",
+   "score": 8,
+   "pmcid": "PMC12774355",
+   "doi": "10.1371/journal.ppat.1013813",
+   "title": "Sclerotinia sclerotiorum growth and aggressiveness are regulated by a mycoviral REP protein.",
+   "authors": [
+    {
+     "last": "Shu",
+     "initials": "P",
+     "first": "Peihan",
+     "full": "Shu P",
+     "collective": null
+    },
+    {
+     "last": "Tseng",
+     "initials": "YW",
+     "first": "Yi-Wen",
+     "full": "Tseng YW",
+     "collective": null
+    },
+    {
+     "last": "Lawrence",
+     "initials": "AJ",
+     "first": "Alexander J",
+     "full": "Lawrence AJ",
+     "collective": null
+    },
+    {
+     "last": "Feng",
+     "initials": "C",
+     "first": "Chenchen",
+     "full": "Feng C",
+     "collective": null
+    },
+    {
+     "last": "Kiani",
+     "initials": "Y",
+     "first": "Yasi",
+     "full": "Kiani Y",
+     "collective": null
+    },
+    {
+     "last": "Knopke-Mooney",
+     "initials": "O",
+     "first": "Olivia",
+     "full": "Knopke-Mooney O",
+     "collective": null
+    },
+    {
+     "last": "Chowdhury",
+     "initials": "RN",
+     "first": "Rawnaq N",
+     "full": "Chowdhury RN",
+     "collective": null
+    },
+    {
+     "last": "Lasky",
+     "initials": "D",
+     "first": "Danny",
+     "full": "Lasky D",
+     "collective": null
+    },
+    {
+     "last": "Groves",
+     "initials": "C",
+     "first": "Carol",
+     "full": "Groves C",
+     "collective": null
+    },
+    {
+     "last": "Smith",
+     "initials": "DL",
+     "first": "Damon L",
+     "full": "Smith DL",
+     "collective": null
+    },
+    {
+     "last": "Majumder",
+     "initials": "K",
+     "first": "Kinjal",
+     "full": "Majumder K",
+     "collective": null
+    },
+    {
+     "last": "Marzano",
+     "initials": "SL",
+     "first": "Shin-Yi Lee",
+     "full": "Marzano SL",
+     "collective": null
+    },
+    {
+     "last": "Rakotondrafara",
+     "initials": "AM",
+     "first": "Aurélie M",
+     "full": "Rakotondrafara AM",
+     "collective": null
+    }
+   ],
+   "journal": "PLoS pathogens",
+   "journal_iso": "PLoS Pathog",
+   "volume": "21",
+   "issue": "12",
+   "year": 2025,
+   "pages": "e1013813",
+   "license": "cc0",
+   "first_pub": "2025-12-26",
+   "fig_label": "Fig 6",
+   "caption": "Application of RIK1285(REP) Protects Sunflowers from White Mold. Sunflower plants were treated with equal amounts of bacterial suspensions containing RIK1285(EV), RIK1285(CP) and RIK1285(REP) by soaking the soil. Two days after the initial treatment, an additional 10 ml of bacterial suspension was applied, followed by inoculation of the root mass with an S. sclerotiorum agar plug. (A) Analyzed lesion length and photographs of treated sunflowers at 4 and 8 days post-fungal infection (dpi). Statistical significance (n = 8) was determined using ANOVA followed by Tukey’s HSD test, with significance groups indicated by letters. (B) Representative images of treated sunflower roots at 8 dpi.",
+   "href": "ppat.1013813.g006.jpg",
+   "img_url": "https://journals.plos.org/plospathogens/article/figure/image?size=large&id=10.1371/journal.ppat.1013813.g006",
+   "orig_size": [
+    3154,
+    1744
+   ],
+   "crossref": {
+    "title": "Sclerotinia sclerotiorum growth and aggressiveness are regulated by a mycoviral REP protein",
+    "container": "PLOS Pathogens",
+    "volume": "21",
+    "issue": "12",
+    "page": "e1013813",
+    "article_number": null,
+    "authors": [
+     {
+      "given": "Peihan",
+      "family": "Shu",
+      "name": null
+     },
+     {
+      "given": "Yi-Wen",
+      "family": "Tseng",
+      "name": null
+     },
+     {
+      "given": "Alexander J.",
+      "family": "Lawrence",
+      "name": null
+     },
+     {
+      "given": "Chenchen",
+      "family": "Feng",
+      "name": null
+     },
+     {
+      "given": "Yasi",
+      "family": "Kiani",
+      "name": null
+     },
+     {
+      "given": "Olivia",
+      "family": "Knopke-Mooney",
+      "name": null
+     },
+     {
+      "given": "Rawnaq N.",
+      "family": "Chowdhury",
+      "name": null
+     },
+     {
+      "given": "Danny",
+      "family": "Lasky",
+      "name": null
+     },
+     {
+      "given": "Carol",
+      "family": "Groves",
+      "name": null
+     },
+     {
+      "given": "Damon L.",
+      "family": "Smith",
+      "name": null
+     },
+     {
+      "given": "Kinjal",
+      "family": "Majumder",
+      "name": null
+     },
+     {
+      "given": "Shin-Yi Lee",
+      "family": "Marzano",
+      "name": null
+     },
+     {
+      "given": "Aurélie M.",
+      "family": "Rakotondrafara",
+      "name": null
+     }
+    ],
+    "issued": [
+     2025,
+     12,
+     26
+    ],
+    "published_online": [
+     2025,
+     12,
+     26
+    ],
+    "published_print": [
+     null
+    ]
+   }
+  },
+  {
+   "k": "s2",
+   "source": "epmc",
+   "score": 7,
+   "pmcid": "PMC11898685",
+   "doi": "10.1128/mbio.03365-24",
+   "title": "Exploring the interaction between endornavirus and &lt;i&gt;Sclerotinia sclerotiorum&lt;/i&gt;: mechanisms of phytopathogenic fungal virulence and antivirus.",
+   "authors": [
+    {
+     "last": "Mu",
+     "initials": "F",
+     "first": "Fan",
+     "full": "Mu F",
+     "collective": null
+    },
+    {
+     "last": "Xia",
+     "initials": "J",
+     "first": "Jinsheng",
+     "full": "Xia J",
+     "collective": null
+    },
+    {
+     "last": "Jia",
+     "initials": "J",
+     "first": "Jichun",
+     "full": "Jia J",
+     "collective": null
+    },
+    {
+     "last": "Jiang",
+     "initials": "D",
+     "first": "Daohong",
+     "full": "Jiang D",
+     "collective": null
+    },
+    {
+     "last": "Zhang",
+     "initials": "B",
+     "first": "Baojun",
+     "full": "Zhang B",
+     "collective": null
+    },
+    {
+     "last": "Fu",
+     "initials": "Y",
+     "first": "Yanping",
+     "full": "Fu Y",
+     "collective": null
+    },
+    {
+     "last": "Cheng",
+     "initials": "J",
+     "first": "Jiaseng",
+     "full": "Cheng J",
+     "collective": null
+    },
+    {
+     "last": "Xie",
+     "initials": "J",
+     "first": "Jiatao",
+     "full": "Xie J",
+     "collective": null
+    }
+   ],
+   "journal": "mBio",
+   "journal_iso": "mBio",
+   "volume": "16",
+   "issue": "3",
+   "year": 2025,
+   "pages": "e0336524",
+   "license": "cc by",
+   "first_pub": "2025-02-19",
+   "fig_label": "Fig 1",
+   "caption": "Biological characteristics of the SsEV3-infected strain SCH941A1V. (a) Virulence assay of Sclerotinia sclerotiorum virus-free strain SCH941A1 and SsEV3-infected strain SCH941A1V on detached rapeseed and soybean leaves at 48 hpi, 20°C. (b) Lesion diameters induced by the two strains on detached rapeseed leaves (20°C, 48 hpi). (c) Formation of infection cushions by strains SCH941A1 and SCH941A1V on rapeseed leaves. (d) Pathogenicity of strains SCH941A1 and SCH941A1V on detached intact rapeseed leaves and wounded rapeseed leaves at 3 dpi, 20°C. (e) Lesion diameters induced by the two strains on detached intact rapeseed leaves and wounded rapeseed leaves (20°C, 3 dpi).",
+   "href": "mbio.03365-24.f001.jpg",
+   "img_url": "https://cdn.ncbi.nlm.nih.gov/pmc/blobs/ccaf/11898685/379f9158fe53/mbio.03365-24.f001.jpg",
+   "orig_size": [
+    774,
+    687
+   ],
+   "crossref": {
+    "title": "Exploring the interaction between endornavirus and\n            <i>Sclerotinia sclerotiorum</i>\n            : mechanisms of phytopathogenic fungal virulence and antivirus",
+    "container": "mBio",
+    "volume": "16",
+    "issue": "3",
+    "page": null,
+    "article_number": "e03365-24",
+    "authors": [
+     {
+      "given": "Fan",
+      "family": "Mu",
+      "name": null
+     },
+     {
+      "given": "Jinsheng",
+      "family": "Xia",
+      "name": null
+     },
+     {
+      "given": "Jichun",
+      "family": "Jia",
+      "name": null
+     },
+     {
+      "given": "Daohong",
+      "family": "Jiang",
+      "name": null
+     },
+     {
+      "given": "Baojun",
+      "family": "Zhang",
+      "name": null
+     },
+     {
+      "given": "Yanping",
+      "family": "Fu",
+      "name": null
+     },
+     {
+      "given": "Jiaseng",
+      "family": "Cheng",
+      "name": null
+     },
+     {
+      "given": "Jiatao",
+      "family": "Xie",
+      "name": null
+     }
+    ],
+    "issued": [
+     2025,
+     3,
+     12
+    ],
+    "published_online": [
+     null
+    ],
+    "published_print": [
+     2025,
+     3,
+     12
+    ]
+   }
+  },
+  {
+   "k": "s3",
+   "source": "epmc",
+   "score": 6,
+   "pmcid": "PMC12774355",
+   "doi": "10.1371/journal.ppat.1013813",
+   "title": "Sclerotinia sclerotiorum growth and aggressiveness are regulated by a mycoviral REP protein.",
+   "authors": [
+    {
+     "last": "Shu",
+     "initials": "P",
+     "first": "Peihan",
+     "full": "Shu P",
+     "collective": null
+    },
+    {
+     "last": "Tseng",
+     "initials": "YW",
+     "first": "Yi-Wen",
+     "full": "Tseng YW",
+     "collective": null
+    },
+    {
+     "last": "Lawrence",
+     "initials": "AJ",
+     "first": "Alexander J",
+     "full": "Lawrence AJ",
+     "collective": null
+    },
+    {
+     "last": "Feng",
+     "initials": "C",
+     "first": "Chenchen",
+     "full": "Feng C",
+     "collective": null
+    },
+    {
+     "last": "Kiani",
+     "initials": "Y",
+     "first": "Yasi",
+     "full": "Kiani Y",
+     "collective": null
+    },
+    {
+     "last": "Knopke-Mooney",
+     "initials": "O",
+     "first": "Olivia",
+     "full": "Knopke-Mooney O",
+     "collective": null
+    },
+    {
+     "last": "Chowdhury",
+     "initials": "RN",
+     "first": "Rawnaq N",
+     "full": "Chowdhury RN",
+     "collective": null
+    },
+    {
+     "last": "Lasky",
+     "initials": "D",
+     "first": "Danny",
+     "full": "Lasky D",
+     "collective": null
+    },
+    {
+     "last": "Groves",
+     "initials": "C",
+     "first": "Carol",
+     "full": "Groves C",
+     "collective": null
+    },
+    {
+     "last": "Smith",
+     "initials": "DL",
+     "first": "Damon L",
+     "full": "Smith DL",
+     "collective": null
+    },
+    {
+     "last": "Majumder",
+     "initials": "K",
+     "first": "Kinjal",
+     "full": "Majumder K",
+     "collective": null
+    },
+    {
+     "last": "Marzano",
+     "initials": "SL",
+     "first": "Shin-Yi Lee",
+     "full": "Marzano SL",
+     "collective": null
+    },
+    {
+     "last": "Rakotondrafara",
+     "initials": "AM",
+     "first": "Aurélie M",
+     "full": "Rakotondrafara AM",
+     "collective": null
+    }
+   ],
+   "journal": "PLoS pathogens",
+   "journal_iso": "PLoS Pathog",
+   "volume": "21",
+   "issue": "12",
+   "year": 2025,
+   "pages": "e1013813",
+   "license": "cc0",
+   "first_pub": "2025-12-26",
+   "fig_label": "Fig 2",
+   "caption": "pOGG-Ss-SD-Rep transformant exhibited significantly reduced lesion size and virulence. (A, B) The detached N. benthamiana inoculation leaf assay with the different S. sclerotiorum transformants and the untransformed S. sclerotiorum Ss1980 culture. The 0.5-cm-diameter mycelial plugs were placed with mycelium-side down on the leaf surface. Images of the lesion were captured 24 hr post inoculation and the lesion diameters (cm 2) were measured. The results showed significantly reduced virulence caused by SsHADV1-Rep (p < 0.05) compared to the virus-free and other transformants, including empty vectors and SsHADV1-CP. Ss 1980: untransformed Ss; pOCT-Ss: Ss transformed with pOCT empty vector; pOCR Ss-SD-REP: REP transformant; pOGG-Ss: Ss transformed with pOGG empty vector; POGG-Ss-CP: CP transformant.",
+   "href": "ppat.1013813.g002.jpg",
+   "img_url": "https://journals.plos.org/plospathogens/article/figure/image?size=large&id=10.1371/journal.ppat.1013813.g002",
+   "orig_size": [
+    3401,
+    1887
+   ],
+   "crossref": {
+    "title": "Sclerotinia sclerotiorum growth and aggressiveness are regulated by a mycoviral REP protein",
+    "container": "PLOS Pathogens",
+    "volume": "21",
+    "issue": "12",
+    "page": "e1013813",
+    "article_number": null,
+    "authors": [
+     {
+      "given": "Peihan",
+      "family": "Shu",
+      "name": null
+     },
+     {
+      "given": "Yi-Wen",
+      "family": "Tseng",
+      "name": null
+     },
+     {
+      "given": "Alexander J.",
+      "family": "Lawrence",
+      "name": null
+     },
+     {
+      "given": "Chenchen",
+      "family": "Feng",
+      "name": null
+     },
+     {
+      "given": "Yasi",
+      "family": "Kiani",
+      "name": null
+     },
+     {
+      "given": "Olivia",
+      "family": "Knopke-Mooney",
+      "name": null
+     },
+     {
+      "given": "Rawnaq N.",
+      "family": "Chowdhury",
+      "name": null
+     },
+     {
+      "given": "Danny",
+      "family": "Lasky",
+      "name": null
+     },
+     {
+      "given": "Carol",
+      "family": "Groves",
+      "name": null
+     },
+     {
+      "given": "Damon L.",
+      "family": "Smith",
+      "name": null
+     },
+     {
+      "given": "Kinjal",
+      "family": "Majumder",
+      "name": null
+     },
+     {
+      "given": "Shin-Yi Lee",
+      "family": "Marzano",
+      "name": null
+     },
+     {
+      "given": "Aurélie M.",
+      "family": "Rakotondrafara",
+      "name": null
+     }
+    ],
+    "issued": [
+     2025,
+     12,
+     26
+    ],
+    "published_online": [
+     2025,
+     12,
+     26
+    ],
+    "published_print": [
+     null
+    ]
+   }
+  },
+  {
+   "k": "s4",
+   "source": "epmc",
+   "score": 6,
+   "pmcid": "PMC12774355",
+   "doi": "10.1371/journal.ppat.1013813",
+   "title": "Sclerotinia sclerotiorum growth and aggressiveness are regulated by a mycoviral REP protein.",
+   "authors": [
+    {
+     "last": "Shu",
+     "initials": "P",
+     "first": "Peihan",
+     "full": "Shu P",
+     "collective": null
+    },
+    {
+     "last": "Tseng",
+     "initials": "YW",
+     "first": "Yi-Wen",
+     "full": "Tseng YW",
+     "collective": null
+    },
+    {
+     "last": "Lawrence",
+     "initials": "AJ",
+     "first": "Alexander J",
+     "full": "Lawrence AJ",
+     "collective": null
+    },
+    {
+     "last": "Feng",
+     "initials": "C",
+     "first": "Chenchen",
+     "full": "Feng C",
+     "collective": null
+    },
+    {
+     "last": "Kiani",
+     "initials": "Y",
+     "first": "Yasi",
+     "full": "Kiani Y",
+     "collective": null
+    },
+    {
+     "last": "Knopke-Mooney",
+     "initials": "O",
+     "first": "Olivia",
+     "full": "Knopke-Mooney O",
+     "collective": null
+    },
+    {
+     "last": "Chowdhury",
+     "initials": "RN",
+     "first": "Rawnaq N",
+     "full": "Chowdhury RN",
+     "collective": null
+    },
+    {
+     "last": "Lasky",
+     "initials": "D",
+     "first": "Danny",
+     "full": "Lasky D",
+     "collective": null
+    },
+    {
+     "last": "Groves",
+     "initials": "C",
+     "first": "Carol",
+     "full": "Groves C",
+     "collective": null
+    },
+    {
+     "last": "Smith",
+     "initials": "DL",
+     "first": "Damon L",
+     "full": "Smith DL",
+     "collective": null
+    },
+    {
+     "last": "Majumder",
+     "initials": "K",
+     "first": "Kinjal",
+     "full": "Majumder K",
+     "collective": null
+    },
+    {
+     "last": "Marzano",
+     "initials": "SL",
+     "first": "Shin-Yi Lee",
+     "full": "Marzano SL",
+     "collective": null
+    },
+    {
+     "last": "Rakotondrafara",
+     "initials": "AM",
+     "first": "Aurélie M",
+     "full": "Rakotondrafara AM",
+     "collective": null
+    }
+   ],
+   "journal": "PLoS pathogens",
+   "journal_iso": "PLoS Pathog",
+   "volume": "21",
+   "issue": "12",
+   "year": 2025,
+   "pages": "e1013813",
+   "license": "cc0",
+   "first_pub": "2025-12-26",
+   "fig_label": "Fig 4",
+   "caption": "BcVB-REP-Ss Transformant Exhibited Significantly Reduced Growth and Lesion Size. (A) Comparison of virulence determinant of SsHADV1-encoding genes by BcVB-CP-Ss and BcVB-REP-Ss transformants on susceptible plants, grapes and tomatoes. Lesion diameters were compared on green grapes and tomatoes inoculated with different transformants. (B) Average lesion diameters (cm) measured on 8 fruits after 24, 48, 72, and 96 h after inoculation with the strains from one of the three trials. All three trials showed consistently reduced virulence caused by BcVB-REP-Ss (P < 0.05). Upper: grapes; lower: tomatoes.",
+   "href": "ppat.1013813.g004.jpg",
+   "img_url": "https://journals.plos.org/plospathogens/article/figure/image?size=large&id=10.1371/journal.ppat.1013813.g004",
+   "orig_size": [
+    2325,
+    1243
+   ],
+   "crossref": {
+    "title": "Sclerotinia sclerotiorum growth and aggressiveness are regulated by a mycoviral REP protein",
+    "container": "PLOS Pathogens",
+    "volume": "21",
+    "issue": "12",
+    "page": "e1013813",
+    "article_number": null,
+    "authors": [
+     {
+      "given": "Peihan",
+      "family": "Shu",
+      "name": null
+     },
+     {
+      "given": "Yi-Wen",
+      "family": "Tseng",
+      "name": null
+     },
+     {
+      "given": "Alexander J.",
+      "family": "Lawrence",
+      "name": null
+     },
+     {
+      "given": "Chenchen",
+      "family": "Feng",
+      "name": null
+     },
+     {
+      "given": "Yasi",
+      "family": "Kiani",
+      "name": null
+     },
+     {
+      "given": "Olivia",
+      "family": "Knopke-Mooney",
+      "name": null
+     },
+     {
+      "given": "Rawnaq N.",
+      "family": "Chowdhury",
+      "name": null
+     },
+     {
+      "given": "Danny",
+      "family": "Lasky",
+      "name": null
+     },
+     {
+      "given": "Carol",
+      "family": "Groves",
+      "name": null
+     },
+     {
+      "given": "Damon L.",
+      "family": "Smith",
+      "name": null
+     },
+     {
+      "given": "Kinjal",
+      "family": "Majumder",
+      "name": null
+     },
+     {
+      "given": "Shin-Yi Lee",
+      "family": "Marzano",
+      "name": null
+     },
+     {
+      "given": "Aurélie M.",
+      "family": "Rakotondrafara",
+      "name": null
+     }
+    ],
+    "issued": [
+     2025,
+     12,
+     26
+    ],
+    "published_online": [
+     2025,
+     12,
+     26
+    ],
+    "published_print": [
+     null
+    ]
+   }
+  }
+ ]
+}

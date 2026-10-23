@@ -1,0 +1,122 @@
+{
+ "id": "powdery",
+ "candidates": [
+  {
+   "k": "s1",
+   "source": "epmc",
+   "score": 4,
+   "pmcid": "PMC4339710",
+   "doi": "10.1155/2015/462645",
+   "title": "Endophytic Bacillus subtilis strain E1R-J is a promising biocontrol agent for wheat powdery mildew.",
+   "authors": [
+    {
+     "last": "Gao",
+     "initials": "X",
+     "first": "Xiaoning",
+     "full": "Gao X",
+     "collective": null
+    },
+    {
+     "last": "Gong",
+     "initials": "Y",
+     "first": "Yufei",
+     "full": "Gong Y",
+     "collective": null
+    },
+    {
+     "last": "Huo",
+     "initials": "Y",
+     "first": "Yunxia",
+     "full": "Huo Y",
+     "collective": null
+    },
+    {
+     "last": "Han",
+     "initials": "Q",
+     "first": "Qingmei",
+     "full": "Han Q",
+     "collective": null
+    },
+    {
+     "last": "Kang",
+     "initials": "Z",
+     "first": "Zhensheng",
+     "full": "Kang Z",
+     "collective": null
+    },
+    {
+     "last": "Huang",
+     "initials": "L",
+     "first": "Lili",
+     "full": "Huang L",
+     "collective": null
+    }
+   ],
+   "journal": "BioMed research international",
+   "journal_iso": "Biomed Res Int",
+   "volume": "2015",
+   "issue": null,
+   "year": 2015,
+   "pages": "462645",
+   "license": "cc by",
+   "first_pub": "2015-02-11",
+   "fig_label": "Figure 1",
+   "caption": "Disease severity of susceptible wheat cultivar Xiaoyan 6 seedlings 10 days after Bgt inoculation in the treatment of spraying strain E1R-j fermentation liquid 24 h before Bgt inoculation.",
+   "href": "BMRI2015-462645.001.jpg",
+   "img_url": "https://cdn.ncbi.nlm.nih.gov/pmc/blobs/c461/4339710/6226f7a65a46/BMRI2015-462645.001.jpg",
+   "orig_size": [
+    750,
+    511
+   ],
+   "crossref": {
+    "title": "Endophytic<i>Bacillus subtilis</i>Strain E1R-J Is a Promising Biocontrol Agent for Wheat Powdery Mildew",
+    "container": "BioMed Research International",
+    "volume": "2015",
+    "issue": null,
+    "page": "1-8",
+    "article_number": null,
+    "authors": [
+     {
+      "given": "Xiaoning",
+      "family": "Gao",
+      "name": null
+     },
+     {
+      "given": "Yufei",
+      "family": "Gong",
+      "name": null
+     },
+     {
+      "given": "Yunxia",
+      "family": "Huo",
+      "name": null
+     },
+     {
+      "given": "Qingmei",
+      "family": "Han",
+      "name": null
+     },
+     {
+      "given": "Zhensheng",
+      "family": "Kang",
+      "name": null
+     },
+     {
+      "given": "Lili",
+      "family": "Huang",
+      "name": null
+     }
+    ],
+    "issued": [
+     2015
+    ],
+    "published_online": [
+     null
+    ],
+    "published_print": [
+     2015
+    ]
+   }
+  }
+ ]
+}
