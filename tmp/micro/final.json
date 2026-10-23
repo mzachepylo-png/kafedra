@@ -1,0 +1,158 @@
+[
+ {
+  "id": "septoria",
+  "size": [
+   468,
+   375
+  ],
+  "bytes": 14504,
+  "src": "https://journals.plos.org/plosone/article/figure/image?size=large&id=10.1371/journal.pone.0308116.g001",
+  "orig": [
+   468,
+   375
+  ]
+ },
+ {
+  "id": "leafrust",
+  "size": [
+   900,
+   807
+  ],
+  "bytes": 60632,
+  "src": "https://mdpi-res.com/jof/jof-08-00304/article_deploy/html/images/jof-08-00304-g005.png",
+  "orig": [
+   1367,
+   1226
+  ]
+ },
+ {
+  "id": "fhb",
+  "size": [
+   900,
+   810
+  ],
+  "bytes": 101890,
+  "src": "https://journals.plos.org/plosone/article/figure/image?size=large&id=10.1371/journal.pone.0091135.g005",
+  "orig": [
+   1001,
+   901
+  ]
+ },
+ {
+  "id": "wsmv",
+  "size": [
+   900,
+   908
+  ],
+  "bytes": 83426,
+  "src": "https://mdpi-res.com/viruses/viruses-14-01220/article_deploy/html/images/viruses-14-01220-g004.png",
+  "orig": [
+   1493,
+   1506
+  ]
+ },
+ {
+  "id": "nclb",
+  "size": [
+   673,
+   736
+  ],
+  "bytes": 9448,
+  "src": "https://www.frontiersin.org/files/Articles/1404483/fpls-15-1404483-HTML/image_m/fpls-15-1404483-g004.jpg",
+  "orig": [
+   310,
+   736
+  ]
+ },
+ {
+  "id": "whiterot",
+  "size": [
+   437,
+   231
+  ],
+  "bytes": 18106,
+  "src": "https://cdn.ncbi.nlm.nih.gov/pmc/blobs/7e2f/11704303/99c32cfb3658/41598_2024_79574_Fig10_HTML.jpg",
+  "orig": [
+   220,
+   231
+  ]
+ },
+ {
+  "id": "downysun",
+  "size": [
+   900,
+   412
+  ],
+  "bytes": 46246,
+  "src": "https://mdpi-res.com/microorganisms/microorganisms-11-00821/article_deploy/html/images/microorganisms-11-00821-g002.png",
+  "orig": [
+   2712,
+   1241
+  ]
+ },
+ {
+  "id": "greyrot",
+  "size": [
+   900,
+   542
+  ],
+  "bytes": 20874,
+  "src": "https://mdpi-res.com/pathogens/pathogens-09-00253/article_deploy/html/images/pathogens-09-00253-g002.png",
+  "orig": [
+   1287,
+   775
+  ]
+ },
+ {
+  "id": "cercospora",
+  "size": [
+   298,
+   195
+  ],
+  "bytes": 8334,
+  "src": "https://cdn.ncbi.nlm.nih.gov/pmc/blobs/5dd9/3616835/088787fcfabc/1471-2229-13-50-7.jpg",
+  "orig": [
+   298,
+   195
+  ]
+ },
+ {
+  "id": "lateblight",
+  "size": [
+   352,
+   326
+  ],
+  "bytes": 15812,
+  "src": "https://cdn.ncbi.nlm.nih.gov/pmc/blobs/0e62/10541906/23bfe34243f2/41598_2023_43510_Fig4_HTML.jpg",
+  "orig": [
+   352,
+   326
+  ]
+ },
+ {
+  "id": "grapedowny",
+  "size": [
+   900,
+   633
+  ],
+  "bytes": 69948,
+  "src": "https://mdpi-res.com/microorganisms/microorganisms-13-01279/article_deploy/html/images/microorganisms-13-01279-g001.png",
+  "orig": [
+   1171,
+   824
+  ]
+ },
+ {
+  "id": "blackleg",
+  "size": [
+   900,
+   609
+  ],
+  "bytes": 60554,
+  "src": "https://mdpi-res.com/microorganisms/microorganisms-09-01918/article_deploy/html/images/microorganisms-09-01918-g001.png",
+  "orig": [
+   1646,
+   1113
+  ]
+ }
+]
