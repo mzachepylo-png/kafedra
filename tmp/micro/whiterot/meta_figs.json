@@ -1,0 +1,1072 @@
+{
+ "id": "whiterot",
+ "candidates": [
+  {
+   "k": "f1",
+   "source": "epmc",
+   "score": 0,
+   "pmcid": "PMC11704303",
+   "doi": "10.1038/s41598-024-79574-x",
+   "title": "Nano-chitosan-coated, green-synthesized selenium nanoparticles as a novel antifungal agent against Sclerotinia sclerotiorum: in vitro study.",
+   "authors": [
+    {
+     "last": "Desouky",
+     "initials": "MM",
+     "first": "Mohamed M",
+     "full": "Desouky MM",
+     "collective": null
+    },
+    {
+     "last": "Abou-Saleh",
+     "initials": "RH",
+     "first": "Radwa H",
+     "full": "Abou-Saleh RH",
+     "collective": null
+    },
+    {
+     "last": "Moussa",
+     "initials": "TAA",
+     "first": "Tarek A A",
+     "full": "Moussa TAA",
+     "collective": null
+    },
+    {
+     "last": "Fahmy",
+     "initials": "HM",
+     "first": "Heba M",
+     "full": "Fahmy HM",
+     "collective": null
+    }
+   ],
+   "journal": "Scientific reports",
+   "journal_iso": "Sci Rep",
+   "volume": "15",
+   "issue": "1",
+   "year": 2025,
+   "pages": "1004",
+   "license": "cc by",
+   "first_pub": "2025-01-06",
+   "fig_label": "Fig. 1",
+   "caption": "A neighbor-joining tree for the isolated Sclerotinia sclerotiorum strains. The S. sclerotiorum in this study was deposited in GeneBank with accession number LC799483.1.",
+   "href": "41598_2024_79574_Fig1_HTML.jpg",
+   "img_url": "https://cdn.ncbi.nlm.nih.gov/pmc/blobs/7e2f/11704303/73e4a90994b5/41598_2024_79574_Fig1_HTML.jpg",
+   "orig_size": [
+    669,
+    301
+   ],
+   "crossref": {
+    "title": "Nano-chitosan-coated, green-synthesized selenium nanoparticles as a novel antifungal agent against Sclerotinia sclerotiorum: in vitro study",
+    "container": "Scientific Reports",
+    "volume": "15",
+    "issue": "1",
+    "page": null,
+    "article_number": "1004",
+    "authors": [
+     {
+      "given": "Mohamed M.",
+      "family": "Desouky",
+      "name": null
+     },
+     {
+      "given": "Radwa H.",
+      "family": "Abou-Saleh",
+      "name": null
+     },
+     {
+      "given": "Tarek A. A.",
+      "family": "Moussa",
+      "name": null
+     },
+     {
+      "given": "Heba M.",
+      "family": "Fahmy",
+      "name": null
+     }
+    ],
+    "issued": [
+     2025,
+     1,
+     6
+    ],
+    "published_online": [
+     2025,
+     1,
+     6
+    ],
+    "published_print": [
+     null
+    ]
+   }
+  },
+  {
+   "k": "f2",
+   "source": "epmc",
+   "score": 0,
+   "pmcid": "PMC11704303",
+   "doi": "10.1038/s41598-024-79574-x",
+   "title": "Nano-chitosan-coated, green-synthesized selenium nanoparticles as a novel antifungal agent against Sclerotinia sclerotiorum: in vitro study.",
+   "authors": [
+    {
+     "last": "Desouky",
+     "initials": "MM",
+     "first": "Mohamed M",
+     "full": "Desouky MM",
+     "collective": null
+    },
+    {
+     "last": "Abou-Saleh",
+     "initials": "RH",
+     "first": "Radwa H",
+     "full": "Abou-Saleh RH",
+     "collective": null
+    },
+    {
+     "last": "Moussa",
+     "initials": "TAA",
+     "first": "Tarek A A",
+     "full": "Moussa TAA",
+     "collective": null
+    },
+    {
+     "last": "Fahmy",
+     "initials": "HM",
+     "first": "Heba M",
+     "full": "Fahmy HM",
+     "collective": null
+    }
+   ],
+   "journal": "Scientific reports",
+   "journal_iso": "Sci Rep",
+   "volume": "15",
+   "issue": "1",
+   "year": 2025,
+   "pages": "1004",
+   "license": "cc by",
+   "first_pub": "2025-01-06",
+   "fig_label": "Fig. 2",
+   "caption": "TEM Image of Se NPs synthesized by (a) lemon-peel extract (L.P.- Se NPs) with an inset histogram showing the peak diameter at 42.8±,18.5 nm (b) orange-peel extract (O.P.- Se NPs) with an inset histogram showing the peak diameter at 85.7±,140.22 nm. (c & d) represents the zeta potential and PDI for L.P.-Se NPs and O.P.- Se NPs, respectively.",
+   "href": "41598_2024_79574_Fig2_HTML.jpg",
+   "img_url": "https://cdn.ncbi.nlm.nih.gov/pmc/blobs/7e2f/11704303/5a4385ae389f/41598_2024_79574_Fig2_HTML.jpg",
+   "orig_size": [
+    669,
+    491
+   ],
+   "crossref": {
+    "title": "Nano-chitosan-coated, green-synthesized selenium nanoparticles as a novel antifungal agent against Sclerotinia sclerotiorum: in vitro study",
+    "container": "Scientific Reports",
+    "volume": "15",
+    "issue": "1",
+    "page": null,
+    "article_number": "1004",
+    "authors": [
+     {
+      "given": "Mohamed M.",
+      "family": "Desouky",
+      "name": null
+     },
+     {
+      "given": "Radwa H.",
+      "family": "Abou-Saleh",
+      "name": null
+     },
+     {
+      "given": "Tarek A. A.",
+      "family": "Moussa",
+      "name": null
+     },
+     {
+      "given": "Heba M.",
+      "family": "Fahmy",
+      "name": null
+     }
+    ],
+    "issued": [
+     2025,
+     1,
+     6
+    ],
+    "published_online": [
+     2025,
+     1,
+     6
+    ],
+    "published_print": [
+     null
+    ]
+   }
+  },
+  {
+   "k": "f3",
+   "source": "epmc",
+   "score": 0,
+   "pmcid": "PMC11704303",
+   "doi": "10.1038/s41598-024-79574-x",
+   "title": "Nano-chitosan-coated, green-synthesized selenium nanoparticles as a novel antifungal agent against Sclerotinia sclerotiorum: in vitro study.",
+   "authors": [
+    {
+     "last": "Desouky",
+     "initials": "MM",
+     "first": "Mohamed M",
+     "full": "Desouky MM",
+     "collective": null
+    },
+    {
+     "last": "Abou-Saleh",
+     "initials": "RH",
+     "first": "Radwa H",
+     "full": "Abou-Saleh RH",
+     "collective": null
+    },
+    {
+     "last": "Moussa",
+     "initials": "TAA",
+     "first": "Tarek A A",
+     "full": "Moussa TAA",
+     "collective": null
+    },
+    {
+     "last": "Fahmy",
+     "initials": "HM",
+     "first": "Heba M",
+     "full": "Fahmy HM",
+     "collective": null
+    }
+   ],
+   "journal": "Scientific reports",
+   "journal_iso": "Sci Rep",
+   "volume": "15",
+   "issue": "1",
+   "year": 2025,
+   "pages": "1004",
+   "license": "cc by",
+   "first_pub": "2025-01-06",
+   "fig_label": "Fig. 3",
+   "caption": "Shows the characterization of the synthesized NPs, (a) UV spectroscopy of green synthesized O.P.- Se NPs, and L.P.- Se NPs (b & C) shows the laser beam used to detect the NP preparation from both Orange and Lemon peels respectively.",
+   "href": "41598_2024_79574_Fig3_HTML.jpg",
+   "img_url": "https://cdn.ncbi.nlm.nih.gov/pmc/blobs/7e2f/11704303/a8a664f9cdda/41598_2024_79574_Fig3_HTML.jpg",
+   "orig_size": [
+    669,
+    438
+   ],
+   "crossref": {
+    "title": "Nano-chitosan-coated, green-synthesized selenium nanoparticles as a novel antifungal agent against Sclerotinia sclerotiorum: in vitro study",
+    "container": "Scientific Reports",
+    "volume": "15",
+    "issue": "1",
+    "page": null,
+    "article_number": "1004",
+    "authors": [
+     {
+      "given": "Mohamed M.",
+      "family": "Desouky",
+      "name": null
+     },
+     {
+      "given": "Radwa H.",
+      "family": "Abou-Saleh",
+      "name": null
+     },
+     {
+      "given": "Tarek A. A.",
+      "family": "Moussa",
+      "name": null
+     },
+     {
+      "given": "Heba M.",
+      "family": "Fahmy",
+      "name": null
+     }
+    ],
+    "issued": [
+     2025,
+     1,
+     6
+    ],
+    "published_online": [
+     2025,
+     1,
+     6
+    ],
+    "published_print": [
+     null
+    ]
+   }
+  },
+  {
+   "k": "f4",
+   "source": "epmc",
+   "score": 0,
+   "pmcid": "PMC11704303",
+   "doi": "10.1038/s41598-024-79574-x",
+   "title": "Nano-chitosan-coated, green-synthesized selenium nanoparticles as a novel antifungal agent against Sclerotinia sclerotiorum: in vitro study.",
+   "authors": [
+    {
+     "last": "Desouky",
+     "initials": "MM",
+     "first": "Mohamed M",
+     "full": "Desouky MM",
+     "collective": null
+    },
+    {
+     "last": "Abou-Saleh",
+     "initials": "RH",
+     "first": "Radwa H",
+     "full": "Abou-Saleh RH",
+     "collective": null
+    },
+    {
+     "last": "Moussa",
+     "initials": "TAA",
+     "first": "Tarek A A",
+     "full": "Moussa TAA",
+     "collective": null
+    },
+    {
+     "last": "Fahmy",
+     "initials": "HM",
+     "first": "Heba M",
+     "full": "Fahmy HM",
+     "collective": null
+    }
+   ],
+   "journal": "Scientific reports",
+   "journal_iso": "Sci Rep",
+   "volume": "15",
+   "issue": "1",
+   "year": 2025,
+   "pages": "1004",
+   "license": "cc by",
+   "first_pub": "2025-01-06",
+   "fig_label": "Fig. 4",
+   "caption": "FT-IR spectroscopy of Se NPs synthesized by lemon and orange-peel extracts.",
+   "href": "41598_2024_79574_Fig4_HTML.jpg",
+   "img_url": "https://cdn.ncbi.nlm.nih.gov/pmc/blobs/7e2f/11704303/ff815c82499e/41598_2024_79574_Fig4_HTML.jpg",
+   "orig_size": [
+    669,
+    572
+   ],
+   "crossref": {
+    "title": "Nano-chitosan-coated, green-synthesized selenium nanoparticles as a novel antifungal agent against Sclerotinia sclerotiorum: in vitro study",
+    "container": "Scientific Reports",
+    "volume": "15",
+    "issue": "1",
+    "page": null,
+    "article_number": "1004",
+    "authors": [
+     {
+      "given": "Mohamed M.",
+      "family": "Desouky",
+      "name": null
+     },
+     {
+      "given": "Radwa H.",
+      "family": "Abou-Saleh",
+      "name": null
+     },
+     {
+      "given": "Tarek A. A.",
+      "family": "Moussa",
+      "name": null
+     },
+     {
+      "given": "Heba M.",
+      "family": "Fahmy",
+      "name": null
+     }
+    ],
+    "issued": [
+     2025,
+     1,
+     6
+    ],
+    "published_online": [
+     2025,
+     1,
+     6
+    ],
+    "published_print": [
+     null
+    ]
+   }
+  },
+  {
+   "k": "f5",
+   "source": "epmc",
+   "score": 0,
+   "pmcid": "PMC11704303",
+   "doi": "10.1038/s41598-024-79574-x",
+   "title": "Nano-chitosan-coated, green-synthesized selenium nanoparticles as a novel antifungal agent against Sclerotinia sclerotiorum: in vitro study.",
+   "authors": [
+    {
+     "last": "Desouky",
+     "initials": "MM",
+     "first": "Mohamed M",
+     "full": "Desouky MM",
+     "collective": null
+    },
+    {
+     "last": "Abou-Saleh",
+     "initials": "RH",
+     "first": "Radwa H",
+     "full": "Abou-Saleh RH",
+     "collective": null
+    },
+    {
+     "last": "Moussa",
+     "initials": "TAA",
+     "first": "Tarek A A",
+     "full": "Moussa TAA",
+     "collective": null
+    },
+    {
+     "last": "Fahmy",
+     "initials": "HM",
+     "first": "Heba M",
+     "full": "Fahmy HM",
+     "collective": null
+    }
+   ],
+   "journal": "Scientific reports",
+   "journal_iso": "Sci Rep",
+   "volume": "15",
+   "issue": "1",
+   "year": 2025,
+   "pages": "1004",
+   "license": "cc by",
+   "first_pub": "2025-01-06",
+   "fig_label": "Fig. 5",
+   "caption": "XRD pattern of L.P.-Se NPs.",
+   "href": "41598_2024_79574_Fig5_HTML.jpg",
+   "img_url": "https://cdn.ncbi.nlm.nih.gov/pmc/blobs/7e2f/11704303/cacc2318a488/41598_2024_79574_Fig5_HTML.jpg",
+   "orig_size": [
+    669,
+    505
+   ],
+   "crossref": {
+    "title": "Nano-chitosan-coated, green-synthesized selenium nanoparticles as a novel antifungal agent against Sclerotinia sclerotiorum: in vitro study",
+    "container": "Scientific Reports",
+    "volume": "15",
+    "issue": "1",
+    "page": null,
+    "article_number": "1004",
+    "authors": [
+     {
+      "given": "Mohamed M.",
+      "family": "Desouky",
+      "name": null
+     },
+     {
+      "given": "Radwa H.",
+      "family": "Abou-Saleh",
+      "name": null
+     },
+     {
+      "given": "Tarek A. A.",
+      "family": "Moussa",
+      "name": null
+     },
+     {
+      "given": "Heba M.",
+      "family": "Fahmy",
+      "name": null
+     }
+    ],
+    "issued": [
+     2025,
+     1,
+     6
+    ],
+    "published_online": [
+     2025,
+     1,
+     6
+    ],
+    "published_print": [
+     null
+    ]
+   }
+  },
+  {
+   "k": "f6",
+   "source": "epmc",
+   "score": 0,
+   "pmcid": "PMC11704303",
+   "doi": "10.1038/s41598-024-79574-x",
+   "title": "Nano-chitosan-coated, green-synthesized selenium nanoparticles as a novel antifungal agent against Sclerotinia sclerotiorum: in vitro study.",
+   "authors": [
+    {
+     "last": "Desouky",
+     "initials": "MM",
+     "first": "Mohamed M",
+     "full": "Desouky MM",
+     "collective": null
+    },
+    {
+     "last": "Abou-Saleh",
+     "initials": "RH",
+     "first": "Radwa H",
+     "full": "Abou-Saleh RH",
+     "collective": null
+    },
+    {
+     "last": "Moussa",
+     "initials": "TAA",
+     "first": "Tarek A A",
+     "full": "Moussa TAA",
+     "collective": null
+    },
+    {
+     "last": "Fahmy",
+     "initials": "HM",
+     "first": "Heba M",
+     "full": "Fahmy HM",
+     "collective": null
+    }
+   ],
+   "journal": "Scientific reports",
+   "journal_iso": "Sci Rep",
+   "volume": "15",
+   "issue": "1",
+   "year": 2025,
+   "pages": "1004",
+   "license": "cc by",
+   "first_pub": "2025-01-06",
+   "fig_label": "Fig. 6",
+   "caption": "TEM images of (a) CS NPs with an inset showing the polycrystalline diffraction pattern of CS NPs, (b) Se NPs, (c) NCS-Se NPs, (d) zoom-in panel from (C) showing NCS-Se NPs with inset showing size distribution with peak Diameter of 32.7 ± 16 nm.",
+   "href": "41598_2024_79574_Fig6_HTML.jpg",
+   "img_url": "https://cdn.ncbi.nlm.nih.gov/pmc/blobs/7e2f/11704303/5de76efd63bf/41598_2024_79574_Fig6_HTML.jpg",
+   "orig_size": [
+    669,
+    574
+   ],
+   "crossref": {
+    "title": "Nano-chitosan-coated, green-synthesized selenium nanoparticles as a novel antifungal agent against Sclerotinia sclerotiorum: in vitro study",
+    "container": "Scientific Reports",
+    "volume": "15",
+    "issue": "1",
+    "page": null,
+    "article_number": "1004",
+    "authors": [
+     {
+      "given": "Mohamed M.",
+      "family": "Desouky",
+      "name": null
+     },
+     {
+      "given": "Radwa H.",
+      "family": "Abou-Saleh",
+      "name": null
+     },
+     {
+      "given": "Tarek A. A.",
+      "family": "Moussa",
+      "name": null
+     },
+     {
+      "given": "Heba M.",
+      "family": "Fahmy",
+      "name": null
+     }
+    ],
+    "issued": [
+     2025,
+     1,
+     6
+    ],
+    "published_online": [
+     2025,
+     1,
+     6
+    ],
+    "published_print": [
+     null
+    ]
+   }
+  },
+  {
+   "k": "f7",
+   "source": "epmc",
+   "score": 0,
+   "pmcid": "PMC11704303",
+   "doi": "10.1038/s41598-024-79574-x",
+   "title": "Nano-chitosan-coated, green-synthesized selenium nanoparticles as a novel antifungal agent against Sclerotinia sclerotiorum: in vitro study.",
+   "authors": [
+    {
+     "last": "Desouky",
+     "initials": "MM",
+     "first": "Mohamed M",
+     "full": "Desouky MM",
+     "collective": null
+    },
+    {
+     "last": "Abou-Saleh",
+     "initials": "RH",
+     "first": "Radwa H",
+     "full": "Abou-Saleh RH",
+     "collective": null
+    },
+    {
+     "last": "Moussa",
+     "initials": "TAA",
+     "first": "Tarek A A",
+     "full": "Moussa TAA",
+     "collective": null
+    },
+    {
+     "last": "Fahmy",
+     "initials": "HM",
+     "first": "Heba M",
+     "full": "Fahmy HM",
+     "collective": null
+    }
+   ],
+   "journal": "Scientific reports",
+   "journal_iso": "Sci Rep",
+   "volume": "15",
+   "issue": "1",
+   "year": 2025,
+   "pages": "1004",
+   "license": "cc by",
+   "first_pub": "2025-01-06",
+   "fig_label": "Fig. 7",
+   "caption": "Size distribution of (a) CS NPs, (b) NCS-Se NPs, and zeta potential of (c) CS NPs, and (d) NCS-Se NPs, respectively.",
+   "href": "41598_2024_79574_Fig7_HTML.jpg",
+   "img_url": "https://cdn.ncbi.nlm.nih.gov/pmc/blobs/7e2f/11704303/aa69140efb56/41598_2024_79574_Fig7_HTML.jpg",
+   "orig_size": [
+    669,
+    474
+   ],
+   "crossref": {
+    "title": "Nano-chitosan-coated, green-synthesized selenium nanoparticles as a novel antifungal agent against Sclerotinia sclerotiorum: in vitro study",
+    "container": "Scientific Reports",
+    "volume": "15",
+    "issue": "1",
+    "page": null,
+    "article_number": "1004",
+    "authors": [
+     {
+      "given": "Mohamed M.",
+      "family": "Desouky",
+      "name": null
+     },
+     {
+      "given": "Radwa H.",
+      "family": "Abou-Saleh",
+      "name": null
+     },
+     {
+      "given": "Tarek A. A.",
+      "family": "Moussa",
+      "name": null
+     },
+     {
+      "given": "Heba M.",
+      "family": "Fahmy",
+      "name": null
+     }
+    ],
+    "issued": [
+     2025,
+     1,
+     6
+    ],
+    "published_online": [
+     2025,
+     1,
+     6
+    ],
+    "published_print": [
+     null
+    ]
+   }
+  },
+  {
+   "k": "f8",
+   "source": "epmc",
+   "score": 0,
+   "pmcid": "PMC11704303",
+   "doi": "10.1038/s41598-024-79574-x",
+   "title": "Nano-chitosan-coated, green-synthesized selenium nanoparticles as a novel antifungal agent against Sclerotinia sclerotiorum: in vitro study.",
+   "authors": [
+    {
+     "last": "Desouky",
+     "initials": "MM",
+     "first": "Mohamed M",
+     "full": "Desouky MM",
+     "collective": null
+    },
+    {
+     "last": "Abou-Saleh",
+     "initials": "RH",
+     "first": "Radwa H",
+     "full": "Abou-Saleh RH",
+     "collective": null
+    },
+    {
+     "last": "Moussa",
+     "initials": "TAA",
+     "first": "Tarek A A",
+     "full": "Moussa TAA",
+     "collective": null
+    },
+    {
+     "last": "Fahmy",
+     "initials": "HM",
+     "first": "Heba M",
+     "full": "Fahmy HM",
+     "collective": null
+    }
+   ],
+   "journal": "Scientific reports",
+   "journal_iso": "Sci Rep",
+   "volume": "15",
+   "issue": "1",
+   "year": 2025,
+   "pages": "1004",
+   "license": "cc by",
+   "first_pub": "2025-01-06",
+   "fig_label": "Fig. 8",
+   "caption": "(a) XRD of CS, CS NPs, L.P.- Se NPs & NCS-Se NPs & (b) FT-IR of CS, CS NPs, L.P.-Se NPs & NCS-Se NPs.",
+   "href": "41598_2024_79574_Fig8_HTML.jpg",
+   "img_url": "https://cdn.ncbi.nlm.nih.gov/pmc/blobs/7e2f/11704303/cd5cd5876033/41598_2024_79574_Fig8_HTML.jpg",
+   "orig_size": [
+    669,
+    323
+   ],
+   "crossref": {
+    "title": "Nano-chitosan-coated, green-synthesized selenium nanoparticles as a novel antifungal agent against Sclerotinia sclerotiorum: in vitro study",
+    "container": "Scientific Reports",
+    "volume": "15",
+    "issue": "1",
+    "page": null,
+    "article_number": "1004",
+    "authors": [
+     {
+      "given": "Mohamed M.",
+      "family": "Desouky",
+      "name": null
+     },
+     {
+      "given": "Radwa H.",
+      "family": "Abou-Saleh",
+      "name": null
+     },
+     {
+      "given": "Tarek A. A.",
+      "family": "Moussa",
+      "name": null
+     },
+     {
+      "given": "Heba M.",
+      "family": "Fahmy",
+      "name": null
+     }
+    ],
+    "issued": [
+     2025,
+     1,
+     6
+    ],
+    "published_online": [
+     2025,
+     1,
+     6
+    ],
+    "published_print": [
+     null
+    ]
+   }
+  },
+  {
+   "k": "f9",
+   "source": "epmc",
+   "score": 0,
+   "pmcid": "PMC11704303",
+   "doi": "10.1038/s41598-024-79574-x",
+   "title": "Nano-chitosan-coated, green-synthesized selenium nanoparticles as a novel antifungal agent against Sclerotinia sclerotiorum: in vitro study.",
+   "authors": [
+    {
+     "last": "Desouky",
+     "initials": "MM",
+     "first": "Mohamed M",
+     "full": "Desouky MM",
+     "collective": null
+    },
+    {
+     "last": "Abou-Saleh",
+     "initials": "RH",
+     "first": "Radwa H",
+     "full": "Abou-Saleh RH",
+     "collective": null
+    },
+    {
+     "last": "Moussa",
+     "initials": "TAA",
+     "first": "Tarek A A",
+     "full": "Moussa TAA",
+     "collective": null
+    },
+    {
+     "last": "Fahmy",
+     "initials": "HM",
+     "first": "Heba M",
+     "full": "Fahmy HM",
+     "collective": null
+    }
+   ],
+   "journal": "Scientific reports",
+   "journal_iso": "Sci Rep",
+   "volume": "15",
+   "issue": "1",
+   "year": 2025,
+   "pages": "1004",
+   "license": "cc by",
+   "first_pub": "2025-01-06",
+   "fig_label": "Fig. 9",
+   "caption": "The mycelial growth of S. sclerotiorum treated with MIC of (a) SS, CS, and mixture of SS + CS (1:1 v/v) and (b) Se NPs, CS NPs, and NCS-Se NPs.",
+   "href": "41598_2024_79574_Fig9_HTML.jpg",
+   "img_url": "https://cdn.ncbi.nlm.nih.gov/pmc/blobs/7e2f/11704303/12eea0049052/41598_2024_79574_Fig9_HTML.jpg",
+   "orig_size": [
+    750,
+    377
+   ],
+   "crossref": {
+    "title": "Nano-chitosan-coated, green-synthesized selenium nanoparticles as a novel antifungal agent against Sclerotinia sclerotiorum: in vitro study",
+    "container": "Scientific Reports",
+    "volume": "15",
+    "issue": "1",
+    "page": null,
+    "article_number": "1004",
+    "authors": [
+     {
+      "given": "Mohamed M.",
+      "family": "Desouky",
+      "name": null
+     },
+     {
+      "given": "Radwa H.",
+      "family": "Abou-Saleh",
+      "name": null
+     },
+     {
+      "given": "Tarek A. A.",
+      "family": "Moussa",
+      "name": null
+     },
+     {
+      "given": "Heba M.",
+      "family": "Fahmy",
+      "name": null
+     }
+    ],
+    "issued": [
+     2025,
+     1,
+     6
+    ],
+    "published_online": [
+     2025,
+     1,
+     6
+    ],
+    "published_print": [
+     null
+    ]
+   }
+  },
+  {
+   "k": "f10",
+   "source": "epmc",
+   "score": 0,
+   "pmcid": "PMC11704303",
+   "doi": "10.1038/s41598-024-79574-x",
+   "title": "Nano-chitosan-coated, green-synthesized selenium nanoparticles as a novel antifungal agent against Sclerotinia sclerotiorum: in vitro study.",
+   "authors": [
+    {
+     "last": "Desouky",
+     "initials": "MM",
+     "first": "Mohamed M",
+     "full": "Desouky MM",
+     "collective": null
+    },
+    {
+     "last": "Abou-Saleh",
+     "initials": "RH",
+     "first": "Radwa H",
+     "full": "Abou-Saleh RH",
+     "collective": null
+    },
+    {
+     "last": "Moussa",
+     "initials": "TAA",
+     "first": "Tarek A A",
+     "full": "Moussa TAA",
+     "collective": null
+    },
+    {
+     "last": "Fahmy",
+     "initials": "HM",
+     "first": "Heba M",
+     "full": "Fahmy HM",
+     "collective": null
+    }
+   ],
+   "journal": "Scientific reports",
+   "journal_iso": "Sci Rep",
+   "volume": "15",
+   "issue": "1",
+   "year": 2025,
+   "pages": "1004",
+   "license": "cc by",
+   "first_pub": "2025-01-06",
+   "fig_label": "Fig. 10",
+   "caption": "TEM images of S. sclerotiorum hyphae of (a - c): control micrographs and (d - f): 0.5 ppm of NCS-Se NPs treatment micrographs.",
+   "href": "41598_2024_79574_Fig10_HTML.jpg",
+   "img_url": "https://cdn.ncbi.nlm.nih.gov/pmc/blobs/7e2f/11704303/99c32cfb3658/41598_2024_79574_Fig10_HTML.jpg",
+   "orig_size": [
+    669,
+    472
+   ],
+   "crossref": {
+    "title": "Nano-chitosan-coated, green-synthesized selenium nanoparticles as a novel antifungal agent against Sclerotinia sclerotiorum: in vitro study",
+    "container": "Scientific Reports",
+    "volume": "15",
+    "issue": "1",
+    "page": null,
+    "article_number": "1004",
+    "authors": [
+     {
+      "given": "Mohamed M.",
+      "family": "Desouky",
+      "name": null
+     },
+     {
+      "given": "Radwa H.",
+      "family": "Abou-Saleh",
+      "name": null
+     },
+     {
+      "given": "Tarek A. A.",
+      "family": "Moussa",
+      "name": null
+     },
+     {
+      "given": "Heba M.",
+      "family": "Fahmy",
+      "name": null
+     }
+    ],
+    "issued": [
+     2025,
+     1,
+     6
+    ],
+    "published_online": [
+     2025,
+     1,
+     6
+    ],
+    "published_print": [
+     null
+    ]
+   }
+  },
+  {
+   "k": "f11",
+   "source": "epmc",
+   "score": 0,
+   "pmcid": "PMC11704303",
+   "doi": "10.1038/s41598-024-79574-x",
+   "title": "Nano-chitosan-coated, green-synthesized selenium nanoparticles as a novel antifungal agent against Sclerotinia sclerotiorum: in vitro study.",
+   "authors": [
+    {
+     "last": "Desouky",
+     "initials": "MM",
+     "first": "Mohamed M",
+     "full": "Desouky MM",
+     "collective": null
+    },
+    {
+     "last": "Abou-Saleh",
+     "initials": "RH",
+     "first": "Radwa H",
+     "full": "Abou-Saleh RH",
+     "collective": null
+    },
+    {
+     "last": "Moussa",
+     "initials": "TAA",
+     "first": "Tarek A A",
+     "full": "Moussa TAA",
+     "collective": null
+    },
+    {
+     "last": "Fahmy",
+     "initials": "HM",
+     "first": "Heba M",
+     "full": "Fahmy HM",
+     "collective": null
+    }
+   ],
+   "journal": "Scientific reports",
+   "journal_iso": "Sci Rep",
+   "volume": "15",
+   "issue": "1",
+   "year": 2025,
+   "pages": "1004",
+   "license": "cc by",
+   "first_pub": "2025-01-06",
+   "fig_label": "Fig. 11",
+   "caption": "Schematic diagram showing the adsorption of NCS-Se NPs with S. sclerotiorum mycelia and their damage effect.",
+   "href": "41598_2024_79574_Fig11_HTML.jpg",
+   "img_url": "https://cdn.ncbi.nlm.nih.gov/pmc/blobs/7e2f/11704303/04e198434b8d/41598_2024_79574_Fig11_HTML.jpg",
+   "orig_size": [
+    750,
+    471
+   ],
+   "crossref": {
+    "title": "Nano-chitosan-coated, green-synthesized selenium nanoparticles as a novel antifungal agent against Sclerotinia sclerotiorum: in vitro study",
+    "container": "Scientific Reports",
+    "volume": "15",
+    "issue": "1",
+    "page": null,
+    "article_number": "1004",
+    "authors": [
+     {
+      "given": "Mohamed M.",
+      "family": "Desouky",
+      "name": null
+     },
+     {
+      "given": "Radwa H.",
+      "family": "Abou-Saleh",
+      "name": null
+     },
+     {
+      "given": "Tarek A. A.",
+      "family": "Moussa",
+      "name": null
+     },
+     {
+      "given": "Heba M.",
+      "family": "Fahmy",
+      "name": null
+     }
+    ],
+    "issued": [
+     2025,
+     1,
+     6
+    ],
+    "published_online": [
+     2025,
+     1,
+     6
+    ],
+    "published_print": [
+     null
+    ]
+   }
+  }
+ ]
+}

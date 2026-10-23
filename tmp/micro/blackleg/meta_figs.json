@@ -1,0 +1,368 @@
+{
+ "id": "blackleg",
+ "candidates": [
+  {
+   "k": "f1",
+   "source": "epmc",
+   "score": 0,
+   "pmcid": "PMC7912877",
+   "doi": "10.3390/microorganisms9020295",
+   "title": "Biosensors Used for Epifluorescence and Confocal Laser Scanning Microscopies to Study &lt;i&gt;Dickeya&lt;/i&gt; and &lt;i&gt;Pectobacterium&lt;/i&gt; Virulence and Biocontrol.",
+   "authors": [
+    {
+     "last": "Bourigault",
+     "initials": "Y",
+     "first": "Yvann",
+     "full": "Bourigault Y",
+     "collective": null
+    },
+    {
+     "last": "Chane",
+     "initials": "A",
+     "first": "Andrea",
+     "full": "Chane A",
+     "collective": null
+    },
+    {
+     "last": "Barbey",
+     "initials": "C",
+     "first": "Corinne",
+     "full": "Barbey C",
+     "collective": null
+    },
+    {
+     "last": "Jafra",
+     "initials": "S",
+     "first": "Sylwia",
+     "full": "Jafra S",
+     "collective": null
+    },
+    {
+     "last": "Czajkowski",
+     "initials": "R",
+     "first": "Robert",
+     "full": "Czajkowski R",
+     "collective": null
+    },
+    {
+     "last": "Latour",
+     "initials": "X",
+     "first": "Xavier",
+     "full": "Latour X",
+     "collective": null
+    }
+   ],
+   "journal": "Microorganisms",
+   "journal_iso": "Microorganisms",
+   "volume": "9",
+   "issue": "2",
+   "year": 2021,
+   "pages": "295",
+   "license": "cc by",
+   "first_pub": "2021-02-01",
+   "fig_label": "Figure 1",
+   "caption": "Colonization of potato roots with green fluorescent protein (GFP)-tagged Dickeya solani. Bacterial colonization of roots can be evaluated using either epifluorescence stereo microscopy to visualize the spread of the D. solani strain IPO2254 (see Table 1) on the scale of the organ (microcolonies on the rhizoplane and invasion of the vascular tissue, (A1, A2), respectively) or by confocal scanning laser microscopy to locate the bacterium on the level of the plant cell (intercellular and intracellular colonization, (B1, B2), respectively). For technical experimental details please see reference [97]. (Courtesy of Dr. Jan van der Wolf, WUR-PRI, Wageningen, the Netherlands).",
+   "href": "microorganisms-09-00295-g001.jpg",
+   "img_url": "https://cdn.ncbi.nlm.nih.gov/pmc/blobs/087f/7912877/0eff89de07ca/microorganisms-09-00295-g001.jpg",
+   "orig_size": [
+    795,
+    793
+   ],
+   "crossref": {
+    "title": "Biosensors Used for Epifluorescence and Confocal Laser Scanning Microscopies to Study Dickeya and Pectobacterium Virulence and Biocontrol",
+    "container": "Microorganisms",
+    "volume": "9",
+    "issue": "2",
+    "page": "295",
+    "article_number": null,
+    "authors": [
+     {
+      "given": "Yvann",
+      "family": "Bourigault",
+      "name": null
+     },
+     {
+      "given": "Andrea",
+      "family": "Chane",
+      "name": null
+     },
+     {
+      "given": "Corinne",
+      "family": "Barbey",
+      "name": null
+     },
+     {
+      "given": "Sylwia",
+      "family": "Jafra",
+      "name": null
+     },
+     {
+      "given": "Robert",
+      "family": "Czajkowski",
+      "name": null
+     },
+     {
+      "given": "Xavier",
+      "family": "Latour",
+      "name": null
+     }
+    ],
+    "issued": [
+     2021,
+     2,
+     1
+    ],
+    "published_online": [
+     2021,
+     2,
+     1
+    ],
+    "published_print": [
+     null
+    ]
+   }
+  },
+  {
+   "k": "f2",
+   "source": "epmc",
+   "score": 0,
+   "pmcid": "PMC7912877",
+   "doi": "10.3390/microorganisms9020295",
+   "title": "Biosensors Used for Epifluorescence and Confocal Laser Scanning Microscopies to Study &lt;i&gt;Dickeya&lt;/i&gt; and &lt;i&gt;Pectobacterium&lt;/i&gt; Virulence and Biocontrol.",
+   "authors": [
+    {
+     "last": "Bourigault",
+     "initials": "Y",
+     "first": "Yvann",
+     "full": "Bourigault Y",
+     "collective": null
+    },
+    {
+     "last": "Chane",
+     "initials": "A",
+     "first": "Andrea",
+     "full": "Chane A",
+     "collective": null
+    },
+    {
+     "last": "Barbey",
+     "initials": "C",
+     "first": "Corinne",
+     "full": "Barbey C",
+     "collective": null
+    },
+    {
+     "last": "Jafra",
+     "initials": "S",
+     "first": "Sylwia",
+     "full": "Jafra S",
+     "collective": null
+    },
+    {
+     "last": "Czajkowski",
+     "initials": "R",
+     "first": "Robert",
+     "full": "Czajkowski R",
+     "collective": null
+    },
+    {
+     "last": "Latour",
+     "initials": "X",
+     "first": "Xavier",
+     "full": "Latour X",
+     "collective": null
+    }
+   ],
+   "journal": "Microorganisms",
+   "journal_iso": "Microorganisms",
+   "volume": "9",
+   "issue": "2",
+   "year": 2021,
+   "pages": "295",
+   "license": "cc by",
+   "first_pub": "2021-02-01",
+   "fig_label": "Figure 2",
+   "caption": "Colonization of potato roots and stems with DsRed-tagged Dickeya solani. DsRed fluorescent protein is a relevant alternative to the widely used green fluorescent protein (GFP) for tagging soft-rot Pectobacteriaceae. In this example, the peak emission of DsRed (610 nm), very far from that of the autofluorescence of plant cell walls (450 nm), allowed fine localization of D. solani IPO3012 (see Table 1) red cells and microcolonies, both in the blue cells and walls of the roots (A1, A2) and stems (B1, B2). For technical experimental details please see reference [125]. (Courtesy of Dr. Jan van der Wolf, WUR-PRI, Wageningen, the Netherlands).",
+   "href": "microorganisms-09-00295-g002.jpg",
+   "img_url": "https://cdn.ncbi.nlm.nih.gov/pmc/blobs/087f/7912877/8bf610fff106/microorganisms-09-00295-g002.jpg",
+   "orig_size": [
+    781,
+    775
+   ],
+   "crossref": {
+    "title": "Biosensors Used for Epifluorescence and Confocal Laser Scanning Microscopies to Study Dickeya and Pectobacterium Virulence and Biocontrol",
+    "container": "Microorganisms",
+    "volume": "9",
+    "issue": "2",
+    "page": "295",
+    "article_number": null,
+    "authors": [
+     {
+      "given": "Yvann",
+      "family": "Bourigault",
+      "name": null
+     },
+     {
+      "given": "Andrea",
+      "family": "Chane",
+      "name": null
+     },
+     {
+      "given": "Corinne",
+      "family": "Barbey",
+      "name": null
+     },
+     {
+      "given": "Sylwia",
+      "family": "Jafra",
+      "name": null
+     },
+     {
+      "given": "Robert",
+      "family": "Czajkowski",
+      "name": null
+     },
+     {
+      "given": "Xavier",
+      "family": "Latour",
+      "name": null
+     }
+    ],
+    "issued": [
+     2021,
+     2,
+     1
+    ],
+    "published_online": [
+     2021,
+     2,
+     1
+    ],
+    "published_print": [
+     null
+    ]
+   }
+  },
+  {
+   "k": "f3",
+   "source": "epmc",
+   "score": 0,
+   "pmcid": "PMC7912877",
+   "doi": "10.3390/microorganisms9020295",
+   "title": "Biosensors Used for Epifluorescence and Confocal Laser Scanning Microscopies to Study &lt;i&gt;Dickeya&lt;/i&gt; and &lt;i&gt;Pectobacterium&lt;/i&gt; Virulence and Biocontrol.",
+   "authors": [
+    {
+     "last": "Bourigault",
+     "initials": "Y",
+     "first": "Yvann",
+     "full": "Bourigault Y",
+     "collective": null
+    },
+    {
+     "last": "Chane",
+     "initials": "A",
+     "first": "Andrea",
+     "full": "Chane A",
+     "collective": null
+    },
+    {
+     "last": "Barbey",
+     "initials": "C",
+     "first": "Corinne",
+     "full": "Barbey C",
+     "collective": null
+    },
+    {
+     "last": "Jafra",
+     "initials": "S",
+     "first": "Sylwia",
+     "full": "Jafra S",
+     "collective": null
+    },
+    {
+     "last": "Czajkowski",
+     "initials": "R",
+     "first": "Robert",
+     "full": "Czajkowski R",
+     "collective": null
+    },
+    {
+     "last": "Latour",
+     "initials": "X",
+     "first": "Xavier",
+     "full": "Latour X",
+     "collective": null
+    }
+   ],
+   "journal": "Microorganisms",
+   "journal_iso": "Microorganisms",
+   "volume": "9",
+   "issue": "2",
+   "year": 2021,
+   "pages": "295",
+   "license": "cc by",
+   "first_pub": "2021-02-01",
+   "fig_label": "Figure 3",
+   "caption": "Simultaneous observation of the location and quorum-sensing communication of Pectobacterium atrosepticum during potato tuber soft-rot. Tubers were wounded and inoculated axenically with the P. atrosepticum CFBP6276 dual-colored strain (see Table 1): the constitutively produced cyan fluorescent protein served as a cell tag (blue fluorescing cells), whereas reporter fusion based on the green fluorescent protein (GFP) enabled the simultaneous recording of the production and presence of N -acyl-homoserine lactone (AHL) signaling molecules (green fluorescing cells). Confocal microscopy observations of the bottom surface of the tuber wound were achieved at two days post-inoculation with an ultrathin cross-section. Images were combined in the blue and red channels (A1, B1), supplemented with the green channel (A2, B2). In these conditions, slight blue (A1, B1) or celadon (A2, B2) autofluorescence revealed the cell wall structure of the pith, as well as translucent parenchyma cells containing opaque and oval amyloplasts. Close-ups (delineated by squares) of clustered and embedded pectobacterial cells in (A1, A2) are shown in (B1, B2), respectively. Legend: CȻ, communicating cell, SȻ, silent cell. For technical experimental details please see reference [103].",
+   "href": "microorganisms-09-00295-g003.jpg",
+   "img_url": "https://cdn.ncbi.nlm.nih.gov/pmc/blobs/087f/7912877/ae7ca147347e/microorganisms-09-00295-g003.jpg",
+   "orig_size": [
+    726,
+    725
+   ],
+   "crossref": {
+    "title": "Biosensors Used for Epifluorescence and Confocal Laser Scanning Microscopies to Study Dickeya and Pectobacterium Virulence and Biocontrol",
+    "container": "Microorganisms",
+    "volume": "9",
+    "issue": "2",
+    "page": "295",
+    "article_number": null,
+    "authors": [
+     {
+      "given": "Yvann",
+      "family": "Bourigault",
+      "name": null
+     },
+     {
+      "given": "Andrea",
+      "family": "Chane",
+      "name": null
+     },
+     {
+      "given": "Corinne",
+      "family": "Barbey",
+      "name": null
+     },
+     {
+      "given": "Sylwia",
+      "family": "Jafra",
+      "name": null
+     },
+     {
+      "given": "Robert",
+      "family": "Czajkowski",
+      "name": null
+     },
+     {
+      "given": "Xavier",
+      "family": "Latour",
+      "name": null
+     }
+    ],
+    "issued": [
+     2021,
+     2,
+     1
+    ],
+    "published_online": [
+     2021,
+     2,
+     1
+    ],
+    "published_print": [
+     null
+    ]
+   }
+  }
+ ]
+}

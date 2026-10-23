@@ -1,0 +1,981 @@
+{
+ "id": "cercospora",
+ "candidates": [
+  {
+   "k": "f1",
+   "source": "epmc",
+   "score": 0,
+   "pmcid": "PMC3616835",
+   "doi": "10.1186/1471-2229-13-50",
+   "title": "CbCTB2, an O-methyltransferase is essential for biosynthesis of the phytotoxin cercosporin and infection of sugar beet by Cercospora beticola.",
+   "authors": [
+    {
+     "last": "Staerkel",
+     "initials": "C",
+     "first": "Cornelia",
+     "full": "Staerkel C",
+     "collective": null
+    },
+    {
+     "last": "Boenisch",
+     "initials": "MJ",
+     "first": "Marike J",
+     "full": "Boenisch MJ",
+     "collective": null
+    },
+    {
+     "last": "Kröger",
+     "initials": "C",
+     "first": "Cathrin",
+     "full": "Kröger C",
+     "collective": null
+    },
+    {
+     "last": "Bormann",
+     "initials": "J",
+     "first": "Jörg",
+     "full": "Bormann J",
+     "collective": null
+    },
+    {
+     "last": "Schäfer",
+     "initials": "W",
+     "first": "Wilhelm",
+     "full": "Schäfer W",
+     "collective": null
+    },
+    {
+     "last": "Stahl",
+     "initials": "D",
+     "first": "Dietmar",
+     "full": "Stahl D",
+     "collective": null
+    }
+   ],
+   "journal": "BMC plant biology",
+   "journal_iso": "BMC Plant Biol",
+   "volume": "13",
+   "issue": null,
+   "year": 2013,
+   "pages": "50",
+   "license": "cc by",
+   "first_pub": "2013-03-22",
+   "fig_label": "Figure 1",
+   "caption": "Disruption of CTB2 gene in C. beticola isolates Ahlburg and Ferrara. A The 800 bp 5 ′ and 3 ′ fragments of CTB2 were amplified separately with primer pairs 1/2 and 3/4, fused with the hygromycin cassette by overlapping regions, and amplified with nested primers (including Not I and Apa I sites) before cloning into pGEMT. B Example of Southern blotting with a hygromycin probe, from left to right, wild type Ferrara (no band), Ferrara ectopic, Ferrara ctb2 gene disruption strains 2-1 and 2-2, wild type Ahlburg, Ahlburg ctb2 disruption strain 2-1, Ahlburg ectopic, Ahlburg ctb2 disruption strain 2-2 (band at 3.7 kb, black arrow). Dig VII marker (Roche) was used as DNA size ladder. C Confirmative PCR with CTB2 internal primers located adjacent to the integration locus (IntF and IntR), from left to right, wild type Ahlburg (band at 0.3 kb), Ferrara cbt2 disruption strain 2-1, Ahlburg disruption strain 2-1 (band at 2 kb) F Δ ctb2-2 and A Δ ctb2-2 produced the same PCR bands as the correspondent disruptants (data not shown).",
+   "href": "1471-2229-13-50-1.jpg",
+   "img_url": "https://cdn.ncbi.nlm.nih.gov/pmc/blobs/5dd9/3616835/d351fc6e06d8/1471-2229-13-50-1.jpg",
+   "orig_size": [
+    600,
+    433
+   ],
+   "crossref": {
+    "title": "CbCTB2, an O-methyltransferase is essential for biosynthesis of the phytotoxin cercosporin and infection of sugar beet by Cercospora beticola",
+    "container": "BMC Plant Biology",
+    "volume": "13",
+    "issue": "1",
+    "page": null,
+    "article_number": "50",
+    "authors": [
+     {
+      "given": "Cornelia",
+      "family": "Staerkel",
+      "name": null
+     },
+     {
+      "given": "Marike J",
+      "family": "Boenisch",
+      "name": null
+     },
+     {
+      "given": "Cathrin",
+      "family": "Kröger",
+      "name": null
+     },
+     {
+      "given": "Jörg",
+      "family": "Bormann",
+      "name": null
+     },
+     {
+      "given": "Wilhelm",
+      "family": "Schäfer",
+      "name": null
+     },
+     {
+      "given": "Dietmar",
+      "family": "Stahl",
+      "name": null
+     }
+    ],
+    "issued": [
+     2013,
+     3,
+     22
+    ],
+    "published_online": [
+     2013,
+     3,
+     22
+    ],
+    "published_print": [
+     2013,
+     12
+    ]
+   }
+  },
+  {
+   "k": "f2",
+   "source": "epmc",
+   "score": 0,
+   "pmcid": "PMC3616835",
+   "doi": "10.1186/1471-2229-13-50",
+   "title": "CbCTB2, an O-methyltransferase is essential for biosynthesis of the phytotoxin cercosporin and infection of sugar beet by Cercospora beticola.",
+   "authors": [
+    {
+     "last": "Staerkel",
+     "initials": "C",
+     "first": "Cornelia",
+     "full": "Staerkel C",
+     "collective": null
+    },
+    {
+     "last": "Boenisch",
+     "initials": "MJ",
+     "first": "Marike J",
+     "full": "Boenisch MJ",
+     "collective": null
+    },
+    {
+     "last": "Kröger",
+     "initials": "C",
+     "first": "Cathrin",
+     "full": "Kröger C",
+     "collective": null
+    },
+    {
+     "last": "Bormann",
+     "initials": "J",
+     "first": "Jörg",
+     "full": "Bormann J",
+     "collective": null
+    },
+    {
+     "last": "Schäfer",
+     "initials": "W",
+     "first": "Wilhelm",
+     "full": "Schäfer W",
+     "collective": null
+    },
+    {
+     "last": "Stahl",
+     "initials": "D",
+     "first": "Dietmar",
+     "full": "Stahl D",
+     "collective": null
+    }
+   ],
+   "journal": "BMC plant biology",
+   "journal_iso": "BMC Plant Biol",
+   "volume": "13",
+   "issue": null,
+   "year": 2013,
+   "pages": "50",
+   "license": "cc by",
+   "first_pub": "2013-03-22",
+   "fig_label": "Figure 2",
+   "caption": "Quantitation of toxin levels in various isolates. Toxin production was not detectable for the Ahlburg cbt2 disruption strain 2-1 and the Ferrara cbt2 disruption strain 2-1. Similar results were obtained for mutants A Δ ctb2-2 and F Δ ctb2-2 (data not shown). The more virulent wild type Ahlburg produced 750 μM cercosporin compared to 320 μM cercosporin detected for Ferrara, the less virulent isolate. The ectopic Ferrara mutant produced toxin levels comparable to the Ferrara wild type. Extractions were repeated three times for each isolate. Standard deviations are marked in columns by black lines.",
+   "href": "1471-2229-13-50-2.jpg",
+   "img_url": "https://cdn.ncbi.nlm.nih.gov/pmc/blobs/5dd9/3616835/a7283390a377/1471-2229-13-50-2.jpg",
+   "orig_size": [
+    600,
+    512
+   ],
+   "crossref": {
+    "title": "CbCTB2, an O-methyltransferase is essential for biosynthesis of the phytotoxin cercosporin and infection of sugar beet by Cercospora beticola",
+    "container": "BMC Plant Biology",
+    "volume": "13",
+    "issue": "1",
+    "page": null,
+    "article_number": "50",
+    "authors": [
+     {
+      "given": "Cornelia",
+      "family": "Staerkel",
+      "name": null
+     },
+     {
+      "given": "Marike J",
+      "family": "Boenisch",
+      "name": null
+     },
+     {
+      "given": "Cathrin",
+      "family": "Kröger",
+      "name": null
+     },
+     {
+      "given": "Jörg",
+      "family": "Bormann",
+      "name": null
+     },
+     {
+      "given": "Wilhelm",
+      "family": "Schäfer",
+      "name": null
+     },
+     {
+      "given": "Dietmar",
+      "family": "Stahl",
+      "name": null
+     }
+    ],
+    "issued": [
+     2013,
+     3,
+     22
+    ],
+    "published_online": [
+     2013,
+     3,
+     22
+    ],
+    "published_print": [
+     2013,
+     12
+    ]
+   }
+  },
+  {
+   "k": "f3",
+   "source": "epmc",
+   "score": 0,
+   "pmcid": "PMC3616835",
+   "doi": "10.1186/1471-2229-13-50",
+   "title": "CbCTB2, an O-methyltransferase is essential for biosynthesis of the phytotoxin cercosporin and infection of sugar beet by Cercospora beticola.",
+   "authors": [
+    {
+     "last": "Staerkel",
+     "initials": "C",
+     "first": "Cornelia",
+     "full": "Staerkel C",
+     "collective": null
+    },
+    {
+     "last": "Boenisch",
+     "initials": "MJ",
+     "first": "Marike J",
+     "full": "Boenisch MJ",
+     "collective": null
+    },
+    {
+     "last": "Kröger",
+     "initials": "C",
+     "first": "Cathrin",
+     "full": "Kröger C",
+     "collective": null
+    },
+    {
+     "last": "Bormann",
+     "initials": "J",
+     "first": "Jörg",
+     "full": "Bormann J",
+     "collective": null
+    },
+    {
+     "last": "Schäfer",
+     "initials": "W",
+     "first": "Wilhelm",
+     "full": "Schäfer W",
+     "collective": null
+    },
+    {
+     "last": "Stahl",
+     "initials": "D",
+     "first": "Dietmar",
+     "full": "Stahl D",
+     "collective": null
+    }
+   ],
+   "journal": "BMC plant biology",
+   "journal_iso": "BMC Plant Biol",
+   "volume": "13",
+   "issue": null,
+   "year": 2013,
+   "pages": "50",
+   "license": "cc by",
+   "first_pub": "2013-03-22",
+   "fig_label": "Figure 3",
+   "caption": "Sugar beet plants grown in-vitro and treated with toxin extracts. Plants exhibited varying degrees of damage one day after treatment with cercosporin extracts from various fungal isolates and mutants. Plants treated with cercosporin from wild type Ahlburg and Ferrara became necrotic and black (left), but plants treated with cercosporin extract of the Ahlburg disruption strain 2-1 remained green and healthy, comparable with the plant treatment with water which served as the negative control (right). Experiments were repeated three times with five plants for each extract.",
+   "href": "1471-2229-13-50-3.jpg",
+   "img_url": "https://cdn.ncbi.nlm.nih.gov/pmc/blobs/5dd9/3616835/f3de658f59e9/1471-2229-13-50-3.jpg",
+   "orig_size": [
+    600,
+    258
+   ],
+   "crossref": {
+    "title": "CbCTB2, an O-methyltransferase is essential for biosynthesis of the phytotoxin cercosporin and infection of sugar beet by Cercospora beticola",
+    "container": "BMC Plant Biology",
+    "volume": "13",
+    "issue": "1",
+    "page": null,
+    "article_number": "50",
+    "authors": [
+     {
+      "given": "Cornelia",
+      "family": "Staerkel",
+      "name": null
+     },
+     {
+      "given": "Marike J",
+      "family": "Boenisch",
+      "name": null
+     },
+     {
+      "given": "Cathrin",
+      "family": "Kröger",
+      "name": null
+     },
+     {
+      "given": "Jörg",
+      "family": "Bormann",
+      "name": null
+     },
+     {
+      "given": "Wilhelm",
+      "family": "Schäfer",
+      "name": null
+     },
+     {
+      "given": "Dietmar",
+      "family": "Stahl",
+      "name": null
+     }
+    ],
+    "issued": [
+     2013,
+     3,
+     22
+    ],
+    "published_online": [
+     2013,
+     3,
+     22
+    ],
+    "published_print": [
+     2013,
+     12
+    ]
+   }
+  },
+  {
+   "k": "f4",
+   "source": "epmc",
+   "score": 0,
+   "pmcid": "PMC3616835",
+   "doi": "10.1186/1471-2229-13-50",
+   "title": "CbCTB2, an O-methyltransferase is essential for biosynthesis of the phytotoxin cercosporin and infection of sugar beet by Cercospora beticola.",
+   "authors": [
+    {
+     "last": "Staerkel",
+     "initials": "C",
+     "first": "Cornelia",
+     "full": "Staerkel C",
+     "collective": null
+    },
+    {
+     "last": "Boenisch",
+     "initials": "MJ",
+     "first": "Marike J",
+     "full": "Boenisch MJ",
+     "collective": null
+    },
+    {
+     "last": "Kröger",
+     "initials": "C",
+     "first": "Cathrin",
+     "full": "Kröger C",
+     "collective": null
+    },
+    {
+     "last": "Bormann",
+     "initials": "J",
+     "first": "Jörg",
+     "full": "Bormann J",
+     "collective": null
+    },
+    {
+     "last": "Schäfer",
+     "initials": "W",
+     "first": "Wilhelm",
+     "full": "Schäfer W",
+     "collective": null
+    },
+    {
+     "last": "Stahl",
+     "initials": "D",
+     "first": "Dietmar",
+     "full": "Stahl D",
+     "collective": null
+    }
+   ],
+   "journal": "BMC plant biology",
+   "journal_iso": "BMC Plant Biol",
+   "volume": "13",
+   "issue": null,
+   "year": 2013,
+   "pages": "50",
+   "license": "cc by",
+   "first_pub": "2013-03-22",
+   "fig_label": "Figure 4",
+   "caption": "The Δ CTB2 strains fail to cause disease symptoms on sugar beet leaves. A Enlarged sections of the surface of sugar beet leaves reveal that exposure to the wild type Ahlburg strain led to the characteristic leaf spot symptoms 21 days after inoculation. Ahlburg ctb2 disruption strain 2-1 failed to cause typical leaf spot symptoms. Ahlburg ectopic strain produced wild type like leaf spots. Treatment with water served as the negative control. B Ferrara wild type caused leaf spot symptoms, although significantly smaller compared to Ahlburg wild type. Ferrara cbt2 disruption strain 2-1 failed to cause leaf spot symptoms in contrast to Ferrara ectopic mutant. Experiments were repeated twice with ten plants for each fungal strain. Both disruptants of each wild type isolate gave similar results (data not shown).",
+   "href": "1471-2229-13-50-4.jpg",
+   "img_url": "https://cdn.ncbi.nlm.nih.gov/pmc/blobs/5dd9/3616835/421413fa3b6d/1471-2229-13-50-4.jpg",
+   "orig_size": [
+    600,
+    216
+   ],
+   "crossref": {
+    "title": "CbCTB2, an O-methyltransferase is essential for biosynthesis of the phytotoxin cercosporin and infection of sugar beet by Cercospora beticola",
+    "container": "BMC Plant Biology",
+    "volume": "13",
+    "issue": "1",
+    "page": null,
+    "article_number": "50",
+    "authors": [
+     {
+      "given": "Cornelia",
+      "family": "Staerkel",
+      "name": null
+     },
+     {
+      "given": "Marike J",
+      "family": "Boenisch",
+      "name": null
+     },
+     {
+      "given": "Cathrin",
+      "family": "Kröger",
+      "name": null
+     },
+     {
+      "given": "Jörg",
+      "family": "Bormann",
+      "name": null
+     },
+     {
+      "given": "Wilhelm",
+      "family": "Schäfer",
+      "name": null
+     },
+     {
+      "given": "Dietmar",
+      "family": "Stahl",
+      "name": null
+     }
+    ],
+    "issued": [
+     2013,
+     3,
+     22
+    ],
+    "published_online": [
+     2013,
+     3,
+     22
+    ],
+    "published_print": [
+     2013,
+     12
+    ]
+   }
+  },
+  {
+   "k": "f5",
+   "source": "epmc",
+   "score": 0,
+   "pmcid": "PMC3616835",
+   "doi": "10.1186/1471-2229-13-50",
+   "title": "CbCTB2, an O-methyltransferase is essential for biosynthesis of the phytotoxin cercosporin and infection of sugar beet by Cercospora beticola.",
+   "authors": [
+    {
+     "last": "Staerkel",
+     "initials": "C",
+     "first": "Cornelia",
+     "full": "Staerkel C",
+     "collective": null
+    },
+    {
+     "last": "Boenisch",
+     "initials": "MJ",
+     "first": "Marike J",
+     "full": "Boenisch MJ",
+     "collective": null
+    },
+    {
+     "last": "Kröger",
+     "initials": "C",
+     "first": "Cathrin",
+     "full": "Kröger C",
+     "collective": null
+    },
+    {
+     "last": "Bormann",
+     "initials": "J",
+     "first": "Jörg",
+     "full": "Bormann J",
+     "collective": null
+    },
+    {
+     "last": "Schäfer",
+     "initials": "W",
+     "first": "Wilhelm",
+     "full": "Schäfer W",
+     "collective": null
+    },
+    {
+     "last": "Stahl",
+     "initials": "D",
+     "first": "Dietmar",
+     "full": "Stahl D",
+     "collective": null
+    }
+   ],
+   "journal": "BMC plant biology",
+   "journal_iso": "BMC Plant Biol",
+   "volume": "13",
+   "issue": null,
+   "year": 2013,
+   "pages": "50",
+   "license": "cc by",
+   "first_pub": "2013-03-22",
+   "fig_label": "Figure 5",
+   "caption": "Disease indices of sugar beets exposed to C. beticola. Plants were infected with conidia of the wild type strains of Ahlburg and Ferrara, with the Ahlburg ctb2 disruption strain 2-1, the Ferrara ctb2 disruption strain 2-1, and with the ectopic transformants of Ahlburg and Ferrara. The disease severity was rated after 21 days. Plants infected with the Δ CTB2 strains of both wild types exhibited no symptoms of infection (disease score 0). The wild type strain Ahlburg and the ectopic transformant Ahlburg showed a disease score of 4. The wild type strain Ferrara and the ectopic transformant Ferrara showed a disease score of 1. Δ ctb2 mutants did not cause lesions.",
+   "href": "1471-2229-13-50-5.jpg",
+   "img_url": "https://cdn.ncbi.nlm.nih.gov/pmc/blobs/5dd9/3616835/d1aafaabc4ad/1471-2229-13-50-5.jpg",
+   "orig_size": [
+    600,
+    517
+   ],
+   "crossref": {
+    "title": "CbCTB2, an O-methyltransferase is essential for biosynthesis of the phytotoxin cercosporin and infection of sugar beet by Cercospora beticola",
+    "container": "BMC Plant Biology",
+    "volume": "13",
+    "issue": "1",
+    "page": null,
+    "article_number": "50",
+    "authors": [
+     {
+      "given": "Cornelia",
+      "family": "Staerkel",
+      "name": null
+     },
+     {
+      "given": "Marike J",
+      "family": "Boenisch",
+      "name": null
+     },
+     {
+      "given": "Cathrin",
+      "family": "Kröger",
+      "name": null
+     },
+     {
+      "given": "Jörg",
+      "family": "Bormann",
+      "name": null
+     },
+     {
+      "given": "Wilhelm",
+      "family": "Schäfer",
+      "name": null
+     },
+     {
+      "given": "Dietmar",
+      "family": "Stahl",
+      "name": null
+     }
+    ],
+    "issued": [
+     2013,
+     3,
+     22
+    ],
+    "published_online": [
+     2013,
+     3,
+     22
+    ],
+    "published_print": [
+     2013,
+     12
+    ]
+   }
+  },
+  {
+   "k": "f6",
+   "source": "epmc",
+   "score": 0,
+   "pmcid": "PMC3616835",
+   "doi": "10.1186/1471-2229-13-50",
+   "title": "CbCTB2, an O-methyltransferase is essential for biosynthesis of the phytotoxin cercosporin and infection of sugar beet by Cercospora beticola.",
+   "authors": [
+    {
+     "last": "Staerkel",
+     "initials": "C",
+     "first": "Cornelia",
+     "full": "Staerkel C",
+     "collective": null
+    },
+    {
+     "last": "Boenisch",
+     "initials": "MJ",
+     "first": "Marike J",
+     "full": "Boenisch MJ",
+     "collective": null
+    },
+    {
+     "last": "Kröger",
+     "initials": "C",
+     "first": "Cathrin",
+     "full": "Kröger C",
+     "collective": null
+    },
+    {
+     "last": "Bormann",
+     "initials": "J",
+     "first": "Jörg",
+     "full": "Bormann J",
+     "collective": null
+    },
+    {
+     "last": "Schäfer",
+     "initials": "W",
+     "first": "Wilhelm",
+     "full": "Schäfer W",
+     "collective": null
+    },
+    {
+     "last": "Stahl",
+     "initials": "D",
+     "first": "Dietmar",
+     "full": "Stahl D",
+     "collective": null
+    }
+   ],
+   "journal": "BMC plant biology",
+   "journal_iso": "BMC Plant Biol",
+   "volume": "13",
+   "issue": null,
+   "year": 2013,
+   "pages": "50",
+   "license": "cc by",
+   "first_pub": "2013-03-22",
+   "fig_label": "Figure 6",
+   "caption": "C. beticola infection monitored by fluorescence microscopy. Imaging leaf infection of sugar beet plants with the wild type Ahlburg and the Ahlburg ctb2 disruption strain 2-1 both transformed to express constitutively DsRed. A and B Bright field images of the leaf surface, demonstrate characteristic leaf spot symptoms of the wild type infection at 21 days after inoculation, while the gene disruption strain did not cause leaf spots. C and D The mycelium of DsRed expressing strains of Ahlburg wild type and Ahlburg ctb2 disruption strain 2-1 growing on the leaf surface was detected with DsRed filterset of Leica MZ FL III microscope. Scale bars: 250 μm.",
+   "href": "1471-2229-13-50-6.jpg",
+   "img_url": "https://cdn.ncbi.nlm.nih.gov/pmc/blobs/5dd9/3616835/66078e9def40/1471-2229-13-50-6.jpg",
+   "orig_size": [
+    600,
+    402
+   ],
+   "crossref": {
+    "title": "CbCTB2, an O-methyltransferase is essential for biosynthesis of the phytotoxin cercosporin and infection of sugar beet by Cercospora beticola",
+    "container": "BMC Plant Biology",
+    "volume": "13",
+    "issue": "1",
+    "page": null,
+    "article_number": "50",
+    "authors": [
+     {
+      "given": "Cornelia",
+      "family": "Staerkel",
+      "name": null
+     },
+     {
+      "given": "Marike J",
+      "family": "Boenisch",
+      "name": null
+     },
+     {
+      "given": "Cathrin",
+      "family": "Kröger",
+      "name": null
+     },
+     {
+      "given": "Jörg",
+      "family": "Bormann",
+      "name": null
+     },
+     {
+      "given": "Wilhelm",
+      "family": "Schäfer",
+      "name": null
+     },
+     {
+      "given": "Dietmar",
+      "family": "Stahl",
+      "name": null
+     }
+    ],
+    "issued": [
+     2013,
+     3,
+     22
+    ],
+    "published_online": [
+     2013,
+     3,
+     22
+    ],
+    "published_print": [
+     2013,
+     12
+    ]
+   }
+  },
+  {
+   "k": "f7",
+   "source": "epmc",
+   "score": 0,
+   "pmcid": "PMC3616835",
+   "doi": "10.1186/1471-2229-13-50",
+   "title": "CbCTB2, an O-methyltransferase is essential for biosynthesis of the phytotoxin cercosporin and infection of sugar beet by Cercospora beticola.",
+   "authors": [
+    {
+     "last": "Staerkel",
+     "initials": "C",
+     "first": "Cornelia",
+     "full": "Staerkel C",
+     "collective": null
+    },
+    {
+     "last": "Boenisch",
+     "initials": "MJ",
+     "first": "Marike J",
+     "full": "Boenisch MJ",
+     "collective": null
+    },
+    {
+     "last": "Kröger",
+     "initials": "C",
+     "first": "Cathrin",
+     "full": "Kröger C",
+     "collective": null
+    },
+    {
+     "last": "Bormann",
+     "initials": "J",
+     "first": "Jörg",
+     "full": "Bormann J",
+     "collective": null
+    },
+    {
+     "last": "Schäfer",
+     "initials": "W",
+     "first": "Wilhelm",
+     "full": "Schäfer W",
+     "collective": null
+    },
+    {
+     "last": "Stahl",
+     "initials": "D",
+     "first": "Dietmar",
+     "full": "Stahl D",
+     "collective": null
+    }
+   ],
+   "journal": "BMC plant biology",
+   "journal_iso": "BMC Plant Biol",
+   "volume": "13",
+   "issue": null,
+   "year": 2013,
+   "pages": "50",
+   "license": "cc by",
+   "first_pub": "2013-03-22",
+   "fig_label": "Figure 7",
+   "caption": "Colonization and penetration of sugar beet leaves by Ahlburg wild type DsRed and Ahlburg ctb2 disruption strain 2-1 -DsRed. Fluorescence microscopy was performed with a Zeiss fluorescence microscope, using the DsRed filter for detection of the hyphae and UV light to excite blue autofluorescence of the plant cell wall. At 4 days after inoculation, A Ahlburg wild type-DsRed mycelia and B Ahlburg ctb2 disruption strain 2-1-DsRed mycelia were visible on the surface of leaves. C At 4 days after inoculation, the wild type approached stomata and began to penetrate. D The gene disruption strain grew on the surface without entering through stomata at 4 days after infection. Scale bars: A and B = 100 μm, C and D = 20 μm. Abbreviations: ew epidermal cell wall, h hyphae, s stomata, sp stomatal pore, t trichome.",
+   "href": "1471-2229-13-50-7.jpg",
+   "img_url": "https://cdn.ncbi.nlm.nih.gov/pmc/blobs/5dd9/3616835/088787fcfabc/1471-2229-13-50-7.jpg",
+   "orig_size": [
+    600,
+    381
+   ],
+   "crossref": {
+    "title": "CbCTB2, an O-methyltransferase is essential for biosynthesis of the phytotoxin cercosporin and infection of sugar beet by Cercospora beticola",
+    "container": "BMC Plant Biology",
+    "volume": "13",
+    "issue": "1",
+    "page": null,
+    "article_number": "50",
+    "authors": [
+     {
+      "given": "Cornelia",
+      "family": "Staerkel",
+      "name": null
+     },
+     {
+      "given": "Marike J",
+      "family": "Boenisch",
+      "name": null
+     },
+     {
+      "given": "Cathrin",
+      "family": "Kröger",
+      "name": null
+     },
+     {
+      "given": "Jörg",
+      "family": "Bormann",
+      "name": null
+     },
+     {
+      "given": "Wilhelm",
+      "family": "Schäfer",
+      "name": null
+     },
+     {
+      "given": "Dietmar",
+      "family": "Stahl",
+      "name": null
+     }
+    ],
+    "issued": [
+     2013,
+     3,
+     22
+    ],
+    "published_online": [
+     2013,
+     3,
+     22
+    ],
+    "published_print": [
+     2013,
+     12
+    ]
+   }
+  },
+  {
+   "k": "f8",
+   "source": "epmc",
+   "score": 0,
+   "pmcid": "PMC3616835",
+   "doi": "10.1186/1471-2229-13-50",
+   "title": "CbCTB2, an O-methyltransferase is essential for biosynthesis of the phytotoxin cercosporin and infection of sugar beet by Cercospora beticola.",
+   "authors": [
+    {
+     "last": "Staerkel",
+     "initials": "C",
+     "first": "Cornelia",
+     "full": "Staerkel C",
+     "collective": null
+    },
+    {
+     "last": "Boenisch",
+     "initials": "MJ",
+     "first": "Marike J",
+     "full": "Boenisch MJ",
+     "collective": null
+    },
+    {
+     "last": "Kröger",
+     "initials": "C",
+     "first": "Cathrin",
+     "full": "Kröger C",
+     "collective": null
+    },
+    {
+     "last": "Bormann",
+     "initials": "J",
+     "first": "Jörg",
+     "full": "Bormann J",
+     "collective": null
+    },
+    {
+     "last": "Schäfer",
+     "initials": "W",
+     "first": "Wilhelm",
+     "full": "Schäfer W",
+     "collective": null
+    },
+    {
+     "last": "Stahl",
+     "initials": "D",
+     "first": "Dietmar",
+     "full": "Stahl D",
+     "collective": null
+    }
+   ],
+   "journal": "BMC plant biology",
+   "journal_iso": "BMC Plant Biol",
+   "volume": "13",
+   "issue": null,
+   "year": 2013,
+   "pages": "50",
+   "license": "cc by",
+   "first_pub": "2013-03-22",
+   "fig_label": "Figure 8",
+   "caption": "Invasion of sugar beet leaves by Ahlburg wild type DsRed and Ahlburg ctb2 disruption strain 2-1- DsRed. A Fluorescence microscopy of leaf cross sections at 21 days after inoculation showed hyphae of the Ahlburg wild type DsRed invading mesophyll cells. B Leaf cross sections at 21 days after inoculation with the gene disruption strain did not show invasion of subepidermal layers. The hyphae were not closely attached to the surface and easily dislocated. C and D 21 days after inoculation the infection was at its peak and symptoms were prominent on the leaves infected with wild type. C Cross section through a leaf spot lesion of a leaf infected with wild type. Many hyphae colonize the entire tissue. The loss of blue autofluorescence of the plant cell walls indicates degradation of the host tissue. D Cross sections of leaves infected with the gene disruption strain showed strongly increased blue autofluorescence of the plant cell walls, but no hyphal growth. Scale bars: A and B = 100 μm, C and D = 20 μm. Abbreviations: e extracellular space, ec epidermis cell, ew epidermal cell wall, h hyphae, mc mesophyll cell.",
+   "href": "1471-2229-13-50-8.jpg",
+   "img_url": "https://cdn.ncbi.nlm.nih.gov/pmc/blobs/5dd9/3616835/05b1d86d2b3e/1471-2229-13-50-8.jpg",
+   "orig_size": [
+    600,
+    315
+   ],
+   "crossref": {
+    "title": "CbCTB2, an O-methyltransferase is essential for biosynthesis of the phytotoxin cercosporin and infection of sugar beet by Cercospora beticola",
+    "container": "BMC Plant Biology",
+    "volume": "13",
+    "issue": "1",
+    "page": null,
+    "article_number": "50",
+    "authors": [
+     {
+      "given": "Cornelia",
+      "family": "Staerkel",
+      "name": null
+     },
+     {
+      "given": "Marike J",
+      "family": "Boenisch",
+      "name": null
+     },
+     {
+      "given": "Cathrin",
+      "family": "Kröger",
+      "name": null
+     },
+     {
+      "given": "Jörg",
+      "family": "Bormann",
+      "name": null
+     },
+     {
+      "given": "Wilhelm",
+      "family": "Schäfer",
+      "name": null
+     },
+     {
+      "given": "Dietmar",
+      "family": "Stahl",
+      "name": null
+     }
+    ],
+    "issued": [
+     2013,
+     3,
+     22
+    ],
+    "published_online": [
+     2013,
+     3,
+     22
+    ],
+    "published_print": [
+     2013,
+     12
+    ]
+   }
+  }
+ ]
+}
