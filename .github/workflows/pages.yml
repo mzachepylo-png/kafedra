@@ -4,7 +4,7 @@ name: Deploy to GitHub Pages
 
 on:
   push:
-    branches: [main, claude/biotech-department-landing-85ytoa]
+    branches: [main, claude/biotech-department-landing-85ytoa, claude/serene-bell-5fzu9d]
   workflow_dispatch:
 
 permissions:
