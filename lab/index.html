@@ -41,7 +41,11 @@
           </div>
         </div>
         <a class="nav__link" href="../#contacts">Контакти</a>
-        <a class="btn btn--gold btn--sm nav__lab" href="../lab/">
+        <a class="btn btn--green btn--sm nav__lab" href="../konspekt/">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20V3H6.5A2.5 2.5 0 0 0 4 5.5z"/><path d="M4 19.5A2.5 2.5 0 0 0 6.5 22H20v-5"/></svg>
+          Конспект
+        </a>
+        <a class="btn btn--gold btn--sm nav__lab" href="../lab/" aria-current="page">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 3h6M10 3v6l-5 9a2 2 0 0 0 1.7 3h10.6a2 2 0 0 0 1.7-3l-5-9V3"/><path d="M7.5 15h9"/></svg>
           Онлайн лабораторія
         </a>
@@ -56,35 +60,24 @@
         <nav class="breadcrumbs" aria-label="Навігаційний ланцюжок"><a href="../">Головна</a><span aria-hidden="true">/</span><span>Онлайн лабораторія</span></nav>
         <span class="kicker">Для студентів</span>
         <h1>Онлайн лабораторія</h1>
-        <p>Математичні моделі та візуалізації процесів у рослинній клітині. Змінюйте параметри, проводьте віртуальні експерименти, обробляйте дані і порівнюйте результат з теорією — у будь-якому браузері, з телефона чи комп'ютера.</p>
+        <p>Інтерактивні моделі, віртуальні досліди та візуалізації процесів для лабораторних і практичних занять з дисциплін кафедри — у браузері, з комп'ютера чи телефона.</p>
       </div>
     </section>
 
     <section class="section">
       <div class="container">
         <div class="section__head">
-          <span class="kicker">Як це працює</span>
-          <h2>Кожна лабораторна робота — чотири кроки</h2>
-        </div>
-        <div class="steps">
-          <div class="step"><h3>Теорія</h3><p>Короткий конспект із ключовими рівняннями, поясненням параметрів і біологічним змістом моделі.</p></div>
-          <div class="step"><h3>Інтерактивна модель</h3><p>Повзунки параметрів і живі графіки: бачите, як змінюється процес, щойно змінюєте умови.</p></div>
-          <div class="step"><h3>Віртуальний експеримент</h3><p>Індивідуальний варіант за вашим прізвищем: «вимірювання» з похибкою, як у справжній лабораторії.</p></div>
-          <div class="step"><h3>Звіт</h3><p>Розрахунки, перевірка відповіді, експорт даних у CSV для Excel і контрольні питання.</p></div>
-        </div>
-      </div>
-    </section>
-
-    <section class="section section--white">
-      <div class="container">
-        <div class="section__head">
           <span class="kicker">Розділи</span>
           <h2>Оберіть дисципліну</h2>
         </div>
         <nav class="disc-tabs" aria-label="Дисципліни">
-          <a class="disc-tab" href="biochemistry/" aria-current="page">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 3h6M10 3v6l-5 9a2 2 0 0 0 1.7 3h10.6a2 2 0 0 0 1.7-3l-5-9V3"/><path d="M7.5 15h9"/></svg>
+          <a class="disc-tab" href="biochemistry/">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 21V11"/><path d="M12 11c0-4 3-7 8-7 0 5-3 7-8 7Z"/><path d="M12 14c0-3-2-5-7-5 0 4 2 5 7 5Z"/></svg>
             Біохімія рослин
+          </a>
+          <a class="disc-tab" href="analytical-chemistry/">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 3h6M10 3v6l-5 9a2 2 0 0 0 1.7 3h10.6a2 2 0 0 0 1.7-3l-5-9V3"/><path d="M7.5 15h9"/></svg>
+            Аналітична хімія
           </a>
         </nav>
 
@@ -93,7 +86,6 @@
             <div class="bg-molecules" aria-hidden="true" style="position:absolute;inset:0"></div>
             <svg viewBox="0 0 360 260" aria-hidden="true">
               <defs><linearGradient id="d-g" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#EBD27F"/><stop offset="1" stop-color="#B08A1E"/></linearGradient></defs>
-              <!-- enzyme + substrate -->
               <g class="float">
                 <path d="M70 90c0-38 30-62 70-62s70 24 70 62c0 20-10 30-24 30h-18c0-14-12-26-28-26s-28 12-28 26H94c-14 0-24-10-24-30Z" fill="#2E7D32" stroke="#7CC47F" stroke-width="2"/>
                 <text x="140" y="70" fill="#E8F3E8" font-family="Georgia, serif" font-size="20" text-anchor="middle" font-style="italic">E</text>
@@ -104,7 +96,6 @@
               </g>
               <path d="M180 190h70" stroke="#EBD27F" stroke-width="3" stroke-linecap="round"/><path d="M240 182l12 8-12 8" fill="none" stroke="#EBD27F" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
               <g class="float float--3"><circle cx="290" cy="170" r="14" fill="#7CC47F"/><circle cx="312" cy="196" r="14" fill="#7CC47F"/><text x="300" y="232" fill="#CFE8D0" font-family="Georgia, serif" font-size="16" text-anchor="middle" font-style="italic">P</text></g>
-              <path d="M40 230C80 200 110 160 150 140" stroke="#CFE8D0" stroke-opacity=".3" stroke-dasharray="4 6" fill="none"/>
             </svg>
           </div>
           <div class="discipline__body">
@@ -120,28 +111,31 @@
             </span>
           </div>
         </a>
-      </div>
-    </section>
 
-    <section class="section">
-      <div class="container">
-        <div class="section__head">
-          <span class="kicker">Додаткові матеріали</span>
-          <h2>Наочні ресурси</h2>
-        </div>
-        <div class="grid grid--2">
-          <a class="card card--link" href="../microscope/">
-            <div class="icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M6 18h8"/><path d="M3 22h18"/><path d="M14 22a7 7 0 1 0 0-14h-1"/><path d="M9 14h2"/><path d="M9 12a2 2 0 0 1-2-2V6h6v4a2 2 0 0 1-2 2Z"/><path d="M12 6V3a1 1 0 0 0-1-1H9a1 1 0 0 0-1 1v3"/></svg></div>
-            <h3>Під мікроскопом</h3>
-            <p>Мікрофото збудників 15 поширених в Україні хвороб рослин зі статей відкритого доступу, з описом проявів і джерелами.</p>
-            <span class="card__more">Переглянути <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
-          </a>
-          <div class="card">
-            <div class="icon icon--gold"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 20h9"/><path d="M16.5 3.5a2.1 2.1 0 0 1 3 3L7 19l-4 1 1-4Z"/></svg></div>
-            <h3>Для викладачів</h3>
-            <p>Варіант експерименту однозначно визначається рядком, який вводить студент (прізвище або номер у журналі). Викладач може відкрити ту саму роботу з тим самим рядком і побачити ті самі дані та правильні відповіді.</p>
+        <a class="discipline" href="analytical-chemistry/" style="margin-top:24px">
+          <div class="discipline__art">
+            <div class="bg-molecules" aria-hidden="true" style="position:absolute;inset:0"></div>
+            <svg viewBox="0 0 360 260" aria-hidden="true">
+              <defs><linearGradient id="d-t" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#7FB8FF"/><stop offset="1" stop-color="#2445D6"/></linearGradient></defs>
+              <g class="float"><rect x="110" y="30" width="34" height="190" rx="17" fill="rgba(255,255,255,.08)" stroke="#E8F3E8" stroke-opacity=".7" stroke-width="3"/><path d="M113 130h28v73a14 14 0 0 1-28 0z" fill="url(#d-t)"/><g fill="#E8F3E8" opacity=".9"><circle cx="122" cy="196" r="3"/><circle cx="131" cy="182" r="2.4"/><circle cx="126" cy="168" r="2"/></g></g>
+              <g class="float float--2"><rect x="200" y="50" width="34" height="170" rx="17" fill="rgba(255,255,255,.08)" stroke="#E8F3E8" stroke-opacity=".7" stroke-width="3"/><path d="M203 120h28v83a14 14 0 0 1-28 0z" fill="#EBD27F" opacity=".85"/><path d="M203 190h28v13a14 14 0 0 1-28 0z" fill="#F4F2EA"/></g>
+              <g class="float float--3"><circle cx="300" cy="90" r="22" fill="none" stroke="#7CC47F" stroke-width="2.4"/><text x="300" y="97" fill="#CFE8D0" font-family="Georgia, serif" font-size="17" text-anchor="middle">Cu²⁺</text></g>
+              <g class="float"><circle cx="58" cy="160" r="20" fill="none" stroke="#DDBB4A" stroke-width="2.4"/><text x="58" y="166" fill="#EBD27F" font-family="Georgia, serif" font-size="15" text-anchor="middle">Ag⁺</text></g>
+            </svg>
           </div>
-        </div>
+          <div class="discipline__body">
+            <span class="badge badge--gold">Інтерактивна пісочниця</span>
+            <h2>Аналітична хімія</h2>
+            <p style="margin:0;color:var(--ink-soft)">Якісні реакції катіонів та аніонів у віртуальній пробірці: осади, забарвлення розчинів і полум'я, виділення газів, рівняння реакцій.</p>
+            <ul>
+              <li><b>Режим</b>Довідник аналітичних реакцій для кожного йона</li>
+              <li><b>Режим</b>Вільний експеримент: будь-який йон і будь-які реактиви</li>
+            </ul>
+            <span class="btn btn--gold" style="align-self:flex-start;margin-top:8px">Відкрити пісочницю
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+            </span>
+          </div>
+        </a>
       </div>
     </section>
   </main>
@@ -166,11 +160,13 @@
           </ul>
         </div>
         <div class="footer__col">
-          <h3>Онлайн лабораторія</h3>
+          <h3>Для студентів</h3>
           <ul>
-            <li><a href="../lab/">Усі розділи</a></li>
+            <li><a href="../lab/">Онлайн лабораторія</a></li>
             <li><a href="../lab/biochemistry/">Біохімія рослин</a></li>
-            <li><a href="../microscope/">Під мікроскопом</a></li>
+            <li><a href="../lab/analytical-chemistry/">Аналітична хімія</a></li>
+            <li><a href="../konspekt/">Конспект</a></li>
+            <li><a href="../konspekt/pathogens/">Збудники хвороб рослин</a></li>
           </ul>
         </div>
       </div>

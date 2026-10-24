@@ -40,7 +40,7 @@
 
   <header class="site-header">
     <div class="container">
-      <a class="brand" href="./" aria-label="Кафедра фізіології, біохімії рослин та біоенергетики — на головну">
+      <a class="brand" href="" aria-label="Кафедра фізіології, біохімії рослин та біоенергетики — на головну">
         <img class="brand__logo" src="assets/img/nubip-shield.webp" alt="" width="31" height="44">
         <span class="brand__text">
           <span class="brand__title">Кафедра ФБРтаБ</span>
@@ -51,7 +51,7 @@
         <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M4 7h16M4 12h16M4 17h16"/></svg>
       </button>
       <nav class="nav" id="site-nav" aria-label="Головна навігація">
-        <a class="nav__link" href="./" aria-current="page">Головна</a>
+        <a class="nav__link" href="" aria-current="page">Головна</a>
         <div class="nav__dd">
           <a class="nav__link" href="about/">Про кафедру
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m6 9 6 6 6-6"/></svg>
@@ -65,6 +65,10 @@
           </div>
         </div>
         <a class="nav__link" href="#contacts">Контакти</a>
+        <a class="btn btn--green btn--sm nav__lab" href="konspekt/">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20V3H6.5A2.5 2.5 0 0 0 4 5.5z"/><path d="M4 19.5A2.5 2.5 0 0 0 6.5 22H20v-5"/></svg>
+          Конспект
+        </a>
         <a class="btn btn--gold btn--sm nav__lab" href="lab/">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 3h6M10 3v6l-5 9a2 2 0 0 0 1.7 3h10.6a2 2 0 0 0 1.7-3l-5-9V3"/><path d="M7.5 15h9"/></svg>
           Онлайн лабораторія
@@ -84,11 +88,15 @@
             <span><strong>НУБіП України</strong>Факультет захисту рослин, біотехнологій та екології</span>
           </div>
           <h1>Кафедра фізіології, біохімії рослин <em>та&nbsp;біоенергетики</em></h1>
-          <p class="hero__greeting"><b>Вітаємо на сайті кафедри!</b> Ми продовжуємо одну з найстаріших в Україні шкіл фізіології рослин, засновану 1898 року, і поєднуємо її з біохімією, біоенергетикою та сучасними біотехнологіями. Тут ви дізнаєтеся про кафедру й освітні програми, а в Онлайн лабораторії зможете самі «поставити» досліди: інтерактивні моделі з теорією для лабораторних робіт.</p>
+          <p class="hero__greeting"><b>Вітаємо на сайті кафедри!</b> Ми продовжуємо одну з найстаріших в Україні шкіл фізіології рослин, засновану 1898 року, і поєднуємо її з біохімією, біоенергетикою та сучасними біотехнологіями. Тут ви дізнаєтеся про кафедру й освітні програми, в Онлайн лабораторії зможете самі «поставити» досліди, а в Конспекті — знайти наочні матеріали до занять.</p>
           <div class="hero__actions">
             <a class="btn btn--gold btn--lg" href="lab/">
               <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 3h6M10 3v6l-5 9a2 2 0 0 0 1.7 3h10.6a2 2 0 0 0 1.7-3l-5-9V3"/><path d="M7.5 15h9"/></svg>
               Онлайн лабораторія
+            </a>
+            <a class="btn btn--green btn--lg" href="konspekt/">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20V3H6.5A2.5 2.5 0 0 0 4 5.5z"/><path d="M4 19.5A2.5 2.5 0 0 0 6.5 22H20v-5"/></svg>
+              Конспект
             </a>
             <a class="btn btn--ghost-light btn--lg" href="about/">Про кафедру</a>
           </div>
@@ -223,12 +231,14 @@
             <div>
               <span class="kicker">Для студентів</span>
               <h2>Онлайн лабораторія</h2>
-              <p>Математичні моделі біохімічних і фізіологічних процесів, які можна «покрутити» прямо в браузері. Кожна робота містить теорію, інтерактивну модель, віртуальний експеримент з індивідуальним варіантом і завдання для звіту.</p>
+              <p>Інтерактивні моделі й віртуальні досліди, які можна «покрутити» прямо в браузері: від кінетики ферментів до якісних реакцій катіонів та аніонів.</p>
               <ul class="lab-banner__list">
-                <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12l5 5L20 7"/></svg>Кінетика ферментів та інгібування</li>
+                <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12l5 5L20 7"/></svg>Біохімія рослин: кінетика ферментів</li>
                 <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12l5 5L20 7"/></svg>Температура й pH: оптимум ферменту</li>
-                <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12l5 5L20 7"/></svg>Експорт даних у CSV для звіту</li>
+                <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12l5 5L20 7"/></svg>Аналітична хімія: якісні реакції йонів</li>
+                <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12l5 5L20 7"/></svg>Вільний режим експериментів у пробірці</li>
                 <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12l5 5L20 7"/></svg>Індивідуальні варіанти й перевірка відповідей</li>
+                <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12l5 5L20 7"/></svg>Експорт даних у CSV для звіту</li>
               </ul>
               <a class="btn btn--gold btn--xl" href="lab/">
                 Відкрити лабораторію
@@ -246,6 +256,32 @@
               <text x="262" y="48" fill="#EBD27F" font-size="13" font-family="Georgia, serif" font-style="italic">Vmax</text>
               <g class="float"><circle cx="270" cy="250" r="26" fill="#1B5E20" stroke="#7CC47F" stroke-width="2"/><path d="M262 238h16M264 238v8l-8 14h28l-8-14v-8" fill="none" stroke="#EBD27F" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></g>
               <g class="float float--2" stroke="#7CC47F" stroke-width="2" fill="none"><path d="M40 262l14-8 14 8v16l-14 8-14-8z"/><circle cx="54" cy="254" r="3" fill="#7CC47F"/></g>
+            </svg>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Konspekt -->
+    <section class="section section--white" id="konspekt" style="padding-top:0">
+      <div class="container">
+        <div class="lab-banner lab-banner--green reveal">
+          <div class="bg-molecules" aria-hidden="true" style="position:absolute;inset:0"></div>
+          <div class="lab-banner__inner">
+            <div>
+              <span class="kicker">Наочні матеріали</span>
+              <h2>Конспект</h2>
+              <p>Стислі довідкові матеріали до занять. Перший розділ — «Збудники хвороб рослин»: 15 найпоширеніших в Україні хвороб, мікрофото збудників і фото уражених рослин з описами.</p>
+              <a class="btn btn--green btn--xl" href="konspekt/">
+                Відкрити конспект
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+              </a>
+            </div>
+            <svg class="lab-banner__art" viewBox="0 0 320 260" aria-hidden="true">
+              <g class="float"><circle cx="130" cy="130" r="96" fill="#0B2614" stroke="#7CC47F" stroke-width="3"/><circle cx="130" cy="130" r="96" fill="none" stroke="#DDBB4A" stroke-opacity=".35" stroke-width="10"/>
+                <g fill="none" stroke="#CFE8D0" stroke-width="2" stroke-linecap="round" opacity=".85"><path d="M70 150c20-30 40-20 58-44s34-28 52-20"/><path d="M90 92c10 14 26 18 40 12"/><path d="M140 180c12-16 30-20 46-12"/></g>
+                <g fill="#EBD27F"><ellipse cx="98" cy="122" rx="9" ry="5" transform="rotate(-30 98 122)"/><ellipse cx="156" cy="98" rx="9" ry="5" transform="rotate(20 156 98)"/><ellipse cx="170" cy="152" rx="9" ry="5" transform="rotate(-10 170 152)"/></g></g>
+              <g class="float float--2"><path d="M262 230c0-40 6-70 22-102" stroke="#7CC47F" stroke-width="5" stroke-linecap="round" fill="none"/><path d="M280 140c8-26 24-40 36-40-2 26-16 40-36 40Z" fill="#4CAF50"/><path d="M272 184c-10-26-34-36-58-30 6 28 32 38 58 30Z" fill="#2E7D32"/><circle cx="240" cy="168" r="4.5" fill="#8C6A10"/></g>
             </svg>
           </div>
         </div>
@@ -339,11 +375,13 @@
           </ul>
         </div>
         <div class="footer__col">
-          <h3>Онлайн лабораторія</h3>
+          <h3>Для студентів</h3>
           <ul>
-            <li><a href="lab/">Усі розділи</a></li>
+            <li><a href="lab/">Онлайн лабораторія</a></li>
             <li><a href="lab/biochemistry/">Біохімія рослин</a></li>
-            <li><a href="microscope/">Під мікроскопом</a></li>
+            <li><a href="lab/analytical-chemistry/">Аналітична хімія</a></li>
+            <li><a href="konspekt/">Конспект</a></li>
+            <li><a href="konspekt/pathogens/">Збудники хвороб рослин</a></li>
           </ul>
         </div>
       </div>

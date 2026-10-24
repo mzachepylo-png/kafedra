@@ -1,4 +1,4 @@
-// Фільтр карток «Під мікроскопом» за типом збудника.
+// Фільтр карток «Збудники хвороб рослин» за типом збудника.
 (function () {
   var group = document.querySelector('[data-filter-group]');
   if (!group) return;

@@ -1,0 +1,134 @@
+<!doctype html>
+<html lang="uk" class="no-js">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Аналітична хімія — Онлайн лабораторія кафедри ФБРтаБ, НУБіП</title>
+  <meta name="description" content="Інтерактивна пісочниця якісного аналізу: аналітичні реакції катіонів та аніонів з анімацією в пробірці, рівняннями та вільним режимом експериментів.">
+  <meta name="theme-color" content="#08210F">
+  <link rel="icon" href="../../assets/img/nubip-shield.png" type="image/png">
+  <link rel="stylesheet" href="../../assets/css/style.css">
+  <link rel="stylesheet" href="../../assets/css/lab.css">
+  <script>document.documentElement.classList.replace('no-js', 'js')</script>
+  <link rel="stylesheet" href="../../assets/css/analytical.css">
+</head>
+<body>
+  <a class="skip-link" href="#main">Перейти до змісту</a>
+
+  <header class="site-header">
+    <div class="container">
+      <a class="brand" href="../../" aria-label="Кафедра фізіології, біохімії рослин та біоенергетики — на головну">
+        <img class="brand__logo" src="../../assets/img/nubip-shield.webp" alt="" width="31" height="44">
+        <span class="brand__text">
+          <span class="brand__title">Кафедра ФБРтаБ</span>
+          <span class="brand__sub">Фізіологія, біохімія рослин та біоенергетика · НУБіП України</span>
+        </span>
+      </a>
+      <button class="nav-toggle" type="button" aria-controls="site-nav" aria-expanded="false" aria-label="Відкрити меню">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M4 7h16M4 12h16M4 17h16"/></svg>
+      </button>
+      <nav class="nav" id="site-nav" aria-label="Головна навігація">
+        <a class="nav__link" href="../../">Головна</a>
+        <div class="nav__dd">
+          <a class="nav__link" href="../../about/">Про кафедру
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m6 9 6 6 6-6"/></svg>
+          </a>
+          <div class="nav__menu">
+            <a href="../../about/#department">Кафедра сьогодні<small>Місія, історія з 1898 р., наука</small></a>
+            <a href="../../about/#team">Колектив<small>Викладачі та їхні наукові інтереси</small></a>
+            <a href="../../about/#faculty-history">Історія факультету<small>Від 1962 року до сьогодні</small></a>
+            <a href="../../about/#administration">Адміністрація факультету<small>Деканат і контакти</small></a>
+            <a href="../../about/#programs">Освітні програми<small>Бакалаврат · Магістратура · PhD</small></a>
+          </div>
+        </div>
+        <a class="nav__link" href="../../#contacts">Контакти</a>
+        <a class="btn btn--green btn--sm nav__lab" href="../../konspekt/">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20V3H6.5A2.5 2.5 0 0 0 4 5.5z"/><path d="M4 19.5A2.5 2.5 0 0 0 6.5 22H20v-5"/></svg>
+          Конспект
+        </a>
+        <a class="btn btn--gold btn--sm nav__lab" href="../../lab/" aria-current="page">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 3h6M10 3v6l-5 9a2 2 0 0 0 1.7 3h10.6a2 2 0 0 0 1.7-3l-5-9V3"/><path d="M7.5 15h9"/></svg>
+          Онлайн лабораторія
+        </a>
+      </nav>
+    </div>
+  </header>
+
+  <main id="main">
+    <section class="page-hero page-hero--lab">
+      <div class="bg-molecules" aria-hidden="true" style="position:absolute;inset:0"></div>
+      <div class="container">
+        <nav class="breadcrumbs" aria-label="Навігаційний ланцюжок"><a href="../../">Головна</a><span aria-hidden="true">/</span><a href="../../lab/">Онлайн лабораторія</a><span aria-hidden="true">/</span><span>Аналітична хімія</span></nav>
+        <span class="kicker">Розділ лабораторії</span>
+        <h1>Аналітична хімія</h1>
+        <p>Якісні реакції катіонів та аніонів у віртуальній пробірці: осади, забарвлення розчинів і полум'я, виділення газів — з рівняннями реакцій.</p>
+      </div>
+    </section>
+
+    <section class="section" style="padding-top:32px">
+      <div class="container">
+        <div id="acs-app" class="acs">
+          <div class="acs-top">
+            <div class="acs-mode" id="acs-mode"><span class="acs-mode-pill"></span><button type="button" data-mode="ref" class="on">Довідник реакцій</button><button type="button" data-mode="free">Вільний режим</button></div>
+            <p id="acs-modehint"></p>
+          </div>
+          <div class="acs-grid">
+            <aside class="acs-side acs-card" id="acs-side" aria-label="Йони"></aside>
+            <div class="acs-main">
+              <div class="acs-scene" id="acs-scene">
+                <div class="acs-wall"></div><div class="acs-benchtop"></div><canvas role="img" aria-label="Пробірка з розчином"></canvas>
+                <div class="acs-tag" id="acs-tag"></div>
+                <div class="acs-busy" id="acs-busy">Реакція триває…</div>
+                <div class="acs-obs" id="acs-obs" role="status"></div>
+              </div>
+              <div class="acs-tools" id="acs-tools"></div>
+            </div>
+            <section class="acs-info acs-card"><div class="acs-itabs" id="acs-itabs"></div><div class="acs-ibody" id="acs-ibody"></div></section>
+          </div>
+        </div>
+        <noscript><p>Для роботи пісочниці потрібен увімкнений JavaScript.</p></noscript>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer__grid">
+        <div class="footer__brand">
+          <img src="../../assets/img/nubip-shield.webp" alt="Герб НУБіП України" width="37" height="52" loading="lazy">
+          <div>
+            <strong>Кафедра фізіології, біохімії рослин та біоенергетики</strong>
+            Факультет захисту рослин, біотехнологій та екології<br>Національний університет біоресурсів і природокористування України
+          </div>
+        </div>
+        <div class="footer__col">
+          <h3>Розділи</h3>
+          <ul>
+            <li><a href="../../about/">Про кафедру</a></li>
+            <li><a href="../../about/#faculty-history">Історія факультету</a></li>
+            <li><a href="../../about/#administration">Адміністрація факультету</a></li>
+            <li><a href="../../about/#programs">Освітні програми</a></li>
+          </ul>
+        </div>
+        <div class="footer__col">
+          <h3>Для студентів</h3>
+          <ul>
+            <li><a href="../../lab/">Онлайн лабораторія</a></li>
+            <li><a href="../../lab/biochemistry/">Біохімія рослин</a></li>
+            <li><a href="../../lab/analytical-chemistry/">Аналітична хімія</a></li>
+            <li><a href="../../konspekt/">Конспект</a></li>
+            <li><a href="../../konspekt/pathogens/">Збудники хвороб рослин</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer__bottom">
+        <span>© <span data-year>2026</span> Кафедра фізіології, біохімії рослин та біоенергетики, НУБіП України</span>
+        <a href="https://nubip.edu.ua" target="_blank" rel="noopener">nubip.edu.ua</a>
+      </div>
+    </div>
+  </footer>
+
+  <script defer src="../../assets/js/main.js"></script>
+  <script type="module" src="../../assets/js/lab/analytical-chemistry.js"></script>
+</body>
+</html>
