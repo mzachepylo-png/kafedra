@@ -302,7 +302,11 @@ const App = {
     const loop = (t) => {
       const dt = Math.min(0.05, (t - last) / 1000); last = t;
       const L = this.active;
-      if (L && L.inst && !document.hidden) { try { L.inst.frame(dt, t / 1000); } catch (e) { console.error(e); } }
+      if (L && L.inst && !document.hidden) {
+        // модель рухається лише після «Старт»; на паузі кадр малюється з dt = 0 (повзунки й підписи оновлюються)
+        const run = !!L.running; if (run) L.simT += dt;
+        try { L.inst.frame(run ? dt : 0, L.simT); } catch (e) { console.error(e); }
+      }
       requestAnimationFrame(loop);
     };
     requestAnimationFrame(loop);
@@ -315,18 +319,57 @@ const App = {
   },
   build(L) {
     const sec = L.sec;
+    L.running = false; L.simT = 0; L.started = false;
     sec.append(h("div", { class: "lab-head" },
       h("div", null, h("div", { class: "eyebrow" }, `Лабораторна робота № ${L.n}`), h("h2", { id: "lab" + L.n + "-h" }, L.title)),
       h("div", { class: "model" }, L.model)));
+    // теорія зверху, контрольні питання — окремим блоком у кінці
+    const th = h("div", { class: "panel theory" });
+    th.insertAdjacentHTML("beforeend", L.cheat);
+    const qas = [...th.querySelectorAll("details.qa")];
+    qas.forEach(q => q.remove());
+    th.querySelectorAll("h3").forEach(x => { if (/контрольн/i.test(x.textContent)) x.remove(); });
+    const secHead = (n, t) => h("h3", { class: "ff-sec__h" }, h("span", { class: "n" }, n), t);
+    sec.append(h("section", { class: "ff-sec" }, secHead("01", "Теоретичні відомості"), th));
+    // керування моделлю
+    const status = h("span", { class: "runbar__st" });
+    const setRun = (on) => {
+      L.running = on;
+      startB.disabled = on; stopB.disabled = !on;
+      status.textContent = on ? "Модель працює" : (L.simT > 0 ? "Пауза" : "Модель зупинена — натисніть «Старт»");
+      status.classList.toggle("on", on);
+    };
+    // перший «Старт» після відкриття/скидання запускає і власний дослід роботи (кнопку дії моделі)
+    const START_ACTION = { 2: "Старт 20 хв", 3: "Фарбувати з нуля", 6: "Запустити", 7: "Увімкнути лампу", 9: "Нове скло", 10: "Нанести дифеніламін", 11: "Виростити пагін", 12: "Залити HCl" };
+    const start = () => {
+      setRun(true);
+      if (L.started) return;
+      L.started = true;
+      const label = START_ACTION[L.n];
+      const act = label && [...sim.querySelectorAll(".btn")].find(b => b.textContent.trim() === label);
+      if (act) act.click();
+    };
+    const startB = h("button", { class: "btn pri", type: "button", onclick: start }, "▶ Старт");
+    const stopB = h("button", { class: "btn", type: "button", onclick: () => setRun(false) }, "⏸ Стоп");
+    const resetB = h("button", { class: "btn", type: "button", onclick: () => this.reset(L) }, "↺ Скинути");
+    const runbar = h("div", { class: "runbar" }, startB, stopB, resetB, status);
     const sim = h("div", { class: "panel sim" });
-    const cheat = h("aside", { class: "panel cheat", "aria-label": "Шпаргалка" }, h("div", { class: "eyebrow" }, "Шпаргалка до моделі"));
-    cheat.insertAdjacentHTML("beforeend", L.cheat);
-    sec.append(h("div", { class: "lab-body" }, sim, cheat));
+    sec.append(h("section", { class: "ff-sec" }, secHead("02", "Інтерактивна модель"), runbar, sim));
+    if (qas.length) sec.append(h("section", { class: "ff-sec" }, secHead("03", "Контрольні питання"), h("div", { class: "panel qa-list" }, ...qas)));
     const top = h("div", { class: "sim-top" }); const stageBox = h("div", { style: "min-width:0;display:flex;flex-direction:column;gap:10px" }); const ctrls = h("div", { class: "ctrls" });
     top.append(stageBox, ctrls); sim.append(top);
     const below = h("div", { style: "display:flex;flex-direction:column;gap:14px;min-width:0" }); sim.append(below);
+    // дія користувача в самій моделі (кнопка досліду) запускає її, якщо вона на паузі
+    sim.addEventListener("click", (e) => { const b = e.target.closest(".btn"); if (b && !L.running && !/скин/i.test(b.textContent)) { L.started = true; setRun(true); } });
     L.inst = L.build({ stageBox, ctrls, below, sim });
     if (!L.inst.stages) L.inst.stages = [];
+    setRun(false);
+  },
+  reset(L) {
+    L.inst?.stages?.forEach(st => st.ro?.disconnect());
+    L.sec.replaceChildren(); L.inst = null;
+    this.build(L);
+    L.inst.stages?.forEach(st => st.resize());
   },
 };
 /* ============ ЛР 1. Плазмоліз, деплазмоліз, осмотичний тиск ============ */

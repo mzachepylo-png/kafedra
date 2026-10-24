@@ -521,3 +521,9 @@ small { font-size: .85em; }
 .discipline--green .discipline__body li b { color: var(--green-700); min-width: 7.5em; }
 .lab-banner--green { background: radial-gradient(600px 300px at 100% 0%, rgba(124, 196, 127, .35), transparent 60%), linear-gradient(135deg, #0A2A12, var(--green-700)); }
 .lab-banner--green .kicker { color: var(--green-200); }
+
+/* фото викладачів */
+.member__photo { width: 96px; height: 96px; border-radius: 50%; object-fit: cover; flex: none; box-shadow: 0 0 0 3px #fff, 0 0 0 5px var(--green-200); }
+.member--head .member__photo { box-shadow: 0 0 0 3px #fff, 0 0 0 5px var(--gold-400); }
+.avatar--photo { object-fit: cover; padding: 0; }
+@media (max-width: 520px) { .member__photo { width: 72px; height: 72px; } }

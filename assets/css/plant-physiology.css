@@ -83,16 +83,15 @@
 #ff table.t th{font-weight:600;color:var(--muted);font-size:11.5px}
 #ff table.t td.n{font-family:var(--f-mono);font-variant-numeric:tabular-nums;text-align:right}
 #ff .tblwrap{overflow-x:auto}
-#ff .cheat{padding:18px 18px 20px;position:sticky;top:calc(var(--header-h,68px) + 12px);max-height:calc(100vh - var(--header-h,68px) - 24px);overflow:auto}
-#ff .cheat .eyebrow{font:600 11px/1 var(--f-mono);letter-spacing:.14em;text-transform:uppercase;color:var(--antho);margin-bottom:10px}
-#ff .cheat h3{font-size:20px;margin:18px 0 6px}
-#ff .cheat h3:first-of-type{margin-top:0}
-#ff .cheat p,#ff .cheat li{font-size:14px;line-height:1.55;max-width:65ch}
-#ff .cheat p{margin:0 0 8px}
-#ff .cheat ul{margin:0 0 8px;padding-left:18px}
-#ff .cheat li{margin-bottom:4px}
+#ff .theory .eyebrow{font:600 11px/1 var(--f-mono);letter-spacing:.14em;text-transform:uppercase;color:var(--antho);margin-bottom:10px}
+#ff .theory h3{font-size:20px;margin:18px 0 6px}
+#ff .theory h3:first-of-type{margin-top:0}
+#ff .theory p,#ff .theory li{font-size:14px;line-height:1.55;max-width:65ch}
+#ff .theory p{margin:0 0 8px}
+#ff .theory ul{margin:0 0 8px;padding-left:18px}
+#ff .theory li{margin-bottom:4px}
 #ff .eq{font-family:var(--f-display);font-size:19px;padding:10px 12px;margin:8px 0 10px;background:var(--paper);border-left:3px solid var(--chl);border-radius:0 6px 6px 0;overflow-x:auto;white-space:nowrap}
-#ff .eq var,#ff .cheat var{font-style:italic}
+#ff .eq var,#ff .theory var{font-style:italic}
 #ff .eq .c{font:12px var(--f-body);color:var(--muted);margin-left:10px;white-space:normal}
 #ff .fr{display:inline-flex;flex-direction:column;vertical-align:middle;text-align:center;margin:0 3px;font-size:.92em}
 #ff .fr>span:first-child{border-bottom:1px solid currentColor;padding:0 3px}
@@ -102,12 +101,15 @@
 #ff dl.vars dd{margin:0;color:var(--muted)}
 #ff .fix{border:1px dashed var(--warn);border-radius:8px;padding:9px 11px;margin:12px 0;font-size:13px}
 #ff .fix b{color:var(--warn)}
-#ff details.qa{border-top:1px solid var(--rule);padding:7px 0}
-#ff details.qa summary{cursor:pointer;font-size:13.5px;font-weight:500}
-#ff details.qa p{margin:6px 0 2px;font-size:13.5px}
+#ff details.qa{border-bottom:1px solid var(--rule)}
+#ff details.qa:last-child{border-bottom:0}
+#ff details.qa summary{cursor:pointer;padding:13px 4px;font-size:15px;font-weight:600;list-style:none;display:flex;gap:12px;align-items:flex-start}
+#ff details.qa summary::-webkit-details-marker{display:none}
+#ff details.qa summary::before{content:"?";flex:none;width:24px;height:24px;border-radius:50%;display:grid;place-items:center;background:#FBF3D9;color:#8C6A10;font-weight:800;font-size:13px}
+#ff details.qa[open] summary::before{content:"!";background:#1B5E20;color:#EBD27F}
+#ff details.qa p{margin:0 0 14px;padding-left:40px;font-size:14.5px;color:var(--muted)}
 @media (max-width:1180px){
   #ff .lab-body{grid-template-columns:minmax(0,1fr)}
-  #ff .cheat{position:static;max-height:none}
 }
 @media (max-width:980px){
   #ff .shell{grid-template-columns:minmax(0,1fr)}
@@ -132,4 +134,21 @@
 #ff h2,#ff h3{color:var(--ink)}
 #ff a{text-decoration:none}
 #ff .sim{padding:14px}
-#ff .cheat{padding:18px 18px 20px}
+
+/* ---------- структура роботи: теорія → модель → контрольні питання ---------- */
+#ff .ff-sec{padding:26px 0 8px;border-top:1px solid var(--rule)}
+#ff .lab-head + .ff-sec{border-top:0;padding-top:6px}
+#ff .ff-sec__h{display:flex;align-items:baseline;gap:12px;font-size:clamp(22px,1.6vw + 12px,28px);margin:0 0 14px}
+#ff .ff-sec__h .n{font:600 13px/1.6 var(--f-mono);color:#8C6A10;background:#FBF3D9;padding:2px 8px;border-radius:8px}
+#ff .theory{padding:22px 24px 18px;column-gap:40px}
+@media (min-width:1300px){#ff .theory{columns:2}#ff .theory>*{break-inside:avoid}}
+#ff .theory h3{font-size:20px;margin:16px 0 6px;break-after:avoid}
+#ff .theory h3:first-child{margin-top:0}
+#ff .qa-list{padding:4px 20px}
+#ff .runbar{display:flex;flex-wrap:wrap;align-items:center;gap:8px;margin:0 0 12px}
+#ff .runbar .btn{padding:8px 16px;font-size:14px;font-weight:600}
+#ff .runbar .btn:disabled{opacity:.45;cursor:default}
+#ff .runbar__st{margin-left:6px;font:600 12px/1.4 var(--f-mono);color:var(--muted)}
+#ff .runbar__st::before{content:"";display:inline-block;width:8px;height:8px;border-radius:50%;background:var(--rule);margin-right:7px;vertical-align:middle}
+#ff .runbar__st.on{color:var(--chl)}
+#ff .runbar__st.on::before{background:var(--chl);box-shadow:0 0 0 3px var(--chl-soft)}
