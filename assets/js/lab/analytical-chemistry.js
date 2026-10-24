@@ -1,5 +1,6 @@
-// Пісочниця аналітичної хімії: якісні реакції катіонів і аніонів.
-// Дані реакцій, рушій і анімована сцена (canvas) + інтерфейс «Довідник реакцій» / «Вільний режим».
+// Пісочниця аналітичної хімії (оригінальний код; додано: «Показати» в довіднику реакцій,
+// «Вільний режим» без теорії, атрибут data-mode для компактного візуалу).
+(()=>{'use strict';
 /* ================== ДОПОМІЖНЕ ================== */
 const clamp=(v,a,b)=>Math.max(a,Math.min(b,v));
 const lerp=(a,b,t)=>a+(b-a)*t;
@@ -827,7 +828,7 @@ const Eng={
 class Bench{
  constructor(host){
   this.host=host;this.cv=host.querySelector('canvas');this.ctx=this.cv.getContext('2d');
-  this.epoch=0;this.waiters=[];this.time=0;this.visible=true;
+  this.epoch=0;this.waiters=[];this.time=0;this.visible=true;this.confetti=[];
   this.water={r:206,g:228,b:240,a:.17};
   this.grains=Array.from({length:240},()=>({u:Math.random()*2-1,v:Math.random(),s:Math.random(),sh:Math.random()*2-1,ph:Math.random()*6.283,rot:Math.random()*6.283}));
   this.noise=this.makeNoise();this.clear();
@@ -910,6 +911,8 @@ class Bench{
  async flameTest(colHex,ep){if(ep!==this.epoch)return;this.flame.c=colHex?rgbA(colHex,1):null;this.flame.on=true;await this.wait(3200);this.flame.on=false;await this.wait(300);}
  async paperTest(from,to,ep){if(ep!==this.epoch)return;this.paper={t0:this.time,from:rgbA(from),to:rgbA(to)};await this.wait(2000);}
  async limeTest(turbid,ep){if(ep!==this.epoch)return;this.lime.on=true;this.lime.bub=this.time+2.4;await this.wait(500);if(turbid)this.lime.turbTo=.85;await this.wait(1800);}
+ celebrate(){const g=this.g,cols=['#f2b75e','#62d6c6','#ff8095','#2445d6','#ffd21f','#86c95a','#d1197a','#f4f2ea'];
+  for(let i=0;i<150;i++)this.confetti.push({x:rnd(0,g.W),y:rnd(-g.H*.6,-10),vx:rnd(-40,40),vy:rnd(60,190),rot:rnd(0,6),vr:rnd(-8,8),w:rnd(5,10),h:rnd(3,6),c:cols[i%cols.length],life:rnd(3,5)});}
 
  /* ---------- оновлення ---------- */
  update(dt){
@@ -960,6 +963,7 @@ class Bench{
   // іскри полум'я
   if(this.flame.v>.5&&this.flame.c&&Math.random()<dt*30){const fx=g.cx+g.off*.92;this.sparks.push({x:fx+rnd(-8,8),y:g.benchY-90-rnd(10,40),vx:rnd(-20,20),vy:rnd(-90,-40),life:0,max:rnd(.4,.9)});}
   for(const p of this.sparks){p.life+=dt;p.x+=p.vx*dt;p.y+=p.vy*dt;}this.sparks=this.sparks.filter(p=>p.life<p.max);
+  for(const c of this.confetti){c.life-=dt;c.vy+=60*dt;c.x+=c.vx*dt+Math.sin(T*3+c.rot)*.6;c.y+=c.vy*dt;c.rot+=c.vr*dt;}this.confetti=this.confetti.filter(c=>c.life>0&&c.y<g.H+20);
  }
 
  /* ---------- малювання ---------- */
@@ -982,7 +986,7 @@ class Bench{
   c.save();const ang=Math.sin(this.time*28)*.05*this.shake;c.translate(g.cx,g.clampY);c.rotate(ang);c.translate(-g.cx,-g.clampY);
   this.tubePath(c,g.x0-4,g.x1+4,g.yB+4,g.yT);c.fillStyle='rgba(255,255,255,.035)';c.fill();
   this.drawContents(c);this.drawGlass(c);c.restore();
-  this.drawStand(c,1);this.drawVapor(c);this.drawPaper(c);this.drawPipette(c);this.drawDrops(c);this.drawLabels(c);
+  this.drawStand(c,1);this.drawVapor(c);this.drawPaper(c);this.drawPipette(c);this.drawDrops(c);this.drawLabels(c);this.drawConfetti(c);
  }
  drawContents(c){
   const g=this.g,T=this.time,surf=this.surface(),oh=this.org.h,aq=surf+oh;
@@ -1141,196 +1145,232 @@ class Bench{
    c.fillStyle='#ffd796';c.fillText('≋',x+9,y+4);c.fillStyle='#ece6d9';c.fillText(l.text,x+22,y+4);c.restore();}
   this.labels=this.labels.filter(l=>this.time-l.t0<l.life);
  }
+ drawConfetti(c){for(const k of this.confetti){c.save();c.globalAlpha=Math.min(1,k.life);c.translate(k.x,k.y);c.rotate(k.rot);c.scale(1,Math.cos(k.rot*2));c.fillStyle=k.c;c.fillRect(-k.w/2,-k.h/2,k.w,k.h);c.restore();}}
 }
 /* ================== ІНТЕРФЕЙС ================== */
-const root = document.getElementById('acs-app');
-const $ = (s) => root.querySelector(s);
-const lc = (s) => s.charAt(0).toLowerCase() + s.slice(1);
-const esc = (s) => String(s).replace(/[&<>"]/g, (m) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[m]));
-const bench = new Bench($('#acs-scene'));
-// mode: ref — довідник реакцій, free — вільний режим (без теорії)
-const ST = { mode: 'ref', ion: 'Cu', tube: null, cat: 'all', rq: '', iq: '', tab: 'rx', log: [], shown: new Set() };
-const ionColor = (id) => { const i = ION[id]; return i.col ? C[i.col].h : null; };
-const solRGBA = (id) => { const i = ION[id]; return i.col ? rgbA(C[i.col].h, i.ca || .55) : bench.water; };
-const ICON = {
-  new: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M9 3h6M10 3v6l-5 9a3 3 0 0 0 2.6 4.5h8.8A3 3 0 0 0 19 18l-5-9V3"/><path d="M7.5 14h9"/></svg>',
-  heat: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3c1 3 5 5 5 10a5 5 0 0 1-10 0c0-2 1-3.5 2-4.5 0 2 1 3 2 3 0-3-1-5 1-8.5z"/></svg>',
-  flame: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="7" cy="17" r="2.5"/><path d="M9 15 20 4"/><path d="M15 15l1.5 1.5M18 12l1.5 1.5M13 19l1 1"/></svg>',
-  litmus: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="3" width="6" height="18" rx="1"/><path d="M9 13h6"/></svg>',
-  pb: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="3" width="6" height="18" rx="1"/><path d="M9 15h6v6H9z" fill="currentColor"/></svg>',
-  lime: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M5 9h14l-1.5 11h-11z"/><path d="M12 9V3h5"/><circle cx="10" cy="15" r="1"/><circle cx="14" cy="13" r="1"/></svg>',
-  play: '<svg viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg>',
+const root=document.getElementById('acs-app');
+const $=s=>root.querySelector(s);
+const lc=s=>s.charAt(0).toLowerCase()+s.slice(1);
+const esc=s=>String(s).replace(/[&<>"]/g,m=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[m]));
+const bench=new Bench($('#acs-scene'));
+const ST={mode:'explore',ion:'Cu',tube:null,cat:'all',rq:'',iq:'',tab:'theory',log:[],portion:0,shown:new Set()};
+const Q={kind:'cat',ion:null,score:100,steps:0,hints:[],flags:{},max:{},excl:new Set(),cross:new Set(),done:false,solved:0,num:0,last:null,result:null};
+const ionColor=id=>{const i=ION[id];return i.col?C[i.col].h:null;};
+const solRGBA=id=>{const i=ION[id];return i.col?rgbA(C[i.col].h,i.ca||.55):bench.water;};
+const ICON={
+ new:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M9 3h6M10 3v6l-5 9a3 3 0 0 0 2.6 4.5h8.8A3 3 0 0 0 19 18l-5-9V3"/><path d="M7.5 14h9"/></svg>',
+ heat:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3c1 3 5 5 5 10a5 5 0 0 1-10 0c0-2 1-3.5 2-4.5 0 2 1 3 2 3 0-3-1-5 1-8.5z"/></svg>',
+ flame:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="7" cy="17" r="2.5"/><path d="M9 15 20 4"/><path d="M15 15l1.5 1.5M18 12l1.5 1.5M13 19l1 1"/></svg>',
+ litmus:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="3" width="6" height="18" rx="1"/><path d="M9 13h6" /></svg>',
+ pb:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="3" width="6" height="18" rx="1"/><path d="M9 15h6v6H9z" fill="currentColor"/></svg>',
+ lime:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M5 9h14l-1.5 11h-11z"/><path d="M12 9V3h5"/><circle cx="10" cy="15" r="1"/><circle cx="14" cy="13" r="1"/></svg>',
+ hint:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M9 18h6M10 21h4M12 3a6 6 0 0 0-3.5 10.9c.6.5 1 1.2 1 2V16h5v-.1c0-.8.4-1.5 1-2A6 6 0 0 0 12 3z"/></svg>',
+ play:'<svg viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg>'
 };
 
 /* ---------- черга дій ---------- */
-let chain = Promise.resolve(), pending = 0;
-function setBusy() { $('#acs-busy').classList.toggle('on', pending > 0); }
-function enqueue(fn) {
-  const ep = bench.epoch; pending++; setBusy();
-  chain = chain.then(() => (ep === bench.epoch ? fn() : null)).catch((e) => console.error(e)).finally(() => { pending--; setBusy(); });
-  return chain;
-}
+let chain=Promise.resolve(),pending=0;
+function setBusy(){$('#acs-busy').classList.toggle('on',pending>0);}
+function enqueue(fn){const ep=bench.epoch;pending++;setBusy();chain=chain.then(()=>ep===bench.epoch?fn():null).catch(e=>console.error(e)).finally(()=>{pending--;setBusy();});return chain;}
 let obsTimer;
-function showObs(txt) {
-  const el = $('#acs-obs'); el.innerHTML = txt; el.classList.add('on');
-  clearTimeout(obsTimer); obsTimer = setTimeout(() => el.classList.remove('on'), 5200);
-}
+function showObs(txt){const el=$('#acs-obs');el.innerHTML=txt;el.classList.add('on');clearTimeout(obsTimer);obsTimer=setTimeout(()=>el.classList.remove('on'),5200);}
 
-function newPortion() {
-  const id = ST.ion;
-  ST.tube = Eng.newTube(id); bench.reset(solRGBA(id));
-  ST.log.push({ sep: `Нова проба: ${ION[id].f} — ${lc(ION[id].n)}` });
-  renderTag(); renderLog();
+function newPortion(){
+ const id=ST.mode==='quiz'?Q.ion:ST.ion;if(!id)return;
+ ST.tube=Eng.newTube(id);bench.reset(solRGBA(id));ST.portion++;
+ ST.log.push({sep:ST.mode==='quiz'?`Нова проба невідомого розчину №${Q.num}`:`Нова проба: ${ION[id].f} — ${lc(ION[id].n)}`});
+ renderTag();renderLog();
 }
-function renderTag() {
-  const id = ST.ion, c = ionColor(id) || '#cfe3ee';
-  $('#acs-tag').innerHTML = `<i style="--c:${c}"></i><span>Пробірка: розчин <b>${ION[id].f}</b></span>`;
+function renderTag(){
+ const id=ST.mode==='quiz'?Q.ion:ST.ion,c=ionColor(id)||'#cfe3ee';
+ $('#acs-tag').innerHTML=ST.mode==='quiz'?`<i style="--c:${c}"></i><span>Проба №${ST.portion} · <b>невідомий ${Q.kind==='cat'?'катіон':'аніон'}</b></span>`:`<i style="--c:${c}"></i><span>Пробірка: розчин <b>${ION[id].f}</b></span>`;
 }
-async function runStep(sid) {
-  const ep = bench.epoch, t = ST.tube; if (!t) return;
-  const res = Eng.step(t, sid), R = RG[sid];
-  if (R) await bench.drop(R, ep);
-  for (const e of res) {
-    if (ep !== bench.epoch) return;
-    if (e.kind === 'heat') { bench.heat(true); await bench.wait(900); addLog(e); for (const f of e.fx) await bench.fx(f, ep); await bench.wait(800); bench.heat(false); }
-    else if (e.kind === 'cool') { await bench.wait(900); addLog(e); for (const f of e.fx) await bench.fx(f, ep); }
-    else if (e.kind === 'flame') { addLog(e); await bench.flameTest(e.color, ep); }
-    else if (e.kind === 'paper') { addLog(e); await bench.paperTest(e.from, e.to, ep); }
-    else if (e.kind === 'lime') { addLog(e); await bench.limeTest(e.turbid, ep); }
-    else { addLog(e); for (const f of e.fx) await bench.fx(f, ep); }
-  }
+async function runStep(sid){
+ const ep=bench.epoch,t=ST.tube;if(!t)return;
+ const res=Eng.step(t,sid),R=RG[sid];
+ if(ST.mode==='quiz'&&!Q.done){Q.steps++;Q.max[sid]=Math.max(Q.max[sid]||0,t.counts[sid]);renderQuizStats();}
+ if(R){flashBottle(sid);await bench.drop(R,ep);}
+ for(const e of res){
+  if(ep!==bench.epoch)return;
+  if(e.kind==='heat'){bench.heat(true);await bench.wait(900);addLog(e);for(const f of e.fx)await bench.fx(f,ep);await bench.wait(800);bench.heat(false);}
+  else if(e.kind==='cool'){await bench.wait(900);addLog(e);for(const f of e.fx)await bench.fx(f,ep);}
+  else if(e.kind==='flame'){addLog(e);await bench.flameTest(e.color,ep);}
+  else if(e.kind==='paper'){addLog(e);await bench.paperTest(e.from,e.to,ep);}
+  else if(e.kind==='lime'){addLog(e);await bench.limeTest(e.turbid,ep);}
+  else{addLog(e);for(const f of e.fx)await bench.fx(f,ep);}
+ }
 }
-function act(sid) { if (ST.tube) enqueue(() => runStep(sid)); }
+function act(sid){if(!ST.tube)return;enqueue(()=>runStep(sid));}
+function flashBottle(sid){const b=root.querySelector(`.acs-btl[data-r="${sid}"]`);if(b){b.classList.remove('pour');void b.offsetWidth;b.classList.add('pour');}}
 
 /* ---------- журнал ---------- */
-function addLog(e) {
-  ST.log.push({ label: e.label, sid: e.sid, obs: e.obs, eq: e.eq, x: e.x });
-  showObs(`<b>${esc(e.label)}:</b> ${esc(e.obs)}`);
-  renderLog();
-}
-function renderLog() {
-  const n = ST.log.filter((l) => !l.sep).length;
-  const tabEl = root.querySelector('.acs-itab[data-tab="log"] em'); if (tabEl) tabEl.textContent = n;
-  if (ST.tab !== 'log') return;
-  const theory = ST.mode === 'ref';
-  const body = $('#acs-ibody');
-  if (!ST.log.length) { body.innerHTML = '<div class="acs-empty">Журнал порожній. Тут з’являться спостереження.</div>'; return; }
-  body.innerHTML = `<div class="acs-row acs-row--between"><b>Журнал спостережень</b><button class="acs-btn sm ghost" data-clear>Очистити</button></div><ol class="acs-log">${ST.log.map((l) => (l.sep ? `<li class="sep">— ${esc(l.sep)} —</li>` :
-    `<li><div class="who"><i style="--c:${RG[l.sid]?.lq || '#f2b75e'}"></i>${esc(l.label)}</div><div>${esc(l.obs)}</div>${theory && l.eq ? `<div class="acs-eq">${l.eq.split('; ').map(esc).join('<br>')}</div>` : ''}${theory && l.x ? `<div class="acs-x">${esc(l.x)}</div>` : ''}</li>`)).join('')}</ol>`;
-  body.querySelector('[data-clear]').onclick = () => { ST.log = []; renderLog(); };
-  body.scrollTop = body.scrollHeight;
+function addLog(e){ST.log.push({label:e.label,sid:e.sid,obs:e.obs,eq:e.eq,x:e.x});showObs(`<b>${esc(e.label)}:</b> ${esc(e.obs)}`);renderLog();}
+function renderLog(){
+ const tabEl=root.querySelector('.acs-itab[data-tab="log"] em');const n=ST.log.filter(l=>!l.sep).length;if(tabEl)tabEl.textContent=n;
+ if(ST.tab!=='log')return;
+ const quiz=(ST.mode==='quiz'&&!Q.done)||ST.mode==='free';
+ const body=$('#acs-ibody');
+ if(!ST.log.length){body.innerHTML='<div class="acs-empty">Журнал порожній. Додайте реагент до пробірки — тут з’являться спостереження.</div>';return;}
+ body.innerHTML=`<div class="acs-row" style="justify-content:space-between;margin-bottom:6px"><b>Журнал спостережень</b><button class="acs-btn sm ghost" data-clear>Очистити</button></div><ol class="acs-log">${ST.log.map(l=>l.sep?`<li class="sep">— ${esc(l.sep)} —</li>`:
+  `<li><div class="who"><i style="--c:${RG[l.sid]?.lq||'#f2b75e'}"></i>${esc(l.label)}</div><div>${esc(l.obs)}</div>${!quiz&&l.eq?`<div class="acs-eq">${l.eq.split('; ').map(esc).join('<br>')}</div>`:''}${!quiz&&l.x?`<div class="acs-x">${esc(l.x)}</div>`:''}</li>`).join('')}</ol>`;
+ body.querySelector('[data-clear]').onclick=()=>{ST.log=[];renderLog();};
+ body.scrollTop=body.scrollHeight;
 }
 
-/* ---------- інструменти під пробіркою ---------- */
-function renderTools() {
-  const all = [['new', 'Нова проба', ICON.new], ['heat', 'Нагріти', ICON.heat], ['flame', 'Полум’я', ICON.flame], ['litmus', 'Лакмусовий папірець', ICON.litmus], ['pbpaper', 'Свинцевий папірець', ICON.pb], ['lime', 'Вапняна вода', ICON.lime]];
-  const T = ST.mode === 'free' ? all : all.slice(0, 1);
-  $('#acs-tools').innerHTML = T.map(([k, n, i]) => `<button class="acs-btn${k === 'new' ? ' primary' : ''}" data-t="${k}">${i}${n}</button>`).join('');
-  root.querySelectorAll('[data-t]').forEach((b) => (b.onclick = () => (b.dataset.t === 'new' ? newPortion() : act(b.dataset.t))));
+/* ---------- інструменти ---------- */
+function renderTools(){
+ const T=[['new','Нова проба',ICON.new],['heat','Нагріти',ICON.heat],['flame','Внести в полум’я',ICON.flame],['litmus','Лакмусовий папірець',ICON.litmus],['pbpaper','Свинцевий папірець',ICON.pb],['lime','Вапняна вода',ICON.lime]];
+ $('#acs-tools').innerHTML=T.map(([k,n,i])=>`<button class="acs-btn${k==='new'?' primary':''}" data-t="${k}">${i}${n}</button>`).join('');
+ root.querySelectorAll('[data-t]').forEach(b=>b.onclick=()=>{const k=b.dataset.t;if(k==='new'){newPortion();if(ST.mode==='quiz'&&!Q.done){Q.steps++;renderQuizStats();}}else act(k);});
 }
 
-/* ---------- ліва панель: йони ---------- */
-function renderSide() {
-  const q = ST.iq.trim().toLowerCase();
-  const groups = ['C1', 'C2', 'C3', 'C4', 'C5', 'C6', 'A1', 'A2', 'A3', 'A0'];
-  let html = `<input class="acs-search" id="acs-isearch" placeholder="Пошук йона…" aria-label="Пошук йона" value="${esc(ST.iq)}">`, lastK = '';
-  for (const gk of groups) {
-    const ions = ION_LIST.filter((i) => i.g === gk && (!q || (i.f + ' ' + i.n).toLowerCase().includes(q)));
-    if (!ions.length) continue;
-    const K = gk === 'A0' ? 'Середовище' : GRP[gk].k === 'cat' ? 'Катіони' : 'Аніони';
-    if (K !== lastK) { html += `<div class="acs-kind">${K}</div>`; lastK = K; }
-    if (gk !== 'A0') html += `<div class="acs-glabel" title="${esc(GRP[gk].s)}">${ROMAN[gk]} група · ${esc(GRP[gk].s)}</div>`;
-    html += ions.map((i) => `<button class="acs-ion${ST.ion === i.id ? ' on' : ''}" data-ion="${i.id}" title="${esc(i.n)}"><span class="acs-sw" style="--c:${ionColor(i.id) || 'rgba(200,225,240,.22)'}"></span><b>${i.f}</b><small>${esc(i.n)}</small></button>`).join('');
-  }
-  $('#acs-side').innerHTML = html;
-  $('#acs-isearch').oninput = (e) => {
-    ST.iq = e.target.value; const pos = e.target.selectionStart; renderSide();
-    const n = $('#acs-isearch'); n.focus(); n.setSelectionRange(pos, pos);
-  };
-  root.querySelectorAll('[data-ion]').forEach((b) => (b.onclick = () => selectIon(b.dataset.ion)));
+/* ---------- полиця реагентів ---------- */
+function relevant(){if(ST.mode!=='explore')return new Set();const s=new Set();(ION[ST.ion].T||[]).forEach(([,st])=>st.forEach(x=>RG[x]&&s.add(x)));return s;}
+function renderShelf(){
+ $('#acs-cats').innerHTML=CATS.map(([k,n])=>`<button class="acs-cat${ST.cat===k?' on':''}" data-c="${k}">${n}</button>`).join('');
+ root.querySelectorAll('[data-c]').forEach(b=>b.onclick=()=>{ST.cat=b.dataset.c;renderShelf();});
+ const q=ST.rq.trim().toLowerCase(),rel=relevant();
+ const list=RG_LIST.filter(x=>(ST.cat==='all'||x.cat===ST.cat)&&(!q||(x.f+' '+x.n).toLowerCase().includes(q)));
+ $('#acs-bottles').innerHTML=list.map(x=>{const lq=x.lq||'#cfe3ee',c=hex2rgb(lq);const lq2=`rgb(${c.r*.6|0},${c.g*.6|0},${c.b*.6|0})`;
+  return `<button class="acs-btl${x.amber?' amber':''}${x.solid?' solid':''}${rel.has(x.id)?' rel':''}" data-r="${x.id}" aria-label="${esc(x.n)}"><div class="b" style="--lq:${lq};--lq2:${lq2}"><div class="cap ${x.cap||''}"></div><div class="neck"></div><div class="body"><div class="liq"></div></div><div class="lab${x.s||x.f.length>9?' s':''}">${esc(x.f)}</div></div><div class="nm">${esc(x.n.split(/[—(]/)[0].trim())}</div></button>`;}).join('')||'<div class="acs-empty" style="grid-column:1/-1">Нічого не знайдено</div>';
+ const tip=$('#acs-tip');
+ root.querySelectorAll('.acs-btl').forEach(b=>{const R=RG[b.dataset.r];
+  b.onclick=()=>act(R.id);
+  b.onmouseenter=()=>{tip.innerHTML=`<b>${esc(R.f.replace('\u00ad',''))}</b>${esc(R.n)}`;tip.style.opacity=1;const r=b.getBoundingClientRect();tip.style.left=Math.min(innerWidth-270,Math.max(8,r.left))+'px';tip.style.top=(r.top-tip.offsetHeight-6)+'px';};
+  b.onmouseleave=()=>tip.style.opacity=0;});
 }
-function selectIon(id) {
-  ST.ion = id; ST.shown.clear();
-  if (ST.tab === 'log') ST.tab = ST.mode === 'ref' ? 'rx' : 'rg';
-  newPortion(); renderSide(); renderInfo();
+$('#acs-rsearch').oninput=e=>{ST.rq=e.target.value;renderShelf();};
+
+/* ---------- бічна панель: довідник ---------- */
+function renderSideExplore(){
+ const q=ST.iq.trim().toLowerCase();
+ const groups=['C1','C2','C3','C4','C5','C6','A1','A2','A3','A0'];
+ let html=`<input class="acs-search" id="acs-isearch" placeholder="Пошук йона…" value="${esc(ST.iq)}">`;let lastK='';
+ for(const gk of groups){const ions=ION_LIST.filter(i=>i.g===gk&&(!q||(i.f+' '+i.n).toLowerCase().includes(q)));if(!ions.length)continue;
+  const K=gk==='A0'?'Середовище':GRP[gk].k==='cat'?'Катіони':'Аніони';if(K!==lastK){html+=`<div class="acs-kind">${K}</div>`;lastK=K;}
+  if(gk!=='A0')html+=`<div class="acs-glabel"><span>${ROMAN[gk]} група</span><span>${esc(GRP[gk].s)}</span></div>`;
+  html+=ions.map(i=>`<button class="acs-ion${ST.ion===i.id?' on':''}" data-ion="${i.id}"><span class="acs-sw" style="--c:${ionColor(i.id)||'rgba(200,225,240,.22)'}"></span><b>${i.f}</b><small>${esc(i.n)}</small></button>`).join('');}
+ $('#acs-side').innerHTML=html;
+ const inp=$('#acs-isearch');inp.oninput=e=>{ST.iq=e.target.value;const pos=e.target.selectionStart;renderSideExplore();const n=$('#acs-isearch');n.focus();n.setSelectionRange(pos,pos);};
+ root.querySelectorAll('[data-ion]').forEach(b=>b.onclick=()=>selectIon(b.dataset.ion));
 }
+function selectIon(id){ST.ion=id;ST.shown.clear();ST.tab=ST.mode==='free'?'log':'theory';newPortion();renderSideExplore();renderInfo();renderShelf();}
 
 /* ---------- права панель ---------- */
-function renderTabs() {
-  const tabs = ST.mode === 'ref' ? [['rx', 'Аналітичні реакції'], ['log', 'Журнал']] : [['rg', 'Реактиви'], ['log', 'Журнал']];
-  $('#acs-itabs').innerHTML = tabs.map(([k, n]) => `<button class="acs-itab${ST.tab === k ? ' on' : ''}" data-tab="${k}">${n}${k === 'log' ? ' <em>0</em>' : ''}</button>`).join('');
-  root.querySelectorAll('[data-tab]').forEach((b) => (b.onclick = () => { ST.tab = b.dataset.tab; renderInfo(); }));
+function renderTabs(){
+ const tabs=ST.mode==='quiz'?[['task','Завдання'],['log','Журнал']]:ST.mode==='free'?[['log','Журнал']]:[['theory','Аналітичні реакції'],['log','Журнал']];
+ $('#acs-itabs').innerHTML=tabs.map(([k,n])=>`<button class="acs-itab${ST.tab===k?' on':''}" data-tab="${k}">${n}${k==='log'?' <em>0</em>':''}</button>`).join('');
+ root.querySelectorAll('[data-tab]').forEach(b=>b.onclick=()=>{ST.tab=b.dataset.tab;renderInfo();});
 }
-function renderInfo() {
-  renderTabs();
-  if (ST.tab === 'rx') renderReactions();
-  else if (ST.tab === 'rg') renderReagents();
-  renderLog();
-}
-
-function ionHead(i) {
-  const c = ionColor(i.id), fl = i.fl || (i.counter && ION[i.counter].fl);
-  return `<div class="acs-hero"><div class="acs-sym" style="--c:${c || '#3b5a63'}">${i.f}</div><div><h2>${esc(i.n)}</h2><div class="acs-chips"><span class="acs-chip">${i.g === 'A0' ? 'Середовище' : (GRP[i.g].k === 'cat' ? 'Катіон' : 'Аніон') + ' · ' + ROMAN[i.g] + ' група'}</span>${c ? `<span class="acs-chip"><i style="--c:${c}"></i>розчин ${C[i.col].n}</span>` : '<span class="acs-chip">розчин безбарвний</span>'}${i.fl ? `<span class="acs-chip"><i style="--c:${fl.c}"></i>полум’я: ${fl.n}</span>` : ''}</div></div></div>`;
-}
-
-function renderReactions() {
-  const i = ION[ST.ion], gr = GRP[i.g];
-  let h = ionHead(i);
-  h += `<details class="acs-more"><summary>${esc(gr.n)} · про йон</summary><p><b>Груповий реагент:</b> ${esc(gr.rg)}. ${esc(gr.d)}</p><p>${esc(i.th)}</p></details>`;
-  h += '<div class="acs-h3">Аналітичні реакції</div>';
-  (i.T || []).forEach(([title, steps], k) => {
-    const open = ST.shown.has(k);
-    h += `<div class="acs-rx${open ? ' open' : ''}"><div class="acs-rx-h"><b>${esc(title)}</b><button class="acs-btn sm${open ? '' : ' primary'}" data-run="${k}">${ICON.play}${open ? 'Ще раз' : 'Показати'}</button></div><div class="acs-steps">${steps.map((s) => `<span class="acs-step${RG[s] ? '' : ' act'}">${esc(stepName(s))}</span>`).join('<span class="acs-arrow">→</span>')}</div>`;
-    if (open) {
-      h += Eng.simulate(i.id, steps).filter((e) => e.obs).map((e) => `<div class="acs-res"><span class="acs-res-l">${esc(e.label)}:</span> ${esc(e.obs)}${e.eq ? `<div class="acs-eq">${e.eq.split('; ').map(esc).join('<br>')}</div>` : ''}${e.x ? `<div class="acs-x">${esc(e.x)}</div>` : ''}</div>`).join('');
-    }
-    h += '</div>';
-  });
-  $('#acs-ibody').innerHTML = h;
-  root.querySelectorAll('[data-run]').forEach((b) => (b.onclick = () => {
-    const k = +b.dataset.run, steps = i.T[k][1];
-    ST.shown.add(k); renderReactions();
-    newPortion();
-    enqueue(() => bench.wait(700));
-    steps.forEach((s) => enqueue(async () => { await runStep(s); await bench.wait(450); }));
-  }));
+function renderInfo(){renderTabs();if(ST.mode==='free')ST.tab='log';if(ST.tab==='log'){renderLog();return;}if(ST.mode==='quiz')renderQuizInfo();else renderTheory();renderLog();}
+function renderTheory(){
+ const i=ION[ST.ion],gr=GRP[i.g],fl=i.fl||(i.counter&&ION[i.counter].fl),c=ionColor(i.id);
+ let h=`<div class="acs-hero"><div class="acs-sym" style="--c:${c||'#3b5a63'}">${i.f}</div><div><h2>${esc(i.n)}</h2><div class="acs-chips"><span class="acs-chip">${i.g==='A0'?'Середовище':(i.k==='cat'?'Катіон':'Аніон')+' · '+ROMAN[i.g]+' група'}</span>${c?`<span class="acs-chip"><i style="--c:${c}"></i>розчин ${C[i.col].n}</span>`:'<span class="acs-chip">розчин безбарвний</span>'}${i.fl?`<span class="acs-chip"><i style="--c:${fl.c}"></i>полум’я: ${fl.n}</span>`:''}</div></div></div>`;
+ h+=`<div class="acs-box"><h4>${esc(gr.n)}${i.g!=='A0'?' — '+esc(gr.s):''}</h4><p><b style="color:var(--tx)">Груповий реагент:</b> ${esc(gr.rg)}</p><p>${esc(gr.d)}</p></div>`;
+ h+=`<div class="acs-h3">Про йон</div><p class="acs-p">${esc(i.th)}</p><div class="acs-h3">Аналітичні реакції</div>`;
+ (i.T||[]).forEach(([title,steps],k)=>{const sim=Eng.simulate(i.id,steps);
+  const open=ST.shown.has(k);
+  h+=`<div class="acs-rx${open?' open':''}"><div class="acs-rx-h"><b>${esc(title)}</b><button class="acs-btn sm${open?'':' primary'}" data-run="${k}">${ICON.play}${open?'Ще раз':'Показати'}</button></div><div class="acs-steps">${steps.map(s=>`<span class="acs-step${RG[s]?'':' act'}">${esc(stepName(s))}</span>`).join('<span style="color:var(--tx3)">→</span>')}</div>`+
+   (open?sim:[]).filter(e=>e.obs).map(e=>`<div class="acs-res"><span style="color:var(--tx3)">${esc(e.label)}:</span> ${esc(e.obs)}${e.eq?`<div class="acs-eq">${e.eq.split('; ').map(esc).join('<br>')}</div>`:''}${e.x?`<div class="acs-x">${esc(e.x)}</div>`:''}</div>`).join('')+`</div>`;});
+ h+=`<p class="acs-x" style="margin-top:12px">Натисніть «Показати», щоб провести реакцію в пробірці й побачити спостереження та рівняння. Довільні досліди з будь-якими реактивами — у «Вільному режимі».</p>`;
+ $('#acs-ibody').innerHTML=h;
+ root.querySelectorAll('[data-run]').forEach(b=>b.onclick=()=>{const k=+b.dataset.run,steps=i.T[k][1];if(!ST.shown.has(k)){ST.shown.add(k);const y=$('#acs-ibody').scrollTop;renderTheory();$('#acs-ibody').scrollTop=y;}newPortion();enqueue(()=>bench.wait(1100));steps.forEach(s=>enqueue(async()=>{await runStep(s);await bench.wait(500);}));});
 }
 
-function renderReagents() {
-  const q = ST.rq.trim().toLowerCase();
-  const list = RG_LIST.filter((x) => (ST.cat === 'all' || x.cat === ST.cat) && (!q || (x.f + ' ' + x.n).toLowerCase().includes(q)));
-  $('#acs-ibody').innerHTML = `<p class="acs-x acs-x--plain">Оберіть реактив — він додасться до пробірки. Дії (нагрівання, полум’я, папірці) — під пробіркою.</p>
-    <input class="acs-search" id="acs-rsearch" placeholder="Пошук реактиву…" aria-label="Пошук реактиву" value="${esc(ST.rq)}">
-    <div class="acs-cats">${CATS.map(([k, n]) => `<button class="acs-cat${ST.cat === k ? ' on' : ''}" data-c="${k}">${n}</button>`).join('')}</div>
-    <div class="acs-rlist">${list.map((x) => `<button class="acs-rg" data-r="${x.id}"><i style="--c:${x.lq || '#cfe3ee'}"></i><b>${esc(x.f.replace('­', ''))}</b><small>${esc(x.n)}</small></button>`).join('') || '<div class="acs-empty">Нічого не знайдено</div>'}</div>`;
-  const inp = $('#acs-rsearch');
-  inp.oninput = (e) => { ST.rq = e.target.value; const pos = e.target.selectionStart; renderReagents(); const n = $('#acs-rsearch'); n.focus(); n.setSelectionRange(pos, pos); };
-  root.querySelectorAll('[data-c]').forEach((b) => (b.onclick = () => { ST.cat = b.dataset.c; renderReagents(); }));
-  root.querySelectorAll('[data-r]').forEach((b) => (b.onclick = () => {
-    b.classList.remove('flash'); void b.offsetWidth; b.classList.add('flash'); act(b.dataset.r);
-  }));
+/* ---------- режим вгадування ---------- */
+const poolOf=kind=>ION_LIST.filter(i=>i.g!=='A0'&&GRP[i.g].k===kind);
+const groupsOf=kind=>kind==='cat'?['C1','C2','C3','C4','C5','C6']:['A1','A2','A3'];
+function newTask(){
+ const pool=poolOf(Q.kind).filter(i=>i.id!==Q.last);const pick=pool[Math.floor(Math.random()*pool.length)];
+ Object.assign(Q,{ion:pick.id,last:pick.id,score:100,steps:0,hints:[],flags:{},max:{},excl:new Set(),cross:new Set(),done:false,result:null});Q.num++;
+ ST.log=[];ST.portion=0;ST.tab='task';newPortion();renderSideQuiz();renderInfo();
+}
+function renderSideQuiz(){
+ let h=`<div class="acs-kind" style="margin-top:2px">Невідомий йон</div><div class="acs-seg"><button data-k="cat" class="${Q.kind==='cat'?'on':''}">Катіони</button><button data-k="an" class="${Q.kind==='an'?'on':''}">Аніони</button></div>
+ <button class="acs-btn primary" style="width:100%;justify-content:center" data-newtask>${ICON.new}Нове завдання</button>
+ <div class="acs-kind">Виключення груп</div><p class="acs-x" style="margin:0 0 10px">Виключайте групи, яких немає за результатами реакцій. Натисніть на йон, щоб викреслити його.</p>`;
+ for(const gk of groupsOf(Q.kind)){const ex=Q.excl.has(gk);
+  h+=`<div class="acs-qg${ex?' ex':''}"><div class="acs-qg-h"><div><b>${GRP[gk].n}</b><small>${esc(GRP[gk].rg)}</small></div><button class="acs-x-btn" data-ex="${gk}">${ex?'↺ Повернути':'✕ Виключити'}</button></div><div class="acs-qions">${poolOf(Q.kind).filter(i=>i.g===gk).map(i=>`<button class="acs-qion${Q.cross.has(i.id)||ex?' cross':''}" data-cr="${i.id}">${i.f}</button>`).join('')}</div></div>`;}
+ h+=`<p class="acs-x">Розв’язано завдань: ${Q.solved}</p>`;
+ $('#acs-side').innerHTML=h;
+ root.querySelectorAll('[data-k]').forEach(b=>b.onclick=()=>{if(Q.kind===b.dataset.k)return;Q.kind=b.dataset.k;Q.last=null;newTask();});
+ $('[data-newtask]').onclick=newTask;
+ root.querySelectorAll('[data-ex]').forEach(b=>b.onclick=()=>{const k=b.dataset.ex;Q.excl.has(k)?Q.excl.delete(k):Q.excl.add(k);renderSideQuiz();});
+ root.querySelectorAll('[data-cr]').forEach(b=>b.onclick=()=>{const k=b.dataset.cr;Q.cross.has(k)?Q.cross.delete(k):Q.cross.add(k);renderSideQuiz();});
+}
+function flaskSVG(hex){const c=hex||'#cfe3ee',op=hex?.75:.3;
+ return `<svg class="acs-flask" viewBox="0 0 86 100"><defs><linearGradient id="fq" x1="0" x2="1"><stop offset="0" stop-color="${c}" stop-opacity="${op*.7}"/><stop offset=".5" stop-color="${c}" stop-opacity="${op}"/><stop offset="1" stop-color="${c}" stop-opacity="${op*.7}"/></linearGradient></defs>
+ <path d="M30 50 13 82a8 8 0 0 0 7 12h46a8 8 0 0 0 7-12L56 50z" fill="url(#fq)"/><path d="M33 6h20M36 6v30L10 84a8 8 0 0 0 7 12h52a8 8 0 0 0 7-12L50 36V6" fill="none" stroke="rgba(255,255,255,.75)" stroke-width="2.5" stroke-linejoin="round"/>
+ <path d="M17 84 30 58" stroke="rgba(255,255,255,.5)" stroke-width="3" stroke-linecap="round"/><rect x="26" y="62" width="34" height="24" rx="3" fill="#f0e6cc"/><text x="43" y="80" text-anchor="middle" font-family="Georgia,serif" font-size="18" font-weight="700" fill="#2b2116">?</text></svg>`;}
+function renderQuizStats(){const el=$('#acs-qstats');if(el)el.innerHTML=`<div class="acs-stat"><b>${Q.score}</b><span>бали</span></div><div class="acs-stat"><b>${Q.steps}</b><span>дії</span></div><div class="acs-stat"><b>${Q.hints.length}</b><span>підказки</span></div>`;}
+function renderQuizInfo(){
+ const ion=ION[Q.ion];
+ let h=`<div class="acs-task">${flaskSVG(ionColor(Q.ion))}<div><h2 style="font-family:var(--disp);font-size:16px">Завдання №${Q.num}</h2><p class="acs-p" style="margin-top:4px">У колбі — водний розчин солі, що містить <b style="color:var(--tx)">один невідомий ${Q.kind==='cat'?'катіон':'аніон'}</b>${Q.kind==='an'?' (у вигляді натрієвої солі)':''}. Відбирайте проби, додавайте групові реагенти, виключайте групи й визначте йон.</p></div></div>
+ <div class="acs-stats" id="acs-qstats"></div>
+ <div class="acs-row"><button class="acs-btn" data-hint ${Q.done?'disabled':''}>${ICON.hint}Підказка (−10 балів)</button><button class="acs-btn ghost" data-portion>${ICON.new}Нова проба з колби</button></div>
+ <div style="margin-top:12px" id="acs-hints">${Q.hints.map(x=>`<div class="acs-hint${x.w?' warn':''}">${x.t}</div>`).join('')}</div>
+ <div class="acs-h3">Ваша відповідь</div>
+ <div class="acs-row"><select class="acs-select" id="acs-ans" ${Q.done?'disabled':''}><option value="">— оберіть йон —</option>${groupsOf(Q.kind).map(gk=>`<optgroup label="${GRP[gk].n}">${poolOf(Q.kind).filter(i=>i.g===gk).map(i=>`<option value="${i.id}">${i.f} — ${esc(i.n)}</option>`).join('')}</optgroup>`).join('')}</select>
+ <button class="acs-btn primary" data-check ${Q.done?'disabled':''}>Перевірити</button><button class="acs-btn ghost" data-give ${Q.done?'disabled':''}>Здатися</button></div>
+ <div id="acs-qres">${Q.result||''}</div>
+ <details class="acs-details"><summary>Шпаргалка: систематичний хід аналізу</summary><table>${groupsOf(Q.kind).map(gk=>`<tr><td>${GRP[gk].n}</td><td><b style="color:var(--tx)">${esc(GRP[gk].rg)}</b><br>${esc(GRP[gk].d)}</td></tr>`).join('')}</table></details>`;
+ $('#acs-ibody').innerHTML=h;renderQuizStats();
+ $('[data-hint]').onclick=()=>{const hn=nextHint();if(!hn.free)Q.score=Math.max(0,Q.score-(hn.cost??10));Q.hints.push(hn);renderQuizInfo();};
+ $('[data-portion]').onclick=()=>{newPortion();if(!Q.done){Q.steps++;renderQuizStats();}};
+ $('[data-check]').onclick=()=>checkAnswer($('#acs-ans').value);
+ $('[data-give]').onclick=()=>finish(false,true);
+ const qr=$('#acs-qres');
+ qr.querySelector('[data-open]')?.addEventListener('click',()=>{switchMode('explore');selectIon(ion.id);});
+ qr.querySelector('[data-again]')?.addEventListener('click',newTask);
+}
+const HTXT={
+ HCl:['Почніть із групового реагенту <b>II групи катіонів — розведеної HCl</b>. Білий осад → Ag⁺, Pb²⁺ або Hg₂²⁺. Немає осаду — II групу можна виключити.'],
+ H2SO4:['Візьміть нову пробу й додайте <b>розведену H₂SO₄</b> — груповий реагент III групи (Ba²⁺, Sr²⁺, Ca²⁺). Білий осад сульфату → III група; немає осаду — виключіть її.'],
+ NaOH:['Візьміть нову пробу й додайте <b>NaOH</b>, а потім ще раз — <b>надлишок</b>. Осад розчиняється в надлишку → IV група (амфотерні гідроксиди). Не розчиняється → V чи VI група (або Mg²⁺). Немає осаду взагалі → I група чи III.','Додайте <b>NaOH ще раз</b> до тієї самої проби: у надлишку лугу перевірте, чи розчиняється осад.'],
+ NH3:['Візьміть нову пробу й додайте <b>NH₃·H₂O</b>, а потім <b>надлишок</b>. Осад розчиняється з утворенням аміакату → VI група; не розчиняється → V група.','Додайте <b>NH₃·H₂O ще раз</b> до тієї самої проби — перевірте розчинність осаду в надлишку аміаку.'],
+ BaCl2:['Почніть із <b>BaCl₂</b> — групового реагенту I групи аніонів. Білий осад → I група (далі перевірте його розчинність у HCl). Немає осаду — I групу можна виключити.'],
+ AgHNO3:['Візьміть нову пробу й додайте <b>AgNO₃ у присутності HNO₃</b> — груповий реагент II групи аніонів. Осад, нерозчинний у HNO₃ → II група. Немає осаду — виключіть II групу.']
+};
+function nextHint(){
+ const ion=ION[Q.ion],g=ion.g;
+ if(Q.excl.has(g)&&!Q.flags.excl){Q.flags.excl=1;return{t:'⚠ Перевірте свої виключення: щонайменше одну групу ви виключили помилково — спостереження її не виключають.',w:1,cost:5};}
+ const checks=Q.kind==='cat'?[['C2','HCl',1],['C3','H2SO4',1],['C4','NaOH',2],['C6','NH3',2]]:[['A1','BaCl2',1],['A2','AgHNO3',1]];
+ for(const[grp,rid,need]of checks){const used=Q.max[rid]||0;
+  if(used<need)return{t:'💡 '+HTXT[rid][used>0&&HTXT[rid][1]?1:0]};
+  if(grp===g)break;if(g==='C5'&&grp==='C6')break;}
+ if(!Q.flags.group){Q.flags.group=1;return{t:`🔎 Висновок із групових реакцій: невідомий йон належить до <b>${GRP[g].n}</b> (${esc(GRP[g].s)}). Решту груп можна виключити.`};}
+ if(!Q.flags.spec){Q.flags.spec=1;const list=poolOf(Q.kind).filter(i=>i.g===g).map(i=>`<b>${i.f}</b> — ${i.T[0][1].map(stepName).map(esc).join(' → ')}`).join('; ');return{t:`🧪 Розрізніть йони групи специфічними реакціями: ${list}.`};}
+ if(!Q.flags.key){Q.flags.key=1;const best=ion.T[0];return{t:`🎯 Найпереконливіша реакція для перевірки: <b>${best[1].map(stepName).map(esc).join(' → ')}</b>. Порівняйте результат з описом у довіднику.`};}
+ return{t:'Підказки вичерпано — сміливо давайте відповідь!',free:1};
+}
+function checkAnswer(id){
+ if(!id||Q.done)return;
+ if(id===Q.ion){finish(true);return;}
+ Q.score=Math.max(0,Q.score-20);const w=ION[id];
+ Q.result=`<div class="acs-result bad"><h4>Ні, це не ${w.f}</h4>Спробуйте ще раз (−20 балів). Порівняйте свої спостереження з характерними реакціями ${w.f}: ${esc(lc(w.T[0][0]))}.</div>`;renderQuizInfo();
+}
+function finish(ok,gave){
+ Q.done=true;const ion=ION[Q.ion];if(gave)Q.score=0;if(ok)Q.solved++;
+ const exNote=Q.excl.has(ion.g)?`<p style="margin:6px 0 0;color:var(--rose)">Зверніть увагу: ви виключили ${GRP[ion.g].n.replace('група','групу')}, до якої належить цей йон.</p>`:'';
+ Q.result=`<div class="acs-result ${ok?'good':'bad'}"><h4>${ok?'Правильно! 🎉':'Відповідь'}: ${ion.f} — ${esc(lc(ion.n))}</h4>${ok?`Набрано <b>${Q.score}</b> балів за ${Q.steps} дій і ${Q.hints.length} підказок.`:'Подивіться характерні реакції цього йона в довіднику.'}${exNote}<div class="acs-row" style="margin-top:10px"><button class="acs-btn sm" data-open>Відкрити в довіднику</button><button class="acs-btn sm primary" data-again>Нове завдання</button></div></div>`;
+ if(ok)bench.celebrate();ST.tab='task';renderInfo();renderSideQuiz();renderTag();
 }
 
 /* ---------- перемикання режимів ---------- */
-const HINT = {
-  ref: 'Оберіть йон зліва й натисніть «Показати» біля реакції — побачите її в пробірці, спостереження та рівняння.',
-  free: 'Вільний режим: оберіть будь-який йон, додавайте реактиви й виконуйте дії в довільному порядку. Теорії тут немає — робіть висновки самі.',
-};
-function movePill() {
-  const on = $('#acs-mode button.on'), pill = $('.acs-mode-pill'); if (!on) return;
-  pill.style.width = on.offsetWidth + 'px'; pill.style.transform = `translateX(${on.offsetLeft - 4}px)`;
+function movePill(){const on=$('#acs-mode button.on'),pill=$('.acs-mode-pill');if(!on)return;pill.style.width=on.offsetWidth+'px';pill.style.transform=`translateX(${on.offsetLeft-4}px)`;}
+const MODE_HINT={explore:'Оберіть йон зліва й натисніть «Показати» біля реакції — побачите її в пробірці, спостереження та рівняння.',free:'Вільний режим: оберіть будь-який йон, додавайте реактиви з полиці й виконуйте дії в довільному порядку. Теорії тут немає — робіть висновки самі.',quiz:'У колбі — невідомий йон. Відбирайте проби, додавайте групові реагенти, виключайте групи й визначте йон.'};
+function modeHint(){const el=$('#acs-modehint');if(el)el.textContent=MODE_HINT[ST.mode];}
+function switchMode(m){
+ if(ST.mode===m)return;ST.mode=m;root.querySelectorAll('#acs-mode button').forEach(b=>b.classList.toggle('on',b.dataset.mode===m));movePill();
+ ST.log=[];ST.portion=0;
+ root.dataset.mode=m;ST.shown.clear();modeHint();
+ if(m==='quiz'){newTask();}else{ST.tab=m==='free'?'log':'theory';newPortion();renderSideExplore();renderInfo();}
+ renderShelf();
 }
-function switchMode(m) {
-  if (ST.mode === m) return;
-  ST.mode = m; ST.tab = m === 'ref' ? 'rx' : 'rg'; ST.log = []; ST.shown.clear();
-  root.querySelectorAll('#acs-mode button').forEach((b) => b.classList.toggle('on', b.dataset.mode === m));
-  $('#acs-modehint').textContent = HINT[m];
-  movePill(); renderTools(); newPortion(); renderInfo();
-}
-root.querySelectorAll('#acs-mode button').forEach((b) => (b.onclick = () => switchMode(b.dataset.mode)));
-addEventListener('resize', movePill);
+root.querySelectorAll('#acs-mode button').forEach(b=>b.onclick=()=>switchMode(b.dataset.mode));
+addEventListener('resize',movePill);
 
 /* ---------- старт ---------- */
-$('#acs-modehint').textContent = HINT.ref;
-renderTools(); renderSide(); newPortion(); renderInfo();
-requestAnimationFrame(movePill);
+root.dataset.mode=ST.mode;modeHint();renderTools();renderShelf();renderSideExplore();newPortion();renderInfo();
+requestAnimationFrame(movePill);if(document.fonts)document.fonts.ready.then(movePill);
+})();

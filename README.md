@@ -18,7 +18,7 @@ lab/biochemistry/index.html        — розділ «Біохімія росл�
 lab/biochemistry/enzyme-kinetics/  — ЛР 1. Кінетика ферментативних реакцій
 lab/biochemistry/temperature-ph/   — ЛР 2. Вплив температури і pH на активність ферментів
 lab/analytical-chemistry/          — Аналітична хімія: пісочниця якісного аналізу
-                                     (режими «Довідник реакцій» і «Вільний режим»)
+                                     (режими «Довідник реакцій», «Вільний режим», «Визначити невідомий йон»)
 konspekt/index.html                — Конспект: вибір напряму
 konspekt/pathogens/                — Збудники хвороб рослин: мікрофото збудника + фото ураженої рослини
 microscope/, modeling/             — переадресації зі старих адрес
@@ -32,7 +32,7 @@ assets/js/lab/plot.js              — графіки на Canvas (HiDPI, під
 assets/js/lab/ui.js                — повзунки, перемикачі, CSV-експорт, генератор варіантів
 assets/js/lab/fit.js               — МНК, нелінійна регресія (Левенберг–Марквардт), Рунге–Кутта 4
 assets/js/lab/<робота>.js          — модель конкретної лабораторної роботи
-assets/js/lab/analytical-chemistry.js — дані реакцій, рушій, анімована сцена й інтерфейс пісочниці
+assets/js/lab/analytical-chemistry.js — оригінальний код пісочниці (дані, рушій, сцена, інтерфейс) + режими довідника й вільний
 assets/img/micro/, assets/img/plant/  — мікрофото збудників і фото уражених рослин (WebP)
 assets/img/nubip-logo.webp         — повний герб НУБіП (головна сторінка)
 assets/img/nubip-shield.webp/.png  — щит герба (шапка, футер, значок вкладки)

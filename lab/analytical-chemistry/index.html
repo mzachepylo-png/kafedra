@@ -4,7 +4,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Аналітична хімія — Онлайн лабораторія кафедри ФБРтаБ, НУБіП</title>
-  <meta name="description" content="Інтерактивна пісочниця якісного аналізу: аналітичні реакції катіонів та аніонів з анімацією в пробірці, рівняннями та вільним режимом експериментів.">
+  <meta name="description" content="Інтерактивна пісочниця якісного аналізу: аналітичні реакції катіонів та аніонів з анімацією в пробірці, вільний режим експериментів і визначення невідомого йона.">
   <meta name="theme-color" content="#08210F">
   <link rel="icon" href="../../assets/img/nubip-shield.png" type="image/png">
   <link rel="stylesheet" href="../../assets/css/style.css">
@@ -69,22 +69,27 @@
       <div class="container">
         <div id="acs-app" class="acs">
           <div class="acs-top">
-            <div class="acs-mode" id="acs-mode"><span class="acs-mode-pill"></span><button type="button" data-mode="ref" class="on">Довідник реакцій</button><button type="button" data-mode="free">Вільний режим</button></div>
+            <div class="acs-mode" id="acs-mode"><span class="acs-mode-pill"></span><button data-mode="explore" class="on">Довідник реакцій</button><button data-mode="free">Вільний режим</button><button data-mode="quiz">Визначити невідомий йон</button></div>
             <p id="acs-modehint"></p>
           </div>
           <div class="acs-grid">
-            <aside class="acs-side acs-card" id="acs-side" aria-label="Йони"></aside>
+            <aside class="acs-side acs-card" id="acs-side"></aside>
             <div class="acs-main">
               <div class="acs-scene" id="acs-scene">
-                <div class="acs-wall"></div><div class="acs-benchtop"></div><canvas role="img" aria-label="Пробірка з розчином"></canvas>
+                <div class="acs-wall"></div><div class="acs-benchtop"></div><canvas></canvas>
                 <div class="acs-tag" id="acs-tag"></div>
                 <div class="acs-busy" id="acs-busy">Реакція триває…</div>
-                <div class="acs-obs" id="acs-obs" role="status"></div>
+                <div class="acs-obs" id="acs-obs"></div>
               </div>
               <div class="acs-tools" id="acs-tools"></div>
+              <div class="acs-shelf acs-card">
+                <div class="acs-shelf-head"><div class="acs-cats" id="acs-cats"></div><input class="acs-search" id="acs-rsearch" placeholder="Пошук реагенту…" aria-label="Пошук реагенту"></div>
+                <div class="acs-bottles" id="acs-bottles"></div>
+              </div>
             </div>
             <section class="acs-info acs-card"><div class="acs-itabs" id="acs-itabs"></div><div class="acs-ibody" id="acs-ibody"></div></section>
           </div>
+          <div class="acs-tip" id="acs-tip"></div>
         </div>
         <noscript><p>Для роботи пісочниці потрібен увімкнений JavaScript.</p></noscript>
       </div>
@@ -129,6 +134,6 @@
   </footer>
 
   <script defer src="../../assets/js/main.js"></script>
-  <script type="module" src="../../assets/js/lab/analytical-chemistry.js"></script>
+  <script defer src="../../assets/js/lab/analytical-chemistry.js"></script>
 </body>
 </html>
