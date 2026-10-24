@@ -1,0 +1,259 @@
+/* =========================================================
+   Онлайн лабораторія: каталог робіт, теорія, моделі, графіки
+   ========================================================= */
+
+/* ---------- Каталог ---------- */
+.disc-tabs { display: flex; flex-wrap: wrap; gap: 10px; margin-bottom: 28px; }
+.disc-tab {
+  display: inline-flex; align-items: center; gap: 10px; padding: 12px 20px; border-radius: 999px;
+  background: var(--white); border: 1px solid var(--line); color: var(--ink-soft); font-weight: 700; text-decoration: none;
+}
+.disc-tab svg { width: 20px; height: 20px; }
+.disc-tab[aria-current="page"], .disc-tab.is-active { background: var(--green-800); border-color: var(--green-800); color: #fff; }
+.disc-tab[aria-current="page"] svg { color: var(--gold-300); }
+.disc-tab:hover { color: var(--green-800); border-color: var(--green-200); }
+.disc-tab[aria-current="page"]:hover { color: #fff; }
+
+.discipline {
+  display: grid; grid-template-columns: 1fr 1fr; overflow: hidden; border-radius: 26px; text-decoration: none; color: inherit;
+  background: var(--white); border: 1px solid var(--line); box-shadow: var(--shadow); transition: transform .2s, box-shadow .2s;
+}
+.discipline:hover { color: inherit; transform: translateY(-3px); box-shadow: var(--shadow-lg); }
+.discipline__art { position: relative; min-height: 280px; background: linear-gradient(150deg, var(--green-950), var(--green-800)); display: grid; place-items: center; overflow: hidden; }
+.discipline__art svg { width: 82%; max-width: 380px; position: relative; }
+.discipline__body { padding: clamp(24px, 4vw, 44px); display: flex; flex-direction: column; gap: 14px; }
+.discipline__body h2 { margin: 0; }
+.discipline__body ul { margin: 0; padding: 0; list-style: none; display: grid; gap: 8px; }
+.discipline__body li { display: flex; gap: 10px; color: var(--ink-soft); }
+.discipline__body li b { font-family: var(--mono); color: var(--gold-700); font-size: .85rem; min-width: 3.4em; padding-top: 2px; }
+@media (max-width: 860px) { .discipline { grid-template-columns: 1fr; } .discipline__art { min-height: 200px; } }
+
+.steps { counter-reset: step; display: grid; grid-template-columns: repeat(4, 1fr); gap: 18px; }
+@media (max-width: 900px) { .steps { grid-template-columns: repeat(2, 1fr); } }
+@media (max-width: 520px) { .steps { grid-template-columns: 1fr; } }
+.step { position: relative; padding: 22px; border-radius: var(--radius); background: var(--white); border: 1px solid var(--line); }
+.step::before {
+  counter-increment: step; content: counter(step); display: grid; place-items: center; width: 36px; height: 36px; margin-bottom: 12px;
+  border-radius: 50%; background: var(--gold-100); color: var(--gold-700); font-weight: 800; font-family: var(--serif); font-size: 1.1rem;
+}
+.step h3 { font-size: 1.02rem; margin-bottom: 4px; }
+.step p { margin: 0; font-size: .94rem; color: var(--ink-soft); }
+
+.work {
+  display: grid; grid-template-columns: auto 1fr auto; gap: 22px; align-items: center; padding: 24px 26px;
+  border-radius: var(--radius-lg); background: var(--white); border: 1px solid var(--line); text-decoration: none; color: inherit;
+  box-shadow: var(--shadow-sm); transition: transform .2s, box-shadow .2s, border-color .2s;
+}
+.work + .work { margin-top: 14px; }
+.work:hover { color: inherit; transform: translateY(-2px); box-shadow: var(--shadow); border-color: var(--green-200); }
+.work__num {
+  width: 64px; height: 64px; border-radius: 18px; display: grid; place-items: center; text-align: center; line-height: 1;
+  background: linear-gradient(150deg, var(--green-900), var(--green-700)); color: var(--gold-300); font-family: var(--serif); font-weight: 700; font-size: 1.5rem;
+}
+.work__num small { display: block; font-family: var(--sans); font-size: .6rem; letter-spacing: .1em; color: rgba(255, 255, 255, .7); margin-bottom: 3px; }
+.work h3 { margin: 0 0 4px; font-size: 1.15rem; }
+.work p { margin: 0; color: var(--ink-soft); font-size: .96rem; }
+.work__meta { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 10px; }
+.work__go { width: 46px; height: 46px; border-radius: 50%; display: grid; place-items: center; background: var(--gold-100); color: var(--gold-700); transition: transform .2s, background .2s; }
+.work:hover .work__go { transform: translateX(3px); background: var(--gold-400); color: var(--green-950); }
+.work__go svg { width: 20px; height: 20px; }
+@media (max-width: 640px) {
+  .work { grid-template-columns: auto 1fr; padding: 20px; }
+  .work__go { display: none; }
+  .work__num { width: 52px; height: 52px; font-size: 1.25rem; }
+}
+
+/* ---------- Документ лабораторної роботи ---------- */
+.lab-head { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 18px; }
+.lab-head .badge { background: rgba(255, 255, 255, .1); color: var(--gold-300); }
+.lab-doc { display: grid; grid-template-columns: 230px minmax(0, 1fr); gap: 48px; align-items: start; }
+@media (max-width: 1080px) { .lab-doc { grid-template-columns: 1fr; gap: 0; } .toc { display: none; } }
+.toc { position: sticky; top: calc(var(--header-h) + 24px); font-size: .92rem; }
+.toc h2 { font-family: var(--sans); font-size: .76rem; letter-spacing: .14em; text-transform: uppercase; color: var(--gold-700); margin-bottom: 10px; }
+.toc ol { list-style: none; margin: 0; padding: 0; border-left: 2px solid var(--line); }
+.toc a { display: block; padding: 6px 0 6px 14px; margin-left: -2px; border-left: 2px solid transparent; color: var(--ink-soft); text-decoration: none; }
+.toc a:hover { color: var(--green-800); }
+.toc a.is-active { color: var(--green-800); border-left-color: var(--gold-500); font-weight: 700; }
+
+.lab-section { padding-block: 40px; border-top: 1px solid var(--line); }
+.lab-section:first-child { border-top: 0; padding-top: 8px; }
+.lab-section > h2 { display: flex; align-items: baseline; gap: 12px; font-size: clamp(1.45rem, 1.15rem + 1vw, 1.95rem); }
+.lab-section > h2 .n { font-family: var(--mono); font-size: .9rem; color: var(--gold-700); background: var(--gold-100); padding: 2px 8px; border-radius: 8px; }
+
+.prose { max-width: 76ch; }
+.prose h3 { margin-top: 1.8em; font-size: 1.2rem; }
+.prose p, .prose li { color: var(--ink); }
+.prose li { margin-bottom: .35em; }
+.prose em.term { font-style: normal; font-weight: 700; color: var(--green-800); }
+
+.goal { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; }
+@media (max-width: 760px) { .goal { grid-template-columns: 1fr; } }
+.goal > div { padding: 20px; border-radius: var(--radius); background: var(--white); border: 1px solid var(--line); }
+.goal h3 { font-size: .78rem; letter-spacing: .12em; text-transform: uppercase; color: var(--gold-700); margin-bottom: 8px; }
+.goal p, .goal ul { margin: 0; font-size: .96rem; color: var(--ink-soft); }
+.goal ul { padding-left: 1.1em; }
+
+/* Формули (MathML) */
+math { font-size: 1.08em; }
+.formula {
+  position: relative; margin: 20px 0; padding: 20px 64px 20px 24px; border-radius: var(--radius);
+  background: var(--white); border: 1px solid var(--line); border-left: 4px solid var(--gold-500); overflow-x: auto;
+}
+.formula math { font-size: 1.25em; }
+.formula__n { position: absolute; right: 18px; top: 50%; transform: translateY(-50%); color: var(--muted); font-family: var(--mono); font-size: .9rem; }
+.formula + p small, .where { font-size: .95rem; color: var(--ink-soft); }
+.where { margin: -6px 0 18px; padding-left: 4px; }
+.where i { font-family: var(--serif); }
+
+.callout { margin: 22px 0; padding: 18px 20px; border-radius: var(--radius); background: var(--green-50); border: 1px solid var(--green-200); display: grid; grid-template-columns: 28px 1fr; gap: 12px; }
+.callout svg { width: 24px; height: 24px; color: var(--green-700); margin-top: 2px; }
+.callout p { margin: 0; color: var(--ink-soft); font-size: .97rem; }
+.callout p + p { margin-top: .6em; }
+.callout--gold { background: var(--gold-100); border-color: #EFE0AE; }
+.callout--gold svg { color: var(--gold-700); }
+
+.fig { margin: 24px 0; }
+.fig figcaption { margin-top: 8px; font-size: .9rem; color: var(--muted); }
+.fig svg { width: 100%; height: auto; }
+
+/* ---------- Модель ---------- */
+.sim {
+  display: grid; grid-template-columns: 320px minmax(0, 1fr); gap: 0; overflow: hidden;
+  border-radius: var(--radius-lg); background: var(--white); border: 1px solid var(--line); box-shadow: var(--shadow);
+}
+@media (max-width: 900px) { .sim { grid-template-columns: 1fr; } }
+.sim__controls { padding: 22px; background: linear-gradient(180deg, var(--green-50), #fff); border-right: 1px solid var(--line); display: flex; flex-direction: column; gap: 16px; }
+@media (max-width: 900px) { .sim__controls { border-right: 0; border-bottom: 1px solid var(--line); } }
+.sim__controls h3 { font-size: .76rem; letter-spacing: .14em; text-transform: uppercase; color: var(--gold-700); margin: 6px 0 -4px; }
+.sim__main { padding: 22px; min-width: 0; display: flex; flex-direction: column; gap: 18px; }
+.sim__bar { display: flex; flex-wrap: wrap; gap: 10px; justify-content: space-between; align-items: center; }
+
+.ctrl label { display: flex; justify-content: space-between; gap: 10px; font-size: .92rem; font-weight: 600; color: var(--ink); margin-bottom: 6px; }
+.ctrl output { font-family: var(--mono); font-size: .86rem; font-weight: 700; color: var(--green-800); background: var(--white); border: 1px solid var(--line); padding: 1px 8px; border-radius: 7px; white-space: nowrap; }
+.ctrl__hint { display: block; margin-top: 4px; color: var(--muted); font-size: .8rem; line-height: 1.4; }
+.ctrl.is-disabled { opacity: .45; pointer-events: none; }
+
+input[type="range"] {
+  --pct: 50%;
+  -webkit-appearance: none; appearance: none; width: 100%; height: 26px; background: transparent; cursor: pointer; margin: 0;
+}
+input[type="range"]::-webkit-slider-runnable-track {
+  height: 6px; border-radius: 6px;
+  background: linear-gradient(90deg, var(--green-700) 0 var(--pct), var(--line) var(--pct) 100%);
+}
+input[type="range"]::-moz-range-track { height: 6px; border-radius: 6px; background: var(--line); }
+input[type="range"]::-moz-range-progress { height: 6px; border-radius: 6px; background: var(--green-700); }
+input[type="range"]::-webkit-slider-thumb {
+  -webkit-appearance: none; width: 20px; height: 20px; margin-top: -7px; border-radius: 50%;
+  background: radial-gradient(circle at 35% 30%, var(--gold-300), var(--gold-600)); border: 2px solid #fff; box-shadow: 0 1px 4px rgba(0, 0, 0, .3);
+}
+input[type="range"]::-moz-range-thumb {
+  width: 18px; height: 18px; border-radius: 50%; background: radial-gradient(circle at 35% 30%, var(--gold-300), var(--gold-600)); border: 2px solid #fff; box-shadow: 0 1px 4px rgba(0, 0, 0, .3);
+}
+input[type="range"]:focus-visible { outline: none; }
+input[type="range"]:focus-visible::-webkit-slider-thumb { outline: 3px solid var(--gold-400); outline-offset: 2px; }
+
+.seg { display: inline-flex; flex-wrap: wrap; gap: 4px; padding: 4px; border-radius: 12px; background: var(--green-50); border: 1px solid var(--line); }
+.seg button {
+  font: inherit; font-size: .88rem; font-weight: 700; padding: 7px 12px; border-radius: 9px; border: 0; cursor: pointer;
+  background: transparent; color: var(--ink-soft); line-height: 1.25;
+}
+.seg button:hover { color: var(--green-800); }
+.seg button[aria-checked="true"] { background: var(--white); color: var(--green-800); box-shadow: var(--shadow-sm), 0 0 0 1px var(--green-200); }
+.sim__controls .seg { display: flex; }
+.sim__controls .seg button { flex: 1 1 auto; }
+
+.readouts { display: grid; grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)); gap: 10px; }
+.readout { padding: 12px 14px; border-radius: 12px; background: var(--green-50); border: 1px solid var(--line); }
+.readout__label { font-size: .78rem; color: var(--muted); font-weight: 600; }
+.readout__value { font-family: var(--mono); font-weight: 700; font-size: 1.12rem; color: var(--green-900); margin-top: 2px; }
+.readout--gold { background: var(--gold-100); border-color: #EFE0AE; }
+.readout--gold .readout__value { color: var(--gold-700); }
+
+.plot { position: relative; width: 100%; user-select: none; touch-action: pan-y; }
+.plot canvas { width: 100%; }
+.plot__tip {
+  position: absolute; left: 0; top: 0; z-index: 2; pointer-events: none; padding: 8px 10px; border-radius: 10px;
+  background: rgba(8, 33, 15, .94); color: #fff; font-size: .8rem; line-height: 1.5; box-shadow: var(--shadow); white-space: nowrap;
+}
+.plot__tip b { display: block; color: var(--gold-300); font-weight: 700; }
+.plot__tip span { display: flex; align-items: center; gap: 6px; }
+.plot__tip i { width: 8px; height: 8px; border-radius: 50%; }
+.plot__legend { display: flex; flex-wrap: wrap; gap: 6px 18px; margin-top: 8px; font-size: .85rem; color: var(--ink-soft); }
+.plot__legend span { display: inline-flex; align-items: center; gap: 7px; }
+.plot__legend i { width: 18px; height: 3px; border-radius: 2px; border: 0 solid; }
+.plot__legend i.is-dot { width: 9px; height: 9px; border-radius: 50%; border-width: 2px; background: currentColor; }
+.plot__legend i.is-dash { background: none !important; border-top-width: 3px; border-top-style: dashed; height: 0; }
+
+.plots-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+@media (max-width: 1200px) { .plots-2 { grid-template-columns: 1fr; } }
+.plot-card h4 { margin: 0 0 8px; font-size: .95rem; color: var(--ink-soft); font-weight: 700; }
+
+/* ---------- Віртуальний експеримент ---------- */
+.exp { border-radius: var(--radius-lg); background: var(--white); border: 1px solid var(--line); box-shadow: var(--shadow-sm); overflow: hidden; }
+.exp__head { display: flex; flex-wrap: wrap; gap: 14px 24px; align-items: end; justify-content: space-between; padding: 20px 22px; background: linear-gradient(135deg, var(--green-950), var(--green-800)); color: #fff; }
+.exp__head h3 { color: #fff; margin: 0; }
+.exp__head p { margin: 2px 0 0; color: rgba(255, 255, 255, .72); font-size: .92rem; }
+.exp__body { padding: 22px; display: grid; gap: 20px; }
+.field { display: flex; flex-direction: column; gap: 5px; font-size: .88rem; font-weight: 600; }
+.field input, .field select {
+  font: inherit; font-weight: 500; padding: 9px 12px; border-radius: 10px; border: 1.5px solid var(--line-strong); background: var(--white); color: var(--ink); min-width: 0;
+}
+.field input:focus, .field select:focus { outline: none; border-color: var(--green-700); box-shadow: 0 0 0 3px var(--green-100); }
+.exp__head .field { color: rgba(255, 255, 255, .8); }
+.exp__head .field input { width: 220px; border-color: rgba(255, 255, 255, .25); background: rgba(255, 255, 255, .08); color: #fff; }
+.exp__head .field input::placeholder { color: rgba(255, 255, 255, .45); }
+.row { display: flex; flex-wrap: wrap; gap: 12px; align-items: end; }
+
+.data-wrap { overflow-x: auto; border-radius: 12px; border: 1px solid var(--line); }
+.data-table { width: 100%; border-collapse: collapse; font-size: .9rem; font-variant-numeric: tabular-nums; }
+.data-table th, .data-table td { padding: 8px 12px; text-align: right; border-bottom: 1px solid var(--line); white-space: nowrap; }
+.data-table th { background: var(--green-50); color: var(--green-900); font-weight: 700; position: sticky; top: 0; }
+.data-table th:first-child, .data-table td:first-child { text-align: left; }
+.data-table tr:last-child td { border-bottom: 0; }
+.data-table tbody tr:hover { background: #FAFCF9; }
+
+.answers { display: grid; grid-template-columns: repeat(auto-fit, minmax(190px, 1fr)); gap: 12px; }
+.answers .field input.ok { border-color: var(--green-500); background: var(--green-50); }
+.answers .field input.bad { border-color: #C0573E; background: #FDF1EE; }
+.verdict { padding: 14px 16px; border-radius: 12px; font-size: .95rem; }
+.verdict:empty { display: none; }
+.verdict--ok { background: var(--green-50); border: 1px solid var(--green-200); color: var(--green-900); }
+.verdict--bad { background: #FDF1EE; border: 1px solid #F0C9BE; color: #7A2E1C; }
+
+/* ---------- Завдання / питання ---------- */
+.tasks { counter-reset: t; list-style: none; padding: 0; margin: 0; display: grid; gap: 12px; }
+.tasks > li { counter-increment: t; position: relative; padding: 16px 18px 16px 60px; border-radius: var(--radius); background: var(--white); border: 1px solid var(--line); }
+.tasks > li::before {
+  content: counter(t); position: absolute; left: 16px; top: 14px; width: 30px; height: 30px; border-radius: 9px;
+  display: grid; place-items: center; background: var(--green-800); color: var(--gold-300); font-weight: 800; font-size: .95rem;
+}
+.tasks ul { margin: 6px 0 0; color: var(--ink-soft); }
+.qa details { border-bottom: 1px solid var(--line); }
+.qa summary { cursor: pointer; padding: 14px 4px; font-weight: 600; list-style: none; display: flex; gap: 12px; align-items: flex-start; }
+.qa summary::-webkit-details-marker { display: none; }
+.qa summary::before { content: "?"; flex: none; width: 24px; height: 24px; border-radius: 50%; display: grid; place-items: center; background: var(--gold-100); color: var(--gold-700); font-weight: 800; font-size: .85rem; }
+.qa details[open] summary::before { content: "!"; background: var(--green-800); color: var(--gold-300); }
+.qa details > div { padding: 0 4px 16px 40px; color: var(--ink-soft); }
+.refs { font-size: .93rem; color: var(--ink-soft); padding-left: 1.2em; }
+.refs li { margin-bottom: 6px; }
+
+.lab-nav { display: flex; justify-content: space-between; gap: 12px; flex-wrap: wrap; margin-top: 24px; }
+
+/* ---------- Кювета (спектрофотометрія) ---------- */
+.cuvette-wrap { display: flex; gap: 20px; align-items: center; }
+.cuvette { width: 64px; height: 130px; flex: none; position: relative; border-radius: 4px 4px 10px 10px; border: 2px solid #9FB3A3; background: linear-gradient(90deg, rgba(255,255,255,.6), rgba(255,255,255,.1) 40%, rgba(255,255,255,.5)); overflow: hidden; }
+.cuvette__liq { position: absolute; inset: 22% 0 0; transition: background-color .3s; }
+.cuvette__liq::after { content: ""; position: absolute; inset: 0; background: linear-gradient(90deg, rgba(255,255,255,.35), transparent 35%, transparent 70%, rgba(255,255,255,.25)); }
+.spectro { display: grid; grid-template-columns: auto 1fr; gap: 18px; align-items: center; padding: 16px 18px; border-radius: var(--radius); background: #0C1C11; color: #CFE8D0; }
+.spectro__screen { font-family: var(--mono); background: #10291A; border: 1px solid #2B5536; border-radius: 10px; padding: 12px 14px; }
+.spectro__screen b { display: block; font-size: 1.8rem; color: #9CF0A4; letter-spacing: .04em; }
+.spectro__screen span { font-size: .8rem; color: #7FA88A; }
+.spectrum-bar { height: 12px; border-radius: 6px; background: linear-gradient(90deg, #7A00C8 0%, #3D2BFF 12%, #00A6FF 25%, #00D9A0 37%, #5BE300 47%, #E3E600 57%, #FF9B00 70%, #FF2A00 84%, #A00000 100%); }
+
+/* Не даємо широким формулам і таблицям розтягувати сітку на вузьких екранах */
+.lab-doc > article, .sim > *, .plots-2 > *, .exp__body > * { min-width: 0; }
+.sim { grid-template-columns: minmax(0, 320px) minmax(0, 1fr); }
+@media (max-width: 900px) { .sim { grid-template-columns: minmax(0, 1fr); } }
+@media (max-width: 1080px) { .lab-doc { grid-template-columns: minmax(0, 1fr); } }
+.exp__head .field input { width: min(220px, 100%); }

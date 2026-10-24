@@ -1,0 +1,309 @@
+<!doctype html>
+<html lang="uk" class="no-js">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>ЛР 1. Кінетика ферментативних реакцій — Онлайн лабораторія, НУБіП</title>
+  <meta name="description" content="Інтерактивна лабораторна робота: рівняння Міхаеліса–Ментен, графіки Лайнуівера–Берка та Іді–Хофсті, типи інгібування ферментів, віртуальний експеримент з визначення Km і Vmax.">
+  <meta name="theme-color" content="#08210F">
+  <link rel="icon" href="../../../assets/img/logo.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="../../../assets/css/style.css">
+  <link rel="stylesheet" href="../../../assets/css/lab.css">
+  <script>document.documentElement.classList.replace('no-js', 'js')</script>
+</head>
+<body>
+  <a class="skip-link" href="#main">Перейти до змісту</a>
+
+  <header class="site-header">
+    <div class="container">
+      <a class="brand" href="../../../" aria-label="Кафедра фізіології, біохімії рослин та біоенергетики — на головну">
+        <img class="brand__logo" src="../../../assets/img/nubip-emblem.svg" alt="" width="44" height="44">
+        <span class="brand__text">
+          <span class="brand__title">Кафедра ФБРтаБ</span>
+          <span class="brand__sub">Фізіологія, біохімія рослин та біоенергетика · НУБіП України</span>
+        </span>
+      </a>
+      <button class="nav-toggle" type="button" aria-controls="site-nav" aria-expanded="false" aria-label="Відкрити меню">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M4 7h16M4 12h16M4 17h16"/></svg>
+      </button>
+      <nav class="nav" id="site-nav" aria-label="Головна навігація">
+        <a class="nav__link" href="../../../">Головна</a>
+        <div class="nav__dd">
+          <a class="nav__link" href="../../../about/">Про кафедру
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m6 9 6 6 6-6"/></svg>
+          </a>
+          <div class="nav__menu">
+            <a href="../../../about/#department">Кафедра сьогодні<small>Місія, історія з 1898 р., наука</small></a>
+            <a href="../../../about/#team">Колектив<small>Викладачі та їхні наукові інтереси</small></a>
+            <a href="../../../about/#faculty-history">Історія факультету<small>Від 1962 року до сьогодні</small></a>
+            <a href="../../../about/#administration">Адміністрація факультету<small>Деканат і контакти</small></a>
+            <a href="../../../about/#programs">Освітні програми<small>Бакалаврат · Магістратура · PhD</small></a>
+          </div>
+        </div>
+        <a class="nav__link" href="../../../#contacts">Контакти</a>
+        <a class="btn btn--gold btn--sm nav__lab" href="../../../lab/">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 3h6M10 3v6l-5 9a2 2 0 0 0 1.7 3h10.6a2 2 0 0 0 1.7-3l-5-9V3"/><path d="M7.5 15h9"/></svg>
+          Онлайн лабораторія
+        </a>
+      </nav>
+    </div>
+  </header>
+
+  <main id="main">
+    <section class="page-hero page-hero--lab">
+      <div class="bg-molecules" aria-hidden="true" style="position:absolute;inset:0"></div>
+      <div class="container">
+        <nav class="breadcrumbs" aria-label="Навігаційний ланцюжок"><a href="../../../">Головна</a><span aria-hidden="true">/</span><a href="../../../lab/">Онлайн лабораторія</a><span aria-hidden="true">/</span><a href="../">Біохімія рослин</a><span aria-hidden="true">/</span><span>ЛР 1</span></nav>
+        <span class="kicker">Лабораторна робота № 1</span>
+        <h1>Кінетика ферментативних реакцій</h1>
+        <p>Як швидкість реакції залежить від концентрації субстрату, що означають K<sub>m</sub> і V<sub>max</sub> і як інгібітори змінюють роботу ферменту.</p>
+        <div class="lab-head"><span class="badge">Біохімія</span><span class="badge">Ферменти</span><span class="badge">≈ 90 хвилин</span></div>
+      </div>
+    </section>
+
+    <div class="section" style="padding-top:48px">
+      <div class="container lab-doc">
+        <nav class="toc" aria-label="Зміст роботи">
+          <h2>Зміст</h2>
+          <ol>
+            <li><a href="#goal">Мета і план</a></li>
+            <li><a href="#theory">Теоретичні відомості</a></li>
+            <li><a href="#model">Інтерактивна модель</a></li>
+            <li><a href="#experiment">Віртуальний експеримент</a></li>
+            <li><a href="#tasks">Завдання для звіту</a></li>
+            <li><a href="#questions">Контрольні питання</a></li>
+            <li><a href="#refs">Література</a></li>
+          </ol>
+        </nav>
+
+        <article>
+          <section class="lab-section" id="goal">
+            <h2><span class="n">01</span>Мета і план</h2>
+            <div class="goal">
+              <div><h3>Мета</h3><p>Опанувати кількісний опис ферментативного каталізу, навчитися визначати кінетичні параметри ферменту та тип інгібування за експериментальними даними.</p></div>
+              <div><h3>Ви навчитеся</h3><ul><li>будувати криву Міхаеліса–Ментен і лінеаризації;</li><li>знаходити K<sub>m</sub>, V<sub>max</sub>, K<sub>i</sub>;</li><li>розрізняти типи інгібування.</li></ul></div>
+              <div><h3>Знадобиться</h3><p>Браузер, калькулятор або Excel (дані експортуються у CSV), бланк звіту.</p></div>
+            </div>
+          </section>
+
+          <section class="lab-section prose" id="theory">
+            <h2><span class="n">02</span>Теоретичні відомості</h2>
+            <p><em class="term">Ферменти</em> — біологічні каталізатори білкової природи, які прискорюють реакції в мільйони разів, не змінюючи їхньої рівноваги. Фермент <i>E</i> оборотно зв'язує субстрат <i>S</i> в активному центрі, утворюючи фермент-субстратний комплекс <i>ES</i>, який перетворюється на продукт <i>P</i>:</p>
+            <div class="formula">
+              <math display="block"><mi>E</mi><mo>+</mo><mi>S</mi><mover><mo>⇌</mo><mrow><msub><mi>k</mi><mn>1</mn></msub><mo>,</mo><msub><mi>k</mi><mrow><mo>−</mo><mn>1</mn></mrow></msub></mrow></mover><mi>E</mi><mi>S</mi><mover><mo>→</mo><msub><mi>k</mi><mi>cat</mi></msub></mover><mi>E</mi><mo>+</mo><mi>P</mi></math>
+            </div>
+            <p>Якщо концентрація <i>ES</i> швидко досягає стаціонарного рівня (наближення Бріггса–Голдейна, 1925), початкова швидкість реакції описується <b>рівнянням Міхаеліса–Ментен</b>:</p>
+            <div class="formula">
+              <math display="block"><mi>v</mi><mo>=</mo><mfrac><mrow><msub><mi>V</mi><mi>max</mi></msub><mo>[</mo><mi>S</mi><mo>]</mo></mrow><mrow><msub><mi>K</mi><mi>m</mi></msub><mo>+</mo><mo>[</mo><mi>S</mi><mo>]</mo></mrow></mfrac><mo>,</mo><mspace width="1.5em"/><msub><mi>K</mi><mi>m</mi></msub><mo>=</mo><mfrac><mrow><msub><mi>k</mi><mrow><mo>−</mo><mn>1</mn></mrow></msub><mo>+</mo><msub><mi>k</mi><mi>cat</mi></msub></mrow><msub><mi>k</mi><mn>1</mn></msub></mfrac><mo>,</mo><mspace width="1.5em"/><msub><mi>V</mi><mi>max</mi></msub><mo>=</mo><msub><mi>k</mi><mi>cat</mi></msub><msub><mrow><mo>[</mo><mi>E</mi><mo>]</mo></mrow><mn>0</mn></msub></math>
+              <span class="formula__n">(1)</span>
+            </div>
+            <ul>
+              <li><b>V<sub>max</sub></b> — максимальна швидкість, коли всі молекули ферменту насичені субстратом; пропорційна кількості ферменту.</li>
+              <li><b>K<sub>m</sub></b> (константа Міхаеліса) — концентрація субстрату, за якої <i>v</i> = V<sub>max</sub>/2. Що менша K<sub>m</sub>, то вища спорідненість ферменту до субстрату.</li>
+              <li><b>k<sub>cat</sub>/K<sub>m</sub></b> — каталітична ефективність (константа специфічності).</li>
+            </ul>
+            <p>За малих [S] ≪ K<sub>m</sub> реакція має перший порядок за субстратом (<i>v</i> ≈ V<sub>max</sub>[S]/K<sub>m</sub>), за великих [S] ≫ K<sub>m</sub> — нульовий (<i>v</i> ≈ V<sub>max</sub>).</p>
+
+            <h3>Лінеаризації</h3>
+            <p>Історично параметри знаходили, перетворюючи гіперболу (1) на пряму. Обернення обох частин дає рівняння <b>Лайнуівера–Берка</b> (подвійних обернених величин):</p>
+            <div class="formula">
+              <math display="block"><mfrac><mn>1</mn><mi>v</mi></mfrac><mo>=</mo><mfrac><msub><mi>K</mi><mi>m</mi></msub><msub><mi>V</mi><mi>max</mi></msub></mfrac><mo>·</mo><mfrac><mn>1</mn><mrow><mo>[</mo><mi>S</mi><mo>]</mo></mrow></mfrac><mo>+</mo><mfrac><mn>1</mn><msub><mi>V</mi><mi>max</mi></msub></mfrac></math>
+              <span class="formula__n">(2)</span>
+            </div>
+            <p class="where">Пряма перетинає вісь ординат у точці 1/V<sub>max</sub>, вісь абсцис — у точці −1/K<sub>m</sub>; тангенс кута нахилу дорівнює K<sub>m</sub>/V<sub>max</sub>.</p>
+            <p>Рівняння <b>Іді–Хофсті</b> менш чутливе до похибок за малих [S]:</p>
+            <div class="formula">
+              <math display="block"><mi>v</mi><mo>=</mo><msub><mi>V</mi><mi>max</mi></msub><mo>−</mo><msub><mi>K</mi><mi>m</mi></msub><mo>·</mo><mfrac><mi>v</mi><mrow><mo>[</mo><mi>S</mi><mo>]</mo></mrow></mfrac></math>
+              <span class="formula__n">(3)</span>
+            </div>
+            <div class="callout callout--gold">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 9v4M12 17h.01"/><path d="M10.3 3.9 1.8 18a2 2 0 0 0 1.7 3h17a2 2 0 0 0 1.7-3L13.7 3.9a2 2 0 0 0-3.4 0Z"/></svg>
+              <p>Обернення «розтягує» похибки найменш точних вимірювань за малих [S], тому оцінки з графіка Лайнуівера–Берка зміщені. Сучасний стандарт — <b>нелінійна регресія</b> безпосередньо за рівнянням (1). У віртуальному експерименті порівняйте обидва підходи.</p>
+            </div>
+
+            <h3>Оборотне інгібування</h3>
+            <p>Інгібітор <i>I</i> може зв'язуватися з вільним ферментом (константа дисоціації K<sub>i</sub>) та/або з комплексом <i>ES</i> (K<sub>i</sub>′). Загальне рівняння змішаного інгібування:</p>
+            <div class="formula">
+              <math display="block"><mi>v</mi><mo>=</mo><mfrac><mrow><msub><mi>V</mi><mi>max</mi></msub><mo>[</mo><mi>S</mi><mo>]</mo></mrow><mrow><mi>α</mi><msub><mi>K</mi><mi>m</mi></msub><mo>+</mo><mi>α</mi><mo>′</mo><mo>[</mo><mi>S</mi><mo>]</mo></mrow></mfrac><mo>,</mo><mspace width="1.5em"/><mi>α</mi><mo>=</mo><mn>1</mn><mo>+</mo><mfrac><mrow><mo>[</mo><mi>I</mi><mo>]</mo></mrow><msub><mi>K</mi><mi>i</mi></msub></mfrac><mo>,</mo><mspace width="1em"/><mi>α</mi><mo>′</mo><mo>=</mo><mn>1</mn><mo>+</mo><mfrac><mrow><mo>[</mo><mi>I</mi><mo>]</mo></mrow><msub><mi>K</mi><mi>i</mi></msub><mo>′</mo></mfrac></math>
+              <span class="formula__n">(4)</span>
+            </div>
+            <div class="data-wrap">
+              <table class="data-table">
+                <thead><tr><th>Тип інгібування</th><th>Зв'язує</th><th>K<sub>m</sub><sup>уявна</sup></th><th>V<sub>max</sub><sup>уявна</sup></th><th>Графік Л–Б</th></tr></thead>
+                <tbody>
+                  <tr><td>Конкурентне</td><td>E</td><td>αK<sub>m</sub> ↑</td><td>не змінюється</td><td>прямі перетинаються на осі 1/v</td></tr>
+                  <tr><td>Неконкурентне (K<sub>i</sub> = K<sub>i</sub>′)</td><td>E і ES</td><td>не змінюється</td><td>V<sub>max</sub>/α ↓</td><td>перетин на осі 1/[S]</td></tr>
+                  <tr><td>Безконкурентне</td><td>ES</td><td>K<sub>m</sub>/α′ ↓</td><td>V<sub>max</sub>/α′ ↓</td><td>паралельні прямі</td></tr>
+                  <tr><td>Змішане</td><td>E і ES</td><td>αK<sub>m</sub>/α′</td><td>V<sub>max</sub>/α′ ↓</td><td>перетин у II квадранті</td></tr>
+                </tbody>
+              </table>
+            </div>
+            <p style="margin-top:1em"><b>Приклади з біохімії рослин.</b> Гербіцид гліфосат конкурує з фосфоенолпіруватом за активний центр 5-енолпірувілшикімат-3-фосфатсинтази (EPSPS) і блокує синтез ароматичних амінокислот. Іони важких металів (Pb²⁺, Cd²⁺, Hg²⁺) зв'язують SH-групи ферментів поза активним центром, що здебільшого проявляється як неконкурентне інгібування. Малонат — класичний конкурентний інгібітор сукцинатдегідрогенази циклу Кребса.</p>
+
+            <h3>Кінетична крива</h3>
+            <p>Під час реакції субстрат витрачається, тому швидкість поступово падає. Зміну [S] у часі описує диференціальне рівняння, яке модель розв'язує чисельно методом Рунге–Кутти 4-го порядку:</p>
+            <div class="formula">
+              <math display="block"><mfrac><mrow><mi>d</mi><mo>[</mo><mi>S</mi><mo>]</mo></mrow><mrow><mi>d</mi><mi>t</mi></mrow></mfrac><mo>=</mo><mo>−</mo><mfrac><mrow><msub><mi>V</mi><mi>max</mi></msub><mo>[</mo><mi>S</mi><mo>]</mo></mrow><mrow><msub><mi>K</mi><mi>m</mi></msub><mo>+</mo><mo>[</mo><mi>S</mi><mo>]</mo></mrow></mfrac><mo>,</mo><mspace width="1.5em"/><mo>[</mo><mi>P</mi><mo>]</mo><mo>=</mo><msub><mrow><mo>[</mo><mi>S</mi><mo>]</mo></mrow><mn>0</mn></msub><mo>−</mo><mo>[</mo><mi>S</mi><mo>]</mo></math>
+              <span class="formula__n">(5)</span>
+            </div>
+            <p class="where">Саме тому в експерименті вимірюють <b>початкову</b> швидкість — тангенс кута нахилу кривої [P](t) при t → 0.</p>
+          </section>
+
+          <section class="lab-section" id="model">
+            <h2><span class="n">03</span>Інтерактивна модель</h2>
+            <p class="prose">Змінюйте параметри ферменту та інгібітора. Суцільна лінія — реакція з інгібітором, пунктир — без нього. Наведіть курсор на графік, щоб побачити значення.</p>
+            <div class="sim">
+              <div class="sim__controls">
+                <h3>Фермент</h3>
+                <div id="ek-enzyme"></div>
+                <h3>Інгібітор</h3>
+                <div id="ek-type"></div>
+                <div id="ek-inhib"></div>
+              </div>
+              <div class="sim__main">
+                <div class="sim__bar">
+                  <div id="ek-view"></div>
+                  <button class="btn btn--outline btn--sm" type="button" id="ek-csv">Завантажити CSV</button>
+                </div>
+                <div id="ek-progress-ctrl" hidden></div>
+                <div id="ek-plot"></div>
+                <div class="readouts">
+                  <div class="readout"><div class="readout__label">K<sub>m</sub> уявна</div><div class="readout__value" data-out="kmapp">—</div></div>
+                  <div class="readout"><div class="readout__label">V<sub>max</sub> уявна</div><div class="readout__value" data-out="vmapp">—</div></div>
+                  <div class="readout"><div class="readout__label">v при [S] = K<sub>m</sub></div><div class="readout__value" data-out="vkm">—</div></div>
+                  <div class="readout readout--gold"><div class="readout__label">Ступінь інгібування</div><div class="readout__value" data-out="inh">—</div></div>
+                </div>
+              </div>
+            </div>
+          </section>
+
+          <section class="lab-section" id="experiment">
+            <h2><span class="n">04</span>Віртуальний експеримент</h2>
+            <div class="prose">
+              <p>Ви отримали препарат «невідомого» ферменту з листків пшениці та розчин інгібітора. Виміряйте початкові швидкості реакції за різних концентрацій субстрату без інгібітора і в його присутності. Кожне вимірювання містить випадкову похибку ≈ 4 %, як у реальному досліді.</p>
+            </div>
+            <div class="exp">
+              <div class="exp__head">
+                <div>
+                  <h3>Ваш варіант</h3>
+                  <p>Введіть прізвище або номер у журналі — дані будуть індивідуальними й відтворюваними.</p>
+                </div>
+                <div class="row">
+                  <label class="field">Варіант<input id="ek-variant" type="text" placeholder="напр. Шевченко" autocomplete="off"></label>
+                  <button class="btn btn--gold" type="button" id="ek-run">Провести вимірювання</button>
+                </div>
+              </div>
+              <div class="exp__body" id="ek-exp" hidden>
+                <div class="readouts" id="ek-cond"></div>
+                <div class="plots-2">
+                  <div class="plot-card"><h4>Залежність v від [S]</h4><div id="ek-exp-mm"></div></div>
+                  <div class="plot-card"><h4>Подвійні обернені величини (Лайнуівер–Берк)</h4><div id="ek-exp-lb"></div></div>
+                </div>
+                <div class="data-wrap"><table class="data-table" id="ek-table"></table></div>
+                <div class="row">
+                  <button class="btn btn--outline btn--sm" type="button" id="ek-exp-csv">Завантажити дані (CSV)</button>
+                  <label class="field" style="flex-direction:row;align-items:center;gap:8px;font-weight:600"><input type="checkbox" id="ek-reg"> Показати лінії регресії Лайнуівера–Берка</label>
+                </div>
+                <div id="ek-regout" class="callout" hidden></div>
+                <h3 style="margin:8px 0 0">Ваші результати</h3>
+                <div class="answers">
+                  <label class="field">K<sub>m</sub>, мМ<input id="a-km" inputmode="decimal" autocomplete="off"></label>
+                  <label class="field">V<sub>max</sub>, мкмоль/(хв·мг)<input id="a-vm" inputmode="decimal" autocomplete="off"></label>
+                  <label class="field">Тип інгібування
+                    <select id="a-type">
+                      <option value="">— оберіть —</option>
+                      <option value="competitive">Конкурентне</option>
+                      <option value="noncompetitive">Неконкурентне</option>
+                      <option value="uncompetitive">Безконкурентне</option>
+                    </select>
+                  </label>
+                  <label class="field">K<sub>i</sub>, мМ<input id="a-ki" inputmode="decimal" autocomplete="off"></label>
+                </div>
+                <div class="row"><button class="btn" type="button" id="ek-check">Перевірити</button></div>
+                <div class="verdict" id="ek-verdict" role="status"></div>
+              </div>
+            </div>
+          </section>
+
+          <section class="lab-section prose" id="tasks">
+            <h2><span class="n">05</span>Завдання для звіту</h2>
+            <ol class="tasks">
+              <li>За допомогою моделі побудуйте криві Міхаеліса–Ментен для двох ферментів з однаковою V<sub>max</sub> та K<sub>m</sub>, що відрізняється в 10 разів. Який фермент ефективніше працює за низьких концентрацій субстрату? Поясніть.</li>
+              <li>Для кожного типу інгібування замалюйте (або збережіть) графік Лайнуівера–Берка та сформулюйте, за якими ознаками його можна розпізнати.</li>
+              <li>Проведіть віртуальний експеримент за своїм варіантом. Заповніть таблицю: [S], v<sub>0</sub>, v<sub>I</sub>, 1/[S], 1/v<sub>0</sub>, 1/v<sub>I</sub>.
+                <ul><li>Побудуйте графік Лайнуівера–Берка, знайдіть рівняння прямих методом найменших квадратів (Excel: функція ЛИНЕЙН).</li><li>Обчисліть K<sub>m</sub>, V<sub>max</sub> та уявні параметри в присутності інгібітора.</li></ul>
+              </li>
+              <li>Визначте тип інгібування і розрахуйте K<sub>i</sub> за формулами таблиці з розділу 2. Перевірте відповідь у формі вище.</li>
+              <li>Оцініть K<sub>m</sub> і V<sub>max</sub> ще й за графіком Іді–Хофсті або нелінійною регресією (Excel: «Пошук рішення»). Порівняйте результати і зробіть висновок про точність методів.</li>
+              <li>У режимі «Кінетична крива» визначте, за який час розпадеться 50 % субстрату при [S]<sub>0</sub> = K<sub>m</sub> та [S]<sub>0</sub> = 10·K<sub>m</sub>. Чому ці часи не пропорційні [S]<sub>0</sub>?</li>
+            </ol>
+          </section>
+
+          <section class="lab-section" id="questions">
+            <h2><span class="n">06</span>Контрольні питання</h2>
+            <div class="qa">
+              <details><summary>Який фізичний зміст константи Міхаеліса? Чи завжди K<sub>m</sub> дорівнює константі дисоціації комплексу ES?</summary><div>K<sub>m</sub> — концентрація субстрату, за якої швидкість дорівнює половині максимальної. Вона збігається з K<sub>S</sub> = k<sub>−1</sub>/k<sub>1</sub> лише коли k<sub>cat</sub> ≪ k<sub>−1</sub> (рівноважне наближення Міхаеліса–Ментен).</div></details>
+              <details><summary>Чому для визначення кінетичних параметрів вимірюють саме початкову швидкість реакції?</summary><div>На початку реакції концентрація субстрату відома (дорівнює [S]<sub>0</sub>), продукт ще не накопичився і не інгібує фермент, а зворотна реакція несуттєва.</div></details>
+              <details><summary>Як відрізнити конкурентне інгібування від неконкурентного за графіком Лайнуівера–Берка?</summary><div>За конкурентного прямі перетинаються на осі ординат (V<sub>max</sub> незмінна), за неконкурентного — на осі абсцис (K<sub>m</sub> незмінна).</div></details>
+              <details><summary>Чому конкурентне інгібування можна подолати надлишком субстрату, а неконкурентне — ні?</summary><div>Конкурентний інгібітор і субстрат змагаються за той самий центр: за великої [S] частка ферменту, зв'язаного з інгібітором, прямує до нуля. Неконкурентний інгібітор зв'язується і з ES, тож частина ферменту залишається неактивною за будь-якої [S].</div></details>
+              <details><summary>Що таке каталітична ефективність і яке її максимально можливе значення?</summary><div>k<sub>cat</sub>/K<sub>m</sub>; її обмежує частота дифузійних зіткнень ферменту із субстратом — близько 10<sup>8</sup>–10<sup>9</sup> М<sup>−1</sup>·с<sup>−1</sup> («каталітично досконалі» ферменти, напр. каталаза, тріозофосфатізомераза).</div></details>
+            </div>
+          </section>
+
+          <section class="lab-section" id="refs">
+            <h2><span class="n">07</span>Література</h2>
+            <ol class="refs">
+              <li>Nelson D. L., Cox M. M. Lehninger Principles of Biochemistry. 8th ed. New York : W. H. Freeman, 2021. Ch. 6.</li>
+              <li>Cornish-Bowden A. Fundamentals of Enzyme Kinetics. 4th ed. Weinheim : Wiley-Blackwell, 2012.</li>
+              <li>Johnson K. A., Goody R. S. The original Michaelis constant: translation of the 1913 Michaelis–Menten paper. <i>Biochemistry</i>. 2011. Vol. 50, № 39. P. 8264–8269.</li>
+              <li>Briggs G. E., Haldane J. B. S. A note on the kinetics of enzyme action. <i>Biochemical Journal</i>. 1925. Vol. 19, № 2. P. 338–339.</li>
+            </ol>
+            <div class="lab-nav">
+              <a class="btn btn--outline" href="../">← Усі роботи</a>
+              <a class="btn" href="../temperature-ph/">ЛР 2. Температура і pH →</a>
+            </div>
+          </section>
+        </article>
+      </div>
+    </div>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer__grid">
+        <div class="footer__brand">
+          <img src="../../../assets/img/nubip-emblem.svg" alt="" width="52" height="52" loading="lazy">
+          <div>
+            <strong>Кафедра фізіології, біохімії рослин та біоенергетики</strong>
+            Факультет захисту рослин, біотехнологій та екології<br>Національний університет біоресурсів і природокористування України
+          </div>
+        </div>
+        <div class="footer__col">
+          <h3>Розділи</h3>
+          <ul>
+            <li><a href="../../../about/">Про кафедру</a></li>
+            <li><a href="../../../about/#faculty-history">Історія факультету</a></li>
+            <li><a href="../../../about/#administration">Адміністрація факультету</a></li>
+            <li><a href="../../../about/#programs">Освітні програми</a></li>
+          </ul>
+        </div>
+        <div class="footer__col">
+          <h3>Онлайн лабораторія</h3>
+          <ul>
+            <li><a href="../../../lab/">Усі розділи</a></li>
+            <li><a href="../../../lab/biochemistry/">Біохімія рослин</a></li>
+            <li><a href="../../../microscope/">Під мікроскопом</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer__bottom">
+        <span>© <span data-year>2026</span> Кафедра фізіології, біохімії рослин та біоенергетики, НУБіП України</span>
+        <a href="https://nubip.edu.ua" target="_blank" rel="noopener">nubip.edu.ua</a>
+      </div>
+    </div>
+  </footer>
+
+  <script defer src="../../../assets/js/main.js"></script>
+  <script type="module" src="../../../assets/js/lab/enzyme-kinetics.js"></script>
+</body>
+</html>
