@@ -153,8 +153,8 @@
 #ff .runbar__st.on:not(.amc *){color:var(--chl)}
 #ff .runbar__st.on:not(.amc *)::before{background:var(--chl);box-shadow:0 0 0 3px var(--chl-soft)}
 
-/* окрема модель «Вплив фітогормонів» у списку робіт */
-#ff nav.index .cap--sep:not(.amc *){margin-top:14px;padding-top:14px;border-top:1px solid var(--rule)}
+/* модель «Вплив фітогормонів» — виділений пункт угорі списку робіт */
+#ff nav.index a.special:not(.amc *){margin-bottom:12px}
 #ff nav.index a.special:not(.amc *){background:linear-gradient(135deg,#FBF3D9,#F6E7B4);border-color:#E3C77A}
 #ff nav.index a.special .no:not(.amc *){color:#8A6A12;display:grid;place-items:start center}
 #ff nav.index a.special .no svg:not(.amc *){width:18px;height:18px;margin-top:1px}
@@ -167,6 +167,6 @@
 #ff .amc{--f-display:"Alegreya",Georgia,serif;--f-body:"IBM Plex Sans","Segoe UI",system-ui,sans-serif;--f-mono:"JetBrains Mono",ui-monospace,Consolas,monospace;background:transparent;padding:0 0 24px}
 #ff .amc .w{max-width:none}
 @media (max-width:980px){
-  #ff nav.index .cap--sep:not(.amc *){display:none}
+  #ff nav.index a.special:not(.amc *){margin-bottom:0}
   #ff nav.index a.special .no svg:not(.amc *){width:14px;height:14px}
 }

@@ -569,7 +569,7 @@ small { font-size: .85em; }
 @media (min-width: 1240px) {
   .hero .container { width: min(100% - 48px, 1460px); grid-template-columns: minmax(0, 1.05fr) minmax(0, .8fr) 212px; gap: 40px; }
   .hero__team { display: grid; grid-template-columns: 1fr 1fr; gap: 18px 16px; align-self: center; }
-  .hero-person:nth-child(even) { transform: translateY(46px); }
+  .hero-person:nth-of-type(even) { transform: translateY(46px); }
 }
 .hero-person { display: flex; flex-direction: column; align-items: center; gap: 8px; text-decoration: none; color: rgba(255, 255, 255, .82); }
 .hero-person img {
@@ -587,6 +587,7 @@ small { font-size: .85em; }
   .hero-person span { font-size: .72rem; }
 }
 .hero-person span { white-space: nowrap; }
+.hero__team-title { grid-column: 1 / -1; flex-basis: 100%; margin: 0 0 4px; font-family: var(--sans); font-size: .78rem; font-weight: 800; letter-spacing: .14em; text-transform: uppercase; text-align: center; color: var(--gold-300); }
 @media (min-width: 1240px) { .hero .container { grid-template-columns: minmax(0, 1.05fr) minmax(0, .8fr) 236px; } }
 /* шапка: пункти меню не переносяться на середніх екранах */
 .nav__link, .nav .btn { white-space: nowrap; }

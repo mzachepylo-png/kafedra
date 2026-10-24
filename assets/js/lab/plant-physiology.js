@@ -288,12 +288,12 @@ const App = {
       L.sec = h("section", { class: "lab", id: "lab" + L.n, "aria-labelledby": "lab" + L.n + "-h" });
       main.append(L.sec);
     }
-    // окрема модель «Вплив фітогормонів» (розмітка — у HTML сторінки), виділена наприкінці списку
+    // модель «Вплив фітогормонів» (розмітка — у HTML сторінки), виділена на початку списку
     const hz = this.hz = $("#hormones");
     if (hz) {
-      hz.a = h("a", { href: "#hormones", class: "special" }, h("span", { class: "no" }), h("span", { class: "t" }, "Вплив фітогормонів"), h("span", { class: "m" }, "окрема модель · ауксин і цитокінін"));
+      hz.a = h("a", { href: "#hormones", class: "special" }, h("span", { class: "no" }), h("span", { class: "t" }, "Вплив фітогормонів"), h("span", { class: "m" }, "ауксин · цитокінін · калус"));
       hz.a.firstChild.innerHTML = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 22V12"/><path d="M12 12C12 7 9 4 4 4c0 5 3 8 8 8Z"/><path d="M12 15c0-4 3-7 8-7 0 4-3 7-8 7Z"/></svg>';
-      nav.append(h("div", { class: "cap cap--sep" }, "Окрема модель"), hz.a);
+      nav.prepend(hz.a);
     }
     const route = () => {
       let hs = location.hash.replace("#", "");
