@@ -17,10 +17,12 @@ lab/index.html                     — Онлайн лабораторія (ха
 lab/biochemistry/index.html        — розділ «Біохімія рослин» (список робіт)
 lab/biochemistry/enzyme-kinetics/  — ЛР 1. Кінетика ферментативних реакцій
 lab/biochemistry/temperature-ph/   — ЛР 2. Вплив температури і pH на активність ферментів
-lab/plant-physiology/hormones/    — модель «Вплив фітогормонів» (ауксини й цитокініни, окрема від ЛР)
 lab/plant-physiology/             — Фізіологія рослин: 12 лабораторних робіт (теорія → модель зі «Старт/Стоп/Скинути» → контрольні питання)
+                                     і виділена наприкінці списку окрема модель «Вплив фітогормонів» (#hormones)
+lab/plant-physiology/hormones/    — переадресація на ../#hormones
 konspekt/index.html                — Конспект: вибір напряму
-konspekt/pathogens/                — Збудники хвороб рослин: мікрофото збудника + фото ураженої рослини
+konspekt/pathogens/                — Збудники хвороб рослин: мікрофото збудника + фото ураженої рослини,
+                                     прояви, розвиток хвороби, шкодочинність
 microscope/, modeling/             — переадресації зі старих адрес
 
 assets/css/style.css               — дизайн-система (кольори, типографіка, компоненти)
@@ -28,12 +30,13 @@ assets/css/lab.css                 — стилі лабораторії й ко
 assets/css/plant-physiology.css    — стилі моделей «Фізіологія рослин» (обмежені контейнером #ff)
 assets/js/main.js                  — меню, вкладки, підсвічування розділів, анімація появи
 assets/js/filter.js                — фільтр карток «Збудники хвороб рослин» за типом збудника
+assets/js/lightbox.js              — перегляд фото в повному розмірі (посилання з data-lightbox)
 assets/js/lab/plot.js              — графіки на Canvas (HiDPI, підказки, легенда)
 assets/js/lab/ui.js                — повзунки, перемикачі, CSV-експорт, генератор варіантів
 assets/js/lab/fit.js               — МНК, нелінійна регресія (Левенберг–Марквардт), Рунге–Кутта 4
 assets/js/lab/<робота>.js          — модель конкретної лабораторної роботи
 assets/js/lab/plant-physiology.js  — застосунок «Фізіологія рослин» (12 моделей)
-assets/js/lab/hormones.js, assets/css/hormones.css — модель «Вплив фітогормонів»
+assets/js/lab/hormones.js, assets/css/hormones.css — модель «Вплив фітогормонів» (стилі обмежені .amc)
 assets/img/micro/, assets/img/plant/  — мікрофото збудників і фото уражених рослин (WebP)
 assets/img/staff/                  — фото викладачів кафедри (WebP, 320×320)
 assets/img/nubip-logo.webp         — повний герб НУБіП (головна сторінка)

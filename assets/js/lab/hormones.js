@@ -458,7 +458,7 @@ function texts(){
   $('amc-uC').textContent='≈ '+conc(st.C/MW_BAP*1000)+' мкМ · M = 225,3 г/моль';
   $('amc-vR').textContent=ratioStr(st.A,st.C);
   $('amc-vD').textContent=num(st.day,0)+' діб';$('amc-vDay').textContent='доба '+num(st.day,0)+' з 42'}
-function render(){texts();readouts();drawHeat();drawTS();kick()}
+function render(){texts();if(!$('amc').getClientRects().length)return;readouts();drawHeat();drawTS();kick()}
 
 sA.value=Math.log10(st.A);sC.value=Math.log10(st.C);sD.value=st.day;
 simulate();buildHeat();buildThimann();render();drawHill();

@@ -205,3 +205,10 @@
 .amc .toc--inline .toc__lab{background:var(--ink);color:#fff;border-color:var(--ink)}
 .amc .topic{scroll-margin-top:calc(var(--header-h,68px) + 16px)}
 .amc .part-head{scroll-margin-top:calc(var(--header-h,68px) + 16px)}
+
+/* нейтралізація однойменних класів сайту (.card, .stats, .stat зі style.css) */
+.amc :where(.card){display:block;gap:0;box-shadow:none;position:static}
+.amc :where(.card) p{color:inherit;font-size:inherit}
+.amc :where(.stats){position:static;margin-top:0;color:inherit}
+.amc :where(.stat){text-align:left;border-left:0;border-top:0}
+.amc .stats .stat:last-child{grid-column:auto}

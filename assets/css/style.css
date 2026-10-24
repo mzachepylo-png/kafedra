@@ -595,3 +595,25 @@ small { font-size: .85em; }
   .nav__link { padding: 8px 9px; }
   .nav__lab { margin-left: 4px; }
 }
+
+/* ---------- Розширений опис хвороб ---------- */
+.micro__h { margin: 4px 0 -4px; font-family: var(--sans); font-size: .74rem; font-weight: 800; letter-spacing: .08em; text-transform: uppercase; color: var(--green-700); }
+.micro__list { margin: 0; padding-left: 1.1em; display: grid; gap: 4px; font-size: .93rem; color: var(--ink-soft); }
+.micro__list li::marker { color: var(--gold-600); }
+.micro__fig a { cursor: zoom-in; }
+
+/* ---------- Перегляд фото (lightbox) ---------- */
+.lightbox { border: 0; padding: 0; margin: 0; width: 100vw; height: 100vh; max-width: none; max-height: none; background: transparent; overflow: hidden; }
+.lightbox::backdrop { background: rgba(6, 18, 10, .9); }
+.lightbox[open] { display: grid; place-items: center; }
+.lightbox__fig { margin: 0; width: 100%; height: 100%; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 12px; padding: 16px; }
+.lightbox__fig img { display: block; max-width: 94vw; max-height: 80vh; height: auto; border-radius: 10px; background: #0E1A12; box-shadow: 0 20px 60px rgba(0, 0, 0, .5); }
+.lightbox__cap { max-width: min(94vw, 900px); color: #DCEBDF; font-size: .9rem; line-height: 1.5; text-align: center; }
+.lightbox__btn { position: fixed; display: grid; place-items: center; width: 46px; height: 46px; border: 1px solid rgba(255, 255, 255, .25); border-radius: 50%; background: rgba(8, 33, 15, .7); color: #fff; cursor: pointer; transition: background .2s; }
+.lightbox__btn:hover { background: var(--green-800); }
+.lightbox__btn svg { width: 22px; height: 22px; }
+.lightbox__close { top: 16px; right: 16px; }
+.lightbox__prev { left: 16px; top: 50%; transform: translateY(-50%); }
+.lightbox__next { right: 16px; top: 50%; transform: translateY(-50%); }
+@media (max-width: 640px) { .lightbox__prev, .lightbox__next { top: auto; bottom: 16px; transform: none; } }
+html:has(.lightbox[open]) { overflow: hidden; }

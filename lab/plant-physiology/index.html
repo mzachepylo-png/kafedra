@@ -4,7 +4,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Фізіологія рослин — Онлайн лабораторія кафедри ФБРтаБ, НУБіП</title>
-  <meta name="description" content="Інтерактивні математичні моделі до 12 лабораторних робіт з дисципліни «Фізіологія рослин з основами біохімії»: осмос і плазмоліз, проникність мембран, продихи, пігменти, хроматографія, ферменти, ріст, жаростійкість.">
+  <meta name="description" content="Інтерактивні математичні моделі до 12 лабораторних робіт з дисципліни «Фізіологія рослин з основами біохімії»: осмос і плазмоліз, проникність мембран, продихи, пігменти, хроматографія, ферменти, ріст, жаростійкість; окрема модель впливу фітогормонів (ауксин і цитокінін).">
   <meta name="theme-color" content="#08210F">
   <link rel="icon" href="../../assets/img/nubip-shield.png" type="image/png">
   <link rel="stylesheet" href="../../assets/css/style.css">
@@ -13,6 +13,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Alegreya:ital,wght@0,500;0,700;1,500&family=IBM+Plex+Sans:ital,wght@0,400;0,500;0,600;1,400&family=JetBrains+Mono:wght@400;600&display=swap">
   <link rel="stylesheet" href="../../assets/css/plant-physiology.css">
+  <link rel="stylesheet" href="../../assets/css/hormones.css">
 </head>
 <body>
   <a class="skip-link" href="#main">Перейти до змісту</a>
@@ -64,20 +65,306 @@
         <nav class="breadcrumbs" aria-label="Навігаційний ланцюжок"><a href="../../">Головна</a><span aria-hidden="true">/</span><a href="../../lab/">Онлайн лабораторія</a><span aria-hidden="true">/</span><span>Фізіологія рослин</span></nav>
         <span class="kicker">Розділ лабораторії</span>
         <h1>Фізіологія рослин</h1>
-        <p>Інтерактивні математичні моделі до 12 лабораторних робіт з дисципліни «Фізіологія рослин з основами біохімії». Оберіть роботу в списку ліворуч: коротка теорія, інтерактивна модель і контрольні питання.</p>
-        <div class="hero__actions" style="margin-top:22px">
-          <a class="btn btn--gold" href="hormones/">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 22V12"/><path d="M12 12C12 7 9 4 4 4c0 5 3 8 8 8Z"/><path d="M12 15c0-4 3-7 8-7 0 4-3 7-8 7Z"/></svg>
-            Модель «Вплив фітогормонів»
-          </a>
-        </div>
+        <p>Інтерактивні математичні моделі до 12 лабораторних робіт з дисципліни «Фізіологія рослин з основами біохімії». Оберіть роботу в списку ліворуч: теорія, інтерактивна модель і контрольні питання. Наприкінці списку — окрема модель «Вплив фітогормонів».</p>
       </div>
     </section>
 
     <div id="ff">
       <div class="shell">
         <nav class="index" id="index" aria-label="Лабораторні роботи"><div class="cap">Лабораторні роботи</div></nav>
-        <div id="labs"></div>
+        <div id="labs">
+        <section class="lab lab--model" id="hormones" aria-labelledby="hormones-h">
+          <div class="lab-head">
+            <div><div class="eyebrow">Окрема модель · не лабораторна робота</div><h2 id="hormones-h">Вплив фітогормонів: корінь, пагін чи калус</h2></div>
+            <div class="model">правило Скуга–Міллера: ауксин / цитокінін → корінь · калус · пагін</div>
+          </div>
+          <p class="lab-lead">Як співвідношення ауксину й цитокініну в живильному середовищі визначає, що виросте з експланта за шість тижнів. Коротка теорія, потім інтерактивна модель.</p>
+<div class="amc" id="amc">
+<div class="w">
+
+<nav class="toc toc--inline" aria-label="Зміст">
+  <a href="#amc-t1">1 Фітогормони</a><a href="#amc-t2">2 Ауксини</a><a href="#amc-t3">3 Цитокініни</a><a href="#amc-t4">4 Правило Скуга–Міллера</a><a href="#amc-t5">5 Терміни</a><a href="#amc-t6">6 Токсичність ауксину</a><a href="#amc-t7">7 Параметри</a><a href="#amc-lab" class="toc__lab">Модель →</a>
+</nav>
+
+<section class="part-head">
+  <span class="eyebrow">Частина I</span>
+  <h2>Теорія</h2>
+</section>
+
+<article class="topic" id="amc-t1">
+  <div class="topic-head"><span class="num">1</span><h3>Фітогормони</h3></div>
+  <div class="prose">
+    <p><b>Фітогормони</b> — сигнальні речовини, які рослина синтезує сама і які діють у дуже малих концентраціях (10⁻⁹–10⁻⁵ моль/л). Спеціалізованих залоз немає: гормон може утворити майже будь-яка клітина, а ефект залежить від концентрації, тканини й інших гормонів поруч.</p>
+    <p>Класичні групи: <b>ауксини</b>, <b>цитокініни</b>, гібереліни, абсцизова кислота, етилен (пізніше — брасиностероїди, жасмонати, саліцилова кислота, стриголактони). У культурі тканин головні перші дві: саме їхнє <b>співвідношення</b> в середовищі визначає, які органи утворить експлант.</p>
+  </div>
+  <div class="aside">
+    <div class="card">
+      <h4>Перерахунок одиниць</h4>
+      <div class="eq">c<sub>мкМ</sub> = c<sub>мг/л</sub> · 1000 / <i>M</i></div>
+      <dl class="kv">
+        <dt>1 мг/л НОК</dt><dd>≈ 5,37 мкМ (M = 186,2)</dd>
+        <dt>1 мг/л БАП</dt><dd>≈ 4,44 мкМ (M = 225,3)</dd>
+        <dt>1 мг/л ІОК</dt><dd>≈ 5,71 мкМ (M = 175,2)</dd>
+      </dl>
+    </div>
+  </div>
+</article>
+
+<article class="topic" id="amc-t2">
+  <div class="topic-head"><span class="num">2</span><h3><span class="au">Ауксини</span></h3></div>
+  <div class="prose">
+    <p>Перша відкрита група (Ч. і Ф. Дарвіни, 1880; Ф. Вент, 1928). Головний природний ауксин — <b>індоліл-3-оцтова кислота (ІОК)</b>, утворюється з триптофану в меристемах пагонів, молодих листках і насінні. Має <b>полярний транспорт</b> (білки PIN, AUX1/LAX) від верхівки до основи, тому накопичується в базі живця — там і утворюються корені.</p>
+    <ul>
+      <li><b>розтягнення клітин</b> (кислотний ріст клітинної стінки);</li>
+      <li>закладання бічних і <b>придаткових коренів</b> (ризогенез);</li>
+      <li><b>апікальне домінування</b>, тропізми, диференціація провідних тканин;</li>
+      <li>in vitro у високих концентраціях — дедиференціація і <b>калус</b>.</li>
+    </ul>
+  </div>
+  <div class="aside">
+    <div class="card">
+      <h4>Як клітина «чує» ауксин</h4>
+      <div class="mech"><span class="au">ауксин</span><i>+</i><span>TIR1/AFB</span><i>→</i><span>руйнування Aux/IAA</span><i>→</i><span>ARF</span><i>→</i><span>гени</span></div>
+      <p class="small">Ауксин — «молекулярний клей» між рецептором і репресором, який потім руйнується. Мають зруйнуватися кілька репресорів, тому відповідь тканини різка й нелінійна.</p>
+    </div>
+  </div>
+  <div class="tbl" role="region" aria-label="Ауксини, що використовують in vitro" tabindex="0">
+    <table>
+      <thead><tr><th>Речовина</th><th>Тип</th><th>Застосування in vitro</th><th>M, г/моль</th></tr></thead>
+      <tbody>
+        <tr><td>ІОК (IAA)</td><td><span class="tag nat">природний</span></td><td>0,1–3 мг/л; нестійка (світло, автоклав, ферменти)</td><td class="num">175,2</td></tr>
+        <tr><td>ІМК (IBA)</td><td><span class="tag nat">природний</span></td><td>Укорінення мікропагонів і живців, 0,1–2 мг/л</td><td class="num">203,2</td></tr>
+        <tr><td>НОК (NAA)</td><td><span class="tag syn">синтетичний</span></td><td>Укорінення і калус, 0,05–2 мг/л; стійкий. <b>Використано в моделі</b></td><td class="num">186,2</td></tr>
+        <tr><td>2,4-Д</td><td><span class="tag syn">синтетичний</span></td><td>Калус, соматичний ембріогенез, 0,1–5 мг/л; у високих дозах — гербіцид</td><td class="num">221,0</td></tr>
+        <tr><td>Піклорам</td><td><span class="tag syn">синтетичний</span></td><td>Ембріогенні культури злаків і хвойних, 0,1–5 мг/л</td><td class="num">241,5</td></tr>
+      </tbody>
+    </table>
+  </div>
+</article>
+
+<article class="topic" id="amc-t3">
+  <div class="topic-head"><span class="num">3</span><h3><span class="ck">Цитокініни</span></h3></div>
+  <div class="prose">
+    <p>Відкриті як фактор поділу клітин тютюну: <b>кінетин</b> (К. Міллер, Ф. Скуг, 1955), перший природний — <b>зеатин</b> (Д. Летам, 1963). Більшість — <b>похідні аденіну</b> (зеатин, 2iP, БАП, кінетин); окрема група — похідні фенілсечовини (тидіазурон). Синтезуються переважно в кінчиках коренів і йдуть ксилемою в пагін.</p>
+    <ul>
+      <li>разом з ауксином запускають <b>поділ клітин</b>;</li>
+      <li>індукують і підтримують ріст <b>пагонів</b> (каулогенез);</li>
+      <li><b>знімають апікальне домінування</b> — на БАП утворюється «кущ» пагонів;</li>
+      <li>затримують старіння листків, але <b>гальмують укорінення</b>.</li>
+    </ul>
+  </div>
+  <div class="aside">
+    <div class="card">
+      <h4>Як клітина «чує» цитокінін</h4>
+      <div class="mech"><span class="ck">цитокінін</span><i>+</i><span>AHK2/3/4</span><i>→</i><span>AHP</span><i>→</i><span>ARR типу B</span><i>→</i><span>гени</span></div>
+      <p class="small">Двокомпонентна система, як у бактерій: фосфатна естафета від мембрани до ядра. ARR типу A створюють негативний зворотний зв'язок.</p>
+    </div>
+  </div>
+  <div class="tbl" role="region" aria-label="Цитокініни, що використовують in vitro" tabindex="0">
+    <table>
+      <thead><tr><th>Речовина</th><th>Тип</th><th>Застосування in vitro</th><th>M, г/моль</th></tr></thead>
+      <tbody>
+        <tr><td>транс-Зеатин</td><td><span class="tag nat">природний</span></td><td>0,1–5 мг/л; дуже активний, дорогий</td><td class="num">219,2</td></tr>
+        <tr><td>2iP</td><td><span class="tag nat">природний</span></td><td>1–10 мг/л; рододендрони, лохина, орхідеї</td><td class="num">203,2</td></tr>
+        <tr><td>БАП (6-БА)</td><td><span class="tag syn">синтетичний</span></td><td>Мультиплікація пагонів, 0,5–5 мг/л; дешевий, стабільний. <b>Використано в моделі</b></td><td class="num">225,3</td></tr>
+        <tr><td>Кінетин</td><td><span class="tag syn">синтетичний</span></td><td>0,1–5 мг/л, калусні культури</td><td class="num">215,2</td></tr>
+        <tr><td>Тидіазурон (TDZ)</td><td><span class="tag syn">синтетичний</span></td><td>0,001–1 мг/л; регенерація деревних і бобових</td><td class="num">220,3</td></tr>
+      </tbody>
+    </table>
+  </div>
+</article>
+
+<article class="topic" id="amc-t4">
+  <div class="topic-head"><span class="num">4</span><h3>Правило Скуга–Міллера</h3></div>
+  <div class="prose">
+    <p>Ф. Скуг і К. Міллер (1957) показали на калусі тютюну: тип органогенезу визначає <b>не кількість кожного гормону, а їхнє співвідношення</b>.</p>
+    <ul>
+      <li><b>високе</b> ауксин : цитокінін (≈ 10 : 1 і вище) → <b>корені</b>;</li>
+      <li><b>низьке</b> (≈ 1 : 10 і нижче) → <b>пагони</b>;</li>
+      <li>проміжне за високих концентрацій обох → <b>калус</b>;</li>
+      <li>обох мало → експлант майже не реагує.</li>
+    </ul>
+    <p>Гормони гальмують сигнальні шляхи одне одного, тому невеликий зсув балансу перемикає програму розвитку. На практиці: мультиплікація на БАП, укорінення — на ІМК чи НОК без цитокініну.</p>
+  </div>
+  <div class="aside">
+    <div class="card axis" aria-label="Схема: співвідношення гормонів і тип органогенезу">
+      <span class="lbl">Співвідношення ауксин : цитокінін</span>
+      <div class="axis-bar"></div>
+      <div class="axis-zones">
+        <div><b style="color:var(--shoot)">Пагони</b><span class="muted">≈ 1 : 10 і нижче</span></div>
+        <div><b style="color:var(--callus-ink)">Калус</b><span class="muted">обидва високі</span></div>
+        <div><b style="color:var(--root)">Корені</b><span class="muted">≈ 10 : 1 і вище</span></div>
+      </div>
+      <div class="axis-lbl"><span>← більше цитокініну</span><span>більше ауксину →</span></div>
+    </div>
+    <div class="callout">На <b>карті морфогенезу</b> в моделі межі зон ідуть уздовж діагоналей — ліній сталого співвідношення.</div>
+  </div>
+</article>
+
+<article class="topic full" id="amc-t5">
+  <div class="topic-head"><span class="num">5</span><h3>Основні терміни</h3></div>
+  <dl class="gloss">
+    <div><dt>In vitro</dt><dd>вирощування клітин і тканин поза організмом у стерильних посудинах.</dd></div>
+    <div><dt>Експлант</dt><dd>фрагмент рослини, введений у культуру (у моделі — сегмент стебла).</dd></div>
+    <div><dt>Живильне середовище</dt><dd>солі, вітаміни, сахароза 2–3 %, фітогормони, агар 0,6–0,8 % (найчастіше МС, 1962).</dd></div>
+    <div><dt>Тотипотентність</dt><dd>здатність соматичної клітини дати цілу рослину.</dd></div>
+    <div><dt>Дедиференціація</dt><dd>втрата клітиною спеціалізації й повернення до поділу.</dd></div>
+    <div><dt>Калус</dt><dd>неорганізована маса клітин на зрізі експланта; потребує ауксину й цитокініну.</dd></div>
+    <div><dt>Органогенез</dt><dd>утворення органів: прямий — з експланта, непрямий — через калус.</dd></div>
+    <div><dt>Ризогенез / каулогенез</dt><dd>утворення коренів (ауксин) / пагонів (цитокінін).</dd></div>
+    <div><dt>Мікроклональне розмноження</dt><dd>введення в культуру → мультиплікація → укорінення → адаптація ex vitro.</dd></div>
+    <div><dt>Апікальне домінування</dt><dd>гальмування бічних бруньок верхівковою через ауксин; цитокінін його знімає.</dd></div>
+    <div><dt>Гіпергідричність</dt><dd>склоподібні, ламкі пагони від надлишку цитокініну (у моделі — БАП &gt; ≈ 3 мг/л).</dd></div>
+    <div><dt>Пасаж</dt><dd>перенесення на свіже середовище через 3–6 тижнів; модель охоплює 42 доби.</dd></div>
+  </dl>
+</article>
+
+<article class="topic" id="amc-t6">
+  <div class="topic-head"><span class="num">6</span><h3>Чому ауксин буває токсичним</h3></div>
+  <div class="prose">
+    <p>Ауксин потрібен, щоб закласти корінь, але в надлишку гальмує його ріст, а у великих дозах убиває тканини (2,4-Д — гербіцид).</p>
+    <ul>
+      <li><b>Різна чутливість органів:</b> корені реагують на концентрації в тисячі разів нижчі, ніж стебла.</li>
+      <li><b>Етилен:</b> високий ауксин вмикає АЦК-синтазу; етилен робить корені короткими й товстими.</li>
+      <li><b>Калус замість коренів:</b> хаотичні поділи замість організованої меристеми.</li>
+      <li><b>НОК і 2,4-Д</b> майже не руйнуються ферментами і накопичуються; зростає оксидативний стрес.</li>
+    </ul>
+    <p>У моделі це враховує множник токсичності з порогом <i>K</i><sub>T</sub>: біля нього індукція коренів падає, а корені стають коротшими й товщими.</p>
+  </div>
+  <div class="aside">
+    <figure class="card">
+      <svg class="fig-svg" id="amc-thimann" viewBox="0 0 520 320" role="img" aria-label="Криві чутливості кореня, бруньки і стебла до ауксину"></svg>
+      <figcaption>Схема за К. Тиманном (1937): відповідь кореня, бруньки і стебла на ауксин. Вище нуля — стимуляція, нижче — гальмування; затінено діапазон 0,01–10 мг/л НОК.</figcaption>
+    </figure>
+  </div>
+</article>
+
+<article class="topic full" id="amc-t7">
+  <div class="topic-head"><span class="num">7</span><h3>Параметри моделі</h3></div>
+  <p class="muted small">Значення якісні: підібрані так, щоб відтворити класичні результати. Параметри з ★ можна змінювати в моделі («Параметри моделі»).</p>
+  <div class="tbl ptable" role="region" aria-label="Таблиця параметрів моделі" tabindex="0">
+    <table>
+      <thead><tr><th>Символ</th><th>Назва</th><th>Значення</th><th>Зміст</th></tr></thead>
+      <tbody>
+        <tr><td class="sym au">A</td><td>Концентрація ауксину (НОК)</td><td class="num">0,01–10 мг/л</td><td>Керована змінна; логарифмічна шкала</td></tr>
+        <tr><td class="sym ck">C</td><td>Концентрація цитокініну (БАП)</td><td class="num">0,01–10 мг/л</td><td>Керована змінна</td></tr>
+        <tr><td class="sym">R, S, X</td><td>Біомаса коренів, пагонів, калусу</td><td class="num">0,01 K</td><td>Початковий запас компетентних клітин експланта</td></tr>
+        <tr><td class="sym">K</td><td>Ємність середовища</td><td class="num">1 (≈ 1,5 г)</td><td>Ресурси однієї посудини; спільні для трьох тканин</td></tr>
+        <tr><td class="sym">μ<sub>R</sub>, μ<sub>S</sub>, μ<sub>X</sub> ★</td><td>Макс. швидкості росту</td><td class="num">0,35 · 0,30 · 0,22 доба⁻¹</td><td>Подвоєння ≈ 2 · 2,3 · 3,2 доби; калус росте лише поділом</td></tr>
+        <tr><td class="sym">n ★</td><td>Коефіцієнт Гілла</td><td class="num">2</td><td>Крутизна відповіді: 10 → 90 % при зміні концентрації у 9 разів</td></tr>
+        <tr><td class="sym">K<sub>A</sub><sup>R</sup> ★</td><td>Поріг ауксину для коренів</td><td class="num">0,3 мг/л</td><td>Ризогенез дуже чутливий до ауксину</td></tr>
+        <tr><td class="sym">K<sub>C</sub><sup>R</sup> ★</td><td>Гальмування коренів цитокініном</td><td class="num">0,15 мг/л</td><td>Навіть сліди БАП заважають укоріненню</td></tr>
+        <tr><td class="sym">K<sub>T</sub> ★</td><td>Поріг токсичності ауксину</td><td class="num">4 мг/л</td><td>Вище ≈ 6 мг/л корені майже не ростуть</td></tr>
+        <tr><td class="sym">K<sub>C</sub><sup>S</sup>, K<sub>A</sub><sup>S</sup> ★</td><td>Пагони: поріг БАП / гальмування ауксином</td><td class="num">0,3 · 0,3 мг/л</td><td>Тому в середовищах мультиплікації ауксину мало</td></tr>
+        <tr><td class="sym">K<sub>A</sub><sup>X</sup>, K<sub>C</sub><sup>X</sup> ★</td><td>Калус: пороги ауксину / цитокініну</td><td class="num">1 · 0,3 мг/л</td><td>Калус потребує обох гормонів; ауксину — більше, ніж корені</td></tr>
+        <tr><td class="sym">t</td><td>Час культивування</td><td class="num">0–42 доби</td><td>Один пасаж; метод Ейлера, крок 0,1 доби</td></tr>
+      </tbody>
+    </table>
+  </div>
+</article>
+
+<section class="part-head" id="amc-lab">
+  <span class="eyebrow">Частина II</span>
+  <h2>Інтерактивна модель</h2>
+  <p class="muted" style="max-width:68ch">Змінюйте концентрації гормонів повзунками, кнопками готових середовищ або клацанням по карті морфогенезу. Натисніть «Пуск», щоб переглянути ріст культури з першої доби.</p>
+</section>
+
+<section class="lab">
+  <div class="card ctrl" aria-label="Склад середовища">
+    <h3>Склад середовища</h3>
+    <div class="slider">
+      <div class="hd"><label for="amc-sA"><span class="dot" style="background:var(--auxin)"></span>Ауксин (НОК)</label><span class="val" id="amc-vA"></span></div>
+      <input id="amc-sA" type="range" min="-2" max="1" step="0.01">
+      <div class="sub" id="amc-uA"></div>
+    </div>
+    <div class="slider">
+      <div class="hd"><label for="amc-sC"><span class="dot" style="background:var(--cyto)"></span>Цитокінін (БАП)</label><span class="val" id="amc-vC"></span></div>
+      <input id="amc-sC" type="range" min="-2" max="1" step="0.01">
+      <div class="sub" id="amc-uC"></div>
+    </div>
+    <div class="ratio"><span class="lbl">Ауксин : цитокінін</span><span class="big" id="amc-vR"></span></div>
+    <div class="slider">
+      <span class="lbl">Типові середовища</span>
+      <div class="presets">
+        <button type="button" data-a="1" data-c="0.01">Укорінення</button>
+        <button type="button" data-a="0.05" data-c="2">Мультиплікація</button>
+        <button type="button" data-a="3" data-c="1">Калус</button>
+                <button type="button" data-a="0.05" data-c="7">Надлишок БАП</button>
+        <button type="button" data-a="5" data-c="0.01">Надлишок НОК</button>
+        <button type="button" data-a="0.01" data-c="0.01">Без гормонів</button>
+      </div>
+    </div>
+    <div class="slider">
+      <div class="hd"><label for="amc-sD">Тривалість культивування</label><span class="val" id="amc-vD"></span></div>
+      <div class="dayrow"><input id="amc-sD" type="range" min="0" max="42" step="0.5"><button type="button" id="amc-play">▶ Пуск</button></div>
+    </div>
+    <details>
+      <summary>Параметри моделі</summary>
+      <p class="sub" style="margin-top:8px">Зміст кожного параметра пояснено в розділі 7.</p>
+      <div class="params" id="amc-params"></div>
+      <button type="button" id="amc-reset" style="margin-top:12px">Скинути параметри</button>
+    </details>
+  </div>
+
+  <div class="card bench">
+    <div class="vessel">
+      <div class="vcap"><h3>Культуральна посудина</h3><span class="sub" id="amc-vDay"></span></div>
+      <canvas id="amc-vessel" aria-label="Експлант стебла на агаризованому середовищі в скляній посудині"></canvas>
+    </div>
+    <div class="read">
+      <div class="verdict" id="amc-verdict" aria-live="polite"></div>
+      <div class="stats">
+        <div class="stat"><span class="lbl">Корені, шт.</span><span class="n" id="amc-oRn"></span></div>
+        <div class="stat"><span class="lbl">Найдовший корінь</span><span class="n" id="amc-oRl"></span></div>
+        <div class="stat"><span class="lbl">Пагони, шт.</span><span class="n" id="amc-oSn"></span></div>
+        <div class="stat"><span class="lbl">Висота пагона</span><span class="n" id="amc-oSh"></span></div>
+        <div class="stat"><span class="lbl">Калус, ⌀</span><span class="n" id="amc-oXd"></span></div>
+        <div class="stat"><span class="lbl">Сира маса, мг</span><span class="n" id="amc-oM"></span></div>
+      </div>
+      <div class="bars">
+        <span class="lbl">Індукційні функції f(A, C)</span>
+        <div class="bar"><span>Ризогенез</span><div class="track"><div class="fill" id="amc-bR" style="background:var(--root)"></div></div><span class="v" id="amc-tR"></span></div>
+        <div class="bar"><span>Каулогенез</span><div class="track"><div class="fill" id="amc-bS" style="background:var(--shoot)"></div></div><span class="v" id="amc-tS"></span></div>
+        <div class="bar"><span>Калусогенез</span><div class="track"><div class="fill" id="amc-bX" style="background:var(--callus)"></div></div><span class="v" id="amc-tX"></span></div>
+      </div>
+      <p class="sub" id="amc-notes"></p>
+    </div>
+  </div>
+</section>
+
+<section class="row2">
+  <div class="card chart">
+    <h3>Карта морфогенезу</h3>
+    <p class="small muted">Колір показує домінантну програму для кожної пари концентрацій, насиченість — її силу. Пунктири — лінії сталого співвідношення. Клацніть або проведіть по карті, щоб змінити склад середовища; з клавіатури — стрілками.</p>
+    <canvas id="amc-heat" tabindex="0" aria-label="Карта морфогенезу: ауксин по горизонталі, цитокінін по вертикалі"></canvas>
+    <div class="legend"><span style="--c:var(--root)">корені</span><span style="--c:var(--shoot)">пагони</span><span style="--c:var(--callus)">калус</span></div>
+  </div>
+  <div class="card chart">
+    <h3>Динаміка біомаси</h3>
+    <p class="small muted">Частка ємності середовища, яку займає кожна тканина. Ресурси спільні, тож домінантна програма витісняє інші. Вертикальна лінія — поточна доба.</p>
+    <canvas id="amc-ts" aria-label="Біомаса коренів, пагонів і калусу за добами"></canvas>
+    <div class="legend"><span style="--c:var(--root)">корені R</span><span style="--c:var(--shoot)">пагони S</span><span style="--c:var(--callus)">калус X</span></div>
+  </div>
+</section>
+
+<section class="topic full" id="amc-refs">
+  <div class="topic-head"><span class="num"></span><h3>Література</h3></div>
+  <ol class="refs">
+    <li>Skoog F., Miller C. O. Chemical regulation of growth and organ formation in plant tissues cultured in vitro // Symposia of the Society for Experimental Biology. 1957. Vol. 11. P. 118–130.</li>
+    <li>Miller C. O., Skoog F., Von Saltza M. H., Strong F. M. Kinetin, a cell division factor from deoxyribonucleic acid // Journal of the American Chemical Society. 1955. Vol. 77. P. 1392.</li>
+    <li>Murashige T., Skoog F. A revised medium for rapid growth and bio assays with tobacco tissue cultures // Physiologia Plantarum. 1962. Vol. 15. P. 473–497.</li>
+    <li>Thimann K. V. On the nature of inhibitions caused by auxin // American Journal of Botany. 1937. Vol. 24. P. 407–412.</li>
+    <li>Hill A. V. The possible effects of the aggregation of the molecules of haemoglobin on its dissociation curves // Journal of Physiology. 1910. Vol. 40. P. iv–vii.</li>
+    <li>Müller B., Sheen J. Cytokinin and auxin interaction in root stem-cell specification during early embryogenesis // Nature. 2008. Vol. 453. P. 1094–1097.</li>
+    <li>Taiz L., Zeiger E., Møller I. M., Murphy A. Plant Physiology and Development. 6th ed. Sunderland: Sinauer Associates, 2015.</li>
+    <li>Кушнір Г. П., Сарнацька В. В. Мікроклональне розмноження рослин: теорія і практика. Київ: Наукова думка, 2005.</li>
+  </ol>
+</section>
+
+</div>
+</div>
+        </section>
+        </div>
       </div>
     </div>
     <noscript><p class="container">Для роботи моделей потрібен увімкнений JavaScript.</p></noscript>
@@ -124,5 +411,6 @@
 
   <script defer src="../../assets/js/main.js"></script>
   <script defer src="../../assets/js/lab/plant-physiology.js"></script>
+  <script defer src="../../assets/js/lab/hormones.js"></script>
 </body>
 </html>
