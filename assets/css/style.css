@@ -656,3 +656,17 @@ html:has(.lightbox[open]) { overflow: hidden; }
 .lab-lock__icon { display: grid; place-items: center; width: 64px; height: 64px; margin-bottom: 18px; border-radius: 18px; background: rgba(221, 187, 74, .14); border: 1px solid rgba(221, 187, 74, .45); color: var(--gold-300); }
 .lab-lock__icon svg { width: 32px; height: 32px; }
 .lab-lock__actions { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 24px; }
+
+/* ---------- Instagram поруч із Facebook ---------- */
+.footer__social { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 16px; }
+.footer__social .footer__fb { margin-top: 0; }
+.footer__ig { display: flex; width: max-content; max-width: 100%; align-items: center; gap: 10px; padding: 9px 18px 9px 10px; border-radius: 999px; background: linear-gradient(45deg, #F58529, #DD2A7B 45%, #8134AF 75%, #515BD4); font-weight: 700; font-size: .95rem; text-decoration: none; box-shadow: 0 8px 20px -10px rgba(221, 42, 123, .8); transition: filter .2s, transform .2s; }
+.site-footer a.footer__ig, .site-footer a.footer__ig:hover { color: #fff; }
+.footer__ig:hover { filter: brightness(1.08); transform: translateY(-1px); }
+.footer__ig svg { width: 26px; height: 26px; padding: 4px; border-radius: 50%; background: #fff; color: #DD2A7B; flex: none; }
+.icon--ig { background: linear-gradient(145deg, #FDEAF3, #fff); color: #DD2A7B; border-color: #F6C9DE; }
+@media (min-width: 861px) {
+  .contacts { grid-template-columns: repeat(6, 1fr); }
+  .contacts > * { grid-column: span 2; }
+  .contacts > :nth-child(4), .contacts > :nth-child(5) { grid-column: span 3; }
+}
