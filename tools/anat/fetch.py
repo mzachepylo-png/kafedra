@@ -5,12 +5,13 @@ OUT = 'tmp/anat'; os.makedirs(OUT + '/img', exist_ok=True); os.makedirs(OUT + '/
 L = json.load(open('tools/anat/list.json'))
 H = {'User-Agent': 'kafedra-fbrtab-site/1.0 (educational; github.com/mzachepylo-png/kafedra)'}
 API = 'https://commons.wikimedia.org/w/api.php?'
-def get(u, tries=4):
+def get(u, tries=6):
     for i in range(tries):
         try:
             with urllib.request.urlopen(urllib.request.Request(u, headers=H), timeout=60) as r: return r.read()
         except Exception as e:
-            print('  retry', i, u[:100], e); time.sleep(3 + 4 * i)
+            wait = 30 * (i + 1) if '429' in str(e) else 3 + 4 * i
+            print('  retry', i, u[:100], e, 'wait', wait); time.sleep(wait)
     raise RuntimeError(u)
 def api(**p):
     p.update(format='json', formatversion=2)
@@ -46,12 +47,13 @@ for k in range(0, len(fl), 20):
         time.sleep(0.5)
 cands = json.load(open(f'{OUT}/data.json'))['cands'] if os.path.exists(f'{OUT}/data.json') else {}
 for key, qs in L['searches'].items():
+    if key in cands: continue
     seen = []
     for q in qs:
         j = api(action='query', list='search', srsearch=q + ' filetype:bitmap', srnamespace=6, srlimit=6)
         for r in j['query']['search']:
             if r['title'] not in seen: seen.append(r['title'])
-        time.sleep(0.5)
+        time.sleep(2)
     seen = seen[:10]
     inf = info(seen, 1400) if seen else {}
     cands[key] = []
@@ -62,6 +64,7 @@ for key, qs in L['searches'].items():
         try:
             m['size'] = save(m['thumb'], f'{OUT}/cand/{cid}.webp', 1400); cands[key].append(dict(m, title=t, id=cid))
         except Exception as e: print('ERR', cid, e)
-        time.sleep(0.5)
+        time.sleep(1.5)
+    json.dump({'files': data, 'cands': cands}, open(f'{OUT}/data.json', 'w'), ensure_ascii=False, indent=1)
 json.dump({'files': data, 'cands': cands}, open(f'{OUT}/data.json', 'w'), ensure_ascii=False, indent=1)
 print('done', len(data), sum(len(v) for v in cands.values()))
