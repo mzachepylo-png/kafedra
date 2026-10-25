@@ -1096,13 +1096,22 @@ function groupOf(id){return GROUPS.find(g=>g.id===id);}
 function kindOf(id){let k='';for(const g of GROUPS){if(g.kind)k=g.kind;if(g.id===id)return k;}return k;}
 function selectIon(id){
   const ion=IONS.find(i=>i.id===id);if(!ion)return;curIon=ion;curRx=null;
+  btnReset.disabled=false;
   root.querySelectorAll('.qa-ion').forEach(b=>b.classList.toggle('on',b.dataset.id===id));
   const gr=groupOf(ion.g);
   headEl.innerHTML='<div class="big">'+esc(ion.f)+'</div><div class="nm">'+esc(ion.full)+'</div><div class="gr">'+esc(kindOf(ion.g))+' · '+esc(gr.name)+' — '+esc(gr.note)+'</div><span class="sm">Зразок: розчин '+esc(ion.salt)+'</span>';
   rxEl.innerHTML=ion.rx.map((r,i)=>'<button class="qa-rx" data-i="'+i+'"><span class="num">'+(i+1)+'</span><span class="bd"><b>'+esc(r.t)+'</b>'+(r.c?'<small>'+esc(r.c)+'</small>':'')+'</span><span class="go"><svg width="12" height="12" viewBox="0 0 12 12"><path d="M3 1.8v8.4L10 6z" fill="currentColor"/></svg></span></button>').join('');
   eqEl.innerHTML='<div class="qa-hint">Оберіть реакцію праворуч.</div>';stepsEl.innerHTML='';shEl.style.display='';effEl.className='qa-effect';effEl.innerHTML='';progEl.style.width='0';
-  newRun();setRunning(false);sim.paused=false;updPause();caption('Оберіть реакцію праворуч і натисніть ▶');
-  const tok=runTok;bg(async()=>{await prepareFlask(ion,null);});
+  newRun();setRunning(false);sim.paused=false;updPause();caption('Оберіть реакцію праворуч — розчин наллється в колбу після вибору реакції');
+  // розчин не наливаємо одразу: анімація починається лише після вибору реакції праворуч
+  bg(clearFlask);
+}
+/* порожня чиста колба (без наливання розчину) */
+async function clearFlask(){
+  resetTransient();
+  const dirty=S.aq>.5||S.top.h>.5||S.bot.h>.5||parts.length||sedSum()>.5||solids.length||S.ring.a>0;
+  if(dirty)await tween(S,'fade',0,480,'io');
+  freshState();S.fade=1;
 }
 function renderRxPanels(rx){
   eqEl.innerHTML=rx.eq.length?rx.eq.map((e,i)=>'<div class="qa-eq" data-i="'+i+'">'+esc(e)+'</div>').join(''):'<div class="qa-hint">—</div>';
@@ -1143,7 +1152,7 @@ rxEl.addEventListener('click',e=>{const b=e.target.closest('.qa-rx');if(!b||!cur
 $('.qa-search').addEventListener('input',e=>buildIons(e.target.value));
 btnPause.addEventListener('click',()=>{sim.paused=!sim.paused;updPause();});
 btnReplay.addEventListener('click',()=>{if(curIon&&curRx){const i=curIon.rx.indexOf(curRx);S.fresh=null;runReaction(curIon,curRx,i);}});
-btnReset.addEventListener('click',()=>{if(!curIon)return;const id=curIon.id;S.fresh=null;selectIon(id);});
+btnReset.addEventListener('click',()=>{if(!curIon)return;const id=curIon.id;S.fresh=null;selectIon(id);}); // очищує колбу
 root.querySelectorAll('.qa-seg button').forEach(b=>b.addEventListener('click',()=>{sim.speed=+b.dataset.s;root.querySelectorAll('.qa-seg button').forEach(x=>x.classList.toggle('on',x===b));}));
 
 /* ================= main loop ================= */
@@ -1153,6 +1162,6 @@ function frame(now){const dt=Math.min(50,now-last);last=now;
   if(visible)render();requestAnimationFrame(frame);}
 if('IntersectionObserver' in window)new IntersectionObserver(es=>{visible=es[0].isIntersecting;},{threshold:0}).observe(cv);
 if('ResizeObserver' in window)new ResizeObserver(()=>resize()).observe(cv.parentElement);else window.addEventListener('resize',resize);
-resize();buildIons('');selectIon('cu');requestAnimationFrame(frame);
+resize();buildIons('');requestAnimationFrame(frame);
 window.__qa={IONS,runReaction:(id,i)=>{const ion=IONS.find(x=>x.id===id);selectIon(id);return runReaction(ion,ion.rx[i],i);},sim,S,parts};
 })();

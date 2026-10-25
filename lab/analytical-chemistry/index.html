@@ -90,12 +90,12 @@
       <div class="qa-stage">
         <canvas aria-label="Демонстрація реакції в колбі"></canvas>
         <div class="qa-badges"></div>
-        <div class="qa-cap">Оберіть реакцію праворуч і натисніть ▶</div>
+        <div class="qa-cap">Оберіть іон ліворуч, потім реакцію праворуч</div>
       </div>
       <div class="qa-bar">
         <button class="qa-btn" data-a="pause" disabled><svg viewBox="0 0 16 16" fill="currentColor"><rect x="3" y="2.5" width="3.4" height="11" rx="1"/><rect x="9.6" y="2.5" width="3.4" height="11" rx="1"/></svg><span>Пауза</span></button>
         <button class="qa-btn" data-a="replay" disabled><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M2.8 8a5.2 5.2 0 1 0 1.6-3.8"/><path d="M2.5 2.2v3.2h3.2"/></svg><span>Повторити</span></button>
-        <button class="qa-btn" data-a="reset"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M6 2h4M6.6 2v4L3 13.2A1 1 0 0 0 3.9 14.6h8.2a1 1 0 0 0 .9-1.4L9.4 6V2"/></svg><span>Свіжий розчин</span></button>
+        <button class="qa-btn" data-a="reset" disabled><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M6 2h4M6.6 2v4L3 13.2A1 1 0 0 0 3.9 14.6h8.2a1 1 0 0 0 .9-1.4L9.4 6V2"/></svg><span>Очистити колбу</span></button>
         <div class="qa-seg" role="group" aria-label="Швидкість"><button data-s="0.5">0.5×</button><button data-s="1" class="on">1×</button><button data-s="1.5">1.5×</button><button data-s="2">2×</button></div>
         <div class="qa-prog"><i></i></div>
       </div>
@@ -105,9 +105,9 @@
       </div>
     </main>
     <aside class="qa-panel qa-right">
-      <div class="qa-ionhead"></div>
+      <div class="qa-ionhead"><div class="qa-hint">Спершу оберіть іон у списку ліворуч.</div></div>
       <div class="qa-ptitle">Аналітичні реакції</div>
-      <div class="qa-rxlist"></div>
+      <div class="qa-rxlist"><div class="qa-hint">Тут з’являться аналітичні реакції для вибраного іона.</div></div>
     </aside>
   </div>
   <div class="qa-foot">Анімації ілюструють характерні аналітичні ефекти; кольори та швидкості процесів відтворено наближено.</div>
