@@ -30,7 +30,7 @@ def save(url, path, maxw):
     im = Image.open(io.BytesIO(get(url))).convert('RGB')
     if im.width > maxw: im = im.resize((maxw, round(im.height * maxw / im.width)), Image.LANCZOS)
     im.save(path, 'WEBP', quality=82, method=6); return im.size
-data = {}
+data = json.load(open(f'{OUT}/data.json'))['files'] if os.path.exists(f'{OUT}/data.json') else {}
 fl = L['files']
 for k in range(0, len(fl), 20):
     chunk = fl[k:k + 20]
@@ -44,7 +44,7 @@ for k in range(0, len(fl), 20):
             m['size'] = save(m['thumb'], f'{OUT}/img/{f["id"]}.webp', 1400); data[f['id']] = dict(m, title=t); print('ok', f['id'])
         except Exception as e: print('ERR', f['id'], e)
         time.sleep(0.5)
-cands = {}
+cands = json.load(open(f'{OUT}/data.json'))['cands'] if os.path.exists(f'{OUT}/data.json') else {}
 for key, qs in L['searches'].items():
     seen = []
     for q in qs:
