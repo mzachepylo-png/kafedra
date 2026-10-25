@@ -1,0 +1,287 @@
+<!doctype html>
+<html lang="uk" class="no-js">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>ЛР 4. Кількісне визначення білка методом Бредфорд — Онлайн лабораторія, НУБіП</title>
+  <meta name="description" content="Інтерактивна лабораторна робота: визначення вмісту білка в рослинному екстракті з Кумасі синім G-250, калібрувальна крива за бичачим сироватковим альбуміном, лінійна регресія, межі лінійності методу.">
+  <meta name="theme-color" content="#08210F">
+  <link rel="icon" href="../../../assets/img/nubip-shield.png" type="image/png">
+  <link rel="stylesheet" href="../../../assets/css/style.css">
+  <script src="../../../assets/js/desktop-only.js"></script>
+  <link rel="stylesheet" href="../../../assets/css/lab.css">
+  <script>document.documentElement.classList.replace('no-js', 'js')</script>
+</head>
+<body>
+  <a class="skip-link" href="#main">Перейти до змісту</a>
+
+  <header class="site-header">
+    <div class="container">
+      <a class="brand" href="../../../" aria-label="Кафедра фізіології, біохімії рослин та біоенергетики — на головну">
+        <img class="brand__logo" src="../../../assets/img/nubip-shield.webp" alt="" width="31" height="44">
+        <span class="brand__text">
+          <span class="brand__title">Кафедра ФБРтаБ</span>
+          <span class="brand__sub">Фізіологія, біохімія рослин та біоенергетика · НУБіП України</span>
+        </span>
+      </a>
+      <button class="nav-toggle" type="button" aria-controls="site-nav" aria-expanded="false" aria-label="Відкрити меню">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M4 7h16M4 12h16M4 17h16"/></svg>
+      </button>
+      <nav class="nav" id="site-nav" aria-label="Головна навігація">
+        <a class="nav__link" href="../../../">Головна</a>
+        <div class="nav__dd">
+          <a class="nav__link" href="../../../about/">Про кафедру
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m6 9 6 6 6-6"/></svg>
+          </a>
+          <div class="nav__menu">
+            <a href="../../../about/#department">Кафедра сьогодні<small>Місія, історія з 1898 р., наука</small></a>
+            <a href="../../../about/#team">Колектив<small>Викладачі та їхні наукові інтереси</small></a>
+            <a href="../../../about/#achievements">Здобутки<small>Кафедри та викладачів</small></a>
+            <a href="../../../about/#faculty-history">Історія факультету<small>Від 1962 року до сьогодні</small></a>
+            <a href="../../../about/#administration">Адміністрація факультету<small>Деканат і контакти</small></a>
+            <a href="../../../about/#programs">Освітні програми<small>Бакалаврат · Магістратура · PhD</small></a>
+          </div>
+        </div>
+        <a class="nav__link" href="../../../#contacts">Контакти</a>
+        <a class="btn btn--green btn--sm nav__lab" href="../../../konspekt/">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20V3H6.5A2.5 2.5 0 0 0 4 5.5z"/><path d="M4 19.5A2.5 2.5 0 0 0 6.5 22H20v-5"/></svg>
+          Конспект
+        </a>
+        <a class="btn btn--gold btn--sm nav__lab" href="../../../lab/" aria-current="page">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 3h6M10 3v6l-5 9a2 2 0 0 0 1.7 3h10.6a2 2 0 0 0 1.7-3l-5-9V3"/><path d="M7.5 15h9"/></svg>
+          Онлайн лабораторія
+        </a>
+      </nav>
+      <div class="site-tools">
+        <span class="beta-badge" title="Сайт працює в тестовому режимі">Бета<span class="beta-badge__more">-версія</span></span>
+        <div class="report">
+          <button class="report__btn" type="button" aria-expanded="false" aria-controls="report-pop" title="Повідомити про проблему на сайті">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 9v4M12 17h.01"/><path d="M10.3 3.9 1.8 18a2 2 0 0 0 1.7 3h17a2 2 0 0 0 1.7-3L13.7 3.9a2 2 0 0 0-3.4 0Z"/></svg>
+            <span class="report__label">Повідомити про проблему</span>
+          </button>
+          <div class="report__pop" id="report-pop" role="dialog" aria-label="Повідомити про проблему на сайті" hidden>
+            <p>Будь ласка, опишіть проблему, з якою Ви зіткнулися, нам у <a href="https://www.facebook.com/groups/nubipplants?locale=uk_UA" target="_blank" rel="noopener">Facebook</a>.</p>
+            <a class="report__fb" href="https://www.facebook.com/groups/nubipplants?locale=uk_UA" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M14 8.5V6.8c0-.8.5-1 .9-1H17V2.2L14 2.2c-3.3 0-4 2.4-4 4v2.3H7.5V12H10v10h4V12h2.8l.4-3.5H14Z"/></svg>Група кафедри у Facebook</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main id="main">
+    <section class="page-hero page-hero--lab">
+      <div class="bg-molecules" aria-hidden="true" style="position:absolute;inset:0"></div>
+      <div class="container">
+        <nav class="breadcrumbs" aria-label="Навігаційний ланцюжок"><a href="../../../">Головна</a><span aria-hidden="true">/</span><a href="../../../lab/">Онлайн лабораторія</a><span aria-hidden="true">/</span><a href="../">Біохімія рослин</a><span aria-hidden="true">/</span><span>ЛР 4</span></nav>
+        <span class="kicker">Лабораторна робота № 4</span>
+        <h1>Кількісне визначення білка методом Бредфорд</h1>
+        <p>Калібрувальна крива, метод найменших квадратів і перерахунок на масу сирої речовини: як отримати мг білка на грам листка.</p>
+        <div class="lab-head"><span class="badge">Біохімія</span><span class="badge">Білки</span><span class="badge">Фотометрія</span><span class="badge">≈ 90 хвилин</span></div>
+      </div>
+    </section>
+
+    <div class="section" style="padding-top:48px">
+      <div class="container lab-doc">
+        <nav class="toc" aria-label="Зміст роботи">
+          <h2>Зміст</h2>
+          <ol>
+            <li><a href="#goal">Мета і план</a></li>
+            <li><a href="#theory">Теоретичні відомості</a></li>
+            <li><a href="#model">Інтерактивна модель</a></li>
+            <li><a href="#experiment">Віртуальний експеримент</a></li>
+            <li><a href="#tasks">Завдання для звіту</a></li>
+            <li><a href="#questions">Контрольні питання</a></li>
+            <li><a href="#refs">Література</a></li>
+          </ol>
+        </nav>
+
+        <article>
+          <section class="lab-section" id="goal">
+            <h2><span class="n">01</span>Мета і план</h2>
+            <div class="goal">
+              <div><h3>Мета</h3><p>Опанувати спектрофотометричне визначення білка методом Бредфорд: побудувати калібрувальну криву, знайти концентрацію білка в екстракті та розрахувати його вміст у рослинному матеріалі.</p></div>
+              <div><h3>Ви навчитеся</h3><ul><li>будувати калібрувальну пряму методом найменших квадратів;</li><li>оцінювати межі лінійності методу і правильно розводити проби;</li><li>перераховувати концентрацію в пробі на вміст у тканині (мг/г).</li></ul></div>
+              <div><h3>Знадобиться</h3><p>Калькулятор або Excel, бланк звіту.</p></div>
+            </div>
+          </section>
+
+          <section class="lab-section prose" id="theory">
+            <h2><span class="n">02</span>Теоретичні відомості</h2>
+            <h3>Принцип методу</h3>
+            <p>Барвник <b>Кумасі діамантовий синій G-250</b> у кислому розчині існує переважно в червоно-коричневій катіонній формі з максимумом поглинання ≈ 465 нм. Зв'язуючись із білком — передусім із залишками аргініну, лізину та гістидину й гідрофобними ділянками, — він переходить у стабільну аніонну синю форму з максимумом поглинання <b>595 нм</b>. Інтенсивність синього забарвлення пропорційна кількості білка в пробі. Реакція відбувається за 2–5 хв, а забарвлення стабільне близько години.</p>
+            <p>Метод запропонувала М. Бредфорд у 1976 р. Він швидкий і чутливий (1–20 мкг білка в пробі в мікроваріанті), мало залежить від присутності сахарів і солей, але дещо порушується детергентами та сильно лужними буферами.</p>
+            <h3>Закон Бугера–Ламберта–Бера і калібрування</h3>
+            <p>Оптична густина (поглинання) розчину пропорційна концентрації поглинаючої речовини та товщині шару:</p>
+            <div class="formula">
+              <math display="block"><mi>A</mi><mo>=</mo><mi>lg</mi><mfrac><msub><mi>I</mi><mn>0</mn></msub><mi>I</mi></mfrac><mo>=</mo><mi>ε</mi><mo>·</mo><mi>c</mi><mo>·</mo><mi>l</mi></math>
+              <span class="formula__n">(1)</span>
+            </div>
+            <p>Для комплексу білок–барвник ε залежить від амінокислотного складу білка, тому абсолютне значення ε не використовують. Натомість будують <em class="term">калібрувальну криву</em> за стандартним білком — зазвичай бичачим сироватковим альбуміном (БСА) — і знаходять рівняння прямої методом найменших квадратів:</p>
+            <div class="formula">
+              <math display="block"><mi>A</mi><mo>=</mo><mi>a</mi><mo>+</mo><mi>b</mi><mo>·</mo><mi>c</mi><mo>,</mo><mspace width="1.2em"/><mi>b</mi><mo>=</mo><mfrac><mrow><mo>∑</mo><mo>(</mo><msub><mi>c</mi><mi>i</mi></msub><mo>−</mo><mover><mi>c</mi><mo>‾</mo></mover><mo>)</mo><mo>(</mo><msub><mi>A</mi><mi>i</mi></msub><mo>−</mo><mover><mi>A</mi><mo>‾</mo></mover><mo>)</mo></mrow><mrow><mo>∑</mo><msup><mrow><mo>(</mo><msub><mi>c</mi><mi>i</mi></msub><mo>−</mo><mover><mi>c</mi><mo>‾</mo></mover><mo>)</mo></mrow><mn>2</mn></msup></mrow></mfrac><mo>,</mo><mspace width="1.2em"/><mi>a</mi><mo>=</mo><mover><mi>A</mi><mo>‾</mo></mover><mo>−</mo><mi>b</mi><mover><mi>c</mi><mo>‾</mo></mover></math>
+              <span class="formula__n">(2)</span>
+            </div>
+            <p>Концентрацію білка в досліджуваній пробі знаходять з рівняння прямої: <i>c</i> = (<i>A</i> − <i>a</i>)/<i>b</i>.</p>
+            <h3>Межі лінійності</h3>
+            <p>Кількість барвника в реагенті обмежена, тож за високих концентрацій білка калібрувальна крива вигинається й наближається до насичення. У моделі це описано гіперболою:</p>
+            <div class="formula">
+              <math display="block"><mi>A</mi><mo>(</mo><mi>c</mi><mo>)</mo><mo>=</mo><msub><mi>A</mi><mi>max</mi></msub><mo>·</mo><mfrac><mi>c</mi><mrow><msub><mi>K</mi><mi>s</mi></msub><mo>+</mo><mi>c</mi></mrow></mfrac></math>
+              <span class="formula__n">(3)</span>
+            </div>
+            <p class="where">Для <i>c</i> ≪ <i>K<sub>s</sub></i> крива майже лінійна з нахилом <i>A</i><sub>max</sub>/<i>K<sub>s</sub></i>. Якщо пряму провести через стандарти до надто високих концентрацій, вона «недооцінить» малі проби й «переоцінить» великі. Тому проби розводять так, щоб їхнє поглинання потрапляло в середину лінійної ділянки (у класичному варіанті — 0,1–1,0 мг/мл БСА).</p>
+            <h3>Розрахунок вмісту білка в тканині</h3>
+            <div class="formula">
+              <math display="block"><mi>W</mi><mo>=</mo><mfrac><mrow><mi>c</mi><mo>·</mo><mi>d</mi><mo>·</mo><msub><mi>V</mi><mi>екстр</mi></msub></mrow><mi>m</mi></mfrac></math>
+              <span class="formula__n">(4)</span>
+            </div>
+            <p class="where"><i>W</i> — вміст білка, мг/г сирої маси; <i>c</i> — концентрація білка в розведеній пробі, мг/мл; <i>d</i> — кратність розведення екстракту; <i>V</i><sub>екстр</sub> — об'єм екстракту, мл; <i>m</i> — наважка листків, г.</p>
+            <div class="callout callout--gold">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 8h.01M11 12h1v5h1"/></svg>
+              <p>Розчинні білки листка становлять 10–25 мг/г сирої маси, з них до половини припадає на один фермент — Рубіско, найпоширеніший білок на Землі. Вміст білка зменшується зі старінням листка та за нестачі азоту.</p>
+            </div>
+          </section>
+
+          <section class="lab-section" id="model">
+            <h2><span class="n">03</span>Інтерактивна модель</h2>
+            <p class="prose">Модель показує справжню (нелінійну) залежність поглинання від концентрації білка і пряму, проведену через стандарти. Змінюйте найбільшу концентрацію стандарту й концентрацію проби: подивіться, коли лінійне калібрування починає помилятися.</p>
+            <div class="sim">
+              <div class="sim__controls">
+                <h3>Калібрування</h3>
+                <div id="bf-cal"></div>
+                <h3>Проба</h3>
+                <div id="bf-sample"></div>
+              </div>
+              <div class="sim__main">
+                <div class="plot-card"><h4>Калібрувальна крива (A<sub>595</sub> від концентрації БСА)</h4><div id="bf-plot"></div></div>
+                <div class="readouts">
+                  <div class="readout"><div class="readout__label">A<sub>595</sub> проби</div><div class="readout__value" data-out="a">—</div></div>
+                  <div class="readout"><div class="readout__label">Рівняння прямої</div><div class="readout__value" data-out="eq">—</div></div>
+                  <div class="readout"><div class="readout__label">c за калібруванням</div><div class="readout__value" data-out="cfit">—</div></div>
+                  <div class="readout readout--gold"><div class="readout__label">Похибка калібрування</div><div class="readout__value" data-out="err">—</div></div>
+                </div>
+              </div>
+            </div>
+          </section>
+
+          <section class="lab-section" id="experiment">
+            <h2><span class="n">04</span>Віртуальний експеримент</h2>
+            <div class="prose"><p>Наважку свіжих листків розтерли з буфером, екстракт відцентрифугували й розвели. До 0,1 мл кожного стандарту БСА та розведеного екстракту додали по 5 мл реагенту Бредфорд і через 5 хв виміряли A<sub>595</sub> проти холостої проби. Побудуйте калібрувальну пряму та розрахуйте вміст розчинного білка в листках.</p></div>
+            <div class="exp">
+              <div class="exp__head">
+                <div><h3>Ваш варіант</h3><p>Прізвище або номер у журналі.</p></div>
+                <div class="row">
+                  <label class="field">Варіант<input id="bf-variant" type="text" placeholder="напр. Коваленко" autocomplete="off"></label>
+                  <button class="btn btn--gold" type="button" id="bf-run">Провести вимірювання</button>
+                </div>
+              </div>
+              <div class="exp__body" id="bf-exp" hidden>
+                <div class="readouts" id="bf-cond"></div>
+                <div class="plots-2">
+                  <div class="plot-card"><h4>Стандарти БСА</h4><div id="bf-exp-plot"></div></div>
+                  <div>
+                    <div class="data-wrap"><table class="data-table" id="bf-table"></table></div>
+                    <div class="data-wrap" style="margin-top:14px"><table class="data-table" id="bf-table-s"></table></div>
+                  </div>
+                </div>
+                <div class="row"><button class="btn btn--outline btn--sm" type="button" id="bf-csv">Завантажити дані (CSV)</button></div>
+                <h3 style="margin:8px 0 0">Ваші результати</h3>
+                <div class="answers">
+                  <label class="field">Нахил b, мл/мг<input id="bf-b" inputmode="decimal" autocomplete="off"></label>
+                  <label class="field">c у пробі, мг/мл<input id="bf-c" inputmode="decimal" autocomplete="off"></label>
+                  <label class="field">Вміст білка, мг/г<input id="bf-w" inputmode="decimal" autocomplete="off"></label>
+                </div>
+                <div class="row"><button class="btn" type="button" id="bf-check">Перевірити</button></div>
+                <div class="verdict" id="bf-verdict" role="status"></div>
+              </div>
+            </div>
+          </section>
+
+          <section class="lab-section prose" id="tasks">
+            <h2><span class="n">05</span>Завдання для звіту</h2>
+            <ol class="tasks">
+              <li>У моделі встановіть найбільший стандарт 0,5 мг/мл, потім 2 мг/мл. Як змінилися нахил прямої й похибка для проби 0,3 мг/мл? Поясніть за рівнянням (3).</li>
+              <li>Знайдіть за моделлю концентрацію проби, вище якої похибка лінійного калібрування перевищує 5 % (найбільший стандарт — 1 мг/мл).</li>
+              <li>За даними експерименту побудуйте калібрувальний графік і методом найменших квадратів знайдіть a, b та R<sup>2</sup>.</li>
+              <li>Обчисліть середнє поглинання паралельних проб екстракту та концентрацію білка в розведеній пробі.</li>
+              <li>Розрахуйте вміст розчинного білка в листках (мг/г сирої маси) за формулою (4) і порівняйте з типовими значеннями.</li>
+            </ol>
+          </section>
+
+          <section class="lab-section" id="questions">
+            <h2><span class="n">06</span>Контрольні питання</h2>
+            <div class="qa">
+              <details><summary>На чому ґрунтується метод Бредфорд?</summary><div>На зв'язуванні барвника Кумасі синього G-250 з білками в кислому середовищі: барвник переходить у синю аніонну форму з максимумом поглинання 595 нм, інтенсивність якої пропорційна кількості білка.</div></details>
+              <details><summary>Навіщо будують калібрувальну криву?</summary><div>Поглинання комплексу барвник–білок залежить від амінокислотного складу білка, тому його порівнюють зі стандартним білком (БСА) відомих концентрацій.</div></details>
+              <details><summary>Чому калібрувальна крива на високих концентраціях вигинається?</summary><div>Кількість барвника в реагенті обмежена: що більше білка, то менша частка вільного барвника, і приріст поглинання сповільнюється (насичення).</div></details>
+              <details><summary>Чому пробу іноді треба розвести?</summary><div>Щоб поглинання потрапило в лінійну ділянку калібрувальної кривої, де розрахунок за рівнянням прямої точний.</div></details>
+              <details><summary>Який білок переважає серед розчинних білків листка?</summary><div>Рибулозобісфосфаткарбоксилаза/оксигеназа (Рубіско) — до 50 % розчинного білка хлоропластів.</div></details>
+            </div>
+          </section>
+
+          <section class="lab-section" id="refs">
+            <h2><span class="n">07</span>Література</h2>
+            <ol class="refs">
+              <li>Bradford M. M. A rapid and sensitive method for the quantitation of microgram quantities of protein utilizing the principle of protein-dye binding. <i>Analytical Biochemistry</i>. 1976. Vol. 72. P. 248–254.</li>
+              <li>Kruger N. J. The Bradford method for protein quantitation. In: Walker J. M. (ed.) The Protein Protocols Handbook. Totowa : Humana Press, 2009. P. 17–24.</li>
+              <li>Мусієнко М. М., Паршикова Т. В., Славний П. С. Спектрофотометричні методи в практиці фізіології, біохімії та екології рослин. Київ : Фітосоціоцентр, 2001.</li>
+              <li>Taiz L., Zeiger E., Møller I. M., Murphy A. Plant Physiology and Development. 6th ed. Sunderland : Sinauer Associates, 2015.</li>
+            </ol>
+            <div class="lab-nav">
+              <a class="btn btn--outline" href="../amino-acids/">← ЛР 3. Амінокислоти</a>
+              <a class="btn" href="../chloroplast-pigments/">ЛР 5. Пігменти пластид →</a>
+            </div>
+          </section>
+        </article>
+      </div>
+    </div>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer__grid">
+        <div class="footer__brand">
+          <img src="../../../assets/img/nubip-shield.webp" alt="Герб НУБіП України" width="37" height="52" loading="lazy">
+          <div>
+            <strong>Кафедра фізіології, біохімії рослин та біоенергетики</strong>
+            Факультет захисту рослин, біотехнологій та екології<br>Національний університет біоресурсів і природокористування України
+            <div class="footer__social">
+              <a class="footer__fb" href="https://www.facebook.com/groups/nubipplants?locale=uk_UA" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M14 8.5V6.8c0-.8.5-1 .9-1H17V2.2L14 2.2c-3.3 0-4 2.4-4 4v2.3H7.5V12H10v10h4V12h2.8l.4-3.5H14Z"/></svg>Ми у Facebook</a>
+              <a class="footer__ig" href="https://www.instagram.com/plant_physio_chair/" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/></svg>Ми в Instagram</a>
+            </div>
+          </div>
+        </div>
+        <div class="footer__col">
+          <h3>Розділи</h3>
+          <ul>
+            <li><a href="../../../about/">Про кафедру</a></li>
+            <li><a href="../../../about/#faculty-history">Історія факультету</a></li>
+            <li><a href="../../../about/#administration">Адміністрація факультету</a></li>
+            <li><a href="../../../about/#programs">Освітні програми</a></li>
+            <li><a href="../../../about/#achievements">Здобутки</a></li>
+          </ul>
+        </div>
+        <div class="footer__col">
+          <h3>Для студентів</h3>
+          <ul>
+            <li><a href="../../../lab/">Онлайн лабораторія</a></li>
+            <li><a href="../../../lab/biochemistry/">Біохімія рослин</a></li>
+            <li><a href="../../../lab/plant-physiology/">Фізіологія рослин</a></li>
+            <li><a href="../../../lab/analytical-chemistry/">Аналітична хімія</a></li>
+            <li><a href="../../../lab/plant-anatomy/">Анатомія рослин</a></li>
+            <li><a href="../../../konspekt/">Конспект</a></li>
+            <li><a href="../../../konspekt/pathogens/">Збудники хвороб рослин</a></li>
+            <li><a href="../../../konspekt/weeds/">Бур'яни України</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer__bottom">
+        <span>© <span data-year>2026</span> Кафедра фізіології, біохімії рослин та біоенергетики, НУБіП України</span>
+        <a href="https://nubip.edu.ua" target="_blank" rel="noopener">nubip.edu.ua</a>
+      </div>
+    </div>
+  </footer>
+
+  <script defer src="../../../assets/js/main.js"></script>
+  <script type="module" src="../../../assets/js/lab/protein-bradford.js"></script>
+</body>
+</html>

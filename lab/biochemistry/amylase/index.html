@@ -1,0 +1,283 @@
+<!doctype html>
+<html lang="uk" class="no-js">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>ЛР 6. Амілолітична активність проростаючого насіння — Онлайн лабораторія, НУБіП</title>
+  <meta name="description" content="Інтерактивна лабораторна робота: гідроліз крохмалю амілазами, йодкрохмальна реакція, інтегроване рівняння Міхаеліса–Ментен, константа швидкості, індукція α-амілази гіберелінами під час проростання.">
+  <meta name="theme-color" content="#08210F">
+  <link rel="icon" href="../../../assets/img/nubip-shield.png" type="image/png">
+  <link rel="stylesheet" href="../../../assets/css/style.css">
+  <script src="../../../assets/js/desktop-only.js"></script>
+  <link rel="stylesheet" href="../../../assets/css/lab.css">
+  <script>document.documentElement.classList.replace('no-js', 'js')</script>
+</head>
+<body>
+  <a class="skip-link" href="#main">Перейти до змісту</a>
+
+  <header class="site-header">
+    <div class="container">
+      <a class="brand" href="../../../" aria-label="Кафедра фізіології, біохімії рослин та біоенергетики — на головну">
+        <img class="brand__logo" src="../../../assets/img/nubip-shield.webp" alt="" width="31" height="44">
+        <span class="brand__text">
+          <span class="brand__title">Кафедра ФБРтаБ</span>
+          <span class="brand__sub">Фізіологія, біохімія рослин та біоенергетика · НУБіП України</span>
+        </span>
+      </a>
+      <button class="nav-toggle" type="button" aria-controls="site-nav" aria-expanded="false" aria-label="Відкрити меню">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M4 7h16M4 12h16M4 17h16"/></svg>
+      </button>
+      <nav class="nav" id="site-nav" aria-label="Головна навігація">
+        <a class="nav__link" href="../../../">Головна</a>
+        <div class="nav__dd">
+          <a class="nav__link" href="../../../about/">Про кафедру
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m6 9 6 6 6-6"/></svg>
+          </a>
+          <div class="nav__menu">
+            <a href="../../../about/#department">Кафедра сьогодні<small>Місія, історія з 1898 р., наука</small></a>
+            <a href="../../../about/#team">Колектив<small>Викладачі та їхні наукові інтереси</small></a>
+            <a href="../../../about/#achievements">Здобутки<small>Кафедри та викладачів</small></a>
+            <a href="../../../about/#faculty-history">Історія факультету<small>Від 1962 року до сьогодні</small></a>
+            <a href="../../../about/#administration">Адміністрація факультету<small>Деканат і контакти</small></a>
+            <a href="../../../about/#programs">Освітні програми<small>Бакалаврат · Магістратура · PhD</small></a>
+          </div>
+        </div>
+        <a class="nav__link" href="../../../#contacts">Контакти</a>
+        <a class="btn btn--green btn--sm nav__lab" href="../../../konspekt/">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20V3H6.5A2.5 2.5 0 0 0 4 5.5z"/><path d="M4 19.5A2.5 2.5 0 0 0 6.5 22H20v-5"/></svg>
+          Конспект
+        </a>
+        <a class="btn btn--gold btn--sm nav__lab" href="../../../lab/" aria-current="page">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 3h6M10 3v6l-5 9a2 2 0 0 0 1.7 3h10.6a2 2 0 0 0 1.7-3l-5-9V3"/><path d="M7.5 15h9"/></svg>
+          Онлайн лабораторія
+        </a>
+      </nav>
+      <div class="site-tools">
+        <span class="beta-badge" title="Сайт працює в тестовому режимі">Бета<span class="beta-badge__more">-версія</span></span>
+        <div class="report">
+          <button class="report__btn" type="button" aria-expanded="false" aria-controls="report-pop" title="Повідомити про проблему на сайті">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 9v4M12 17h.01"/><path d="M10.3 3.9 1.8 18a2 2 0 0 0 1.7 3h17a2 2 0 0 0 1.7-3L13.7 3.9a2 2 0 0 0-3.4 0Z"/></svg>
+            <span class="report__label">Повідомити про проблему</span>
+          </button>
+          <div class="report__pop" id="report-pop" role="dialog" aria-label="Повідомити про проблему на сайті" hidden>
+            <p>Будь ласка, опишіть проблему, з якою Ви зіткнулися, нам у <a href="https://www.facebook.com/groups/nubipplants?locale=uk_UA" target="_blank" rel="noopener">Facebook</a>.</p>
+            <a class="report__fb" href="https://www.facebook.com/groups/nubipplants?locale=uk_UA" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M14 8.5V6.8c0-.8.5-1 .9-1H17V2.2L14 2.2c-3.3 0-4 2.4-4 4v2.3H7.5V12H10v10h4V12h2.8l.4-3.5H14Z"/></svg>Група кафедри у Facebook</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main id="main">
+    <section class="page-hero page-hero--lab">
+      <div class="bg-molecules" aria-hidden="true" style="position:absolute;inset:0"></div>
+      <div class="container">
+        <nav class="breadcrumbs" aria-label="Навігаційний ланцюжок"><a href="../../../">Головна</a><span aria-hidden="true">/</span><a href="../../../lab/">Онлайн лабораторія</a><span aria-hidden="true">/</span><a href="../">Біохімія рослин</a><span aria-hidden="true">/</span><span>ЛР 6</span></nav>
+        <span class="kicker">Лабораторна робота № 6</span>
+        <h1>Амілолітична активність проростаючого насіння</h1>
+        <p>Як за зникненням синього йодкрохмального забарвлення виміряти активність амілаз і простежити їхню індукцію під час проростання насіння.</p>
+        <div class="lab-head"><span class="badge">Біохімія</span><span class="badge">Ферменти</span><span class="badge">Вуглеводи</span><span class="badge">≈ 90 хвилин</span></div>
+      </div>
+    </section>
+
+    <div class="section" style="padding-top:48px">
+      <div class="container lab-doc">
+        <nav class="toc" aria-label="Зміст роботи">
+          <h2>Зміст</h2>
+          <ol>
+            <li><a href="#goal">Мета і план</a></li>
+            <li><a href="#theory">Теоретичні відомості</a></li>
+            <li><a href="#model">Інтерактивна модель</a></li>
+            <li><a href="#experiment">Віртуальний експеримент</a></li>
+            <li><a href="#tasks">Завдання для звіту</a></li>
+            <li><a href="#questions">Контрольні питання</a></li>
+            <li><a href="#refs">Література</a></li>
+          </ol>
+        </nav>
+
+        <article>
+          <section class="lab-section" id="goal">
+            <h2><span class="n">01</span>Мета і план</h2>
+            <div class="goal">
+              <div><h3>Мета</h3><p>Дослідити кінетику гідролізу крохмалю амілазами пророслого насіння, визначити константу швидкості реакції та амілолітичну активність і простежити, як вона змінюється протягом проростання.</p></div>
+              <div><h3>Ви навчитеся</h3><ul><li>описувати перебіг ферментативної реакції в часі (криву накопичення / витрачання субстрату);</li><li>визначати константу швидкості за напівлогарифмічним графіком;</li><li>пояснювати гормональну регуляцію мобілізації крохмалю в зерновці.</li></ul></div>
+              <div><h3>Знадобиться</h3><p>Калькулятор або Excel, міліметровий папір, бланк звіту.</p></div>
+            </div>
+          </section>
+
+          <section class="lab-section prose" id="theory">
+            <h2><span class="n">02</span>Теоретичні відомості</h2>
+            <h3>Амілази рослин</h3>
+            <p>Крохмаль ендосперму — головний запас енергії та вуглецю для проростка. Його гідролізують <b>α-амілаза</b> (ендоамілаза, розриває α-1,4-зв'язки всередині ланцюга і швидко зменшує довжину молекул), <b>β-амілаза</b> (екзоамілаза, відщеплює мальтозу з невідновних кінців), а також дебранчинг-ферменти (розривають α-1,6-зв'язки амілопектину) і α-глюкозидаза. Кінцеві продукти — мальтоза та глюкоза, які транспортуються в щиток і далі до зародка.</p>
+            <h3>Гормональна регуляція</h3>
+            <p>У зерновці злаків α-амілаза майже відсутня в сухому насінні й синтезується заново в <em class="term">алейроновому шарі</em> під час проростання. Зародок виділяє <b>гібереліни</b>, які активують транскрипційний фактор GAMYB і синтез α-амілази; фермент секретується в ендосперм. Абсцизова кислота пригнічує цей процес. Тому амілолітична активність зерна зростає протягом перших 3–5 діб проростання в десятки разів. На цьому ґрунтується солодування ячменю.</p>
+            <h3>Йодкрохмальна реакція</h3>
+            <p>Амілоза утворює з йодом комплекс синього кольору (максимум поглинання ≈ 590–620 нм): молекули I<sub>3</sub><sup>−</sup>/I<sub>5</sub><sup>−</sup> розміщуються всередині спіралі. Що коротші ланцюги, то слабше забарвлення: декстрини дають фіолетовий, потім червоно-бурий колір, а мальтоза з йодом не забарвлюється (<em class="term">ахроматична точка</em>). Тому поглинання йодкрохмального комплексу <i>A</i> приблизно пропорційне концентрації залишкового крохмалю.</p>
+            <h3>Кінетика гідролізу</h3>
+            <p>Швидкість реакції описує рівняння Міхаеліса–Ментен (див. ЛР 1). Інтегрувавши його, отримаємо залежність концентрації субстрату від часу:</p>
+            <div class="formula">
+              <math display="block"><mo>(</mo><msub><mi>S</mi><mn>0</mn></msub><mo>−</mo><mi>S</mi><mo>)</mo><mo>+</mo><msub><mi>K</mi><mi>m</mi></msub><mi>ln</mi><mfrac><msub><mi>S</mi><mn>0</mn></msub><mi>S</mi></mfrac><mo>=</mo><msub><mi>V</mi><mi>max</mi></msub><mo>·</mo><mi>t</mi></math>
+              <span class="formula__n">(1)</span>
+            </div>
+            <p>Якщо концентрація субстрату значно менша за K<sub>m</sub>, перший доданок малий, і реакція має перший порядок:</p>
+            <div class="formula">
+              <math display="block"><mi>S</mi><mo>(</mo><mi>t</mi><mo>)</mo><mo>=</mo><msub><mi>S</mi><mn>0</mn></msub><msup><mi>e</mi><mrow><mo>−</mo><mi>k</mi><mi>t</mi></mrow></msup><mo>,</mo><mspace width="1em"/><mi>k</mi><mo>=</mo><mfrac><msub><mi>V</mi><mi>max</mi></msub><msub><mi>K</mi><mi>m</mi></msub></mfrac><mo>,</mo><mspace width="1em"/><mi>ln</mi><mi>A</mi><mo>=</mo><mi>ln</mi><msub><mi>A</mi><mn>0</mn></msub><mo>−</mo><mi>k</mi><mi>t</mi><mo>,</mo><mspace width="1em"/><msub><mi>t</mi><mrow><mn>1</mn><mo>/</mo><mn>2</mn></mrow></msub><mo>=</mo><mfrac><mrow><mi>ln</mi><mn>2</mn></mrow><mi>k</mi></mfrac></math>
+              <span class="formula__n">(2)</span>
+            </div>
+            <p class="where">Константа <i>k</i> пропорційна кількості ферменту (V<sub>max</sub> = k<sub>cat</sub>·[E]), тож вона є мірою активності екстракту. На графіку ln <i>A</i> від <i>t</i> експериментальні точки лягають на пряму з нахилом −<i>k</i>.</p>
+            <h3>Амілолітична активність</h3>
+            <p>Практично активність виражають кількістю крохмалю, гідролізованого за одиницю часу в розрахунку на масу насіння:</p>
+            <div class="formula">
+              <math display="block"><mi>АА</mi><mo>=</mo><mfrac><mrow><msub><mi>S</mi><mn>0</mn></msub><mo>·</mo><msub><mi>V</mi><mi>р</mi></msub><mo>·</mo><mo>(</mo><mn>1</mn><mo>−</mo><msub><mi>A</mi><mi>t</mi></msub><mo>/</mo><msub><mi>A</mi><mn>0</mn></msub><mo>)</mo></mrow><mrow><mi>t</mi><mo>·</mo><msub><mi>m</mi><mi>р</mi></msub></mrow></mfrac></math>
+              <span class="formula__n">(3)</span>
+            </div>
+            <p class="where"><i>АА</i> — мг крохмалю/(хв·г); <i>S</i><sub>0</sub> — початкова концентрація крохмалю, мг/мл; <i>V</i><sub>р</sub> — об'єм реакційної суміші, мл; <i>A</i><sub>0</sub>, <i>A<sub>t</sub></i> — поглинання йодкрохмального комплексу на початку і через час <i>t</i>; <i>m</i><sub>р</sub> — маса насіння, що відповідає ферментному екстракту, внесеному в пробу, г.</p>
+            <div class="callout callout--gold">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 8h.01M11 12h1v5h1"/></svg>
+              <p>Формула (3) дає середню активність за час <i>t</i>. Вона близька до початкової швидкості, лише поки гідролізовано не більше ніж 30–40 % крохмалю; за довшої інкубації реакція сповільнюється через зменшення концентрації субстрату.</p>
+            </div>
+          </section>
+
+          <section class="lab-section" id="model">
+            <h2><span class="n">03</span>Інтерактивна модель</h2>
+            <p class="prose">Модель розв'язує інтегроване рівняння Міхаеліса–Ментен (1). Змінюйте кількість ферменту та початкову концентрацію крохмалю. Порівняйте точний розв'язок із наближенням першого порядку (2).</p>
+            <div class="sim">
+              <div class="sim__controls">
+                <h3>Реакційна суміш</h3>
+                <div id="am-c"></div>
+              </div>
+              <div class="sim__main">
+                <div class="plots-2">
+                  <div class="plot-card"><h4>Залишковий крохмаль (A йодкрохмального комплексу)</h4><div id="am-plot"></div></div>
+                  <div class="plot-card"><h4>Напівлогарифмічний графік ln A від t</h4><div id="am-plot-ln"></div></div>
+                </div>
+                <div class="readouts">
+                  <div class="readout"><div class="readout__label">Початкова швидкість</div><div class="readout__value" data-out="v0">—</div></div>
+                  <div class="readout"><div class="readout__label">k = V<sub>max</sub>/K<sub>m</sub></div><div class="readout__value" data-out="k">—</div></div>
+                  <div class="readout"><div class="readout__label">Гідролізовано 50 % за</div><div class="readout__value" data-out="half">—</div></div>
+                  <div class="readout readout--gold"><div class="readout__label">Ахроматична точка (A &lt; 0,05)</div><div class="readout__value" data-out="achro">—</div></div>
+                </div>
+              </div>
+            </div>
+          </section>
+
+          <section class="lab-section" id="experiment">
+            <h2><span class="n">04</span>Віртуальний експеримент</h2>
+            <div class="prose"><p>Зерно пшениці пророщували 0–5 діб. З наважки зерна кожної доби приготували ферментний екстракт; у пробу вносили екстракт, що відповідає певній масі зерна, до 5 мл 1-відсоткового (10 мг/мл) розчину крохмалю при 30 °C. Через певні проміжки часу відбирали аліквоти в розчин йоду й вимірювали A<sub>620</sub>. Для зерна третьої доби знято повну кінетичну криву; для решти — поглинання на 0-й і 10-й хвилині.</p></div>
+            <div class="exp">
+              <div class="exp__head">
+                <div><h3>Ваш варіант</h3><p>Прізвище або номер у журналі.</p></div>
+                <div class="row">
+                  <label class="field">Варіант<input id="am-variant" type="text" placeholder="напр. Коваленко" autocomplete="off"></label>
+                  <button class="btn btn--gold" type="button" id="am-run">Провести вимірювання</button>
+                </div>
+              </div>
+              <div class="exp__body" id="am-exp" hidden>
+                <div class="readouts" id="am-cond"></div>
+                <div class="plots-2">
+                  <div class="plot-card"><h4>Кінетика гідролізу (зерно 3-ї доби)</h4><div id="am-exp-plot"></div></div>
+                  <div class="data-wrap"><table class="data-table" id="am-table-k"></table></div>
+                </div>
+                <div class="data-wrap"><table class="data-table" id="am-table-d"></table></div>
+                <div class="row"><button class="btn btn--outline btn--sm" type="button" id="am-csv">Завантажити дані (CSV)</button></div>
+                <h3 style="margin:8px 0 0">Ваші результати</h3>
+                <div class="answers">
+                  <label class="field">k (3-тя доба), хв⁻¹<input id="am-k" inputmode="decimal" autocomplete="off"></label>
+                  <label class="field">Максимальна АА, мг/(хв·г)<input id="am-aa" inputmode="decimal" autocomplete="off"></label>
+                  <label class="field">Доба максимуму<input id="am-day" inputmode="numeric" autocomplete="off"></label>
+                </div>
+                <div class="row"><button class="btn" type="button" id="am-check">Перевірити</button></div>
+                <div class="verdict" id="am-verdict" role="status"></div>
+              </div>
+            </div>
+          </section>
+
+          <section class="lab-section prose" id="tasks">
+            <h2><span class="n">05</span>Завдання для звіту</h2>
+            <ol class="tasks">
+              <li>У моделі збільште кількість ферменту вдвічі. Як змінилися початкова швидкість, k і час напівгідролізу? Чому?</li>
+              <li>Встановіть S<sub>0</sub> = 2 і 20 мг/мл за однакової кількості ферменту. За якої концентрації наближення першого порядку точніше? Поясніть за рівнянням (1).</li>
+              <li>За даними кінетики для зерна третьої доби побудуйте графік ln A від t і методом найменших квадратів знайдіть k та t<sub>1/2</sub>.</li>
+              <li>За формулою (3) розрахуйте амілолітичну активність зерна кожної доби проростання (t = 10 хв) і побудуйте графік АА від доби.</li>
+              <li>Визначте добу максимальної активності та у скільки разів вона перевищує активність сухого зерна. Поясніть результат із погляду регуляції гіберелінами.</li>
+            </ol>
+          </section>
+
+          <section class="lab-section" id="questions">
+            <h2><span class="n">06</span>Контрольні питання</h2>
+            <div class="qa">
+              <details><summary>Чим відрізняються α- і β-амілази?</summary><div>α-Амілаза — ендофермент: розриває α-1,4-зв'язки всередині ланцюга, швидко зменшуючи його довжину; β-амілаза — екзофермент: послідовно відщеплює мальтозу з невідновних кінців.</div></details>
+              <details><summary>Чому синє забарвлення з йодом зникає під час гідролізу крохмалю?</summary><div>Синій комплекс утворюють лише довгі спіральні ланцюги амілози; продукти гідролізу (короткі декстрини, мальтоза) з йодом синього кольору не дають.</div></details>
+              <details><summary>Чому активність амілази в зерні зростає під час проростання?</summary><div>Гібереліни зародка індукують синтез α-амілази в алейроновому шарі, фермент секретується в ендосперм і мобілізує крохмаль.</div></details>
+              <details><summary>Як за графіком ln A від t знайти константу швидкості?</summary><div>Для реакції першого порядку точки лягають на пряму; її нахил дорівнює −k, а t<sub>1/2</sub> = ln 2 / k.</div></details>
+              <details><summary>Чому для розрахунку активності беруть короткий час інкубації?</summary><div>Поки гідролізовано невелику частку крохмалю, концентрація субстрату майже не змінюється і середня швидкість близька до початкової.</div></details>
+            </div>
+          </section>
+
+          <section class="lab-section" id="refs">
+            <h2><span class="n">07</span>Література</h2>
+            <ol class="refs">
+              <li>Gubler F., Kalla R., Roberts J. K., Jacobsen J. V. Gibberellin-regulated expression of a myb gene in barley aleurone cells. <i>The Plant Cell</i>. 1995. Vol. 7. P. 1879–1891.</li>
+              <li>Smith A. M., Zeeman S. C., Smith S. M. Starch degradation. <i>Annual Review of Plant Biology</i>. 2005. Vol. 56. P. 73–98.</li>
+              <li>Cornish-Bowden A. Fundamentals of Enzyme Kinetics. 4th ed. Wiley-Blackwell, 2012. Ch. 3.</li>
+              <li>Мусієнко М. М. Фізіологія рослин : підручник. Київ : Либідь, 2005.</li>
+            </ol>
+            <div class="lab-nav">
+              <a class="btn btn--outline" href="../chloroplast-pigments/">← ЛР 5. Пігменти пластид</a>
+              <a class="btn" href="../respiratory-quotient/">ЛР 7. Дихальний коефіцієнт →</a>
+            </div>
+          </section>
+        </article>
+      </div>
+    </div>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer__grid">
+        <div class="footer__brand">
+          <img src="../../../assets/img/nubip-shield.webp" alt="Герб НУБіП України" width="37" height="52" loading="lazy">
+          <div>
+            <strong>Кафедра фізіології, біохімії рослин та біоенергетики</strong>
+            Факультет захисту рослин, біотехнологій та екології<br>Національний університет біоресурсів і природокористування України
+            <div class="footer__social">
+              <a class="footer__fb" href="https://www.facebook.com/groups/nubipplants?locale=uk_UA" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M14 8.5V6.8c0-.8.5-1 .9-1H17V2.2L14 2.2c-3.3 0-4 2.4-4 4v2.3H7.5V12H10v10h4V12h2.8l.4-3.5H14Z"/></svg>Ми у Facebook</a>
+              <a class="footer__ig" href="https://www.instagram.com/plant_physio_chair/" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/></svg>Ми в Instagram</a>
+            </div>
+          </div>
+        </div>
+        <div class="footer__col">
+          <h3>Розділи</h3>
+          <ul>
+            <li><a href="../../../about/">Про кафедру</a></li>
+            <li><a href="../../../about/#faculty-history">Історія факультету</a></li>
+            <li><a href="../../../about/#administration">Адміністрація факультету</a></li>
+            <li><a href="../../../about/#programs">Освітні програми</a></li>
+            <li><a href="../../../about/#achievements">Здобутки</a></li>
+          </ul>
+        </div>
+        <div class="footer__col">
+          <h3>Для студентів</h3>
+          <ul>
+            <li><a href="../../../lab/">Онлайн лабораторія</a></li>
+            <li><a href="../../../lab/biochemistry/">Біохімія рослин</a></li>
+            <li><a href="../../../lab/plant-physiology/">Фізіологія рослин</a></li>
+            <li><a href="../../../lab/analytical-chemistry/">Аналітична хімія</a></li>
+            <li><a href="../../../lab/plant-anatomy/">Анатомія рослин</a></li>
+            <li><a href="../../../konspekt/">Конспект</a></li>
+            <li><a href="../../../konspekt/pathogens/">Збудники хвороб рослин</a></li>
+            <li><a href="../../../konspekt/weeds/">Бур'яни України</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer__bottom">
+        <span>© <span data-year>2026</span> Кафедра фізіології, біохімії рослин та біоенергетики, НУБіП України</span>
+        <a href="https://nubip.edu.ua" target="_blank" rel="noopener">nubip.edu.ua</a>
+      </div>
+    </div>
+  </footer>
+
+  <script defer src="../../../assets/js/main.js"></script>
+  <script type="module" src="../../../assets/js/lab/amylase.js"></script>
+</body>
+</html>

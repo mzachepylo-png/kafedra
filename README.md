@@ -17,6 +17,12 @@ lab/index.html                     — Онлайн лабораторія (ха
 lab/biochemistry/index.html        — розділ «Біохімія рослин» (список робіт)
 lab/biochemistry/enzyme-kinetics/  — ЛР 1. Кінетика ферментативних реакцій
 lab/biochemistry/temperature-ph/   — ЛР 2. Вплив температури і pH на активність ферментів
+lab/biochemistry/amino-acids/      — ЛР 3. Кислотно-основні властивості амінокислот (титрування, pK, pI)
+lab/biochemistry/protein-bradford/ — ЛР 4. Кількісне визначення білка методом Бредфорд
+lab/biochemistry/chloroplast-pigments/ — ЛР 5. Спектрофотометричне визначення хлорофілів і каротиноїдів
+lab/biochemistry/amylase/          — ЛР 6. Амілолітична активність проростаючого насіння
+lab/biochemistry/respiratory-quotient/ — ЛР 7. Інтенсивність дихання і дихальний коефіцієнт насіння
+lab/biochemistry/ascorbic-acid/    — ЛР 8. Аскорбінова кислота: вміст і руйнування під час нагрівання
 lab/plant-physiology/             — Фізіологія рослин: 12 лабораторних робіт (теорія → модель зі «Старт/Стоп/Скинути» → контрольні питання)
                                      і виділена на початку списку модель «Вплив фітогормонів» (#hormones)
 lab/plant-physiology/hormones/    — переадресація на ../#hormones
