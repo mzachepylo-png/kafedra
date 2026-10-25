@@ -46,7 +46,7 @@ assets/js/lab/plant-physiology.js  — застосунок «Фізіологі
 assets/js/lab/hormones.js, assets/css/hormones.css — модель «Вплив фітогормонів» (стилі обмежені .amc)
 assets/img/micro/, assets/img/plant/  — мікрофото збудників і фото уражених рослин (WebP)
 assets/img/staff/                  — фото викладачів кафедри (WebP, 320×320)
-assets/img/weeds/{photo,ua,world}/ — фото бур'янів і карти щільності знахідок GBIF (Україна, світ)
+assets/img/weeds/{photo,world}/   — фото бур'янів і карти щільності знахідок GBIF у світі
 assets/img/nubip-logo.webp         — повний герб НУБіП (головна сторінка)
 assets/img/nubip-shield.webp/.png  — щит герба (шапка, футер, значок вкладки)
 ```

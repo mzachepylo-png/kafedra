@@ -146,3 +146,4 @@
 :where(.wua) h2,:where(.wua) h3,:where(.wua) h4{color:inherit}
 .wua-card{scroll-margin-top:112px}
 @media (max-width:760px){.wua-card{scroll-margin-top:4px}}
+.wua-frame--map{background:#cfcfcf}
