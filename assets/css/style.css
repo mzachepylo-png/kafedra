@@ -712,3 +712,10 @@ html:has(.lightbox[open]) { overflow: hidden; }
 .work--accent .work__num svg { width: 30px; height: 30px; }
 .work--accent .work__num small { color: rgba(8, 33, 15, .65); }
 .work--accent .work__go { background: #fff; }
+
+/* «Повідомити про проблему»: Google-форма — основний спосіб, Facebook — додатковий */
+.report__form { display: flex; align-items: center; justify-content: center; gap: 8px; width: 100%; padding: 11px 16px; border-radius: 12px; background: linear-gradient(135deg, var(--green-700), var(--green-900)); color: #fff; font-weight: 700; font-size: .95rem; text-decoration: none; box-shadow: 0 8px 18px -10px rgba(27, 94, 32, .8); transition: filter .2s; }
+.report__form:hover { color: #fff; filter: brightness(1.1); }
+.report__form svg { width: 18px; height: 18px; color: var(--gold-300); }
+.report__pop .report__alt { margin: 14px 0 8px; font-size: .82rem; color: var(--muted); }
+.report__pop .report__fb { padding: 6px 12px; font-size: .82rem; }
