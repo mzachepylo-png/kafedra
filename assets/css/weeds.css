@@ -144,6 +144,7 @@
 .wua{max-width:1180px;padding-top:8px}
 .wua-frame--photo a{display:block;width:100%;height:100%;cursor:zoom-in}
 :where(.wua) h2,:where(.wua) h3,:where(.wua) h4{color:inherit}
+.wua-frame--map{background:#cfcfcf}
+.wua-maptabs .wua-maptab{display:block;padding:4px 10px;font-size:12px;background:var(--wua-green);color:#fff}
 .wua-card{scroll-margin-top:112px}
 @media (max-width:760px){.wua-card{scroll-margin-top:4px}}
-.wua-frame--map{background:#cfcfcf}

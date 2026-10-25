@@ -33,6 +33,8 @@ assets/css/lab.css                 — стилі лабораторії й ко
 assets/css/plant-physiology.css    — стилі моделей «Фізіологія рослин» (обмежені контейнером #ff)
 assets/js/main.js                  — меню, вкладки, підсвічування розділів, анімація появи
 assets/js/filter.js                — фільтр карток «Збудники хвороб рослин» за типом збудника
+assets/js/desktop-only.js          — Онлайн лабораторія лише з комп'ютера: на телефонах і планшетах (визначаються за
+                                     браузером, а не шириною вікна) замість моделей показується повідомлення
 assets/js/lightbox.js              — перегляд фото в повному розмірі (посилання з data-lightbox)
 assets/js/weeds.js, assets/css/weeds.css — довідник «Бур'яни України» (стилі обмежені .wua)
 assets/js/lab/analytical.js, assets/css/analytical.css — якісні реакції (стилі обмежені #qa-lab)

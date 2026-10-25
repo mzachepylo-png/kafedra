@@ -646,3 +646,11 @@ html:has(.lightbox[open]) { overflow: hidden; }
 @media (max-width: 600px) { .site-header .container { gap: 10px; } }
 @media (max-width: 600px) { .report__pop { position: fixed; left: 16px; right: 16px; top: calc(var(--header-h) + 8px); width: auto; } .report__pop::before { display: none; } }
 .container--wide { width: min(100% - 32px, 1520px); margin-inline: auto; }
+
+/* ---------- Онлайн лабораторія лише з комп'ютера (телефони й планшети) ---------- */
+.lab-locked main > :not(.lab-lock), .lab-locked noscript { display: none !important; }
+.lab-lock { min-height: calc(100vh - var(--header-h) - 120px); display: flex; align-items: center; }
+.lab-lock .container { max-width: 720px; }
+.lab-lock__icon { display: grid; place-items: center; width: 64px; height: 64px; margin-bottom: 18px; border-radius: 18px; background: rgba(221, 187, 74, .14); border: 1px solid rgba(221, 187, 74, .45); color: var(--gold-300); }
+.lab-lock__icon svg { width: 32px; height: 32px; }
+.lab-lock__actions { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 24px; }
