@@ -14,7 +14,9 @@ about/index.html                   — «Про кафедру»: кафедра
                                      наука, історія факультету, адміністрація факультету, освітні програми
                                      (вкладки Бакалаврат / Магістратура / PhD)
 lab/index.html                     — Онлайн лабораторія (хаб розділів)
-lab/biochemistry/index.html        — розділ «Біохімія рослин» (список робіт)
+lab/biochemistry/index.html        — розділ «Біохімія рослин» (вкладки «Лабораторні роботи» / «Фотосинтез», список робіт)
+lab/biochemistry/photosynthesis/   — Фотосинтез: C₃ (цикл Кальвіна), фотодихання, C₄ (кранц-анатомія, підтипи), CAM;
+                                     покрокові SVG-схеми, добовий цикл CAM, модель FvCB «C₃ проти C₄», приклади рослин
 lab/biochemistry/enzyme-kinetics/  — ЛР 1. Кінетика ферментативних реакцій
 lab/biochemistry/temperature-ph/   — ЛР 2. Вплив температури і pH на активність ферментів
 lab/biochemistry/amino-acids/      — ЛР 3. Кислотно-основні властивості амінокислот (титрування, pK, pI)
@@ -29,6 +31,9 @@ lab/plant-physiology/             — Фізіологія рослин: спе�
 lab/plant-physiology/hormones/    — переадресація на ../#hormones
 lab/analytical-chemistry/         — Аналітична хімія: якісні реакції на катіони й аніони (віртуальна колба)
 lab/plant-anatomy/                — Анатомія рослин: тканини на процедурних SVG-моделях зрізів
+lab/instrumental/                  — Інструментальні методи (список підрозділів)
+lab/instrumental/chromatography/   — Хроматографія: теорія, модель колонки (7 видів, 14 сумішей) з анімацією зон,
+                                     хроматограмою й молекулярним механізмом, крива Ван-Деемтера, ТШХ/паперова/осадова
 konspekt/index.html                — Конспект: вибір напряму
 konspekt/pathogens/                — Збудники хвороб рослин: мікрофото збудника + фото ураженої рослини,
                                      прояви, розвиток хвороби, шкодочинність
@@ -47,6 +52,11 @@ assets/js/weeds.js, assets/css/weeds.css — довідник «Бур'яни У
 assets/js/lab/analytical.js, assets/css/analytical.css — якісні реакції (стилі обмежені #qa-lab)
 assets/js/lab/anatomy.js, assets/css/anatomy.css — тканини рослин (стилі обмежені .anat; рисунки будуються,
                                      коли наближаються до екрана, розділи поза екраном не малюються)
+assets/js/lab/chroma-data.js       — види хроматографії, суміші та залежності k′ від умов елюювання
+assets/js/lab/chroma-engine.js     — модель колонки: міграція зон за змінних умов (ізократика, градієнт, ступінь),
+                                     розмивання за Ван-Деемтером, хроматограма (гаусіан / EMG при перевантаженні)
+assets/js/lab/chromatography.js, assets/css/chroma.css — інтерфейс «Хроматографії» (анімації лише на видимих полотнах)
+assets/js/lab/photosynthesis.js, assets/css/photosynthesis.css — «Фотосинтез»: покроковий програвач схем, CAM, FvCB
 assets/js/lab/plot.js              — графіки на Canvas (HiDPI, підказки, легенда)
 assets/js/lab/ui.js                — повзунки, перемикачі, CSV-експорт, генератор варіантів
 assets/js/lab/fit.js               — МНК, нелінійна регресія (Левенберг–Марквардт), Рунге–Кутта 4
@@ -89,7 +99,9 @@ GitHub Actions мінімізує HTML/CSS/JS і публікує сайт на 
 ## Як додати новий розділ лабораторії
 
 Створіть теку `lab/<розділ>/index.html` за зразком `lab/biochemistry/` і додайте вкладку
-`<a class="disc-tab">` та картку розділу в `lab/index.html`.
+`<a class="disc-tab disc--…">` та картку `<a class="discipline disc--…">` у `lab/index.html`.
+Кожна дисципліна має свій колір (класи в `style.css`): `disc--bio` — бурштиновий, `disc--phys` — зелений,
+`disc--chem` — синій, `disc--anat` — ягідний, `disc--inst` — фіолетовий.
 
 ## Палітра
 

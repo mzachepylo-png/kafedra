@@ -221,3 +221,14 @@ input[type="range"]:focus-visible::-webkit-slider-thumb { outline: 3px solid var
 @media (max-width: 900px) { .sim { grid-template-columns: minmax(0, 1fr); } }
 @media (max-width: 1080px) { .lab-doc { grid-template-columns: minmax(0, 1fr); } }
 .exp__head .field input { width: min(220px, 100%); }
+
+/* Порівняльна таблиця */
+.cmp-wrap { overflow-x: auto; border-radius: var(--radius); border: 1px solid var(--line); background: var(--white); }
+.cmp { width: 100%; border-collapse: collapse; font-size: .88rem; min-width: 760px; }
+.cmp th, .cmp td { padding: 11px 14px; text-align: left; vertical-align: top; border-bottom: 1px solid var(--line); }
+.cmp thead th { background: var(--green-50); color: var(--green-900); font-size: .78rem; letter-spacing: .06em; text-transform: uppercase; }
+.cmp tbody th { color: var(--green-900); white-space: nowrap; }
+.cmp tr:last-child td, .cmp tr:last-child th { border-bottom: 0; }
+.cmp td { color: var(--ink-soft); }
+
+.cg__time { display: grid; grid-template-columns: auto 1fr; gap: 12px; align-items: center; font-size: .8rem; font-weight: 700; color: var(--muted); }

@@ -35,7 +35,6 @@
 .cg__btns .seg button { padding: 6px 10px; font-size: .8rem; }
 .cg__btns .btn svg { width: 1em; height: 1em; }
 #cg-column, #cg-chrom, #cg-micro, #pl-canvas { display: block; width: 100%; }
-.cg__time { display: grid; grid-template-columns: auto 1fr; gap: 12px; align-items: center; font-size: .8rem; font-weight: 700; color: var(--muted); }
 .cg-legend { display: flex; flex-wrap: wrap; gap: 4px 16px; font-size: .82rem; color: var(--ink-soft); }
 .cg-legend span { display: inline-flex; align-items: center; gap: 6px; }
 .cg-legend i, .dot { display: inline-block; width: 10px; height: 10px; border-radius: 50%; flex: none; }
@@ -79,15 +78,6 @@
 .pl-out i { display: inline-block; width: 10px; height: 10px; margin-right: 6px; vertical-align: -1px; border-radius: 3px; border: 1px solid rgba(0, 0, 0, .15); }
 .pl-hint { color: var(--gold-700) !important; font-weight: 600; }
 
-/* Порівняльна таблиця */
-.cmp-wrap { overflow-x: auto; border-radius: var(--radius); border: 1px solid var(--line); background: var(--white); }
-.cmp { width: 100%; border-collapse: collapse; font-size: .88rem; min-width: 760px; }
-.cmp th, .cmp td { padding: 11px 14px; text-align: left; vertical-align: top; border-bottom: 1px solid var(--line); }
-.cmp thead th { background: #F4F1FC; color: #2A1E66; font-size: .78rem; letter-spacing: .06em; text-transform: uppercase; }
-.cmp tbody th { color: #2A1E66; white-space: nowrap; }
-.cmp tr:last-child td, .cmp tr:last-child th { border-bottom: 0; }
-.cmp td { color: var(--ink-soft); }
-
 .formula-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 12px; margin: 18px 0; }
 .formula-grid .formula { margin: 0; padding: 16px 18px; }
 .formula-grid .formula math { font-size: 1.12em; }
@@ -98,3 +88,4 @@
 #cg-gradc[hidden], #cg-gradrow[hidden] { display: none !important; }
 #cg-gel.seg { display: grid; grid-template-columns: 1fr; }
 .formula-grid .formula--wide { grid-column: 1 / -1; }
+.cmp thead th { background: #F4F1FC; color: #2A1E66; } .cmp tbody th { color: #2A1E66; }

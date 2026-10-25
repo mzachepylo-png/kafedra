@@ -1,0 +1,590 @@
+<!doctype html>
+<html lang="uk" class="no-js">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Фотосинтез: C₃, C₄ і CAM — Біохімія рослин, Онлайн лабораторія НУБіП</title>
+  <meta name="description" content="Фотосинтез для студентів: цикл Кальвіна, фотодихання, C₄-фотосинтез і кранц-анатомія, CAM-метаболізм — теорія, інтерактивні візуалізації процесів, модель FvCB та приклади рослин.">
+  <meta name="theme-color" content="#08210F">
+  <link rel="icon" href="../../../assets/img/nubip-shield.png" type="image/png">
+  <link rel="stylesheet" href="../../../assets/css/style.css">
+  <script src="../../../assets/js/desktop-only.js"></script>
+  <link rel="stylesheet" href="../../../assets/css/lab.css">
+  <script>document.documentElement.classList.replace('no-js', 'js')</script>
+  <link rel="stylesheet" href="../../../assets/css/photosynthesis.css">
+</head>
+<body>
+  <a class="skip-link" href="#main">Перейти до змісту</a>
+
+  <header class="site-header">
+    <div class="container">
+      <a class="brand" href="../../../" aria-label="Кафедра фізіології, біохімії рослин та біоенергетики — на головну">
+        <img class="brand__logo" src="../../../assets/img/nubip-shield.webp" alt="" width="31" height="44">
+        <span class="brand__text">
+          <span class="brand__title">Кафедра ФБРтаБ</span>
+          <span class="brand__sub">Фізіологія, біохімія рослин та біоенергетика · НУБіП України</span>
+        </span>
+      </a>
+      <button class="nav-toggle" type="button" aria-controls="site-nav" aria-expanded="false" aria-label="Відкрити меню">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M4 7h16M4 12h16M4 17h16"/></svg>
+      </button>
+      <nav class="nav" id="site-nav" aria-label="Головна навігація">
+        <a class="nav__link" href="../../../">Головна</a>
+        <div class="nav__dd">
+          <a class="nav__link" href="../../../about/">Про кафедру
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m6 9 6 6 6-6"/></svg>
+          </a>
+          <div class="nav__menu">
+            <a href="../../../about/#department">Кафедра сьогодні<small>Місія, історія з 1898 р., наука</small></a>
+            <a href="../../../about/#team">Колектив<small>Викладачі та їхні наукові інтереси</small></a>
+            <a href="../../../about/#achievements">Здобутки<small>Кафедри та викладачів</small></a>
+            <a href="../../../about/#faculty-history">Історія факультету<small>Від 1962 року до сьогодні</small></a>
+            <a href="../../../about/#administration">Адміністрація факультету<small>Деканат і контакти</small></a>
+            <a href="../../../about/#programs">Освітні програми<small>Бакалаврат · Магістратура · PhD</small></a>
+          </div>
+        </div>
+        <a class="nav__link" href="../../../#contacts">Контакти</a>
+        <a class="btn btn--green btn--sm nav__lab" href="../../../konspekt/">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20V3H6.5A2.5 2.5 0 0 0 4 5.5z"/><path d="M4 19.5A2.5 2.5 0 0 0 6.5 22H20v-5"/></svg>
+          Конспект
+        </a>
+        <a class="btn btn--gold btn--sm nav__lab" href="../../../lab/" aria-current="page">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 3h6M10 3v6l-5 9a2 2 0 0 0 1.7 3h10.6a2 2 0 0 0 1.7-3l-5-9V3"/><path d="M7.5 15h9"/></svg>
+          Онлайн лабораторія
+        </a>
+      </nav>
+      <div class="site-tools">
+        <span class="beta-badge" title="Сайт працює в тестовому режимі">Бета<span class="beta-badge__more">-версія</span></span>
+        <div class="report">
+          <button class="report__btn" type="button" aria-expanded="false" aria-controls="report-pop" title="Повідомити про проблему на сайті">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 9v4M12 17h.01"/><path d="M10.3 3.9 1.8 18a2 2 0 0 0 1.7 3h17a2 2 0 0 0 1.7-3L13.7 3.9a2 2 0 0 0-3.4 0Z"/></svg>
+            <span class="report__label">Повідомити про проблему</span>
+          </button>
+          <div class="report__pop" id="report-pop" role="dialog" aria-label="Повідомити про проблему на сайті" hidden>
+            <p>Знайшли помилку або щось працює не так? Опишіть проблему в короткій формі — так ми швидше її виправимо.</p>
+            <a class="report__form" href="https://forms.gle/yAqtSUqBYNnWgHQo6" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6M8 13h8M8 17h5"/></svg>Заповнити форму</a>
+            <p class="report__alt">Або напишіть нам у групі кафедри:</p>
+            <a class="report__fb" href="https://www.facebook.com/groups/nubipplants?locale=uk_UA" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M14 8.5V6.8c0-.8.5-1 .9-1H17V2.2L14 2.2c-3.3 0-4 2.4-4 4v2.3H7.5V12H10v10h4V12h2.8l.4-3.5H14Z"/></svg>Facebook</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </header>
+  <svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false">
+  <defs>
+    <radialGradient id="g-stroma" cx="45%" cy="40%" r="70%"><stop offset="0" stop-color="#F1F9DE"/><stop offset="1" stop-color="#B7DA8E"/></radialGradient>
+    <linearGradient id="g-thyl" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#7CC35E"/><stop offset="1" stop-color="#2E6E2A"/></linearGradient>
+    <radialGradient id="g-mito" cx="40%" cy="35%" r="75%"><stop offset="0" stop-color="#FFEBD3"/><stop offset="1" stop-color="#F0A96C"/></radialGradient>
+    <radialGradient id="g-perox" cx="40%" cy="35%" r="75%"><stop offset="0" stop-color="#FFF8E0"/><stop offset="1" stop-color="#E6C86A"/></radialGradient>
+    <radialGradient id="g-cyto" cx="50%" cy="45%" r="75%"><stop offset="0" stop-color="#FBFDF4"/><stop offset="1" stop-color="#E3EFCD"/></radialGradient>
+    <radialGradient id="g-vac" cx="45%" cy="35%" r="80%"><stop offset="0" stop-color="#F7FBFF"/><stop offset="1" stop-color="#CDE1F2"/></radialGradient>
+    <radialGradient id="g-bs" cx="45%" cy="40%" r="75%"><stop offset="0" stop-color="#D3EBB4"/><stop offset="1" stop-color="#93C46C"/></radialGradient>
+    <radialGradient id="g-mes" cx="45%" cy="40%" r="75%"><stop offset="0" stop-color="#F3FAE6"/><stop offset="1" stop-color="#CDE7AE"/></radialGradient>
+    <radialGradient id="g-starch" cx="40%" cy="35%" r="70%"><stop offset="0" stop-color="#FFFFFF"/><stop offset="1" stop-color="#E9E1C2"/></radialGradient>
+    <radialGradient id="g-sun" cx="50%" cy="50%" r="50%"><stop offset="0" stop-color="#FFF4B8"/><stop offset=".55" stop-color="#FFD54A"/><stop offset="1" stop-color="#FFB300" stop-opacity="0"/></radialGradient>
+    <pattern id="p-cyto" width="22" height="22" patternUnits="userSpaceOnUse"><circle cx="4" cy="6" r=".9" fill="#B9CF98"/><circle cx="15" cy="15" r=".7" fill="#C6D9A8"/><circle cx="18" cy="4" r=".6" fill="#B9CF98"/></pattern>
+    <marker id="m-arr" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0L10 5L0 10z" fill="context-stroke"/></marker>
+    <symbol id="s-chl" viewBox="-60 -30 120 60" overflow="visible">
+      <ellipse rx="58" ry="28" fill="url(#g-stroma)" stroke="#3E7D32" stroke-width="2"/>
+      <ellipse rx="54.5" ry="24.5" fill="none" stroke="#7DB862" stroke-width="1.1"/>
+      <path d="M-44 -3 C-20 -8 20 4 44 -2 M-40 6 C-14 2 14 12 40 5" fill="none" stroke="#4E8F3E" stroke-width="1.1"/>
+      <rect x="-37.5" y="-14.3" width="15" height="3.6" rx="1.8" fill="url(#g-thyl)" stroke="#2B5E26" stroke-width="0.5"/><rect x="-37.5" y="-10.1" width="15" height="3.6" rx="1.8" fill="url(#g-thyl)" stroke="#2B5E26" stroke-width="0.5"/><rect x="-37.5" y="-5.9" width="15" height="3.6" rx="1.8" fill="url(#g-thyl)" stroke="#2B5E26" stroke-width="0.5"/><rect x="-37.5" y="-1.7" width="15" height="3.6" rx="1.8" fill="url(#g-thyl)" stroke="#2B5E26" stroke-width="0.5"/><rect x="-37.5" y="2.5" width="15" height="3.6" rx="1.8" fill="url(#g-thyl)" stroke="#2B5E26" stroke-width="0.5"/><rect x="-37.5" y="6.7" width="15" height="3.6" rx="1.8" fill="url(#g-thyl)" stroke="#2B5E26" stroke-width="0.5"/><rect x="-36.5" y="-13.7" width="13" height="1.3" rx="1" fill="#C9F0A8" opacity=".55"/><rect x="-15.5" y="-11.4" width="15" height="3.6" rx="1.8" fill="url(#g-thyl)" stroke="#2B5E26" stroke-width="0.5"/><rect x="-15.5" y="-7.2" width="15" height="3.6" rx="1.8" fill="url(#g-thyl)" stroke="#2B5E26" stroke-width="0.5"/><rect x="-15.5" y="-3" width="15" height="3.6" rx="1.8" fill="url(#g-thyl)" stroke="#2B5E26" stroke-width="0.5"/><rect x="-15.5" y="1.2" width="15" height="3.6" rx="1.8" fill="url(#g-thyl)" stroke="#2B5E26" stroke-width="0.5"/><rect x="-15.5" y="5.4" width="15" height="3.6" rx="1.8" fill="url(#g-thyl)" stroke="#2B5E26" stroke-width="0.5"/><rect x="-15.5" y="9.6" width="15" height="3.6" rx="1.8" fill="url(#g-thyl)" stroke="#2B5E26" stroke-width="0.5"/><rect x="-15.5" y="13.8" width="15" height="3.6" rx="1.8" fill="url(#g-thyl)" stroke="#2B5E26" stroke-width="0.5"/><rect x="-14.5" y="-10.8" width="13" height="1.3" rx="1" fill="#C9F0A8" opacity=".55"/><rect x="6.5" y="-15.3" width="15" height="3.6" rx="1.8" fill="url(#g-thyl)" stroke="#2B5E26" stroke-width="0.5"/><rect x="6.5" y="-11.1" width="15" height="3.6" rx="1.8" fill="url(#g-thyl)" stroke="#2B5E26" stroke-width="0.5"/><rect x="6.5" y="-6.9" width="15" height="3.6" rx="1.8" fill="url(#g-thyl)" stroke="#2B5E26" stroke-width="0.5"/><rect x="6.5" y="-2.7" width="15" height="3.6" rx="1.8" fill="url(#g-thyl)" stroke="#2B5E26" stroke-width="0.5"/><rect x="6.5" y="1.5" width="15" height="3.6" rx="1.8" fill="url(#g-thyl)" stroke="#2B5E26" stroke-width="0.5"/><rect x="6.5" y="5.7" width="15" height="3.6" rx="1.8" fill="url(#g-thyl)" stroke="#2B5E26" stroke-width="0.5"/><rect x="7.5" y="-14.7" width="13" height="1.3" rx="1" fill="#C9F0A8" opacity=".55"/><rect x="27.5" y="-6.2" width="13" height="3.6" rx="1.8" fill="url(#g-thyl)" stroke="#2B5E26" stroke-width="0.5"/><rect x="27.5" y="-2" width="13" height="3.6" rx="1.8" fill="url(#g-thyl)" stroke="#2B5E26" stroke-width="0.5"/><rect x="27.5" y="2.2" width="13" height="3.6" rx="1.8" fill="url(#g-thyl)" stroke="#2B5E26" stroke-width="0.5"/><rect x="27.5" y="6.4" width="13" height="3.6" rx="1.8" fill="url(#g-thyl)" stroke="#2B5E26" stroke-width="0.5"/><rect x="27.5" y="10.6" width="13" height="3.6" rx="1.8" fill="url(#g-thyl)" stroke="#2B5E26" stroke-width="0.5"/><rect x="28.5" y="-5.6" width="11" height="1.3" rx="1" fill="#C9F0A8" opacity=".55"/>
+      <ellipse cx="2" cy="16" rx="8" ry="4.5" fill="url(#g-starch)" stroke="#D2C9A6" stroke-width=".6"/>
+      <circle cx="-40" cy="12" r="1.8" fill="#F2C94C"/><circle cx="26" cy="-15" r="1.6" fill="#F2C94C"/><circle cx="44" cy="-8" r="1.3" fill="#F2C94C"/>
+    </symbol>
+    <symbol id="s-chl-agr" viewBox="-60 -30 120 60" overflow="visible">
+      <ellipse rx="58" ry="28" fill="url(#g-stroma)" stroke="#3E7D32" stroke-width="2"/>
+      <ellipse rx="54.5" ry="24.5" fill="none" stroke="#7DB862" stroke-width="1.1"/>
+      <path d="M-46 -10 C-20 -14 20 -6 46 -10 M-50 -1 C-20 -5 20 3 50 -1 M-46 8 C-20 4 20 12 46 8" fill="none" stroke="url(#g-thyl)" stroke-width="3" stroke-linecap="round"/>
+      <ellipse cx="-18" cy="17" rx="9" ry="5" fill="url(#g-starch)" stroke="#D2C9A6" stroke-width=".6"/><ellipse cx="16" cy="18" rx="7" ry="4" fill="url(#g-starch)" stroke="#D2C9A6" stroke-width=".6"/>
+    </symbol>
+    <symbol id="s-mito" viewBox="-36 -20 72 40" overflow="visible">
+      <ellipse rx="34" ry="18" fill="url(#g-mito)" stroke="#C26F31" stroke-width="1.6"/>
+      <path d="M-24 -13 v14 M-14 13 v-15 M-4 -14 v16 M6 14 v-16 M16 -13 v15 M25 11 v-12" fill="none" stroke="#C9783A" stroke-width="3.2" stroke-linecap="round" opacity=".8"/>
+      <ellipse rx="30" ry="14.5" fill="none" stroke="#E9A066" stroke-width="1"/>
+    </symbol>
+    <symbol id="s-perox" viewBox="-24 -24 48 48" overflow="visible">
+      <circle r="22" fill="url(#g-perox)" stroke="#B8952E" stroke-width="1.6"/>
+      <g transform="rotate(30)"><rect x="-7" y="-7" width="14" height="14" rx="1.5" fill="#D9B44A" opacity=".85"/><path d="M-7 -2.5h14M-7 2.5h14M-2.5 -7v14M2.5 -7v14" stroke="#B8952E" stroke-width=".8"/></g>
+    </symbol>
+  </defs>
+</svg>
+
+  <main id="main">
+    <section class="page-hero page-hero--lab page-hero--ps">
+      <div class="bg-molecules" aria-hidden="true" style="position:absolute;inset:0"></div>
+      <div class="container">
+        <nav class="breadcrumbs" aria-label="Навігаційний ланцюжок"><a href="../../../">Головна</a><span aria-hidden="true">/</span><a href="../../">Онлайн лабораторія</a><span aria-hidden="true">/</span><a href="../">Біохімія рослин</a><span aria-hidden="true">/</span><span>Фотосинтез</span></nav>
+        <span class="kicker">Біохімія рослин</span>
+        <h1>Фотосинтез: C₃, C₄ і CAM</h1>
+        <p>Як рослина перетворює світло, воду й CO₂ на цукри: цикл Кальвіна, фотодихання, C₄-фотосинтез і CAM-метаболізм — зі стислою теорією, покроковими візуалізаціями того, що й де відбувається в клітині, моделлю газообміну листка та прикладами рослин.</p>
+        <div class="lab-head"><span class="badge">Цикл Кальвіна</span><span class="badge">Фотодихання</span><span class="badge">C₄ · кранц-анатомія</span><span class="badge">CAM</span><span class="badge">Модель FvCB</span></div>
+      </div>
+    </section>
+
+    <section class="section" style="padding-bottom:0">
+      <div class="container">
+        <nav class="disc-tabs" aria-label="Розділ">
+          <a class="disc-tab disc--bio" href="../">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 3h6M10 3v6l-5 9a2 2 0 0 0 1.7 3h10.6a2 2 0 0 0 1.7-3l-5-9V3"/><path d="M7.5 15h9"/></svg>
+            Лабораторні роботи
+          </a>
+          <a class="disc-tab disc--phys" href="./" aria-current="page">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/></svg>
+            Фотосинтез
+          </a>
+        </nav>
+      </div>
+    </section>
+
+    <div class="section" style="padding-top:24px">
+      <div class="container lab-doc">
+        <nav class="toc" aria-label="Зміст">
+          <h2>Зміст</h2>
+          <ol>
+            <li><a href="#overview">Загальна картина</a></li>
+            <li><a href="#calvin">C₃-фотосинтез: цикл Кальвіна</a></li>
+            <li><a href="#photoresp">Фотодихання</a></li>
+            <li><a href="#c4">C₄-фотосинтез (цикл Хетча — Слека)</a></li>
+            <li><a href="#cam">CAM-метаболізм</a></li>
+            <li><a href="#model">Модель: C₃ проти C₄</a></li>
+            <li><a href="#compare">Порівняння та приклади рослин</a></li>
+            <li><a href="#questions">Контрольні питання</a></li>
+            <li><a href="#refs">Література</a></li>
+          </ol>
+        </nav>
+
+        <article>
+          <section class="lab-section" id="overview">
+            <h2><span class="n">01</span>Загальна картина</h2>
+            <div class="prose">
+              <p><em class="term">Фотосинтез</em> — процес, у якому рослина за рахунок енергії світла перетворює вуглекислий газ і воду на органічні речовини та виділяє кисень. Це єдине джерело органічної речовини й кисню на планеті: за рік рослини суші й океану фіксують близько 120 млрд т вуглецю.</p>
+              <div class="formula"><math display="block"><mn>6</mn><mi>C</mi><msub><mi>O</mi><mn>2</mn></msub><mo>+</mo><mn>12</mn><msub><mi>H</mi><mn>2</mn></msub><mi>O</mi><mover><mo>⟶</mo><mrow><mi>світло</mi><mo>,</mo><mspace width="0.3em"/><mi>хлорофіл</mi></mrow></mover><msub><mi>C</mi><mn>6</mn></msub><msub><mi>H</mi><mn>12</mn></msub><msub><mi>O</mi><mn>6</mn></msub><mo>+</mo><mn>6</mn><msub><mi>O</mi><mn>2</mn></msub><mo>+</mo><mn>6</mn><msub><mi>H</mi><mn>2</mn></msub><mi>O</mi></math></div>
+              <p>Увесь процес відбувається в <b>хлоропласті</b> і складається з двох зв'язаних етапів. <b>Світлові реакції</b> йдуть на мембранах тилакоїдів: пігменти поглинають світло, вода розщеплюється з виділенням O₂, а енергія електронів запасається в <b>ATP</b> і відновнику <b>NADPH</b>. <b>Темнові (карбонові) реакції</b> йдуть у стромі: за рахунок ATP і NADPH вуглекислий газ відновлюється до цукрів у <b>циклі Кальвіна</b>. Назва «темнові» умовна: ферменти циклу активуються саме на світлі.</p>
+            </div>
+            <figure class="ps-fig"><svg class="ps-svg" id="ov" viewBox="0 0 900 384" role="img" aria-label="Будова хлоропласту: світлові реакції в тилакоїдах, цикл Кальвіна в стромі">
+  <circle cx="58" cy="52" r="58" fill="url(#g-sun)"/>
+  <g stroke="#FFC93C" stroke-width="3" stroke-linecap="round" opacity=".85" class="ov-rays">
+    <path d="M100 76 L190 128"/><path d="M92 98 L150 170"/><path d="M118 58 L236 92"/>
+  </g>
+  <ellipse cx="340" cy="210" rx="268" ry="134" fill="url(#g-stroma)" stroke="#3E7D32" stroke-width="3"/><ellipse cx="340" cy="210" rx="261" ry="127" fill="none" stroke="#7DB862" stroke-width="1.6"/><path d="M162.5 169.3 C162.5 159.3 162.5 247.9 162.5 237.9 M162.5 237.9 C198 227.9 198 218.8 233.5 208.8 M233.5 208.8 C269 198.8 269 183.7 304.5 173.7 M304.5 173.7 C304.5 163.7 304.5 246.6 304.5 236.6 M304.5 236.6 C340 226.6 340 213.6 375.5 203.6 M375.5 203.6 C411 193.6 411 183 446.5 173 M446.5 173 C446.5 163 446.5 248.2 446.5 238.2 M446.5 238.2 C482 228.2 482 214.1 517.5 204.1" fill="none" stroke="#4E8F3E" stroke-width="1.8" opacity=".8"/><rect x="139.5" y="138.6" width="46" height="7.5" rx="3.8" fill="url(#g-thyl)" stroke="#2B5E26" stroke-width="0.8"/><rect x="139.5" y="147.6" width="46" height="7.5" rx="3.8" fill="url(#g-thyl)" stroke="#2B5E26" stroke-width="0.8"/><rect x="139.5" y="156.6" width="46" height="7.5" rx="3.8" fill="url(#g-thyl)" stroke="#2B5E26" stroke-width="0.8"/><rect x="139.5" y="165.6" width="46" height="7.5" rx="3.8" fill="url(#g-thyl)" stroke="#2B5E26" stroke-width="0.8"/><rect x="139.5" y="174.6" width="46" height="7.5" rx="3.8" fill="url(#g-thyl)" stroke="#2B5E26" stroke-width="0.8"/><rect x="139.5" y="183.6" width="46" height="7.5" rx="3.8" fill="url(#g-thyl)" stroke="#2B5E26" stroke-width="0.8"/><rect x="139.5" y="192.6" width="46" height="7.5" rx="3.8" fill="url(#g-thyl)" stroke="#2B5E26" stroke-width="0.8"/><rect x="140.5" y="139.2" width="44" height="2.6" rx="1" fill="#C9F0A8" opacity=".55"/><rect x="139.5" y="198.2" width="46" height="7.5" rx="3.8" fill="url(#g-thyl)" stroke="#2B5E26" stroke-width="0.8"/><rect x="139.5" y="207.2" width="46" height="7.5" rx="3.8" fill="url(#g-thyl)" stroke="#2B5E26" stroke-width="0.8"/><rect x="139.5" y="216.2" width="46" height="7.5" rx="3.8" fill="url(#g-thyl)" stroke="#2B5E26" stroke-width="0.8"/><rect x="139.5" y="225.2" width="46" height="7.5" rx="3.8" fill="url(#g-thyl)" stroke="#2B5E26" stroke-width="0.8"/><rect x="139.5" y="234.2" width="46" height="7.5" rx="3.8" fill="url(#g-thyl)" stroke="#2B5E26" stroke-width="0.8"/><rect x="139.5" y="243.2" width="46" height="7.5" rx="3.8" fill="url(#g-thyl)" stroke="#2B5E26" stroke-width="0.8"/><rect x="139.5" y="252.2" width="46" height="7.5" rx="3.8" fill="url(#g-thyl)" stroke="#2B5E26" stroke-width="0.8"/><rect x="139.5" y="261.2" width="46" height="7.5" rx="3.8" fill="url(#g-thyl)" stroke="#2B5E26" stroke-width="0.8"/><rect x="139.5" y="270.2" width="46" height="7.5" rx="3.8" fill="url(#g-thyl)" stroke="#2B5E26" stroke-width="0.8"/><rect x="140.5" y="198.8" width="44" height="2.6" rx="1" fill="#C9F0A8" opacity=".55"/><rect x="210.5" y="182.6" width="46" height="7.5" rx="3.8" fill="url(#g-thyl)" stroke="#2B5E26" stroke-width="0.8"/><rect x="210.5" y="191.6" width="46" height="7.5" rx="3.8" fill="url(#g-thyl)" stroke="#2B5E26" stroke-width="0.8"/><rect x="210.5" y="200.6" width="46" height="7.5" rx="3.8" fill="url(#g-thyl)" stroke="#2B5E26" stroke-width="0.8"/><rect x="210.5" y="209.6" width="46" height="7.5" rx="3.8" fill="url(#g-thyl)" stroke="#2B5E26" stroke-width="0.8"/><rect x="210.5" y="218.6" width="46" height="7.5" rx="3.8" fill="url(#g-thyl)" stroke="#2B5E26" stroke-width="0.8"/><rect x="210.5" y="227.6" width="46" height="7.5" rx="3.8" fill="url(#g-thyl)" stroke="#2B5E26" stroke-width="0.8"/><rect x="211.5" y="183.2" width="44" height="2.6" rx="1" fill="#C9F0A8" opacity=".55"/><rect x="281.5" y="134" width="46" height="7.5" rx="3.8" fill="url(#g-thyl)" stroke="#2B5E26" stroke-width="0.8"/><rect x="281.5" y="143" width="46" height="7.5" rx="3.8" fill="url(#g-thyl)" stroke="#2B5E26" stroke-width="0.8"/><rect x="281.5" y="152" width="46" height="7.5" rx="3.8" fill="url(#g-thyl)" stroke="#2B5E26" stroke-width="0.8"/><rect x="281.5" y="161" width="46" height="7.5" rx="3.8" fill="url(#g-thyl)" stroke="#2B5E26" stroke-width="0.8"/><rect x="281.5" y="170" width="46" height="7.5" rx="3.8" fill="url(#g-thyl)" stroke="#2B5E26" stroke-width="0.8"/><rect x="281.5" y="179" width="46" height="7.5" rx="3.8" fill="url(#g-thyl)" stroke="#2B5E26" stroke-width="0.8"/><rect x="281.5" y="188" width="46" height="7.5" rx="3.8" fill="url(#g-thyl)" stroke="#2B5E26" stroke-width="0.8"/><rect x="281.5" y="197" width="46" height="7.5" rx="3.8" fill="url(#g-thyl)" stroke="#2B5E26" stroke-width="0.8"/><rect x="281.5" y="206" width="46" height="7.5" rx="3.8" fill="url(#g-thyl)" stroke="#2B5E26" stroke-width="0.8"/><rect x="282.5" y="134.6" width="44" height="2.6" rx="1" fill="#C9F0A8" opacity=".55"/><rect x="281.5" y="205.8" width="46" height="7.5" rx="3.8" fill="url(#g-thyl)" stroke="#2B5E26" stroke-width="0.8"/><rect x="281.5" y="214.8" width="46" height="7.5" rx="3.8" fill="url(#g-thyl)" stroke="#2B5E26" stroke-width="0.8"/><rect x="281.5" y="223.8" width="46" height="7.5" rx="3.8" fill="url(#g-thyl)" stroke="#2B5E26" stroke-width="0.8"/><rect x="281.5" y="232.8" width="46" height="7.5" rx="3.8" fill="url(#g-thyl)" stroke="#2B5E26" stroke-width="0.8"/><rect x="281.5" y="241.8" width="46" height="7.5" rx="3.8" fill="url(#g-thyl)" stroke="#2B5E26" stroke-width="0.8"/><rect x="281.5" y="250.8" width="46" height="7.5" rx="3.8" fill="url(#g-thyl)" stroke="#2B5E26" stroke-width="0.8"/><rect x="281.5" y="259.8" width="46" height="7.5" rx="3.8" fill="url(#g-thyl)" stroke="#2B5E26" stroke-width="0.8"/><rect x="282.5" y="206.4" width="44" height="2.6" rx="1" fill="#C9F0A8" opacity=".55"/><rect x="352.5" y="163.9" width="46" height="7.5" rx="3.8" fill="url(#g-thyl)" stroke="#2B5E26" stroke-width="0.8"/><rect x="352.5" y="172.9" width="46" height="7.5" rx="3.8" fill="url(#g-thyl)" stroke="#2B5E26" stroke-width="0.8"/><rect x="352.5" y="181.9" width="46" height="7.5" rx="3.8" fill="url(#g-thyl)" stroke="#2B5E26" stroke-width="0.8"/><rect x="352.5" y="190.9" width="46" height="7.5" rx="3.8" fill="url(#g-thyl)" stroke="#2B5E26" stroke-width="0.8"/><rect x="352.5" y="199.9" width="46" height="7.5" rx="3.8" fill="url(#g-thyl)" stroke="#2B5E26" stroke-width="0.8"/><rect x="352.5" y="208.9" width="46" height="7.5" rx="3.8" fill="url(#g-thyl)" stroke="#2B5E26" stroke-width="0.8"/><rect x="352.5" y="217.9" width="46" height="7.5" rx="3.8" fill="url(#g-thyl)" stroke="#2B5E26" stroke-width="0.8"/><rect x="352.5" y="226.9" width="46" height="7.5" rx="3.8" fill="url(#g-thyl)" stroke="#2B5E26" stroke-width="0.8"/><rect x="352.5" y="235.9" width="46" height="7.5" rx="3.8" fill="url(#g-thyl)" stroke="#2B5E26" stroke-width="0.8"/><rect x="353.5" y="164.5" width="44" height="2.6" rx="1" fill="#C9F0A8" opacity=".55"/><rect x="423.5" y="133.2" width="46" height="7.5" rx="3.8" fill="url(#g-thyl)" stroke="#2B5E26" stroke-width="0.8"/><rect x="423.5" y="142.2" width="46" height="7.5" rx="3.8" fill="url(#g-thyl)" stroke="#2B5E26" stroke-width="0.8"/><rect x="423.5" y="151.2" width="46" height="7.5" rx="3.8" fill="url(#g-thyl)" stroke="#2B5E26" stroke-width="0.8"/><rect x="423.5" y="160.2" width="46" height="7.5" rx="3.8" fill="url(#g-thyl)" stroke="#2B5E26" stroke-width="0.8"/><rect x="423.5" y="169.2" width="46" height="7.5" rx="3.8" fill="url(#g-thyl)" stroke="#2B5E26" stroke-width="0.8"/><rect x="423.5" y="178.2" width="46" height="7.5" rx="3.8" fill="url(#g-thyl)" stroke="#2B5E26" stroke-width="0.8"/><rect x="423.5" y="187.2" width="46" height="7.5" rx="3.8" fill="url(#g-thyl)" stroke="#2B5E26" stroke-width="0.8"/><rect x="423.5" y="196.2" width="46" height="7.5" rx="3.8" fill="url(#g-thyl)" stroke="#2B5E26" stroke-width="0.8"/><rect x="423.5" y="205.2" width="46" height="7.5" rx="3.8" fill="url(#g-thyl)" stroke="#2B5E26" stroke-width="0.8"/><rect x="424.5" y="133.8" width="44" height="2.6" rx="1" fill="#C9F0A8" opacity=".55"/><rect x="423.5" y="207.5" width="46" height="7.5" rx="3.8" fill="url(#g-thyl)" stroke="#2B5E26" stroke-width="0.8"/><rect x="423.5" y="216.5" width="46" height="7.5" rx="3.8" fill="url(#g-thyl)" stroke="#2B5E26" stroke-width="0.8"/><rect x="423.5" y="225.5" width="46" height="7.5" rx="3.8" fill="url(#g-thyl)" stroke="#2B5E26" stroke-width="0.8"/><rect x="423.5" y="234.5" width="46" height="7.5" rx="3.8" fill="url(#g-thyl)" stroke="#2B5E26" stroke-width="0.8"/><rect x="423.5" y="243.5" width="46" height="7.5" rx="3.8" fill="url(#g-thyl)" stroke="#2B5E26" stroke-width="0.8"/><rect x="423.5" y="252.5" width="46" height="7.5" rx="3.8" fill="url(#g-thyl)" stroke="#2B5E26" stroke-width="0.8"/><rect x="423.5" y="261.5" width="46" height="7.5" rx="3.8" fill="url(#g-thyl)" stroke="#2B5E26" stroke-width="0.8"/><rect x="424.5" y="208.1" width="44" height="2.6" rx="1" fill="#C9F0A8" opacity=".55"/><rect x="494.5" y="173.4" width="46" height="7.5" rx="3.8" fill="url(#g-thyl)" stroke="#2B5E26" stroke-width="0.8"/><rect x="494.5" y="182.4" width="46" height="7.5" rx="3.8" fill="url(#g-thyl)" stroke="#2B5E26" stroke-width="0.8"/><rect x="494.5" y="191.4" width="46" height="7.5" rx="3.8" fill="url(#g-thyl)" stroke="#2B5E26" stroke-width="0.8"/><rect x="494.5" y="200.4" width="46" height="7.5" rx="3.8" fill="url(#g-thyl)" stroke="#2B5E26" stroke-width="0.8"/><rect x="494.5" y="209.4" width="46" height="7.5" rx="3.8" fill="url(#g-thyl)" stroke="#2B5E26" stroke-width="0.8"/><rect x="494.5" y="218.4" width="46" height="7.5" rx="3.8" fill="url(#g-thyl)" stroke="#2B5E26" stroke-width="0.8"/><rect x="494.5" y="227.4" width="46" height="7.5" rx="3.8" fill="url(#g-thyl)" stroke="#2B5E26" stroke-width="0.8"/><rect x="495.5" y="174" width="44" height="2.6" rx="1" fill="#C9F0A8" opacity=".55"/>
+  <ellipse cx="520" cy="300" rx="20" ry="11" fill="url(#g-starch)" stroke="#D2C9A6"/><ellipse cx="226" cy="268" rx="15" ry="8" fill="url(#g-starch)" stroke="#D2C9A6"/>
+  <g id="ov-calvin" transform="translate(430 282)">
+    <circle r="40" fill="#FFFFFF" fill-opacity=".72" stroke="#B08A1E" stroke-width="2"/>
+    <path d="M-24 -14 A28 28 0 1 1 -26 10" fill="none" stroke="#B08A1E" stroke-width="3" marker-end="url(#m-arr)"/>
+    <text y="-2" text-anchor="middle" class="ps-t ps-t--b" font-size="11">Цикл</text><text y="11" text-anchor="middle" class="ps-t ps-t--b" font-size="11">Кальвіна</text>
+  </g>
+  <path id="ov-p-atp" d="M162.5 267.9 C202.5 300 340 302 390 289" fill="none"/>
+  <path id="ov-p-adp" d="M392 266 C360 236 222.5 210 184.5 245.9" fill="none"/>
+  <path d="M10 330 C120 330 260 324 388 296" class="ps-flow" stroke="#5C7C8A" marker-end="url(#m-arr)"/>
+  <text x="14" y="322" class="ps-t ps-t--b" fill="#3D5A66">CO₂ з повітря</text>
+  <path d="M470 290 C560 304 600 330 640 340" class="ps-flow" stroke="#B08A1E" marker-end="url(#m-arr)"/>
+  <text x="650" y="338" class="ps-t ps-t--b" fill="#8C6A10">тріозофосфати →</text><text x="650" y="354" class="ps-t" fill="#8C6A10">сахароза, крохмаль</text>
+  <path d="M162.5 201.9 C166.5 60 172.5 40 174.5 14" class="ps-flow" stroke="#3F7FD0" marker-end="url(#m-arr)"/>
+  <text x="186.5" y="22" class="ps-t ps-t--b" fill="#2E5FA0">O₂ ↑</text>
+  <text x="186.5" y="38" class="ps-t" fill="#2E5FA0">фотоліз: 2H₂O → 4H⁺ + 4e⁻ + O₂</text>
+  <g class="ps-lab"><path d="M560 150 L640 96"/><text x="646" y="74" class="ps-t ps-t--b">Тилакоїди, зібрані в грани:</text><text x="646" y="90" class="ps-t">світлові реакції, ФС II → b₆f → ФС I,</text><text x="646" y="106" class="ps-t">АТФ-синтаза → ATP і NADPH</text></g>
+  <g class="ps-lab"><path d="M590 214 L640 190"/><text x="646" y="180" class="ps-t ps-t--b">Строма:</text><text x="646" y="196" class="ps-t">ферменти циклу Кальвіна, Рубіско</text></g>
+  <g class="ps-lab"><path d="M604 248 L640 252"/><text x="646" y="250" class="ps-t ps-t--b">Подвійна мембрана:</text><text x="646" y="266" class="ps-t">зовнішня та внутрішня</text></g>
+  <g class="ps-lab"><path d="M520 312 L540 360"/><text x="490" y="374" class="ps-t">крохмальне зерно</text></g>
+  <g id="ov-tok"></g>
+</svg>
+              <figcaption>Хлоропласт: тилакоїди зібрані в грани (світлові реакції), строма містить ферменти циклу Кальвіна. Жовті й сині частинки — потоки ATP і NADPH від гран до циклу та повернення ADP і NADP⁺.</figcaption>
+            </figure>
+            <div class="ps-cards">
+              <div class="ps-card"><b>Чому шляхів три?</b><p>Ключовий фермент фіксації CO₂ — <b>Рубіско</b> — з'явився в бескисневій атмосфері й плутає CO₂ з O₂. У сучасному повітрі (21 % O₂ проти 0,042 % CO₂) це спричиняє втратне <b>фотодихання</b>. C₄- і CAM-рослини навчилися концентрувати CO₂ біля Рубіско.</p></div>
+              <div class="ps-card ps-card--c3"><b>C₃</b><p>Без концентрування CO₂: Рубіско працює з CO₂, що дифундує з повітря. ≈ 85 % видів рослин.</p></div>
+              <div class="ps-card ps-card--c4"><b>C₄</b><p><b>Просторове</b> розділення: мезофіл накачує CO₂ у клітини обкладки пучка. ≈ 3 % видів, але чверть світової первинної продукції.</p></div>
+              <div class="ps-card ps-card--cam"><b>CAM</b><p><b>Часове</b> розділення: уночі CO₂ запасається у вакуолі як малат, удень — повертається в цикл Кальвіна. ≈ 6 % видів.</p></div>
+            </div>
+          </section>
+
+          <section class="lab-section" id="calvin">
+            <h2><span class="n">02</span>C₃-фотосинтез: цикл Кальвіна</h2>
+            <div class="prose">
+              <p>Цикл Кальвіна — Бенсона — Басхема відбувається в <b>стромі хлоропластів</b>. Назва «C₃-шлях» походить від першого стабільного продукту — тривуглецевої <b>3-фосфогліцеринової кислоти</b> (3-ФГК). Щоб на виході отримати одну молекулу тріозофосфату (3 атоми C), цикл має зробити три оберти, тобто зафіксувати 3 CO₂. Цикл має три фази.</p>
+              <ol>
+                <li><b>Карбоксилювання.</b> Рубіско приєднує CO₂ до п'ятивуглецевого акцептора <b>рибулозо-1,5-бісфосфату</b> (RuBP). Нестійкий C₆-інтермедіат одразу розпадається на дві молекули 3-ФГК. Реакція практично необоротна (ΔG°′ ≈ −35 кДж/моль).</li>
+                <li><b>Відновлення.</b> 3-ФГК фосфорилюється ATP до 1,3-бісфосфогліцерату, який NADPH відновлює до <b>гліцеральдегід-3-фосфату</b> (Г3Ф) — тріозофосфату, первинного цукру фотосинтезу. Саме тут витрачається вся «світлова» енергія NADPH.</li>
+                <li><b>Регенерація RuBP.</b> З шести утворених тріозофосфатів один виходить із циклу (на синтез сахарози в цитозолі чи крохмалю в хлоропласті), а п'ять (15 атомів C) через низку перетворень (альдолаза, транскетолаза, фосфатази) дають три п'ятивуглецеві молекули, які фосфорибулокіназа за рахунок ATP перетворює на RuBP.</li>
+              </ol>
+              <div class="formula"><math display="block"><mn>3</mn><mi>C</mi><msub><mi>O</mi><mn>2</mn></msub><mo>+</mo><mn>9</mn><mi>ATP</mi><mo>+</mo><mn>6</mn><mi>NADPH</mi><mo>⟶</mo><mn>1</mn><mspace width="0.2em"/><mi>Г3Ф</mi><mo>+</mo><mn>9</mn><mi>ADP</mi><mo>+</mo><mn>8</mn><msub><mi>P</mi><mi>i</mi></msub><mo>+</mo><mn>6</mn><msup><mi>NADP</mi><mo>+</mo></msup></math><span class="formula__n">(1)</span></div>
+              <p class="where">На одну молекулу глюкози (6 обертів) — 6 CO₂, 18 ATP і 12 NADPH; на кожен CO₂ — 3 ATP і 2 NADPH.</p>
+            </div>
+            <div class="callout">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 8h.01M11 12h1v5h1"/></svg>
+              <div><p><b>Рубіско — найпоширеніший білок Землі.</b> Фермент складається з 8 великих (ген <i>rbcL</i> у ДНК хлоропласту) і 8 малих субодиниць (гени <i>RBCS</i> у ядрі). Він дуже повільний — лише 3–4 акти каталізу за секунду, — тому займає 30–50 % розчинного білка листка.</p>
+              <p><b>Світлова регуляція.</b> Щоб цикл не «спалював» ATP у темряві, його ключові ферменти вмикаються лише на світлі: тіоредоксин, відновлений фередоксином від ФС I, активує ГАФДГ, ФБФазу, СБФазу та ФРК; Рубіско активується Рубіско-активазою, карбамілюванням лізину-201 і зростанням pH строми до 8 та концентрації Mg²⁺.</p></div>
+            </div>
+            <div class="ps-viz" id="cc-viz">
+              <div class="ps-viz__art"><svg class="ps-svg" id="cc" viewBox="0 0 760 560" role="img" aria-label="Цикл Кальвіна: карбоксилювання, відновлення та регенерація RuBP"><path d="M378.6 117.2 A165 165 0 0 1 524 222.9" fill="none" stroke="#4CAF50" stroke-opacity=".18" stroke-width="54" stroke-linecap="round"/><path d="M529.4 239.3 A165 165 0 0 1 280.1 420.4" fill="none" stroke="#DDBB4A" stroke-opacity=".18" stroke-width="54" stroke-linecap="round"/><path d="M266.2 410.2 A165 165 0 0 1 361.4 117.2" fill="none" stroke="#5EA8F0" stroke-opacity=".18" stroke-width="54" stroke-linecap="round"/><path id="cc-ph0" d="M393.9 54.3 A229 229 0 0 1 579.2 188.9" fill="none"/><text class="ps-phase" fill="#4CAF50" dy="0"><textPath href="#cc-ph0" startOffset="50%" text-anchor="middle">КАРБОКСИЛЮВАННЯ</textPath></text><path id="cc-ph1" d="M250.5 489 A239 239 0 0 0 603.8 232.3" fill="none"/><text class="ps-phase" fill="#DDBB4A" dy="0"><textPath href="#cc-ph1" startOffset="50%" text-anchor="middle">ВІДНОВЛЕННЯ</textPath></text><path id="cc-ph2" d="M216.8 452.2 A229 229 0 0 1 346.1 54.3" fill="none"/><text class="ps-phase" fill="#5EA8F0" dy="0"><textPath href="#cc-ph2" startOffset="50%" text-anchor="middle">РЕГЕНЕРАЦІЯ RUBP</textPath></text><path id="cc-a0" class="cc-arc" d="M415.5 123.4 A165 165 0 0 1 506.8 189.7" marker-end="url(#m-arr)"/><path id="cc-a1" class="cc-arc" d="M534.9 276.2 A165 165 0 0 1 500 383.6" marker-end="url(#m-arr)"/><path id="cc-a2" class="cc-arc" d="M426.4 437 A165 165 0 0 1 313.6 437" marker-end="url(#m-arr)"/><path id="cc-a3" class="cc-arc" d="M240 383.6 A165 165 0 0 1 205.1 276.2" marker-end="url(#m-arr)"/><path id="cc-a4" class="cc-arc" d="M233.2 189.7 A165 165 0 0 1 324.5 123.4" marker-end="url(#m-arr)"/><text id="cc-e0" class="ps-t ps-enz" x="445.8" y="181.6" text-anchor="middle">Рубіско</text><text id="cc-e1" class="ps-t ps-enz" x="492.7" y="325.9" text-anchor="middle">ФГК-кіназа</text><text id="cc-e2" class="ps-t ps-enz" x="370" y="415" text-anchor="middle">НАДФ-ГАФДГ</text><text id="cc-e3" class="ps-t ps-enz" x="247.3" y="325.9" text-anchor="middle" font-size="10.5">альдолаза, транскетолаза,</text><text id="cc-e4" class="ps-t ps-enz" x="294.2" y="181.6" text-anchor="middle">ФРК (фосфорибулокіназа)</text><text class="ps-t ps-enz" x="247.3" y="339.9" text-anchor="middle" font-size="10.5">ФБФаза, СБФаза</text><path id="cc-co2" d="M617 78.5 Q527 88.5 473 144.5" class="cc-cof "/><g class="cc-badge" transform="translate(627 74.5)"><rect x="-34" y="-14" width="68" height="28" rx="14" fill="#E8EEF2" stroke="#5C7C8A"/><text text-anchor="middle" y="5" class="ps-t ps-t--b" fill="#3D5A66">3 CO₂</text></g><path id="cc-atp1" d="M646.9 293 Q586.9 303 532.9 333" class="cc-cof "/><path id="cc-adp1" d="M532.9 337 Q586.9 373 646.9 373" class="cc-cof out"/><g class="cc-badge" transform="translate(680.9 293)"><rect x="-32" y="-14" width="64" height="28" rx="14" fill="#FFF3CF" stroke="#C9A227"/><text text-anchor="middle" y="5" class="ps-t ps-t--b" fill="#8C6A10">6 ATP</text></g><g class="cc-badge out" transform="translate(680.9 373)"><rect x="-32" y="-14" width="64" height="28" rx="14" fill="#FFFFFF" stroke="#C9A227" stroke-dasharray="3 3"/><text text-anchor="middle" y="5" class="ps-t" fill="#8C6A10">6 ADP</text></g><path id="cc-nadph" d="M520 517 Q430 507 374 453" class="cc-cof "/><path id="cc-nadp" d="M366 453 Q360 497 340 525" class="cc-cof out"/><g class="cc-badge" transform="translate(560 517)"><rect x="-42" y="-14" width="84" height="28" rx="14" fill="#E3EEFB" stroke="#3F7FD0"/><text text-anchor="middle" y="5" class="ps-t ps-t--b" fill="#2E5FA0">6 NADPH</text></g><g class="cc-badge out" transform="translate(330 539)"><rect x="-46" y="-14" width="92" height="28" rx="14" fill="#FFFFFF" stroke="#3F7FD0" stroke-dasharray="3 3"/><text text-anchor="middle" y="5" class="ps-t" fill="#2E5FA0">6 NADP⁺ + Pᵢ</text></g><path id="cc-atp2" d="M153 118.5 Q213 114.5 267 146.5" class="cc-cof "/><path id="cc-adp2" d="M269 152.5 Q213 178.5 153 178.5" class="cc-cof out"/><g class="cc-badge" transform="translate(123 118.5)"><rect x="-32" y="-14" width="64" height="28" rx="14" fill="#FFF3CF" stroke="#C9A227"/><text text-anchor="middle" y="5" class="ps-t ps-t--b" fill="#8C6A10">3 ATP</text></g><g class="cc-badge out" transform="translate(123 178.5)"><rect x="-32" y="-14" width="64" height="28" rx="14" fill="#FFFFFF" stroke="#C9A227" stroke-dasharray="3 3"/><text text-anchor="middle" y="5" class="ps-t" fill="#8C6A10">3 ADP</text></g><path id="cc-out" d="M243 441.5 Q213 485.5 163 489.5" class="cc-cof out"/><g class="cc-badge out cc-product" transform="translate(97 493.5)"><rect x="-66" y="-22" width="132" height="44" rx="14" fill="#FFF8E6" stroke="#B08A1E"/><text text-anchor="middle" y="-3" class="ps-t ps-t--b" fill="#8C6A10">1 Г3Ф (нетто)</text><text text-anchor="middle" y="13" class="ps-t" fill="#8C6A10">→ сахароза, крохмаль</text></g><g id="cc-n0" class="cc-node" transform="translate(370 117)"><rect x="-56.0" y="-24" width="112" height="48" rx="14"/><text y="-5" text-anchor="middle" class="ps-t ps-t--b" font-size="13">3 × RuBP</text><circle cx="-18" cy="12" r="3.6" class="cc-c"/><circle cx="-9" cy="12" r="3.6" class="cc-c"/><circle cx="0" cy="12" r="3.6" class="cc-c"/><circle cx="9" cy="12" r="3.6" class="cc-c"/><circle cx="18" cy="12" r="3.6" class="cc-c"/><title>рибулозо-1,5-бісфосфат</title></g><g id="cc-n1" class="cc-node" transform="translate(526.9 231)"><rect x="-56.0" y="-24" width="112" height="48" rx="14"/><text y="-5" text-anchor="middle" class="ps-t ps-t--b" font-size="13">6 × 3-ФГК</text><circle cx="-9" cy="12" r="3.6" class="cc-c"/><circle cx="0" cy="12" r="3.6" class="cc-c"/><circle cx="9" cy="12" r="3.6" class="cc-c"/><title>3-фосфогліцерат</title></g><g id="cc-n2" class="cc-node" transform="translate(467 415.5)"><rect x="-56.0" y="-24" width="112" height="48" rx="14"/><text y="-5" text-anchor="middle" class="ps-t ps-t--b" font-size="13">6 × 1,3-БФГК</text><circle cx="-9" cy="12" r="3.6" class="cc-c"/><circle cx="0" cy="12" r="3.6" class="cc-c"/><circle cx="9" cy="12" r="3.6" class="cc-c"/><title>1,3-бісфосфогліцерат</title></g><g id="cc-n3" class="cc-node" transform="translate(273 415.5)"><rect x="-56.0" y="-24" width="112" height="48" rx="14"/><text y="-5" text-anchor="middle" class="ps-t ps-t--b" font-size="13">6 × Г3Ф</text><circle cx="-9" cy="12" r="3.6" class="cc-c"/><circle cx="0" cy="12" r="3.6" class="cc-c"/><circle cx="9" cy="12" r="3.6" class="cc-c"/><title>гліцеральдегід-3-фосфат</title></g><g id="cc-n4" class="cc-node" transform="translate(213.1 231)"><rect x="-56.0" y="-24" width="112" height="48" rx="14"/><text y="-5" text-anchor="middle" class="ps-t ps-t--b" font-size="13">3 × Ru5P</text><circle cx="-18" cy="12" r="3.6" class="cc-c"/><circle cx="-9" cy="12" r="3.6" class="cc-c"/><circle cx="0" cy="12" r="3.6" class="cc-c"/><circle cx="9" cy="12" r="3.6" class="cc-c"/><circle cx="18" cy="12" r="3.6" class="cc-c"/><title>рибулозо-5-фосфат</title></g><g transform="translate(370 282)" class="cc-center">
+      <circle r="68" fill="#FFFFFF" stroke="#E3EBE3"/>
+      <text y="-36" text-anchor="middle" class="ps-t" fill="#6B7C70" font-size="10.5">за 3 оберти циклу</text>
+      <text y="-16" text-anchor="middle" class="ps-t ps-t--b" font-size="12"><tspan id="cc-k-co2">0</tspan> CO₂ зафіксовано</text>
+      <text y="2" text-anchor="middle" class="ps-t" font-size="11.5" fill="#8C6A10"><tspan id="cc-k-atp">0</tspan> ATP витрачено</text>
+      <text y="19" text-anchor="middle" class="ps-t" font-size="11.5" fill="#2E5FA0"><tspan id="cc-k-nadph">0</tspan> NADPH витрачено</text>
+      <text y="38" text-anchor="middle" class="ps-t" font-size="10.5" fill="#6B7C70">атомів C у циклі: <tspan id="cc-k-c">15</tspan></text>
+    </g><g id="cc-tok"></g></svg></div>
+              <aside class="ps-panel" aria-live="polite">
+                <div class="ps-panel__top"><span class="ps-panel__k">Цикл Кальвіна</span><span class="ps-panel__n" id="cc-n">1 / 6</span></div>
+                <h3 id="cc-title"></h3>
+                <div class="ps-panel__eq" id="cc-eq"></div>
+                <dl class="ps-panel__dl"><dt>Фермент</dt><dd id="cc-enz"></dd><dt>Де відбувається</dt><dd id="cc-where"></dd></dl>
+                <p id="cc-text"></p>
+                <div class="ps-ctrl">
+                  <button class="ps-btn" type="button" id="cc-prev" aria-label="Попередній крок"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m15 6-6 6 6 6"/></svg></button>
+                  <button class="btn btn--sm ps-play" type="button" id="cc-play"></button>
+                  <button class="ps-btn" type="button" id="cc-next" aria-label="Наступний крок"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m9 6 6 6-6 6"/></svg></button>
+                </div>
+                <div class="ps-dots" id="cc-dots"></div>
+              </aside>
+            </div>
+          </section>
+
+          <section class="lab-section" id="photoresp">
+            <h2><span class="n">03</span>Фотодихання</h2>
+            <div class="prose">
+              <p>Активний центр Рубіско приєднує не лише CO₂, а й O₂. Співвідношення швидкостей карбоксилювання (v<sub>c</sub>) та оксигенування (v<sub>o</sub>) залежить від специфічності ферменту S<sub>c/o</sub> ≈ 80–100 і концентрацій газів біля нього:</p>
+              <div class="formula"><math display="block"><mfrac><msub><mi>v</mi><mi>c</mi></msub><msub><mi>v</mi><mi>o</mi></msub></mfrac><mo>=</mo><msub><mi>S</mi><mrow><mi>c</mi><mo>/</mo><mi>o</mi></mrow></msub><mo>·</mo><mfrac><mrow><mo>[</mo><mi>C</mi><msub><mi>O</mi><mn>2</mn></msub><mo>]</mo></mrow><mrow><mo>[</mo><msub><mi>O</mi><mn>2</mn></msub><mo>]</mo></mrow></mfrac></math><span class="formula__n">(2)</span></div>
+              <p>Навіть за 25 °C кожне четверте-п'яте спрацьовування Рубіско — «помилкове». Оксигенування дає одну молекулу 3-ФГК та двовуглецевий <b>2-фосфогліколат</b>, який отруює ферменти хлоропласту. Його переробляє <b>гліколатний шлях (цикл C₂)</b>, що охоплює три органели: з двох молекул 2-фосфогліколату (4 атоми C) повертається одна 3-ФГК (3 C), а один атом вуглецю втрачається як CO₂. Крім того, виділяється NH₃, який треба знову зв'язати.</p>
+              <p><b>Фотодихання різко зростає в спеку й посуху</b>: розчинність CO₂ з нагріванням падає швидше, ніж розчинність O₂; специфічність Рубіско знижується; продихи закриваються, і CO₂ у листку вичерпується. На одне оксигенування рослина витрачає 3,5 ATP і 2 NADPH, нічого не отримуючи. Утім, фотодихання не марне: воно скидає надлишок енергії світла, коли продихи закриті (захист від фотоінгібування), і постачає гліцин і серин.</p>
+            </div>
+            <div class="ps-viz" id="pr-viz">
+              <div class="ps-viz__art"><svg class="ps-svg" id="pr" viewBox="0 0 900 520" role="img" aria-label="Фотодихання: шлях гліколату через хлоропласт, пероксисому та мітохондрію">
+  <rect x="14" y="20" width="872" height="486" rx="64" fill="#CFE3B4"/>
+  <rect x="24" y="30" width="852" height="466" rx="56" fill="url(#g-cyto)" stroke="#9CC37A" stroke-width="2"/>
+  <rect x="24" y="30" width="852" height="466" rx="56" fill="url(#p-cyto)"/>
+  <text x="48" y="60" class="ps-t ps-t--b" fill="#5E7F43">Клітина мезофілу листка (цитозоль)</text>
+  <ellipse cx="250" cy="268" rx="190" ry="122" fill="url(#g-stroma)" stroke="#3E7D32" stroke-width="1.9"/><ellipse cx="250" cy="268" rx="185.7" ry="117.7" fill="none" stroke="#7DB862" stroke-width="1"/><path d="M124.1 234.8 C124.1 228.6 124.1 303.2 124.1 297 M124.1 297 C149.3 290.8 149.3 274.3 174.5 268.1 M174.5 268.1 C199.7 261.9 199.7 241.1 224.8 234.9 M224.8 234.9 C224.8 228.7 224.8 298.2 224.8 292 M224.8 292 C250 285.8 250 274.5 275.2 268.3 M275.2 268.3 C300.3 262.1 300.3 240.4 325.5 234.2 M325.5 234.2 C325.5 228 325.5 297.4 325.5 291.2 M325.5 291.2 C350.7 285 350.7 271.1 375.9 264.9" fill="none" stroke="#4E8F3E" stroke-width="1.1" opacity=".8"/><rect x="109.9" y="212.9" width="28.5" height="4.7" rx="2.3" fill="url(#g-thyl)" stroke="#2B5E26" stroke-width="0.496"/><rect x="109.9" y="218.5" width="28.5" height="4.7" rx="2.3" fill="url(#g-thyl)" stroke="#2B5E26" stroke-width="0.496"/><rect x="109.9" y="224.1" width="28.5" height="4.7" rx="2.3" fill="url(#g-thyl)" stroke="#2B5E26" stroke-width="0.496"/><rect x="109.9" y="229.6" width="28.5" height="4.7" rx="2.3" fill="url(#g-thyl)" stroke="#2B5E26" stroke-width="0.496"/><rect x="109.9" y="235.2" width="28.5" height="4.7" rx="2.3" fill="url(#g-thyl)" stroke="#2B5E26" stroke-width="0.496"/><rect x="109.9" y="240.8" width="28.5" height="4.7" rx="2.3" fill="url(#g-thyl)" stroke="#2B5E26" stroke-width="0.496"/><rect x="109.9" y="246.4" width="28.5" height="4.7" rx="2.3" fill="url(#g-thyl)" stroke="#2B5E26" stroke-width="0.496"/><rect x="109.9" y="252" width="28.5" height="4.7" rx="2.3" fill="url(#g-thyl)" stroke="#2B5E26" stroke-width="0.496"/><rect x="110.9" y="213.5" width="26.5" height="1.6" rx="1" fill="#C9F0A8" opacity=".55"/><rect x="109.9" y="280.8" width="28.5" height="4.7" rx="2.3" fill="url(#g-thyl)" stroke="#2B5E26" stroke-width="0.496"/><rect x="109.9" y="286.3" width="28.5" height="4.7" rx="2.3" fill="url(#g-thyl)" stroke="#2B5E26" stroke-width="0.496"/><rect x="109.9" y="291.9" width="28.5" height="4.7" rx="2.3" fill="url(#g-thyl)" stroke="#2B5E26" stroke-width="0.496"/><rect x="109.9" y="297.5" width="28.5" height="4.7" rx="2.3" fill="url(#g-thyl)" stroke="#2B5E26" stroke-width="0.496"/><rect x="109.9" y="303.1" width="28.5" height="4.7" rx="2.3" fill="url(#g-thyl)" stroke="#2B5E26" stroke-width="0.496"/><rect x="109.9" y="308.7" width="28.5" height="4.7" rx="2.3" fill="url(#g-thyl)" stroke="#2B5E26" stroke-width="0.496"/><rect x="110.9" y="281.4" width="26.5" height="1.6" rx="1" fill="#C9F0A8" opacity=".55"/><rect x="160.2" y="249" width="28.5" height="4.7" rx="2.3" fill="url(#g-thyl)" stroke="#2B5E26" stroke-width="0.496"/><rect x="160.2" y="254.6" width="28.5" height="4.7" rx="2.3" fill="url(#g-thyl)" stroke="#2B5E26" stroke-width="0.496"/><rect x="160.2" y="260.2" width="28.5" height="4.7" rx="2.3" fill="url(#g-thyl)" stroke="#2B5E26" stroke-width="0.496"/><rect x="160.2" y="265.8" width="28.5" height="4.7" rx="2.3" fill="url(#g-thyl)" stroke="#2B5E26" stroke-width="0.496"/><rect x="160.2" y="271.3" width="28.5" height="4.7" rx="2.3" fill="url(#g-thyl)" stroke="#2B5E26" stroke-width="0.496"/><rect x="160.2" y="276.9" width="28.5" height="4.7" rx="2.3" fill="url(#g-thyl)" stroke="#2B5E26" stroke-width="0.496"/><rect x="160.2" y="282.5" width="28.5" height="4.7" rx="2.3" fill="url(#g-thyl)" stroke="#2B5E26" stroke-width="0.496"/><rect x="161.2" y="249.6" width="26.5" height="1.6" rx="1" fill="#C9F0A8" opacity=".55"/><rect x="210.6" y="215.9" width="28.5" height="4.7" rx="2.3" fill="url(#g-thyl)" stroke="#2B5E26" stroke-width="0.496"/><rect x="210.6" y="221.5" width="28.5" height="4.7" rx="2.3" fill="url(#g-thyl)" stroke="#2B5E26" stroke-width="0.496"/><rect x="210.6" y="227" width="28.5" height="4.7" rx="2.3" fill="url(#g-thyl)" stroke="#2B5E26" stroke-width="0.496"/><rect x="210.6" y="232.6" width="28.5" height="4.7" rx="2.3" fill="url(#g-thyl)" stroke="#2B5E26" stroke-width="0.496"/><rect x="210.6" y="238.2" width="28.5" height="4.7" rx="2.3" fill="url(#g-thyl)" stroke="#2B5E26" stroke-width="0.496"/><rect x="210.6" y="243.8" width="28.5" height="4.7" rx="2.3" fill="url(#g-thyl)" stroke="#2B5E26" stroke-width="0.496"/><rect x="210.6" y="249.4" width="28.5" height="4.7" rx="2.3" fill="url(#g-thyl)" stroke="#2B5E26" stroke-width="0.496"/><rect x="211.6" y="216.5" width="26.5" height="1.6" rx="1" fill="#C9F0A8" opacity=".55"/><rect x="210.6" y="267.3" width="28.5" height="4.7" rx="2.3" fill="url(#g-thyl)" stroke="#2B5E26" stroke-width="0.496"/><rect x="210.6" y="272.9" width="28.5" height="4.7" rx="2.3" fill="url(#g-thyl)" stroke="#2B5E26" stroke-width="0.496"/><rect x="210.6" y="278.5" width="28.5" height="4.7" rx="2.3" fill="url(#g-thyl)" stroke="#2B5E26" stroke-width="0.496"/><rect x="210.6" y="284.1" width="28.5" height="4.7" rx="2.3" fill="url(#g-thyl)" stroke="#2B5E26" stroke-width="0.496"/><rect x="210.6" y="289.6" width="28.5" height="4.7" rx="2.3" fill="url(#g-thyl)" stroke="#2B5E26" stroke-width="0.496"/><rect x="210.6" y="295.2" width="28.5" height="4.7" rx="2.3" fill="url(#g-thyl)" stroke="#2B5E26" stroke-width="0.496"/><rect x="210.6" y="300.8" width="28.5" height="4.7" rx="2.3" fill="url(#g-thyl)" stroke="#2B5E26" stroke-width="0.496"/><rect x="210.6" y="306.4" width="28.5" height="4.7" rx="2.3" fill="url(#g-thyl)" stroke="#2B5E26" stroke-width="0.496"/><rect x="210.6" y="312" width="28.5" height="4.7" rx="2.3" fill="url(#g-thyl)" stroke="#2B5E26" stroke-width="0.496"/><rect x="211.6" y="267.9" width="26.5" height="1.6" rx="1" fill="#C9F0A8" opacity=".55"/><rect x="260.9" y="243.7" width="28.5" height="4.7" rx="2.3" fill="url(#g-thyl)" stroke="#2B5E26" stroke-width="0.496"/><rect x="260.9" y="249.2" width="28.5" height="4.7" rx="2.3" fill="url(#g-thyl)" stroke="#2B5E26" stroke-width="0.496"/><rect x="260.9" y="254.8" width="28.5" height="4.7" rx="2.3" fill="url(#g-thyl)" stroke="#2B5E26" stroke-width="0.496"/><rect x="260.9" y="260.4" width="28.5" height="4.7" rx="2.3" fill="url(#g-thyl)" stroke="#2B5E26" stroke-width="0.496"/><rect x="260.9" y="266" width="28.5" height="4.7" rx="2.3" fill="url(#g-thyl)" stroke="#2B5E26" stroke-width="0.496"/><rect x="260.9" y="271.6" width="28.5" height="4.7" rx="2.3" fill="url(#g-thyl)" stroke="#2B5E26" stroke-width="0.496"/><rect x="260.9" y="277.1" width="28.5" height="4.7" rx="2.3" fill="url(#g-thyl)" stroke="#2B5E26" stroke-width="0.496"/><rect x="260.9" y="282.7" width="28.5" height="4.7" rx="2.3" fill="url(#g-thyl)" stroke="#2B5E26" stroke-width="0.496"/><rect x="260.9" y="288.3" width="28.5" height="4.7" rx="2.3" fill="url(#g-thyl)" stroke="#2B5E26" stroke-width="0.496"/><rect x="261.9" y="244.3" width="26.5" height="1.6" rx="1" fill="#C9F0A8" opacity=".55"/><rect x="311.3" y="215.1" width="28.5" height="4.7" rx="2.3" fill="url(#g-thyl)" stroke="#2B5E26" stroke-width="0.496"/><rect x="311.3" y="220.7" width="28.5" height="4.7" rx="2.3" fill="url(#g-thyl)" stroke="#2B5E26" stroke-width="0.496"/><rect x="311.3" y="226.3" width="28.5" height="4.7" rx="2.3" fill="url(#g-thyl)" stroke="#2B5E26" stroke-width="0.496"/><rect x="311.3" y="231.8" width="28.5" height="4.7" rx="2.3" fill="url(#g-thyl)" stroke="#2B5E26" stroke-width="0.496"/><rect x="311.3" y="237.4" width="28.5" height="4.7" rx="2.3" fill="url(#g-thyl)" stroke="#2B5E26" stroke-width="0.496"/><rect x="311.3" y="243" width="28.5" height="4.7" rx="2.3" fill="url(#g-thyl)" stroke="#2B5E26" stroke-width="0.496"/><rect x="311.3" y="248.6" width="28.5" height="4.7" rx="2.3" fill="url(#g-thyl)" stroke="#2B5E26" stroke-width="0.496"/><rect x="312.3" y="215.7" width="26.5" height="1.6" rx="1" fill="#C9F0A8" opacity=".55"/><rect x="311.3" y="272.2" width="28.5" height="4.7" rx="2.3" fill="url(#g-thyl)" stroke="#2B5E26" stroke-width="0.496"/><rect x="311.3" y="277.7" width="28.5" height="4.7" rx="2.3" fill="url(#g-thyl)" stroke="#2B5E26" stroke-width="0.496"/><rect x="311.3" y="283.3" width="28.5" height="4.7" rx="2.3" fill="url(#g-thyl)" stroke="#2B5E26" stroke-width="0.496"/><rect x="311.3" y="288.9" width="28.5" height="4.7" rx="2.3" fill="url(#g-thyl)" stroke="#2B5E26" stroke-width="0.496"/><rect x="311.3" y="294.5" width="28.5" height="4.7" rx="2.3" fill="url(#g-thyl)" stroke="#2B5E26" stroke-width="0.496"/><rect x="311.3" y="300.1" width="28.5" height="4.7" rx="2.3" fill="url(#g-thyl)" stroke="#2B5E26" stroke-width="0.496"/><rect x="311.3" y="305.6" width="28.5" height="4.7" rx="2.3" fill="url(#g-thyl)" stroke="#2B5E26" stroke-width="0.496"/><rect x="312.3" y="272.8" width="26.5" height="1.6" rx="1" fill="#C9F0A8" opacity=".55"/><rect x="361.6" y="245.8" width="28.5" height="4.7" rx="2.3" fill="url(#g-thyl)" stroke="#2B5E26" stroke-width="0.496"/><rect x="361.6" y="251.4" width="28.5" height="4.7" rx="2.3" fill="url(#g-thyl)" stroke="#2B5E26" stroke-width="0.496"/><rect x="361.6" y="257" width="28.5" height="4.7" rx="2.3" fill="url(#g-thyl)" stroke="#2B5E26" stroke-width="0.496"/><rect x="361.6" y="262.6" width="28.5" height="4.7" rx="2.3" fill="url(#g-thyl)" stroke="#2B5E26" stroke-width="0.496"/><rect x="361.6" y="268.1" width="28.5" height="4.7" rx="2.3" fill="url(#g-thyl)" stroke="#2B5E26" stroke-width="0.496"/><rect x="361.6" y="273.7" width="28.5" height="4.7" rx="2.3" fill="url(#g-thyl)" stroke="#2B5E26" stroke-width="0.496"/><rect x="361.6" y="279.3" width="28.5" height="4.7" rx="2.3" fill="url(#g-thyl)" stroke="#2B5E26" stroke-width="0.496"/><rect x="362.6" y="246.4" width="26.5" height="1.6" rx="1" fill="#C9F0A8" opacity=".55"/>
+  <text x="128" y="128" class="ps-t ps-t--h">Хлоропласт</text>
+  <g id="pr-calvin" transform="translate(196 330)"><circle r="34" fill="#FFFFFF" fill-opacity=".8" stroke="#B08A1E" stroke-width="1.6"/><path d="M-20 -12 A24 24 0 1 1 -22 8" fill="none" stroke="#B08A1E" stroke-width="2.4" marker-end="url(#m-arr)"/><text y="-1" text-anchor="middle" class="ps-t ps-t--b" font-size="10">Цикл</text><text y="11" text-anchor="middle" class="ps-t ps-t--b" font-size="10">Кальвіна</text></g>
+  <g id="pr-rub" class="pr-site" transform="translate(330 216)"><rect x="-38" y="-15" width="76" height="30" rx="15"/><text y="5" text-anchor="middle" class="ps-t ps-t--b">Рубіско</text></g>
+  <g id="pr-gs" class="pr-site" transform="translate(322 352)"><rect x="-54" y="-15" width="108" height="30" rx="15"/><text y="5" text-anchor="middle" class="ps-t ps-t--b">GS / GOGAT</text></g>
+  <g id="pr-glyk" class="pr-site" transform="translate(372 290)"><rect x="-34" y="-14" width="68" height="28" rx="14"/><text y="5" text-anchor="middle" class="ps-t ps-t--b">GLYK</text></g>
+  <use href="#s-perox" x="-80" y="-80" width="160" height="160" transform="translate(600 150)"/>
+  <text x="600" y="64" text-anchor="middle" class="ps-t ps-t--h">Пероксисома</text>
+  <g id="pr-gox" class="pr-site" transform="translate(600 210)"><rect x="-62" y="-14" width="124" height="28" rx="14"/><text y="5" text-anchor="middle" class="ps-t ps-t--b">GOX · каталаза</text></g>
+  <use href="#s-mito" x="-150" y="-83" width="300" height="166" transform="translate(700 380)"/>
+  <text x="700" y="484" text-anchor="middle" class="ps-t ps-t--h">Мітохондрія</text>
+  <g id="pr-gdc" class="pr-site" transform="translate(700 380)"><rect x="-58" y="-15" width="116" height="30" rx="15"/><text y="5" text-anchor="middle" class="ps-t ps-t--b">GDC · SHMT</text></g>
+  <path id="pr-p0" class="pr-path" d="M330 8 C330 70 340 140 332 196"/>
+  <path id="pr-p1" class="pr-path" d="M366 214 C430 200 470 180 540 168"/>
+  <path id="pr-p2" class="pr-path" d="M572 196 C630 230 660 300 676 352"/>
+  <path id="pr-p3" class="pr-path" d="M760 376 C820 360 860 330 900 300"/>
+  <path id="pr-p4" class="pr-path" d="M642 404 C560 430 450 410 376 362"/>
+  <path id="pr-p5" class="pr-path" d="M724 354 C740 300 700 240 646 214"/>
+  <path id="pr-p6" class="pr-path" d="M556 220 C500 260 440 280 404 288"/>
+  <path id="pr-p7" class="pr-path" d="M340 290 C290 300 250 312 230 322"/>
+  <text x="338" y="22" class="ps-t ps-t--b" fill="#2E5FA0">O₂</text>
+  <text x="860" y="290" class="ps-t ps-t--b" fill="#C0573E" text-anchor="end">CO₂ ↑</text>
+  <g id="pr-tok"></g>
+</svg></div>
+              <aside class="ps-panel" aria-live="polite">
+                <div class="ps-panel__top"><span class="ps-panel__k">Цикл C₂</span><span class="ps-panel__n" id="pr-n">1 / 6</span></div>
+                <h3 id="pr-title"></h3>
+                <div class="ps-panel__eq" id="pr-eq"></div>
+                <dl class="ps-panel__dl"><dt>Фермент</dt><dd id="pr-enz"></dd><dt>Де відбувається</dt><dd id="pr-where"></dd></dl>
+                <p id="pr-text"></p>
+                <div class="ps-ctrl">
+                  <button class="ps-btn" type="button" id="pr-prev" aria-label="Попередній крок"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m15 6-6 6 6 6"/></svg></button>
+                  <button class="btn btn--sm ps-play" type="button" id="pr-play"></button>
+                  <button class="ps-btn" type="button" id="pr-next" aria-label="Наступний крок"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m9 6 6 6-6 6"/></svg></button>
+                </div>
+                <div class="ps-dots" id="pr-dots"></div>
+              </aside>
+            </div>
+            <div class="sim ps-sim">
+              <div class="sim__controls">
+                <h3>Умови для листка C₃-рослини</h3>
+                <div id="pr-c" style="display:flex;flex-direction:column;gap:14px"></div>
+              </div>
+              <div class="sim__main">
+                <div class="ps-meter" aria-hidden="true"><span class="ps-meter__c" id="pr-bar-c"></span><span class="ps-meter__o" id="pr-bar-o"></span></div>
+                <div class="ps-meter__lab"><span><i style="background:#4CAF50"></i>карбоксилювання (v<sub>c</sub>)</span><span><i style="background:#E07A2E"></i>оксигенування (v<sub>o</sub>)</span></div>
+                <div class="readouts">
+                  <div class="readout"><div class="readout__label">Γ* (компенсаційний пункт фотодихання)</div><div class="readout__value" data-out="prg">—</div></div>
+                  <div class="readout"><div class="readout__label">v<sub>o</sub> / v<sub>c</sub></div><div class="readout__value" data-out="prr">—</div></div>
+                  <div class="readout readout--gold"><div class="readout__label">Втрата щойно фіксованого C</div><div class="readout__value" data-out="prl">—</div></div>
+                  <div class="readout"><div class="readout__label">Додаткові витрати на 100 CO₂</div><div class="readout__value" data-out="pre">—</div></div>
+                </div>
+                <p class="ps-note" id="pr-note"></p>
+              </div>
+            </div>
+          </section>
+
+          <section class="lab-section" id="c4">
+            <h2><span class="n">04</span>C₄-фотосинтез (цикл Хетча — Слека)</h2>
+            <div class="prose">
+              <p>C₄-фотосинтез незалежно виник понад 60 разів як пристосування до спеки, яскравого світла й посухи. Перший продукт фіксації — чотиривуглецева <b>щавлевооцтова кислота</b> (оксалоацетат), яка швидко перетворюється на малат чи аспартат. Майже всі C₄-рослини мають <b>кранц-анатомію</b> (нім. <i>Kranz</i> — вінок): провідний пучок оточений щільним шаром великих клітин обкладки, а навколо нього — кільце клітин мезофілу.</p>
+              <ul>
+                <li><b>Мезофіл</b> контактує з міжклітинниками, але не має Рубіско. Тут карбоангідраза перетворює CO₂ на HCO₃⁻, а <b>ФЕП-карбоксилаза</b> приєднує його до фосфоенолпірувату (ФЕП). Цей фермент має високу спорідненість до субстрату й зовсім не реагує з O₂.</li>
+                <li><b>Обкладка пучка</b> містить усю Рубіско і ферменти циклу Кальвіна. C₄-кислота надходить сюди через плазмодесми й декарбоксилюється: концентрація CO₂ сягає 1000–2000 ppm (у 10–20 разів більше, ніж у листку C₃-рослини), і фотодихання майже зникає.</li>
+                <li>Тривуглецевий залишок повертається в мезофіл, де <b>піруват-ортофосфатдикіназа</b> (ППДК) регенерує ФЕП. Це коштує 2 ATP на кожен CO₂, тож C₄-шлях потребує 5 ATP і 2 NADPH на CO₂ замість 3 і 2 у C₃.</li>
+              </ul>
+            </div>
+            <div class="ps-sub" id="c4-sub" role="radiogroup" aria-label="Підтип C₄"></div>
+            <div class="ps-viz" id="c4-viz">
+              <div class="ps-viz__art"><svg class="ps-svg" id="c4" viewBox="0 0 900 540" role="img" aria-label="C4-фотосинтез: кранц-анатомія та човник C4-кислот між мезофілом і обкладкою">
+  <circle cx="210" cy="268" r="196" fill="#F4FAEE" stroke="#D5E6C3"/><g class="kz-m" transform="translate(360 268) rotate(90)"><ellipse rx="34" ry="24" fill="url(#g-mes)" stroke="#8DBB6A" stroke-width="1.4"/><ellipse cx="-20" cy="-10" rx="5" ry="3" fill="#6DAA4E"/><ellipse cx="-6" cy="-16" rx="5" ry="3" fill="#6DAA4E"/><ellipse cx="10" cy="-14" rx="5" ry="3" fill="#6DAA4E"/><ellipse cx="22" cy="-4" rx="5" ry="3" fill="#6DAA4E"/><ellipse cx="18" cy="10" rx="5" ry="3" fill="#6DAA4E"/><ellipse cx="2" cy="15" rx="5" ry="3" fill="#6DAA4E"/><ellipse cx="-16" cy="12" rx="5" ry="3" fill="#6DAA4E"/><ellipse cx="-24" cy="0" rx="5" ry="3" fill="#6DAA4E"/></g><g class="kz-m" transform="translate(345.1 333.1) rotate(115.7)"><ellipse rx="34" ry="24" fill="url(#g-mes)" stroke="#8DBB6A" stroke-width="1.4"/><ellipse cx="-20" cy="-10" rx="5" ry="3" fill="#6DAA4E"/><ellipse cx="-6" cy="-16" rx="5" ry="3" fill="#6DAA4E"/><ellipse cx="10" cy="-14" rx="5" ry="3" fill="#6DAA4E"/><ellipse cx="22" cy="-4" rx="5" ry="3" fill="#6DAA4E"/><ellipse cx="18" cy="10" rx="5" ry="3" fill="#6DAA4E"/><ellipse cx="2" cy="15" rx="5" ry="3" fill="#6DAA4E"/><ellipse cx="-16" cy="12" rx="5" ry="3" fill="#6DAA4E"/><ellipse cx="-24" cy="0" rx="5" ry="3" fill="#6DAA4E"/></g><g class="kz-m" transform="translate(303.5 385.3) rotate(141.4)"><ellipse rx="34" ry="24" fill="url(#g-mes)" stroke="#8DBB6A" stroke-width="1.4"/><ellipse cx="-20" cy="-10" rx="5" ry="3" fill="#6DAA4E"/><ellipse cx="-6" cy="-16" rx="5" ry="3" fill="#6DAA4E"/><ellipse cx="10" cy="-14" rx="5" ry="3" fill="#6DAA4E"/><ellipse cx="22" cy="-4" rx="5" ry="3" fill="#6DAA4E"/><ellipse cx="18" cy="10" rx="5" ry="3" fill="#6DAA4E"/><ellipse cx="2" cy="15" rx="5" ry="3" fill="#6DAA4E"/><ellipse cx="-16" cy="12" rx="5" ry="3" fill="#6DAA4E"/><ellipse cx="-24" cy="0" rx="5" ry="3" fill="#6DAA4E"/></g><g class="kz-m" transform="translate(243.4 414.2) rotate(167.1)"><ellipse rx="34" ry="24" fill="url(#g-mes)" stroke="#8DBB6A" stroke-width="1.4"/><ellipse cx="-20" cy="-10" rx="5" ry="3" fill="#6DAA4E"/><ellipse cx="-6" cy="-16" rx="5" ry="3" fill="#6DAA4E"/><ellipse cx="10" cy="-14" rx="5" ry="3" fill="#6DAA4E"/><ellipse cx="22" cy="-4" rx="5" ry="3" fill="#6DAA4E"/><ellipse cx="18" cy="10" rx="5" ry="3" fill="#6DAA4E"/><ellipse cx="2" cy="15" rx="5" ry="3" fill="#6DAA4E"/><ellipse cx="-16" cy="12" rx="5" ry="3" fill="#6DAA4E"/><ellipse cx="-24" cy="0" rx="5" ry="3" fill="#6DAA4E"/></g><g class="kz-m" transform="translate(176.6 414.2) rotate(192.9)"><ellipse rx="34" ry="24" fill="url(#g-mes)" stroke="#8DBB6A" stroke-width="1.4"/><ellipse cx="-20" cy="-10" rx="5" ry="3" fill="#6DAA4E"/><ellipse cx="-6" cy="-16" rx="5" ry="3" fill="#6DAA4E"/><ellipse cx="10" cy="-14" rx="5" ry="3" fill="#6DAA4E"/><ellipse cx="22" cy="-4" rx="5" ry="3" fill="#6DAA4E"/><ellipse cx="18" cy="10" rx="5" ry="3" fill="#6DAA4E"/><ellipse cx="2" cy="15" rx="5" ry="3" fill="#6DAA4E"/><ellipse cx="-16" cy="12" rx="5" ry="3" fill="#6DAA4E"/><ellipse cx="-24" cy="0" rx="5" ry="3" fill="#6DAA4E"/></g><g class="kz-m" transform="translate(116.5 385.3) rotate(218.6)"><ellipse rx="34" ry="24" fill="url(#g-mes)" stroke="#8DBB6A" stroke-width="1.4"/><ellipse cx="-20" cy="-10" rx="5" ry="3" fill="#6DAA4E"/><ellipse cx="-6" cy="-16" rx="5" ry="3" fill="#6DAA4E"/><ellipse cx="10" cy="-14" rx="5" ry="3" fill="#6DAA4E"/><ellipse cx="22" cy="-4" rx="5" ry="3" fill="#6DAA4E"/><ellipse cx="18" cy="10" rx="5" ry="3" fill="#6DAA4E"/><ellipse cx="2" cy="15" rx="5" ry="3" fill="#6DAA4E"/><ellipse cx="-16" cy="12" rx="5" ry="3" fill="#6DAA4E"/><ellipse cx="-24" cy="0" rx="5" ry="3" fill="#6DAA4E"/></g><g class="kz-m" transform="translate(74.9 333.1) rotate(244.3)"><ellipse rx="34" ry="24" fill="url(#g-mes)" stroke="#8DBB6A" stroke-width="1.4"/><ellipse cx="-20" cy="-10" rx="5" ry="3" fill="#6DAA4E"/><ellipse cx="-6" cy="-16" rx="5" ry="3" fill="#6DAA4E"/><ellipse cx="10" cy="-14" rx="5" ry="3" fill="#6DAA4E"/><ellipse cx="22" cy="-4" rx="5" ry="3" fill="#6DAA4E"/><ellipse cx="18" cy="10" rx="5" ry="3" fill="#6DAA4E"/><ellipse cx="2" cy="15" rx="5" ry="3" fill="#6DAA4E"/><ellipse cx="-16" cy="12" rx="5" ry="3" fill="#6DAA4E"/><ellipse cx="-24" cy="0" rx="5" ry="3" fill="#6DAA4E"/></g><g class="kz-m" transform="translate(60 268) rotate(270)"><ellipse rx="34" ry="24" fill="url(#g-mes)" stroke="#8DBB6A" stroke-width="1.4"/><ellipse cx="-20" cy="-10" rx="5" ry="3" fill="#6DAA4E"/><ellipse cx="-6" cy="-16" rx="5" ry="3" fill="#6DAA4E"/><ellipse cx="10" cy="-14" rx="5" ry="3" fill="#6DAA4E"/><ellipse cx="22" cy="-4" rx="5" ry="3" fill="#6DAA4E"/><ellipse cx="18" cy="10" rx="5" ry="3" fill="#6DAA4E"/><ellipse cx="2" cy="15" rx="5" ry="3" fill="#6DAA4E"/><ellipse cx="-16" cy="12" rx="5" ry="3" fill="#6DAA4E"/><ellipse cx="-24" cy="0" rx="5" ry="3" fill="#6DAA4E"/></g><g class="kz-m" transform="translate(74.9 202.9) rotate(295.7)"><ellipse rx="34" ry="24" fill="url(#g-mes)" stroke="#8DBB6A" stroke-width="1.4"/><ellipse cx="-20" cy="-10" rx="5" ry="3" fill="#6DAA4E"/><ellipse cx="-6" cy="-16" rx="5" ry="3" fill="#6DAA4E"/><ellipse cx="10" cy="-14" rx="5" ry="3" fill="#6DAA4E"/><ellipse cx="22" cy="-4" rx="5" ry="3" fill="#6DAA4E"/><ellipse cx="18" cy="10" rx="5" ry="3" fill="#6DAA4E"/><ellipse cx="2" cy="15" rx="5" ry="3" fill="#6DAA4E"/><ellipse cx="-16" cy="12" rx="5" ry="3" fill="#6DAA4E"/><ellipse cx="-24" cy="0" rx="5" ry="3" fill="#6DAA4E"/></g><g class="kz-m" transform="translate(116.5 150.7) rotate(321.4)"><ellipse rx="34" ry="24" fill="url(#g-mes)" stroke="#8DBB6A" stroke-width="1.4"/><ellipse cx="-20" cy="-10" rx="5" ry="3" fill="#6DAA4E"/><ellipse cx="-6" cy="-16" rx="5" ry="3" fill="#6DAA4E"/><ellipse cx="10" cy="-14" rx="5" ry="3" fill="#6DAA4E"/><ellipse cx="22" cy="-4" rx="5" ry="3" fill="#6DAA4E"/><ellipse cx="18" cy="10" rx="5" ry="3" fill="#6DAA4E"/><ellipse cx="2" cy="15" rx="5" ry="3" fill="#6DAA4E"/><ellipse cx="-16" cy="12" rx="5" ry="3" fill="#6DAA4E"/><ellipse cx="-24" cy="0" rx="5" ry="3" fill="#6DAA4E"/></g><g class="kz-m" transform="translate(176.6 121.8) rotate(347.1)"><ellipse rx="34" ry="24" fill="url(#g-mes)" stroke="#8DBB6A" stroke-width="1.4"/><ellipse cx="-20" cy="-10" rx="5" ry="3" fill="#6DAA4E"/><ellipse cx="-6" cy="-16" rx="5" ry="3" fill="#6DAA4E"/><ellipse cx="10" cy="-14" rx="5" ry="3" fill="#6DAA4E"/><ellipse cx="22" cy="-4" rx="5" ry="3" fill="#6DAA4E"/><ellipse cx="18" cy="10" rx="5" ry="3" fill="#6DAA4E"/><ellipse cx="2" cy="15" rx="5" ry="3" fill="#6DAA4E"/><ellipse cx="-16" cy="12" rx="5" ry="3" fill="#6DAA4E"/><ellipse cx="-24" cy="0" rx="5" ry="3" fill="#6DAA4E"/></g><g class="kz-m" transform="translate(243.4 121.8) rotate(372.9)"><ellipse rx="34" ry="24" fill="url(#g-mes)" stroke="#8DBB6A" stroke-width="1.4"/><ellipse cx="-20" cy="-10" rx="5" ry="3" fill="#6DAA4E"/><ellipse cx="-6" cy="-16" rx="5" ry="3" fill="#6DAA4E"/><ellipse cx="10" cy="-14" rx="5" ry="3" fill="#6DAA4E"/><ellipse cx="22" cy="-4" rx="5" ry="3" fill="#6DAA4E"/><ellipse cx="18" cy="10" rx="5" ry="3" fill="#6DAA4E"/><ellipse cx="2" cy="15" rx="5" ry="3" fill="#6DAA4E"/><ellipse cx="-16" cy="12" rx="5" ry="3" fill="#6DAA4E"/><ellipse cx="-24" cy="0" rx="5" ry="3" fill="#6DAA4E"/></g><g class="kz-m" transform="translate(303.5 150.7) rotate(398.6)"><ellipse rx="34" ry="24" fill="url(#g-mes)" stroke="#8DBB6A" stroke-width="1.4"/><ellipse cx="-20" cy="-10" rx="5" ry="3" fill="#6DAA4E"/><ellipse cx="-6" cy="-16" rx="5" ry="3" fill="#6DAA4E"/><ellipse cx="10" cy="-14" rx="5" ry="3" fill="#6DAA4E"/><ellipse cx="22" cy="-4" rx="5" ry="3" fill="#6DAA4E"/><ellipse cx="18" cy="10" rx="5" ry="3" fill="#6DAA4E"/><ellipse cx="2" cy="15" rx="5" ry="3" fill="#6DAA4E"/><ellipse cx="-16" cy="12" rx="5" ry="3" fill="#6DAA4E"/><ellipse cx="-24" cy="0" rx="5" ry="3" fill="#6DAA4E"/></g><g class="kz-m kz-hl" transform="translate(345.1 202.9) rotate(424.3)"><ellipse rx="34" ry="24" fill="url(#g-mes)" stroke="#8DBB6A" stroke-width="1.4"/><ellipse cx="-20" cy="-10" rx="5" ry="3" fill="#6DAA4E"/><ellipse cx="-6" cy="-16" rx="5" ry="3" fill="#6DAA4E"/><ellipse cx="10" cy="-14" rx="5" ry="3" fill="#6DAA4E"/><ellipse cx="22" cy="-4" rx="5" ry="3" fill="#6DAA4E"/><ellipse cx="18" cy="10" rx="5" ry="3" fill="#6DAA4E"/><ellipse cx="2" cy="15" rx="5" ry="3" fill="#6DAA4E"/><ellipse cx="-16" cy="12" rx="5" ry="3" fill="#6DAA4E"/><ellipse cx="-24" cy="0" rx="5" ry="3" fill="#6DAA4E"/></g><g class="kz-b" transform="translate(289.9 294) rotate(108)"><ellipse rx="28" ry="22" fill="url(#g-bs)" stroke="#5E8F3E" stroke-width="1.6"/><ellipse cx="-16" cy="-14" rx="4.6" ry="3" fill="#2F6B2A"/><ellipse cx="-8" cy="-14" rx="4.6" ry="3" fill="#2F6B2A"/><ellipse cx="0" cy="-14" rx="4.6" ry="3" fill="#2F6B2A"/><ellipse cx="8" cy="-14" rx="4.6" ry="3" fill="#2F6B2A"/><ellipse cx="16" cy="-14" rx="4.6" ry="3" fill="#2F6B2A"/><ellipse cx="-12" cy="-6" rx="4" ry="2.6" fill="#3E7D32"/><ellipse cx="0" cy="-6" rx="4" ry="2.6" fill="#3E7D32"/><ellipse cx="12" cy="-6" rx="4" ry="2.6" fill="#3E7D32"/></g><g class="kz-b" transform="translate(259.4 336) rotate(144)"><ellipse rx="28" ry="22" fill="url(#g-bs)" stroke="#5E8F3E" stroke-width="1.6"/><ellipse cx="-16" cy="-14" rx="4.6" ry="3" fill="#2F6B2A"/><ellipse cx="-8" cy="-14" rx="4.6" ry="3" fill="#2F6B2A"/><ellipse cx="0" cy="-14" rx="4.6" ry="3" fill="#2F6B2A"/><ellipse cx="8" cy="-14" rx="4.6" ry="3" fill="#2F6B2A"/><ellipse cx="16" cy="-14" rx="4.6" ry="3" fill="#2F6B2A"/><ellipse cx="-12" cy="-6" rx="4" ry="2.6" fill="#3E7D32"/><ellipse cx="0" cy="-6" rx="4" ry="2.6" fill="#3E7D32"/><ellipse cx="12" cy="-6" rx="4" ry="2.6" fill="#3E7D32"/></g><g class="kz-b" transform="translate(210 352) rotate(180)"><ellipse rx="28" ry="22" fill="url(#g-bs)" stroke="#5E8F3E" stroke-width="1.6"/><ellipse cx="-16" cy="-14" rx="4.6" ry="3" fill="#2F6B2A"/><ellipse cx="-8" cy="-14" rx="4.6" ry="3" fill="#2F6B2A"/><ellipse cx="0" cy="-14" rx="4.6" ry="3" fill="#2F6B2A"/><ellipse cx="8" cy="-14" rx="4.6" ry="3" fill="#2F6B2A"/><ellipse cx="16" cy="-14" rx="4.6" ry="3" fill="#2F6B2A"/><ellipse cx="-12" cy="-6" rx="4" ry="2.6" fill="#3E7D32"/><ellipse cx="0" cy="-6" rx="4" ry="2.6" fill="#3E7D32"/><ellipse cx="12" cy="-6" rx="4" ry="2.6" fill="#3E7D32"/></g><g class="kz-b" transform="translate(160.6 336) rotate(216)"><ellipse rx="28" ry="22" fill="url(#g-bs)" stroke="#5E8F3E" stroke-width="1.6"/><ellipse cx="-16" cy="-14" rx="4.6" ry="3" fill="#2F6B2A"/><ellipse cx="-8" cy="-14" rx="4.6" ry="3" fill="#2F6B2A"/><ellipse cx="0" cy="-14" rx="4.6" ry="3" fill="#2F6B2A"/><ellipse cx="8" cy="-14" rx="4.6" ry="3" fill="#2F6B2A"/><ellipse cx="16" cy="-14" rx="4.6" ry="3" fill="#2F6B2A"/><ellipse cx="-12" cy="-6" rx="4" ry="2.6" fill="#3E7D32"/><ellipse cx="0" cy="-6" rx="4" ry="2.6" fill="#3E7D32"/><ellipse cx="12" cy="-6" rx="4" ry="2.6" fill="#3E7D32"/></g><g class="kz-b" transform="translate(130.1 294) rotate(252)"><ellipse rx="28" ry="22" fill="url(#g-bs)" stroke="#5E8F3E" stroke-width="1.6"/><ellipse cx="-16" cy="-14" rx="4.6" ry="3" fill="#2F6B2A"/><ellipse cx="-8" cy="-14" rx="4.6" ry="3" fill="#2F6B2A"/><ellipse cx="0" cy="-14" rx="4.6" ry="3" fill="#2F6B2A"/><ellipse cx="8" cy="-14" rx="4.6" ry="3" fill="#2F6B2A"/><ellipse cx="16" cy="-14" rx="4.6" ry="3" fill="#2F6B2A"/><ellipse cx="-12" cy="-6" rx="4" ry="2.6" fill="#3E7D32"/><ellipse cx="0" cy="-6" rx="4" ry="2.6" fill="#3E7D32"/><ellipse cx="12" cy="-6" rx="4" ry="2.6" fill="#3E7D32"/></g><g class="kz-b" transform="translate(130.1 242) rotate(288)"><ellipse rx="28" ry="22" fill="url(#g-bs)" stroke="#5E8F3E" stroke-width="1.6"/><ellipse cx="-16" cy="-14" rx="4.6" ry="3" fill="#2F6B2A"/><ellipse cx="-8" cy="-14" rx="4.6" ry="3" fill="#2F6B2A"/><ellipse cx="0" cy="-14" rx="4.6" ry="3" fill="#2F6B2A"/><ellipse cx="8" cy="-14" rx="4.6" ry="3" fill="#2F6B2A"/><ellipse cx="16" cy="-14" rx="4.6" ry="3" fill="#2F6B2A"/><ellipse cx="-12" cy="-6" rx="4" ry="2.6" fill="#3E7D32"/><ellipse cx="0" cy="-6" rx="4" ry="2.6" fill="#3E7D32"/><ellipse cx="12" cy="-6" rx="4" ry="2.6" fill="#3E7D32"/></g><g class="kz-b" transform="translate(160.6 200) rotate(324)"><ellipse rx="28" ry="22" fill="url(#g-bs)" stroke="#5E8F3E" stroke-width="1.6"/><ellipse cx="-16" cy="-14" rx="4.6" ry="3" fill="#2F6B2A"/><ellipse cx="-8" cy="-14" rx="4.6" ry="3" fill="#2F6B2A"/><ellipse cx="0" cy="-14" rx="4.6" ry="3" fill="#2F6B2A"/><ellipse cx="8" cy="-14" rx="4.6" ry="3" fill="#2F6B2A"/><ellipse cx="16" cy="-14" rx="4.6" ry="3" fill="#2F6B2A"/><ellipse cx="-12" cy="-6" rx="4" ry="2.6" fill="#3E7D32"/><ellipse cx="0" cy="-6" rx="4" ry="2.6" fill="#3E7D32"/><ellipse cx="12" cy="-6" rx="4" ry="2.6" fill="#3E7D32"/></g><g class="kz-b" transform="translate(210 184) rotate(360)"><ellipse rx="28" ry="22" fill="url(#g-bs)" stroke="#5E8F3E" stroke-width="1.6"/><ellipse cx="-16" cy="-14" rx="4.6" ry="3" fill="#2F6B2A"/><ellipse cx="-8" cy="-14" rx="4.6" ry="3" fill="#2F6B2A"/><ellipse cx="0" cy="-14" rx="4.6" ry="3" fill="#2F6B2A"/><ellipse cx="8" cy="-14" rx="4.6" ry="3" fill="#2F6B2A"/><ellipse cx="16" cy="-14" rx="4.6" ry="3" fill="#2F6B2A"/><ellipse cx="-12" cy="-6" rx="4" ry="2.6" fill="#3E7D32"/><ellipse cx="0" cy="-6" rx="4" ry="2.6" fill="#3E7D32"/><ellipse cx="12" cy="-6" rx="4" ry="2.6" fill="#3E7D32"/></g><g class="kz-b" transform="translate(259.4 200) rotate(396)"><ellipse rx="28" ry="22" fill="url(#g-bs)" stroke="#5E8F3E" stroke-width="1.6"/><ellipse cx="-16" cy="-14" rx="4.6" ry="3" fill="#2F6B2A"/><ellipse cx="-8" cy="-14" rx="4.6" ry="3" fill="#2F6B2A"/><ellipse cx="0" cy="-14" rx="4.6" ry="3" fill="#2F6B2A"/><ellipse cx="8" cy="-14" rx="4.6" ry="3" fill="#2F6B2A"/><ellipse cx="16" cy="-14" rx="4.6" ry="3" fill="#2F6B2A"/><ellipse cx="-12" cy="-6" rx="4" ry="2.6" fill="#3E7D32"/><ellipse cx="0" cy="-6" rx="4" ry="2.6" fill="#3E7D32"/><ellipse cx="12" cy="-6" rx="4" ry="2.6" fill="#3E7D32"/></g><g class="kz-b kz-hl" transform="translate(289.9 242) rotate(432)"><ellipse rx="28" ry="22" fill="url(#g-bs)" stroke="#5E8F3E" stroke-width="1.6"/><ellipse cx="-16" cy="-14" rx="4.6" ry="3" fill="#2F6B2A"/><ellipse cx="-8" cy="-14" rx="4.6" ry="3" fill="#2F6B2A"/><ellipse cx="0" cy="-14" rx="4.6" ry="3" fill="#2F6B2A"/><ellipse cx="8" cy="-14" rx="4.6" ry="3" fill="#2F6B2A"/><ellipse cx="16" cy="-14" rx="4.6" ry="3" fill="#2F6B2A"/><ellipse cx="-12" cy="-6" rx="4" ry="2.6" fill="#3E7D32"/><ellipse cx="0" cy="-6" rx="4" ry="2.6" fill="#3E7D32"/><ellipse cx="12" cy="-6" rx="4" ry="2.6" fill="#3E7D32"/></g><circle cx="210" cy="268" r="58" fill="#F7F2E3" stroke="#B9A77A" stroke-width="1.4"/><circle cx="188" cy="250" r="13" fill="#FFFFFF" stroke="#A8925C" stroke-width="3"/><circle cx="216" cy="242" r="11" fill="#FFFFFF" stroke="#A8925C" stroke-width="3"/><circle cx="238" cy="258" r="10" fill="#FFFFFF" stroke="#A8925C" stroke-width="3"/><circle cx="180" cy="276" r="8" fill="#FFFFFF" stroke="#A8925C" stroke-width="3"/><circle cx="184" cy="286" r="4.6" fill="#EFE6CC" stroke="#B9A77A" stroke-width=".8"/><circle cx="194" cy="286" r="4.6" fill="#EFE6CC" stroke="#B9A77A" stroke-width=".8"/><circle cx="204" cy="286" r="4.6" fill="#EFE6CC" stroke="#B9A77A" stroke-width=".8"/><circle cx="214" cy="286" r="4.6" fill="#EFE6CC" stroke="#B9A77A" stroke-width=".8"/><circle cx="224" cy="286" r="4.6" fill="#EFE6CC" stroke="#B9A77A" stroke-width=".8"/><circle cx="234" cy="286" r="4.6" fill="#EFE6CC" stroke="#B9A77A" stroke-width=".8"/><circle cx="189" cy="295" r="4.6" fill="#EFE6CC" stroke="#B9A77A" stroke-width=".8"/><circle cx="199" cy="295" r="4.6" fill="#EFE6CC" stroke="#B9A77A" stroke-width=".8"/><circle cx="209" cy="295" r="4.6" fill="#EFE6CC" stroke="#B9A77A" stroke-width=".8"/><circle cx="219" cy="295" r="4.6" fill="#EFE6CC" stroke="#B9A77A" stroke-width=".8"/><circle cx="229" cy="295" r="4.6" fill="#EFE6CC" stroke="#B9A77A" stroke-width=".8"/><circle cx="239" cy="295" r="4.6" fill="#EFE6CC" stroke="#B9A77A" stroke-width=".8"/><circle cx="184" cy="304" r="4.6" fill="#EFE6CC" stroke="#B9A77A" stroke-width=".8"/><circle cx="194" cy="304" r="4.6" fill="#EFE6CC" stroke="#B9A77A" stroke-width=".8"/><circle cx="204" cy="304" r="4.6" fill="#EFE6CC" stroke="#B9A77A" stroke-width=".8"/><circle cx="214" cy="304" r="4.6" fill="#EFE6CC" stroke="#B9A77A" stroke-width=".8"/><text x="210" y="266" text-anchor="middle" class="ps-t" font-size="10" fill="#7A6A3E">ксилема</text><text x="210" y="318" text-anchor="middle" class="ps-t" font-size="10" fill="#7A6A3E">флоема</text>
+  <text x="24" y="40" class="ps-t ps-t--h">Кранц-анатомія</text>
+  <text x="24" y="58" class="ps-t" fill="#46584C">«вінок» клітин обкладки навколо пучка</text>
+  <g class="ps-lab"><path d="M300 150 L348 108"/><text x="300" y="100" class="ps-t">мезофіл</text></g>
+  <g class="ps-lab"><path d="M262 214 L330 466"/><text x="300" y="484" class="ps-t">обкладка пучка</text></g>
+  <path d="M368 220 L470 70 M300 262 L470 520" stroke="#B08A1E" stroke-width="1.2" stroke-dasharray="4 4" fill="none"/>
+  <rect x="470" y="70" width="190" height="450" rx="34" fill="url(#g-mes)" stroke="#8DBB6A" stroke-width="2"/>
+  <rect x="680" y="70" width="206" height="450" rx="34" fill="url(#g-bs)" stroke="#5E8F3E" stroke-width="2"/>
+  <rect id="c4-suberin" x="676" y="76" width="6" height="438" rx="3" fill="#7A5A2E" opacity=".85"/>
+  <g fill="#F4FAEE" stroke="#8DBB6A"><rect x="660" y="170" width="24" height="7" rx="3.5"/><rect x="660" y="236" width="24" height="7" rx="3.5"/><rect x="660" y="302" width="24" height="7" rx="3.5"/><rect x="660" y="368" width="24" height="7" rx="3.5"/><rect x="660" y="434" width="24" height="7" rx="3.5"/></g>
+  <text x="565" y="98" text-anchor="middle" class="ps-t ps-t--h">Клітина мезофілу</text>
+  <text x="783" y="98" text-anchor="middle" class="ps-t ps-t--h">Клітина обкладки</text>
+  <text x="672" y="532" text-anchor="middle" class="ps-t" font-size="10.5" fill="#5E7F43">плазмодесми</text>
+  <use href="#s-chl" x="-72" y="-36" width="144" height="72" transform="translate(565 420)"/>
+  <use id="c4-bsgr" href="#s-chl" x="-80" y="-40" width="160" height="80" transform="translate(790 186)"/>
+  <use id="c4-bsag" href="#s-chl-agr" x="-80" y="-40" width="160" height="80" transform="translate(790 186)"/>
+  <use id="c4-mito" href="#s-mito" x="-58" y="-32" width="116" height="64" transform="translate(800 400)"/>
+  <g id="c4-s-ca" class="pr-site" transform="translate(530 150)"><rect x="-42" y="-14" width="84" height="28" rx="14"/><text y="5" text-anchor="middle" class="ps-t ps-t--b">КА</text></g>
+  <g id="c4-s-pepc" class="pr-site" transform="translate(585 232)"><rect x="-44" y="-14" width="88" height="28" rx="14"/><text y="5" text-anchor="middle" class="ps-t ps-t--b">ФЕП-К</text></g>
+  <g id="c4-s-acid" class="pr-site" transform="translate(565 318)"><rect x="-60" y="-14" width="120" height="28" rx="14"/><text y="5" text-anchor="middle" class="ps-t ps-t--b" id="c4-t-acid">НАДФ-МДГ</text></g>
+  <g id="c4-s-ppdk" class="pr-site" transform="translate(565 470)"><rect x="-40" y="-14" width="80" height="28" rx="14"/><text y="5" text-anchor="middle" class="ps-t ps-t--b">ППДК</text></g>
+  <g id="c4-s-dec" class="pr-site" transform="translate(790 300)"><rect x="-62" y="-14" width="124" height="28" rx="14"/><text y="5" text-anchor="middle" class="ps-t ps-t--b" id="c4-t-dec">НАДФ-МЕ</text></g>
+  <g id="c4-s-rub" class="pr-site" transform="translate(790 134)"><rect x="-74" y="-14" width="148" height="28" rx="14"/><text y="5" text-anchor="middle" class="ps-t ps-t--b">Рубіско · Кальвін</text></g>
+  <path id="c4-q0" class="pr-path" d="M420 150 L484 150"/>
+  <path id="c4-q1" class="pr-path" d="M548 168 C560 190 570 205 578 216"/>
+  <path id="c4-q2" class="pr-path" d="M592 250 C596 270 584 290 572 302"/>
+  <path id="c4-q3" class="pr-path" d="M620 314 C650 304 680 300 716 300"/>
+  <path id="c4-q4" class="pr-path" d="M790 284 C792 230 792 190 790 152"/>
+  <path id="c4-q5" class="pr-path" d="M740 316 C690 360 650 420 606 462"/>
+  <path id="c4-q6" class="pr-path" d="M548 456 C520 380 540 300 566 250"/>
+  <text x="410" y="140" class="ps-t ps-t--b" fill="#3D5A66" text-anchor="end">CO₂</text>
+  <g id="c4-tok"></g>
+</svg></div>
+              <aside class="ps-panel" aria-live="polite">
+                <div class="ps-panel__top"><span class="ps-panel__k">C₄-цикл</span><span class="ps-panel__n" id="c4-n">1 / 6</span></div>
+                <h3 id="c4-title"></h3>
+                <div class="ps-panel__eq" id="c4-eq"></div>
+                <dl class="ps-panel__dl"><dt>Фермент</dt><dd id="c4-enz"></dd><dt>Де відбувається</dt><dd id="c4-where"></dd></dl>
+                <p id="c4-text"></p>
+                <div class="ps-ctrl">
+                  <button class="ps-btn" type="button" id="c4-prev" aria-label="Попередній крок"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m15 6-6 6 6 6"/></svg></button>
+                  <button class="btn btn--sm ps-play" type="button" id="c4-play"></button>
+                  <button class="ps-btn" type="button" id="c4-next" aria-label="Наступний крок"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m9 6 6 6-6 6"/></svg></button>
+                </div>
+                <div class="ps-dots" id="c4-dots"></div>
+              </aside>
+            </div>
+            <div class="cmp-wrap ps-table"><table class="cmp">
+              <thead><tr><th scope="col">Підтип</th><th scope="col">Декарбоксилаза в обкладці</th><th scope="col">Кислота M → О</th><th scope="col">Повертається О → M</th><th scope="col">Хлоропласти обкладки</th><th scope="col">Приклади</th></tr></thead>
+              <tbody>
+                <tr><th scope="row">НАДФ-МЕ</th><td>НАДФ-малік-ензим, хлоропласт</td><td>малат</td><td>піруват</td><td>агранальні (майже без ФС II), суберинова пластинка</td><td>кукурудза, цукрова тростина, сорго, мишій</td></tr>
+                <tr><th scope="row">НАД-МЕ</th><td>НАД-малік-ензим, мітохондрія</td><td>аспартат</td><td>аланін</td><td>гранальні</td><td>просо, щириця (амарант), портулак, лобода</td></tr>
+                <tr><th scope="row">ФЕП-КК</th><td>ФЕП-карбоксикіназа, цитозоль (+ НАД-МЕ)</td><td>аспартат, малат</td><td>ФЕП, аланін</td><td>гранальні, суберинова пластинка</td><td>гвінейська трава, хлоріс, спартина</td></tr>
+              </tbody></table></div>
+          </section>
+
+          <section class="lab-section" id="cam">
+            <h2><span class="n">05</span>CAM-метаболізм</h2>
+            <div class="prose">
+              <p><b>CAM</b> (Crassulacean Acid Metabolism, метаболізм за типом товстянкових) уперше виявили в каланхое й товстянки, де вміст кислот і pH клітинного соку коливаються протягом доби. У CAM-рослин обидва карбоксилювання — ФЕП-карбоксилазою і Рубіско — відбуваються <b>в одній клітині, але в різний час</b>. Продихи відкриваються вночі, коли прохолодно й волого, і закриті в спекотний день: CAM-рослини витрачають на 1 г сухої речовини лише 20–100 г води (C₃ — 400–900 г).</p>
+              <ol>
+                <li><b>Фаза I — ніч.</b> Продихи відкриті. Крохмаль розщеплюється в гліколізі до ФЕП, ФЕП-карбоксилаза фіксує CO₂, оксалоацетат відновлюється до малату. Малат закачується у велику центральну вакуолю, де перетворюється на яблучну кислоту; pH клітинного соку падає з ≈ 6 до 3–3,5.</li>
+                <li><b>Фаза II — світанок.</b> Продихи ще 1–2 години відкриті; деякий час одночасно працюють ФЕП-карбоксилаза і Рубіско.</li>
+                <li><b>Фаза III — день.</b> Продихи щільно закриті. Яблучна кислота виходить з вакуолі й декарбоксилюється; CO₂ у клітині сягає 3000–10 000 ppm, і Рубіско працює майже без фотодихання. Піруват через глюконеогенез повертається в крохмаль — запас ФЕП на наступну ніч.</li>
+                <li><b>Фаза IV — вечір.</b> Коли малат вичерпано, а води достатньо, продихи знову відкриваються, і рослина фіксує CO₂ напряму, як C₃. У посуху фази II і IV випадають, а за тривалої посухи настає <b>CAM на холостому ходу</b>: продихи закриті цілодобово, рослина лише переробляє власний «дихальний» CO₂.</li>
+              </ol>
+            </div>
+            <div class="ps-cam">
+              <div class="ps-viz__art"><svg class="ps-svg" id="cam" viewBox="0 0 900 470" role="img" aria-label="CAM-метаболізм: добовий цикл продихів, малату у вакуолі та крохмалю">
+  <defs><linearGradient id="g-day" x1="0" x2="1" y1="0" y2="0">
+    <stop offset="0" stop-color="#1B2A4A"/><stop offset=".22" stop-color="#1B2A4A"/><stop offset=".27" stop-color="#F6B26B"/><stop offset=".33" stop-color="#9ED0F0"/>
+    <stop offset=".7" stop-color="#9ED0F0"/><stop offset=".76" stop-color="#F09A6B"/><stop offset=".8" stop-color="#1B2A4A"/><stop offset="1" stop-color="#1B2A4A"/></linearGradient></defs>
+  <rect x="30" y="12" width="840" height="22" rx="11" fill="url(#g-day)"/>
+  <line x1="30" y1="34" x2="30" y2="40" stroke="#6B7C70"/><text x="30" y="54" text-anchor="middle" class="ps-t" font-size="10" fill="#6B7C70">00:00</text><line x1="135" y1="34" x2="135" y2="40" stroke="#6B7C70"/><text x="135" y="54" text-anchor="middle" class="ps-t" font-size="10" fill="#6B7C70">03:00</text><line x1="240" y1="34" x2="240" y2="40" stroke="#6B7C70"/><text x="240" y="54" text-anchor="middle" class="ps-t" font-size="10" fill="#6B7C70">06:00</text><line x1="345" y1="34" x2="345" y2="40" stroke="#6B7C70"/><text x="345" y="54" text-anchor="middle" class="ps-t" font-size="10" fill="#6B7C70">09:00</text><line x1="450" y1="34" x2="450" y2="40" stroke="#6B7C70"/><text x="450" y="54" text-anchor="middle" class="ps-t" font-size="10" fill="#6B7C70">12:00</text><line x1="555" y1="34" x2="555" y2="40" stroke="#6B7C70"/><text x="555" y="54" text-anchor="middle" class="ps-t" font-size="10" fill="#6B7C70">15:00</text><line x1="660" y1="34" x2="660" y2="40" stroke="#6B7C70"/><text x="660" y="54" text-anchor="middle" class="ps-t" font-size="10" fill="#6B7C70">18:00</text><line x1="765" y1="34" x2="765" y2="40" stroke="#6B7C70"/><text x="765" y="54" text-anchor="middle" class="ps-t" font-size="10" fill="#6B7C70">21:00</text><line x1="870" y1="34" x2="870" y2="40" stroke="#6B7C70"/><text x="870" y="54" text-anchor="middle" class="ps-t" font-size="10" fill="#6B7C70">24:00</text>
+  <g id="cam-sun" transform="translate(30 23)"><circle r="13" fill="#FFFFFF" stroke="#B08A1E" stroke-width="2"/><circle id="cam-sunc" r="8" fill="#FFC93C"/></g>
+  <rect x="30" y="70" width="60" height="390" rx="12" fill="#E2EFD4" stroke="#B5D29A"/>
+  <text x="60" y="88" text-anchor="middle" class="ps-t" font-size="10" fill="#5E7F43">епідерма</text>
+  <g id="cam-stoma" transform="translate(60 270)">
+    <path id="cam-g1" d="M-22 -46 C-34 -20 -34 20 -22 46 C-12 44 -6 20 -6 0 C-6 -20 -12 -44 -22 -46Z" fill="#9CCB7A" stroke="#4E8F3E" stroke-width="1.6"/>
+    <path id="cam-g2" d="M22 -46 C34 -20 34 20 22 46 C12 44 6 20 6 0 C6 -20 12 -44 22 -46Z" fill="#9CCB7A" stroke="#4E8F3E" stroke-width="1.6"/>
+  </g>
+  <text x="60" y="340" text-anchor="middle" class="ps-t" font-size="10" fill="#5E7F43">продих</text>
+  <rect x="104" y="70" width="560" height="390" rx="56" fill="#CFE3B4"/>
+  <rect x="112" y="78" width="544" height="374" rx="50" fill="url(#g-cyto)" stroke="#9CC37A" stroke-width="2"/>
+  <rect x="112" y="78" width="544" height="374" rx="50" fill="url(#p-cyto)"/>
+  <rect x="180" y="118" width="360" height="236" rx="96" fill="url(#g-vac)" stroke="#9DBCD6" stroke-width="2"/>
+  <rect id="cam-mal" x="180" y="118" width="360" height="236" rx="96" fill="#E8833A" opacity="0"/>
+  <g id="cam-mals"><circle class="cam-m" cx="200" cy="150" r="5"/><circle class="cam-m" cx="230" cy="150" r="5"/><circle class="cam-m" cx="260" cy="150" r="5"/><circle class="cam-m" cx="290" cy="150" r="5"/><circle class="cam-m" cx="320" cy="150" r="5"/><circle class="cam-m" cx="350" cy="150" r="5"/><circle class="cam-m" cx="380" cy="150" r="5"/><circle class="cam-m" cx="410" cy="150" r="5"/><circle class="cam-m" cx="440" cy="150" r="5"/><circle class="cam-m" cx="470" cy="150" r="5"/><circle class="cam-m" cx="208" cy="190" r="5"/><circle class="cam-m" cx="238" cy="190" r="5"/><circle class="cam-m" cx="268" cy="190" r="5"/><circle class="cam-m" cx="298" cy="190" r="5"/><circle class="cam-m" cx="328" cy="190" r="5"/><circle class="cam-m" cx="358" cy="190" r="5"/><circle class="cam-m" cx="388" cy="190" r="5"/><circle class="cam-m" cx="418" cy="190" r="5"/><circle class="cam-m" cx="448" cy="190" r="5"/><circle class="cam-m" cx="478" cy="190" r="5"/><circle class="cam-m" cx="200" cy="230" r="5"/><circle class="cam-m" cx="230" cy="230" r="5"/><circle class="cam-m" cx="260" cy="230" r="5"/><circle class="cam-m" cx="290" cy="230" r="5"/><circle class="cam-m" cx="320" cy="230" r="5"/><circle class="cam-m" cx="350" cy="230" r="5"/><circle class="cam-m" cx="380" cy="230" r="5"/><circle class="cam-m" cx="410" cy="230" r="5"/><circle class="cam-m" cx="440" cy="230" r="5"/><circle class="cam-m" cx="470" cy="230" r="5"/><circle class="cam-m" cx="208" cy="270" r="5"/><circle class="cam-m" cx="238" cy="270" r="5"/><circle class="cam-m" cx="268" cy="270" r="5"/><circle class="cam-m" cx="298" cy="270" r="5"/><circle class="cam-m" cx="328" cy="270" r="5"/><circle class="cam-m" cx="358" cy="270" r="5"/><circle class="cam-m" cx="388" cy="270" r="5"/><circle class="cam-m" cx="418" cy="270" r="5"/><circle class="cam-m" cx="448" cy="270" r="5"/><circle class="cam-m" cx="478" cy="270" r="5"/><circle class="cam-m" cx="200" cy="310" r="5"/><circle class="cam-m" cx="230" cy="310" r="5"/><circle class="cam-m" cx="260" cy="310" r="5"/><circle class="cam-m" cx="290" cy="310" r="5"/><circle class="cam-m" cx="320" cy="310" r="5"/><circle class="cam-m" cx="350" cy="310" r="5"/><circle class="cam-m" cx="380" cy="310" r="5"/><circle class="cam-m" cx="410" cy="310" r="5"/><circle class="cam-m" cx="440" cy="310" r="5"/><circle class="cam-m" cx="470" cy="310" r="5"/></g>
+  <text x="360" y="226" text-anchor="middle" class="ps-t ps-t--h" fill="#46637A">Центральна вакуоля</text>
+  <text x="360" y="248" text-anchor="middle" class="ps-t ps-t--b" id="cam-ph-t" fill="#46637A">pH 6,0</text>
+  <use href="#s-chl" x="-60" y="-30" width="120" height="60" transform="translate(360 400)"/>
+  <use href="#s-chl" x="-50" y="-25" width="100" height="50" transform="translate(600 250) rotate(90)"/>
+  <ellipse id="cam-st1" cx="360" cy="414" rx="10" ry="6" fill="url(#g-starch)" stroke="#C9BE96"/>
+  <ellipse id="cam-st2" cx="608" cy="262" rx="5" ry="8" fill="url(#g-starch)" stroke="#C9BE96"/>
+  <g id="cam-s-pepc" class="pr-site" transform="translate(160 160)"><rect x="-40" y="-14" width="80" height="28" rx="14"/><text y="5" text-anchor="middle" class="ps-t ps-t--b">ФЕП-К</text></g>
+  <g id="cam-s-dec" class="pr-site" transform="translate(600 140)"><rect x="-44" y="-14" width="88" height="28" rx="14"/><text y="5" text-anchor="middle" class="ps-t ps-t--b">малік-ензим</text></g>
+  <g id="cam-s-gly" class="pr-site" transform="translate(220 404)"><rect x="-52" y="-14" width="104" height="28" rx="14"/><text y="5" text-anchor="middle" class="ps-t ps-t--b">гліколіз</text></g>
+  <path id="cam-q0" class="pr-path" d="M40 230 C90 220 110 190 134 172"/>
+  <path id="cam-q1" class="pr-path" d="M196 166 C206 160 216 156 232 152"/>
+  <path id="cam-q2" class="pr-path" d="M300 404 C240 370 200 300 166 178"/>
+  <path id="cam-q3" class="pr-path" d="M500 180 C540 160 560 150 572 146"/>
+  <path id="cam-q4" class="pr-path" d="M606 156 C612 190 612 210 606 228"/>
+  <path id="cam-q5" class="pr-path" d="M584 280 C540 360 470 400 410 404"/>
+  <path id="cam-q6" class="pr-path" d="M40 300 C110 330 260 380 330 400"/>
+  <g id="cam-tok"></g>
+  <g transform="translate(690 80)">
+    <rect width="190" height="370" rx="16" fill="#FFFFFF" stroke="#E3EBE3"/>
+    <text x="16" y="30" class="ps-t" font-size="11" fill="#6B7C70">ФАЗА ЗА ОСМУНДОМ</text>
+    <text x="16" y="62" class="ps-t ps-t--h" font-size="26" id="cam-phase">I</text>
+    <text x="16" y="86" class="ps-t ps-t--b" id="cam-phase-n">Ніч</text>
+    <text x="16" y="124" class="ps-t" font-size="11" fill="#6B7C70">ПРОДИХИ</text><text x="16" y="142" class="ps-t ps-t--b" id="cam-gs">відкриті</text>
+    <text x="16" y="176" class="ps-t" font-size="11" fill="#6B7C70">МАЛАТ У ВАКУОЛІ</text><text x="16" y="194" class="ps-t ps-t--b" id="cam-mv">—</text>
+    <rect x="16" y="202" width="158" height="8" rx="4" fill="#EEF2EE"/><rect id="cam-mbar" x="16" y="202" width="0" height="8" rx="4" fill="#E8833A"/>
+    <text x="16" y="236" class="ps-t" font-size="11" fill="#6B7C70">КРОХМАЛЬ</text>
+    <rect x="16" y="244" width="158" height="8" rx="4" fill="#EEF2EE"/><rect id="cam-sbar" x="16" y="244" width="0" height="8" rx="4" fill="#C9BE96"/>
+    <text x="16" y="278" class="ps-t" font-size="11" fill="#6B7C70">ПОГЛИНАННЯ CO₂ ЛИСТКОМ</text><text x="16" y="296" class="ps-t ps-t--b" id="cam-a">—</text>
+    <text x="16" y="330" class="ps-t" font-size="11" fill="#6B7C70">CO₂ У КЛІТИНІ</text><text x="16" y="348" class="ps-t ps-t--b" id="cam-ci">—</text>
+  </g>
+</svg></div>
+              <div class="ps-cam__ctrl">
+                <div class="ps-ctrl">
+                  <button class="btn btn--sm ps-play" type="button" id="cam-play"></button>
+                  <div id="cam-mode"></div>
+                </div>
+                <div class="cg__time ps-time"><span id="cam-tlab">00:00</span><input type="range" id="cam-time" min="0" max="24" step="0.05" value="2" aria-label="Час доби"></div>
+                <p class="ps-note" id="cam-note"></p>
+              </div>
+              <div class="plot-card"><h4>Добовий хід: поглинання CO₂ листком, малат у вакуолі та провідність продихів</h4><div class="plot" id="cam-plot"></div></div>
+            </div>
+          </section>
+
+          <section class="lab-section" id="model">
+            <h2><span class="n">06</span>Модель: C₃ проти C₄</h2>
+            <div class="prose">
+              <p>Як швидкість фотосинтезу залежить від CO₂, світла й температури, описує біохімічна модель <b>Фаркуара — фон Каммерер — Беррі</b> (FvCB). Чистий фотосинтез листка C₃ обмежує найповільніший із процесів: активність Рубіско (W<sub>c</sub>), регенерація RuBP за рахунок електронного транспорту (W<sub>j</sub>) або використання тріозофосфатів (W<sub>p</sub>):</p>
+              <div class="formula"><math display="block"><msub><mi>A</mi><mi>net</mi></msub><mo>=</mo><mi>min</mi><mo>(</mo><mfrac><mrow><msub><mi>V</mi><mrow><mi>c</mi><mo>,</mo><mi>max</mi></mrow></msub><mo>(</mo><msub><mi>C</mi><mi>i</mi></msub><mo>−</mo><msup><mi>Γ</mi><mo>*</mo></msup><mo>)</mo></mrow><mrow><msub><mi>C</mi><mi>i</mi></msub><mo>+</mo><msub><mi>K</mi><mi>c</mi></msub><mo>(</mo><mn>1</mn><mo>+</mo><mi>O</mi><mo>/</mo><msub><mi>K</mi><mi>o</mi></msub><mo>)</mo></mrow></mfrac><mo>,</mo><mspace width="0.4em"/><mfrac><mrow><mi>J</mi><mo>(</mo><msub><mi>C</mi><mi>i</mi></msub><mo>−</mo><msup><mi>Γ</mi><mo>*</mo></msup><mo>)</mo></mrow><mrow><mn>4</mn><msub><mi>C</mi><mi>i</mi></msub><mo>+</mo><mn>8</mn><msup><mi>Γ</mi><mo>*</mo></msup></mrow></mfrac><mo>,</mo><mspace width="0.4em"/><mn>3</mn><msub><mi>T</mi><mi>p</mi></msub><mo>)</mo><mo>−</mo><msub><mi>R</mi><mi>d</mi></msub></math><span class="formula__n">(3)</span></div>
+              <p class="where">Γ* — компенсаційний пункт фотодихання (≈ 43 ppm при 25 °C); K<sub>c</sub>, K<sub>o</sub> — константи Міхаеліса Рубіско для CO₂ і O₂; J — швидкість електронного транспорту, що залежить від освітленості; R<sub>d</sub> — мітохондріальне дихання. Усі константи змінюються з температурою за рівнянням Арреніуса: K<sub>c</sub> зростає швидше, ніж K<sub>o</sub>, тож у спеку фотодихання стрімко посилюється. Для C₄ використано двокомпартментну модель фон Каммерер: ФЕП-карбоксилаза мезофілу (V<sub>p</sub>) накачує CO₂ в обкладку, де працює Рубіско.</p>
+            </div>
+            <div class="sim">
+              <div class="sim__controls">
+                <h3>Вісь графіка</h3>
+                <div id="fv-axis"></div>
+                <h3>Умови</h3>
+                <div id="fv-c" style="display:flex;flex-direction:column;gap:14px"></div>
+              </div>
+              <div class="sim__main">
+                <div class="plot" id="fv-plot"></div>
+                <div class="readouts">
+                  <div class="readout"><div class="readout__label">A, C₃ (пшениця)</div><div class="readout__value" data-out="fva3">—</div></div>
+                  <div class="readout readout--gold"><div class="readout__label">A, C₄ (кукурудза)</div><div class="readout__value" data-out="fva4">—</div></div>
+                  <div class="readout"><div class="readout__label">Обмежує C₃</div><div class="readout__value" data-out="fvlim" style="font-size:.95rem">—</div></div>
+                  <div class="readout"><div class="readout__label">Фотодихання C₃</div><div class="readout__value" data-out="fvpr">—</div></div>
+                  <div class="readout"><div class="readout__label">CO₂ в обкладці C₄</div><div class="readout__value" data-out="fvbs">—</div></div>
+                </div>
+              </div>
+            </div>
+          </section>
+
+          <section class="lab-section" id="compare">
+            <h2><span class="n">07</span>Порівняння та приклади рослин</h2>
+            <div class="cmp-wrap ps-table"><table class="cmp">
+              <thead><tr><th scope="col">Ознака</th><th scope="col">C₃</th><th scope="col">C₄</th><th scope="col">CAM</th></tr></thead>
+              <tbody>
+                <tr><th scope="row">Перший карбоксилюючий фермент</th><td>Рубіско</td><td>ФЕП-карбоксилаза</td><td>уночі ФЕП-карбоксилаза, удень Рубіско</td></tr>
+                <tr><th scope="row">Перший стабільний продукт</th><td>3-ФГК (C₃)</td><td>оксалоацетат (C₄) → малат / аспартат</td><td>уночі малат у вакуолі, удень 3-ФГК</td></tr>
+                <tr><th scope="row">Розділення фіксацій</th><td>немає</td><td>просторове: мезофіл → обкладка</td><td>часове: ніч → день</td></tr>
+                <tr><th scope="row">Анатомія листка</th><td>палісадний і губчастий мезофіл</td><td>кранц-анатомія</td><td>сукулентний мезофіл з великими вакуолями</td></tr>
+                <tr><th scope="row">Енергія на 1 CO₂</th><td>3 ATP + 2 NADPH</td><td>5 ATP + 2 NADPH</td><td>5,5–6,5 ATP + 2 NADPH</td></tr>
+                <tr><th scope="row">Фотодихання</th><td>високе: 20–40 % при 25–35 °C</td><td>&lt; 2–5 %</td><td>дуже низьке у фазі III</td></tr>
+                <tr><th scope="row">CO₂-компенсаційний пункт</th><td>40–60 ppm, росте з температурою</td><td>0–5 ppm</td><td>0–5 ppm уночі</td></tr>
+                <tr><th scope="row">Температурний оптимум</th><td>15–25 °C</td><td>30–45 °C</td><td>удень 30–35 °C, уночі 10–20 °C</td></tr>
+                <tr><th scope="row">Насичення світлом</th><td>при 500–1000 мкмоль·м⁻²·с⁻¹</td><td>не насичується навіть на повному сонці</td><td>помірне</td></tr>
+                <tr><th scope="row">Води на 1 г сухої речовини</th><td>400–900 г</td><td>250–350 г</td><td>20–100 г</td></tr>
+                <tr><th scope="row">Макс. швидкість фотосинтезу</th><td>15–35 мкмоль CO₂·м⁻²·с⁻¹</td><td>35–65</td><td>1–10</td></tr>
+                <tr><th scope="row">δ¹³C біомаси</th><td>від −24 до −34 ‰</td><td>від −10 до −16 ‰</td><td>від −10 до −20 ‰</td></tr>
+              </tbody></table></div>
+            <div class="ps-plants-grid"><div class="ps-plants ps-plants--c3"><h3>C₃-рослини</h3><p>Помірний клімат, достатня волога; ≈ 85 % видів.</p><ul><li><b>Пшениця</b> <i>Triticum aestivum</i><span>головна зернова культура України</span></li><li><b>Рис</b> <i>Oryza sativa</i><span>годує половину людства</span></li><li><b>Соя, горох, квасоля</b> <i>Glycine max, Pisum sativum, Phaseolus vulgaris</i><span>бобові</span></li><li><b>Соняшник</b> <i>Helianthus annuus</i><span>олійна культура</span></li><li><b>Цукровий буряк, картопля</b> <i>Beta vulgaris, Solanum tuberosum</i><span></span></li><li><b>Дерева</b> <i>Quercus, Fagus, Pinus, Betula</i><span>усі лісові породи</span></li></ul></div><div class="ps-plants ps-plants--c4"><h3>C₄-рослини</h3><p>Спека, яскраве світло, посуха; переважно злаки тропічного походження.</p><ul><li><b>Кукурудза</b> <i>Zea mays</i><span>НАДФ-МЕ; рекордна продуктивність</span></li><li><b>Цукрова тростина</b> <i>Saccharum officinarum</i><span>НАДФ-МЕ</span></li><li><b>Сорго</b> <i>Sorghum bicolor</i><span>посухостійка культура</span></li><li><b>Просо</b> <i>Panicum miliaceum</i><span>НАД-МЕ</span></li><li><b>Щириця</b> <i>Amaranthus retroflexus</i><span>НАД-МЕ; злісний бур'ян</span></li><li><b>Мишій, плоскуха</b> <i>Setaria viridis, Echinochloa crus-galli</i><span>бур'яни посівів</span></li></ul></div><div class="ps-plants ps-plants--cam"><h3>CAM-рослини</h3><p>Пустелі, скелі, крони дерев (епіфіти); ≈ 6 % видів.</p><ul><li><b>Ананас</b> <i>Ananas comosus</i><span>головна CAM-культура</span></li><li><b>Агава</b> <i>Agave tequilana</i><span>сировина для текіли</span></li><li><b>Опунція, кактуси</b> <i>Opuntia ficus-indica, Cactaceae</i><span></span></li><li><b>Каланхое, товстянка</b> <i>Kalanchoe, Crassula ovata</i><span>родина товстянкових — звідси назва</span></li><li><b>Орхідеї, ваніль</b> <i>Phalaenopsis, Vanilla planifolia</i><span>епіфіти</span></li><li><b>Кришталева трава</b> <i>Mesembryanthemum crystallinum</i><span>перемикається C₃ ↔ CAM під час посухи</span></li></ul></div></div>
+          </section>
+
+          <section class="lab-section" id="questions">
+            <h2><span class="n">08</span>Контрольні питання</h2>
+            <div class="qa">
+              <details><summary>Чому для синтезу однієї молекули тріозофосфату потрібно три оберти циклу Кальвіна?</summary><div>За один оберт фіксується одна молекула CO₂ (1 атом C). Тріозофосфат містить 3 атоми C, тому треба зафіксувати 3 CO₂; решта 15 атомів C із шести тріозофосфатів ідуть на регенерацію трьох молекул RuBP.</div></details>
+              <details><summary>Скільки ATP і NADPH потрібно на одну молекулу глюкози в C₃- і C₄-рослин?</summary><div>C₃: 18 ATP і 12 NADPH (3 і 2 на кожен CO₂). C₄: 30 ATP і 12 NADPH, бо регенерація ФЕП ферментом ППДК коштує ще 2 ATP на CO₂.</div></details>
+              <details><summary>Чому фотодихання посилюється в спеку і посуху?</summary><div>Розчинність CO₂ з нагріванням падає швидше, ніж O₂; специфічність Рубіско до CO₂ знижується (K<sub>c</sub> зростає швидше, ніж K<sub>o</sub>); продихи закриваються, і концентрація CO₂ у листку падає. Усе це збільшує частку оксигенування.</div></details>
+              <details><summary>У яких органелах відбувається фотодихання і де втрачається CO₂?</summary><div>Хлоропласт (оксигенування RuBP, утворення гліколату) → пероксисома (гліколат → гліоксилат → гліцин) → мітохондрія (2 гліцин → серин + CO₂ + NH₃) → пероксисома (серин → гліцерат) → хлоропласт (гліцерат → 3-ФГК). CO₂ виділяється в мітохондрії під час декарбоксилювання гліцину.</div></details>
+              <details><summary>Навіщо C₄-рослинам кранц-анатомія?</summary><div>Вона просторово розділяє первинну фіксацію (ФЕП-карбоксилаза в мезофілі) і цикл Кальвіна (Рубіско в обкладці). Щільна стінка обкладки, часто з субериновою пластинкою, не випускає накачаний CO₂ назад, тому біля Рубіско його концентрація в 10–20 разів вища, ніж у повітрі, і фотодихання майже не відбувається.</div></details>
+              <details><summary>Чим відрізняються підтипи НАДФ-МЕ і НАД-МЕ?</summary><div>У НАДФ-МЕ (кукурудза) з мезофілу в обкладку переноситься малат, який декарбоксилюється в хлоропласті з утворенням NADPH, а назад повертається піруват; хлоропласти обкладки агранальні. У НАД-МЕ (просо, щириця) переноситься аспартат, декарбоксилювання відбувається в мітохондріях, повертається аланін.</div></details>
+              <details><summary>Чому pH клітинного соку CAM-рослин уранці нижчий, ніж увечері?</summary><div>Уночі фіксований CO₂ запасається у вакуолі у вигляді яблучної кислоти, і pH знижується до 3–3,5. Удень кислота виходить із вакуолі й декарбоксилюється, тому до вечора pH повертається до ≈ 6.</div></details>
+              <details><summary>Чому кукурудза, сорго й щириця добре почуваються в спекотне літо, а пшениця — ні?</summary><div>Це C₄-рослини: у них майже немає фотодихання, температурний оптимум 30–45 °C, вони ефективніше використовують воду й азот. У C₃-пшениці за 30 °C і вище фотодихання забирає до третини фіксованого вуглецю, а продихи доводиться прикривати.</div></details>
+            </div>
+          </section>
+
+          <section class="lab-section" id="refs">
+            <h2><span class="n">09</span>Література</h2>
+            <ol class="refs">
+              <li>Макрушин М. М., Макрушина Є. М., Петерсон Н. В., Мельников М. М. Фізіологія рослин : підручник. — Вінниця : Нова Книга, 2006. — 416 с.</li>
+              <li>Taiz L., Zeiger E., Møller I. M., Murphy A. Plant Physiology and Development. — 6th ed. — Sinauer, 2015. — Ch. 8: Photosynthesis: the carbon reactions.</li>
+              <li>Berg J. M., Tymoczko J. L., Stryer L. Biochemistry. — 5th ed. — W. H. Freeman, 2002. — Section 20.1: The Calvin cycle.</li>
+              <li>Farquhar G. D., von Caemmerer S., Berry J. A. A biochemical model of photosynthetic CO₂ assimilation in leaves of C₃ species // Planta. — 1980. — Vol. 149. — P. 78–90.</li>
+              <li>von Caemmerer S. Biochemical Models of Leaf Photosynthesis. — CSIRO Publishing, 2000.</li>
+              <li>Peterhansel C. et al. Photorespiration // The Arabidopsis Book. — 2010. — Vol. 8. — e0130.</li>
+              <li>Rao X., Dixon R. A. The differences between NAD-ME and NADP-ME subtypes of C₄ photosynthesis // Frontiers in Plant Science. — 2016. — Vol. 7. — 1525.</li>
+              <li>Osmond C. B. Crassulacean acid metabolism: a curiosity in context // Annual Review of Plant Physiology. — 1978. — Vol. 29. — P. 379–414.</li>
+              <li>Моргун В. В. та ін. Фотосинтез і продуктивність: основні наукові досягнення та інноваційні розробки // Фізіологія рослин і генетика. — 2021. — Т. 53, № 2.</li>
+            </ol>
+            <div class="lab-nav"><a class="btn btn--outline" href="../">← Лабораторні роботи</a><a class="btn" href="../chloroplast-pigments/">ЛР 5. Пігменти хлоропластів →</a></div>
+          </section>
+        </article>
+      </div>
+    </div>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer__grid">
+        <div class="footer__brand">
+          <img src="../../../assets/img/nubip-shield.webp" alt="Герб НУБіП України" width="37" height="52" loading="lazy">
+          <div>
+            <strong>Кафедра фізіології, біохімії рослин та біоенергетики</strong>
+            Факультет захисту рослин, біотехнологій та екології<br>Національний університет біоресурсів і природокористування України
+            <div class="footer__social">
+              <a class="footer__fb" href="https://www.facebook.com/groups/nubipplants?locale=uk_UA" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M14 8.5V6.8c0-.8.5-1 .9-1H17V2.2L14 2.2c-3.3 0-4 2.4-4 4v2.3H7.5V12H10v10h4V12h2.8l.4-3.5H14Z"/></svg>Ми у Facebook</a>
+              <a class="footer__ig" href="https://www.instagram.com/plant_physio_chair/" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/></svg>Ми в Instagram</a>
+            </div>
+          </div>
+        </div>
+        <div class="footer__col">
+          <h3>Розділи</h3>
+          <ul>
+            <li><a href="../../../about/">Про кафедру</a></li>
+            <li><a href="../../../about/#faculty-history">Історія факультету</a></li>
+            <li><a href="../../../about/#administration">Адміністрація факультету</a></li>
+            <li><a href="../../../about/#programs">Освітні програми</a></li>
+            <li><a href="../../../about/#achievements">Здобутки</a></li>
+          </ul>
+        </div>
+        <div class="footer__col">
+          <h3>Для студентів</h3>
+          <ul>
+            <li><a href="../../../lab/">Онлайн лабораторія</a></li>
+            <li><a href="../../../lab/biochemistry/">Біохімія рослин</a></li>
+            <li><a href="../../../lab/plant-physiology/">Фізіологія рослин</a></li>
+            <li><a href="../../../lab/analytical-chemistry/">Аналітична хімія</a></li>
+            <li><a href="../../../lab/plant-anatomy/">Анатомія рослин</a></li>
+            <li><a href="../../../lab/instrumental/">Інструментальні методи</a></li>
+            <li><a href="../../../konspekt/">Конспект</a></li>
+            <li><a href="../../../konspekt/pathogens/">Збудники хвороб рослин</a></li>
+            <li><a href="../../../konspekt/weeds/">Бур'яни України</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer__bottom">
+        <span>© <span data-year>2026</span> Кафедра фізіології, біохімії рослин та біоенергетики, НУБіП України</span>
+        <a href="https://nubip.edu.ua" target="_blank" rel="noopener">nubip.edu.ua</a>
+      </div>
+    </div>
+  </footer>
+
+  <script defer src="../../../assets/js/main.js"></script>
+  <script type="module" src="../../../assets/js/lab/photosynthesis.js"></script>
+</body>
+</html>

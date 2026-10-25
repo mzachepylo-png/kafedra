@@ -194,6 +194,7 @@ function recompute() {
     S.t = S.playing ? tPrev * S.run.tEnd : (S.t > 0 ? Math.min(S.t, S.run.tEnd) : 0);
     timeline.max = 1000;
     timeline.value = Math.round(S.t / S.run.tEnd * 1000);
+    timeline.style.setProperty('--pct', timeline.value / 10 + '%');
     column.setRun();
     chrom.setRun();
     report();
