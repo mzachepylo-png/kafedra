@@ -57,7 +57,9 @@ def compose(view, z, urlf, mode='RGBA', bg=None):
     for tx in range(tx0, tx1 + 1):
         for ty in range(ty0, ty1 + 1):
             for u in urlf(tx, ty):
-                im = Image.open(io.BytesIO(get(u))).convert('RGBA')
+                raw = get(u)
+                try: im = Image.open(io.BytesIO(raw)).convert('RGBA')
+                except Exception: continue  # порожня плитка (немає знахідок) — пропускаємо
                 if im.size != (TS * S, TS * S): im = im.resize((TS * S, TS * S))
                 can.alpha_composite(im, ((tx - tx0) * TS * S, (ty - ty0) * TS * S))
     box = tuple(round(v) for v in ((vx - tx0 * TS) * S, (vy - ty0 * TS) * S, (vx + vw - tx0 * TS) * S, (vy + vh - ty0 * TS) * S))
