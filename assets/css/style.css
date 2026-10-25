@@ -670,3 +670,45 @@ html:has(.lightbox[open]) { overflow: hidden; }
   .contacts > * { grid-column: span 2; }
   .contacts > :nth-child(4), .contacts > :nth-child(5) { grid-column: span 3; }
 }
+
+/* ---------- Каталог робіт Онлайн лабораторії (перенесено з lab.css: потрібен і на сторінці фізіології) ---------- */
+.disc-tabs { display: flex; flex-wrap: wrap; gap: 10px; margin-bottom: 28px; }
+.disc-tab {
+  display: inline-flex; align-items: center; gap: 10px; padding: 12px 20px; border-radius: 999px;
+  background: var(--white); border: 1px solid var(--line); color: var(--ink-soft); font-weight: 700; text-decoration: none;
+}
+.disc-tab svg { width: 20px; height: 20px; }
+.disc-tab[aria-current="page"], .disc-tab.is-active { background: var(--green-800); border-color: var(--green-800); color: #fff; }
+.disc-tab[aria-current="page"] svg { color: var(--gold-300); }
+.disc-tab:hover { color: var(--green-800); border-color: var(--green-200); }
+.disc-tab[aria-current="page"]:hover { color: #fff; }
+
+.work {
+  display: grid; grid-template-columns: auto 1fr auto; gap: 22px; align-items: center; padding: 24px 26px;
+  border-radius: var(--radius-lg); background: var(--white); border: 1px solid var(--line); text-decoration: none; color: inherit;
+  box-shadow: var(--shadow-sm); transition: transform .2s, box-shadow .2s, border-color .2s;
+}
+.work + .work { margin-top: 14px; }
+.work:hover { color: inherit; transform: translateY(-2px); box-shadow: var(--shadow); border-color: var(--green-200); }
+.work__num {
+  width: 64px; height: 64px; border-radius: 18px; display: grid; place-items: center; text-align: center; line-height: 1;
+  background: linear-gradient(150deg, var(--green-900), var(--green-700)); color: var(--gold-300); font-family: var(--serif); font-weight: 700; font-size: 1.5rem;
+}
+.work__num small { display: block; font-family: var(--sans); font-size: .6rem; letter-spacing: .1em; color: rgba(255, 255, 255, .7); margin-bottom: 3px; }
+.work h3 { margin: 0 0 4px; font-size: 1.15rem; }
+.work p { margin: 0; color: var(--ink-soft); font-size: .96rem; }
+.work__meta { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 10px; }
+.work__go { width: 46px; height: 46px; border-radius: 50%; display: grid; place-items: center; background: var(--gold-100); color: var(--gold-700); transition: transform .2s, background .2s; }
+.work:hover .work__go { transform: translateX(3px); background: var(--gold-400); color: var(--green-950); }
+.work__go svg { width: 20px; height: 20px; }
+@media (max-width: 640px) {
+  .work { grid-template-columns: auto 1fr; padding: 20px; }
+  .work__go { display: none; }
+  .work__num { width: 52px; height: 52px; font-size: 1.25rem; }
+}
+.work--accent { background: linear-gradient(135deg, #FFFBEF, #FBF0CF); border-color: #E3C77A; }
+.work--accent:hover { border-color: var(--gold-500); }
+.work--accent .work__num { background: linear-gradient(150deg, var(--gold-300), var(--gold-600)); color: var(--green-950); }
+.work--accent .work__num svg { width: 30px; height: 30px; }
+.work--accent .work__num small { color: rgba(8, 33, 15, .65); }
+.work--accent .work__go { background: #fff; }

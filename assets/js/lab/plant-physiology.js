@@ -295,14 +295,29 @@ const App = {
       hz.a.firstChild.innerHTML = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 22V12"/><path d="M12 12C12 7 9 4 4 4c0 5 3 8 8 8Z"/><path d="M12 15c0-4 3-7 8-7 0 4-3 7-8 7Z"/></svg>';
       nav.prepend(hz.a);
     }
+    // повернення до списку робіт (без хеша в адресі)
+    nav.prepend(h("a", { href: "#", class: "back" }, "← Усі роботи"));
+    // без хеша показуємо лише список робіт; робота відкривається за посиланням #labN / #hormones
+    const list = $("#pp-list"), ff = $("#ff");
     const route = () => {
       let hs = location.hash.replace("#", "");
       let embed = false;
       if (hs.startsWith("embed-")) { embed = true; hs = hs.slice(6); }
       document.body.classList.toggle("embed", embed);
-      if (hz && (hs === "hormones" || hs.startsWith("amc-"))) return this.show(null);
       const n = parseInt(hs.replace("lab", ""), 10);
-      this.show(this.labs.find(l => l.n === n) || this.labs[0]);
+      const L = /^lab\d+$/.test(hs) && this.labs.find(l => l.n === n);
+      const isHz = hz && (hs === "hormones" || hs.startsWith("amc-"));
+      const wasList = ff.hidden;
+      if (list && !L && !isHz && !embed) {
+        this.active = null;
+        ff.hidden = true; list.hidden = false;
+        if (!wasList) list.scrollIntoView({ block: "start" });
+        return;
+      }
+      if (list) list.hidden = true;
+      ff.hidden = false;
+      this.show(isHz ? null : (L || this.labs[0]));
+      if (!hs.startsWith("amc-")) ff.scrollIntoView({ block: "start" });
     };
     addEventListener("hashchange", route);
     route();

@@ -2,18 +2,6 @@
    Онлайн лабораторія: каталог робіт, теорія, моделі, графіки
    ========================================================= */
 
-/* ---------- Каталог ---------- */
-.disc-tabs { display: flex; flex-wrap: wrap; gap: 10px; margin-bottom: 28px; }
-.disc-tab {
-  display: inline-flex; align-items: center; gap: 10px; padding: 12px 20px; border-radius: 999px;
-  background: var(--white); border: 1px solid var(--line); color: var(--ink-soft); font-weight: 700; text-decoration: none;
-}
-.disc-tab svg { width: 20px; height: 20px; }
-.disc-tab[aria-current="page"], .disc-tab.is-active { background: var(--green-800); border-color: var(--green-800); color: #fff; }
-.disc-tab[aria-current="page"] svg { color: var(--gold-300); }
-.disc-tab:hover { color: var(--green-800); border-color: var(--green-200); }
-.disc-tab[aria-current="page"]:hover { color: #fff; }
-
 .discipline {
   display: grid; grid-template-columns: 1fr 1fr; overflow: hidden; border-radius: 26px; text-decoration: none; color: inherit;
   background: var(--white); border: 1px solid var(--line); box-shadow: var(--shadow); transition: transform .2s, box-shadow .2s;
@@ -38,30 +26,6 @@
 }
 .step h3 { font-size: 1.02rem; margin-bottom: 4px; }
 .step p { margin: 0; font-size: .94rem; color: var(--ink-soft); }
-
-.work {
-  display: grid; grid-template-columns: auto 1fr auto; gap: 22px; align-items: center; padding: 24px 26px;
-  border-radius: var(--radius-lg); background: var(--white); border: 1px solid var(--line); text-decoration: none; color: inherit;
-  box-shadow: var(--shadow-sm); transition: transform .2s, box-shadow .2s, border-color .2s;
-}
-.work + .work { margin-top: 14px; }
-.work:hover { color: inherit; transform: translateY(-2px); box-shadow: var(--shadow); border-color: var(--green-200); }
-.work__num {
-  width: 64px; height: 64px; border-radius: 18px; display: grid; place-items: center; text-align: center; line-height: 1;
-  background: linear-gradient(150deg, var(--green-900), var(--green-700)); color: var(--gold-300); font-family: var(--serif); font-weight: 700; font-size: 1.5rem;
-}
-.work__num small { display: block; font-family: var(--sans); font-size: .6rem; letter-spacing: .1em; color: rgba(255, 255, 255, .7); margin-bottom: 3px; }
-.work h3 { margin: 0 0 4px; font-size: 1.15rem; }
-.work p { margin: 0; color: var(--ink-soft); font-size: .96rem; }
-.work__meta { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 10px; }
-.work__go { width: 46px; height: 46px; border-radius: 50%; display: grid; place-items: center; background: var(--gold-100); color: var(--gold-700); transition: transform .2s, background .2s; }
-.work:hover .work__go { transform: translateX(3px); background: var(--gold-400); color: var(--green-950); }
-.work__go svg { width: 20px; height: 20px; }
-@media (max-width: 640px) {
-  .work { grid-template-columns: auto 1fr; padding: 20px; }
-  .work__go { display: none; }
-  .work__num { width: 52px; height: 52px; font-size: 1.25rem; }
-}
 
 /* ---------- Документ лабораторної роботи ---------- */
 .lab-head { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 18px; }

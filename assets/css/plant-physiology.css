@@ -170,3 +170,8 @@
   #ff nav.index a.special:not(.amc *){margin-bottom:0}
   #ff nav.index a.special .no svg:not(.amc *){width:14px;height:14px}
 }
+
+/* посилання «Усі роботи» над списком робіт */
+#ff nav.index a.back:not(.amc *){display:block;padding:8px 10px;margin-bottom:10px;font:600 13px/1.3 var(--f-body);color:var(--chl);border:1px solid var(--rule);background:var(--sheet)}
+#ff nav.index a.back:hover:not(.amc *){border-color:var(--chl)}
+@media (max-width:980px){#ff nav.index a.back:not(.amc *){margin-bottom:0;white-space:nowrap}}
