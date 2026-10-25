@@ -1,0 +1,155 @@
+<!doctype html>
+<html lang="uk" class="no-js">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Інструментальні методи — Онлайн лабораторія, НУБіП</title>
+  <meta name="description" content="Інструментальні методи аналізу в біології рослин: інтерактивна хроматографія — теорія, модель колонки, хроматограма, ТШХ і паперова хроматографія.">
+  <meta name="theme-color" content="#08210F">
+  <link rel="icon" href="../../assets/img/nubip-shield.png" type="image/png">
+  <link rel="stylesheet" href="../../assets/css/style.css">
+  <script src="../../assets/js/desktop-only.js"></script>
+  <link rel="stylesheet" href="../../assets/css/lab.css">
+  <script>document.documentElement.classList.replace('no-js', 'js')</script>
+  <link rel="stylesheet" href="../../assets/css/chroma.css">
+</head>
+<body>
+  <a class="skip-link" href="#main">Перейти до змісту</a>
+
+  <header class="site-header">
+    <div class="container">
+      <a class="brand" href="../../" aria-label="Кафедра фізіології, біохімії рослин та біоенергетики — на головну">
+        <img class="brand__logo" src="../../assets/img/nubip-shield.webp" alt="" width="31" height="44">
+        <span class="brand__text">
+          <span class="brand__title">Кафедра ФБРтаБ</span>
+          <span class="brand__sub">Фізіологія, біохімія рослин та біоенергетика · НУБіП України</span>
+        </span>
+      </a>
+      <button class="nav-toggle" type="button" aria-controls="site-nav" aria-expanded="false" aria-label="Відкрити меню">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M4 7h16M4 12h16M4 17h16"/></svg>
+      </button>
+      <nav class="nav" id="site-nav" aria-label="Головна навігація">
+        <a class="nav__link" href="../../">Головна</a>
+        <div class="nav__dd">
+          <a class="nav__link" href="../../about/">Про кафедру
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m6 9 6 6 6-6"/></svg>
+          </a>
+          <div class="nav__menu">
+            <a href="../../about/#department">Кафедра сьогодні<small>Місія, історія з 1898 р., наука</small></a>
+            <a href="../../about/#team">Колектив<small>Викладачі та їхні наукові інтереси</small></a>
+            <a href="../../about/#achievements">Здобутки<small>Кафедри та викладачів</small></a>
+            <a href="../../about/#faculty-history">Історія факультету<small>Від 1962 року до сьогодні</small></a>
+            <a href="../../about/#administration">Адміністрація факультету<small>Деканат і контакти</small></a>
+            <a href="../../about/#programs">Освітні програми<small>Бакалаврат · Магістратура · PhD</small></a>
+          </div>
+        </div>
+        <a class="nav__link" href="../../#contacts">Контакти</a>
+        <a class="btn btn--green btn--sm nav__lab" href="../../konspekt/">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20V3H6.5A2.5 2.5 0 0 0 4 5.5z"/><path d="M4 19.5A2.5 2.5 0 0 0 6.5 22H20v-5"/></svg>
+          Конспект
+        </a>
+        <a class="btn btn--gold btn--sm nav__lab" href="../../lab/" aria-current="page">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 3h6M10 3v6l-5 9a2 2 0 0 0 1.7 3h10.6a2 2 0 0 0 1.7-3l-5-9V3"/><path d="M7.5 15h9"/></svg>
+          Онлайн лабораторія
+        </a>
+      </nav>
+      <div class="site-tools">
+        <span class="beta-badge" title="Сайт працює в тестовому режимі">Бета<span class="beta-badge__more">-версія</span></span>
+        <div class="report">
+          <button class="report__btn" type="button" aria-expanded="false" aria-controls="report-pop" title="Повідомити про проблему на сайті">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 9v4M12 17h.01"/><path d="M10.3 3.9 1.8 18a2 2 0 0 0 1.7 3h17a2 2 0 0 0 1.7-3L13.7 3.9a2 2 0 0 0-3.4 0Z"/></svg>
+            <span class="report__label">Повідомити про проблему</span>
+          </button>
+          <div class="report__pop" id="report-pop" role="dialog" aria-label="Повідомити про проблему на сайті" hidden>
+            <p>Знайшли помилку або щось працює не так? Опишіть проблему в короткій формі — так ми швидше її виправимо.</p>
+            <a class="report__form" href="https://forms.gle/yAqtSUqBYNnWgHQo6" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6M8 13h8M8 17h5"/></svg>Заповнити форму</a>
+            <p class="report__alt">Або напишіть нам у групі кафедри:</p>
+            <a class="report__fb" href="https://www.facebook.com/groups/nubipplants?locale=uk_UA" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M14 8.5V6.8c0-.8.5-1 .9-1H17V2.2L14 2.2c-3.3 0-4 2.4-4 4v2.3H7.5V12H10v10h4V12h2.8l.4-3.5H14Z"/></svg>Facebook</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main id="main">
+    <section class="page-hero page-hero--lab page-hero--inst">
+      <div class="bg-molecules" aria-hidden="true" style="position:absolute;inset:0"></div>
+      <div class="container">
+        <nav class="breadcrumbs" aria-label="Навігаційний ланцюжок"><a href="../../">Головна</a><span aria-hidden="true">/</span><a href="../">Онлайн лабораторія</a><span aria-hidden="true">/</span><span>Інструментальні методи</span></nav>
+        <span class="kicker">Розділ лабораторії</span>
+        <h1>Інструментальні методи</h1>
+        <p>Фізико-хімічні методи, якими досліджують склад рослин: від розділення сумішей до кількісного визначення окремих речовин. Кожен підрозділ — стисла теорія, інтерактивна модель приладу та приклади з біохімії рослин.</p>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="container">
+        <nav class="disc-tabs" aria-label="Розділ">
+          <a class="disc-tab disc--inst" href="./" aria-current="page">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 20h16"/><path d="M5 20c2-9 3-14 4-14s2 9 3 9 2-5 3-5 2 6 4 10"/></svg>
+            Інструментальні методи
+          </a>
+        </nav>
+
+        <a class="work work--inst" href="chromatography/">
+          <div class="work__num"><span><small>Розділ</small>1</span></div>
+          <div>
+            <h3>Хроматографія</h3>
+            <p>Принцип розділення, коефіцієнт ємності, теоретичні тарілки й роздільна здатність. Модель колонки для семи видів хроматографії — адсорбційної, розподільної (ОФ-ВЕРХ), газової, іонообмінної, ексклюзійної, афінної та хіральної — з анімацією зон, хроматограмою й молекулярним механізмом; крива Ван-Деемтера; ТШХ пігментів, паперова хроматографія амінокислот і осадова хроматографія галогенідів.</p>
+            <div class="work__meta"><span class="badge">Розділення сумішей</span><span class="badge">ВЕРХ · ГХ · ТШХ</span><span class="badge badge--muted">≈ 60 хв</span></div>
+          </div>
+          <span class="work__go" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+        </a>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer__grid">
+        <div class="footer__brand">
+          <img src="../../assets/img/nubip-shield.webp" alt="Герб НУБіП України" width="37" height="52" loading="lazy">
+          <div>
+            <strong>Кафедра фізіології, біохімії рослин та біоенергетики</strong>
+            Факультет захисту рослин, біотехнологій та екології<br>Національний університет біоресурсів і природокористування України
+            <div class="footer__social">
+              <a class="footer__fb" href="https://www.facebook.com/groups/nubipplants?locale=uk_UA" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M14 8.5V6.8c0-.8.5-1 .9-1H17V2.2L14 2.2c-3.3 0-4 2.4-4 4v2.3H7.5V12H10v10h4V12h2.8l.4-3.5H14Z"/></svg>Ми у Facebook</a>
+              <a class="footer__ig" href="https://www.instagram.com/plant_physio_chair/" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/></svg>Ми в Instagram</a>
+            </div>
+          </div>
+        </div>
+        <div class="footer__col">
+          <h3>Розділи</h3>
+          <ul>
+            <li><a href="../../about/">Про кафедру</a></li>
+            <li><a href="../../about/#faculty-history">Історія факультету</a></li>
+            <li><a href="../../about/#administration">Адміністрація факультету</a></li>
+            <li><a href="../../about/#programs">Освітні програми</a></li>
+            <li><a href="../../about/#achievements">Здобутки</a></li>
+          </ul>
+        </div>
+        <div class="footer__col">
+          <h3>Для студентів</h3>
+          <ul>
+            <li><a href="../../lab/">Онлайн лабораторія</a></li>
+            <li><a href="../../lab/biochemistry/">Біохімія рослин</a></li>
+            <li><a href="../../lab/plant-physiology/">Фізіологія рослин</a></li>
+            <li><a href="../../lab/analytical-chemistry/">Аналітична хімія</a></li>
+            <li><a href="../../lab/plant-anatomy/">Анатомія рослин</a></li>
+            <li><a href="../../lab/instrumental/">Інструментальні методи</a></li>
+            <li><a href="../../konspekt/">Конспект</a></li>
+            <li><a href="../../konspekt/pathogens/">Збудники хвороб рослин</a></li>
+            <li><a href="../../konspekt/weeds/">Бур'яни України</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer__bottom">
+        <span>© <span data-year>2026</span> Кафедра фізіології, біохімії рослин та біоенергетики, НУБіП України</span>
+        <a href="https://nubip.edu.ua" target="_blank" rel="noopener">nubip.edu.ua</a>
+      </div>
+    </div>
+  </footer>
+
+  <script defer src="../../assets/js/main.js"></script>
+</body>
+</html>

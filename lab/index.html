@@ -88,25 +88,29 @@
           <h2>Оберіть дисципліну</h2>
         </div>
         <nav class="disc-tabs" aria-label="Дисципліни">
-          <a class="disc-tab" href="biochemistry/">
+          <a class="disc-tab disc--bio" href="biochemistry/">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 21V11"/><path d="M12 11c0-4 3-7 8-7 0 5-3 7-8 7Z"/><path d="M12 14c0-3-2-5-7-5 0 4 2 5 7 5Z"/></svg>
             Біохімія рослин
           </a>
-          <a class="disc-tab" href="plant-physiology/">
+          <a class="disc-tab disc--phys" href="plant-physiology/">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22V12"/><path d="M12 12C12 7 9 4 4 4c0 5 3 8 8 8Z"/><path d="M12 15c0-4 3-7 8-7 0 4-3 7-8 7Z"/><path d="M8 22h8"/></svg>
             Фізіологія рослин
           </a>
-          <a class="disc-tab" href="analytical-chemistry/">
+          <a class="disc-tab disc--chem" href="analytical-chemistry/">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 3h6M10 3v6l-5 9a2 2 0 0 0 1.7 3h10.6a2 2 0 0 0 1.7-3l-5-9V3"/><path d="M7.5 15h9"/></svg>
             Аналітична хімія
           </a>
-          <a class="disc-tab" href="plant-anatomy/">
+          <a class="disc-tab disc--anat" href="plant-anatomy/">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="4"/><path d="M12 3v5M12 16v5M3 12h5M16 12h5"/></svg>
             Анатомія рослин
           </a>
+          <a class="disc-tab disc--inst" href="instrumental/">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 20h16"/><path d="M5 20c2-9 3-14 4-14s2 9 3 9 2-5 3-5 2 6 4 10"/></svg>
+            Інструментальні методи
+          </a>
         </nav>
 
-        <a class="discipline" href="biochemistry/">
+        <a class="discipline disc--bio" href="biochemistry/">
           <div class="discipline__art">
             <div class="bg-molecules" aria-hidden="true" style="position:absolute;inset:0"></div>
             <svg viewBox="0 0 360 260" aria-hidden="true">
@@ -125,14 +129,14 @@
           </div>
           <div class="discipline__body">
             <h2>Біохімія рослин</h2>
-            <p style="margin:0;color:var(--ink-soft)">Вісім лабораторних робіт: ферменти, амінокислоти, білки, пігменти, амілаза, дихання, вітамін С — моделі, віртуальні експерименти й обробка даних.</p>
+            <p style="margin:0;color:var(--ink-soft)">Вісім лабораторних робіт: ферменти, амінокислоти, білки, пігменти, амілаза, дихання, вітамін С — моделі, віртуальні експерименти й обробка даних. Нова вкладка «Фотосинтез»: цикл Кальвіна, фотодихання, C<sub>4</sub> і CAM у візуалізаціях.</p>
             <span class="btn btn--gold" style="align-self:flex-start;margin-top:8px">Перейти до робіт
               <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
             </span>
           </div>
         </a>
 
-        <a class="discipline" href="plant-physiology/" style="margin-top:24px">
+        <a class="discipline disc--phys" href="plant-physiology/" style="margin-top:24px">
           <div class="discipline__art">
             <div class="bg-molecules" aria-hidden="true" style="position:absolute;inset:0"></div>
             <svg viewBox="0 0 360 260" aria-hidden="true">
@@ -152,7 +156,7 @@
             </span>
           </div>
         </a>
-        <a class="discipline" href="analytical-chemistry/" style="margin-top:24px">
+        <a class="discipline disc--chem" href="analytical-chemistry/" style="margin-top:24px">
           <div class="discipline__art">
             <div class="bg-molecules" aria-hidden="true" style="position:absolute;inset:0"></div>
             <svg viewBox="0 0 360 260" aria-hidden="true">
@@ -173,7 +177,7 @@
           </div>
         </a>
 
-        <a class="discipline" href="plant-anatomy/" style="margin-top:24px">
+        <a class="discipline disc--anat" href="plant-anatomy/" style="margin-top:24px">
           <div class="discipline__art">
             <div class="bg-molecules" aria-hidden="true" style="position:absolute;inset:0"></div>
             <svg viewBox="0 0 360 260" aria-hidden="true">
@@ -189,6 +193,29 @@
             <h2>Анатомія рослин</h2>
             <p style="margin:0;color:var(--ink-soft)">Тканини рослин на інтерактивних моделях зрізів: твірні, покривні, основні, провідні, механічні й видільні — будова, функції та підсумкова таблиця.</p>
             <span class="btn btn--gold" style="align-self:flex-start;margin-top:8px">Відкрити конспект
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+            </span>
+          </div>
+        </a>
+
+        <a class="discipline disc--inst" href="instrumental/" style="margin-top:24px">
+          <div class="discipline__art">
+            <div class="bg-molecules" aria-hidden="true" style="position:absolute;inset:0"></div>
+            <svg viewBox="0 0 360 260" aria-hidden="true">
+              <defs><linearGradient id="d-i" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#FFFFFF" stop-opacity=".16"/><stop offset="1" stop-color="#FFFFFF" stop-opacity=".04"/></linearGradient></defs>
+              <g class="float"><rect x="56" y="24" width="38" height="196" rx="10" fill="url(#d-i)" stroke="#D9D0FF" stroke-opacity=".7" stroke-width="2"/>
+                <rect x="62" y="52" width="26" height="16" rx="4" fill="#4CAF50" opacity=".9"/><rect x="62" y="98" width="26" height="14" rx="4" fill="#EBD27F"/><rect x="62" y="150" width="26" height="18" rx="4" fill="#E07AA0"/>
+                <path d="M75 220v18" stroke="#D9D0FF" stroke-width="3" stroke-linecap="round"/></g>
+              <g class="float float--2"><path d="M124 210H330" stroke="#D9D0FF" stroke-opacity=".55" stroke-width="2"/>
+                <path d="M124 210c20 0 24-2 30-10s8-62 14-62 8 54 14 64 10 8 20 8c12 0 14-4 19-20s7-96 13-96 8 84 13 100 10 16 26 16c14 0 16-4 20-14s6-44 11-44 7 34 11 42 8 16 15 16" fill="none" stroke="#B9A8FF" stroke-width="3" stroke-linejoin="round"/></g>
+              <g class="float float--3"><circle cx="168" cy="126" r="5" fill="#4CAF50"/><circle cx="232" cy="96" r="5" fill="#EBD27F"/><circle cx="291" cy="148" r="5" fill="#E07AA0"/></g>
+            </svg>
+          </div>
+          <div class="discipline__body">
+            <span class="discipline__kicker">Новий розділ</span>
+            <h2>Інструментальні методи</h2>
+            <p style="margin:0;color:var(--ink-soft)">Фізико-хімічні методи аналізу в біології рослин. Перший підрозділ — хроматографія: адсорбційна, розподільна, газова, іонообмінна, ексклюзійна, афінна та хіральна — з моделлю колонки, хроматограмою в реальному часі й тонкошаровою хроматографією.</p>
+            <span class="btn btn--gold" style="align-self:flex-start;margin-top:8px">Відкрити розділ
               <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
             </span>
           </div>

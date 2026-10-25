@@ -1,0 +1,320 @@
+<!doctype html>
+<html lang="uk" class="no-js">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Хроматографія — Інструментальні методи, Онлайн лабораторія НУБіП</title>
+  <meta name="description" content="Хроматографія для студентів: теорія розділення, модель колонки з анімацією зон і хроматограмою, адсорбційна, розподільна, газова, іонообмінна, ексклюзійна, афінна та хіральна хроматографія, ТШХ і паперова хроматографія.">
+  <meta name="theme-color" content="#08210F">
+  <link rel="icon" href="../../../assets/img/nubip-shield.png" type="image/png">
+  <link rel="stylesheet" href="../../../assets/css/style.css">
+  <script src="../../../assets/js/desktop-only.js"></script>
+  <link rel="stylesheet" href="../../../assets/css/lab.css">
+  <script>document.documentElement.classList.replace('no-js', 'js')</script>
+  <link rel="stylesheet" href="../../../assets/css/chroma.css">
+</head>
+<body>
+  <a class="skip-link" href="#main">Перейти до змісту</a>
+
+  <header class="site-header">
+    <div class="container">
+      <a class="brand" href="../../../" aria-label="Кафедра фізіології, біохімії рослин та біоенергетики — на головну">
+        <img class="brand__logo" src="../../../assets/img/nubip-shield.webp" alt="" width="31" height="44">
+        <span class="brand__text">
+          <span class="brand__title">Кафедра ФБРтаБ</span>
+          <span class="brand__sub">Фізіологія, біохімія рослин та біоенергетика · НУБіП України</span>
+        </span>
+      </a>
+      <button class="nav-toggle" type="button" aria-controls="site-nav" aria-expanded="false" aria-label="Відкрити меню">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M4 7h16M4 12h16M4 17h16"/></svg>
+      </button>
+      <nav class="nav" id="site-nav" aria-label="Головна навігація">
+        <a class="nav__link" href="../../../">Головна</a>
+        <div class="nav__dd">
+          <a class="nav__link" href="../../../about/">Про кафедру
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m6 9 6 6 6-6"/></svg>
+          </a>
+          <div class="nav__menu">
+            <a href="../../../about/#department">Кафедра сьогодні<small>Місія, історія з 1898 р., наука</small></a>
+            <a href="../../../about/#team">Колектив<small>Викладачі та їхні наукові інтереси</small></a>
+            <a href="../../../about/#achievements">Здобутки<small>Кафедри та викладачів</small></a>
+            <a href="../../../about/#faculty-history">Історія факультету<small>Від 1962 року до сьогодні</small></a>
+            <a href="../../../about/#administration">Адміністрація факультету<small>Деканат і контакти</small></a>
+            <a href="../../../about/#programs">Освітні програми<small>Бакалаврат · Магістратура · PhD</small></a>
+          </div>
+        </div>
+        <a class="nav__link" href="../../../#contacts">Контакти</a>
+        <a class="btn btn--green btn--sm nav__lab" href="../../../konspekt/">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20V3H6.5A2.5 2.5 0 0 0 4 5.5z"/><path d="M4 19.5A2.5 2.5 0 0 0 6.5 22H20v-5"/></svg>
+          Конспект
+        </a>
+        <a class="btn btn--gold btn--sm nav__lab" href="../../../lab/" aria-current="page">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 3h6M10 3v6l-5 9a2 2 0 0 0 1.7 3h10.6a2 2 0 0 0 1.7-3l-5-9V3"/><path d="M7.5 15h9"/></svg>
+          Онлайн лабораторія
+        </a>
+      </nav>
+      <div class="site-tools">
+        <span class="beta-badge" title="Сайт працює в тестовому режимі">Бета<span class="beta-badge__more">-версія</span></span>
+        <div class="report">
+          <button class="report__btn" type="button" aria-expanded="false" aria-controls="report-pop" title="Повідомити про проблему на сайті">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 9v4M12 17h.01"/><path d="M10.3 3.9 1.8 18a2 2 0 0 0 1.7 3h17a2 2 0 0 0 1.7-3L13.7 3.9a2 2 0 0 0-3.4 0Z"/></svg>
+            <span class="report__label">Повідомити про проблему</span>
+          </button>
+          <div class="report__pop" id="report-pop" role="dialog" aria-label="Повідомити про проблему на сайті" hidden>
+            <p>Знайшли помилку або щось працює не так? Опишіть проблему в короткій формі — так ми швидше її виправимо.</p>
+            <a class="report__form" href="https://forms.gle/yAqtSUqBYNnWgHQo6" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6M8 13h8M8 17h5"/></svg>Заповнити форму</a>
+            <p class="report__alt">Або напишіть нам у групі кафедри:</p>
+            <a class="report__fb" href="https://www.facebook.com/groups/nubipplants?locale=uk_UA" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M14 8.5V6.8c0-.8.5-1 .9-1H17V2.2L14 2.2c-3.3 0-4 2.4-4 4v2.3H7.5V12H10v10h4V12h2.8l.4-3.5H14Z"/></svg>Facebook</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main id="main">
+    <section class="page-hero page-hero--lab page-hero--inst">
+      <div class="bg-molecules" aria-hidden="true" style="position:absolute;inset:0"></div>
+      <div class="container">
+        <nav class="breadcrumbs" aria-label="Навігаційний ланцюжок"><a href="../../../">Головна</a><span aria-hidden="true">/</span><a href="../../">Онлайн лабораторія</a><span aria-hidden="true">/</span><a href="../">Інструментальні методи</a><span aria-hidden="true">/</span><span>Хроматографія</span></nav>
+        <span class="kicker">Інструментальні методи</span>
+        <h1>Хроматографія</h1>
+        <p>Як суміш розділяється на колонці: стисла теорія, модель колонки з рухом зон і хроматограмою в реальному часі, молекулярний механізм для семи видів хроматографії та планарні методи — на прикладах пігментів, фітогормонів, амінокислот, білків, ефірних олій і ліків.</p>
+        <div class="lab-head"><span class="badge">7 видів хроматографії</span><span class="badge">14 сумішей</span><span class="badge">ТШХ · папір · осадова</span></div>
+      </div>
+    </section>
+
+    <div class="section" style="padding-top:48px">
+      <div class="container lab-doc">
+        <nav class="toc" aria-label="Зміст">
+          <h2>Зміст</h2>
+          <ol>
+            <li><a href="#theory">Принцип методу</a></li>
+            <li><a href="#column">Модель колонки</a></li>
+            <li><a href="#efficiency">Рівняння Ван-Деемтера</a></li>
+            <li><a href="#planar">Планарна й осадова</a></li>
+            <li><a href="#types">Порівняння видів</a></li>
+            <li><a href="#questions">Контрольні питання</a></li>
+            <li><a href="#refs">Література</a></li>
+          </ol>
+        </nav>
+
+        <article>
+          <section class="lab-section prose" id="theory">
+            <h2><span class="n">01</span>Принцип методу</h2>
+            <p><em class="term">Хроматографія</em> — метод розділення сумішей, заснований на різному розподілі компонентів між двома фазами: <b>нерухомою</b> (сорбент у колонці чи на пластинці) та <b>рухомою</b> (елюент — рідина або газ). Метод відкрив у 1903 р. ботанік М. С. Цвєт, розділивши пігменти листка на колонці з крейдою: зони різного кольору дали методу назву («письмо кольором»).</p>
+            <p>Під час руху елюенту молекула тисячі разів переходить у нерухому фазу й повертається назад. Що довше вона в середньому перебуває в нерухомій фазі, то повільніше рухається її зона. Навіть невелика різниця енергії взаємодії, повторена тисячі разів, розводить речовини на окремі зони, а детектор на виході колонки записує <b>хроматограму</b> — послідовність піків.</p>
+            <div class="formula-grid">
+              <div class="formula"><math display="block"><mi>K</mi><mo>=</mo><mfrac><msub><mi>C</mi><mi>НФ</mi></msub><msub><mi>C</mi><mi>РФ</mi></msub></mfrac></math><small>Коефіцієнт розподілу: відношення рівноважних концентрацій у нерухомій і рухомій фазах.</small></div>
+              <div class="formula"><math display="block"><msup><mi>k</mi><mo>′</mo></msup><mo>=</mo><mfrac><mrow><msub><mi>t</mi><mi>R</mi></msub><mo>−</mo><msub><mi>t</mi><mn>0</mn></msub></mrow><msub><mi>t</mi><mn>0</mn></msub></mfrac><mo>=</mo><mi>K</mi><mfrac><msub><mi>V</mi><mi>НФ</mi></msub><msub><mi>V</mi><mi>РФ</mi></msub></mfrac></math><small>Коефіцієнт ємності: у скільки разів довше речовина перебуває в НФ, ніж у РФ. t₀ — час виходу неутримуваної речовини.</small></div>
+              <div class="formula"><math display="block"><mi>N</mi><mo>=</mo><mn>16</mn><msup><mrow><mo>(</mo><mfrac><msub><mi>t</mi><mi>R</mi></msub><mi>w</mi></mfrac><mo>)</mo></mrow><mn>2</mn></msup><mo>,</mo><mspace width="0.6em"/><mi>H</mi><mo>=</mo><mfrac><mi>L</mi><mi>N</mi></mfrac></math><small>Число теоретичних тарілок і висота, еквівалентна теоретичній тарілці (ВЕТТ): що вужчі піки, то ефективніша колонка.</small></div>
+              <div class="formula formula--wide"><math display="block"><msub><mi>R</mi><mi>s</mi></msub><mo>=</mo><mfrac><mrow><mn>2</mn><mo>(</mo><msub><mi>t</mi><mrow><mi>R</mi><mn>2</mn></mrow></msub><mo>−</mo><msub><mi>t</mi><mrow><mi>R</mi><mn>1</mn></mrow></msub><mo>)</mo></mrow><mrow><msub><mi>w</mi><mn>1</mn></msub><mo>+</mo><msub><mi>w</mi><mn>2</mn></msub></mrow></mfrac><mo>=</mo><mfrac><msqrt><mi>N</mi></msqrt><mn>4</mn></mfrac><mo>·</mo><mfrac><mrow><mi>α</mi><mo>−</mo><mn>1</mn></mrow><mi>α</mi></mfrac><mo>·</mo><mfrac><msub><msup><mi>k</mi><mo>′</mo></msup><mn>2</mn></msub><mrow><mn>1</mn><mo>+</mo><msub><msup><mi>k</mi><mo>′</mo></msup><mn>2</mn></msub></mrow></mfrac></math><small>Роздільна здатність (рівняння Пурнелла). α = k′₂/k′₁ — селективність. Rs ≥ 1,5 — розділення до базової лінії.</small></div>
+            </div>
+            <p>Рівняння Пурнелла підказує три способи покращити розділення: підвищити <b>ефективність</b> N (довша колонка, дрібніші частинки, оптимальна швидкість потоку), <b>селективність</b> α (інша нерухома фаза чи склад елюенту) або <b>утримування</b> k′ (слабший елюент). У планарних методах замість часу використовують фактор рухливості <i>R<sub>f</sub></i> = <i>l</i><sub>плями</sub> / <i>l</i><sub>фронту</sub> = 1/(1 + k′).</p>
+          </section>
+
+          <section class="lab-section" id="column">
+            <h2><span class="n">02</span>Модель колонки</h2>
+            <p class="lab-lead" style="max-width:76ch;color:var(--ink-soft)">Оберіть вид хроматографії та суміш, змінюйте склад елюенту, градієнт і параметри колонки — хроматограма перераховується одразу. «Запустити аналіз» показує, як зони рухаються колонкою і як детектор записує піки; повзунок часу дозволяє зупинитися в будь-який момент.</p>
+            <div class="cg">
+              <div class="cg-modes" id="cg-modes" role="tablist" aria-label="Вид хроматографії"></div>
+              <div class="cg__grid">
+                <aside class="cg__ctrl">
+                  <label class="field">Суміш<select id="cg-preset"></select></label>
+                  <p class="cg__note" id="cg-note"></p>
+                  <h3>Умови елюювання</h3>
+                  <div id="cg-cond" style="display:flex;flex-direction:column;gap:14px"></div>
+                  <label class="cg-check" id="cg-gradrow"><input type="checkbox" id="cg-grad"> Градієнтне елюювання</label>
+                  <div id="cg-gradc" hidden></div>
+                  <h3>Колонка</h3>
+                  <div id="cg-colc" style="display:flex;flex-direction:column;gap:14px"></div>
+                </aside>
+                <div class="cg__main">
+                  <div class="cg__bar">
+                    <span class="cg__collabel" id="cg-collabel"></span>
+                    <div class="cg__btns">
+                      <button class="btn btn--sm" type="button" id="cg-play"></button>
+                      <button class="btn btn--sm btn--outline" type="button" id="cg-reset">На початок</button>
+                      <div id="cg-speed" aria-label="Швидкість анімації"></div>
+                    </div>
+                  </div>
+                  <canvas id="cg-column" role="img" aria-label="Колонка: рух хроматографічних зон"></canvas>
+                  <div class="cg__time"><span>Час</span><input type="range" id="cg-time" min="0" max="1000" value="0" aria-label="Час аналізу"></div>
+                  <canvas id="cg-chrom" role="img" aria-label="Хроматограма"></canvas>
+                  <div class="cg-legend" id="cg-legend"></div>
+                  <div class="readouts">
+                    <div class="readout"><div class="readout__label">Мертвий час t₀</div><div class="readout__value" data-out="t0">—</div></div>
+                    <div class="readout"><div class="readout__label">Ефективність N</div><div class="readout__value" data-out="ncol">—</div></div>
+                    <div class="readout readout--gold"><div class="readout__label">Найменша R<sub>s</sub></div><div class="readout__value" data-out="rmin">—</div></div>
+                    <div class="readout"><div class="readout__label">Останній пік</div><div class="readout__value" data-out="tan">—</div></div>
+                  </div>
+                  <p class="cg-tip" id="cg-tip"></p>
+                  <div class="data-wrap"><table class="data-table" id="cg-table"></table></div>
+                </div>
+              </div>
+              <div class="cg__micro">
+                <div class="cg-mech" id="cg-mech"></div>
+                <div class="cg-micro">
+                  <h4><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><circle cx="10" cy="10" r="6.5"/><path d="m15 15 6 6"/></svg>Під збільшувальним склом: молекули біля нерухомої фази</h4>
+                  <canvas id="cg-micro" role="img" aria-label="Анімація взаємодії молекул з нерухомою фазою"></canvas>
+                  <div class="cg-micro__legend" id="cg-micro-legend"></div>
+                </div>
+              </div>
+            </div>
+            <div class="callout">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 8h.01M11 12h1v5h1"/></svg>
+              <div><p><b>Як працює модель.</b> Кожна зона рухається зі швидкістю u/(1 + k′), де k′ залежить від умов елюювання в тому місці колонки, де зона перебуває зараз: для розподільної хроматографії lg k′ = lg k′<sub>w</sub> − S·φ, для адсорбційної — lg k′ = lg k′<sub>0</sub> − n·lg φ, для газової — рівняння Вант-Гоффа, для іонообмінної — заряд амінокислоти при даному pH і конкуренція з Na⁺, для гель-фільтрації — K<sub>d</sub> = (1 − r<sub>s</sub>/r<sub>p</sub>)².</p><p>Розмивання зони наростає за рівнянням Ван-Деемтера (σ² = H·L), тож на вигляд піків впливають і швидкість потоку, і розмір частинок, і коефіцієнт дифузії (у білків він у 15–20 разів менший, ніж у малих молекул).</p></div>
+            </div>
+          </section>
+
+          <section class="lab-section" id="efficiency">
+            <h2><span class="n">03</span>Рівняння Ван-Деемтера</h2>
+            <div class="prose">
+              <p>Ширина піку залежить від трьох незалежних механізмів розмивання зони. Їхній внесок у висоту теоретичної тарілки описує рівняння Ван-Деемтера:</p>
+              <div class="formula"><math display="block"><mi>H</mi><mo>=</mo><mi>A</mi><mo>+</mo><mfrac><mi>B</mi><mi>u</mi></mfrac><mo>+</mo><mi>C</mi><mo>·</mo><mi>u</mi></math><span class="formula__n">(1)</span></div>
+              <p class="where"><i>A</i> = 2λd<sub>p</sub> — вихрова дифузія (різна довжина шляхів між зернами); <i>B</i>/<i>u</i> = 2γD<sub>m</sub>/<i>u</i> — поздовжня молекулярна дифузія, переважає за повільного потоку; <i>C·u</i> — опір масообміну між фазами, переважає за швидкого потоку. Мінімум кривої — оптимальна швидкість u<sub>опт</sub>.</p>
+            </div>
+            <div class="sim">
+              <div class="sim__controls">
+                <h3>Сорбент і речовина</h3>
+                <div id="vd-an"></div>
+                <div id="vd-c" style="display:flex;flex-direction:column;gap:14px"></div>
+              </div>
+              <div class="sim__main">
+                <div class="plot" id="vd-plot"></div>
+                <div class="readouts">
+                  <div class="readout readout--gold"><div class="readout__label">u<sub>опт</sub></div><div class="readout__value" data-out="vdopt">—</div></div>
+                  <div class="readout"><div class="readout__label">H<sub>min</sub></div><div class="readout__value" data-out="vdhmin">—</div></div>
+                  <div class="readout"><div class="readout__label">H при поточній u</div><div class="readout__value" data-out="vdh">—</div></div>
+                  <div class="readout"><div class="readout__label">N колонки</div><div class="readout__value" data-out="vdn">—</div></div>
+                </div>
+              </div>
+            </div>
+            <div class="callout callout--gold">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 18h6M10 22h4M12 2a7 7 0 0 0-4 12.7V17h8v-2.3A7 7 0 0 0 12 2Z"/></svg>
+              <div><p>Спробуйте: зменшення d<sub>p</sub> з 5 до 1,7 мкм (сучасна УВЕРХ) знижує H майже втричі й зсуває оптимум до більших швидкостей — аналіз стає і швидшим, і ефективнішим. Для білків оптимум лежить при дуже малих швидкостях: ось чому гель-фільтрацію ведуть повільно.</p></div>
+            </div>
+          </section>
+
+          <section class="lab-section" id="planar">
+            <h2><span class="n">04</span>Планарна й осадова хроматографія</h2>
+            <p class="lab-lead" style="max-width:76ch;color:var(--ink-soft)">На пластинці чи папері елюент піднімається капілярними силами, і речовини зупиняються там, де їх «застав» фронт розчинника. Мірою утримування служить R<sub>f</sub>. В осадовій хроматографії зони не рухаються — вони утворюються в колонці в порядку зростання добутку розчинності.</p>
+            <div class="pl">
+              <div class="pl__ctrl">
+                <div id="pl-mode"></div>
+                <p class="pl__note" id="pl-note"></p>
+                <div id="pl-ctrl" style="display:flex;flex-direction:column;gap:14px"></div>
+                <button class="btn btn--sm" type="button" id="pl-run" style="align-self:flex-start">
+                  <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M7 5v14l12-7z"/></svg>Повторити розділення
+                </button>
+              </div>
+              <div class="pl__main">
+                <canvas id="pl-canvas" role="img" aria-label="Хроматограма на пластинці або папері"></canvas>
+                <div class="pl-out" id="pl-out"></div>
+              </div>
+            </div>
+          </section>
+
+          <section class="lab-section" id="types">
+            <h2><span class="n">05</span>Порівняння видів хроматографії</h2>
+            <div class="cmp-wrap">
+              <table class="cmp">
+                <thead><tr><th scope="col">Вид</th><th scope="col">Механізм</th><th scope="col">Нерухома / рухома фаза</th><th scope="col">Порядок виходу</th><th scope="col">Приклади в біології рослин</th></tr></thead>
+                <tbody>
+                  <tr><th scope="row">Адсорбційна</th><td>Конкурентна адсорбція на активних центрах поверхні</td><td>SiO₂, Al₂O₃, CaCO₃ / неполярний розчинник + полярна добавка</td><td>Неполярні → полярні</td><td>Пігменти пластид, ліпіди, ПАВ, контроль пестицидів</td></tr>
+                  <tr><th scope="row">Розподільна</th><td>Розподіл між двома рідкими фазами (закон Нернста)</td><td>C₁₈ / вода–метанол (ОФ); вода в целюлозі / бутанол (НФ)</td><td>ОФ: полярні → гідрофобні</td><td>Фітогормони, фенольні сполуки, флавоноїди, вітаміни</td></tr>
+                  <tr><th scope="row">Газова</th><td>Розподіл між газом-носієм і плівкою рідини</td><td>Carbowax, полісилоксан / He, N₂, H₂</td><td>Леткіші → менш леткі</td><td>Жирнокислотний склад олій, ефірні олії, етилен, залишки пестицидів</td></tr>
+                  <tr><th scope="row">Іонообмінна</th><td>Стехіометричний обмін протиіонів</td><td>Катіоніти КУ-2, аніоніти АВ-17, DEAE / буфери з градієнтом pH чи солі</td><td>Слабкозаряджені → багатозарядні</td><td>Амінокислотний аналіз білків, катіони й аніони ґрунтових витяжок</td></tr>
+                  <tr><th scope="row">Ексклюзійна</th><td>Ситовий ефект пор гелю, без взаємодії</td><td>Sephadex, Superdex, Bio-Gel / водний буфер</td><td>Великі → малі</td><td>Знесолення й фракціонування білків, молекулярна маса ферментів</td></tr>
+                  <tr><th scope="row">Афінна</th><td>Біоспецифічне зв'язування «ключ — замок»</td><td>Агароза + ліганд (Ni²⁺-NTA, білок A, лектин) / буфери зв'язування й елюції</td><td>Баласт одразу, цільова речовина — після буфера елюції</td><td>Очищення рекомбінантних білків, антитіл, глікопротеїнів (конканавалін A)</td></tr>
+                  <tr><th scope="row">Хіральна</th><td>Тимчасові діастереомерні комплекси, трьохточкова взаємодія</td><td>Полісахаридні фази, циклодекстрини / гексан–спирт</td><td>1–2 контакти → 3 контакти</td><td>Енантіомери терпеноїдів (карвон, лімонен), D-/L-амінокислоти, ліки</td></tr>
+                  <tr><th scope="row">Осадова</th><td>Різна розчинність осадів з реагентом-осаджувачем</td><td>Al₂O₃ + AgNO₃ (чи інший осаджувач) / водний розчин</td><td>Зверху — найменший ДР, знизу — найбільший</td><td>Галогеніди, важкі метали у воді й рослинній сировині</td></tr>
+                </tbody>
+              </table>
+            </div>
+          </section>
+
+          <section class="lab-section" id="questions">
+            <h2><span class="n">06</span>Контрольні питання</h2>
+            <div class="qa">
+              <details><summary>Чому β-каротин на силікагелі виходить першим, а хлорофіл b — пізно?</summary><div>β-Каротин — неполярний вуглеводень C₄₀H₅₆ без функціональних груп, він майже не утворює водневих зв'язків із групами ≡Si–OH. Хлорофіл b має альдегідну групу та естерні групи порфіринового кільця, тому сильніше адсорбується. У моделі це видно з k′: у каротину він близький до нуля.</div></details>
+              <details><summary>Як зміниться час утримування в ОФ-ВЕРХ, якщо збільшити частку метанолу з 40 до 50 %?</summary><div>За рівнянням lg k′ = lg k′<sub>w</sub> − S·φ при S ≈ 4 k′ зменшиться в 10<sup>0,4</sup> ≈ 2,5 раза: усі речовини вийдуть швидше, але піки зблизяться, і роздільна здатність критичної пари може впасти.</div></details>
+              <details><summary>Навіщо в газовій хроматографії програмують температуру?</summary><div>В ізотермічному режимі легкі компоненти виходять тісною групою, а важкі — дуже пізно широкими піками (у моделі ментол і карвон при 70 °C не виходять узагалі). Поступове нагрівання прискорює важкі компоненти, вирівнює ширину піків і скорочує аналіз.</div></details>
+              <details><summary>Чому в гель-фільтрації першими виходять найбільші молекули?</summary><div>Великі молекули не входять у пори гелю (K<sub>d</sub> = 0) і проходять лише міжзерновий об'єм V₀. Малим молекулам доступний увесь об'єм пор, їхній шлях найдовший, тому вони виходять останніми при V<sub>t</sub> = V₀ + V<sub>p</sub>.</div></details>
+              <details><summary>Що станеться в афінній хроматографії His-tag білка, якщо в промивному буфері забагато імідазолу?</summary><div>Імідазол конкурує з гістидиновими залишками за Ni²⁺. За високої концентрації цільовий білок почне елююватися ще під час промивання разом із домішками — його втрати зростуть. Замало імідазолу — і білки-домішки вийдуть разом із цільовим білком у буфері елюції.</div></details>
+              <details><summary>Як підвищити роздільну здатність, не змінюючи хімію розділення?</summary><div>Збільшити N: подовжити колонку (R<sub>s</sub> ~ √L), зменшити розмір частинок або наблизити швидкість потоку до оптимуму на кривій Ван-Деемтера. Подвоєння довжини колонки підвищує R<sub>s</sub> лише в √2 ≈ 1,4 раза, але вдвічі подовжує аналіз.</div></details>
+              <details><summary>Чому енантіомери не розділяються на звичайній колонці C₁₈?</summary><div>Енантіомери мають однакові фізико-хімічні властивості в ахіральному середовищі, отже однакові k′ (α = 1). Розділення можливе лише з хіральним селектором, з яким один енантіомер утворює три комплементарні контакти, а інший — лише два.</div></details>
+              <details><summary>Як за R<sub>f</sub> визначити амінокислоту на паперовій хроматограмі?</summary><div>Виміряти відстань від старту до центру плями та до фронту розчинника, обчислити R<sub>f</sub> і порівняти зі стандартами, нанесеними на той самий аркуш (умови мають бути однаковими). Гідрофобні амінокислоти (лейцин, валін) мають великі R<sub>f</sub>, полярні й заряджені (лізин, аспарагінова кислота) — малі.</div></details>
+            </div>
+          </section>
+
+          <section class="lab-section" id="refs">
+            <h2><span class="n">07</span>Література</h2>
+            <ol class="refs">
+              <li>Мінаєва В. О. Хроматографічний аналіз : підручник. — Черкаси : ЧНУ ім. Б. Хмельницького, 2013. — 284 с.</li>
+              <li>Юрченко О. Г., Родіонов В. М. Методичні вказівки до вивчення курсу «Хроматографічні методи розділення органічних сполук». — Київ : НТУУ «КПІ», 2008. — 130 с.</li>
+              <li>Мінаєва В. О. Іонний обмін та іонообмінна хроматографія : практичний посібник. — Черкаси : ЧНУ, 2013. — 128 с.</li>
+              <li>Гризодуб О. І., Леонтьєв Д. А. Хроматографія ; Іонообмінна хроматографія // Фармацевтична енциклопедія. — Київ, 2016.</li>
+              <li>Hong P., Koza S., Bouvier E. S. P. Size-exclusion chromatography for the analysis of protein biotherapeutics and their aggregates // J. Liq. Chromatogr. Relat. Technol. — 2012. — Vol. 35. — P. 2923–2950.</li>
+              <li>Bui C. V., Rosenau T., Hettegger H. Polysaccharide- and β-cyclodextrin-based chiral selectors for enantiomer resolution // Molecules. — 2021. — Vol. 26, № 14. — 4322.</li>
+              <li>Snyder L. R., Kirkland J. J., Dolan J. W. Introduction to Modern Liquid Chromatography. — 3rd ed. — Wiley, 2010.</li>
+            </ol>
+            <div class="lab-nav">
+              <a class="btn btn--outline" href="../">← Інструментальні методи</a>
+              <a class="btn" href="../../">Онлайн лабораторія →</a>
+            </div>
+          </section>
+        </article>
+      </div>
+    </div>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer__grid">
+        <div class="footer__brand">
+          <img src="../../../assets/img/nubip-shield.webp" alt="Герб НУБіП України" width="37" height="52" loading="lazy">
+          <div>
+            <strong>Кафедра фізіології, біохімії рослин та біоенергетики</strong>
+            Факультет захисту рослин, біотехнологій та екології<br>Національний університет біоресурсів і природокористування України
+            <div class="footer__social">
+              <a class="footer__fb" href="https://www.facebook.com/groups/nubipplants?locale=uk_UA" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M14 8.5V6.8c0-.8.5-1 .9-1H17V2.2L14 2.2c-3.3 0-4 2.4-4 4v2.3H7.5V12H10v10h4V12h2.8l.4-3.5H14Z"/></svg>Ми у Facebook</a>
+              <a class="footer__ig" href="https://www.instagram.com/plant_physio_chair/" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/></svg>Ми в Instagram</a>
+            </div>
+          </div>
+        </div>
+        <div class="footer__col">
+          <h3>Розділи</h3>
+          <ul>
+            <li><a href="../../../about/">Про кафедру</a></li>
+            <li><a href="../../../about/#faculty-history">Історія факультету</a></li>
+            <li><a href="../../../about/#administration">Адміністрація факультету</a></li>
+            <li><a href="../../../about/#programs">Освітні програми</a></li>
+            <li><a href="../../../about/#achievements">Здобутки</a></li>
+          </ul>
+        </div>
+        <div class="footer__col">
+          <h3>Для студентів</h3>
+          <ul>
+            <li><a href="../../../lab/">Онлайн лабораторія</a></li>
+            <li><a href="../../../lab/biochemistry/">Біохімія рослин</a></li>
+            <li><a href="../../../lab/plant-physiology/">Фізіологія рослин</a></li>
+            <li><a href="../../../lab/analytical-chemistry/">Аналітична хімія</a></li>
+            <li><a href="../../../lab/plant-anatomy/">Анатомія рослин</a></li>
+            <li><a href="../../../lab/instrumental/">Інструментальні методи</a></li>
+            <li><a href="../../../konspekt/">Конспект</a></li>
+            <li><a href="../../../konspekt/pathogens/">Збудники хвороб рослин</a></li>
+            <li><a href="../../../konspekt/weeds/">Бур'яни України</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer__bottom">
+        <span>© <span data-year>2026</span> Кафедра фізіології, біохімії рослин та біоенергетики, НУБіП України</span>
+        <a href="https://nubip.edu.ua" target="_blank" rel="noopener">nubip.edu.ua</a>
+      </div>
+    </div>
+  </footer>
+
+  <script defer src="../../../assets/js/main.js"></script>
+  <script type="module" src="../../../assets/js/lab/chromatography.js"></script>
+</body>
+</html>

@@ -719,3 +719,22 @@ html:has(.lightbox[open]) { overflow: hidden; }
 .report__form svg { width: 18px; height: 18px; color: var(--gold-300); }
 .report__pop .report__alt { margin: 14px 0 8px; font-size: .82rem; color: var(--muted); }
 .report__pop .report__fb { padding: 6px 12px; font-size: .82rem; }
+
+/* ---------- Кольори дисциплін Онлайн лабораторії ---------- */
+.disc--bio  { --dc: #A8740E; --dc-2: #E0B13C; --dc-soft: #FBF1D8; --dc-deep: #3A2804; }
+.disc--phys { --dc: #2E7D32; --dc-2: #66BB6A; --dc-soft: #E6F3E6; --dc-deep: #0A2A12; }
+.disc--chem { --dc: #1F5FA8; --dc-2: #5EA8F0; --dc-soft: #E5EFFB; --dc-deep: #0A1F3D; }
+.disc--anat { --dc: #9A3A5E; --dc-2: #E07AA0; --dc-soft: #F8E7EE; --dc-deep: #34101F; }
+.disc--inst { --dc: #5B44A8; --dc-2: #9D86F0; --dc-soft: #EEEAFB; --dc-deep: #1B1240; }
+.disc-tab[class*="disc--"] { border-color: color-mix(in srgb, var(--dc) 30%, var(--line)); color: var(--dc-deep); padding: 8px 20px 8px 8px; transition: background .2s, color .2s, border-color .2s, transform .2s, box-shadow .2s; }
+.disc-tab[class*="disc--"] svg { width: 36px; height: 36px; padding: 8px; border-radius: 50%; background: var(--dc-soft); color: var(--dc); transition: background .2s, color .2s; }
+.disc-tab[class*="disc--"]:hover { background: var(--dc); border-color: var(--dc); color: #fff; transform: translateY(-2px); box-shadow: 0 10px 22px -12px var(--dc); }
+.disc-tab[class*="disc--"]:hover svg { background: rgba(255, 255, 255, .18); color: #fff; }
+.disc-tab[class*="disc--"][aria-current="page"] { background: linear-gradient(135deg, var(--dc), color-mix(in srgb, var(--dc) 70%, #000)); border-color: var(--dc); color: #fff; }
+.disc-tab[class*="disc--"][aria-current="page"] svg { background: rgba(255, 255, 255, .18); color: #fff; }
+.discipline[class*="disc--"] { border-top: 4px solid var(--dc); }
+.discipline[class*="disc--"] .discipline__art { background: radial-gradient(120% 90% at 20% 0%, color-mix(in srgb, var(--dc) 55%, transparent), transparent 60%), linear-gradient(150deg, var(--dc-deep), color-mix(in srgb, var(--dc) 60%, var(--dc-deep))); }
+.discipline[class*="disc--"] .discipline__body h2 { color: var(--dc-deep); }
+.discipline[class*="disc--"] .btn { --_bg: linear-gradient(135deg, var(--dc-2), var(--dc) 60%); --_fg: #fff; box-shadow: 0 8px 22px -10px var(--dc); }
+.discipline[class*="disc--"]:hover .btn { --_bg: var(--dc); }
+.discipline__kicker { font-size: .74rem; font-weight: 800; letter-spacing: .14em; text-transform: uppercase; color: var(--dc, var(--gold-700)); }
