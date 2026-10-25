@@ -51,6 +51,19 @@
           Онлайн лабораторія
         </a>
       </nav>
+      <div class="site-tools">
+        <span class="beta-badge" title="Сайт працює в тестовому режимі">Бета<span class="beta-badge__more">-версія</span></span>
+        <div class="report">
+          <button class="report__btn" type="button" aria-expanded="false" aria-controls="report-pop" title="Повідомити про проблему на сайті">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 9v4M12 17h.01"/><path d="M10.3 3.9 1.8 18a2 2 0 0 0 1.7 3h17a2 2 0 0 0 1.7-3L13.7 3.9a2 2 0 0 0-3.4 0Z"/></svg>
+            <span class="report__label">Повідомити про проблему</span>
+          </button>
+          <div class="report__pop" id="report-pop" role="dialog" aria-label="Повідомити про проблему на сайті" hidden>
+            <p>Будь ласка, опишіть проблему, з якою Ви зіткнулися, нам у <a href="https://www.facebook.com/groups/nubipplants?locale=uk_UA" target="_blank" rel="noopener">Facebook</a>.</p>
+            <a class="report__fb" href="https://www.facebook.com/groups/nubipplants?locale=uk_UA" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M14 8.5V6.8c0-.8.5-1 .9-1H17V2.2L14 2.2c-3.3 0-4 2.4-4 4v2.3H7.5V12H10v10h4V12h2.8l.4-3.5H14Z"/></svg>Група кафедри у Facebook</a>
+          </div>
+        </div>
+      </div>
     </div>
   </header>
 
@@ -94,6 +107,29 @@
             </span>
           </div>
         </a>
+        <a class="discipline discipline--green" href="weeds/" style="margin-top:24px">
+          <div class="discipline__art">
+            <div class="bg-molecules" aria-hidden="true" style="position:absolute;inset:0"></div>
+            <svg viewBox="0 0 360 260" aria-hidden="true">
+              <g class="float"><path d="M110 232c0-50 4-96 18-140" stroke="#7CC47F" stroke-width="5" stroke-linecap="round" fill="none"/>
+                <path d="M126 112c-24-14-50-10-66 8 22 16 48 14 66-8Z" fill="#4CAF50"/><path d="M122 150c22-18 50-18 68-2-20 20-48 20-68 2Z" fill="#2E7D32"/>
+                <path d="M128 92c4-26 22-42 46-44-2 26-20 42-46 44Z" fill="#7CC47F"/>
+                <g fill="#EBD27F"><circle cx="134" cy="70" r="5"/><circle cx="146" cy="62" r="4"/><circle cx="124" cy="62" r="3.5"/></g></g>
+              <g class="float float--2"><path d="M230 230c2-40-4-70-16-100" stroke="#CFE8D0" stroke-width="4" stroke-linecap="round" fill="none"/>
+                <g fill="none" stroke="#9BD79E" stroke-width="3" stroke-linecap="round"><path d="M222 168l-26-14M220 150l24-16M216 134l-22-18M214 120l20-20"/></g>
+                <g fill="#DDBB4A"><circle cx="212" cy="122" r="7"/><circle cx="206" cy="108" r="5"/><circle cx="220" cy="108" r="5"/></g></g>
+              <g class="float float--3"><path d="M268 216c18-30 42-36 66-28" stroke="#EBD27F" stroke-width="3" stroke-linecap="round" fill="none" stroke-dasharray="2 8"/><circle cx="300" cy="96" r="30" fill="none" stroke="#7CC47F" stroke-width="2" stroke-dasharray="4 6"/><path d="M290 96h20M300 86v20" stroke="#EBD27F" stroke-width="3" stroke-linecap="round"/></g>
+            </svg>
+          </div>
+          <div class="discipline__body">
+            <span class="badge">25 видів</span>
+            <h2>Бур'яни України</h2>
+            <p style="margin:0;color:var(--ink-soft)">Найшкодочинніші бур’яни полів, городів і населених пунктів: фото, карти поширення в Україні, опис, шкодочинність і методи контролю.</p>
+            <span class="btn btn--green" style="align-self:flex-start;margin-top:8px">Відкрити
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+            </span>
+          </div>
+        </a>
       </div>
     </section>
   </main>
@@ -125,8 +161,11 @@
             <li><a href="../lab/">Онлайн лабораторія</a></li>
             <li><a href="../lab/biochemistry/">Біохімія рослин</a></li>
             <li><a href="../lab/plant-physiology/">Фізіологія рослин</a></li>
+            <li><a href="../lab/analytical-chemistry/">Аналітична хімія</a></li>
+            <li><a href="../lab/plant-anatomy/">Анатомія рослин</a></li>
             <li><a href="../konspekt/">Конспект</a></li>
             <li><a href="../konspekt/pathogens/">Збудники хвороб рослин</a></li>
+            <li><a href="../konspekt/weeds/">Бур'яни України</a></li>
           </ul>
         </div>
       </div>

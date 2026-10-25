@@ -20,9 +20,12 @@ lab/biochemistry/temperature-ph/   — ЛР 2. Вплив температури
 lab/plant-physiology/             — Фізіологія рослин: 12 лабораторних робіт (теорія → модель зі «Старт/Стоп/Скинути» → контрольні питання)
                                      і виділена на початку списку модель «Вплив фітогормонів» (#hormones)
 lab/plant-physiology/hormones/    — переадресація на ../#hormones
+lab/analytical-chemistry/         — Аналітична хімія: якісні реакції на катіони й аніони (віртуальна колба)
+lab/plant-anatomy/                — Анатомія рослин: тканини на процедурних SVG-моделях зрізів
 konspekt/index.html                — Конспект: вибір напряму
 konspekt/pathogens/                — Збудники хвороб рослин: мікрофото збудника + фото ураженої рослини,
                                      прояви, розвиток хвороби, шкодочинність
+konspekt/weeds/                    — Бур'яни України: 25 видів, фото (iNaturalist) і карти поширення (GBIF)
 microscope/, modeling/             — переадресації зі старих адрес
 
 assets/css/style.css               — дизайн-система (кольори, типографіка, компоненти)
@@ -31,6 +34,10 @@ assets/css/plant-physiology.css    — стилі моделей «Фізіол�
 assets/js/main.js                  — меню, вкладки, підсвічування розділів, анімація появи
 assets/js/filter.js                — фільтр карток «Збудники хвороб рослин» за типом збудника
 assets/js/lightbox.js              — перегляд фото в повному розмірі (посилання з data-lightbox)
+assets/js/weeds.js, assets/css/weeds.css — довідник «Бур'яни України» (стилі обмежені .wua)
+assets/js/lab/analytical.js, assets/css/analytical.css — якісні реакції (стилі обмежені #qa-lab)
+assets/js/lab/anatomy.js, assets/css/anatomy.css — тканини рослин (стилі обмежені .anat; рисунки будуються,
+                                     коли наближаються до екрана, розділи поза екраном не малюються)
 assets/js/lab/plot.js              — графіки на Canvas (HiDPI, підказки, легенда)
 assets/js/lab/ui.js                — повзунки, перемикачі, CSV-експорт, генератор варіантів
 assets/js/lab/fit.js               — МНК, нелінійна регресія (Левенберг–Марквардт), Рунге–Кутта 4
@@ -39,6 +46,7 @@ assets/js/lab/plant-physiology.js  — застосунок «Фізіологі
 assets/js/lab/hormones.js, assets/css/hormones.css — модель «Вплив фітогормонів» (стилі обмежені .amc)
 assets/img/micro/, assets/img/plant/  — мікрофото збудників і фото уражених рослин (WebP)
 assets/img/staff/                  — фото викладачів кафедри (WebP, 320×320)
+assets/img/weeds/{photo,ua,world}/ — фото бур'янів і карти щільності знахідок GBIF (Україна, світ)
 assets/img/nubip-logo.webp         — повний герб НУБіП (головна сторінка)
 assets/img/nubip-shield.webp/.png  — щит герба (шапка, футер, значок вкладки)
 ```
@@ -90,3 +98,8 @@ GitHub Actions мінімізує HTML/CSS/JS і публікує сайт на 
 Мікрофото на сторінці «Збудники хвороб рослин» — фрагменти рисунків зі статей відкритого доступу
 (CC BY 2.0–4.0); фото уражених рослин — з Wikimedia Commons (CC BY / CC BY-SA / CC0 / суспільне
 надбання). Під кожною карткою — коротке посилання на джерело, автор і ліцензія.
+Фото бур'янів — iNaturalist (CC0 / CC BY / CC BY-SA / CC BY-NC), карти — щільність знахідок
+за даними GBIF.org; автор і ліцензія вказані під кожним фото.
+
+У шапці кожної сторінки — позначка «Бета-версія» і кнопка «Повідомити про проблему» (посилання
+на групу кафедри у Facebook).

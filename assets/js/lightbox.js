@@ -1,7 +1,8 @@
 // Перегляд фото в повному розмірі: посилання з атрибутом data-lightbox відкриваються у вікні поверх сторінки.
 (function () {
-  var links = [].slice.call(document.querySelectorAll('a[data-lightbox]'));
-  if (!links.length || typeof HTMLDialogElement !== 'function') return;
+  if (typeof HTMLDialogElement !== 'function') return;
+  // посилання шукаємо щоразу заново: частина фото (бур'яни) додається на сторінку пізніше
+  function links() { return [].slice.call(document.querySelectorAll('a[data-lightbox]')); }
 
   var dlg = document.createElement('dialog');
   dlg.className = 'lightbox';
@@ -40,19 +41,18 @@
   }
   // гортаємо лише видимі фото (з урахуванням фільтра карток)
   function step(d) {
-    var v = links.filter(function (a) { return a.offsetParent !== null; });
+    var v = links().filter(function (a) { return a.offsetParent !== null; });
     var i = v.indexOf(cur);
     if (i < 0) return;
     show(v[(i + d + v.length) % v.length]);
   }
 
-  links.forEach(function (a) {
-    a.addEventListener('click', function (e) {
-      if (e.ctrlKey || e.metaKey || e.shiftKey || e.button) return;
-      e.preventDefault();
-      show(a);
-      dlg.showModal();
-    });
+  document.addEventListener('click', function (e) {
+    var a = e.target.closest && e.target.closest('a[data-lightbox]');
+    if (!a || e.ctrlKey || e.metaKey || e.shiftKey || e.button) return;
+    e.preventDefault();
+    show(a);
+    dlg.showModal();
   });
   dlg.querySelector('.lightbox__close').addEventListener('click', function () { dlg.close(); });
   dlg.querySelector('.lightbox__prev').addEventListener('click', function () { step(-1); });

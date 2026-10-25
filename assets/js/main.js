@@ -17,11 +17,30 @@
       }
     });
     document.addEventListener('keydown', function (e) {
+      var pop = document.getElementById('report-pop');
+      if (pop && !pop.hidden) return; // спершу Esc закриває підказку «Повідомити про проблему»
       if (e.key === 'Escape' && nav.classList.contains('is-open')) {
         nav.classList.remove('is-open');
         toggle.setAttribute('aria-expanded', 'false');
         toggle.focus();
       }
+    });
+  }
+
+  // «Повідомити про проблему»: підказка з посиланням на Facebook
+  var repBtn = document.querySelector('.report__btn');
+  var repPop = document.getElementById('report-pop');
+  if (repBtn && repPop) {
+    var setRep = function (open) {
+      repPop.hidden = !open;
+      repBtn.setAttribute('aria-expanded', String(open));
+    };
+    repBtn.addEventListener('click', function () { setRep(repPop.hidden); });
+    document.addEventListener('click', function (e) {
+      if (!repPop.hidden && !e.target.closest('.report')) setRep(false);
+    });
+    document.addEventListener('keydown', function (e) {
+      if (e.key === 'Escape' && !repPop.hidden) { setRep(false); repBtn.focus(); }
     });
   }
 

@@ -51,6 +51,19 @@
           Онлайн лабораторія
         </a>
       </nav>
+      <div class="site-tools">
+        <span class="beta-badge" title="Сайт працює в тестовому режимі">Бета<span class="beta-badge__more">-версія</span></span>
+        <div class="report">
+          <button class="report__btn" type="button" aria-expanded="false" aria-controls="report-pop" title="Повідомити про проблему на сайті">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 9v4M12 17h.01"/><path d="M10.3 3.9 1.8 18a2 2 0 0 0 1.7 3h17a2 2 0 0 0 1.7-3L13.7 3.9a2 2 0 0 0-3.4 0Z"/></svg>
+            <span class="report__label">Повідомити про проблему</span>
+          </button>
+          <div class="report__pop" id="report-pop" role="dialog" aria-label="Повідомити про проблему на сайті" hidden>
+            <p>Будь ласка, опишіть проблему, з якою Ви зіткнулися, нам у <a href="https://www.facebook.com/groups/nubipplants?locale=uk_UA" target="_blank" rel="noopener">Facebook</a>.</p>
+            <a class="report__fb" href="https://www.facebook.com/groups/nubipplants?locale=uk_UA" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M14 8.5V6.8c0-.8.5-1 .9-1H17V2.2L14 2.2c-3.3 0-4 2.4-4 4v2.3H7.5V12H10v10h4V12h2.8l.4-3.5H14Z"/></svg>Група кафедри у Facebook</a>
+          </div>
+        </div>
+      </div>
     </div>
   </header>
 
@@ -79,6 +92,14 @@
           <a class="disc-tab" href="plant-physiology/">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22V12"/><path d="M12 12C12 7 9 4 4 4c0 5 3 8 8 8Z"/><path d="M12 15c0-4 3-7 8-7 0 4-3 7-8 7Z"/><path d="M8 22h8"/></svg>
             Фізіологія рослин
+          </a>
+          <a class="disc-tab" href="analytical-chemistry/">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 3h6M10 3v6l-5 9a2 2 0 0 0 1.7 3h10.6a2 2 0 0 0 1.7-3l-5-9V3"/><path d="M7.5 15h9"/></svg>
+            Аналітична хімія
+          </a>
+          <a class="disc-tab" href="plant-anatomy/">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="4"/><path d="M12 3v5M12 16v5M3 12h5M16 12h5"/></svg>
+            Анатомія рослин
           </a>
         </nav>
 
@@ -128,6 +149,47 @@
             </span>
           </div>
         </a>
+        <a class="discipline" href="analytical-chemistry/" style="margin-top:24px">
+          <div class="discipline__art">
+            <div class="bg-molecules" aria-hidden="true" style="position:absolute;inset:0"></div>
+            <svg viewBox="0 0 360 260" aria-hidden="true">
+              <g class="float"><path d="M150 40h44M158 40v56l-46 82a14 14 0 0 0 12 21h96a14 14 0 0 0 12-21l-46-82V40" fill="rgba(255,255,255,.05)" stroke="#CFE8D0" stroke-width="3" stroke-linejoin="round"/>
+                <path d="M124 160h96l14 26a10 10 0 0 1-9 14H119a10 10 0 0 1-9-14Z" fill="#5EC8FF" opacity=".75"/>
+                <g fill="#fff" opacity=".7"><circle cx="150" cy="178" r="4"/><circle cx="176" cy="186" r="3"/><circle cx="196" cy="174" r="3.5"/></g></g>
+              <g class="float float--2"><circle cx="288" cy="90" r="26" fill="url(#d-g)"/><text x="288" y="98" fill="#08210F" font-family="Georgia, serif" font-size="20" text-anchor="middle" font-weight="700">Cu²⁺</text></g>
+              <g class="float float--3"><circle cx="70" cy="96" r="20" fill="#7CC47F"/><text x="70" y="103" fill="#08210F" font-family="Georgia, serif" font-size="16" text-anchor="middle" font-weight="700">Cl⁻</text>
+                <path d="M262 190c12-10 26-10 38 0s26 10 38 0" fill="none" stroke="#EBD27F" stroke-width="3" stroke-linecap="round"/></g>
+            </svg>
+          </div>
+          <div class="discipline__body">
+            <h2>Аналітична хімія</h2>
+            <p style="margin:0;color:var(--ink-soft)">Якісні реакції на катіони та аніони у віртуальній колбі: хід досліду, рівняння реакцій та аналітичний ефект — осад, забарвлення, газ, колір полум’я.</p>
+            <span class="btn btn--gold" style="align-self:flex-start;margin-top:8px">Відкрити лабораторію
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+            </span>
+          </div>
+        </a>
+
+        <a class="discipline" href="plant-anatomy/" style="margin-top:24px">
+          <div class="discipline__art">
+            <div class="bg-molecules" aria-hidden="true" style="position:absolute;inset:0"></div>
+            <svg viewBox="0 0 360 260" aria-hidden="true">
+              <g class="float"><circle cx="160" cy="130" r="96" fill="#0B2614" stroke="#7CC47F" stroke-width="3"/>
+                <circle cx="160" cy="130" r="80" fill="none" stroke="#CFE8D0" stroke-opacity=".5" stroke-width="2" stroke-dasharray="3 5"/>
+                <g fill="#B8323A" stroke="#F2C0B9" stroke-width="1.5"><circle cx="160" cy="68" r="11"/><circle cx="214" cy="100" r="11"/><circle cx="214" cy="160" r="11"/><circle cx="160" cy="192" r="11"/><circle cx="106" cy="160" r="11"/><circle cx="106" cy="100" r="11"/></g>
+                <g fill="#DBE8F7"><circle cx="160" cy="84" r="5"/><circle cx="200" cy="108" r="5"/><circle cx="200" cy="152" r="5"/><circle cx="160" cy="176" r="5"/><circle cx="120" cy="152" r="5"/><circle cx="120" cy="108" r="5"/></g>
+                <circle cx="160" cy="130" r="30" fill="#F7EFD9" opacity=".85"/></g>
+              <g class="float float--2"><path d="M290 214V96" stroke="#7CC47F" stroke-width="5" stroke-linecap="round"/><path d="M290 130c14-22 34-30 52-26-6 22-28 32-52 26Z" fill="#4CAF50"/></g>
+            </svg>
+          </div>
+          <div class="discipline__body">
+            <h2>Анатомія рослин</h2>
+            <p style="margin:0;color:var(--ink-soft)">Тканини рослин на інтерактивних моделях зрізів: твірні, покривні, основні, провідні, механічні й видільні — будова, функції та підсумкова таблиця.</p>
+            <span class="btn btn--gold" style="align-self:flex-start;margin-top:8px">Відкрити конспект
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+            </span>
+          </div>
+        </a>
       </div>
     </section>
   </main>
@@ -159,8 +221,11 @@
             <li><a href="../lab/">Онлайн лабораторія</a></li>
             <li><a href="../lab/biochemistry/">Біохімія рослин</a></li>
             <li><a href="../lab/plant-physiology/">Фізіологія рослин</a></li>
+            <li><a href="../lab/analytical-chemistry/">Аналітична хімія</a></li>
+            <li><a href="../lab/plant-anatomy/">Анатомія рослин</a></li>
             <li><a href="../konspekt/">Конспект</a></li>
             <li><a href="../konspekt/pathogens/">Збудники хвороб рослин</a></li>
+            <li><a href="../konspekt/weeds/">Бур'яни України</a></li>
           </ul>
         </div>
       </div>

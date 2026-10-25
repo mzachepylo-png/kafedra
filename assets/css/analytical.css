@@ -1,0 +1,94 @@
+/* Якісні реакції аналітичної хімії: стилі віртуальної лабораторії (обмежені #qa-lab) */
+#qa-lab{--bg:#0a111d;--p:#0f1a2b;--p2:#14223a;--ln:rgba(140,175,225,.14);--tx:#e6eef9;--mu:#8fa4bf;--ac:#5ec8ff;--ac2:#ffb648;--ok:#49d49a;
+  font:14px/1.45 system-ui,-apple-system,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif;color:var(--tx);
+  background:radial-gradient(1100px 520px at 50% -12%,#1b2c48 0%,rgba(27,44,72,0) 65%),var(--bg);
+  border-radius:20px;padding:20px;max-width:1480px;margin:0 auto;box-sizing:border-box;-webkit-font-smoothing:antialiased}
+#qa-lab *{box-sizing:border-box}
+#qa-lab button{font:inherit;color:inherit;cursor:pointer}
+#qa-lab .qa-head{display:flex;align-items:center;gap:14px;margin:2px 4px 18px}
+#qa-lab .qa-logo{width:44px;height:44px;border-radius:12px;display:grid;place-items:center;background:linear-gradient(145deg,#1f3a5f,#122138);border:1px solid var(--ln);flex:none}
+#qa-lab .qa-head h1{font-size:21px;line-height:1.2;margin:0;font-weight:700;letter-spacing:.2px}
+#qa-lab .qa-head p{margin:3px 0 0;color:var(--mu);font-size:13.5px}
+#qa-lab .qa-grid{display:grid;grid-template-columns:258px minmax(0,1fr) 322px;gap:16px;align-items:start}
+#qa-lab .qa-panel{background:linear-gradient(180deg,var(--p2),var(--p));border:1px solid var(--ln);border-radius:16px;padding:14px}
+#qa-lab .qa-ptitle{font-size:11.5px;text-transform:uppercase;letter-spacing:1.4px;color:var(--mu);font-weight:600;margin:2px 2px 10px}
+#qa-lab .qa-search{width:100%;background:rgba(5,10,20,.55);border:1px solid var(--ln);border-radius:10px;padding:9px 11px;color:var(--tx);font:inherit;outline:none;margin-bottom:10px;transition:border-color .2s}
+#qa-lab .qa-search:focus{border-color:rgba(94,200,255,.55)}
+#qa-lab .qa-ions{max-height:760px;overflow:auto;padding-right:4px;margin-right:-4px;scrollbar-width:thin;scrollbar-color:rgba(140,175,225,.25) transparent}
+#qa-lab .qa-gh{margin:12px 2px 6px;display:flex;flex-direction:column}
+#qa-lab .qa-gh:first-child{margin-top:2px}
+#qa-lab .qa-gh b{font-size:12.5px;font-weight:650;color:#cfe0f5}
+#qa-lab .qa-gh span{font-size:11.5px;color:var(--mu)}
+#qa-lab .qa-kind{font-size:11px;letter-spacing:1.6px;text-transform:uppercase;color:var(--ac2);font-weight:700;margin:16px 2px 2px;opacity:.9}
+#qa-lab .qa-kind:first-child{margin-top:0}
+#qa-lab .qa-ilist{display:grid;grid-template-columns:1fr 1fr;gap:6px}
+#qa-lab .qa-ion{display:flex;flex-direction:column;align-items:flex-start;gap:1px;padding:8px 10px;border-radius:10px;border:1px solid transparent;background:rgba(255,255,255,.035);text-align:left;transition:background .2s,border-color .2s,transform .15s}
+#qa-lab .qa-ion:hover{background:rgba(94,200,255,.09)}
+#qa-lab .qa-ion:active{transform:scale(.98)}
+#qa-lab .qa-ion.on{background:linear-gradient(135deg,rgba(94,200,255,.22),rgba(94,200,255,.08));border-color:rgba(94,200,255,.5)}
+#qa-lab .qa-ion .f{font-size:16px;font-weight:700;letter-spacing:.2px}
+#qa-lab .qa-ion .n{font-size:11px;color:var(--mu);line-height:1.25}
+#qa-lab .qa-center{display:flex;flex-direction:column;gap:12px;min-width:0}
+#qa-lab .qa-stage{position:relative;border-radius:16px;overflow:hidden;border:1px solid var(--ln);background:#121b28;box-shadow:0 18px 50px rgba(0,0,0,.35)}
+#qa-lab .qa-stage canvas{display:block;width:100%}
+#qa-lab .qa-badges{position:absolute;left:12px;top:12px;display:flex;flex-direction:column;gap:6px;pointer-events:none;max-width:60%}
+#qa-lab .qa-badge{display:inline-flex;align-items:center;gap:8px;align-self:flex-start;background:rgba(8,14,26,.72);backdrop-filter:blur(6px);-webkit-backdrop-filter:blur(6px);border:1px solid var(--ln);border-radius:999px;padding:5px 11px 5px 9px;font-size:12.5px;opacity:0;transform:translateY(-6px);transition:opacity .35s,transform .35s}
+#qa-lab .qa-badge.in{opacity:1;transform:none}
+#qa-lab .qa-badge i{width:8px;height:8px;border-radius:50%;background:var(--ac);flex:none;box-shadow:0 0 10px currentColor}
+#qa-lab .qa-badge[data-k=heat] i{background:#ff8a3d;color:#ff8a3d}#qa-lab .qa-badge[data-k=cool] i{background:#7fe3ff;color:#7fe3ff}
+#qa-lab .qa-badge[data-k=smell] i{background:#c792ff;color:#c792ff}#qa-lab .qa-badge[data-k=gas] i{background:#49d49a;color:#49d49a}
+#qa-lab .qa-badge[data-k=flame] i{background:#ffc93d;color:#ffc93d}#qa-lab .qa-badge[data-k=sample] i{background:#5ec8ff;color:#5ec8ff}
+#qa-lab .qa-badge[data-k=paper] i{background:#e9e4d8;color:#e9e4d8}
+#qa-lab .qa-cap{position:absolute;left:50%;bottom:12px;transform:translateX(-50%);width:min(92%,640px);background:rgba(8,14,26,.78);backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);border:1px solid var(--ln);border-radius:12px;padding:9px 14px;font-size:14px;text-align:center;transition:opacity .3s;min-height:20px}
+#qa-lab .qa-cap.fade{opacity:0}
+#qa-lab .qa-bar{display:flex;align-items:center;gap:8px;flex-wrap:wrap;background:linear-gradient(180deg,var(--p2),var(--p));border:1px solid var(--ln);border-radius:14px;padding:8px}
+#qa-lab .qa-btn{display:inline-flex;align-items:center;gap:7px;background:rgba(255,255,255,.05);border:1px solid var(--ln);border-radius:10px;padding:7px 12px;font-size:13px;transition:background .2s,border-color .2s}
+#qa-lab .qa-btn:hover{background:rgba(94,200,255,.12);border-color:rgba(94,200,255,.4)}
+#qa-lab .qa-btn:disabled{opacity:.4;cursor:default;background:rgba(255,255,255,.05);border-color:var(--ln)}
+#qa-lab .qa-btn svg{width:14px;height:14px}
+#qa-lab .qa-seg{display:inline-flex;border:1px solid var(--ln);border-radius:10px;overflow:hidden;margin-left:auto}
+#qa-lab .qa-seg button{background:none;border:0;padding:7px 10px;font-size:12.5px;color:var(--mu)}
+#qa-lab .qa-seg button.on{background:rgba(94,200,255,.18);color:var(--tx)}
+#qa-lab .qa-prog{flex:1 1 100%;height:3px;border-radius:3px;background:rgba(255,255,255,.06);overflow:hidden;order:9}
+#qa-lab .qa-prog i{display:block;height:100%;width:0;background:linear-gradient(90deg,var(--ac),#9be7ff);transition:width .5s}
+#qa-lab .qa-info{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+#qa-lab .qa-card{background:linear-gradient(180deg,var(--p2),var(--p));border:1px solid var(--ln);border-radius:14px;padding:13px 14px}
+#qa-lab .qa-card h3{margin:0 0 9px;font-size:11.5px;text-transform:uppercase;letter-spacing:1.4px;color:var(--mu);font-weight:600}
+#qa-lab .qa-eq{font-family:"Cambria Math","STIX Two Math","Times New Roman",serif;font-size:16.5px;padding:7px 10px;border-radius:9px;background:rgba(0,0,0,.22);margin-bottom:6px;opacity:.38;transition:opacity .5s,background .5s;overflow-x:auto;white-space:nowrap}
+#qa-lab .qa-eq.on{opacity:1;background:rgba(94,200,255,.10)}
+#qa-lab .qa-hint{color:var(--mu);font-size:13px}
+#qa-lab .qa-steps{list-style:none;margin:0;padding:0;counter-reset:s}
+#qa-lab .qa-steps li{position:relative;padding:5px 0 5px 28px;color:var(--mu);font-size:13px;transition:color .3s}
+#qa-lab .qa-steps li::before{counter-increment:s;content:counter(s);position:absolute;left:0;top:5px;width:19px;height:19px;border-radius:50%;display:grid;place-items:center;font-size:11px;background:rgba(255,255,255,.06);border:1px solid var(--ln);color:var(--mu)}
+#qa-lab .qa-steps li.act{color:var(--tx)}
+#qa-lab .qa-steps li.act::before{background:var(--ac);color:#04121f;border-color:var(--ac);box-shadow:0 0 0 4px rgba(94,200,255,.18);animation:qa-p 1.2s infinite}
+#qa-lab .qa-steps li.done{color:#c5d4e6}
+#qa-lab .qa-steps li.done::before{content:"✓";background:rgba(73,212,154,.18);border-color:rgba(73,212,154,.5);color:var(--ok)}
+@keyframes qa-p{50%{box-shadow:0 0 0 7px rgba(94,200,255,.05)}}
+#qa-lab .qa-effect{margin-top:10px;padding:10px 12px;border-radius:10px;background:rgba(255,182,72,.08);border:1px solid rgba(255,182,72,.25);font-size:13px;display:none}
+#qa-lab .qa-effect.on{display:block;animation:qa-in .5s}
+#qa-lab .qa-effect b{color:var(--ac2)}
+@keyframes qa-in{from{opacity:0;transform:translateY(4px)}}
+#qa-lab .qa-ionhead{padding:4px 2px 14px;border-bottom:1px solid var(--ln);margin-bottom:12px}
+#qa-lab .qa-ionhead .big{font-size:34px;font-weight:750;line-height:1.1;letter-spacing:.3px;background:linear-gradient(120deg,#fff,#9fdcff);-webkit-background-clip:text;background-clip:text;color:transparent}
+#qa-lab .qa-ionhead .nm{font-size:14.5px;margin-top:3px}
+#qa-lab .qa-ionhead .gr{font-size:12.5px;color:var(--mu);margin-top:6px}
+#qa-lab .qa-ionhead .sm{display:inline-block;margin-top:8px;font-size:12px;padding:3px 9px;border-radius:999px;background:rgba(94,200,255,.1);border:1px solid rgba(94,200,255,.25);color:#bfe8ff}
+#qa-lab .qa-rxlist{display:flex;flex-direction:column;gap:8px}
+#qa-lab .qa-rx{display:flex;gap:11px;align-items:flex-start;text-align:left;width:100%;background:rgba(255,255,255,.035);border:1px solid var(--ln);border-radius:12px;padding:11px 11px 11px 12px;transition:background .2s,border-color .2s,transform .15s}
+#qa-lab .qa-rx:hover{background:rgba(94,200,255,.08);border-color:rgba(94,200,255,.35)}
+#qa-lab .qa-rx.on{background:linear-gradient(135deg,rgba(255,182,72,.14),rgba(255,182,72,.04));border-color:rgba(255,182,72,.5)}
+#qa-lab .qa-rx .num{flex:none;width:24px;height:24px;border-radius:7px;display:grid;place-items:center;font-size:12px;font-weight:700;background:rgba(255,255,255,.07);color:#cfe0f5}
+#qa-lab .qa-rx.on .num{background:var(--ac2);color:#1b1206}
+#qa-lab .qa-rx .bd{flex:1;min-width:0}
+#qa-lab .qa-rx .bd b{display:block;font-size:13.5px;font-weight:620;line-height:1.3}
+#qa-lab .qa-rx .bd small{display:block;color:var(--mu);font-size:12px;margin-top:3px;line-height:1.3}
+#qa-lab .qa-rx .go{flex:none;width:30px;height:30px;border-radius:50%;display:grid;place-items:center;background:rgba(94,200,255,.15);color:var(--ac);transition:background .2s,transform .2s;margin-top:-2px}
+#qa-lab .qa-rx:hover .go{background:var(--ac);color:#04121f;transform:scale(1.06)}
+#qa-lab .qa-rx.on .go{background:var(--ac2);color:#1b1206}
+#qa-lab .qa-foot{color:var(--mu);font-size:12px;margin:14px 4px 0;text-align:center}
+@media (max-width:1180px){#qa-lab .qa-grid{grid-template-columns:240px minmax(0,1fr)}#qa-lab .qa-right{grid-column:1 / -1}#qa-lab .qa-rxlist{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr))}}
+@media (max-width:800px){#qa-lab{padding:12px;border-radius:14px}#qa-lab .qa-grid{grid-template-columns:1fr}#qa-lab .qa-ions{max-height:250px}#qa-lab .qa-ilist{grid-template-columns:repeat(auto-fill,minmax(110px,1fr))}#qa-lab .qa-info{grid-template-columns:1fr}#qa-lab .qa-cap{font-size:12.5px;padding:7px 10px}#qa-lab .qa-head h1{font-size:18px}}
+/* сумісність зі стилями сайту */
+:where(#qa-lab) h1,:where(#qa-lab) h2,:where(#qa-lab) h3,:where(#qa-lab) p{font-family:inherit;color:inherit;letter-spacing:normal}
+#qa-lab{margin-block:28px 8px}
