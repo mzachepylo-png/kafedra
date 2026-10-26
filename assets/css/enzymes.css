@@ -7,13 +7,7 @@
 .ez-lab--b { font-weight: 800; fill: #0E3F4A; }
 .ez-op { font: 700 34px Georgia, serif; fill: #6B7C70; }
 
-/* Холофермент */
-.ez-holo { display: grid; gap: 10px; justify-items: center; margin: 18px 0; padding: 16px; border-radius: var(--radius-lg); background: radial-gradient(120% 100% at 30% 10%, #FFFFFF, #EEF5F4); border: 1px solid var(--line); }
-.holo-cof { transform: translate(290px, 80px); transition: transform 1.1s cubic-bezier(.5, 0, .2, 1); }
-.ez-holo.is-built .holo-cof { transform: translate(126px, 65px) scale(.42); }
-.holo-res { opacity: .25; transition: opacity .6s .9s; }
-.ez-holo.is-built .holo-res { opacity: 1; }
-.ez-cof3 { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 12px; }
+.ez-cof3 { margin-top: 18px; display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 12px; }
 @media (max-width: 860px) { .ez-cof3 { grid-template-columns: minmax(0, 1fr); } }
 .ez-cof3 > div, .ez-use > div, .ez-models > div { padding: 14px 16px; border-radius: var(--radius); background: var(--white); border: 1px solid var(--line); border-top: 4px solid var(--c, var(--green-700)); }
 .ez-cof3 > div > b, .ez-use > div > b, .ez-models > div > b { display: block; margin-bottom: 4px; color: var(--ink); }
@@ -137,4 +131,4 @@
 .ez-act .ez-act__ex { margin-top: 6px; font-size: .86rem; color: #0E3F4A; }
 .ez-use { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px; }
 @media (max-width: 760px) { .ez-use { grid-template-columns: minmax(0, 1fr); } }
-@media (prefers-reduced-motion: reduce) { .holo-cof, .fit-sub, .fit-wall, .ez-mwc span { transition: none; } }
+@media (prefers-reduced-motion: reduce) { .fit-sub, .fit-wall, .ez-mwc span { transition: none; } }

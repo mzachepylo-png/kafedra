@@ -1,17 +1,10 @@
-// Конспект «Ферменти»: холофермент, будова, класи КФ, енергетичний профіль, ключ — замок,
+// Конспект «Ферменти»: будова, класи КФ, енергетичний профіль, ключ — замок,
 // pH і температура, кінетика з інгібуванням, алостерична регуляція.
 import { Plot, linspace } from './plot.js';
 import { sliders, segmented, setOut, num, sig } from './ui.js';
 
 const $ = (id) => document.getElementById(id);
 const D = JSON.parse($('ez-data').textContent);
-
-// ---------------------------------------------------------------- холофермент
-$('holo-btn')?.addEventListener('click', (e) => {
-  const box = e.target.closest('.ez-holo');
-  const on = box.classList.toggle('is-built');
-  e.target.textContent = on ? 'Розібрати' : 'Зібрати холофермент';
-});
 
 // ---------------------------------------------------------------- будова ферменту
 (() => {
