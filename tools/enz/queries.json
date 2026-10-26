@@ -1,18 +1,7 @@
 {
- "rubisco": "Rubisco structure",
- "lysozyme": "Lysozyme protein structure",
- "hexokinase": "Hexokinase induced fit",
- "induced": "Induced fit enzyme",
- "triad": "Catalytic triad chymotrypsin",
- "atpsynth": "ATP synthase structure",
- "pfk": "Phosphofructokinase structure",
- "atcase": "Aspartate carbamoyltransferase",
- "catalase": "Catalase hydrogen peroxide potato",
- "amylase": "Amylase starch iodine test",
- "browning": "Apple browning polyphenol oxidase",
- "papain": "Papain",
- "aminocryst": "Amino acid crystals microscope",
- "glutamate": "Glutamic acid crystals",
- "enzymeassay": "Enzyme assay laboratory",
- "chymotrypsin": "Chymotrypsin structure"
+ "catalase2": "Catalase test bubbles",
+ "browning2": "Enzymatic browning apple",
+ "malt": "Malting barley germination",
+ "papaya": "Papaya latex fruit",
+ "pineapple": "Bromelain pineapple"
 }

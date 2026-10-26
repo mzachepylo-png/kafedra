@@ -16,7 +16,7 @@ def get(url, tries=4):
 mode = sys.argv[1] if len(sys.argv) > 1 else 'search'
 if mode == 'search':
     Q = json.load(open('tools/enz/queries.json'))
-    meta = {}
+    meta = json.load(open(f'{OUT}/meta.json')) if os.path.exists(f'{OUT}/meta.json') else {}
     for key, q in Q.items():
         api = 'https://commons.wikimedia.org/w/api.php?' + urllib.parse.urlencode({'action': 'query', 'format': 'json', 'generator': 'search', 'gsrsearch': q + ' filetype:bitmap', 'gsrnamespace': 6, 'gsrlimit': 8, 'prop': 'imageinfo', 'iiprop': 'url|extmetadata|size', 'iiurlwidth': 900})
         d = get(api)
