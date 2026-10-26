@@ -738,3 +738,40 @@ html:has(.lightbox[open]) { overflow: hidden; }
 .discipline[class*="disc--"] .btn { --_bg: linear-gradient(135deg, var(--dc-2), var(--dc) 60%); --_fg: #fff; box-shadow: 0 8px 22px -10px var(--dc); }
 .discipline[class*="disc--"]:hover .btn { --_bg: var(--dc); }
 .discipline__kicker { font-size: .74rem; font-weight: 800; letter-spacing: .14em; text-transform: uppercase; color: var(--dc, var(--gold-700)); }
+
+/* ---------- Конспект: пошук і компактні картки ---------- */
+.ksearch { position: relative; display: flex; align-items: center; gap: 10px; padding: 6px 8px 6px 16px; border-radius: 16px; background: var(--white); border: 1.5px solid var(--line-strong); box-shadow: var(--shadow-sm); }
+.ksearch:focus-within { border-color: var(--green-700); box-shadow: 0 0 0 4px var(--green-100); }
+.ksearch svg { width: 22px; height: 22px; color: var(--green-700); flex: none; }
+.ksearch input { flex: 1; min-width: 0; font: inherit; font-size: 1.02rem; padding: 10px 4px; border: 0; outline: none; background: transparent; color: var(--ink); }
+.ksearch__count { font-size: .82rem; font-weight: 700; color: var(--muted); white-space: nowrap; padding-right: 8px; }
+.ksearch__tags { display: flex; flex-wrap: wrap; gap: 6px; margin: 10px 0 18px; }
+.ksearch__tags button { font: inherit; font-size: .82rem; font-weight: 600; padding: 5px 12px; border-radius: 999px; border: 1px solid var(--line); background: var(--green-50); color: var(--green-800); cursor: pointer; }
+.ksearch__tags button:hover { border-color: var(--green-200); background: var(--white); }
+.kresults { list-style: none; margin: 0 0 22px; padding: 6px; border-radius: 16px; background: var(--white); border: 1px solid var(--line); box-shadow: var(--shadow); display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 4px; }
+@media (max-width: 760px) { .kresults { grid-template-columns: minmax(0, 1fr); } }
+.kresults a { display: grid; gap: 1px; padding: 10px 12px; border-radius: 12px; text-decoration: none; color: var(--ink); }
+.kresults a:hover, .kresults a:focus-visible { background: var(--green-50); }
+.kresults b { font-weight: 700; }
+.kresults small { color: var(--muted); font-size: .84rem; }
+.kresults mark { background: var(--gold-300); color: inherit; border-radius: 3px; padding: 0 1px; }
+.kresults__a { font-size: .7rem; letter-spacing: .1em; text-transform: uppercase; font-weight: 800; color: var(--gold-700); }
+.kresults__more { padding: 10px 12px; color: var(--muted); font-size: .86rem; }
+.kgrid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 16px; }
+@media (max-width: 860px) { .kgrid { grid-template-columns: minmax(0, 1fr); } }
+.kcard { display: grid; grid-template-columns: 38% minmax(0, 1fr); min-height: 150px; border-radius: 18px; overflow: hidden; text-decoration: none; color: inherit; background: var(--white); border: 1px solid var(--line); box-shadow: var(--shadow-sm); transition: transform .2s, box-shadow .2s, border-color .2s; }
+.kcard[hidden] { display: none; }
+.kcard:hover { color: inherit; transform: translateY(-2px); box-shadow: var(--shadow); border-color: var(--green-200); }
+.kcard__img { position: relative; overflow: hidden; background: var(--green-900); }
+.kcard__img img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; transition: transform .5s; }
+.kcard:hover .kcard__img img { transform: scale(1.05); }
+.kcard__body { display: flex; flex-direction: column; gap: 4px; padding: 14px 16px; }
+.kcard__body .badge { align-self: flex-start; }
+.kcard__title { font-family: var(--serif); font-weight: 700; font-size: 1.22rem; color: var(--green-900); line-height: 1.2; margin-top: 2px; }
+.kcard__text { font-size: .86rem; color: var(--ink-soft); line-height: 1.45; }
+.kcard__go { margin-top: auto; padding-top: 6px; display: inline-flex; align-items: center; gap: 6px; font-size: .86rem; font-weight: 700; color: var(--green-700); }
+.kcard__go svg { width: 16px; height: 16px; transition: transform .2s; }
+.kcard:hover .kcard__go svg { transform: translateX(3px); }
+@media (max-width: 420px) { .kcard { grid-template-columns: 34% minmax(0, 1fr); } .kcard__text { font-size: .82rem; } }
+.kcredits { margin: 18px 0 0; font-size: .76rem; color: var(--muted); } .kcredits a { color: inherit; }
+.kresults[hidden] { display: none; }

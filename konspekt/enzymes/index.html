@@ -1,0 +1,434 @@
+<!doctype html>
+<html lang="uk" class="no-js">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Ферменти — Конспект, кафедра ФБРтаБ НУБіП</title>
+  <meta name="description" content="Конспект «Ферменти»: будова ферментів і активний центр, кофактори, класифікація КФ 1–7, механізми каталізу, вплив pH і температури, кінетика Міхаеліса — Ментен, інгібування, алостерична регуляція. Інтерактивні моделі та реальні зображення.">
+  <meta name="theme-color" content="#08210F">
+  <link rel="icon" href="../../assets/img/nubip-shield.png" type="image/png">
+  <link rel="stylesheet" href="../../assets/css/style.css">
+  <link rel="stylesheet" href="../../assets/css/lab.css">
+  <script>document.documentElement.classList.replace('no-js', 'js')</script>
+  <link rel="stylesheet" href="../../assets/css/enzymes.css">
+</head>
+<body>
+  <a class="skip-link" href="#main">Перейти до змісту</a>
+
+  <header class="site-header">
+    <div class="container">
+      <a class="brand" href="../../" aria-label="Кафедра фізіології, біохімії рослин та біоенергетики — на головну">
+        <img class="brand__logo" src="../../assets/img/nubip-shield.webp" alt="" width="31" height="44">
+        <span class="brand__text">
+          <span class="brand__title">Кафедра ФБРтаБ</span>
+          <span class="brand__sub">Фізіологія, біохімія рослин та біоенергетика · НУБіП України</span>
+        </span>
+      </a>
+      <button class="nav-toggle" type="button" aria-controls="site-nav" aria-expanded="false" aria-label="Відкрити меню">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M4 7h16M4 12h16M4 17h16"/></svg>
+      </button>
+      <nav class="nav" id="site-nav" aria-label="Головна навігація">
+        <a class="nav__link" href="../../">Головна</a>
+        <div class="nav__dd">
+          <a class="nav__link" href="../../about/">Про кафедру
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m6 9 6 6 6-6"/></svg>
+          </a>
+          <div class="nav__menu">
+            <a href="../../about/#department">Кафедра сьогодні<small>Місія, історія з 1898 р., наука</small></a>
+            <a href="../../about/#team">Колектив<small>Викладачі та їхні наукові інтереси</small></a>
+            <a href="../../about/#achievements">Здобутки<small>Кафедри та викладачів</small></a>
+            <a href="../../about/#faculty-history">Історія факультету<small>Від 1962 року до сьогодні</small></a>
+            <a href="../../about/#administration">Адміністрація факультету<small>Деканат і контакти</small></a>
+            <a href="../../about/#programs">Освітні програми<small>Бакалаврат · Магістратура · PhD</small></a>
+          </div>
+        </div>
+        <a class="nav__link" href="../../#contacts">Контакти</a>
+        <a class="btn btn--green btn--sm nav__lab" href="../../konspekt/" aria-current="page">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20V3H6.5A2.5 2.5 0 0 0 4 5.5z"/><path d="M4 19.5A2.5 2.5 0 0 0 6.5 22H20v-5"/></svg>
+          Конспект
+        </a>
+        <a class="btn btn--gold btn--sm nav__lab" href="../../lab/">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 3h6M10 3v6l-5 9a2 2 0 0 0 1.7 3h10.6a2 2 0 0 0 1.7-3l-5-9V3"/><path d="M7.5 15h9"/></svg>
+          Онлайн лабораторія
+        </a>
+      </nav>
+      <div class="site-tools">
+        <span class="beta-badge" title="Сайт працює в тестовому режимі">Бета<span class="beta-badge__more">-версія</span></span>
+        <div class="report">
+          <button class="report__btn" type="button" aria-expanded="false" aria-controls="report-pop" title="Повідомити про проблему на сайті">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 9v4M12 17h.01"/><path d="M10.3 3.9 1.8 18a2 2 0 0 0 1.7 3h17a2 2 0 0 0 1.7-3L13.7 3.9a2 2 0 0 0-3.4 0Z"/></svg>
+            <span class="report__label">Повідомити про проблему</span>
+          </button>
+          <div class="report__pop" id="report-pop" role="dialog" aria-label="Повідомити про проблему на сайті" hidden>
+            <p>Знайшли помилку або щось працює не так? Опишіть проблему в короткій формі — так ми швидше її виправимо.</p>
+            <a class="report__form" href="https://forms.gle/yAqtSUqBYNnWgHQo6" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6M8 13h8M8 17h5"/></svg>Заповнити форму</a>
+            <p class="report__alt">Або напишіть нам у групі кафедри:</p>
+            <a class="report__fb" href="https://www.facebook.com/groups/nubipplants?locale=uk_UA" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M14 8.5V6.8c0-.8.5-1 .9-1H17V2.2L14 2.2c-3.3 0-4 2.4-4 4v2.3H7.5V12H10v10h4V12h2.8l.4-3.5H14Z"/></svg>Facebook</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main id="main">
+    <section class="page-hero page-hero--konspekt page-hero--ez">
+      <div class="bg-molecules" aria-hidden="true" style="position:absolute;inset:0"></div>
+      <div class="container">
+        <nav class="breadcrumbs" aria-label="Навігаційний ланцюжок"><a href="../../">Головна</a><span aria-hidden="true">/</span><a href="../">Конспект</a><span aria-hidden="true">/</span><span>Ферменти</span></nav>
+        <span class="kicker">Конспект · біохімія</span>
+        <h1>Ферменти</h1>
+        <p>Біологічні каталізатори: будова й активний центр, кофактори і вітаміни, класифікація КФ 1–7, як фермент знижує енергію активації, вплив pH і температури, кінетика Міхаеліса — Ментен, типи інгібування та алостерична регуляція — з інтерактивними моделями й прикладами ферментів рослин.</p>
+        <div class="lab-head"><span class="badge">7 класів КФ</span><span class="badge">Енергетичний профіль</span><span class="badge">Інгібування</span><span class="badge">Алостерія</span></div>
+      </div>
+    </section>
+
+    <div class="section" style="padding-top:48px">
+      <div class="container lab-doc">
+        <nav class="toc" aria-label="Зміст">
+          <h2>Зміст</h2>
+          <ol>
+            <li><a href="#general">Що таке ферменти</a></li>
+            <li><a href="#structure">Будова: активний і алостеричний центри</a></li>
+            <li><a href="#classes">Класифікація ферментів: КФ 1–7</a></li>
+            <li><a href="#catalysis">Механізм каталізу та специфічність</a></li>
+            <li><a href="#ph-temp">Вплив pH і температури</a></li>
+            <li><a href="#kinetics">Кінетика та інгібування</a></li>
+            <li><a href="#allostery">Алостерична регуляція та активування</a></li>
+            <li><a href="#applied">Практичне значення</a></li>
+            <li><a href="#questions">Контрольні питання</a></li>
+            <li><a href="#refs">Література</a></li>
+          </ol>
+        </nav>
+
+        <article>
+          <section class="lab-section" id="general">
+            <h2><span class="n">01</span>Що таке ферменти</h2>
+            <div class="prose">
+              <p><em class="term">Ферменти (ензими)</em> — біологічні каталізатори білкової природи. Вони прискорюють хімічні реакції обміну речовин у 10⁶–10¹⁷ разів за м'яких умов: помірної температури, атмосферного тиску й нейтрального pH. Фермент утворює з субстратом проміжний комплекс і спрямовує реакцію обхідним шляхом з нижчою енергією активації, але <b>не змінює</b> вільної енергії реакції ΔG і положення рівноваги — лише прискорює її досягнення.</p>
+              <p>За хімічною будовою ферменти бувають <b>прості</b> (лише білок: пепсин, трипсин, лізоцим, уреаза, папаїн) і <b>складні</b> — <b>холоферменти</b>. Холофермент складається з термолабільної білкової частини — <b>апоферменту</b>, що відповідає за вибірковість, і термостабільного небілкового <b>кофактора</b>, без якого каталіз неможливий.</p>
+            </div>
+            <div class="ez-holo">
+              <svg class="ez-svg" id="ez-holo" viewBox="0 0 520 200" role="img" aria-label="Холофермент утворюється з апоферменту і кофактора">
+  <defs>
+    <filter id="ez-grain" x="0" y="0" width="100%" height="100%"><feTurbulence type="fractalNoise" baseFrequency=".85" numOctaves="2" seed="4" result="n"/><feColorMatrix type="saturate" values="0"/><feComponentTransfer><feFuncA type="table" tableValues="0 .22"/></feComponentTransfer><feComposite in2="SourceGraphic" operator="in"/><feBlend in="SourceGraphic" mode="multiply"/></filter>
+    <radialGradient id="ez-prot" cx="38%" cy="30%" r="75%"><stop offset="0" stop-color="#9FD3C7"/><stop offset=".45" stop-color="#2F8C86"/><stop offset="1" stop-color="#0E3F4A"/></radialGradient>
+    <radialGradient id="ez-prot2" cx="40%" cy="35%" r="75%"><stop offset="0" stop-color="#B7C6F5"/><stop offset=".5" stop-color="#4D68C9"/><stop offset="1" stop-color="#1D2C6B"/></radialGradient>
+    <radialGradient id="ez-pocket" cx="50%" cy="60%" r="60%"><stop offset="0" stop-color="#06222A"/><stop offset="1" stop-color="#14525A"/></radialGradient>
+    <radialGradient id="ez-sub" cx="35%" cy="30%" r="70%"><stop offset="0" stop-color="#FFF3C4"/><stop offset=".6" stop-color="#F2B630"/><stop offset="1" stop-color="#A86F06"/></radialGradient>
+    <radialGradient id="ez-eff" cx="35%" cy="30%" r="70%"><stop offset="0" stop-color="#F1D8FF"/><stop offset=".6" stop-color="#9B5BE0"/><stop offset="1" stop-color="#55208F"/></radialGradient>
+    <radialGradient id="ez-cof" cx="35%" cy="30%" r="70%"><stop offset="0" stop-color="#FFD6CC"/><stop offset=".6" stop-color="#E0573A"/><stop offset="1" stop-color="#8A2410"/></radialGradient>
+    <radialGradient id="ez-glow" cx="50%" cy="50%" r="50%"><stop offset="0" stop-color="#FFD25A" stop-opacity=".75"/><stop offset="1" stop-color="#FFD25A" stop-opacity="0"/></radialGradient>
+  </defs>
+  <g transform="translate(20 10) scale(.42)"><path d="M210 40 C300 20 400 60 430 140 C462 222 436 300 360 340 C300 372 222 380 160 350 C82 316 34 250 44 170 C54 98 120 58 210 40 Z" fill="url(#ez-prot)" filter="url(#ez-grain)"/><path d="M196 96 C214 70 286 70 306 98 C318 120 300 176 252 182 C206 178 184 124 196 96 Z" fill="url(#ez-pocket)"/></g>
+  <text x="120" y="190" text-anchor="middle" class="ez-lab">апофермент (білок)</text>
+  <text x="232" y="100" text-anchor="middle" class="ez-op">+</text>
+  <g id="holo-cof" class="holo-cof"><circle r="16" fill="url(#ez-cof)"/><circle cx="20" cy="10" r="11" fill="url(#ez-cof)"/><circle cx="-6" cy="22" r="9" fill="url(#ez-cof)"/></g>
+  <text x="300" y="190" text-anchor="middle" class="ez-lab">кофактор</text>
+  <text x="352" y="100" text-anchor="middle" class="ez-op">=</text>
+  <g class="holo-res" transform="translate(330 10) scale(.42)"><path d="M210 40 C300 20 400 60 430 140 C462 222 436 300 360 340 C300 372 222 380 160 350 C82 316 34 250 44 170 C54 98 120 58 210 40 Z" fill="url(#ez-prot)" filter="url(#ez-grain)"/><path d="M196 96 C214 70 286 70 306 98 C318 120 300 176 252 182 C206 178 184 124 196 96 Z" fill="url(#ez-pocket)"/><g transform="translate(252 132)"><circle r="16" fill="url(#ez-cof)"/><circle cx="20" cy="10" r="11" fill="url(#ez-cof)"/><circle cx="-6" cy="22" r="9" fill="url(#ez-cof)"/></g></g>
+  <text x="430" y="190" text-anchor="middle" class="ez-lab ez-lab--b">холофермент (активний)</text>
+</svg>
+              <button class="btn btn--sm" type="button" id="holo-btn">Зібрати холофермент</button>
+            </div>
+            <div class="ez-cof3">
+              <div style="--c:#E0573A"><b>Простетичні групи</b><p>Міцно (ковалентно чи координаційно) зв'язані з апоферментом і не дисоціюють під час каталізу: ФАД у сукцинатдегідрогеназі, гем у каталазі й цитохромах, біотин у карбоксилазах, піридоксальфосфат в амінотрансферазах.</p></div>
+              <div style="--c:#D9A21B"><b>Коферменти</b><p>Водорозчинні похідні вітамінів, що приєднуються до апоферменту нековалентно й оборотно лише під час реакції — переносять електрони, протони чи функціональні групи (НАД⁺, НАДФ⁺, КоА, ТДФ).</p></div>
+              <div style="--c:#5E6B7E"><b>Іони металів</b><p>Стабілізують конформацію білка, виступають кислотами Льюїса, екранують заряди фосфатів: Mg²⁺·ATP у кіназах, Zn²⁺ у карбоангідразі, Mo у нітратредуктазі.</p></div>
+            </div>
+            <div class="ez-two">
+              <div class="data-wrap"><table class="data-table ez-vit"><thead><tr><th>Вітамін</th><th>Назва</th><th>Кофермент</th><th>Функція</th></tr></thead><tbody><tr><th scope="row">B₁</th><td>тіамін</td><td><b>ТДФ</b></td><td>декарбоксилювання α-кетокислот</td></tr><tr><th scope="row">B₂</th><td>рибофлавін</td><td><b>ФАД, ФМН</b></td><td>перенесення електронів і H</td></tr><tr><th scope="row">B₃ / PP</th><td>ніацин</td><td><b>НАД⁺, НАДФ⁺</b></td><td>дегідрогенази</td></tr><tr><th scope="row">B₅</th><td>пантотенова к-та</td><td><b>кофермент A</b></td><td>перенесення ацильних груп</td></tr><tr><th scope="row">B₆</th><td>піридоксин</td><td><b>ПАЛФ</b></td><td>амінотрансферази, декарбоксилази</td></tr><tr><th scope="row">B₇</th><td>біотин</td><td><b>біотин</b></td><td>карбоксилази</td></tr><tr><th scope="row">B₉</th><td>фолієва к-та</td><td><b>ТГФК</b></td><td>перенесення C₁-груп</td></tr><tr><th scope="row">B₁₂</th><td>кобаламін</td><td><b>кобаламіни</b></td><td>мутази, метилтрансферази</td></tr></tbody></table></div>
+              <div class="ez-metals"><h3>Метали в ферментах рослин</h3><ul><li><b>Mg²⁺</b> Рубіско, кінази (комплекс Mg²⁺·ATP), хлорофіл</li><li><b>Mn²⁺</b> кластер окиснення води ФС II</li><li><b>Fe²⁺/Fe³⁺</b> каталаза, пероксидази, цитохроми, фередоксин</li><li><b>Cu²⁺</b> поліфенолоксидаза, пластоціанін, аскорбатоксидаза</li><li><b>Zn²⁺</b> карбоангідраза, алкогольдегідрогеназа</li><li><b>Mo⁶⁺</b> нітратредуктаза, нітрогеназа</li><li><b>Ni²⁺</b> уреаза</li><li><b>K⁺</b> піруваткіназа, крохмальсинтаза</li></ul></div>
+            </div>
+            <figure class="ez-photo ez-photo--wide"><a href="../../assets/img/enzymes/rubisco.webp" data-lightbox data-caption="Рубіско (рибулозобісфосфаткарбоксилаза/оксигеназа) шпинату — найпоширеніший фермент на Землі: 8 великих і 8 малих субодиниць (L₈S₈), вид згори вздовж осі симетрії. Тривимірна структура за даними рентгеноструктурного аналізу. Фото: Taylor T. C., Andersson I. (PDB 1AA1); візуалізація — Astrojan, Wikimedia Commons · CC BY-SA 4.0" aria-label="Відкрити зображення в повному розмірі"><img src="../../assets/img/enzymes/rubisco.webp" alt="Тривимірна структура ферменту Рубіско, вид згори" width="960" height="762" loading="lazy" decoding="async"></a><figcaption>Рубіско (рибулозобісфосфаткарбоксилаза/оксигеназа) шпинату — найпоширеніший фермент на Землі: 8 великих і 8 малих субодиниць (L₈S₈), вид згори вздовж осі симетрії. Тривимірна структура за даними рентгеноструктурного аналізу. <span class="ez-cred"><a href="https://commons.wikimedia.org/wiki/File:1aa1.jpg" target="_blank" rel="noopener">Taylor T. C., Andersson I. (PDB 1AA1); візуалізація — Astrojan, Wikimedia Commons</a> · CC BY-SA 4.0</span></figcaption></figure>
+          </section>
+
+          <section class="lab-section" id="structure">
+            <h2><span class="n">02</span>Будова: активний і алостеричний центри</h2>
+            <div class="prose"><p>З кількох сотень амінокислотних залишків глобули безпосередньо в каталізі беруть участь лише 5–15. Вони далеко одне від одного в первинній структурі, але зближуються при згортанні поліпептидного ланцюга й утворюють функціональні центри. Натисніть на номер, щоб дізнатися про ділянку.</p></div>
+            <div class="ez-anat">
+              <div class="ez-anat__art"><svg class="ez-svg" id="ez-anat" viewBox="0 0 480 400" role="img" aria-label="Схема молекули ферменту: активний центр із субстратом і алостеричний центр з ефектором">
+  <defs>
+    <filter id="ez-grain" x="0" y="0" width="100%" height="100%"><feTurbulence type="fractalNoise" baseFrequency=".85" numOctaves="2" seed="4" result="n"/><feColorMatrix type="saturate" values="0"/><feComponentTransfer><feFuncA type="table" tableValues="0 .22"/></feComponentTransfer><feComposite in2="SourceGraphic" operator="in"/><feBlend in="SourceGraphic" mode="multiply"/></filter>
+    <radialGradient id="ez-prot" cx="38%" cy="30%" r="75%"><stop offset="0" stop-color="#9FD3C7"/><stop offset=".45" stop-color="#2F8C86"/><stop offset="1" stop-color="#0E3F4A"/></radialGradient>
+    <radialGradient id="ez-prot2" cx="40%" cy="35%" r="75%"><stop offset="0" stop-color="#B7C6F5"/><stop offset=".5" stop-color="#4D68C9"/><stop offset="1" stop-color="#1D2C6B"/></radialGradient>
+    <radialGradient id="ez-pocket" cx="50%" cy="60%" r="60%"><stop offset="0" stop-color="#06222A"/><stop offset="1" stop-color="#14525A"/></radialGradient>
+    <radialGradient id="ez-sub" cx="35%" cy="30%" r="70%"><stop offset="0" stop-color="#FFF3C4"/><stop offset=".6" stop-color="#F2B630"/><stop offset="1" stop-color="#A86F06"/></radialGradient>
+    <radialGradient id="ez-eff" cx="35%" cy="30%" r="70%"><stop offset="0" stop-color="#F1D8FF"/><stop offset=".6" stop-color="#9B5BE0"/><stop offset="1" stop-color="#55208F"/></radialGradient>
+    <radialGradient id="ez-cof" cx="35%" cy="30%" r="70%"><stop offset="0" stop-color="#FFD6CC"/><stop offset=".6" stop-color="#E0573A"/><stop offset="1" stop-color="#8A2410"/></radialGradient>
+    <radialGradient id="ez-glow" cx="50%" cy="50%" r="50%"><stop offset="0" stop-color="#FFD25A" stop-opacity=".75"/><stop offset="1" stop-color="#FFD25A" stop-opacity="0"/></radialGradient>
+  </defs>
+  <ellipse cx="240" cy="380" rx="170" ry="12" fill="#0E2F18" opacity=".1"/>
+  <path d="M210 40 C300 20 400 60 430 140 C462 222 436 300 360 340 C300 372 222 380 160 350 C82 316 34 250 44 170 C54 98 120 58 210 40 Z" fill="url(#ez-prot)" filter="url(#ez-grain)"/>
+  <g fill="none" stroke="#BDEFE4" stroke-opacity=".28" stroke-width="7" stroke-linecap="round">
+    <path d="M90 170c30-40 70-40 100-10s70 30 100-10"/><path d="M120 260c40 20 80 10 110-20s70-30 110 0"/><path d="M180 90c30 10 50 40 40 70"/><path d="M330 120c20 30 50 40 70 30"/><path d="M90 230c10 30 30 50 60 60"/>
+  </g>
+  <g class="ez-hot" data-k="active">
+    <circle cx="250" cy="148" r="80" fill="url(#ez-glow)" class="ez-glow"/>
+    <path d="M196 96 C214 70 286 70 306 98 C318 120 300 176 252 182 C206 178 184 124 196 96 Z" fill="url(#ez-pocket)"/>
+    <path d="M206 112 C222 100 238 106 236 124" fill="none" stroke="#7FE0C9" stroke-width="3" stroke-dasharray="2 4"/>
+    <g transform="translate(250 132)"><circle r="13" fill="url(#ez-sub)"/><circle cx="-20" cy="8" r="9" fill="url(#ez-sub)"/><circle cx="19" cy="-6" r="10" fill="url(#ez-sub)"/><circle cx="6" cy="20" r="8" fill="url(#ez-sub)"/><path d="M-12 5-6 2M11-4 7-2M3 13 2 8" stroke="#A86F06" stroke-width="3"/></g>
+  </g>
+  <g class="ez-hot" data-k="contact"><circle cx="206" cy="112" r="9" fill="#7FE0C9"/><circle cx="296" cy="106" r="9" fill="#7FE0C9"/></g>
+  <g class="ez-hot" data-k="catal"><circle cx="252" cy="174" r="9" fill="#FF8A5C"/></g>
+  <g class="ez-hot" data-k="allo">
+    <path d="M330 262 C350 246 384 252 390 278 C394 300 370 316 348 310 C326 304 318 278 330 262 Z" fill="#102E66" opacity=".85"/>
+    <g transform="translate(356 282)"><circle r="12" fill="url(#ez-eff)"/><circle cx="14" cy="-10" r="8" fill="url(#ez-eff)"/></g>
+  </g>
+  <g class="ez-num" font-family="system-ui, sans-serif" font-weight="800" font-size="13" text-anchor="middle">
+    <g data-k="active" transform="translate(250 50)"><circle r="13"/><text y="5">1</text></g>
+    <g data-k="contact" transform="translate(176 96)"><circle r="13"/><text y="5">2</text></g>
+    <g data-k="catal" transform="translate(252 210)"><circle r="13"/><text y="5">3</text></g>
+    <g data-k="allo" transform="translate(410 300)"><circle r="13"/><text y="5">4</text></g>
+    <g data-k="glob" transform="translate(110 300)"><circle r="13"/><text y="5">5</text></g>
+  </g>
+</svg></div>
+              <aside class="ez-anat__info" id="ez-anat-info" aria-live="polite"></aside>
+            </div>
+            <div class="prose">
+              <h3>Каталітична тріада серинових протеаз</h3>
+              <p>Класичний приклад каталітичної ділянки — тріада <b>Ser195–His57–Asp102</b> хімотрипсину й трипсину. Asp102 орієнтує імідазол His57, той відтягує протон від гідроксилу Ser195, і кисень серину стає сильним нуклеофілом, що атакує пептидний зв'язок субстрату. Таку саму тріаду мають рослинні серинові протеази (субтилізиноподібні) і ліпази.</p>
+            </div>
+            <figure class="ez-fig"><svg class="ez-svg" viewBox="0 0 520 170" role="img" aria-label="Каталітична тріада серинових протеаз: Asp102, His57, Ser195">
+  <g font-family="ui-monospace, monospace" font-size="15" font-weight="700">
+    <rect x="10" y="40" width="130" height="90" rx="18" fill="#FDECE6" stroke="#D0443A"/><text x="75" y="30" text-anchor="middle" style="fill:#9A2E22" font-family="system-ui" font-size="13">Asp102</text>
+    <text x="75" y="80" text-anchor="middle" style="fill:#13241A">–CH₂–C</text><text x="75" y="104" text-anchor="middle" style="fill:#D0443A">O⁻ ··· </text>
+    <rect x="190" y="40" width="140" height="90" rx="18" fill="#E8EEFB" stroke="#3D63DD"/><text x="260" y="30" text-anchor="middle" style="fill:#2340A0" font-family="system-ui" font-size="13">His57 (імідазол)</text>
+    <polygon points="230,92 246,66 276,66 292,92 260,112" fill="none" stroke="#3D63DD" stroke-width="2.5"/><text x="226" y="100" style="fill:#13241A" font-size="13">N–H</text><text x="282" y="100" style="fill:#13241A" font-size="13">N</text>
+    <rect x="380" y="40" width="130" height="90" rx="18" fill="#E6F4EC" stroke="#14946B"/><text x="445" y="30" text-anchor="middle" style="fill:#0E6B4C" font-family="system-ui" font-size="13">Ser195</text>
+    <text x="445" y="80" text-anchor="middle" style="fill:#13241A">H–O–CH₂–</text><text x="445" y="110" text-anchor="middle" style="fill:#0E6B4C" font-size="12" font-family="system-ui">нуклеофіл</text>
+  </g>
+  <path d="M138 98 L218 96" stroke="#9AA7B0" stroke-width="2.4" stroke-dasharray="4 4"/><path d="M300 96 L396 82" stroke="#9AA7B0" stroke-width="2.4" stroke-dasharray="4 4"/>
+  <text x="178" y="150" text-anchor="middle" class="ez-lab">водневий зв'язок</text><text x="350" y="150" text-anchor="middle" class="ez-lab">His забирає H⁺ від Ser</text>
+</svg></figure>
+            <div class="ez-photos"><figure class="ez-photo "><a href="../../assets/img/enzymes/chymotrypsin.webp" data-lightbox data-caption="Хімотрипсин — серинова протеаза. Позначено залишки каталітичної тріади Asp102, His57 і Ser195 в активному центрі. Фото: Jcwhizz, Wikimedia Commons · CC BY-SA 3.0" aria-label="Відкрити зображення в повному розмірі"><img src="../../assets/img/enzymes/chymotrypsin.webp" alt="Стрічкова модель хімотрипсину з каталітичною тріадою" width="686" height="478" loading="lazy" decoding="async"></a><figcaption>Хімотрипсин — серинова протеаза. Позначено залишки каталітичної тріади Asp102, His57 і Ser195 в активному центрі. <span class="ez-cred"><a href="https://commons.wikimedia.org/wiki/File:Chymotrypsin.png" target="_blank" rel="noopener">Jcwhizz, Wikimedia Commons</a> · CC BY-SA 3.0</span></figcaption></figure><figure class="ez-photo "><a href="../../assets/img/enzymes/papain.webp" data-lightbox data-caption="Папаїн — цистеїнова протеаза з латексу папаї (КФ 3.4.22.2). Активний центр розташований у щілині між двома доменами білка. Фото: Opabinia regalis, Wikimedia Commons · CC BY-SA 4.0" aria-label="Відкрити зображення в повному розмірі"><img src="../../assets/img/enzymes/papain.webp" alt="Стрічкова модель папаїну" width="800" height="600" loading="lazy" decoding="async"></a><figcaption>Папаїн — цистеїнова протеаза з латексу папаї (КФ 3.4.22.2). Активний центр розташований у щілині між двома доменами білка. <span class="ez-cred"><a href="https://commons.wikimedia.org/wiki/File:9pap_papain.png" target="_blank" rel="noopener">Opabinia regalis, Wikimedia Commons</a> · CC BY-SA 4.0</span></figcaption></figure></div>
+          </section>
+
+          <section class="lab-section" id="classes">
+            <h2><span class="n">03</span>Класифікація ферментів: КФ 1–7</h2>
+            <div class="prose"><p>За міжнародною класифікацією IUBMB кожен фермент має робочу (тривіальну) назву, систематичну назву і чотиризначний <b>шифр КФ X.Y.Z.N</b>: X — клас (тип реакції), Y — підклас (тип групи чи зв'язку), Z — підпідклас (природа акцептора), N — порядковий номер. Із 1961 р. було 6 класів; у 2018 р. додано 7-й — транслокази.</p></div>
+            <div class="ec-grid" id="ec-grid"><button type="button" class="ec-tile" data-n="1" style="--c:#1F6F8B"><span class="ec-tile__n">КФ 1</span><span class="ec-tile__name">Оксидоредуктази</span><span class="ec-tile__share">≈ 26,5 %</span></button><button type="button" class="ec-tile" data-n="2" style="--c:#1E88C8"><span class="ec-tile__n">КФ 2</span><span class="ec-tile__name">Трансферази</span><span class="ec-tile__share">≈ 24,0 %</span></button><button type="button" class="ec-tile" data-n="3" style="--c:#3D63DD"><span class="ec-tile__n">КФ 3</span><span class="ec-tile__name">Гідролази</span><span class="ec-tile__share">≈ 22,5 %</span></button><button type="button" class="ec-tile" data-n="4" style="--c:#D9822B"><span class="ec-tile__n">КФ 4</span><span class="ec-tile__name">Ліази (синтази)</span><span class="ec-tile__share">≈ 11,0 %</span></button><button type="button" class="ec-tile" data-n="5" style="--c:#14946B"><span class="ec-tile__n">КФ 5</span><span class="ec-tile__name">Ізомерази</span><span class="ec-tile__share">≈ 5,5 %</span></button><button type="button" class="ec-tile" data-n="6" style="--c:#7A43D8"><span class="ec-tile__n">КФ 6</span><span class="ec-tile__name">Лігази (синтетази)</span><span class="ec-tile__share">≈ 6,3 %</span></button><button type="button" class="ec-tile" data-n="7" style="--c:#5E6B7E"><span class="ec-tile__n">КФ 7</span><span class="ec-tile__name">Транслокази</span><span class="ec-tile__share">≈ 4,2 %</span></button></div>
+            <article class="ec-card" id="ec-card" aria-live="polite"></article>
+            <div class="ec-decode">
+              <label class="field">Розшифрувати шифр КФ<select id="ec-code"></select></label>
+              <div class="ec-digits" id="ec-digits" aria-live="polite"></div>
+            </div>
+            <figure class="ez-photo ez-photo--wide"><a href="../../assets/img/enzymes/atpsynth.webp" data-lightbox data-caption="ATP-синтаза (КФ 7.1.2.2) — транслоказа протонів: мембранний ротор F₀ (вгорі) обертається потоком H⁺ і змушує каталітичну головку F₁ (внизу) синтезувати ATP. Такий самий фермент працює в тилакоїдах хлоропластів. Фото: Zhou A., Rohou A. et al. (PDB 5ARA), Wikimedia Commons · CC0" aria-label="Відкрити зображення в повному розмірі"><img src="../../assets/img/enzymes/atpsynth.webp" alt="Тривимірна структура ATP-синтази" width="668" height="1100" loading="lazy" decoding="async"></a><figcaption>ATP-синтаза (КФ 7.1.2.2) — транслоказа протонів: мембранний ротор F₀ (вгорі) обертається потоком H⁺ і змушує каталітичну головку F₁ (внизу) синтезувати ATP. Такий самий фермент працює в тилакоїдах хлоропластів. <span class="ez-cred"><a href="https://commons.wikimedia.org/wiki/File:Bos_taurus_mitochondrial_ATP_synthase_state_1a_5ARA.png" target="_blank" rel="noopener">Zhou A., Rohou A. et al. (PDB 5ARA), Wikimedia Commons</a> · CC0</span></figcaption></figure>
+          </section>
+
+          <section class="lab-section" id="catalysis">
+            <h2><span class="n">04</span>Механізм каталізу та специфічність</h2>
+            <div class="prose">
+              <p>Фермент утворює з субстратом нестійкі проміжні комплекси: <b>E + S ⇄ ES → ES‡ → EP → E + P</b>. Активний центр вибірково стабілізує перехідний стан, тому енергетичний бар'єр ΔG‡ стає значно нижчим, а загальна зміна вільної енергії ΔG не змінюється. За рівнянням Ейрінга кожні 5,7 кДж/моль зниження бар'єру прискорюють реакцію при 25 °C у 10 разів.</p>
+            </div>
+            <div class="sim ez-sim">
+              <div class="sim__controls"><div id="eg-c"></div><label class="cg-check ez-check"><input type="checkbox" id="eg-enz" checked> Показати шлях із ферментом</label></div>
+              <div class="sim__main">
+                <div class="ez-energy"><svg class="ez-svg" id="eg-svg" viewBox="0 0 620 330" role="img" aria-label="Енергетичний профіль реакції з ферментом і без нього"></svg></div>
+                <div class="readouts">
+                  <div class="readout"><div class="readout__label">ΔG‡ без ферменту</div><div class="readout__value" data-out="eg0">—</div></div>
+                  <div class="readout"><div class="readout__label">ΔG‡ з ферментом</div><div class="readout__value" data-out="eg1">—</div></div>
+                  <div class="readout readout--gold"><div class="readout__label">Прискорення реакції (25 °C)</div><div class="readout__value" data-out="egk">—</div></div>
+                </div>
+              </div>
+            </div>
+            <div class="prose">
+              <h3>Як фермент знижує енергію активації</h3>
+              <ol>
+                <li><b>Зближення й орієнтація</b> (ентропійний фактор): субстрати фіксуються в активному центрі у вигідному положенні — імовірність продуктивного зіткнення різко зростає.</li>
+                <li><b>Деформація зв'язків</b> («диба» Полінга і Кошланда): конформаційна зміна активного центру напружує зв'язки субстрату, наближаючи його до перехідного стану.</li>
+                <li><b>Кислотно-основний каталіз</b>: радикали амінокислот (особливо імідазол гістидину, pK<sub>a</sub> ≈ 6) одночасно віддають і приймають протони.</li>
+                <li><b>Ковалентний каталіз</b>: тимчасовий ацил- чи фосфоферментний інтермедіат за участю –OH серину, –SH цистеїну або ε-NH₂ лізину.</li>
+              </ol>
+              <h3>Ключ — замок чи рука — рукавичка?</h3>
+              <p>Модель <b>«ключ — замок»</b> Еміля Фішера (1894) уявляла активний центр жорсткою формою, точно комплементарною субстрату. Модель <b>індукованої відповідності</b> Деніела Кошланда (1958) показала, що активний центр гнучкий і «обгортає» субстрат лише під час зв'язування — як рукавичка руку.</p>
+            </div>
+            <div class="ez-fit">
+              <figure><svg class="ez-svg fit fit--key" viewBox="0 0 220 210" role="img" aria-label="Модель «ключ — замок»"><defs>
+    <filter id="ez-grain" x="0" y="0" width="100%" height="100%"><feTurbulence type="fractalNoise" baseFrequency=".85" numOctaves="2" seed="4" result="n"/><feColorMatrix type="saturate" values="0"/><feComponentTransfer><feFuncA type="table" tableValues="0 .22"/></feComponentTransfer><feComposite in2="SourceGraphic" operator="in"/><feBlend in="SourceGraphic" mode="multiply"/></filter>
+    <radialGradient id="ez-prot" cx="38%" cy="30%" r="75%"><stop offset="0" stop-color="#9FD3C7"/><stop offset=".45" stop-color="#2F8C86"/><stop offset="1" stop-color="#0E3F4A"/></radialGradient>
+    <radialGradient id="ez-prot2" cx="40%" cy="35%" r="75%"><stop offset="0" stop-color="#B7C6F5"/><stop offset=".5" stop-color="#4D68C9"/><stop offset="1" stop-color="#1D2C6B"/></radialGradient>
+    <radialGradient id="ez-pocket" cx="50%" cy="60%" r="60%"><stop offset="0" stop-color="#06222A"/><stop offset="1" stop-color="#14525A"/></radialGradient>
+    <radialGradient id="ez-sub" cx="35%" cy="30%" r="70%"><stop offset="0" stop-color="#FFF3C4"/><stop offset=".6" stop-color="#F2B630"/><stop offset="1" stop-color="#A86F06"/></radialGradient>
+    <radialGradient id="ez-eff" cx="35%" cy="30%" r="70%"><stop offset="0" stop-color="#F1D8FF"/><stop offset=".6" stop-color="#9B5BE0"/><stop offset="1" stop-color="#55208F"/></radialGradient>
+    <radialGradient id="ez-cof" cx="35%" cy="30%" r="70%"><stop offset="0" stop-color="#FFD6CC"/><stop offset=".6" stop-color="#E0573A"/><stop offset="1" stop-color="#8A2410"/></radialGradient>
+    <radialGradient id="ez-glow" cx="50%" cy="50%" r="50%"><stop offset="0" stop-color="#FFD25A" stop-opacity=".75"/><stop offset="1" stop-color="#FFD25A" stop-opacity="0"/></radialGradient>
+  </defs><rect x="0" y="0" width="220" height="210" fill="none"/><rect x="20" y="130" width="180" height="70" rx="18" fill="url(#ez-prot)" filter="url(#ez-grain)"/><path class="fit-site" d="M60 132 L60 104 L88 104 L88 86 L132 86 L132 104 L160 104 L160 132 Z" fill="url(#ez-prot)"/><path d="M68 130 L68 112 L96 112 L96 94 L124 94 L124 112 L152 112 L152 130 Z" fill="#F7FBF7"/><g class="fit-sub"><path d="M68 0 L68 -18 L96 -18 L96 -36 L124 -36 L124 -18 L152 -18 L152 0 Z" fill="url(#ez-sub)" transform="translate(0 130)"/></g></svg><figcaption><b>Ключ — замок</b> (Фішер, 1894)</figcaption></figure>
+              <figure><svg class="ez-svg fit fit--ind" viewBox="0 0 220 210" role="img" aria-label="Модель індукованої відповідності"><defs>
+    <filter id="ez-grain" x="0" y="0" width="100%" height="100%"><feTurbulence type="fractalNoise" baseFrequency=".85" numOctaves="2" seed="4" result="n"/><feColorMatrix type="saturate" values="0"/><feComponentTransfer><feFuncA type="table" tableValues="0 .22"/></feComponentTransfer><feComposite in2="SourceGraphic" operator="in"/><feBlend in="SourceGraphic" mode="multiply"/></filter>
+    <radialGradient id="ez-prot" cx="38%" cy="30%" r="75%"><stop offset="0" stop-color="#9FD3C7"/><stop offset=".45" stop-color="#2F8C86"/><stop offset="1" stop-color="#0E3F4A"/></radialGradient>
+    <radialGradient id="ez-prot2" cx="40%" cy="35%" r="75%"><stop offset="0" stop-color="#B7C6F5"/><stop offset=".5" stop-color="#4D68C9"/><stop offset="1" stop-color="#1D2C6B"/></radialGradient>
+    <radialGradient id="ez-pocket" cx="50%" cy="60%" r="60%"><stop offset="0" stop-color="#06222A"/><stop offset="1" stop-color="#14525A"/></radialGradient>
+    <radialGradient id="ez-sub" cx="35%" cy="30%" r="70%"><stop offset="0" stop-color="#FFF3C4"/><stop offset=".6" stop-color="#F2B630"/><stop offset="1" stop-color="#A86F06"/></radialGradient>
+    <radialGradient id="ez-eff" cx="35%" cy="30%" r="70%"><stop offset="0" stop-color="#F1D8FF"/><stop offset=".6" stop-color="#9B5BE0"/><stop offset="1" stop-color="#55208F"/></radialGradient>
+    <radialGradient id="ez-cof" cx="35%" cy="30%" r="70%"><stop offset="0" stop-color="#FFD6CC"/><stop offset=".6" stop-color="#E0573A"/><stop offset="1" stop-color="#8A2410"/></radialGradient>
+    <radialGradient id="ez-glow" cx="50%" cy="50%" r="50%"><stop offset="0" stop-color="#FFD25A" stop-opacity=".75"/><stop offset="1" stop-color="#FFD25A" stop-opacity="0"/></radialGradient>
+  </defs><rect x="20" y="130" width="180" height="70" rx="18" fill="url(#ez-prot)" filter="url(#ez-grain)"/><g class="fit-wall fit-wall--l"><path d="M44 134 C44 110 52 92 70 86 L78 92 C66 100 62 116 62 134 Z" fill="url(#ez-prot)"/></g><g class="fit-wall fit-wall--r"><path d="M176 134 C176 110 168 92 150 86 L142 92 C154 100 158 116 158 134 Z" fill="url(#ez-prot)"/></g><g class="fit-sub"><ellipse cx="110" cy="112" rx="32" ry="22" fill="url(#ez-sub)"/><circle cx="96" cy="104" r="5" fill="#FFF3C4" opacity=".7"/></g></svg><figcaption><b>Індукована відповідність</b> (Кошланд, 1958)</figcaption></figure>
+              <button class="btn btn--sm" type="button" id="fit-btn">Показати зв'язування</button>
+            </div>
+            <figure class="ez-photo ez-photo--wide"><a href="../../assets/img/enzymes/hexokinase.webp" data-lightbox data-caption="Індукована відповідність на прикладі гексокінази: після зв'язування глюкози два домени ферменту змикаються навколо субстрату (вгорі — відкрита форма, внизу — закрита). Фото: Thomas Shafee, Wikimedia Commons · CC BY-SA 4.0" aria-label="Відкрити зображення в повному розмірі"><img src="../../assets/img/enzymes/hexokinase.webp" alt="Гексокіназа у відкритій і закритій формі" width="960" height="1063" loading="lazy" decoding="async"></a><figcaption>Індукована відповідність на прикладі гексокінази: після зв'язування глюкози два домени ферменту змикаються навколо субстрату (вгорі — відкрита форма, внизу — закрита). <span class="ez-cred"><a href="https://commons.wikimedia.org/wiki/File:Hexokinase_induced_fit.png" target="_blank" rel="noopener">Thomas Shafee, Wikimedia Commons</a> · CC BY-SA 4.0</span></figcaption></figure>
+            <div class="data-wrap"><table class="data-table ez-spec"><thead><tr><th>Специфічність</th><th>Критерій вибірковості</th><th>Приклади</th></tr></thead><tbody>
+              <tr><th scope="row">Стереохімічна</th><td>Фермент перетворює лише один оптичний (D/L) чи геометричний (цис/транс) ізомер завдяки триточковій фіксації субстрату.</td><td>Фумараза діє на фумарат (транс), але не на малеат (цис); оксидаза L-амінокислот — лише на L-ізомери.</td></tr>
+              <tr><th scope="row">Абсолютна</th><td>Активний центр комплементарний одній речовині; будь-яка зміна радикала унеможливлює каталіз.</td><td>Уреаза гідролізує лише сечовину; аргіназа — лише L-аргінін; Рубіско приймає тільки RuBP.</td></tr>
+              <tr><th scope="row">Відносна (групова)</th><td>Фермент атакує певний тип зв'язку в широкій групі субстратів.</td><td>Пепсин, трипсин, папаїн гідролізують пептидні зв'язки різних білків; ліпаза — естерні зв'язки ацилгліцеролів.</td></tr>
+            </tbody></table></div>
+          </section>
+
+          <section class="lab-section" id="ph-temp">
+            <h2><span class="n">05</span>Вплив pH і температури</h2>
+            <div class="prose"><p>Швидкість ферментативної реакції залежить від іонізації функціональних груп білка та збереження його нативної конформації. Кожен фермент має свій <b>оптимум pH</b> — діапазон, у якому іоногенні групи активного центру (–COO⁻, –NH₃⁺, –SH, імідазол) мають каталітично активний заряд. Ферменти рослин пристосовані до свого компартменту: вакуолярні гідролази активні при pH ≈ 5, ферменти строми — при pH ≈ 8, якого вона досягає на світлі.</p></div>
+            <div class="plots-2 ez-env">
+              <div class="plot-card"><h4>Залежність активності від pH</h4><div class="ez-toggles" id="ph-tg"></div><div class="plot" id="ph-plot"></div></div>
+              <div class="plot-card"><h4>Температурний оптимум і теплова денатурація</h4><div id="t-c"></div><div class="plot" id="t-plot"></div><div class="readouts ez-ro2"><div class="readout readout--gold"><div class="readout__label">T<sub>опт</sub></div><div class="readout__value" data-out="topt">—</div></div><div class="readout"><div class="readout__label">Збереглося нативного білка при T<sub>опт</sub></div><div class="readout__value" data-out="tnat">—</div></div></div></div>
+            </div>
+            <div class="prose"><p>На висхідній гілці кривої підвищення температури на 10 °C прискорює реакцію в 1,5–2 рази (<b>правило Вант-Гоффа</b>, Q₁₀). Вище 42–50 °C руйнуються слабкі зв'язки третинної структури, і фермент необоротно денатурує; при охолодженні активність падає без руйнування структури (принцип кріоконсервації). Термофільна бактерія <i>Thermus aquaticus</i> синтезує <i>Taq</i>-ДНК-полімеразу з оптимумом 72–75 °C — основу полімеразної ланцюгової реакції.</p></div>
+            <div class="ez-photos"><figure class="ez-photo "><a href="../../assets/img/enzymes/malt.webp" data-lightbox data-caption="Проростаюче зерно ячменю (солод). Гібереліни зародка індукують синтез α-амілази в алейроновому шарі — фермент гідролізує крохмаль ендосперму до цукрів для росту проростка. Фото: Bapt-francois, Wikimedia Commons · CC BY-SA 4.0" aria-label="Відкрити зображення в повному розмірі"><img src="../../assets/img/enzymes/malt.webp" alt="Проростаючі зерна ячменю" width="960" height="643" loading="lazy" decoding="async"></a><figcaption>Проростаюче зерно ячменю (солод). Гібереліни зародка індукують синтез α-амілази в алейроновому шарі — фермент гідролізує крохмаль ендосперму до цукрів для росту проростка. <span class="ez-cred"><a href="https://commons.wikimedia.org/wiki/File:Malt_vert_-_orge_en_germination.jpg" target="_blank" rel="noopener">Bapt-francois, Wikimedia Commons</a> · CC BY-SA 4.0</span></figcaption></figure><figure class="ez-photo "><a href="../../assets/img/enzymes/papaya.webp" data-lightbox data-caption="Плід папаї (Carica papaya) — джерело папаїну: латекс незрілих плодів використовують для пом'якшення м'яса та в медицині. Фото: Ivar Leidus, Wikimedia Commons · CC BY-SA 4.0" aria-label="Відкрити зображення в повному розмірі"><img src="../../assets/img/enzymes/papaya.webp" alt="Розрізаний плід папаї" width="960" height="640" loading="lazy" decoding="async"></a><figcaption>Плід папаї (Carica papaya) — джерело папаїну: латекс незрілих плодів використовують для пом'якшення м'яса та в медицині. <span class="ez-cred"><a href="https://commons.wikimedia.org/wiki/File:Papaya_-_longitudinal_section.jpg" target="_blank" rel="noopener">Ivar Leidus, Wikimedia Commons</a> · CC BY-SA 4.0</span></figcaption></figure><figure class="ez-photo "><a href="../../assets/img/enzymes/pineapple.webp" data-lightbox data-caption="Ананас містить бромелаїн — цистеїнову протеазу. Саме через неї свіжий ананас не дає желатину застигнути, а консервований (прогрітий, фермент денатурований) — дає. Фото: автор указаний на сторінці файлу, Wikimedia Commons · CC BY-SA 4.0" aria-label="Відкрити зображення в повному розмірі"><img src="../../assets/img/enzymes/pineapple.webp" alt="Плоди ананаса" width="577" height="383" loading="lazy" decoding="async"></a><figcaption>Ананас містить бромелаїн — цистеїнову протеазу. Саме через неї свіжий ананас не дає желатину застигнути, а консервований (прогрітий, фермент денатурований) — дає. <span class="ez-cred"><a href="https://commons.wikimedia.org/wiki/File:Ananas_e_Boswellia.jpg" target="_blank" rel="noopener">автор указаний на сторінці файлу, Wikimedia Commons</a> · CC BY-SA 4.0</span></figcaption></figure></div>
+          </section>
+
+          <section class="lab-section" id="kinetics">
+            <h2><span class="n">06</span>Кінетика та інгібування</h2>
+            <div class="prose">
+              <p>Залежність початкової швидкості реакції від концентрації субстрату в стаціонарному стані описує рівняння <b>Міхаеліса — Ментен</b> (1913):</p>
+              <div class="formula"><math display="block"><msub><mi>V</mi><mn>0</mn></msub><mo>=</mo><mfrac><mrow><msub><mi>V</mi><mi>max</mi></msub><mo>·</mo><mo>[</mo><mi>S</mi><mo>]</mo></mrow><mrow><msub><mi>K</mi><mi>m</mi></msub><mo>+</mo><mo>[</mo><mi>S</mi><mo>]</mo></mrow></mfrac><mspace width="1.6em"/><mfrac><mn>1</mn><msub><mi>V</mi><mn>0</mn></msub></mfrac><mo>=</mo><mfrac><msub><mi>K</mi><mi>m</mi></msub><msub><mi>V</mi><mi>max</mi></msub></mfrac><mo>·</mo><mfrac><mn>1</mn><mrow><mo>[</mo><mi>S</mi><mo>]</mo></mrow></mfrac><mo>+</mo><mfrac><mn>1</mn><msub><mi>V</mi><mi>max</mi></msub></mfrac></math></div>
+              <p class="where">V<sub>max</sub> = k<sub>cat</sub>·[E]₀ — швидкість при насиченні всіх активних центрів; <b>K<sub>m</sub></b> — концентрація субстрату, за якої V₀ = ½V<sub>max</sub>; що менша K<sub>m</sub>, то вища спорідненість ферменту до субстрату. Друге рівняння — лінеаризація Лайнуівера — Берка.</p>
+              <p><b>Інгібітори</b> — метаболіти, ліки, токсини, гербіциди, що вибірково гальмують фермент. Тип зворотного інгібування визначають за графіками Лайнуівера — Берка при кількох концентраціях інгібітора: де перетинаються прямі, те й змінилося — V<sub>max</sub> чи K<sub>m</sub>. Оберіть тип інгібування і змінюйте параметри.</p>
+            </div>
+            <div class="sim ez-sim">
+              <div class="sim__controls"><div id="ki-type"></div><div id="ki-c"></div><p class="ez-kinote" id="ki-note"></p></div>
+              <div class="sim__main">
+                <div class="plots-2">
+                  <div class="plot-card"><h4>Крива Міхаеліса — Ментен</h4><div class="plot" id="mm-plot"></div></div>
+                  <div class="plot-card"><h4>Подвійні обернені координати Лайнуівера — Берка</h4><div class="plot" id="lb-plot"></div></div>
+                </div>
+                <div class="readouts">
+                  <div class="readout"><div class="readout__label">V<sub>max</sub> уявна</div><div class="readout__value" data-out="kvm">—</div></div>
+                  <div class="readout"><div class="readout__label">K<sub>m</sub> уявна</div><div class="readout__value" data-out="kkm">—</div></div>
+                  <div class="readout readout--gold"><div class="readout__label">Гальмування при [S] = K<sub>m</sub></div><div class="readout__value" data-out="kinh">—</div></div>
+                </div>
+              </div>
+            </div>
+            <div class="data-wrap"><table class="data-table ez-inh"><thead><tr><th>Тип</th><th>Механізм</th><th>Кінетика</th><th>Приклади</th></tr></thead><tbody><tr><th scope="row">Незворотне</th><td>Міцний ковалентний зв'язок з функціональними групами активного центру (–OH серину, –SH цистеїну); діаліз активність не повертає.</td><td>Ефективна [E]₀ падає: ↓V<sub>max</sub>, K<sub>m</sub> = const</td><td>Фосфорорганічні отрути (зарин, ДФФ) — ацетилхолінестераза; аспірин ацетилює ЦОГ; гліфосат блокує EPSPS рослин.</td></tr><tr><th scope="row">Конкурентне</th><td>Структурний аналог субстрату займає вільний активний центр (E + I ⇄ EI); усувається надлишком субстрату.</td><td>V<sub>max</sub> = const, ↑K<sub>m</sub> (K<sub>m</sub><sup>app</sup> = αK<sub>m</sub>); прямі перетинаються на осі 1/V</td><td>Малонат — сукцинатдегідрогеназа; сульфаніламіди конкурують з ПАБК; статини — ГМГ-КоА-редуктаза; O₂ конкурує з CO₂ за Рубіско.</td></tr><tr><th scope="row">Неконкурентне</th><td>Інгібітор зв'язується поза активним центром і з E, і з ES з однаковою константою (K<sub>i</sub> = K<sub>i</sub>′).</td><td>↓V<sub>max</sub>, K<sub>m</sub> = const; спільна точка на осі −1/K<sub>m</sub></td><td>Аланін і ATP щодо піруваткінази; глюкозо-6-фосфат щодо гексокінази; іони важких металів щодо SH-ферментів.</td></tr><tr><th scope="row">Безконкурентне</th><td>Інгібітор приєднується лише до комплексу ES, утворюючи неактивний ESI.</td><td>Пропорційно ↓V<sub>max</sub> і ↓K<sub>m</sub>; паралельні прямі</td><td>L-фенілаланін щодо кишкової лужної фосфатази; мікофенолова кислота щодо ІМФ-дегідрогенази.</td></tr><tr><th scope="row">Змішане</th><td>Зв'язується з E і з ES, але з різною спорідненістю (K<sub>i</sub> ≠ K<sub>i</sub>′).</td><td>↓V<sub>max</sub>, K<sub>m</sub> зростає чи зменшується; перетин у II або III квадранті</td><td>Багато лікарських інгібіторів мультисубстратних дегідрогеназ.</td></tr></tbody></table></div>
+          </section>
+
+          <section class="lab-section" id="allostery">
+            <h2><span class="n">07</span>Алостерична регуляція та активування</h2>
+            <div class="prose">
+              <p>Ключові (швидкість-лімітуючі) ферменти на початку метаболічних шляхів і в точках розгалуження мають олігомерну будову й <b>алостеричні центри</b>. Для них характерна <b>кооперативність</b>: зв'язування молекули з однією субодиницею змінює конформацію сусідніх. Тому крива насичення не гіперболічна, а <b>S-подібна</b> (сигмоїдальна) з коефіцієнтом Хілла n<sub>H</sub> &gt; 1.</p>
+            </div>
+            <div class="sim ez-sim">
+              <div class="sim__controls"><div id="al-c"></div><div class="ez-mwc" id="ez-mwc" aria-hidden="true"></div><p class="ez-kinote" id="al-note"></p></div>
+              <div class="sim__main"><div class="plot" id="al-plot"></div>
+                <div class="readouts"><div class="readout readout--gold"><div class="readout__label">K<sub>0,5</sub> (півнасичення)</div><div class="readout__value" data-out="ak">—</div></div><div class="readout"><div class="readout__label">Субодиниць у R-стані</div><div class="readout__value" data-out="ar">—</div></div><div class="readout"><div class="readout__label">V при [S] = 4</div><div class="readout__value" data-out="av">—</div></div></div>
+              </div>
+            </div>
+            <div class="ez-models">
+              <div><b>Узгоджена модель Моно — Ваймана — Шанже (MWC, 1965)</b><p>Усі субодиниці перебувають у рівновазі між двома станами — напруженим <b>T</b> (низька спорідненість) і релаксованим <b>R</b> (висока). Перехід синхронний, «усе або нічого». Активатори стабілізують R, інгібітори — T.</p></div>
+              <div><b>Послідовна модель Кошланда — Неметі — Філмера (KNF, 1966)</b><p>Ліганд змінює конформацію спершу однієї субодиниці, а та через контакти полегшує (позитивна кооперативність) чи утруднює перехід сусідніх; можливі гібридні стани.</p></div>
+              <div><b>Ретрогальмування і активація попередником</b><p>Кінцевий продукт гальмує перший фермент шляху: ізолейцин — треоніндезаміназу, лізин — аспартаткіназу, триптофан — антранілатсинтазу. Ранній метаболіт активує пізній фермент: фруктозо-1,6-бісфосфат — піруваткіназу.</p></div>
+            </div>
+            <figure class="ez-photo ez-photo--wide"><a href="../../assets/img/enzymes/atcase.webp" data-lightbox data-caption="Аспартаткарбамоїлтрансфераза — класичний алостеричний фермент: каталітичні тримери (червоний і синій) та регуляторні димери (жовті), до яких приєднуються ATP-активатор і CTP-інгібітор. Фото: Cockrell G. M., Kantrowitz E. R. (PDB 4YFF); візуалізація — Synpath, Wikimedia Commons · CC0" aria-label="Відкрити зображення в повному розмірі"><img src="../../assets/img/enzymes/atcase.webp" alt="Структура алостеричного ферменту аспартаткарбамоїлтрансферази" width="960" height="873" loading="lazy" decoding="async"></a><figcaption>Аспартаткарбамоїлтрансфераза — класичний алостеричний фермент: каталітичні тримери (червоний і синій) та регуляторні димери (жовті), до яких приєднуються ATP-активатор і CTP-інгібітор. <span class="ez-cred"><a href="https://commons.wikimedia.org/wiki/File:Escherichia_coli_Aspartate_carbamoyltransferase_complex_PDB_4YFF.png" target="_blank" rel="noopener">Cockrell G. M., Kantrowitz E. R. (PDB 4YFF); візуалізація — Synpath, Wikimedia Commons</a> · CC0</span></figcaption></figure>
+            <div class="prose"><h3>Шляхи активування ферментів у клітині</h3></div>
+            <div class="ez-act"><div><span class="ez-act__n">1</span><b>Обмежений протеоліз зимогенів</b><p>Незворотне відщеплення маскуючого пептиду відкриває активний центр.</p><p class="ez-act__ex">Пепсиноген → пепсин, трипсиноген → трипсин, каскад згортання крові; у рослин — дозрівання цистеїнових протеїназ вакуолі.</p></div><div><span class="ez-act__n">2</span><b>Фосфорилювання / дефосфорилювання</b><p>Оборотне приєднання фосфату до OH-груп Ser, Thr, Tyr протеїнкіназами та відщеплення протеїнфосфатазами.</p><p class="ez-act__ex">Глікогенфосфорилаза; у рослин — сахарозофосфатсинтаза, нітратредуктаза (темнова інактивація), ФЕП-карбоксилаза (активація у C₄ і CAM).</p></div><div><span class="ez-act__n">3</span><b>Асоціація / дисоціація субодиниць</b><p>Оборотне роз'єднання регуляторних і каталітичних субодиниць під дією вторинних месенджерів.</p><p class="ez-act__ex">Протеїнкіназа A (R₂C₂ + цАМФ → 2C); Ca²⁺-кальмодулін-залежні кінази; Рубіско-активаза знімає інгібітори з Рубіско.</p></div><div><span class="ez-act__n">4</span><b>Кофактори, іони та індукція синтезу</b><p>Швидке приєднання коферментів і катіонів (секунди) або тривала індукція транскрипції (години — доби).</p><p class="ez-act__ex">Амілаза слини активується Cl⁻; тіоредоксин відновлює дисульфіди ферментів циклу Кальвіна на світлі; гібереліни індукують α-амілазу в алейроновому шарі зерна.</p></div></div>
+          </section>
+
+          <section class="lab-section" id="applied">
+            <h2><span class="n">08</span>Практичне значення</h2>
+<figure class="ez-photo ez-photo--wide"><a href="../../assets/img/enzymes/assay.webp" data-lightbox data-caption="Ензимодіагностика: автоматичний аналізатор вимірює активність ферментів у планшетах за зміною оптичної густини. Фото: суспільне надбання, Wikimedia Commons · Public domain" aria-label="Відкрити зображення в повному розмірі"><img src="../../assets/img/enzymes/assay.webp" alt="Лабораторний аналізатор для визначення активності ферментів" width="903" height="600" loading="lazy" decoding="async"></a><figcaption>Ензимодіагностика: автоматичний аналізатор вимірює активність ферментів у планшетах за зміною оптичної густини. <span class="ez-cred"><a href="https://commons.wikimedia.org/wiki/File:ELISA_pic.jpg" target="_blank" rel="noopener">суспільне надбання, Wikimedia Commons</a> · Public domain</span></figcaption></figure>
+            <div class="ez-use">
+              <div style="--c:#1F6F8B"><b>Ензимодіагностика</b><p>Активність органоспецифічних ферментів у плазмі крові: МВ-креатинкінази, АСТ, ЛДГ₁ при інфаркті міокарда; АЛТ при гепатитах; α-амілази при панкреатиті.</p></div>
+              <div style="--c:#14946B"><b>Ензимотерапія</b><p>Замісне й фібринолітичне застосування ферментних препаратів: панкреатин, пепсин, тканинний активатор плазміногену, стрептокіназа, аспарагіназа.</p></div>
+              <div style="--c:#D9822B"><b>Дизайн інгібіторів</b><p>Понад 45 % лікарських засобів — інгібітори ферментів: інгібітори АПФ, статини, інгібітори ЦОГ, тирозинкіназ, вірусних протеаз.</p></div>
+              <div style="--c:#2E7D32"><b>Агрономія</b><p>Гербіциди — інгібітори ферментів, яких немає у тварин: гліфосат (EPSPS), сульфонілсечовини (ацетолактатсинтаза), глюфосинат (глутамінсинтетаза). Ферментні препарати й активність амілази визначають якість зерна і солоду.</p></div>
+            </div>
+          </section>
+
+          <section class="lab-section" id="questions">
+            <h2><span class="n">09</span>Контрольні питання</h2>
+            <div class="qa">
+              <details><summary><span>Чим холофермент відрізняється від апоферменту?</span></summary><div>Апофермент — білкова частина ферменту, що відповідає за вибірковість; холофермент — повний активний комплекс апоферменту з кофактором (коферментом, простетичною групою чи іоном металу).</div></details>
+              <details><summary><span>Що таке активний центр і з яких ділянок він складається?</span></summary><div>Просторова заглибина, утворена при згортанні поліпептидного ланцюга з 5–15 амінокислотних залишків. Контактна (субстратна) ділянка впізнає й фіксує субстрат, каталітична — безпосередньо перетворює хімічні зв'язки.</div></details>
+              <details><summary><span>Що означає шифр КФ 4.1.1.39?</span></summary><div>Клас 4 — ліази; підклас 4.1 — розщеплюють зв'язки C–C; 4.1.1 — карбокси-ліази (декарбоксилази); 39 — порядковий номер: рибулозобісфосфаткарбоксилаза (Рубіско).</div></details>
+              <details><summary><span>Чи змінює фермент константу рівноваги реакції?</span></summary><div>Ні. Фермент знижує енергію активації й однаково прискорює пряму та зворотну реакції, тому рівновага досягається швидше, але її положення (ΔG, K<sub>рівн</sub>) не змінюється.</div></details>
+              <details><summary><span>Чим модель індукованої відповідності відрізняється від моделі «ключ — замок»?</span></summary><div>У моделі Фішера активний центр жорсткий і заздалегідь комплементарний субстрату. За Кошландом він гнучкий і набуває точної комплементарності лише під час зв'язування субстрату (як гексокіназа, що закривається навколо глюкози).</div></details>
+              <details><summary><span>Що характеризує K<sub>m</sub>?</span></summary><div>Концентрацію субстрату, за якої швидкість реакції дорівнює половині максимальної. Вона обернено відображає спорідненість ферменту до субстрату: що менша K<sub>m</sub>, то міцніше зв'язування.</div></details>
+              <details><summary><span>Як за графіком Лайнуівера — Берка відрізнити конкурентне інгібування від неконкурентного?</span></summary><div>При конкурентному прямі перетинаються на осі ординат (V<sub>max</sub> незмінна, K<sub>m</sub> зростає), при неконкурентному — на осі абсцис (K<sub>m</sub> незмінна, V<sub>max</sub> зменшується).</div></details>
+              <details><summary><span>Чому крива насичення алостеричного ферменту S-подібна?</span></summary><div>Через кооперативність: зв'язування субстрату з однією субодиницею полегшує зв'язування з іншими (перехід T → R), тому швидкість різко зростає в певному діапазоні концентрацій; коефіцієнт Хілла n<sub>H</sub> > 1.</div></details>
+              <details><summary><span>Чому ферменти строми хлоропласту мають оптимум при pH ≈ 8?</span></summary><div>На світлі протони перекачуються зі строми в люмен тилакоїдів, і pH строми зростає до ≈ 8. Рубіско, ФБФаза, СБФаза адаптовані саме до цього значення — так активність циклу Кальвіна вмикається світлом.</div></details>
+            </div>
+          </section>
+
+          <section class="lab-section" id="refs">
+            <h2><span class="n">10</span>Література</h2>
+            <ol class="refs">
+              <li>Губський Ю. І., Ніженковська І. В., Корда М. М. та ін. Біологічна хімія : підручник. — Вінниця : Нова Книга, 2021. — 648 с.</li>
+              <li>Гонський Я. І., Максимчук Т. П., Калинський М. І. Біохімія людини : підручник. — Тернопіль : Укрмедкнига, 2001. — 736 с.</li>
+              <li>Тимошенко О. П. Ферменти ; Вороніна Л. М. Алостерична регуляція // Фармацевтична енциклопедія. — Київ : МОРІОН.</li>
+              <li>Кобилінська Л. І., Макаренко Т. М. та ін. Біологічна хімія (ч. 1) : навчальний посібник. — Львів : ЛНМУ ім. Данила Галицького, 2022.</li>
+              <li>Анацький А. С. Методичні вказівки з дисципліни «Біохімія» (класифікація, механізм дії та кінетика ферментів). — Кам'янське : ДДТУ, 2020.</li>
+              <li>Robinson P. K. Enzymes: principles and biotechnological applications // Essays in Biochemistry. — 2015. — Vol. 59. — P. 1–41.</li>
+              <li>Strelow J. et al. Mechanism of action assays for enzymes // Assay Guidance Manual. — Bethesda : NCATS, 2012.</li>
+              <li>Pesaresi A. Mixed and non-competitive enzyme inhibition: kinetic models and mechanisms // J. Enzyme Inhib. Med. Chem. — 2023.</li>
+              <li>Einav T., Mazutis L., Phillips R. Statistical mechanics of allosteric enzymes // J. Phys. Chem. B. — 2016. — Vol. 120. — P. 6021–6037.</li>
+              <li>IUBMB Enzyme Nomenclature (ExplorEnz), включно з класом 7 — транслокази (2018).</li>
+            </ol>
+            <div class="lab-nav"><a class="btn btn--outline" href="../">← Конспект</a><a class="btn" href="../../lab/biochemistry/enzyme-kinetics/">ЛР 1. Кінетика ферментативних реакцій →</a></div>
+          </section>
+        </article>
+      </div>
+    </div>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer__grid">
+        <div class="footer__brand">
+          <img src="../../assets/img/nubip-shield.webp" alt="Герб НУБіП України" width="37" height="52" loading="lazy">
+          <div>
+            <strong>Кафедра фізіології, біохімії рослин та біоенергетики</strong>
+            Факультет захисту рослин, біотехнологій та екології<br>Національний університет біоресурсів і природокористування України
+            <div class="footer__social">
+              <a class="footer__fb" href="https://www.facebook.com/groups/nubipplants?locale=uk_UA" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M14 8.5V6.8c0-.8.5-1 .9-1H17V2.2L14 2.2c-3.3 0-4 2.4-4 4v2.3H7.5V12H10v10h4V12h2.8l.4-3.5H14Z"/></svg>Ми у Facebook</a>
+              <a class="footer__ig" href="https://www.instagram.com/plant_physio_chair/" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/></svg>Ми в Instagram</a>
+            </div>
+          </div>
+        </div>
+        <div class="footer__col">
+          <h3>Розділи</h3>
+          <ul>
+            <li><a href="../../about/">Про кафедру</a></li>
+            <li><a href="../../about/#faculty-history">Історія факультету</a></li>
+            <li><a href="../../about/#administration">Адміністрація факультету</a></li>
+            <li><a href="../../about/#programs">Освітні програми</a></li>
+            <li><a href="../../about/#achievements">Здобутки</a></li>
+          </ul>
+        </div>
+        <div class="footer__col">
+          <h3>Для студентів</h3>
+          <ul>
+            <li><a href="../../lab/">Онлайн лабораторія</a></li>
+            <li><a href="../../lab/biochemistry/">Біохімія рослин</a></li>
+            <li><a href="../../lab/plant-physiology/">Фізіологія рослин</a></li>
+            <li><a href="../../lab/analytical-chemistry/">Аналітична хімія</a></li>
+            <li><a href="../../lab/plant-anatomy/">Анатомія рослин</a></li>
+            <li><a href="../../lab/instrumental/">Інструментальні методи</a></li>
+            <li><a href="../../konspekt/">Конспект</a></li>
+            <li><a href="../../konspekt/pathogens/">Збудники хвороб рослин</a></li>
+            <li><a href="../../konspekt/weeds/">Бур'яни України</a></li>
+            <li><a href="../../konspekt/amino-acids/">Амінокислоти</a></li>
+            <li><a href="../../konspekt/enzymes/">Ферменти</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer__bottom">
+        <span>© <span data-year>2026</span> Кафедра фізіології, біохімії рослин та біоенергетики, НУБіП України</span>
+        <a href="https://nubip.edu.ua" target="_blank" rel="noopener">nubip.edu.ua</a>
+      </div>
+    </div>
+  </footer>
+
+  <script type="application/json" id="ez-data">{"ec": [{"n": 1, "name": "Оксидоредуктази", "c": "#1F6F8B", "share": 26.5, "eq": "AH₂ + B ⇄ A + BH₂", "what": "Окисно-відновні реакції: перенесення електронів, протонів (атомів водню) або атомів кисню.", "sub": "дегідрогенази, оксидази, оксигенази, пероксидази, каталази, редуктази", "cof": "НАД⁺, НАДФ⁺, ФАД, ФМН, гем, Cu, Mo", "ex": [["Алкогольдегідрогеназа", "1.1.1.1"], ["Лактатдегідрогеназа", "1.1.1.27"], ["Моноаміноксидаза", "1.4.3.4"], ["Каталаза", "1.11.1.6"]], "plant": [["Нітратредуктаза — перший крок асиміляції нітрату", "1.7.1.1"], ["Поліфенолоксидаза — потемніння зрізу яблука й картоплі", "1.10.3.1"], ["Ліпоксигеназа — синтез жасмонатів", "1.13.11.12"]]}, {"n": 2, "name": "Трансферази", "c": "#1E88C8", "share": 24.0, "eq": "A–X + B ⇄ A + B–X", "what": "Перенесення функціональних груп (аміно-, фосфатних, метильних, глікозильних) від донора до акцептора.", "sub": "амінотрансферази, кінази (фосфотрансферази), ацил-, глікозил-, метилтрансферази", "cof": "ПАЛФ (B₆), ATP·Mg²⁺, S-аденозилметіонін", "ex": [["Аспартатамінотрансфераза", "2.6.1.1"], ["Гексокіназа", "2.7.1.1"], ["Креатинкіназа", "2.7.3.2"]], "plant": [["Фосфорибулокіназа — регенерація RuBP у циклі Кальвіна", "2.7.1.19"], ["Сахарозофосфатсинтаза — синтез сахарози в листку", "2.4.1.14"]]}, {"n": 3, "name": "Гідролази", "c": "#3D63DD", "share": 22.5, "eq": "A–B + H₂O → A–OH + B–H", "what": "Розщеплення ковалентних зв'язків за участю молекули води. Переважно прості білки без коферментів.", "sub": "естерази, глікозидази, пептидази (протеїнази), фосфатази, амідази", "cof": "зазвичай не потрібні", "ex": [["Триацилгліцеролліпаза", "3.1.1.3"], ["Ацетилхолінестераза", "3.1.1.7"], ["α-Амілаза", "3.2.1.1"], ["Пепсин", "3.4.23.1"], ["Трипсин", "3.4.21.4"], ["Уреаза", "3.5.1.5"]], "plant": [["β-Амілаза — гідроліз крохмалю при проростанні", "3.2.1.2"], ["Папаїн папаї", "3.4.22.2"], ["Кисла фосфатаза вакуолі", "3.1.3.2"]]}, {"n": 4, "name": "Ліази (синтази)", "c": "#D9822B", "share": 11.0, "eq": "RCOCOOH → RCHO + CO₂", "what": "Негідролітичне відщеплення груп з утворенням подвійного зв'язку або приєднання за місцем кратного зв'язку.", "sub": "декарбоксилази, альдолази, дегідратази, гідратази, аденілат- і гуанілатциклази", "cof": "ТДФ (B₁), ПАЛФ, Mg²⁺", "ex": [["Піруватдекарбоксилаза", "4.1.1.1"], ["Фруктозобісфосфатальдолаза", "4.1.2.13"], ["Фумаратгідратаза", "4.2.1.2"]], "plant": [["Рубіско — фіксація CO₂", "4.1.1.39"], ["ФЕП-карбоксилаза — C₄- і CAM-фотосинтез", "4.1.1.31"], ["Фенілаланінамоній-ліаза (PAL)", "4.3.1.24"], ["Карбоангідраза", "4.2.1.1"]]}, {"n": 5, "name": "Ізомерази", "c": "#14946B", "share": 5.5, "eq": "A–B–C ⇄ A–C–B", "what": "Внутрішньомолекулярне перегрупування атомів і груп з утворенням ізомерів.", "sub": "рацемази, епімерази, цис-транс-ізомерази, мутази, топоізомерази", "cof": "іноді B₁₂, ПАЛФ", "ex": [["Тріозофосфатізомераза", "5.3.1.1"], ["Глюкозо-6-фосфатізомераза", "5.3.1.9"], ["Фосфоглюкомутаза", "5.4.2.2"]], "plant": [["Рибулозофосфат-3-епімераза (цикл Кальвіна)", "5.1.3.1"], ["Хоризматмутаза (шикіматний шлях)", "5.4.99.5"]]}, {"n": 6, "name": "Лігази (синтетази)", "c": "#7A43D8", "share": 6.3, "eq": "X + Y + ATP → X–Y + ADP + Pᵢ", "what": "Конденсація двох молекул із синтезом зв'язків C–C, C–O, C–N або C–S, спряжена з гідролізом ATP.", "sub": "аміноацил-тРНК-синтетази, карбоксилази (біотин), ДНК- і РНК-лігази, глутамінсинтетаза", "cof": "ATP·Mg²⁺, біотин (B₇)", "ex": [["Піруваткарбоксилаза", "6.4.1.1"], ["Ацетил-КоА-карбоксилаза", "6.4.1.2"], ["Глутамінсинтетаза", "6.3.1.2"]], "plant": [["Глутамінсинтетаза — асиміляція NH₄⁺ (мішень глюфосинату)", "6.3.1.2"], ["Ацетил-КоА-карбоксилаза — синтез жирних кислот (мішень граміцидів)", "6.4.1.2"]]}, {"n": 7, "name": "Транслокази", "c": "#5E6B7E", "share": 4.2, "eq": "S(всередині) + ATP → S(назовні) + ADP + Pᵢ", "what": "Каталіз переміщення іонів або молекул крізь біологічні мембрани. Клас запроваджено IUBMB у 2018 р.", "sub": "транслокази протонів, катіонів, аніонів, ABC-транспортери", "cof": "ATP, протон-рушійна сила", "ex": [["H⁺-транспортуюча двосекторна ATP-синтаза", "7.1.2.2"], ["Na⁺/K⁺-обмінна ATPаза", "7.2.2.13"]], "plant": [["H⁺-ATPаза плазмалеми — підкислення апопласту", "7.1.2.1"], ["ATP-синтаза хлоропластів (CF₀CF₁)", "7.1.2.2"]]}], "inhib": [{"id": "irrev", "n": "Незворотне"}, {"id": "comp", "n": "Конкурентне"}, {"id": "noncomp", "n": "Неконкурентне"}, {"id": "uncomp", "n": "Безконкурентне"}, {"id": "mixed", "n": "Змішане"}], "ph": [{"id": "pep", "n": "Пепсин шлунка", "o": 1.8, "w": 0.9, "c": "#D0443A"}, {"id": "amy", "n": "Амілаза слини", "o": 6.9, "w": 0.9, "c": "#14946B"}, {"id": "try", "n": "Трипсин", "o": 7.9, "w": 0.9, "c": "#1F6F8B"}, {"id": "alp", "n": "Лужна фосфатаза", "o": 9.5, "w": 0.9, "c": "#7A43D8"}, {"id": "acp", "n": "Кисла фосфатаза вакуолі рослин", "o": 5.0, "w": 0.95, "c": "#E8833A"}, {"id": "rub", "n": "Рубіско (строма на світлі)", "o": 8.1, "w": 0.55, "c": "#2E7D32"}]}</script>
+  <script type="application/json" id="enz-index">[{"id": "classes", "t": "КФ 1. Оксидоредуктази", "k": "Окисно-відновні реакції: перенесення електронів, протонів (атомів водню) або атомів кисню. дегідрогенази, оксидази, оксигенази, пероксидази, каталази, редуктази НАД⁺, НАДФ⁺, ФАД, ФМН, гем, Cu, Mo Алкогольдегідрогеназа Лактатдегідрогеназа Моноаміноксидаза Каталаза Нітратредуктаза — перший крок асиміляції нітрату Поліфенолоксидаза — потемніння зрізу яблука й картоплі Ліпоксигеназа — синтез жасмонатів", "s": "AH₂ + B ⇄ A + BH₂"}, {"id": "classes", "t": "КФ 2. Трансферази", "k": "Перенесення функціональних груп (аміно-, фосфатних, метильних, глікозильних) від донора до акцептора. амінотрансферази, кінази (фосфотрансферази), ацил-, глікозил-, метилтрансферази ПАЛФ (B₆), ATP·Mg²⁺, S-аденозилметіонін Аспартатамінотрансфераза Гексокіназа Креатинкіназа Фосфорибулокіназа — регенерація RuBP у циклі Кальвіна Сахарозофосфатсинтаза — синтез сахарози в листку", "s": "A–X + B ⇄ A + B–X"}, {"id": "classes", "t": "КФ 3. Гідролази", "k": "Розщеплення ковалентних зв'язків за участю молекули води. Переважно прості білки без коферментів. естерази, глікозидази, пептидази (протеїнази), фосфатази, амідази зазвичай не потрібні Триацилгліцеролліпаза Ацетилхолінестераза α-Амілаза Пепсин Трипсин Уреаза β-Амілаза — гідроліз крохмалю при проростанні Папаїн папаї Кисла фосфатаза вакуолі", "s": "A–B + H₂O → A–OH + B–H"}, {"id": "classes", "t": "КФ 4. Ліази (синтази)", "k": "Негідролітичне відщеплення груп з утворенням подвійного зв'язку або приєднання за місцем кратного зв'язку. декарбоксилази, альдолази, дегідратази, гідратази, аденілат- і гуанілатциклази ТДФ (B₁), ПАЛФ, Mg²⁺ Піруватдекарбоксилаза Фруктозобісфосфатальдолаза Фумаратгідратаза Рубіско — фіксація CO₂ ФЕП-карбоксилаза — C₄- і CAM-фотосинтез Фенілаланінамоній-ліаза (PAL) Карбоангідраза", "s": "RCOCOOH → RCHO + CO₂"}, {"id": "classes", "t": "КФ 5. Ізомерази", "k": "Внутрішньомолекулярне перегрупування атомів і груп з утворенням ізомерів. рацемази, епімерази, цис-транс-ізомерази, мутази, топоізомерази іноді B₁₂, ПАЛФ Тріозофосфатізомераза Глюкозо-6-фосфатізомераза Фосфоглюкомутаза Рибулозофосфат-3-епімераза (цикл Кальвіна) Хоризматмутаза (шикіматний шлях)", "s": "A–B–C ⇄ A–C–B"}, {"id": "classes", "t": "КФ 6. Лігази (синтетази)", "k": "Конденсація двох молекул із синтезом зв'язків C–C, C–O, C–N або C–S, спряжена з гідролізом ATP. аміноацил-тРНК-синтетази, карбоксилази (біотин), ДНК- і РНК-лігази, глутамінсинтетаза ATP·Mg²⁺, біотин (B₇) Піруваткарбоксилаза Ацетил-КоА-карбоксилаза Глутамінсинтетаза Глутамінсинтетаза — асиміляція NH₄⁺ (мішень глюфосинату) Ацетил-КоА-карбоксилаза — синтез жирних кислот (мішень граміцидів)", "s": "X + Y + ATP → X–Y + ADP + Pᵢ"}, {"id": "classes", "t": "КФ 7. Транслокази", "k": "Каталіз переміщення іонів або молекул крізь біологічні мембрани. Клас запроваджено IUBMB у 2018 р. транслокази протонів, катіонів, аніонів, ABC-транспортери ATP, протон-рушійна сила H⁺-транспортуюча двосекторна ATP-синтаза Na⁺/K⁺-обмінна ATPаза H⁺-ATPаза плазмалеми — підкислення апопласту ATP-синтаза хлоропластів (CF₀CF₁)", "s": "S(всередині) + ATP → S(назовні) + ADP + Pᵢ"}, {"id": "kinetics", "t": "Незворотне інгібування", "k": "Міцний ковалентний зв'язок з функціональними групами активного центру (–OH серину, –SH цистеїну); діаліз активність не повертає. Фосфорорганічні отрути (зарин, ДФФ) — ацетилхолінестераза; аспірин ацетилює ЦОГ; гліфосат блокує EPSPS рослин.", "s": "Ефективна [E]₀ падає: ↓Vmax, Km = const"}, {"id": "kinetics", "t": "Конкурентне інгібування", "k": "Структурний аналог субстрату займає вільний активний центр (E + I ⇄ EI); усувається надлишком субстрату. Малонат — сукцинатдегідрогеназа; сульфаніламіди конкурують з ПАБК; статини — ГМГ-КоА-редуктаза; O₂ конкурує з CO₂ за Рубіско.", "s": "Vmax = const, ↑Km (Kmapp = αKm); прямі перетинаються на осі 1/V"}, {"id": "kinetics", "t": "Неконкурентне інгібування", "k": "Інгібітор зв'язується поза активним центром і з E, і з ES з однаковою константою (Ki = Ki′). Аланін і ATP щодо піруваткінази; глюкозо-6-фосфат щодо гексокінази; іони важких металів щодо SH-ферментів.", "s": "↓Vmax, Km = const; спільна точка на осі −1/Km"}, {"id": "kinetics", "t": "Безконкурентне інгібування", "k": "Інгібітор приєднується лише до комплексу ES, утворюючи неактивний ESI. L-фенілаланін щодо кишкової лужної фосфатази; мікофенолова кислота щодо ІМФ-дегідрогенази.", "s": "Пропорційно ↓Vmax і ↓Km; паралельні прямі"}, {"id": "kinetics", "t": "Змішане інгібування", "k": "Зв'язується з E і з ES, але з різною спорідненістю (Ki ≠ Ki′). Багато лікарських інгібіторів мультисубстратних дегідрогеназ.", "s": "↓Vmax, Km зростає чи зменшується; перетин у II або III квадранті"}, {"id": "general", "t": "Вітамін B₁ → ТДФ", "k": "тіамін кофермент декарбоксилювання α-кетокислот", "s": "декарбоксилювання α-кетокислот"}, {"id": "general", "t": "Вітамін B₂ → ФАД, ФМН", "k": "рибофлавін кофермент перенесення електронів і H", "s": "перенесення електронів і H"}, {"id": "general", "t": "Вітамін B₃ / PP → НАД⁺, НАДФ⁺", "k": "ніацин кофермент дегідрогенази", "s": "дегідрогенази"}, {"id": "general", "t": "Вітамін B₅ → кофермент A", "k": "пантотенова к-та кофермент перенесення ацильних груп", "s": "перенесення ацильних груп"}, {"id": "general", "t": "Вітамін B₆ → ПАЛФ", "k": "піридоксин кофермент амінотрансферази, декарбоксилази", "s": "амінотрансферази, декарбоксилази"}, {"id": "general", "t": "Вітамін B₇ → біотин", "k": "біотин кофермент карбоксилази", "s": "карбоксилази"}, {"id": "general", "t": "Вітамін B₉ → ТГФК", "k": "фолієва к-та кофермент перенесення C₁-груп", "s": "перенесення C₁-груп"}, {"id": "general", "t": "Вітамін B₁₂ → кобаламіни", "k": "кобаламін кофермент мутази, метилтрансферази", "s": "мутази, метилтрансферази"}]</script>
+  <script defer src="../../assets/js/main.js"></script>
+  <script defer src="../../assets/js/lightbox.js"></script>
+  <script type="module" src="../../assets/js/lab/enzymes-konspekt.js"></script>
+</body>
+</html>
