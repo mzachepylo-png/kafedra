@@ -232,3 +232,6 @@ input[type="range"]:focus-visible::-webkit-slider-thumb { outline: 3px solid var
 .cmp td { color: var(--ink-soft); }
 
 .cg__time { display: grid; grid-template-columns: auto 1fr; gap: 12px; align-items: center; font-size: .8rem; font-weight: 700; color: var(--muted); }
+/* Питання з <sub> у тексті: блочний summary, щоб текст переносився як звичайний абзац */
+.qa summary { display: block; position: relative; padding-left: 40px; }
+.qa summary::before { position: absolute; left: 4px; top: 13px; }

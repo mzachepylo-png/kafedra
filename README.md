@@ -38,6 +38,9 @@ konspekt/index.html                — Конспект: вибір напрям
 konspekt/pathogens/                — Збудники хвороб рослин: мікрофото збудника + фото ураженої рослини,
                                      прояви, розвиток хвороби, шкодочинність
 konspekt/weeds/                    — Бур'яни України: 25 видів, фото (iNaturalist) і карти поширення (GBIF)
+konspekt/amino-acids/              — Амінокислоти: будова (L/D), 20 амінокислот за класами з паспортами, титрування
+                                     і заряд у компартментах, pI і гідропатичність, 6 родин біосинтезу, N:C, стресовий пул,
+                                     попередники фітогормонів (дані — у <script id="aa-data">)
 microscope/, modeling/             — переадресації зі старих адрес
 
 assets/css/style.css               — дизайн-система (кольори, типографіка, компоненти)
@@ -57,6 +60,7 @@ assets/js/lab/chroma-engine.js     — модель колонки: міграц
                                      розмивання за Ван-Деемтером, хроматограма (гаусіан / EMG при перевантаженні)
 assets/js/lab/chromatography.js, assets/css/chroma.css — інтерфейс «Хроматографії» (анімації лише на видимих полотнах)
 assets/js/lab/photosynthesis.js, assets/css/photosynthesis.css — «Фотосинтез»: покроковий програвач схем, CAM, FvCB
+assets/js/lab/amino-konspekt.js, assets/css/amino.css — інтерактив конспекту «Амінокислоти»
 assets/js/lab/plot.js              — графіки на Canvas (HiDPI, підказки, легенда)
 assets/js/lab/ui.js                — повзунки, перемикачі, CSV-експорт, генератор варіантів
 assets/js/lab/fit.js               — МНК, нелінійна регресія (Левенберг–Марквардт), Рунге–Кутта 4
