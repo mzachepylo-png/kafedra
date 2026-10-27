@@ -4,7 +4,7 @@
   var mobile = (navigator.userAgentData && navigator.userAgentData.mobile) ||
     /Android|iPhone|iPad|iPod|Mobi|Windows Phone|Opera Mini|IEMobile/i.test(ua) ||
     (/Macintosh/.test(ua) && navigator.maxTouchPoints > 1); // iPadOS видає себе за Mac
-  if (!mobile) return;
+  if (!mobile || document.documentElement.classList.contains('force-desktop')) return; // обрано «ПК-версію сайту»
   document.documentElement.classList.add('lab-locked');
 
   var home = document.currentScript ? document.currentScript.src.replace(/assets\/js\/desktop-only\.js.*$/, '') : '/';
@@ -21,7 +21,8 @@
       '<h1>Лабораторія доступна лише з комп’ютера</h1>' +
       '<p>Інтерактивні моделі розраховані на великий екран, мишу та клавіатуру, тому на телефонах і планшетах їх вимкнено. Відкрийте цю сторінку на ПК або ноутбуці.</p>' +
       '<div class="lab-lock__actions">' +
-      '<button class="btn btn--gold" type="button" data-copy>Скопіювати посилання</button>' +
+      '<button class="btn btn--gold" type="button" data-view-switch>Відкрити ПК-версію</button>' +
+      '<button class="btn btn--ghost-light" type="button" data-copy>Скопіювати посилання</button>' +
       '<a class="btn btn--green" href="' + home + 'konspekt/">Перейти до «Конспекту»</a>' +
       '<a class="btn btn--ghost-light" href="' + home + '">На головну</a>' +
       '</div></div>';

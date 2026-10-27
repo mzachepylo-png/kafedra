@@ -16,6 +16,27 @@
         toggle.setAttribute('aria-expanded', 'false');
       }
     });
+    // Дотик поза відкритим мобільним меню закриває його
+    document.addEventListener('click', function (e) {
+      if (nav.classList.contains('is-open') && !e.target.closest('#site-nav, .nav-toggle')) {
+        nav.classList.remove('is-open');
+        toggle.setAttribute('aria-expanded', 'false');
+      }
+    });
+    // Сенсорні планшети (немає наведення): перший дотик на «Про кафедру» відкриває підменю, другий — переходить
+    var noHover = window.matchMedia('(hover: none)');
+    nav.querySelectorAll('.nav__dd > .nav__link').forEach(function (link) {
+      var dd = link.parentNode;
+      link.addEventListener('click', function (e) {
+        if (!noHover.matches || getComputedStyle(toggle).display !== 'none') return; // мобільне меню показує підменю відкритим
+        if (!dd.classList.contains('is-open')) { e.preventDefault(); dd.classList.add('is-open'); link.setAttribute('aria-expanded', 'true'); }
+      });
+    });
+    document.addEventListener('click', function (e) {
+      nav.querySelectorAll('.nav__dd.is-open').forEach(function (dd) {
+        if (!dd.contains(e.target)) { dd.classList.remove('is-open'); dd.firstElementChild.setAttribute('aria-expanded', 'false'); }
+      });
+    });
     document.addEventListener('keydown', function (e) {
       var pop = document.getElementById('report-pop');
       if (pop && !pop.hidden) return; // спершу Esc закриває підказку «Повідомити про проблему»
@@ -43,6 +64,20 @@
       if (e.key === 'Escape' && !repPop.hidden) { setRep(false); repBtn.focus(); }
     });
   }
+
+  // «ПК-версія сайту» на телефонах і планшетах: вибір зберігається, сторінка перезавантажується
+  var desktopView = document.documentElement.classList.contains('force-desktop');
+  document.querySelectorAll('[data-view-switch]').forEach(function (b) {
+    var l = b.querySelector('[data-view-label]'); if (l) l.textContent = desktopView ? 'Мобільна версія сайту' : 'ПК-версія сайту';
+  });
+  document.addEventListener('click', function (e) {
+    if (!e.target.closest('[data-view-switch]')) return;
+    try { if (desktopView) localStorage.removeItem('kf-view'); else localStorage.setItem('kf-view', 'desktop'); } catch (err) {}
+    // спершу змінюємо масштаб, щоб після перезавантаження браузер не відновив попередній
+    var vp = document.querySelector('meta[name=viewport]');
+    if (vp) vp.setAttribute('content', desktopView ? 'width=device-width, initial-scale=1' : 'width=1280');
+    setTimeout(function () { location.reload(); }, 60);
+  });
 
   document.querySelectorAll('[data-year]').forEach(function (el) {
     el.textContent = new Date().getFullYear();
