@@ -61,6 +61,15 @@
     reveals.forEach(function (el) { el.classList.add('is-visible'); });
   }
 
+  // Декоративні анімації працюють лише у видимій області
+  var anims = document.querySelectorAll('[data-anim]');
+  if (anims.length && 'IntersectionObserver' in window) {
+    var aio = new IntersectionObserver(function (entries) {
+      entries.forEach(function (en) { en.target.classList.toggle('is-off', !en.isIntersecting); });
+    });
+    anims.forEach(function (el) { aio.observe(el); });
+  }
+
   // Підменю та зміст: активний розділ
   document.querySelectorAll('.subnav, .toc').forEach(function (group) {
     var links = group.querySelectorAll('a[href^="#"]');

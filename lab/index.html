@@ -77,13 +77,76 @@
   <main id="main">
     <section class="page-hero page-hero--lab">
       <div class="bg-molecules" aria-hidden="true" style="position:absolute;inset:0"></div>
-      <div class="container">
+      <div class="container lab-hero">
+        <div class="lab-hero__text">
         <nav class="breadcrumbs" aria-label="Навігаційний ланцюжок"><a href="../">Головна</a><span aria-hidden="true">/</span><span>Онлайн лабораторія</span></nav>
         <span class="kicker">Для студентів</span>
         <h1>Онлайн лабораторія</h1>
         <p>Інтерактивні моделі, віртуальні досліди та візуалізації процесів для лабораторних і практичних занять з дисциплін кафедри.</p>
+        </div>
+        <div class="lab-hero__art" aria-hidden="true" data-anim>
+          <svg viewBox="0 0 520 340">
+            <defs>
+              <linearGradient id="lh-glass" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#fff" stop-opacity=".22"/><stop offset="1" stop-color="#fff" stop-opacity=".05"/></linearGradient>
+              <linearGradient id="lh-liq" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#9BE38F"/><stop offset="1" stop-color="#2E9A4E"/></linearGradient>
+              <linearGradient id="lh-scr" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#0B2414" stop-opacity=".92"/><stop offset="1" stop-color="#14361F" stop-opacity=".85"/></linearGradient>
+              <linearGradient id="lh-trace" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#7CD67F"/><stop offset=".5" stop-color="#EBD27F"/><stop offset="1" stop-color="#E07AA0"/></linearGradient>
+              <radialGradient id="lh-glow" cx=".5" cy=".5" r=".5"><stop offset="0" stop-color="#EBD27F" stop-opacity=".45"/><stop offset="1" stop-color="#EBD27F" stop-opacity="0"/></radialGradient>
+              <clipPath id="lh-fl"><path d="M106 150V96h36v54l52 104a14 14 0 0 1-12.5 20H66.5A14 14 0 0 1 54 254z"/></clipPath>
+            </defs>
+            <ellipse cx="250" cy="312" rx="240" ry="20" fill="url(#lh-glow)"/>
+            <path d="M18 304H502" stroke="#EBD27F" stroke-opacity=".35" stroke-width="2"/>
+            <!-- Монітор із хроматограмою -->
+            <g class="lh-mon">
+              <rect x="300" y="40" width="200" height="150" rx="14" fill="url(#lh-scr)" stroke="#9FE3A2" stroke-opacity=".35" stroke-width="1.5"/>
+              <path d="M316 70H484M316 100H484M316 130H484M316 160H484M350 54V176M390 54V176M430 54V176M470 54V176" stroke="#9FE3A2" stroke-opacity=".08"/>
+              <path d="M316 172H484" stroke="#9FE3A2" stroke-opacity=".45" stroke-width="1.5"/>
+              <path class="lh-trace" pathLength="1" d="M316 172h22c6 0 7-2 9-8s4-52 8-52 5 48 8 56 5 4 12 4h14c5 0 6-3 8-12s4-78 8-78 5 70 8 82 4 8 12 8h14c5 0 6-2 8-8s4-34 7-34 5 30 7 36 4 6 10 6h16" fill="none" stroke="url(#lh-trace)" stroke-width="2.6" stroke-linejoin="round" stroke-linecap="round"/>
+              <circle class="lh-pk lh-pk--1" cx="355" cy="112" r="4" fill="#7CD67F"/><circle class="lh-pk lh-pk--2" cx="403" cy="82" r="4" fill="#EBD27F"/><circle class="lh-pk lh-pk--3" cx="448" cy="130" r="4" fill="#E07AA0"/>
+              <text x="316" y="62" fill="#CFEFD0" fill-opacity=".7" font-size="10" font-family="ui-monospace,monospace">A₂₈₀ · t, хв</text>
+              <path d="M392 190l-8 22h52l-8-22" fill="#0B2414" fill-opacity=".7" stroke="#9FE3A2" stroke-opacity=".3"/>
+            </g>
+            <!-- Колба -->
+            <g class="lh-flask">
+              <g clip-path="url(#lh-fl)">
+                <path class="lh-wave" d="M20 214c20-8 40 8 60 0s40-8 60 0 40 8 60 0 40-8 60 0V340H20z" fill="url(#lh-liq)" fill-opacity=".85"/>
+                <g fill="#fff" fill-opacity=".55"><circle class="lh-bub" cx="96" cy="300" r="4"/><circle class="lh-bub lh-bub--2" cx="124" cy="306" r="3"/><circle class="lh-bub lh-bub--3" cx="140" cy="296" r="5"/><circle class="lh-bub lh-bub--4" cx="110" cy="310" r="2.5"/><circle class="lh-bub lh-bub--5" cx="80" cy="304" r="3"/></g>
+              </g>
+              <path d="M106 150V96h36v54l52 104a14 14 0 0 1-12.5 20H66.5A14 14 0 0 1 54 254z" fill="url(#lh-glass)" stroke="#E8F5E9" stroke-opacity=".75" stroke-width="2.4" stroke-linejoin="round"/>
+              <path d="M100 96h48" stroke="#E8F5E9" stroke-opacity=".85" stroke-width="5" stroke-linecap="round"/>
+              <path d="M70 250l40-80" stroke="#fff" stroke-opacity=".28" stroke-width="5" stroke-linecap="round"/>
+              <path d="M150 170h10M156 194h10M162 218h10" stroke="#E8F5E9" stroke-opacity=".5" stroke-width="2"/>
+              <g class="lh-vap" fill="none" stroke="#E8F5E9" stroke-opacity=".35" stroke-width="2.4" stroke-linecap="round"><path d="M116 84c-8-10 8-16 0-28"/><path class="lh-vap--2" d="M132 80c-8-10 8-16 0-28"/></g>
+            </g>
+            <!-- Штатив із пробірками -->
+            <g class="lh-rack">
+              <g class="lh-tube"><rect x="214" y="150" width="20" height="128" rx="10" fill="url(#lh-glass)" stroke="#E8F5E9" stroke-opacity=".7" stroke-width="2"/><rect x="216.5" y="214" width="15" height="61" rx="7.5" fill="#EBD27F"/></g>
+              <g class="lh-tube lh-tube--2"><rect x="244" y="150" width="20" height="128" rx="10" fill="url(#lh-glass)" stroke="#E8F5E9" stroke-opacity=".7" stroke-width="2"/><rect x="246.5" y="198" width="15" height="77" rx="7.5" fill="#5EA8F0"/></g>
+              <g class="lh-tube lh-tube--3"><rect x="274" y="150" width="20" height="128" rx="10" fill="url(#lh-glass)" stroke="#E8F5E9" stroke-opacity=".7" stroke-width="2"/><rect x="276.5" y="228" width="15" height="47" rx="7.5" fill="#E07AA0"/></g>
+              <path d="M204 236h100M204 236v68M304 236v68" stroke="#EBD27F" stroke-opacity=".7" stroke-width="4" stroke-linecap="round"/>
+            </g>
+            <!-- Паросток у чашці Петрі -->
+            <g class="lh-sprout">
+              <ellipse cx="420" cy="292" rx="52" ry="11" fill="#fff" fill-opacity=".1" stroke="#E8F5E9" stroke-opacity=".55" stroke-width="2"/>
+              <path d="M420 292c0-20 2-34 6-46" stroke="#7CD67F" stroke-width="3.2" stroke-linecap="round" fill="none"/>
+              <path class="lh-leaf" d="M426 248c-4-18 8-30 30-30-2 22-14 32-30 30z" fill="#4CAF50"/>
+              <path class="lh-leaf lh-leaf--2" d="M422 262c2-16-8-26-28-26 0 18 10 28 28 26z" fill="#7CD67F"/>
+            </g>
+            <!-- Молекула -->
+            <g class="lh-mol" fill="none" stroke="#EBD27F" stroke-opacity=".75" stroke-width="2">
+              <path d="M222 36l22 13v25l-22 13-22-13V49z"/><path d="M244 49l20-10M222 87v18"/>
+              <circle cx="264" cy="39" r="5" fill="#EBD27F" fill-opacity=".85" stroke="none"/><circle cx="222" cy="105" r="5" fill="#7CD67F" stroke="none"/>
+            </g>
+          </svg>
+        </div>
       </div>
     </section>
+    <div class="container lab-feats">
+      <div class="lab-feat reveal lab-feat--m"><span class="lab-feat__ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 19h16"/><path d="M4 15c3 0 4-8 7-8s3 6 5 6 3-4 4-4"/><circle cx="11" cy="7" r="1.6"/></svg></span><div><b>Математичні моделі</b><p>Рівняння й параметри, які можна змінювати та бачити результат</p></div></div>
+      <div class="lab-feat reveal lab-feat--v"><span class="lab-feat__ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 3h6M10 3v6l-5 9a2 2 0 0 0 1.8 3h10.4a2 2 0 0 0 1.8-3l-5-9V3"/><path d="M7.5 15h9"/></svg></span><div><b>Віртуальні досліди</b><p>Хід роботи крок за кроком — без реактивів і ризиків</p></div></div>
+      <div class="lab-feat reveal lab-feat--a"><span class="lab-feat__ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="3"/><path d="M12 2v3M12 19v3M2 12h3M19 12h3M4.9 4.9l2.1 2.1M17 17l2.1 2.1M4.9 19.1 7 17M17 7l2.1-2.1"/></svg></span><div><b>Анімації процесів</b><p>Що відбувається в клітині, колонці чи колбі — наочно</p></div></div>
+      <div class="lab-feat reveal lab-feat--q"><span class="lab-feat__ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 11l3 3 8-8"/><path d="M20 12v6a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h9"/></svg></span><div><b>Самоперевірка</b><p>Контрольні питання й обробка власних даних</p></div></div>
+    </div>
 
     <section class="section">
       <div class="container">
@@ -221,6 +284,27 @@
             <h2>Інструментальні методи</h2>
             <p>Фізико-хімічні методи аналізу в біології рослин. Перший підрозділ — хроматографія: адсорбційна, розподільна, газова, іонообмінна, ексклюзійна, афінна та хіральна — з моделлю колонки, хроматограмою в реальному часі й тонкошаровою хроматографією.</p>
             <span class="btn btn--gold btn--sm">Відкрити розділ
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+            </span>
+          </div>
+        </a>
+        <a class="discipline disc--kon" href="../konspekt/">
+          <div class="discipline__art">
+            <div class="bg-molecules" aria-hidden="true" style="position:absolute;inset:0"></div>
+            <svg viewBox="0 0 360 260" aria-hidden="true">
+              <defs><linearGradient id="d-k" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#FFFFFF" stop-opacity=".2"/><stop offset="1" stop-color="#FFFFFF" stop-opacity=".06"/></linearGradient></defs>
+              <g class="float"><path d="M180 70c-30-18-70-20-108-12v148c38-8 78-6 108 12z" fill="url(#d-k)" stroke="#C9F2DF" stroke-opacity=".8" stroke-width="2.4" stroke-linejoin="round"/>
+                <path d="M180 70c30-18 70-20 108-12v148c-38-8-78-6-108 12z" fill="url(#d-k)" stroke="#C9F2DF" stroke-opacity=".8" stroke-width="2.4" stroke-linejoin="round"/>
+                <path d="M92 92c24-4 48-2 70 6M92 116c24-4 48-2 70 6M92 140c24-4 48-2 70 6M92 164c24-4 48-2 56 4" stroke="#C9F2DF" stroke-opacity=".55" stroke-width="2" fill="none" stroke-linecap="round"/></g>
+              <g class="float float--2"><path d="M232 154c-4-30 16-52 48-54-2 32-20 52-48 54z" fill="#3FC28F"/><path d="M232 154c10-16 22-28 40-44" stroke="#0A3A28" stroke-width="2" fill="none"/></g>
+              <g class="float float--3"><circle cx="214" cy="96" r="5" fill="#EBD27F"/><circle cx="262" cy="80" r="4" fill="#C9F2DF"/></g>
+            </svg>
+          </div>
+          <div class="discipline__body">
+            <span class="discipline__kicker">Теорія до занять</span>
+            <h2>Конспект</h2>
+            <p>Структуровані статті з фото й інтерактивними схемами: амінокислоти, ферменти, рослинна і тваринна клітини, збудники хвороб і бур’яни України.</p>
+            <span class="btn btn--gold btn--sm">Відкрити конспект
               <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
             </span>
           </div>
