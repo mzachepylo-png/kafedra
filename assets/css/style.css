@@ -574,30 +574,58 @@ small { font-size: .85em; }
 .contact a[href^="mailto"] { font-size: .86rem; overflow-wrap: anywhere; }
 
 /* ---------- Викладачі в першому блоці головної ---------- */
-.hero__team { display: none; }
+.hero__team { --s: 84px; display: flex; flex-wrap: wrap; justify-content: center; gap: 22px 18px; grid-column: 1 / -1;
+  padding: 22px 18px 24px; border-radius: 26px; position: relative;
+  background: radial-gradient(120% 70% at 50% 0%, rgba(221, 187, 74, .14), transparent 60%), linear-gradient(180deg, rgba(255, 255, 255, .07), rgba(255, 255, 255, .025));
+  border: 1px solid rgba(255, 255, 255, .13); box-shadow: inset 0 1px 0 rgba(255, 255, 255, .12), 0 30px 60px -30px rgba(0, 0, 0, .6); }
 @media (min-width: 1240px) {
-  .hero .container { width: min(100% - 48px, 1460px); grid-template-columns: minmax(0, 1.05fr) minmax(0, .8fr) 212px; gap: 40px; }
-  .hero__team { display: grid; grid-template-columns: 1fr 1fr; gap: 18px 16px; align-self: center; }
-  .hero-person:nth-of-type(even) { transform: translateY(46px); }
+  .hero .container { width: min(100% - 48px, 1480px); grid-template-columns: minmax(0, 1fr) minmax(0, .72fr) 360px; gap: 36px; }
+  .hero__team { --s: 118px; grid-column: auto; display: grid; grid-template-columns: 1fr 1fr; gap: 14px 12px; align-self: center; padding: 26px 18px 66px; }
+  .hero-person:nth-of-type(even) { transform: translateY(52px); }
 }
-.hero-person { display: flex; flex-direction: column; align-items: center; gap: 8px; text-decoration: none; color: rgba(255, 255, 255, .82); }
-.hero-person img {
-  width: 96px; height: 96px; border-radius: 50%; object-fit: cover;
-  border: 3px solid rgba(255, 255, 255, .9); box-shadow: 0 0 0 3px rgba(124, 196, 127, .45), 0 12px 26px -10px rgba(0, 0, 0, .6);
-  transition: transform .25s ease, box-shadow .25s ease;
-}
-.hero-person--head img { box-shadow: 0 0 0 3px var(--gold-400), 0 12px 26px -10px rgba(0, 0, 0, .6); }
-.hero-person span { font-size: .78rem; font-weight: 600; letter-spacing: .01em; text-align: center; line-height: 1.2; }
-.hero-person:hover { color: var(--gold-300); }
-.hero-person:hover img { transform: scale(1.06); box-shadow: 0 0 0 3px var(--gold-400), 0 16px 30px -10px rgba(0, 0, 0, .7); }
-@media (max-width: 1239px) {
-  .hero__team { display: flex; flex-wrap: wrap; justify-content: center; gap: 14px; grid-column: 1 / -1; }
-  .hero-person img { width: 64px; height: 64px; border-width: 2px; }
-  .hero-person span { font-size: .72rem; }
-}
-.hero-person span { white-space: nowrap; }
-.hero__team-title { grid-column: 1 / -1; flex-basis: 100%; margin: 0 0 4px; font-family: var(--sans); font-size: .78rem; font-weight: 800; letter-spacing: .14em; text-transform: uppercase; text-align: center; color: var(--gold-300); }
-@media (min-width: 1240px) { .hero .container { grid-template-columns: minmax(0, 1.05fr) minmax(0, .8fr) 236px; } }
+.hero__team-title { grid-column: 1 / -1; flex-basis: 100%; margin: 0 0 10px; display: flex; flex-direction: column; align-items: center; gap: 4px;
+  font-family: var(--serif); font-size: clamp(1.35rem, 1.1rem + .6vw, 1.7rem); font-weight: 700; letter-spacing: 0; text-transform: none; color: #fff; text-align: center; }
+.hero__team-title small { display: flex; align-items: center; gap: 10px; font-family: var(--sans); font-size: .72rem; font-weight: 800; letter-spacing: .2em; text-transform: uppercase; color: var(--gold-300); }
+.hero__team-title small::before, .hero__team-title small::after { content: ""; width: 26px; height: 1px; background: linear-gradient(90deg, transparent, var(--gold-400)); }
+.hero__team-title small::after { transform: scaleX(-1); }
+
+.hero-person { --r1: #7CC47F; --r2: #E8F5E9; --dot: #9BE38F; display: flex; flex-direction: column; align-items: center; gap: 3px; min-width: 0; text-decoration: none; color: #fff; transition: transform .25s; }
+.hero-person--head { --r1: #F2C94C; --r2: #FFF3C4; --dot: #F2C94C; }
+.hero-person:nth-of-type(3n) { --dot: #F2C94C; }
+.hero-person__ph { position: relative; width: var(--s); height: var(--s); padding: 6px; margin: 10px 0 8px; border-radius: 50%; isolation: isolate; }
+/* Кільце, що повільно обертається */
+.hero-person__ph::before { content: ""; position: absolute; inset: 0; z-index: -1; border-radius: 50%;
+  background: conic-gradient(from 0deg, var(--r1), var(--r2) 18%, transparent 32%, var(--r1) 50%, var(--r2) 68%, transparent 82%, var(--r1));
+  -webkit-mask: radial-gradient(farthest-side, transparent calc(100% - 4px), #000 calc(100% - 3.5px)); mask: radial-gradient(farthest-side, transparent calc(100% - 4px), #000 calc(100% - 3.5px));
+  animation: hp-spin 10s linear infinite; }
+/* Світіння під фото */
+.hero-person__ph::after { content: ""; position: absolute; inset: 8%; z-index: -2; border-radius: 50%; background: var(--r1); filter: blur(18px); opacity: .35; transition: opacity .3s; }
+.hero-person__ph img { display: block; width: 100%; height: 100%; border-radius: 50%; object-fit: cover; border: 3px solid #0E2C17;
+  box-shadow: 0 14px 28px -12px rgba(0, 0, 0, .7); transition: transform .35s cubic-bezier(.2, .8, .2, 1); }
+/* «Орбіта» з електроном */
+.hero-person__ph i { position: absolute; inset: -9px; border-radius: 50%; border: 1.5px dashed rgba(255, 255, 255, .22); pointer-events: none; animation: hp-spin 16s linear infinite reverse; transition: border-color .3s; }
+.hero-person__ph i::after { content: ""; position: absolute; top: -5px; left: calc(50% - 5px); width: 10px; height: 10px; border-radius: 50%; background: var(--dot); box-shadow: 0 0 10px 2px var(--dot); }
+.hero-person:nth-of-type(2) .hero-person__ph::before, .hero-person:nth-of-type(2) i { animation-delay: -3s; }
+.hero-person:nth-of-type(3) .hero-person__ph::before, .hero-person:nth-of-type(3) i { animation-delay: -6s; }
+.hero-person:nth-of-type(4) .hero-person__ph::before, .hero-person:nth-of-type(4) i { animation-delay: -9s; }
+.hero-person:nth-of-type(5) .hero-person__ph::before, .hero-person:nth-of-type(5) i { animation-delay: -12s; }
+.hero-person:nth-of-type(6) .hero-person__ph::before, .hero-person:nth-of-type(6) i { animation-delay: -14s; }
+@keyframes hp-spin { to { transform: rotate(360deg); } }
+.hero__team.is-off .hero-person__ph::before, .hero__team.is-off .hero-person__ph i { animation-play-state: paused; }
+
+.hero-person__name { font-size: .98rem; font-weight: 800; letter-spacing: .01em; line-height: 1.2; text-align: center; white-space: nowrap; text-shadow: 0 1px 8px rgba(0, 0, 0, .5); transition: color .2s; }
+.hero-person__role { font-size: .74rem; font-weight: 600; line-height: 1.25; text-align: center; color: rgba(255, 255, 255, .62); }
+.hero-person--head .hero-person__role { color: var(--gold-300); }
+.hero-person:hover { color: #fff; }
+.hero-person:hover .hero-person__name { color: var(--gold-300); }
+.hero-person:hover .hero-person__ph img { transform: scale(1.06); }
+.hero-person:hover .hero-person__ph::after { opacity: .7; }
+.hero-person:hover .hero-person__ph i { border-color: rgba(242, 201, 76, .6); }
+.hero-person:focus-visible { outline: none; }
+.hero-person:focus-visible .hero-person__ph img { box-shadow: 0 0 0 3px var(--gold-300); }
+@media (max-width: 1239px) { .hero-person { width: 120px; } .hero-person__name { font-size: .88rem; } .hero-person__role { font-size: .7rem; } }
+@media (max-width: 480px) { .hero__team { --s: 76px; gap: 18px 6px; padding-inline: 8px; } .hero-person { width: calc(33.3% - 6px); } .hero-person__name { font-size: .8rem; white-space: normal; } }
+@media (prefers-reduced-motion: reduce) { .hero-person__ph::before, .hero-person__ph i { animation: none; } }
 /* шапка: пункти меню не переносяться на середніх екранах */
 .nav__link, .nav .btn { white-space: nowrap; }
 @media (max-width: 1240px) and (min-width: 981px) {
