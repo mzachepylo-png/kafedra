@@ -810,3 +810,75 @@ html:has(.lightbox[open]) { overflow: hidden; }
 @media (prefers-reduced-motion: reduce) { .btn--kon::after, .btn--lab::after { transition: none; } }
 @media (max-width: 600px) { .brand__title { font-size: 1.12rem; } }
 @media (min-width: 981px) { .nav__lab { margin-left: 0; } .nav__link { padding: 8px 10px; } .site-header .container { gap: 12px; } .nav { gap: 5px; } .btn--sm.btn--kon, .btn--sm.btn--lab { padding: .5em .95em; } }
+
+/* =========================================================
+   Онлайн лабораторія: оформлення в кольорі дисципліни
+   (main.lab-main + disc--… задає --dc, --dc-2, --dc-soft, --dc-deep)
+   ========================================================= */
+:where(.lab-main) { --dc: #2E7D32; --dc-2: #E0B13C; --dc-soft: #E9F3E3; --dc-deep: #0A2A12; }
+.lab-main {
+  background:
+    radial-gradient(900px 520px at 100% 0%, color-mix(in srgb, var(--dc-soft) 85%, transparent), transparent 70%),
+    radial-gradient(760px 640px at 0% 55%, color-mix(in srgb, var(--dc-soft) 60%, transparent), transparent 70%),
+    radial-gradient(circle at 1px 1px, color-mix(in srgb, var(--dc) 16%, transparent) 1.1px, transparent 1.6px) 0 0 / 24px 24px,
+    var(--cream); }
+.lab-main.disc--bio { --dc-2: #F0C14B; }
+
+/* Шапка сторінки: «аврора» в кольорах дисципліни + міліметрівка */
+.lab-main .page-hero--lab { isolation: isolate;
+  background:
+    radial-gradient(55% 95% at 90% 0%, color-mix(in srgb, var(--dc-2) 42%, transparent), transparent 62%),
+    radial-gradient(45% 85% at 0% 100%, color-mix(in srgb, var(--dc) 55%, transparent), transparent 66%),
+    linear-gradient(150deg, color-mix(in srgb, var(--dc-deep) 80%, #000), var(--dc-deep) 48%, color-mix(in srgb, var(--dc) 45%, var(--dc-deep))); }
+.lab-main .page-hero--lab::before { content: ""; position: absolute; inset: 0; z-index: -1; pointer-events: none;
+  background-image: linear-gradient(rgba(255, 255, 255, .055) 1px, transparent 1px), linear-gradient(90deg, rgba(255, 255, 255, .055) 1px, transparent 1px);
+  background-size: 34px 34px;
+  -webkit-mask-image: radial-gradient(120% 90% at 70% 10%, #000, transparent 75%); mask-image: radial-gradient(120% 90% at 70% 10%, #000, transparent 75%); }
+.lab-main .page-hero--lab::after { content: ""; position: absolute; left: 0; right: 0; bottom: 0; height: 2px; pointer-events: none;
+  background: linear-gradient(90deg, transparent, color-mix(in srgb, var(--dc-2) 90%, #fff) 30%, #fff 50%, color-mix(in srgb, var(--dc-2) 90%, #fff) 70%, transparent);
+  box-shadow: 0 0 18px 2px color-mix(in srgb, var(--dc-2) 70%, transparent); opacity: .85; }
+.lab-main .page-hero--lab > .bg-molecules { z-index: -1; opacity: .8; }
+.lab-main .page-hero--lab .lab-glow { position: absolute; z-index: -1; width: 520px; height: 520px; right: -120px; top: -220px; border-radius: 50%; pointer-events: none;
+  background: radial-gradient(circle, color-mix(in srgb, var(--dc-2) 45%, transparent), transparent 65%); filter: blur(10px); animation: lab-glow 14s ease-in-out infinite alternate; }
+@keyframes lab-glow { to { transform: translate(-160px, 120px) scale(1.15); opacity: .7; } }
+.lab-main .page-hero .kicker, .lab-main .breadcrumbs a { color: color-mix(in srgb, var(--dc-2) 75%, #fff); }
+.lab-main .page-hero h1 { text-shadow: 0 2px 24px color-mix(in srgb, var(--dc-2) 35%, transparent); }
+.lab-main .page-hero .badge { background: rgba(255, 255, 255, .1); color: #fff; border: 1px solid color-mix(in srgb, var(--dc-2) 55%, transparent); box-shadow: 0 0 14px -4px color-mix(in srgb, var(--dc-2) 70%, transparent); }
+
+/* Кнопки: світіння й відблиск */
+.lab-main .btn { position: relative; overflow: hidden; isolation: isolate; transition: transform .2s, box-shadow .25s, filter .25s; }
+.lab-main .btn::after { content: ""; position: absolute; inset: 0; z-index: -1; pointer-events: none; background: linear-gradient(105deg, transparent 30%, rgba(255, 255, 255, .45) 50%, transparent 70%); transform: translateX(-120%); transition: transform .7s ease; }
+.lab-main .btn:hover::after, .lab-main a:hover > .btn::after, .lab-main .btn:focus-visible::after { transform: translateX(120%); }
+.lab-main .btn:hover, .lab-main a:hover > .btn, .lab-main .btn:focus-visible {
+  box-shadow: 0 0 0 3px color-mix(in srgb, var(--dc-2) 28%, transparent), 0 10px 30px -8px color-mix(in srgb, var(--dc) 75%, transparent), 0 0 24px -6px color-mix(in srgb, var(--dc-2) 80%, transparent);
+  filter: saturate(1.1) brightness(1.04); }
+.lab-main .btn--gold, .lab-main .btn--green { box-shadow: 0 6px 18px -8px color-mix(in srgb, var(--dc) 70%, transparent), inset 0 1px 0 rgba(255, 255, 255, .35); }
+.lab-main .btn--outline:hover { --_bd: var(--dc); --_fg: var(--dc-deep); }
+.lab-main { accent-color: var(--dc); }
+
+/* Вкладки дисциплін */
+.lab-main .disc-tab[class*="disc--"]:hover { box-shadow: 0 0 0 4px color-mix(in srgb, var(--dc) 16%, transparent), 0 12px 28px -10px var(--dc); }
+.lab-main .disc-tab[aria-current="page"], .lab-main .disc-tab.is-active {
+  box-shadow: 0 0 0 4px color-mix(in srgb, var(--dc) 18%, transparent), 0 12px 30px -10px var(--dc), inset 0 1px 0 rgba(255, 255, 255, .3); }
+
+/* Картки робіт */
+.lab-main .work { position: relative; overflow: hidden; background: linear-gradient(180deg, #fff, color-mix(in srgb, var(--dc-soft) 35%, #fff)); }
+.lab-main .work::before { content: ""; position: absolute; left: 0; top: 0; bottom: 0; width: 4px; background: linear-gradient(180deg, var(--dc-2), var(--dc)); opacity: .55; transition: opacity .25s, width .25s; }
+.lab-main .work:hover { border-color: color-mix(in srgb, var(--dc) 45%, #fff);
+  box-shadow: 0 0 0 3px color-mix(in srgb, var(--dc) 10%, transparent), 0 20px 44px -22px color-mix(in srgb, var(--dc) 75%, transparent); }
+.lab-main .work:hover::before { opacity: 1; width: 6px; }
+.lab-main .work__num { background: radial-gradient(120% 100% at 20% 0%, rgba(255, 255, 255, .22), transparent 55%), linear-gradient(150deg, var(--dc-deep), var(--dc)); box-shadow: 0 8px 20px -10px var(--dc); }
+.lab-main .work__go { background: color-mix(in srgb, var(--dc-soft) 80%, #fff); color: var(--dc); transition: transform .2s, background .2s, box-shadow .25s, color .2s; }
+.lab-main .work:hover .work__go { background: linear-gradient(135deg, var(--dc-2), var(--dc)); color: #fff; box-shadow: 0 0 0 4px color-mix(in srgb, var(--dc) 15%, transparent), 0 8px 22px -6px var(--dc); }
+.lab-main .work--accent { background: linear-gradient(135deg, #FFFBEF, #FBF0CF); }
+.lab-main .work--accent .work__num { background: linear-gradient(150deg, var(--gold-300), var(--gold-600)); }
+
+/* Номери розділів і заголовки сторінок робіт */
+.lab-main .lab-section > h2 .n { color: #fff; background: linear-gradient(135deg, var(--dc-2), var(--dc)); box-shadow: 0 6px 16px -6px var(--dc); }
+.lab-main .toc a:hover { color: var(--dc); }
+.lab-main .toc a.is-active { color: var(--dc-deep); border-left-color: var(--dc); background: linear-gradient(90deg, color-mix(in srgb, var(--dc-soft) 90%, transparent), transparent); border-radius: 0 8px 8px 0; }
+
+@media (prefers-reduced-motion: reduce) {
+  .lab-main .page-hero--lab .lab-glow { animation: none; }
+  .lab-main .btn::after { display: none; }
+}

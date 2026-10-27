@@ -250,8 +250,9 @@ input[type="range"]:focus-visible::-webkit-slider-thumb { outline: 3px solid var
 .lh-bub { animation: lh-bub 3.2s ease-in infinite; }
 .lh-bub--2 { animation-delay: -1.1s; animation-duration: 2.7s; } .lh-bub--3 { animation-delay: -2.2s; animation-duration: 3.6s; }
 .lh-bub--4 { animation-delay: -.6s; animation-duration: 2.4s; } .lh-bub--5 { animation-delay: -1.7s; animation-duration: 3s; }
-@keyframes lh-bub { 0% { transform: translateY(0); opacity: 0; } 15% { opacity: 1; } 85% { opacity: .9; } 100% { transform: translateY(-92px); opacity: 0; } }
-.lh-wave { animation: lh-wave 4s linear infinite; }
+@keyframes lh-bub { 0% { transform: translateY(0); opacity: 0; } 15% { opacity: 1; } 85% { opacity: .9; } 100% { transform: translateY(-44px); opacity: 0; } }
+.lh-wave { animation: lh-wave 3.6s linear infinite; }
+.lh-wave--2 { animation-duration: 5.4s; animation-direction: reverse; }
 @keyframes lh-wave { to { transform: translateX(-80px); } }
 .lh-vap path { animation: lh-vap 3.4s ease-in-out infinite; }
 .lh-vap .lh-vap--2 { animation-delay: -1.7s; }

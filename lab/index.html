@@ -74,8 +74,9 @@
     </div>
   </header>
 
-  <main id="main">
+  <main id="main" class="lab-main">
     <section class="page-hero page-hero--lab">
+      <div class="lab-glow" aria-hidden="true"></div>
       <div class="bg-molecules" aria-hidden="true" style="position:absolute;inset:0"></div>
       <div class="container lab-hero">
         <div class="lab-hero__text">
@@ -108,9 +109,11 @@
             </g>
             <!-- Колба -->
             <g class="lh-flask">
+              <path d="M106 150V96h36v54l52 104a14 14 0 0 1-12.5 20H66.5A14 14 0 0 1 54 254z" fill="#0B2414" fill-opacity=".72"/>
               <g clip-path="url(#lh-fl)">
-                <path class="lh-wave" d="M20 214c20-8 40 8 60 0s40-8 60 0 40 8 60 0 40-8 60 0V340H20z" fill="url(#lh-liq)" fill-opacity=".85"/>
-                <g fill="#fff" fill-opacity=".55"><circle class="lh-bub" cx="96" cy="300" r="4"/><circle class="lh-bub lh-bub--2" cx="124" cy="306" r="3"/><circle class="lh-bub lh-bub--3" cx="140" cy="296" r="5"/><circle class="lh-bub lh-bub--4" cx="110" cy="310" r="2.5"/><circle class="lh-bub lh-bub--5" cx="80" cy="304" r="3"/></g>
+                <path class="lh-wave" d="M0 216q20-5 40 0t40 0t40 0t40 0t40 0t40 0t40 0t40 0V340H0z" fill="url(#lh-liq)" fill-opacity=".85"/>
+                <path class="lh-wave lh-wave--2" d="M0 220q20 4 40 0t40 0t40 0t40 0t40 0t40 0t40 0t40 0V340H0z" fill="#2E9A4E" fill-opacity=".35"/>
+                <g fill="#fff" fill-opacity=".55"><circle class="lh-bub" cx="96" cy="266" r="4"/><circle class="lh-bub lh-bub--2" cx="124" cy="268" r="3"/><circle class="lh-bub lh-bub--3" cx="138" cy="264" r="5"/><circle class="lh-bub lh-bub--4" cx="110" cy="269" r="2.5"/><circle class="lh-bub lh-bub--5" cx="80" cy="266" r="3"/></g>
               </g>
               <path d="M106 150V96h36v54l52 104a14 14 0 0 1-12.5 20H66.5A14 14 0 0 1 54 254z" fill="url(#lh-glass)" stroke="#E8F5E9" stroke-opacity=".75" stroke-width="2.4" stroke-linejoin="round"/>
               <path d="M100 96h48" stroke="#E8F5E9" stroke-opacity=".85" stroke-width="5" stroke-linecap="round"/>
@@ -120,9 +123,9 @@
             </g>
             <!-- Штатив із пробірками -->
             <g class="lh-rack">
-              <g class="lh-tube"><rect x="214" y="150" width="20" height="128" rx="10" fill="url(#lh-glass)" stroke="#E8F5E9" stroke-opacity=".7" stroke-width="2"/><rect x="216.5" y="214" width="15" height="61" rx="7.5" fill="#EBD27F"/></g>
-              <g class="lh-tube lh-tube--2"><rect x="244" y="150" width="20" height="128" rx="10" fill="url(#lh-glass)" stroke="#E8F5E9" stroke-opacity=".7" stroke-width="2"/><rect x="246.5" y="198" width="15" height="77" rx="7.5" fill="#5EA8F0"/></g>
-              <g class="lh-tube lh-tube--3"><rect x="274" y="150" width="20" height="128" rx="10" fill="url(#lh-glass)" stroke="#E8F5E9" stroke-opacity=".7" stroke-width="2"/><rect x="276.5" y="228" width="15" height="47" rx="7.5" fill="#E07AA0"/></g>
+              <g class="lh-tube"><rect x="214" y="150" width="20" height="128" rx="10" fill="#0B2414" fill-opacity=".6"/><rect x="214" y="150" width="20" height="128" rx="10" fill="url(#lh-glass)" stroke="#E8F5E9" stroke-opacity=".7" stroke-width="2"/><rect x="216.5" y="214" width="15" height="61" rx="7.5" fill="#EBD27F"/></g>
+              <g class="lh-tube lh-tube--2"><rect x="244" y="150" width="20" height="128" rx="10" fill="#0B2414" fill-opacity=".6"/><rect x="244" y="150" width="20" height="128" rx="10" fill="url(#lh-glass)" stroke="#E8F5E9" stroke-opacity=".7" stroke-width="2"/><rect x="246.5" y="198" width="15" height="77" rx="7.5" fill="#5EA8F0"/></g>
+              <g class="lh-tube lh-tube--3"><rect x="274" y="150" width="20" height="128" rx="10" fill="#0B2414" fill-opacity=".6"/><rect x="274" y="150" width="20" height="128" rx="10" fill="url(#lh-glass)" stroke="#E8F5E9" stroke-opacity=".7" stroke-width="2"/><rect x="276.5" y="228" width="15" height="47" rx="7.5" fill="#E07AA0"/></g>
               <path d="M204 236h100M204 236v68M304 236v68" stroke="#EBD27F" stroke-opacity=".7" stroke-width="4" stroke-linecap="round"/>
             </g>
             <!-- Паросток у чашці Петрі -->
