@@ -1,0 +1,116 @@
+/* =========================================================
+   Конспект «Відмінності рослинної і тваринної клітин»
+   ========================================================= */
+.page-hero--cell { background: radial-gradient(60% 120% at 85% 0%, rgba(124, 196, 127, .4), transparent 60%), radial-gradient(50% 80% at 5% 100%, rgba(232, 133, 116, .25), transparent 70%), linear-gradient(150deg, #06200E, #1B4D22 60%, #2E6B2A); }
+.cc-svg { display: block; width: 100%; height: auto; }
+.cc-t { font: 600 12px system-ui, sans-serif; fill: #46584C; }
+.cc-t--b { font-weight: 800; }
+.cc-h { font: 700 17px Georgia, serif; fill: #13241A; }
+.cc-h3 { margin: 1.8em 0 .6em; font-size: 1.2rem; }
+.cc-lab path { stroke: #9FB3A3; stroke-width: 1.2; fill: none; }
+.cc-note { margin: 0; font-size: .9rem; color: var(--ink-soft); line-height: 1.55; padding: 10px 14px; border-radius: 10px; background: var(--green-50); border: 1px solid var(--green-200); }
+.cc-note:empty { display: none; }
+.cc-sum { padding: 12px 16px; border-radius: var(--radius); background: var(--gold-100); border: 1px solid #EFE0AE; }
+
+.cc-seg { display: inline-flex; flex-wrap: wrap; gap: 4px; padding: 4px; border-radius: 12px; background: var(--green-50); border: 1px solid var(--line); }
+.cc-seg button { font: inherit; font-size: .86rem; font-weight: 700; padding: 7px 13px; border-radius: 9px; border: 0; cursor: pointer; background: transparent; color: var(--ink-soft); }
+.cc-seg button[aria-checked="true"] { background: var(--white); color: var(--green-800); box-shadow: var(--shadow-sm), 0 0 0 1px var(--green-200); }
+
+/* Порівняльна схема */
+.cc-cmp { margin: 20px 0; padding: 14px; border-radius: var(--radius-lg); background: radial-gradient(120% 100% at 30% 0%, #FFFFFF, #F1F6EA); border: 1px solid var(--line); box-shadow: var(--shadow-sm); display: grid; gap: 12px; }
+.cc-cmp__bar { display: flex; flex-wrap: wrap; gap: 8px 14px; align-items: center; justify-content: space-between; }
+.cc-hint { font-size: .82rem; color: var(--muted); font-weight: 600; }
+.cc-part { cursor: pointer; transition: opacity .3s, filter .3s; outline: none; }
+.cc-part.is-dim { opacity: .14; }
+.cc-part.is-sel { filter: drop-shadow(0 0 6px rgba(242, 182, 48, .95)); }
+.cc-part:focus-visible { filter: drop-shadow(0 0 4px #B08A1E); }
+.cc-info { padding: 14px 16px; border-radius: var(--radius); background: var(--white); border: 1px solid var(--line); min-height: 92px; }
+.cc-info h3 { margin: 4px 0 4px; font-size: 1.08rem; }
+.cc-info p { margin: 0; font-size: .92rem; color: var(--ink-soft); }
+.cc-info__hint { color: var(--muted) !important; }
+.cc-tag { display: inline-block; font-size: .7rem; font-weight: 800; letter-spacing: .08em; text-transform: uppercase; padding: 3px 9px; border-radius: 999px; }
+.cc-tag--plant { background: var(--green-100); color: var(--green-800); }
+.cc-tag--animal { background: #FBE6DE; color: #9A3A1E; }
+.cc-tag--both { background: #EEEAFB; color: #4A35A0; }
+.cc-table th, .cc-table td { text-align: left !important; white-space: normal; vertical-align: top; }
+.cc-table { min-width: 620px; }
+.cc-table tr.is-hl { background: var(--gold-100); }
+.cc-dot { display: inline-block; width: 10px; height: 10px; border-radius: 50%; margin-right: 6px; vertical-align: -1px; }
+.cc-dot--p { background: #4CAF50; } .cc-dot--a { background: #E0896E; }
+
+/* Фото */
+.cp-gal { display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 12px; margin: 18px 0; }
+.cp { margin: 0; border-radius: var(--radius); overflow: hidden; background: var(--white); border: 1px solid var(--line); box-shadow: var(--shadow-sm); display: flex; flex-direction: column; }
+.cp a { display: block; overflow: hidden; background: #0E1A12; }
+.cp img { display: block; width: 100%; height: 170px; object-fit: cover; transition: transform .45s; }
+.cp a:hover img { transform: scale(1.06); }
+.cp figcaption { padding: 9px 11px 10px; font-size: .82rem; line-height: 1.45; color: var(--ink-soft); }
+.cp-cred { display: block; margin-top: 3px; font-size: .72rem; color: var(--muted); }
+.cp-cred a { display: inline; background: none; color: inherit; }
+.cp-gal--big { grid-template-columns: repeat(auto-fill, minmax(190px, 1fr)); }
+.cp-gal--big img { height: 210px; }
+
+/* Функції стінки / вакуолі */
+.cc-funcs { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 10px; margin: 16px 0; }
+@media (max-width: 900px) { .cc-funcs { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+@media (max-width: 560px) { .cc-funcs { grid-template-columns: minmax(0, 1fr); } }
+.cc-funcs > div { position: relative; padding: 14px 14px 12px 54px; border-radius: var(--radius); background: var(--white); border: 1px solid var(--line); }
+.cc-funcs span { position: absolute; left: 12px; top: 12px; width: 30px; height: 30px; border-radius: 9px; display: grid; place-items: center; font: 800 .95rem var(--serif); color: var(--gold-300); background: linear-gradient(150deg, var(--green-900), var(--green-700)); }
+.cc-funcs--v span { background: linear-gradient(150deg, #3A2A7A, #7A5BD0); }
+.cc-funcs b { display: block; margin-bottom: 3px; }
+.cc-funcs p { margin: 0; font-size: .88rem; color: var(--ink-soft); line-height: 1.5; }
+.cc-fig { margin: 14px 0; padding: 12px; border-radius: var(--radius-lg); background: var(--white); border: 1px solid var(--line); }
+.cc-fig figcaption { margin-top: 10px; font-size: .88rem; color: var(--ink-soft); line-height: 1.55; }
+
+/* Модель стінки */
+.cc-wall, .cc-glc, .cc-tr { display: grid; gap: 10px; margin: 14px 0; padding: 14px; border-radius: var(--radius-lg); background: radial-gradient(120% 100% at 30% 0%, #FFFFFF, #F1F6EA); border: 1px solid var(--line); }
+.cc-chips { display: flex; flex-wrap: wrap; gap: 6px; }
+.cc-chips button { display: inline-flex; align-items: center; gap: 7px; font: inherit; font-size: .84rem; font-weight: 700; padding: 6px 12px; border-radius: 999px; border: 1px solid var(--line); background: #fff; color: var(--muted); cursor: pointer; }
+.cc-chips button i { width: 11px; height: 11px; border-radius: 3px; opacity: .35; }
+.cc-chips button[aria-pressed="true"] { color: var(--ink); border-color: var(--green-200); }
+.cc-chips button[aria-pressed="true"] i { opacity: 1; }
+.w-l { transition: opacity .35s; }
+.w-hot { animation: cc-pulse 1.8s ease-in-out infinite; transform-box: fill-box; transform-origin: center; }
+@keyframes cc-pulse { 50% { transform: scale(1.35); opacity: .5; } }
+@media (prefers-reduced-motion: reduce) { .w-hot { animation: none; } }
+.cc-sim { margin: 14px 0; }
+.cc-pl-main #pl-svg { max-width: 420px; margin: 0 auto; }
+#pl-proto, #pl-vac, #pl-chl ellipse { transition: all .35s; }
+
+.cc-mods { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 12px; margin: 14px 0; }
+@media (max-width: 900px) { .cc-mods { grid-template-columns: minmax(0, 1fr); } }
+.cc-mods > div { padding: 14px 16px; border-radius: var(--radius); background: var(--white); border: 1px solid var(--line); border-top: 5px solid var(--c); }
+.cc-mods b { display: block; margin-bottom: 4px; }
+.cc-mods p { margin: 0; font-size: .9rem; color: var(--ink-soft); line-height: 1.55; }
+
+/* Пластиди */
+.cc-pt { display: grid; gap: 12px; margin: 14px 0; padding: 14px; border-radius: var(--radius-lg); background: radial-gradient(120% 100% at 30% 0%, #FFFFFF, #F4F6EC); border: 1px solid var(--line); }
+.pt-e { fill: none; stroke: #B9C4BC; stroke-width: 2.2; transition: stroke .25s, stroke-width .25s; }
+.pt-e.is-on { stroke: #B08A1E; stroke-width: 3.4; }
+.pt-n { cursor: pointer; outline: none; }
+.pt-n ellipse { transition: stroke-width .2s; }
+.pt-n.is-on ellipse, .pt-n:hover ellipse, .pt-n:focus-visible ellipse { stroke: #B08A1E; stroke-width: 3.4; }
+.cc-pt__info { display: grid; grid-template-columns: 180px minmax(0, 1fr); gap: 14px; align-items: start; padding: 12px; border-radius: var(--radius); background: var(--white); border: 1px solid var(--line); }
+.cc-pt__info:not(:has(img)) { grid-template-columns: minmax(0, 1fr); }
+.cc-pt__info img { width: 100%; height: 130px; object-fit: cover; border-radius: 10px; }
+.cc-pt__info h3 { margin: 0 0 4px; font-size: 1.08rem; }
+.cc-pt__info p { margin: 0; font-size: .92rem; color: var(--ink-soft); line-height: 1.55; }
+@media (max-width: 560px) { .cc-pt__info { grid-template-columns: minmax(0, 1fr); } }
+.cc-gen { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 12px; margin: 10px 0 14px; }
+@media (max-width: 900px) { .cc-gen { grid-template-columns: minmax(0, 1fr); } }
+.cc-gen > div { padding: 14px 16px; border-radius: var(--radius); background: var(--white); border: 1px solid var(--line); border-left: 6px solid var(--c); }
+.cc-gen b { display: block; }
+.cc-gen__n { display: inline-block; margin: 4px 0 6px; font-family: var(--mono); font-weight: 800; color: var(--c); }
+.cc-gen p { margin: 0; font-size: .88rem; color: var(--ink-soft); line-height: 1.5; }
+
+/* Цитокінез */
+.cc-ck { margin: 14px 0; padding: 14px; border-radius: var(--radius-lg); background: radial-gradient(120% 100% at 30% 0%, #FFFFFF, #F4F6EC); border: 1px solid var(--line); display: grid; gap: 10px; }
+.cc-ck__ctrl { display: grid; grid-template-columns: auto minmax(0, 1fr) auto; gap: 12px; align-items: center; font-size: .86rem; font-weight: 600; color: var(--ink-soft); }
+@media (max-width: 640px) { .cc-ck__ctrl { grid-template-columns: minmax(0, 1fr); } }
+
+.cc-gloss { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 10px; }
+@media (max-width: 900px) { .cc-gloss { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+@media (max-width: 560px) { .cc-gloss { grid-template-columns: minmax(0, 1fr); } }
+.cc-gloss > div { padding: 14px 16px; border-radius: var(--radius); color: #fff; background: radial-gradient(120% 120% at 0% 0%, rgba(255, 255, 255, .14), transparent 55%), linear-gradient(150deg, var(--green-900), var(--green-700)); }
+.cc-gloss b { display: block; font-family: var(--serif); font-size: 1.15rem; color: var(--gold-300); }
+.cc-gloss p { margin: 4px 0 0; font-size: .88rem; color: rgba(255, 255, 255, .88); }

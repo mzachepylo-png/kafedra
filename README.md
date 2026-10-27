@@ -39,6 +39,9 @@ konspekt/index.html                — Конспект: компактні ка
 konspekt/pathogens/                — Збудники хвороб рослин: мікрофото збудника + фото ураженої рослини,
                                      прояви, розвиток хвороби, шкодочинність
 konspekt/weeds/                    — Бур'яни України: 25 видів, фото (iNaturalist) і карти поширення (GBIF)
+konspekt/plant-cell/               — Відмінності рослинної і тваринної клітин: порівняльна схема, клітинна стінка (модель,
+                                     полімери глюкози, розетка целюлозосинтази, пектини й Ca²⁺), апопласт/симпласт, плазмоліз,
+                                     пластиди, цитокінез; 31 фото — assets/img/cell/
 konspekt/enzymes/                  — Ферменти: холофермент, будова й активний центр, класи КФ 1–7 з розшифровкою шифру,
                                      енергетичний профіль, ключ — замок / індукована відповідність, pH і температура,
                                      кінетика з 5 типами інгібування, алостерія (MWC); фото — assets/img/enzymes/
@@ -65,6 +68,7 @@ assets/js/lab/chroma-engine.js     — модель колонки: міграц
                                      розмивання за Ван-Деемтером, хроматограма (гаусіан / EMG при перевантаженні)
 assets/js/lab/chromatography.js, assets/css/chroma.css — інтерфейс «Хроматографії» (анімації лише на видимих полотнах)
 assets/js/lab/photosynthesis.js, assets/css/photosynthesis.css — «Фотосинтез»: покроковий програвач схем, CAM, FvCB
+assets/js/lab/plant-cell.js, assets/css/plant-cell.css — інтерактив конспекту «Рослинна і тваринна клітини»
 assets/js/lab/enzymes-konspekt.js, assets/css/enzymes.css — інтерактив конспекту «Ферменти»
 assets/js/lab/amino-konspekt.js, assets/css/amino.css — інтерактив конспекту «Амінокислоти»
 assets/js/lab/plot.js              — графіки на Canvas (HiDPI, підказки, легенда)
