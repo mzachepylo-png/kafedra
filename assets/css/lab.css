@@ -2,19 +2,23 @@
    Онлайн лабораторія: каталог робіт, теорія, моделі, графіки
    ========================================================= */
 
+.dgrid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 16px; }
+@media (max-width: 860px) { .dgrid { grid-template-columns: minmax(0, 1fr); } }
 .discipline {
-  display: grid; grid-template-columns: 1fr 1fr; overflow: hidden; border-radius: 26px; text-decoration: none; color: inherit;
-  background: var(--white); border: 1px solid var(--line); box-shadow: var(--shadow); transition: transform .2s, box-shadow .2s;
+  display: grid; grid-template-columns: 38% minmax(0, 1fr); min-height: 150px; overflow: hidden; border-radius: 18px; text-decoration: none; color: inherit;
+  background: var(--white); border: 1px solid var(--line); box-shadow: var(--shadow-sm); transition: transform .2s, box-shadow .2s;
 }
-.discipline:hover { color: inherit; transform: translateY(-3px); box-shadow: var(--shadow-lg); }
-.discipline__art { position: relative; min-height: 280px; background: linear-gradient(150deg, var(--green-950), var(--green-800)); display: grid; place-items: center; overflow: hidden; }
-.discipline__art svg { width: 82%; max-width: 380px; position: relative; }
-.discipline__body { padding: clamp(24px, 4vw, 44px); display: flex; flex-direction: column; gap: 14px; }
-.discipline__body h2 { margin: 0; }
+.discipline:hover { color: inherit; transform: translateY(-2px); box-shadow: var(--shadow); }
+.discipline__art { position: relative; background: linear-gradient(150deg, var(--green-950), var(--green-800)); display: grid; place-items: center; overflow: hidden; }
+.discipline__art svg { width: 90%; max-width: 260px; position: relative; }
+.discipline__body { padding: 14px 16px; display: flex; flex-direction: column; gap: 6px; }
+.discipline__body h2 { margin: 0; font-size: 1.22rem; }
+.discipline__body p { margin: 0; font-size: .86rem; line-height: 1.45; color: var(--ink-soft); }
+.discipline__body .btn { align-self: flex-start; margin-top: auto; }
 .discipline__body ul { margin: 0; padding: 0; list-style: none; display: grid; gap: 8px; }
 .discipline__body li { display: flex; gap: 10px; color: var(--ink-soft); }
 .discipline__body li b { font-family: var(--mono); color: var(--gold-700); font-size: .85rem; min-width: 3.4em; padding-top: 2px; }
-@media (max-width: 860px) { .discipline { grid-template-columns: 1fr; } .discipline__art { min-height: 200px; } }
+@media (max-width: 420px) { .discipline { grid-template-columns: 34% minmax(0, 1fr); } .discipline__body p { font-size: .82rem; } }
 
 .steps { counter-reset: step; display: grid; grid-template-columns: repeat(4, 1fr); gap: 18px; }
 @media (max-width: 900px) { .steps { grid-template-columns: repeat(2, 1fr); } }
