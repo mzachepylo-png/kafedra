@@ -48,6 +48,9 @@ konspekt/enzymes/                  — Ферменти: холофермент,
 konspekt/amino-acids/              — Амінокислоти: будова (L/D), 20 амінокислот за класами з паспортами, титрування
                                      і заряд у компартментах, pI і гідропатичність, 6 родин біосинтезу, N:C, стресовий пул,
                                      попередники фітогормонів (дані — у <script id="aa-data">)
+konspekt/plant-molecular-genetics/ — Молекулярна генетика рослин: 5 частин (42 розділи), 43 інтерактивні моделі, ~110 фото
+                                     (Wikimedia Commons, assets/img/mgen/), навігація (зміст, лінійка частин, пошук, глосарій),
+                                     нумерований список літератури; сторінка генерується: python3 tools/mgen/build.py
 konspekt/ion-transport/             — Транспорт іонів у клітинах рослин (9 розділів, 40 підрозділів):
                                      потенціал і Нернст, кінетика переносників, patch clamp, канали Shaker/TPK/TPC, HKT,
                                      HAK/KUP, SOS1/NHX, Ca²⁺-сигнали й сенсори, MSL/MCA, SLAC1/ALMT/CLC, NRT/PHT,
@@ -78,6 +81,10 @@ assets/js/lab/cell-visuals.js              — шари стінки, «залі
 assets/fonts/, assets/css/fonts.css    — шрифти, розміщені на сайті (Inter, Lora, Alegreya, IBM Plex Sans, JetBrains Mono): жодних запитів до Google Fonts
 assets/js/lab/enzymes-konspekt.js, assets/css/enzymes.css — інтерактив конспекту «Ферменти»
 assets/js/lab/amino-konspekt.js, assets/css/amino.css — інтерактив конспекту «Амінокислоти»
+assets/js/lab/mgen-konspekt.js, assets/js/lab/mgen/, assets/css/mgen.css — інтерактив і навігація конспекту
+                                     «Молекулярна генетика рослин» (модулі l1.js…l5.js — віджети частин, nav.js — навігація)
+tools/mgen/                        — генератор сторінки: source.md (текст), figs/ (рисунки), meta.json (головне, питання,
+                                     відповідність розділів і джерел), refs.json (література), captions/credits.json (фото)
 assets/js/lab/ion-transport.js, assets/css/ion.css — навігація й ~30 інтерактивних моделей конспекту «Транспорт іонів»
 assets/js/lab/plot.js              — графіки на Canvas (HiDPI, підказки, легенда)
 assets/js/lab/ui.js                — повзунки, перемикачі, CSV-експорт, генератор варіантів
