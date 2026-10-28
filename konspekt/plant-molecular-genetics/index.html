@@ -1,0 +1,1164 @@
+<!doctype html>
+<html lang="uk" class="no-js">
+<head>
+  <meta charset="utf-8">
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-JWWGPMG71W"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+
+    gtag('config', 'G-JWWGPMG71W');
+  </script>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <script>try{if(localStorage.getItem('kf-view')==='desktop'){document.documentElement.classList.add('force-desktop');document.querySelector('meta[name=viewport]').setAttribute('content','width=1280')}}catch(e){}</script>
+  <title>Молекулярна генетика рослин — Конспект, кафедра ФБРтаБ НУБіП</title>
+  <meta name="description" content="Конспект «Молекулярна генетика рослин» (курс В. В. Чуба, МДУ): модельні об&#x27;єкти й геноми, регуляція експресії, агробактеріальна трансформація, трансгенні рослини, CRISPR, позиційний контроль розвитку. Фото та інтерактивні схеми.">
+  <meta name="theme-color" content="#08210F">
+  <link rel="icon" href="../../assets/img/nubip-shield.png" type="image/png">
+  <link rel="stylesheet" href="../../assets/css/style.css">
+  <link rel="stylesheet" href="../../assets/css/lab.css">
+  <script>document.documentElement.classList.replace('no-js', 'js')</script>
+  <link rel="stylesheet" href="../../assets/css/mgen.css">
+</head>
+<body>
+  <a class="skip-link" href="#main">Перейти до змісту</a>
+
+  <header class="site-header">
+    <div class="container">
+      <a class="brand" href="../../" aria-label="Кафедра фізіології, біохімії рослин та біоенергетики — на головну">
+        <img class="brand__logo" src="../../assets/img/nubip-shield.webp" alt="" width="31" height="44">
+        <span class="brand__text">
+          <span class="brand__title">Кафедра ФБРтаБ</span>
+          <span class="brand__sub">Фізіологія, біохімія рослин та біоенергетика · НУБіП України</span>
+        </span>
+      </a>
+      <button class="nav-toggle" type="button" aria-controls="site-nav" aria-expanded="false" aria-label="Відкрити меню">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M4 7h16M4 12h16M4 17h16"/></svg>
+      </button>
+      <nav class="nav" id="site-nav" aria-label="Головна навігація">
+        <a class="nav__link" href="../../">Головна</a>
+        <div class="nav__dd">
+          <a class="nav__link" href="../../about/">Про кафедру
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m6 9 6 6 6-6"/></svg>
+          </a>
+          <div class="nav__menu">
+            <a href="../../about/#department">Кафедра сьогодні<small>Місія, історія з 1898 р., наука</small></a>
+            <a href="../../about/#team">Колектив<small>Викладачі та їхні наукові інтереси</small></a>
+            <a href="../../about/#achievements">Здобутки<small>Кафедри та викладачів</small></a>
+            <a href="../../about/#faculty-history">Історія факультету<small>Від 1962 року до сьогодні</small></a>
+            <a href="../../about/#administration">Адміністрація факультету<small>Деканат і контакти</small></a>
+            <a href="../../about/#programs">Освітні програми<small>Бакалаврат · Магістратура · PhD</small></a>
+            <div class="nav__social">
+              <a class="nav__soc nav__soc--fb" href="https://www.facebook.com/groups/nubipplants?locale=uk_UA" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M14 8.5V6.8c0-.8.5-1 .9-1H17V2.2L14 2.2c-3.3 0-4 2.4-4 4v2.3H7.5V12H10v10h4V12h2.8l.4-3.5H14Z"/></svg>Ми у Facebook</a>
+              <a class="nav__soc nav__soc--ig" href="https://www.instagram.com/plant_physio_chair/" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/></svg>Ми в Instagram</a>
+            </div>
+          </div>
+        </div>
+        <a class="nav__link" href="../../#contacts">Контакти</a>
+        <a class="btn btn--green btn--kon btn--sm nav__lab" href="../../konspekt/" aria-current="page">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20V3H6.5A2.5 2.5 0 0 0 4 5.5z"/><path d="M4 19.5A2.5 2.5 0 0 0 6.5 22H20v-5"/></svg>
+          Конспект
+        </a>
+        <a class="btn btn--gold btn--lab btn--sm nav__lab" href="../../lab/">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 3h6M10 3v6l-5 9a2 2 0 0 0 1.7 3h10.6a2 2 0 0 0 1.7-3l-5-9V3"/><path d="M7.5 15h9"/></svg>
+          Онлайн лабораторія
+        </a>
+      </nav>
+      <div class="site-tools">
+        <span class="beta-badge" title="Сайт працює в тестовому режимі">Бета<span class="beta-badge__more">-версія</span></span>
+        <div class="report">
+          <button class="report__btn" type="button" aria-expanded="false" aria-controls="report-pop" title="Повідомити про проблему на сайті">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 9v4M12 17h.01"/><path d="M10.3 3.9 1.8 18a2 2 0 0 0 1.7 3h17a2 2 0 0 0 1.7-3L13.7 3.9a2 2 0 0 0-3.4 0Z"/></svg>
+            <span class="report__label">Повідомити про проблему</span>
+          </button>
+          <div class="report__pop" id="report-pop" role="dialog" aria-label="Повідомити про проблему на сайті" hidden>
+            <p>Знайшли помилку або щось працює не так? Опишіть проблему в короткій формі — так ми швидше її виправимо.</p>
+            <a class="report__form" href="https://forms.gle/yAqtSUqBYNnWgHQo6" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6M8 13h8M8 17h5"/></svg>Заповнити форму</a>
+            <p class="report__alt">Або напишіть нам у групі кафедри:</p>
+            <a class="report__fb" href="https://www.facebook.com/groups/nubipplants?locale=uk_UA" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M14 8.5V6.8c0-.8.5-1 .9-1H17V2.2L14 2.2c-3.3 0-4 2.4-4 4v2.3H7.5V12H10v10h4V12h2.8l.4-3.5H14Z"/></svg>Facebook</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </header>
+  <svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false"><defs>
+<marker id="mg-arr" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0L10 5L0 10z" fill="context-stroke"/></marker>
+<linearGradient id="mg-gl-dna" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#8FB3E8"/><stop offset="1" stop-color="#3E67B0"/></linearGradient>
+
+  </defs></svg>
+
+  <main id="main">
+    <section class="page-hero page-hero--konspekt page-hero--mgen">
+      <div class="bg-molecules" aria-hidden="true" style="position:absolute;inset:0"></div>
+      <div class="container">
+        <nav class="breadcrumbs" aria-label="Навігаційний ланцюжок"><a href="../../">Головна</a><span aria-hidden="true">/</span><a href="../">Конспект</a><span aria-hidden="true">/</span><span>Молекулярна генетика рослин</span></nav>
+        <span class="kicker">Конспект · генетика й біотехнологія рослин</span>
+        <h1>Молекулярна генетика рослин</h1>
+        <p>Від арабідопсису й «стрибаючих генів» до агробактерії, CRISPR та позиційної інформації: як гени будують рослину і як ми навчилися ними керувати. Структурований конспект 5 лекцій — з фото, схемами та інтерактивними моделями.</p>
+        <div class="lab-head"><span class="badge">Геноми</span><span class="badge">Транспозони</span><span class="badge">Фактори транскрипції</span><span class="badge">Agrobacterium</span><span class="badge">CRISPR/Cas</span><span class="badge">Морфогенез</span></div>
+        <div class="mg-tiles"><a class="mg-tile" href="#l1" style="--lc:var(--l1)"><i>1</i><b>Модельні об'єкти та геноми</b><small>7 розділів · 1:32:12</small></a><a class="mg-tile" href="#l2" style="--lc:var(--l2)"><i>2</i><b>Регуляція експресії геному</b><small>5 розділів · 51:49</small></a><a class="mg-tile" href="#l3" style="--lc:var(--l3)"><i>3</i><b>Трансформація рослин</b><small>10 розділів · 1:26:13</small></a><a class="mg-tile" href="#l4" style="--lc:var(--l4)"><i>4</i><b>Трансгенні рослини в дослідженнях</b><small>10 розділів · 2:30:55</small></a><a class="mg-tile" href="#l5" style="--lc:var(--l5)"><i>5</i><b>Позиційний контроль розвитку</b><small>10 розділів · 1:38:35</small></a></div>
+      </div>
+    </section>
+
+    <div class="mg-bar" id="mg-bar" aria-label="Навігація по конспекту">
+      <div class="container mg-bar__in">
+        <button class="mg-bar__btn mg-bar__toc" type="button" id="mg-toc-open" aria-controls="mg-drawer" aria-expanded="false"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" aria-hidden="true"><path d="M4 6h16M4 12h10M4 18h16"/></svg><span>Зміст</span></button>
+        <div class="mg-pills" id="mg-pills" role="group" aria-label="Лекції"><a href="#l1" data-lec="1" style="--lc:var(--l1)" title="Модельні об&#x27;єкти та геноми">1</a><a href="#l2" data-lec="2" style="--lc:var(--l2)" title="Регуляція експресії геному">2</a><a href="#l3" data-lec="3" style="--lc:var(--l3)" title="Трансформація рослин">3</a><a href="#l4" data-lec="4" style="--lc:var(--l4)" title="Трансгенні рослини в дослідженнях">4</a><a href="#l5" data-lec="5" style="--lc:var(--l5)" title="Позиційний контроль розвитку">5</a></div>
+        <div class="mg-here" id="mg-here" aria-live="polite"><small id="mg-here-l">Вступ</small><b id="mg-here-s">Про конспект</b></div>
+        <div class="mg-bar__tools">
+          <button class="mg-bar__btn" type="button" id="mg-prev" aria-label="Попередній розділ" title="Попередній розділ ( [ )"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m18 15-6-6-6 6"/></svg></button>
+          <button class="mg-bar__btn" type="button" id="mg-next" aria-label="Наступний розділ" title="Наступний розділ ( ] )"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m6 9 6 6 6-6"/></svg></button>
+          <button class="mg-bar__btn" type="button" id="mg-search-open" aria-label="Пошук по конспекту" aria-controls="mg-search" aria-expanded="false" title="Пошук по конспекту ( / )"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg></button>
+          <button class="mg-bar__btn mg-focus" type="button" id="mg-focus" aria-pressed="false" title="Показувати лише поточну лекцію"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 8V5a1 1 0 0 1 1-1h3M16 4h3a1 1 0 0 1 1 1v3M20 16v3a1 1 0 0 1-1 1h-3M8 20H5a1 1 0 0 1-1-1v-3"/><rect x="9" y="9" width="6" height="6" rx="1"/></svg><span>Одна лекція</span></button>
+        </div>
+      </div>
+      <div class="mg-progress" aria-hidden="true"><i id="mg-progress"></i></div>
+      <div class="mg-search" id="mg-search" hidden>
+        <div class="container">
+          <label class="mg-search__f"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg><input type="search" id="mg-q" placeholder="Знайти в конспекті: MYB, транспозон, T-ДНК, GFP, філотаксис…" autocomplete="off" aria-label="Пошук по конспекту"><button type="button" id="mg-search-close" aria-label="Закрити пошук">✕</button></label>
+          <ol class="mg-hits" id="mg-hits" aria-live="polite"></ol>
+        </div>
+      </div>
+    </div>
+
+    <div class="section mg-wrap">
+      <div class="container lab-doc mg-doc">
+        <nav class="toc mg-toc" id="mg-toc" aria-label="Зміст конспекту"><h2>Зміст</h2><ol class="mg-toc__list"><li class="mg-toc__top"><a href="#intro">Про конспект</a></li><li class="mg-toc__lec" data-lec="1" style="--lc:var(--l1)"><a class="mg-toc__l" href="#l1"><i>1</i><span>Модельні об'єкти та геноми</span></a><span class="mg-toc__bar" aria-hidden="true"><i></i></span><ol><li><a href="#l1-1"><span>1.1</span>Арабідопсис як модельний об'єкт</a></li><li><a href="#l1-2"><span>1.2</span>Геноми рослин</a></li><li><a href="#l1-3"><span>1.3</span>Міжвидова гібридизація та поліплоїдія</a></li><li><a href="#l1-4"><span>1.4</span>Ретроелементи в геномі рослин</a></li><li><a href="#l1-5"><span>1.5</span>ДНК-транспозони. Система Активатор–Дисоціатор</a></li><li><a href="#l1-6"><span>1.6</span>Інші повторювані елементи геному</a></li><li><a href="#l1-7"><span>1.7</span>Гени та регуляторні послідовності</a></li></ol></li><li class="mg-toc__lec" data-lec="2" style="--lc:var(--l2)"><a class="mg-toc__l" href="#l2"><i>2</i><span>Регуляція експресії геному</span></a><span class="mg-toc__bar" aria-hidden="true"><i></i></span><ol><li><a href="#l2-1"><span>2.1</span>Регуляція транскрипції</a></li><li><a href="#l2-2"><span>2.2</span>Різноманіття факторів транскрипції</a></li><li><a href="#l2-3"><span>2.3</span>Білки з WD40-повтором. MBW-комплекс</a></li><li><a href="#l2-4"><span>2.4</span>Синтез антоціанів, гени родини MYB</a></li><li><a href="#l2-5"><span>2.5</span>Ремоделювання хроматину</a></li></ol></li><li class="mg-toc__lec" data-lec="3" style="--lc:var(--l3)"><a class="mg-toc__l" href="#l3"><i>3</i><span>Трансформація рослин</span></a><span class="mg-toc__bar" aria-hidden="true"><i></i></span><ol><li><a href="#l3-1"><span>3.1</span>Агробактеріальні пухлини. Біохімічна специфіка пухлин</a></li><li><a href="#l3-2"><span>3.2</span>Гормон-незалежний ріст. Генетичні функції Ti-плазмід</a></li><li><a href="#l3-3"><span>3.3</span>Родина Rhizobiaceae. Види <em>Agrobacterium</em></a></li><li><a href="#l3-4"><span>3.4</span>Транспорт оц-ДНК і білків</a></li><li><a href="#l3-5"><span>3.5</span>Взаємодія з господарем</a></li><li><a href="#l3-6"><span>3.6</span>Синтез гормонів у пухлині (онкогени)</a></li><li><a href="#l3-7"><span>3.7</span>Гени <em>rol</em></a></li><li><a href="#l3-8"><span>3.8</span>Практичне використання Ri-плазмід</a></li><li><a href="#l3-9"><span>3.9</span>Агробактеріальна трансформація рослин</a></li><li><a href="#l3-10"><span>3.10</span>«Генна гармата» (біобалістика) та інші методи</a></li></ol></li><li class="mg-toc__lec" data-lec="4" style="--lc:var(--l4)"><a class="mg-toc__l" href="#l4"><i>4</i><span>Трансгенні рослини в дослідженнях</span></a><span class="mg-toc__bar" aria-hidden="true"><i></i></span><ol><li><a href="#l4-1"><span>4.1</span>Інсерційний і транспозонний мутагенез</a></li><li><a href="#l4-2"><span>4.2</span>Сильні та синтетичні промотори</a></li><li><a href="#l4-3"><span>4.3</span>Репортерні гени</a></li><li><a href="#l4-4"><span>4.4</span>Ектопічна експресія</a></li><li><a href="#l4-5"><span>4.5</span>Індукована експресія</a></li><li><a href="#l4-6"><span>4.6</span>Сайленсинг і вимкнення генів</a></li><li><a href="#l4-7"><span>4.7</span>Деградація білка (degron-системи)</a></li><li><a href="#l4-8"><span>4.8</span>Генетична хірургія (аблація)</a></li><li><a href="#l4-9"><span>4.9</span>Редагування геному</a></li><li><a href="#l4-10"><span>4.10</span>Дизайн (інженерія) метаболізму</a></li></ol></li><li class="mg-toc__lec" data-lec="5" style="--lc:var(--l5)"><a class="mg-toc__l" href="#l5"><i>5</i><span>Позиційний контроль розвитку</span></a><span class="mg-toc__bar" aria-hidden="true"><i></i></span><ol><li><a href="#l5-1"><span>5.1</span>Позиційна інформація</a></li><li><a href="#l5-2"><span>5.2</span>Регулятори росту й морфогенезу в рослин</a></li><li><a href="#l5-3"><span>5.3</span>Короткі пептиди</a></li><li><a href="#l5-4"><span>5.4</span>Рецепторні кінази з LRR-доменом. Диференціювання провідної системи</a></li><li><a href="#l5-5"><span>5.5</span>Родина WOX. Взаємодія WOX–CLE</a></li><li><a href="#l5-6"><span>5.6</span>Модель активатора/інгібітора</a></li><li><a href="#l5-7"><span>5.7</span>Математичне моделювання морфогенезу. Моделювання філотаксису</a></li><li><a href="#l5-8"><span>5.8</span>Поліморфізм будови квіток. Перевірка стійкості моделей</a></li><li><a href="#l5-9"><span>5.9</span>Прогноз структури аномальних квіток</a></li><li><a href="#l5-10"><span>5.10</span>Заключення. Застосування теорії розмітки</a></li></ol></li><li class="mg-toc__top"><a href="#glossary">Глосарій</a></li><li class="mg-toc__top"><a href="#refs">Джерела</a></li></ol></nav>
+
+        <article id="mg-article">
+<section class="mg-sec mg-intro" id="intro" data-title="Про конспект">
+  <h2 style="margin-top:0"><span class="n" style="font:800 .9rem var(--mono);color:#fff;background:var(--green-800);padding:2px 9px;border-radius:8px;margin-right:10px">0</span>Про конспект</h2>
+  <div class="mg-intro-card">
+    <div class="prose mg-prose">
+      <p><b>Молекулярна генетика розвитку рослин</b> — дисципліна на стику генетики, молекулярної біології, фізіології та анатомії рослин. Вона відповідає на питання: <i>які гени і в якій послідовності вмикаються, щоб із клітини утворилися корінь, листок, квітка — і чому саме тут і саме зараз</i>.</p>
+      <p>Цей конспект — структурований виклад лекцій 1–5 курсу з розвитку рослин: від <b>модельних об'єктів і будови геномів</b>, через <b>регуляцію експресії</b> та <b>генну інженерію</b> (агробактерія, репортери, CRISPR), до <b>позиційного контролю</b> морфогенезу. Для кожного розділу є схеми, фото з відкритих джерел та інтерактивні моделі, з якими можна «погратися» — змінити параметри й побачити наслідки.</p>
+      <div class="mg-resume" id="mg-resume">Ви зупинилися на розділі <a href="#l1-1">…</a><button type="button" aria-label="Сховати">✕</button></div>
+    </div>
+    <div>
+      <ul class="mg-how">
+        <li><b>☰</b><span><b>Зміст зліва</b> показує, де ви є, і заповнюється під час читання. На телефоні — кнопка «Зміст» на панелі.</span></li>
+        <li><b>①–⑤</b><span><b>Кружечки лекцій</b> на липкій панелі — швидкий перехід. Стрілки ▲▼ (або клавіші <kbd>[</kbd> <kbd>]</kbd>) — розділ за розділом.</span></li>
+        <li><b>🔍</b><span><b>Пошук</b> по всьому тексту (клавіша <kbd>/</kbd>); натискання на будь-який термін також шукає його в конспекті.</span></li>
+        <li><b>▣</b><span><b>«Одна лекція»</b> ховає решту лекцій — зручно, коли готуєтеся до однієї теми.</span></li>
+        <li><b>▶</b><span>Мітки <b>▶ 00:15</b> біля заголовків відкривають відповідний фрагмент відеолекції на YouTube.</span></li>
+      </ul>
+    </div>
+  </div>
+  <div class="mg-author" style="margin-top:18px"><span><b>Автор курсу:</b> Чуб Володимир Вікторович — доктор біологічних наук, професор СУНЦ МДУ, директор ботанічного саду МДУ, професор кафедри фізіології рослин біологічного факультету МДУ.</span>
+  <span><b>Першоджерело:</b> відеокурс «Молекулярная генетика развития растений», студія Teach-in, біологічний факультет МДУ ім. М. В. Ломоносова, 2024 р. — <a href="https://teach-in.ru/course/molecular-genetics-of-plant-development" target="_blank" rel="noopener">сторінка курсу</a> · <a href="https://www.youtube.com/playlist?list=PLcsjsqLLSfNDNYbaFqyCpooCAWQMpIbej" target="_blank" rel="noopener">плейлист YouTube</a> · <a href="https://openedu.ru/course/msu/MOLECGENETICS/" target="_blank" rel="noopener">OpenEdu</a>.</span>
+  <span>Текст підготовлено українською на основі повних відеолекцій; латинські назви генів, білків, видів і термінів збережено в оригінальному написанні. Лекції 6–13 (ембріогенез, меристеми, листок, епідерміс, квітка, статі, плоди) — у розробці.</span></div>
+</section>
+
+<section class="mg-lec" id="l1" data-lec="1" style="--lc:var(--l1)"><header class="mg-lec__head"><span class="mg-lec__num">1</span><div><span class="kicker">Лекція 1 із 5</span><h2>Модельні об'єкти та геноми</h2><div class="mg-meta"><span>🎬 Відеолекція 15.02.2024 · 1:32:12</span><a href="https://www.youtube.com/watch?v=9XgJ_2DaXDg" target="_blank" rel="noopener">YouTube</a><a href="https://teach-in.ru/lecture/2024-02-15-Chub" target="_blank" rel="noopener">Teach-in</a></div></div></header><nav class="mg-mini" aria-label="Розділи лекції 1"><b>У цій лекції</b><ol><li><a href="#l1-1"><span>1.1</span>Арабідопсис як модельний об'єкт</a></li><li><a href="#l1-2"><span>1.2</span>Геноми рослин</a></li><li><a href="#l1-3"><span>1.3</span>Міжвидова гібридизація та поліплоїдія</a></li><li><a href="#l1-4"><span>1.4</span>Ретроелементи в геномі рослин</a></li><li><a href="#l1-5"><span>1.5</span>ДНК-транспозони. Система Активатор–Дисоціатор</a></li><li><a href="#l1-6"><span>1.6</span>Інші повторювані елементи геному</a></li><li><a href="#l1-7"><span>1.7</span>Гени та регуляторні послідовності</a></li></ol></nav><section class="mg-sec" id="l1-1" data-title="Арабідопсис як модельний об&#x27;єкт" data-n="1.1"><h3 class="mg-h"><a class="mg-anchor" href="#l1-1" aria-label="Посилання на розділ"><span class="n">1.1</span></a><span class="mg-h__t">Арабідопсис як модельний об'єкт</span><a class="mg-tc" href="https://www.youtube.com/watch?v=9XgJ_2DaXDg&amp;t=15s" target="_blank" rel="noopener" title="Відкрити цей фрагмент відеолекції на YouTube">▶ 00:15</a></h3><div class="prose mg-prose"><p><strong>Про курс.</strong> Молекулярна генетика розвитку рослин — інтегральна дисципліна на стику генетики, молекулярної біології, фізіології та анатомії рослин. Вона пояснює, як формуються морфологічні й анатомічні ознаки рослини і які молекулярні механізми за цим стоять. У МДУ курс читають на старших курсах, коли студенти вже прослухали генетику, молекулярну біологію, анатомію та фізіологію рослин.</p>
+<p><strong>Історія назви <em>Arabidopsis thaliana</em>.</strong></p>
+<ul>
+<li>Рослина непоказна, настільки непомітна, що навіть не має народної назви (хоча росте й на території Східної Європи).</li>
+<li><strong>1577 р.</strong> — лікар <strong>Йоганн Таль</strong> знайшов її в горах Гарц (Німеччина) і описав як <em>Pilosella siliquosa</em> («пухнаста стручкова»: опушене листя + плоди-стручки). Це ще донаукова, добінарна номенклатура.</li>
+<li><strong>1753 р.</strong> — <strong>Карл Лінней</strong> перейменував рослину на <em>Arabis thaliana</em> (резуха Таля) на честь першовідкривача.</li>
+<li><strong>1842 р.</strong> — під час ревізії роду <em>Arabis</em> <strong>Густав Гейнгольд (G. Heynhold)</strong> виділив рід <em>Arabidopsis</em>; повна назва — <em>Arabidopsis thaliana</em> (L.) Heynh. (у дужках — автор першого опису, далі — автор нової комбінації).</li>
+</ul>
+<p><strong>Систематичне положення.</strong> Покритонасінні → дводольні → порядок Капустоцвіті (Brassicales) → родина Капустяні / Хрестоцвіті (Brassicaceae). Рід невеликий — близько 11 видів.</p>
+<p><strong>Екологія.</strong> Арабідопсис — <strong>ефемер</strong>: заселяє місця з порушеним трав'яним покривом, де вегетаційний період дуже короткий (рання весна чи пізня осінь). За короткий час рослина проходить повний цикл до насіння, а далі насіння перечікує несприятливий період у ґрунті.</p>
+<p><strong>Вимоги до «рослинної дрозофіли» (за М. І. Вавиловим)</strong> і відповідність їм арабідопсису:</p>
+<div class="data-wrap"><table class="data-table mg-table">
+<thead>
+<tr>
+<th>Критерій Вавилова</th>
+<th>Арабідопсис</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Короткий вегетаційний період</td>
+<td>✔ 1–1,5 міс.; кілька поколінь на рік</td>
+</tr>
+<tr>
+<td>Насіння без періоду спокою</td>
+<td>✔ у лабораторії схожість відновлюється за 1–2 тижні</td>
+</tr>
+<tr>
+<td>Невибагливість до умов вирощування</td>
+<td>✔ росте в лабораторії й теплиці, розмножується насінням</td>
+</tr>
+<tr>
+<td>Добре помітні ознаки</td>
+<td>± потрібна лупа/оптика</td>
+</tr>
+<tr>
+<td>Можливість тривалого самозапилення (інбредні лінії)</td>
+<td>± квітки дрібні, кастрація вимагає оптики й тонких навичок</td>
+</tr>
+<tr>
+<td>Мало хромосом (мало груп зчеплення)</td>
+<td>✔ лише 5 пар хромосом (2n = 10)</td>
+</tr>
+<tr>
+<td>Велика різноманітність рас</td>
+<td>✔ багато фізіологічно й морфологічно відмінних рас (екотипів)</td>
+</tr>
+<tr>
+<td>Дрібні розміри</td>
+<td>✔ багато рослин на малій площі</td>
+</tr>
+</tbody>
+</table></div>
+<p><strong>Історія становлення моделі.</strong></p>
+<ul>
+<li><strong>1935 р.</strong> — експедиція під керівництвом <strong>Н. Титової</strong>, спрямована Вавиловим на пошук «ботанічної дрозофіли», публікує звіт у журналі «Советская ботаника», де арабідопсис уперше названо перспективним об'єктом генетики. Поряд згадано інші ефемери. Через утиски генетики в СРСР ці роботи не мали продовження.</li>
+<li>(Додатково: у Німеччині <strong>Фрідріх Лайбах</strong> ще 1943 р. обґрунтував придатність арабідопсису як модельного об'єкта — у лекції не згадано.)</li>
+<li><strong>Георг (Джордж) Редеї</strong> (угорського походження) зібрав колекцію європейських рас; 1956–1957 рр. виїхав до США, де працював в аграрному університеті в <strong>Колумбії (штат Міссурі)</strong>, викладав курс бур'янів, а арабідопсис вирощував у теплиці «як хобі», відбирав і схрещував раси, накопичив цінну колекцію мутантів. Коли до арабідопсису прийшла популярність, дослідник уже захворів на хворобу Альцгеймера.</li>
+<li><strong>Маартен Корнеф (M. Koornneef)</strong>, Нідерланди: 1982 р. захистив дисертацію з арабідопсису, багато працював із мутагенезом, побудував першу генетичну карту (76 ознак/маркерів). Його колекція мутантів — одна з основних у світі.</li>
+</ul>
+<p><strong>Основні раси (екотипи) арабідопсису.</strong></p>
+<ul>
+<li><strong>Columbia (Col)</strong> — відібрана в США (Колумбія, Міссурі) з колекції Редеї; найпопулярніший «дикий тип», його геном секвеновано першим.</li>
+<li><strong>Landsberg (Ler, <em>Landsberg erecta</em>)</strong> — низькоросла компактна раса; несе мутацію <em>erecta</em> (карликовість), тому її не можна вважати «чистим» диким типом — під час аналізу мутацій треба враховувати взаємодію з цим фоном.</li>
+<li><strong>Wassilewskija (Ws)</strong> — виведена в Польщі (за лекцією; за іншими даними — походить з Білорусі/Росії).</li>
+<li><strong>Cape Verde Islands (Cvi)</strong> — з островів Зеленого Мису.</li>
+<li><strong>Dijon (Di)</strong> — з околиць Діжона (Франція; поля Міністерства сільського господарства, регіон гірчиці). Раса передана МДУ, де з 1980-х на кафедрі генетики її піддавали радіаційному та хімічному мутагенезу. Московська лінія, що помітно відрізняється від французької, отримала назву <strong>Dijon-M</strong>.</li>
+</ul>
+<p><strong>Ареал.</strong> Сучасний ареал — від Канади й Норвегії на півночі (є «озимі» раси, що проростають восени й цвітуть навесні) до пустель і гір Середньої Азії. Рослина поширюється з людиною (дороги, частинки ґрунту на взутті, шинах тощо) — фактично синантропний бур'ян.</p>
+<p><strong>Незручності моделі.</strong> Багато мутантів стерильні, а вегетативно зберегти мутацію важко: однорічник після плодоношення гине (програмована загибель). Тому для порівняння використовують споріднені види:</p>
+<ul>
+<li><strong><em>Arabis</em> (резуха)</strong> — багаторічники; можна вегетативно розмножувати мутантів; порівняння з однорічним арабідопсисом допомагає знайти гени багаторічності, перезимівлі тощо.</li>
+<li><strong><em>Thellungiella halophila</em> (= <em>Eutrema</em>)</strong> — галофіт солончаків; модель для пошуку генів солестійкості (арабідопсис солі не витримує).</li>
+<li><strong>Промислові хрестоцвіті</strong>: <strong>ріпак</strong> (головна олійна культура помірного поясу; результати з арабідопсису легко переносяться на ріпак для створення ГМ-сортів), <strong>капуста</strong> (генна інженерія в її селекції майже не застосовується, але арабідопсис слугує референсом).</li>
+</ul>
+</div></section>
+<section class="mg-sec" id="l1-2" data-title="Геноми рослин" data-n="1.2"><h3 class="mg-h"><a class="mg-anchor" href="#l1-2" aria-label="Посилання на розділ"><span class="n">1.2</span></a><span class="mg-h__t">Геноми рослин</span><a class="mg-tc" href="https://www.youtube.com/watch?v=9XgJ_2DaXDg&amp;t=889s" target="_blank" rel="noopener" title="Відкрити цей фрагмент відеолекції на YouTube">▶ 14:49</a></h3><div class="prose mg-prose"><p>Рослинна клітина має <strong>три геноми</strong>:</p>
+<div class="data-wrap"><table class="data-table mg-table">
+<thead>
+<tr>
+<th>Геном</th>
+<th>Структура</th>
+<th>Розмір</th>
+<th>Особливості</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Ядерний</strong></td>
+<td>лінійні хромосоми</td>
+<td>від ~100 Мб до десятків Гб (ялиця/хвойні — до ~20 Гб)</td>
+<td>розмір варіює на порядки навіть у межах родини й не залежить від життєвої форми (є дерева й трави і з малими, і з великими геномами)</td>
+</tr>
+<tr>
+<td><strong>Пластидний (хлоропластний)</strong></td>
+<td>кільцевий, прокаріотичного типу</td>
+<td>стабільний: ~120–170 (до 200) кб</td>
+<td>у кожній пластиді 25–50+ копій ДНК, пластид у клітині — до сотні; при виділенні ДНК із зеленого листя пластидної ДНК дуже багато, тому для ядерних досліджень беруть етиольовані або незелені тканини</td>
+</tr>
+<tr>
+<td><strong>Мітохондріальний</strong></td>
+<td>кільця (часто складна мультикільцева організація)</td>
+<td>від ~130 кб до гігабазних значень</td>
+<td>чіткої кореляції з систематикою чи способом життя немає</td>
+</tr>
+</tbody>
+</table></div>
+<p>Одиниці: пара нуклеотидів (bp), кілобаза (kb = 10³ bp), мегабаза (Mb = 10⁶), гігабаза (Gb = 10⁹).</p>
+<p><strong>Порівняння ядерних геномів:</strong></p>
+<div class="data-wrap"><table class="data-table mg-table">
+<thead>
+<tr>
+<th>Вид</th>
+<th>Розмір геному (≈)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><em>Arabidopsis thaliana</em></td>
+<td>~135 Мб, ~25–27 тис. генів (секвеновано 2000 р.)</td>
+</tr>
+<tr>
+<td>Рис</td>
+<td>~400 Мб</td>
+</tr>
+<tr>
+<td>Томат</td>
+<td>~900 Мб</td>
+</tr>
+<tr>
+<td>Кукурудза</td>
+<td>~2,3 Гб</td>
+</tr>
+</tbody>
+</table></div>
+<p>Культурні рослини, як правило, мають значно більші геноми, ніж модельний об'єкт; малий геном арабідопсису робить його зручним: розібратися в меншій «ємності» простіше, а потім результати переносять на складніші геноми.</p>
+<p><strong>Приклад родини Пасльонових</strong> — розмір геному зростає в ряду картопля (2n = 48, ~0,8 Гб) → томат (~0,9 Гб) → баклажан (менше хромосом, але більше ДНК) → петунія (2n = 14, але великий геном) → тютюн (~4,5 Гб) → <strong>червоний перець</strong> (найбільший серед «природних» геномів родини). Тобто кількість хромосом і розмір геному не корелюють прямо.</p>
+</div></section>
+<section class="mg-sec" id="l1-3" data-title="Міжвидова гібридизація та поліплоїдія" data-n="1.3"><h3 class="mg-h"><a class="mg-anchor" href="#l1-3" aria-label="Посилання на розділ"><span class="n">1.3</span></a><span class="mg-h__t">Міжвидова гібридизація та поліплоїдія</span><a class="mg-tc" href="https://www.youtube.com/watch?v=9XgJ_2DaXDg&amp;t=1244s" target="_blank" rel="noopener" title="Відкрити цей фрагмент відеолекції на YouTube">▶ 20:44</a></h3><div class="prose mg-prose"><p>Міжвидова гібридизація з подальшою поліплоїдизацією стрибкоподібно збільшує геном; далі в еволюції непотрібні послідовності поступово втрачаються, і геном стабілізується на новому рівні (числа хромосом і кількості ДНК). Багато культурних рослин у природі не трапляються саме тому, що вони — гібриди.</p>
+<p><strong>Задокументовані приклади:</strong></p>
+<ul>
+<li><strong>Тютюн курильний (<em>Nicotiana tabacum</em>)</strong> — алотетраплоїд, що об'єднує геноми <em>N. sylvestris</em> і <em>N. tomentosiformis</em> (по 24 хромосоми від кожного), звідси великий геном.</li>
+<li><strong>Слива домашня</strong> — за гіпотезою М. І. Вавилова походить від схрещування <strong>терну й аличі</strong>; має вдвічі більше хромосом, ніж батьківські види. За дорученням Вавилова схрещування було відтворено: отримано аналог домашньої сливи (з проблемами фертильності, але частину фертильних зразків вдалося відібрати).</li>
+<li><strong>Суниця ананасна (садова «полуниця», <em>Fragaria × ananassa</em>)</strong> — історія, що відбулася «на очах людини»: до Франції з Чилі довезли лише жіночі рослини <em>F. chiloensis</em>; найкращий урожай вони давали поряд із <em>F. virginiana</em>; з насіння таких гібридів селекціонери отримали садову суницю. На початку XX ст. її схрестили з <strong>мускусною суницею (<em>F. moschata</em>)</strong> — виник гібрид <strong>«земклуніка»</strong> (прямостоячі квітконоси, більше вусів, менша кислотність, сильніший аромат, щільніші плоди).</li>
+<li><strong>Пшениці</strong> — найскладніша історія:
+<ul>
+<li>вихідна — дика однозернянка (<em>Triticum boeoticum</em>, геном A), Мала Азія, Греція, порушені місця;</li>
+<li>спонтанна гібридизація на полях давньої людини з бур'янами роду <em>Aegilops</em> (циліндричні колоски) дала форми з вищою врожайністю й крупнішим зерном;</li>
+<li><em>T. urartu</em> (Aᵘ) × <em>Ae. speltoides</em> (B/G) → <strong>тверді (тетраплоїдні) пшениці</strong> (AABB);</li>
+<li>тетраплоїд × <em><strong>Ae. tauschii</strong></em> (<em>Ae. squarrosa</em>, «розчепірений», геном D) → <strong>м'яка пшениця</strong> (гексаплоїд AABBDD), утричі більше хромосом, ніж у вихідної диплоїдної пшениці;</li>
+<li>наслідок: багато генів представлені трьома гомеологічними копіями, не всі з них працюють; гібрид має гетерозисну силу, більшу врожайність і фізіологічну пластичність, але вивчати такі об'єкти складно.</li>
+</ul>
+</li>
+<li><strong>Грицики (<em>Capsella bursa-pastoris</em>)</strong> — приклад серед дикорослих: у Середземномор'ї відбулася гібридизація між <em>C. grandiflora</em> (Греція, Албанія) і <em>C. rubella</em> (Центральна Європа). Алополіплоїд із подвоєним набором хромосом від двох видів має вищу насіннєву продуктивність і пластичність і став космополітним бур'яном.</li>
+<li><strong>Банани</strong> — вихідні види <em>Musa acuminata</em> (тропіки) та <em>M. balbisiana</em> (у лекції — <em>M. paradisiaca</em>) утворювали насіння (плоди поїдали тварини й поширювали насіння). Гібридні культивари різного походження; закріплювали ознаку безнасінності. Найпоширеніший сорт <strong>Кавендиш — триплоїд</strong>, насіння не утворює і розмножується вегетативно.</li>
+<li><strong>Лілійник рудий (<em>Hemerocallis fulva</em>)</strong> — триплоїд, що виник у Китаї від схрещування диплоїдних і тетраплоїдних форм; караванними шляхами потрапив до Візантії й Середземномор'я. Щонайменше ~2000 років не утворює насіння, але широко поширився вегетативно (люди викидають надлишки з ділянок — виникають здичавілі зарості).</li>
+</ul>
+<p><strong>Терміни:</strong> <em>автополіплоїдія</em> (подвоєння власного геному), <em>алополіплоїдія</em> (об'єднання геномів різних видів), гомеологічні гени, гетерозис.</p>
+</div></section>
+<section class="mg-sec" id="l1-4" data-title="Ретроелементи в геномі рослин" data-n="1.4"><h3 class="mg-h"><a class="mg-anchor" href="#l1-4" aria-label="Посилання на розділ"><span class="n">1.4</span></a><span class="mg-h__t">Ретроелементи в геномі рослин</span><a class="mg-tc" href="https://www.youtube.com/watch?v=9XgJ_2DaXDg&amp;t=1849s" target="_blank" rel="noopener" title="Відкрити цей фрагмент відеолекції на YouTube">▶ 30:49</a></h3><div class="prose mg-prose"><p><strong>Склад геному.</strong> Значну частку (іноді понад половину) займають <strong>ретроелементи / ретротранспозони</strong> — саме вони найбільше відповідають за мінливість розмірів геному навіть у близьких видів.</p>
+<p><strong>Принцип «copy–paste».</strong> Активна копія транскрибується → з РНК-копії зворотна транскриптаза синтезує ДНК → двоколанцюгова ДНК-копія вбудовується в нове місце. Тому за наявності активних копій елементи самі себе розмножують.</p>
+<p><strong>«Егоїстична ДНК».</strong> Ретроелементи не дають рослині селективної переваги й не беруть участі в регуляції — «живуть для себе» і засмічують геном. Геном з ними бореться (видаляє непотрібні послідовності, «замовчує» їх), а вони знову розмножуються.</p>
+<p><strong>Будова й білок.</strong> Зазвичай одна рамка зчитування кодує поліпротеїн із кількома доменами:</p>
+<ul>
+<li><strong>протеаза</strong> — розрізає поліпротеїн на функціональні білки;</li>
+<li><strong>зворотна транскриптаза</strong> — синтез ДНК на матриці РНК;</li>
+<li><strong>РНКаза H</strong> — видаляє РНК із гібрида РНК/ДНК;</li>
+<li><strong>інтеграза</strong> (ендонуклеазна активність) — робить розріз і вбудовує нову копію.</li>
+</ul>
+<p><strong>Життєвий цикл:</strong> транскрипція активної копії → зворотна транскрипція → видалення РНК і добудова другого ланцюга ДНК → розріз у новому місці й вставка.</p>
+<p><strong>Класифікація.</strong></p>
+<ul>
+<li>Елементи обрамлені <strong>повторами</strong>, які зберігають цілісність інформації.</li>
+<li><strong>LTR-ретротранспозони</strong> (з довгими кінцевими прямими повторами, <em>long terminal repeats</em>): довжина LTR — від ~76 bp до ~5 kb, довжина елементів — до ~24 kb. За положенням гена інтегрази поділяються на:
+<ul>
+<li><strong>Ty3/Gypsy</strong> (уперше описані в дріжджів, потім у дрозофіли): PR – RT – RNase H – INT;</li>
+<li><strong>Ty1/Copia</strong>: PR – INT – RT – RNase H.
+Нагадують ретровіруси, але не мають білка капсиду — не пакуються й не переходять між рослинами; живуть у межах клітини.</li>
+</ul>
+</li>
+<li><strong>Не-LTR ретроелементи:</strong> <strong>LINE</strong> (<em>long interspersed nuclear elements</em>, до ~7 kb, автономні — кодують власні білки) і <strong>SINE</strong> (<em>short interspersed nuclear elements</em>, неавтономні — використовують ферменти LINE).</li>
+</ul>
+<p>Під час зворотної транскрипції накопичуються помилки, тому активних копій мало, а більшість геному засмічено неактивними копіями, які вже не кодують повноцінного білка.</p>
+<p><strong>Приклад петунії.</strong> Ретротранспозони займають до ~40 % геному, ~4,5 тис. копій. FISH-зонди до Gypsy-подібних елементів фарбують практично всі хромосоми, з концентрацією в центромерних ділянках. Число копій варіює навіть між сортами та особинами, тому розмір геному завжди наближений.</p>
+<p><strong>Ендогенні параретровіруси петунії.</strong> Окрім ретроелементів, геном гібридної петунії містить вбудовані копії вірусів родини <strong>Caulimoviridae</strong> (як вірус мозаїки цвітної капусти, CaMV) — <strong>вірус просвітлення жилок петунії (PVCV)</strong>. Порівняно з ретроелементами вони мають додаткові білки:</p>
+<ul>
+<li><strong>білок руху (movement protein)</strong> — взаємодіє з системою міжклітинного транспорту (плазмодесмами);</li>
+<li><strong>білок оболонки (coat protein)</strong> — утворення капсиду.
+Інтегровані копії локалізуються переважно в перицентромерних ділянках (FISH), тоді як, наприклад, гени 5S рРНК — у строго визначених ділянках (на хромосомі 2).</li>
+</ul>
+<p><strong>Історія «завірусованості».</strong> Дикі види (напр., <em>Petunia parodii</em>) PVCV не містять. У XIX ст. петунію розмножували як теплолюбний багаторічник живцями — так у геномі накопичилися віруси: ~50 ділянок із вірусними послідовностями, з них лише ~4 повноцінні копії (у менш культивованих — 1). Петунія також «нахапалася» фрагментів вірусів з інших рослин (CaMV, віруси рису, банана, троянди, винограду) — ймовірно, через брудний інструмент під час живцювання; повних копій цих вірусів немає.</p>
+<p><strong>Сайленсинг.</strong> Щоб жити на вірусному фоні, рослина використовує <strong>сайленсинг</strong> («замовчування») надто активних послідовностей. Ефективність сайленсингу знижується з віком:</p>
+<ul>
+<li>1-й міс. культивування — низький рівень вірусної РНК;</li>
+<li>2-й міс. — ×2; 3-й — ×17; 4-й — ~×100 000.
+Сорти петунії із «зірчастим» забарвленням: білі смуги — результат сайленсингу гена <strong>халконсинтази</strong> (CHS). У молодих рослин смуги чіткі; у старих сайленсинг слабшає, квітки стають суцільно малиновими, а одночасно проявляються симптоми вірусної інфекції (світлі жилки, деформовані листки та пелюстки).</li>
+</ul>
+<p><strong>Стрес активує віруси.</strong> Експеримент: регулярне обрізання рослин (для компактного габітусу) через 3 міс. призвело до симптомів у ~30 % рослин; без пошкоджень, на доброму агрофоні — лише у 2–3 %. Посуха, перегрів, механічні пошкодження активують ендогенні віруси.</p>
+</div></section>
+<section class="mg-sec" id="l1-5" data-title="ДНК-транспозони. Система Активатор–Дисоціатор" data-n="1.5"><h3 class="mg-h"><a class="mg-anchor" href="#l1-5" aria-label="Посилання на розділ"><span class="n">1.5</span></a><span class="mg-h__t">ДНК-транспозони. Система Активатор–Дисоціатор</span><a class="mg-tc" href="https://www.youtube.com/watch?v=9XgJ_2DaXDg&amp;t=2924s" target="_blank" rel="noopener" title="Відкрити цей фрагмент відеолекції на YouTube">▶ 48:44</a></h3><div class="prose mg-prose"><p><strong>Принцип «cut–paste».</strong> Нерепліктивні транспозони вирізаються зі старого місця й переносяться в нове. Їх відносно небагато, але їхня активність впливає на безліч ознак залежно від того, в яке генне оточення вони потрапили.</p>
+<p><strong>Відкриття Барбари Мак-Клінток (1940-ві; публікації 1946–1950).</strong> Цитогенетик, вивчаючи строкате забарвлення зернівок кукурудзи, помітила хромосому, яка постійно ламається в тому самому місці. Локус назвала <strong>Ds (Dissociation, дисоціатор)</strong>. Дисоціатор працює лише на фоні іншого локусу — <strong>Ac (Activator, активатор)</strong>.</p>
+<ul>
+<li>У відламаному плечі хромосоми є алель червоного забарвлення; у гетерозиготи (друга хромосома несе рецесивний алель) втрата плеча дає білі сектори → строкатість.</li>
+<li>Без Ac зернівки забарвлені рівномірно.</li>
+<li>Наукова спільнота довго не вірила (геном вважали стабільним), доки подібні елементи не знайшли в інших організмів і не охарактеризували молекулярно. <strong>Нобелівська премія — 1983 р.</strong> Мак-Клінток очолювала Генетичне товариство Америки, стала «живою легендою», на її честь випущено поштові марки.</li>
+</ul>
+<p><strong>Будова системи Ac/Ds.</strong></p>
+<ul>
+<li><strong>Ac</strong> (~4,6 kb) обрамлений короткими <strong>кінцевими інвертованими повторами</strong> (TIR, ~11 bp), які утворюють петлю. Усередині — ген <strong>транспозази</strong> (~3,5 kb).</li>
+<li>Транспозаза впізнає TIR, вирізає елемент (з 1–2 додатковими нуклеотидами) і вбудовує його в нове місце, часто в межах тієї ж хромосоми.</li>
+<li><strong>Ds</strong> — широкий клас дефектних елементів: зіпсована транспозаза або взагалі лише TIR. Переміщуються тільки за наявності транспозази від Ac.</li>
+<li>TIR гомологічні межам інтронів, тож вставка в ген може «вирізатися» під час сплайсингу.</li>
+<li>У геномі кукурудзи — 2–4 активні Ac (у деяких ліній — жодного) і до ~50 Ds різної будови.</li>
+</ul>
+<p><strong>Фенотипові наслідки залежно від місця вставки:</strong></p>
+<div class="data-wrap"><table class="data-table mg-table">
+<thead>
+<tr>
+<th>Позиція вставки</th>
+<th>Наслідок вставки</th>
+<th>Наслідок виходу (excision)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1. Між промотором і кодувальною частиною</td>
+<td>порушення експресії (віддаляє промотор)</td>
+<td><strong>відновлення функції</strong> → плями дикого типу на мутантному фоні</td>
+</tr>
+<tr>
+<td>2. В екзоні</td>
+<td>може вирізатися зі сплайсингом, ефект малий</td>
+<td>«слід» вирізання (втрата/вставка 1–2 нт) → <strong>зсув рамки</strong> → мутація</td>
+</tr>
+<tr>
+<td>3. В інтроні</td>
+<td>видаляється під час сплайсингу, ефекту немає</td>
+<td>зазвичай безпечно</td>
+</tr>
+</tbody>
+</table></div>
+<p>Крім того, Ds може спричиняти розриви та втрату фрагментів хромосом (втрата алелів, як у класичному досліді).</p>
+<p><strong>«Транспозонний фенотип».</strong> Строкаті плями, малюнок яких не повторюється від квітки до квітки (стохастичність). Розмір плями залежить від моменту «стрибка»: рано в розвитку — великий сектор, пізно — точки й штрихи.</p>
+<ul>
+<li><strong>Tam</strong> — транспозони левиного зіва (<em>Antirrhinum majus</em>);</li>
+<li><strong>Tmg</strong> (у лекції — TMG) — транспозони нічної красуні (<em>Mirabilis jalapa</em>): незалежна активність двох транспозонів у генах антоціанів і жовтих пігментів дає комбіновані рожеві й жовті сектори;</li>
+<li>приклади: строката насіннєва шкірка квасолі, білі плями в листі настурції, червоні — в колеуса, жовті штрихи на червоній троянді. Троянда: транспозон, імовірно, в екзоні гена червоного забарвлення — вихід руйнує ген, тому червоний фон «розсипається» на жовті/білі плями; суцільно біла троянда вже стабільна. Колеус: вихід відновлює функцію → червоні плями; суцільно червоний колеус — транспозон пішов.</li>
+</ul>
+<p><strong>Регуляція активності.</strong> Транспозон активується разом з геном, у якому сидить. Стани: <strong>неактивний</strong> (метилювання, модифікації хроматину) → <strong>криптичний</strong> (у гетерохроматині, рідко використовувана ділянка) → <strong>активний</strong> (коли ділянка «розплітається» і транскрибується). Тому найбільш мутабельні саме активно працюючі ділянки геному.</p>
+<p><strong>Транспозони як інструмент генетики.</strong></p>
+<ul>
+<li><strong>Термочутливі алелі:</strong> транспозаза активна при ~16 °C і неактивна при ~28 °C. Підвищення температури «заморожує» алель: якщо смугастість зникає й нові квітки однотонні — транспозон точно сидить у гені забарвлення.</li>
+<li>Транспозони програмують і долю органів: ген <em><strong>DEFICIENS</strong></em> левиного зіва — в одній квітці сектори з нормальними й недорозвиненими пелюстками; <em><strong>FLORICAULA</strong></em> (контроль квітки й суцвіття) теж уперше виявлено завдяки транспозону.</li>
+<li>До винайдення ПЛР (поч. 1990-х) <strong>транспозонне мічення (transposon tagging)</strong> було головним способом клонування генів; тому левиний зів (багато активних транспозонів) був зручним об'єктом.</li>
+<li>В арабідопсису власні ДНК-транспозони слабоактивні; можна пересаджувати чужі системи (напр., Ac/Ds), і вони працюватимуть. Перевага арабідопсису — <strong>низька копійність повторів</strong> у геномі.</li>
+</ul>
+</div></section>
+<section class="mg-sec" id="l1-6" data-title="Інші повторювані елементи геному" data-n="1.6"><h3 class="mg-h"><a class="mg-anchor" href="#l1-6" aria-label="Посилання на розділ"><span class="n">1.6</span></a><span class="mg-h__t">Інші повторювані елементи геному</span><a class="mg-tc" href="https://www.youtube.com/watch?v=9XgJ_2DaXDg&amp;t=4117s" target="_blank" rel="noopener" title="Відкрити цей фрагмент відеолекції на YouTube">▶ 1:08:37</a></h3><div class="prose mg-prose"><ul>
+<li><strong>ДНК низької складності, сателітні послідовності</strong> — частково не досліджені, займають різну частку геному.</li>
+<li>Без повторів жити неможливо:
+<ul>
+<li><strong>теломери</strong> — кінцеві повтори; при реплікації хромосома недочитується й вкорочується; спеціальні ферменти (теломераза) добудовують кінці, а відсутність кодувальних послідовностей у теломерах захищає важливі гени від втрати;</li>
+<li><strong>центромерні/кінетохорні повтори</strong> — до кінетохора прикріплюється багато мікротрубочок, для організації такої ділянки потрібна однорідна повторювана ДНК.</li>
+</ul>
+</li>
+</ul>
+</div></section>
+<section class="mg-sec" id="l1-7" data-title="Гени та регуляторні послідовності" data-n="1.7"><h3 class="mg-h"><a class="mg-anchor" href="#l1-7" aria-label="Посилання на розділ"><span class="n">1.7</span></a><span class="mg-h__t">Гени та регуляторні послідовності</span><a class="mg-tc" href="https://www.youtube.com/watch?v=9XgJ_2DaXDg&amp;t=4226s" target="_blank" rel="noopener" title="Відкрити цей фрагмент відеолекції на YouTube">▶ 1:10:26</a></h3><div class="prose mg-prose"><p><strong>Частка геному.</strong> У Пасльонових — від чверті до третини. Найбільш досліджувана й найцінніша частина.</p>
+<p><strong>Мультигенні родини.</strong> Гени об'єднуються в родини за функцією та структурою; великі родини поділяють на класи. Причини множинності:</p>
+<ul>
+<li>потреба в масовому продукті (напр., тандемні повтори генів рРНК для рибосом);</li>
+<li>спеціалізація близьких продуктів у різних клітинах і процесах — основа для морфологічних, анатомічних і біохімічних інновацій. Недостатньо складний геном має обмежені можливості.</li>
+</ul>
+<p><strong>Будова білок-кодуючого гена еукаріотів:</strong> промотор → кодувальна частина (екзони/інтрони) → термінатор. Транскрипція від 5′-кінця; пре-мРНК → сплайсинг → зріла мРНК з <strong>5′-кепом</strong> і <strong>3′-полі(А)-хвостом</strong> (не записаний у ДНК, додається за сигналом термінації; дає стабільність). Прокаріотичні РНК мають на 3′-кінці шпильку; у цитоплазмі еукаріотів такі РНК сприймаються як чужорідні й швидко деградують. Трансляція — від ініціюючого кодону (з контекстом) до стоп-кодону.</p>
+<p><strong>Посттрансляційні етапи:</strong> N-кінцеві сигнальні/транзитні послідовності спрямовують білок у ЕПР, вакуолю, мітохондрії, хлоропласти (для цитозолю лідер відсутній); пре-білок процесується (відщеплення частин), глікозилюється, модифікується → зрілий білок.</p>
+<h4>Номенклатура генів і мутантів (ядерні гени)</h4>
+<p>Існує міжнародна номенклатурна комісія з еукаріотів:</p>
+<ul>
+<li>Ген позначають скороченням <strong>з 1–3 літер</strong>, часто за назвою мутанта або ферменту: <em>AG</em> (<em>AGAMOUS</em>), <em>VDE</em> (віолаксантин-де-епоксидаза). Дослідники прагнуть запам'ятовуваних назв: <em>UFO</em> = <em>UNUSUAL FLORAL ORGANS</em>. Паралельні назви в різних лабораторіях згодом зводять за пріоритетом; зайняту назву змінюють.</li>
+<li><strong>Цифра</strong> одразу після літер, без дефісу: <em>SOC1</em>, <em>CLV1</em>, <em>CLV3</em>, <em>AP1</em>, <em>AP2</em>. Часто (але не завжди!) це члени однієї родини: <em>CLV1</em> (рецепторна кіназа) і <em>CLV3</em> (пептид) — різні родини; <em>AP1</em> (MADS) і <em>AP2</em> (AP2/ERF) — теж.</li>
+<li><strong>Дикий алель</strong> — ВЕЛИКИМИ літерами <em>курсивом</em>: <em>AGAMOUS</em>, <em>AG</em>.</li>
+<li><strong>Мутантний алель</strong> — малими літерами курсивом, номер алеля через дефіс: <em>ag-1</em>, <em>ap2-5</em>, <em>ap2-7</em> (нумерує лабораторія, що отримала мутацію).</li>
+<li>Спрямовані амінокислотні заміни: CLV1(R204F) — аргінін у позиції 204 замінено на фенілаланін (однолітерні коди амінокислот).</li>
+<li><strong>Ортологи з інших видів:</strong> префікс із роду й виду — <em>ZmAG</em> (кукурудза <em>Zea mays</em>), <em>NtAP2</em> (<em>Nicotiana tabacum</em>), <em>Os…</em> (рис <em>Oryza sativa</em>). Увага: <em>Ps</em> може означати і горох (<em>Pisum sativum</em>), і сосну (<em>Pinus sylvestris</em>) — завжди читайте, які об'єкти досліджували.</li>
+<li><strong>Білок</strong> — прямим шрифтом: AG, AP2 (у ядерних — зазвичай великими літерами).</li>
+<li>Гени часто названо <strong>за мутантним фенотипом</strong>, тож функція протилежна назві:
+<ul>
+<li><em>PIN-FORMED (PIN1)</em> — мутант має голий «шпилькоподібний» стебло без квіток; функція гена — забезпечувати утворення органів (транспорт ауксину);</li>
+<li><em>CAULIFLOWER</em> — у мутанта суцвіття з недорозвинених квіток (як цвітна капуста); ген забезпечує нормальний розвиток квіток;</li>
+<li><em>SEPALLATA</em> — у мутанта всі органи квітки перетворюються на чашолистки (sepals); ген потрібен для розвитку пелюсток, тичинок і плодолистків.</li>
+</ul>
+</li>
+</ul>
+<p><strong>Бокси та домени.</strong></p>
+<ul>
+<li><strong>Бокс</strong> — консервативна послідовність ДНК (у промоторі чи кодувальній частині), що вказує на спорідненість або функцію:
+<ul>
+<li><strong>TATA-бокс</strong> — ~30 нт до старту транскрипції, маркер промотора;</li>
+<li><strong>G-бокс</strong> — промоторний мотив, який зв'язують PIF (<em>phytochrome-interacting factors</em>); гени з G-боксом відповідають на фітохромні сигнали;</li>
+<li><strong>F-бокс</strong> — ділянка ~50 амінокислот в убіквітин-лігазах, забезпечує білок-білкові взаємодії при убіквітинуванні;</li>
+<li><strong>MADS-бокс</strong> — кодує MADS-домен (~56–58 а. к.) факторів транскрипції, що зв'язує ДНК.</li>
+</ul>
+</li>
+<li><strong>Домен</strong> — консервативний фрагмент <strong>білка</strong> (α-спіралі, β-структури, мотиви), що визначає його функцію/взаємодії:
+<ul>
+<li><strong>гомеодомен</strong> — ~60 а. к., зв'язує ДНК (на рівні ДНК відповідна ділянка — <strong>гомеобокс</strong>);</li>
+<li><strong>CHASE-домен</strong> — ~200–230 а. к., у рецепторних кіназах (рецептори цитокінінів);</li>
+<li>ABA-зв'язувальний домен — у рецепторах абсцизової кислоти.</li>
+</ul>
+</li>
+<li>РНК-продукт позначають так само, як ген (зрозуміло з контексту).</li>
+</ul>
+<p><strong>Пластидні й мітохондріальні гени</strong> — за правилами номенклатури прокаріотів (історично дві комісії не домовилися про єдину систему). Спільне: гени — курсивом, білки — прямим шрифтом. Три малі літери + за потреби велика: <em>psaA</em>, <em>atpB</em>, <em>rbcL</em>; білки з великої літери; для численних родин — номер: <em>rps12</em> (рибосомний білок малої субодиниці 12). Окремого позначення для мутантних алелів немає — тож слід пам'ятати, про який геном ідеться.</p>
+<div class="data-wrap"><table class="data-table mg-table">
+<thead>
+<tr>
+<th>Що позначаємо</th>
+<th>Ядерний геном (приклад)</th>
+<th>Пластидний/мітохондріальний (приклад)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Ген дикого типу</td>
+<td><em>AGAMOUS</em>, <em>AG</em>, <em>CLV1</em></td>
+<td><em>rbcL</em>, <em>psaA</em></td>
+</tr>
+<tr>
+<td>Мутантний алель</td>
+<td><em>ag-1</em>, <em>clv1-4</em></td>
+<td>спеціального позначення немає</td>
+</tr>
+<tr>
+<td>Білок</td>
+<td>AG, CLV1</td>
+<td>RbcL, PsaA</td>
+</tr>
+<tr>
+<td>Ортолог іншого виду</td>
+<td><em>ZmAG</em>, <em>OsMADS…</em></td>
+<td>—</td>
+</tr>
+</tbody>
+</table></div>
+</div></section><aside class="mg-terms" id="l1-terms"><h3>Ключові терміни лекції 1</h3><ul class="mg-chips" data-lec="1"><li>модельний об'єкт</li><li>екотип</li><li>ефемер</li><li>алополіплоїдія</li><li>ретротранспозон (LTR, LINE, SINE, Ty1/Copia, Ty3/Gypsy)</li><li>параретровірус (Caulimoviridae, PVCV)</li><li>сайленсинг</li><li>ДНК-транспозон</li><li>транспозаза</li><li>TIR</li><li>Ac/Ds</li><li>transposon tagging</li><li>теломери</li><li>центромера</li><li>мультигенна родина</li><li>бокс</li><li>домен</li></ul></aside><nav class="mg-pn" aria-label="Перехід між лекціями"><span></span><a class="mg-pn__a mg-pn__a--next" href="#l2"><small>Наступна лекція →</small><b>2. Регуляція експресії геному</b></a></nav></section>
+<section class="mg-lec" id="l2" data-lec="2" style="--lc:var(--l2)"><header class="mg-lec__head"><span class="mg-lec__num">2</span><div><span class="kicker">Лекція 2 із 5</span><h2>Регуляція експресії геному</h2><div class="mg-meta"><span>🎬 Відеолекція 22.02.2024 · 51:49</span><a href="https://www.youtube.com/watch?v=5X8dXRRHZjE" target="_blank" rel="noopener">YouTube</a><a href="https://teach-in.ru/lecture/2024-02-22-Chub" target="_blank" rel="noopener">Teach-in</a></div></div></header><nav class="mg-mini" aria-label="Розділи лекції 2"><b>У цій лекції</b><ol><li><a href="#l2-1"><span>2.1</span>Регуляція транскрипції</a></li><li><a href="#l2-2"><span>2.2</span>Різноманіття факторів транскрипції</a></li><li><a href="#l2-3"><span>2.3</span>Білки з WD40-повтором. MBW-комплекс</a></li><li><a href="#l2-4"><span>2.4</span>Синтез антоціанів, гени родини MYB</a></li><li><a href="#l2-5"><span>2.5</span>Ремоделювання хроматину</a></li></ol></nav><section class="mg-sec" id="l2-1" data-title="Регуляція транскрипції" data-n="2.1"><h3 class="mg-h"><a class="mg-anchor" href="#l2-1" aria-label="Посилання на розділ"><span class="n">2.1</span></a><span class="mg-h__t">Регуляція транскрипції</span><a class="mg-tc" href="https://www.youtube.com/watch?v=5X8dXRRHZjE&amp;t=15s" target="_blank" rel="noopener" title="Відкрити цей фрагмент відеолекції на YouTube">▶ 00:15</a></h3><div class="prose mg-prose"><p>На рівень експресії конкретного гена впливають три групи чинників:</p>
+<ol>
+<li><strong>Цис-фактори</strong> — послідовності ДНК, що оточують ген або входять до його складу. Багато їх зосереджено в промоторах: це <strong>регуляторні бокси</strong>, з якими зв'язуються фактори транскрипції.</li>
+<li><strong>Транс-фактори</strong> — <strong>фактори транскрипції (ФТ)</strong>: <em>активатори</em> та <em>репресори</em> (останні, входячи до транскрипційних комплексів, пригнічують активність).</li>
+<li><strong>Стан хроматину</strong> — разом із ФТ до комплексу часто залучаються <strong>фактори ремоделювання хроматину</strong>: ділянка або розпушується (ген і його оточення активуються), або конденсується (ген «виводиться з обігу»).</li>
+</ol>
+</div></section>
+<section class="mg-sec" id="l2-2" data-title="Різноманіття факторів транскрипції" data-n="2.2"><h3 class="mg-h"><a class="mg-anchor" href="#l2-2" aria-label="Посилання на розділ"><span class="n">2.2</span></a><span class="mg-h__t">Різноманіття факторів транскрипції</span><a class="mg-tc" href="https://www.youtube.com/watch?v=5X8dXRRHZjE&amp;t=112s" target="_blank" rel="noopener" title="Відкрити цей фрагмент відеолекції на YouTube">▶ 01:52</a></h3><div class="prose mg-prose"><p>Для арабідопсису побудовано «карту» родин ФТ: кожне коло — родина, площа кола пропорційна кількості генів (від величезних родин до таких, що містять 1–2 гени). ФТ мають <strong>домени</strong>: одні забезпечують специфічне впізнавання регуляторних послідовностей ДНК, інші — білок-білкові взаємодії; часто в одному білку кілька доменів.</p>
+<p><strong>Огляд основних родин:</strong></p>
+<div class="data-wrap"><table class="data-table mg-table">
+<thead>
+<tr>
+<th>Родина</th>
+<th>ДНК-зв'язувальна структура</th>
+<th>Приклади генів і функцій</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Цинкові пальці</strong> (Zn finger)</td>
+<td>атом Zn координований 2 His + 2 Cys; α-спіраль + β-шпилька входять у велику борозну ДНК (форма лише умовно схожа на «палець»)</td>
+<td><em>CONSTANS</em>-подібні (<em>COL</em>) — індукція цвітіння; <em><strong>YABBY</strong></em> — розвиток квітки й листка (абаксіальна ідентичність)</td>
+</tr>
+<tr>
+<td><strong>B3-домен</strong> (~300 а. к. у повному білку; домен переважно β-структурний)</td>
+<td></td>
+<td><strong>ARF</strong> (<em>AUXIN RESPONSE FACTORS</em>) — первинна відповідь на ауксин; споріднені <strong>Aux/IAA</strong> — репресори, що в комплексі з ARF блокують експресію, доки їх не знищить убіквітин-протеасомна система; <strong>VIVIPAROUS1 (VP1)</strong> кукурудзи — відповідь на абсцизову кислоту (АБК)</td>
+</tr>
+<tr>
+<td><strong>Гомеодомен</strong> (~60 а. к.; кодується гомеобоксом ~180 bp)</td>
+<td>3 α-спіралі з петлями</td>
+<td>KNOX, HD-ZIP, WOX тощо</td>
+</tr>
+<tr>
+<td><strong>AP2/ERF</strong> (повтори ~70 а. к.)</td>
+<td>впізнавання ДНК β-складками (є й α-спіраль)</td>
+<td><em>APETALA2</em></td>
+</tr>
+<tr>
+<td><strong>MADS-бокс</strong> (56–58 а. к.)</td>
+<td>тетрамерні комплекси</td>
+<td><em>AGAMOUS</em>, <em>DEFICIENS</em></td>
+</tr>
+<tr>
+<td><strong>MYB</strong> (повтори R1, R2, R3 по ~50 а. к., кожен — 3 α-спіралі)</td>
+<td></td>
+<td>регуляція антоціанів, волосків тощо</td>
+</tr>
+<tr>
+<td><strong>bHLH</strong> (<em>basic helix–loop–helix</em>)</td>
+<td>основна ділянка + спіраль–петля–спіраль; димери</td>
+<td>партнери MYB</td>
+</tr>
+<tr>
+<td><strong>bZIP</strong> (лейцинова «блискавка»)</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><strong>WRKY</strong></td>
+<td>мотив WRKY + Zn</td>
+<td>вторинна відповідь</td>
+</tr>
+</tbody>
+</table></div>
+<p><strong>Гормонзалежні ФТ.</strong></p>
+<ul>
+<li>Мутант кукурудзи <strong><em>vp1</em> (<em>viviparous1</em>)</strong>: зернівка проростає просто в качані — у зародка немає спокою, не накопичуються запасні речовини, відсутнє антоціанове забарвлення алейрону — синдром порушеної відповіді на АБК. Отже, той самий тип домену (B3) використовується для відповіді на різні гормони.</li>
+</ul>
+<p><strong>Гомеодомен.</strong></p>
+<ul>
+<li>Назва — від <strong>гомеозисних</strong> змін у тварин: у дрозофіли мутації комплексу <em>Bithorax</em> дають «дві груди» (замість жужжальців розвивається ще одна пара крил).</li>
+<li>У рослин гомеодомен довго не знаходили, хоча гомеозисні мутації рослин були відомі. Гомологія з тваринами стосується лише самого гомеобоксу/гомеодомену; решта білків дуже відмінна.</li>
+<li>Першими знайшли <strong>KNOX</strong>-гени (від <em>KNOTTED1</em> кукурудзи — «вузлик»: при порушенні меристематична активність з'являється в листках, утворюючи нарости). KNOX контролюють меристематичну активність пагона.</li>
+<li><strong>HD-ZIP</strong> (гомеодомен + лейцинова блискавка) — програма розвитку листка, визначення верхньої/нижньої поверхні.</li>
+<li><strong>WOX</strong> — розмір меристем кореня й пагона, проліферація і диференціація.</li>
+<li>Є родини, що поєднують гомеодомен і цинкові пальці.</li>
+</ul>
+<p><strong>AP2/ERF</strong> — родина, уперше відкрита в рослин. <em>APETALA2</em> («безпелюстковий») контролює розвиток органів квітки: у мутанта <em>ap2</em> зникають пелюстки (та змінюється ідентичність інших органів).</p>
+<p><strong>MADS-бокс.</strong></p>
+<ul>
+<li>Історія: у арабідопсису (мутант <em><strong>agamous</strong></em>) і левиного зіва (мутант <em><strong>deficiens</strong></em>) знайшли гени з доменом, спільним лише для двох відомих на той час білків: <strong>MCM1</strong> дріжджів (підтримання мініхромосом) і <strong>SRF</strong> людини (фактор відповіді на сироватку). Акронім <strong>MADS</strong> = <strong>M</strong>CM1 + <strong>A</strong>G + <strong>D</strong>EF + <strong>S</strong>RF.</li>
+<li>Функціонують як <strong>тетрамери</strong> різних MADS-білків, що зв'язуються з ДНК.</li>
+<li>Контролюють ідентичність органів квітки: мутант <em>agamous</em> — <strong>махровість</strong>: тичинки й маточка не розвиваються, у центрі квітки утворюються нові пелюстки й чашолистки.</li>
+<li>Велика родина, яку рослини використовують для регуляції багатьох процесів.</li>
+</ul>
+<p><strong>MYB.</strong></p>
+<ul>
+<li>Назва — від <strong>вірусу мієлобластозу птахів</strong> (<em>avian myeloblastosis virus</em>), онкоген якого (v-<em>myb</em>) спричиняє лейкоз у птахів (неконтрольований поділ лімфоїдних клітин, загибель птаха).</li>
+<li>Будова: до трьох тандемних повторів (R1, R2, R3) по ~50 а. к., кожен із трьох α-спіралей. Не всі члени мають повну структуру: є R2R3-, R1-тип тощо; до повторів приєднані різні регуляторні частини, тож функції різняться.</li>
+<li>У хребетних лише 3 гени з повними R1R2R3 (контроль проліферації і диференціації).</li>
+<li>У арабідопсису — ~200 генів (198) із MYB-повторами, а з м'якшим критерієм гомології — понад 300. Повних R1R2R3 — лише ~5, більшість — <strong>R2R3-тип</strong>, решта — атипові.</li>
+</ul>
+<p><strong>bHLH.</strong> Основний (лужний, позитивно заряджений) домен електростатично взаємодіє з ДНК (кислотою); далі спіраль–петля–спіраль. Працюють як <strong>димери</strong>, які обхоплюють ДНК, «наче щипці». Можуть поєднуватися з <strong>лейциновою блискавкою</strong> (bZIP): гідрофобні лейцини двох α-спіралей взаємодіють, забезпечуючи димеризацію.</p>
+</div></section>
+<section class="mg-sec" id="l2-3" data-title="Білки з WD40-повтором. MBW-комплекс" data-n="2.3"><h3 class="mg-h"><a class="mg-anchor" href="#l2-3" aria-label="Посилання на розділ"><span class="n">2.3</span></a><span class="mg-h__t">Білки з WD40-повтором. MBW-комплекс</span><a class="mg-tc" href="https://www.youtube.com/watch?v=5X8dXRRHZjE&amp;t=1168s" target="_blank" rel="noopener" title="Відкрити цей фрагмент відеолекції на YouTube">▶ 19:28</a></h3><div class="prose mg-prose"><p><strong>WD40-білки</strong> самі з ДНК не зв'язуються (у вузькому сенсі не є ФТ), але слугують <strong>каркасом (платформою)</strong> для збирання транскрипційних комплексів.</p>
+<ul>
+<li>Спорідненість довели не одразу: послідовності дуже різні; єдиний регулярний мотив — <strong>триптофан (W) і аспарагінова кислота (D) приблизно через кожні 40 а. к.</strong> → WD40.</li>
+<li>Просторова структура — <strong>β-пропелер</strong> із різною кількістю «лопатей» (що ускладнює аналіз); можуть мати додаткові домени.</li>
+<li>Функції: збирання транскрипційних комплексів; мембранні сигнальні комплекси; убіквітинування білків-мішеней; формування клітинної стінки тощо.</li>
+</ul>
+<p><strong>MBW-комплекс (MYB–bHLH–WD40).</strong> На WD40-білок «нанизується» bHLH-фактор, до нього приєднується MYB-фактор → транскрипційний комплекс, що регулює дуже багато процесів. Центральний WD40-білок арабідопсису — <strong>TTG1 (<em>TRANSPARENT TESTA GLABRA1</em>)</strong>. Залежно від bHLH- і MYB-партнерів комплекс контролює:</p>
+<ul>
+<li>розвиток трихом на листках (<em>GLABRA</em>: GL1 — MYB, GL3/EGL3 — bHLH);</li>
+<li>розвиток кореневих волосків (тут подібний комплекс діє як репресор);</li>
+<li>пігментацію насіннєвої шкірки (<em>TRANSPARENT TESTA</em>: TT2 — MYB, TT8 — bHLH);</li>
+<li>синтез антоціанів, слизу насіннєвої шкірки, накопичення жирів і запасних білків, час цвітіння, відповіді на біотичні й абіотичні стреси.</li>
+</ul>
+<p>Структурно подібні MYB можуть бути як <strong>активаторами</strong>, так і <strong>репресорами</strong> («дзеркальна» функція).</p>
+<p><strong>Принцип специфічності (ієрархія):</strong></p>
+<div class="data-wrap"><table class="data-table mg-table">
+<thead>
+<tr>
+<th>Компонент</th>
+<th>Кількість копій у геномі</th>
+<th>Специфічність експресії</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>WD40</td>
+<td>мало</td>
+<td>майже всюди, «чекає», хто приєднається</td>
+</tr>
+<tr>
+<td>bHLH</td>
+<td>помірно</td>
+<td>частково спеціалізовані</td>
+</tr>
+<tr>
+<td>MYB</td>
+<td>дуже багато (суперродина)</td>
+<td>вузькоспецифічні: певні тканини, клітини, умови; активатори або репресори</td>
+</tr>
+</tbody>
+</table></div>
+</div></section>
+<section class="mg-sec" id="l2-4" data-title="Синтез антоціанів, гени родини MYB" data-n="2.4"><h3 class="mg-h"><a class="mg-anchor" href="#l2-4" aria-label="Посилання на розділ"><span class="n">2.4</span></a><span class="mg-h__t">Синтез антоціанів, гени родини MYB</span><a class="mg-tc" href="https://www.youtube.com/watch?v=5X8dXRRHZjE&amp;t=1571s" target="_blank" rel="noopener" title="Відкрити цей фрагмент відеолекції на YouTube">▶ 26:11</a></h3><div class="prose mg-prose"><p><strong>Кукурудза: локус <em>B</em> (<em>Booster</em>, bHLH).</strong> Різні алелі визначають місце синтезу антоціанів:</p>
+<ul>
+<li>алель типу <em><strong>B-I</strong></em> — забарвлення лише вегетативних органів: проросток інтенсивно забарвлений, під час достигання — обгортки качана (зелені листкові тканини), але не зернівки → контраст між жовтими зернівками й темними обгортками;</li>
+<li>алель <em><strong>B-Peru</strong></em> — забарвлює й листки, і зернівки (майже чорні).
+Такий контроль через bHLH рідкісний; частіше специфіку задають MYB.</li>
+</ul>
+<p><strong>Петунія: чотири MYB-активатори антоціанів</strong> (назви історичні):</p>
+<ul>
+<li><strong><em>AN2</em> (<em>ANTHOCYANIN2</em>)</strong> — працює в <strong>відгині (лімбі)</strong> зрослопелюсткового віночка: забарвлений відгин і біла неснарбована пляма в зіві;</li>
+<li><em><strong>AN4</strong></em> — працює в <strong>трубці</strong> віночка: якщо діє лише він — чітка кругла пляма в центрі;</li>
+<li><strong><em>DPL</em> (<em>DEEP PURPLE</em>)</strong> — прив'язаний до <strong>жилок</strong>: глибоке малинове жилкування;</li>
+<li><strong><em>PHZ</em> (<em>PURPLE HAZE</em>)</strong> — «пурпуровий серпанок» на зворотному боці пелюсток і в чашолистках, у бутонах; індукується світлом, захист від УФ (білі квітки можуть мати забарвлені бутони).</li>
+</ul>
+<p>Крім активаторів є <strong>MYB-репресори</strong> (напр., <strong>MYB27</strong>, MYBx), що конкурують за місце в комплексі.</p>
+<p><strong>Залежність від світла:</strong> на яскравому сонці/УФ рослини «засмагають» (бронзове, червонувате забарвлення) — різко зростає експресія MYB-активаторів (переважно <em>PHZ</em>, трохи <em>DPL</em>), тоді як рівень WD40 і bHLH майже незмінний. У темряві/тіні зростає експресія репресора <strong>MYB27</strong> → антоціанів менше.</p>
+<p><strong>Масштаб регуляції:</strong> надекспресія MYB-активаторів (PHZ, DPL) посилює експресію практично всіх генів біосинтезу антоціанів — від <strong>фенілаланін-аміак-ліази (PAL)</strong> до <strong>антоціанідинсинтази</strong>, глікозилтрансфераз і генів транспорту у вакуолю. Один комплекс запускає цілий фізіологічний процес.</p>
+<p><strong>Вакуоля та pH.</strong> Накопичення антоціанів неможливе без підкислення вакуолі <strong>протонними АТФазами</strong> тонопласта; заряд мембрани забезпечує транспорт антоціанів; кінцевий pH вакуолярного соку визначає відтінок кольору. Відповідні гени петунії названо <em><strong>PH</strong></em> (від pH):</p>
+<ul>
+<li><em>PH1</em>, <em>PH5</em> — протонні помпи (P-АТФази) тонопласта;</li>
+<li><em><strong>PH4</strong></em> — MYB-фактор, що в складі MBW-комплексу регулює вакуолярні процеси й вмикає гени вторинної відповіді — <strong>WRKY</strong>-фактор (<em>PH3</em>), а той — ефекторні гени підкислення.
+Тобто «оркестрований» розв'язок задачі забарвлення: ферменти фенольно-флавоноїдного шляху + транспорт у вакуолю + підкислення (кількість і відтінок пігменту) + стабільність до вицвітання — для залучення запилювачів.</li>
+</ul>
+<p><strong>Аромат.</strong> MYB-фактор петунії <strong>ODORANT1 (ODO1)</strong> перемикає фенольний метаболізм з антоціанів на <strong>летючі бензеноїди/фенілпропаноїди</strong> (ванілін, бензилбензоат, метилбензоат, евгенол, ізоевгенол). У видів, що запилюються нічними комахами, MYB-фактори також активують <strong>ABC-транспортер</strong> плазмалеми, що виводить летючі речовини й посилює запах. Ті самі комплекси, але з іншими MYB-компонентами.</p>
+<p><strong>WRKY</strong> — вторинні ФТ, що зазвичай вмикаються після MBW-комплексу (можливо, іноді входять до більших комплексів чи мають власні мішені). Назва — від тандему <strong>W-R-K-Y</strong> (триптофан–аргінін–лізин–тирозин); мотив зв'язує Zn, β-складки взаємодіють з ДНК.</p>
+</div></section>
+<section class="mg-sec" id="l2-5" data-title="Ремоделювання хроматину" data-n="2.5"><h3 class="mg-h"><a class="mg-anchor" href="#l2-5" aria-label="Посилання на розділ"><span class="n">2.5</span></a><span class="mg-h__t">Ремоделювання хроматину</span><a class="mg-tc" href="https://www.youtube.com/watch?v=5X8dXRRHZjE&amp;t=2465s" target="_blank" rel="noopener" title="Відкрити цей фрагмент відеолекції на YouTube">▶ 41:05</a></h3><div class="prose mg-prose"><p>Не всі ФТ зв'язуються з ДНК: до справжніх ФТ (напр., MADS) приєднуються <strong>транскрипційні кофактори</strong>, які рекрутують комплекси модифікації та ремоделювання хроматину. Великий транскрипційний комплекс: один білок впізнає промотор, решта — модифікують хроматин.</p>
+<p><strong>Механізми:</strong></p>
+<ul>
+<li><strong>Метилювання ДНК</strong> — мітка зниження активності: метильовані гени менш активні;</li>
+<li><strong>Модифікації гістонів</strong>, зокрема <strong>ацетилювання</strong> (гістонацетилтрансферази / деацетилази) — впливають на ступінь збирання нуклеосом;</li>
+<li><strong>РНК-спрямоване ущільнення</strong>: за гомологією з некодуючою РНК ділянка ДНК, визнана «шкідливою» (напр., транспозон), ущільнюється й вимикається;</li>
+<li><strong>АТФ-залежні комплекси ремоделювання</strong>:
+<ul>
+<li><em>assembly</em> — збирання нових нуклеосом на вільній ДНК;</li>
+<li><em>sliding</em> — ковзання нуклеосоми вздовж ДНК без втрати зв'язку;</li>
+<li><em>eviction</em> — «виселення» нуклеосом (розбирання, ДНК розплітається й активується);</li>
+<li><em>unwrapping</em> — послаблення зв'язку ДНК з гістонами;</li>
+<li><strong>заміна гістонів варіантами</strong> (зміна складу октамеру), що змінює конформацію ДНК.</li>
+</ul>
+</li>
+</ul>
+<p><strong>Інсулятори.</strong> Розплітається не вся ДНК одразу, а ділянки, обмежені <strong>інсуляторами</strong>, що поділяють геном на функціональні домени (петлі). Між двома інсуляторами — кілька генів подібної функції; щоб їх активувати, петлю треба розпушити, а щоб вимкнути — компактизувати. У основі петель — комплекси ремоделювання. Отже, важливе генне оточення й розташування інсуляторів. У рослин інсулятори передбачаються, але молекулярні механізми їх впізнавання ще не досліджено.</p>
+<p><strong>Polycomb — перемикання програм розвитку.</strong> Гени групи <strong>Polycomb</strong> (уперше знайдені в дрозофіли) у рослин критичні для зміни фаз розвитку:</p>
+<ul>
+<li>пригнічення всієї системи → сильно спотворені рослини з порушеною диференціацією («мішанина» тканин), часто летальні;</li>
+<li>окремі компоненти (комплекс PRC2):
+<ul>
+<li>гени <em><strong>FIS</strong></em> (<em>FERTILIZATION-INDEPENDENT SEED</em>: <em>MEDEA</em>, <em>FIS2</em>, <em>FIE</em>) — синхронізація розвитку зародка й ендосперму; при мутаціях ендосперм (чи навіть зародок у <em>fie</em>) розвивається <strong>без запліднення</strong>;</li>
+<li><strong><em>EMF</em> (<em>EMBRYONIC FLOWER</em>)</strong> — перехід до вегетативного розвитку; у мутанта одразу після сім'ядоль утворюється квітка (без вегетативної фази);</li>
+<li><strong>яровизація (вернализація)</strong> і <strong>стратифікація</strong> насіння — тривале охолодження переводить рослину із «зимового» стану до цвітіння чи проростання; також регулюється через пакування хроматину (епігенетичне вимкнення <em>FLC</em>).</li>
+</ul>
+</li>
+</ul>
+<p><strong>Підсумок лекції:</strong> експресія гена визначається (1) цис-елементами в промоторах, (2) транс-факторами (ФТ та інші компоненти транскрипційних комплексів) і (3) факторами ремоделювання хроматину, що здійснюють глобальну регуляцію активності геному.</p>
+</div></section><aside class="mg-terms" id="l2-terms"><h3>Ключові терміни лекції 2</h3><ul class="mg-chips" data-lec="2"><li>цис-/транс-фактори</li><li>ФТ</li><li>домен</li><li>Zn-палець</li><li>B3</li><li>ARF</li><li>Aux/IAA</li><li>гомеодомен</li><li>KNOX</li><li>HD-ZIP</li><li>WOX</li><li>AP2/ERF</li><li>MADS-бокс</li><li>MYB (R2R3)</li><li>bHLH</li><li>bZIP</li><li>WD40</li><li>MBW</li><li>TTG1</li><li>WRKY</li><li>ремоделювання хроматину</li><li>інсулятор</li><li>Polycomb (PRC2)</li><li>яровизація</li></ul></aside><nav class="mg-pn" aria-label="Перехід між лекціями"><a class="mg-pn__a" href="#l1"><small>← Попередня лекція</small><b>1. Модельні об'єкти та геноми</b></a><a class="mg-pn__a mg-pn__a--next" href="#l3"><small>Наступна лекція →</small><b>3. Трансформація рослин</b></a></nav></section>
+<section class="mg-lec" id="l3" data-lec="3" style="--lc:var(--l3)"><header class="mg-lec__head"><span class="mg-lec__num">3</span><div><span class="kicker">Лекція 3 із 5</span><h2>Трансформація рослин</h2><div class="mg-meta"><span>🎬 Відеолекція 29.02.2024 · 1:26:13</span><a href="https://www.youtube.com/watch?v=fFRaSN1Vwas" target="_blank" rel="noopener">YouTube</a><a href="https://teach-in.ru/lecture/2024-02-29-Chub" target="_blank" rel="noopener">Teach-in</a></div></div></header><div class="prose mg-prose mg-intro"><p>Трансформація — стандартний метод отримання генетично модифікованих (ГМ) рослин у практиці та фундаментальних дослідженнях. Найкраще розроблена — <strong>агробактеріальна трансформація</strong>, відкрита завдяки вивченню пухлин, які спричиняють бактерії.</p>
+</div><nav class="mg-mini" aria-label="Розділи лекції 3"><b>У цій лекції</b><ol><li><a href="#l3-1"><span>3.1</span>Агробактеріальні пухлини. Біохімічна специфіка пухлин</a></li><li><a href="#l3-2"><span>3.2</span>Гормон-незалежний ріст. Генетичні функції Ti-плазмід</a></li><li><a href="#l3-3"><span>3.3</span>Родина Rhizobiaceae. Види <em>Agrobacterium</em></a></li><li><a href="#l3-4"><span>3.4</span>Транспорт оц-ДНК і білків</a></li><li><a href="#l3-5"><span>3.5</span>Взаємодія з господарем</a></li><li><a href="#l3-6"><span>3.6</span>Синтез гормонів у пухлині (онкогени)</a></li><li><a href="#l3-7"><span>3.7</span>Гени <em>rol</em></a></li><li><a href="#l3-8"><span>3.8</span>Практичне використання Ri-плазмід</a></li><li><a href="#l3-9"><span>3.9</span>Агробактеріальна трансформація рослин</a></li><li><a href="#l3-10"><span>3.10</span>«Генна гармата» (біобалістика) та інші методи</a></li></ol></nav><section class="mg-sec" id="l3-1" data-title="Агробактеріальні пухлини. Біохімічна специфіка пухлин" data-n="3.1"><h3 class="mg-h"><a class="mg-anchor" href="#l3-1" aria-label="Посилання на розділ"><span class="n">3.1</span></a><span class="mg-h__t">Агробактеріальні пухлини. Біохімічна специфіка пухлин</span><a class="mg-tc" href="https://www.youtube.com/watch?v=fFRaSN1Vwas&amp;t=15s" target="_blank" rel="noopener" title="Відкрити цей фрагмент відеолекції на YouTube">▶ 00:15</a></h3><div class="prose mg-prose"><p><strong>Корончасті гали.</strong> 1907 р. із корончастого гала виділено <em>Agrobacterium tumefaciens</em>. Пухлини <strong>злоякісні</strong>: навіть після знищення бактерій антибіотиком ріст триває. Хвороба зазвичай починається біля кореневої шийки, далі бактерії можуть поширюватися вгору; у тяжких випадках гал «стягує» всі поживні речовини, рослина дає лише слабкі пагони.</p>
+<p><strong>Споріднені види та їхні хвороби:</strong></p>
+<div class="data-wrap"><table class="data-table mg-table">
+<thead>
+<tr>
+<th>Вид</th>
+<th>Хвороба / особливість</th>
+<th>Плазміда</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><em>A. tumefaciens</em></td>
+<td>корончастий гал, широке коло дводольних (трави, кущі, дерева)</td>
+<td><strong>Ti</strong> (<em>tumor-inducing</em>)</td>
+</tr>
+<tr>
+<td><em>A. rubi</em></td>
+<td>«кореневий рак» малини (й інших <em>Rubus</em>)</td>
+<td>Ti з <strong>трьома</strong> Т-ділянками, що переносяться незалежно</td>
+</tr>
+<tr>
+<td><em>A. rhizogenes</em></td>
+<td><strong>«косматі (бородаті) корені»</strong> (<em>hairy roots</em>): ростуть без тропізмів, дуже багато кореневих волосків; іноді з пухлини виростають пагони й рослина нормалізується</td>
+<td><strong>Ri</strong> (<em>root-inducing</em>)</td>
+</tr>
+<tr>
+<td><em>A. vitis</em></td>
+<td>корончастий гал винограду (поширився з кінця XIX ст. з масовим щепленням)</td>
+<td>Ti з однією Т-ділянкою</td>
+</tr>
+<tr>
+<td><em>A. radiobacter</em></td>
+<td>непатогенний, живе в ризосфері, споживає кореневі виділення</td>
+<td>плазмід Ti/Ri немає</td>
+</tr>
+</tbody>
+</table></div>
+<p>Агробактерії генетично близькі до <strong>ризобій</strong> (родина Rhizobiaceae).</p>
+<p><strong>Пошук господаря (хемотаксис).</strong> Пошкодження коренів дводольних виділяє фенольну сполуку <strong>ацетосирингон</strong>; руйнування клітинної стінки звільняє <strong>глюкуронову/галактуронову кислоту, арабінозу, глюкозу</strong> — ще один сигнал. Бактерії спрямовуються до поранення.</p>
+<p><strong>Опіни</strong> — нові речовини в пухлині, продукти <strong>конденсації двох молекул</strong> (амінокислота + кетокислота, цукри тощо) з частковим відновленням:</p>
+<ul>
+<li><strong>нопалін</strong> = аргінін + α-кетоглутарат;</li>
+<li><strong>октопін</strong> = аргінін + піруват (уперше виділений 1927 р. з м'язів <strong>восьминога</strong> <em>Octopus</em>; у молюсків утворюється при гіпоксії — відновлювальні еквіваленти NADH «скидаються» на багаті азотом сполуки, а не на піруват→лактат, як у людини);</li>
+<li><strong>агроцинопіни A/B</strong> — фосфодиефіри цукрів; <strong>манопін</strong> — маноза + глутамін(ат); <strong>кукумопін</strong> — похідне гістидину; <strong>агропін</strong> (у Ri-плазмід).</li>
+</ul>
+<p><strong>Класифікація штамів за опіном:</strong> нопалінові, октопінові тощо. Різні опіни в одній пухлині зазвичай не трапляються; між штамами є <strong>конкуренція</strong>.</p>
+<p><strong>Біологічний сенс опінів («генетична колонізація»):</strong> рослина не здатна їх катаболізувати → продукти фотосинтезу та елементи живлення (N, P) вилучаються з її метаболізму; рослина у відповідь шле в пухлину нові порції N, P, асимілятів, а пухлина знову робить із них опіни — так «стягує» ресурси з усієї рослини. Опіни катаболізує <strong>лише агробактерія</strong> відповідного типу (гени катаболізму — на тій самій плазміді).</p>
+</div></section>
+<section class="mg-sec" id="l3-2" data-title="Гормон-незалежний ріст. Генетичні функції Ti-плазмід" data-n="3.2"><h3 class="mg-h"><a class="mg-anchor" href="#l3-2" aria-label="Посилання на розділ"><span class="n">3.2</span></a><span class="mg-h__t">Гормон-незалежний ріст. Генетичні функції Ti-плазмід</span><a class="mg-tc" href="https://www.youtube.com/watch?v=fFRaSN1Vwas&amp;t=742s" target="_blank" rel="noopener" title="Відкрити цей фрагмент відеолекції на YouTube">▶ 12:22</a></h3><div class="prose mg-prose"><p>Для поділу клітин потрібні <strong>ауксини й цитокініни</strong>. Тканину пухлини, звільнену від бактерій, вирощують <em>in vitro</em> <strong>без додавання гормонів</strong> — вона синтезує їх сама. Пухлина пронизана ксилемою і флоемою. Видимий гал з'являється приблизно за місяць.</p>
+<p><strong>Ti-плазміда</strong> визначає вірулентність і коло господарів:</p>
+<ul>
+<li><strong>vir-ділянка</strong> (оперони <em>virA–G</em>): мутації різко знижують вірулентність;</li>
+<li><strong>Т-ділянка (T-DNA)</strong> під дією продуктів <em>vir</em> копіюється, переноситься в клітину господаря й інтегрується в геном.</li>
+</ul>
+<p><strong>Особливості:</strong> великий розмір (~200 kb, важко маніпулювати напряму); низька копійність (власний <em>ori</em>); легко втрачається (у ґрунті лише ~5 % клітин вірулентні); здатна до <strong>кон'югативного переносу</strong> пілею (активується пораненим господарем/опінами); дає селективну перевагу в пухлинах. У природі вражає переважно дводольні, але є протоколи й для однодольних та голонасінних.</p>
+</div></section>
+<section class="mg-sec" id="l3-3" data-title="Родина Rhizobiaceae. Види *Agrobacterium*" data-n="3.3"><h3 class="mg-h"><a class="mg-anchor" href="#l3-3" aria-label="Посилання на розділ"><span class="n">3.3</span></a><span class="mg-h__t">Родина Rhizobiaceae. Види <em>Agrobacterium</em></span><a class="mg-tc" href="https://www.youtube.com/watch?v=fFRaSN1Vwas&amp;t=1120s" target="_blank" rel="noopener" title="Відкрити цей фрагмент відеолекції на YouTube">▶ 18:40</a></h3><div class="prose mg-prose"><ul>
+<li>Усі види, включно з непатогенним <em>A. radiobacter</em>, <strong>конкурують за корені</strong>: корінь, колонізований <em>A. radiobacter</em>, гірше заражається патогенами.</li>
+<li><strong>Ризобії</strong> специфічно взаємодіють з господарем завдяки великій <strong>симбіотичній плазміді (pSym)</strong>: <em>R. leguminosarum</em> — горох; <em>R. phaseoli</em> — квасоля; <em>Sinorhizobium meliloti</em> — люцерна/буркун; <em>Bradyrhizobium japonicum</em> — соя. Без pSym бульбочки не утворюються — пряма паралель з Ti-плазмідою.</li>
+</ul>
+<p><strong>Усунення агробактерій.</strong> У лабораторії — <strong>цефалоспорини</strong> (цефотаксим/клафоран) у високій дозі (у рослин немає мішені, тож концентрацію можна підняти, потім знижувати). У полі — агротехніка (зволоження, кількарічні однодольні), <strong>біоконтроль</strong> непатогенним <em>A. radiobacter</em> K84 (нестабільний) та <strong>бактеріофаги</strong> (1975 р. — 4 помірні фаги; у полі знижують кількість галів на саджанцях ліщини).</p>
+</div></section>
+<section class="mg-sec" id="l3-4" data-title="Транспорт оц-ДНК і білків" data-n="3.4"><h3 class="mg-h"><a class="mg-anchor" href="#l3-4" aria-label="Посилання на розділ"><span class="n">3.4</span></a><span class="mg-h__t">Транспорт оц-ДНК і білків</span><a class="mg-tc" href="https://www.youtube.com/watch?v=fFRaSN1Vwas&amp;t=2114s" target="_blank" rel="noopener" title="Відкрити цей фрагмент відеолекції на YouTube">▶ 35:14</a></h3><div class="prose mg-prose"><p><strong>Впізнавання пораненого господаря — система VirA/VirG.</strong></p>
+<ul>
+<li><strong>VirA</strong> — мембранний сенсор внутрішньої мембрани (гідрофобні α-спіралі, петля в періплазмі й петля в цитозолі); працює як димер, гістидинкіназа. Сайт зв'язування <strong>ацетосирингону</strong> — з внутрішнього (цитоплазматичного) боку.</li>
+<li>Малий білок <strong>ChvE</strong> зв'язує вільну галактуронову кислоту/моносахариди й підвищує спорідненість VirA до ацетосирингону.</li>
+<li>VirA автофосфорилюється по гістидину → переносить фосфат на аспартат <strong>VirG</strong> (фосфотрансмітер і фактор транскрипції) → VirG вмикає решту <em>vir</em>-генів. (Паралель: у рослин цитокініновий сигнал теж передається через рецепторні кінази His→Asp.)</li>
+</ul>
+<p><strong>Вирізання Т-ДНК.</strong> Межі (RB, LB) — консервативні 25 bp. Комплекс <strong>VirD2+VirD1</strong> надрізає їх; <strong>VirD2 ковалентно приєднується до 5′-кінця</strong> одноланцюгової Т-ДНК (пілот-білок). Одноланцюгова Т-ДНК витісняється, а на місці добудовується новий ланцюг (реплікація за «котячим кільцем») — з однієї Ti-плазміди можна зробити багато копій Т-ДНК. Спроби скопіювати решту плазміди зазвичай невдалі (оцДНК швидко рветься).</p>
+<p><strong>Сім бар'єрів.</strong> Щоб потрапити з бактерії в ядро рослини, оцДНК долає 7 перешкод: внутрішня мембрана → періплазма → зовнішня мембрана → клітинна стінка → плазмалема → цитоплазма → ядерна оболонка.</p>
+<p><strong>Транспортний комплекс VirB (система секреції IV типу, T4SS).</strong> 11 білків оперону <em>virB</em> + <strong>VirD4</strong>:</p>
+<ul>
+<li><strong>VirB4, VirB11, VirD4</strong> — цитоплазматичні АТФази (гексамери): «ловлять» Т-ДНК і білки й змінюють їхню конформацію (розплітання + фолдинг, що потребує АТФ);</li>
+<li><strong>VirB3/VirB6</strong> — пора у внутрішній мембрані;</li>
+<li><strong>VirB1</strong> — гідроліз пептидоглікану (без цього збирання неможливе);</li>
+<li><strong>VirB8/VirB10</strong> — внутрішня частина пори; <strong>VirB7/VirB9</strong> — проходження зовнішньої мембрани;</li>
+<li><strong>VirB2</strong> — білок пілі (спіральна укладка, порожниста всередині); <strong>VirB5</strong> — «віночок» на верхівці, продірявлює мембрану господаря.
+Структурно й функціонально T4SS споріднена з кон'югативними системами плазмід (напр., RP4): той самий механізм переносу оцДНК з клітини в клітину був «злегка модифікований» для переносу в еукаріота. Тому агробактерія в експерименті може переносити Т-ДНК навіть клітинам тварин/людини — великої специфічності немає, пара «агробактерія–рослина» лише типова.</li>
+</ul>
+<p><strong>Адгезія.</strong> На поверхні агробактерії нерівномірно розташований <strong>уніполярний полісахарид (UPP)</strong>, яким вона стає «сторч» у місці контакту; мутанти синтезу UPP прикріплюються боком. Міцний контакт потрібний для транспорту.</p>
+</div></section>
+<section class="mg-sec" id="l3-5" data-title="Взаємодія з господарем" data-n="3.5"><h3 class="mg-h"><a class="mg-anchor" href="#l3-5" aria-label="Посилання на розділ"><span class="n">3.5</span></a><span class="mg-h__t">Взаємодія з господарем</span><a class="mg-tc" href="https://www.youtube.com/watch?v=fFRaSN1Vwas&amp;t=2676s" target="_blank" rel="noopener" title="Відкрити цей фрагмент відеолекції на YouTube">▶ 44:36</a></h3><div class="prose mg-prose"><p><strong>Імунна відповідь рослини.</strong> Рецептори плазмалеми впізнають консервативні бактеріальні молекули (<strong>PAMP</strong>): <strong>FLS2</strong> — флагелін джгутиків; <strong>EFR</strong> — фактор елонгації <strong>EF-Tu</strong>. Кіназний каскад → ФТ (WRKY) → гени первинної імунної відповіді.</p>
+<p><strong>Як агробактерія уникає захисту.</strong> У клітину разом із Т-ДНК потрапляють білки, що маскують і спрямовують комплекс у ядро:</p>
+<ul>
+<li><strong>VirD2</strong> несе сигнал ядерної локалізації (NLS) → тягне приєднану Т-ДНК у ядро;</li>
+<li><strong>VirE2</strong> має три ролі: (1) щільно «одягає» оцДНК, захищаючи від нуклеаз (оцДНК у цитозолі — SOS-сигнал); (2) має власний NLS (резервний транспорт у ядро); (3) взаємодіє з активованим господарським білком <strong>VIP1</strong>, що також несе NLS, — комплекс додатково «вдягається» в хазяйський білок. Отже, комплекс тричі помічений сигналами (VirD2, VirE2, VIP1).</li>
+<li><strong>VirF</strong> — компонент убіквітин-лігази (F-box), має спорідненість до VIP1 → після доставки в ядро VIP1 стає мішенню протеасоми й розбирається, не піднімаючи SOS-сигналу; <strong>VirD5</strong> стабілізує VirF.</li>
+</ul>
+<p><strong>Інтеграція в геном.</strong> У ядрі VirD2 робить надрізи у <strong>випадкових</strong> місцях хроматину (неспецифічність важлива!). Репарація рослини йде переважно <strong>негомологічним з'єднанням кінців (NHEJ)</strong>: розірвані кінці зшиваються з першим-ліпшим обривком → Т-ДНК вбудовується назавжди; одноланцюгова ділянка слугує матрицею для добудови.</p>
+<p><strong>Транзієнтна трансформація.</strong> Не всім копіям «щастить» інтегруватися: Т-ДНК може кілька днів «бовтатися» в ядрі, проявляючи генну активність, а потім втратитися під час поділу (тимчасова експресія). Тому частина клітин спершу виглядає трансформованою, але згодом втрачає ознаку.</p>
+</div></section>
+<section class="mg-sec" id="l3-6" data-title="Синтез гормонів у пухлині (онкогени)" data-n="3.6"><h3 class="mg-h"><a class="mg-anchor" href="#l3-6" aria-label="Посилання на розділ"><span class="n">3.6</span></a><span class="mg-h__t">Синтез гормонів у пухлині (онкогени)</span><a class="mg-tc" href="https://www.youtube.com/watch?v=fFRaSN1Vwas&amp;t=3321s" target="_blank" rel="noopener" title="Відкрити цей фрагмент відеолекції на YouTube">▶ 55:21</a></h3><div class="prose mg-prose"><p>Важливо: у Т-ділянці гени під <strong>еукаріотичними промоторами</strong> — всередині бактерії вони мовчать, працюють лише в рослині.</p>
+<p><strong>Мутанти патогенезу:</strong> <em>tms</em> (<em>tumor morphology shoot</em>, «коса шута») — пухлини з пагонами; <em>tmr</em> (<em>tumor morphology root</em>) — з коренями, пухлина більша. Функції:</p>
+<ul>
+<li>при пошкодженні <strong>біосинтезу ауксинів</strong> баланс зсувається до цитокінінів → пагони (отже, це гени синтезу <strong>ауксину</strong>);</li>
+<li>при пошкодженні <strong>синтезу цитокінінів</strong> — надлишок ауксинів → корені.</li>
+</ul>
+<p><strong>Синтез ауксину (ІОК) — два гени, два етапи:</strong></p>
+<ul>
+<li><strong>IaaM (<em>tms1</em>)</strong> — триптофанмонооксигеназа: триптофан → індол-3-ацетамід (одноетапне окисне декарбоксилювання);</li>
+<li><strong>IaaH (<em>tms2</em>)</strong> — гідролаза: індол-3-ацетамід → <strong>індол-3-оцтова кислота (ІОК/ауксин)</strong>.
+Індол-3-ацетаміду в рослинах зазвичай немає; синтез ІОК стає <strong>непідконтрольним</strong> рослині.</li>
+</ul>
+<p>Звідки гени? У природі є бактерії, що модифікують ріст рослин через ауксин: <em>Pseudomonas savastanoi</em> (пухлини оливи), ендофіти <em>P. syringae</em>, <em>Rhizobium</em> тощо — доброякісні пухлини (після антибіотика ріст спиняється, бо немає гормон-незалежного росту). Ризобії теж несуть один із цих генів на pSym і «підганяють» господаря до утворення бульбочок.</p>
+<p><strong>Синтез цитокінінів — один ген:</strong></p>
+<ul>
+<li><strong>Ipt (<em>tmr</em>)</strong> — ізопентенілтрансфераза: переносить ізопентенільний залишок на аденінове ядро (у складі АМФ) → ізопентеніладенозин-монофосфат → далі (гідроксилювання, зняття фосфату/рибози) <strong>транс-зеатин</strong>. Один етап «оминає» кілька ферментів рослини → синтез цитокінінів теж непідконтрольний. Гомолог (<em>tzs</em>, транс-зеатинсинтаза) є поряд із vir-ділянкою — агробактерія сама виділяє трохи зеатину. Ген <em>ipt</em> є і в <em>Xanthomonas oryzae</em> (рис).</li>
+</ul>
+<p><strong>Локус tml (октопінові штами):</strong> синтез опіну + <strong>опінпермеаза</strong> (<em>tml6a</em>) для виведення опіну з клітини; <em>tml6b</em> — онкоген, здатний переміщуватися по рослині й викликати симптоми в нових місцях.</p>
+</div></section>
+<section class="mg-sec" id="l3-7" data-title="Гени *rol*" data-n="3.7"><h3 class="mg-h"><a class="mg-anchor" href="#l3-7" aria-label="Посилання на розділ"><span class="n">3.7</span></a><span class="mg-h__t">Гени <em>rol</em></span><a class="mg-tc" href="https://www.youtube.com/watch?v=fFRaSN1Vwas&amp;t=3772s" target="_blank" rel="noopener" title="Відкрити цей фрагмент відеолекції на YouTube">▶ 1:02:52</a></h3><div class="prose mg-prose"><p><strong>Ri-плазміда <em>A. rhizogenes</em></strong> (агропіновий тип) має <strong>дві Т-ділянки — праву (TR) і ліву (TL)</strong>:</p>
+<ul>
+<li>у <strong>TR</strong> — біосинтез ауксину й цитокініну та синтез опінів (подібно до нопалінової Т-ДНК);</li>
+<li>можна видалити майже всю TR, і патогенність зберігається за рахунок <strong>TL</strong>, де немає генів синтезу гормонів, але є гени <em><strong>rol</strong></em> (<em>root loci</em>: <em>rolA, rolB, rolC, rolD</em>) та відкриті рамки невідомої функції.</li>
+<li>Є природні кукумопінові/манопінові Ri-плазміди взагалі без правої ділянки й без генів синтезу гормонів.</li>
+</ul>
+<p>Функції <em>rol</em> (вивчали надекспресією, переважно в тютюну й каланхое):</p>
+<ul>
+<li><strong>rolA</strong> — зморщене листя, укорочене суцвіття;</li>
+<li><strong>rolB</strong> — знижує апікальне домінування, дрібніші квітки, менше пилку; сильно <strong>підвищує чутливість до ауксину</strong> (гідрофобний; йому допомагає <strong>ORF13/ORF1</strong>); копія в TR;</li>
+<li><strong>rolC</strong> — спершу думали, що це глікозидаза цитокінінів (підвищує рівень вільних цитокінінів); знижує чутливість до ауксину, зменшує розміри;</li>
+<li><strong>rolD</strong> — імовірно, орнітинциклодеаміназа (синтез проліну з орнітину).
+Після перших публікацій досліджень мало — функції ще уточнюються.</li>
+</ul>
+</div></section>
+<section class="mg-sec" id="l3-8" data-title="Практичне використання Ri-плазмід" data-n="3.8"><h3 class="mg-h"><a class="mg-anchor" href="#l3-8" aria-label="Посилання на розділ"><span class="n">3.8</span></a><span class="mg-h__t">Практичне використання Ri-плазмід</span><a class="mg-tc" href="https://www.youtube.com/watch?v=fFRaSN1Vwas&amp;t=4061s" target="_blank" rel="noopener" title="Відкрити цей фрагмент відеолекції на YouTube">▶ 1:07:41</a></h3><div class="prose mg-prose"><ul>
+<li><strong>Культура «косматих коренів»</strong> — необмежено зростаючі корені <strong>без зовнішніх гормонів</strong> із власною біохімічною специфікою → наробка цінних <strong>вторинних метаболітів</strong>, які синтезуються саме в коренях.</li>
+<li>У стерильній культурі зручно вивчати <strong>взаємодію з мікоризними грибами</strong> (кусочок косматого кореня + спори мікоризи; на якій відстані проростають, якими стимулами) і нарощувати спори арбускулярних грибів для сільгосппрепаратів (у звичайній культурі ці гриби не ростуть).</li>
+<li>«Роззброєні» (disarmed) Ri-плазміди дають не такі косматі корені; придатні для об'єктів, що погано уражуються Ti-плазмідою. Китайські дослідники трансформують сою, лікарські дикороси, розробляють системи регенерації (м'якша система, що підштовхує до морфогенезу).</li>
+</ul>
+</div></section>
+<section class="mg-sec" id="l3-9" data-title="Агробактеріальна трансформація рослин" data-n="3.9"><h3 class="mg-h"><a class="mg-anchor" href="#l3-9" aria-label="Посилання на розділ"><span class="n">3.9</span></a><span class="mg-h__t">Агробактеріальна трансформація рослин</span><a class="mg-tc" href="https://www.youtube.com/watch?v=fFRaSN1Vwas&amp;t=4235s" target="_blank" rel="noopener" title="Відкрити цей фрагмент відеолекції на YouTube">▶ 1:10:35</a></h3><div class="prose mg-prose"><p><strong>«Роззброєння» Ti-плазміди:</strong> з Т-ділянки видаляють онкогени (<em>iaaM, iaaH, ipt</em>) і вставляють <strong>гени інтересу</strong> + <strong>маркерні</strong> (відбір трансформантів) та <strong>репортерні</strong> (візуалізація) гени.</p>
+<p><strong>Піонери (1980-ті):</strong> <strong>Марк ван Монтегю</strong> (бельгієць) і <strong>Джефф Шелл</strong> відвідували МДУ (на запрошення акад. Г. К. Скрябіна). Ідеї: клонувати ген запасного білка бразильського горіха → перенести в сою; створити гербіцид-стійкі культури й продавати їх у парі з гербіцидом. У середині 1980-х це звучало як фантастика, але ~за 10 років опинилося на полях США. Згодом обидва працювали в лабораторіях <em>Monsanto</em> і створили ~80 % світових ГМ-рослин.</p>
+<p><strong>Методи роззброєння та векторні системи:</strong></p>
+<ol>
+<li><strong>Гомологічна рекомбінація</strong> з коінтегративним вектором: онкогени заміщуються генами інтересу (ненадійно, історичне значення).</li>
+<li><strong>Бінарна система</strong> (сучасна): Ti-плазміду розділяють на (а) <strong>плазміду-хелпер</strong> із vir-ділянкою (маркується, напр., стійкістю до рифампіцину, тримається в агробактерії) і (б) малу <strong>бінарну плазміду</strong> з Т-ДНК, якою маніпулюють у <em>E. coli</em>. Vir-продукти <em>in trans</em> переносять Т-ДНК бінарної плазміди. Відбір за двома антибіотиками.
+<ul>
+<li><strong>Порядок у Т-ДНК:</strong> ген інтересу — ближче до <strong>RB</strong> (добре захищений), селективний маркер — ближче до <strong>LB</strong> (часто ушкоджується): якщо LB-кінець «з'їдено», маркер пошкоджено й клітина відсіюється → гарантія інтеграції всієї конструкції.</li>
+</ul>
+</li>
+</ol>
+<p><strong>Селективні гени:</strong> стійкість до хлорамфеніколу (старий); <strong>канаміцину</strong> (<em>nptII</em>, неоміцинфосфотрансфераза) — стандарт; гігроміцину (особливо рис); <strong>фосфінотрицин/гліфосат</strong> (гербіцидна стійкість).
+<strong>Сильні промотори:</strong> <strong>35S</strong> вірусу мозаїки цвітної капусти (CaMV), промотор гена <strong>нопалінсинтази (nos)</strong> агробактерії; для однодольних — промотори <strong>убіквітину кукурудзи</strong> й <strong>актину рису</strong> (працюють краще).
+<strong>Репортерні гени:</strong> <strong>GUS</strong> (β-глюкуронідаза), <strong>GFP</strong> (зелений флуоресцентний білок) та інші.</p>
+</div></section>
+<section class="mg-sec" id="l3-10" data-title="«Генна гармата» (біобалістика) та інші методи" data-n="3.10"><h3 class="mg-h"><a class="mg-anchor" href="#l3-10" aria-label="Посилання на розділ"><span class="n">3.10</span></a><span class="mg-h__t">«Генна гармата» (біобалістика) та інші методи</span><a class="mg-tc" href="https://www.youtube.com/watch?v=fFRaSN1Vwas&amp;t=4686s" target="_blank" rel="noopener" title="Відкрити цей фрагмент відеолекції на YouTube">▶ 1:18:06</a></h3><div class="prose mg-prose"><p>Агробактерія вражає не всіх господарів, тому розроблено альтернативи.</p>
+<p><strong>Біобалістика (генна гармата).</strong> Мікрочастинки металу (напр., <strong>вольфраму</strong>, золота), вкриті ДНК, розганяють і «вистрілюють» у стерильну тканину; за інерцією частинки відриваються й проникають у клітини.</p>
+<ul>
+<li>Спершу використовували порох, але порохові гази (оксиди азоту) пригнічують ріст — перейшли на <strong>стиснений гелій/інертні гази</strong> із заслінкою.</li>
+<li>Недолік: частинки ушкоджують клітини (розрив вакуолі → загибель), тож обстріл має бути «м'яким».</li>
+<li>Переваги: трансформує не лише ядро, а й <strong>пластиди та мітохондрії</strong> (агробактерія для цього не годиться); у клітину потрапляє багато ДНК → можлива <strong>гомологічна рекомбінація</strong> при репарації. Є дорогі лабораторні установки (регулювання тиску, відстані, навіть керування польотом частинок електромагнітним полем) і дешеві портативні (для транзієнтної експресії).</li>
+<li>Транзієнтна експресія корисна там, де інтеграція не потрібна: напр., наробка білка, або запуск <strong>сайленсингу</strong> (anti-sense ДНК/РНК, РНК-інтерференція) для боротьби з вірусною інфекцією — обстріляний листок сам «вичищає» вірус.</li>
+</ul>
+<p><strong>Трансформація гострими наноматеріалами.</strong> Дуже тонкі й гострі об'єкти механічно надрізають ДНК/клітини:</p>
+<ul>
+<li><strong>карбід кремнію (SiC)</strong> — тонкі гострі кристали: у розчин чужорідної ДНК додають суспензію SiC і клітини, різко збовтують → проколювання клітин і надрізи ДНК → з певною ймовірністю чужорідна ДНК вбудовується. Дешево й масово, хоча ефективність низька.</li>
+<li><strong>вуглецеві нанотрубки</strong> — сучасна заміна SiC (подібний ефект проникнення й мікропошкоджень).</li>
+<li><em>(У лекції згадано як пересторогу: будь-який надріз ДНК — мутація; тому дуже тонкі волокна, як-от азбестовий пил, є потенційним мутагеном/канцерогеном — це треба враховувати, працюючи з ріжучими матеріалами.)</em></li>
+</ul>
+<p><strong>Підсумок:</strong> методи трансформації різноманітні, базуються переважно на агробактерії (найрозробленіше поле); у спеціальних випадках — біобалістика або трансформація нанотрубками/нанокристалами.</p>
+</div></section><aside class="mg-terms" id="l3-terms"><h3>Ключові терміни лекції 3</h3><ul class="mg-chips" data-lec="3"><li><em>Agrobacterium tumefaciens/rhizogenes</em></li><li>корончастий гал</li><li>hairy roots</li><li>Ti/Ri-плазміда</li><li>Т-ДНК</li><li>RB/LB</li><li>vir-регулон</li><li>VirA/VirG</li><li>VirD1/D2</li><li>VirE2</li><li>VIP1</li><li>VirF</li><li>T4SS (VirB)</li><li>ацетосирингон</li><li>опіни (нопалін, октопін, агропін)</li><li>гормон-незалежний ріст</li><li>онкогени (<em>iaaM/iaaH</em>, <em>ipt</em>)</li><li>гени <em>rol</em></li><li>NHEJ</li><li>транзієнтна експресія</li><li>бінарний вектор</li><li>промотор 35S</li><li>маркер <em>nptII</em></li><li>репортери GUS/GFP</li><li>біобалістика</li><li>карбід кремнію</li><li>вуглецеві нанотрубки</li></ul></aside><nav class="mg-pn" aria-label="Перехід між лекціями"><a class="mg-pn__a" href="#l2"><small>← Попередня лекція</small><b>2. Регуляція експресії геному</b></a><a class="mg-pn__a mg-pn__a--next" href="#l4"><small>Наступна лекція →</small><b>4. Трансгенні рослини в дослідженнях</b></a></nav></section>
+<section class="mg-lec" id="l4" data-lec="4" style="--lc:var(--l4)"><header class="mg-lec__head"><span class="mg-lec__num">4</span><div><span class="kicker">Лекція 4 із 5</span><h2>Трансгенні рослини в дослідженнях</h2><div class="mg-meta"><span>🎬 Відеолекція 14.03.2024 · 2:30:55</span><a href="https://www.youtube.com/watch?v=DysbqEzbofw" target="_blank" rel="noopener">YouTube</a><a href="https://teach-in.ru/lecture/2024-03-14-Chub" target="_blank" rel="noopener">Teach-in</a></div></div></header><div class="prose mg-prose mg-intro"><p>Арсенал ДНК/РНК-технологій на основі трансгенних рослин: інсерційний мутагенез, надекспресія, аналіз структури й патернів промоторів, ектопічна й індукована експресія, сайленсинг, «генетична хірургія», редагування геному. Перелік неповний і щороку оновлюється.</p>
+</div><nav class="mg-mini" aria-label="Розділи лекції 4"><b>У цій лекції</b><ol><li><a href="#l4-1"><span>4.1</span>Інсерційний і транспозонний мутагенез</a></li><li><a href="#l4-2"><span>4.2</span>Сильні та синтетичні промотори</a></li><li><a href="#l4-3"><span>4.3</span>Репортерні гени</a></li><li><a href="#l4-4"><span>4.4</span>Ектопічна експресія</a></li><li><a href="#l4-5"><span>4.5</span>Індукована експресія</a></li><li><a href="#l4-6"><span>4.6</span>Сайленсинг і вимкнення генів</a></li><li><a href="#l4-7"><span>4.7</span>Деградація білка (degron-системи)</a></li><li><a href="#l4-8"><span>4.8</span>Генетична хірургія (аблація)</a></li><li><a href="#l4-9"><span>4.9</span>Редагування геному</a></li><li><a href="#l4-10"><span>4.10</span>Дизайн (інженерія) метаболізму</a></li></ol></nav><section class="mg-sec" id="l4-1" data-title="Інсерційний і транспозонний мутагенез" data-n="4.1"><h3 class="mg-h"><a class="mg-anchor" href="#l4-1" aria-label="Посилання на розділ"><span class="n">4.1</span></a><span class="mg-h__t">Інсерційний і транспозонний мутагенез</span><a class="mg-tc" href="https://www.youtube.com/watch?v=DysbqEzbofw&amp;t=15s" target="_blank" rel="noopener" title="Відкрити цей фрагмент відеолекції на YouTube">▶ 00:15</a></h3><div class="prose mg-prose"><p><strong>Будь-яка вставка ДНК у геном — це мутація.</strong> Навіть трансформація з самим лише селективним маркером дає вставку у випадкове місце; якщо вона потрапляє в ген чи промотор — виникає мутантний фенотип. Масова трансформація → багато інсерційних мутацій; далі доводять, що мутація пов'язана саме зі вставкою (ген «помічений» Т-ДНК → легко клонувати).</p>
+<p><strong>Транспозонний мутагенез.</strong> Транспозон вставляється / вирізається в межах <strong>однієї хромосоми</strong>. Конструкцію розбирають на дві частини:</p>
+<ul>
+<li>транспозаза під сильним промотором (на одній хромосомі) забезпечує стрибки;</li>
+<li>касета з селективним маркером (напр., стійкість до канаміцину), обрамлена TIR, перестрибує.
+Мутації виявляються зчепленими з маркером. Перевага: можна «прицільно» мутувати потрібну хромосому (куди вбудовано конструкцію).</li>
+</ul>
+<p>Щоб маркер працював у всіх тканинах, його ставлять під <strong>конститутивні промотори</strong> (напр., промотор нопалін- або октопінсинтази агробактерії).</p>
+</div></section>
+<section class="mg-sec" id="l4-2" data-title="Сильні та синтетичні промотори" data-n="4.2"><h3 class="mg-h"><a class="mg-anchor" href="#l4-2" aria-label="Посилання на розділ"><span class="n">4.2</span></a><span class="mg-h__t">Сильні та синтетичні промотори</span><a class="mg-tc" href="https://www.youtube.com/watch?v=DysbqEzbofw&amp;t=300s" target="_blank" rel="noopener" title="Відкрити цей фрагмент відеолекції на YouTube">▶ ~05:00</a></h3><div class="prose mg-prose"><p><strong>Вірусні сильні промотори:</strong></p>
+<ul>
+<li><strong>35S</strong> вірусу мозаїки цвітної капусти (CaMV) — стандарт; від нього синтезується велика РНК (35S). У вірусу є РНК-стадія зі зворотною транскрипцією (помилки), тому використовують лише промотор, не весь вірус.</li>
+<li>щоб не провокувати сайленсинг при повторному використанні одного промотора для кількох генів, беруть промотори інших вірусів (напр., вірусу скручування листя томата та ін.).</li>
+</ul>
+<p><strong>Промотори генів «домашнього господарства»</strong> (для ширшого кола об'єктів, бо вірусні найкраще працюють у дводольних/пасльонових):</p>
+<ul>
+<li><strong>актин</strong> (цитоскелет, потрібен у великій кількості) — напр. з арабідопсису або рису;</li>
+<li><strong>убіквітин</strong> (кукурудзи) — для однодольних;</li>
+<li>для фотосинтезуючих тканин — <strong>мала субодиниця Rubisco (rbcS)</strong> та білок світлозбиральних комплексів (<strong>LHC/CAB</strong>); увага: вони мають <strong>добову динаміку</strong> (активні на світлі), на відміну від актину/убіквітину.</li>
+<li>для <strong>трансгенезу хлоропластів</strong> — промотор <strong>великої субодиниці Rubisco (rbcL)</strong> (закодована в пластому); Rubisco — найпоширеніший білок планети (до 40 % білка листка, до 60 % у водоростей).</li>
+</ul>
+<p><strong>Синтетичні промотори</strong> (біоінформатика):</p>
+<ul>
+<li><strong>DR5</strong> — ауксин-залежний: кілька тандемних копій ауксин-чутливих елементів (AuxRE) → спрацьовує навіть за низьких концентрацій ауксину; слугує «репортером розподілу ауксину»;</li>
+<li>мінімальні синтетичні промотори для сильної конститутивної експресії.</li>
+</ul>
+<p><strong>Метод аналізу промоторів (Нам-Хай Чуа, N.-H. Chua).</strong> До промотора малої субодиниці Rubisco приєднав ген стійкості (неоміцинфосфотрансфераза) і <strong>поступово вкорочував промотор</strong> у серії трансгенних ліній → знайшов, що ділянка ~–33 від TATA-боксу відповідає за <strong>світлову активацію</strong> (видалення → втрата відповіді на світло). Сучасні модифікації простіші, але принцип той самий: серія делецій промотора + репортер.</p>
+</div></section>
+<section class="mg-sec" id="l4-3" data-title="Репортерні гени" data-n="4.3"><h3 class="mg-h"><a class="mg-anchor" href="#l4-3" aria-label="Посилання на розділ"><span class="n">4.3</span></a><span class="mg-h__t">Репортерні гени</span><a class="mg-tc" href="https://www.youtube.com/watch?v=DysbqEzbofw&amp;t=900s" target="_blank" rel="noopener" title="Відкрити цей фрагмент відеолекції на YouTube">▶ ~15:00</a></h3><div class="prose mg-prose"><p><strong>GUS (β-глюкуронідаза, <em>uidA</em> з <em>E. coli</em>).</strong> Розщеплює штучний субстрат <strong>X-Gluc</strong> → нерозчинна синя речовина (похідне індиго) там, де працював промотор. Приклади: <em>PIN7</em> (транспорт ауксину — забарвлення стели й термінальної частини зародка); рецепторна кіназа, що вмикається за ~3 дні до цвітіння (забарвлення в приймочці). <strong>Недолік:</strong> об'єкт треба <strong>вбити</strong> (фіксація, просвітлення) → лише «моментальний знімок», динаміку в одного екземпляра не простежити. Приклад патерну під впливом: промотор <strong>PAL</strong> (фенілаланін-аміак-ліаза) гороху — відповідь на зараження фітофторою (стійка раса → реакція надчутливості, некроз, лігнінові бар'єри, конденсовані таніни, антоціани; сумісна раса проходить бар'єри).</p>
+<p><strong>GFP (зелений флуоресцентний білок, медуза <em>Aequorea victoria</em>).</strong> Світиться під синім світлом; <strong>не вбиваючи</strong> об'єкт. Хромофор дозріває зі зшивання трьох амінокислот (Tyr–?–Gly). Приклад: <em>DR5::GFP</em> показує динаміку ауксину в зародку (рівномірно на ранніх стадіях → кореневий полюс на стадії глобули → картина на стадії «торпедо»). Недолік: надто сильне/часте збудливе світло теж токсичне.
+<strong>Спектральні варіанти</strong> (інженерія GFP): BFP (синій, Tyr→His), CFP (ціановий, Tyr→Trp), YFP (жовтий, додаткова електронна густина) → спостереження за двома процесами; <strong>RFP/DsRed</strong> (корал <em>Discosoma</em>). <strong>FRET</strong> — передача енергії між близькими білками → виявлення взаємодії молекул. Інженери також оптимізують <strong>швидкість дозрівання</strong> (раніше зафіксувати ввімкнення) та <strong>швидку деградацію</strong> (швидко «гасне» після вимкнення).</p>
+<p><strong>Люциферази.</strong></p>
+<ul>
+<li><strong>Люцифераза світляка</strong> (субстрат <strong>люциферин</strong>) + просочування рослини люциферином → реєстрація світіння <em>in vivo</em> (напр., під LHC-промотором). Недолік: люциферин у високих концентраціях токсичний; успіх залежить від рівномірності просочення.</li>
+<li><strong>Грибна люцифераза</strong> (напр., <em>Neonothopanus/Omphalotus</em>): працює від <strong>кофейної кислоти</strong> через ферменти (гіспідин-синтаза, гідроксилаза → <strong>3-гідроксигіспідин</strong> = грибний люциферин). Треба перенести 3–4 грибні гени — і рослина світиться <strong>автономно</strong>, без субстрату ззовні. Світло в «зеленому провалі» хлорофілу (не поглинається). Дає змогу стежити за <strong>фенольним метаболізмом</strong> неінвазивно: механічне поранення → спалах за секунди; видно циркадні ритми.</li>
+</ul>
+<p><strong>Кольорові метаболіти як репортер — конструкція RUBY.</strong> Синтез <strong>бетанінів</strong> (буряково-червоні пігменти; буряк, кактуси, амарант, бугенвілія — замість антоціанів). RUBY = три злиті кодувальні ділянки ферментів синтезу бетаніну, розділені <strong>самовирізальними пептидами 2A</strong>, під 35S → червоне забарвлення без приладів і хімікатів; видно навіть трансгенні насінини в стручку. <em>DR5::RUBY</em> дає ті самі смуги вздовж жилок, що й GFP. <strong>Недолік:</strong> бетаніни накопичуються й не зникають → видно лише ввімкнення, не вимкнення. Застосування: томати, баклажани, картопля (стають стійкішими до грибних хвороб; бетаніни — антиоксиданти).</p>
+<p><strong>Пастки промоторів (promoter/enhancer trap).</strong> Безпромоторний GUS за транспозоном «ловить» промотори при перестрибуванні; приклад — промотор, активний у найповерхневішому шарі (протодерма/<em>ATML1</em>) → маркер поверхневих клітин.</p>
+</div></section>
+<section class="mg-sec" id="l4-4" data-title="Ектопічна експресія" data-n="4.4"><h3 class="mg-h"><a class="mg-anchor" href="#l4-4" aria-label="Посилання на розділ"><span class="n">4.4</span></a><span class="mg-h__t">Ектопічна експресія</span><a class="mg-tc" href="https://www.youtube.com/watch?v=DysbqEzbofw&amp;t=2400s" target="_blank" rel="noopener" title="Відкрити цей фрагмент відеолекції на YouTube">▶ ~40:00</a></h3><div class="prose mg-prose"><p><strong>Ектопічна експресія</strong> — активність гена не там, де належить. Класичний приклад — мутант <em><strong>Knotted1 (kn1)</strong></em> кукурудзи (вузлики на листку; перший знайдений у рослин гомеобокс-ген) — природна ектопічна експресія KNOX у листку. Сучасно: промотор одного гена + кодувальна частина іншого:</p>
+<ul>
+<li><em>STM</em> (<em>SHOOT MERISTEMLESS</em>, KNOX) у примордії листка → збереження недиференційованого стану, тривала проліферація → лопатеві/зубчасті листки (замість гладкого краю в арабідопсису).</li>
+</ul>
+<p><strong>Система двох ліній (трансактивація, LhG4/Op або GAL4/UAS).</strong> Для слабких промоторів: лінія-<strong>драйвер</strong> (промотор гена 1 + химерний активатор на основі <strong>lac-репресора</strong> <em>E. coli</em> без репресорної функції) × <strong>таргетна</strong> лінія (кілька копій <strong>lac-оператора</strong> перед геном 2). Химерний білок зв'язує оператор і активує еукаріотичну експресію; оператора в геномі рослин немає → специфічність. Приклад: промотор <em>APETALA3</em> керує <em>AGAMOUS</em> → втрата пелюсток і чашолистків, зупинка розвитку квітки.</p>
+</div></section>
+<section class="mg-sec" id="l4-5" data-title="Індукована експресія" data-n="4.5"><h3 class="mg-h"><a class="mg-anchor" href="#l4-5" aria-label="Посилання на розділ"><span class="n">4.5</span></a><span class="mg-h__t">Індукована експресія</span><a class="mg-tc" href="https://www.youtube.com/watch?v=DysbqEzbofw&amp;t=2760s" target="_blank" rel="noopener" title="Відкрити цей фрагмент відеолекції на YouTube">▶ ~46:00</a></h3><div class="prose mg-prose"><p>Експресія вмикається <strong>за волею експериментатора</strong>.</p>
+<p><strong>Власні промотори рослин:</strong></p>
+<ul>
+<li><strong>білки теплового шоку (HSP, напр. HSP18.2)</strong> — індукція нагріванням до ~37–40 °C (HSP — шаперони фолдингу; активуються ФТ <strong>HSF</strong> зі структурою «спіраль-поворот-спіраль», що зв'язують <strong>HSE</strong>-елементи). Недолік — «підтікання» (leaky): за норми теж потрібно трохи HSP. Приклад: X-Gluc під HSP-промотором мовчить при 22 °C, після 30 хв нагрівання прошивається все; можна нагріти навіть окремі клітини лазером. Застосування: <strong>флориген (FT)</strong> під HSP-промотором в евкаліпта → кілька годин нагрівання → квітки за ~9 тижнів → прискорення селекції дерев.</li>
+<li><strong>білки холодового стресу (COR)</strong> — індукція охолодженням до ~0–5 °C; ФТ типу AP2/EREBP (CBF/DREB); частково перекриваються з відповіддю на посуху; антифризні білки проти кристалів льоду.</li>
+</ul>
+<p><strong>Чужорідні (рослинам невластиві) індуковані системи</strong> — без «підтікання»:</p>
+<ul>
+<li><strong>глюкокортикоїдна (GR) система</strong> (індуктор — <strong>дексаметазон</strong>): химерний білок lac-зв'язування + GR-домен + активатор (GAL4); без гормону зв'язаний з HSP90 у цитозолі й не йде в ядро; дексаметазон → звільнення → ядро → експресія. Приклад: подвійний мутант <em>gl1 gl3</em> (голий лист) + <em>pLGL3::GR-GL3</em>: без дексаметазону — голу рослину; через 4 год після обробки — нові трихоми, через 7 днів — нові листки, суцільно вкриті волосками (обхід летальності ранньої надекспресії).</li>
+<li><strong>естрогенна (людський ER) система</strong> (індуктор — естроген) — аналогічно; можна «намалювати» естрогеном літери й побачити локальну експресію. Недолік тваринних гормонів: повільна дифузія, бар'єри → реакція не охоплює всю рослину одночасно.</li>
+<li><strong>етанол-індукована система</strong> (ФТ <strong>AlcR</strong> + промотор алкогольдегідрогенази <em>alcA</em> з <em>Aspergillus</em>): реагує на пари/полив спиртом; <strong>швидко</strong> поширюється по рослині (видно за люциферазою); лінійна відповідь у певному діапазоні.</li>
+<li><strong>тетрациклінова система</strong> — активатор або репресор, злитий із tet-рецептором: з тетрацикліном ген вмикається або вимикається.</li>
+</ul>
+</div></section>
+<section class="mg-sec" id="l4-6" data-title="Сайленсинг і вимкнення генів" data-n="4.6"><h3 class="mg-h"><a class="mg-anchor" href="#l4-6" aria-label="Посилання на розділ"><span class="n">4.6</span></a><span class="mg-h__t">Сайленсинг і вимкнення генів</span><a class="mg-tc" href="https://www.youtube.com/watch?v=DysbqEzbofw&amp;t=3660s" target="_blank" rel="noopener" title="Відкрити цей фрагмент відеолекції на YouTube">▶ ~61:00</a></h3><div class="prose mg-prose"><p><strong>Антисенс-супресія</strong> (відкрита 1978 р.). Якщо в клітині одночасно є смислова мРНК і комплементарна <strong>антисенс-РНК</strong> — утворюється дволанцюгова РНК, яку клітина знищує → продукт не синтезується. У конструкції кодувальну частину гена пришивають до промотора (напр. 35S) у зворотній орієнтації. Достатньо навіть короткого фрагмента (~13–25 нт). Недолік: протяжні антисенс-ділянки вимикають і гомологічні гени родини — тому майже не використовуються.</p>
+<p><strong>Способи блокування на рівні РНК:</strong></p>
+<ul>
+<li>антисенс-олігонуклеотиди блокують рух рибосоми; дволанцюгова ділянка — мішень для <strong>РНКази H</strong>;</li>
+<li><strong>рибозими</strong> — штучна РНК з ділянкою гомології + рибозимною активністю розрізає цільову РНК;</li>
+<li><strong>siRNA (мала інтерферуюча РНК)</strong> — короткий дволанцюговий фрагмент впізнається комплексом <strong>RISC</strong> і слугує «еталоном»: усі РНК із цією послідовністю руйнуються.</li>
+</ul>
+<p><strong>Сайленсинг (RNAi).</strong> Уперше виявлено на <strong>петунії</strong> (вимкнення 35S-конструкції; петунія бореться з петувірусами, тому система розвинена). Небажана РНК ріжеться на фрагменти <strong>21–23 нт</strong>, що взаємодіють з RISC (компоненти — <strong>Dicer, Argonaute</strong>); запускається деградація; siRNA переносяться плазмодесмами в сусідні клітини → сайленсингом охоплюються цілі органи/рослина; також діють на рівні ДНК (метилювання, ремоделювання хроматину).
+Сучасна конструкція: кодувальна частина + інвертований повтор у кінці → <strong>шпилька</strong> на 3′-кінці → ріжеться на siRNA → власна система запускає сайленсинг (знижує експресію, часто не до нуля). Приклади: сайленсинг <em>AG</em> → махрові квітки; сайленсинг каротиноїд-диоксигеназ у «білої» хризантеми → проявляється накопичення каротиноїдів.
+<strong>РНК-пестициди:</strong> siRNA/dsRNA проти специфічних генів шкідника (субодиниця протеасоми, тубулін, гени линяння комах) — ціль має бути видоспецифічною, без гомології з корисними комахами, рибами, людиною. Проблеми: стабілізація РНК у природі, проникнення; частина комах уже стійка (РНК перетравлюється в кишківнику).</p>
+</div></section>
+<section class="mg-sec" id="l4-7" data-title="Деградація білка (degron-системи)" data-n="4.7"><h3 class="mg-h"><a class="mg-anchor" href="#l4-7" aria-label="Посилання на розділ"><span class="n">4.7</span></a><span class="mg-h__t">Деградація білка (degron-системи)</span><a class="mg-tc" href="https://www.youtube.com/watch?v=DysbqEzbofw&amp;t=4440s" target="_blank" rel="noopener" title="Відкрити цей фрагмент відеолекції на YouTube">▶ ~74:00</a></h3><div class="prose mg-prose"><p><strong>Дегрони</strong> прибирають уже синтезований білок. Приклад з фізіології рослин — деградація <strong>Aux/IAA</strong>: у присутності ауксину домен (degron) Aux/IAA впізнається убіквітин-лігазою <strong>SCF^TIR1</strong> (F-box білок <strong>TIR1</strong> — рецептор ауксину) → убіквітинування → протеасома. До цільового білка пришивають degron Aux/IAA → він деградує за наявності ауксину.</p>
+<ul>
+<li>Приклад: degron + <strong>Venus</strong> (швидкодозрівальний YFP): з ауксином швидко зникає; <strong>стабілізований</strong> degron (контроль) не деградує навіть через 120 хв.</li>
+<li>У гетерологічних системах (дріжджі, тварини) TIR1 позбавляють NLS і модифікують під <strong>синтетичний ауксин</strong> (ніша для об'ємного замісника) → індукція модифікованою молекулою.</li>
+<li>Загальний прийом: химера <strong>dCas9 + degron + репресор/ремоделер хроматину</strong> → транскрипцію будь-якого гена роблять залежною від ауксину (чи іншого гормону). З ауксином репресорна конструкція деградує → Venus «розгоряється».</li>
+<li>Замінюючи degron, стежать за концентрацією <strong>гіберелінів</strong> чи <strong>жасмонатів</strong> (біосенсори): напр., ядра зародка/ендосперму, на які діяв гіберелін, жовтіють; поранення → поширення жасмонатного сигналу по листку.</li>
+</ul>
+</div></section>
+<section class="mg-sec" id="l4-8" data-title="Генетична хірургія (аблація)" data-n="4.8"><h3 class="mg-h"><a class="mg-anchor" href="#l4-8" aria-label="Посилання на розділ"><span class="n">4.8</span></a><span class="mg-h__t">Генетична хірургія (аблація)</span><a class="mg-tc" href="https://www.youtube.com/watch?v=DysbqEzbofw&amp;t=5340s" target="_blank" rel="noopener" title="Відкрити цей фрагмент відеолекції на YouTube">▶ ~89:00</a></h3><div class="prose mg-prose"><p><strong>Аблація (нім. <em>Ablast</em>)</strong> — орган закладається, але рано відмирає (рос. «генетична хірургія»). Використовують гени токсинів:</p>
+<ul>
+<li><strong>DTA</strong> (A-субодиниця дифтерійного токсину) під тканиноспецифічним промотором. Приклад: <em>pLEAFY::DTA</em> → квітки відмирають на ранніх етапах. Незворотно.</li>
+<li><strong>Система Barnase/Barstar</strong> (<em>Bacillus amyloliquefaciens</em>): <strong>барназа</strong> — секретована РНКаза («молекулярна зброя»), <strong>барстар</strong> — білок-інгібітор, що закриває її активний центр (зв'язування дуже міцне, використовується й у наноматеріалах). Два гени: барназа — для аблації, барстар — для скасування.
+<ul>
+<li><strong>Чоловіча стерильність:</strong> промотор гена тапетуму (з гороху) + барназа → перенесено в пеларгонію: відмирають лише тканини пиляка, тичинкова нитка ціла. Відновлення фертильності: барстар під тим самим/35S-промотором. Лінія А (барназа) × лінія-<strong>відновник (Rf, барстар)</strong> → у нащадків F1 барназа + барстар «склеюються», РНКаза вимикається, клітини живі. Важливо для виробництва гібридів F1.</li>
+</ul>
+</li>
+</ul>
+<p><strong>Генетичний «термінатор» (патентний захист сортів).</strong> Каскад: tet-індукований активатор → при обробці <strong>тетрацикліном</strong> рекомбіназа видаляє спейсер → промотор пізнього ембріогенезу вмикає <strong>білок, що інгібує рибосоми (RIP)</strong> → зародок у вже сформованому насінні гине. До продажу насіння обробляють тетрацикліном → зібраний фермером урожай має мертві зародки й не проростає. Викликає етичні заперечення (доступність продовольства для країн, що розвиваються).</p>
+</div></section>
+<section class="mg-sec" id="l4-9" data-title="Редагування геному" data-n="4.9"><h3 class="mg-h"><a class="mg-anchor" href="#l4-9" aria-label="Посилання на розділ"><span class="n">4.9</span></a><span class="mg-h__t">Редагування геному</span><a class="mg-tc" href="https://www.youtube.com/watch?v=DysbqEzbofw&amp;t=5700s" target="_blank" rel="noopener" title="Відкрити цей фрагмент відеолекції на YouTube">▶ ~95:00</a></h3><div class="prose mg-prose"><p><strong>CRISPR/Cas.</strong> CRISPR (<em>Clustered Regularly Interspaced Short Palindromic Repeats</em>) — бактеріальна «молекулярна пам'ять» про віруси; білок <strong>Cas</strong> (напр., <strong>Cas9</strong>) + <strong>гідова РНК (gRNA)</strong> з ділянкою гомології знаходить ціль і вносить дволанцюговий розріз. У консервативну частину можна вставити будь-яку послідовність → націлювання на будь-яке місце геному. Після редагування конструкцію Cas/CRISPR <strong>видаляють схрещуванням</strong> → лишається тільки відредагований геном (часто не відрізнити від звичайного сорту).</p>
+<p><strong>Інші нуклеази (до CRISPR):</strong></p>
+<ul>
+<li><strong>ZFN</strong> (цинкові-пальцеві нуклеази): тандем Zn-пальців (кожен впізнає триплет) + неспецифічна нуклеаза (FokI). Складні в збиранні й тестуванні (білок-ДНК взаємодія, можливі помилки) → не набули поширення.</li>
+<li><strong>TALEN</strong>: повтори, кожен впізнає свій нуклеотид + FokI. Теж складні.</li>
+</ul>
+<p><strong>Репарація розривів у рослин:</strong></p>
+<ul>
+<li>переважно <strong>негомологічне з'єднання кінців (NHEJ)</strong> — втрати/вставки нуклеотидів → зсув рамки, стоп-кодони → <strong>нокаут</strong> гена;</li>
+<li><strong>гомологічна репарація (HDR)</strong> рідкісніша → для неї підвищують копійність донорної ДНК з гомологічними плечима (гемінівірусні репликони, генна гармата) → <strong>нокін (knock-in)</strong>: вставка нової послідовності.</li>
+</ul>
+<p><strong>Можливості CRISPR:</strong></p>
+<ul>
+<li><strong>нокаут:</strong> gRNA до цільового гена → розрізи → NHEJ → мутація (прицільно, на відміну від хімічного/радіаційного мутагенезу);</li>
+<li><strong>нокін:</strong> два gRNA (вирізання ділянки) + донорна ДНК з плечима гомології → HDR;</li>
+<li><strong>dCas9 (дефектна, без нуклеазної активності)</strong> як платформа: + активатор ФТ (вмикання гена), + репресор/ремоделер хроматину (вимикання), + флуоресцентний білок (<strong>візуалізація локусів</strong> у хромосомах), + ферменти;</li>
+<li><strong>редактори основ (base editing):</strong> dCas9/nCas9 + <strong>цитидиндезаміназа</strong> (C→U→ пара G·C → A·T) або <strong>аденіндезаміназа</strong> (A→I→ пара A·T → G·C) → прицільна заміна однієї пари основ без дволанцюгового розриву.</li>
+</ul>
+</div></section>
+<section class="mg-sec" id="l4-10" data-title="Дизайн (інженерія) метаболізму" data-n="4.10"><h3 class="mg-h"><a class="mg-anchor" href="#l4-10" aria-label="Посилання на розділ"><span class="n">4.10</span></a><span class="mg-h__t">Дизайн (інженерія) метаболізму</span><a class="mg-tc" href="https://www.youtube.com/watch?v=DysbqEzbofw&amp;t=6540s" target="_blank" rel="noopener" title="Відкрити цей фрагмент відеолекції на YouTube">▶ ~109:00</a></h3><div class="prose mg-prose"><p>Нокаут/нокін для спрямування метаболізму до цільового продукту:</p>
+<ul>
+<li>зняти <strong>негативний зворотний зв'язок</strong> (нокаут месенджера, що інгібує фермент);</li>
+<li>зняти транскрипційне інгібування ферменту (нокаут ФТ-репресора) або <strong>надекспресія</strong> ферменту;</li>
+<li>вимкнути конкурентну гілку (<strong>нокаут</strong> непотрібного ферменту; miRNA/сайленсинг);</li>
+<li><strong>математичні моделі</strong> (диференціальні рівняння швидкостей переходів з урахуванням активації/інгібування та зворотних зв'язків).
+У прокаріотів інженерія метаболізму працює чудово; у рослин через складність регуляції — скромніше, але успіхи є (вторинні метаболіти, лікарські сполуки).</li>
+</ul>
+<p><strong>Модельна система — каротиноїди томата.</strong> Фітоєн → <strong>лікопін</strong> (червоний) → (β-/ε-цикл) → α-/β-каротин → ксантофіли (зеаксантин ⇄ антераксантин ⇄ віолаксантин).</p>
+<ul>
+<li>ген <strong>каротиноїд-ізомерази (CRTISO)</strong>; мутант <strong><em>tangerine</em> (tan)</strong> (помаранчевий, накопичує пролікопін замість лікопіну; жовтіє листя, бляклі квітки);</li>
+<li>при достиганні вимикаються β-циклаза та <strong>гідроксилаза</strong> (β-каротин→ксантофіли) → у плоді переважає лікопін;</li>
+<li><strong>проєкт «Xantomato»:</strong> інженерія, щоб гідроксилаза не вимикалася при достиганні → томат, збагачений <strong>ксантофілами</strong> (антиоксиданти, користь для зору) і β-каротином;</li>
+<li><strong>виправлення мутації:</strong> гемінівірусний реплікон + CRISPR надрізає дефектний алель <em>tan</em> → HDR вставляє нормальний фрагмент CRTISO → помаранчеві томати знову стають червоними (демонстрація: редагування не лише ламає, а й <strong>виправляє</strong> гени).</li>
+</ul>
+<p><strong>Підсумок:</strong> методичний арсенал молекулярної біології рослин постійно оновлюється; багато підходів приходить з інших систем. Повний огляд неможливий, але основні принципи — інсерційний мутагенез, промоторно-репортерний аналіз, ектопічна/індукована експресія, сайленсинг, дегрони, аблація та редагування геному — дають базу для досліджень і практичних результатів.</p>
+</div></section><aside class="mg-terms" id="l4-terms"><h3>Ключові терміни лекції 4</h3><ul class="mg-chips" data-lec="4"><li>інсерційний/транспозонний мутагенез</li><li>промотор 35S/actin/ubiquitin/rbcS/rbcL</li><li>DR5</li><li>делеційний аналіз промотора</li><li>репортери GUS (X-Gluc)</li><li>GFP/BFP/CFP/YFP/RFP</li><li>FRET</li><li>люцифераза</li><li>RUBY (бетаніни, 2A-пептиди)</li><li>ектопічна експресія</li><li>KNOX/STM</li><li>двокомпонентна трансактивація</li><li>індукована експресія (HSP/HSF/HSE, GR/дексаметазон, ER/естроген, Alc/етанол, Tet)</li><li>антисенс-супресія</li><li>RNAi (Dicer, Argonaute, RISC, siRNA)</li><li>рибозими</li><li>дегрон (Aux/IAA, TIR1)</li><li>аблація (DTA, Barnase/Barstar, Rf-лінія)</li><li>генетичний термінатор</li><li>CRISPR/Cas9</li><li>dCas9</li><li>gRNA</li><li>NHEJ</li><li>HDR</li><li>нокаут/нокін</li><li>ZFN</li><li>TALEN</li><li>base editing</li><li>інженерія метаболізму</li><li>каротиноїди</li><li><em>tangerine</em></li></ul></aside><nav class="mg-pn" aria-label="Перехід між лекціями"><a class="mg-pn__a" href="#l3"><small>← Попередня лекція</small><b>3. Трансформація рослин</b></a><a class="mg-pn__a mg-pn__a--next" href="#l5"><small>Наступна лекція →</small><b>5. Позиційний контроль розвитку</b></a></nav></section>
+<section class="mg-lec" id="l5" data-lec="5" style="--lc:var(--l5)"><header class="mg-lec__head"><span class="mg-lec__num">5</span><div><span class="kicker">Лекція 5 із 5</span><h2>Позиційний контроль розвитку</h2><div class="mg-meta"><span>🎬 Відеолекція 21.03.2024 · 1:38:35</span><a href="https://www.youtube.com/watch?v=4Kv6Ehos2BU" target="_blank" rel="noopener">YouTube</a><a href="https://teach-in.ru/lecture/2024-03-21-Chub" target="_blank" rel="noopener">Teach-in</a></div></div></header><div class="prose mg-prose mg-intro"><p>Генетики добре знають, <strong>у якій послідовності</strong> вмикаються гени («партитуру»), але значно менше — <strong>чому</strong> ген вмикається в конкретній точці рослини («хореографію»). Цей розділ — позиційний контроль розвитку.</p>
+</div><nav class="mg-mini" aria-label="Розділи лекції 5"><b>У цій лекції</b><ol><li><a href="#l5-1"><span>5.1</span>Позиційна інформація</a></li><li><a href="#l5-2"><span>5.2</span>Регулятори росту й морфогенезу в рослин</a></li><li><a href="#l5-3"><span>5.3</span>Короткі пептиди</a></li><li><a href="#l5-4"><span>5.4</span>Рецепторні кінази з LRR-доменом. Диференціювання провідної системи</a></li><li><a href="#l5-5"><span>5.5</span>Родина WOX. Взаємодія WOX–CLE</a></li><li><a href="#l5-6"><span>5.6</span>Модель активатора/інгібітора</a></li><li><a href="#l5-7"><span>5.7</span>Математичне моделювання морфогенезу. Моделювання філотаксису</a></li><li><a href="#l5-8"><span>5.8</span>Поліморфізм будови квіток. Перевірка стійкості моделей</a></li><li><a href="#l5-9"><span>5.9</span>Прогноз структури аномальних квіток</a></li><li><a href="#l5-10"><span>5.10</span>Заключення. Застосування теорії розмітки</a></li></ol></nav><section class="mg-sec" id="l5-1" data-title="Позиційна інформація" data-n="5.1"><h3 class="mg-h"><a class="mg-anchor" href="#l5-1" aria-label="Посилання на розділ"><span class="n">5.1</span></a><span class="mg-h__t">Позиційна інформація</span><a class="mg-tc" href="https://www.youtube.com/watch?v=4Kv6Ehos2BU&amp;t=15s" target="_blank" rel="noopener" title="Відкрити цей фрагмент відеолекції на YouTube">▶ 00:15</a></h3><div class="prose mg-prose"><p><strong>Позиційна інформація</strong> — клітина «розуміє» своє розташування в організмі завдяки <strong>позиційним сигналам</strong>. Є клітини-<strong>джерела</strong> сигналу й клітини-<strong>отримувачі</strong>, що залежно від отриманої інформації розвивають ту чи іншу структуру.</p>
+<p><strong>Модель «французького прапора» (Льюїс Вольперт, L. Wolpert, 1969).</strong> Ряд недиференційованих клітин оцінює концентрацію <strong>морфогену</strong>, що дифундує від джерела й розпадається/поглинається:</p>
+<ul>
+<li>висока концентрація (поріг 1) → «червоний»;</li>
+<li>середня → «жовтий»;</li>
+<li>нижче порога → «синій».
+Регулюючи чутливість до одного й того ж морфогену, з ряду клітин роблять кілька диференційованих зон (не лише три).</li>
+</ul>
+<p><strong>Експерименти Вольперта з куркою.</strong> У бруньці крила курки є <strong>зона поляризувальної активності (ZPA)</strong> ближче до хвостового краю: її опромінення вбиває клітини → зникають пальці (слабша доза — зникає палець 4, середня — ще й 3, лишається 2; сильна — усі). Пересадка <strong>другої ZPA</strong> симетрично → <strong>подвоєння набору пальців</strong> (дзеркально). Хімічний морфоген ZPA — <strong>ретиноєва кислота</strong> (каротиноїдна природа): її градієнт задає «номер» пальця. Той самий морфоген використовується багаторазово — напр., градієнт ретиноєвої кислоти «голова→хвіст» задає відділи хребта.</p>
+</div></section>
+<section class="mg-sec" id="l5-2" data-title="Регулятори росту й морфогенезу в рослин" data-n="5.2"><h3 class="mg-h"><a class="mg-anchor" href="#l5-2" aria-label="Посилання на розділ"><span class="n">5.2</span></a><span class="mg-h__t">Регулятори росту й морфогенезу в рослин</span><a class="mg-tc" href="https://www.youtube.com/watch?v=4Kv6Ehos2BU&amp;t=623s" target="_blank" rel="noopener" title="Відкрити цей фрагмент відеолекції на YouTube">▶ 10:23</a></h3><div class="prose mg-prose"><p>Потенційні джерела позиційного сигналу в рослин (мають точки синтезу, поширюються, а мутації в них порушують морфогенез):</p>
+<ul>
+<li><strong>фітогормони</strong> — низькомолекулярні, мають точки синтезу й поширюються; фізіологічна відповідь залежить від позиції клітини;</li>
+<li><strong>мікроРНК</strong> — рухаються плазмодесмами, вимикають гени-мішені (сайленсинг) → позиційний сигнал;</li>
+<li><strong>короткі пептиди</strong> — рухаються переважно <strong>апопластом</strong> (виділяються з клітин); деякі одразу закодовані коротко, інші дозрівають із пропептидів;</li>
+<li><strong>рухливі фактори транскрипції</strong> — місце синтезу ≠ місце дії; найвідоміше — родина <strong>WOX</strong>; також KNOX, HD-ZIP; рухаються плазмодесмами;</li>
+<li><strong>олігосахаридні сигнали</strong> — фрагменти клітинної стінки задають полярність клітини.</li>
+</ul>
+</div></section>
+<section class="mg-sec" id="l5-3" data-title="Короткі пептиди" data-n="5.3"><h3 class="mg-h"><a class="mg-anchor" href="#l5-3" aria-label="Посилання на розділ"><span class="n">5.3</span></a><span class="mg-h__t">Короткі пептиди</span><a class="mg-tc" href="https://www.youtube.com/watch?v=4Kv6Ehos2BU&amp;t=835s" target="_blank" rel="noopener" title="Відкрити цей фрагмент відеолекції на YouTube">▶ 13:55</a></h3><div class="prose mg-prose"><p><strong>Родина CLE</strong> (назва від <strong>CLV3</strong> + <strong>ESR</strong>-related). В арабідопсису понад 30 генів, подібних між собою.</p>
+<ul>
+<li>Синтез як <strong>пре-пропептиду</strong>: сигнальна послідовність → просвіт ЕПР → видалення сигнального пептиду → модифікації пропептиду (гідроксилювання проліну, глікозилювання) → протеоліз → зрілий короткий пептид → секреція. Порушення будь-якого етапу → збій сигналу (мутації).</li>
+<li><strong>2010 р.:</strong> усі CLE-білки арабідопсису досліджено репортером GUS — дуже складні патерни експресії (базальна частина листка, жилки, продихи, прилистки, апекс, квітки, стручки, кінчик кореня тощо).</li>
+<li>Нокаути часто <strong>не мають фенотипу</strong> через <strong>функціональне дублювання</strong> (пептиди схожі, взаємозамінні); фенотип виявляється лише там, де діє єдиний CLE.</li>
+</ul>
+<p><strong>Рецептори CLE — LRR-рецепторні кінази</strong> (із лейцин-збагаченим повтором): екстрацелюлярний LRR-домен зв'язує CLE (у димерній формі, <strong>необоротно</strong> → після зв'язування рецептор деградує). Приклад: <strong>CLV1</strong> зв'язує <strong>CLV3</strong> (увага: гени <em>CLAVATA</em> з різними номерами належать до <strong>різних</strong> родин — CLV1 кіназа, CLV3 пептид). Аналогія з <strong>афінною хроматографією</strong>: пептиди «розсідаються» на рецепторах → концентрація падає з відстанню від джерела.</p>
+</div></section>
+<section class="mg-sec" id="l5-4" data-title="Рецепторні кінази з LRR-доменом. Диференціювання провідної системи" data-n="5.4"><h3 class="mg-h"><a class="mg-anchor" href="#l5-4" aria-label="Посилання на розділ"><span class="n">5.4</span></a><span class="mg-h__t">Рецепторні кінази з LRR-доменом. Диференціювання провідної системи</span><a class="mg-tc" href="https://www.youtube.com/watch?v=4Kv6Ehos2BU&amp;t=1119s" target="_blank" rel="noopener" title="Відкрити цей фрагмент відеолекції на YouTube">▶ 18:39</a></h3><div class="prose mg-prose"><p><strong>Система TDIF/TDR (три типи диференціювання, як «французький прапор»).</strong> У культурі клітин <strong>цинії</strong> (що переходять до диференціювання судин ксилеми) виявлено пептид <strong>TDIF</strong> (<em>Tracheary Element Differentiation Inhibitory Factor</em>) — CLE-пептид, що <strong>гальмує</strong> диференціювання ксилеми:</p>
+<ul>
+<li>багато TDIF → клітини «думають», що близько до флоемного полюса → <strong>флоема</strong>;</li>
+<li>середня доза → прокамбій → камбій;</li>
+<li>підпорогова (мало TDIF) → <strong>ксилема</strong>.
+Рецептор — <strong>TDR/PXY</strong> (мутант <em>pxy</em> — перервані судини й флоема, бо клітини не відчувають рівня сигналу). Сигнал передається на <strong>WOX4</strong> (і WOX14): експресується в прокамбії, має <strong>позитивний зворотний зв'язок</strong>, запускає поділ → камбій. Експресія CLE сама під гормональним контролем (<strong>вмикається цитокініном</strong>) → сигнальний каскад.</li>
+</ul>
+<p><strong>Інженерні експерименти (підтверджують позиційну модель):</strong> посилення сигналу (35S::TDIF), інверсія сигналу (TDIF під промотором целюлозосинтази <em>IRX3</em>, що вмикається при диференціюванні ксилеми → «ксилема тане, як цукор»), посилення флоемного сигналу (промотор сахарозосинтази) → уся система зсувається від флоемного полюса.</p>
+</div></section>
+<section class="mg-sec" id="l5-5" data-title="Родина WOX. Взаємодія WOX–CLE" data-n="5.5"><h3 class="mg-h"><a class="mg-anchor" href="#l5-5" aria-label="Посилання на розділ"><span class="n">5.5</span></a><span class="mg-h__t">Родина WOX. Взаємодія WOX–CLE</span><a class="mg-tc" href="https://www.youtube.com/watch?v=4Kv6Ehos2BU&amp;t=1828s" target="_blank" rel="noopener" title="Відкрити цей фрагмент відеолекції на YouTube">▶ 30:28</a></h3><div class="prose mg-prose"><p><strong>WOX</strong> (<em>WUSCHEL-related homeobox</em>) — гомеобокс-гени недиференційованих клітин. В арабідопсису ~15 генів, 3 клади:</p>
+<ul>
+<li><strong>сучасна</strong> (WUS, WOX1–7) — лише у квіткових;</li>
+<li><strong>проміжна</strong> (WOX8, 9, 11, 12) — у т. ч. у голонасінних;</li>
+<li><strong>давня</strong> (WOX10, 13, 14) — у зелених водоростей, мохів, папоротей.</li>
+</ul>
+<p><strong>Контур WUS–CLV3 у меристемі пагона (SAM).</strong> Меристема поділена на шари:</p>
+<ul>
+<li>у ~3-му шарі експресується <strong>WUS</strong>; білок рухається плазмодесмами в <strong>поверхневий шар</strong>, де в ядрі вмикає <strong>CLV3</strong>;</li>
+<li>CLV3 дозріває, секретується й дифундує вглиб; у 2-му шарі рецепторні кінази (CLV1, CLV2/CORYNE комплекси) <strong>виловлюють</strong> CLV3 (знижують концентрацію, «не передаючи сигнал у ядро»);</li>
+<li>частина CLV3 доходить до клітин WUS → <strong>негативний зворотний зв'язок</strong>: CLV3 через рецептори знижує експресію WUS.
+Автоколивальний контур підтримує сталий розмір меристеми. Порушення (напр., синтезу CLV3) → меристема «не відчуває» кількості клітин → розростання центральної зони → <strong>фасціація</strong> (сильно витягнута, «гребінчаста» меристема; типово для складноцвітих).</li>
+</ul>
+</div></section>
+<section class="mg-sec" id="l5-6" data-title="Модель активатора/інгібітора" data-n="5.6"><h3 class="mg-h"><a class="mg-anchor" href="#l5-6" aria-label="Посилання на розділ"><span class="n">5.6</span></a><span class="mg-h__t">Модель активатора/інгібітора</span><a class="mg-tc" href="https://www.youtube.com/watch?v=4Kv6Ehos2BU&amp;t=2203s" target="_blank" rel="noopener" title="Відкрити цей фрагмент відеолекції на YouTube">▶ 36:43</a></h3><div class="prose mg-prose"><p><strong>Продихи — позиційний контроль у межах одного шару.</strong> У дикого типу продихи <strong>не торкаються</strong> один одного (правило «одна клітина між продихами»). Мутант <strong><em>tmm</em> (<em>TOO MANY MOUTHS</em>)</strong> — продихи контактують; причина — LRR-рецепторна кіназа TMM. Її ліганд — цистеїн-збагачений пептид <strong>STOMAGEN/EPF</strong> (не CLE). Сигнал іде на bHLH-фактор <strong>SPEECHLESS (SPCH)</strong> → перемикання на продиховий чи звичайний епідермальний шлях; взаємодія пептиду з TMM «вимикає» продихи в сусідстві.</p>
+<p><strong>Модель активатора–інгібітора (Gierer–Meinhardt; на гідрі).</strong> Гідра: активатор голови (коротка дистанція, довгоживучий) + інгібітор голови (далі діє, коротше живе), щоб не виникла друга голова (мутанти з багатьма головами → ідентифікація інгібітора). У рослин ролі грають <strong>рухливі фактори транскрипції</strong>:</p>
+<ul>
+<li><strong>TTG1 (WD40)</strong> активує <strong>GL1 (MYB)</strong> → клітина йде у <strong>трихому</strong>; разом з GL3 (bHLH) посилюють одне одного;</li>
+<li>трихома виділяє <strong>TRY (TRIPTYCHON)</strong> — інгібітор, що поширюється на сусідні клітини й пригнічує там розвиток волосків → трихоми розставлені.
+Мутант <em>gl1</em> (немає активатора) — немає трихом; мутант <em>try</em> (немає інгібітора) — «гнізда» трихом; подвійний мутант двох інгібіторів — великі острівці волосків.</li>
+</ul>
+</div></section>
+<section class="mg-sec" id="l5-7" data-title="Математичне моделювання морфогенезу. Моделювання філотаксису" data-n="5.7"><h3 class="mg-h"><a class="mg-anchor" href="#l5-7" aria-label="Посилання на розділ"><span class="n">5.7</span></a><span class="mg-h__t">Математичне моделювання морфогенезу. Моделювання філотаксису</span><a class="mg-tc" href="https://www.youtube.com/watch?v=4Kv6Ehos2BU&amp;t=2610s" target="_blank" rel="noopener" title="Відкрити цей фрагмент відеолекції на YouTube">▶ 43:30</a></h3><div class="prose mg-prose"><p><strong>Закладання бічних органів через потоки ауксину.</strong> Клітини епідермісу спрямовують транспорт ауксину (білки <strong>PIN</strong>) одна до одної → утворюється локальний максимум ауксину → «ініцій» нового примордія. Потужні потоки «диригують» слабшими (басейн збору ауксину). Доказ: мутант <strong><em>pin1</em> / <em>pinoid</em> (PIN-FORMED)</strong> — «шпилькоподібне» безлисте стебло: активного транспорту ауксину немає → немає локальних максимумів → немає бічних органів (меристема росте, але органів не закладає).</p>
+<p><strong>Постулати моделі філотаксису (розмітки):</strong></p>
+<ul>
+<li>примордій закладається на циліндрі між <strong>мінімальним і максимальним радіусом</strong> (кільцева зона розмітки);</li>
+<li>меристема росте вгору; примордій, раз закладений, зберігає <strong>кутову й висотну координату</strong>;</li>
+<li>потрібна достатня <strong>кількість клітин</strong> (ε-окіл точки) для нового органа;</li>
+<li>навколо закладеного примордія — <strong>зона інгібування</strong> (заборона нового органа поблизу);</li>
+<li><strong>принцип економії простору</strong>.</li>
+</ul>
+<p><strong>Типи філотаксису (залежно від розміру зони інгібування відносно меристеми):</strong></p>
+<ul>
+<li>велика зона інгібування → <strong>дистихія</strong> (дворядне, кут 180°, дріб Фібоначчі 1/2);</li>
+<li>зменшення зони → <strong>спіродистихія</strong> (два ряди вигинаються у спіраль; погано описується дробами Фібоначчі, добре — моделлю спіродистихії; напр., <em>Cordyline</em>, алое, багато однодольних);</li>
+<li>подальше зменшення → кут між парами листків росте до 90° → <strong>супротивне</strong> (накрест-супротивне, 4 ряди);</li>
+<li>ще менша зона → <strong>кільчасте (мутовчасте)</strong> — 3, 4, 5… органів у вузлі.</li>
+</ul>
+<p><strong>Мірність квітки</strong> (квітка = видозмінений пагін): тримерні, тетрамерні, пентамерні квітки визначаються <strong>геометрією</strong> (об'єм меристеми / зона інгібування), не мутаціями. Приклади: тримерні — традесканція, хіонодокса, лілійник; випадкові відхилення — димерні чи тетрамерні квітки (наступного року з тієї ж рослини — нормальні). Модель передбачає й <strong>проміжні «2,5-мірні»</strong> квітки (один орган між колами) — спостерігаються в нарциса, лілії, гортензії.</p>
+<p><strong>Способи ускладнення квітки:</strong> надстроювання нових кіл (махровість: додаткові кола оцвітини/тичинок — напр., махровий нарцис зберігає 6 тичинок і 3 гнізда; тюльпан — 12 тичинок замість 6). Для моделювання квітки додають <strong>другу зону розмітки</strong> (апікальну, базипетальну — для плодолистків і зупинки росту) поверх першої (акропетальної) з радіусом r3.</p>
+</div></section>
+<section class="mg-sec" id="l5-8" data-title="Поліморфізм будови квіток. Перевірка стійкості моделей" data-n="5.8"><h3 class="mg-h"><a class="mg-anchor" href="#l5-8" aria-label="Посилання на розділ"><span class="n">5.8</span></a><span class="mg-h__t">Поліморфізм будови квіток. Перевірка стійкості моделей</span><a class="mg-tc" href="https://www.youtube.com/watch?v=4Kv6Ehos2BU&amp;t=3768s" target="_blank" rel="noopener" title="Відкрити цей фрагмент відеолекції на YouTube">▶ 01:02:48</a></h3><div class="prose mg-prose"><p><strong>Квітка хрестоцвітих (арабідопсис).</strong> 4 чашолистки (нібито 2 кола), 4 пелюстки, 2 коротші + 4 довгі тичинки, плодолистки. Реальні підрахунки: <strong>середнє число тичинок завжди &lt; 6</strong> (ніколи рівно 6) — регулярно бракує коротких тичинок (зникає одна/обидві короткі; зрідка — 3 довгі замість групи). Це норма для виду.</p>
+<ul>
+<li><em>Lepidium ruderale</em> — «мінімальна» квітка: 4 чашолистки, 2 довгі тичинки, 2 плодолистки;</li>
+<li>мутант <em>ap2</em> арабідопсису — ще мінімальніша: 2 чашолистки, 2 тичинки, 2 плодолистки (функціональна).</li>
+</ul>
+<p><strong>«Літосферні плити» квітки.</strong> Найнестабільніші зони (де «трапляються землетрусики») у хрестоцвітих — <strong>короткі тичинки</strong>, далі пелюстки, латеральні чашолистки; найстабільніші — медіанні тичинки й плодолистки. Припущення: <strong>найстабільніші зони розмічаються першими</strong>, отримують позиційну інформацію раніше й самі стають джерелом сигналу. Фінальна геометрія однакова, хоча <strong>сценарії розвитку</strong> (порядок закладання довгих/коротких тичинок, запізнення пелюсток) різняться між видами.</p>
+</div></section>
+<section class="mg-sec" id="l5-9" data-title="Прогноз структури аномальних квіток" data-n="5.9"><h3 class="mg-h"><a class="mg-anchor" href="#l5-9" aria-label="Посилання на розділ"><span class="n">5.9</span></a><span class="mg-h__t">Прогноз структури аномальних квіток</span><a class="mg-tc" href="https://www.youtube.com/watch?v=4Kv6Ehos2BU&amp;t=4618s" target="_blank" rel="noopener" title="Відкрити цей фрагмент відеолекції на YouTube">▶ 01:16:58</a></h3><div class="prose mg-prose"><p><strong>Ревінь (<em>Rheum</em>)</strong> як модель (часті аномальні квітки). Квітка: зовнішнє й внутрішнє кола листочків оцвітини, роздвоєні й одиночні тичинки, плодолистки. Перевіряли <strong>4 гіпотези розмітки</strong>:</p>
+<ul>
+<li><strong>«ботанічна» (A):</strong> лише акропетальна зона, усе від периферії до центру (близько до реального порядку закладання);</li>
+<li><strong>«генетична» (B2):</strong> оцвітина — акропетально, тичинки й плодолистки — базипетально (відповідає патернам експресії генів);</li>
+<li>варіанти <strong>B1, B3</strong>.
+Результати моделювання: A і B2 дають типову квітку, але рішення <strong>нестійке</strong> (мала зміна параметрів «розсипає» квітку); B1 нормальної квітки не дає; <strong>B3</strong> (частина тичинок у акропетальній, частина — у базипетальній зоні розмітки) — <strong>стійке</strong> рішення у великому полі параметрів. Навколо нормальної квітки модель передбачає <strong>нетипові варіанти</strong>, які вдалося знайти в природі → підтвердження B3.</li>
+</ul>
+</div></section>
+<section class="mg-sec" id="l5-10" data-title="Заключення. Застосування теорії розмітки" data-n="5.10"><h3 class="mg-h"><a class="mg-anchor" href="#l5-10" aria-label="Посилання на розділ"><span class="n">5.10</span></a><span class="mg-h__t">Заключення. Застосування теорії розмітки</span><a class="mg-tc" href="https://www.youtube.com/watch?v=4Kv6Ehos2BU&amp;t=5639s" target="_blank" rel="noopener" title="Відкрити цей фрагмент відеолекції на YouTube">▶ 01:33:59</a></h3><div class="prose mg-prose"><p>Теорія розмітки дозволяє:</p>
+<ul>
+<li><strong>фізіологічні дослідження</strong> морфогенезу, коли органів ще не видно — передбачити, де шукати події розмітки й позиційні сигнали (у т. ч. абортовані органи чи «джерела сигналу, що не стали органом»);</li>
+<li>описувати <strong>мутантні/аномальні</strong> квітки (де не набирається морфологічна серія однакових органів);</li>
+<li>прогнозувати аномалії (як у ревеня) і будувати <strong>моделі еволюційних переходів</strong> будови суцвіть/квіток/філотаксису (за припущення сталості фізіологічних принципів);</li>
+<li>перевіряти <strong>повноту наших уявлень</strong>: якщо постулатів бракує й об'єкт «вислизає» з моделювання — базові принципи зрозумілі неповно.</li>
+</ul>
+</div></section><aside class="mg-terms" id="l5-terms"><h3>Ключові терміни лекції 5</h3><ul class="mg-chips" data-lec="5"><li>позиційна інформація</li><li>морфоген</li><li>«французький прапор» (Вольперт)</li><li>ZPA</li><li>ретиноєва кислота</li><li>CLE-пептиди (CLV3, TDIF)</li><li>LRR-рецепторні кінази (CLV1, TDR/PXY, TMM)</li><li>STOMAGEN/EPF</li><li>SPEECHLESS</li><li>WOX (WUS, WOX4)</li><li>контур WUS–CLV3</li><li>фасціація</li><li>модель активатор–інгібітор (TTG1/GL1/GL3/TRY)</li><li>PIN</li><li>філотаксис (дистихія, спіродистихія, супротивне, кільчасте)</li><li>мірність квітки</li><li>зона інгібування</li><li>теорія розмітки</li></ul></aside><nav class="mg-pn" aria-label="Перехід між лекціями"><a class="mg-pn__a" href="#l4"><small>← Попередня лекція</small><b>4. Трансгенні рослини в дослідженнях</b></a><a class="mg-pn__a mg-pn__a--next" href="#glossary"><small>Далі →</small><b>Глосарій і джерела</b></a></nav></section>
+
+          <section class="mg-sec mg-glossary" id="glossary" data-title="Глосарій">
+            <h2><span class="n">А–Я</span>Глосарій: ключові терміни лекцій 1–5</h2>
+            <p class="mg-gloss__lead">Усі терміни з кінця лекцій в одному місці. Фільтруйте за лекцією або текстом; натисніть на термін — і він знайдеться по всьому конспекту.</p>
+            <div class="mg-gloss__bar"><input type="search" id="mg-gq" placeholder="Фільтр термінів…" aria-label="Фільтр термінів"><div class="mg-seg" id="mg-gl" role="group" aria-label="Лекція"><button type="button" data-l="0" aria-pressed="true">Усі</button><button type="button" data-l="1" aria-pressed="false" style="--lc:var(--l1)">1</button><button type="button" data-l="2" aria-pressed="false" style="--lc:var(--l2)">2</button><button type="button" data-l="3" aria-pressed="false" style="--lc:var(--l3)">3</button><button type="button" data-l="4" aria-pressed="false" style="--lc:var(--l4)">4</button><button type="button" data-l="5" aria-pressed="false" style="--lc:var(--l5)">5</button></div></div>
+            <ul class="mg-chips mg-chips--all" id="mg-gterms"><li data-lec="1">модельний об'єкт</li><li data-lec="1">екотип</li><li data-lec="1">ефемер</li><li data-lec="1">алополіплоїдія</li><li data-lec="1">ретротранспозон (LTR, LINE, SINE, Ty1/Copia, Ty3/Gypsy)</li><li data-lec="1">параретровірус (Caulimoviridae, PVCV)</li><li data-lec="1">сайленсинг</li><li data-lec="1">ДНК-транспозон</li><li data-lec="1">транспозаза</li><li data-lec="1">TIR</li><li data-lec="1">Ac/Ds</li><li data-lec="1">transposon tagging</li><li data-lec="1">теломери</li><li data-lec="1">центромера</li><li data-lec="1">мультигенна родина</li><li data-lec="1">бокс</li><li data-lec="1">домен</li><li data-lec="2">цис-/транс-фактори</li><li data-lec="2">ФТ</li><li data-lec="2">домен</li><li data-lec="2">Zn-палець</li><li data-lec="2">B3</li><li data-lec="2">ARF</li><li data-lec="2">Aux/IAA</li><li data-lec="2">гомеодомен</li><li data-lec="2">KNOX</li><li data-lec="2">HD-ZIP</li><li data-lec="2">WOX</li><li data-lec="2">AP2/ERF</li><li data-lec="2">MADS-бокс</li><li data-lec="2">MYB (R2R3)</li><li data-lec="2">bHLH</li><li data-lec="2">bZIP</li><li data-lec="2">WD40</li><li data-lec="2">MBW</li><li data-lec="2">TTG1</li><li data-lec="2">WRKY</li><li data-lec="2">ремоделювання хроматину</li><li data-lec="2">інсулятор</li><li data-lec="2">Polycomb (PRC2)</li><li data-lec="2">яровизація</li><li data-lec="3"><em>Agrobacterium tumefaciens/rhizogenes</em></li><li data-lec="3">корончастий гал</li><li data-lec="3">hairy roots</li><li data-lec="3">Ti/Ri-плазміда</li><li data-lec="3">Т-ДНК</li><li data-lec="3">RB/LB</li><li data-lec="3">vir-регулон</li><li data-lec="3">VirA/VirG</li><li data-lec="3">VirD1/D2</li><li data-lec="3">VirE2</li><li data-lec="3">VIP1</li><li data-lec="3">VirF</li><li data-lec="3">T4SS (VirB)</li><li data-lec="3">ацетосирингон</li><li data-lec="3">опіни (нопалін, октопін, агропін)</li><li data-lec="3">гормон-незалежний ріст</li><li data-lec="3">онкогени (<em>iaaM/iaaH</em>, <em>ipt</em>)</li><li data-lec="3">гени <em>rol</em></li><li data-lec="3">NHEJ</li><li data-lec="3">транзієнтна експресія</li><li data-lec="3">бінарний вектор</li><li data-lec="3">промотор 35S</li><li data-lec="3">маркер <em>nptII</em></li><li data-lec="3">репортери GUS/GFP</li><li data-lec="3">біобалістика</li><li data-lec="3">карбід кремнію</li><li data-lec="3">вуглецеві нанотрубки</li><li data-lec="4">інсерційний/транспозонний мутагенез</li><li data-lec="4">промотор 35S/actin/ubiquitin/rbcS/rbcL</li><li data-lec="4">DR5</li><li data-lec="4">делеційний аналіз промотора</li><li data-lec="4">репортери GUS (X-Gluc)</li><li data-lec="4">GFP/BFP/CFP/YFP/RFP</li><li data-lec="4">FRET</li><li data-lec="4">люцифераза</li><li data-lec="4">RUBY (бетаніни, 2A-пептиди)</li><li data-lec="4">ектопічна експресія</li><li data-lec="4">KNOX/STM</li><li data-lec="4">двокомпонентна трансактивація</li><li data-lec="4">індукована експресія (HSP/HSF/HSE, GR/дексаметазон, ER/естроген, Alc/етанол, Tet)</li><li data-lec="4">антисенс-супресія</li><li data-lec="4">RNAi (Dicer, Argonaute, RISC, siRNA)</li><li data-lec="4">рибозими</li><li data-lec="4">дегрон (Aux/IAA, TIR1)</li><li data-lec="4">аблація (DTA, Barnase/Barstar, Rf-лінія)</li><li data-lec="4">генетичний термінатор</li><li data-lec="4">CRISPR/Cas9</li><li data-lec="4">dCas9</li><li data-lec="4">gRNA</li><li data-lec="4">NHEJ</li><li data-lec="4">HDR</li><li data-lec="4">нокаут/нокін</li><li data-lec="4">ZFN</li><li data-lec="4">TALEN</li><li data-lec="4">base editing</li><li data-lec="4">інженерія метаболізму</li><li data-lec="4">каротиноїди</li><li data-lec="4"><em>tangerine</em></li><li data-lec="5">позиційна інформація</li><li data-lec="5">морфоген</li><li data-lec="5">«французький прапор» (Вольперт)</li><li data-lec="5">ZPA</li><li data-lec="5">ретиноєва кислота</li><li data-lec="5">CLE-пептиди (CLV3, TDIF)</li><li data-lec="5">LRR-рецепторні кінази (CLV1, TDR/PXY, TMM)</li><li data-lec="5">STOMAGEN/EPF</li><li data-lec="5">SPEECHLESS</li><li data-lec="5">WOX (WUS, WOX4)</li><li data-lec="5">контур WUS–CLV3</li><li data-lec="5">фасціація</li><li data-lec="5">модель активатор–інгібітор (TTG1/GL1/GL3/TRY)</li><li data-lec="5">PIN</li><li data-lec="5">філотаксис (дистихія, спіродистихія, супротивне, кільчасте)</li><li data-lec="5">мірність квітки</li><li data-lec="5">зона інгібування</li><li data-lec="5">теорія розмітки</li></ul>
+          </section>
+
+          <section class="mg-sec" id="refs" data-title="Джерела">
+            <h2><span class="n">★</span>Джерела та подяки</h2>
+<div class="prose mg-prose">
+  <ol class="refs">
+    <li>Чуб В. В. Молекулярная генетика развития растений: курс лекцій 1–5 (відеолекції, студія Teach-in, біол. ф-т МДУ ім. М. В. Ломоносова, 2024). <a href="https://teach-in.ru/course/molecular-genetics-of-plant-development" target="_blank" rel="noopener">teach-in.ru</a> — основа конспекту.</li>
+  </ol>
+  <p>Фотографії — з Wikimedia Commons та інших відкритих джерел; під кожним фото вказано автора й ліцензію (CC BY, CC BY-SA, public domain), натискання на фото відкриває його в повному розмірі, а на імені автора — сторінку джерела.</p>
+</div>
+
+          </section>
+        </article>
+      </div>
+    </div>
+  </main>
+
+  <div class="mg-drawer" id="mg-drawer" hidden>
+    <div class="mg-drawer__bg" data-close></div>
+    <div class="mg-drawer__panel" role="dialog" aria-label="Зміст конспекту" aria-modal="true"><button class="mg-drawer__x" type="button" data-close aria-label="Закрити">✕</button><div id="mg-drawer-body"></div></div>
+  </div>
+  <button class="mg-top" id="mg-top" type="button" aria-label="Нагору" hidden><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m6 14 6-6 6 6"/></svg></button>
+
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer__grid">
+        <div class="footer__brand">
+          <img src="../../assets/img/nubip-shield.webp" alt="Герб НУБіП України" width="37" height="52" loading="lazy">
+          <div>
+            <strong>Кафедра фізіології, біохімії рослин та біоенергетики</strong>
+            Факультет захисту рослин, біотехнологій та екології<br>Національний університет біоресурсів і природокористування України
+          </div>
+        </div>
+        <div class="footer__col">
+          <h3>Розділи</h3>
+          <ul>
+            <li><a href="../../about/">Про кафедру</a></li>
+            <li><a href="../../about/#faculty-history">Історія факультету</a></li>
+            <li><a href="../../about/#administration">Адміністрація факультету</a></li>
+            <li><a href="../../about/#programs">Освітні програми</a></li>
+            <li><a href="../../about/#achievements">Здобутки</a></li>
+          </ul>
+        </div>
+        <div class="footer__col">
+          <h3>Для студентів</h3>
+          <ul>
+            <li><a href="../../lab/">Онлайн лабораторія</a></li>
+            <li><a href="../../lab/biochemistry/">Біохімія рослин</a></li>
+            <li><a href="../../lab/plant-physiology/">Фізіологія рослин</a></li>
+            <li><a href="../../lab/analytical-chemistry/">Аналітична хімія</a></li>
+            <li><a href="../../lab/plant-anatomy/">Анатомія рослин</a></li>
+            <li><a href="../../lab/instrumental/">Інструментальні методи</a></li>
+            <li><a href="../../konspekt/">Конспект</a></li>
+            <li><a href="../../konspekt/pathogens/">Збудники хвороб рослин</a></li>
+            <li><a href="../../konspekt/weeds/">Бур'яни України</a></li>
+            <li><a href="../../konspekt/amino-acids/">Амінокислоти</a></li>
+            <li><a href="../../konspekt/enzymes/">Ферменти</a></li>
+            <li><a href="../../konspekt/plant-cell/">Рослинна і тваринна клітини</a></li>
+            <li><a href="../../konspekt/plant-molecular-genetics/">Молекулярна генетика рослин</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer__view">
+        <button class="view-switch" type="button" data-view-switch><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8M12 17v4"/></svg><span data-view-label>ПК-версія сайту</span></button>
+      </div>
+      <div class="footer__bottom">
+        <span>© <span data-year>2026</span> Кафедра фізіології, біохімії рослин та біоенергетики, НУБіП України</span>
+        <a href="https://nubip.edu.ua" target="_blank" rel="noopener">nubip.edu.ua</a>
+      </div>
+    </div>
+  </footer>
+
+  <script defer src="../../assets/js/main.js"></script>
+  <script defer src="../../assets/js/lightbox.js"></script>
+  <script type="module" src="../../assets/js/lab/mgen-konspekt.js"></script>
+</body>
+</html>
