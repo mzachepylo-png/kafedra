@@ -91,7 +91,7 @@ register('wheat', (root) => {
   const N = {
     tu: { x: 80, y: 60, t: '<i>T. urartu</i>', g: 'AA', p: 'диплоїд, 2n = 14', i: 'Дика диплоїдна пшениця — донор генома A (вихідна лінія: дика однозернянка <i>T. boeoticum</i> з Малої Азії та Греції). Росте на порушених місцях.', c: ['#2E7D32'] },
     as: { x: 80, y: 190, t: '<i>Ae. speltoides</i>', g: 'BB', p: 'диплоїд, 2n = 14', i: 'Егілопс «циліндричні колоски» — бур\'ян давніх полів. Донор генома B (G). Спонтанна гібридизація з ним дала форми з вищою врожайністю й крупнішим зерном.', c: ['#1565C0'] },
-    t4: { x: 270, y: 125, t: 'Тверда пшениця / емер', g: 'AABB', p: 'тетраплоїд, 2n = 28', i: 'Результат гібридизації <i>T. urartu</i> × <i>Ae. speltoides</i> з подальшим подвоєнням хромосом — алотетраплоїд. Геноми A і B «співіснують» в одному ядрі.', c: ['#2E7D32', '#1565C0'] },
+    t4: { x: 270, y: 125, t: 'Емер / тверда', g: 'AABB', p: 'тетраплоїд, 2n = 28', i: 'Результат гібридизації <i>T. urartu</i> × <i>Ae. speltoides</i> з подальшим подвоєнням хромосом — алотетраплоїд. Геноми A і B «співіснують» в одному ядрі.', c: ['#2E7D32', '#1565C0'] },
     at: { x: 270, y: 245, t: '<i>Ae. tauschii</i>', g: 'DD', p: 'диплоїд, 2n = 14', i: '<i>Ae. squarrosa</i> («розчепірений») — донор генома D.', c: ['#C2415C'] },
     t6: { x: 480, y: 185, t: 'М\'яка пшениця', g: 'AABBDD', p: 'гексаплоїд, 2n = 42', i: 'Тетраплоїд × <i>Ae. tauschii</i>: утричі більше хромосом, ніж у вихідної диплоїдної пшениці. Багато генів представлені трьома гомеологічними копіями, не всі працюють; є гетерозисна сила, більша врожайність і фізіологічна пластичність, але вивчати такий об\'єкт складно.', c: ['#2E7D32', '#1565C0', '#C2415C'] },
   };
@@ -107,7 +107,7 @@ register('wheat', (root) => {
   function draw() {
     let h = '<defs><marker id="wm" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0 0L10 5L0 10z" fill="#7A8A7E"/></marker></defs>';
     links.forEach(([a, b]) => { const A = N[a], B = N[b]; h += `<path d="M${A.x + 62} ${A.y} C${A.x + 130} ${A.y} ${B.x - 70} ${B.y} ${B.x - 62} ${B.y}" fill="none" stroke="#9AA79D" stroke-width="2.2" marker-end="url(#wm)"/>`; });
-    h += `<text x="175" y="30" class="mg-ts" text-anchor="middle">гібридизація</text><text x="375" y="95" class="mg-ts" text-anchor="middle">+ подвоєння хромосом</text>`;
+    h += `<text x="196" y="156" class="mg-ts" text-anchor="middle" transform="rotate(-48 196 156)">× гібридизація</text><text x="404" y="160" class="mg-ts" text-anchor="middle" transform="rotate(-30 404 160)">× гібридизація</text>`;
     for (const [k, n] of Object.entries(N)) {
       const on = k === sel;
       h += `<g class="mg-hot${on ? ' is-sel' : ''}" data-k="${k}" tabindex="0" role="button" aria-label="${n.g}">`;

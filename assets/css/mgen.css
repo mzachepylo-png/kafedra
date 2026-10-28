@@ -72,7 +72,7 @@ mark.mg-hl { animation: mgfade 1s 7s forwards; }
 /* ---------- зміст ---------- */
 .mg-doc { grid-template-columns: 270px minmax(0, 1fr); gap: 40px; }
 @media (max-width: 1080px) { .mg-doc { grid-template-columns: minmax(0, 1fr); gap: 0; } }
-.mg-toc { top: calc(var(--header-h) + var(--mg-bar-h) + 18px); max-height: calc(100vh - var(--header-h) - var(--mg-bar-h) - 36px); overflow: auto; padding-right: 6px; scrollbar-width: thin; }
+.mg-toc { position: sticky; font-size: .92rem; top: calc(var(--header-h) + var(--mg-bar-h) + 18px); max-height: calc(100vh - var(--header-h) - var(--mg-bar-h) - 36px); overflow: auto; padding-right: 6px; scrollbar-width: thin; }
 .mg-toc__list, .mg-toc__list ol { list-style: none; margin: 0; padding: 0; border: 0 !important; }
 .mg-toc__top > a { font-weight: 700; padding-left: 8px !important; }
 .mg-toc__lec { margin: 6px 0; border-radius: 12px; }
@@ -89,6 +89,11 @@ mark.mg-hl { animation: mgfade 1s 7s forwards; }
 .mg-toc__lec ol a.is-active { border-left-color: var(--lc); color: var(--lc); font-weight: 700; background: color-mix(in srgb, var(--lc) 7%, white); }
 .mg-toc__lec.is-current > .mg-toc__l { background: color-mix(in srgb, var(--lc) 10%, white); }
 .no-js .mg-toc__lec > ol { display: block; }
+
+.mg-toc h2 { font-family: var(--sans); font-size: .76rem; letter-spacing: .14em; text-transform: uppercase; color: var(--gold-700); margin-bottom: 10px; }
+.mg-toc a { display: block; text-decoration: none; color: var(--ink-soft); }
+.mg-toc a:hover { color: var(--green-800); }
+@media (max-width: 1080px) { .mg-doc > .mg-toc { display: none; } }
 
 /* ---------- шухляда змісту (телефон/планшет) ---------- */
 .mg-drawer { position: fixed; inset: 0; z-index: 90; }
@@ -219,11 +224,11 @@ body.mg-focus .mg-lec:not(.is-current) { display: none; }
 @media (max-width: 760px) { .mg-gal--3, .mg-gal--4 { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
 @media (max-width: 480px) { .mg-gal--2, .mg-gal--3, .mg-gal--4 { grid-template-columns: minmax(0, 1fr); } }
 .mg-ph { margin: 0; border-radius: 14px; overflow: hidden; background: var(--white); border: 1px solid var(--line); box-shadow: var(--shadow-sm); display: flex; flex-direction: column; }
-.mg-ph a { display: block; overflow: hidden; background: #0E1A12; }
+.mg-ph > a { display: block; overflow: hidden; background: #0E1A12; }
 .mg-ph img { display: block; width: 100%; height: 190px; object-fit: cover; transition: transform .45s; }
 .mg-gal--big .mg-ph img { height: 250px; }
 .mg-ph.is-contain img { object-fit: contain; background: #fff; }
-.mg-ph a:hover img { transform: scale(1.05); }
+.mg-ph > a:hover img { transform: scale(1.05); }
 .mg-ph figcaption { padding: 9px 12px 11px; font-size: .84rem; line-height: 1.45; color: var(--ink-soft); }
 .mg-cred { display: block; margin-top: 4px; font-size: .72rem; color: var(--muted); }
 .mg-cred a { color: inherit; }
@@ -318,3 +323,39 @@ div.mg-bars__r { cursor: default; }
 .mg-mads small { color: var(--muted); font-size: .72rem; }
 .mg-mads button[aria-pressed="true"] { border-color: var(--l2); background: color-mix(in srgb, var(--l2) 10%, white); }
 .mg-ph svg { max-width: 300px; margin: 0 auto 10px; }
+
+/* ---------- лекція 3 ---------- */
+.mg-opine { display: flex; flex-wrap: wrap; gap: 8px; align-items: center; margin: 4px 0 14px; }
+.mg-pill { display: inline-block; padding: 8px 16px; border-radius: 999px; background: var(--c, var(--l3)); color: #fff; font-weight: 800; }
+.mg-pill--big { background: var(--l3); font-size: 1.1rem; box-shadow: 0 6px 16px -8px var(--l3); }
+.mg-plus { font: 800 1.4rem var(--serif); color: var(--muted); }
+.mg-cellgrid { display: grid; grid-template-columns: repeat(auto-fill, minmax(26px, 1fr)); gap: 5px; max-width: 520px; margin: 4px 0 10px; }
+.mg-cellgrid i { aspect-ratio: 1; border-radius: 50%; animation: mgpop .35s ease-out backwards; }
+@keyframes mgpop { from { transform: scale(0); opacity: 0; } }
+.mg-inf text { font-family: system-ui, sans-serif; }
+
+/* ---------- лекція 4 ---------- */
+.mg-spec { position: relative; height: 92px; margin: 6px 6px 14px; border-radius: 12px; background: linear-gradient(90deg, #5C6BC0 0%, #29B6F6 15%, #26A69A 30%, #66BB6A 45%, #D4E157 56%, #FFCA28 65%, #FF7043 80%, #E53935 100%); }
+.mg-spec__m { position: absolute; top: 6px; transform: translateX(-50%); display: grid; justify-items: center; gap: 1px; padding: 4px 6px; border: 2px solid #fff; border-radius: 10px; background: rgba(255, 255, 255, .92); font: inherit; cursor: pointer; box-shadow: 0 2px 8px rgba(0, 0, 0, .2); }
+.mg-spec__m i { width: 14px; height: 14px; border-radius: 50%; background: var(--c); border: 1px solid rgba(0, 0, 0, .25); }
+.mg-spec__m b { font-size: .74rem; line-height: 1.1; white-space: nowrap; }
+.mg-spec__m small { font-size: .64rem; color: var(--muted); }
+.mg-spec__m:hover { transform: translateX(-50%) translateY(-2px); }
+.mg-rep th small { display: block; font-weight: 500; color: var(--muted); font-size: .76rem; }
+.mg-rep td.yes { color: var(--green-700); font-weight: 800; text-align: center !important; }
+.mg-rep td.no { color: #B0B8B2; text-align: center !important; }
+.mg-rep tr.is-off { opacity: .3; }
+.mg-seqbox { padding: 12px 14px; border-radius: 12px; background: #fff; border: 1px solid var(--line); overflow-x: auto; margin: 10px 0; }
+.mg-seq { display: grid; grid-template-columns: 6.5em repeat(48, 1.35ch); gap: 0; font: 700 1rem var(--mono); white-space: nowrap; margin: 2px 0; align-items: center; }
+.mg-seq__l { font: 700 .72rem var(--sans); color: var(--muted); grid-column: 1; }
+.mg-seq i { font-style: normal; text-align: center; padding: 2px 0; }
+.mg-seq i.g { background: #DCE9FA; }
+.mg-seq i.pam { background: #FFE0B2; color: #8C4A00; }
+.mg-seq i.cut { box-shadow: inset -2px 0 0 #C0573E; }
+.mg-seq i.ed { background: #C0573E; color: #fff; border-radius: 3px; }
+.mg-seq--aa b { font: 800 .9rem var(--mono); text-align: center; background: #EDF5E8; border: 1px solid #fff; padding: 1px 0; }
+.mg-seq--aa b.stop { background: #C0573E; color: #fff; }
+.mg-cut { font-size: .78rem; font-weight: 800; color: #C0573E; margin: 4px 0 6px 6.5em; }
+.mg-arrow { font-size: .8rem; font-weight: 800; color: var(--muted); margin: 6px 0 6px 6.5em; }
+
+.mg-toc__lec ol a b, .mg-mini a b { font-weight: inherit; min-width: 0; }

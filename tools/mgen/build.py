@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """Генератор сторінки конспекту «Молекулярна генетика рослин».
 
-Вхід:   tools/mgen/source.md      — конспект лекцій 1–5 (Markdown)
+Вхід:   tools/mgen/source.md      — текст конспекту, частини 1–5 (Markdown)
         tools/mgen/figs/*.html    — рисунки й інтерактивні блоки (підставляються за {{fig:назва}})
         tools/mgen/meta.json      — «Головне» для розділів, контрольні питання, джерела
         tools/mgen/credits.json   — авторство й ліцензії фото (формується під час завантаження з Commons)
@@ -9,7 +9,7 @@
 Вихід:  konspekt/plant-molecular-genetics/index.html
 
 Запуск:  python3 tools/mgen/build.py
-Щоб додати лекції 6–13, допишіть їх у source.md в тому ж форматі (## Лекція N. …, ### N.M. …) і перезберіть.
+Щоб додати частини, допишіть їх у source.md в тому ж форматі (## Частина N. …, ### N.M. …) і перезберіть.
 """
 import html
 import json
@@ -38,15 +38,15 @@ CAPTIONS = load('captions.json', {})
 
 # ------------------------------------------------------------------ розбір джерела
 SRC = (T / 'source.md').read_text(encoding='utf-8')
-RE_LEC = re.compile(r'^## Лекція (\d+)\. (.+)$')
-RE_SEC = re.compile(r'^### (\d+)\.(\d+)\. (.+?)(?: \(\[([~\d:]+)\]\((.+?)\)\))?$')
+RE_LEC = re.compile(r'^## Частина (\d+)\. (.+)$')
+RE_SEC = re.compile(r'^### (\d+)\.(\d+)\. (.+?)$')
 
 lectures = []
 cur_lec = cur_sec = None
 for line in SRC.split('\n'):
     m = RE_LEC.match(line)
     if m:
-        cur_lec = dict(n=int(m.group(1)), title=m.group(2).strip(), intro=[], secs=[], video='', terms='')
+        cur_lec = dict(n=int(m.group(1)), title=m.group(2).strip(), intro=[], secs=[], terms='')
         lectures.append(cur_lec)
         cur_sec = None
         continue
@@ -54,7 +54,7 @@ for line in SRC.split('\n'):
         continue
     m = RE_SEC.match(line)
     if m:
-        cur_sec = dict(lec=int(m.group(1)), n=int(m.group(2)), title=m.group(3).strip(), tc=m.group(4), url=m.group(5), body=[])
+        cur_sec = dict(lec=int(m.group(1)), n=int(m.group(2)), title=m.group(3).strip(), tc=None, url=None, body=[])
         cur_lec['secs'].append(cur_sec)
         continue
     if line.strip() == '---':
@@ -69,12 +69,6 @@ for L in lectures:
             if ln.startswith('**Ключові терміни'):
                 L['terms'] = re.sub(r'^\*\*Ключові терміни[^*]*\*\*\s*', '', ln).rstrip('.')
                 bucket[i] = ''
-    vid = next((x for x in L['intro'] if x.startswith('**Відео:**')), '')
-    mm = re.findall(r'\[(YouTube|Teach-in)\]\((.+?)\)', vid)
-    L['links'] = dict(mm)
-    d = re.search(r'· (\d\d\.\d\d\.\d{4}) · ([\d:]+)', vid)
-    L['date'], L['dur'] = (d.group(1), d.group(2)) if d else ('', '')
-    L['intro'] = [x for x in L['intro'] if not x.startswith('**Відео:**')]
 
 
 def split_terms(s):
@@ -109,9 +103,11 @@ def photo_fig(keys, cls=''):
             print('  ! немає фото/підпису', k)
             continue
         artist = c['artist'] or 'невідомий автор'
+        if len(artist) > 46:
+            artist = re.split(r'[;,]', artist)[0].strip() + ' та ін.'
         lic = c['lic'] or ''
-        credit = f'<a href="{esc(c["url"])}" target="_blank" rel="noopener">{esc(artist[:60])}</a> · {esc(lic)}'
-        full = f'{re.sub("<[^>]+>", "", cap["t"])}. Фото: {artist[:60]}, Wikimedia Commons · {lic}'
+        credit = f'<a href="{esc(c["url"])}" target="_blank" rel="noopener">{esc(artist)}</a> · {esc(lic)}'
+        full = f'{re.sub("<[^>]+>", "", cap["t"])}. Фото: {artist}, Wikimedia Commons · {lic}'
         fit = ' is-contain' if cap.get('contain') else ''
         items.append(
             f'<figure class="mg-ph{fit}"><a href="../../assets/img/mgen/{k}.webp" data-lightbox data-caption="{esc(full)}" aria-label="Відкрити фото в повному розмірі">'
@@ -173,6 +169,11 @@ def sec_html(L, S):
         return '{{fig:%s}}' % name if (T / 'figs' / f'{name}.html').exists() else ''
 
     body = re.sub(r'^> 🖼 .*$', vis, body, flags=re.M)
+    # рисунки без власного блоку «🖼» — наприкінці розділу
+    n = k[0] + 1
+    while (T / 'figs' / (f'{sid}.html' if n == 1 else f'{sid}-{n}.html')).exists():
+        body += '\n\n{{fig:%s}}' % (sid if n == 1 else f'{sid}-{n}')
+        n += 1
     tc = ''
     if S['tc']:
         tc = (f'<a class="mg-tc" href="{esc(S["url"])}" target="_blank" rel="noopener" '
@@ -191,45 +192,40 @@ def inline(s):
 
 def lec_html(L, i):
     lid = f'l{L["n"]}'
-    links = L['links']
-    meta = (f'<div class="mg-meta"><span>🎬 Відеолекція {L["date"]} · {L["dur"]}</span>'
-            + (f'<a href="{esc(links["YouTube"])}" target="_blank" rel="noopener">YouTube</a>' if 'YouTube' in links else '')
-            + (f'<a href="{esc(links["Teach-in"])}" target="_blank" rel="noopener">Teach-in</a>' if 'Teach-in' in links else '')
-            + '</div>')
     intro = render_md('\n'.join(L['intro']).strip()) if ''.join(L['intro']).strip() else ''
-    nav_sections = ''.join(f'<li><a href="#l{L["n"]}-{s["n"]}"><span>{L["n"]}.{s["n"]}</span>{inline(s["title"])}</a></li>' for s in L['secs'])
+    nav_sections = ''.join(f'<li><a href="#l{L["n"]}-{s["n"]}"><span>{L["n"]}.{s["n"]}</span><b>{inline(s["title"])}</b></a></li>' for s in L['secs'])
     secs = '\n'.join(sec_html(L, s) for s in L['secs'])
     terms = ''.join(f'<li>{inline(t)}</li>' for t in split_terms(L['terms']))
     qa = ''.join(f'<details><summary><span>{q}</span></summary><div>{a}</div></details>' for q, a in META.get('qa', {}).get(lid, []))
     prev = lectures[i - 1] if i > 0 else None
     nxt = lectures[i + 1] if i + 1 < len(lectures) else None
-    pn = '<nav class="mg-pn" aria-label="Перехід між лекціями">'
-    pn += (f'<a class="mg-pn__a" href="#l{prev["n"]}"><small>← Попередня лекція</small><b>{prev["n"]}. {inline(prev["title"])}</b></a>' if prev else '<span></span>')
-    pn += (f'<a class="mg-pn__a mg-pn__a--next" href="#l{nxt["n"]}"><small>Наступна лекція →</small><b>{nxt["n"]}. {inline(nxt["title"])}</b></a>' if nxt else '<a class="mg-pn__a mg-pn__a--next" href="#glossary"><small>Далі →</small><b>Глосарій і джерела</b></a>')
+    pn = '<nav class="mg-pn" aria-label="Перехід між частинами">'
+    pn += (f'<a class="mg-pn__a" href="#l{prev["n"]}"><small>← Попередня частина</small><b>{prev["n"]}. {inline(prev["title"])}</b></a>' if prev else '<span></span>')
+    pn += (f'<a class="mg-pn__a mg-pn__a--next" href="#l{nxt["n"]}"><small>Наступна частина →</small><b>{nxt["n"]}. {inline(nxt["title"])}</b></a>' if nxt else '<a class="mg-pn__a mg-pn__a--next" href="#glossary"><small>Далі →</small><b>Глосарій і джерела</b></a>')
     pn += '</nav>'
     lead = META.get('lead', {}).get(lid, '')
     return (f'<section class="mg-lec" id="{lid}" data-lec="{L["n"]}" style="--lc:var(--l{L["n"]})">'
             f'<header class="mg-lec__head"><span class="mg-lec__num">{L["n"]}</span><div>'
-            f'<span class="kicker">Лекція {L["n"]} із 5</span><h2>{inline(L["title"])}</h2>{meta}</div></header>'
+            f'<span class="kicker">Частина {L["n"]} із 5</span><h2>{inline(L["title"])}</h2></div></header>'
             + (f'<p class="mg-lead">{lead}</p>' if lead else '')
             + (f'<div class="prose mg-prose mg-intro">{intro}</div>' if intro else '')
-            + f'<nav class="mg-mini" aria-label="Розділи лекції {L["n"]}"><b>У цій лекції</b><ol>{nav_sections}</ol></nav>'
+            + f'<nav class="mg-mini" aria-label="Розділи частини {L["n"]}"><b>У цій частині</b><ol>{nav_sections}</ol></nav>'
             + expand(fig(f'{lid}-open', True))
             + secs
-            + f'<aside class="mg-terms" id="{lid}-terms"><h3>Ключові терміни лекції {L["n"]}</h3><ul class="mg-chips" data-lec="{L["n"]}">{terms}</ul></aside>'
+            + f'<aside class="mg-terms" id="{lid}-terms"><h3>Ключові терміни частини {L["n"]}</h3><ul class="mg-chips" data-lec="{L["n"]}">{terms}</ul></aside>'
             + (f'<section class="mg-qa" id="{lid}-qa"><h3>Перевірте себе</h3><div class="qa">{qa}</div></section>' if qa else '')
             + pn + '</section>')
 
 
 # ------------------------------------------------------------------ зміст
 def toc_html():
-    out = ['<nav class="toc mg-toc" id="mg-toc" aria-label="Зміст конспекту"><h2>Зміст</h2><ol class="mg-toc__list">',
+    out = ['<nav class="mg-toc" id="mg-toc" aria-label="Зміст конспекту"><h2>Зміст</h2><ol class="mg-toc__list">',
            '<li class="mg-toc__top"><a href="#intro">Про конспект</a></li>']
     for L in lectures:
         out.append(f'<li class="mg-toc__lec" data-lec="{L["n"]}" style="--lc:var(--l{L["n"]})"><a class="mg-toc__l" href="#l{L["n"]}">'
                    f'<i>{L["n"]}</i><span>{inline(L["title"])}</span></a><span class="mg-toc__bar" aria-hidden="true"><i></i></span><ol>')
         for s in L['secs']:
-            out.append(f'<li><a href="#l{L["n"]}-{s["n"]}"><span>{L["n"]}.{s["n"]}</span>{inline(s["title"])}</a></li>')
+            out.append(f'<li><a href="#l{L["n"]}-{s["n"]}"><span>{L["n"]}.{s["n"]}</span><b>{inline(s["title"])}</b></a></li>')
         out.append('</ol></li>')
     out.append('<li class="mg-toc__top"><a href="#glossary">Глосарій</a></li><li class="mg-toc__top"><a href="#refs">Джерела</a></li></ol></nav>')
     return ''.join(out)

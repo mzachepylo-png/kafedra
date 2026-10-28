@@ -44,11 +44,13 @@ function init() {
     const t = document.getElementById(id);
     if (!t) return;
     const lec = t.closest('.mg-lec');
-    if (lec && focus) showLec(+lec.dataset.lec);
-    else if (lec) showLec(+lec.dataset.lec);
-    const y = t.getBoundingClientRect().top + scrollY - offset() + 10;
-    scrollTo({ top: Math.max(0, y), behavior: smooth && !matchMedia('(prefers-reduced-motion: reduce)').matches ? 'smooth' : 'auto' });
+    if (lec) showLec(+lec.dataset.lec);
+    const y = Math.max(0, t.getBoundingClientRect().top + scrollY - offset() + 10);
+    // на коротку відстань — плавно, на довгу — миттєво (стеження за розділом не відстає)
+    const near = Math.abs(y - scrollY) < innerHeight * 2.2;
+    scrollTo({ top: y, behavior: smooth && near && !matchMedia('(prefers-reduced-motion: reduce)').matches ? 'smooth' : 'instant' });
     if (history.replaceState) history.replaceState(null, '', '#' + id);
+    requestAnimationFrame(update);
   }
   // усі внутрішні посилання на якорі статті — через goTo (враховує фіксовану панель і режим фокусу)
   document.addEventListener('click', (e) => {
@@ -62,7 +64,9 @@ function init() {
   });
 
   // ---------------------------------------------------------------- видимі розділи
-  const allNav = [intro, ...sections].filter(Boolean);
+  lecs.forEach((l) => { l.dataset.title = $('h2', l).textContent; });
+  // усі «точки зупинки» у порядку документа: вступ, заголовок лекції, її розділи, глосарій, джерела
+  const allNav = $$('#intro, .mg-lec, .mg-sec', article);
   const visible = () => allNav.filter((s) => s.offsetParent !== null);
 
   // ---------------------------------------------------------------- стеження за прокруткою
