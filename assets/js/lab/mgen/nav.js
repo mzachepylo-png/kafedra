@@ -1,5 +1,5 @@
 // Навігація по великому конспекту: липка панель, прогрес, підсвічування розділу, зміст-шухляда,
-// режим «одна лекція», пошук по тексту, глосарій, збереження місця читання.
+// режим «одна частина», пошук по тексту, глосарій, збереження місця читання.
 import { $, $$, el } from './util.js';
 
 const article = $('#mg-article');
@@ -9,7 +9,7 @@ function init() {
   const header = $('.site-header');
   const bar = $('#mg-bar');
   const lecs = $$('.mg-lec', article);
-  const sections = $$('.mg-sec', article); // розділи лекцій, глосарій, джерела
+  const sections = $$('.mg-sec', article); // розділи частин, глосарій, джерела
   const intro = $('#intro');
   const toc = $('#mg-toc');
   const norm = (s) => String(s).toLowerCase().replace(/[’ʼ`]/g, "'").replace(/ё/g, 'е');
@@ -20,7 +20,7 @@ function init() {
   const css = getComputedStyle(document.documentElement);
   const offset = () => (header ? header.offsetHeight : 68) + bar.offsetHeight + 24;
 
-  // ---------------------------------------------------------------- режим «одна лекція»
+  // ---------------------------------------------------------------- режим «одна частина»
   const focusBtn = $('#mg-focus');
   let focus = LS.get('mg-focus') === '1';
   function setFocus(on, keepPos) {
@@ -39,7 +39,7 @@ function init() {
   function showLec(n) { lecs.forEach((l) => l.classList.toggle('is-current', +l.dataset.lec === n)); }
   focusBtn.addEventListener('click', () => setFocus(!focus));
 
-  /** Перейти до елемента за id, відкривши потрібну лекцію у режимі фокусу. */
+  /** Перейти до елемента за id, відкривши потрібну частину у режимі фокусу. */
   function goTo(id, smooth = true) {
     const t = document.getElementById(id);
     if (!t) return;
@@ -65,7 +65,7 @@ function init() {
 
   // ---------------------------------------------------------------- видимі розділи
   lecs.forEach((l) => { l.dataset.title = $('h2', l).textContent; });
-  // усі «точки зупинки» у порядку документа: вступ, заголовок лекції, її розділи, глосарій, джерела
+  // усі «точки зупинки» у порядку документа: вступ, заголовок частини, її розділи, глосарій, джерела
   const allNav = $$('#intro, .mg-lec, .mg-sec', article);
   const visible = () => allNav.filter((s) => s.offsetParent !== null);
 
@@ -86,7 +86,7 @@ function init() {
     const r = article.getBoundingClientRect();
     const total = r.height - innerHeight * 0.6;
     progress.style.width = Math.max(0, Math.min(100, (-r.top + y) / total * 100)).toFixed(1) + '%';
-    // прогрес лекцій у змісті
+    // прогрес частин у змісті
     tocLecs.forEach((li) => {
       const lec = document.getElementById('l' + li.dataset.lec);
       if (!lec || lec.offsetParent === null) return;
@@ -102,7 +102,7 @@ function init() {
     const lec = cur.closest('.mg-lec');
     const ln = lec ? +lec.dataset.lec : 0;
     if (lec && !focus) lecs.forEach((l) => l.classList.toggle('is-current', l === lec));
-    hereL.textContent = lec ? `Лекція ${ln}` : cur.id === 'intro' ? 'Вступ' : 'Додатки';
+    hereL.textContent = lec ? `Частина ${ln}` : cur.id === 'intro' ? 'Вступ' : 'Додатки';
     hereS.textContent = (cur.dataset.n ? cur.dataset.n + ' ' : '') + (cur.dataset.title || 'Про конспект');
     pills.forEach((p) => p.classList.toggle('is-active', +p.dataset.lec === ln));
     tocLinks.forEach((a) => a.classList.toggle('is-active', a.getAttribute('href') === '#' + cur.id));
@@ -125,7 +125,7 @@ function init() {
     let j = Math.max(0, Math.min(vs.length - 1, (i < 0 ? 0 : i) + d));
     // якщо ми посередині розділу, «назад» повертає на його початок
     if (d < 0 && i >= 0 && vs[i].getBoundingClientRect().top < -40) j = i;
-    // у режимі фокусу після останнього розділу лекції — наступна лекція
+    // у режимі фокусу після останнього розділу частини — наступна частина
     if (focus && d > 0 && i === vs.length - 1) return;
     if (focus && vs[j] && vs[j].closest('.mg-lec') !== (curSec && curSec.closest('.mg-lec')) && vs[j].closest('.mg-lec')) showLec(+vs[j].closest('.mg-lec').dataset.lec);
     if (vs[j]) goTo(vs[j].id);
@@ -172,7 +172,7 @@ function init() {
     const q = norm(sIn.value.trim());
     const toks = q.split(/\s+/).filter((t) => t.length > 1);
     lastToks = toks;
-    if (!toks.length) { sHits.innerHTML = '<li class="mg-hits__none">Введіть слово чи термін — пошук іде по всіх 5 лекціях.</li>'; return; }
+    if (!toks.length) { sHits.innerHTML = '<li class="mg-hits__none">Введіть слово чи термін — пошук іде по всіх 5 частинах.</li>'; return; }
     const res = [];
     for (const d of docs) {
       if (!toks.every((t) => d._x.includes(t) || d._t.includes(t))) continue;

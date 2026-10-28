@@ -1,4 +1,4 @@
-// Лекція 3. Трансформація рослин: інтерактивні блоки.
+// Частина 3. Трансформація рослин: інтерактивні блоки.
 import { register, el, svg, options, stepper, clamp, lerp, rnd, $, $$, loop } from './util.js';
 import { sliders } from '../ui.js';
 

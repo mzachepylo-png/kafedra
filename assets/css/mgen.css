@@ -10,7 +10,7 @@ html { scroll-padding-top: calc(var(--header-h) + var(--mg-bar-h) + 14px); }
 .page-hero--mgen .container { padding-bottom: clamp(28px, 4vw, 44px); }
 .mg-wrap { padding-top: 28px; }
 
-/* ---------- плитки лекцій у шапці ---------- */
+/* ---------- плитки частин у шапці ---------- */
 .mg-tiles { display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); gap: 10px; margin-top: 26px; }
 .mg-tile { position: relative; display: grid; gap: 4px; padding: 14px 14px 12px 14px; border-radius: 14px; text-decoration: none; color: #fff;
   background: rgba(255, 255, 255, .08); border: 1px solid rgba(255, 255, 255, .2); border-top: 4px solid var(--lc); backdrop-filter: blur(4px); transition: transform .2s, background .2s; }
@@ -111,7 +111,7 @@ mark.mg-hl { animation: mgfade 1s 7s forwards; }
 .mg-top svg { width: 22px; height: 22px; }
 .mg-top:hover { background: var(--green-700); }
 
-/* ---------- режим «одна лекція» ---------- */
+/* ---------- режим «одна частина» ---------- */
 body.mg-focus .mg-lec:not(.is-current) { display: none; }
 
 /* ---------- вступ ---------- */
@@ -127,7 +127,7 @@ body.mg-focus .mg-lec:not(.is-current) { display: none; }
 .mg-author { display: grid; gap: 4px; padding: 14px 16px; border-radius: 14px; background: linear-gradient(160deg, #F4FAF4, #fff); border: 1px solid var(--line); border-left: 5px solid var(--green-700); font-size: .93rem; color: var(--ink-soft); }
 .mg-author b { color: var(--ink); }
 
-/* ---------- лекція ---------- */
+/* ---------- частина ---------- */
 .mg-lec { padding-top: 34px; margin-top: 34px; border-top: 4px solid var(--lc); position: relative; }
 .mg-lec__head { display: flex; gap: 18px; align-items: flex-start; margin-bottom: 14px; }
 .mg-lec__num { flex: none; width: 64px; height: 64px; border-radius: 18px; display: grid; place-items: center; font: 800 2.2rem var(--serif); color: #fff; background: linear-gradient(150deg, var(--lc), color-mix(in srgb, var(--lc) 60%, #000)); box-shadow: 0 10px 22px -10px var(--lc); }
@@ -154,8 +154,6 @@ body.mg-focus .mg-lec:not(.is-current) { display: none; }
 .mg-anchor { text-decoration: none; }
 .mg-h .n { font: 800 .86rem var(--mono); color: #fff; background: var(--lc); padding: 3px 9px; border-radius: 8px; letter-spacing: .02em; }
 .mg-h__t { min-width: 0; }
-.mg-tc { font: 700 .74rem var(--sans); text-decoration: none; color: var(--lc); border: 1px solid color-mix(in srgb, var(--lc) 35%, white); padding: 2px 9px; border-radius: 999px; white-space: nowrap; }
-.mg-tc:hover { background: var(--lc); color: #fff; }
 .mg-key { margin: 0 0 14px; padding: 9px 14px; border-radius: 10px; background: var(--gold-100); border: 1px solid #EFE0AE; color: #4A3A08; font-size: .96rem; line-height: 1.5; max-width: 76ch; }
 .mg-key b { color: var(--gold-700); text-transform: uppercase; letter-spacing: .06em; font-size: .76rem; margin-right: 4px; }
 .mg-prose { max-width: 78ch; }
@@ -172,7 +170,7 @@ body.mg-focus .mg-lec:not(.is-current) { display: none; }
 .mg-prose .data-wrap { margin: 1.1em 0; max-width: 100%; }
 .mg-sec .mg-prose + .mg-fig, .mg-sec .mg-fig + .mg-prose { margin-top: 18px; }
 
-/* ---------- терміни, перевірка, навігація між лекціями ---------- */
+/* ---------- терміни, перевірка, навігація між частинами ---------- */
 .mg-terms { margin-top: 36px; padding: 18px 20px; border-radius: 16px; background: color-mix(in srgb, var(--lc) 6%, white); border: 1px solid color-mix(in srgb, var(--lc) 25%, white); }
 .mg-terms h3 { margin: 0 0 10px; font-size: 1rem; color: var(--lc); }
 .mg-chips { list-style: none; margin: 0; padding: 0; display: flex; flex-wrap: wrap; gap: 6px; }
@@ -324,7 +322,7 @@ div.mg-bars__r { cursor: default; }
 .mg-mads button[aria-pressed="true"] { border-color: var(--l2); background: color-mix(in srgb, var(--l2) 10%, white); }
 .mg-ph svg { max-width: 300px; margin: 0 auto 10px; }
 
-/* ---------- лекція 3 ---------- */
+/* ---------- частина 3 ---------- */
 .mg-opine { display: flex; flex-wrap: wrap; gap: 8px; align-items: center; margin: 4px 0 14px; }
 .mg-pill { display: inline-block; padding: 8px 16px; border-radius: 999px; background: var(--c, var(--l3)); color: #fff; font-weight: 800; }
 .mg-pill--big { background: var(--l3); font-size: 1.1rem; box-shadow: 0 6px 16px -8px var(--l3); }
@@ -334,7 +332,7 @@ div.mg-bars__r { cursor: default; }
 @keyframes mgpop { from { transform: scale(0); opacity: 0; } }
 .mg-inf text { font-family: system-ui, sans-serif; }
 
-/* ---------- лекція 4 ---------- */
+/* ---------- частина 4 ---------- */
 .mg-spec { position: relative; height: 92px; margin: 6px 6px 14px; border-radius: 12px; background: linear-gradient(90deg, #5C6BC0 0%, #29B6F6 15%, #26A69A 30%, #66BB6A 45%, #D4E157 56%, #FFCA28 65%, #FF7043 80%, #E53935 100%); }
 .mg-spec__m { position: absolute; top: 6px; transform: translateX(-50%); display: grid; justify-items: center; gap: 1px; padding: 4px 6px; border: 2px solid #fff; border-radius: 10px; background: rgba(255, 255, 255, .92); font: inherit; cursor: pointer; box-shadow: 0 2px 8px rgba(0, 0, 0, .2); }
 .mg-spec__m i { width: 14px; height: 14px; border-radius: 50%; background: var(--c); border: 1px solid rgba(0, 0, 0, .25); }

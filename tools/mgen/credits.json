@@ -29,16 +29,6 @@
   "w": 1280,
   "h": 949
  },
- "a-vavilov": {
-  "title": "File:Вавилов Николай Иванович (конверт).jpg",
-  "url": "https://commons.wikimedia.org/wiki/File:%D0%92%D0%B0%D0%B2%D0%B8%D0%BB%D0%BE%D0%B2_%D0%9D%D0%B8%D0%BA%D0%BE%D0%BB%D0%B0%D0%B9_%D0%98%D0%B2%D0%B0%D0%BD%D0%BE%D0%B2%D0%B8%D1%87_(%D0%BA%D0%BE%D0%BD%D0%B2%D0%B5%D1%80%D1%82).jpg",
-  "artist": "Пётр Эмильевич Бендель (1905 – 1989)",
-  "lic": "Public domain",
-  "lic_url": "",
-  "desc": "1977 postal cover of the Soviet Union featuring a portrait of Nikolai Vavilov.",
-  "w": 800,
-  "h": 564
- },
  "mcclintock": {
   "title": "File:Barbara McClintock (1902-1992) shown in her laboratory in 1947.jpg",
   "url": "https://commons.wikimedia.org/wiki/File:Barbara_McClintock_(1902-1992)_shown_in_her_laboratory_in_1947.jpg",
@@ -1098,26 +1088,6 @@
   "desc": "Tahiti is an award-winning double daffodil with sunny yellow blossoms decorated with eye-catching, red-orange ruffles. Sturdy and reliable, it's heat-resistant and very long-lasting.",
   "w": 1280,
   "h": 1149
- },
- "rheum": {
-  "title": "File:Rhabarberblüte Rheum rhabarbarum flower.JPG",
-  "url": "https://commons.wikimedia.org/wiki/File:Rhabarberbl%C3%BCte_Rheum_rhabarbarum_flower.JPG",
-  "artist": "Yoky",
-  "lic": "CC BY-SA 3.0",
-  "lic_url": "https://creativecommons.org/licenses/by-sa/3.0",
-  "desc": "Blütenstand einer Rhabarberpflanze",
-  "w": 1280,
-  "h": 1920
- },
- "rheum2": {
-  "title": "File:Rheum rhabarbarum (Rabarber) Frambozenrood bloem.jpg",
-  "url": "https://commons.wikimedia.org/wiki/File:Rheum_rhabarbarum_(Rabarber)_Frambozenrood_bloem.jpg",
-  "artist": "Rasbak",
-  "lic": "CC BY-SA 3.0",
-  "lic_url": "http://creativecommons.org/licenses/by-sa/3.0/",
-  "desc": "Rabarber (Rheum rhabarbarum) 'Frambozenrood' bloem",
-  "w": 800,
-  "h": 1053
  },
  "arab-flower-diagram": {
   "title": "File:Schematic-of-Arabidopsis-thaliana-nectarium.jpg",

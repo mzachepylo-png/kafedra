@@ -38,10 +38,10 @@
   "l5-4": "Система TDIF → TDR/PXY → WOX4 задає трьохзонний «прапор» провідного пучка: флоема – прокамбій – ксилема.",
   "l5-5": "Контур WUS–CLV3 з негативним зворотним зв'язком підтримує розмір меристеми; збій призводить до фасціації.",
   "l5-6": "Модель активатор–інгібітор (TTG1/GL1/GL3 — TRY) розставляє трихоми; схожа логіка — у продихів (TMM/SPCH).",
-  "l5-7": "Потоки ауксину (PIN) і зони інгібування задають філотаксис; мірність квітки визначає геометрія, а не мутації.",
-  "l5-8": "Квітки мінливі, але найстабільніші зони (медіанні тичинки, плодолистки) розмічаються першими.",
-  "l5-9": "Теорія розмітки передбачила аномальні квітки ревеню; стійким виявилось рішення B3.",
-  "l5-10": "Теорія розмітки допомагає шукати події розмітки, описувати мутантні квітки й моделювати еволюційні переходи."
+  "l5-7": "Потоки ауксину (PIN) і зони інгібування задають філотаксис; число органів у колі квітки значною мірою визначає геометрія.",
+  "l5-8": "ABC-модель пояснює ідентичність органів комбінацією генів класів A, B, C (з SEPALLATA); мережа генів стійка до збурень.",
+  "l5-9": "Модель передбачає, що дадуть мутації та ектопічна експресія, — і ці прогнози підтверджуються експериментом.",
+  "l5-10": "Моделі пояснюють патерни, передбачають наслідки мутацій і показують, чого ще бракує нашим знанням."
  },
  "lead": {
   "l1": "Яку рослину обрали «дрозофілою» генетики, як влаштовані три геноми клітини і чому в одних видів ДНК у сотні разів більше, ніж у інших — завдяки поліплоїдії та «стрибаючим» елементам.",
@@ -53,7 +53,7 @@
  "qa": {
   "l1": [
    [
-    "Які вимоги Вавилова до «рослинної дрозофіли» виконує арабідопсис?",
+    "Які вимоги до «рослинної дрозофіли» виконує арабідопсис?",
     "Короткий вегетаційний період (кілька поколінь на рік), насіння без періоду спокою, невибагливість, лише 5 пар хромосом (2n = 10), багато рас (екотипів), дрібні розміри. Частково — добра помітність ознак і можливість самозапилення (квітки дрібні, потрібна оптика)."
    ],
    [
@@ -157,9 +157,489 @@
     "Активатор (TTG1/GL1/GL3) вмикає розвиток трихоми й підсилює сам себе; трихома виділяє інгібітор TRY, що поширюється на сусідів. gl1 — трихом немає, try — «гнізда» трихом."
    ],
    [
-    "Від чого залежить тип філотаксису й мірність квітки?",
-    "Від розміру зони інгібування відносно меристеми: велика зона — дистихія, менша — спіродистихія, ще менша — супротивне та кільчасте; мірність квітки задає та сама геометрія."
+    "Від чого залежить тип філотаксису?",
+    "Від розміру зони інгібування відносно меристеми: велика зона — дистихія, менша — спіральний філотаксис, ще менша — супротивне та кільчасте розташування. Мірність квітки значною мірою задає та сама геометрія."
+   ],
+   [
+    "Що передбачає ABC-модель для мутанта ag?",
+    "Втрата функції класу C: клас A поширюється на вертикали 3–4, тому послідовність органів — чашолисток, пелюстка, пелюстка, нова квітка."
    ]
+  ]
+ },
+ "cite": {
+  "l1-1": [
+   "meyerowitz2001",
+   "koornneef2010",
+   "somerville2002",
+   "meinke1998",
+   "redei1975",
+   "laibach1943",
+   "provart2016",
+   "1001g2016"
+  ],
+  "l1-2": [
+   "agi2000",
+   "bennett2005",
+   "wendel2016",
+   "schnable2009",
+   "irgsp2005",
+   "tuskan2006",
+   "nystedt2013",
+   "amborella2013"
+  ],
+  "l1-3": [
+   "soltis2015",
+   "vandepeer2017",
+   "comai2005",
+   "adams2005",
+   "dubcovsky2007",
+   "marcussen2014",
+   "feldman2012",
+   "leitch2008",
+   "sierro2014",
+   "douglas2015",
+   "dhont2012",
+   "edger2019"
+  ],
+  "l1-4": [
+   "wicker2007",
+   "kumar1999",
+   "sanmiguel1996",
+   "bennetzen2000",
+   "kazazian2004",
+   "grandbastien1998",
+   "kobayashi2004",
+   "butelli2012",
+   "hirochika1996"
+  ],
+  "l1-5": [
+   "mcclintock1950",
+   "mcclintock1951",
+   "fedoroff1984",
+   "doring1986",
+   "kunze2002",
+   "feschotte2002",
+   "naito2009",
+   "jiang2004",
+   "studer2011",
+   "lisch2013",
+   "fedoroff2012"
+  ],
+  "l1-6": [
+   "heslop2011",
+   "blackburn2006",
+   "fajkus2005",
+   "plohl2014",
+   "melters2013"
+  ],
+  "l1-7": [
+   "meinke1997",
+   "butler2002",
+   "weber2016",
+   "gaszner2006",
+   "rose2008",
+   "gilbert1978",
+   "hernandez2014"
+  ],
+  "l2-1": [
+   "ptashne1997",
+   "struhl1999",
+   "spitz2012",
+   "lelli2012",
+   "lee2013"
+  ],
+  "l2-2": [
+   "riechmann2000",
+   "mitsuda2009",
+   "pabo1992",
+   "franco2014",
+   "theissen2016",
+   "dubos2010",
+   "stracke2001"
+  ],
+  "l2-3": [
+   "smith1999",
+   "walker1999",
+   "pazares1987",
+   "ludwig1989",
+   "goff1992",
+   "payne2000",
+   "zhang2003",
+   "baudry2004",
+   "ramsay2005",
+   "xu2015"
+  ],
+  "l2-4": [
+   "winkel2001",
+   "holton1995",
+   "borevitz2000",
+   "koes2005",
+   "gonzalez2008",
+   "grotewold2006",
+   "gould2004",
+   "jaakola2013",
+   "lepiniec2006"
+  ],
+  "l2-5": [
+   "kornberg1974",
+   "luger1997",
+   "strahl2000",
+   "jenuwein2001",
+   "kouzarides2007",
+   "pfluger2007",
+   "clapier2009",
+   "han2015",
+   "wagner2002",
+   "law2010",
+   "zhang2018",
+   "matzke2014",
+   "lippman2004",
+   "goodrich1997",
+   "mozgova2015",
+   "michaels1999",
+   "bastow2004",
+   "sung2004",
+   "berry2015",
+   "song2012"
+  ],
+  "l3-1": [
+   "smith1907",
+   "braun1958",
+   "zaenen1974",
+   "chilton1977",
+   "gelvin2003",
+   "pitzschke2010",
+   "dessaux1998"
+  ],
+  "l3-2": [
+   "zaenen1974",
+   "chilton1977",
+   "akiyoshi1984",
+   "barry1984",
+   "schroder1984",
+   "thomashow1984",
+   "gelvin2000",
+   "skoog1957"
+  ],
+  "l3-3": [
+   "young2001",
+   "farrand2003",
+   "wood2001",
+   "goodner2001",
+   "nester2015",
+   "kyndt2015"
+  ],
+  "l3-4": [
+   "stachel1985",
+   "hooykaas1994",
+   "binns1988",
+   "zupan2000",
+   "christie2005",
+   "citovsky1992",
+   "ziemienowicz2001",
+   "gelvin2017"
+  ],
+  "l3-5": [
+   "gelvin2003",
+   "tzfira2004",
+   "tzfira2006",
+   "citovsky2007",
+   "gelvin2010",
+   "lacroix2013"
+  ],
+  "l3-6": [
+   "akiyoshi1984",
+   "barry1984",
+   "schroder1984",
+   "thomashow1984",
+   "ream1989",
+   "sakakibara2006",
+   "zhao2010",
+   "skoog1957"
+  ],
+  "l3-7": [
+   "chilton1982",
+   "white1985",
+   "slightom1986",
+   "spena1987",
+   "schmulling1988",
+   "estruch1991a",
+   "estruch1991b",
+   "filippini1996",
+   "nilsson1997"
+  ],
+  "l3-8": [
+   "tepfer1984",
+   "christey2001",
+   "guillon2006",
+   "ono2011",
+   "boisson2001",
+   "kereszt2007"
+  ],
+  "l3-9": [
+   "zambryski1983",
+   "hoekema1983",
+   "bevan1984",
+   "fraley1983",
+   "herrera1983",
+   "bevan1983",
+   "barton1983",
+   "horsch1985",
+   "hellens2000",
+   "lee2008",
+   "clough1998",
+   "bechtold1993",
+   "hiei1994",
+   "ishida1996",
+   "altenbach1989",
+   "nordlee1996",
+   "vanmontagu2011"
+  ],
+  "l3-10": [
+   "klein1987",
+   "sanford1991",
+   "altpeter2005",
+   "svab1990",
+   "bock2015",
+   "kaeppler1990",
+   "demirer2019",
+   "krens1982",
+   "fromm1985"
+  ],
+  "l4-1": [
+   "feldmann1991",
+   "krysan1999",
+   "alonso2003",
+   "sessions2002",
+   "weigel2000",
+   "springer2000",
+   "sundaresan1995",
+   "walbot1992",
+   "martienssen1998",
+   "hirochika1996",
+   "miyao2003"
+  ],
+  "l4-2": [
+   "odell1985",
+   "benfey1990",
+   "kay1987",
+   "christensen1992",
+   "mcelroy1990",
+   "venter2007",
+   "ulmasov1997"
+  ],
+  "l4-3": [
+   "jefferson1987",
+   "ow1986",
+   "chalfie1994",
+   "haseloff1997",
+   "heim1995",
+   "tsien1998",
+   "shaner2005",
+   "jares2003",
+   "walter2004",
+   "kerppola2006",
+   "he2020"
+  ],
+  "l4-4": [
+   "odell1985",
+   "benfey1990",
+   "haseloff1999",
+   "brand2006"
+  ],
+  "l4-5": [
+   "aoyama1997",
+   "zuo2000",
+   "zuo2000b",
+   "gatz1992",
+   "craft2005",
+   "brand2006",
+   "odell1990",
+   "dale1991"
+  ],
+  "l4-6": [
+   "napoli1990",
+   "vanderkrol1990",
+   "fire1998",
+   "hamilton1999",
+   "baulcombe2004",
+   "waterhouse1998",
+   "wesley2001",
+   "schwab2006",
+   "voinnet2009",
+   "kumagai1995",
+   "burch2004"
+  ],
+  "l4-7": [
+   "gray2001",
+   "dharmasiri2005",
+   "kepinski2005",
+   "nishimura2009",
+   "brosh2016",
+   "nishimura2020"
+  ],
+  "l4-8": [
+   "mariani1990",
+   "mariani1992",
+   "thorsness1991",
+   "tsugeki1999",
+   "weijers2003",
+   "vandenberg1995",
+   "hartley1988"
+  ],
+  "l4-9": [
+   "ishino1987",
+   "mojica2005",
+   "barrangou2007",
+   "jinek2012",
+   "cong2013",
+   "mali2013",
+   "shan2013",
+   "li2013",
+   "nekrasov2013",
+   "kim1996",
+   "boch2009",
+   "moscou2009",
+   "christian2010",
+   "gaj2013",
+   "sander2014",
+   "hsu2014",
+   "puchta2005",
+   "lieber2010",
+   "xie2015",
+   "komor2016",
+   "anzalone2019",
+   "zhu2020",
+   "gao2021",
+   "wang2014",
+   "rodriguez2017"
+  ],
+  "l4-10": [
+   "ye2000",
+   "paine2005",
+   "fraser2004",
+   "butelli2008",
+   "naqvi2009",
+   "ruizlopez2014",
+   "galili2013",
+   "falco1995",
+   "gao2021"
+  ],
+  "l5-1": [
+   "wolpert1969",
+   "crick1970",
+   "turing1952",
+   "gierer1972",
+   "driever1988",
+   "rogers2011",
+   "kondo2010",
+   "green2015",
+   "bhalerao2003"
+  ],
+  "l5-2": [
+   "skoog1957",
+   "went1937",
+   "vanneste2009",
+   "benkova2003",
+   "matsubayashi2006"
+  ],
+  "l5-3": [
+   "matsubayashi2014",
+   "katsir2011",
+   "matsubayashi2006",
+   "pearce1991",
+   "tabata2014",
+   "kondo2006",
+   "ohyama2009"
+  ],
+  "l5-4": [
+   "shiu2001",
+   "torii1996",
+   "hohmann2017",
+   "ogawa2008",
+   "ito2006",
+   "hirakawa2008",
+   "hirakawa2010",
+   "etchells2010",
+   "fisher2007",
+   "fukuda2020"
+  ],
+  "l5-5": [
+   "clark1993",
+   "clark1997",
+   "fletcher1999",
+   "brand2000",
+   "schoof2000",
+   "laux1996",
+   "mayer1998",
+   "yadav2011",
+   "daum2014",
+   "reddy2005",
+   "jonsson2005",
+   "hohm2010",
+   "haecker2004",
+   "vandergraaff2009",
+   "sarkar2007",
+   "stahl2009",
+   "hobe2003"
+  ],
+  "l5-6": [
+   "gierer1972",
+   "meinhardt1982",
+   "hulskamp1994",
+   "oppenheimer1991",
+   "schellmann2002",
+   "larkin2003",
+   "pesch2009",
+   "sugano2010",
+   "hara2007",
+   "lee2012"
+  ],
+  "l5-7": [
+   "hofmeister1868",
+   "snow1932",
+   "douady1992",
+   "douady1996",
+   "reinhardt2000",
+   "reinhardt2003",
+   "smith2006",
+   "jonsson2006",
+   "kuhlemeier2007",
+   "smith2009",
+   "prusinkiewicz2012",
+   "ronse2016"
+  ],
+  "l5-8": [
+   "smyth1990",
+   "coen1991",
+   "bowman1991",
+   "weigel1994",
+   "theissen2001",
+   "krizek2005",
+   "pelaz2000",
+   "ditta2004",
+   "honma2001",
+   "mendoza1998",
+   "espinosa2004",
+   "alvarez2010"
+  ],
+  "l5-9": [
+   "krizek1996",
+   "honma2001",
+   "kanno2003",
+   "soltis2007",
+   "mendoza1998",
+   "espinosa2004",
+   "clark1997",
+   "schoof2000"
+  ],
+  "l5-10": [
+   "meyerowitz2002",
+   "hamant2008",
+   "prusinkiewicz2012",
+   "espinosa2004",
+   "kondo2010",
+   "zhu2020"
   ]
  }
 }

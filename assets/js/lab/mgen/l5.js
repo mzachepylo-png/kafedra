@@ -1,4 +1,4 @@
-// Лекція 5. Позиційний контроль розвитку: інтерактивні блоки.
+// Частина 5. Позиційний контроль розвитку: інтерактивні блоки.
 import { register, el, svg, options, stepper, clamp, lerp, rnd, $, $$, loop } from './util.js';
 import { sliders } from '../ui.js';
 
@@ -237,8 +237,8 @@ register('phyllo', (root) => {
     if (div.length < 8) return '…';
     const l = div.slice(-8); const m = l.reduce((a, b) => a + b, 0) / l.length;
     const big = l.filter((x) => x > 165).length, mid = l.filter((x) => x > 60 && x < 125).length;
-    if (m > 172) return 'дистихія (дворядне, кут 180°; дріб Фібоначчі 1/2)';
-    if (m > 150) return 'спіродистихія: два ряди вигинаються у спіраль';
+    if (m > 172) return 'дистихія (дворядне розташування, кут 180°)';
+    if (m > 150) return 'перехід від дистихії до спіралі';
     if (m > 130 && m < 150 && big < 3) return 'спіральне розташування (кут ≈ 137,5° — золотий кут)';
     if (big >= 2 && mid >= 2) return 'супротивне (пари під 180°, наступна пара повернена на ≈ 90°) або кільчасте';
     return 'перехідний / нерегулярний малюнок';
@@ -252,15 +252,15 @@ register('phyllo', (root) => {
     ctx.strokeStyle = '#B9CFA0'; ctx.setLineDash([4, 5]); ctx.beginPath(); ctx.arc(c, c, sc, 0, 6.283); ctx.stroke(); ctx.setLineDash([]);
     ctx.fillStyle = '#CDE8B8'; ctx.beginPath(); ctx.arc(c, c, sc, 0, 6.283); ctx.fill();
     for (const q of P) { const x = c + Math.cos(q.a) * q.r * sc, y = c + Math.sin(q.a) * q.r * sc; const rad = 8 + q.r * 7; const age = clamp((q.r - 1) / 3, 0, 1); ctx.beginPath(); ctx.arc(x, y, rad, 0, 6.283); ctx.fillStyle = `hsl(${110 - age * 30} ${55 - age * 10}% ${60 - age * 18}%)`; ctx.fill(); ctx.strokeStyle = '#3D6E2C'; ctx.stroke(); ctx.fillStyle = '#13241A'; ctx.font = '700 11px system-ui'; ctx.textAlign = 'center'; if (rad > 11) ctx.fillText(q.n, x, y + 4); }
-    if (++fr % 10 === 0) info.innerHTML = `<p><b>Малюнок розмітки:</b> ${classify()}. Нові примордії закладаються там, де сумарне інгібування найменше; закладений примордій зберігає кутову координату й відсувається від центру; навколо нього — зона інгібування.</p>`;
+    if (++fr % 10 === 0) info.innerHTML = `<p><b>Малюнок розташування:</b> ${classify()}. Нові примордії закладаються там, де сумарне інгібування найменше; закладений примордій зберігає кутову координату й відсувається від центру; навколо нього — зона інгібування.</p>`;
   });
 });
 
 // ------------------------------------------------------------------ мірність квітки
 register('merosity', (root) => {
   const ctl = el('div');
-  const S = sliders(ctl, [{ id: 'z', label: 'Розмір зони інгібування відносно кола розмітки', min: 0.9, max: 2.1, step: 0.01, value: 1.74, digits: 2 }], draw);
-  const sv = svg('svg', { class: 'mg-svg', viewBox: '0 0 640 300', role: 'img', 'aria-label': 'Мірність квітки залежить від геометрії розмітки' });
+  const S = sliders(ctl, [{ id: 'z', label: 'Розмір зони інгібування відносно кола апекса', min: 0.9, max: 2.1, step: 0.01, value: 1.74, digits: 2 }], draw);
+  const sv = svg('svg', { class: 'mg-svg', viewBox: '0 0 640 300', role: 'img', 'aria-label': 'Мірність квітки залежить від геометрії апекса' });
   const info = el('div', { class: 'mg-info', 'aria-live': 'polite' });
   function draw() {
     const z = S.values.z; const nReal = Math.PI / Math.asin(Math.min(1, z / 2)); const n = Math.floor(nReal); const fr = nReal - n;
@@ -275,52 +275,60 @@ register('merosity', (root) => {
     h += `<circle cx="${cx}" cy="${cy}" r="10" fill="#9FC270"/>`;
     const label = fr > 0.35 && fr < 0.65 ? `проміжна «${n},5-мірна» квітка` : `${fr >= 0.65 ? n + 1 : n}-мірна квітка`;
     h += `<text x="400" y="110" class="mg-th">${label}</text><text x="400" y="136" class="mg-t">n = ${nReal.toFixed(2).replace('.', ',')}</text>`;
-    h += `<text x="400" y="170" class="mg-ts">Мірність задає геометрія (об'єм меристеми /</text><text x="400" y="186" class="mg-ts">зона інгібування), а не мутації.</text>`;
+    h += `<text x="400" y="170" class="mg-ts">Мірність значною мірою задає геометрія (об'єм меристеми /</text><text x="400" y="186" class="mg-ts">зона інгібування).</text>`;
     h += `<text x="400" y="212" class="mg-ts">3-мірні: традесканція, хіонодокса, лілійник;</text><text x="400" y="228" class="mg-ts">проміжні «2,5-мірні» — нарцис, лілія, гортензія.</text>`;
     sv.innerHTML = h;
-    info.innerHTML = '<p>Випадкові відхилення (димерні чи тетрамерні квітки на тримерній рослині) наступного року з тієї ж рослини — знову нормальні. Модель передбачає й проміжні квітки, де один орган «не вміщується» в коло — їх справді спостерігають.</p>';
+    info.innerHTML = '<p>Це спрощена геометрична ілюстрація: що менша зона інгібування відносно кола, то більше примордіїв на ньому вміщується. На практиці число органів залежить ще й від генів, що задають розмір меристеми (наприклад, <i>CLV</i>, <i>WUS</i>).</p>';
   }
   root.append(ctl, sv, info);
   draw();
 });
 
-// ------------------------------------------------------------------ діаграма квітки: зони нестабільності
-register('floral-zones', (root) => {
-  const Z = {
-    ms: ['Медіанні чашолистки', 2, 'Відносно стабільні.'],
-    ls: ['Латеральні чашолистки', 1, 'Нестабільніші.'],
-    pet: ['Пелюстки', 1, 'Нестабільні: бувають запізнення в закладанні, зникають.'],
-    ss: ['Короткі тичинки', 0, 'Найнестабільніша зона: регулярно бракує однієї чи обох коротких тичинок — середнє число тичинок завжди < 6.'],
-    ls2: ['Довгі (медіанні) тичинки', 2, 'Найстабільніші: розмічаються першими, отримують позиційну інформацію раніше й самі стають джерелом сигналу.'],
-    car: ['Плодолистки', 2, 'Найстабільніші зони.'],
+// ------------------------------------------------------------------ ABC-модель квітки
+register('abc-flower', (root) => {
+  const ORG = { sepal: ['чашолисток', '#66BB6A'], petal: ['пелюстка', '#EC407A'], stamen: ['тичинка', '#FFB300'], carpel: ['плодолисток', '#8E24AA'], leaf: ['листкоподібний орган', '#9E9D24'] };
+  const G = {
+    wt: ['Дикий тип', [1, 1, 0, 0], [0, 1, 1, 0], [0, 0, 1, 1], 'У нормі A діє у вертикалах 1–2, B — у 2–3, C — у 3–4: чашолистки, пелюстки, тичинки, плодолистки.'],
+    ap2: ['<i>ap2</i> (немає A)', [0, 0, 0, 0], [0, 1, 1, 0], [1, 1, 1, 1], 'Без A функція C поширюється на всі вертикали (A і C взаємно пригнічуються): у зовнішніх вертикалах — плодолистки й тичинки.'],
+    ap3: ['<i>ap3</i> або <i>pi</i> (немає B)', [1, 1, 0, 0], [0, 0, 0, 0], [0, 0, 1, 1], 'Без B пелюстки перетворюються на чашолистки, а тичинки — на плодолистки.'],
+    ag: ['<i>ag</i> (немає C)', [1, 1, 1, 1], [0, 1, 1, 0], [0, 0, 0, 0], 'Без C функція A поширюється на всі вертикали: тичинки стають пелюстками, а замість плодолистків закладається нова квітка (детермінованість втрачено).'],
+    sep: ['<i>sep1 sep2 sep3</i>', null, null, null, 'Без білків SEPALLATA комплекси MADS-білків не працюють, тож усі вертикали розвиваються як чашолисткоподібні органи (у чотирикратному мутанті — як листки).'],
   };
-  const COL = ['#E53935', '#FFB300', '#43A047'];
+  const row = el('div', { class: 'mg-opts' });
   const info = el('div', { class: 'mg-info', 'aria-live': 'polite' });
-  const sv = svg('svg', { class: 'mg-svg', viewBox: '0 0 640 320', role: 'img', 'aria-label': 'Діаграма квітки хрестоцвітих із зонами нестабільності' });
-  let sel = 'ss';
-  function draw() {
-    const cx = 190, cy = 160;
-    const g = (k, body) => `<g class="mg-hot${sel === k ? ' is-sel' : ''}" data-k="${k}" aria-label="${Z[k][0]}">${body}</g>`;
-    const col = (k) => COL[Z[k][1]];
-    let h = '<rect width="640" height="320" rx="14" fill="#FBFDFB"/>';
-    // чашолистки: 2 медіанні (верх/низ), 2 латеральні (ліво/право)
-    h += g('ms', `<ellipse cx="${cx}" cy="${cy - 126}" rx="34" ry="20" fill="${col('ms')}" opacity=".75"/><ellipse cx="${cx}" cy="${cy + 126}" rx="34" ry="20" fill="${col('ms')}" opacity=".75"/>`);
-    h += g('ls', `<ellipse cx="${cx - 126}" cy="${cy}" rx="20" ry="34" fill="${col('ls')}" opacity=".75"/><ellipse cx="${cx + 126}" cy="${cy}" rx="20" ry="34" fill="${col('ls')}" opacity=".75"/>`);
-    // пелюстки по діагоналях
-    h += g('pet', [45, 135, 225, 315].map((a) => `<ellipse cx="${cx + Math.cos(a * Math.PI / 180) * 96}" cy="${cy + Math.sin(a * Math.PI / 180) * 96}" rx="30" ry="22" transform="rotate(${a} ${cx + Math.cos(a * Math.PI / 180) * 96} ${cy + Math.sin(a * Math.PI / 180) * 96})" fill="${col('pet')}" opacity=".8"/>`).join(''));
-    // короткі тичинки — латеральні
-    h += g('ss', `<circle cx="${cx - 60}" cy="${cy}" r="12" fill="${col('ss')}"/><circle cx="${cx + 60}" cy="${cy}" r="12" fill="${col('ss')}"/>`);
-    // довгі — по два з медіанних боків
-    h += g('ls2', [[-22, -56], [22, -56], [-22, 56], [22, 56]].map(([dx, dy]) => `<circle cx="${cx + dx}" cy="${cy + dy}" r="13" fill="${col('ls2')}"/>`).join(''));
-    h += g('car', `<ellipse cx="${cx}" cy="${cy}" rx="24" ry="30" fill="${col('car')}"/><path d="M${cx} ${cy - 28} V${cy + 28}" stroke="#fff" stroke-width="2"/>`);
-    h += '<text x="190" y="18" text-anchor="middle" class="mg-ts">медіанна вісь ↑</text>';
-    h += '<g transform="translate(400 70)"><text class="mg-tb">Стабільність зони</text>' + ['нестабільна («землетруси»)', 'проміжна', 'стабільна'].map((t, i) => `<g transform="translate(0 ${26 + i * 26})"><rect width="16" height="16" rx="4" fill="${COL[i]}"/><text x="24" y="13" class="mg-ts">${t}</text></g>`).join('') + '</g>';
-    h += '<text x="400" y="190" class="mg-ts">Найстабільніші зони розмічаються</text><text x="400" y="206" class="mg-ts">першими; фінальна геометрія однакова,</text><text x="400" y="222" class="mg-ts">хоча сценарії розвитку різняться.</text>';
-    sv.innerHTML = h;
-    hot(sv, '.mg-hot', (e) => { sel = e.dataset.k; draw(); });
-    const z = Z[sel];
-    info.innerHTML = `<h4>${z[0]}</h4><p>${z[2]}</p>`;
+  const sv = svg('svg', { class: 'mg-svg', viewBox: '0 0 640 330', role: 'img', 'aria-label': 'Діаграма квітки з чотирма вертикалами та експресією генів класів A, B, C' });
+  const o = options(row, Object.keys(G).map((k) => ({ v: k, t: G[k][0].replace(/<[^>]+>/g, ''), c: '#8E24AA' })), 'wt', show);
+  function organ(g, w) {
+    if (g === 'sep') return 'sepal';
+    const [, A, B, C] = G[g];
+    if (A[w] && B[w]) return 'petal';
+    if (B[w] && C[w]) return 'stamen';
+    if (A[w]) return 'sepal';
+    if (C[w]) return 'carpel';
+    return 'leaf';
   }
-  root.append(sv, info);
-  draw();
+  function show(g) {
+    o.set(g);
+    const cx = 170, cy = 165, R = [140, 108, 76, 44];
+    let h = '<rect width="640" height="330" rx="14" fill="#FBFDFB"/>';
+    for (let w = 0; w < 4; w++) { const k = organ(g, w); h += `<circle cx="${cx}" cy="${cy}" r="${R[w]}" fill="${ORG[k][1]}" stroke="#fff" stroke-width="3" opacity="${g === 'sep' ? 0.85 : 1}"/>`; }
+    h += `<circle cx="${cx}" cy="${cy}" r="14" fill="none"/>`;
+    for (let w = 0; w < 4; w++) h += `<text x="${cx}" y="${cy - R[w] + 16}" text-anchor="middle" class="mg-ts" fill="#fff" font-weight="700">${w + 1}</text>`;
+    h += '<text x="360" y="30" class="mg-tb">Вертикаль</text>';
+    ['1', '2', '3', '4'].forEach((t, i) => { h += `<text x="${440 + i * 44}" y="30" class="mg-tb" text-anchor="middle">${t}</text>`; });
+    const rows = [['A', 1], ['B', 2], ['C', 3]];
+    rows.forEach(([name, idx], r) => {
+      h += `<text x="360" y="${64 + r * 30}" class="mg-t">Клас ${name}</text>`;
+      for (let w = 0; w < 4; w++) {
+        const on = G[g][idx] ? G[g][idx][w] : 0;
+        h += `<rect x="${422 + w * 44}" y="${48 + r * 30}" width="36" height="22" rx="5" fill="${on ? '#5B3FA0' : '#EEF1EE'}"/>`;
+      }
+    });
+    h += '<text x="360" y="150" class="mg-tb">Утворюється:</text>';
+    for (let w = 0; w < 4; w++) { const k = organ(g, w); h += `<circle cx="368" cy="${178 + w * 30}" r="9" fill="${ORG[k][1]}"/><text x="386" y="${183 + w * 30}" class="mg-t">${w + 1}: ${ORG[k][0]}</text>`; }
+    sv.innerHTML = h;
+    info.innerHTML = `<h4>${G[g][0]}</h4><p>${G[g][4]}</p>`;
+  }
+  root.append(row, sv, info);
+  show('wt');
 });

@@ -1,4 +1,4 @@
-// Лекція 4. Трансгенні рослини в дослідженнях: інтерактивні блоки.
+// Частина 4. Трансгенні рослини в дослідженнях: інтерактивні блоки.
 import { register, el, svg, options, stepper, clamp, lerp, rnd, $, $$, loop } from './util.js';
 import { sliders } from '../ui.js';
 
