@@ -74,6 +74,8 @@ assets/js/lab/chroma-engine.js     — модель колонки: міграц
 assets/js/lab/chromatography.js, assets/css/chroma.css — інтерфейс «Хроматографії» (анімації лише на видимих полотнах)
 assets/js/lab/photosynthesis.js, assets/css/photosynthesis.css — «Фотосинтез»: покроковий програвач схем, CAM, FvCB
 assets/js/lab/plant-cell.js, assets/css/plant-cell.css — інтерактив конспекту «Рослинна і тваринна клітини»
+assets/js/lab/cell-visuals.js              — шари стінки, «залізобетон», шляхи води в корені, цитокінез (той самий конспект)
+assets/fonts/, assets/css/fonts.css    — шрифти, розміщені на сайті (Inter, Lora, Alegreya, IBM Plex Sans, JetBrains Mono): жодних запитів до Google Fonts
 assets/js/lab/enzymes-konspekt.js, assets/css/enzymes.css — інтерактив конспекту «Ферменти»
 assets/js/lab/amino-konspekt.js, assets/css/amino.css — інтерактив конспекту «Амінокислоти»
 assets/js/lab/ion-transport.js, assets/css/ion.css — навігація й ~30 інтерактивних моделей конспекту «Транспорт іонів»

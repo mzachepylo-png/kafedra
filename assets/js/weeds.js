@@ -1,4 +1,4 @@
-// Бур'яни України: фото й карти поширення у світі (заздалегідь завантажені з iNaturalist і GBIF), фільтри та пошук.
+// Бур'яни України: фото й карти поширення у світі (заздалегідь завантажені з iNaturalist і GBIF) і навігація по видах.
 (function () {
   'use strict';
   var root = document.getElementById('wua-weeds');
@@ -80,29 +80,36 @@
     cardsEls.forEach(function (c) { io.observe(c); });
   } else cardsEls.forEach(initCard);
 
-  /* ---------- Фільтри та пошук ---------- */
-  var chips = root.querySelectorAll('.wua-chip'), input = root.querySelector('.wua-search input');
-  var shown = root.querySelector('.wua-shown'), empty = root.querySelector('.wua-empty');
-  var idx = root.querySelectorAll('.wua-index li');
-  var group = 'all';
-  function apply() {
-    var s = (input.value || '').trim().toLowerCase(), n = 0;
-    cardsEls.forEach(function (c, i) {
-      var ok = (group === 'all' || (' ' + c.getAttribute('data-groups') + ' ').indexOf(' ' + group + ' ') > -1) &&
-               (!s || c.getAttribute('data-search').indexOf(s) > -1);
-      c.hidden = !ok; if (ok) n++;
-      if (idx[i]) idx[i].classList.toggle('is-hidden', !ok);
-    });
-    shown.textContent = 'Показано ' + n + ' з ' + cardsEls.length;
-    empty.hidden = n > 0;
+  /* ---------- Бічна навігація: поточний вид, прогрес, висувна панель на телефоні ---------- */
+  var nav = document.getElementById('wua-nav');
+  var links = nav.querySelectorAll('.wua-nav__list a'), list = nav.querySelector('.wua-nav__list');
+  var bar = nav.querySelector('.wua-nav__prog i'), curEl = nav.querySelector('[data-cur]');
+  var fab = root.querySelector('.wua-fab'), scrim = root.querySelector('.wua-scrim');
+  var cur = -2, ticking = false;
+  function spy() {
+    ticking = false;
+    var line = Math.min(220, innerHeight * 0.3), idx = -1;
+    for (var i = 0; i < cardsEls.length; i++) { if (cardsEls[i].getBoundingClientRect().top <= line) idx = i; else break; }
+    if (idx === cur) return;
+    cur = idx;
+    Array.prototype.forEach.call(links, function (a, k) { a.classList.toggle('is-cur', k === idx); a.classList.toggle('is-seen', k < idx); });
+    curEl.textContent = idx < 0 ? '—' : idx + 1;
+    bar.style.width = (idx < 0 ? 0 : (idx + 1) / cardsEls.length * 100) + '%';
+    if (idx >= 0 && list.scrollHeight > list.clientHeight) {
+      var a = links[idx], top = a.offsetTop - list.offsetTop;
+      if (top < list.scrollTop + 20 || top + a.offsetHeight > list.scrollTop + list.clientHeight - 20) list.scrollTop = top - list.clientHeight / 3;
+    }
   }
-  Array.prototype.forEach.call(chips, function (b) {
-    b.addEventListener('click', function () {
-      group = b.getAttribute('data-group');
-      Array.prototype.forEach.call(chips, function (o) { var on = o === b; o.classList.toggle('is-on', on); o.setAttribute('aria-pressed', on); });
-      apply();
-    });
-  });
-  input.addEventListener('input', apply);
-  apply();
+  function onScroll() { if (!ticking) { ticking = true; requestAnimationFrame(spy); } }
+  addEventListener('scroll', onScroll, { passive: true }); addEventListener('resize', onScroll);
+  spy();
+  function setOpen(on) {
+    nav.classList.toggle('is-open', on); scrim.hidden = !on; fab.setAttribute('aria-expanded', on);
+    document.documentElement.style.overflow = on ? 'hidden' : '';
+  }
+  fab.addEventListener('click', function () { setOpen(true); });
+  scrim.addEventListener('click', function () { setOpen(false); });
+  nav.querySelector('.wua-nav__x').addEventListener('click', function () { setOpen(false); });
+  list.addEventListener('click', function (e) { if (e.target.closest('a')) setOpen(false); });
+  addEventListener('keydown', function (e) { if (e.key === 'Escape') setOpen(false); });
 })();

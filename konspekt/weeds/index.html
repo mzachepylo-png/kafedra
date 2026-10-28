@@ -87,6 +87,7 @@
     <section class="page-hero page-hero--konspekt">
       <div class="bg-molecules" aria-hidden="true" style="position:absolute;inset:0"></div>
       <div class="container">
+        <a class="hero-back" href="../"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M19 12H5M11 18l-6-6 6-6"/></svg>Усі розділи Конспекту</a>
         <nav class="breadcrumbs" aria-label="Навігаційний ланцюжок"><a href="../../">Головна</a><span aria-hidden="true">/</span><a href="../">Конспект</a><span aria-hidden="true">/</span><span>Бур'яни України</span></nav>
         <span class="kicker">Довідник · гербологія</span>
         <h1>Бур'яни України</h1>
@@ -95,34 +96,46 @@
     </section>
 
 <section class="wua" id="wua-weeds" lang="uk" data-img="../../assets/img/weeds/">
+<div class="wua-layout">
+  <nav class="wua-nav" id="wua-nav" aria-label="Види на цій сторінці">
+    <div class="wua-nav__top">
+      <span class="wua-nav__h">Види на сторінці</span>
+      <button class="wua-nav__x" type="button" aria-label="Закрити навігацію">×</button>
+    </div>
+    <div class="wua-nav__prog" aria-hidden="true"><i></i></div>
+    <p class="wua-nav__now" aria-live="polite"><b data-cur>—</b> / 25</p>
+    <ol class="wua-nav__list">
+      <li><a href="#wua-sp-01"><span>01</span>Амброзія полинолиста</a></li>
+      <li><a href="#wua-sp-02"><span>02</span>Борщівник Сосновського</a></li>
+      <li><a href="#wua-sp-03"><span>03</span>Циклахена нетреболиста</a></li>
+      <li><a href="#wua-sp-04"><span>04</span>Полин звичайний</a></li>
+      <li><a href="#wua-sp-05"><span>05</span>Гірчак рожевий</a></li>
+      <li><a href="#wua-sp-06"><span>06</span>Осот рожевий</a></li>
+      <li><a href="#wua-sp-07"><span>07</span>Осот жовтий польовий</a></li>
+      <li><a href="#wua-sp-08"><span>08</span>Березка польова</a></li>
+      <li><a href="#wua-sp-09"><span>09</span>Пирій повзучий</a></li>
+      <li><a href="#wua-sp-10"><span>10</span>Сорго алепське</a></li>
+      <li><a href="#wua-sp-11"><span>11</span>Повитиця польова</a></li>
+      <li><a href="#wua-sp-12"><span>12</span>Паслін колючий</a></li>
+      <li><a href="#wua-sp-13"><span>13</span>Ценхрус довгоколючковий</a></li>
+      <li><a href="#wua-sp-14"><span>14</span>Лобода біла</a></li>
+      <li><a href="#wua-sp-15"><span>15</span>Щириця загнута</a></li>
+      <li><a href="#wua-sp-16"><span>16</span>Плоскуха звичайна</a></li>
+      <li><a href="#wua-sp-17"><span>17</span>Мишій сизий</a></li>
+      <li><a href="#wua-sp-18"><span>18</span>Галінсога дрібноквіткова</a></li>
+      <li><a href="#wua-sp-19"><span>19</span>Портулак городній</a></li>
+      <li><a href="#wua-sp-20"><span>20</span>Зірочник середній</a></li>
+      <li><a href="#wua-sp-21"><span>21</span>Яглиця звичайна</a></li>
+      <li><a href="#wua-sp-22"><span>22</span>Хвощ польовий</a></li>
+      <li><a href="#wua-sp-23"><span>23</span>Кропива дводомна</a></li>
+      <li><a href="#wua-sp-24"><span>24</span>Дурман звичайний</a></li>
+      <li><a href="#wua-sp-25"><span>25</span>Нетреба звичайна</a></li>
+    </ol>
+  </nav>
+  <div class="wua-body">
   <header class="wua-hero">
     <p class="wua-lead">Види, що завдають найбільших втрат городам, садам і присадибним ділянкам або становлять пряму загрозу здоров’ю людей. Відбір — за поширеністю в агрофітоценозах і населених пунктах, статусом у Переліку регульованих шкідливих організмів та впливом на здоров’я. Для кожного виду — фото, опис, шкодочинність, ареал і методи контролю, що застосовуються нині.</p>
-    <dl class="wua-stats">
-      <div><dt>25</dt><dd>видів</dd></div>
-      <div><dt>10</dt><dd>шкодять здоров’ю</dd></div>
-      <div><dt>6</dt><dd>регульовані</dd></div>
-      <div><dt>10</dt><dd>інвазійні</dd></div>
-    </dl>
   </header>
-
-  <nav class="wua-tools" aria-label="Фільтри">
-    <div class="wua-chips" role="group" aria-label="Категорія">
-      <button type="button" class="wua-chip is-on" data-group="all" aria-pressed="true">Усі <span>25</span></button>
-      <button type="button" class="wua-chip" data-group="health" aria-pressed="false">Шкода здоров’ю <span>10</span></button>
-      <button type="button" class="wua-chip" data-group="regulated" aria-pressed="false">Регульовані (карантинні) <span>6</span></button>
-      <button type="button" class="wua-chip" data-group="invasive" aria-pressed="false">Інвазійні <span>10</span></button>
-      <button type="button" class="wua-chip" data-group="perennial" aria-pressed="false">Багаторічні <span>11</span></button>
-      <button type="button" class="wua-chip" data-group="annual" aria-pressed="false">Однорічні <span>14</span></button>
-    </div>
-    <label class="wua-search"><span class="wua-sr">Пошук</span><input type="search" placeholder="Пошук за назвою (укр. або лат.)" autocomplete="off"></label>
-  </nav>
-
-  <details class="wua-index" open>
-    <summary>Зміст</summary>
-    <ol><li><a href="#wua-sp-01"><span>01</span>Амброзія полинолиста</a></li><li><a href="#wua-sp-02"><span>02</span>Борщівник Сосновського</a></li><li><a href="#wua-sp-03"><span>03</span>Циклахена нетреболиста</a></li><li><a href="#wua-sp-04"><span>04</span>Полин звичайний</a></li><li><a href="#wua-sp-05"><span>05</span>Гірчак рожевий</a></li><li><a href="#wua-sp-06"><span>06</span>Осот рожевий</a></li><li><a href="#wua-sp-07"><span>07</span>Осот жовтий польовий</a></li><li><a href="#wua-sp-08"><span>08</span>Березка польова</a></li><li><a href="#wua-sp-09"><span>09</span>Пирій повзучий</a></li><li><a href="#wua-sp-10"><span>10</span>Сорго алепське</a></li><li><a href="#wua-sp-11"><span>11</span>Повитиця польова</a></li><li><a href="#wua-sp-12"><span>12</span>Паслін колючий</a></li><li><a href="#wua-sp-13"><span>13</span>Ценхрус довгоколючковий</a></li><li><a href="#wua-sp-14"><span>14</span>Лобода біла</a></li><li><a href="#wua-sp-15"><span>15</span>Щириця загнута</a></li><li><a href="#wua-sp-16"><span>16</span>Плоскуха звичайна</a></li><li><a href="#wua-sp-17"><span>17</span>Мишій сизий</a></li><li><a href="#wua-sp-18"><span>18</span>Галінсога дрібноквіткова</a></li><li><a href="#wua-sp-19"><span>19</span>Портулак городній</a></li><li><a href="#wua-sp-20"><span>20</span>Зірочник середній</a></li><li><a href="#wua-sp-21"><span>21</span>Яглиця звичайна</a></li><li><a href="#wua-sp-22"><span>22</span>Хвощ польовий</a></li><li><a href="#wua-sp-23"><span>23</span>Кропива дводомна</a></li><li><a href="#wua-sp-24"><span>24</span>Дурман звичайний</a></li><li><a href="#wua-sp-25"><span>25</span>Нетреба звичайна</a></li></ol>
-  </details>
-
-  <p class="wua-shown" aria-live="polite"></p>
 
   <div class="wua-list">
 
@@ -1652,8 +1665,6 @@
     </article>
   </div>
 
-  <p class="wua-empty" hidden>Нічого не знайдено. Спробуйте іншу назву або категорію.</p>
-
   <aside class="wua-note">
     <p><b>Про хімічний контроль.</b> Наведено діючі речовини, що застосовуються в Україні. Конкретні препарати, норми, строки й обмеження (зокрема для присадибних ділянок) — лише за чинним Державним реєстром пестицидів і агрохімікатів та етикеткою препарату.</p>
     <p><b>Про карти.</b> Карта показує щільність задокументованих знахідок (гербарні зразки, спостереження) у базі GBIF, а не повний ареал: відсутність знахідок на карті не означає відсутності виду. Текстовий опис ареалу складено за літературними джерелами.</p>
@@ -1663,6 +1674,10 @@
     <h4>Джерела</h4>
     <ol><li>Іващенко О.О. Бур’яни в агрофітоценозах: проблеми практичної гербології. — К.: Світ, 2001.</li><li>Неїлик М.М., Цицюра Я.Г. Амброзія полинолиста (<i>Ambrosia artemisiifolia</i> L.): систематика, біологія, адаптивний потенціал та стратегія контролю: монографія. — Вінниця: ВНАУ, 2020.</li><li>Holiachuk Yu., Kosylovych H. Spread of quarantine weeds in Ukraine // Карантин і захист рослин. — 2025. — № 2. — С. 38–44. DOI: 10.36495/2312-0614.2025.2.38-44.</li><li>Перелік регульованих шкідливих організмів: наказ Мінагрополітики України від 29.11.2006 № 716 (у ред. наказу Мінагрополітики від 16.07.2019 № 397); Закон України «Про карантин рослин».</li><li>Держпродспоживслужба. Стислий звіт про аналіз фітосанітарного ризику щодо борщівника Сосновського (<i>Heracleum sosnowskyi</i>).</li><li>Проць Б.Г., Вихор Б.І. Високоінвазійні види рослин Закарпаття: поширення та вплив на фіторізноманіття // Наук. вісник УжНУ. Сер. Біологія. — 2014. — Вип. 36. — С. 40–44.</li><li>Примак І.Д. та ін. Цілющі, отруйні і шкідливі бур’янисті рослини в землеробстві України: навч. посібник. — Біла Церква: БНАУ.</li><li>Mosyakin S.L., Fedoronchuk M.M. Vascular plants of Ukraine: a nomenclatural checklist. — Kiev, 1999.</li><li>Smith M. et al. Common ragweed: a threat to environmental health in Europe // Environment International. — 2013. — Vol. 61. — P. 115–126.</li><li>Müller-Schärer H. et al. <i>Ophraella communa</i>, the ragweed leaf beetle, has successfully landed in Europe: fortunate coincidence or threat? // Weed Research. — 2014. — Vol. 54. — P. 109–119.</li><li>Jahodová Š. et al. Invasive species of <i>Heracleum</i> in Europe: an insight into genetic relationships and invasion history // Diversity and Distributions. — 2007. — Vol. 13. — P. 99–114.</li><li>Heap I. The International Herbicide-Resistant Weed Database. — weedscience.org.</li><li>Регламент Комісії (ЄС) 2023/915 щодо максимальних рівнів контамінантів у харчових продуктах (тропанові алкалоїди).</li><li>Державний реєстр пестицидів і агрохімікатів, дозволених до використання в Україні (чинна редакція).</li><li>EPPO Global Database (gd.eppo.int); CABI Compendium: Invasive Species.</li><li>Карти: GBIF.org — дані про знахідки (GBIF Maps API). Фото: iNaturalist (автори й ліцензії CC — у підписах), резервно — Wikimedia Commons.</li></ol>
   </footer>
+  </div>
+  </div>
+  <button class="wua-fab" type="button" aria-controls="wua-nav" aria-expanded="false"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" aria-hidden="true"><path d="M4 6h16M4 12h16M4 18h10"/></svg>Види</button>
+  <div class="wua-scrim" hidden></div>
 </section>
     <script type="application/json" id="wua-data">{"01":{"photo":{"attr":"(c) \nQwert1234, some rights reserved (CC BY-SA)","lic":"cc-by-sa","photo":"https://www.inaturalist.org/photos/382193593","w":768,"h":1024},"gbif":{"key":8002952,"all":212190},"mw":true},"02":{"photo":{"attr":"(c) Aurelijus Narbutas, some rights reserved (CC BY), uploaded by Aurelijus Narbutas","lic":"cc-by","photo":"https://www.inaturalist.org/photos/7667182","w":768,"h":1024},"gbif":{"key":3642949,"all":33667},"mw":true},"03":{"photo":{"attr":"(c) avarlamov, some rights reserved (CC BY-NC)","lic":"cc-by-nc","photo":"https://www.inaturalist.org/photos/90771029","w":768,"h":1024},"gbif":{"key":3141890,"all":12547},"mw":true},"04":{"photo":{"attr":"(c) dgorrill, some rights reserved (CC BY-NC-SA), uploaded by dgorrill","lic":"cc-by-nc-sa","photo":"https://www.inaturalist.org/photos/50326984","w":768,"h":1024},"gbif":{"key":3120946,"all":884177},"mw":true},"05":{"photo":{"attr":"(c) Karin Gradziel, some rights reserved (CC BY-NC), uploaded by Karin Gradziel","lic":"cc-by-nc","photo":"https://www.inaturalist.org/photos/679867180","w":771,"h":1024},"gbif":{"key":10676000,"all":10332},"mw":true},"06":{"photo":{"attr":"(c) Adja Gaye, some rights reserved (CC BY-NC), uploaded by Adja Gaye","lic":"cc-by-nc","photo":"https://www.inaturalist.org/photos/333452083","w":768,"h":1024},"gbif":{"key":3113414,"all":1653838},"mw":true},"07":{"photo":{"attr":"(c) Konstantin Pavlov, some rights reserved (CC BY-NC), uploaded by Konstantin Pavlov","lic":"cc-by-nc","photo":"https://www.inaturalist.org/photos/535906408","w":960,"h":960},"gbif":{"key":3105813,"all":404138},"mw":true},"08":{"photo":{"attr":"(c) vivienratcliffe, some rights reserved (CC BY-NC)","lic":"cc-by-nc","photo":"https://www.inaturalist.org/photos/209325684","w":768,"h":1024},"gbif":{"key":2928390,"all":734873},"mw":true},"09":{"photo":{"attr":"(c) Matt Osborne, some rights reserved (CC BY-NC), uploaded by Matt Osborne","lic":"cc-by-nc","photo":"https://www.inaturalist.org/photos/82139634","w":768,"h":1024},"gbif":{"key":5290299,"all":804673},"mw":true},"10":{"photo":{"attr":"(c) Harry Rose, some rights reserved (CC BY)","lic":"cc-by","photo":"https://www.inaturalist.org/photos/78416044","w":756,"h":1024},"gbif":{"key":2705185,"all":71304},"mw":true},"11":{"photo":{"attr":"(c) Bill Apostle Stefanidis, some rights reserved (CC BY-NC), uploaded by Bill Apostle Stefanidis","lic":"cc-by-nc","photo":"https://www.inaturalist.org/photos/429894540","w":960,"h":720},"gbif":{"key":3610757,"all":23663},"mw":true},"12":{"photo":{"attr":"(c) Juan Carlos López Domínguez, some rights reserved (CC BY-NC), uploaded by Juan Carlos López Domínguez","lic":"cc-by-nc","photo":"https://www.inaturalist.org/photos/2137808","w":960,"h":720},"gbif":{"key":2929800,"all":25752},"mw":true},"13":{"photo":{"attr":"(c) Kevin, some rights reserved (CC BY-NC), uploaded by Kevin","lic":"cc-by-nc","photo":"https://www.inaturalist.org/photos/420480489","w":960,"h":641},"gbif":{"key":5289731,"all":8615},"mw":true},"14":{"photo":{"attr":"(c) Lyudmila Ivanova, some rights reserved (CC BY-NC), uploaded by Lyudmila Ivanova","lic":"cc-by-nc","photo":"https://www.inaturalist.org/photos/390024258","w":960,"h":822},"gbif":{"key":3083838,"all":554307},"mw":true},"15":{"photo":{"attr":"(c) Alexander Rumpel, some rights reserved (CC BY-NC), uploaded by Alexander Rumpel","lic":"cc-by-nc","photo":"https://www.inaturalist.org/photos/92981720","w":768,"h":1024},"gbif":{"key":6109534,"all":130127},"mw":true},"16":{"photo":{"attr":"(c) Ron Frumkin, some rights reserved (CC BY-NC), uploaded by Ron Frumkin","lic":"cc-by-nc","photo":"https://www.inaturalist.org/photos/38931173","w":960,"h":900},"gbif":{"key":2702808,"all":276022},"mw":true},"17":{"photo":{"attr":"(c) Elio Giacone, some rights reserved (CC BY-NC), uploaded by Elio Giacone","lic":"cc-by-nc","photo":"https://www.inaturalist.org/photos/90736780","w":765,"h":889},"gbif":{"key":5289693,"all":114493},"mw":true},"18":{"photo":{"attr":"(c) Nadezhda Zelenova, some rights reserved (CC BY-NC), uploaded by Nadezhda Zelenova","lic":"cc-by-nc","photo":"https://www.inaturalist.org/photos/54223442","w":960,"h":720},"gbif":{"key":3132570,"all":85395},"mw":true},"19":{"photo":{"attr":"(c) Pierre Corbrion, some rights reserved (CC BY-NC-SA), uploaded by Pierre Corbrion","lic":"cc-by-nc-sa","photo":"https://www.inaturalist.org/photos/157729445","w":960,"h":720},"gbif":{"key":3084719,"all":199844},"mw":true},"20":{"photo":{"attr":"(c) Pablo, some rights reserved (CC BY), uploaded by Pablo","lic":"cc-by","photo":"https://www.inaturalist.org/photos/329865724","w":768,"h":1024},"gbif":{"key":5384604,"all":833714},"mw":true},"21":{"photo":{"attr":"(c) Douglas Goldman, some rights reserved (CC BY-SA), uploaded by Douglas Goldman","lic":"cc-by-sa","photo":"https://www.inaturalist.org/photos/175507973","w":960,"h":643},"gbif":{"key":3034620,"all":803533},"mw":true},"22":{"photo":{"attr":"(c) gwenbezodis, some rights reserved (CC BY-NC)","lic":"cc-by-nc","photo":"https://www.inaturalist.org/photos/72597295","w":768,"h":1024},"gbif":{"key":7924597,"all":1025219},"mw":true},"23":{"photo":{"attr":"no rights reserved, uploaded by Kathy Daniel","lic":"cc0","photo":"https://www.inaturalist.org/photos/136152034","w":768,"h":1024},"gbif":{"key":7960979,"all":2260075},"mw":true},"24":{"photo":{"attr":"(c) \nGero Brandenburg, some rights reserved (CC BY-SA)","lic":"cc-by-sa","photo":"https://www.inaturalist.org/photos/137958289","w":960,"h":720},"gbif":{"key":2928751,"all":178256},"mw":true},"25":{"photo":{"attr":"(c) Oliver Stöhr, some rights reserved (CC BY-NC), uploaded by Oliver Stöhr","lic":"cc-by-nc","photo":"https://www.inaturalist.org/photos/724639551","w":960,"h":720},"gbif":{"key":3089154,"all":59683},"mw":true}}</script>
   </main>

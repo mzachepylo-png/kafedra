@@ -1,4 +1,4 @@
-// Конспект «Відмінності рослинної і тваринної клітин»: порівняльна схема, модель стінки, ланцюги глюкози,
+// Конспект «Відмінності рослинної і тваринної клітин»: ланцюги глюкози,
 // розетка целюлозосинтази, пектини й кальцій, апопласт/симпласт, плазмоліз, пластиди, цитокінез.
 import { sliders, setOut, num } from './ui.js';
 
@@ -32,65 +32,6 @@ function loopWhenVisible(node, frame) {
   if (REDUCED) frame(0);
   return { kick };
 }
-
-// ---------------------------------------------------------------- порівняльна схема
-(() => {
-  const svg = $('cc-cmp');
-  if (!svg) return;
-  const [plant, animal] = svg.querySelectorAll('.cc-cell');
-  const has = (cell, p) => !!cell.querySelector(`.cc-part[data-p="${p}"]`);
-  const where = (p) => (has(plant, p) && has(animal, p) ? 'both' : has(plant, p) ? 'plant' : 'animal');
-  const parts = [...svg.querySelectorAll('.cc-part')];
-  let mode = 'all', sel = null;
-  const info = $('cc-info');
-  const LAB = { both: 'є в обох клітинах', plant: 'лише в рослинній клітині', animal: 'лише в тваринній клітині' };
-  function apply() {
-    parts.forEach((g) => {
-      const w = where(g.dataset.p);
-      g.classList.toggle('is-dim', (mode !== 'all' && w !== mode) || (sel && g.dataset.p !== sel));
-      g.classList.toggle('is-sel', sel === g.dataset.p);
-    });
-    document.querySelectorAll('.cc-table tbody tr').forEach((tr) => tr.classList.toggle('is-hl', !!sel && tr.dataset.p === sel));
-  }
-  function show(p) {
-    sel = sel === p ? null : p;
-    if (!sel) { info.innerHTML = '<p class="cc-info__hint">Оберіть органелу на схемі, щоб дізнатися, чим вона відрізняється.</p>'; apply(); return; }
-    const [t, d] = D.info[p] || [p, ''];
-    const w = where(p);
-    info.innerHTML = `<span class="cc-tag cc-tag--${w}">${LAB[w]}</span><h3>${t}</h3><p>${d}</p>`;
-    apply();
-  }
-  parts.forEach((g) => {
-    g.setAttribute('tabindex', '0'); g.setAttribute('role', 'button'); g.setAttribute('aria-label', (D.info[g.dataset.p] || [g.dataset.p])[0]);
-    g.addEventListener('click', () => show(g.dataset.p));
-    g.addEventListener('keydown', (e) => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); show(g.dataset.p); } });
-  });
-  seg('cc-mode', (v) => { mode = v; sel = null; show(null); sel = null; apply(); });
-  show(null);
-})();
-
-// ---------------------------------------------------------------- модель первинної стінки
-(() => {
-  const svg = $('wall3d');
-  if (!svg) return;
-  const NOTE = {
-    cel: 'Целюлозні мікрофібрили — «арматура»: кристалічні пучки β-1,4-глюканів, шари яких лягають під різними кутами.',
-    hem: 'Зшиваючі глікани (ксилоглюкани, ксилани) зв\'язують мікрофібрили водневими зв\'язками; жовті кільця — «гарячі точки» тісного контакту, де розслаблення стінки дозволяє ріст.',
-    pec: 'Пектиновий матрикс — гідратований гель з галактуронанів, зшитих Ca²⁺; визначає пористість і заряд стінки.',
-    prot: 'Білки — структурні екстенсини, арабіногалактанові білки та ферменти перебудови стінки.',
-  };
-  const on = new Set(['cel', 'hem', 'pec', 'prot']);
-  const btns = [...document.querySelectorAll('#wall-chips button')];
-  const note = $('wall-note');
-  btns.forEach((b) => b.addEventListener('click', () => {
-    const l = b.dataset.l;
-    if (on.has(l)) on.delete(l); else on.add(l);
-    b.setAttribute('aria-pressed', String(on.has(l)));
-    svg.querySelector(`[data-l="${l}"]`).style.opacity = on.has(l) ? 1 : 0.06;
-    note.textContent = NOTE[l];
-  }));
-  note.textContent = 'Вимикайте й вмикайте компоненти, щоб побачити внесок кожного в будову стінки.';
-})();
 
 // ---------------------------------------------------------------- ланцюги глюкози
 (() => {
@@ -230,43 +171,6 @@ function loopWhenVisible(node, frame) {
   draw();
 })();
 
-// ---------------------------------------------------------------- апопласт і симпласт
-(() => {
-  const svg = $('tr-svg');
-  if (!svg) return;
-  const apo = $('tr-apo'), sym = $('tr-sym'), tok = $('tr-tok');
-  const NOTE = {
-    apo: '<b>Апопластний шлях</b> (сині пунктири): вода рухається клітинними стінками й міжклітинниками, не перетинаючи мембран, — швидко, але без контролю. У ендодермі шлях обривається <b>поясками Каспарі</b>: суберин у радіальних стінках змушує розчин пройти через плазмолему.',
-    sym: '<b>Симпластний шлях</b> (зелена лінія): речовини один раз проходять плазмолему ризодерми й далі рухаються цитоплазмою від клітини до клітини через плазмодесми. Вибірковість забезпечує плазмолема на вході.',
-  };
-  let mode = 'apo', items = [], spawn = 0;
-  function set(m) {
-    mode = m;
-    apo.style.opacity = m === 'apo' ? 1 : 0.25; sym.style.opacity = m === 'sym' ? 1 : 0.25;
-    $('tr-note').innerHTML = NOTE[m];
-    items.forEach((it) => it.g.remove()); items = [];
-  }
-  seg('tr-seg', set); set('apo');
-  loopWhenVisible(svg, (dt) => {
-    spawn -= dt;
-    if (spawn <= 0) {
-      spawn = 0.5;
-      const g = el('circle', { r: 6, fill: mode === 'apo' ? '#3F7FD0' : '#2E7D32', stroke: '#fff', 'stroke-width': 1.5 }, tok);
-      items.push({ g, d: 0, p: mode === 'apo' ? apo : sym, L: (mode === 'apo' ? apo : sym).getTotalLength() });
-    }
-    items = items.filter((it) => {
-      it.d += dt * 120;
-      if (it.d >= it.L) {
-        if (mode === 'apo') { it.g.setAttribute('fill', '#2E7D32'); it.p = sym; it.d = sym.getPointAtLength(0) && sym.getTotalLength() * 0.61; it.L = sym.getTotalLength(); return true; }
-        it.g.remove(); return false;
-      }
-      const pt = it.p.getPointAtLength(it.d);
-      it.g.setAttribute('cx', pt.x); it.g.setAttribute('cy', pt.y);
-      return true;
-    });
-  });
-})();
-
 // ---------------------------------------------------------------- плазмоліз
 (() => {
   const svg = $('pl-svg');
@@ -334,53 +238,3 @@ function loopWhenVisible(node, frame) {
   show('chl');
 })();
 
-// ---------------------------------------------------------------- цитокінез
-(() => {
-  const svg = $('ck-svg');
-  if (!svg) return;
-  const t = $('ck-t'), btn = $('ck-play'), lab = $('ck-lab');
-  const aPath = $('ck-a'), ring = $('ck-ring'), an1 = $('ck-an1'), an2 = $('ck-an2');
-  const mt = $('ck-mt'), ves = $('ck-ves'), plate = $('ck-plate');
-  const ringDots = Array.from({ length: 2 }, (_, i) => el('circle', { r: 5, fill: '#D0443A' }, ring));
-  const mts = [];
-  for (let i = 0; i < 9; i++) mts.push(el('path', { stroke: '#5E9DB8', 'stroke-width': 1.6, fill: 'none', opacity: 0.8 }, mt));
-  const vs = Array.from({ length: 14 }, () => el('circle', { r: 4, fill: '#F2B630', stroke: '#8C6A10' }, ves));
-  let playing = false;
-  function draw(p) {
-    // тварина: перетяжка звужує талію
-    const cx = 190, cy = 150, w = 150, h = 90, pinch = Math.min(1, p * 1.15);
-    const waist = h * (1 - 0.98 * pinch);
-    aPath.setAttribute('d', `M${cx - w} ${cy} C${cx - w} ${cy - h * 1.2} ${cx - 30} ${cy - h * 1.1} ${cx} ${cy - waist} C${cx + 30} ${cy - h * 1.1} ${cx + w} ${cy - h * 1.2} ${cx + w} ${cy} C${cx + w} ${cy + h * 1.2} ${cx + 30} ${cy + h * 1.1} ${cx} ${cy + waist} C${cx - 30} ${cy + h * 1.1} ${cx - w} ${cy + h * 1.2} ${cx - w} ${cy} Z`);
-    ringDots[0].setAttribute('cx', cx); ringDots[0].setAttribute('cy', cy - waist);
-    ringDots[1].setAttribute('cx', cx); ringDots[1].setAttribute('cy', cy + waist);
-    an1.setAttribute('cx', cx - 70); an1.setAttribute('cy', cy); an2.setAttribute('cx', cx + 70); an2.setAttribute('cy', cy);
-    // рослина: пластинка росте від центру до країв
-    const ph = Math.min(170, p * 190);
-    plate.setAttribute('y', 145 - ph / 2); plate.setAttribute('height', ph);
-    mts.forEach((m, i) => {
-      const y = 145 + (i - 4) * 18 * Math.max(0.35, Math.min(1, ph / 160 + 0.3));
-      const edge = Math.abs(y - 145) <= ph / 2 + 12;
-      m.setAttribute('d', `M520 ${y} L560 ${y} M580 ${y} L620 ${y}`);
-      m.setAttribute('opacity', edge ? 0.85 : 0.15);
-    });
-    vs.forEach((v, i) => {
-      const lane = (i % 7) - 3, phase = ((p * 6 + i * 0.37) % 1);
-      const y = 145 + lane * 18 * Math.max(0.35, Math.min(1, ph / 160 + 0.3));
-      const side = i % 2 ? 1 : -1;
-      v.setAttribute('cx', 570 + side * (50 - 46 * phase)); v.setAttribute('cy', y);
-      v.setAttribute('opacity', p > 0.02 && p < 0.98 ? 0.9 : 0);
-    });
-    lab.textContent = p < 0.05 ? 'початок телофази' : p < 0.5 ? 'перетяжка звужується · везикули Гольджі збираються в центрі' : p < 0.95 ? 'кільце скорочується · клітинна пластинка росте до країв' : 'дві дочірні клітини';
-  }
-  const ui = () => { btn.innerHTML = playing ? 'Пауза' : 'Відтворити поділ'; };
-  btn.addEventListener('click', () => { playing = !playing; if (playing && +t.value >= 1) t.value = 0; ui(); loop.kick(); });
-  t.addEventListener('input', () => { playing = false; ui(); draw(+t.value); });
-  const loop = loopWhenVisible(svg, (dt) => {
-    if (!playing) return;
-    t.value = Math.min(1, +t.value + dt / 6);
-    t.style.setProperty('--pct', t.value * 100 + '%');
-    draw(+t.value);
-    if (+t.value >= 1) { playing = false; ui(); }
-  });
-  ui(); draw(0);
-})();

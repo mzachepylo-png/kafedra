@@ -530,6 +530,20 @@ small { font-size: .85em; }
 .page-hero--konspekt { background: radial-gradient(700px 380px at 90% 0%, rgba(124, 196, 127, .3), transparent 60%), linear-gradient(150deg, #0A2A12, #1B5E20 75%, #2E7D32); }
 .page-hero--konspekt .kicker { color: var(--green-200); }
 .page-hero--konspekt .breadcrumbs a { color: var(--green-200); }
+/* шапка статті Конспекту: помітніші навігаційний ланцюжок, мітка і кнопка «назад» */
+.page-hero--konspekt .hero-back { display: inline-flex; align-items: center; gap: 10px; margin: 0 0 20px; padding: 10px 20px 10px 14px; border-radius: 999px; font-size: 1rem; font-weight: 700; line-height: 1; color: #fff; text-decoration: none; background: rgba(255, 255, 255, .14); border: 1.5px solid rgba(255, 255, 255, .45); box-shadow: 0 8px 22px -10px rgba(0, 0, 0, .55), inset 0 1px 0 rgba(255, 255, 255, .25); backdrop-filter: blur(4px); transition: background .2s, color .2s, border-color .2s, transform .2s, box-shadow .2s; }
+.page-hero--konspekt .hero-back svg { width: 20px; height: 20px; flex: none; padding: 3px; border-radius: 50%; background: var(--gold-400); color: #1d2b12; transition: transform .2s; }
+.page-hero--konspekt .hero-back:hover, .page-hero--konspekt .hero-back:focus-visible { background: var(--gold-400); border-color: var(--gold-300); color: #1d2b12; transform: translateY(-1px); box-shadow: 0 12px 26px -10px rgba(221, 187, 74, .8); }
+.page-hero--konspekt .hero-back:hover svg { transform: translateX(-3px); background: #fff; }
+.page-hero--konspekt .breadcrumbs { gap: 8px; margin-bottom: 18px; font-size: 1.06rem; font-weight: 600; color: #fff; }
+.page-hero--konspekt .breadcrumbs a { color: #fff; text-decoration: underline; text-decoration-color: rgba(255, 255, 255, .4); text-underline-offset: 4px; }
+.page-hero--konspekt .breadcrumbs a:hover { color: var(--gold-300); text-decoration-color: var(--gold-300); }
+.page-hero--konspekt .breadcrumbs span[aria-hidden] { opacity: .85; color: var(--gold-300); }
+.page-hero--konspekt .breadcrumbs > span:last-child { color: var(--gold-300); }
+.page-hero--konspekt .kicker { font-size: 1rem; font-weight: 800; letter-spacing: .14em; color: #fff; }
+.page-hero--konspekt .kicker::before { width: 30px; height: 3px; background: var(--gold-400); }
+.page-hero--konspekt p { color: rgba(255, 255, 255, .92); }
+@media (max-width: 560px) { .page-hero--konspekt .hero-back { font-size: .95rem; padding: 10px 16px 10px 12px; } .page-hero--konspekt .breadcrumbs { font-size: 1rem; } }
 .discipline--green .discipline__art { background: linear-gradient(150deg, #0A2A12, var(--green-700)); }
 .discipline--green .discipline__body li b { color: var(--green-700); min-width: 7.5em; }
 .lab-banner--green { background: radial-gradient(600px 300px at 100% 0%, rgba(124, 196, 127, .35), transparent 60%), linear-gradient(135deg, #0A2A12, var(--green-700)); }
