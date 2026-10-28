@@ -299,3 +299,22 @@ div.mg-bars__r { cursor: default; }
 @media (max-width: 520px) { .mg-bars__r { grid-template-columns: 1fr 4.6em; } .mg-bars__t { grid-column: 1 / -1; grid-row: 2; } }
 .mg-nomin { max-width: 460px; margin-bottom: 10px; }
 .mg-nomin input { font-family: var(--mono); font-weight: 700; font-size: 1.05rem; }
+.mg-sub { margin: 22px 0 -10px; font: 800 .78rem var(--sans); letter-spacing: .1em; text-transform: uppercase; color: var(--lc, var(--l1)); }
+
+/* ---------- родини ФТ ---------- */
+.mg-tfs { display: grid; grid-template-columns: repeat(auto-fill, minmax(104px, 1fr)); gap: 8px; margin-bottom: 12px; }
+.mg-tf { display: grid; justify-items: center; gap: 4px; padding: 8px 6px 9px; border-radius: 12px; border: 1px solid var(--line-strong); background: var(--white); cursor: pointer; font: inherit; color: var(--ink-soft); }
+.mg-tf svg { width: 56px; height: 56px; }
+.mg-tf b { font-size: .8rem; line-height: 1.15; text-align: center; }
+.mg-tf:hover { border-color: var(--l2); }
+.mg-tf[aria-pressed="true"] { border-color: var(--l2); background: color-mix(in srgb, var(--l2) 9%, white); box-shadow: 0 0 0 2px color-mix(in srgb, var(--l2) 30%, white); color: var(--l2); }
+.mg-tfinfo { display: grid; grid-template-columns: 90px minmax(0, 1fr); gap: 14px; align-items: start; }
+.mg-tfinfo__g svg { width: 90px; height: 90px; border-radius: 12px; background: #fff; border: 1px solid var(--line); }
+.mg-tfinfo h4 small { font-weight: 600; color: var(--muted); margin-left: 6px; }
+@media (max-width: 520px) { .mg-tfinfo { grid-template-columns: minmax(0, 1fr); } }
+.mg-mads { display: flex; flex-wrap: wrap; gap: 10px; margin-bottom: 12px; }
+.mg-mads button { display: grid; justify-items: center; width: 86px; padding: 10px 4px; border-radius: 14px; border: 2px solid var(--line-strong); background: var(--white); cursor: pointer; font: inherit; }
+.mg-mads b { font: 800 2rem/1 var(--serif); color: var(--l2); }
+.mg-mads small { color: var(--muted); font-size: .72rem; }
+.mg-mads button[aria-pressed="true"] { border-color: var(--l2); background: color-mix(in srgb, var(--l2) 10%, white); }
+.mg-ph svg { max-width: 300px; margin: 0 auto 10px; }

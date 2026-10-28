@@ -96,7 +96,7 @@ register('wheat', (root) => {
     t6: { x: 480, y: 185, t: 'М\'яка пшениця', g: 'AABBDD', p: 'гексаплоїд, 2n = 42', i: 'Тетраплоїд × <i>Ae. tauschii</i>: утричі більше хромосом, ніж у вихідної диплоїдної пшениці. Багато генів представлені трьома гомеологічними копіями, не всі працюють; є гетерозисна сила, більша врожайність і фізіологічна пластичність, але вивчати такий об\'єкт складно.', c: ['#2E7D32', '#1565C0', '#C2415C'] },
   };
   const links = [['tu', 't4'], ['as', 't4'], ['t4', 't6'], ['at', 't6']];
-  const W = 620, H = 310;
+  const W = 620, H = 330;
   const s = svg('svg', { class: 'mg-svg', viewBox: `0 0 ${W} ${H}`, role: 'img', 'aria-label': 'Схема еволюції пшениці: геноми A, B і D' });
   let showChr = false, sel = 't6';
   const info = el('div', { class: 'mg-info', 'aria-live': 'polite' });
@@ -111,12 +111,13 @@ register('wheat', (root) => {
     for (const [k, n] of Object.entries(N)) {
       const on = k === sel;
       h += `<g class="mg-hot${on ? ' is-sel' : ''}" data-k="${k}" tabindex="0" role="button" aria-label="${n.g}">`;
-      h += `<rect x="${n.x - 62}" y="${n.y - 32}" width="124" height="64" rx="14" fill="${on ? '#FFF6D9' : '#fff'}" stroke="${on ? '#C9A227' : '#B7C4B9'}" stroke-width="${on ? 3 : 1.6}"/>`;
-      h += `<text x="${n.x}" y="${n.y - 8}" text-anchor="middle" class="mg-th" style="font-size:19px">${n.g}</text>`;
-      h += `<text x="${n.x}" y="${n.y + 10}" text-anchor="middle" class="mg-ts">${n.p.split(',')[0]}</text>`;
+      h += `<rect x="${n.x - 66}" y="${n.y - 36}" width="132" height="72" rx="14" fill="${on ? '#FFF6D9' : '#fff'}" stroke="${on ? '#C9A227' : '#B7C4B9'}" stroke-width="${on ? 3 : 1.6}"/>`;
+      h += `<text x="${n.x}" y="${n.y - 17}" text-anchor="middle" class="mg-t" style="font-style:${n.t.includes('<i>') ? 'italic' : 'normal'}">${n.t.replace(/<[^>]+>/g, '')}</text>`;
+      h += `<text x="${n.x}" y="${n.y + 4}" text-anchor="middle" class="mg-th" style="font-size:19px">${n.g}</text>`;
+      h += `<text x="${n.x}" y="${n.y + 20}" text-anchor="middle" class="mg-ts">${n.p.split(',')[0]}</text>`;
       if (showChr) {
-        const cols = n.c; const nb = n.g.length / 2 * 7; let bx = n.x - Math.min(56, nb * 4);
-        for (let i = 0; i < nb; i++) h += `<rect x="${bx + i * 8}" y="${n.y + 16}" width="5" height="14" rx="2.5" fill="${cols[Math.floor(i / 7)]}"/>`;
+        const cols = n.c; const nb = n.g.length / 2 * 7; let bx = n.x - nb * 4;
+        for (let i = 0; i < nb; i++) h += `<rect x="${bx + i * 8}" y="${n.y + 40}" width="5" height="14" rx="2.5" fill="${cols[Math.floor(i / 7)]}"/>`;
       }
       h += '</g>';
     }

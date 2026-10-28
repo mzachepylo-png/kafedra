@@ -549,16 +549,6 @@
   "w": 1280,
   "h": 1707
  },
- "hairy-root2": {
-  "title": "File:Roots or leaves?.jpg",
-  "url": "https://commons.wikimedia.org/wiki/File:Roots_or_leaves%3F.jpg",
-  "artist": "FlorianaAug",
-  "lic": "CC BY 4.0",
-  "lic_url": "https://creativecommons.org/licenses/by/4.0",
-  "desc": "The image represents the induction of hairy roots in tomato leaf explants after infection with Agrobacterium rhizogenes, a soil-born nonpathogenic bacterium. The integration of a piece of a plasmid of A. rhizogenes into the plant DNA results in the formation of hairy roots",
-  "w": 1280,
-  "h": 1707
- },
  "octopus": {
   "title": "File:Octopus vulgaris Merculiano.jpg",
   "url": "https://commons.wikimedia.org/wiki/File:Octopus_vulgaris_Merculiano.jpg",
@@ -598,16 +588,6 @@
   "desc": "Nitrogen-fixing nodules on clover roots. Contain bacteria in the genus Rhizobium.",
   "w": 1280,
   "h": 1707
- },
- "nodule-section": {
-  "title": "File:CSIRO ScienceImage 2483 Rhizobium bacteria.jpg",
-  "url": "https://commons.wikimedia.org/wiki/File:CSIRO_ScienceImage_2483_Rhizobium_bacteria.jpg",
-  "artist": "Publishing, CSIRO",
-  "lic": "CC BY 3.0",
-  "lic_url": "https://creativecommons.org/licenses/by/3.0",
-  "desc": "Rhizobium bacteria. The Rhizobium species of bacteria are nitrogen fixing bacteria that convert atmospheric nitrogen, which is unavailable to plants, into forms available for plant uptake. The Rhizobium species typically formed symbiotic nodules on the roots of agricultural legumes (e.g.. Clover, Lucerne, Beans) and non-agricultural legumes (such as Acacia, Cassia).",
-  "w": 1280,
-  "h": 884
  },
  "genegun": {
   "title": "File:Système de biolistique du laboratoire GENALG (Ifremer 00944-105540 - 54465).jpg",
@@ -928,16 +908,6 @@
   "desc": "Transmission electron micrographs of virions cauliflower mosaic virus (CaMV).",
   "w": 952,
   "h": 714
- },
- "camv-leaf": {
-  "title": "File:Blumenkohl Turnip-mosaic-virus-3-DLR-jk.jpg",
-  "url": "https://commons.wikimedia.org/wiki/File:Blumenkohl_Turnip-mosaic-virus-3-DLR-jk.jpg",
-  "artist": "Jochen Kreiselmaier, Pflanzenschutzberatr am DKR-rheinpfalz in Neustadt/Wstr.",
-  "lic": "CC BY-SA 4.0",
-  "lic_url": "https://creativecommons.org/licenses/by-sa/4.0",
-  "desc": "The infested plants show a light to dark green leaf mottling paired with a slight blistering.",
-  "w": 1280,
-  "h": 1023
  },
  "pelargonium": {
   "title": "File:Pelargonium zonale (Geraniaceae).jpg",
