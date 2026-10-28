@@ -1,0 +1,35 @@
+<svg
+              xmlns='http://www.w3.org/2000/svg'
+                  xml:space='preserve' viewBox='0 0 320 240'>
+<path d='M 252.0,69.5 L 165.1,19.2' fill='none' stroke='#1E3326' stroke-width='2.2' />
+<path d='M 165.1,19.2 L 78.0,69.4' fill='none' stroke='#1E3326' stroke-width='2.2' />
+<path d='M 78.0,69.4 L 77.9,110.9' fill='none' stroke='#1E3326' stroke-width='2.2' />
+<path d='M 77.9,110.9 L 77.9,152.4' fill='none' stroke='#1C4CC6' stroke-width='2.2' />
+<path d='M 92.0,178.0 L 128.4,199.1' fill='none' stroke='#1C4CC6' stroke-width='2.2' />
+<path d='M 128.4,199.1 L 164.9,220.2' fill='none' stroke='#1E3326' stroke-width='2.2' />
+<path d='M 99.5,165.0 L 132.2,183.9' fill='none' stroke='#1C4CC6' stroke-width='2.2' />
+<path d='M 132.2,183.9 L 164.9,202.8' fill='none' stroke='#1E3326' stroke-width='2.2' />
+<path d='M 164.9,220.2 L 252.0,170.0' fill='none' stroke='#1E3326' stroke-width='2.2' />
+<path d='M 252.0,170.0 L 252.0,69.5' fill='none' stroke='#1E3326' stroke-width='2.2' />
+<path d='M 247.7,67.0 L 252.0,69.5 L 252.0,74.5' style='fill:none;stroke:#1E3326;stroke-width:2.2px;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:10;stroke-opacity:1;' />
+<path d='M 169.4,21.7 L 165.1,19.2 L 160.7,21.7' style='fill:none;stroke:#1E3326;stroke-width:2.2px;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:10;stroke-opacity:1;' />
+<path d='M 82.3,66.9 L 78.0,69.4 L 78.0,71.5' style='fill:none;stroke:#1E3326;stroke-width:2.2px;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:10;stroke-opacity:1;' />
+<path d='M 163.1,219.1 L 164.9,220.2 L 169.2,217.7' style='fill:none;stroke:#1E3326;stroke-width:2.2px;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:10;stroke-opacity:1;' />
+<path d='M 247.6,172.5 L 252.0,170.0 L 252.0,165.0' style='fill:none;stroke:#1E3326;stroke-width:2.2px;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:10;stroke-opacity:1;' />
+<path d='M 71.6 155.7
+L 80.9 170.7
+Q 81.8 172.2, 83.3 174.9
+Q 84.8 177.6, 84.9 177.7
+L 84.9 155.7
+L 88.6 155.7
+L 88.6 184.0
+L 84.8 184.0
+L 74.8 167.6
+Q 73.6 165.7, 72.4 163.5
+Q 71.2 161.3, 70.8 160.6
+L 70.8 184.0
+L 67.2 184.0
+L 67.2 155.7
+L 71.6 155.7
+' fill='#1C4CC6'/>
+</svg>

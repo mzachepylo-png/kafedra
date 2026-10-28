@@ -1,0 +1,83 @@
+<svg
+              xmlns='http://www.w3.org/2000/svg'
+                  xml:space='preserve' viewBox='0 0 320 240'>
+<path d='M 25.6,98.5 L 42.4,108.3' fill='none' stroke='#1E3326' stroke-width='2.2' />
+<path d='M 42.4,108.3 L 59.3,118.1' fill='none' stroke='#C62121' stroke-width='2.2' />
+<path d='M 81.1,118.2 L 98.0,108.5' fill='none' stroke='#C62121' stroke-width='2.2' />
+<path d='M 98.0,108.5 L 114.9,98.8' fill='none' stroke='#1E3326' stroke-width='2.2' />
+<path d='M 118.8,101.1 L 118.9,80.3' fill='none' stroke='#1E3326' stroke-width='2.2' />
+<path d='M 118.9,80.3 L 118.9,59.4' fill='none' stroke='#C62121' stroke-width='2.2' />
+<path d='M 111.1,101.0 L 111.1,80.2' fill='none' stroke='#1E3326' stroke-width='2.2' />
+<path d='M 111.1,80.2 L 111.2,59.4' fill='none' stroke='#C62121' stroke-width='2.2' />
+<path d='M 114.9,98.8 L 159.5,124.8' fill='none' stroke='#1E3326' stroke-width='2.2' />
+<path d='M 159.5,124.8 L 159.3,176.3' fill='none' stroke='#1E3326' stroke-width='2.2' />
+<path d='M 167.2,129.3 L 167.1,171.9' fill='none' stroke='#1E3326' stroke-width='2.2' />
+<path d='M 159.3,176.3 L 203.9,202.3' fill='none' stroke='#1E3326' stroke-width='2.2' />
+<path d='M 203.9,202.3 L 248.7,176.7' fill='none' stroke='#1E3326' stroke-width='2.2' />
+<path d='M 248.7,176.7 L 248.7,156.8' fill='none' stroke='#1E3326' stroke-width='2.2' />
+<path d='M 248.7,156.8 L 248.8,136.8' fill='none' stroke='#1C4CC6' stroke-width='2.2' />
+<path d='M 258.2,119.8 L 275.9,109.6' fill='none' stroke='#1C4CC6' stroke-width='2.2' />
+<path d='M 275.9,109.6 L 293.6,99.5' fill='none' stroke='#1E3326' stroke-width='2.2' />
+<path d='M 239.5,119.7 L 221.9,109.4' fill='none' stroke='#1C4CC6' stroke-width='2.2' />
+<path d='M 221.9,109.4 L 204.3,99.1' fill='none' stroke='#1E3326' stroke-width='2.2' />
+<path d='M 204.3,99.1 L 159.5,124.8' fill='none' stroke='#1E3326' stroke-width='2.2' />
+<path d='M 114.1,99.3 L 114.9,98.8 L 117.2,100.1' style='fill:none;stroke:#1E3326;stroke-width:2.2px;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:10;stroke-opacity:1;' />
+<path d='M 159.3,173.8 L 159.3,176.3 L 161.6,177.6' style='fill:none;stroke:#1E3326;stroke-width:2.2px;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:10;stroke-opacity:1;' />
+<path d='M 201.7,201.0 L 203.9,202.3 L 206.1,201.0' style='fill:none;stroke:#1E3326;stroke-width:2.2px;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:10;stroke-opacity:1;' />
+<path d='M 246.4,178.0 L 248.7,176.7 L 248.7,175.7' style='fill:none;stroke:#1E3326;stroke-width:2.2px;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:10;stroke-opacity:1;' />
+<path d='M 205.2,99.7 L 204.3,99.1 L 202.0,100.4' style='fill:none;stroke:#1E3326;stroke-width:2.2px;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:10;stroke-opacity:1;' />
+<path d='M 61.0 124.5
+Q 61.0 119.7, 63.3 117.0
+Q 65.7 114.3, 70.2 114.3
+Q 74.6 114.3, 77.0 117.0
+Q 79.4 119.7, 79.4 124.5
+Q 79.4 129.4, 77.0 132.2
+Q 74.6 134.9, 70.2 134.9
+Q 65.7 134.9, 63.3 132.2
+Q 61.0 129.4, 61.0 124.5
+M 70.2 132.7
+Q 73.2 132.7, 74.9 130.6
+Q 76.6 128.5, 76.6 124.5
+Q 76.6 120.6, 74.9 118.6
+Q 73.2 116.6, 70.2 116.6
+Q 67.1 116.6, 65.4 118.6
+Q 63.8 120.5, 63.8 124.5
+Q 63.8 128.6, 65.4 130.6
+Q 67.1 132.7, 70.2 132.7
+' fill='#C62121'/>
+<path d='M 105.9 47.3
+Q 105.9 42.5, 108.3 39.8
+Q 110.7 37.1, 115.1 37.1
+Q 119.6 37.1, 122.0 39.8
+Q 124.3 42.5, 124.3 47.3
+Q 124.3 52.2, 121.9 55.0
+Q 119.5 57.7, 115.1 57.7
+Q 110.7 57.7, 108.3 55.0
+Q 105.9 52.2, 105.9 47.3
+M 115.1 55.5
+Q 118.2 55.5, 119.8 53.4
+Q 121.5 51.3, 121.5 47.3
+Q 121.5 43.4, 119.8 41.4
+Q 118.2 39.4, 115.1 39.4
+Q 112.1 39.4, 110.4 41.4
+Q 108.7 43.3, 108.7 47.3
+Q 108.7 51.4, 110.4 53.4
+Q 112.1 55.5, 115.1 55.5
+' fill='#C62121'/>
+<path d='M 244.4 115.1
+L 251.0 125.7
+Q 251.6 126.7, 252.7 128.6
+Q 253.7 130.5, 253.8 130.7
+L 253.8 115.1
+L 256.4 115.1
+L 256.4 135.1
+L 253.7 135.1
+L 246.6 123.5
+Q 245.8 122.2, 244.9 120.6
+Q 244.1 119.0, 243.8 118.5
+L 243.8 135.1
+L 241.2 135.1
+L 241.2 115.1
+L 244.4 115.1
+' fill='#1C4CC6'/>
+</svg>
