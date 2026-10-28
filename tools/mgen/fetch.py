@@ -25,7 +25,7 @@ mode = sys.argv[1] if len(sys.argv) > 1 else 'search'
 if mode == 'search':
     a, b = int(sys.argv[2]), int(sys.argv[3])
     Q = list(json.load(open('tools/mgen/queries.json')).items())[a:b]
-    mp = f'{OUT}/meta.json'
+    mp = f'{OUT}/meta_{a}.json'
     meta = json.load(open(mp)) if os.path.exists(mp) else {}
     for key, q in Q:
         d = get(API + urllib.parse.urlencode({'action': 'query', 'format': 'json', 'generator': 'search', 'gsrsearch': q + ' filetype:bitmap', 'gsrnamespace': 6, 'gsrlimit': 6, 'prop': 'imageinfo', 'iiprop': 'url|extmetadata|size', 'iiurlwidth': 700}))
