@@ -67,6 +67,6 @@ elif mode == 'final':
         if 'crop' in s:
             W, H = im.size; l, t, r, b = s['crop']; im = im.crop((int(l * W), int(t * H), int(r * W), int(b * H)))
         im.save(f'assets/img/mgen/{name}.webp', 'WEBP', quality=80, method=6)
-        credits[name] = dict(title=p['title'], url=ii['descriptionurl'], artist=clean(em.get('Artist', {}).get('value', '')), lic=clean(em.get('LicenseShortName', {}).get('value', '')), lic_url=clean(em.get('LicenseUrl', {}).get('value', '')), w=im.size[0], h=im.size[1])
+        credits[name] = dict(title=p['title'], url=ii['descriptionurl'], artist=clean(em.get('Artist', {}).get('value', '')), lic=clean(em.get('LicenseShortName', {}).get('value', '')), lic_url=clean(em.get('LicenseUrl', {}).get('value', '')), desc=clean(em.get('ImageDescription', {}).get('value', ''))[:400], w=im.size[0], h=im.size[1])
         print('OK', name, im.size); time.sleep(1.2)
     json.dump(credits, open(cp, 'w'), ensure_ascii=False, indent=1)
