@@ -120,7 +120,7 @@
  "nester2015": "Nester EW (2015) <i>Agrobacterium</i>: nature’s genetic engineer. <i>Frontiers in Plant Science</i> 5: 730.",
  "pitzschke2010": "Pitzschke A, Hirt H (2010) New insights into an old story: <i>Agrobacterium</i>-induced tumour formation in plants by plant transformation. <i>The EMBO Journal</i> 29: 1021–1032.",
  "dessaux1998": "Dessaux Y, Petit A, Farrand SK, Murphy PJ (1998) Opines and opine-catabolizing bacteria. In: Spaink HP, Kondorosi A, Hooykaas PJJ (eds) <i>The Rhizobiaceae</i>. Kluwer, Dordrecht, pp. 173–197.",
- "akiyoshi1984": "Akiyoshi DE, Morris RO, Hinz R, et al. (1984) Cytokinin/auxin balance in crown gall tumors is regulated by specific loci in the T-DNA. <i>PNAS</i> 81: 5994–5998.",
+ "akiyoshi1984": "Akiyoshi DE, Klee H, Amasino RM, Nester EW, Gordon MP (1984) T-DNA of <i>Agrobacterium tumefaciens</i> encodes an enzyme of cytokinin biosynthesis. <i>PNAS</i> 81: 5994–5998.",
  "barry1984": "Barry GF, Rogers SG, Fraley RT, Brand L (1984) Identification of a cloned cytokinin biosynthetic gene. <i>PNAS</i> 81: 4776–4780.",
  "schroder1984": "Schröder G, Waffenschmidt S, Weiler EW, Schröder J (1984) The T-region of Ti plasmids codes for an enzyme synthesizing indole-3-acetic acid. <i>European Journal of Biochemistry</i> 138: 387–391.",
  "thomashow1984": "Thomashow LS, Reeves S, Thomashow MF (1984) Crown gall oncogenesis: evidence that a T-DNA gene from the <i>Agrobacterium</i> Ti plasmid pTiA6 encodes an enzyme that catalyzes synthesis of indoleacetic acid. <i>PNAS</i> 81: 5071–5075.",
@@ -363,5 +363,6 @@
  "kanno2003": "Kanno A, Saeki H, Kameya T, et al. (2003) Heterotopic expression of class B floral homeotic genes supports a modified ABC model for tulip (<i>Tulipa gesneriana</i>). <i>Plant Molecular Biology</i> 52: 831–841.",
  "soltis2007": "Soltis DE, Ma H, Frohlich MW, et al. (2007) The floral genome: an evolutionary history of gene duplication and shifting patterns of gene expression. <i>Trends in Plant Science</i> 12: 358–367.",
  "alvarez2010": "Alvarez-Buylla ER, Benítez M, Corvera-Poiré A, et al. (2010) Flower development. <i>The Arabidopsis Book</i> 8: e0127.",
- "meyerowitz2002": "Meyerowitz EM (2002) Plants compared to animals: the broadest comparative study of development. <i>Science</i> 295: 1482–1485."
+ "meyerowitz2002": "Meyerowitz EM (2002) Plants compared to animals: the broadest comparative study of development. <i>Science</i> 295: 1482–1485.",
+ "akiyoshi1983": "Akiyoshi DE, Morris RO, Hinz R, Mischke BS, Kosuge T, Garfinkel DJ, Gordon MP, Nester EW (1983) Cytokinin/auxin balance in crown gall tumors is regulated by specific loci in the T-DNA. <i>PNAS</i> 80: 407–411."
 }

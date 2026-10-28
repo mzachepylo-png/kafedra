@@ -3,7 +3,8 @@
 
 Вхід:   tools/mgen/source.md      — текст конспекту, частини 1–5 (Markdown)
         tools/mgen/figs/*.html    — рисунки й інтерактивні блоки (підставляються за {{fig:назва}})
-        tools/mgen/meta.json      — «Головне» для розділів, контрольні питання, джерела
+        tools/mgen/meta.json      — «Головне» для розділів, контрольні питання, відповідність розділів і джерел (cite)
+        tools/mgen/refs.json      — бібліографічні описи (ключ → HTML), нумеруються за першою згадкою
         tools/mgen/credits.json   — авторство й ліцензії фото (формується під час завантаження з Commons)
         tools/mgen/captions.json  — підписи до фото
 Вихід:  konspekt/plant-molecular-genetics/index.html
@@ -35,6 +36,9 @@ def load(name, default):
 META = load('meta.json', {})
 CREDITS = load('credits.json', {})
 CAPTIONS = load('captions.json', {})
+REFS = load('refs.json', {})
+REFDOI = load('refs_doi.json', {})
+REFNUM = {}  # ключ джерела → номер за першою згадкою в тексті
 
 # ------------------------------------------------------------------ розбір джерела
 SRC = (T / 'source.md').read_text(encoding='utf-8')
@@ -54,7 +58,7 @@ for line in SRC.split('\n'):
         continue
     m = RE_SEC.match(line)
     if m:
-        cur_sec = dict(lec=int(m.group(1)), n=int(m.group(2)), title=m.group(3).strip(), tc=None, url=None, body=[])
+        cur_sec = dict(lec=int(m.group(1)), n=int(m.group(2)), title=m.group(3).strip(), body=[])
         cur_lec['secs'].append(cur_sec)
         continue
     if line.strip() == '---':
@@ -62,7 +66,7 @@ for line in SRC.split('\n'):
         continue
     (cur_sec['body'] if cur_sec else cur_lec['intro']).append(line)
 
-# ключові терміни, відео
+# ключові терміни
 for L in lectures:
     for bucket in ([L['intro']] + [s['body'] for s in L['secs']]):
         for i, ln in enumerate(bucket):
@@ -174,20 +178,48 @@ def sec_html(L, S):
     while (T / 'figs' / (f'{sid}.html' if n == 1 else f'{sid}-{n}.html')).exists():
         body += '\n\n{{fig:%s}}' % (sid if n == 1 else f'{sid}-{n}')
         n += 1
-    tc = ''
-    if S['tc']:
-        tc = (f'<a class="mg-tc" href="{esc(S["url"])}" target="_blank" rel="noopener" '
-              f'title="Відкрити цей фрагмент відеолекції на YouTube">▶ {esc(S["tc"])}</a>')
     key = META.get('key', {}).get(sid, '')
     keyhtml = f'<p class="mg-key"><b>Головне.</b> {key}</p>' if key else ''
     return (f'<section class="mg-sec" id="{sid}" data-title="{esc(S["title"])}" data-n="{S["lec"]}.{S["n"]}">'
             f'<h3 class="mg-h"><a class="mg-anchor" href="#{sid}" aria-label="Посилання на розділ"><span class="n">{S["lec"]}.{S["n"]}</span></a>'
-            f'<span class="mg-h__t">{inline(S["title"])}</span>{tc}</h3>{keyhtml}'
-            f'<div class="prose mg-prose">{render_md(body)}</div></section>')
+            f'<span class="mg-h__t">{inline(S["title"])}</span></h3>{keyhtml}'
+            f'<div class="prose mg-prose">{render_md(body)}</div>{src_html(sid)}</section>')
 
 
 def inline(s):
     return md.renderInline(s)
+
+
+def src_html(sid):
+    """Рядок «Джерела» під розділом: номери з наскрізного списку літератури."""
+    keys = META.get('cite', {}).get(sid, [])
+    nums = []
+    for k in keys:
+        if k not in REFS:
+            print('  ! немає джерела', k)
+            continue
+        if k not in REFNUM:
+            REFNUM[k] = len(REFNUM) + 1
+        nums.append(REFNUM[k])
+    if not nums:
+        return ''
+    links = ' '.join(f'<a href="#ref-{n}">[{n}]</a>' for n in sorted(nums))
+    return f'<p class="mg-src"><b>Джерела до розділу:</b> {links}</p>'
+
+
+def refs_html():
+    items = []
+    for k, n in sorted(REFNUM.items(), key=lambda kv: kv[1]):
+        txt = REFS[k]
+        plain = re.sub(r'<[^>]+>', '', txt).replace('&amp;', '&')
+        doi = REFDOI.get(k)
+        if doi:
+            link = f'<a class="mg-doi" href="https://doi.org/{esc(doi)}" target="_blank" rel="noopener">DOI</a>'
+        else:
+            q = html.escape(re.sub(r'\s+', ' ', plain)[:220]).replace(' ', '+')
+            link = f'<a class="mg-doi" href="https://search.crossref.org/?q={q}" target="_blank" rel="noopener">Знайти</a>'
+        items.append(f'<li id="ref-{n}">{txt} {link}</li>')
+    return '<ol class="refs mg-refs">' + ''.join(items) + '</ol>'
 
 
 def lec_html(L, i):
@@ -247,12 +279,13 @@ if SLUG not in FOOT_HTML:
     raise SystemExit('У підвалі сусідньої сторінки немає посилання на статтю — спочатку виконайте tools/mgen/patch_footers.py')
 
 TITLE = 'Молекулярна генетика рослин'
-DESC = ('Конспект «Молекулярна генетика рослин» (курс В. В. Чуба, МДУ): модельні об\'єкти й геноми, регуляція експресії, '
-        'агробактеріальна трансформація, трансгенні рослини, CRISPR, позиційний контроль розвитку. Фото та інтерактивні схеми.')
+DESC = ('Конспект «Молекулярна генетика рослин»: модельні об\'єкти й геноми, регуляція експресії, '
+        'агробактеріальна трансформація, трансгенні рослини, CRISPR, позиційний контроль розвитку. '
+        'Фото, інтерактивні схеми та список літератури.')
 
 tiles = ''.join(
     f'<a class="mg-tile" href="#l{L["n"]}" style="--lc:var(--l{L["n"]})"><i>{L["n"]}</i><b>{inline(L["title"])}</b>'
-    f'<small>{len(L["secs"])} розділів · {L["dur"]}</small></a>' for L in lectures)
+    f'<small>{len(L["secs"])} розділів</small></a>' for L in lectures)
 
 pageparts = []
 pageparts.append(expand(fig('intro')))
@@ -295,7 +328,7 @@ page = f'''<!doctype html>
         <nav class="breadcrumbs" aria-label="Навігаційний ланцюжок"><a href="../../">Головна</a><span aria-hidden="true">/</span><a href="../">Конспект</a><span aria-hidden="true">/</span><span>{TITLE}</span></nav>
         <span class="kicker">Конспект · генетика й біотехнологія рослин</span>
         <h1>{TITLE}</h1>
-        <p>Від арабідопсису й «стрибаючих генів» до агробактерії, CRISPR та позиційної інформації: як гени будують рослину і як ми навчилися ними керувати. Структурований конспект 5 лекцій — з фото, схемами та інтерактивними моделями.</p>
+        <p>Від арабідопсису й «стрибаючих генів» до агробактерії, CRISPR та позиційної інформації: як гени будують рослину і як ми навчилися ними керувати. Структурований конспект із 5 частин — з фото, схемами та інтерактивними моделями.</p>
         <div class="lab-head"><span class="badge">Геноми</span><span class="badge">Транспозони</span><span class="badge">Фактори транскрипції</span><span class="badge">Agrobacterium</span><span class="badge">CRISPR/Cas</span><span class="badge">Морфогенез</span></div>
         <div class="mg-tiles">{tiles}</div>
       </div>
@@ -304,13 +337,13 @@ page = f'''<!doctype html>
     <div class="mg-bar" id="mg-bar" aria-label="Навігація по конспекту">
       <div class="container mg-bar__in">
         <button class="mg-bar__btn mg-bar__toc" type="button" id="mg-toc-open" aria-controls="mg-drawer" aria-expanded="false"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" aria-hidden="true"><path d="M4 6h16M4 12h10M4 18h16"/></svg><span>Зміст</span></button>
-        <div class="mg-pills" id="mg-pills" role="group" aria-label="Лекції">{''.join(f'<a href="#l{L["n"]}" data-lec="{L["n"]}" style="--lc:var(--l{L["n"]})" title="{esc(L["title"])}">{L["n"]}</a>' for L in lectures)}</div>
+        <div class="mg-pills" id="mg-pills" role="group" aria-label="Частини">{''.join(f'<a href="#l{L["n"]}" data-lec="{L["n"]}" style="--lc:var(--l{L["n"]})" title="{esc(L["title"])}">{L["n"]}</a>' for L in lectures)}</div>
         <div class="mg-here" id="mg-here" aria-live="polite"><small id="mg-here-l">Вступ</small><b id="mg-here-s">Про конспект</b></div>
         <div class="mg-bar__tools">
           <button class="mg-bar__btn" type="button" id="mg-prev" aria-label="Попередній розділ" title="Попередній розділ ( [ )"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m18 15-6-6-6 6"/></svg></button>
           <button class="mg-bar__btn" type="button" id="mg-next" aria-label="Наступний розділ" title="Наступний розділ ( ] )"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m6 9 6 6 6-6"/></svg></button>
           <button class="mg-bar__btn" type="button" id="mg-search-open" aria-label="Пошук по конспекту" aria-controls="mg-search" aria-expanded="false" title="Пошук по конспекту ( / )"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg></button>
-          <button class="mg-bar__btn mg-focus" type="button" id="mg-focus" aria-pressed="false" title="Показувати лише поточну лекцію"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 8V5a1 1 0 0 1 1-1h3M16 4h3a1 1 0 0 1 1 1v3M20 16v3a1 1 0 0 1-1 1h-3M8 20H5a1 1 0 0 1-1-1v-3"/><rect x="9" y="9" width="6" height="6" rx="1"/></svg><span>Одна лекція</span></button>
+          <button class="mg-bar__btn mg-focus" type="button" id="mg-focus" aria-pressed="false" title="Показувати лише поточну частину"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 8V5a1 1 0 0 1 1-1h3M16 4h3a1 1 0 0 1 1 1v3M20 16v3a1 1 0 0 1-1 1h-3M8 20H5a1 1 0 0 1-1-1v-3"/><rect x="9" y="9" width="6" height="6" rx="1"/></svg><span>Одна частина</span></button>
         </div>
       </div>
       <div class="mg-progress" aria-hidden="true"><i id="mg-progress"></i></div>
@@ -331,15 +364,18 @@ page = f'''<!doctype html>
 {LECS}
 
           <section class="mg-sec mg-glossary" id="glossary" data-title="Глосарій">
-            <h2><span class="n">А–Я</span>Глосарій: ключові терміни лекцій 1–5</h2>
-            <p class="mg-gloss__lead">Усі терміни з кінця лекцій в одному місці. Фільтруйте за лекцією або текстом; натисніть на термін — і він знайдеться по всьому конспекту.</p>
-            <div class="mg-gloss__bar"><input type="search" id="mg-gq" placeholder="Фільтр термінів…" aria-label="Фільтр термінів"><div class="mg-seg" id="mg-gl" role="group" aria-label="Лекція"><button type="button" data-l="0" aria-pressed="true">Усі</button>{''.join(f'<button type="button" data-l="{L["n"]}" aria-pressed="false" style="--lc:var(--l{L["n"]})">{L["n"]}</button>' for L in lectures)}</div></div>
+            <h2><span class="n">А–Я</span>Глосарій: ключові терміни частин 1–5</h2>
+            <p class="mg-gloss__lead">Усі терміни з кінця частин в одному місці. Фільтруйте за частиною або текстом; натисніть на термін — і він знайдеться по всьому конспекту.</p>
+            <div class="mg-gloss__bar"><input type="search" id="mg-gq" placeholder="Фільтр термінів…" aria-label="Фільтр термінів"><div class="mg-seg" id="mg-gl" role="group" aria-label="Частина"><button type="button" data-l="0" aria-pressed="true">Усі</button>{''.join(f'<button type="button" data-l="{L["n"]}" aria-pressed="false" style="--lc:var(--l{L["n"]})">{L["n"]}</button>' for L in lectures)}</div></div>
             <ul class="mg-chips mg-chips--all" id="mg-gterms">{glossary_html()}</ul>
           </section>
 
           <section class="mg-sec" id="refs" data-title="Джерела">
             <h2><span class="n">★</span>Джерела та подяки</h2>
+<div class="prose mg-prose">
+{refs_html()}
 {expand(fig('refs'))}
+            </div>
           </section>
         </article>
       </div>
@@ -362,14 +398,14 @@ page = f'''<!doctype html>
 '''
 OUT.parent.mkdir(parents=True, exist_ok=True)
 OUT.write_text(page, encoding='utf-8')
-print(f'OK: {OUT.relative_to(ROOT)}  {len(page)//1024} КБ, лекцій {len(lectures)}, розділів {nsec}')
+print(f'OK: {OUT.relative_to(ROOT)}  {len(page)//1024} КБ, частин {len(lectures)}, розділів {nsec}')
 
 # індекс для пошуку по всьому конспекту (k-index) — друкуємо в JSON для patch_index.py
 idx = [dict(t=TITLE, u=f'{SLUG}/', a=TITLE, k='молекулярна генетика рослин арабідопсис геном транспозон Ac/Ds ретротранспозон MYB bHLH WD40 агробактерія Ti-плазміда T-ДНК трансгенні рослини GFP GUS RNAi CRISPR Cas9 позиційна інформація морфоген філотаксис', top=1)]
 for L in lectures:
-    idx.append(dict(t=f'Лекція {L["n"]}. {re.sub(r"[*]", "", L["title"])}', u=f'{SLUG}/#l{L["n"]}', a=TITLE, k=' '.join(split_terms(L['terms'])).replace('*', '')))
+    idx.append(dict(t=f'Частина {L["n"]}. {re.sub(r"[*]", "", L["title"])}', u=f'{SLUG}/#l{L["n"]}', a=TITLE, k=' '.join(split_terms(L['terms'])).replace('*', '')))
     for S in L['secs']:
         txt = re.sub(r'[*`>#|\[\]]|\(https?://[^)]*\)', ' ', ' '.join(S['body']))
         txt = re.sub(r'\s+', ' ', txt).strip()
-        idx.append(dict(t=f'{L["n"]}.{S["n"]}. ' + re.sub(r'[*]', '', S['title']), u=f'{SLUG}/#l{L["n"]}-{S["n"]}', a=TITLE, k=txt[:420], s=f'Лекція {L["n"]}'))
+        idx.append(dict(t=f'{L["n"]}.{S["n"]}. ' + re.sub(r'[*]', '', S['title']), u=f'{SLUG}/#l{L["n"]}-{S["n"]}', a=TITLE, k=txt[:420], s=f'Частина {L["n"]}'))
 (T / 'index_entries.json').write_text(json.dumps(idx, ensure_ascii=False), encoding='utf-8')

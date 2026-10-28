@@ -357,3 +357,12 @@ div.mg-bars__r { cursor: default; }
 .mg-arrow { font-size: .8rem; font-weight: 800; color: var(--muted); margin: 6px 0 6px 6.5em; }
 
 .mg-toc__lec ol a b, .mg-mini a b { font-weight: inherit; min-width: 0; }
+
+.mg-src { margin: 12px 0 0; font-size: .86rem; color: var(--ink-soft); line-height: 1.7; }
+.mg-src b { color: var(--ink); margin-right: 4px; }
+.mg-src a { text-decoration: none; font-weight: 700; color: var(--lc, var(--green-700)); padding: 0 2px; }
+.mg-src a:hover { text-decoration: underline; }
+.mg-refs { font-size: .88rem; line-height: 1.55; padding-left: 1.4em; }
+.mg-refs li { margin: 0 0 6px; scroll-margin-top: 130px; }
+.mg-refs li:target { background: var(--gold-100); border-radius: 6px; }
+.mg-doi { font: 700 .72rem var(--mono); text-decoration: none; margin-left: 4px; padding: 1px 7px; border-radius: 999px; border: 1px solid var(--line); white-space: nowrap; }
