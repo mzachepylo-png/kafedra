@@ -100,9 +100,6 @@
 .it-lec__kick { font-size: .74rem; font-weight: 800; letter-spacing: .12em; text-transform: uppercase; color: var(--lc); }
 .it-lec__head h2 { margin: 2px 0 6px; font-size: clamp(1.35rem, 1.05rem + 1vw, 1.85rem); line-height: 1.2; }
 .it-lec__objs { margin: 0 0 10px; font-size: .9rem; color: var(--ink-soft); }
-.it-lec__video { display: inline-flex; align-items: center; gap: 8px; font-size: .84rem; font-weight: 700; color: var(--lc); text-decoration: none; }
-.it-lec__video svg { width: 22px; height: 22px; padding: 5px; border-radius: 50%; background: #E02020; color: #fff; }
-.it-lec__video:hover { text-decoration: underline; color: var(--lc); }
 @media (max-width: 560px) { .it-lec__head { grid-template-columns: 1fr; padding: 16px; } .it-lec__n { width: 48px; height: 48px; font-size: 1.4rem; border-radius: 14px; } }
 .it-sub { padding-top: 34px; }
 .it-sub > h3 { display: flex; align-items: baseline; gap: 10px; font-size: clamp(1.15rem, 1rem + .5vw, 1.4rem); margin-bottom: 12px; }

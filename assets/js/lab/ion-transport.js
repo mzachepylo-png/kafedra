@@ -1,4 +1,4 @@
-// Конспект «Транспорт іонів у клітинах рослин»: навігація по лекціях і інтерактивні моделі.
+// Конспект «Транспорт іонів у клітинах рослин»: навігація по розділах і інтерактивні моделі.
 // Кожна модель ініціалізується лише тоді, коли наближається до видимої області.
 import { Plot, sample, linspace } from './plot.js';
 import { sliders, segmented, num, sig } from './ui.js';
@@ -49,7 +49,7 @@ function onScroll() {
   progBar.style.setProperty('--p', (total * 100).toFixed(1) + '%');
   prog.classList.toggle('is-on', ar.top < hh && ar.bottom > hh);
   topBtn.classList.toggle('is-on', window.scrollY > 900);
-  // поточна лекція і поступ кожної
+  // поточний розділ і поступ кожного
   let cur = null;
   for (const s of lecs) {
     const r = s.getBoundingClientRect();
@@ -84,7 +84,7 @@ function onScroll() {
       }
     }
   }
-  progT.textContent = cur ? `Лекція ${cur.dataset.lec} · ${cur.dataset.title}` + (cs ? ' — ' + $('h3', cs).textContent.replace(/^\d+\.\d+/, '') : '') : '';
+  progT.textContent = cur ? `Розділ ${cur.dataset.lec} · ${cur.dataset.title}` + (cs ? ' — ' + $('h3', cs).textContent.replace(/^\d+\.\d+/, '') : '') : '';
 }
 window.addEventListener('scroll', () => { if (!ticking) { ticking = true; requestAnimationFrame(onScroll); } }, { passive: true });
 window.addEventListener('resize', () => requestAnimationFrame(onScroll));
@@ -152,7 +152,7 @@ function search() {
     .sort((a, b) => (b.t.startsWith(q) - a.t.startsWith(q)) || (b.t.includes(q) - a.t.includes(q)))
     .slice(0, 9);
   res.innerHTML = hits.length
-    ? hits.map((x) => `<li><a href="#${x.r.id}">${x.r.t}<small>${x.r.s.startsWith('Лекція') ? x.r.s : x.r.s + ' · ' + (secName[x.r.id] || '')}</small></a></li>`).join('')
+    ? hits.map((x) => `<li><a href="#${x.r.id}">${x.r.t}<small>${x.r.s.startsWith('Розділ') ? x.r.s : x.r.s + ' · ' + (secName[x.r.id] || '')}</small></a></li>`).join('')
     : '<li class="is-empty">Нічого не знайдено</li>';
   res.hidden = false;
 }
@@ -466,7 +466,7 @@ W.ves = (root) => {
 };
 
 /* =========================================================
-   Лекції 3–5
+   Розділи 3–5
    ========================================================= */
 const logFmt = (v) => (Math.abs(v - Math.round(v)) < 1e-6 ? (v >= 3 ? sig(Math.pow(10, v) / 1000, 2) + ' мМ' : sig(Math.pow(10, v), 2) + ' мкМ') : '');
 
@@ -499,7 +499,7 @@ W.shaker = (root) => {
     vsd: '<b>S1–S3</b> — частина потенціал-чутливого домену, що оточує сенсор S4 і передає його рух на пору.',
     s4: '<b>S4 — сенсор потенціалу.</b> Регулярно розташовані позитивні аргініни й лізини: зміна поля мембрани зсуває S4 і відкриває чи закриває ворота. У вхідних каналах (AKT1, KAT1) ворота відкриваються гіперполяризацією.',
     pore: '<b>S5 і S6</b> утворюють пору; нижня частина S6 — «ворота» з боку цитозолю.',
-    p: '<b>P-петля між S5 і S6</b> з мотивом <b>TVGYG</b> — селективний фільтр: карбонільні кисні чотирьох субодиниць координують дегідратований K⁺ (див. KcsA, лекція 1).',
+    p: '<b>P-петля між S5 і S6</b> з мотивом <b>TVGYG</b> — селективний фільтр: карбонільні кисні чотирьох субодиниць координують дегідратований K⁺ (див. KcsA, розділ 1).',
     n: '<b>Короткий N-кінець</b> у цитозолі. В AKT1 тут <b>Ser26</b> — сайт фосфорилювання кіназою CIPK23.',
     clink: '<b>C-лінкер</b> передає конформаційний сигнал на ворота пори. В AKT1 тут <b>Ser338</b> — другий ключовий сайт CIPK23.',
     cnbd: '<b>CNBD</b> — домен гомології зв\'язування циклічних нуклеотидів. У рослинних Shaker-каналах він не активується цАМФ прямо (на відміну від CNGC), а бере участь у тетрамеризації й внутрішній регуляції.',
@@ -638,7 +638,7 @@ W.sos = (root) => {
 };
 
 /* =========================================================
-   Лекції 6–7
+   Розділи 6–7
    ========================================================= */
 const pulse = (t, t0, rise, dec, amp) => (t <= t0 ? 0 : amp * (1 - Math.exp(-(t - t0) / rise)) * Math.exp(-(t - t0) / dec));
 
@@ -795,7 +795,7 @@ W.pollen = (root) => {
 };
 
 /* =========================================================
-   Лекції 8–9
+   Розділи 8–9
    ========================================================= */
 /* ---------- R- і S-струми ---------- */
 W.rs = (root) => {
