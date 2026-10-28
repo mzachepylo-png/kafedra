@@ -190,16 +190,17 @@
    "page": "R761-R763"
   },
   {
-   "doi": "10.1111/j.1438-8677.1999.tb00706.x",
-   "title": "Potassium Translocation into the Root Xylem",
+   "doi": "10.1055/s-2003-44780",
+   "title": "Between Xylem and Phloem: The Genetic Control of Cambial Activity in Plants",
    "authors": [
-    "De Boer A. H."
+    "Helariutta Y.",
+    "Bhalerao R."
    ],
-   "year": 1999,
+   "year": 2003,
    "journal": "Plant Biology",
-   "vol": "1",
-   "issue": "1",
-   "page": "36-45"
+   "vol": "5",
+   "issue": "5",
+   "page": "465-472"
   }
  ],
  "srinivasan": [
@@ -1043,19 +1044,6 @@
    "page": "8113-8118"
   },
   {
-   "doi": "10.1046/j.1461-0248.1998.00010.x",
-   "title": "Costs of jasmonate‐induced responses in plants competing for limited resources",
-   "authors": [
-    "Van Dam Nicole M.",
-    "Baldwin Ian T."
-   ],
-   "year": 1998,
-   "journal": "Ecology Letters",
-   "vol": "1",
-   "issue": "1",
-   "page": "30-33"
-  },
-  {
    "doi": "10.1073/pnas.1200363109",
    "title": "<i>Empoasca</i>\n                    leafhoppers attack wild tobacco plants in a jasmonate-dependent manner and identify jasmonate mutants in natural populations",
    "authors": [
@@ -1070,6 +1058,19 @@
    "vol": "109",
    "issue": "24",
    "page": null
+  },
+  {
+   "doi": "10.1046/j.1461-0248.1998.00010.x",
+   "title": "Costs of jasmonate‐induced responses in plants competing for limited resources",
+   "authors": [
+    "Van Dam Nicole M.",
+    "Baldwin Ian T."
+   ],
+   "year": 1998,
+   "journal": "Ecology Letters",
+   "vol": "1",
+   "issue": "1",
+   "page": "30-33"
   }
  ],
  "steppuhn": [
