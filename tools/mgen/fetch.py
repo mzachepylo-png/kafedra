@@ -22,10 +22,12 @@ def clean(s):
     return re.sub(r'\s+', ' ', re.sub(r'<[^>]+>', '', s or '')).strip()
 
 mode = sys.argv[1] if len(sys.argv) > 1 else 'search'
-if mode == 'search':
+if mode in ('search', 'search2'):
     a, b = int(sys.argv[2]), int(sys.argv[3])
-    Q = list(json.load(open('tools/mgen/queries.json')).items())[a:b]
-    mp = f'{OUT}/meta_{a}.json'
+    qf = 'queries.json' if mode == 'search' else 'queries2.json'
+    Q = list(json.load(open('tools/mgen/' + qf)).items())[a:b]
+    mp = f'{OUT}/meta_{a}.json' if mode == 'search' else f'{OUT}/meta2_{a}.json'
+    pre = '' if mode == 'search' else 'B_'
     meta = json.load(open(mp)) if os.path.exists(mp) else {}
     for key, q in Q:
         d = get(API + urllib.parse.urlencode({'action': 'query', 'format': 'json', 'generator': 'search', 'gsrsearch': q + ' filetype:bitmap', 'gsrnamespace': 6, 'gsrlimit': 6, 'prop': 'imageinfo', 'iiprop': 'url|extmetadata|size', 'iiurlwidth': 700}))
@@ -38,15 +40,15 @@ if mode == 'search':
             if not bts: continue
             try: im = Image.open(BytesIO(bts)).convert('RGB')
             except Exception: continue
-            meta[f'{key}_{k}'] = dict(title=p['title'], url=ii['descriptionurl'], w=ii['width'], h=ii['height'], artist=clean(em.get('Artist', {}).get('value', '')), lic=clean(em.get('LicenseShortName', {}).get('value', '')))
-            thumbs.append((f'{key}_{k}', im)); time.sleep(1.0)
+            meta[f'{pre}{key}_{k}'] = dict(title=p['title'], url=ii['descriptionurl'], w=ii['width'], h=ii['height'], artist=clean(em.get('Artist', {}).get('value', '')), lic=clean(em.get('LicenseShortName', {}).get('value', '')))
+            thumbs.append((f'{pre}{key}_{k}', im)); time.sleep(1.0)
         if thumbs:
             cw, ch = 300, 235
             sheet = Image.new('RGB', (3 * cw, 2 * ch), 'white'); dr = ImageDraw.Draw(sheet)
             for i, (n, im) in enumerate(thumbs[:6]):
                 t = im.copy(); t.thumbnail((cw - 8, ch - 30)); x, y = (i % 3) * cw + 4, (i // 3) * ch + 4
                 sheet.paste(t, (x, y)); dr.text((x, y + ch - 24), f'{n} {meta[n]["lic"][:14]} {meta[n]["w"]}x{meta[n]["h"]}', fill='black')
-            sheet.save(f'{OUT}/sheet_{key}.jpg', quality=72)
+            sheet.save(f'{OUT}/sheet_{pre}{key}.jpg', quality=72)
         time.sleep(1.5)
         json.dump(meta, open(mp, 'w'), ensure_ascii=False, indent=1)
 elif mode == 'final':
