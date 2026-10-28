@@ -91,8 +91,8 @@ def split_terms(s):
 
 
 # ------------------------------------------------------------------ рендер
-def fig(name, optional=False):
-    p = T / 'figs' / f'{name}.html'
+def fig(name, optional=False, ext='.html'):
+    p = T / 'figs' / f'{name}{ext}'
     if not p.exists():
         if not optional: print('  ! немає рисунка', name)
         return ''
@@ -106,40 +106,59 @@ def photo_fig(keys, cls=''):
         c = CREDITS.get(k)
         cap = CAPTIONS.get(k)
         if not c or not cap or not (ROOT / 'assets' / 'img' / 'mgen' / f'{k}.webp').exists():
-            if not c: print('  ! немає фото', k)
+            print('  ! немає фото/підпису', k)
             continue
         artist = c['artist'] or 'невідомий автор'
         lic = c['lic'] or ''
         credit = f'<a href="{esc(c["url"])}" target="_blank" rel="noopener">{esc(artist[:60])}</a> · {esc(lic)}'
-        full = f'{cap["t"]}. Фото: {artist[:60]}, Wikimedia Commons · {lic}'
+        full = f'{re.sub("<[^>]+>", "", cap["t"])}. Фото: {artist[:60]}, Wikimedia Commons · {lic}'
+        fit = ' is-contain' if cap.get('contain') else ''
         items.append(
-            f'<figure class="mg-ph"><a href="../../assets/img/mgen/{k}.webp" data-lightbox data-caption="{esc(full)}" aria-label="Відкрити фото в повному розмірі">'
-            f'<img src="../../assets/img/mgen/{k}.webp" alt="{esc(cap.get("alt", cap["t"]))}" width="{c["w"]}" height="{c["h"]}" loading="lazy" decoding="async"></a>'
+            f'<figure class="mg-ph{fit}"><a href="../../assets/img/mgen/{k}.webp" data-lightbox data-caption="{esc(full)}" aria-label="Відкрити фото в повному розмірі">'
+            f'<img src="../../assets/img/mgen/{k}.webp" alt="{esc(cap.get("alt", re.sub("<[^>]+>", "", cap["t"])))}" width="{c["w"]}" height="{c["h"]}" loading="lazy" decoding="async"></a>'
             f'<figcaption>{cap["t"]}.<span class="mg-cred">{credit}</span></figcaption></figure>')
     if not items:
         return ''
     return f'<div class="mg-gal {cls}">' + ''.join(items) + '</div>'
 
 
+def wrap(kind, name, title, note, inner):
+    tag = {'w': ('mg-tag--i', 'Інтерактив'), 'sf': ('mg-tag--s', 'Схема')}[kind]
+    data = f' mg-w" data-w="{name}' if kind == 'w' else ''
+    nt = f'<p class="mg-fig__n">{note}</p>' if note else ''
+    return (f'<figure class="mg-fig{data}" id="fig-{name}"><figcaption class="mg-fig__t"><span class="mg-tag {tag[0]}">{tag[1]}</span><b>{title}</b></figcaption>'
+            f'<div class="mg-fig__b">{inner}</div>{nt}</figure>')
+
+
+MACRO = re.compile(r'\{\{(\w+):(.*?)\}\}')
+
+
+def expand(s):
+    def rep(m):
+        kind, arg = m.group(1), m.group(2)
+        parts = [x.strip() for x in arg.split('|')]
+        if kind == 'fig':
+            return expand(fig(parts[0]))
+        if kind == 'photos':
+            cls = parts.pop(0)[4:] if parts and parts[0].startswith('cls=') else ''
+            return photo_fig(parts, cls)
+        if kind == 'w':
+            name, title, note = (parts + ['', ''])[:3]
+            return wrap('w', name, title, note, '<noscript>Для інтерактивної моделі потрібен JavaScript.</noscript>')
+        if kind == 'sf':
+            name, title, note = (parts + ['', ''])[:3]
+            return wrap('sf', name, title, note, fig(name, ext='.svg.html'))
+        print('  ! невідомий макрос', kind)
+        return ''
+    return MACRO.sub(rep, s)
+
+
 def render_md(text):
     out = md.render(text)
     out = out.replace('<table>', '<div class="data-wrap"><table class="data-table mg-table">').replace('</table>', '</table></div>')
     out = re.sub(r'<a href="(https?://[^"]+)"', r'<a href="\1" target="_blank" rel="noopener"', out)
-
-    def sub_fig(m):
-        return fig(m.group(1).strip())
-
-    def sub_ph(m):
-        parts = [x.strip() for x in m.group(1).split('|')]
-        cls = ''
-        if parts and parts[0].startswith('cls='):
-            cls = parts.pop(0)[4:]
-        return photo_fig(parts, cls)
-
-    out = re.sub(r'<p>\{\{fig:(.+?)\}\}</p>', sub_fig, out)
-    out = re.sub(r'<p>\{\{photos:(.+?)\}\}</p>', sub_ph, out)
-    # заголовки 4-го рівня → h4
-    return out
+    out = re.sub(r'<p>(\{\{.*?\}\})</p>', r'\1', out)
+    return expand(out)
 
 
 def sec_html(L, S):
@@ -195,7 +214,7 @@ def lec_html(L, i):
             + (f'<p class="mg-lead">{lead}</p>' if lead else '')
             + (f'<div class="prose mg-prose mg-intro">{intro}</div>' if intro else '')
             + f'<nav class="mg-mini" aria-label="Розділи лекції {L["n"]}"><b>У цій лекції</b><ol>{nav_sections}</ol></nav>'
-            + fig(f'{lid}-open', True)
+            + expand(fig(f'{lid}-open', True))
             + secs
             + f'<aside class="mg-terms" id="{lid}-terms"><h3>Ключові терміни лекції {L["n"]}</h3><ul class="mg-chips" data-lec="{L["n"]}">{terms}</ul></aside>'
             + (f'<section class="mg-qa" id="{lid}-qa"><h3>Перевірте себе</h3><div class="qa">{qa}</div></section>' if qa else '')
@@ -240,7 +259,7 @@ tiles = ''.join(
     f'<small>{len(L["secs"])} розділів · {L["dur"]}</small></a>' for L in lectures)
 
 pageparts = []
-pageparts.append(fig('intro'))
+pageparts.append(expand(fig('intro')))
 LECS = '\n'.join(lec_html(L, i) for i, L in enumerate(lectures))
 nsec = sum(len(L['secs']) for L in lectures)
 
@@ -324,7 +343,7 @@ page = f'''<!doctype html>
 
           <section class="mg-sec" id="refs" data-title="Джерела">
             <h2><span class="n">★</span>Джерела та подяки</h2>
-{fig('refs')}
+{expand(fig('refs'))}
           </section>
         </article>
       </div>
