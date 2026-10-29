@@ -105,8 +105,8 @@
     anims.forEach(function (el) { aio.observe(el); });
   }
 
-  // Підменю та зміст: активний розділ
-  document.querySelectorAll('.subnav, .toc').forEach(function (group) {
+  // Підменю: активний розділ
+  document.querySelectorAll('.subnav').forEach(function (group) {
     var links = group.querySelectorAll('a[href^="#"]');
     if (!links.length || !('IntersectionObserver' in window)) return;
     var map = {};
@@ -121,14 +121,44 @@
         var a = map[en.target.id];
         if (a) {
           a.classList.add('is-active');
-          if (group.classList.contains('subnav')) {
-            var c = a.parentNode;
-            c.scrollLeft = a.offsetLeft - (c.clientWidth - a.offsetWidth) / 2;
-          }
+          var c = a.parentNode;
+          c.scrollLeft = a.offsetLeft - (c.clientWidth - a.offsetWidth) / 2;
         }
       });
     }, { rootMargin: '-40% 0px -55% 0px' });
     Object.keys(map).forEach(function (id) { spy.observe(document.getElementById(id)); });
+  });
+
+  // Зміст збоку: активний пункт (розділ або підрозділ) за позицією прокрутки;
+  // довгий зміст прокручується всередині власної колонки слідом за активним пунктом
+  document.querySelectorAll('.toc').forEach(function (toc) {
+    var items = [];
+    toc.querySelectorAll('a[href^="#"]').forEach(function (a) {
+      var s = document.getElementById(a.getAttribute('href').slice(1));
+      if (s) items.push({ a: a, s: s, parent: a.closest('.toc__sub') ? a.closest('li').parentNode.parentNode.querySelector(':scope > a') : null });
+    });
+    if (!items.length) return;
+    var cur = null, ticking = false;
+    function line() { return window.innerHeight * 0.32; }
+    function update() {
+      ticking = false;
+      var best = items[0], atEnd = window.innerHeight + window.scrollY >= document.documentElement.scrollHeight - 4;
+      if (atEnd) best = items[items.length - 1];
+      else items.forEach(function (it) { if (it.s.getBoundingClientRect().top <= line()) best = it; });
+      if (best === cur) return;
+      cur = best;
+      toc.querySelectorAll('a.is-active, a.is-parent').forEach(function (a) { a.classList.remove('is-active', 'is-parent'); });
+      best.a.classList.add('is-active');
+      if (best.parent) best.parent.classList.add('is-parent');
+      if (toc.scrollHeight > toc.clientHeight + 2 && toc.offsetParent !== null) {
+        var t = best.a.getBoundingClientRect(), r = toc.getBoundingClientRect();
+        if (t.top < r.top + 40 || t.bottom > r.bottom - 24) toc.scrollTop += (t.top - r.top) - toc.clientHeight / 2 + t.height / 2;
+      }
+    }
+    function onScroll() { if (!ticking) { ticking = true; requestAnimationFrame(update); } }
+    window.addEventListener('scroll', onScroll, { passive: true });
+    window.addEventListener('resize', onScroll);
+    update();
   });
 
   // Вкладки (WAI-ARIA tabs)

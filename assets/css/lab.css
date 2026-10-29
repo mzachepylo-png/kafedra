@@ -36,7 +36,10 @@
 .lab-head .badge { background: rgba(255, 255, 255, .1); color: var(--gold-300); }
 .lab-doc { display: grid; grid-template-columns: 230px minmax(0, 1fr); gap: 48px; align-items: start; }
 @media (max-width: 1080px) { .lab-doc { grid-template-columns: 1fr; gap: 0; } .toc { display: none; } }
-.toc { position: sticky; top: calc(var(--header-h) + 24px); font-size: .92rem; }
+.toc { position: sticky; top: calc(var(--header-h) + 16px); font-size: .92rem; max-height: calc(100vh - var(--header-h) - 32px); max-height: calc(100dvh - var(--header-h) - 32px); overflow-y: auto; overscroll-behavior: contain; scrollbar-width: thin; scrollbar-color: var(--line) transparent; padding-right: 6px; }
+.toc::-webkit-scrollbar { width: 6px; }
+.toc::-webkit-scrollbar-thumb { background: var(--line); border-radius: 3px; }
+.toc a.is-parent { color: var(--green-800); font-weight: 700; }
 .toc h2 { font-family: var(--sans); font-size: .76rem; letter-spacing: .14em; text-transform: uppercase; color: var(--gold-700); margin-bottom: 10px; }
 .toc ol { list-style: none; margin: 0; padding: 0; border-left: 2px solid var(--line); }
 .toc a { display: block; padding: 6px 0 6px 14px; margin-left: -2px; border-left: 2px solid transparent; color: var(--ink-soft); text-decoration: none; }
