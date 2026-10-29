@@ -183,7 +183,6 @@ input[type="range"] { width: 100%; accent-color: #B45F06; }
 
 @media (max-width: 900px) {
   .fm-stage { grid-template-columns: 1fr; }
-  .fm-sv--wide { min-width: 560px; }
   .fm-scroll { overflow-x: auto; -webkit-overflow-scrolling: touch; }
 }
 @media (max-width: 640px) {
@@ -215,10 +214,16 @@ input[type="range"] { width: 100%; accent-color: #B45F06; }
 .fm-out { margin-top: 10px; }
 .fm-xr .out[hidden], .fm-h2[hidden] { display: none; }
 .fm-viz__body { overflow-x: clip; }
-.fm-sv--wide { min-width: 0; }
 .cp-gal--3 { grid-template-columns: repeat(auto-fill, minmax(230px, 1fr)); }
 
 .fm-stage--col { grid-template-columns: 1fr; }
 .fm-fx { display: inline; }
 .fm-fx small { margin-left: 4px; }
 .fm-row .fm-ctl { max-width: 300px; }
+.fm-scroll { overflow-x: auto; -webkit-overflow-scrolling: touch; border-radius: 14px; min-width: 0; }
+.fm-scroll > svg { display: block; }
+.fm-stage > .fm-scroll { min-width: 0; }
+.cp-gal--1 { grid-template-columns: minmax(0, 760px); }
+.cp-gal--1 .cp img { object-fit: contain; height: auto; max-height: 380px; background: #fff; }
+.fm-sv--sm { max-width: 360px; margin: 0 auto; }
+.data-wrap + .prose { margin-top: 18px; }

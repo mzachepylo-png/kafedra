@@ -402,7 +402,7 @@ W.gut = (node) => {
     { id: 'but', name: 'Бутират', v: 20, col: '#7A3FB5', t: 'Головне джерело енергії для колоноцитів; інгібує гістондеацетилази, діє через три G-білок-спряжені рецептори, підтримує кишковий бар’єр і зменшує запалення. Поглинається переважно епітелієм кишки; при хворобі Крона кількість F. prausnitzii знижена.' },
   ];
   let cur = 'but';
-  m.innerHTML = `<div class="fm-xr"><div class="fm-stage"><svg viewBox="0 0 300 300" class="fm-sv" role="img" aria-label="Співвідношення ацетату, пропіонату й бутирату"></svg><div class="fm-info out" aria-live="polite"></div></div></div>`;
+  m.innerHTML = `<div class="fm-xr"><div class="fm-stage"><svg viewBox="0 0 300 300" class="fm-sv fm-sv--sm" role="img" aria-label="Співвідношення ацетату, пропіонату й бутирату"></svg><div class="fm-info out" aria-live="polite"></div></div></div>`;
   const svg = $('svg', m), out = $('.out', m);
   const arc = (a0, a1, r0, r1) => { const p = (a, r) => [150 + r * Math.cos(a), 150 + r * Math.sin(a)], l = a1 - a0 > Math.PI ? 1 : 0, [x0, y0] = p(a0, r1), [x1, y1] = p(a1, r1), [x2, y2] = p(a1, r0), [x3, y3] = p(a0, r0); return `M${x0} ${y0}A${r1} ${r1} 0 ${l} 1 ${x1} ${y1}L${x2} ${y2}A${r0} ${r0} 0 ${l} 0 ${x3} ${y3}z`; };
   const ui = () => {
@@ -529,7 +529,14 @@ const mounted = new WeakSet();
 const mount = (node) => {
   if (mounted.has(node)) return; mounted.add(node);
   const fn = W[node.dataset.w]; if (!fn) return;
-  try { fn(node); node.classList.add('is-ready'); } catch (err) { console.error('fm widget', node.dataset.w, err); }
+  try {
+    fn(node); node.classList.add('is-ready');
+    // широкі схеми на вузьких екранах прокручуються по горизонталі замість того, щоб ставати нечитабельними
+    $$('svg.fm-sv', node).forEach((svg) => {
+      const vb = svg.viewBox.baseVal.width; if (vb < 400 || svg.parentNode.classList.contains('fm-scroll')) return;
+      const box = document.createElement('div'); box.className = 'fm-scroll'; svg.replaceWith(box); box.append(svg); svg.style.minWidth = Math.round(vb * 0.8) + 'px';
+    });
+  } catch (err) { console.error('fm widget', node.dataset.w, err); }
 };
 const widgets = $$('[data-w]');
 if ('IntersectionObserver' in window) {
