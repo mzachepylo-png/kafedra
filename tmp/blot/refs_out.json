@@ -598,5 +598,79 @@
    "issue": null,
    "page": "219-241"
   }
+ ],
+ "pmc3209285": [
+  {
+   "doi": "10.1128/JVI.05567-11",
+   "title": "Conformation-selective methylation of geminivirus DNA.",
+   "authors": [
+    "Paprotka T",
+    "Deuschle K",
+    "Metzler V",
+    "Jeske H"
+   ],
+   "year": "2011",
+   "journal": "J Virol",
+   "vol": "85",
+   "issue": "22",
+   "page": "12001-12"
+  }
+ ],
+ "pmc2725476": [
+  {
+   "doi": "10.1128/AEM.01193-09",
+   "title": "Genetic determinants of symptoms on viral DNA satellites.",
+   "authors": [
+    "Ding C",
+    "Qing L",
+    "Li Z",
+    "Liu Y",
+    "Qian Y",
+    "Zhou X"
+   ],
+   "year": "2009",
+   "journal": "Appl Environ Microbiol",
+   "vol": "75",
+   "issue": "16",
+   "page": "5380-9"
+  }
+ ],
+ "pmc6735963": [
+  {
+   "doi": "10.1093/nar/gkz564",
+   "title": "A conserved RNA structure is essential for a satellite RNA-mediated inhibition of helper virus accumulation.",
+   "authors": [
+    "He L",
+    "Wang Q",
+    "Gu Z",
+    "Liao Q",
+    "Palukaitis P",
+    "Du Z"
+   ],
+   "year": "2019",
+   "journal": "Nucleic Acids Res",
+   "vol": "47",
+   "issue": "15",
+   "page": "8255-8271"
+  }
+ ],
+ "pmc2395200": [
+  {
+   "doi": "10.1128/JVI.00272-08",
+   "title": "Structural and genetic requirements for the biogenesis of tobacco rattle virus-derived small interfering RNAs.",
+   "authors": [
+    "Donaire L",
+    "Barajas D",
+    "Martínez-García B",
+    "Martínez-Priego L",
+    "Pagán I",
+    "Llave C"
+   ],
+   "year": "2008",
+   "journal": "J Virol",
+   "vol": "82",
+   "issue": "11",
+   "page": "5167-77"
+  }
  ]
 }
