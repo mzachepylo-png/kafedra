@@ -64,7 +64,11 @@ elif mode == 'refs':
     for r in R:
         items = []
         try:
-            if r.get('pmc'):
+            if r.get('pmid'):
+                d = json.loads(get('https://eutils.ncbi.nlm.nih.gov/entrez/eutils/esummary.fcgi?db=pubmed&retmode=json&id=' + r['pmid']) or b'{}').get('result', {}).get(r['pmid'])
+                if d:
+                    items = [dict(doi=next((x['value'] for x in d.get('articleids', []) if x.get('idtype') == 'doi'), None), title=d.get('title'), authors=[x.get('name') for x in d.get('authors', [])][:8], year=(d.get('pubdate') or '')[:4], journal=d.get('source'), vol=d.get('volume'), issue=d.get('issue'), page=d.get('pages'))]
+            elif r.get('pmc'):
                 d = json.loads(get('https://eutils.ncbi.nlm.nih.gov/entrez/eutils/esummary.fcgi?db=pmc&retmode=json&id=' + r['pmc']) or b'{}').get('result', {}).get(r['pmc'])
                 if d:
                     items = [dict(doi=next((x['value'] for x in d.get('articleids', []) if x.get('idtype') == 'doi'), None), title=d.get('title'), authors=[x.get('name') for x in d.get('authors', [])][:8], year=(d.get('pubdate') or '')[:4], journal=d.get('source'), vol=d.get('volume'), issue=d.get('issue'), page=d.get('pages'))]
@@ -76,7 +80,7 @@ elif mode == 'refs':
                 items = d.get('message', {}).get('items', [])
         except Exception as e:
             print('err', r['k'], e)
-        if r.get('pmc'):
+        if r.get('pmc') or r.get('pmid'):
             out[r['k']] = items
         else:
             out[r['k']] = [dict(doi=i.get('DOI'), title=(i.get('title') or [''])[0], authors=[(a.get('family', '') + ' ' + a.get('given', '')).strip() for a in i.get('author', [])][:8], year=(i.get('issued', {}).get('date-parts') or [[None]])[0][0], journal=(i.get('container-title') or [''])[0], vol=i.get('volume'), issue=i.get('issue'), page=i.get('page') or i.get('article-number')) for i in items[:3]]

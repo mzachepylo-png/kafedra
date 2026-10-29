@@ -1,0 +1,55 @@
+<svg
+              xmlns='http://www.w3.org/2000/svg'
+                  xml:space='preserve' viewBox='0 0 320 240'>
+<path d='M 244.9,136.0 L 188.3,103.4' fill='none' stroke='#1E3326' stroke-width='2.2' />
+<path d='M 193.2,106.2 L 193.1,80.4' fill='none' stroke='#1E3326' stroke-width='2.2' />
+<path d='M 193.1,80.4 L 193.1,54.7' fill='none' stroke='#C62121' stroke-width='2.2' />
+<path d='M 183.4,106.2 L 183.3,80.5' fill='none' stroke='#1E3326' stroke-width='2.2' />
+<path d='M 183.3,80.5 L 183.3,54.7' fill='none' stroke='#C62121' stroke-width='2.2' />
+<path d='M 188.3,103.4 L 131.7,136.2' fill='none' stroke='#1E3326' stroke-width='2.2' />
+<path d='M 131.7,136.2 L 75.1,103.6' fill='none' stroke='#1E3326' stroke-width='2.2' />
+<path d='M 126.8,133.4 L 126.9,159.4' fill='none' stroke='#1E3326' stroke-width='2.2' />
+<path d='M 126.9,159.4 L 126.9,185.3' fill='none' stroke='#C62121' stroke-width='2.2' />
+<path d='M 136.6,133.3 L 136.7,159.3' fill='none' stroke='#1E3326' stroke-width='2.2' />
+<path d='M 136.7,159.3 L 136.7,185.3' fill='none' stroke='#C62121' stroke-width='2.2' />
+<path d='M 191.1,105.0 L 188.3,103.4 L 185.4,105.0' style='fill:none;stroke:#1E3326;stroke-width:2.2px;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:10;stroke-opacity:1;' />
+<path d='M 134.6,134.5 L 131.7,136.2 L 128.9,134.5' style='fill:none;stroke:#1E3326;stroke-width:2.2px;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:10;stroke-opacity:1;' />
+<path d='M 175.4 38.1
+Q 175.4 31.5, 178.7 27.7
+Q 182.0 24.0, 188.1 24.0
+Q 194.3 24.0, 197.6 27.7
+Q 200.9 31.5, 200.9 38.1
+Q 200.9 44.9, 197.5 48.7
+Q 194.2 52.5, 188.1 52.5
+Q 182.0 52.5, 178.7 48.7
+Q 175.4 44.9, 175.4 38.1
+M 188.1 49.4
+Q 192.4 49.4, 194.6 46.5
+Q 197.0 43.7, 197.0 38.1
+Q 197.0 32.7, 194.6 29.9
+Q 192.4 27.1, 188.1 27.1
+Q 183.9 27.1, 181.6 29.9
+Q 179.3 32.6, 179.3 38.1
+Q 179.3 43.7, 181.6 46.5
+Q 183.9 49.4, 188.1 49.4
+' fill='#C62121'/>
+<path d='M 119.1 201.6
+Q 119.1 194.9, 122.4 191.2
+Q 125.7 187.5, 131.9 187.5
+Q 138.0 187.5, 141.3 191.2
+Q 144.6 194.9, 144.6 201.6
+Q 144.6 208.4, 141.3 212.2
+Q 137.9 216.0, 131.9 216.0
+Q 125.8 216.0, 122.4 212.2
+Q 119.1 208.4, 119.1 201.6
+M 131.9 212.9
+Q 136.1 212.9, 138.4 210.0
+Q 140.7 207.2, 140.7 201.6
+Q 140.7 196.2, 138.4 193.4
+Q 136.1 190.6, 131.9 190.6
+Q 127.6 190.6, 125.3 193.4
+Q 123.0 196.1, 123.0 201.6
+Q 123.0 207.2, 125.3 210.0
+Q 127.6 212.9, 131.9 212.9
+' fill='#C62121'/>
+</svg>

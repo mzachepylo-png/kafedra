@@ -288,11 +288,11 @@
   "q": "Seeliger Janssen Schink Energetics and kinetics of lactate fermentation to acetate and propionate via methylmalonyl-CoA or acrylyl-CoA FEMS Microbiol Lett 2002"
  },
  {
-  "k": "drider04",
-  "q": "Drider Bekal Prevost Genetic organization and expression of citrate permease in lactic acid bacteria Genet Mol Res 2004"
- },
- {
   "k": "wachtel22",
   "q": "Wachtel Rao Esposito Free-energy transduction in chemical reaction networks: from enzymes to metabolism"
+ },
+ {
+  "k": "drider04",
+  "pmid": "15266398"
  }
 ]
