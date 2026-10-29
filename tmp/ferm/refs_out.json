@@ -1290,46 +1290,6 @@
    "page": "49-54"
   }
  ],
- "drider04": [
-  {
-   "doi": "10.1051/lait:199811",
-   "title": "Citrate lyases of lactic acid bacteria",
-   "authors": [
-    "Bekal Sadja",
-    "Diviès Charles",
-    "Prévost Hervé"
-   ],
-   "year": 1998,
-   "journal": "Le Lait",
-   "vol": "78",
-   "issue": "1",
-   "page": "3-10"
-  },
-  {
-   "doi": "10.1016/b978-0-12-374407-4.00272-7",
-   "title": "Lactic Acid Bacteria | Citrate Fermentation by Lactic Acid Bacteria",
-   "authors": [
-    "Beresford T.P."
-   ],
-   "year": 2011,
-   "journal": "Encyclopedia of Dairy Sciences",
-   "vol": null,
-   "issue": null,
-   "page": "166-172"
-  },
-  {
-   "doi": "10.18174/202987",
-   "title": "Genetics of mesophilic citrate metabolizing lactic acid bacteria",
-   "authors": [
-    "David S."
-   ],
-   "year": null,
-   "journal": "",
-   "vol": null,
-   "issue": null,
-   "page": null
-  }
- ],
  "wachtel22": [
   {
    "doi": "10.1063/5.0091035",
@@ -1370,6 +1330,22 @@
    "vol": "6",
    "issue": "4",
    "page": "041064"
+  }
+ ],
+ "drider04": [
+  {
+   "doi": null,
+   "title": "Genetic organization and expression of citrate permease in lactic acid bacteria.",
+   "authors": [
+    "Drider D",
+    "Bekal S",
+    "Prévost H"
+   ],
+   "year": "2004",
+   "journal": "Genet Mol Res",
+   "vol": "3",
+   "issue": "2",
+   "page": "273-81"
   }
  ]
 }

@@ -1,0 +1,362 @@
+{
+ "pasteur": {
+  "title": "File:Louis Pasteur portrait mid career.jpg",
+  "url": "https://commons.wikimedia.org/wiki/File:Louis_Pasteur_portrait_mid_career.jpg",
+  "artist": "<bdi><a href=\"https://en.wikipedia.org/wiki/en:Paul_Nadar\" class=\"extiw\" title=\"w:en:Paul Nadar\"><span title=\"French photographer (1856–1939)\">Paul Nadar</span></a></bdi>",
+  "lic": "Public domain",
+  "w": 438,
+  "h": 555
+ },
+ "pasteurflask": {
+  "title": "File:Swan-necked flask used by Pasteur. Wellcome M0012521.jpg",
+  "url": "https://commons.wikimedia.org/wiki/File:Swan-necked_flask_used_by_Pasteur._Wellcome_M0012521.jpg",
+  "artist": "",
+  "lic": "CC BY 4.0",
+  "w": 1000,
+  "h": 719
+ },
+ "buchner": {
+  "title": "File:Eduard Buchner (Nobel 1907).png",
+  "url": "https://commons.wikimedia.org/wiki/File:Eduard_Buchner_(Nobel_1907).png",
+  "artist": "",
+  "lic": "Public domain",
+  "w": 140,
+  "h": 198
+ },
+ "harden": {
+  "title": "File:ArthurHarden.jpg",
+  "url": "https://commons.wikimedia.org/wiki/File:ArthurHarden.jpg",
+  "artist": "Nobel Foundation",
+  "lic": "Public domain",
+  "w": 280,
+  "h": 396
+ },
+ "kluyver": {
+  "title": "File:Prof. Dr. Ir. A. J. Kluyver, 1949.jpg",
+  "url": "https://commons.wikimedia.org/wiki/File:Prof._Dr._Ir._A._J._Kluyver,_1949.jpg",
+  "artist": "<bdi><a href=\"https://www.wikidata.org/wiki/Q41312872\" class=\"extiw\" title=\"d:Q41312872\"><span title=\"Dutch photographer &amp; painter (1889-1963)\">Peter Odijk</span></a></bdi>",
+  "lic": "CC BY-SA 4.0",
+  "w": 490,
+  "h": 762
+ },
+ "yeastsem": {
+  "title": "File:Saccharomyces cerevisiae SEM.jpg",
+  "url": "https://commons.wikimedia.org/wiki/File:Saccharomyces_cerevisiae_SEM.jpg",
+  "artist": "Mogana Das Murtey and Patchamuthu Ramasamy",
+  "lic": "CC BY 3.0",
+  "w": 1000,
+  "h": 645
+ },
+ "yeastbud": {
+  "title": "File:S cerevisiae under DIC microscopy.jpg",
+  "url": "https://commons.wikimedia.org/wiki/File:S_cerevisiae_under_DIC_microscopy.jpg",
+  "artist": "<a href=\"//commons.wikimedia.org/wiki/User:Masur\" title=\"User:Masur\">Masur</a>",
+  "lic": "Public domain",
+  "w": 1000,
+  "h": 1000
+ },
+ "yeastdry": {
+  "title": "File:Compressed fresh yeast - 1.jpg",
+  "url": "https://commons.wikimedia.org/wiki/File:Compressed_fresh_yeast_-_1.jpg",
+  "artist": "<a href=\"//commons.wikimedia.org/w/index.php?title=User:Hellahulla&amp;action=edit&amp;redlink=1\" class=\"new\" title=\"User:Hellahulla (page does not exist)\">Hellahulla</a>",
+  "lic": "CC BY-SA 4.0",
+  "w": 1000,
+  "h": 665
+ },
+ "wineferm": {
+  "title": "File:Rising bubbles from yeast fermentation.jpg",
+  "url": "https://commons.wikimedia.org/wiki/File:Rising_bubbles_from_yeast_fermentation.jpg",
+  "artist": "<a rel=\"nofollow\" class=\"external text\" href=\"https://www.flickr.com/people/13071852@N00\">Jim Champion</a>",
+  "lic": "CC BY-SA 2.0",
+  "w": 1000,
+  "h": 666
+ },
+ "airlock": {
+  "title": "File:Sugar-wine.jpg",
+  "url": "https://commons.wikimedia.org/wiki/File:Sugar-wine.jpg",
+  "artist": "<a href=\"//commons.wikimedia.org/wiki/User:Photohound\" title=\"User:Photohound\">Photohound</a>",
+  "lic": "CC BY-SA 3.0",
+  "w": 292,
+  "h": 437
+ },
+ "beerferm": {
+  "title": "File:Beer factory Leksand 2018 May 03.jpg",
+  "url": "https://commons.wikimedia.org/wiki/File:Beer_factory_Leksand_2018_May_03.jpg",
+  "artist": "<a href=\"//commons.wikimedia.org/wiki/User:Sniper_Zeta\" title=\"User:Sniper Zeta\">Sniper Zeta</a>",
+  "lic": "CC BY-SA 4.0",
+  "w": 1000,
+  "h": 666
+ },
+ "sourdough": {
+  "title": "File:Mixing Sourdough starter into the flour.jpg",
+  "url": "https://commons.wikimedia.org/wiki/File:Mixing_Sourdough_starter_into_the_flour.jpg",
+  "artist": "<a href=\"//commons.wikimedia.org/w/index.php?title=User:William_George_James&amp;action=edit&amp;redlink=1\" class=\"new\" title=\"User:William George James (page does not exist)\">William George James</a>",
+  "lic": "CC BY-SA 4.0",
+  "w": 800,
+  "h": 1000
+ },
+ "winebarrel": {
+  "title": "File:Yerevan, Brandy barrels, Armenia.jpg",
+  "url": "https://commons.wikimedia.org/wiki/File:Yerevan,_Brandy_barrels,_Armenia.jpg",
+  "artist": "<a href=\"//commons.wikimedia.org/wiki/User:Argenberg\" title=\"User:Argenberg\">Vyacheslav Argenberg</a>",
+  "lic": "CC BY 4.0",
+  "w": 1000,
+  "h": 665
+ },
+ "pulque": {
+  "title": "File:Aguamiel01.jpg",
+  "url": "https://commons.wikimedia.org/wiki/File:Aguamiel01.jpg",
+  "artist": "Casimiro Castro  (1826-1889)",
+  "lic": "Public domain",
+  "w": 459,
+  "h": 534
+ },
+ "zymo": {
+  "title": "File:PDB 1zpd EBI.jpg",
+  "url": "https://commons.wikimedia.org/wiki/File:PDB_1zpd_EBI.jpg",
+  "artist": "Jawahar Swaminathan and MSD staff at the <span lang=\"en\" dir=\"ltr\"><a href=\"https://en.wikipedia.org/wiki/European_Bioinformatics_Institute\" class=\"extiw\" title=\"en:European Bioinformatics Institute\"><span lang=\"en\" dir=\"ltr\">European Bioinformatics Institute</span></a></span>",
+  "lic": "Public domain",
+  "w": 800,
+  "h": 600
+ },
+ "acetobacter": {
+  "title": "File:C0015116-Acetobacter Aceti Bacteria.jpg",
+  "url": "https://commons.wikimedia.org/wiki/File:C0015116-Acetobacter_Aceti_Bacteria.jpg",
+  "artist": "<a href=\"//commons.wikimedia.org/w/index.php?title=User:Ivet_Morera&amp;action=edit&amp;redlink=1\" class=\"new\" title=\"User:Ivet Morera (page does not exist)\">Ivet Morera</a>",
+  "lic": "CC0",
+  "w": 800,
+  "h": 599
+ },
+ "vinegar": {
+  "title": "File:Bottles of vinegar at a supermarket.jpg",
+  "url": "https://commons.wikimedia.org/wiki/File:Bottles_of_vinegar_at_a_supermarket.jpg",
+  "artist": "<a href=\"//commons.wikimedia.org/wiki/User:Ms_angie_gray\" title=\"User:Ms angie gray\">Ms angie gray</a>",
+  "lic": "CC BY-SA 4.0",
+  "w": 620,
+  "h": 465
+ },
+ "kombucha": {
+  "title": "File:Kombucha mushroom.jpg",
+  "url": "https://commons.wikimedia.org/wiki/File:Kombucha_mushroom.jpg",
+  "artist": "<a href=\"//commons.wikimedia.org/wiki/User:LivingShadow\" title=\"User:LivingShadow\">Simon A. Eugster</a>",
+  "lic": "CC BY-SA 3.0",
+  "w": 1000,
+  "h": 604
+ },
+ "vinegarbarrel": {
+  "title": "File:Barrels vinegar.jpg",
+  "url": "https://commons.wikimedia.org/wiki/File:Barrels_vinegar.jpg",
+  "artist": "",
+  "lic": "CC BY-SA 3.0",
+  "w": 1000,
+  "h": 755
+ },
+ "komagataeibacter": {
+  "title": "File:Microbial cellulose pellicle.JPG",
+  "url": "https://commons.wikimedia.org/wiki/File:Microbial_cellulose_pellicle.JPG",
+  "artist": "<a href=\"https://en.wikipedia.org/wiki/User:Lightenoughtotravel\" class=\"extiw\" title=\"en:User:Lightenoughtotravel\">User:Lightenoughtotravel</a>",
+  "lic": "Public domain",
+  "w": 1000,
+  "h": 750
+ },
+ "motherofvinegar": {
+  "title": "File:Mother of vinegar.png",
+  "url": "https://commons.wikimedia.org/wiki/File:Mother_of_vinegar.png",
+  "artist": "<a href=\"//commons.wikimedia.org/wiki/User:Alorin\" title=\"User:Alorin\">Alorin</a>",
+  "lic": "CC BY-SA 4.0",
+  "w": 1000,
+  "h": 660
+ },
+ "lactobacillus": {
+  "title": "File:Lactobacillus acidophilus SEM.jpg",
+  "url": "https://commons.wikimedia.org/wiki/File:Lactobacillus_acidophilus_SEM.jpg",
+  "artist": "Mogana Das Murtey and Patchamuthu Ramasamy",
+  "lic": "CC BY-SA 3.0",
+  "w": 1000,
+  "h": 663
+ },
+ "bifido": {
+  "title": "File:Bifidobacterium longum en microscopie électronique.jpg",
+  "url": "https://commons.wikimedia.org/wiki/File:Bifidobacterium_longum_en_microscopie_%C3%A9lectronique.jpg",
+  "artist": "<a href=\"//commons.wikimedia.org/w/index.php?title=User:Julie6301&amp;action=edit&amp;redlink=1\" class=\"new\" title=\"User:Julie6301 (page does not exist)\">Julie6301</a>",
+  "lic": "CC BY-SA 3.0",
+  "w": 400,
+  "h": 253
+ },
+ "lacticmuscle": {
+  "title": "File:Runners sprint to the finish line at the Turkey Trot (8769025).jpg",
+  "url": "https://commons.wikimedia.org/wiki/File:Runners_sprint_to_the_finish_line_at_the_Turkey_Trot_(8769025).jpg",
+  "artist": "U.S. Army 105MPAD by Pfc. <a rel=\"nofollow\" class=\"external text\" href=\"https://www.dvidshub.net/portfolio/1789686\">Kyle Kimble</a>",
+  "lic": "Public domain",
+  "w": 1000,
+  "h": 666
+ },
+ "cori": {
+  "title": "File:The Cori cycle.png",
+  "url": "https://commons.wikimedia.org/wiki/File:The_Cori_cycle.png",
+  "artist": "<a href=\"//commons.wikimedia.org/w/index.php?title=User:Muessig&amp;action=edit&amp;redlink=1\" class=\"new\" title=\"User:Muessig (page does not exist)\">C Muessig</a>",
+  "lic": "CC BY-SA 3.0",
+  "w": 1000,
+  "h": 723
+ },
+ "yogurt": {
+  "title": "File:Joghurt.jpg",
+  "url": "https://commons.wikimedia.org/wiki/File:Joghurt.jpg",
+  "artist": "No machine-readable author provided. <a href=\"//commons.wikimedia.org/wiki/User:Rainer_Zenz\" title=\"User:Rainer Zenz\">Rainer Zenz</a> assumed (based on copyright claims).",
+  "lic": "CC BY-SA 3.0",
+  "w": 1000,
+  "h": 840
+ },
+ "sauerkraut": {
+  "title": "File:Sauerkraut fermenting.jpeg",
+  "url": "https://commons.wikimedia.org/wiki/File:Sauerkraut_fermenting.jpeg",
+  "artist": "<a href=\"//commons.wikimedia.org/wiki/User:Greg_G\" title=\"User:Greg G\">User:Greg G</a>",
+  "lic": "CC BY-SA 3.0",
+  "w": 1000,
+  "h": 750
+ },
+ "kimchi": {
+  "title": "File:Korean cuisine-Kimchi-08.jpg",
+  "url": "https://commons.wikimedia.org/wiki/File:Korean_cuisine-Kimchi-08.jpg",
+  "artist": "<a rel=\"nofollow\" class=\"external text\" href=\"https://www.flickr.com/photos/74105777@N00\">Jeremy Keith</a>",
+  "lic": "CC BY 2.0",
+  "w": 1000,
+  "h": 750
+ },
+ "kefir": {
+  "title": "File:Kefir-grains-90grams.jpg",
+  "url": "https://commons.wikimedia.org/wiki/File:Kefir-grains-90grams.jpg",
+  "artist": "<a href=\"//commons.wikimedia.org/wiki/User:Webaware\" title=\"User:Webaware\">Webaware</a>",
+  "lic": "Public domain",
+  "w": 916,
+  "h": 900
+ },
+ "silage": {
+  "title": "File:Long stack of pink white and blue silage bales.jpg",
+  "url": "https://commons.wikimedia.org/wiki/File:Long_stack_of_pink_white_and_blue_silage_bales.jpg",
+  "artist": "<a href=\"//commons.wikimedia.org/wiki/User:W.carter\" title=\"User:W.carter\">W.carter</a>",
+  "lic": "CC0",
+  "w": 1000,
+  "h": 563
+ },
+ "pickles": {
+  "title": "File:Wild Fermented Pickles (19857205780).jpg",
+  "url": "https://commons.wikimedia.org/wiki/File:Wild_Fermented_Pickles_(19857205780).jpg",
+  "artist": "<a rel=\"nofollow\" class=\"external text\" href=\"https://www.flickr.com/people/134946786@N05\">FoodCraftLab</a>",
+  "lic": "CC BY-SA 2.0",
+  "w": 1000,
+  "h": 666
+ },
+ "emmental": {
+  "title": "File:Wedge of Swedish Grevé cheese.jpg",
+  "url": "https://commons.wikimedia.org/wiki/File:Wedge_of_Swedish_Grev%C3%A9_cheese.jpg",
+  "artist": "<a href=\"//commons.wikimedia.org/wiki/User:Ankara\" title=\"User:Ankara\">Ankara</a>",
+  "lic": "CC BY-SA 3.0",
+  "w": 1000,
+  "h": 750
+ },
+ "emmental2": {
+  "title": "File:Emmental Cheese 2holes.jpg",
+  "url": "https://commons.wikimedia.org/wiki/File:Emmental_Cheese_2holes.jpg",
+  "artist": "<a href=\"//commons.wikimedia.org/wiki/User:AlMare\" title=\"User:AlMare\">AlMare</a>",
+  "lic": "CC BY-SA 3.0",
+  "w": 857,
+  "h": 686
+ },
+ "swisscheese": {
+  "title": "File:Emmental 015.jpg",
+  "url": "https://commons.wikimedia.org/wiki/File:Emmental_015.jpg",
+  "artist": "<a href=\"//commons.wikimedia.org/wiki/User:StaraBlazkova\" title=\"User:StaraBlazkova\">StaraBlazkova</a>",
+  "lic": "CC BY-SA 3.0",
+  "w": 1000,
+  "h": 670
+ },
+ "cheesecellar": {
+  "title": "File:Swiss cheese cellar.jpg",
+  "url": "https://commons.wikimedia.org/wiki/File:Swiss_cheese_cellar.jpg",
+  "artist": "The original uploader was <a href=\"https://en.wikipedia.org/wiki/User:Paranoid\" class=\"extiw\" title=\"wikipedia:User:Paranoid\">Paranoid</a> at <a href=\"https://en.wikipedia.org/wiki/\" class=\"extiw\" title=\"wikipedia:\">English Wikipedia</a>.",
+  "lic": "Public domain",
+  "w": 512,
+  "h": 338
+ },
+ "clostrgram": {
+  "title": "File:Clostridium perfringens.jpg",
+  "url": "https://commons.wikimedia.org/wiki/File:Clostridium_perfringens.jpg",
+  "artist": "<ul><li>Content Providers(s):\tCDC/Don Stalons</li></ul>",
+  "lic": "Public domain",
+  "w": 1000,
+  "h": 665
+ },
+ "clostracet": {
+  "title": "File:Weizmann's passport photo.jpg",
+  "url": "https://commons.wikimedia.org/wiki/File:Weizmann%27s_passport_photo.jpg",
+  "artist": "Unknown author<span style=\"display: none;\">Unknown author</span>",
+  "lic": "Public domain",
+  "w": 206,
+  "h": 222
+ },
+ "gut": {
+  "title": "File:Colon, high mag.jpg",
+  "url": "https://commons.wikimedia.org/wiki/File:Colon,_high_mag.jpg",
+  "artist": "<a href=\"//commons.wikimedia.org/wiki/User:CoRus13\" title=\"User:CoRus13\">CoRus13</a>",
+  "lic": "CC BY-SA 4.0",
+  "w": 1000,
+  "h": 666
+ },
+ "rumen": {
+  "title": "File:Modelo didático bovino (fundo branco).jpg",
+  "url": "https://commons.wikimedia.org/wiki/File:Modelo_did%C3%A1tico_bovino_(fundo_branco).jpg",
+  "artist": "Museum of Veterinary Anatomy FMVZ USP / Wagner Souza e Silva",
+  "lic": "CC BY-SA 4.0",
+  "w": 1000,
+  "h": 656
+ },
+ "aspergillus": {
+  "title": "File:Aspergillus niger in LPCB Tease Mount at 1600X.jpg",
+  "url": "https://commons.wikimedia.org/wiki/File:Aspergillus_niger_in_LPCB_Tease_Mount_at_1600X.jpg",
+  "artist": "<a href=\"//commons.wikimedia.org/wiki/User:Ajay_Kumar_Chaurasiya\" title=\"User:Ajay Kumar Chaurasiya\">Ajay Kumar Chaurasiya</a>",
+  "lic": "CC0",
+  "w": 1000,
+  "h": 750
+ },
+ "aspcolony": {
+  "title": "File:Aspergillus niger-awamori.jpg",
+  "url": "https://commons.wikimedia.org/wiki/File:Aspergillus_niger-awamori.jpg",
+  "artist": "Bruno Alexandre Quistorp Santos, Seteno Karabo Obed Ntwampe and James Hamuel Doughari",
+  "lic": "CC BY-SA 3.0",
+  "w": 623,
+  "h": 600
+ },
+ "lemon": {
+  "title": "File:Lemon.jpg",
+  "url": "https://commons.wikimedia.org/wiki/File:Lemon.jpg",
+  "artist": "<p>André Karwath aka <a href=\"//commons.wikimedia.org/wiki/User:Aka\" title=\"User:Aka\">Aka</a>\n</p>",
+  "lic": "CC BY-SA 2.5",
+  "w": 1000,
+  "h": 707
+ },
+ "citricacid": {
+  "title": "File:Citric acid crystal structure.png",
+  "url": "https://commons.wikimedia.org/wiki/File:Citric_acid_crystal_structure.png",
+  "artist": "<a href=\"//commons.wikimedia.org/w/index.php?title=User:SnailsAttack&amp;action=edit&amp;redlink=1\" class=\"new\" title=\"User:SnailsAttack (page does not exist)\">SnailsAttack</a>",
+  "lic": "CC BY-SA 4.0",
+  "w": 1000,
+  "h": 950
+ },
+ "fermenter": {
+  "title": "File:BTEC Bioreactors.jpg",
+  "url": "https://commons.wikimedia.org/wiki/File:BTEC_Bioreactors.jpg",
+  "artist": "<a href=\"https://en.wikipedia.org/wiki/User:RickLawless\" class=\"extiw\" title=\"w:User:RickLawless\">RickLawless</a> (<a href=\"https://en.wikipedia.org/wiki/User_talk:RickLawless\" class=\"extiw\" title=\"w:User talk:RickLawless\">talk</a>) (<a href=\"https://en.wikipedia.org/wiki/Special:ListFiles/RickLawless\" class=\"extiw\" title=\"w:Special:ListFiles/RickLawless\">Uploads</a>)",
+  "lic": "CC BY 3.0",
+  "w": 1000,
+  "h": 750
+ },
+ "glycolysis": {
+  "title": "File:Glycolysis pathway 2.png",
+  "url": "https://commons.wikimedia.org/wiki/File:Glycolysis_pathway_2.png",
+  "artist": "<a href=\"//commons.wikimedia.org/w/index.php?title=User:EunLau&amp;action=edit&amp;redlink=1\" class=\"new\" title=\"User:EunLau (page does not exist)\">Eunice Laurent</a>",
+  "lic": "CC BY-SA 4.0",
+  "w": 1000,
+  "h": 505
+ }
+}
