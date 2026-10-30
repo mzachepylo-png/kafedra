@@ -1,0 +1,3627 @@
+{
+ "yuan14": [
+  {
+   "doi": "10.1038/nature13593",
+   "title": "OSCA1 mediates osmotic-stress-evoked Ca2+ increases vital for osmosensing in Arabidopsis",
+   "authors": [
+    "Yuan Fang",
+    "Yang Huimin",
+    "Xue Yan",
+    "Kong Dongdong",
+    "Ye Rui",
+    "Li Chijun",
+    "Zhang Jingyuan",
+    "Theprungsirikul Lynn"
+   ],
+   "year": 2014,
+   "journal": "Nature",
+   "vol": "514",
+   "issue": "7522",
+   "page": "367-371"
+  }
+ ],
+ "maity18": [
+  {
+   "doi": "10.1038/s41467-018-07564-5",
+   "title": "Structure of the hyperosmolality-gated calcium-permeable channel OSCA1.2",
+   "authors": [
+    "Liu Xin",
+    "Wang Jiawei",
+    "Sun Linfeng"
+   ],
+   "year": 2018,
+   "journal": "Nature Communications",
+   "vol": "9",
+   "issue": "1",
+   "page": "5060"
+  }
+ ],
+ "takahashi18": [
+  {
+   "doi": "10.1038/s41586-018-0009-2",
+   "title": "A small peptide modulates stomatal control via abscisic acid in long-distance signalling",
+   "authors": [
+    "Takahashi Fuminori",
+    "Suzuki Takehiro",
+    "Osakabe Yuriko",
+    "Betsuyaku Shigeyuki",
+    "Kondo Yuki",
+    "Dohmae Naoshi",
+    "Fukuda Hiroo",
+    "Yamaguchi-Shinozaki Kazuko"
+   ],
+   "year": 2018,
+   "journal": "Nature",
+   "vol": "556",
+   "issue": "7700",
+   "page": "235-238"
+  }
+ ],
+ "clexyn24": [
+  {
+   "doi": "10.1093/pnasnexus/pgae049",
+   "title": "A cell-wall-modifying gene-dependent CLE26 peptide signaling confers drought resistance in <i>Arabidopsis</i>",
+   "authors": [
+    "Endo Satoshi",
+    "Fukuda Hiroo"
+   ],
+   "year": 2024,
+   "journal": "PNAS Nexus",
+   "vol": "3",
+   "issue": "2",
+   "page": "pgae049"
+  },
+  {
+   "doi": "10.1093/pnasnexus/pgab002",
+   "title": "Welcome, <i>PNAS Nexus</i>!",
+   "authors": [
+    "McNutt Marcia"
+   ],
+   "year": 2022,
+   "journal": "PNAS Nexus",
+   "vol": "1",
+   "issue": "1",
+   "page": "pgab002"
+  },
+  {
+   "doi": "10.1093/pnasnexus/pgad020",
+   "title": "Happy first birthday, <i>PNAS Nexus</i>",
+   "authors": [],
+   "year": 2023,
+   "journal": "PNAS Nexus",
+   "vol": "2",
+   "issue": "3",
+   "page": "pgad020"
+  }
+ ],
+ "uga13": [
+  {
+   "doi": "10.1038/ng.2725",
+   "title": "Control of root system architecture by DEEPER ROOTING 1 increases rice yield under drought conditions",
+   "authors": [
+    "Uga Yusaku",
+    "Sugimoto Kazuhiko",
+    "Ogawa Satoshi",
+    "Rane Jagadish",
+    "Ishitani Manabu",
+    "Hara Naho",
+    "Kitomi Yuka",
+    "Inukai Yoshiaki"
+   ],
+   "year": 2013,
+   "journal": "Nature Genetics",
+   "vol": "45",
+   "issue": "9",
+   "page": "1097-1102"
+  }
+ ],
+ "araisanoh14": [
+  {
+   "doi": "10.1038/srep05563",
+   "title": "Deep rooting conferred by DEEPER ROOTING 1 enhances rice yield in paddy fields",
+   "authors": [
+    "Arai-Sanoh Yumiko",
+    "Takai Toshiyuki",
+    "Yoshinaga Satoshi",
+    "Nakano Hiroshi",
+    "Kojima Mikiko",
+    "Sakakibara Hitoshi",
+    "Kondo Motohiko",
+    "Uga Yusaku"
+   ],
+   "year": 2014,
+   "journal": "Scientific Reports",
+   "vol": "4",
+   "issue": "1",
+   "page": "5563"
+  }
+ ],
+ "munnstester08": [
+  {
+   "doi": "10.1146/annurev.arplant.59.032607.092911",
+   "title": "Mechanisms of Salinity Tolerance",
+   "authors": [
+    "Munns Rana",
+    "Tester Mark"
+   ],
+   "year": 2008,
+   "journal": "Annual Review of Plant Biology",
+   "vol": "59",
+   "issue": "1",
+   "page": "651-681"
+  }
+ ],
+ "jiang19": [
+  {
+   "doi": "10.1038/s41586-019-1449-z",
+   "title": "Plant cell-surface GIPC sphingolipids sense salt to trigger Ca2+ influx",
+   "authors": [
+    "Jiang Zhonghao",
+    "Zhou Xiaoping",
+    "Tao Ming",
+    "Yuan Fang",
+    "Liu Lulu",
+    "Wu Feihua",
+    "Wu Xiaomei",
+    "Xiang Yun"
+   ],
+   "year": 2019,
+   "journal": "Nature",
+   "vol": "572",
+   "issue": "7769",
+   "page": "341-346"
+  }
+ ],
+ "munns12": [
+  {
+   "doi": "10.1038/nbt.2120",
+   "title": "Wheat grain yield on saline soils is improved by an ancestral Na+ transporter gene",
+   "authors": [
+    "Munns Rana",
+    "James Richard A",
+    "Xu Bo",
+    "Athman Asmini",
+    "Conn Simon J",
+    "Jordans Charlotte",
+    "Byrt Caitlin S",
+    "Hare Ray A"
+   ],
+   "year": 2012,
+   "journal": "Nature Biotechnology",
+   "vol": "30",
+   "issue": "4",
+   "page": "360-364"
+  }
+ ],
+ "james12": [
+  {
+   "doi": "10.1071/fp12121",
+   "title": "Impact of ancestral wheat sodium exclusion genes Nax1 and Nax2 on grain yield of durum wheat on saline soils",
+   "authors": [
+    "James Richard A.",
+    "Blake Carol",
+    "Zwart Alexander B.",
+    "Hare Ray A.",
+    "Rathjen Anthony J.",
+    "Munns Rana"
+   ],
+   "year": 2012,
+   "journal": "Functional Plant Biology",
+   "vol": "39",
+   "issue": "7",
+   "page": "609-618"
+  }
+ ],
+ "jung16": [
+  {
+   "doi": "10.1126/science.aaf6005",
+   "title": "Phytochromes function as thermosensors in\n                    <i>Arabidopsis</i>",
+   "authors": [
+    "Jung Jae-Hoon",
+    "Domijan Mirela",
+    "Klose Cornelia",
+    "Biswas Surojit",
+    "Ezer Daphne",
+    "Gao Mingjun",
+    "Khattak Asif Khan",
+    "Box Mathew S."
+   ],
+   "year": 2016,
+   "journal": "Science",
+   "vol": "354",
+   "issue": "6314",
+   "page": "886-889"
+  }
+ ],
+ "legris16": [
+  {
+   "doi": "10.1126/science.aaf5656",
+   "title": "Phytochrome B integrates light and temperature signals in\n                    <i>Arabidopsis</i>",
+   "authors": [
+    "Legris Martina",
+    "Klose Cornelia",
+    "Burgie E. Sethe",
+    "Rojas Cecilia Costigliolo Rojas",
+    "Neme Maximiliano",
+    "Hiltbrunner Andreas",
+    "Wigge Philip A.",
+    "Schäfer Eberhard"
+   ],
+   "year": 2016,
+   "journal": "Science",
+   "vol": "354",
+   "issue": "6314",
+   "page": "897-900"
+  }
+ ],
+ "jung20": [
+  {
+   "doi": "10.1038/s41586-020-2644-7",
+   "title": "A prion-like domain in ELF3 functions as a thermosensor in Arabidopsis",
+   "authors": [
+    "Jung Jae-Hoon",
+    "Barbosa Antonio D.",
+    "Hutin Stephanie",
+    "Kumita Janet R.",
+    "Gao Mingjun",
+    "Derwort Dorothee",
+    "Silva Catarina S.",
+    "Lai Xuelei"
+   ],
+   "year": 2020,
+   "journal": "Nature",
+   "vol": "585",
+   "issue": "7824",
+   "page": "256-260"
+  }
+ ],
+ "chung20": [
+  {
+   "doi": "10.3410/f.737739960.793575860",
+   "title": "Faculty Opinions recommendation of An RNA thermoswitch regulates daytime growth in Arabidopsis.",
+   "authors": [
+    "Narberhaus Franz"
+   ],
+   "year": 2020,
+   "journal": "Faculty Opinions – Post-Publication Peer Review of the Biomedical Literature",
+   "vol": null,
+   "issue": null,
+   "page": null
+  },
+  {
+   "doi": "10.3410/f.737739960.793575781",
+   "title": "Faculty Opinions recommendation of An RNA thermoswitch regulates daytime growth in Arabidopsis.",
+   "authors": [
+    "Lee Ilha",
+    "Kyung Jinseul"
+   ],
+   "year": 2020,
+   "journal": "Faculty Opinions – Post-Publication Peer Review of the Biomedical Literature",
+   "vol": null,
+   "issue": null,
+   "page": null
+  },
+  {
+   "doi": "10.1038/s41477-020-0633-3",
+   "title": "An RNA thermoswitch regulates daytime growth in Arabidopsis",
+   "authors": [
+    "Chung Betty Y. W.",
+    "Balcerowicz Martin",
+    "Di Antonio Marco",
+    "Jaeger Katja E.",
+    "Geng Feng",
+    "Franaszek Krzysztof",
+    "Marriott Poppy",
+    "Brierley Ian"
+   ],
+   "year": 2020,
+   "journal": "Nature Plants",
+   "vol": "6",
+   "issue": "5",
+   "page": "522-532"
+  }
+ ],
+ "zhang22": [
+  {
+   "doi": "10.1126/science.abo5721",
+   "title": "A genetic module at one locus in rice protects chloroplasts to enhance thermotolerance",
+   "authors": [
+    "Zhang Hai",
+    "Zhou Ji-Fu",
+    "Kan Yi",
+    "Shan Jun-Xiang",
+    "Ye Wang-Wei",
+    "Dong Nai-Qian",
+    "Guo Tao",
+    "Xiang You-Huang"
+   ],
+   "year": 2022,
+   "journal": "Science",
+   "vol": "376",
+   "issue": "6599",
+   "page": "1293-1300"
+  }
+ ],
+ "li15tt1": [
+  {
+   "doi": "10.1079/cabicompendium.37961",
+   "title": "Oryza glaberrima (African rice)",
+   "authors": [
+    ""
+   ],
+   "year": 2019,
+   "journal": "CABI Compendium",
+   "vol": null,
+   "issue": null,
+   "page": null
+  },
+  {
+   "doi": "10.1186/s12284-020-00449-6",
+   "title": "Genetics and Genomics of African Rice (Oryza glaberrima Steud) Domestication",
+   "authors": [
+    "Wambugu Peterson W.",
+    "Ndjiondjop Marie-Noelle",
+    "Henry Robert"
+   ],
+   "year": 2021,
+   "journal": "Rice",
+   "vol": "14",
+   "issue": "1",
+   "page": "6"
+  },
+  {
+   "doi": "10.1007/978-3-032-22733-1_1",
+   "title": "Introduction: Sketching Out African Rice Species (Oryza glaberrima Steud.)",
+   "authors": [
+    "Futakuchi Koichi",
+    "Arouna Aminou"
+   ],
+   "year": 2026,
+   "journal": "African Rice",
+   "vol": null,
+   "issue": null,
+   "page": "3-9"
+  }
+ ],
+ "kosak21": [
+  {
+   "doi": "10.1007/s42976-021-00206-5",
+   "title": "Changes in hormonal status of winter wheat (Triticum aestivum L.) and spelt wheat (Triticum spelta L.) after heat stress and in recovery period",
+   "authors": [
+    "Kosakivska Iryna V.",
+    "Vasyuk Valentyna A.",
+    "Voytenko Lesya V.",
+    "Shcherbatiuk Mykola M."
+   ],
+   "year": 2021,
+   "journal": "Cereal Research Communications",
+   "vol": "50",
+   "issue": "4",
+   "page": "821-830"
+  }
+ ],
+ "kolupaev19": [
+  {
+   "doi": "10.15407/ubj91.06.103",
+   "title": "Hydrogen peroxide as a signal mediator at inducing heat resistance in wheat seedlings by putrescine",
+   "authors": [
+    "",
+    "Kolupaev Yu. E.",
+    "",
+    "Kokorev A. I.",
+    "",
+    "Yastreb T. O.",
+    "",
+    "Horielova E. I."
+   ],
+   "year": 2019,
+   "journal": "The Ukrainian Biochemical Journal",
+   "vol": "91",
+   "issue": "6",
+   "page": "103-111"
+  }
+ ],
+ "ma15": [
+  {
+   "doi": "10.1016/j.cell.2015.01.046",
+   "title": "COLD1 Confers Chilling Tolerance in Rice",
+   "authors": [
+    "Ma Yun",
+    "Dai Xiaoyan",
+    "Xu Yunyuan",
+    "Luo Wei",
+    "Zheng Xiaoming",
+    "Zeng Dali",
+    "Pan Yajun",
+    "Lin Xiaoli"
+   ],
+   "year": 2015,
+   "journal": "Cell",
+   "vol": "160",
+   "issue": "6",
+   "page": "1209-1221"
+  }
+ ],
+ "murata92": [
+  {
+   "doi": "10.1007/978-1-4684-1303-8_79",
+   "title": "Glycerol-3-Phosphate Acyltransferase and its Complementary DNA",
+   "authors": [
+    "Murata N.",
+    "Ishizaki O.",
+    "Nishida I."
+   ],
+   "year": 1989,
+   "journal": "Biological Role of Plant Lipids",
+   "vol": null,
+   "issue": null,
+   "page": "351-360"
+  },
+  {
+   "doi": "10.1007/978-1-4684-1303-8_81",
+   "title": "Glycerol-3-Phosphate Acyltransferase from Squash Chloroplasts: Protein Characterization by Purification and cDNA Cloning",
+   "authors": [
+    "Nishida I.",
+    "Ishizaki O.",
+    "Murata N."
+   ],
+   "year": 1989,
+   "journal": "Biological Role of Plant Lipids",
+   "vol": null,
+   "issue": null,
+   "page": "363-366"
+  },
+  {
+   "doi": "10.5010/jpb.2002.29.2.085",
+   "title": "Investigation of Transformation Efficiency of Rice Using Agrobacterium tumefaciens and High Transformation of GPAT (glycerol-3-phosphate acyltransferase) Gene Relative to Chilling Tolerance",
+   "authors": [],
+   "year": 2002,
+   "journal": "Journal of Plant Biotechnology",
+   "vol": "29",
+   "issue": "2",
+   "page": "85-92"
+  }
+ ],
+ "knox10": [
+  {
+   "doi": "10.1007/s00122-010-1288-7",
+   "title": "CBF gene copy number variation at Frost Resistance-2 is associated with levels of freezing tolerance in temperate-climate cereals",
+   "authors": [
+    "Knox Andrea K.",
+    "Dhillon Taniya",
+    "Cheng Hongmei",
+    "Tondelli Alessandro",
+    "Pecchioni Nicola",
+    "Stockinger Eric J."
+   ],
+   "year": 2010,
+   "journal": "Theoretical and Applied Genetics",
+   "vol": "121",
+   "issue": "1",
+   "page": "21-35"
+  }
+ ],
+ "dhillon13": [
+  {
+   "doi": "10.1007/s00122-013-2171-0",
+   "title": "Cbf14 copy number variation in the A, B, and D genomes of diploid and polyploid wheat",
+   "authors": [
+    "Dhillon Taniya",
+    "Stockinger Eric J."
+   ],
+   "year": 2013,
+   "journal": "Theoretical and Applied Genetics",
+   "vol": "126",
+   "issue": "11",
+   "page": "2777-2789"
+  }
+ ],
+ "zhu14": [
+  {
+   "doi": "10.1007/s00122-014-2290-2",
+   "title": "Copy number and haplotype variation at the VRN-A1 and central FR-A2 loci are associated with frost tolerance in hexaploid wheat",
+   "authors": [
+    "Zhu Jie",
+    "Pearce Stephen",
+    "Burke Adrienne",
+    "See Deven Robert",
+    "Skinner Daniel Z.",
+    "Dubcovsky Jorge",
+    "Garland-Campbell Kimberly"
+   ],
+   "year": 2014,
+   "journal": "Theoretical and Applied Genetics",
+   "vol": "127",
+   "issue": "5",
+   "page": "1183-1197"
+  }
+ ],
+ "wurschum17": [
+  {
+   "doi": "10.1111/tpj.13424",
+   "title": "Copy number variations of<i>CBF</i>genes at the<i>Fr‐A2</i>locus are essential components of winter hardiness in wheat",
+   "authors": [
+    "Würschum Tobias",
+    "Longin C. Friedrich H.",
+    "Hahn Volker",
+    "Tucker Matthew R.",
+    "Leiser Willmar L."
+   ],
+   "year": 2017,
+   "journal": "The Plant Journal",
+   "vol": "89",
+   "issue": "4",
+   "page": "764-773"
+  }
+ ],
+ "sieber16": [
+  {
+   "doi": "10.1007/s00122-016-2685-3",
+   "title": "Copy number variation of CBF-A14 at the Fr-A2 locus determines frost tolerance in winter durum wheat",
+   "authors": [
+    "Sieber Alisa-Naomi",
+    "Longin C. Friedrich H.",
+    "Leiser Willmar L.",
+    "Würschum Tobias"
+   ],
+   "year": 2016,
+   "journal": "Theoretical and Applied Genetics",
+   "vol": "129",
+   "issue": "6",
+   "page": "1087-1097"
+  }
+ ],
+ "weits14": [
+  {
+   "doi": "10.1038/ncomms5425",
+   "title": "Src-dependent impairment of autophagy by oxidative stress in a mouse model of Duchenne muscular dystrophy",
+   "authors": [
+    "Pal Rituraj",
+    "Palmieri Michela",
+    "Loehr James A.",
+    "Li Shumin",
+    "Abo-Zahrah Reem",
+    "Monroe Tanner O.",
+    "Thakur Poulami B.",
+    "Sardiello Marco"
+   ],
+   "year": 2014,
+   "journal": "Nature Communications",
+   "vol": "5",
+   "issue": "1",
+   "page": "4425"
+  }
+ ],
+ "licausi11": [
+  {
+   "doi": "10.1038/nature10536",
+   "title": "Oxygen sensing in plants is mediated by an N-end rule pathway for protein destabilization",
+   "authors": [
+    "Licausi Francesco",
+    "Kosmacz Monika",
+    "Weits Daan A.",
+    "Giuntoli Beatrice",
+    "Giorgi Federico M.",
+    "Voesenek Laurentius A. C. J.",
+    "Perata Pierdomenico",
+    "van Dongen Joost T."
+   ],
+   "year": 2011,
+   "journal": "Nature",
+   "vol": "479",
+   "issue": "7373",
+   "page": "419-422"
+  }
+ ],
+ "gibbs11": [
+  {
+   "doi": "10.1038/nature10534",
+   "title": "Homeostatic response to hypoxia is regulated by the N-end rule pathway in plants",
+   "authors": [
+    "Gibbs Daniel J.",
+    "Lee Seung Cho",
+    "Md Isa Nurulhikma",
+    "Gramuglia Silvia",
+    "Fukao Takeshi",
+    "Bassel George W.",
+    "Correia Cristina Sousa",
+    "Corbineau Françoise"
+   ],
+   "year": 2011,
+   "journal": "Nature",
+   "vol": "479",
+   "issue": "7373",
+   "page": "415-418"
+  }
+ ],
+ "hattori09": [
+  {
+   "doi": "10.1038/nature08258",
+   "title": "The ethylene response factors SNORKEL1 and SNORKEL2 allow rice to adapt to deep water",
+   "authors": [
+    "Hattori Yoko",
+    "Nagai Keisuke",
+    "Furukawa Shizuka",
+    "Song Xian-Jun",
+    "Kawano Ritsuko",
+    "Sakakibara Hitoshi",
+    "Wu Jianzhong",
+    "Matsumoto Takashi"
+   ],
+   "year": 2009,
+   "journal": "Nature",
+   "vol": "460",
+   "issue": "7258",
+   "page": "1026-1030"
+  }
+ ],
+ "nagai20": [
+  {
+   "doi": "10.1093/aobpla/plu028",
+   "title": "QTL analysis of internode elongation in response to gibberellin in deepwater rice",
+   "authors": [
+    "Nagai Keisuke",
+    "Kondo Yuma",
+    "Kitaoka Takuya",
+    "Noda Tomonori",
+    "Kuroha Takeshi",
+    "Angeles-Shim Rosalyn B.",
+    "Yasui Hideshi",
+    "Yoshimura Atsushi"
+   ],
+   "year": 2014,
+   "journal": "AoB PLANTS",
+   "vol": "6",
+   "issue": null,
+   "page": "plu028"
+  },
+  {
+   "doi": "10.1111/pce.12377",
+   "title": "Gibberellin biosynthesis and signal transduction is essential for internode elongation in deepwater rice",
+   "authors": [
+    "AYANO MADOKA",
+    "KANI TAKAHIRO",
+    "KOJIMA MIKIKO",
+    "SAKAKIBARA HITOSHI",
+    "KITAOKA TAKUYA",
+    "KUROHA TAKESHI",
+    "ANGELES‐SHIM ROSALYN B.",
+    "KITANO HIDEMI"
+   ],
+   "year": 2014,
+   "journal": "Plant, Cell &amp; Environment",
+   "vol": "37",
+   "issue": "10",
+   "page": "2313-2324"
+  },
+  {
+   "doi": "10.1270/jsbbs.58.39",
+   "title": "Mapping of three QTLs that regulate internode elongation in deepwater rice",
+   "authors": [
+    "Hattori Yoko",
+    "Nagai Keisuke",
+    "Mori Hitoshi",
+    "Kitano Hidemi",
+    "Matsuoka Makoto",
+    "Ashikari Motoyuki"
+   ],
+   "year": 2008,
+   "journal": "Breeding Science",
+   "vol": "58",
+   "issue": "1",
+   "page": "39-46"
+  }
+ ],
+ "kretz15": [
+  {
+   "doi": "10.1038/nplants.2015.124",
+   "title": "A trehalose-6-phosphate phosphatase enhances anaerobic germination tolerance in rice",
+   "authors": [
+    "Kretzschmar Tobias",
+    "Pelayo Margaret Anne F.",
+    "Trijatmiko Kurniawan R.",
+    "Gabunada Lourd Franz M.",
+    "Alam Rejbana",
+    "Jimenez Rosario",
+    "Mendioro Merlyn S.",
+    "Slamet-Loedin Inez H."
+   ],
+   "year": 2015,
+   "journal": "Nature Plants",
+   "vol": "1",
+   "issue": "9",
+   "page": "15124"
+  }
+ ],
+ "xu06": [
+  {
+   "doi": "10.1038/nature04920",
+   "title": "Sub1A is an ethylene-response-factor-like gene that confers submergence tolerance to rice",
+   "authors": [
+    "Xu Kenong",
+    "Xu Xia",
+    "Fukao Takeshi",
+    "Canlas Patrick",
+    "Maghirang-Rodriguez Reycel",
+    "Heuer Sigrid",
+    "Ismail Abdelbagi M.",
+    "Bailey-Serres Julia"
+   ],
+   "year": 2006,
+   "journal": "Nature",
+   "vol": "442",
+   "issue": "7103",
+   "page": "705-708"
+  }
+ ],
+ "sasaki12": [
+  {
+   "doi": "10.1105/tpc.112.096925",
+   "title": "Nramp5 Is a Major Transporter Responsible for Manganese and Cadmium Uptake in Rice",
+   "authors": [
+    "Sasaki Akimasa",
+    "Yamaji Naoki",
+    "Yokosho Kengo",
+    "Ma Jian Feng"
+   ],
+   "year": 2012,
+   "journal": "The Plant Cell",
+   "vol": "24",
+   "issue": "5",
+   "page": "2155-2167"
+  }
+ ],
+ "ishikawa12": [
+  {
+   "doi": "10.1073/pnas.1806782115",
+   "title": "Correction for Ishikawa et al., Ion-beam irradiation, gene identification, and marker-assisted breeding in the development of low-cadmium rice",
+   "authors": [],
+   "year": 2018,
+   "journal": "Proceedings of the National Academy of Sciences",
+   "vol": "115",
+   "issue": "21",
+   "page": null
+  },
+  {
+   "doi": "10.1073/pnas.1211132109",
+   "title": "Ion-beam irradiation, gene identification, and marker-assisted breeding in the development of low-cadmium rice",
+   "authors": [
+    "Ishikawa Satoru",
+    "Ishimaru Yasuhiro",
+    "Igura Masato",
+    "Kuramata Masato",
+    "Abe Tadashi",
+    "Senoura Takeshi",
+    "Hase Yoshihiro",
+    "Arao Tomohito"
+   ],
+   "year": 2012,
+   "journal": "Proceedings of the National Academy of Sciences",
+   "vol": "109",
+   "issue": "47",
+   "page": "19166-19171"
+  },
+  {
+   "doi": "10.3410/f.717965046.793468804",
+   "title": "Faculty Opinions recommendation of Ion-beam irradiation, gene identification, and marker-assisted breeding in the development of low-cadmium rice.",
+   "authors": [
+    "Von Wiren Nicolaus"
+   ],
+   "year": 2013,
+   "journal": "Faculty Opinions – Post-Publication Peer Review of the Biomedical Literature",
+   "vol": null,
+   "issue": null,
+   "page": null
+  }
+ ],
+ "tang17": [
+  {
+   "doi": "10.9787/pbb.2025.13.71",
+   "title": "CRISPR/Cas9-Mediated Improvement of Major Rice Variety TBR225 for Low Cadmium Accumulation",
+   "authors": [
+    "Nguyen Phuong Duy",
+    "Pham Van Thi",
+    "Pham Xuan Hoi",
+    "Le Mai Quynh"
+   ],
+   "year": 2025,
+   "journal": "Plant Breeding and Biotechnology",
+   "vol": "13",
+   "issue": null,
+   "page": "6"
+  },
+  {
+   "doi": "10.1038/s41598-017-14832-9",
+   "title": "Knockout of OsNramp5 using the CRISPR/Cas9 system produces low Cd-accumulating indica rice without compromising yield",
+   "authors": [
+    "Tang Li",
+    "Mao Bigang",
+    "Li Yaokui",
+    "Lv Qiming",
+    "Zhang LiPing",
+    "Chen Caiyan",
+    "He Hanjie",
+    "Wang Weiping"
+   ],
+   "year": 2017,
+   "journal": "Scientific Reports",
+   "vol": "7",
+   "issue": "1",
+   "page": "14438"
+  },
+  {
+   "doi": "10.1016/s2095-3119(18)61904-5",
+   "title": "Reduction in cadmium accumulation in japonica rice grains by CRISPR/Cas9-mediated editing of OsNRAMP5",
+   "authors": [
+    "YANG Chang-hong",
+    "ZHANG Yang",
+    "HUANG Chao-feng"
+   ],
+   "year": 2019,
+   "journal": "Journal of Integrative Agriculture",
+   "vol": "18",
+   "issue": "3",
+   "page": "688-697"
+  }
+ ],
+ "ueno10": [
+  {
+   "doi": "10.1073/pnas.1005396107",
+   "title": "Gene limiting cadmium accumulation in rice",
+   "authors": [
+    "Ueno Daisei",
+    "Yamaji Naoki",
+    "Kono Izumi",
+    "Huang Chao Feng",
+    "Ando Tsuyu",
+    "Yano Masahiro",
+    "Ma Jian Feng"
+   ],
+   "year": 2010,
+   "journal": "Proceedings of the National Academy of Sciences",
+   "vol": "107",
+   "issue": "38",
+   "page": "16500-16505"
+  },
+  {
+   "doi": "10.1038/s43016-022-00569-w",
+   "title": "Duplication of a manganese/cadmium transporter gene reduces cadmium accumulation in rice grain",
+   "authors": [
+    "Yu En",
+    "Wang Wenguang",
+    "Yamaji Naoki",
+    "Fukuoka Shuichi",
+    "Che Jing",
+    "Ueno Daisei",
+    "Ando Tsuyu",
+    "Deng Fenglin"
+   ],
+   "year": 2022,
+   "journal": "Nature Food",
+   "vol": "3",
+   "issue": "8",
+   "page": "597-607"
+  },
+  {
+   "doi": "10.1021/acs.jafc.3c01032.s001",
+   "title": "Plant Defensin-Dissimilar Thionin OsThi9 Alleviates Cadmium Toxicity in Rice Plants and Reduces Cadmium Accumulation in Rice Grains",
+   "authors": [],
+   "year": null,
+   "journal": "",
+   "vol": null,
+   "issue": null,
+   "page": null
+  }
+ ],
+ "ma08": [
+  {
+   "doi": "10.1073/pnas.0802361105",
+   "title": "Transporters of arsenite in rice and their role in arsenic accumulation in rice grain",
+   "authors": [
+    "Ma Jian Feng",
+    "Yamaji Naoki",
+    "Mitani Namiki",
+    "Xu Xiao-Yan",
+    "Su Yu-Hong",
+    "McGrath Steve P.",
+    "Zhao Fang-Jie"
+   ],
+   "year": 2008,
+   "journal": "Proceedings of the National Academy of Sciences",
+   "vol": "105",
+   "issue": "29",
+   "page": "9931-9935"
+  }
+ ],
+ "song14": [
+  {
+   "doi": "10.1073/pnas.1414968111",
+   "title": "A rice ABC transporter, OsABCC1, reduces arsenic accumulation in the grain",
+   "authors": [
+    "Song Won-Yong",
+    "Yamaki Tomohiro",
+    "Yamaji Naoki",
+    "Ko Donghwi",
+    "Jung Ki-Hong",
+    "Fujii-Kashino Miho",
+    "An Gynheung",
+    "Martinoia Enrico"
+   ],
+   "year": 2014,
+   "journal": "Proceedings of the National Academy of Sciences",
+   "vol": "111",
+   "issue": "44",
+   "page": "15699-15704"
+  }
+ ],
+ "hanik08": [
+  {
+   "doi": "10.1038/nature06877",
+   "title": "Evolution of metal hyperaccumulation required cis-regulatory changes and triplication of HMA4",
+   "authors": [
+    "Hanikenne Marc",
+    "Talke Ina N.",
+    "Haydon Michael J.",
+    "Lanz Christa",
+    "Nolte Andrea",
+    "Motte Patrick",
+    "Kroymann Juergen",
+    "Weigel Detlef"
+   ],
+   "year": 2008,
+   "journal": "Nature",
+   "vol": "453",
+   "issue": "7193",
+   "page": "391-395"
+  }
+ ],
+ "olo11": [
+  {
+   "doi": "10.1371/journal.pone.0017814",
+   "title": "Tandem Quadruplication of HMA4 in the Zinc (Zn) and Cadmium (Cd) Hyperaccumulator Noccaea caerulescens",
+   "authors": [
+    "Ó Lochlainn Seosamh",
+    "Bowen Helen C.",
+    "Fray Rupert G.",
+    "Hammond John P.",
+    "King Graham J.",
+    "White Philip J.",
+    "Graham Neil S.",
+    "Broadley Martin R."
+   ],
+   "year": 2011,
+   "journal": "PLoS ONE",
+   "vol": "6",
+   "issue": "3",
+   "page": "e17814"
+  }
+ ],
+ "uexkull95": [
+  {
+   "doi": "10.1007/bf00009558",
+   "title": "Global extent, development and economic impact of acid soils",
+   "authors": [
+    "von Uexküll H R",
+    "Mutert E."
+   ],
+   "year": 1995,
+   "journal": "Plant and Soil",
+   "vol": "171",
+   "issue": "1",
+   "page": "1-15"
+  },
+  {
+   "doi": "10.1007/978-94-011-0221-6_1",
+   "title": "Global extent, development and economic impact of acid soils",
+   "authors": [
+    "von Uexküll H. R.",
+    "Mutert E."
+   ],
+   "year": 1995,
+   "journal": "Plant-Soil Interactions at Low pH: Principles and Management",
+   "vol": null,
+   "issue": null,
+   "page": "5-19"
+  },
+  {
+   "doi": "10.1007/978-94-011-0221-6_108",
+   "title": "Socio-economic aspects of rubber intercropping on acid soils in Southern Thailand",
+   "authors": [
+    "Masae A.",
+    "Cramb R. A."
+   ],
+   "year": 1995,
+   "journal": "Plant-Soil Interactions at Low pH: Principles and Management",
+   "vol": null,
+   "issue": null,
+   "page": "679-684"
+  }
+ ],
+ "sasaki04": [
+  {
+   "doi": "10.1111/j.1365-313x.2003.01991.x",
+   "title": "A wheat gene encoding an aluminum‐activated malate transporter",
+   "authors": [
+    "Sasaki Takayuki",
+    "Yamamoto Yoko",
+    "Ezaki Bunichi",
+    "Katsuhara Maki",
+    "Ahn Sung Ju",
+    "Ryan Peter R.",
+    "Delhaize Emmanuel",
+    "Matsumoto Hideaki"
+   ],
+   "year": 2004,
+   "journal": "The Plant Journal",
+   "vol": "37",
+   "issue": "5",
+   "page": "645-653"
+  },
+  {
+   "doi": "10.1590/1678-992x-2019-0012",
+   "title": "Cytogenetic mapping of the ALMT (aluminum-activated malate transporter) gene in wheat genotypes",
+   "authors": [
+    "Oliveira Érica Cristina de",
+    "Pinto-Maglio Cecília Alzira Ferreira"
+   ],
+   "year": 2020,
+   "journal": "Scientia Agricola",
+   "vol": "77",
+   "issue": "5",
+   "page": "e20190012"
+  },
+  {
+   "doi": "10.1016/j.plgene.2022.100388",
+   "title": "Aluminum induced malate transporter (ALMT1) is regulating the Aluminum stress tolerance responses of mungbean seedlings",
+   "authors": [
+    "Das Subharthi",
+    "Ganesan Markkandan"
+   ],
+   "year": 2022,
+   "journal": "Plant Gene",
+   "vol": "32",
+   "issue": null,
+   "page": "100388"
+  }
+ ],
+ "magalhaes07": [
+  {
+   "doi": "10.1038/ng2074",
+   "title": "A gene in the multidrug and toxic compound extrusion (MATE) family confers aluminum tolerance in sorghum",
+   "authors": [
+    "Magalhaes Jurandir V",
+    "Liu Jiping",
+    "Guimarães Claudia T",
+    "Lana Ubiraci G P",
+    "Alves Vera M C",
+    "Wang Yi-Hong",
+    "Schaffert Robert E",
+    "Hoekenga Owen A"
+   ],
+   "year": 2007,
+   "journal": "Nature Genetics",
+   "vol": "39",
+   "issue": "9",
+   "page": "1156-1161"
+  }
+ ],
+ "zand21": [
+  {
+   "doi": "10.1111/nph.17232",
+   "title": "The impact of multifactorial stress combination on plant growth and survival",
+   "authors": [
+    "Zandalinas Sara I.",
+    "Sengupta Soham",
+    "Fritschi Felix B.",
+    "Azad Rajeev K.",
+    "Nechushtai Rachel",
+    "Mittler Ron"
+   ],
+   "year": 2021,
+   "journal": "New Phytologist",
+   "vol": "230",
+   "issue": "3",
+   "page": "1034-1048"
+  }
+ ],
+ "zand21b": [
+  {
+   "doi": "10.1016/j.tplants.2021.02.011",
+   "title": "Global Warming, Climate Change, and Environmental Pollution: Recipe for a Multifactorial Stress Combination Disaster",
+   "authors": [
+    "Zandalinas Sara I.",
+    "Fritschi Felix B.",
+    "Mittler Ron"
+   ],
+   "year": 2021,
+   "journal": "Trends in Plant Science",
+   "vol": "26",
+   "issue": "6",
+   "page": "588-599"
+  }
+ ],
+ "sinha24": [
+  {
+   "doi": "10.1093/plphys/kiad608",
+   "title": "Multifactor agitation: Several minor stresses severely compromise crop growth when combined",
+   "authors": [
+    "Swentowsky Kyle W"
+   ],
+   "year": 2023,
+   "journal": "Plant Physiology",
+   "vol": "194",
+   "issue": "3",
+   "page": "1248-1249"
+  }
+ ],
+ "cohen21": [
+  {
+   "doi": "10.1111/ppl.13203",
+   "title": "Meta‐analysis of drought and heat stress combination impact on crop yield and yield components",
+   "authors": [
+    "Cohen Itay",
+    "Zandalinas Sara I.",
+    "Huck Clayton",
+    "Fritschi Felix B.",
+    "Mittler Ron"
+   ],
+   "year": 2020,
+   "journal": "Physiologia Plantarum",
+   "vol": "171",
+   "issue": "1",
+   "page": "66-76"
+  },
+  {
+   "doi": "10.1111/ppl.14236",
+   "title": "Nitrogen mitigates the negative effects of combined heat and drought stress on winter wheat by improving physiological characteristics",
+   "authors": [
+    "Ru Chen",
+    "Hu Xiaotao",
+    "Wang Wene"
+   ],
+   "year": 2024,
+   "journal": "Physiologia Plantarum",
+   "vol": "176",
+   "issue": "2",
+   "page": "e14236"
+  },
+  {
+   "doi": "10.1111/ppl.12798",
+   "title": "Time‐course analysis of salicylic acid effects on ROS regulation and antioxidant defense in roots of hulled and hulless barley under combined stress of drought, heat and salinity",
+   "authors": [
+    "Torun Hülya"
+   ],
+   "year": 2018,
+   "journal": "Physiologia Plantarum",
+   "vol": "165",
+   "issue": "2",
+   "page": "169-182"
+  }
+ ],
+ "jaglo98": [
+  {
+   "doi": "10.1126/science.280.5360.104",
+   "title": "<i>Arabidopsis CBF1</i>\n                    Overexpression Induces\n                    <i>COR</i>\n                    Genes and Enhances Freezing Tolerance",
+   "authors": [
+    "Jaglo-Ottosen Kirsten R.",
+    "Gilmour Sarah J.",
+    "Zarka Daniel G.",
+    "Schabenberger Oliver",
+    "Thomashow Michael F."
+   ],
+   "year": 1998,
+   "journal": "Science",
+   "vol": "280",
+   "issue": "5360",
+   "page": "104-106"
+  }
+ ],
+ "kasuga99": [
+  {
+   "doi": "10.1038/10473",
+   "title": "Localized, direct plasmid gene delivery in vivo: prolonged therapy results in reproducible tissue regeneration",
+   "authors": [
+    "Bonadio Jeffrey",
+    "Smiley Elizabeth",
+    "Patil Pravin",
+    "Goldstein Steven"
+   ],
+   "year": 1999,
+   "journal": "Nature Medicine",
+   "vol": "5",
+   "issue": "7",
+   "page": "753-759"
+  }
+ ],
+ "mittler02": [
+  {
+   "doi": "10.1016/s1360-1385(02)02312-9",
+   "title": "Oxidative stress, antioxidants and stress tolerance",
+   "authors": [
+    "Mittler Ron"
+   ],
+   "year": 2002,
+   "journal": "Trends in Plant Science",
+   "vol": "7",
+   "issue": "9",
+   "page": "405-410"
+  }
+ ],
+ "zhu16": [
+  {
+   "doi": "10.1016/j.cell.2016.08.029",
+   "title": "Abiotic Stress Signaling and Responses in Plants",
+   "authors": [
+    "Zhu Jian-Kang"
+   ],
+   "year": 2016,
+   "journal": "Cell",
+   "vol": "167",
+   "issue": "2",
+   "page": "313-324"
+  }
+ ],
+ "rizzini11": [
+  {
+   "doi": "10.1126/science.1200660",
+   "title": "Perception of UV-B by the\n                    <i>Arabidopsis</i>\n                    UVR8 Protein",
+   "authors": [
+    "Rizzini Luca",
+    "Favory Jean-Jacques",
+    "Cloix Catherine",
+    "Faggionato Davide",
+    "O’Hara Andrew",
+    "Kaiserli Eirini",
+    "Baumeister Ralf",
+    "Schäfer Eberhard"
+   ],
+   "year": 2011,
+   "journal": "Science",
+   "vol": "332",
+   "issue": "6025",
+   "page": "103-106"
+  }
+ ],
+ "cutler10": [
+  {
+   "doi": "10.1146/annurev-arplant-042809-112122",
+   "title": "Abscisic Acid: Emergence of a Core Signaling Network",
+   "authors": [
+    "Cutler Sean R.",
+    "Rodriguez Pedro L.",
+    "Finkelstein Ruth R.",
+    "Abrams Suzanne R."
+   ],
+   "year": 2010,
+   "journal": "Annual Review of Plant Biology",
+   "vol": "61",
+   "issue": "1",
+   "page": "651-679"
+  }
+ ],
+ "park09": [
+  {
+   "doi": "10.1126/science.1173041",
+   "title": "Abscisic Acid Inhibits Type 2C Protein Phosphatases via the PYR/PYL Family of START Proteins",
+   "authors": [
+    "Park Sang-Youl",
+    "Fung Pauline",
+    "Nishimura Noriyuki",
+    "Jensen Davin R.",
+    "Fujii Hiroaki",
+    "Zhao Yang",
+    "Lumba Shelley",
+    "Santiago Julia"
+   ],
+   "year": 2009,
+   "journal": "Science",
+   "vol": "324",
+   "issue": "5930",
+   "page": "1068-1071"
+  }
+ ],
+ "ma09": [
+  {
+   "doi": "10.1126/science.1172408",
+   "title": "Regulators of PP2C Phosphatase Activity Function as Abscisic Acid Sensors",
+   "authors": [
+    "Ma Yue",
+    "Szostkiewicz Izabela",
+    "Korte Arthur",
+    "Moes Danièle",
+    "Yang Yi",
+    "Christmann Alexander",
+    "Grill Erwin"
+   ],
+   "year": 2009,
+   "journal": "Science",
+   "vol": "324",
+   "issue": "5930",
+   "page": "1064-1068"
+  }
+ ],
+ "shi00": [],
+ "zhu02": [
+  {
+   "doi": "10.1146/annurev.arplant.53.091401.143329",
+   "title": "S\n                    <scp>ALT AND</scp>\n                    D\n                    <scp>ROUGHT</scp>\n                    S\n                    <scp>TRESS</scp>\n                    S\n                    <scp>IGNAL</scp>\n                    T\n                    <scp>RANSDUCTION IN</scp>\n                    P\n                    <scp>LANTS</scp>",
+   "authors": [
+    "Zhu Jian-Kang"
+   ],
+   "year": 2002,
+   "journal": "Annual Review of Plant Biology",
+   "vol": "53",
+   "issue": "1",
+   "page": "247-273"
+  }
+ ],
+ "ren05": [
+  {
+   "doi": "10.1038/ng1553",
+   "title": "Resurrecting ancestral alcohol dehydrogenases from yeast",
+   "authors": [
+    "Thomson J Michael",
+    "Gaucher Eric A",
+    "Burgan Michelle F",
+    "De Kee Danny W",
+    "Li Tang",
+    "Aris John P",
+    "Benner Steven A"
+   ],
+   "year": 2005,
+   "journal": "Nature Genetics",
+   "vol": "37",
+   "issue": "6",
+   "page": "630-635"
+  }
+ ],
+ "moller09": [],
+ "baileyserres08": [
+  {
+   "doi": "10.1146/annurev.arplant.59.032607.092752",
+   "title": "Flooding Stress: Acclimations and Genetic Diversity",
+   "authors": [
+    "Bailey-Serres J.",
+    "Voesenek L.A.C.J."
+   ],
+   "year": 2008,
+   "journal": "Annual Review of Plant Biology",
+   "vol": "59",
+   "issue": "1",
+   "page": "313-339"
+  }
+ ],
+ "lamke17": [
+  {
+   "doi": "10.1186/s13059-017-1263-6",
+   "title": "Epigenetic and chromatin-based mechanisms in environmental stress adaptation and stress memory in plants",
+   "authors": [
+    "Lämke Jörn",
+    "Bäurle Isabel"
+   ],
+   "year": 2017,
+   "journal": "Genome Biology",
+   "vol": "18",
+   "issue": "1",
+   "page": "124"
+  }
+ ],
+ "hilker16": [
+  {
+   "doi": "10.1111/brv.12215",
+   "title": "Priming and memory of stress responses in organisms lacking a nervous system",
+   "authors": [
+    "Hilker Monika",
+    "Schwachtje Jens",
+    "Baier Margarete",
+    "Balazadeh Salma",
+    "Bäurle Isabel",
+    "Geiselhardt Sven",
+    "Hincha Dirk K.",
+    "Kunze Reinhard"
+   ],
+   "year": 2015,
+   "journal": "Biological Reviews",
+   "vol": "91",
+   "issue": "4",
+   "page": "1118-1133"
+  }
+ ],
+ "ding12": [
+  {
+   "doi": "10.1038/ncomms1732",
+   "title": "Multiple exposures to drought 'train' transcriptional responses in Arabidopsis",
+   "authors": [
+    "Ding Yong",
+    "Fromm Michael",
+    "Avramova Zoya"
+   ],
+   "year": 2012,
+   "journal": "Nature Communications",
+   "vol": "3",
+   "issue": "1",
+   "page": "740"
+  },
+  {
+   "doi": "10.3410/f.14267187.15779362",
+   "title": "Faculty Opinions recommendation of Multiple exposures to drought 'train' transcriptional responses in Arabidopsis.",
+   "authors": [
+    "Hincha Dirk"
+   ],
+   "year": 2012,
+   "journal": "Faculty Opinions – Post-Publication Peer Review of the Biomedical Literature",
+   "vol": null,
+   "issue": null,
+   "page": null
+  },
+  {
+   "doi": "10.3410/f.14267187.793496715",
+   "title": "Faculty Opinions recommendation of Multiple exposures to drought 'train' transcriptional responses in Arabidopsis.",
+   "authors": [
+    "Schubert Daniel"
+   ],
+   "year": 2014,
+   "journal": "Faculty Opinions – Post-Publication Peer Review of the Biomedical Literature",
+   "vol": null,
+   "issue": null,
+   "page": null
+  }
+ ],
+ "fichman21": [
+  {
+   "doi": "10.1111/tpj.14685",
+   "title": "Rapid systemic signaling during abiotic and biotic stresses: is the ROS wave master of all trades?",
+   "authors": [
+    "Fichman Yosef",
+    "Mittler Ron"
+   ],
+   "year": 2020,
+   "journal": "The Plant Journal",
+   "vol": "102",
+   "issue": "5",
+   "page": "887-896"
+  },
+  {
+   "doi": "10.1101/2022.04.10.487802",
+   "title": "An interplay between JA and SA modulates rapid systemic ROS signaling during responses to high light stress or wounding",
+   "authors": [
+    "Myers Ronald J",
+    "Fichman Yosef",
+    "Mittler Ron"
+   ],
+   "year": 2022,
+   "journal": "",
+   "vol": null,
+   "issue": null,
+   "page": null
+  },
+  {
+   "doi": "10.1101/2021.02.12.430927",
+   "title": "Integration of electric, calcium, reactive oxygen species and hydraulic signals during rapid systemic signaling in plants",
+   "authors": [
+    "Fichman Yosef",
+    "Mittler Ron"
+   ],
+   "year": 2021,
+   "journal": "",
+   "vol": null,
+   "issue": null,
+   "page": null
+  }
+ ],
+ "miller09": [
+  {
+   "doi": "10.1126/scisignal.2000448",
+   "title": "The Plant NADPH Oxidase RBOHD Mediates Rapid Systemic Signaling in Response to Diverse Stimuli",
+   "authors": [
+    "Miller Gad",
+    "Schlauch Karen",
+    "Tam Rachel",
+    "Cortes Diego",
+    "Torres Miguel A.",
+    "Shulaev Vladimir",
+    "Dangl Jeffery L.",
+    "Mittler Ron"
+   ],
+   "year": 2009,
+   "journal": "Science Signaling",
+   "vol": "2",
+   "issue": "84",
+   "page": null
+  }
+ ],
+ "toyota18": [
+  {
+   "doi": "10.1126/science.aat7744",
+   "title": "Glutamate triggers long-distance, calcium-based plant defense signaling",
+   "authors": [
+    "Toyota Masatsugu",
+    "Spencer Dirk",
+    "Sawai-Toyota Satoe",
+    "Jiaqi Wang",
+    "Zhang Tong",
+    "Koo Abraham J.",
+    "Howe Gregg A.",
+    "Gilroy Simon"
+   ],
+   "year": 2018,
+   "journal": "Science",
+   "vol": "361",
+   "issue": "6407",
+   "page": "1112-1115"
+  }
+ ],
+ "choi14": [
+  {
+   "doi": "10.1073/pnas.1319955111",
+   "title": "Salt stress-induced Ca\n                    <sup>2+</sup>\n                    waves are associated with rapid, long-distance root-to-shoot signaling in plants",
+   "authors": [
+    "Choi Won-Gyu",
+    "Toyota Masatsugu",
+    "Kim Su-Hwa",
+    "Hilleary Richard",
+    "Gilroy Simon"
+   ],
+   "year": 2014,
+   "journal": "Proceedings of the National Academy of Sciences",
+   "vol": "111",
+   "issue": "17",
+   "page": "6497-6502"
+  },
+  {
+   "doi": "10.3410/f.718339812.793499016",
+   "title": "Faculty Opinions recommendation of Salt stress-induced Ca2+ waves are associated with rapid, long-distance root-to-shoot signaling in plants.",
+   "authors": [
+    "Kudla Jörg"
+   ],
+   "year": 2014,
+   "journal": "Faculty Opinions – Post-Publication Peer Review of the Biomedical Literature",
+   "vol": null,
+   "issue": null,
+   "page": null
+  },
+  {
+   "doi": "10.3410/f.718339812.793498294",
+   "title": "Faculty Opinions recommendation of Salt stress-induced Ca2+ waves are associated with rapid, long-distance root-to-shoot signaling in plants.",
+   "authors": [
+    "Oldroyd Giles"
+   ],
+   "year": 2014,
+   "journal": "Faculty Opinions – Post-Publication Peer Review of the Biomedical Literature",
+   "vol": null,
+   "issue": null,
+   "page": null
+  }
+ ],
+ "farrant11": [
+  {
+   "doi": "10.1016/j.pbi.2011.03.012",
+   "title": "How nematodes manipulate plant development pathways for infection",
+   "authors": [
+    "Gheysen Godelieve",
+    "Mitchum Melissa G"
+   ],
+   "year": 2011,
+   "journal": "Current Opinion in Plant Biology",
+   "vol": "14",
+   "issue": "4",
+   "page": "415-421"
+  }
+ ],
+ "kramer10": [
+  {
+   "doi": "10.1146/annurev-arplant-042809-112156",
+   "title": "Metal Hyperaccumulation in Plants",
+   "authors": [
+    "Krämer Ute"
+   ],
+   "year": 2010,
+   "journal": "Annual Review of Plant Biology",
+   "vol": "61",
+   "issue": "1",
+   "page": "517-534"
+  },
+  {
+   "doi": "10.1146/annurev-arplant-070623-105324",
+   "title": "Metal Homeostasis in Land Plants: A Perpetual Balancing Act Beyond the Fulfilment of Metalloproteome Cofactor Demands",
+   "authors": [
+    "Krämer Ute"
+   ],
+   "year": 2024,
+   "journal": "Annual Review of Plant Biology",
+   "vol": "75",
+   "issue": "1",
+   "page": "27-65"
+  },
+  {
+   "doi": "10.1111/j.1744-7909.2005.00144.x",
+   "title": "Molecular Mechanisms and Genetic Basis of Heavy Metal Tolerance/Hyperaccumulation in Plants",
+   "authors": [
+    "YANG Xiao-E",
+    "JIN Xiao-Fen",
+    "FENG Ying",
+    "ISLAM Ejazul"
+   ],
+   "year": 2005,
+   "journal": "Journal of Integrative Plant Biology",
+   "vol": "47",
+   "issue": "9",
+   "page": "1025-1035"
+  }
+ ],
+ "clemens06": [
+  {
+   "doi": "10.1016/j.biochi.2006.07.003",
+   "title": "Toxic metal accumulation, responses to exposure and mechanisms of tolerance in plants",
+   "authors": [
+    "Clemens S."
+   ],
+   "year": 2006,
+   "journal": "Biochimie",
+   "vol": "88",
+   "issue": "11",
+   "page": "1707-1719"
+  }
+ ],
+ "cobbett00": [
+  {
+   "doi": "10.1104/pp.123.3.825",
+   "title": "Phytochelatins and Their Roles in Heavy Metal Detoxification",
+   "authors": [
+    "Cobbett Christopher S."
+   ],
+   "year": 2000,
+   "journal": "Plant Physiology",
+   "vol": "123",
+   "issue": "3",
+   "page": "825-832"
+  }
+ ],
+ "kochian04": [
+  {
+   "doi": "10.1146/annurev.arplant.55.031903.141655",
+   "title": "HOW DO CROP PLANTS TOLERATE ACID SOILS? MECHANISMS OF ALUMINUM TOLERANCE AND PHOSPHOROUS EFFICIENCY",
+   "authors": [
+    "Kochian Leon V.",
+    "Hoekenga Owen A.",
+    "Piñeros Miguel A."
+   ],
+   "year": 2004,
+   "journal": "Annual Review of Plant Biology",
+   "vol": "55",
+   "issue": "1",
+   "page": "459-493"
+  }
+ ],
+ "iuchi07": [
+  {
+   "doi": "10.3410/f.1088679.542785",
+   "title": "Faculty Opinions recommendation of Zinc finger protein STOP1 is critical for proton tolerance in Arabidopsis and coregulates a key gene in aluminum tolerance.",
+   "authors": [
+    "Schroeder Julian"
+   ],
+   "year": 2007,
+   "journal": "Faculty Opinions – Post-Publication Peer Review of the Biomedical Literature",
+   "vol": null,
+   "issue": null,
+   "page": null
+  },
+  {
+   "doi": "10.1073/pnas.0700117104",
+   "title": "Zinc finger protein STOP1 is critical for proton tolerance in\n                    <i>Arabidopsis</i>\n                    and coregulates a key gene in aluminum tolerance",
+   "authors": [
+    "Iuchi Satoshi",
+    "Koyama Hiroyuki",
+    "Iuchi Atsuko",
+    "Kobayashi Yasufumi",
+    "Kitabayashi Sadako",
+    "Kobayashi Yuriko",
+    "Ikka Takashi",
+    "Hirayama Takashi"
+   ],
+   "year": 2007,
+   "journal": "Proceedings of the National Academy of Sciences",
+   "vol": "104",
+   "issue": "23",
+   "page": "9900-9905"
+  },
+  {
+   "doi": "10.4161/psb.3.2.5037",
+   "title": "STOP1, a Cys2/His2 type zinc-finger protein, plays critical role in acid soil tolerance in Arabidopsis",
+   "authors": [
+    "Iuchi Satoshi",
+    "Kobayashi Yuriko",
+    "Koyama Hiroyuki",
+    "Kobayashi Masatomo"
+   ],
+   "year": 2008,
+   "journal": "Plant Signaling &amp; Behavior",
+   "vol": "3",
+   "issue": "2",
+   "page": "128-130"
+  }
+ ],
+ "bailey10sub1": [
+  {
+   "doi": "10.1007/s12284-010-9048-5",
+   "title": "Submergence Tolerant Rice: SUB1’s Journey from Landrace to Modern Cultivar",
+   "authors": [
+    "Bailey-Serres Julia",
+    "Fukao Takeshi",
+    "Ronald Pamela",
+    "Ismail Abdelbagi",
+    "Heuer Sigrid",
+    "Mackill David"
+   ],
+   "year": 2010,
+   "journal": "Rice",
+   "vol": "3",
+   "issue": "2-3",
+   "page": "138-147"
+  },
+  {
+   "doi": "10.1093/aob/mcn172",
+   "title": "Evolutionary analysis of the Sub1 gene cluster that confers submergence tolerance to domesticated rice",
+   "authors": [
+    "Fukao Takeshi",
+    "Harris Tristan",
+    "Bailey-Serres Julia"
+   ],
+   "year": 2008,
+   "journal": "Annals of Botany",
+   "vol": "103",
+   "issue": "2",
+   "page": "143-150"
+  },
+  {
+   "doi": "10.1080/03650340.2016.1254773",
+   "title": "Can rice cultivar with submergence tolerant quantitative trait locus (<i>SUB1</i>) manage submergence stress better during reproductive stage?",
+   "authors": [
+    "Ray Anuprita",
+    "Panda Debabrata",
+    "Sarkar Ramani Kumar"
+   ],
+   "year": 2016,
+   "journal": "Archives of Agronomy and Soil Science",
+   "vol": "63",
+   "issue": "7",
+   "page": "998-1008"
+  }
+ ],
+ "ohama17": [
+  {
+   "doi": "10.1016/j.tplants.2016.08.015",
+   "title": "Transcriptional Regulatory Network of Plant Heat Stress Response",
+   "authors": [
+    "Ohama Naohiko",
+    "Sato Hikaru",
+    "Shinozaki Kazuo",
+    "Yamaguchi-Shinozaki Kazuko"
+   ],
+   "year": 2017,
+   "journal": "Trends in Plant Science",
+   "vol": "22",
+   "issue": "1",
+   "page": "53-65"
+  },
+  {
+   "doi": "10.1016/j.tplants.2022.01.008",
+   "title": "Transcriptional regulatory network of plant cold-stress responses",
+   "authors": [
+    "Kidokoro Satoshi",
+    "Shinozaki Kazuo",
+    "Yamaguchi-Shinozaki Kazuko"
+   ],
+   "year": 2022,
+   "journal": "Trends in Plant Science",
+   "vol": "27",
+   "issue": "9",
+   "page": "922-935"
+  },
+  {
+   "doi": "10.3389/fpls.2014.00170",
+   "title": "The transcriptional regulatory network in the drought response and its crosstalk in abiotic stress responses including drought, cold, and heat",
+   "authors": [
+    "Nakashima Kazuo",
+    "Yamaguchi-Shinozaki Kazuko",
+    "Shinozaki Kazuo"
+   ],
+   "year": 2014,
+   "journal": "Frontiers in Plant Science",
+   "vol": "5",
+   "issue": null,
+   "page": null
+  }
+ ],
+ "queitsch00": [
+  {
+   "doi": "10.1105/tpc.12.4.479",
+   "title": "Heat Shock Protein 101 Plays a Crucial Role in Thermotolerance in Arabidopsis",
+   "authors": [
+    "Queitsch Christine",
+    "Hong Suk-Whan",
+    "Vierling Elizabeth",
+    "Lindquist Susan"
+   ],
+   "year": 2000,
+   "journal": "The Plant Cell",
+   "vol": "12",
+   "issue": "4",
+   "page": "479-492"
+  }
+ ],
+ "chinnusamy07": [
+  {
+   "doi": "10.1016/j.tplants.2007.07.002",
+   "title": "Cold stress regulation of gene expression in plants",
+   "authors": [
+    "Chinnusamy Viswanathan",
+    "Zhu Jianhua",
+    "Zhu Jian-Kang"
+   ],
+   "year": 2007,
+   "journal": "Trends in Plant Science",
+   "vol": "12",
+   "issue": "10",
+   "page": "444-451"
+  },
+  {
+   "doi": "10.1007/978-1-60761-702-0_3",
+   "title": "Gene Regulation During Cold Stress Acclimation in Plants",
+   "authors": [
+    "Chinnusamy Viswanathan",
+    "Zhu Jian-Kang",
+    "Sunkar Ramanjulu"
+   ],
+   "year": 2010,
+   "journal": "Methods in Molecular Biology",
+   "vol": null,
+   "issue": null,
+   "page": "39-55"
+  },
+  {
+   "doi": "10.1016/j.tplants.2007.05.001",
+   "title": "Small RNAs as big players in plant abiotic stress responses and nutrient deprivation",
+   "authors": [
+    "Sunkar Ramanjulu",
+    "Chinnusamy Viswanathan",
+    "Zhu Jianhua",
+    "Zhu Jian-Kang"
+   ],
+   "year": 2007,
+   "journal": "Trends in Plant Science",
+   "vol": "12",
+   "issue": "7",
+   "page": "301-309"
+  }
+ ],
+ "ding15": [
+  {
+   "doi": "10.1016/j.devcel.2014.12.023",
+   "title": "OST1 Kinase Modulates Freezing Tolerance by Enhancing ICE1 Stability in Arabidopsis",
+   "authors": [
+    "Ding Yanglin",
+    "Li Hui",
+    "Zhang Xiaoyan",
+    "Xie Qi",
+    "Gong Zhizhong",
+    "Yang Shuhua"
+   ],
+   "year": 2015,
+   "journal": "Developmental Cell",
+   "vol": "32",
+   "issue": "3",
+   "page": "278-289"
+  },
+  {
+   "doi": "10.1016/j.devcel.2017.09.025",
+   "title": "MPK3- and MPK6-Mediated ICE1 Phosphorylation Negatively Regulates ICE1 Stability and Freezing Tolerance in Arabidopsis",
+   "authors": [
+    "Li Hui",
+    "Ding Yanglin",
+    "Shi Yiting",
+    "Zhang Xiaoyan",
+    "Zhang Shuqun",
+    "Gong Zhizhong",
+    "Yang Shuhua"
+   ],
+   "year": 2017,
+   "journal": "Developmental Cell",
+   "vol": "43",
+   "issue": "5",
+   "page": "630-642.e4"
+  },
+  {
+   "doi": "10.1016/j.devcel.2015.01.004",
+   "title": "Increasing Freezing Tolerance: Kinase Regulation of ICE1",
+   "authors": [
+    "Zhan Xiangqiang",
+    "Zhu Jian-Kang",
+    "Lang Zhaobo"
+   ],
+   "year": 2015,
+   "journal": "Developmental Cell",
+   "vol": "32",
+   "issue": "3",
+   "page": "257-258"
+  }
+ ],
+ "hirayama10": [
+  {
+   "doi": "10.1111/j.1365-313x.2010.04124.x",
+   "title": "Research on plant abiotic stress responses in the post‐genome era: past, present and future",
+   "authors": [
+    "Hirayama Takashi",
+    "Shinozaki Kazuo"
+   ],
+   "year": 2010,
+   "journal": "The Plant Journal",
+   "vol": "61",
+   "issue": "6",
+   "page": "1041-1052"
+  }
+ ],
+ "kosak22": [
+  {
+   "doi": "10.1007/s11033-021-06802-2",
+   "title": "Exogenous phytohormones in the regulation of growth and development of cereals under abiotic stresses",
+   "authors": [
+    "Kosakivska Iryna V.",
+    "Vedenicheva Nina P.",
+    "Babenko Lidiya M.",
+    "Voytenko Lesya V.",
+    "Romanenko Kateryna O.",
+    "Vasyuk Valentyna A."
+   ],
+   "year": 2021,
+   "journal": "Molecular Biology Reports",
+   "vol": "49",
+   "issue": "1",
+   "page": "617-628"
+  },
+  {
+   "doi": "10.5772/intechopen.93710",
+   "title": "Abiotic Stress Tolerance in Crop Plants: Role of Phytohormones",
+   "authors": [
+    "Abdulaziz S. Alhaithloul Haifa",
+    "M. Abu-Elsaoud Abdelghafar",
+    "H. Soliman Mona"
+   ],
+   "year": 2021,
+   "journal": "Abiotic Stress in Plants",
+   "vol": null,
+   "issue": null,
+   "page": null
+  },
+  {
+   "doi": "10.1201/9781003386315-5",
+   "title": "Role of Phytohormones in Adapting  to Salt-Induced Stress in Plants",
+   "authors": [
+    "Srivastava Yashdeep",
+    "Tripathi Keshawanand"
+   ],
+   "year": 2025,
+   "journal": "Phytohormones",
+   "vol": null,
+   "issue": null,
+   "page": "87-114"
+  }
+ ],
+ "fukao08": [
+  {
+   "doi": "10.1073/pnas.0807821105",
+   "title": "Submergence tolerance conferred by\n                    <i>Sub1A</i>\n                    is mediated by SLR1 and SLRL1 restriction of gibberellin responses in rice",
+   "authors": [
+    "Fukao Takeshi",
+    "Bailey-Serres Julia"
+   ],
+   "year": 2008,
+   "journal": "Proceedings of the National Academy of Sciences",
+   "vol": "105",
+   "issue": "43",
+   "page": "16814-16819"
+  },
+  {
+   "doi": "10.1105/tpc.110.080325",
+   "title": "The Submergence Tolerance Regulator SUB1A Mediates Crosstalk between Submergence and Drought Tolerance in Rice\n ",
+   "authors": [
+    "Fukao Takeshi",
+    "Yeung Elaine",
+    "Bailey-Serres Julia"
+   ],
+   "year": 2010,
+   "journal": "The Plant Cell",
+   "vol": "23",
+   "issue": "1",
+   "page": "412-427"
+  },
+  {
+   "doi": "10.1104/pp.112.207738",
+   "title": "The Submergence Tolerance Gene\n                    <i>SUB1A</i>\n                    Delays Leaf Senescence under Prolonged Darkness through Hormonal Regulation in Rice\n \n ",
+   "authors": [
+    "Fukao Takeshi",
+    "Yeung Elaine",
+    "Bailey-Serres Julia"
+   ],
+   "year": 2012,
+   "journal": "Plant Physiology",
+   "vol": "160",
+   "issue": "4",
+   "page": "1795-1807"
+  }
+ ],
+ "mittler17": [
+  {
+   "doi": "10.1016/j.tplants.2016.08.002",
+   "title": "ROS Are Good",
+   "authors": [
+    "Mittler Ron"
+   ],
+   "year": 2017,
+   "journal": "Trends in Plant Science",
+   "vol": "22",
+   "issue": "1",
+   "page": "11-19"
+  },
+  {
+   "doi": "10.1016/j.tplants.2020.05.003",
+   "title": "Noninvasive Live ROS Imaging of Whole Plants Grown in Soil",
+   "authors": [
+    "Fichman Yosef",
+    "Mittler Ron"
+   ],
+   "year": 2020,
+   "journal": "Trends in Plant Science",
+   "vol": "25",
+   "issue": "10",
+   "page": "1052-1053"
+  },
+  {
+   "doi": "10.1016/j.tplants.2014.07.009",
+   "title": "Interview with Ron Mittler",
+   "authors": [
+    "Mittler Ron"
+   ],
+   "year": 2014,
+   "journal": "Trends in Plant Science",
+   "vol": "19",
+   "issue": "10",
+   "page": "611-612"
+  }
+ ],
+ "apel04": [
+  {
+   "doi": "10.1146/annurev.arplant.55.031903.141701",
+   "title": "REACTIVE OXYGEN SPECIES: Metabolism, Oxidative Stress, and Signal Transduction",
+   "authors": [
+    "Apel Klaus",
+    "Hirt Heribert"
+   ],
+   "year": 2004,
+   "journal": "Annual Review of Plant Biology",
+   "vol": "55",
+   "issue": "1",
+   "page": "373-399"
+  },
+  {
+   "doi": "10.1007/978-981-19-9794-5_7",
+   "title": "Reactive Oxygen Species: Role in Senescence and Signal Transduction",
+   "authors": [
+    "Arif Yamshi",
+    "Mir Anayat Rasool",
+    "Hayat Shamsul"
+   ],
+   "year": 2023,
+   "journal": "Reactive Oxygen Species",
+   "vol": null,
+   "issue": null,
+   "page": "115-133"
+  },
+  {
+   "doi": "10.1007/0-306-48412-9_19",
+   "title": "Apoptosis Mechanisms Initiated by Oxidative Stress",
+   "authors": [
+    "Kochevar Irene E"
+   ],
+   "year": null,
+   "journal": "Signal Transduction by Reactive Oxygen and Nitrogen Species: Pathways and Chemical Principles",
+   "vol": null,
+   "issue": null,
+   "page": "365-378"
+  }
+ ],
+ "asada06": [
+  {
+   "doi": "10.1104/pp.106.082040",
+   "title": "Production and Scavenging of Reactive Oxygen Species in Chloroplasts and Their Functions",
+   "authors": [
+    "Asada Kozi"
+   ],
+   "year": 2006,
+   "journal": "Plant Physiology",
+   "vol": "141",
+   "issue": "2",
+   "page": "391-396"
+  },
+  {
+   "doi": "10.1104/pp.106.078204",
+   "title": "Reactive Oxygen Species and Reactive Nitrogen Species in Peroxisomes. Production, Scavenging, and Role in Cell Signaling",
+   "authors": [
+    "del Río Luis A.",
+    "Sandalio Luisa M.",
+    "Corpas Francisco J.",
+    "Palma José M.",
+    "Barroso Juan B."
+   ],
+   "year": 2006,
+   "journal": "Plant Physiology",
+   "vol": "141",
+   "issue": "2",
+   "page": "330-335"
+  },
+  {
+   "doi": "10.1104/pp.106.078089",
+   "title": "Production of Reactive Oxygen Species by Plant NADPH Oxidases",
+   "authors": [
+    "Sagi Moshe",
+    "Fluhr Robert"
+   ],
+   "year": 2006,
+   "journal": "Plant Physiology",
+   "vol": "141",
+   "issue": "2",
+   "page": "336-340"
+  }
+ ],
+ "niyogi99": [
+  {
+   "doi": "10.1146/annurev.arplant.50.1.333",
+   "title": "PHOTOPROTECTION REVISITED:<i>Genetic and Molecular Approaches</i>",
+   "authors": [
+    "Niyogi Krishna K."
+   ],
+   "year": 1999,
+   "journal": "Annual Review of Plant Physiology and Plant Molecular Biology",
+   "vol": "50",
+   "issue": "1",
+   "page": "333-359"
+  },
+  {
+   "doi": "10.1146/annurev.arplant.42.1.529",
+   "title": "Molecular Genetic Approaches To Plant Hormone Biology",
+   "authors": [
+    "Klee H"
+   ],
+   "year": 1991,
+   "journal": "Annual Review of Plant Physiology and Plant Molecular Biology",
+   "vol": "42",
+   "issue": "1",
+   "page": "529-551"
+  },
+  {
+   "doi": "10.1146/annurev.arplant.45.1.173",
+   "title": "Cytokinin Accumulation and Action: Biochemical, Genetic, and Molecular Approaches",
+   "authors": [
+    "Binns A."
+   ],
+   "year": 1994,
+   "journal": "Annual Review of Plant Physiology and Plant Molecular Biology",
+   "vol": "45",
+   "issue": "1",
+   "page": "173-196"
+  }
+ ],
+ "kolupaev24": [
+  {
+   "doi": "10.17221/663/2024-pse",
+   "title": "Gamma-aminobutyric acid improves cold tolerance of wheat seedlings",
+   "authors": [
+    "Shan Changjuan",
+    "Yuan Zhimin"
+   ],
+   "year": 2025,
+   "journal": "Plant, Soil and Environment",
+   "vol": "71",
+   "issue": "6",
+   "page": "441-452"
+  },
+  {
+   "doi": "10.55730/1300-008x.2812",
+   "title": "Gamma-aminobutyric acid induction of triticale protective systems under drought, salt stress or a combination of the two",
+   "authors": [
+    "KOLUPAEV YURIY",
+    "SHAKHOV IVAN V.",
+    "KOKOREV ALEXANDER I.",
+    "RELINA LIANA I.",
+    "DYACHENKO ALLA I.",
+    "DMITRIEV ALEXANDER P."
+   ],
+   "year": 2024,
+   "journal": "Turkish Journal of Botany",
+   "vol": "48",
+   "issue": "5",
+   "page": "235-248"
+  },
+  {
+   "doi": "10.1007/s00344-021-10474-4",
+   "title": "Exogenous Gamma-aminobutyric Acid Coordinates Active Oxygen and Amino Acid Homeostasis to Enhance Heat Tolerance in Wheat Seedlings",
+   "authors": [
+    "Wang Xing",
+    "Wang Xiaodong",
+    "Peng Chuanxi",
+    "Shi Hai",
+    "Yang Jia",
+    "He Min",
+    "Zhang Mingcai",
+    "Zhou Yuyi"
+   ],
+   "year": 2021,
+   "journal": "Journal of Plant Growth Regulation",
+   "vol": "41",
+   "issue": "7",
+   "page": "2787-2797"
+  }
+ ],
+ "mittler11": [
+  {
+   "doi": "10.1016/j.tplants.2011.03.007",
+   "title": "ROS signaling: the new wave?",
+   "authors": [
+    "Mittler Ron",
+    "Vanderauwera Sandy",
+    "Suzuki Nobuhiro",
+    "Miller Gad",
+    "Tognetti Vanesa B.",
+    "Vandepoele Klaas",
+    "Gollery Marty",
+    "Shulaev Vladimir"
+   ],
+   "year": 2011,
+   "journal": "Trends in Plant Science",
+   "vol": "16",
+   "issue": "6",
+   "page": "300-309"
+  },
+  {
+   "doi": "10.1016/j.tplants.2004.08.009",
+   "title": "Reactive oxygen gene network of plants",
+   "authors": [
+    "Mittler Ron",
+    "Vanderauwera Sandy",
+    "Gollery Martin",
+    "Van Breusegem Frank"
+   ],
+   "year": 2004,
+   "journal": "Trends in Plant Science",
+   "vol": "9",
+   "issue": "10",
+   "page": "490-498"
+  },
+  {
+   "doi": "10.1016/j.pbi.2011.07.014",
+   "title": "Respiratory burst oxidases: the engines of ROS signaling",
+   "authors": [
+    "Suzuki Nobuhiro",
+    "Miller Gad",
+    "Morales Jorge",
+    "Shulaev Vladimir",
+    "Torres Miguel Angel",
+    "Mittler Ron"
+   ],
+   "year": 2011,
+   "journal": "Current Opinion in Plant Biology",
+   "vol": "14",
+   "issue": "6",
+   "page": "691-699"
+  }
+ ],
+ "munns05": [
+  {
+   "doi": "10.1111/j.1469-8137.2005.01487.x",
+   "title": "Genes and salt tolerance: bringing them together",
+   "authors": [
+    "Munns Rana"
+   ],
+   "year": 2005,
+   "journal": "New Phytologist",
+   "vol": "167",
+   "issue": "3",
+   "page": "645-663"
+  },
+  {
+   "doi": "10.1111/nph.13519",
+   "title": "Salinity tolerance of crops – what is the cost?",
+   "authors": [
+    "Munns Rana",
+    "Gilliham Matthew"
+   ],
+   "year": 2015,
+   "journal": "New Phytologist",
+   "vol": "208",
+   "issue": "3",
+   "page": "668-673"
+  },
+  {
+   "doi": "10.1046/j.1469-8137.2000.00767.x",
+   "title": "Plants and salt.",
+   "authors": [
+    "Munns Rana"
+   ],
+   "year": 2000,
+   "journal": "New Phytologist",
+   "vol": "148",
+   "issue": "2",
+   "page": "219-219"
+  }
+ ],
+ "shabala13": [
+  {
+   "doi": "10.1093/aob/mct205",
+   "title": "Learning from halophytes: physiological basis and strategies to improve abiotic stress tolerance in crops",
+   "authors": [
+    "Shabala Sergey"
+   ],
+   "year": 2013,
+   "journal": "Annals of Botany",
+   "vol": "112",
+   "issue": "7",
+   "page": "1209-1221"
+  },
+  {
+   "doi": "10.3389/fsci.2024.1416023",
+   "title": "Adapting crops for climate change: regaining lost abiotic stress tolerance in crops",
+   "authors": [
+    "Palmgren Michael",
+    "Shabala Sergey"
+   ],
+   "year": 2024,
+   "journal": "Frontiers in Science",
+   "vol": "2",
+   "issue": null,
+   "page": "1416023"
+  },
+  {
+   "doi": "10.1093/jxb/ert430",
+   "title": "ROS homeostasis in halophytes in the context of salinity stress tolerance",
+   "authors": [
+    "Bose J.",
+    "Rodrigo-Moreno A.",
+    "Shabala S."
+   ],
+   "year": 2013,
+   "journal": "Journal of Experimental Botany",
+   "vol": "65",
+   "issue": "5",
+   "page": "1241-1257"
+  }
+ ],
+ "tuteja07": [
+  {
+   "doi": "10.1016/s0076-6879(07)28024-3",
+   "title": "Mechanisms of High Salinity Tolerance in Plants",
+   "authors": [
+    "Tuteja Narendra"
+   ],
+   "year": 2007,
+   "journal": "Methods in Enzymology",
+   "vol": null,
+   "issue": null,
+   "page": "419-438"
+  },
+  {
+   "doi": "10.1007/978-1-60327-355-8_26",
+   "title": "A Method to Confer Salinity Stress Tolerance to Plants by Helicase Overexpression",
+   "authors": [
+    "Tuteja Narendra"
+   ],
+   "year": 2009,
+   "journal": "Methods in Molecular Biology",
+   "vol": null,
+   "issue": null,
+   "page": "377-387"
+  },
+  {
+   "doi": "10.1016/b978-0-12-814685-9.00003-8",
+   "title": "Role of Plant Helicases in Imparting Salinity Stress Tolerance to Plants",
+   "authors": [
+    "Passricha Nishat",
+    "Saifi Shabnam K.",
+    "Gill Sarvajeet Singh",
+    "Tuteja Renu",
+    "Tuteja Narendra"
+   ],
+   "year": 2019,
+   "journal": "Helicases from All Domains of Life",
+   "vol": null,
+   "issue": null,
+   "page": "39-52"
+  }
+ ],
+ "hasegawa00": [
+  {
+   "doi": "10.1146/annurev.arplant.51.1.463",
+   "title": "P\n                    <scp>LANT</scp>\n                    C\n                    <scp>ELLULAR AND</scp>\n                    M\n                    <scp>OLECULAR</scp>\n                    R\n                    <scp>ESPONSES TO</scp>\n                    H\n                    <scp>IGH</scp>\n                    S\n                    <scp>ALINITY</scp>",
+   "authors": [
+    "Hasegawa Paul M.",
+    "Bressan Ray A.",
+    "Zhu Jian-Kang",
+    "Bohnert Hans J."
+   ],
+   "year": 2000,
+   "journal": "Annual Review of Plant Physiology and Plant Molecular Biology",
+   "vol": "51",
+   "issue": "1",
+   "page": "463-499"
+  },
+  {
+   "doi": "10.1023/a:1016206825994",
+   "title": "Jones, R.L., Bohnert, H.J., Delmer, D.P. (Ed.): Annual Review of Plant Physiology and Plant Molecular Biology. Vol. 51, 2000",
+   "authors": [
+    "Šesták Z."
+   ],
+   "year": 2002,
+   "journal": "Biologia plantarum",
+   "vol": "45",
+   "issue": "3",
+   "page": "358-358"
+  },
+  {
+   "doi": "10.1002/9780470988503.ch3",
+   "title": "Plant Adaptive Responses to Salinity Stress",
+   "authors": [
+    "Botella Miguel A.",
+    "Rosado Abel",
+    "Bressan Ray A.",
+    "Hasegawa Paul M."
+   ],
+   "year": 2005,
+   "journal": "Plant Abiotic Stress",
+   "vol": null,
+   "issue": null,
+   "page": "37-70"
+  }
+ ],
+ "lawlor02": [
+  {
+   "doi": "10.1046/j.0016-8025.2001.00814.x",
+   "title": "Photosynthetic carbon assimilation and associated metabolism in relation to water deficits in higher plants",
+   "authors": [
+    "Lawlor D. W.",
+    "Cornic G."
+   ],
+   "year": 2002,
+   "journal": "Plant, Cell &amp; Environment",
+   "vol": "25",
+   "issue": "2",
+   "page": "275-294"
+  },
+  {
+   "doi": "10.1111/j.1365-3040.2005.01350.x",
+   "title": "Evidence for alternative electron sinks to photosynthetic carbon assimilation in the high mountain plant species <i>Ranunculus glacialis</i>",
+   "authors": [
+    "STREB PETER",
+    "JOSSE EVE‐MARIE",
+    "GALLOUËT EMILY",
+    "BAPTIST FLORENCE",
+    "KUNTZ MARCEL",
+    "CORNIC GABRIEL"
+   ],
+   "year": 2005,
+   "journal": "Plant, Cell &amp; Environment",
+   "vol": "28",
+   "issue": "9",
+   "page": "1123-1135"
+  },
+  {
+   "doi": "10.1201/b12538-10",
+   "title": "The regulation and control of photosynthetic carbon assimilation",
+   "authors": [],
+   "year": 1997,
+   "journal": "A Molecular Approach To Primary Metabolism In Higher Plants",
+   "vol": null,
+   "issue": null,
+   "page": "57-79"
+  }
+ ],
+ "schroeder01": [
+  {
+   "doi": "10.1038/35066500",
+   "title": "Guard cell abscisic acid signalling and engineering drought hardiness in plants",
+   "authors": [
+    "Schroeder Julian I.",
+    "Kwak June M.",
+    "Allen Gethyn J."
+   ],
+   "year": 2001,
+   "journal": "Nature",
+   "vol": "410",
+   "issue": "6826",
+   "page": "327-330"
+  },
+  {
+   "doi": "10.1038/35021067",
+   "title": "Calcium channels activated by hydrogen peroxide mediate abscisic acid signalling in guard cells",
+   "authors": [
+    "Pei Zhen-Ming",
+    "Murata Yoshiyuki",
+    "Benning Gregor",
+    "Thomine Sébastien",
+    "Klüsener Birgit",
+    "Allen Gethyn J.",
+    "Grill Erwin",
+    "Schroeder Julian I."
+   ],
+   "year": 2000,
+   "journal": "Nature",
+   "vol": "406",
+   "issue": "6797",
+   "page": "731-734"
+  },
+  {
+   "doi": "10.1016/s0092-8674(01)00460-3",
+   "title": "An mRNA Cap Binding Protein, ABH1, Modulates Early Abscisic Acid Signal Transduction in Arabidopsis",
+   "authors": [
+    "Hugouvieux Véronique",
+    "Kwak June M.",
+    "Schroeder Julian I."
+   ],
+   "year": 2001,
+   "journal": "Cell",
+   "vol": "106",
+   "issue": "4",
+   "page": "477-487"
+  }
+ ],
+ "maurel08": [
+  {
+   "doi": "10.1146/annurev.arplant.59.032607.092734",
+   "title": "Plant Aquaporins: Membrane Channels with Multiple Integrated Functions",
+   "authors": [
+    "Maurel Christophe",
+    "Verdoucq Lionel",
+    "Luu Doan-Trung",
+    "Santoni Véronique"
+   ],
+   "year": 2008,
+   "journal": "Annual Review of Plant Biology",
+   "vol": "59",
+   "issue": "1",
+   "page": "595-624"
+  },
+  {
+   "doi": "10.1016/j.pbi.2009.09.002",
+   "title": "The cellular dynamics of plant aquaporin expression and functions",
+   "authors": [
+    "Maurel Christophe",
+    "Santoni Véronique",
+    "Luu Doan-Trung",
+    "Wudick Michael M",
+    "Verdoucq Lionel"
+   ],
+   "year": 2009,
+   "journal": "Current Opinion in Plant Biology",
+   "vol": "12",
+   "issue": "6",
+   "page": "690-698"
+  },
+  {
+   "doi": "10.1201/9781003760139-8",
+   "title": "Aquaporins in plants Clare Vander Willigen, Lionel Verdoucq, Yann Boursiac and Christophe Maurel",
+   "authors": [
+    "Vander Willigen Clare",
+    "Verdoucq Lionel",
+    "Boursiac Yann",
+    "Maurel Christophe"
+   ],
+   "year": 2026,
+   "journal": "Membrane Transport in Plants Annual Plant Reviews, Volume Fifteen",
+   "vol": null,
+   "issue": null,
+   "page": "221-251"
+  }
+ ],
+ "kreps02": [
+  {
+   "doi": "10.1104/pp.008532",
+   "title": "Transcriptome Changes for Arabidopsis in Response to Salt, Osmotic, and Cold Stress,",
+   "authors": [
+    "Kreps Joel A.",
+    "Wu Yajun",
+    "Chang Hur-Song",
+    "Zhu Tong",
+    "Wang Xun",
+    "Harper Jeff F."
+   ],
+   "year": 2002,
+   "journal": "Plant Physiology",
+   "vol": "130",
+   "issue": "4",
+   "page": "2129-2141"
+  },
+  {
+   "doi": "10.1016/j.plaphy.2017.02.001",
+   "title": "Changes in root hydraulic conductivity facilitate the overall hydraulic response of rice (Oryza sativa L.) cultivars to salt and osmotic stress",
+   "authors": [
+    "Meng Delong",
+    "Fricke Wieland"
+   ],
+   "year": 2017,
+   "journal": "Plant Physiology and Biochemistry",
+   "vol": "113",
+   "issue": null,
+   "page": "64-77"
+  },
+  {
+   "doi": "10.3389/fpls.2022.983460",
+   "title": "Dynamic changes in the transcriptome landscape of Arabidopsis thaliana in response to cold stress",
+   "authors": [
+    "Liu Yue",
+    "Cai Yajun",
+    "Li Yanzhuo",
+    "Zhang Xiaoling",
+    "Shi Nan",
+    "Zhao Jingze",
+    "Yang Hongchun"
+   ],
+   "year": 2022,
+   "journal": "Frontiers in Plant Science",
+   "vol": "13",
+   "issue": null,
+   "page": "983460"
+  }
+ ],
+ "bartels11": [
+  {
+   "doi": "10.1080/07352680590910410",
+   "title": "Drought and Salt Tolerance in Plants",
+   "authors": [
+    "Bartels Dorothea",
+    "Sunkar Ramanjulu"
+   ],
+   "year": 2005,
+   "journal": "Critical Reviews in Plant Sciences",
+   "vol": "24",
+   "issue": "1",
+   "page": "23-58"
+  },
+  {
+   "doi": "10.1080/07352689409701911",
+   "title": "Microbial Models and Salt Stress Tolerance in Plants",
+   "authors": [
+    "Serrano Ramón",
+    "Gaxiola Roberto"
+   ],
+   "year": 1994,
+   "journal": "Critical Reviews in Plant Sciences",
+   "vol": "13",
+   "issue": "2",
+   "page": "121-138"
+  },
+  {
+   "doi": "10.1080/07352689.2010.524518",
+   "title": "Microbial ACC-Deaminase: Prospects and Applications for Inducing Salt Tolerance in Plants",
+   "authors": [
+    "Nadeem Sajid Mahmood",
+    "Zahir Zahir Ahmad",
+    "Naveed Muhammad",
+    "Ashraf Muhammad"
+   ],
+   "year": 2010,
+   "journal": "Critical Reviews in Plant Sciences",
+   "vol": "29",
+   "issue": "6",
+   "page": "360-393"
+  }
+ ],
+ "thomashow99": [
+  {
+   "doi": "10.1146/annurev.arplant.50.1.571",
+   "title": "PLANT COLD ACCLIMATION: Freezing Tolerance Genes and Regulatory Mechanisms",
+   "authors": [
+    "Thomashow Michael F."
+   ],
+   "year": 1999,
+   "journal": "Annual Review of Plant Physiology and Plant Molecular Biology",
+   "vol": "50",
+   "issue": "1",
+   "page": "571-599"
+  },
+  {
+   "doi": "10.1146/annurev.pp.41.060190.001155",
+   "title": "Cold Acclimation and Freezing Stress Tolerance: Role of Protein Metabolism",
+   "authors": [
+    "Guy Charles L."
+   ],
+   "year": 1990,
+   "journal": "Annual Review of Plant Physiology and Plant Molecular Biology",
+   "vol": "41",
+   "issue": "1",
+   "page": "187-223"
+  },
+  {
+   "doi": "10.1104/pp.118.1.1",
+   "title": "Role of Cold-Responsive Genes in Plant Freezing Tolerance1",
+   "authors": [
+    "Thomashow Michael F."
+   ],
+   "year": 1998,
+   "journal": "Plant Physiology",
+   "vol": "118",
+   "issue": "1",
+   "page": "1-8"
+  }
+ ],
+ "guy90": [
+  {
+   "doi": "10.1146/annurev.pp.41.060190.001155",
+   "title": "Cold Acclimation and Freezing Stress Tolerance: Role of Protein Metabolism",
+   "authors": [
+    "Guy Charles L."
+   ],
+   "year": 1990,
+   "journal": "Annual Review of Plant Physiology and Plant Molecular Biology",
+   "vol": "41",
+   "issue": "1",
+   "page": "187-223"
+  },
+  {
+   "doi": "10.1104/pp.84.3.868",
+   "title": "Induction of Freezing Tolerance in Spinach during Cold Acclimation",
+   "authors": [
+    "Guy Charles L.",
+    "Hummel Rita L.",
+    "Haskell Dale"
+   ],
+   "year": 1987,
+   "journal": "Plant Physiology",
+   "vol": "84",
+   "issue": "3",
+   "page": "868-871"
+  },
+  {
+   "doi": "10.1146/annurev.arplant.50.1.571",
+   "title": "PLANT COLD ACCLIMATION: Freezing Tolerance Genes and Regulatory Mechanisms",
+   "authors": [
+    "Thomashow Michael F."
+   ],
+   "year": 1999,
+   "journal": "Annual Review of Plant Physiology and Plant Molecular Biology",
+   "vol": "50",
+   "issue": "1",
+   "page": "571-599"
+  }
+ ],
+ "hincha17": [
+  {
+   "doi": "10.1007/978-1-4939-0844-8",
+   "title": "Plant Cold Acclimation",
+   "authors": [],
+   "year": 2014,
+   "journal": "Methods in Molecular Biology",
+   "vol": null,
+   "issue": null,
+   "page": null
+  },
+  {
+   "doi": "10.1007/978-1-4939-0844-8_1",
+   "title": "Introduction: Plant Cold Acclimation and Freezing Tolerance",
+   "authors": [
+    "Hincha Dirk K.",
+    "Zuther Ellen"
+   ],
+   "year": 2014,
+   "journal": "Methods in Molecular Biology",
+   "vol": null,
+   "issue": null,
+   "page": "1-6"
+  },
+  {
+   "doi": "10.1007/978-1-0716-0660-5",
+   "title": "Plant Cold Acclimation",
+   "authors": [],
+   "year": 2020,
+   "journal": "Methods in Molecular Biology",
+   "vol": null,
+   "issue": null,
+   "page": null
+  }
+ ],
+ "pearce99": [
+  {
+   "doi": "10.1006/anbo.2000.1352",
+   "title": "Plant Freezing and Damage",
+   "authors": [
+    "Pearce R"
+   ],
+   "year": 2001,
+   "journal": "Annals of Botany",
+   "vol": "87",
+   "issue": "4",
+   "page": "417-424"
+  },
+  {
+   "doi": "10.1093/oxfordjournals.aob.a088449",
+   "title": "The Freezing Response of an Arctic Cushion Plant, Saxifraga caespitosa L.: Acclimation, Freezing Tolerance and Ice Nucleation",
+   "authors": [
+    "ROBBERECHT RONALD",
+    "JUNTTILA OLAVI"
+   ],
+   "year": 1992,
+   "journal": "Annals of Botany",
+   "vol": "70",
+   "issue": "2",
+   "page": "129-135"
+  },
+  {
+   "doi": "10.1006/anbo.1998.0834",
+   "title": "Natriuretic Peptides—A New Class of Plant Hormone?",
+   "authors": [
+    "GEHRING C"
+   ],
+   "year": 1999,
+   "journal": "Annals of Botany",
+   "vol": "83",
+   "issue": "4",
+   "page": "329-334"
+  }
+ ],
+ "voesenek15": [
+  {
+   "doi": "10.1111/nph.13209",
+   "title": "Flood adaptive traits and processes: an overview",
+   "authors": [
+    "Voesenek Laurentius A. C. J.",
+    "Bailey‐Serres Julia"
+   ],
+   "year": 2015,
+   "journal": "New Phytologist",
+   "vol": "206",
+   "issue": "1",
+   "page": "57-73"
+  },
+  {
+   "doi": "10.1111/nph.13775",
+   "title": "Flooding stress signaling through perturbations in oxygen, ethylene, nitric oxide and light",
+   "authors": [
+    "Voesenek Laurentius A. C. J.",
+    "Sasidharan Rashmi",
+    "Visser Eric J. W.",
+    "Bailey‐Serres Julia"
+   ],
+   "year": 2015,
+   "journal": "New Phytologist",
+   "vol": "209",
+   "issue": "1",
+   "page": "39-43"
+  },
+  {
+   "doi": "10.1111/j.1469-8137.2010.03590.x",
+   "title": "Molecular characterization of the submergence response of the <i>Arabidopsis thaliana</i> ecotype Columbia",
+   "authors": [
+    "Lee Seung Cho",
+    "Mustroph Angelika",
+    "Sasidharan Rashmi",
+    "Vashisht Divya",
+    "Pedersen Ole",
+    "Oosumi Teruko",
+    "Voesenek Laurentius A.C.J.",
+    "Bailey‐Serres Julia"
+   ],
+   "year": 2011,
+   "journal": "New Phytologist",
+   "vol": "190",
+   "issue": "2",
+   "page": "457-471"
+  }
+ ],
+ "colmer03": [
+  {
+   "doi": "10.1046/j.1365-3040.2003.00846.x",
+   "title": "Long‐distance transport of gases in plants: a perspective on internal aeration and radial oxygen loss from roots",
+   "authors": [
+    "COLMER T. D."
+   ],
+   "year": 2003,
+   "journal": "Plant, Cell &amp; Environment",
+   "vol": "26",
+   "issue": "1",
+   "page": "17-36"
+  },
+  {
+   "doi": "10.1007/978-3-7091-1254-0_16",
+   "title": "Underwater Photosynthesis and Internal Aeration of Submerged Terrestrial Wetland Plants",
+   "authors": [
+    "Pedersen Ole",
+    "Colmer Timothy D."
+   ],
+   "year": 2013,
+   "journal": "Plant Cell Monographs",
+   "vol": null,
+   "issue": null,
+   "page": "315-327"
+  },
+  {
+   "doi": "10.1046/j.1365-3040.2003.00920.x",
+   "title": "Long‐distance transport in non‐vascular plants",
+   "authors": [
+    "RAVEN J. A."
+   ],
+   "year": 2003,
+   "journal": "Plant, Cell &amp; Environment",
+   "vol": "26",
+   "issue": "1",
+   "page": "73-85"
+  }
+ ],
+ "mustroph10": [
+  {
+   "doi": "10.1104/pp.109.151845",
+   "title": "Cross-Kingdom Comparison of Transcriptomic Adjustments to Low-Oxygen Stress Highlights Conserved and Plant-Specific Responses",
+   "authors": [
+    "Mustroph Angelika",
+    "Lee Seung Cho",
+    "Oosumi Teruko",
+    "Zanetti Maria Eugenia",
+    "Yang Huijun",
+    "Ma Kelvin",
+    "Yaghoubi-Masihi Arbi",
+    "Fukao Takeshi"
+   ],
+   "year": 2010,
+   "journal": "Plant Physiology",
+   "vol": "152",
+   "issue": "3",
+   "page": "1484-1500"
+  },
+  {
+   "doi": "10.1016/j.jplph.2021.153471",
+   "title": "Comparison of transcriptomic adjustments to availability of sugar, cellular energy, and oxygen in germinating rice embryos",
+   "authors": [
+    "Lim Mi-na",
+    "Lee Sung-eun",
+    "Chang Woo Yong",
+    "Yoon In Sun",
+    "Hwang Yong-sic"
+   ],
+   "year": 2021,
+   "journal": "Journal of Plant Physiology",
+   "vol": "264",
+   "issue": null,
+   "page": "153471"
+  },
+  {
+   "doi": "10.1007/978-3-7091-1254-0_9",
+   "title": "Hypoxic Energy Metabolism and PPi as an Alternative Energy Currency",
+   "authors": [
+    "Mustroph Angelika",
+    "Hess Natalia",
+    "Sasidharan Rashmi"
+   ],
+   "year": 2013,
+   "journal": "Plant Cell Monographs",
+   "vol": null,
+   "issue": null,
+   "page": "165-184"
+  }
+ ],
+ "salt_bladder": [
+  {
+   "doi": "10.1016/b978-0-12-387692-8.00005-9",
+   "title": "Ion Transport in Halophytes",
+   "authors": [
+    "Shabala Sergey",
+    "Mackay Alex"
+   ],
+   "year": 2011,
+   "journal": "Advances in Botanical Research",
+   "vol": null,
+   "issue": null,
+   "page": "151-199"
+  },
+  {
+   "doi": "10.1016/bs.abr.2018.09.006",
+   "title": "Xylem Ion Loading and Its Implications for Plant Abiotic Stress Tolerance",
+   "authors": [
+    "Ishikawa Tetsuya",
+    "Cuin Tracey Ann",
+    "Bazihizina Nadia",
+    "Shabala Sergey"
+   ],
+   "year": 2018,
+   "journal": "Advances in Botanical Research",
+   "vol": null,
+   "issue": null,
+   "page": "267-301"
+  },
+  {
+   "doi": "10.1007/978-3-030-57635-6_76",
+   "title": "Ion Transport in Salt Glands and Bladders in Halophyte Species",
+   "authors": [
+    "Yun Ping",
+    "Shabala Sergey"
+   ],
+   "year": 2021,
+   "journal": "Handbook of Halophytes",
+   "vol": null,
+   "issue": null,
+   "page": "1859-1876"
+  }
+ ],
+ "hall12": [
+  {
+   "doi": "10.1093/jxb/erg303",
+   "title": "Transition metal transporters in plants",
+   "authors": [
+    "Hall J. L."
+   ],
+   "year": 2003,
+   "journal": "Journal of Experimental Botany",
+   "vol": "54",
+   "issue": "393",
+   "page": "2601-2613"
+  },
+  {
+   "doi": "10.1093/jexbot/50.suppl_1.895",
+   "title": "MRP subfamily ABC transporters from plants and yeast",
+   "authors": [
+    "Rea P"
+   ],
+   "year": 1999,
+   "journal": "Journal of Experimental Botany",
+   "vol": "50",
+   "issue": "90001",
+   "page": "895-913"
+  },
+  {
+   "doi": "10.1093/jxb/erh175",
+   "title": "Regulation of high-affinity sulphate transporters in plants: towards systematic analysis of sulphur signalling and regulation",
+   "authors": [
+    "Maruyama-Nakashita A."
+   ],
+   "year": 2004,
+   "journal": "Journal of Experimental Botany",
+   "vol": "55",
+   "issue": "404",
+   "page": "1843-1849"
+  }
+ ],
+ "clemens13": [
+  {
+   "doi": "10.1016/j.tplants.2012.08.003",
+   "title": "Plant science: the key to preventing slow cadmium poisoning",
+   "authors": [
+    "Clemens Stephan",
+    "Aarts Mark G.M.",
+    "Thomine Sébastien",
+    "Verbruggen Nathalie"
+   ],
+   "year": 2013,
+   "journal": "Trends in Plant Science",
+   "vol": "18",
+   "issue": "2",
+   "page": "92-99"
+  },
+  {
+   "doi": "10.1016/s1360-1385(02)02385-3",
+   "title": "Playing with the switches",
+   "authors": [
+    "Thomine Sébastien"
+   ],
+   "year": 2002,
+   "journal": "Trends in Plant Science",
+   "vol": "7",
+   "issue": "12",
+   "page": "524"
+  },
+  {
+   "doi": "10.1016/s1360-1385(01)01934-3",
+   "title": "Mining out for iron",
+   "authors": [
+    "Thomine Sébastien"
+   ],
+   "year": 2001,
+   "journal": "Trends in Plant Science",
+   "vol": "6",
+   "issue": "4",
+   "page": "140"
+  }
+ ],
+ "rascio11": [
+  {
+   "doi": "10.1016/j.plantsci.2010.08.016",
+   "title": "Heavy metal hyperaccumulating plants: How and why do they do it? And what makes them so interesting?",
+   "authors": [
+    "Rascio Nicoletta",
+    "Navari-Izzo Flavia"
+   ],
+   "year": 2011,
+   "journal": "Plant Science",
+   "vol": "180",
+   "issue": "2",
+   "page": "169-181"
+  },
+  {
+   "doi": "10.1007/978-3-642-21408-0_3",
+   "title": "Functional Significance of Metal Ligands in Hyperaccumulating Plants: What Do We Know?",
+   "authors": [
+    "Regvar Marjana",
+    "Vogel-Mikuš Katarina"
+   ],
+   "year": 2011,
+   "journal": "Soil Biology",
+   "vol": null,
+   "issue": null,
+   "page": "59-72"
+  },
+  {
+   "doi": "10.1057/9780230360105.0009",
+   "title": "What Makes an Action Explanation Proper?",
+   "authors": [],
+   "year": null,
+   "journal": "The Things We Do and Why We Do Them",
+   "vol": null,
+   "issue": null,
+   "page": null
+  }
+ ],
+ "lei17": [
+  {
+   "doi": "10.1016/j.tplants.2022.01.008",
+   "title": "Transcriptional regulatory network of plant cold-stress responses",
+   "authors": [
+    "Kidokoro Satoshi",
+    "Shinozaki Kazuo",
+    "Yamaguchi-Shinozaki Kazuko"
+   ],
+   "year": 2022,
+   "journal": "Trends in Plant Science",
+   "vol": "27",
+   "issue": "9",
+   "page": "922-935"
+  },
+  {
+   "doi": "10.1016/j.tplants.2016.08.015",
+   "title": "Transcriptional Regulatory Network of Plant Heat Stress Response",
+   "authors": [
+    "Ohama Naohiko",
+    "Sato Hikaru",
+    "Shinozaki Kazuo",
+    "Yamaguchi-Shinozaki Kazuko"
+   ],
+   "year": 2017,
+   "journal": "Trends in Plant Science",
+   "vol": "22",
+   "issue": "1",
+   "page": "53-65"
+  },
+  {
+   "doi": "10.1093/plphys/kiae105",
+   "title": "Regulatory networks in plant responses to drought and cold stress",
+   "authors": [
+    "Kim June-Sik",
+    "Kidokoro Satoshi",
+    "Yamaguchi-Shinozaki Kazuko",
+    "Shinozaki Kazuo"
+   ],
+   "year": 2024,
+   "journal": "Plant Physiology",
+   "vol": "195",
+   "issue": "1",
+   "page": "170-189"
+  }
+ ],
+ "bolt21": [
+  {
+   "doi": "10.1038/s41580-022-00499-2",
+   "title": "Reactive oxygen species signalling in plant stress responses",
+   "authors": [
+    "Mittler Ron",
+    "Zandalinas Sara I.",
+    "Fichman Yosef",
+    "Van Breusegem Frank"
+   ],
+   "year": 2022,
+   "journal": "Nature Reviews Molecular Cell Biology",
+   "vol": "23",
+   "issue": "10",
+   "page": "663-679"
+  },
+  {
+   "doi": "10.1093/plphys/kiac449",
+   "title": "Jasmonic acid and salicylic acid modulate systemic reactive oxygen species signaling during stress responses",
+   "authors": [
+    "Myers Ronald J",
+    "Fichman Yosef",
+    "Zandalinas Sara I",
+    "Mittler Ron"
+   ],
+   "year": 2022,
+   "journal": "Plant Physiology",
+   "vol": "191",
+   "issue": "2",
+   "page": "862-873"
+  },
+  {
+   "doi": "10.1093/plcell/koac241",
+   "title": "HPCA1 is required for systemic reactive oxygen species and calcium cell-to-cell signaling and plant acclimation to stress",
+   "authors": [
+    "Fichman Yosef",
+    "Zandalinas Sara I",
+    "Peck Scott",
+    "Luan Sheng",
+    "Mittler Ron"
+   ],
+   "year": 2022,
+   "journal": "The Plant Cell",
+   "vol": "34",
+   "issue": "11",
+   "page": "4453-4471"
+  }
+ ],
+ "lesk16": [
+  {
+   "doi": "10.1038/nature16467",
+   "title": "Influence of extreme weather disasters on global crop production",
+   "authors": [
+    "Lesk Corey",
+    "Rowhani Pedram",
+    "Ramankutty Navin"
+   ],
+   "year": 2016,
+   "journal": "Nature",
+   "vol": "529",
+   "issue": "7584",
+   "page": "84-87"
+  },
+  {
+   "doi": "10.1038/s41559-019-0862-x",
+   "title": "Synchronized failure of global crop production",
+   "authors": [
+    "Mehrabi Zia",
+    "Ramankutty Navin"
+   ],
+   "year": 2019,
+   "journal": "Nature Ecology &amp; Evolution",
+   "vol": "3",
+   "issue": "5",
+   "page": "780-786"
+  },
+  {
+   "doi": "10.1101/287391",
+   "title": "On the synchronized failure of global crop production",
+   "authors": [
+    "Mehrabi Zia",
+    "Ramankutty Navin"
+   ],
+   "year": 2018,
+   "journal": "",
+   "vol": null,
+   "issue": null,
+   "page": null
+  }
+ ],
+ "zhao17": [
+  {
+   "doi": "10.1073/pnas.1701762114",
+   "title": "Temperature increase reduces global yields of major crops in four independent estimates",
+   "authors": [
+    "Zhao Chuang",
+    "Liu Bing",
+    "Piao Shilong",
+    "Wang Xuhui",
+    "Lobell David B.",
+    "Huang Yao",
+    "Huang Mengtian",
+    "Yao Yitong"
+   ],
+   "year": 2017,
+   "journal": "Proceedings of the National Academy of Sciences",
+   "vol": "114",
+   "issue": "35",
+   "page": "9326-9331"
+  },
+  {
+   "doi": "10.2139/ssrn.3952473",
+   "title": "The Future Extreme Temperature Under RCP8.5 Reduces the Yields of Major Crops in Northern Peninsular Southeast Asia",
+   "authors": [
+    "Amnuaylojaroen Teerachai",
+    "Parasin Nichapa"
+   ],
+   "year": 2021,
+   "journal": "",
+   "vol": null,
+   "issue": null,
+   "page": null
+  },
+  {
+   "doi": "10.1007/978-981-19-5213-5_3",
+   "title": "Potential Limits of Six Major Food Crops' Yields Worldwide",
+   "authors": [
+    "Cai Chengzhi",
+    "Cao Wenfang"
+   ],
+   "year": 2022,
+   "journal": "Potential Yields of Major Crops for Chinese and Global Food Security Under Climate Change",
+   "vol": null,
+   "issue": null,
+   "page": "39-50"
+  }
+ ],
+ "boyer82": [
+  {
+   "doi": "10.1126/science.218.4571.443",
+   "title": "Plant Productivity and Environment",
+   "authors": [
+    "Boyer J. S."
+   ],
+   "year": 1982,
+   "journal": "Science",
+   "vol": "218",
+   "issue": "4571",
+   "page": "443-448"
+  },
+  {
+   "doi": "10.1111/1365-3040.ep11611534",
+   "title": "THE MATHEMATICS OF PHOTOSYNTHESIS AND PRODUCTIVITY (Book).",
+   "authors": [
+    "Landsberg J. J."
+   ],
+   "year": 1982,
+   "journal": "Plant, Cell &amp; Environment",
+   "vol": "5",
+   "issue": "6",
+   "page": "432-433"
+  },
+  {
+   "doi": "10.1111/1365-3040.ep11571402",
+   "title": "COMMENTARIES IN PLANT SCIENCE (Book).",
+   "authors": [
+    "Jennings David"
+   ],
+   "year": 1982,
+   "journal": "Plant, Cell &amp; Environment",
+   "vol": "5",
+   "issue": "2",
+   "page": "114-114"
+  }
+ ],
+ "hwarari22": [
+  {
+   "doi": "10.1111/nph.18087",
+   "title": "Plant responses to multifactorial stress combination",
+   "authors": [
+    "Zandalinas Sara I.",
+    "Mittler Ron"
+   ],
+   "year": 2022,
+   "journal": "New Phytologist",
+   "vol": "234",
+   "issue": "4",
+   "page": "1161-1167"
+  },
+  {
+   "doi": "10.1111/nph.17232",
+   "title": "The impact of multifactorial stress combination on plant growth and survival",
+   "authors": [
+    "Zandalinas Sara I.",
+    "Sengupta Soham",
+    "Fritschi Felix B.",
+    "Azad Rajeev K.",
+    "Nechushtai Rachel",
+    "Mittler Ron"
+   ],
+   "year": 2021,
+   "journal": "New Phytologist",
+   "vol": "230",
+   "issue": "3",
+   "page": "1034-1048"
+  },
+  {
+   "doi": "10.1101/2020.11.23.394593",
+   "title": "The impact of multifactorial stress combination on plant growth and survival",
+   "authors": [
+    "Zandalinas Sara I.",
+    "Sengupta Soham",
+    "Fritschi Felix B.",
+    "Azad Rajeev K.",
+    "Nechushtai Rachel",
+    "Mittler Ron"
+   ],
+   "year": 2020,
+   "journal": "",
+   "vol": null,
+   "issue": null,
+   "page": null
+  }
+ ],
+ "suzuki14": [
+  {
+   "doi": "10.1111/nph.12797",
+   "title": "Abiotic and biotic stress combinations",
+   "authors": [
+    "Suzuki Nobuhiro",
+    "Rivero Rosa M.",
+    "Shulaev Vladimir",
+    "Blumwald Eduardo",
+    "Mittler Ron"
+   ],
+   "year": 2014,
+   "journal": "New Phytologist",
+   "vol": "203",
+   "issue": "1",
+   "page": "32-43"
+  },
+  {
+   "doi": "10.1111/tpj.13299",
+   "title": "Reactive oxygen species, abiotic stress and stress combination",
+   "authors": [
+    "Choudhury Feroza K.",
+    "Rivero Rosa M.",
+    "Blumwald Eduardo",
+    "Mittler Ron"
+   ],
+   "year": 2016,
+   "journal": "The Plant Journal",
+   "vol": "90",
+   "issue": "5",
+   "page": "856-867"
+  },
+  {
+   "doi": "10.1111/nph.18626",
+   "title": "Phytochrome B regulates reactive oxygen signaling during abiotic and biotic stress in plants",
+   "authors": [
+    "Fichman Yosef",
+    "Xiong Haiyan",
+    "Sengupta Soham",
+    "Morrow Johanna",
+    "Loog Hailey",
+    "Azad Rajeev K.",
+    "Hibberd Julian M.",
+    "Liscum Emmanuel"
+   ],
+   "year": 2022,
+   "journal": "New Phytologist",
+   "vol": "237",
+   "issue": "5",
+   "page": "1711-1727"
+  }
+ ],
+ "rivero22": [
+  {
+   "doi": "10.1111/nph.12797",
+   "title": "Abiotic and biotic stress combinations",
+   "authors": [
+    "Suzuki Nobuhiro",
+    "Rivero Rosa M.",
+    "Shulaev Vladimir",
+    "Blumwald Eduardo",
+    "Mittler Ron"
+   ],
+   "year": 2014,
+   "journal": "New Phytologist",
+   "vol": "203",
+   "issue": "1",
+   "page": "32-43"
+  },
+  {
+   "doi": "10.1093/jxb/erag389",
+   "title": "Decoding multifactorial stress responses in plants: lessons from omics integration",
+   "authors": [
+    "Molinero-Domingo Laia",
+    "Pascual Lidia S",
+    "Rivero Rosa M",
+    "Mittler Ron",
+    "Zandalinas Sara I"
+   ],
+   "year": 2026,
+   "journal": "Journal of Experimental Botany",
+   "vol": null,
+   "issue": null,
+   "page": "erag389"
+  },
+  {
+   "doi": "10.1016/j.pbi.2026.102957",
+   "title": "Physiological and metabolic reprogramming under stress combination in plants",
+   "authors": [
+    "Tercero-Corrales América",
+    "Zandalinas Sara I.",
+    "Mittler Ron",
+    "Rivero Rosa M."
+   ],
+   "year": 2026,
+   "journal": "Current Opinion in Plant Biology",
+   "vol": "93",
+   "issue": null,
+   "page": "102957"
+  }
+ ],
+ "vierling91": [
+  {
+   "doi": "10.1146/annurev.pp.42.060191.003051",
+   "title": "The Roles of Heat Shock Proteins in Plants",
+   "authors": [
+    "Vierling E"
+   ],
+   "year": 1991,
+   "journal": "Annual Review of Plant Physiology and Plant Molecular Biology",
+   "vol": "42",
+   "issue": "1",
+   "page": "579-620"
+  },
+  {
+   "doi": "10.1104/pp.96.4.1038",
+   "title": "Expression of a Conserved Family of Cytoplasmic Low Molecular Weight Heat Shock Proteins during Heat Stress and Recovery",
+   "authors": [
+    "DeRocher Amy E.",
+    "Helm Kenneth W.",
+    "Lauzon Lisa M.",
+    "Vierling Elizabeth"
+   ],
+   "year": 1991,
+   "journal": "Plant Physiology",
+   "vol": "96",
+   "issue": "4",
+   "page": "1038-1047"
+  },
+  {
+   "doi": "10.1007/s11738-997-0051-4",
+   "title": "The small heat shock proteins in plants are members of an ancient family of heat induced proteins",
+   "authors": [
+    "Vierling Elizabeth"
+   ],
+   "year": 1997,
+   "journal": "Acta Physiologiae Plantarum",
+   "vol": "19",
+   "issue": "4",
+   "page": "539-547"
+  }
+ ],
+ "wang04": [
+  {
+   "doi": "10.1016/j.tplants.2004.03.006",
+   "title": "Role of plant heat-shock proteins and molecular chaperones in the abiotic stress response",
+   "authors": [
+    "Wang Wangxia",
+    "Vinocur Basia",
+    "Shoseyov Oded",
+    "Altman Arie"
+   ],
+   "year": 2004,
+   "journal": "Trends in Plant Science",
+   "vol": "9",
+   "issue": "5",
+   "page": "244-252"
+  },
+  {
+   "doi": "10.1007/978-94-017-2679-5_91",
+   "title": "Abiotic Resistance and Chaperones: Possible Physiological Role of SP1, a Stable and Stabilizing Protein from Populus",
+   "authors": [
+    "Wang W. X.",
+    "Barak T.",
+    "Vinocur B.",
+    "Shoseyov O.",
+    "Altman A."
+   ],
+   "year": 2003,
+   "journal": "Plant Biotechnology 2002 and Beyond",
+   "vol": null,
+   "issue": null,
+   "page": "439-443"
+  },
+  {
+   "doi": "10.17660/actahortic.2001.560.54",
+   "title": "BIOTECHNOLOGY OF PLANT OSMOTIC STRESS TOLERANCE PHYSIOLOGICAL AND MOLECULAR CONSIDERATIONS",
+   "authors": [
+    "Wang W.X.",
+    "Vinocur B.",
+    "Shoseyov O.",
+    "Altman A."
+   ],
+   "year": 2001,
+   "journal": "Acta Horticulturae",
+   "vol": null,
+   "issue": "560",
+   "page": "285-292"
+  }
+ ]
+}
