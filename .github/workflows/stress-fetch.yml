@@ -18,7 +18,9 @@ jobs:
         with:
           python-version: "3.12"
       - run: pip install pillow==11.0.0
-      - run: python tools/stress/fetch.py "$(cat tools/stress/mode.txt 2>/dev/null || echo search)" "$(cat tools/stress/only.txt 2>/dev/null || true)"
+      - run: python tools/stress/fetch.py final
+        continue-on-error: true
+      - run: python tools/stress/fetch.py search "$(cat tools/stress/only.txt 2>/dev/null || true)"
       - run: python tools/stress/fetch.py refs
         continue-on-error: true
       - name: Commit results

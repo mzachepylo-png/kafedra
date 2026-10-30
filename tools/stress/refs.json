@@ -52,16 +52,8 @@
   "doi": "10.1038/s41586-020-2644-7"
  },
  {
-  "k": "chung20",
-  "q": "An RNA thermoswitch regulates daytime growth in Arabidopsis PIF7 Chung"
- },
- {
   "k": "zhang22",
   "doi": "10.1126/science.abo5721"
- },
- {
-  "k": "li15tt1",
-  "q": "Li 2015 Nature Genetics TT1 thermotolerance rice African rice Oryza glaberrima proteasome alpha2 subunit"
  },
  {
   "k": "kosak21",
@@ -74,10 +66,6 @@
  {
   "k": "ma15",
   "doi": "10.1016/j.cell.2015.01.046"
- },
- {
-  "k": "murata92",
-  "q": "Murata 1992 Nature genetic evidence for the role of phosphatidylglycerol in chilling sensitivity glycerol-3-phosphate acyltransferase"
  },
  {
   "k": "knox10",
@@ -116,10 +104,6 @@
   "doi": "10.1038/nature08258"
  },
  {
-  "k": "nagai20",
-  "q": "Nagai 2020 Nature ACE1 DEC1 deepwater rice internode elongation gibberellin"
- },
- {
   "k": "kretz15",
   "doi": "10.1038/nplants.2015.124"
  },
@@ -130,14 +114,6 @@
  {
   "k": "sasaki12",
   "doi": "10.1105/tpc.112.096925"
- },
- {
-  "k": "ishikawa12",
-  "q": "Ishikawa 2012 PNAS ion-beam irradiation low cadmium rice OsNRAMP5"
- },
- {
-  "k": "tang17",
-  "q": "Tang 2017 CRISPR/Cas9 OsNRAMP5 low cadmium indica rice Plant Biotechnology Journal"
  },
  {
   "k": "ueno10",
@@ -280,10 +256,6 @@
   "doi": "10.1146/annurev.arplant.55.031903.141655"
  },
  {
-  "k": "iuchi07",
-  "q": "Iuchi 2007 PNAS Zinc finger protein STOP1 critical for proton tolerance in Arabidopsis and coregulates a key gene in aluminum tolerance"
- },
- {
   "k": "bailey10sub1",
   "q": "Bailey-Serres 2010 Submergence tolerant rice SUB1 journey from landrace to modern cultivar Rice"
  },
@@ -332,10 +304,6 @@
   "q": "Niyogi 1999 Photoprotection revisited: genetic and molecular approaches Annual Review of Plant Physiology"
  },
  {
-  "k": "kolupaev24",
-  "q": "Kolupaev gamma-aminobutyric acid wheat triticale seedlings heat salt tolerance"
- },
- {
   "k": "mittler11",
   "q": "Mittler Vanderauwera Suzuki Miller Tognetti Gollery Shulaev Van Breusegem ROS signaling the new wave Trends in Plant Science 2011"
  },
@@ -382,10 +350,6 @@
  {
   "k": "guy90",
   "q": "Guy 1990 Cold acclimation and freezing stress tolerance role of protein metabolism Annual Review of Plant Physiology"
- },
- {
-  "k": "hincha17",
-  "q": "Hincha Zuther 2014 LEA proteins and cryoprotection Methods Mol Biol dehydrins"
  },
  {
   "k": "pearce99",
@@ -448,10 +412,6 @@
   "q": "Suzuki Rivero Shulaev Blumwald Mittler 2014 Abiotic and biotic stress combinations New Phytologist"
  },
  {
-  "k": "rivero22",
-  "q": "Rivero Mestre Zandalinas Pantoja-Benavides Suzuki Mittler Shulaev 2022 The combined effect of heat and drought stress on plants"
- },
- {
   "k": "vierling91",
   "q": "Vierling 1991 The roles of heat shock proteins in plants Annual Review of Plant Physiology"
  },
@@ -470,5 +430,37 @@
  {
   "k": "ding19",
   "q": "Ding Shi Yang 2019 Advances and challenges in uncovering cold tolerance regulatory mechanisms in plants New Phytologist"
+ },
+ {
+  "k": "chung20",
+  "doi": "10.1038/s41477-020-0633-3"
+ },
+ {
+  "k": "li15tt1",
+  "doi": "10.1038/ng.3327"
+ },
+ {
+  "k": "murata92",
+  "doi": "10.1038/356710a0"
+ },
+ {
+  "k": "nagai20",
+  "doi": "10.1038/s41586-020-2501-8"
+ },
+ {
+  "k": "ishikawa12",
+  "doi": "10.1073/pnas.1211132109"
+ },
+ {
+  "k": "tang17",
+  "doi": "10.1038/s41598-017-14832-9"
+ },
+ {
+  "k": "iuchi07",
+  "doi": "10.1073/pnas.0700117104"
+ },
+ {
+  "k": "hincha17",
+  "doi": "10.1186/1471-2164-9-118"
  }
 ]
