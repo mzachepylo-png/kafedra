@@ -88,10 +88,6 @@
   "doi": "10.1007/s00122-016-2685-3"
  },
  {
-  "k": "weits14",
-  "doi": "10.1038/ncomms5425"
- },
- {
   "k": "licausi11",
   "doi": "10.1038/nature10536"
  },
@@ -168,10 +164,6 @@
   "doi": "10.1126/science.280.5360.104"
  },
  {
-  "k": "kasuga99",
-  "doi": "10.1038/10473"
- },
- {
   "k": "mittler02",
   "doi": "10.1016/S1360-1385(02)02312-9"
  },
@@ -198,10 +190,6 @@
  {
   "k": "zhu02",
   "doi": "10.1146/annurev.arplant.53.091401.143329"
- },
- {
-  "k": "ren05",
-  "doi": "10.1038/ng1553"
  },
  {
   "k": "baileyserres08",
@@ -234,10 +222,6 @@
  {
   "k": "choi14",
   "q": "Choi Toyota Kim Hilleary Gilroy Salt stress-induced Ca2+ waves long-distance root-to-shoot signaling PNAS 2014"
- },
- {
-  "k": "farrant11",
-  "doi": "10.1016/j.pbi.2011.03.012"
  },
  {
   "k": "kramer10",
@@ -462,5 +446,21 @@
  {
   "k": "hincha17",
   "doi": "10.1186/1471-2164-9-118"
+ },
+ {
+  "k": "weits14",
+  "doi": "10.1038/ncomms4425"
+ },
+ {
+  "k": "ren05",
+  "doi": "10.1038/ng1643"
+ },
+ {
+  "k": "kasuga99",
+  "doi": "10.1038/7036"
+ },
+ {
+  "k": "farrant11",
+  "q": "Farrant Moore 2011 Programming desiccation-tolerance: from plants to seeds to resurrection plants Current Opinion in Plant Biology"
  }
 ]
