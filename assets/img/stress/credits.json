@@ -1,0 +1,618 @@
+{
+ "arabidopsis": {
+  "title": "File:Arabidopsis thaliana rosette.png",
+  "url": "https://commons.wikimedia.org/wiki/File:Arabidopsis_thaliana_rosette.png",
+  "artist": "Unknown author<span style=\"display: none;\">Unknown author</span>",
+  "lic": "CC BY 2.5",
+  "w": 1000,
+  "h": 820
+ },
+ "crackedsoil": {
+  "title": "File:Klimawandel 003 2016 06 06.jpg",
+  "url": "https://commons.wikimedia.org/wiki/File:Klimawandel_003_2016_06_06.jpg",
+  "artist": "<b><a href=\"//commons.wikimedia.org/wiki/User:F._Riedelio\" title=\"User:F. Riedelio\">Friedrich Haag</a></b>",
+  "lic": "CC BY-SA 4.0",
+  "w": 1000,
+  "h": 666
+ },
+ "wheatdrought": {
+  "title": "File:Wheat field footpath in drought conditions - geograph.org.uk - 5975600.jpg",
+  "url": "https://commons.wikimedia.org/wiki/File:Wheat_field_footpath_in_drought_conditions_-_geograph.org.uk_-_5975600.jpg",
+  "artist": "<a rel=\"nofollow\" class=\"external text\" href=\"https://www.geograph.org.uk/profile/30816\">Martin Dawes</a> <span class=\"mw-valign-text-top noprint\" typeof=\"mw:File/Frameless\"><a href=\"//commons.wikimedia.org/wiki/File:Wheat_field_footpath_in_drought_conditions_-_geograph.org.uk_-_5975600.jpg#P170\" title=\"Edit this at Structured Data on Commons\"><img alt=\"Edit this at Structured Data on Commons\" src=\"https://thumb.wikimedia.org/wikipedia/commons/thumb/8/8a/OOjs_UI_icon_edit-ltr-progressive.svg/20px-OOjs_UI_icon_edit-ltr-progressive.svg.png?utm_source=commons.wikimedia.org&amp;utm_campaign=parser&amp;utm_content=thumbnail\" decoding=\"async\" loading=\"lazy\" width=\"10\" height=\"10\" class=\"mw-file-element\" data-file-width=\"20\" data-file-height=\"20\"></a></span>",
+  "lic": "CC BY-SA 2.0",
+  "w": 750,
+  "h": 1000
+ },
+ "wheatukraine": {
+  "title": "File:Wheat fields in Ukraine-5961.jpg",
+  "url": "https://commons.wikimedia.org/wiki/File:Wheat_fields_in_Ukraine-5961.jpg",
+  "artist": "<bdi><a href=\"https://www.wikidata.org/wiki/Q108103612\" class=\"extiw\" title=\"d:Q108103612\"><span title=\"Wikipedian and OpenStreetMap mapper from Cologne, Open Data activist\">Raimond Spekking</span></a></bdi>",
+  "lic": "CC BY-SA 4.0",
+  "w": 1000,
+  "h": 672
+ },
+ "stomata": {
+  "title": "File:Устьице плектрантуса ароматного 1000х 1.png",
+  "url": "https://commons.wikimedia.org/wiki/File:%D0%A3%D1%81%D1%82%D1%8C%D0%B8%D1%86%D0%B5_%D0%BF%D0%BB%D0%B5%D0%BA%D1%82%D1%80%D0%B0%D0%BD%D1%82%D1%83%D1%81%D0%B0_%D0%B0%D1%80%D0%BE%D0%BC%D0%B0%D1%82%D0%BD%D0%BE%D0%B3%D0%BE_1000%D1%85_1.png",
+  "artist": "<a href=\"//commons.wikimedia.org/w/index.php?title=User:Codement&amp;action=edit&amp;redlink=1\" class=\"new\" title=\"User:Codement (page does not exist)\">Codement</a>",
+  "lic": "CC BY-SA 4.0",
+  "w": 1000,
+  "h": 750
+ },
+ "stomata2": {
+  "title": "File:Stomata open close.jpg",
+  "url": "https://commons.wikimedia.org/wiki/File:Stomata_open_close.jpg",
+  "artist": "KuriPop",
+  "lic": "CC BY-SA 3.0",
+  "w": 311,
+  "h": 470
+ },
+ "stomsem": {
+  "title": "File:Stoma.tif",
+  "url": "https://commons.wikimedia.org/wiki/File:Stoma.tif",
+  "artist": "<a href=\"//commons.wikimedia.org/wiki/User:Arlo_Barnes\" title=\"User:Arlo Barnes\">Arlo James Barnes</a>",
+  "lic": "CC0",
+  "w": 500,
+  "h": 430
+ },
+ "trichomes": {
+  "title": "File:Hairy Levels.jpg",
+  "url": "https://commons.wikimedia.org/wiki/File:Hairy_Levels.jpg",
+  "artist": "<a href=\"//commons.wikimedia.org/wiki/User:Zephyris\" title=\"User:Zephyris\">Zephyris</a>",
+  "lic": "CC BY-SA 3.0",
+  "w": 1000,
+  "h": 666
+ },
+ "leafsection": {
+  "title": "File:Angiosperm Morphology Cutinized Shelves of Sunken Stomata in Yucca Leaf (37046633841).jpg",
+  "url": "https://commons.wikimedia.org/wiki/File:Angiosperm_Morphology_Cutinized_Shelves_of_Sunken_Stomata_in_Yucca_Leaf_(37046633841).jpg",
+  "artist": "<a rel=\"nofollow\" class=\"external text\" href=\"https://www.flickr.com/people/146824358@N03\">Berkshire Community College  Bioscience Image Library</a>",
+  "lic": "CC0",
+  "w": 1000,
+  "h": 564
+ },
+ "wheatroots": {
+  "title": "File:Development and activities of roots of crop plants; a study in crop ecology (1922) (20268038764).jpg",
+  "url": "https://commons.wikimedia.org/wiki/File:Development_and_activities_of_roots_of_crop_plants;_a_study_in_crop_ecology_(1922)_(20268038764).jpg",
+  "artist": "<a rel=\"nofollow\" class=\"external text\" href=\"https://www.flickr.com/people/126377022@N07\">Internet Archive Book Images</a>",
+  "lic": "No restrictions",
+  "w": 1000,
+  "h": 933
+ },
+ "roothairs": {
+  "title": "File:Fluorescence of soy root hairs (Nile Red staining, 405 nm excitation).jpg",
+  "url": "https://commons.wikimedia.org/wiki/File:Fluorescence_of_soy_root_hairs_(Nile_Red_staining,_405_nm_excitation).jpg",
+  "artist": "<a href=\"//commons.wikimedia.org/wiki/User:Ihor_Panas\" title=\"User:Ihor Panas\">Ihor Panas</a>",
+  "lic": "CC BY-SA 4.0",
+  "w": 1000,
+  "h": 666
+ },
+ "casparian": {
+  "title": "File:Monocot Heavily Suberized Endodermis in Smilax (36004774435).jpg",
+  "url": "https://commons.wikimedia.org/wiki/File:Monocot_Heavily_Suberized_Endodermis_in_Smilax_(36004774435).jpg",
+  "artist": "<a rel=\"nofollow\" class=\"external text\" href=\"https://www.flickr.com/people/146824358@N03\">Berkshire Community College  Bioscience Image Library</a>",
+  "lic": "CC0",
+  "w": 1000,
+  "h": 564
+ },
+ "rootxs": {
+  "title": "File:Monocot Root Endodermis in Smilax (35615771550).jpg",
+  "url": "https://commons.wikimedia.org/wiki/File:Monocot_Root_Endodermis_in_Smilax_(35615771550).jpg",
+  "artist": "<a rel=\"nofollow\" class=\"external text\" href=\"https://www.flickr.com/people/146824358@N03\">Berkshire Community College  Bioscience Image Library</a>",
+  "lic": "CC0",
+  "w": 1000,
+  "h": 564
+ },
+ "cactus": {
+  "title": "File:Golden Barrel cactus, Huntington Desert Garden.jpg",
+  "url": "https://commons.wikimedia.org/wiki/File:Golden_Barrel_cactus,_Huntington_Desert_Garden.jpg",
+  "artist": "<a rel=\"nofollow\" class=\"external text\" href=\"https://www.flickr.com/people/27398485@N08\">Pamla J. Eisenberg</a> from Anaheim, USA",
+  "lic": "CC BY-SA 2.0",
+  "w": 1000,
+  "h": 750
+ },
+ "stipa": {
+  "title": "File:Recovery of Feather Grass on an Abandoned Pasture.jpg",
+  "url": "https://commons.wikimedia.org/wiki/File:Recovery_of_Feather_Grass_on_an_Abandoned_Pasture.jpg",
+  "artist": "<a href=\"//commons.wikimedia.org/w/index.php?title=User:Anna_Soina&amp;action=edit&amp;redlink=1\" class=\"new\" title=\"User:Anna Soina (page does not exist)\">Anna Soina</a>",
+  "lic": "CC BY-SA 4.0",
+  "w": 1000,
+  "h": 668
+ },
+ "craterostigma": {
+  "title": "File:Craterostigma plantagineum, blomme, Borakalalo-suid, a.jpg",
+  "url": "https://commons.wikimedia.org/wiki/File:Craterostigma_plantagineum,_blomme,_Borakalalo-suid,_a.jpg",
+  "artist": "<a href=\"//commons.wikimedia.org/wiki/User:JMK\" title=\"User:JMK\">JMK</a>",
+  "lic": "CC BY-SA 4.0",
+  "w": 1000,
+  "h": 750
+ },
+ "selaginella": {
+  "title": "File:Selaginella lepidophylla (resurrection plant) (Mexico) 4 (49747795206).jpg",
+  "url": "https://commons.wikimedia.org/wiki/File:Selaginella_lepidophylla_(resurrection_plant)_(Mexico)_4_(49747795206).jpg",
+  "artist": "<a rel=\"nofollow\" class=\"external text\" href=\"https://www.flickr.com/people/47445767@N05\">James St. John</a>",
+  "lic": "CC BY 2.0",
+  "w": 1000,
+  "h": 725
+ },
+ "haberlea": {
+  "title": "File:Haberlea rhodopensis wild Bulgaria.jpg",
+  "url": "https://commons.wikimedia.org/wiki/File:Haberlea_rhodopensis_wild_Bulgaria.jpg",
+  "artist": "<a href=\"//commons.wikimedia.org/w/index.php?title=User:Peterdx&amp;action=edit&amp;redlink=1\" class=\"new\" title=\"User:Peterdx (page does not exist)\">Peterdx</a>",
+  "lic": "CC BY-SA 4.0",
+  "w": 1000,
+  "h": 750
+ },
+ "haberleadry": {
+  "title": "File:Haberlea rhodopensis kz01.jpg",
+  "url": "https://commons.wikimedia.org/wiki/File:Haberlea_rhodopensis_kz01.jpg",
+  "artist": "<a href=\"//commons.wikimedia.org/wiki/User:Kenraiz\" title=\"User:Kenraiz\">Krzysztof Ziarnek, Kenraiz</a>",
+  "lic": "CC BY-SA 4.0",
+  "w": 750,
+  "h": 1000
+ },
+ "ramonda": {
+  "title": "File:Ramonda serbica IMG 5851.jpg",
+  "url": "https://commons.wikimedia.org/wiki/File:Ramonda_serbica_IMG_5851.jpg",
+  "artist": "<a href=\"//commons.wikimedia.org/w/index.php?title=User:Sdjurovic&amp;action=edit&amp;redlink=1\" class=\"new\" title=\"User:Sdjurovic (page does not exist)\">Sdjurovic</a>",
+  "lic": "CC BY-SA 4.0",
+  "w": 1000,
+  "h": 750
+ },
+ "ramondadry": {
+  "title": "File:Ramonda serbica, Jelašnička klisura (2).jpg",
+  "url": "https://commons.wikimedia.org/wiki/File:Ramonda_serbica,_Jela%C5%A1ni%C4%8Dka_klisura_(2).jpg",
+  "artist": "<a href=\"//commons.wikimedia.org/w/index.php?title=User:Zerocool.marko&amp;action=edit&amp;redlink=1\" class=\"new\" title=\"User:Zerocool.marko (page does not exist)\">Zerocool.marko</a>",
+  "lic": "CC BY-SA 4.0",
+  "w": 1000,
+  "h": 666
+ },
+ "xerophyta": {
+  "title": "File:2025-06-14 Botanischer Garten Tübingen Xerophyta viscosa 01.jpg",
+  "url": "https://commons.wikimedia.org/wiki/File:2025-06-14_Botanischer_Garten_T%C3%BCbingen_Xerophyta_viscosa_01.jpg",
+  "artist": "<a href=\"//commons.wikimedia.org/wiki/User:Giftzwerg_88\" title=\"User:Giftzwerg 88\">Giftzwerg 88</a>",
+  "lic": "CC BY-SA 4.0",
+  "w": 1000,
+  "h": 666
+ },
+ "xerophytawet": {
+  "title": "File:Xerophyta viscosa (Velloziaceae) (32330292087).jpg",
+  "url": "https://commons.wikimedia.org/wiki/File:Xerophyta_viscosa_(Velloziaceae)_(32330292087).jpg",
+  "artist": "<a rel=\"nofollow\" class=\"external text\" href=\"https://www.flickr.com/people/30628571@N04\">Dr. Alexey Yakovlev</a>",
+  "lic": "CC BY-SA 2.0",
+  "w": 1000,
+  "h": 666
+ },
+ "salicornia": {
+  "title": "File:Salicornia.jpg",
+  "url": "https://commons.wikimedia.org/wiki/File:Salicornia.jpg",
+  "artist": "United State N.O.O.A.",
+  "lic": "Public domain",
+  "w": 350,
+  "h": 226
+ },
+ "mangrove": {
+  "title": "File:Mangrove roots at low tide.jpg",
+  "url": "https://commons.wikimedia.org/wiki/File:Mangrove_roots_at_low_tide.jpg",
+  "artist": "Dan Lundberg",
+  "lic": "CC BY-SA 2.0",
+  "w": 1000,
+  "h": 750
+ },
+ "pneum": {
+  "title": "File:Bali Barat mangroves.jpg",
+  "url": "https://commons.wikimedia.org/wiki/File:Bali_Barat_mangroves.jpg",
+  "artist": "<a rel=\"nofollow\" class=\"external text\" href=\"https://www.flickr.com/photos/22683248@N00\">Ron</a> from Nieuwegein / South Moreton Oxfordshire, Netherlands / UK",
+  "lic": "CC BY-SA 2.0",
+  "w": 1000,
+  "h": 655
+ },
+ "quinoa": {
+  "title": "File:Chenopodium quinoa in Cachilaya, Bolivia, Lake Titicaca.JPG",
+  "url": "https://commons.wikimedia.org/wiki/File:Chenopodium_quinoa_in_Cachilaya,_Bolivia,_Lake_Titicaca.JPG",
+  "artist": "<a href=\"//commons.wikimedia.org/wiki/User:NusHub\" title=\"User:NusHub\">Michael Hermann</a>",
+  "lic": "CC BY-SA 3.0",
+  "w": 1000,
+  "h": 750
+ },
+ "aster": {
+  "title": "File:Sea Aster - geograph.org.uk - 518102.jpg",
+  "url": "https://commons.wikimedia.org/wiki/File:Sea_Aster_-_geograph.org.uk_-_518102.jpg",
+  "artist": "<a rel=\"nofollow\" class=\"external text\" href=\"https://www.geograph.org.uk/profile/7257\">Mary and Angus Hogg</a>",
+  "lic": "CC BY-SA 2.0",
+  "w": 640,
+  "h": 478
+ },
+ "thermal": {
+  "title": "File:Leaf temperature- infrared image of tomato leaves.jpg",
+  "url": "https://commons.wikimedia.org/wiki/File:Leaf_temperature-_infrared_image_of_tomato_leaves.jpg",
+  "artist": "<a href=\"//commons.wikimedia.org/w/index.php?title=User:Bakanae&amp;action=edit&amp;redlink=1\" class=\"new\" title=\"User:Bakanae (page does not exist)\">Bakanae</a>",
+  "lic": "CC BY-SA 3.0",
+  "w": 317,
+  "h": 240
+ },
+ "frostleaf": {
+  "title": "File:เหมยขาบ Frost.jpg",
+  "url": "https://commons.wikimedia.org/wiki/File:%E0%B9%80%E0%B8%AB%E0%B8%A1%E0%B8%A2%E0%B8%82%E0%B8%B2%E0%B8%9A_Frost.jpg",
+  "artist": "<a href=\"//commons.wikimedia.org/w/index.php?title=User:Jamooh&amp;action=edit&amp;redlink=1\" class=\"new\" title=\"User:Jamooh (page does not exist)\">Jamooh</a>",
+  "lic": "CC BY-SA 4.0",
+  "w": 1000,
+  "h": 667
+ },
+ "winterwheat": {
+  "title": "File:Farmland west of Hopton Wood - geograph.org.uk - 654120.jpg",
+  "url": "https://commons.wikimedia.org/wiki/File:Farmland_west_of_Hopton_Wood_-_geograph.org.uk_-_654120.jpg",
+  "artist": "<a rel=\"nofollow\" class=\"external text\" href=\"https://www.geograph.org.uk/profile/14530\">Trevor Rickard</a>",
+  "lic": "CC BY-SA 2.0",
+  "w": 640,
+  "h": 480
+ },
+ "antarctic": {
+  "title": "File:Deschampsia antarctica.jpg",
+  "url": "https://commons.wikimedia.org/wiki/File:Deschampsia_antarctica.jpg",
+  "artist": "<a href=\"//commons.wikimedia.org/w/index.php?title=User:Lomvi2&amp;action=edit&amp;redlink=1\" class=\"new\" title=\"User:Lomvi2 (page does not exist)\">Lomvi2</a>",
+  "lic": "CC BY-SA 3.0",
+  "w": 900,
+  "h": 598
+ },
+ "alpine": {
+  "title": "File:New Zealand alpine cushion plant (Donatia novae-zelandiae) at Lewis Tops, New Zealand (31798528614).jpg",
+  "url": "https://commons.wikimedia.org/wiki/File:New_Zealand_alpine_cushion_plant_(Donatia_novae-zelandiae)_at_Lewis_Tops,_New_Zealand_(31798528614).jpg",
+  "artist": "<a rel=\"nofollow\" class=\"external text\" href=\"https://www.flickr.com/people/148662629@N08\">Dirk Pons</a>",
+  "lic": "CC BY 2.0",
+  "w": 1000,
+  "h": 724
+ },
+ "snowdrop": {
+  "title": "File:Galanthus nivalis - Snowdrop.jpg",
+  "url": "https://commons.wikimedia.org/wiki/File:Galanthus_nivalis_-_Snowdrop.jpg",
+  "artist": "<a href=\"//commons.wikimedia.org/wiki/User:Nino_barbieri\" class=\"mw-redirect\" title=\"User:Nino barbieri\">User:Nino barbieri</a>",
+  "lic": "CC BY 2.5",
+  "w": 1000,
+  "h": 666
+ },
+ "aerenchyma": {
+  "title": "File:Monocot Root Aerenchyma in Acorus (35399382813).jpg",
+  "url": "https://commons.wikimedia.org/wiki/File:Monocot_Root_Aerenchyma_in_Acorus_(35399382813).jpg",
+  "artist": "<a rel=\"nofollow\" class=\"external text\" href=\"https://www.flickr.com/people/146824358@N03\">Berkshire Community College  Bioscience Image Library</a>",
+  "lic": "CC0",
+  "w": 1000,
+  "h": 564
+ },
+ "rumex": {
+  "title": "File:Rumex palustris kz14.jpg",
+  "url": "https://commons.wikimedia.org/wiki/File:Rumex_palustris_kz14.jpg",
+  "artist": "<a href=\"//commons.wikimedia.org/wiki/User:Kenraiz\" title=\"User:Kenraiz\">Krzysztof Ziarnek, Kenraiz</a>",
+  "lic": "CC BY-SA 4.0",
+  "w": 1000,
+  "h": 750
+ },
+ "halleri": {
+  "title": "File:Arabidopsis halleri (Kriech-Schaumkresse) IMG 7443.JPG",
+  "url": "https://commons.wikimedia.org/wiki/File:Arabidopsis_halleri_(Kriech-Schaumkresse)_IMG_7443.JPG",
+  "artist": "<a href=\"//commons.wikimedia.org/wiki/User:HermannSchachner\" title=\"User:HermannSchachner\">HermannSchachner</a>",
+  "lic": "Public domain",
+  "w": 1000,
+  "h": 664
+ },
+ "noccaea": {
+  "title": "File:Gebirgs-Hellerkraut.jpg",
+  "url": "https://commons.wikimedia.org/wiki/File:Gebirgs-Hellerkraut.jpg",
+  "artist": "Konrad Lackerbeck",
+  "lic": "CC BY-SA 2.5",
+  "w": 1000,
+  "h": 750
+ },
+ "sorghum": {
+  "title": "File:Sorghum bicolor Bild0902.jpg",
+  "url": "https://commons.wikimedia.org/wiki/File:Sorghum_bicolor_Bild0902.jpg",
+  "artist": "Marco Schmidt",
+  "lic": "CC BY-SA 2.5",
+  "w": 750,
+  "h": 1000
+ },
+ "ricepaddy": {
+  "title": "File:Green rice sheaves planted in a paddy field with long shadows at golden hour in Don Det Laos.jpg",
+  "url": "https://commons.wikimedia.org/wiki/File:Green_rice_sheaves_planted_in_a_paddy_field_with_long_shadows_at_golden_hour_in_Don_Det_Laos.jpg",
+  "artist": "<a href=\"//commons.wikimedia.org/wiki/User:Basile_Morin\" title=\"User:Basile Morin\">Basile Morin</a>",
+  "lic": "CC BY-SA 4.0",
+  "w": 1000,
+  "h": 666
+ },
+ "brassicajuncea": {
+  "title": "File:Indian Mustard (3936061051).jpg",
+  "url": "https://commons.wikimedia.org/wiki/File:Indian_Mustard_(3936061051).jpg",
+  "artist": "<a rel=\"nofollow\" class=\"external text\" href=\"https://www.flickr.com/people/91314344@N00\">Dinesh Valke</a> from Thane, India",
+  "lic": "CC BY-SA 2.0",
+  "w": 1000,
+  "h": 750
+ },
+ "genebank": {
+  "title": "File:Seedbank.jpg",
+  "url": "https://commons.wikimedia.org/wiki/File:Seedbank.jpg",
+  "artist": "R. C. Johnson",
+  "lic": "CC BY 2.5",
+  "w": 1000,
+  "h": 750
+ },
+ "durum": {
+  "title": "File:Triticum durum sl23.jpg",
+  "url": "https://commons.wikimedia.org/wiki/File:Triticum_durum_sl23.jpg",
+  "artist": "<a href=\"//commons.wikimedia.org/wiki/User:Stefan.lefnaer\" title=\"User:Stefan.lefnaer\">Stefan.lefnaer</a>",
+  "lic": "CC BY-SA 4.0",
+  "w": 750,
+  "h": 1000
+ },
+ "growthchamber": {
+  "title": "File:ISS-56 Arabidopsis plants inside the Advanced Plant Habitat (1).jpg",
+  "url": "https://commons.wikimedia.org/wiki/File:ISS-56_Arabidopsis_plants_inside_the_Advanced_Plant_Habitat_(1).jpg",
+  "artist": "NASA",
+  "lic": "Public domain",
+  "w": 1000,
+  "h": 666
+ },
+ "nodules": {
+  "title": "File:Trifolium glomeratum root nodule1 (15492992520).jpg",
+  "url": "https://commons.wikimedia.org/wiki/File:Trifolium_glomeratum_root_nodule1_(15492992520).jpg",
+  "artist": "<a rel=\"nofollow\" class=\"external text\" href=\"https://www.flickr.com/people/73840284@N04\">Harry Rose</a> from South West Rocks, Australia",
+  "lic": "CC BY 2.0",
+  "w": 1000,
+  "h": 750
+ },
+ "aquaporin": {
+  "title": "File:Aquaporin-Sideview.png",
+  "url": "https://commons.wikimedia.org/wiki/File:Aquaporin-Sideview.png",
+  "artist": "<a href=\"//commons.wikimedia.org/wiki/User:Vossman\" title=\"User:Vossman\">Vossman</a>",
+  "lic": "CC BY-SA 3.0",
+  "w": 800,
+  "h": 749
+ },
+ "rubisco": {
+  "title": "File:Rubisco.png",
+  "url": "https://commons.wikimedia.org/wiki/File:Rubisco.png",
+  "artist": "<a href=\"https://en.wikipedia.org/wiki/User:ARP\" class=\"extiw\" title=\"wikipedia:User:ARP\">ARP</a> at <a href=\"https://en.wikipedia.org/wiki/\" class=\"extiw\" title=\"wikipedia:\">English Wikipedia</a>",
+  "lic": "Public domain",
+  "w": 612,
+  "h": 605
+ },
+ "selye": {
+  "title": "File:Portrait Hans Selye.jpg",
+  "url": "https://commons.wikimedia.org/wiki/File:Portrait_Hans_Selye.jpg",
+  "artist": "<div class=\"fn value\">\nJean-Paul Rioux</div>",
+  "lic": "CC BY-SA 4.0",
+  "w": 623,
+  "h": 1000
+ },
+ "borlaug": {
+  "title": "File:Norman Borlaug (2004).jpg",
+  "url": "https://commons.wikimedia.org/wiki/File:Norman_Borlaug_(2004).jpg",
+  "artist": "Ben Zinner, USAID",
+  "lic": "Public domain",
+  "w": 1000,
+  "h": 879
+ },
+ "maizedrought": {
+  "title": "File:Dry maize in France (summer 2016).jpg",
+  "url": "https://commons.wikimedia.org/wiki/File:Dry_maize_in_France_(summer_2016).jpg",
+  "artist": "<a href=\"//commons.wikimedia.org/wiki/User:Tangopaso\" title=\"User:Tangopaso\">Tangopaso</a>",
+  "lic": "Public domain",
+  "w": 1000,
+  "h": 750
+ },
+ "cuticle": {
+  "title": "File:Rosa epicuticular wax stoma.jpg",
+  "url": "https://commons.wikimedia.org/wiki/File:Rosa_epicuticular_wax_stoma.jpg",
+  "artist": "<a href=\"https://en.wikipedia.org/wiki/User:Plantsurfer\" class=\"extiw\" title=\"wikipedia:User:Plantsurfer\">Plantsurfer</a> at <a href=\"https://en.wikipedia.org/wiki/\" class=\"extiw\" title=\"wikipedia:\">English Wikipedia</a>",
+  "lic": "Public domain",
+  "w": 768,
+  "h": 537
+ },
+ "wax": {
+  "title": "File:Wax morphologies.png",
+  "url": "https://commons.wikimedia.org/wiki/File:Wax_morphologies.png",
+  "artist": "<a href=\"//commons.wikimedia.org/w/index.php?title=User:Katsule&amp;action=edit&amp;redlink=1\" class=\"new\" title=\"User:Katsule (page does not exist)\">Katsule</a>",
+  "lic": "CC BY-SA 4.0",
+  "w": 474,
+  "h": 325
+ },
+ "resurrfern": {
+  "title": "File:Resurrection-Fern (5598838411).gif",
+  "url": "https://commons.wikimedia.org/wiki/File:Resurrection-Fern_(5598838411).gif",
+  "artist": "<a rel=\"nofollow\" class=\"external text\" href=\"https://www.flickr.com/people/28340342@N08\">Homer Edward Price</a>",
+  "lic": "CC BY 2.0",
+  "w": 640,
+  "h": 482
+ },
+ "atriplex": {
+  "title": "File:Atriplex halimus kz1.JPG",
+  "url": "https://commons.wikimedia.org/wiki/File:Atriplex_halimus_kz1.JPG",
+  "artist": "<a href=\"//commons.wikimedia.org/wiki/User:Kenraiz\" title=\"User:Kenraiz\">Krzysztof Ziarnek, Kenraiz</a>",
+  "lic": "CC BY-SA 3.0",
+  "w": 1000,
+  "h": 706
+ },
+ "limonium": {
+  "title": "File:Gewoehnlicher Strandflieder (Limonium vulgare).jpg",
+  "url": "https://commons.wikimedia.org/wiki/File:Gewoehnlicher_Strandflieder_(Limonium_vulgare).jpg",
+  "artist": "<a rel=\"nofollow\" class=\"external text\" href=\"https://www.flickr.com/people/145489125@N03/\">peterichman</a> <span class=\"mw-valign-text-top noprint\" typeof=\"mw:File/Frameless\"><a href=\"//commons.wikimedia.org/wiki/File:Gewoehnlicher_Strandflieder_(Limonium_vulgare).jpg#P170\" title=\"Edit this at Structured Data on Commons\"><img alt=\"Edit this at Structured Data on Commons\" src=\"https://thumb.wikimedia.org/wikipedia/commons/thumb/8/8a/OOjs_UI_icon_edit-ltr-progressive.svg/20px-OOjs_UI_icon_edit-ltr-progressive.svg.png?utm_source=commons.wikimedia.org&amp;utm_campaign=parser&amp;utm_content=thumbnail\" decoding=\"async\" loading=\"lazy\" width=\"10\" height=\"10\" class=\"mw-file-element\" data-file-width=\"20\" data-file-height=\"20\"></a></span>",
+  "lic": "CC BY-SA 2.0",
+  "w": 1000,
+  "h": 646
+ },
+ "iceplant": {
+  "title": "File:Mesembryanthemum crystallinum kz09.jpg",
+  "url": "https://commons.wikimedia.org/wiki/File:Mesembryanthemum_crystallinum_kz09.jpg",
+  "artist": "<a href=\"//commons.wikimedia.org/wiki/User:Kenraiz\" title=\"User:Kenraiz\">Krzysztof Ziarnek, Kenraiz</a>",
+  "lic": "CC BY-SA 4.0",
+  "w": 1000,
+  "h": 750
+ },
+ "iceplantstem": {
+  "title": "File:Mesembryanthemum crystallinum kz16.jpg",
+  "url": "https://commons.wikimedia.org/wiki/File:Mesembryanthemum_crystallinum_kz16.jpg",
+  "artist": "<a href=\"//commons.wikimedia.org/wiki/User:Kenraiz\" title=\"User:Kenraiz\">Krzysztof Ziarnek, Kenraiz</a>",
+  "lic": "CC BY-SA 4.0",
+  "w": 750,
+  "h": 1000
+ },
+ "ricepanicle": {
+  "title": "File:CSIRO ScienceImage 3439 Rice panicle.jpg",
+  "url": "https://commons.wikimedia.org/wiki/File:CSIRO_ScienceImage_3439_Rice_panicle.jpg",
+  "artist": "Carl Davies, <a href=\"https://en.wikipedia.org/wiki/Commonwealth_Scientific_and_Industrial_Research_Organisation\" class=\"extiw\" title=\"w:Commonwealth Scientific and Industrial Research Organisation\">CSIRO</a>",
+  "lic": "CC BY 3.0",
+  "w": 661,
+  "h": 1000
+ },
+ "hsp": {
+  "title": "File:PDB 1dkz EBI.jpg",
+  "url": "https://commons.wikimedia.org/wiki/File:PDB_1dkz_EBI.jpg",
+  "artist": "Jawahar Swaminathan and MSD staff at the <span lang=\"en\" dir=\"ltr\"><a href=\"https://en.wikipedia.org/wiki/European_Bioinformatics_Institute\" class=\"extiw\" title=\"en:European Bioinformatics Institute\"><span lang=\"en\" dir=\"ltr\">European Bioinformatics Institute</span></a></span>",
+  "lic": "Public domain",
+  "w": 800,
+  "h": 600
+ },
+ "icecrystals": {
+  "title": "File:Dülmen, Hausdülmen, Distel -- 2021 -- 5079.jpg",
+  "url": "https://commons.wikimedia.org/wiki/File:D%C3%BClmen,_Hausd%C3%BClmen,_Distel_--_2021_--_5079.jpg",
+  "artist": "<bdi><a href=\"https://www.wikidata.org/wiki/Q34788025\" class=\"extiw\" title=\"d:Q34788025\"><span title=\"German photographer and mathematician\">Dietmar Rabich</span></a></bdi>",
+  "lic": "CC BY-SA 4.0",
+  "w": 1000,
+  "h": 750
+ },
+ "frostleaf2": {
+  "title": "File:Dülmen, Dernekamp, Eiskristalle -- 2021 -- 4599.jpg",
+  "url": "https://commons.wikimedia.org/wiki/File:D%C3%BClmen,_Dernekamp,_Eiskristalle_--_2021_--_4599.jpg",
+  "artist": "<bdi><a href=\"https://www.wikidata.org/wiki/Q34788025\" class=\"extiw\" title=\"d:Q34788025\"><span title=\"German photographer and mathematician\">Dietmar Rabich</span></a></bdi>",
+  "lic": "CC BY-SA 4.0",
+  "w": 1000,
+  "h": 750
+ },
+ "anthocyanin": {
+  "title": "File:Colorful Aspen and Chokecherry Leaves, Medano Canyon (44386169945).jpg",
+  "url": "https://commons.wikimedia.org/wiki/File:Colorful_Aspen_and_Chokecherry_Leaves,_Medano_Canyon_(44386169945).jpg",
+  "artist": "<a rel=\"nofollow\" class=\"external text\" href=\"https://www.flickr.com/people/94707653@N06\">Great Sand Dunes National Park and Preserve</a>",
+  "lic": "Public domain",
+  "w": 1000,
+  "h": 750
+ },
+ "riceflood": {
+  "title": "File:Typhoon Ketsana flooded rice field.jpg",
+  "url": "https://commons.wikimedia.org/wiki/File:Typhoon_Ketsana_flooded_rice_field.jpg",
+  "artist": "Chris Quintana",
+  "lic": "CC BY 2.0",
+  "w": 1000,
+  "h": 670
+ },
+ "alyssum": {
+  "title": "File:Alyssum murale, Nutjak fortress, Croatia 20230604 02.jpg",
+  "url": "https://commons.wikimedia.org/wiki/File:Alyssum_murale,_Nutjak_fortress,_Croatia_20230604_02.jpg",
+  "artist": "<a href=\"//commons.wikimedia.org/wiki/User:Argo_Navis\" title=\"User:Argo Navis\">Argo Navis</a>",
+  "lic": "CC BY-SA 4.0",
+  "w": 1000,
+  "h": 1000
+ },
+ "pteris": {
+  "title": "File:Pteris vittata kz06.jpg",
+  "url": "https://commons.wikimedia.org/wiki/File:Pteris_vittata_kz06.jpg",
+  "artist": "<a href=\"//commons.wikimedia.org/wiki/User:Kenraiz\" title=\"User:Kenraiz\">Krzysztof Ziarnek, Kenraiz</a>",
+  "lic": "CC BY-SA 4.0",
+  "w": 1000,
+  "h": 750
+ },
+ "acidsoil": {
+  "title": "File:Aluminium toxocity maize roots 2017 01 05 6164.jpg",
+  "url": "https://commons.wikimedia.org/wiki/File:Aluminium_toxocity_maize_roots_2017_01_05_6164.jpg",
+  "artist": "<a href=\"//commons.wikimedia.org/wiki/User:Alandmanson\" title=\"User:Alandmanson\">Alandmanson</a>",
+  "lic": "CC BY 4.0",
+  "w": 1000,
+  "h": 914
+ },
+ "uvr8": {
+  "title": "File:4dnw.png",
+  "url": "https://commons.wikimedia.org/wiki/File:4dnw.png",
+  "artist": "<a href=\"//commons.wikimedia.org/wiki/User:A2-33\" title=\"User:A2-33\">A2-33</a>",
+  "lic": "CC BY-SA 3.0",
+  "w": 573,
+  "h": 636
+ },
+ "phenotyping": {
+  "title": "File:Poplar trees on the phenotyping system (50340880763).png",
+  "url": "https://commons.wikimedia.org/wiki/File:Poplar_trees_on_the_phenotyping_system_(50340880763).png",
+  "artist": "<a rel=\"nofollow\" class=\"external text\" href=\"https://www.flickr.com/people/37940997@N05\">Oak Ridge National Laboratory</a>",
+  "lic": "CC BY 2.0",
+  "w": 1000,
+  "h": 666
+ },
+ "mycorrhiza": {
+  "title": "File:Vesicular Arbuscular Mycorrhizae 40X0031 03.jpg",
+  "url": "https://commons.wikimedia.org/wiki/File:Vesicular_Arbuscular_Mycorrhizae_40X0031_03.jpg",
+  "artist": "<a href=\"//commons.wikimedia.org/wiki/User:RIT_RAJARSHI\" title=\"User:RIT RAJARSHI\">Rajarshi Rit</a> (<a rel=\"nofollow\" class=\"external free\" href=\"https://orcid.org/0000-0003-3122-5926\">https://orcid.org/0000-0003-3122-5926</a>)",
+  "lic": "CC BY 4.0",
+  "w": 1000,
+  "h": 750
+ },
+ "saltcrust": {
+  "title": "File:Hexagonal Shaped Salt Crust at Badwater.jpg",
+  "url": "https://commons.wikimedia.org/wiki/File:Hexagonal_Shaped_Salt_Crust_at_Badwater.jpg",
+  "artist": "<a href=\"//commons.wikimedia.org/wiki/User:Wingchi\" title=\"User:Wingchi\">Wing-Chi Poon</a>",
+  "lic": "CC BY-SA 3.0",
+  "w": 1000,
+  "h": 664
+ },
+ "winterfield": {
+  "title": "File:Winter crops - geograph.org.uk - 1062432.jpg",
+  "url": "https://commons.wikimedia.org/wiki/File:Winter_crops_-_geograph.org.uk_-_1062432.jpg",
+  "artist": "<a rel=\"nofollow\" class=\"external text\" href=\"https://www.geograph.org.uk/profile/6638\">Walter Baxter</a>",
+  "lic": "CC BY-SA 2.0",
+  "w": 427,
+  "h": 640
+ },
+ "floodedfield": {
+  "title": "File:Waterlogged fields - geograph.org.uk - 4193460.jpg",
+  "url": "https://commons.wikimedia.org/wiki/File:Waterlogged_fields_-_geograph.org.uk_-_4193460.jpg",
+  "artist": "<a rel=\"nofollow\" class=\"external text\" href=\"https://www.geograph.org.uk/profile/3101\">N Chadwick</a> <span class=\"mw-valign-text-top noprint\" typeof=\"mw:File/Frameless\"><a href=\"//commons.wikimedia.org/wiki/File:Waterlogged_fields_-_geograph.org.uk_-_4193460.jpg#P170\" title=\"Edit this at Structured Data on Commons\"><img alt=\"Edit this at Structured Data on Commons\" src=\"https://thumb.wikimedia.org/wikipedia/commons/thumb/8/8a/OOjs_UI_icon_edit-ltr-progressive.svg/20px-OOjs_UI_icon_edit-ltr-progressive.svg.png?utm_source=commons.wikimedia.org&amp;utm_campaign=parser&amp;utm_content=thumbnail\" decoding=\"async\" loading=\"lazy\" width=\"10\" height=\"10\" class=\"mw-file-element\" data-file-width=\"20\" data-file-height=\"20\"></a></span>",
+  "lic": "CC BY-SA 2.0",
+  "w": 640,
+  "h": 349
+ },
+ "frostdamage": {
+  "title": "File:Rosenkohl nach -9°C Frost-Josef Schlaghecken.jpg",
+  "url": "https://commons.wikimedia.org/wiki/File:Rosenkohl_nach_-9%C2%B0C_Frost-Josef_Schlaghecken.jpg",
+  "artist": "<a href=\"//commons.wikimedia.org/wiki/User:Schlaghecken_Josef\" title=\"User:Schlaghecken Josef\">Schlaghecken Josef</a>",
+  "lic": "CC BY 4.0",
+  "w": 1000,
+  "h": 563
+ },
+ "frostvine": {
+  "title": "File:ErbacherSteinmorgenRebstockDrahtrahmenSpalierFrostSchädenNeuAustrieb.JPG",
+  "url": "https://commons.wikimedia.org/wiki/File:ErbacherSteinmorgenRebstockDrahtrahmenSpalierFrostSch%C3%A4denNeuAustrieb.JPG",
+  "artist": "<a href=\"//commons.wikimedia.org/wiki/User:Br%C3%BChl\" title=\"User:Brühl\">Brühl</a>",
+  "lic": "Public domain",
+  "w": 1000,
+  "h": 750
+ },
+ "aerenchyma2": {
+  "title": "File:Sternparenchym201512151528.JPG",
+  "url": "https://commons.wikimedia.org/wiki/File:Sternparenchym201512151528.JPG",
+  "artist": "<a href=\"//commons.wikimedia.org/w/index.php?title=User:Atriplex82&amp;action=edit&amp;redlink=1\" class=\"new\" title=\"User:Atriplex82 (page does not exist)\">Atriplex82</a>",
+  "lic": "CC BY-SA 4.0",
+  "w": 1000,
+  "h": 958
+ },
+ "adventitious": {
+  "title": "File:Adventitious roots on a Rubus fruticosus 'hoop' tip. Barrmill Park, Ayrshire.jpg",
+  "url": "https://commons.wikimedia.org/wiki/File:Adventitious_roots_on_a_Rubus_fruticosus_%27hoop%27_tip._Barrmill_Park,_Ayrshire.jpg",
+  "artist": "<a href=\"//commons.wikimedia.org/wiki/User:Rosser1954\" title=\"User:Rosser1954\">Rosser1954</a>",
+  "lic": "CC BY-SA 4.0",
+  "w": 762,
+  "h": 685
+ },
+ "lenticels": {
+  "title": "File:Other hypertrophied lenticels in wetland Whitehall Plantation Game Land ncwetlands KG.jpg",
+  "url": "https://commons.wikimedia.org/wiki/File:Other_hypertrophied_lenticels_in_wetland_Whitehall_Plantation_Game_Land_ncwetlands_KG.jpg",
+  "artist": "ncwetlands.org",
+  "lic": "CC BY 2.0",
+  "w": 1000,
+  "h": 750
+ }
+}
