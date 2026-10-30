@@ -220,20 +220,12 @@
   "doi": "10.1126/science.1172408"
  },
  {
-  "k": "shi00",
-  "doi": "10.1073/pnas.97.12.6896"
- },
- {
   "k": "zhu02",
   "doi": "10.1146/annurev.arplant.53.091401.143329"
  },
  {
   "k": "ren05",
   "doi": "10.1038/ng1553"
- },
- {
-  "k": "moller09",
-  "doi": "10.1105/tpc.108.064287"
  },
  {
   "k": "baileyserres08",
@@ -466,5 +458,17 @@
  {
   "k": "wang04",
   "q": "Wang Vinocur Shoseyov Altman 2004 Role of plant heat-shock proteins and molecular chaperones in the abiotic stress response Trends in Plant Science"
+ },
+ {
+  "k": "shi00",
+  "q": "Shi Ishitani Kim Zhu 2000 The Arabidopsis thaliana salt tolerance gene SOS1 encodes a putative Na+/H+ antiporter"
+ },
+ {
+  "k": "moller09",
+  "q": "Moller Jha Shabala Tester 2009 Shoot Na+ exclusion and increased salinity tolerance engineered by cell type-specific alteration of Na+ transport in Arabidopsis"
+ },
+ {
+  "k": "ding19",
+  "q": "Ding Shi Yang 2019 Advances and challenges in uncovering cold tolerance regulatory mechanisms in plants New Phytologist"
  }
 ]
