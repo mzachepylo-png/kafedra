@@ -1587,20 +1587,6 @@
    "page": "278-289"
   },
   {
-   "doi": "10.1016/j.devcel.2015.01.004",
-   "title": "Increasing Freezing Tolerance: Kinase Regulation of ICE1",
-   "authors": [
-    "Zhan Xiangqiang",
-    "Zhu Jian-Kang",
-    "Lang Zhaobo"
-   ],
-   "year": 2015,
-   "journal": "Developmental Cell",
-   "vol": "32",
-   "issue": "3",
-   "page": "257-258"
-  },
-  {
    "doi": "10.1016/j.devcel.2017.09.025",
    "title": "MPK3- and MPK6-Mediated ICE1 Phosphorylation Negatively Regulates ICE1 Stability and Freezing Tolerance in Arabidopsis",
    "authors": [
@@ -1617,6 +1603,20 @@
    "vol": "43",
    "issue": "5",
    "page": "630-642.e4"
+  },
+  {
+   "doi": "10.1016/j.devcel.2015.01.004",
+   "title": "Increasing Freezing Tolerance: Kinase Regulation of ICE1",
+   "authors": [
+    "Zhan Xiangqiang",
+    "Zhu Jian-Kang",
+    "Lang Zhaobo"
+   ],
+   "year": 2015,
+   "journal": "Developmental Cell",
+   "vol": "32",
+   "issue": "3",
+   "page": "257-258"
   }
  ],
  "hirayama10": [

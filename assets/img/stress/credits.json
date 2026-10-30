@@ -614,5 +614,117 @@
   "lic": "CC BY 2.0",
   "w": 1000,
   "h": 750
+ },
+ "kalanchoe": {
+  "title": "File:Vivipary in Kalanchoe daigremontiana.jpg",
+  "url": "https://commons.wikimedia.org/wiki/File:Vivipary_in_Kalanchoe_daigremontiana.jpg",
+  "artist": "<a href=\"https://en.wikipedia.org/wiki/sr:User:Gmihail\" class=\"extiw\" title=\"w:sr:User:Gmihail\">Gmihail</a> at <a href=\"https://en.wikipedia.org/wiki/sr:\" class=\"extiw\" title=\"w:sr:\">Serbian Wikipedia</a>",
+  "lic": "CC BY-SA 3.0 rs",
+  "w": 1000,
+  "h": 1000
+ },
+ "aeonium": {
+  "title": "File:Aeonium undulatum.JPG",
+  "url": "https://commons.wikimedia.org/wiki/File:Aeonium_undulatum.JPG",
+  "artist": "",
+  "lic": "CC BY-SA 3.0",
+  "w": 830,
+  "h": 680
+ },
+ "pineapple": {
+  "title": "File:Pineapple at Augusto Arruda Pineapple Plantation 2011.jpg",
+  "url": "https://commons.wikimedia.org/wiki/File:Pineapple_at_Augusto_Arruda_Pineapple_Plantation_2011.jpg",
+  "artist": "<a href=\"//commons.wikimedia.org/wiki/User:JopkeB\" title=\"User:JopkeB\">JopkeB</a>",
+  "lic": "CC BY-SA 4.0",
+  "w": 750,
+  "h": 1000
+ },
+ "opuntia": {
+  "title": "File:Opuntia ficus indica Spain.jpg",
+  "url": "https://commons.wikimedia.org/wiki/File:Opuntia_ficus_indica_Spain.jpg",
+  "artist": "<a href=\"//commons.wikimedia.org/wiki/User:Jebulon\" title=\"User:Jebulon\">Jebulon</a>",
+  "lic": "CC0",
+  "w": 1000,
+  "h": 666
+ },
+ "welwitschia": {
+  "title": "File:Welwitschia mirabilis kz03.jpg",
+  "url": "https://commons.wikimedia.org/wiki/File:Welwitschia_mirabilis_kz03.jpg",
+  "artist": "<a href=\"//commons.wikimedia.org/wiki/User:Kenraiz\" title=\"User:Kenraiz\">Krzysztof Ziarnek, Kenraiz</a>",
+  "lic": "CC BY-SA 4.0",
+  "w": 1000,
+  "h": 666
+ },
+ "frozenleaf": {
+  "title": "File:Frozen fallen leaves - geograph.org.uk - 5983606.jpg",
+  "url": "https://commons.wikimedia.org/wiki/File:Frozen_fallen_leaves_-_geograph.org.uk_-_5983606.jpg",
+  "artist": "<a rel=\"nofollow\" class=\"external text\" href=\"https://www.geograph.org.uk/profile/1837\">Philip Halling</a> <span class=\"mw-valign-text-top noprint\" typeof=\"mw:File/Frameless\"><a href=\"//commons.wikimedia.org/wiki/File:Frozen_fallen_leaves_-_geograph.org.uk_-_5983606.jpg#P170\" title=\"Edit this at Structured Data on Commons\"><img alt=\"Edit this at Structured Data on Commons\" src=\"https://thumb.wikimedia.org/wikipedia/commons/thumb/8/8a/OOjs_UI_icon_edit-ltr-progressive.svg/20px-OOjs_UI_icon_edit-ltr-progressive.svg.png?utm_source=commons.wikimedia.org&amp;utm_campaign=parser&amp;utm_content=thumbnail\" decoding=\"async\" loading=\"lazy\" width=\"10\" height=\"10\" class=\"mw-file-element\" data-file-width=\"20\" data-file-height=\"20\"></a></span>",
+  "lic": "CC BY-SA 2.0",
+  "w": 1000,
+  "h": 750
+ },
+ "salinized": {
+  "title": "File:Salinity.jpg",
+  "url": "https://commons.wikimedia.org/wiki/File:Salinity.jpg",
+  "artist": "USDA Employee",
+  "lic": "Public domain",
+  "w": 663,
+  "h": 447
+ },
+ "floodmaize": {
+  "title": "File:Hochwasser 2009 Oststeiermark 16.jpg",
+  "url": "https://commons.wikimedia.org/wiki/File:Hochwasser_2009_Oststeiermark_16.jpg",
+  "artist": "<a href=\"//commons.wikimedia.org/wiki/User:Nxr-at\" title=\"User:Nxr-at\">Nxr-at</a>",
+  "lic": "CC BY-SA 4.0",
+  "w": 1000,
+  "h": 667
+ },
+ "monococcum": {
+  "title": "File:Triticum monococcum0.jpg",
+  "url": "https://commons.wikimedia.org/wiki/File:Triticum_monococcum0.jpg",
+  "artist": "",
+  "lic": "CC BY-SA 3.0",
+  "w": 480,
+  "h": 640
+ },
+ "glaberrima": {
+  "title": "File:Oryza glaberrima seeds.jpg",
+  "url": "https://commons.wikimedia.org/wiki/File:Oryza_glaberrima_seeds.jpg",
+  "artist": "Jose Hernandez @ USDA-NRCS PLANTS Database",
+  "lic": "Public domain",
+  "w": 900,
+  "h": 600
+ },
+ "secale": {
+  "title": "File:Roggen IMG 8059.jpg",
+  "url": "https://commons.wikimedia.org/wiki/File:Roggen_IMG_8059.jpg",
+  "artist": "<a href=\"//commons.wikimedia.org/wiki/User:Fischer.H\" title=\"User:Fischer.H\">Fischer.H</a>",
+  "lic": "CC BY-SA 4.0",
+  "w": 1000,
+  "h": 695
+ },
+ "myrothamnus": {
+  "title": "File:Myrothamnus flabellifolia KS2011ZA217.jpg",
+  "url": "https://commons.wikimedia.org/wiki/File:Myrothamnus_flabellifolia_KS2011ZA217.jpg",
+  "artist": "<a href=\"//commons.wikimedia.org/wiki/User:Marco_Schmidt\" title=\"User:Marco Schmidt\">Marco Schmidt</a> <a rel=\"nofollow\" class=\"external autonumber\" href=\"http://www.senckenberg.de/root/index.php?page_id=1750&amp;preview=true\">[1]</a>",
+  "lic": "CC BY-SA 3.0",
+  "w": 750,
+  "h": 1000
+ },
+ "myrothamnuswet": {
+  "title": "File:Myrothamnus flabellifolius04.jpg",
+  "url": "https://commons.wikimedia.org/wiki/File:Myrothamnus_flabellifolius04.jpg",
+  "artist": "<a href=\"//commons.wikimedia.org/wiki/User:Androstachys\" title=\"User:Androstachys\">Androstachys</a>",
+  "lic": "CC BY-SA 3.0",
+  "w": 1000,
+  "h": 664
+ },
+ "salttol": {
+  "title": "File:Гідрологічний заказник \"Солоне\" 06.jpg",
+  "url": "https://commons.wikimedia.org/wiki/File:%D0%93%D1%96%D0%B4%D1%80%D0%BE%D0%BB%D0%BE%D0%B3%D1%96%D1%87%D0%BD%D0%B8%D0%B9_%D0%B7%D0%B0%D0%BA%D0%B0%D0%B7%D0%BD%D0%B8%D0%BA_%22%D0%A1%D0%BE%D0%BB%D0%BE%D0%BD%D0%B5%22_06.jpg",
+  "artist": "<a href=\"//commons.wikimedia.org/w/index.php?title=User:%D0%9E%D0%B1%D0%BE%D0%BB%D0%BE%D0%BD%D1%81%D1%8C%D0%BA%D0%B8%D0%B9_%D0%BB%D1%96%D1%86%D0%B5%D0%B9_%D0%9E%D0%B1%D0%BE%D0%BB%D0%BE%D0%BD%D1%81%D1%8C%D0%BA%D0%BE%D1%97_%D1%81%D1%96%D0%BB%D1%8C%D1%81%D1%8C%D0%BA%D0%BE%D1%97_%D1%80%D0%B0%D0%B4%D0%B8&amp;action=edit&amp;redlink=1\" class=\"new\" title=\"User:Оболонський ліцей Оболонської сільської ради (page does not exist)\">Оболонський ліцей Оболонської сільської ради</a>",
+  "lic": "CC0",
+  "w": 1000,
+  "h": 563
  }
 }
