@@ -1340,7 +1340,6 @@
    "page": "1064-1068"
   }
  ],
- "shi00": [],
  "zhu02": [
   {
    "doi": "10.1146/annurev.arplant.53.091401.143329",
@@ -1375,7 +1374,6 @@
    "page": "630-635"
   }
  ],
- "moller09": [],
  "baileyserres08": [
   {
    "doi": "10.1146/annurev.arplant.59.032607.092752",
@@ -2368,19 +2366,6 @@
    "page": "1209-1221"
   },
   {
-   "doi": "10.3389/fsci.2024.1416023",
-   "title": "Adapting crops for climate change: regaining lost abiotic stress tolerance in crops",
-   "authors": [
-    "Palmgren Michael",
-    "Shabala Sergey"
-   ],
-   "year": 2024,
-   "journal": "Frontiers in Science",
-   "vol": "2",
-   "issue": null,
-   "page": "1416023"
-  },
-  {
    "doi": "10.1093/jxb/ert430",
    "title": "ROS homeostasis in halophytes in the context of salinity stress tolerance",
    "authors": [
@@ -2393,6 +2378,19 @@
    "vol": "65",
    "issue": "5",
    "page": "1241-1257"
+  },
+  {
+   "doi": "10.3389/fsci.2024.1416023",
+   "title": "Adapting crops for climate change: regaining lost abiotic stress tolerance in crops",
+   "authors": [
+    "Palmgren Michael",
+    "Shabala Sergey"
+   ],
+   "year": 2024,
+   "journal": "Frontiers in Science",
+   "vol": "2",
+   "issue": null,
+   "page": "1416023"
   }
  ],
  "tuteja07": [
@@ -3622,6 +3620,146 @@
    "vol": null,
    "issue": "560",
    "page": "285-292"
+  }
+ ],
+ "shi00": [
+  {
+   "doi": "10.1073/pnas.120170197",
+   "title": "The\n                    <i>Arabidopsis thaliana</i>\n                    salt tolerance gene\n                    <i>SOS1</i>\n                    encodes a putative Na\n                    <sup>+</sup>\n                    /H\n                    <sup>+</sup>\n                    antiporter",
+   "authors": [
+    "Shi Huazhong",
+    "Ishitani Manabu",
+    "Kim Cheolsoo",
+    "Zhu Jian-Kang"
+   ],
+   "year": 2000,
+   "journal": "Proceedings of the National Academy of Sciences",
+   "vol": "97",
+   "issue": "12",
+   "page": "6896-6901"
+  },
+  {
+   "doi": "10.1073/pnas.97.7.3730",
+   "title": "The\n                    <i>Arabidopsis thaliana SOS2</i>\n                    gene encodes a protein kinase that is required for salt tolerance",
+   "authors": [
+    "Liu Jiping",
+    "Ishitani Manabu",
+    "Halfter Ursula",
+    "Kim Cheol-Soo",
+    "Zhu Jian-Kang"
+   ],
+   "year": 2000,
+   "journal": "Proceedings of the National Academy of Sciences",
+   "vol": "97",
+   "issue": "7",
+   "page": "3730-3734"
+  },
+  {
+   "doi": "10.1038/nbt766",
+   "title": "Overexpression of a plasma membrane Na+/H+ antiporter gene improves salt tolerance in Arabidopsis thaliana",
+   "authors": [
+    "Shi Huazhong",
+    "Lee Byeong-ha",
+    "Wu Shaw-Jye",
+    "Zhu Jian-Kang"
+   ],
+   "year": 2002,
+   "journal": "Nature Biotechnology",
+   "vol": "21",
+   "issue": "1",
+   "page": "81-85"
+  }
+ ],
+ "moller09": [
+  {
+   "doi": "10.1105/tpc.108.064568",
+   "title": "Shoot Na+ Exclusion and Increased Salinity Tolerance Engineered by Cell Type–Specific Alteration of Na+ Transport in\n                    <i>Arabidopsis</i>\n                     \n ",
+   "authors": [
+    "Møller Inge S.",
+    "Gilliham Matthew",
+    "Jha Deepa",
+    "Mayo Gwenda M.",
+    "Roy Stuart J.",
+    "Coates Juliet C.",
+    "Haseloff Jim",
+    "Tester Mark"
+   ],
+   "year": 2009,
+   "journal": "The Plant Cell",
+   "vol": "21",
+   "issue": "7",
+   "page": "2163-2178"
+  },
+  {
+   "doi": "10.3410/f.1164244.624946",
+   "title": "Faculty Opinions recommendation of Shoot Na+ exclusion and increased salinity tolerance engineered by cell type-specific alteration of Na+ transport in Arabidopsis.",
+   "authors": [
+    "Schroeder Julian"
+   ],
+   "year": 2009,
+   "journal": "Faculty Opinions – Post-Publication Peer Review of the Biomedical Literature",
+   "vol": null,
+   "issue": null,
+   "page": null
+  },
+  {
+   "doi": "10.1111/j.1365-3040.2010.02105.x",
+   "title": "Variation in salinity tolerance and shoot sodium accumulation in<i>Arabidopsis</i>ecotypes linked to differences in the natural expression levels of transporters involved in sodium transport",
+   "authors": [
+    "JHA D.",
+    "SHIRLEY N.",
+    "TESTER M.",
+    "ROY S. J."
+   ],
+   "year": 2010,
+   "journal": "Plant, Cell &amp; Environment",
+   "vol": null,
+   "issue": null,
+   "page": null
+  }
+ ],
+ "ding19": [
+  {
+   "doi": "10.1111/nph.15696",
+   "title": "Advances and challenges in uncovering cold tolerance regulatory mechanisms in plants",
+   "authors": [
+    "Ding Yanglin",
+    "Shi Yiting",
+    "Yang Shuhua"
+   ],
+   "year": 2019,
+   "journal": "New Phytologist",
+   "vol": "222",
+   "issue": "4",
+   "page": "1690-1704"
+  },
+  {
+   "doi": "10.3390/plants15203110",
+   "title": "Cold Tolerance in Alfalfa: Physiological Mechanisms, Regulatory Networks, and Molecular Breeding Prospects",
+   "authors": [
+    "Yang Weiguang",
+    "Shi Xiaojia",
+    "Lu Jinyang",
+    "Liu Xiangping"
+   ],
+   "year": 2026,
+   "journal": "Plants",
+   "vol": "15",
+   "issue": "20",
+   "page": "3110"
+  },
+  {
+   "doi": "10.1111/nph.19047",
+   "title": "Molecular mechanisms of shade tolerance in plants",
+   "authors": [
+    "Martinez‐Garcia Jaime F.",
+    "Rodriguez‐Concepcion Manuel"
+   ],
+   "year": 2023,
+   "journal": "New Phytologist",
+   "vol": "239",
+   "issue": "4",
+   "page": "1190-1202"
   }
  ]
 }
