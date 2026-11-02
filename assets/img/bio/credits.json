@@ -1,0 +1,634 @@
+{
+ "bernard": {
+  "title": "File:Claude Bernard 5.jpg",
+  "url": "https://commons.wikimedia.org/wiki/File:Claude_Bernard_5.jpg",
+  "artist": "Unknown author<span style=\"display: none;\">Unknown author</span>",
+  "lic": "Public domain",
+  "w": 713,
+  "h": 1000
+ },
+ "prigogine": {
+  "title": "File:Ilya Prigogine 1977b.jpg",
+  "url": "https://commons.wikimedia.org/wiki/File:Ilya_Prigogine_1977b.jpg",
+  "artist": "Unknown (Keystone - US)",
+  "lic": "Public domain",
+  "w": 719,
+  "h": 718
+ },
+ "benard": {
+  "title": "File:Convection cell pattern after boiling rice in a pan, 2024.jpg",
+  "url": "https://commons.wikimedia.org/wiki/File:Convection_cell_pattern_after_boiling_rice_in_a_pan,_2024.jpg",
+  "artist": "<a href=\"//commons.wikimedia.org/wiki/User:Hansmuller\" title=\"User:Hansmuller\">Hansmuller</a>",
+  "lic": "CC BY-SA 4.0",
+  "w": 1000,
+  "h": 975
+ },
+ "skunk": {
+  "title": "File:Arum maculatum 060506.jpg",
+  "url": "https://commons.wikimedia.org/wiki/File:Arum_maculatum_060506.jpg",
+  "artist": "<a href=\"//commons.wikimedia.org/wiki/User:BerndH\" title=\"User:BerndH\">Bernd Haynold</a>",
+  "lic": "CC BY 2.5",
+  "w": 521,
+  "h": 1000
+ },
+ "iodine": {
+  "title": "File:Iodine-starch test for apples.jpg",
+  "url": "https://commons.wikimedia.org/wiki/File:Iodine-starch_test_for_apples.jpg",
+  "artist": "<a href=\"//commons.wikimedia.org/w/index.php?title=User:Mezhenskyj&amp;action=edit&amp;redlink=1\" class=\"new\" title=\"User:Mezhenskyj (page does not exist)\">Mezhenskyj</a>",
+  "lic": "CC BY-SA 4.0",
+  "w": 750,
+  "h": 1000
+ },
+ "iodine2": {
+  "title": "File:Jodprobe.jpg",
+  "url": "https://commons.wikimedia.org/wiki/File:Jodprobe.jpg",
+  "artist": "Flo Sorg",
+  "lic": "Public domain",
+  "w": 1000,
+  "h": 697
+ },
+ "porphyrin": {
+  "title": "File:Meso porphyrin corrin.png",
+  "url": "https://commons.wikimedia.org/wiki/File:Meso_porphyrin_corrin.png",
+  "artist": "<a href=\"//commons.wikimedia.org/w/index.php?title=User:Easyloc&amp;action=edit&amp;redlink=1\" class=\"new\" title=\"User:Easyloc (page does not exist)\">Easyloc</a>",
+  "lic": "Public domain",
+  "w": 1000,
+  "h": 553
+ },
+ "heme": {
+  "title": "File:Heme O Fe Complex 3D BS.png",
+  "url": "https://commons.wikimedia.org/wiki/File:Heme_O_Fe_Complex_3D_BS.png",
+  "artist": "<a href=\"//commons.wikimedia.org/wiki/User:Mplanine\" title=\"User:Mplanine\">Mplanine</a>",
+  "lic": "CC BY-SA 4.0",
+  "w": 827,
+  "h": 1000
+ },
+ "chlstruct": {
+  "title": "File:Chlorophyll-a-3D-vdW.png",
+  "url": "https://commons.wikimedia.org/wiki/File:Chlorophyll-a-3D-vdW.png",
+  "artist": "",
+  "lic": "Public domain",
+  "w": 1000,
+  "h": 631
+ },
+ "hemoglobin": {
+  "title": "File:Structure of Fetal Hemoglobin (HbF).png",
+  "url": "https://commons.wikimedia.org/wiki/File:Structure_of_Fetal_Hemoglobin_(HbF).png",
+  "artist": "<a href=\"//commons.wikimedia.org/w/index.php?title=User:Sciencingabout&amp;action=edit&amp;redlink=1\" class=\"new\" title=\"User:Sciencingabout (page does not exist)\">Sciencingabout</a>",
+  "lic": "CC BY-SA 4.0",
+  "w": 664,
+  "h": 541
+ },
+ "b12": {
+  "title": "File:Vitamin B12 - adenosylcobalamine.jpg",
+  "url": "https://commons.wikimedia.org/wiki/File:Vitamin_B12_-_adenosylcobalamine.jpg",
+  "artist": "<a href=\"//commons.wikimedia.org/w/index.php?title=User:PMoleman&amp;action=edit&amp;redlink=1\" class=\"new\" title=\"User:PMoleman (page does not exist)\">PMoleman</a>",
+  "lic": "CC BY-SA 4.0",
+  "w": 644,
+  "h": 1000
+ },
+ "chlextract": {
+  "title": "File:Chromatography of chlorophyll results.jpg",
+  "url": "https://commons.wikimedia.org/wiki/File:Chromatography_of_chlorophyll_results.jpg",
+  "artist": "No machine-readable author provided. <a href=\"//commons.wikimedia.org/wiki/User:Flo~commonswiki\" title=\"User:Flo~commonswiki\">Flo~commonswiki</a> assumed (based on copyright claims).",
+  "lic": "CC BY-SA 2.5",
+  "w": 500,
+  "h": 915
+ },
+ "chlcolumn": {
+  "title": "File:Separation of chlorophylls and carotene.jpg",
+  "url": "https://commons.wikimedia.org/wiki/File:Separation_of_chlorophylls_and_carotene.jpg",
+  "artist": "<a href=\"//commons.wikimedia.org/w/index.php?title=User:Irene.munao&amp;action=edit&amp;redlink=1\" class=\"new\" title=\"User:Irene.munao (page does not exist)\">Irene Munao</a>",
+  "lic": "CC BY-SA 4.0",
+  "w": 1000,
+  "h": 1000
+ },
+ "chlfluor": {
+  "title": "File:Fluorescence of chlorophyll under UV light.jpg",
+  "url": "https://commons.wikimedia.org/wiki/File:Fluorescence_of_chlorophyll_under_UV_light.jpg",
+  "artist": "<a href=\"//commons.wikimedia.org/wiki/User:Thukfudo\" title=\"User:Thukfudo\">Marie Franzen</a>",
+  "lic": "CC BY-SA 3.0",
+  "w": 748,
+  "h": 1000
+ },
+ "bilayer": {
+  "title": "File:Lipid bilayer closeup.png",
+  "url": "https://commons.wikimedia.org/wiki/File:Lipid_bilayer_closeup.png",
+  "artist": "Unknown author<span style=\"display: none;\">Unknown author</span>",
+  "lic": "CC BY-SA 4.0",
+  "w": 699,
+  "h": 383
+ },
+ "nak": {
+  "title": "File:Sodium Potassium Pump.jpg",
+  "url": "https://commons.wikimedia.org/wiki/File:Sodium_Potassium_Pump.jpg",
+  "artist": "<a href=\"//commons.wikimedia.org/w/index.php?title=User:Biology_with_Risa&amp;action=edit&amp;redlink=1\" class=\"new\" title=\"User:Biology with Risa (page does not exist)\">Biology with Risa</a>",
+  "lic": "CC BY-SA 4.0",
+  "w": 1000,
+  "h": 488
+ },
+ "apgraph": {
+  "title": "File:Action potential schematic.png",
+  "url": "https://commons.wikimedia.org/wiki/File:Action_potential_schematic.png",
+  "artist": "<a href=\"//commons.wikimedia.org/w/index.php?title=User:P.j.duncan88&amp;action=edit&amp;redlink=1\" class=\"new\" title=\"User:P.j.duncan88 (page does not exist)\">Peter Duncan</a>",
+  "lic": "CC BY-SA 4.0",
+  "w": 1000,
+  "h": 781
+ },
+ "plasmolysis": {
+  "title": "File:Rhoeo Discolor - Plasmolysis.jpg",
+  "url": "https://commons.wikimedia.org/wiki/File:Rhoeo_Discolor_-_Plasmolysis.jpg",
+  "artist": "<a href=\"//commons.wikimedia.org/wiki/User:Mnolf\" title=\"User:Mnolf\">Mnolf</a>",
+  "lic": "CC BY-SA 3.0",
+  "w": 1000,
+  "h": 922
+ },
+ "plasmolysis2": {
+  "title": "File:Plasmolysis of red onion (Allium cepa) cells.jpg",
+  "url": "https://commons.wikimedia.org/wiki/File:Plasmolysis_of_red_onion_(Allium_cepa)_cells.jpg",
+  "artist": "<a href=\"//commons.wikimedia.org/wiki/User:Tr%C6%B0%C6%A1ng_Minh_Kh%E1%BA%A3i\" title=\"User:Trương Minh Khải\">Trương Minh Khải</a>",
+  "lic": "CC BY 4.0",
+  "w": 998,
+  "h": 1000
+ },
+ "golgi": {
+  "title": "File:0314 Golgi Apparatus b en.png",
+  "url": "https://commons.wikimedia.org/wiki/File:0314_Golgi_Apparatus_b_en.png",
+  "artist": "OpenStax",
+  "lic": "CC BY 3.0",
+  "w": 521,
+  "h": 435
+ },
+ "er": {
+  "title": "File:0313 Endoplasmic Reticulum a en.png",
+  "url": "https://commons.wikimedia.org/wiki/File:0313_Endoplasmic_Reticulum_a_en.png",
+  "artist": "OpenStax",
+  "lic": "CC BY 3.0",
+  "w": 604,
+  "h": 362
+ },
+ "centrif": {
+  "title": "File:Differentielle zentrifugation.png",
+  "url": "https://commons.wikimedia.org/wiki/File:Differentielle_zentrifugation.png",
+  "artist": "<a href=\"https://de.wikipedia.org/wiki/Thomasione\" class=\"extiw\" title=\"de:Thomasione\">Thomasione</a>",
+  "lic": "Public domain",
+  "w": 1000,
+  "h": 600
+ },
+ "ultracentrifuge": {
+  "title": "File:Beckman-Coulter ultracentrifuge XL-100K -01.jpg",
+  "url": "https://commons.wikimedia.org/wiki/File:Beckman-Coulter_ultracentrifuge_XL-100K_-01.jpg",
+  "artist": "<ul><li>real name: Matylda Sęk</li>\n<li>pl.wiki: <a href=\"https://pl.wikipedia.org/wiki/user:Cygaretka\" class=\"extiw\" title=\"pl:user:Cygaretka\">Cygaretka</a></li>\n<li>commons: <a href=\"//commons.wikimedia.org/wiki/User:Cygaretka\" title=\"User:Cygaretka\">Cygaretka</a></li></ul>",
+  "lic": "CC BY-SA 3.0",
+  "w": 847,
+  "h": 1000
+ },
+ "pellet": {
+  "title": "File:How centrifuge works.png",
+  "url": "https://commons.wikimedia.org/wiki/File:How_centrifuge_works.png",
+  "artist": "<a href=\"//commons.wikimedia.org/w/index.php?title=User:Ultrabem&amp;action=edit&amp;redlink=1\" class=\"new\" title=\"User:Ultrabem (page does not exist)\">Ultrabem</a>",
+  "lic": "CC0",
+  "w": 746,
+  "h": 712
+ },
+ "spectro": {
+  "title": "File:Spektrofotometri.jpg",
+  "url": "https://commons.wikimedia.org/wiki/File:Spektrofotometri.jpg",
+  "artist": "<a href=\"//commons.wikimedia.org/wiki/User:Skorpion87\" title=\"User:Skorpion87\">Skorpion87</a>",
+  "lic": "Public domain",
+  "w": 1000,
+  "h": 732
+ },
+ "cuvette": {
+  "title": "File:UV Quartz Cuvette.jpg",
+  "url": "https://commons.wikimedia.org/wiki/File:UV_Quartz_Cuvette.jpg",
+  "artist": "<a href=\"https://de.wikipedia.org/wiki/Benutzer:Semfmaster\" class=\"extiw\" title=\"de:Benutzer:Semfmaster\">{semfmaster}</a>",
+  "lic": "CC BY-SA 3.0",
+  "w": 1000,
+  "h": 961
+ },
+ "mobdate": {
+  "title": "File:Phosphatnachweis.jpg",
+  "url": "https://commons.wikimedia.org/wiki/File:Phosphatnachweis.jpg",
+  "artist": "<a href=\"//commons.wikimedia.org/wiki/User:Oguenther\" title=\"User:Oguenther\">Oguenther</a>",
+  "lic": "CC BY-SA 3.0",
+  "w": 646,
+  "h": 724
+ },
+ "atpstruct": {
+  "title": "File:Simplified structural formula of an ATP molecule explaining its components.jpg",
+  "url": "https://commons.wikimedia.org/wiki/File:Simplified_structural_formula_of_an_ATP_molecule_explaining_its_components.jpg",
+  "artist": "<a href=\"//commons.wikimedia.org/wiki/User:H.tjerns\" title=\"User:H.tjerns\">H.tjerns</a>",
+  "lic": "Public domain",
+  "w": 635,
+  "h": 521
+ },
+ "atpsynthase": {
+  "title": "File:ATP合成酵素.png",
+  "url": "https://commons.wikimedia.org/wiki/File:ATP%E5%90%88%E6%88%90%E9%85%B5%E7%B4%A0.png",
+  "artist": "<a href=\"//commons.wikimedia.org/w/index.php?title=User:Bone117&amp;action=edit&amp;redlink=1\" class=\"new\" title=\"User:Bone117 (page does not exist)\">Bone117</a>",
+  "lic": "CC BY-SA 4.0",
+  "w": 1000,
+  "h": 1000
+ },
+ "phosphocreatine": {
+  "title": "File:Phosphocreatine-anion-3D-balls.png",
+  "url": "https://commons.wikimedia.org/wiki/File:Phosphocreatine-anion-3D-balls.png",
+  "artist": "<a href=\"//commons.wikimedia.org/wiki/User:Jynto\" title=\"User:Jynto\">Jynto</a> (<a href=\"//commons.wikimedia.org/wiki/User_talk:Jynto\" title=\"User talk:Jynto\">talk</a>)",
+  "lic": "CC0",
+  "w": 1000,
+  "h": 698
+ },
+ "lipmann": {
+  "title": "File:Portrait of Fritz Albert Lipmann (1899-1986), Biochemist (2551001689).jpg",
+  "url": "https://commons.wikimedia.org/wiki/File:Portrait_of_Fritz_Albert_Lipmann_(1899-1986),_Biochemist_(2551001689).jpg",
+  "artist": "<a rel=\"nofollow\" class=\"external text\" href=\"https://www.flickr.com/people/25053835@N03\">Smithsonian Institution</a> from United States",
+  "lic": "No restrictions",
+  "w": 765,
+  "h": 1000
+ },
+ "inhib": {
+  "title": "File:Competitive inhibition.png",
+  "url": "https://commons.wikimedia.org/wiki/File:Competitive_inhibition.png",
+  "artist": "<a href=\"https://en.wikipedia.org/wiki/User:TimVickers\" class=\"extiw\" title=\"en:User:TimVickers\">TimVickers</a>",
+  "lic": "Public domain",
+  "w": 820,
+  "h": 575
+ },
+ "inhib2": {
+  "title": "File:Competitive&NonCompetitive Enzyme Inhibition.jpg",
+  "url": "https://commons.wikimedia.org/wiki/File:Competitive%26NonCompetitive_Enzyme_Inhibition.jpg",
+  "artist": "<a href=\"//commons.wikimedia.org/w/index.php?title=User:California16&amp;action=edit&amp;redlink=1\" class=\"new\" title=\"User:California16 (page does not exist)\">California16</a>",
+  "lic": "CC BY-SA 4.0",
+  "w": 1000,
+  "h": 805
+ },
+ "lbplot": {
+  "title": "File:Inhibition-types.jpg",
+  "url": "https://commons.wikimedia.org/wiki/File:Inhibition-types.jpg",
+  "artist": "<a href=\"//commons.wikimedia.org/w/index.php?title=User:Athel_cb&amp;action=edit&amp;redlink=1\" class=\"new\" title=\"User:Athel cb (page does not exist)\">Athel cb</a>",
+  "lic": "CC BY-SA 4.0",
+  "w": 1000,
+  "h": 758
+ },
+ "sdh": {
+  "title": "File:Succinate Dehydrogenase 1YQ3 and Membrane.png",
+  "url": "https://commons.wikimedia.org/wiki/File:Succinate_Dehydrogenase_1YQ3_and_Membrane.png",
+  "artist": "<a href=\"https://en.wikipedia.org/wiki/User:Zephyris\" class=\"extiw\" title=\"wikipedia:User:Zephyris\">Zephyris</a> at <a href=\"https://en.wikipedia.org/wiki/\" class=\"extiw\" title=\"wikipedia:\">English Wikipedia</a>",
+  "lic": "CC BY-SA 3.0",
+  "w": 1000,
+  "h": 1000
+ },
+ "methylene": {
+  "title": "File:Human Cheek Cells (Methylene Blue Stain).jpg",
+  "url": "https://commons.wikimedia.org/wiki/File:Human_Cheek_Cells_(Methylene_Blue_Stain).jpg",
+  "artist": "<a href=\"//commons.wikimedia.org/wiki/User:Fritzmann2002\" title=\"User:Fritzmann2002\">Fritzmann2002</a>",
+  "lic": "CC BY-SA 4.0",
+  "w": 967,
+  "h": 1000
+ },
+ "allosteric": {
+  "title": "File:Allosteric inhibition.png",
+  "url": "https://commons.wikimedia.org/wiki/File:Allosteric_inhibition.png",
+  "artist": "<a href=\"https://en.wikipedia.org/wiki/User:Mcy_jerry\" class=\"extiw\" title=\"wikipedia:User:Mcy jerry\">Mcy jerry</a> at <a href=\"https://en.wikipedia.org/wiki/\" class=\"extiw\" title=\"wikipedia:\">English Wikipedia</a>",
+  "lic": "CC BY-SA 3.0",
+  "w": 528,
+  "h": 377
+ },
+ "allosteric2": {
+  "title": "File:Allosteric regulation mode, feedback inhibition and its reversal.png",
+  "url": "https://commons.wikimedia.org/wiki/File:Allosteric_regulation_mode,_feedback_inhibition_and_its_reversal.png",
+  "artist": "<a href=\"//commons.wikimedia.org/w/index.php?title=User:Sadafjavaidkhan&amp;action=edit&amp;redlink=1\" class=\"new\" title=\"User:Sadafjavaidkhan (page does not exist)\">Sadafjavaidkhan</a>",
+  "lic": "CC BY-SA 4.0",
+  "w": 709,
+  "h": 499
+ },
+ "fehling": {
+  "title": "File:Mise en evidence du glucose dans le miel avec la liqueur de Fehling.jpg",
+  "url": "https://commons.wikimedia.org/wiki/File:Mise_en_evidence_du_glucose_dans_le_miel_avec_la_liqueur_de_Fehling.jpg",
+  "artist": "<a href=\"//commons.wikimedia.org/w/index.php?title=User:Robinamadiadrien-lfv&amp;action=edit&amp;redlink=1\" class=\"new\" title=\"User:Robinamadiadrien-lfv (page does not exist)\">Robinamadiadrien-lfv</a>",
+  "lic": "CC BY-SA 4.0",
+  "w": 1000,
+  "h": 1000
+ },
+ "ferricyanide": {
+  "title": "File:Potassium ferricyanide.ვკ.jpg",
+  "url": "https://commons.wikimedia.org/wiki/File:Potassium_ferricyanide.%E1%83%95%E1%83%99.jpg",
+  "artist": "<a href=\"//commons.wikimedia.org/wiki/User:Vano3333\" title=\"User:Vano3333\">Vano3333</a>",
+  "lic": "CC BY-SA 4.0",
+  "w": 1000,
+  "h": 750
+ },
+ "prussian": {
+  "title": "File:Pigment Berliner Blau.JPG",
+  "url": "https://commons.wikimedia.org/wiki/File:Pigment_Berliner_Blau.JPG",
+  "artist": "<a href=\"//commons.wikimedia.org/wiki/User:Saalebaer\" title=\"User:Saalebaer\">Saalebaer</a>",
+  "lic": "CC0",
+  "w": 1000,
+  "h": 529
+ },
+ "glycolysis": {
+  "title": "File:Glycolysis&Gluconeogenesis.jpg",
+  "url": "https://commons.wikimedia.org/wiki/File:Glycolysis%26Gluconeogenesis.jpg",
+  "artist": "<a href=\"//commons.wikimedia.org/w/index.php?title=User:BiochemistryProf&amp;action=edit&amp;redlink=1\" class=\"new\" title=\"User:BiochemistryProf (page does not exist)\">BiochemistryProf</a>",
+  "lic": "CC0",
+  "w": 682,
+  "h": 1000
+ },
+ "malonate": {
+  "title": "File:Malonic acid molecule ball from xtal.png",
+  "url": "https://commons.wikimedia.org/wiki/File:Malonic_acid_molecule_ball_from_xtal.png",
+  "artist": "<a href=\"//commons.wikimedia.org/wiki/User:Jynto\" title=\"User:Jynto\">Jynto</a> (<a href=\"//commons.wikimedia.org/wiki/User:Jynto/Gallery\" title=\"User:Jynto/Gallery\">more from this user</a>)",
+  "lic": "CC0",
+  "w": 1000,
+  "h": 639
+ },
+ "krebs": {
+  "title": "File:Hans Adolf Krebs.jpg",
+  "url": "https://commons.wikimedia.org/wiki/File:Hans_Adolf_Krebs.jpg",
+  "artist": "Unknown author<span style=\"display: none;\">Unknown author</span>",
+  "lic": "Public domain",
+  "w": 667,
+  "h": 1000
+ },
+ "tca": {
+  "title": "File:Citric Acid Cycle Diagram.png",
+  "url": "https://commons.wikimedia.org/wiki/File:Citric_Acid_Cycle_Diagram.png",
+  "artist": "<a href=\"//commons.wikimedia.org/w/index.php?title=User:Krishnabp&amp;action=edit&amp;redlink=1\" class=\"new\" title=\"User:Krishnabp (page does not exist)\">Krishnabp</a>",
+  "lic": "CC BY-SA 4.0",
+  "w": 1000,
+  "h": 795
+ },
+ "pdh": {
+  "title": "File:Pyruvate dehydrogenase complex reaction.PNG",
+  "url": "https://commons.wikimedia.org/wiki/File:Pyruvate_dehydrogenase_complex_reaction.PNG",
+  "artist": "akane700",
+  "lic": "CC BY-SA 3.0",
+  "w": 828,
+  "h": 330
+ },
+ "mitoem2": {
+  "title": "File:MitochondrionCAM.jpg",
+  "url": "https://commons.wikimedia.org/wiki/File:MitochondrionCAM.jpg",
+  "artist": "Original uploader was Carmmann (<a href=\"https://en.wikipedia.org/wiki/User_talk:Carmmann\" class=\"extiw\" title=\"en:User talk:Carmmann\">talk</a>) at <a class=\"external text\" data-mw-original-href=\"http://en.wikipedia.org\" href=\"https://en.wikipedia.org\">en.wikipedia</a>",
+  "lic": "Public domain",
+  "w": 618,
+  "h": 409
+ },
+ "mitchell": {
+  "title": "File:36. Tagung 1986 Chemiker; Pressekonferenz Peter D. Mitchell - W134Nr.125218c - Willy Pragher (cropped).jpg",
+  "url": "https://commons.wikimedia.org/wiki/File:36._Tagung_1986_Chemiker;_Pressekonferenz_Peter_D._Mitchell_-_W134Nr.125218c_-_Willy_Pragher_(cropped).jpg",
+  "artist": "<bdi><a href=\"https://www.wikidata.org/wiki/Q2571685\" class=\"extiw\" title=\"d:Q2571685\"><span title=\"German photographer (1908–1992)\">Willy Pragher</span></a></bdi>",
+  "lic": "CC BY 3.0 de",
+  "w": 502,
+  "h": 654
+ },
+ "etc": {
+  "title": "File:Electron transport chain simple.png",
+  "url": "https://commons.wikimedia.org/wiki/File:Electron_transport_chain_simple.png",
+  "artist": "<a href=\"//commons.wikimedia.org/w/index.php?title=User:Bradleyhintze&amp;action=edit&amp;redlink=1\" class=\"new\" title=\"User:Bradleyhintze (page does not exist)\">Bradleyhintze</a>",
+  "lic": "CC BY-SA 3.0",
+  "w": 1000,
+  "h": 678
+ },
+ "rotenone": {
+  "title": "File:Rotenone-3D-balls.png",
+  "url": "https://commons.wikimedia.org/wiki/File:Rotenone-3D-balls.png",
+  "artist": "<a href=\"//commons.wikimedia.org/wiki/User:Jynto\" title=\"User:Jynto\">Jynto</a> (<a href=\"//commons.wikimedia.org/wiki/User_talk:Jynto\" title=\"User talk:Jynto\">talk</a>)",
+  "lic": "CC0",
+  "w": 1000,
+  "h": 867
+ },
+ "derris": {
+  "title": "File:Derris elliptica kz02.jpg",
+  "url": "https://commons.wikimedia.org/wiki/File:Derris_elliptica_kz02.jpg",
+  "artist": "<a href=\"//commons.wikimedia.org/wiki/User:Kenraiz\" title=\"User:Kenraiz\">Krzysztof Ziarnek, Kenraiz</a>",
+  "lic": "CC BY-SA 4.0",
+  "w": 1000,
+  "h": 750
+ },
+ "lonchocarpus": {
+  "title": "File:Lonchocarpus punctatus Fleurs.JPG",
+  "url": "https://commons.wikimedia.org/wiki/File:Lonchocarpus_punctatus_Fleurs.JPG",
+  "artist": "<a href=\"//commons.wikimedia.org/wiki/User:Pancrat\" title=\"User:Pancrat\">Pancrat</a>",
+  "lic": "CC BY-SA 3.0",
+  "w": 1000,
+  "h": 750
+ },
+ "brownfat": {
+  "title": "File:Tecido adiposo multilocular brown adipose tissue.gif",
+  "url": "https://commons.wikimedia.org/wiki/File:Tecido_adiposo_multilocular_brown_adipose_tissue.gif",
+  "artist": "",
+  "lic": "Public domain",
+  "w": 726,
+  "h": 478
+ },
+ "dnp": {
+  "title": "File:2,4-Dinitrophenol.jpg",
+  "url": "https://commons.wikimedia.org/wiki/File:2,4-Dinitrophenol.jpg",
+  "artist": "<a href=\"//commons.wikimedia.org/wiki/User:Alekssobolewski\" title=\"User:Alekssobolewski\">Aleksander Sobolewski</a>",
+  "lic": "CC BY-SA 4.0",
+  "w": 1000,
+  "h": 750
+ },
+ "dnp2": {
+  "title": "File:2,4-Dinitrophenol 3D.png",
+  "url": "https://commons.wikimedia.org/wiki/File:2,4-Dinitrophenol_3D.png",
+  "artist": "<a href=\"//commons.wikimedia.org/wiki/User:Fvasconcellos\" title=\"User:Fvasconcellos\">Fvasconcellos</a> 02:15, 16 July 2007 (UTC)",
+  "lic": "Public domain",
+  "w": 1000,
+  "h": 944
+ },
+ "oxygraph": {
+  "title": "File:Clark Oxygen Electrode.png",
+  "url": "https://commons.wikimedia.org/wiki/File:Clark_Oxygen_Electrode.png",
+  "artist": "<a href=\"//commons.wikimedia.org/w/index.php?title=User:Larryisgood&amp;action=edit&amp;redlink=1\" class=\"new\" title=\"User:Larryisgood (page does not exist)\">Larry O'Connell</a>",
+  "lic": "CC BY-SA 4.0",
+  "w": 849,
+  "h": 1000
+ },
+ "spectrum": {
+  "title": "File:Chlorophyll fluorescence.tif",
+  "url": "https://commons.wikimedia.org/wiki/File:Chlorophyll_fluorescence.tif",
+  "artist": "<a href=\"//commons.wikimedia.org/w/index.php?title=User:Zoe_Stanyon&amp;action=edit&amp;redlink=1\" class=\"new\" title=\"User:Zoe Stanyon (page does not exist)\">Zoe Stanyon</a>",
+  "lic": "CC0",
+  "w": 500,
+  "h": 314
+ },
+ "pigchrom": {
+  "title": "File:Chromatography of chlorophyll results.jpg",
+  "url": "https://commons.wikimedia.org/wiki/File:Chromatography_of_chlorophyll_results.jpg",
+  "artist": "No machine-readable author provided. <a href=\"//commons.wikimedia.org/wiki/User:Flo~commonswiki\" title=\"User:Flo~commonswiki\">Flo~commonswiki</a> assumed (based on copyright claims).",
+  "lic": "CC BY-SA 2.5",
+  "w": 500,
+  "h": 915
+ },
+ "autumn": {
+  "title": "File:Autumn leaves, Talcott Mountain State Park.jpg",
+  "url": "https://commons.wikimedia.org/wiki/File:Autumn_leaves,_Talcott_Mountain_State_Park.jpg",
+  "artist": "<a href=\"//commons.wikimedia.org/wiki/User:Ragesoss\" title=\"User:Ragesoss\">Ragesoss</a>",
+  "lic": "CC BY-SA 3.0",
+  "w": 1000,
+  "h": 666
+ },
+ "potato": {
+  "title": "File:Potato tubers in pail.jpg",
+  "url": "https://commons.wikimedia.org/wiki/File:Potato_tubers_in_pail.jpg",
+  "artist": "Ruslan V. Albitsky aka <a href=\"//commons.wikimedia.org/wiki/User:Pauk\" title=\"User:Pauk\">pauk</a>",
+  "lic": "CC BY-SA 3.0",
+  "w": 1000,
+  "h": 750
+ },
+ "peroxidase": {
+  "title": "File:4LLR-tryparedoxin-peroxidase-dimer.png",
+  "url": "https://commons.wikimedia.org/wiki/File:4LLR-tryparedoxin-peroxidase-dimer.png",
+  "artist": "<a href=\"//commons.wikimedia.org/wiki/User:Hbf878\" title=\"User:Hbf878\">Hbf878</a>",
+  "lic": "CC0",
+  "w": 789,
+  "h": 1000
+ },
+ "ascorbic": {
+  "title": "File:Ascorbic acid redox german subt.png",
+  "url": "https://commons.wikimedia.org/wiki/File:Ascorbic_acid_redox_german_subt.png",
+  "artist": "<a href=\"https://de.wikipedia.org/wiki/Gatto_Verde\" class=\"extiw\" title=\"de:Gatto Verde\">de:Gatto Verde</a>",
+  "lic": "Public domain",
+  "w": 1000,
+  "h": 356
+ },
+ "glutathione": {
+  "title": "File:Glutathione structure.png",
+  "url": "https://commons.wikimedia.org/wiki/File:Glutathione_structure.png",
+  "artist": "<a href=\"//commons.wikimedia.org/wiki/User:Claudio_Pistilli\" title=\"User:Claudio Pistilli\">Claudio Pistilli</a>",
+  "lic": "CC BY-SA 4.0",
+  "w": 532,
+  "h": 219
+ },
+ "gssg": {
+  "title": "File:Oxidation of Glutathione to Glutathione disulfide.png",
+  "url": "https://commons.wikimedia.org/wiki/File:Oxidation_of_Glutathione_to_Glutathione_disulfide.png",
+  "artist": "Donald Voet, Judith Voet, &amp; Chris Pratt",
+  "lic": "CC0",
+  "w": 564,
+  "h": 1000
+ },
+ "titration": {
+  "title": "File:Titration with a Mohr burette (Alessandri 1895.36).png",
+  "url": "https://commons.wikimedia.org/wiki/File:Titration_with_a_Mohr_burette_(Alessandri_1895.36).png",
+  "artist": "valeg96",
+  "lic": "Public domain",
+  "w": 588,
+  "h": 1000
+ },
+ "catalase": {
+  "title": "File:Catalase Structure.png",
+  "url": "https://commons.wikimedia.org/wiki/File:Catalase_Structure.png",
+  "artist": "<a href=\"//commons.wikimedia.org/wiki/User:Vossman\" title=\"User:Vossman\">Vossman</a>",
+  "lic": "CC BY-SA 3.0",
+  "w": 987,
+  "h": 1000
+ },
+ "ros": {
+  "title": "File:Generation of reactive oxygen species (ROS) in response to ionizing radiation.webp",
+  "url": "https://commons.wikimedia.org/wiki/File:Generation_of_reactive_oxygen_species_(ROS)_in_response_to_ionizing_radiation.webp",
+  "artist": "Smith, T.A., Kirkpatrick, D.R., Smith, S. et al.",
+  "lic": "CC BY-SA 4.0",
+  "w": 638,
+  "h": 653
+ },
+ "alginate": {
+  "title": "File:Imobilising Enzymes (431507758).jpg",
+  "url": "https://commons.wikimedia.org/wiki/File:Imobilising_Enzymes_(431507758).jpg",
+  "artist": "<a rel=\"nofollow\" class=\"external text\" href=\"https://www.flickr.com/people/63603238@N00\">Tess Watson</a> from Edinburgh, Scotland, UK",
+  "lic": "CC BY 2.0",
+  "w": 1000,
+  "h": 750
+ },
+ "immob": {
+  "title": "File:Enzymes immobilised in alginate gel.jpg",
+  "url": "https://commons.wikimedia.org/wiki/File:Enzymes_immobilised_in_alginate_gel.jpg",
+  "artist": "Tess Watson",
+  "lic": "CC BY 2.0",
+  "w": 1000,
+  "h": 750
+ },
+ "packed": {
+  "title": "File:Packed bed and fluidized bed membrane reactors.png",
+  "url": "https://commons.wikimedia.org/wiki/File:Packed_bed_and_fluidized_bed_membrane_reactors.png",
+  "artist": "<a href=\"//commons.wikimedia.org/wiki/User:Michele_Ongis\" title=\"User:Michele Ongis\">Michele Ongis</a>",
+  "lic": "CC BY-SA 4.0",
+  "w": 870,
+  "h": 503
+ },
+ "bioreactor": {
+  "title": "File:BTEC Bioreactors.jpg",
+  "url": "https://commons.wikimedia.org/wiki/File:BTEC_Bioreactors.jpg",
+  "artist": "<a href=\"https://en.wikipedia.org/wiki/User:RickLawless\" class=\"extiw\" title=\"w:User:RickLawless\">RickLawless</a> (<a href=\"https://en.wikipedia.org/wiki/User_talk:RickLawless\" class=\"extiw\" title=\"w:User talk:RickLawless\">talk</a>) (<a href=\"https://en.wikipedia.org/wiki/Special:ListFiles/RickLawless\" class=\"extiw\" title=\"w:Special:ListFiles/RickLawless\">Uploads</a>)",
+  "lic": "CC BY 3.0",
+  "w": 1000,
+  "h": 750
+ },
+ "bioreactor2": {
+  "title": "File:Scale down bioreactor types.jpg",
+  "url": "https://commons.wikimedia.org/wiki/File:Scale_down_bioreactor_types.jpg",
+  "artist": "<a href=\"//commons.wikimedia.org/w/index.php?title=User:King_of_the_north_Snow&amp;action=edit&amp;redlink=1\" class=\"new\" title=\"User:King of the north Snow (page does not exist)\">King of the north Snow</a>",
+  "lic": "CC BY 4.0",
+  "w": 640,
+  "h": 561
+ },
+ "sarcomere": {
+  "title": "File:Cardiac sarcomere structure.jpg",
+  "url": "https://commons.wikimedia.org/wiki/File:Cardiac_sarcomere_structure.jpg",
+  "artist": "<a href=\"//commons.wikimedia.org/w/index.php?title=User:Mohamed_Elshennawy&amp;action=edit&amp;redlink=1\" class=\"new\" title=\"User:Mohamed Elshennawy (page does not exist)\">Mohamed Elshennawy, M.D.</a>",
+  "lic": "CC BY-SA 4.0",
+  "w": 1000,
+  "h": 488
+ },
+ "muscle": {
+  "title": "File:Human skeletal muscle tissue 2 - TEM.jpg",
+  "url": "https://commons.wikimedia.org/wiki/File:Human_skeletal_muscle_tissue_2_-_TEM.jpg",
+  "artist": "Louisa Howard",
+  "lic": "Public domain",
+  "w": 1000,
+  "h": 744
+ },
+ "fibers": {
+  "title": "File:Skeletal Muscle Tissue.jpg",
+  "url": "https://commons.wikimedia.org/wiki/File:Skeletal_Muscle_Tissue.jpg",
+  "artist": "<a rel=\"nofollow\" class=\"external text\" href=\"https://www.flickr.com/people/146824358@N03/Berkshire\">Community College Bioscience</a>",
+  "lic": "CC0",
+  "w": 1000,
+  "h": 564
+ },
+ "myosin": {
+  "title": "File:MYOSIN ACTIN BINDING CHEM114A.jpg",
+  "url": "https://commons.wikimedia.org/wiki/File:MYOSIN_ACTIN_BINDING_CHEM114A.jpg",
+  "artist": "<a href=\"https://en.wikibooks.org/wiki/User:Tinastella\" class=\"extiw\" title=\"wikibooks:User:Tinastella\">Tinastella</a> at <a href=\"https://en.wikibooks.org/wiki/\" class=\"extiw\" title=\"wikibooks:\">English Wikibooks</a>",
+  "lic": "Public domain",
+  "w": 667,
+  "h": 457
+ },
+ "sr": {
+  "title": "File:Sarcoplasmic reticulum and T-tubule triad-uk.png",
+  "url": "https://commons.wikimedia.org/wiki/File:Sarcoplasmic_reticulum_and_T-tubule_triad-uk.png",
+  "artist": "User:Sanador2.0",
+  "lic": "CC BY 3.0",
+  "w": 1000,
+  "h": 413
+ },
+ "cori": {
+  "title": "File:The Cori cycle.png",
+  "url": "https://commons.wikimedia.org/wiki/File:The_Cori_cycle.png",
+  "artist": "<a href=\"//commons.wikimedia.org/w/index.php?title=User:Muessig&amp;action=edit&amp;redlink=1\" class=\"new\" title=\"User:Muessig (page does not exist)\">C Muessig</a>",
+  "lic": "CC BY-SA 3.0",
+  "w": 1000,
+  "h": 723
+ },
+ "lactate": {
+  "title": "File:L-Lactic acid molecule spacefill.png",
+  "url": "https://commons.wikimedia.org/wiki/File:L-Lactic_acid_molecule_spacefill.png",
+  "artist": "<a href=\"//commons.wikimedia.org/wiki/User:Jynto\" title=\"User:Jynto\">Jynto</a> (<a href=\"//commons.wikimedia.org/wiki/User_talk:Jynto\" title=\"User talk:Jynto\">talk</a>)",
+  "lic": "CC0",
+  "w": 1000,
+  "h": 885
+ }
+}
