@@ -42,6 +42,7 @@ jobs:
           for f in assets/css/*.css; do npx --yes clean-css-cli@5.6.3 -O1 -o "$f" "$f"; done
           for f in assets/js/*.js; do npx --yes terser@5.36.0 "$f" -c -m -o "$f"; done
           for f in assets/js/lab/*.js; do npx --yes terser@5.36.0 "$f" --module -c -m -o "$f"; done
+          for f in assets/js/lab/bio/*.js; do npx --yes terser@5.36.0 "$f" --module -c -m -o "$f"; done
 
       - uses: actions/upload-pages-artifact@v3
         with:

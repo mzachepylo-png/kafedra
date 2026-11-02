@@ -1,0 +1,347 @@
+<!doctype html>
+<html lang="uk" class="no-js">
+<head>
+  <meta charset="utf-8">
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-JWWGPMG71W"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+
+    gtag('config', 'G-JWWGPMG71W');
+  </script>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <script>try{if(localStorage.getItem('kf-view')==='desktop'){document.documentElement.classList.add('force-desktop');document.querySelector('meta[name=viewport]').setAttribute('content','width=1280')}}catch(e){}</script>
+  <title>Біоенергетичні основи біотехнологічних процесів — Онлайн лабораторія кафедри ФБРтаБ, НУБіП</title>
+  <meta name="description" content="Інтерактивні моделі до 15 практичних занять з дисципліни «Біоенергетичні основи біотехнологічних процесів»: термодинаміка клітини, мембранні потенціали, АТФ, ферменти, цикл Кребса, окисне фосфорилювання, пігменти, антиоксиданти, іммобілізовані ферменти, м'язове скорочення. За методичними вказівками Т. А. Ткаченко та С. В. Прилуцької (НУБіП, 2025).">
+  <meta name="theme-color" content="#08210F">
+  <link rel="icon" href="../../assets/img/nubip-shield.png" type="image/png">
+  <link rel="stylesheet" href="../../assets/css/style.css">
+  <script src="../../assets/js/desktop-only.js"></script>
+  <link rel="stylesheet" href="../../assets/css/lab.css">
+  <script>document.documentElement.classList.replace('no-js', 'js')</script>
+  <link rel="stylesheet" href="../../assets/css/fonts.css">
+  <link rel="stylesheet" href="../../assets/css/plant-physiology.css">
+  <link rel="stylesheet" href="../../assets/css/bioenergetics.css">
+</head>
+<body>
+  <a class="skip-link" href="#main">Перейти до змісту</a>
+
+  <header class="site-header">
+    <div class="container">
+      <a class="brand" href="../../" aria-label="Кафедра фізіології, біохімії рослин та біоенергетики — на головну">
+        <img class="brand__logo" src="../../assets/img/nubip-shield.webp" alt="" width="31" height="44">
+        <span class="brand__text">
+          <span class="brand__title">Кафедра ФБРтаБ</span>
+          <span class="brand__sub">Фізіологія, біохімія рослин та біоенергетика · НУБіП України</span>
+        </span>
+      </a>
+      <button class="nav-toggle" type="button" aria-controls="site-nav" aria-expanded="false" aria-label="Відкрити меню">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M4 7h16M4 12h16M4 17h16"/></svg>
+      </button>
+      <nav class="nav" id="site-nav" aria-label="Головна навігація">
+        <a class="nav__link" href="../../">Головна</a>
+        <div class="nav__dd">
+          <a class="nav__link" href="../../about/">Про кафедру
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m6 9 6 6 6-6"/></svg>
+          </a>
+          <div class="nav__menu">
+            <a href="../../about/#department">Кафедра сьогодні<small>Місія, історія з 1898 р., наука</small></a>
+            <a href="../../about/#team">Колектив<small>Викладачі та їхні наукові інтереси</small></a>
+            <a href="../../about/#achievements">Здобутки<small>Кафедри та викладачів</small></a>
+            <a href="../../about/#faculty-history">Історія факультету<small>Від 1962 року до сьогодні</small></a>
+            <a href="../../about/#administration">Адміністрація факультету<small>Деканат і контакти</small></a>
+            <a href="../../about/#programs">Освітні програми<small>Бакалаврат · Магістратура · PhD</small></a>
+            <div class="nav__social">
+              <a class="nav__soc nav__soc--fb" href="https://www.facebook.com/groups/nubipplants?locale=uk_UA" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M14 8.5V6.8c0-.8.5-1 .9-1H17V2.2L14 2.2c-3.3 0-4 2.4-4 4v2.3H7.5V12H10v10h4V12h2.8l.4-3.5H14Z"/></svg>Ми у Facebook</a>
+              <a class="nav__soc nav__soc--ig" href="https://www.instagram.com/plant_physio_chair/" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/></svg>Ми в Instagram</a>
+            </div>
+          </div>
+        </div>
+        <a class="nav__link" href="../../#contacts">Контакти</a>
+        <a class="btn btn--green btn--kon btn--sm nav__lab" href="../../konspekt/">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20V3H6.5A2.5 2.5 0 0 0 4 5.5z"/><path d="M4 19.5A2.5 2.5 0 0 0 6.5 22H20v-5"/></svg>
+          Конспект
+        </a>
+        <a class="btn btn--gold btn--lab btn--sm nav__lab" href="../../lab/" aria-current="page">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 3h6M10 3v6l-5 9a2 2 0 0 0 1.7 3h10.6a2 2 0 0 0 1.7-3l-5-9V3"/><path d="M7.5 15h9"/></svg>
+          Онлайн лабораторія
+        </a>
+      </nav>
+      <div class="site-tools">
+        <span class="beta-badge" title="Сайт працює в тестовому режимі">Бета<span class="beta-badge__more">-версія</span></span>
+        <div class="report">
+          <button class="report__btn" type="button" aria-expanded="false" aria-controls="report-pop" title="Повідомити про проблему на сайті">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 9v4M12 17h.01"/><path d="M10.3 3.9 1.8 18a2 2 0 0 0 1.7 3h17a2 2 0 0 0 1.7-3L13.7 3.9a2 2 0 0 0-3.4 0Z"/></svg>
+            <span class="report__label">Повідомити про проблему</span>
+          </button>
+          <div class="report__pop" id="report-pop" role="dialog" aria-label="Повідомити про проблему на сайті" hidden>
+            <p>Знайшли помилку або щось працює не так? Опишіть проблему в короткій формі — так ми швидше її виправимо.</p>
+            <a class="report__form" href="https://forms.gle/yAqtSUqBYNnWgHQo6" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6M8 13h8M8 17h5"/></svg>Заповнити форму</a>
+            <p class="report__alt">Або напишіть нам у групі кафедри:</p>
+            <a class="report__fb" href="https://www.facebook.com/groups/nubipplants?locale=uk_UA" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M14 8.5V6.8c0-.8.5-1 .9-1H17V2.2L14 2.2c-3.3 0-4 2.4-4 4v2.3H7.5V12H10v10h4V12h2.8l.4-3.5H14Z"/></svg>Facebook</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main id="main" class="lab-main disc--energy">
+    <section class="page-hero page-hero--lab">
+      <div class="lab-glow" aria-hidden="true"></div>
+      <div class="bg-molecules" aria-hidden="true" style="position:absolute;inset:0"></div>
+      <div class="container">
+        <nav class="breadcrumbs" aria-label="Навігаційний ланцюжок"><a href="../../">Головна</a><span aria-hidden="true">/</span><a href="../../lab/">Онлайн лабораторія</a><span aria-hidden="true">/</span><span>Біоенергетика</span></nav>
+        <span class="kicker">Розділ лабораторії</span>
+        <h1>Біоенергетичні основи біотехнологічних процесів</h1>
+        <p>Інтерактивні моделі до 15 практичних занять: теорія з математичною моделлю, одна детальна анімована модель на кожну тему та контрольні питання. Матеріал побудовано за методичними вказівками кафедри фізіології, біохімії рослин та біоенергетики НУБіП України.</p>
+      </div>
+    </section>
+
+    <section class="section pp-list" id="pp-list">
+      <div class="container">
+        <nav class="disc-tabs" aria-label="Розділ">
+          <a class="disc-tab disc--energy" href="./" aria-current="page">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M13 2 4 14h7l-1 8 9-12h-7z"/></svg>
+            Біоенергетика
+          </a>
+        </nav>
+
+        <aside class="bio-cred" aria-label="Авторство методичних вказівок">
+          <div class="bio-cred__ic" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 5a2 2 0 0 1 2-2h12v16H6a2 2 0 0 0-2 2z"/><path d="M4 21V5M9 7h6M9 11h6"/></svg></div>
+          <div class="bio-cred__body">
+          <h2>Методичне джерело та авторство</h2>
+          <p>Теоретичні відомості, хід лабораторних робіт, завдання й контрольні питання цього розділу складено за методичними вказівками, що є інтелектуальною власністю їхніх укладачів. Інтерактивні моделі, математичні пояснення та візуалізації створено як доповнення до цього видання.</p>
+          <dl>
+            <dt>Видання</dt><dd><b>Біоенергетичні основи біотехнологічних процесів.</b> Методичні вказівки до практичних занять для студентів ОС «Магістр» спеціальності G21 «Біотехнології та біоінженерія». Київ: НУБіП України, 2025. УДК 577.23:606:62](072).</dd>
+            <dt>Укладачі</dt><dd><b>Прилуцька Світлана Володимирівна</b> — доктор біологічних наук, професор, завідувач кафедри фізіології, біохімії рослин та біоенергетики НУБіП України;<br><b>Ткаченко Тетяна Анатоліївна</b> — кандидат біологічних наук, доцент кафедри фізіології, біохімії рослин та біоенергетики НУБіП України.</dd>
+            <dt>Рецензенти</dt><dd><b>Ліханов А. Ф.</b> — доктор біологічних наук, доцент, професор кафедри ботаніки, дендрології та лісової селекції НУБіП України;<br><b>Кваско О. Ю.</b> — кандидат біологічних наук, доцент, завідувач кафедри екобіотехнологій та біорізноманіття НУБіП України.</dd>
+            <dt>Рекомендовано</dt><dd>вченою радою факультету захисту рослин, біотехнологій та екології НУБіП України, протокол № 11 від 19 червня 2025 р.</dd>
+          </dl>
+          <p class="src">Фотографії до теорії — з Wikimedia Commons (автор і ліцензія вказані під кожним зображенням). Моделі навчальні: вони ілюструють закономірності, а не замінюють вимірювання в лабораторії.</p>
+          </div>
+        </aside>
+
+        <a class="work" href="#lab1">
+          <div class="work__num"><span><small>ПЗ</small>1</span></div>
+          <div>
+            <h3>Вивчення стаціонарного стану термодинамічної системи та критеріїв його досягнення у біологічних системах</h3>
+            <p>Рівновага чи стаціонарний стан? Відкрита клітина, потік ентропії, теорема Пригожина та електрохімічний потенціал іона Na⁺ на мембрані.</p>
+            <div class="work__meta"><span class="badge">ентропія</span><span class="badge">гомеостаз</span><span class="badge">електрохімічний потенціал</span><span class="badge badge--p">с. 6–10</span></div>
+          </div>
+          <span class="work__go" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+        </a>
+
+        <a class="work" href="#lab2">
+          <div class="work__num"><span><small>ПЗ</small>2</span></div>
+          <div>
+            <h3>Ентальпія. Тепловий ефект біохімічної реакції</h3>
+            <p>Екзо- й ендотермічні реакції, закон Гесса на діаграмі енергій, зсув рівноваги «йод + крохмаль» при нагріванні та охолодженні, закон Фур’є.</p>
+            <div class="work__meta"><span class="badge">закон Гесса</span><span class="badge">принцип Ле Шательє</span><span class="badge">Фур’є</span><span class="badge badge--p">с. 10–13</span></div>
+          </div>
+          <span class="work__go" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+        </a>
+
+        <a class="work" href="#lab3">
+          <div class="work__num"><span><small>ПЗ</small>3</span></div>
+          <div>
+            <h3>Вивчення принципів зв’язування лігандів з макромолекулами в біополімерах</h3>
+            <p>Гемоглобін як алостерична тетрамерна молекула, рівняння Хілла, а також заміщення магнію у хлорофілі: феофітин, Cu- і Zn-хлорофіл, флуоресценція.</p>
+            <div class="work__meta"><span class="badge">рівняння Хілла</span><span class="badge">гем</span><span class="badge">хлорофіл</span><span class="badge badge--p">с. 13–18</span></div>
+          </div>
+          <span class="work__go" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+        </a>
+
+        <a class="work" href="#lab4">
+          <div class="work__num"><span><small>ПЗ</small>4</span></div>
+          <div>
+            <h3>Вивчення механізмів формування потенціалу спокою і потенціалу дії на клітинній мембрані</h3>
+            <p>Потенціали Нернста й Гольдмана для K⁺, Na⁺, Cl⁻; модель Ходжкіна–Хакслі з анімацією каналів; в’язкість цитоплазми та час випуклого плазмолізу в KNO₃ і Ca(NO₃)₂.</p>
+            <div class="work__meta"><span class="badge">Нернст</span><span class="badge">Гольдман</span><span class="badge">потенціал дії</span><span class="badge badge--p">с. 18–21</span></div>
+          </div>
+          <span class="work__go" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+        </a>
+
+        <a class="work" href="#lab5">
+          <div class="work__num"><span><small>ПЗ</small>5</span></div>
+          <div>
+            <h3>Маркерні ензими плазматичної мембрани та ендомембран</h3>
+            <p>Диференційне центрифугування клітини, чистота мембранних фракцій за маркерами, калібрування й вимірювання неорганічного фосфору за Фіске–Суббароу.</p>
+            <div class="work__meta"><span class="badge">фракціонування</span><span class="badge">маркерні ферменти</span><span class="badge">Бер–Ламберт</span><span class="badge badge--p">с. 21–23</span></div>
+          </div>
+          <span class="work__go" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+        </a>
+
+        <a class="work" href="#lab6">
+          <div class="work__num"><span><small>ПЗ</small>6</span></div>
+          <div>
+            <h3>Макроергічні сполуки</h3>
+            <p>Потенціал перенесення фосфатної групи, реальна ΔG гідролізу АТФ у клітині, енергетичний заряд і кількісне визначення АТФ за фосфором до й після гідролізу.</p>
+            <div class="work__meta"><span class="badge">ΔG гідролізу</span><span class="badge">АТФ</span><span class="badge">креатинфосфат</span><span class="badge badge--p">с. 23–27</span></div>
+          </div>
+          <span class="work__go" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+        </a>
+
+        <a class="work" href="#lab7">
+          <div class="work__num"><span><small>ПЗ</small>7</span></div>
+          <div>
+            <h3>Вивчення шляхів активування та інгібування ферментів</h3>
+            <p>Конкурентне, неконкурентне й безконкурентне інгібування з анімацією активного центру, алостерія, дослід із сукцинатдегідрогеназою та малонатом.</p>
+            <div class="work__meta"><span class="badge">конкурентне інгібування</span><span class="badge">алостерія</span><span class="badge">Лайнуівер–Берк</span><span class="badge badge--p">с. 27–32</span></div>
+          </div>
+          <span class="work__go" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+        </a>
+
+        <a class="work" href="#lab8">
+          <div class="work__num"><span><small>ПЗ</small>8</span></div>
+          <div>
+            <h3>Глюкоза як ключовий метаболіт обміну вуглеводів</h3>
+            <p>Анімований гліколіз з АТФ/НАДН-бухгалтерією, аеробний і анаеробний розпад, цикл Корі; ферицианідне визначення редукуючих цукрів і олігоцукрів.</p>
+            <div class="work__meta"><span class="badge">гліколіз</span><span class="badge">НАД⁺</span><span class="badge">ферицианід</span><span class="badge badge--p">с. 32–36</span></div>
+          </div>
+          <span class="work__go" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+        </a>
+
+        <a class="work" href="#lab9">
+          <div class="work__num"><span><small>ПЗ</small>9</span></div>
+          <div>
+            <h3>Вивчення механізмів регуляції циклу трикарбонових кислот</h3>
+            <p>Обертання циклу з відстеженням мічених атомів вуглецю, регуляція НАДН і АТФ, вихід АТФ і активність дегідрогеназ за відновленням ферицианіду.</p>
+            <div class="work__meta"><span class="badge">цикл Кребса</span><span class="badge">регуляція</span><span class="badge">дегідрогенази</span><span class="badge badge--p">с. 36–43</span></div>
+          </div>
+          <span class="work__go" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+        </a>
+
+        <a class="work" href="#lab10">
+          <div class="work__num"><span><small>ПЗ</small>10</span></div>
+          <div>
+            <h3>Енергетичний обмін. Окисне фосфорилювання</h3>
+            <p>Дихальний ланцюг, протонний градієнт і АТФ-синтаза в русі; кисневий електрод: стани 3 і 4, ротенон, антиміцин, олігоміцин, 2,4-ДНФ.</p>
+            <div class="work__meta"><span class="badge">хеміосмос</span><span class="badge">АТФ-синтаза</span><span class="badge">P/O</span><span class="badge badge--p">с. 43–48</span></div>
+          </div>
+          <span class="work__go" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+        </a>
+
+        <a class="work" href="#lab11">
+          <div class="work__num"><span><small>ПЗ</small>11</span></div>
+          <div>
+            <h3>Кількісне визначення пігментів листка</h3>
+            <p>Спиртовий екстракт, спектр поглинання, розрахунок хлорофілів a і b та їх вмісту в міліграмах на грам сирої маси; вплив похибки вимірювання.</p>
+            <div class="work__meta"><span class="badge">хлорофіл a і b</span><span class="badge">спектр</span><span class="badge">мг/г</span><span class="badge badge--p">с. 48–50</span></div>
+          </div>
+          <span class="work__go" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+        </a>
+
+        <a class="work" href="#lab12">
+          <div class="work__num"><span><small>ПЗ</small>12</span></div>
+          <div>
+            <h3>Дослідження ферментів дихання рослин</h3>
+            <p>Чотири пробірки з гідрохіноном і пероксидом водню; відновлення метиленового синього дегідрогеназами насіння та його повторне окиснення на повітрі.</p>
+            <div class="work__meta"><span class="badge">пероксидаза</span><span class="badge">дегідрогенази</span><span class="badge">метиленовий синій</span><span class="badge badge--p">с. 50–53</span></div>
+          </div>
+          <span class="work__go" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+        </a>
+
+        <a class="work" href="#lab13">
+          <div class="work__num"><span><small>ПЗ</small>13</span></div>
+          <div>
+            <h3>Дослідження основних компонентів антиоксидантної системи рослин</h3>
+            <p>Каскад знешкодження АФК (СОД, каталаза, АПО, цикл аскорбат–глутатіон), окиснювальний стрес, титрування аскорбату й глутатіону та спектрофотометрія пероксидази.</p>
+            <div class="work__meta"><span class="badge">АФК</span><span class="badge">СОД</span><span class="badge">глутатіон</span><span class="badge badge--p">с. 53–58</span></div>
+          </div>
+          <span class="work__go" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+        </a>
+
+        <a class="work" href="#lab14">
+          <div class="work__num"><span><small>ПЗ</small>14</span></div>
+          <div>
+            <h3>Застосування іммобілізованих ферментів та клітин у біотехнологічних процесах</h3>
+            <p>Альгінатні гранули з ферментом у реакторі: градієнт субстрату всередині гранули, ефективність, багаторазове використання, розрахунок дози препарату.</p>
+            <div class="work__meta"><span class="badge">іммобілізація</span><span class="badge">модуль Тіле</span><span class="badge">реактор</span><span class="badge badge--p">с. 58–60</span></div>
+          </div>
+          <span class="work__go" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+        </a>
+
+        <a class="work" href="#lab15">
+          <div class="work__num"><span><small>ПЗ</small>15</span></div>
+          <div>
+            <h3>Вивчення хімізму м’язового скорочення</h3>
+            <p>Саркомер і місткові цикли міозину, роль Ca²⁺ та АТФ, кілька шляхів ресинтезу АТФ, накопичення лактату, цикл Корі й визначення лактату.</p>
+            <div class="work__meta"><span class="badge">актин і міозин</span><span class="badge">креатинфосфат</span><span class="badge">цикл Корі</span><span class="badge badge--p">с. 60–63</span></div>
+          </div>
+          <span class="work__go" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+        </a>
+
+      </div>
+    </section>
+
+    <div id="ff" hidden>
+      <div class="shell">
+        <nav class="index" id="index" aria-label="Практичні заняття"><div class="cap">Практичні заняття</div></nav>
+        <div id="labs"></div>
+      </div>
+      <p class="bio-foot-cred"><b>Авторство методики:</b> Прилуцька С. В., Ткаченко Т. А. Біоенергетичні основи біотехнологічних процесів: методичні вказівки до практичних занять. Київ: НУБіП України, 2025. Рецензенти: Ліханов А. Ф., Кваско О. Ю.</p>
+    </div>
+    <noscript><p class="container">Для роботи моделей потрібен увімкнений JavaScript.</p></noscript>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer__grid">
+        <div class="footer__brand">
+          <img src="../../assets/img/nubip-shield.webp" alt="Герб НУБіП України" width="37" height="52" loading="lazy">
+          <div>
+            <strong>Кафедра фізіології, біохімії рослин та біоенергетики</strong>
+            Факультет захисту рослин, біотехнологій та екології<br>Національний університет біоресурсів і природокористування України
+          </div>
+        </div>
+        <div class="footer__col">
+          <h3>Розділи</h3>
+          <ul>
+            <li><a href="../../about/">Про кафедру</a></li>
+            <li><a href="../../about/#faculty-history">Історія факультету</a></li>
+            <li><a href="../../about/#administration">Адміністрація факультету</a></li>
+            <li><a href="../../about/#programs">Освітні програми</a></li>
+            <li><a href="../../about/#achievements">Здобутки</a></li>
+          </ul>
+        </div>
+        <div class="footer__col">
+          <h3>Для студентів</h3>
+          <ul>
+            <li><a href="../../lab/">Онлайн лабораторія</a></li>
+            <li><a href="../../lab/biochemistry/">Біохімія рослин</a></li>
+            <li><a href="../../lab/plant-physiology/">Фізіологія рослин</a></li>
+            <li><a href="../../lab/analytical-chemistry/">Аналітична хімія</a></li>
+            <li><a href="../../lab/plant-anatomy/">Анатомія рослин</a></li>
+            <li><a href="../../lab/instrumental/">Інструментальні методи</a></li>
+            <li><a href="../../lab/bioenergetics/">Біоенергетика</a></li>
+            <li><a href="../../konspekt/">Конспект</a></li>
+            <li><a href="../../konspekt/pathogens/">Збудники хвороб рослин</a></li>
+            <li><a href="../../konspekt/weeds/">Бур'яни України</a></li>
+            <li><a href="../../konspekt/amino-acids/">Амінокислоти</a></li>
+            <li><a href="../../konspekt/enzymes/">Ферменти</a></li>
+            <li><a href="../../konspekt/plant-cell/">Рослинна і тваринна клітини</a></li>
+            <li><a href="../../konspekt/plant-molecular-genetics/">Молекулярна генетика рослин</a></li>
+            <li><a href="../../konspekt/ion-transport/">Транспорт іонів</a></li>
+            <li><a href="../../konspekt/alkaloids/">Алкалоїди</a></li>
+            <li><a href="../../konspekt/fermentation/">Бродіння</a></li>
+            <li><a href="../../konspekt/stress-resistance/">Стійкість рослин до стресів</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer__view">
+        <button class="view-switch" type="button" data-view-switch><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8M12 17v4"/></svg><span data-view-label>ПК-версія сайту</span></button>
+      </div>
+      <div class="footer__bottom">
+        <span>© <span data-year>2026</span> Кафедра фізіології, біохімії рослин та біоенергетики, НУБіП України</span>
+        <a href="https://nubip.edu.ua" target="_blank" rel="noopener">nubip.edu.ua</a>
+      </div>
+    </div>
+  </footer>
+
+  <script defer src="../../assets/js/main.js"></script>
+  <script defer src="../../assets/js/lightbox.js"></script>
+  <script defer src="../../assets/js/lab/bioenergetics.js"></script>
+</body>
+</html>

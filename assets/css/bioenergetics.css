@@ -1,0 +1,139 @@
+/* Біоенергетичні основи біотехнологічних процесів: доповнення до plant-physiology.css */
+
+/* ---------- вкладки всередині моделі ---------- */
+#ff .tabsbox:empty { display: none; }
+#ff .mtabs { display: flex; flex-wrap: wrap; gap: 6px; margin: 0 0 12px; padding: 4px; background: var(--paper); border: 1px solid var(--rule); border-radius: 12px; }
+#ff .mtab { flex: 1 1 auto; border: 0; background: transparent; color: var(--muted); border-radius: 9px; padding: 8px 14px; font-size: 13.5px; font-weight: 600; cursor: pointer; line-height: 1.25; }
+#ff .mtab:hover { color: var(--ink); background: color-mix(in srgb, var(--sheet) 70%, transparent); }
+#ff .mtab[aria-selected="true"] { background: var(--chl); color: #fff; box-shadow: 0 4px 12px -6px var(--chl); }
+#ff .mbox[hidden] { display: none !important; }
+
+/* ---------- заголовок роботи ---------- */
+#ff .lab-src { margin: -4px 0 14px; padding: 9px 12px; border-left: 3px solid var(--carot); background: color-mix(in srgb, var(--carot) 8%, var(--sheet)); border-radius: 0 8px 8px 0; font-size: 12.5px; line-height: 1.5; color: var(--muted); max-width: 90ch; }
+#ff .lab-src b { color: var(--ink); }
+#ff .loading { padding: 40px 0; text-align: center; }
+
+/* ---------- теорія ---------- */
+#ff .bth { padding: 22px 26px 18px; max-width: 1040px; }
+#ff .bth h3 { font-size: 22px; margin: 26px 0 8px; padding-top: 6px; scroll-margin-top: calc(var(--header-h, 68px) + 14px); }
+#ff .bth h3:first-of-type { margin-top: 4px; }
+#ff .bth h4 { font: 700 15px/1.3 var(--f-body); margin: 16px 0 4px; color: var(--chl); }
+#ff .bth p, #ff .bth li { font-size: 15px; line-height: 1.62; max-width: 72ch; }
+#ff .bth p { margin: 0 0 10px; }
+#ff .bth ul, #ff .bth ol { margin: 0 0 10px; padding-left: 20px; }
+#ff .bth li { margin-bottom: 4px; }
+#ff .bth .lead { font-size: 16.5px; line-height: 1.6; color: var(--ink); max-width: 72ch; }
+#ff .bth .eq { font-size: 19px; max-width: 100%; }
+#ff .bth sup.rf { font-size: .7em; }
+#ff .bth-toc { display: flex; flex-wrap: wrap; gap: 6px; margin: 0 0 16px; padding-bottom: 14px; border-bottom: 1px dashed var(--rule); }
+#ff .bth-toc a { padding: 4px 10px; border-radius: 99px; background: var(--paper); border: 1px solid var(--rule); font-size: 12.5px; color: var(--ink); line-height: 1.4; }
+#ff .bth-toc a:hover { border-color: var(--chl); color: var(--chl); }
+
+/* фото з підписами */
+#ff figure.bf { margin: 14px 0; border: 1px solid var(--rule); border-radius: 12px; background: var(--sheet); overflow: hidden; }
+#ff figure.bf a { display: block; background: #fff; }
+#ff figure.bf img { display: block; width: 100%; height: 100%; max-height: 300px; object-fit: cover; }
+#ff figure.bf--contain img { object-fit: contain; background: #fff; }
+#ff figure.bf figcaption { padding: 8px 12px 10px; font-size: 12.5px; line-height: 1.45; color: var(--muted); border-top: 1px solid var(--rule); }
+#ff figure.bf .bf-cr { display: block; margin-top: 3px; font-size: 11px; opacity: .85; }
+#ff figure.bf .bf-cr a { display: inline; background: none; color: inherit; text-decoration: underline; }
+#ff .bf-gal { display: grid; grid-template-columns: repeat(auto-fit, minmax(230px, 1fr)); gap: 12px; margin: 14px 0; }
+#ff .bf-gal figure.bf { margin: 0; }
+#ff .bf-gal figure.bf img { height: 190px; }
+#ff .bf-gal--1 { grid-template-columns: minmax(0, 620px); }
+#ff .bf-gal--1 figure.bf img { height: auto; max-height: 300px; }
+#ff .bf-gal--2 { grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); }
+#ff .bf-gal--2 figure.bf img { height: 240px; }
+@media (min-width: 900px) {
+  #ff figure.bf--side { float: right; width: min(330px, 40%); margin: 4px 0 12px 22px; }
+  #ff figure.bf--side img { max-height: 260px; }
+}
+#ff .bth::after { content: ""; display: block; clear: both; }
+
+/* виноски-блоки */
+#ff .bcall { margin: 14px 0; padding: 11px 14px 11px 16px; border-radius: 0 10px 10px 0; border-left: 4px solid var(--chl); background: color-mix(in srgb, var(--chl) 8%, var(--sheet)); font-size: 14px; line-height: 1.55; max-width: 76ch; }
+#ff .bcall > b { display: block; margin-bottom: 3px; font-size: 12px; letter-spacing: .09em; text-transform: uppercase; color: var(--chl); font-family: var(--f-mono); }
+#ff .bcall p { margin: 0 0 6px; max-width: none; font-size: 14px; }
+#ff .bcall p:last-child { margin-bottom: 0; }
+#ff .bcall--warn { border-left-color: var(--warn); background: color-mix(in srgb, var(--warn) 9%, var(--sheet)); }
+#ff .bcall--warn > b { color: var(--warn); }
+#ff .bcall--task { border-left-color: var(--carot); background: color-mix(in srgb, var(--carot) 10%, var(--sheet)); }
+#ff .bcall--task > b { color: #8C6A10; }
+#ff .bcall--idea { border-left-color: var(--data); background: color-mix(in srgb, var(--data) 8%, var(--sheet)); }
+#ff .bcall--idea > b { color: var(--data); }
+#ff .bcall--model { border-left-color: var(--antho); background: color-mix(in srgb, var(--antho) 7%, var(--sheet)); }
+#ff .bcall--model > b { color: var(--antho); }
+
+/* кроки */
+#ff ol.bsteps { list-style: none; padding: 0; margin: 12px 0; counter-reset: bs; display: grid; gap: 8px; max-width: 76ch; }
+#ff ol.bsteps > li { counter-increment: bs; position: relative; padding: 8px 12px 8px 46px; border: 1px solid var(--rule); border-radius: 10px; background: var(--paper); font-size: 14px; line-height: 1.5; min-height: 40px; }
+#ff ol.bsteps > li::before { content: counter(bs); position: absolute; left: 10px; top: 8px; width: 26px; height: 26px; border-radius: 50%; background: var(--chl); color: #fff; display: grid; place-items: center; font: 700 13px var(--f-mono); }
+
+/* методика (згортається) */
+#ff details.bproto { margin: 14px 0; border: 1px solid var(--rule); border-radius: 10px; background: var(--paper); max-width: 82ch; }
+#ff details.bproto > summary { cursor: pointer; padding: 10px 14px; font-weight: 600; font-size: 14.5px; list-style: none; display: flex; align-items: center; gap: 10px; }
+#ff details.bproto > summary::-webkit-details-marker { display: none; }
+#ff details.bproto > summary::before { content: "▸"; color: var(--chl); transition: transform .15s; }
+#ff details.bproto[open] > summary::before { transform: rotate(90deg); }
+#ff details.bproto > div { padding: 2px 16px 12px; border-top: 1px dashed var(--rule); }
+#ff details.bproto p, #ff details.bproto li { font-size: 14px; }
+
+/* таблиці в теорії */
+#ff table.bt { font-size: 13.5px; margin: 4px 0; }
+#ff table.bt td, #ff table.bt th { vertical-align: top; }
+#ff table.bt td:first-child { font-weight: 600; }
+#ff .tblwrap { margin: 10px 0 14px; border: 1px solid var(--rule); border-radius: 10px; background: var(--sheet); max-width: 100%; }
+
+/* ---------- модель ---------- */
+#ff .bout { padding: 10px 12px; border: 1px solid var(--rule); border-radius: 10px; background: var(--paper); font-size: 13px; line-height: 1.55; }
+#ff .bout b { font-weight: 600; }
+#ff .bout.good { border-color: var(--good); background: color-mix(in srgb, var(--good) 8%, var(--paper)); }
+#ff .bout.bad { border-color: var(--bad); background: color-mix(in srgb, var(--bad) 7%, var(--paper)); }
+#ff .bout.warn { border-color: var(--warn); background: color-mix(in srgb, var(--warn) 8%, var(--paper)); }
+#ff .bout code, #ff .bth code { font: 600 12.5px var(--f-mono); }
+#ff .bcalc { display: grid; gap: 8px; }
+#ff .bcalc input[type=number], #ff .ctl input[type=number] { width: 100%; padding: 6px 8px; border-radius: 7px; border: 1px solid var(--rule); background: var(--paper); font: 13px var(--f-mono); }
+#ff .grid2 { display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 8px; }
+#ff .legend { display: flex; flex-wrap: wrap; gap: 6px 14px; font-size: 12px; color: var(--muted); }
+#ff .legend i { display: inline-block; width: 10px; height: 10px; border-radius: 50%; margin-right: 5px; vertical-align: -1px; }
+#ff .sim h4 { margin: 0; }
+
+/* ---------- контрольні питання ---------- */
+#ff .qa-bar { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 8px 16px; margin: 0 0 12px; }
+#ff .qa-a { padding: 0 0 14px 40px; font-size: 14.5px; line-height: 1.6; color: var(--muted); max-width: 78ch; }
+#ff .qa-a p { margin: 0 0 8px; padding: 0; font-size: 14.5px; }
+#ff .qa-a ul { margin: 0 0 8px; padding-left: 18px; }
+#ff .qa-a b { color: var(--ink); }
+#ff .qa-a .eq { font-size: 16px; margin: 6px 0; }
+#ff details.qa summary { font-size: 15px; line-height: 1.4; }
+
+/* ---------- навігація між роботами ---------- */
+#ff .lab-pn { display: flex; justify-content: space-between; gap: 12px; margin: 30px 0 4px; padding-top: 18px; border-top: 1px solid var(--rule); }
+#ff .lab-pn a { display: flex; flex-direction: column; gap: 2px; padding: 12px 16px; border: 1px solid var(--rule); border-radius: 12px; background: var(--sheet); font-weight: 600; font-size: 14px; line-height: 1.35; max-width: 48%; color: var(--ink); }
+#ff .lab-pn a.nx { text-align: right; margin-left: auto; }
+#ff .lab-pn a:hover { border-color: var(--chl); }
+#ff .lab-pn small { font: 600 11px var(--f-mono); letter-spacing: .08em; text-transform: uppercase; color: var(--muted); }
+
+/* ---------- головна сторінка розділу ---------- */
+.bio-cred { margin: 0 0 22px; padding: 18px 22px; border-radius: 16px; border: 1px solid var(--rule, #C9D4CB); background: linear-gradient(135deg, #F8FAF6, #EEF3EC); display: grid; grid-template-columns: auto 1fr; gap: 6px 20px; align-items: start; }
+.bio-cred__body { min-width: 0; display: grid; gap: 8px; }
+.bio-cred__ic { grid-row: auto; width: 54px; height: 54px; border-radius: 14px; display: grid; place-items: center; background: #1B5E20; color: #EBD27F; }
+.bio-cred__ic svg { width: 28px; height: 28px; }
+.bio-cred h2 { margin: 0; font-size: 1.15rem; }
+.bio-cred p { margin: 0; font-size: .93rem; line-height: 1.55; color: #3d4d42; }
+.bio-cred dl { margin: 6px 0 0; display: grid; grid-template-columns: auto 1fr; gap: 3px 14px; font-size: .9rem; line-height: 1.5; }
+.bio-cred dt { color: #58695E; font-weight: 600; }
+.bio-cred dd { margin: 0; }
+.bio-cred .src { font-size: .82rem; color: #58695E; margin-top: 4px; }
+@media (max-width: 640px) { .bio-cred { grid-template-columns: 1fr; } .bio-cred dl { grid-template-columns: 1fr; } .bio-cred dt { margin-top: 4px; } }
+.work--bio .work__num span { background: linear-gradient(135deg, #1B5E20, #2C7A4D); }
+.bio-foot-cred { margin: 26px auto 0; max-width: 1500px; padding: 14px 18px; border-top: 1px solid var(--rule, #C9D4CB); font-size: 12.5px; line-height: 1.55; color: #58695E; }
+.bio-foot-cred b { color: #16221A; }
+
+@media (max-width: 720px) {
+  #ff .bth { padding: 16px 14px 12px; }
+  #ff .qa-a { padding-left: 4px; }
+  #ff .lab-pn { flex-direction: column; }
+  #ff .lab-pn a { max-width: none; }
+  #ff .mtab { padding: 8px 10px; font-size: 12.5px; }
+}
