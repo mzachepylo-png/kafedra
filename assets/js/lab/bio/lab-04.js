@@ -139,11 +139,13 @@ App.def(4, {
       // заряди
       const q = clamp(Math.abs(HH.V + 65) / 120, 0, 1), pos = HH.V > -20;
       for (let x = 12; x < W; x += 24) { c.font = `700 13px ${FM()}`; c.textAlign = "center"; c.textBaseline = "middle"; c.fillStyle = pos ? "rgba(42,106,147,.8)" : "rgba(179,54,58,.6)"; c.fillText(pos ? "+" : "−", x, my + gap / 2 + 9); c.fillStyle = pos ? "rgba(179,54,58,.8)" : "rgba(42,106,147,.55)"; c.fillText(pos ? "−" : "+", x + 12, my - gap / 2 - 9); }
-      Gfx.chip(c, `V = ${NA(HH.V, 1)} мВ`, 12, H - 16, { size: 12, weight: 700 }); Gfx.chip(c, HH.V > 0 ? "ПОТЕНЦІАЛ ДІЇ" : HH.V < -70 ? "гіперполяризація (рефрактерність)" : "спокій", W - 12, 16, { align: "right", size: 11, fg: HH.V > 0 ? "#B3363A" : T0.ink });
+      Gfx.chip(c, `V = ${NA(HH.V, 1)} мВ`, 12, H - 16, { size: 12, weight: 700 });
+      if (HH.t > HH.tStim + 50 && HH.dc === 0 && HH.pulse === 0) Gfx.chip(c, "Натисніть «⚡ Подразнити» — і спостерігайте відкриття воріт та потік іонів", W / 2, 24, { align: "center", size: 11, fg: "#2C7A4D" }); Gfx.chip(c, HH.V > 0 ? "ПОТЕНЦІАЛ ДІЇ" : HH.V < -70 ? "гіперполяризація (рефрактерність)" : "спокій", W - 12, 16, { align: "right", size: 11, fg: HH.V > 0 ? "#B3363A" : T0.ink });
     }
     function chartsB() {
       // вікно: від −5 мс до +40 мс відносно останнього стимулу; потім — прокручування
-      const H = HH.hist, W0 = 45, x0 = HH.t < HH.tStim + W0 - 5 ? Math.max(0, HH.tStim - 5) : HH.t - W0;
+      // без постійного струму вікно «заморожується» на останньому стимулі, щоб потенціал дії лишався на екрані
+      const H = HH.hist, W0 = 45, x0 = (HH.dc > 0 && HH.t > HH.tStim + W0 - 5) ? HH.t - W0 : Math.max(0, HH.tStim - 5);
       drawChart(cB1, { x: [x0, x0 + 45], y: [-90, 60], xl: "t, мс", series: [{ pts: H.map(r => [r[0], r[1]]), color: "#B3363A", w: 2.4 }], hl: [{ y: -65, color: T0c().muted }, { y: 0, color: T0c().muted, dash: [2, 3] }] });
       drawChart(cB2, { x: [x0, x0 + 45], y: [0, 1], xl: "t, мс", series: [{ pts: H.map(r => [r[0], r[2]]), color: "#2A6A93", w: 2.2 }, { pts: H.map(r => [r[0], r[3]]), color: "#C77A12", w: 2.2 }, { pts: H.map(r => [r[0], r[4]]), color: "#6A4FB5", w: 2.2 }], legend: [{ label: "m", color: "#2A6A93" }, { label: "h", color: "#C77A12" }, { label: "n", color: "#6A4FB5" }] });
       drawChart(cB3, { x: [x0, x0 + 45], y: [0, 40], xl: "t, мс", series: [{ pts: H.map(r => [r[0], r[5]]), color: "#2A8FB5", w: 2.2 }, { pts: H.map(r => [r[0], r[6]]), color: "#6A4FB5", w: 2.2 }], legend: [{ label: "g(Na⁺)", color: "#2A8FB5" }, { label: "g(K⁺)", color: "#6A4FB5" }] });
