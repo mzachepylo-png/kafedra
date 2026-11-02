@@ -32,6 +32,8 @@ function fmtSig(x, s = 3) {
 }
 // seeded RNG so textures are stable between frames
 function rng(seed) { let s = seed >>> 0 || 1; return () => { s ^= s << 13; s ^= s >>> 17; s ^= s << 5; return ((s >>> 0) % 1e9) / 1e9; }; }
+/** детермінований «шум» за індексом (на відміну від rng(i+k) не дає скупчень при сусідніх i) */
+function hash01(i, s = 0) { let x = Math.imul(i + 1, 374761393) ^ Math.imul(s + 1, 668265263); x = Math.imul(x ^ (x >>> 13), 1274126177); x ^= x >>> 16; return (x >>> 0) / 4294967296; }
 function gauss(r) { let u = 0, v = 0; while (!u) u = r(); while (!v) v = r(); return Math.sqrt(-2 * Math.log(u)) * Math.cos(2 * Math.PI * v); }
 const REDUCED = matchMedia("(prefers-reduced-motion: reduce)").matches;
 
@@ -196,7 +198,7 @@ const UI = {
     const g = h("div", { class: "reads" }); const m = {};
     for (const [k, label] of keys) { const v = h("div", { class: "v" }, "—"); g.append(h("div", { class: "rd" }, h("div", { class: "k" }, label), v)); m[k] = v; }
     parent.append(g);
-    return { set(k, val, unit) { m[k].innerHTML = val + (unit ? `<small>${unit}</small>` : ""); } };
+    return { set(k, val, unit) { UI.html(m[k], val + (unit ? `<small>${unit}</small>` : "")); } };
   },
   chart(parent, title, opts) { const w = h("div", { class: "chart" }, h("h4", null, title)); parent.append(w); return new Stage(w, Object.assign({ aspect: 1.9, minH: 190, maxH: 300 }, opts)); },
 };
@@ -382,6 +384,30 @@ const Gfx = {
     c.beginPath(); c.ellipse(x + r, y, r + 1.5, 2.6, 0, 0, 7); c.stroke();
     if (o.label) { c.fillStyle = Theme.c.ink; c.font = `600 11px ${FM()}`; c.textAlign = "center"; c.textBaseline = "top"; c.fillText(o.label, x + r, y + hh + 6); }
   },
+  /** спектрофотометр: корпус, дисплей із показом, шлях променя крізь кювету. o: {lam, A, col, text, sub} */
+  spectro(c, x, y, w, hh, o) {
+    const T = Theme.c;
+    Gfx.rr(c, x, y, w, hh, 14); const bg = c.createLinearGradient(0, y, 0, y + hh); bg.addColorStop(0, Theme.dark ? "#2d3d33" : "#EDF1EA"); bg.addColorStop(1, Theme.dark ? "#223028" : "#D3DBD0"); c.fillStyle = bg; c.fill(); c.strokeStyle = T.rule; c.lineWidth = 1; c.stroke();
+    // дисплей
+    const dx = x + 14, dy = y + 14, dw = w - 28, dh = Math.max(46, hh * .34);
+    Gfx.rr(c, dx, dy, dw, dh, 8); c.fillStyle = "#0E1F14"; c.fill();
+    c.font = `600 10.5px ${FM()}`; c.fillStyle = "#7CD67F"; c.textAlign = "left"; c.textBaseline = "top"; c.fillText(`λ = ${NA(o.lam, 0)} нм`, dx + 10, dy + 8);
+    const txt = o.text; let fs = Math.min(34, dh * .62); c.font = `700 ${fs}px ${FM()}`; while (c.measureText(txt).width > dw - 24 && fs > 12) { fs -= 1; c.font = `700 ${fs}px ${FM()}`; }
+    c.fillStyle = "#9FEFA2"; c.textAlign = "right"; c.textBaseline = "middle"; c.fillText(txt, dx + dw - 12, dy + dh * .6);
+    // кюветний відсік
+    const cy0 = dy + dh + 16, ch = y + hh - cy0 - 26, mid = cy0 + ch / 2, cw = Math.min(34, w * .14), cx0 = x + w / 2 - cw / 2;
+    Gfx.rr(c, x + 14, cy0 - 4, w - 28, ch + 8, 8); c.fillStyle = Theme.dark ? "rgba(0,0,0,.28)" : "rgba(0,0,0,.07)"; c.fill();
+    const beam = Spectral.lambdaToRGB(o.lam), T10 = Math.pow(10, -(o.A || 0));
+    Gfx.glow(c, x + 30, mid, 22, "#FFE9A8", .55); Gfx.sphere(c, x + 30, mid, 7, "#FFE08A");
+    c.lineCap = "butt"; c.strokeStyle = beam; c.lineWidth = 4; c.globalAlpha = .9; c.beginPath(); c.moveTo(x + 40, mid); c.lineTo(cx0, mid); c.stroke();
+    c.globalAlpha = clamp(T10, .06, 1); c.beginPath(); c.moveTo(cx0 + cw, mid); c.lineTo(x + w - 40, mid); c.stroke(); c.globalAlpha = 1;
+    Gfx.rr(c, x + w - 40, mid - 11, 14, 22, 3); c.fillStyle = "#394148"; c.fill();
+    // кювета з розчином
+    Gfx.rr(c, cx0, cy0 + 2, cw, ch - 4, 4); c.fillStyle = o.col || "#DDE"; c.fill();
+    const gl = c.createLinearGradient(cx0, 0, cx0 + cw, 0); gl.addColorStop(0, "rgba(255,255,255,.45)"); gl.addColorStop(.3, "rgba(255,255,255,.05)"); gl.addColorStop(1, "rgba(0,0,0,.15)"); c.fillStyle = gl; c.fillRect(cx0, cy0 + 2, cw, ch - 4);
+    Gfx.rr(c, cx0, cy0 + 2, cw, ch - 4, 4); c.strokeStyle = rgba(T.ink, .45); c.lineWidth = 1.2; c.stroke();
+    c.font = `10px ${FB()}`; c.fillStyle = T.muted; c.textAlign = "center"; c.textBaseline = "alphabetic"; c.fillText(o.sub || "кювета 10 мм", x + w / 2, y + hh - 9);
+  },
   /** шкала-«градієнт» для плашки фону клітинної цитоплазми з зерністістю */
   grain(c, x, y, w, hh, col, seed = 1, n = 120, a = .1) {
     const r = rng(seed); c.fillStyle = col; c.fillRect(x, y, w, hh);
@@ -413,8 +439,24 @@ UI.modes = function (tabsBox, stageBox, ctrls, below, defs, onChange) {
   return { box: (id) => boxes[id], get cur() { return cur; }, set, init() { set(cur); } };
 };
 /* ---- допоміжні віджети ---- */
-UI.out = function (parent, html, cls = "") { const d = h("div", { class: "bout " + cls, html }); parent.append(d); return { set(x) { d.innerHTML = x; }, el: d }; };
+UI.out = function (parent, html, cls = "") { const d = h("div", { class: "bout " + cls, html }); parent.append(d); return { set(x) { UI.html(d, x); }, el: d }; };
+UI.html = function (el, html) { if (el._h !== html) { el._h = html; el.innerHTML = html; } };
 UI.tip = function (parent, html) { parent.append(h("p", { class: "note", html })); };
+
+/* ---- таблиці: заголовки числових стовпців вирівнюються праворуч, як і самі числа ---- */
+function alignTables(root) {
+  root.querySelectorAll("table.t").forEach(t => {
+    const rows = [...t.tBodies].flatMap(b => [...b.rows]); if (!rows.length) return;
+    const hs = t.tHead && t.tHead.rows[0] ? [...t.tHead.rows[0].cells] : [];
+    hs.forEach((th, i) => { th.classList.toggle("n", rows.every(r => r.cells[i] && (r.cells[i].classList.contains("n") || r.cells[i].colSpan > 1 || !r.cells[i].textContent.trim()))); });
+  });
+}
+/* формат великих чисел у науковому записі: 3,8·10⁴ */
+function sci(x, d = 1) {
+  if (!isFinite(x) || x === 0) return "0";
+  const e = Math.floor(Math.log10(Math.abs(x))), m = x / Math.pow(10, e), sup = String(e).replace("-", "⁻").replace(/\d/g, ch => "⁰¹²³⁴⁵⁶⁷⁸⁹"[ch]);
+  return fmt(m, d) + "·10" + sup;
+}
 
 /* ---- Застосунок: список робіт, ліниве завантаження, маршрутизація, цикл анімації ---- */
 const App = {
@@ -489,10 +531,28 @@ const App = {
     const secHead = (n, t) => h("h3", { class: "ff-sec__h" }, h("span", { class: "n" }, n), t);
     // 01 теорія
     const th = h("div", { class: "panel bth" });
-    th.insertAdjacentHTML("beforeend", L.cheat);
-    const toc = h("nav", { class: "bth-toc", "aria-label": "Зміст теорії" });
-    th.querySelectorAll("h3").forEach((x, i) => { x.id = `l${L.n}-s${i}`; toc.append(h("a", { href: "#" + x.id, onclick: (e) => { e.preventDefault(); x.scrollIntoView({ behavior: REDUCED ? "auto" : "smooth", block: "start" }); } }, x.textContent)); });
-    th.prepend(toc);
+    const main = h("div", { class: "bth-main" });
+    main.insertAdjacentHTML("beforeend", L.cheat);
+    const toc = h("nav", { class: "bth-toc", "aria-label": "Зміст теорії" }, h("div", { class: "cap" }, "У цьому розділі"));
+    const heads = [...main.querySelectorAll("h3")], links = [];
+    heads.forEach((x, i) => {
+      x.id = `l${L.n}-s${i}`;
+      const a = h("a", { href: "#" + x.id, onclick: (e) => { e.preventDefault(); x.scrollIntoView({ behavior: REDUCED ? "auto" : "smooth", block: "start" }); } }, x.textContent);
+      toc.append(a); links.push(a);
+    });
+    th.append(toc, main);
+    // підсвічування поточного підрозділу (останній заголовок над верхнім краєм вікна)
+    let tick = false;
+    const mark = () => {
+      tick = false;
+      if (!th.isConnected) { removeEventListener("scroll", onScroll); return; }
+      const lim = 120; let cur = -1;
+      heads.forEach((x, i) => { if (x.getBoundingClientRect().top < lim) cur = i; });
+      const r = th.getBoundingClientRect(); if (r.bottom < lim || r.top > innerHeight) cur = -1;
+      links.forEach((a, i) => a.classList.toggle("on", i === cur));
+    };
+    const onScroll = () => { if (!tick) { tick = true; requestAnimationFrame(mark); } };
+    addEventListener("scroll", onScroll, { passive: true });
     sec.append(h("section", { class: "ff-sec" }, secHead("01", "Теоретичні відомості"), th));
     // 02 модель
     const status = h("span", { class: "runbar__st" });
@@ -506,6 +566,8 @@ const App = {
     top.append(stageBox, ctrls); sim.append(top);
     const below = h("div", { style: "display:flex;flex-direction:column;gap:14px;min-width:0" }); sim.append(below);
     L.inst = L.build({ stageBox, ctrls, below, tabsBox, sim });
+    { let q = 0; const run = () => { q = 0; alignTables(sim); }; alignTables(sim);
+      new MutationObserver(() => { if (!q) q = requestAnimationFrame(run); }).observe(sim, { childList: true, subtree: true }); }
     if (!L.inst.stages) L.inst.stages = [];
     setRun(true);
     // 03 питання
@@ -527,5 +589,5 @@ const App = {
   },
 };
 
-window.BIO = { App, Gfx, UI, h, $, Stage, drawChart, Spectral, Theme, Draw, clamp, lerp, smooth, rng, gauss, fmt, fmtSig, rgba, mixHex, shade, alpha, mixc, ease, FB, FM, FD, NA, RG, REDUCED, niceTicks, tickFmt, logTicks, hex2rgb };
+window.BIO = { hash01, sci, alignTables, App, Gfx, UI, h, $, Stage, drawChart, Spectral, Theme, Draw, clamp, lerp, smooth, rng, gauss, fmt, fmtSig, rgba, mixHex, shade, alpha, mixc, ease, FB, FM, FD, NA, RG, REDUCED, niceTicks, tickFmt, logTicks, hex2rgb };
 if (document.readyState === "loading") document.addEventListener("DOMContentLoaded", () => App.boot()); else App.boot();

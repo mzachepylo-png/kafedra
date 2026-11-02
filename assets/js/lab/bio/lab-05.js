@@ -14,12 +14,12 @@ App.def(5, {
     // r — радіус, мкм; d — Δρ відносно середовища, кг/м³; mk — ферментний маркер
     const ORG = [
       { k: "nuc", n: "Ядра", r: 3, d: 290, col: "#5B44A8", mk: "ДНК-полімераза" },
-      { k: "mit", n: "Мітохондрії", r: .4, d: 130, col: "#D1453B", mk: "Цитохромоксидаза" },
+      { k: "mit", n: "Мітохондрії", r: .4, d: 130, col: "#D1453B", mk: "Цитохромоксидаза", ms: "Цитохромоксидаза" },
       { k: "per", n: "Пероксисоми", r: .25, d: 200, col: "#2A8FB5", mk: "Каталаза" },
       { k: "lys", n: "Лізосоми / вакуолі", r: .3, d: 90, col: "#C77A12", mk: "Кисла фосфатаза" },
-      { k: "er", n: "ЕПР (мікросоми)", r: .07, d: 80, col: "#3FA66A", mk: "Глюкозо-6-фосфатаза" },
+      { k: "er", n: "ЕПР (мікросоми)", r: .07, d: 80, col: "#3FA66A", mk: "Глюкозо-6-фосфатаза", ms: "Глюкозо-6-фосфатаза" },
       { k: "pm", n: "Плазмалема", r: .09, d: 80, col: "#C94F96", mk: "5′-Нуклеотидаза" },
-      { k: "cyt", n: "Цитозоль (розчинні)", r: 0, d: 0, col: "#8A8A5A", mk: "Лактатдегідрогеназа" },
+      { k: "cyt", n: "Цитозоль (розчинні)", r: 0, d: 0, col: "#8A8A5A", mk: "Лактатдегідрогеназа", ms: "Лактат-ДГ" },
     ];
     const ST = [{ g: 600, t: 10, nm: "Етап 1 → ядра" }, { g: 10000, t: 20, nm: "Етап 2 → мітохондрії" }, { g: 100000, t: 60, nm: "Етап 3 → мікросоми" }];
     const eta = 2e-3, hcm = .04;
@@ -38,7 +38,7 @@ App.def(5, {
     const chA = h("div", { class: "charts" }); A.bl.append(chA);
     const cA1 = UI.chart(chA, "Розподіл ферментів-маркерів по фракціях, %", { aspect: 1.8, minH: 230, maxH: 340 });
     const tbA = h("div", { class: "tblwrap" }); A.bl.append(h("div", { class: "chart" }, h("h4", null, "Частинки, ферменти-маркери й швидкість осідання (v/g, нм/с на 1 g)"), tbA));
-    tbA.innerHTML = `<table class="t"><thead><tr><th>Частинка</th><th>Маркер</th><th>r, мкм</th><th>Δρ, кг/м³</th><th>v на 1g, нм/с</th></tr></thead><tbody>${ORG.map(o => `<tr><td><span style="display:inline-block;width:10px;height:10px;border-radius:50%;background:${o.col};margin-right:6px"></span>${o.n}</td><td>${o.mk}</td><td class="n">${o.r || "—"}</td><td class="n">${o.d || "—"}</td><td class="n">${o.r ? NA(vel(o, 1) * 1e9, 2) : "—"}</td></tr>`).join("")}</tbody></table>`;
+    UI.html(tbA, `<table class="t"><thead><tr><th>Частинка</th><th>Маркер</th><th>r, мкм</th><th>Δρ, кг/м³</th><th>v на 1g, нм/с</th></tr></thead><tbody>${ORG.map(o => `<tr><td><span style="display:inline-block;width:10px;height:10px;border-radius:50%;background:${o.col};margin-right:6px"></span>${o.n}</td><td>${o.mk}</td><td class="n">${o.r ? NA(o.r, o.r >= 1 ? 0 : 2) : "—"}</td><td class="n">${o.d || "—"}</td><td class="n">${o.r ? NA(vel(o, 1) * 1e9, 2) : "—"}</td></tr>`).join("")}</tbody></table>`);
     // частинки в пробірці
     const rr = rng(13), pts = [];
     for (const o of ORG) { const n = o.k === "cyt" ? 70 : o.k === "nuc" ? 8 : o.k === "mit" || o.k === "per" ? 20 : 26; for (let i = 0; i < n; i++) pts.push({ o, x: rr(), y: rr() * .95, ph: rr() * 6 }); }
@@ -96,11 +96,11 @@ App.def(5, {
       const st = c => c;
       // стековані стовпці: кожен маркер — стовпець зі сегментами по фракціях
       const c = cA1.ctx, W = cA1.W, H = cA1.H, T0 = Theme.c; c.fillStyle = T0.sheet; c.fillRect(0, 0, W, H);
-      const L = 40, Rr = 8, Tp = 14, Bt = 84, pw = W - L - Rr, ph = H - Tp - Bt, n = ORG.length, bw = pw / n * .62, FC = ["#5B44A8", "#D1453B", "#3FA66A", "#B9C27A"];
+      const L = 40, Rr = 8, Tp = 14, Bt = 92, pw = W - L - Rr, ph = H - Tp - Bt, n = ORG.length, bw = pw / n * .62, FC = ["#5B44A8", "#D1453B", "#3FA66A", "#B9C27A"];
       c.font = `11px ${FM()}`; c.textAlign = "right"; c.textBaseline = "middle";
       for (let v = 0; v <= 100; v += 25) { const y = Tp + ph * (1 - v / 100); c.strokeStyle = rgba(T0.ink, .08); c.beginPath(); c.moveTo(L, y); c.lineTo(L + pw, y); c.stroke(); c.fillStyle = T0.muted; c.fillText(v, L - 6, y); }
       ORG.forEach((o, i) => { const x = L + pw / n * (i + .5) - bw / 2; let y = Tp + ph; d[o.k].forEach((v, j) => { const hh = v * ph; c.fillStyle = FC[j]; c.fillRect(x, y - hh, bw, hh); y -= hh; });
-        c.save(); c.translate(x + bw / 2, Tp + ph + 8); c.rotate(.5); c.fillStyle = T0.ink; c.textAlign = "left"; c.font = `10.5px ${FB()}`; c.fillText(o.mk, 0, 6); c.restore(); });
+        c.save(); c.translate(x + bw / 2, Tp + ph + 8); c.rotate(.5); c.fillStyle = T0.ink; c.textAlign = "left"; c.font = `10.5px ${FB()}`; c.fillText(o.ms || o.mk, 0, 6); c.restore(); });
       let lx = L; names.forEach((nm, j) => { c.fillStyle = FC[j]; c.fillRect(lx, 2, 10, 8); c.fillStyle = T0.muted; c.textAlign = "left"; c.font = `10.5px ${FB()}`; c.fillText(nm, lx + 14, 7); lx += c.measureText(nm).width + 34; });
     }
 

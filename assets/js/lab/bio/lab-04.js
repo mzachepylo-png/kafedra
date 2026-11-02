@@ -21,12 +21,19 @@ App.def(4, {
     const rdA = UI.reads(A.st, [["EK", "E(K⁺)"], ["ENa", "E(Na⁺)"], ["ECl", "E(Cl⁻)"], ["V", "V спокою (Гольдман)"]]);
     UI.select(A.ct, { id: "p4-pre", label: "Клітина", value: "neuron", options: [["neuron", "Нейрон ссавця (37 °C)"], ["squid", "Гігантський аксон кальмара (18 °C)"], ["plant", "Рослинна клітина (спрощено)"]], on: v => { Object.assign(S, JSON.parse(JSON.stringify(PRE[v]))); syncA(); } });
     const sl = {};
-    const mk = (id, lab, key, idx, max, st) => { sl[id] = UI.slider(A.ct, { id: "p4a-" + id, label: lab, min: 1, max, step: st || 1, value: S[key][idx], unit: "мМ", on: v => { S[key][idx] = v; } }); };
-    mk("Ki", "[K⁺] всередині", "K", 0, 500); mk("Ko", "[K⁺] зовні", "K", 1, 60, .5); mk("Nai", "[Na⁺] всередині", "Na", 0, 100); mk("Nao", "[Na⁺] зовні", "Na", 1, 500); mk("Cli", "[Cl⁻] всередині", "Cl", 0, 100); mk("Clo", "[Cl⁻] зовні", "Cl", 1, 600);
-    const pk = UI.slider(A.ct, { id: "p4a-pk", label: "P(K⁺) відносно", min: .1, max: 5, step: .05, value: S.pK, on: v => S.pK = v, fmt: v => NA(v, 2) });
-    const pn = UI.slider(A.ct, { id: "p4a-pn", label: "P(Na⁺) відносно", min: .005, max: 3, step: .005, value: S.pNa, on: v => S.pNa = v, fmt: v => NA(v, 3) });
-    const pc = UI.slider(A.ct, { id: "p4a-pc", label: "P(Cl⁻) відносно", min: .02, max: 2, step: .02, value: S.pCl, on: v => S.pCl = v, fmt: v => NA(v, 2) });
+    const grid = h("div", { class: "ctlgrid" }); A.bl.append(grid);
+    grid.append(h("h5", null, "Концентрації (мМ) і відносні проникності іонів"));
+    const colOf = (title, col) => { const d = h("div", { class: "ctl-col" }, h("h5", { style: `color:${col}` }, title)); grid.append(d); return d; };
+    const cK = colOf("K⁺", COLI.K), cNa = colOf("Na⁺", COLI.Na), cCl = colOf("Cl⁻", COLI.Cl);
+    const mk = (par, id, lab, key, idx, max, st) => { sl[id] = UI.slider(par, { id: "p4a-" + id, label: lab, min: 1, max, step: st || 1, value: S[key][idx], unit: "мМ", on: v => { S[key][idx] = v; } }); };
+    mk(cK, "Ki", "всередині", "K", 0, 500); mk(cK, "Ko", "зовні", "K", 1, 60, .5);
+    const pk = UI.slider(cK, { id: "p4a-pk", label: "P(K⁺) відносно", min: .1, max: 5, step: .05, value: S.pK, on: v => S.pK = v, fmt: v => NA(v, 2) });
+    mk(cNa, "Nai", "всередині", "Na", 0, 100); mk(cNa, "Nao", "зовні", "Na", 1, 500);
+    const pn = UI.slider(cNa, { id: "p4a-pn", label: "P(Na⁺) відносно", min: .005, max: 3, step: .005, value: S.pNa, on: v => S.pNa = v, fmt: v => NA(v, 3) });
+    mk(cCl, "Cli", "всередині", "Cl", 0, 100); mk(cCl, "Clo", "зовні", "Cl", 1, 600);
+    const pc = UI.slider(cCl, { id: "p4a-pc", label: "P(Cl⁻) відносно", min: .02, max: 2, step: .02, value: S.pCl, on: v => S.pCl = v, fmt: v => NA(v, 2) });
     function syncA() { sl.Ki.set(S.K[0]); sl.Ko.set(S.K[1]); sl.Nai.set(S.Na[0]); sl.Nao.set(S.Na[1]); sl.Cli.set(S.Cl[0]); sl.Clo.set(S.Cl[1]); pk.set(S.pK); pn.set(S.pNa); pc.set(S.pCl); }
+    UI.tip(A.ct, "<b>Рівняння Гольдмана</b> зважує внесок кожного іона його проникністю: що більша P, то ближче V до рівноважного потенціалу цього іона. У спокої мембрана найпроникніша для K⁺, тому V ≈ E(K⁺), трохи зсунутий до E(Na⁺).");
     UI.tip(A.ct, "У рослин мембранний потенціал (−120…−200 мВ) значною мірою створює електрогенна H⁺-АТФаза; ця модель враховує лише дифузійний (гольдманівський) внесок K⁺, Na⁺, Cl⁻.");
     const chA = h("div", { class: "charts" }); A.bl.append(chA);
     const cA1 = UI.chart(chA, "Залежність V спокою від [K⁺] зовні (мВ) — нахил ≈ 58–62 мВ на декаду");
@@ -64,7 +71,8 @@ App.def(4, {
       c.strokeStyle = T0.rule; for (let v = -120; v <= 80; v += 40) { c.beginPath(); c.moveTo(px - 4, Yv(v)); c.lineTo(px + pw, Yv(v)); c.stroke(); Gfx.text(c, v, px - 8, Yv(v), { align: "right", base: "middle", size: 10, color: T0.muted }); }
       Gfx.text(c, "мВ", px - 34, y0 - 4, { size: 10, color: T0.muted });
       const lines = [["E(K⁺)", E("K"), COLI.K], ["E(Cl⁻)", E("Cl"), COLI.Cl], ["E(Na⁺)", E("Na"), COLI.Na], ["V спокою", V, "#B3363A"]];
-      lines.forEach(([n, v, col], i) => { const y = Yv(clamp(v, vmin, vmax)); c.strokeStyle = col; c.lineWidth = i === 3 ? 3.5 : 2.2; c.beginPath(); c.moveTo(px + i * pw * .07, y); c.lineTo(px + pw, y); c.stroke(); Gfx.text(c, `${n} ${NA(v, 0)}`, px + pw - 2, y - 7, { align: "right", size: 10.5, color: col, weight: 700 }); });
+      const ly = []; lines.forEach(([n, v, col], i) => { const y = Yv(clamp(v, vmin, vmax)); c.strokeStyle = col; c.lineWidth = i === 3 ? 3.5 : 2.2; c.beginPath(); c.moveTo(px + i * pw * .07, y); c.lineTo(px + pw, y); c.stroke(); ly.push({ i, y, n, v, col }); });
+      ly.sort((p1, p2) => p1.y - p2.y); let lastY = -1e9; for (const q of ly) { const yy = Math.max(q.y - 9, lastY + 14); lastY = yy; Gfx.text(c, `${q.n}  ${NA(q.v, 0)}`, px + pw - 3, yy, { align: "right", base: "middle", size: 10.5, color: q.col, weight: 700 }); }
       c.lineWidth = 1;
       rdA.set("EK", NA(E("K"), 1), "мВ"); rdA.set("ENa", NA(E("Na"), 1), "мВ"); rdA.set("ECl", NA(E("Cl"), 1), "мВ"); rdA.set("V", NA(V, 1), "мВ");
       const pts = []; const old = S.K[1]; for (let e = -.3; e <= 2.0; e += .1) { S.K[1] = Math.pow(10, e); pts.push([e, Vm()]); } S.K[1] = old;
@@ -87,11 +95,12 @@ App.def(4, {
       HH.pulse = Math.max(0, HH.pulse - dt); HH.t += dt;
       HH.iNa = gNa * HH.m ** 3 * HH.h * (HH.V - ENa); HH.iK = gK * HH.n ** 4 * (HH.V - HH.EK); HH.gNa_t = gNa * HH.m ** 3 * HH.h; HH.gK_t = gK * HH.n ** 4; HH.ENa_now = ENa;
     }
-    HH.amp = 15;
+    HH.amp = 15; HH.tStim = 0;
+    const stim = (dt0 = 0) => { HH.pulse = 1; HH.tStim = HH.t + dt0; };
     const stB = new Stage(B.st, { aspect: 2.0, minH: 260, maxH: 400, tag: "Аксон: Na⁺- і K⁺-канали" });
     const rdB = UI.reads(B.st, [["V", "V мембрани"], ["m3h", "g(Na⁺)"], ["n4", "g(K⁺)"], ["t", "t"]]);
     UI.slider(B.ct, { id: "p4b-a", label: "Амплітуда імпульсу струму", min: 2, max: 40, step: 1, value: HH.amp, unit: "мкА/см²", on: v => HH.amp = v });
-    UI.buttons(B.ct, [{ label: "⚡ Подразнити (1 мс)", pri: true, on: () => { HH.pulse = 1; } }, { label: "Подвійний імпульс (через 8 мс)", on: () => { HH.pulse = 1; HH.again = HH.t + 8; } }]);
+    UI.buttons(B.ct, [{ label: "⚡ Подразнити (1 мс)", pri: true, on: () => { stim(); } }, { label: "Подвійний імпульс (через 8 мс)", on: () => { stim(); HH.again = HH.t + 8; } }]);
     UI.slider(B.ct, { id: "p4b-dc", label: "Постійний струм", min: 0, max: 30, step: 1, value: 0, unit: "мкА/см²", on: v => HH.dc = v });
     UI.slider(B.ct, { id: "p4b-T", label: "Температура", min: 6.3, max: 30, step: .5, value: HH.T, unit: "°C", on: v => HH.T = v });
     UI.slider(B.ct, { id: "p4b-na", label: "[Na⁺] зовні", min: 50, max: 500, step: 10, value: HH.NaOut, unit: "мМ", on: v => HH.NaOut = v });
@@ -108,36 +117,40 @@ App.def(4, {
       const my = H * .5, gap = 26;
       const o = c.createLinearGradient(0, 0, 0, my); o.addColorStop(0, Theme.dark ? "#16303f" : "#D9EAF6"); o.addColorStop(1, Theme.dark ? "#1b3b4d" : "#C4DDEE"); c.fillStyle = o; c.fillRect(0, 0, W, my);
       const ii = c.createLinearGradient(0, my, 0, H); ii.addColorStop(0, Theme.dark ? "#2b4430" : "#E4EFD2"); ii.addColorStop(1, Theme.dark ? "#223a29" : "#D6E7BC"); c.fillStyle = ii; c.fillRect(0, my, W, H - my);
-      const skipNa = (x) => Math.abs(x - W * .28) < 22, skipK = (x) => Math.abs(x - W * .62) < 20;
-      Gfx.bilayer(c, 0, W, my, gap, time, { s: 1.15, skip: x => skipNa(x) || skipK(x) });
-      // Na-канал: m (зовнішні ворота) і h (внутрішні)
-      const chn = (x, open, col, hmm) => { c.save(); c.translate(x, my); Gfx.channel(c, 0, 0, gap, 38, open, col); c.restore(); };
+      const NAX = [.12, .40, .68], KX = [.26, .54, .82];
+      const skip = (x) => NAX.some(f => Math.abs(x - W * f) < 22) || KX.some(f => Math.abs(x - W * f) < 20);
+      Gfx.bilayer(c, 0, W, my, gap, time, { s: 1.15, skip });
       const mOpen = HH.m ** 3, hOpen = HH.h, nOpen = HH.n ** 4;
-      chn(W * .28, clamp(mOpen * hOpen * 1.6, .06, 1), "#4FA9D0");
-      // m-ворота: прямокутна «заслінка» зверху, h — «кулька» знизу
-      c.fillStyle = "#2A6A93"; c.fillRect(W * .28 - 15 + mOpen * 12, my - gap / 2 - 9, 30 - mOpen * 22, 5); Gfx.sphere(c, W * .28 + (1 - hOpen) * 0 + 0, my + gap / 2 + 6 + (hOpen) * 2, 4 + (1 - hOpen) * 9, "#C77A12");
-      Gfx.text(c, "Na⁺: ворота m (вгорі) · h (внизу)", W * .28, my - gap / 2 - 24, { align: "center", size: 10.5, color: T0.muted, weight: 600 });
-      chn(W * .62, clamp(nOpen * 2.2, .06, 1), "#8D7BD0"); Gfx.text(c, "K⁺-канал: ворота n⁴", W * .62, my - gap / 2 - 24, { align: "center", size: 10.5, color: T0.muted, weight: 600 });
+      // Na⁺-канали: m-«заслінка» зверху, h-«кулька» знизу; K⁺-канали: ворота n⁴
+      NAX.forEach((f, k) => { const x = W * f; Gfx.channel(c, x, my, gap, 38, clamp(mOpen * hOpen * 1.6, .06, 1), "#4FA9D0");
+        c.fillStyle = "#2A6A93"; c.fillRect(x - 15 + mOpen * 12, my - gap / 2 - 9, 30 - mOpen * 22, 5);
+        Gfx.sphere(c, x, my + gap / 2 + 6 + hOpen * 2, 4 + (1 - hOpen) * 9, "#C77A12"); });
+      KX.forEach(f => Gfx.channel(c, W * f, my, gap, 38, clamp(nOpen * 2.2, .06, 1), "#8D7BD0"));
+      Gfx.chip(c, "Na⁺-канали: ворота m (вгорі) · h (внизу)", W * NAX[1], my - gap / 2 - 36, { align: "center", size: 10 });
+      Gfx.chip(c, "K⁺-канали: ворота n⁴", W * KX[1], my + gap / 2 + 38, { align: "center", size: 10 });
       // іони
-      const rr = rng(4); for (let i = 0; i < 18; i++) { const x = rr() * W, y = 14 + rr() * (my - gap / 2 - 30); Gfx.sphere(c, x + Math.sin(time + i) * 5, y + Math.cos(time * .8 + i) * 4, 4.3, COLI.Na, { a: .85 }); }
-      for (let i = 0; i < 14; i++) { const x = rr() * W, y = my + gap / 2 + 16 + rr() * (H - my - gap / 2 - 30); Gfx.sphere(c, x + Math.sin(time + i) * 5, y + Math.cos(time * .8 + i) * 4, 4.3, COLI.K, { a: .85 }); }
-      // потоки через канали
+      const rr = rng(4); for (let i = 0; i < 22; i++) { const x = rr() * W, y = 40 + rr() * (my - gap / 2 - 70); Gfx.sphere(c, x + Math.sin(time + i) * 5, y + Math.cos(time * .8 + i) * 4, 4.3, COLI.Na, { a: .85 }); }
+      for (let i = 0; i < 18; i++) { const x = rr() * W, y = my + gap / 2 + 52 + rr() * (H - my - gap / 2 - 74); Gfx.sphere(c, x + Math.sin(time + i) * 5, y + Math.cos(time * .8 + i) * 4, 4.3, COLI.K, { a: .85 }); }
+      // потоки через канали: Na⁺ досередини, K⁺ назовні
       const fNa = clamp(-HH.iNa / 800, 0, 1), fK = clamp(HH.iK / 400, 0, 1);
-      for (let k = 0; k < 5; k++) { const ph = (time * 1.4 + k / 5) % 1; if (fNa > .02) Gfx.sphere(c, W * .28 + Math.sin(k) * 4, my - gap + ph * gap * 2 + 8 - 8, 5, COLI.Na, { a: fNa * .5 + .35 }); if (fK > .02) Gfx.sphere(c, W * .62 + Math.sin(k) * 4, my + gap - ph * gap * 2, 5, COLI.K, { a: fK * .5 + .35 }); }
+      for (let k = 0; k < 5; k++) { const ph = (time * 1.4 + k / 5) % 1;
+        if (fNa > .02) NAX.forEach((f, j) => Gfx.sphere(c, W * f + Math.sin(k + j) * 4, my - gap - 6 + ph * (gap * 2 + 12), 5, COLI.Na, { a: fNa * .5 + .35 }));
+        if (fK > .02) KX.forEach((f, j) => Gfx.sphere(c, W * f + Math.sin(k + j) * 4, my + gap + 6 - ph * (gap * 2 + 12), 5, COLI.K, { a: fK * .5 + .35 })); }
       // заряди
       const q = clamp(Math.abs(HH.V + 65) / 120, 0, 1), pos = HH.V > -20;
       for (let x = 12; x < W; x += 24) { c.font = `700 13px ${FM()}`; c.textAlign = "center"; c.textBaseline = "middle"; c.fillStyle = pos ? "rgba(42,106,147,.8)" : "rgba(179,54,58,.6)"; c.fillText(pos ? "+" : "−", x, my + gap / 2 + 9); c.fillStyle = pos ? "rgba(179,54,58,.8)" : "rgba(42,106,147,.55)"; c.fillText(pos ? "−" : "+", x + 12, my - gap / 2 - 9); }
-      Gfx.chip(c, `V = ${NA(HH.V, 1)} мВ`, 10, 16, { size: 11.5 }); Gfx.chip(c, HH.V > 0 ? "ПОТЕНЦІАЛ ДІЇ" : HH.V < -70 ? "гіперполяризація (рефрактерність)" : "спокій", W - 10, 16, { align: "right", size: 11, fg: HH.V > 0 ? "#B3363A" : T0.ink });
+      Gfx.chip(c, `V = ${NA(HH.V, 1)} мВ`, 12, H - 16, { size: 12, weight: 700 }); Gfx.chip(c, HH.V > 0 ? "ПОТЕНЦІАЛ ДІЇ" : HH.V < -70 ? "гіперполяризація (рефрактерність)" : "спокій", W - 12, 16, { align: "right", size: 11, fg: HH.V > 0 ? "#B3363A" : T0.ink });
     }
     function chartsB() {
-      const H = HH.hist, x1 = Math.max(30, HH.t), x0 = x1 - 30;
-      drawChart(cB1, { x: [x0, x0 + 30], y: [-90, 60], xl: "t, мс", series: [{ pts: H.map(r => [r[0], r[1]]), color: "#B3363A", w: 2.4 }], hl: [{ y: -65, color: T0c().muted }, { y: 0, color: T0c().muted, dash: [2, 3] }] });
-      drawChart(cB2, { x: [x0, x0 + 30], y: [0, 1], xl: "t, мс", series: [{ pts: H.map(r => [r[0], r[2]]), color: "#2A6A93", w: 2.2 }, { pts: H.map(r => [r[0], r[3]]), color: "#C77A12", w: 2.2 }, { pts: H.map(r => [r[0], r[4]]), color: "#6A4FB5", w: 2.2 }], legend: [{ label: "m", color: "#2A6A93" }, { label: "h", color: "#C77A12" }, { label: "n", color: "#6A4FB5" }] });
-      drawChart(cB3, { x: [x0, x0 + 30], y: [0, 40], xl: "t, мс", series: [{ pts: H.map(r => [r[0], r[5]]), color: "#2A8FB5", w: 2.2 }, { pts: H.map(r => [r[0], r[6]]), color: "#6A4FB5", w: 2.2 }], legend: [{ label: "g(Na⁺)", color: "#2A8FB5" }, { label: "g(K⁺)", color: "#6A4FB5" }] });
+      // вікно: від −5 мс до +40 мс відносно останнього стимулу; потім — прокручування
+      const H = HH.hist, W0 = 45, x0 = HH.t < HH.tStim + W0 - 5 ? Math.max(0, HH.tStim - 5) : HH.t - W0;
+      drawChart(cB1, { x: [x0, x0 + 45], y: [-90, 60], xl: "t, мс", series: [{ pts: H.map(r => [r[0], r[1]]), color: "#B3363A", w: 2.4 }], hl: [{ y: -65, color: T0c().muted }, { y: 0, color: T0c().muted, dash: [2, 3] }] });
+      drawChart(cB2, { x: [x0, x0 + 45], y: [0, 1], xl: "t, мс", series: [{ pts: H.map(r => [r[0], r[2]]), color: "#2A6A93", w: 2.2 }, { pts: H.map(r => [r[0], r[3]]), color: "#C77A12", w: 2.2 }, { pts: H.map(r => [r[0], r[4]]), color: "#6A4FB5", w: 2.2 }], legend: [{ label: "m", color: "#2A6A93" }, { label: "h", color: "#C77A12" }, { label: "n", color: "#6A4FB5" }] });
+      drawChart(cB3, { x: [x0, x0 + 45], y: [0, 40], xl: "t, мс", series: [{ pts: H.map(r => [r[0], r[5]]), color: "#2A8FB5", w: 2.2 }, { pts: H.map(r => [r[0], r[6]]), color: "#6A4FB5", w: 2.2 }], legend: [{ label: "g(Na⁺)", color: "#2A8FB5" }, { label: "g(K⁺)", color: "#6A4FB5" }] });
     }
     const T0c = () => Theme.c;
     const rec = () => { HH.hist.push([HH.t, HH.V, HH.m, HH.h, HH.n, HH.gNa_t || 0, HH.gK_t || 0]); if (HH.hist.length > 4000) HH.hist.shift(); };
-    function resetB() { Object.assign(HH, { V: -65, m: .053, h: .596, n: .318, t: 0, pulse: 0, hist: [], again: 3 }); hhStep(0); rec(); }
+    function resetB() { Object.assign(HH, { V: -65, m: .053, h: .596, n: .318, t: 0, pulse: 0, hist: [], again: 3, tStim: 3 }); hhStep(0); rec(); }
     resetB();
 
     /* ===================== C. Плазмоліз ===================== */
@@ -152,51 +165,53 @@ App.def(4, {
     const chC = h("div", { class: "charts" }); C.bl.append(chC);
     const cC1 = UI.chart(chC, "Час до опуклого плазмолізу від концентрації (за типом іона)");
     const tbC = h("div", { class: "tblwrap" }); C.bl.append(h("div", { class: "chart" }, h("h4", null, "Порівняння розчинів (модельні значення при вибраній концентрації)"), tbC));
-    const tauOf = (s, c) => 4 * SOL[s].eta(c) * 1; // хв
+    const tauOf = (s, c) => 8.8 * SOL[s].eta(c); // хв до опуклого плазмолізу (KNO₃ 1 М ≈ 4,6 хв)
     function resetC() { Pl.t = 0; Pl.kap = 1; Pl.vol = 1; }
     function drawC(time) {
       const c = stC.ctx, W = stC.W, H = stC.H, T0 = Theme.c; c.clearRect(0, 0, W, H);
       const bg = c.createRadialGradient(W / 2, H / 2, 10, W / 2, H / 2, Math.max(W, H) * .7); bg.addColorStop(0, "#FBF6EE"); bg.addColorStop(1, "#D8CDBD"); c.fillStyle = Theme.dark ? "#1a1612" : bg; c.fillRect(0, 0, W, H);
       const cx = W * .5, cy = H * .5, cw = W * .72, ch = H * .56;
       // клітини (три в ряд) — центральна у фокусі
-      const cell = (x, y, w, hh, sc, focus) => {
-        c.fillStyle = "#EFE5CE"; Gfx.rr(c, x - w / 2, y - hh / 2, w, hh, 6); c.fill(); c.lineWidth = 3; c.strokeStyle = "#B59B6E"; c.stroke();
-        const pw = Math.max(.28, sc.vol), cur = sc.kap;
-        // протопласт: прямокутник з увігнутими/випуклими торцями
-        const pwid = w * (.2 + .76 * pw), phh = hh * (.4 + .5 * pw), px = x, py = y;
-        const bl = (-cur * .30 + (1 - cur) * .30);
-        const ox = pwid * bl * .5, oy = phh * bl * .5;
-        c.beginPath();
-        c.moveTo(px - pwid / 2, py - phh / 2);
-        c.quadraticCurveTo(px, py - phh / 2 - oy * 2, px + pwid / 2, py - phh / 2);
-        c.quadraticCurveTo(px + pwid / 2 + ox * 2, py, px + pwid / 2, py + phh / 2);
-        c.quadraticCurveTo(px, py + phh / 2 + oy * 2, px - pwid / 2, py + phh / 2);
-        c.quadraticCurveTo(px - pwid / 2 - ox * 2, py, px - pwid / 2, py - phh / 2);
-        const g = c.createRadialGradient(px - 10, py - 10, 5, px, py, pwid * .6); g.addColorStop(0, "#C57BB4"); g.addColorStop(.7, "#8E3C86"); g.addColorStop(1, "#6C2B67"); c.fillStyle = g; c.fill(); c.strokeStyle = "#4D1C4A"; c.lineWidth = 2; c.stroke();
-        // гехтівські нитки при ввігнутому
-        if (cur > .25) { c.strokeStyle = "rgba(110,50,100,.55)"; c.lineWidth = 1; for (let k = 0; k < 7; k++) { const yy = py - phh / 2 + (k + .5) * phh / 7; c.beginPath(); c.moveTo(px - pwid / 2 + 3, yy); c.lineTo(x - w / 2 + 3, yy + Math.sin(k) * 3); c.stroke(); c.beginPath(); c.moveTo(px + pwid / 2 - 3, yy); c.lineTo(x + w / 2 - 3, yy + Math.sin(k + 2) * 3); c.stroke(); } }
-        return { px, py, pwid, phh };
+      const protoPath = (x, y, w, hh, rc, bx, by) => { // rc — радіус кутів; bx, by > 0 — опуклі бокові сторони, < 0 — ввігнуті
+        const l = x - w / 2, r = x + w / 2, t = y - hh / 2, b = y + hh / 2;
+        c.beginPath(); c.moveTo(l + rc, t); c.quadraticCurveTo(x, t - by, r - rc, t); c.quadraticCurveTo(r, t, r, t + rc);
+        c.quadraticCurveTo(r + bx, y, r, b - rc); c.quadraticCurveTo(r, b, r - rc, b); c.quadraticCurveTo(x, b + by, l + rc, b);
+        c.quadraticCurveTo(l, b, l, b - rc); c.quadraticCurveTo(l - bx, y, l, t + rc); c.quadraticCurveTo(l, t, l + rc, t); c.closePath();
       };
-      cell(cx - cw * .5, cy - ch * .12, cw * .3, ch * .8, { vol: Pl.vol, kap: Pl.kap }, false); cell(cx + cw * .5, cy + ch * .1, cw * .3, ch * .8, { vol: Pl.vol, kap: Pl.kap }, false);
+      const cell = (x, y, w, hh, sc, focus) => {
+        c.fillStyle = "#F2E9D2"; Gfx.rr(c, x - w / 2, y - hh / 2, w, hh, 6); c.fill(); c.lineWidth = 3; c.strokeStyle = "#B59B6E"; c.stroke();
+        c.lineWidth = 1; c.strokeStyle = "rgba(181,155,110,.45)"; Gfx.rr(c, x - w / 2 + 4, y - hh / 2 + 4, w - 8, hh - 8, 4); c.stroke();
+        const pw = clamp(sc.vol, .3, 1), cur = sc.kap;
+        const W2 = (w - 10) * (.34 + .64 * pw), H2 = (hh - 10) * (.5 + .46 * pw);
+        const rc = lerp(Math.min(W2, H2) * .46, 5, cur), bx = lerp(.06, -.2, cur) * W2, by = lerp(.05, -.1, cur) * H2;
+        // нитки Хехта: мембрана лишається прикріпленою до стінки у кутах
+        if (cur > .2 && pw < .97) { c.strokeStyle = "rgba(110,50,100,.5)"; c.lineWidth = 1; for (let k = 0; k < 6; k++) { const yy = y - H2 / 2 + (k + .5) * H2 / 6; for (const sd of [-1, 1]) { c.beginPath(); c.moveTo(x + sd * (W2 / 2 - 2 + bx * .5 * (-1)), yy); c.quadraticCurveTo(x + sd * (w / 2 - 14), yy + Math.sin(k * 2 + sd) * 4, x + sd * (w / 2 - 5), yy + Math.sin(k + sd) * 5); c.stroke(); } } }
+        protoPath(x, y, W2, H2, rc, bx, by);
+        const g = c.createRadialGradient(x - W2 * .15, y - H2 * .2, 4, x, y, Math.max(W2, H2) * .62); g.addColorStop(0, "#CF8CBF"); g.addColorStop(.6, "#9A4592"); g.addColorStop(1, "#6C2B67"); c.fillStyle = g; c.fill(); c.strokeStyle = "#4D1C4A"; c.lineWidth = 2; c.stroke();
+        c.save(); protoPath(x, y, W2, H2, rc, bx, by); c.clip(); const rg2 = rng(9); for (let i = 0; i < 40; i++) { c.fillStyle = `rgba(255,255,255,${.04 + rg2() * .06})`; c.beginPath(); c.arc(x + (rg2() - .5) * W2, y + (rg2() - .5) * H2, 1 + rg2() * 3, 0, 7); c.fill(); } c.restore();
+        if (focus) { Gfx.sphere(c, x - W2 * .25, y - H2 * .18, Math.min(W2, H2) * .1, "#8EA2C9"); }
+        return { px: x, py: y, pwid: W2, phh: H2 };
+      };
+      cell(cx - cw * .5, cy - ch * .1, cw * .3, ch * .8, { vol: Pl.vol, kap: Pl.kap }, false); cell(cx + cw * .5, cy + ch * .08, cw * .3, ch * .8, { vol: Pl.vol, kap: Pl.kap }, false);
       const g = cell(cx, cy, cw * .5, ch, { vol: Pl.vol, kap: Pl.kap }, true);
       // цитоплазматична течія: частинки з швидкістю ∝ 1/η
       const eta = SOL[Pl.s].eta(Pl.c); const rr = rng(31); const spd = 1 / eta;
       for (let i = 0; i < 26; i++) { const ph = rr() * 6.28, rad = (.15 + rr() * .3), ang = (time * .5 * spd + ph) % 6.28; const x = g.px + Math.cos(ang) * g.pwid * rad * 1.5, y = g.py + Math.sin(ang) * g.phh * rad * 1.3; Gfx.sphere(c, x, y, 2.6, "#DCEFA8", { a: .9 }); }
       for (let i = 0; i < 5; i++) { const a2 = (time * .3 * spd + i * 1.26) % 6.28; Gfx.sphere(c, g.px + Math.cos(a2) * g.pwid * .28, g.py + Math.sin(a2) * g.phh * .28, 5.5, "#3E9B4E"); }
-      Gfx.chip(c, `t = ${NA(Pl.t, 1)} хв`, 10, 16, { size: 11.5 }); Gfx.chip(c, `${SOL[Pl.s].name} · ${NA(Pl.c, 2)} М`, W - 10, 16, { align: "right", size: 11.5 });
+      Gfx.chip(c, `t = ${NA(Pl.t, 1)} хв`, 12, H - 16, { size: 11.5 }); Gfx.chip(c, `${SOL[Pl.s].name} · ${NA(Pl.c, 2)} М`, W - 12, 16, { align: "right", size: 11.5 });
       const label = Pl.kap > .55 ? "ввігнутий плазмоліз" : Pl.kap > .12 ? "перехід до випуклого" : "випуклий плазмоліз";
       Gfx.chip(c, label, W / 2, H - 16, { align: "center", size: 12, fg: Pl.kap > .55 ? "#C77A12" : "#2C7A4D" });
       const tau = tauOf(Pl.s, Pl.c);
-      rdC.set("sol", SOL[Pl.s].name); rdC.set("eta", NA(eta, 2)); rdC.set("tau", NA(tau * 2.2, 1), "хв"); rdC.set("ph", label);
-      const lines = ["k", "ca", "na", "suc"].map(s => `<tr${s === Pl.s ? ' style="background:var(--chl-soft)"' : ""}><td>${SOL[s].name}</td><td class="n">${NA(SOL[s].eta(Pl.c), 2)}</td><td class="n">${NA(tauOf(s, Pl.c) * 2.2, 1)}</td></tr>`).join("");
-      tbC.innerHTML = `<table class="t"><thead><tr><th>Плазмолітик</th><th>η/η₀</th><th>час опуклого, хв</th></tr></thead><tbody>${lines}</tbody></table>`;
-      const mk2 = (s) => { const p = []; for (let cc = .4; cc <= 1.4; cc += .1) p.push([cc, tauOf(s, cc) * 2.2]); return p; };
-      drawChart(cC1, { x: [.4, 1.4], y: [0, 25], xl: "c, М", yl: "хв", series: [{ pts: mk2("k"), color: "#6A4FB5", w: 2.4 }, { pts: mk2("ca"), color: "#B3363A", w: 2.4 }, { pts: mk2("na"), color: "#2A6A93", w: 2 }], marks: [{ x: Pl.c, y: tauOf(Pl.s, Pl.c) * 2.2, color: "#2C7A4D", label: "зараз" }], legend: [{ label: "KNO₃", color: "#6A4FB5" }, { label: "Ca(NO₃)₂", color: "#B3363A" }, { label: "NaCl", color: "#2A6A93" }] });
+      rdC.set("sol", SOL[Pl.s].name); rdC.set("eta", NA(eta, 2)); rdC.set("tau", NA(tau, 1), "хв"); rdC.set("ph", label);
+      const lines = ["k", "ca", "na", "suc"].map(s => `<tr${s === Pl.s ? ' style="background:var(--chl-soft)"' : ""}><td>${SOL[s].name}</td><td class="n">${NA(SOL[s].eta(Pl.c), 2)}</td><td class="n">${NA(tauOf(s, Pl.c), 1)}</td></tr>`).join("");
+      UI.html(tbC, `<table class="t"><thead><tr><th>Плазмолітик</th><th>η/η₀</th><th>час опуклого, хв</th></tr></thead><tbody>${lines}</tbody></table>`);
+      const mk2 = (s) => { const p = []; for (let cc = .4; cc <= 1.4; cc += .1) p.push([cc, tauOf(s, cc)]); return p; };
+      drawChart(cC1, { x: [.4, 1.4], y: [0, 25], xl: "c, М", yl: "хв", series: [{ pts: mk2("k"), color: "#6A4FB5", w: 2.4 }, { pts: mk2("ca"), color: "#B3363A", w: 2.4 }, { pts: mk2("na"), color: "#2A6A93", w: 2 }], marks: [{ x: Pl.c, y: tauOf(Pl.s, Pl.c), color: "#2C7A4D", label: "зараз" }], legend: [{ label: "KNO₃", color: "#6A4FB5" }, { label: "Ca(NO₃)₂", color: "#B3363A" }, { label: "NaCl", color: "#2A6A93" }] });
     }
     function stepC(dt) {
       Pl.t += dt * .25; const tw = .8;
       Pl.vol = .3 + .7 * Math.exp(-Pl.t / tw) * 1; Pl.vol = clamp(Pl.vol - .0 * 0, .3, 1);
-      Pl.kap = Math.exp(-Pl.t / tauOf(Pl.s, Pl.c) * 1.2 / .45 * .45);
+      Pl.kap = Math.exp(-2.12 * Pl.t / tauOf(Pl.s, Pl.c)); // kap < 0,12 ≈ опуклий
     }
 
     M.init();
@@ -205,7 +220,7 @@ App.def(4, {
       frame(dt, t) {
         if (mode === "a") drawA(t);
         else if (mode === "b") {
-          if (dt > 0) { const sim = dt * 1000 * HH.spd * .01, n = Math.ceil(sim / .02); const hdt = sim / n; for (let i = 0; i < n; i++) { if (HH.again != null && HH.t >= HH.again) { HH.pulse = 1; HH.again = null; } hhStep(hdt); if (HH.t - HH.last > .1) { HH.last = HH.t; rec(); } } }
+          if (dt > 0) { const sim = dt * 1000 * HH.spd * .01, n = Math.ceil(sim / .02); const hdt = sim / n; for (let i = 0; i < n; i++) { if (HH.again != null && HH.t >= HH.again) { stim(); HH.again = null; } hhStep(hdt); if (HH.t - HH.last > .1) { HH.last = HH.t; rec(); } } }
           drawB(t); chartsB(); rdB.set("V", NA(HH.V, 1), "мВ"); rdB.set("m3h", NA(HH.gNa_t || 0, 1)); rdB.set("n4", NA(HH.gK_t || 0, 1)); rdB.set("t", NA(HH.t, 1), "мс");
         } else { if (dt > 0) stepC(dt); drawC(t); }
       },

@@ -63,7 +63,7 @@ App.def(9, {
       }
       return { out, remain };
     }
-    const nowPos = (i, W, H) => { const cx = W * .34, cy = H * .5, r = Math.min(W * .24, H * .34), a = -Math.PI / 2 + i * Math.PI / 4; return [cx + Math.cos(a) * r, cy + Math.sin(a) * r, a]; };
+    const nowPos = (i, W, H) => { const cx = W * .31, cy = H * .5, r = Math.min(W * .22, H * .34), a = -Math.PI / 2 + i * Math.PI / 4; return [cx + Math.cos(a) * r, cy + Math.sin(a) * r, a]; };
     function stepA(dt) {
       const sp = .55 * clamp(R.v * 1.05, .05, 1.3); const prev = T.s; T.s += sp * dt;
       const k0 = Math.floor(prev), k1 = Math.floor(T.s);
@@ -80,7 +80,7 @@ App.def(9, {
     function drawA(time) {
       const c = stA.ctx, W = stA.W, H = stA.H, T0 = Theme.c; c.clearRect(0, 0, W, H);
       const bg = c.createLinearGradient(0, 0, 0, H); bg.addColorStop(0, Theme.dark ? "#2c2420" : "#FBF1EA"); bg.addColorStop(1, Theme.dark ? "#211a16" : "#F1DDD0"); c.fillStyle = bg; c.fillRect(0, 0, W, H);
-      const cx = W * .34, cy = H * .5, r = Math.min(W * .24, H * .34);
+      const cx = W * .31, cy = H * .5, r = Math.min(W * .22, H * .34);
       c.lineWidth = 12; c.strokeStyle = "rgba(150,110,80,.18)"; c.beginPath(); c.arc(cx, cy, r, 0, 7); c.stroke(); c.lineWidth = 3; c.strokeStyle = "rgba(150,110,80,.5)"; c.beginPath(); c.arc(cx, cy, r, 0, 7); c.stroke(); c.lineWidth = 1;
       // стрілки між вузлами + ферменти
       for (let i = 0; i < 8; i++) { const a = nowPos(i, W, H), b = nowPos((i + 1) % 8, W, H); const mid = (a[2] + b[2] + (i === 7 ? Math.PI * 2 : 0)) / 2; const ex = cx + Math.cos(mid) * (r + 40), ey = cy + Math.sin(mid) * (r + 40);
@@ -90,19 +90,19 @@ App.def(9, {
       // токен
       const sf = ((T.s % 8) + 8) % 8, i0 = Math.floor(sf), u = sf - i0; const a0 = nowPos(i0, W, H)[2], a1 = a0 + Math.PI / 4; const tx = cx + Math.cos(lerp(a0, a1, u)) * r, ty = cy + Math.sin(lerp(a0, a1, u)) * r; Gfx.glow(c, tx, ty, 26, "#FFC107", .6); Gfx.sphere(c, tx, ty, 8, "#FFC107");
       // ацетил-КоА
-      const ax = nowPos(7, W, H); Gfx.arrow(c, ax[0] - 60, ax[1] - 30, ax[0] - 14, ax[1] - 8, { col: "#8A5A2A", w: 3, head: 9 }); Gfx.text(c, "ацетил-КоА (C2)", ax[0] - 66, ax[1] - 40, { size: 11, color: "#8A5A2A", weight: 700, align: "right" });
+      const ax = nowPos(7, W, H); Gfx.arrow(c, ax[0] - 60, ax[1] - 30, ax[0] - 14, ax[1] - 8, { col: "#8A5A2A", w: 3, head: 9 }); Gfx.text(c, "ацетил-КоА (C2)", Math.max(10, ax[0] - 84), ax[1] - 42, { size: 11, color: "#8A5A2A", weight: 700 });
       // частки: NADH, CO2, ...
       for (const p of T.parts) { const [x, y] = nowPos(p.m, W, H), q = p.t / 1.6; const dx = Math.cos(nowPos(p.m, W, H)[2]) * (30 + q * 50), dy = Math.sin(nowPos(p.m, W, H)[2]) * (30 + q * 50);
         c.globalAlpha = 1 - q; if (p.k === "n") { Gfx.sphere(c, x + dx, y + dy, 6, CN); } if (p.k === "c") { Gfx.sphere(c, x + dx * 1.2 + 14, y + dy * 1.2 - 10, 5, CC); Gfx.text(c, "CO₂", x + dx * 1.2 + 24, y + dy * 1.2 - 10, { size: 9.5, color: T0.muted, base: "middle" }); } if (p.k === "f") Gfx.sphere(c, x + dx, y + dy, 6, CF); if (p.k === "g") Gfx.sphere(c, x + dx, y + dy, 6, CG); c.globalAlpha = 1; }
       // легенда і дихальний ланцюг
-      const lx = W * .66; let ly = H * .14; [["НАДН (3 на оберт)", CN], ["ФАДН₂ (1)", CF], ["ГТФ/АТФ (1)", CG], ["CO₂ (2)", CC]].forEach(([t, col]) => { Gfx.sphere(c, lx, ly, 5, col); Gfx.text(c, t, lx + 12, ly, { size: 11, base: "middle", color: T0.ink }); ly += 22; });
-      Gfx.rr(c, lx - 8, H * .42, W * .3, H * .46, 12); c.fillStyle = Theme.dark ? "rgba(255,255,255,.05)" : "rgba(255,255,255,.55)"; c.fill(); c.strokeStyle = T0.rule; c.stroke();
+      const lx = W * .69; let ly = H * .14; [["НАДН (3 на оберт)", CN], ["ФАДН₂ (1)", CF], ["ГТФ/АТФ (1)", CG], ["CO₂ (2)", CC]].forEach(([t, col]) => { Gfx.sphere(c, lx, ly, 5, col); Gfx.text(c, t, lx + 12, ly, { size: 11, base: "middle", color: T0.ink }); ly += 22; });
+      Gfx.rr(c, lx - 8, H * .42, W * .29, H * .46, 12); c.fillStyle = Theme.dark ? "rgba(255,255,255,.05)" : "rgba(255,255,255,.55)"; c.fill(); c.strokeStyle = T0.rule; c.stroke();
       const dst = dist(T.carbon, T.nTurn); let by = H * .47; Gfx.text(c, `Мітка (${{ coo: "C1", co: "C2", ch3: "C3" }[T.carbon]} пірувату) в оксалоацетаті`, lx, by, { size: 11, weight: 700, color: T0.ink }); by += 14;
       for (let n = 0; n < dst.out.length; n++) { Gfx.text(c, "після " + (n + 1) + " оберту:", lx, by + 8, { size: 10, color: T0.muted, base: "middle" }); ["C1", "C2", "C3", "C4"].forEach((lab, j) => { const px = lx + 78 + j * 46, v = dst.out[n][j]; c.fillStyle = T0.rule; c.fillRect(px, by, 40, 14); c.fillStyle = "#B3363A"; c.fillRect(px, by, 40 * v * 2, 14); Gfx.text(c, lab, px + 20, by + 7, { align: "center", base: "middle", size: 9.5, color: T0.ink }); }); by += 20; if (by > H * .86) break; }
       rdA.set("tr", NA(T.turns, 0)); rdA.set("nadh", NA(T.nadh, 0)); rdA.set("fad", `${NA(T.fadh, 0)} / ${NA(T.gtp, 0)}`); rdA.set("co2", NA(T.co2, 0));
       const rows = dist(T.carbon, 6); const lab = ["C1", "C2", "C3", "C4"]; const SC = ["#2A8FB5", "#3FA66A", "#E0A52B", "#B3363A"];
-      drawChart(cA1, { x: [.5, 6.5], y: [0, .55], xl: "після n обертів", yl: "частка мітки в положенні", series: [0, 1, 2, 3].map(j => ({ pts: rows.out.map((r2, n) => [n + 1, r2[j]]), color: SC[j], w: 2.4, dots: 3 })), legend: lab.map((l, j) => ({ label: l, color: SC[j] })) });
-      const mk = (cc) => dist(cc, 6).remain.map((v, n) => [n + 1, v]); drawChart(cA2, { x: [.5, 6.5], y: [0, 1.05], xl: "після n обертів", series: [{ pts: mk("coo"), color: "#B3363A", w: 2.4, dots: 3 }, { pts: mk("co"), color: "#3FA66A", w: 2.4, dots: 3 }, { pts: mk("ch3"), color: "#E0A52B", w: 2.4, dots: 3 }], legend: [{ label: "C1 пірувату", color: "#B3363A" }, { label: "C2", color: "#3FA66A" }, { label: "C3 (метил)", color: "#E0A52B" }] });
+      drawChart(cA1, { x: [.5, 6.5], y: [0, .65], xl: "після n обертів", yl: "частка мітки в положенні", series: [0, 1, 2, 3].map(j => ({ pts: rows.out.map((r2, n) => [n + 1, r2[j]]), color: SC[j], w: 2.4, dots: 3 })), legend: lab.map((l, j) => ({ label: l, color: SC[j] })) });
+      const mk = (cc) => dist(cc, 6).remain.map((v, n) => [n + 1, v]); drawChart(cA2, { x: [.5, 6.5], y: [0, 1.25], xl: "після n обертів", series: [{ pts: mk("coo"), color: "#B3363A", w: 2.4, dots: 3 }, { pts: mk("co"), color: "#3FA66A", w: 2.4, dots: 3 }, { pts: mk("ch3"), color: "#E0A52B", w: 2.4, dots: 3 }], legend: [{ label: "C1 пірувату", color: "#B3363A" }, { label: "C2", color: "#3FA66A" }, { label: "C3 (метил)", color: "#E0A52B" }] });
     }
 
     /* ===================== B ===================== */
@@ -150,8 +150,7 @@ App.def(9, {
       const col = D => mixc("#F4F2EE", "#E8CA3C", clamp(D / 1.3, 0, 1));
       [["контроль", Dk], ["проба", Dx]].forEach(([n, D], i) => { const x = W * (.12 + i * .2); Gfx.vial(c, x, H * .12, 44, H * .6, .66, col(D), {}); Gfx.text(c, n, x + 22, H * .12 + H * .6 + 18, { align: "center", size: 11, weight: 700, color: T0.ink }); Gfx.text(c, "D = " + NA(D, 3), x + 22, H * .12 + H * .6 + 36, { align: "center", size: 11, color: T0.muted }); });
       // спектрофотометр-читання
-      const px = W * .6, py = H * .14, pw = W * .34, ph = H * .5; Gfx.rr(c, px, py, pw, ph, 14); c.fillStyle = Theme.dark ? "#2a3a30" : "#E5EAE1"; c.fill(); c.strokeStyle = T0.rule; c.stroke();
-      Gfx.rr(c, px + 14, py + 14, pw - 28, ph * .38, 8); c.fillStyle = "#0E1F14"; c.fill(); Gfx.text(c, "λ = 417 нм", px + 24, py + 30, { size: 11, color: "#7CD67F" }); Gfx.text(c, NA(Dx, 3), px + pw - 24, py + 14 + ph * .19, { align: "right", base: "middle", size: 30, weight: 700, color: "#9FEFA2" });
+      Gfx.spectro(c, W * .56, H * .12, W * .4, H * .62, { lam: 417, A: Dx, col: col(Dx), text: NA(Dx, 3), sub: "кювета 10 мм · проба" });
       const act = (Dk - Dx) * V / (eps * Dd.t * Dd.m), lit = (Dk - Dx) * Dd.t / Dd.m;
       Gfx.text(c, `A = ΔD·V/(ε·t·m) = ${NA(act, 2)} мкмоль/хв/г`, W * .05, H * .94, { size: 12.5, weight: 700, color: T0.ink });
       rdC.set("Dk", NA(Dk, 3)); rdC.set("Dd", NA(Dx, 3)); rdC.set("A", NA(act, 2)); rdC.set("lit", NA(lit, 0), "(не мкмоль/хв/г!)");

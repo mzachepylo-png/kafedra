@@ -40,27 +40,21 @@ App.def(11, {
       const cc = tru(), col = Spectral.colorOf({ chlA: cc.a * .12, chlB: cc.b * .12, car: cc.car * .12 }, 1); const E665 = Aat(665, cc, Q.shift, true), E649 = Aat(649, cc, Q.shift, true), E654 = Aat(654, cc, Q.shift, true);
       // колба з екстрактом і лист
       Gfx.vial(c, W * .1, H * .12, 60, H * .6, .7, mixc("#FFFFFF", col, 1), { label: "екстракт" });
-      // кювета
-      const px = W * .34, py = H * .1, pw = W * .6, ph = H * .62; Gfx.rr(c, px, py, pw, ph, 14); const gg = c.createLinearGradient(px, py, px, py + ph); gg.addColorStop(0, Theme.dark ? "#2c3a31" : "#E9EDE5"); gg.addColorStop(1, Theme.dark ? "#202c25" : "#CDD4C9"); c.fillStyle = gg; c.fill(); c.strokeStyle = T0.rule; c.stroke();
-      // діаграма: промінь з монохроматора
-      const bx = px + 30, by = py + ph * .45; for (let i = 0; i < 3; i++) { c.strokeStyle = Spectral.lambdaToRGB([665, 649, 654][i]); c.lineWidth = 3; c.globalAlpha = .7; c.beginPath(); c.moveTo(px + 16, by + (i - 1) * 6); c.lineTo(px + pw * .42, by + (i - 1) * 6); c.stroke(); } c.globalAlpha = 1; c.lineWidth = 1;
-      Gfx.rr(c, px + pw * .42, by - 36, 38, 72, 4); c.fillStyle = mixc("#FFFFFF", col, 1); c.fill(); c.strokeStyle = T0.muted; c.stroke();
-      const trans = Math.pow(10, -E665); c.strokeStyle = Spectral.lambdaToRGB(665); c.lineWidth = 3; c.globalAlpha = clamp(trans * .9 + .05, 0, 1); c.beginPath(); c.moveTo(px + pw * .42 + 38, by); c.lineTo(px + pw * .75, by); c.stroke(); c.globalAlpha = 1; c.lineWidth = 1;
-      Gfx.rr(c, px + pw * .75, by - 26, 64, 52, 6); c.fillStyle = "#0E1F14"; c.fill(); Gfx.text(c, NA(E665, 3), px + pw * .75 + 56, by, { align: "right", base: "middle", size: 20, weight: 700, color: "#9FEFA2" }); Gfx.text(c, "λ = " + NA(665 + Q.shift, 1) + " нм", px + pw * .75 + 4, by - 36, { size: 10, color: T0.muted });
-      Gfx.text(c, "джерело → монохроматор → кювета 10 мм → детектор", px + 16, py + ph - 12, { size: 10.5, color: T0.muted });
+      // прилад: джерело → монохроматор → кювета з екстрактом → детектор
+      Gfx.spectro(c, W * .34, H * .1, W * .6, H * .66, { lam: 665 + Q.shift, A: E665, col: mixc("#FFFFFF", col, 1), text: NA(E665, 3), sub: "джерело → монохроматор → кювета 10 мм → детектор" });
       const r = evalFormula(E665, E649, E654); const f = Q.V * Q.dil / (1000 * Q.m); // мг/г
       const Ca = r.Ca * f, Cb = r.Cb * f;
       rdA.set("e", `${NA(E665, 2)} / ${NA(E649, 2)} / ${NA(E654, 2)}`); rdA.set("ca", NA(r.Ca, 2)); rdA.set("cb", NA(r.Cb, 2)); rdA.set("mg", NA((r.Ca + r.Cb) * f, 2), "мг/г");
       const L = LEAF[Q.leaf]; const err = (m, t) => (m - t) / t * 100;
-      tbA.innerHTML = `<table class="t"><thead><tr><th>Величина</th><th>Знайдено</th><th>Істинно</th><th>Відхилення</th></tr></thead><tbody>
+      UI.html(tbA, `<table class="t"><thead><tr><th>Величина</th><th>Знайдено</th><th>Істинно</th><th>Відхилення</th></tr></thead><tbody>
       <tr><td>C(a), мкг/мл у кюветі</td><td class="n">${NA(r.Ca, 2)}</td><td class="n">${NA(cc.a, 2)}</td><td class="n">${NA(err(r.Ca, cc.a), 1)} %</td></tr>
       <tr><td>C(b), мкг/мл</td><td class="n">${NA(r.Cb, 2)}</td><td class="n">${NA(cc.b, 2)}</td><td class="n">${NA(err(r.Cb, cc.b), 1)} %</td></tr>
       <tr><td>Сума за 25,1·E₆₅₄, мкг/мл</td><td class="n">${NA(r.sum2, 2)}</td><td class="n">${NA(cc.a + cc.b, 2)}</td><td class="n">${NA(err(r.sum2, cc.a + cc.b), 1)} %</td></tr>
       <tr><td>Хл a, мг/г сирої маси</td><td class="n">${NA(Ca, 2)}</td><td class="n">${NA(L.a, 2)}</td><td class="n">${NA(err(Ca, L.a), 1)} %</td></tr>
       <tr><td>Хл b, мг/г</td><td class="n">${NA(Cb, 2)}</td><td class="n">${NA(L.b, 2)}</td><td class="n">${NA(err(Cb, L.b), 1)} %</td></tr>
-      <tr><td>Співвідношення a/b</td><td class="n">${NA(Ca / Math.max(Cb, .001), 2)}</td><td class="n">${NA(L.a / L.b, 2)}</td><td class="n"></td></tr></tbody></table>${E665 > 1.5 ? '<p class="note">E &gt; 1,5: розведіть екстракт — вплив розсіяного світла викривлює результат.</p>' : E665 < .1 ? '<p class="note">E &lt; 0,1: занадто мало пігменту, відносна похибка велика.</p>' : ""}`;
+      <tr><td>Співвідношення a/b</td><td class="n">${NA(Ca / Math.max(Cb, .001), 2)}</td><td class="n">${NA(L.a / L.b, 2)}</td><td class="n"></td></tr></tbody></table>${E665 > 1.5 ? '<p class="note">E &gt; 1,5: розведіть екстракт — вплив розсіяного світла викривлює результат.</p>' : E665 < .1 ? '<p class="note">E &lt; 0,1: занадто мало пігменту, відносна похибка велика.</p>' : ""}`);
       const pts = []; for (let l = 380; l <= 720; l += 2) pts.push([l, Aat(l, cc, Q.shift)]); const mx = Math.max(.5, ...pts.map(p => p[1])) * 1.1;
-      drawChart(cS, { x: [380, 720], y: [0, mx], xl: "λ, нм", yl: "E", spectrum: true, series: [{ pts, color: "#2C7A4D", w: 2.6, fill: "rgba(44,122,77,.12)" }, { pts: pts.map(p => [p[0], cc.a * SPEC.a(p[0])]), color: "#3FA66A", w: 1.4, dash: [4, 3] }, { pts: pts.map(p => [p[0], cc.b * SPEC.b(p[0])]), color: "#C77A12", w: 1.4, dash: [4, 3] }], vl: [{ x: 649, color: "#C77A12", label: "649" }, { x: 654, color: T0.muted, label: "654", align: "center" }, { x: 665, color: "#3FA66A", label: "665" }], legend: [{ label: "сумарний", color: "#2C7A4D" }, { label: "хл a", color: "#3FA66A" }, { label: "хл b", color: "#C77A12" }] });
+      drawChart(cS, { x: [380, 720], y: [0, mx], xl: "λ, нм", yl: "E", spectrum: true, series: [{ pts, color: "#2C7A4D", w: 2.6, fill: "rgba(44,122,77,.12)" }, { pts: pts.map(p => [p[0], cc.a * SPEC.a(p[0])]), color: "#3FA66A", w: 1.4, dash: [4, 3] }, { pts: pts.map(p => [p[0], cc.b * SPEC.b(p[0])]), color: "#C77A12", w: 1.4, dash: [4, 3] }], vl: [{ x: 649, color: "#C77A12", label: "649", align: "right" }, { x: 654, color: T0.muted, label: "654", align: "center" }, { x: 665, color: "#3FA66A", label: "665" }], legend: [{ label: "сумарний", color: "#2C7A4D" }, { label: "хл a", color: "#3FA66A" }, { label: "хл b", color: "#C77A12" }] });
     }
 
     /* ===================== B. Точність ===================== */
@@ -78,11 +72,15 @@ App.def(11, {
     function drawB(time) {
       const c = stB.ctx, W = stB.W, H = stB.H, T0 = Theme.c; c.clearRect(0, 0, W, H);
       c.fillStyle = Theme.dark ? "#18221c" : "#F5F7F0"; c.fillRect(0, 0, W, H);
-      const cc = tru(); const px = W * .08, py = H * .1, pw = W * .56, ph = H * .74;
+      const cc = tru(); const px = W * .1, py = H * .1, pw = W * .54, ph = H * .72;
       c.strokeStyle = T0.rule; c.strokeRect(px, py, pw, ph);
       const R = Rp.res; const aM = R.length ? R.reduce((s, r) => s + r[0], 0) / R.length : 0, bM = R.length ? R.reduce((s, r) => s + r[1], 0) / R.length : 0;
-      const xmax = Math.max(cc.a, cc.b, ...R.flat(), 1) * 1.25, X = v => px + v / xmax * pw, Y = v => py + ph - v / xmax * ph;
-      Gfx.text(c, "C(b), мкг/мл", px + 4, py - 3, { size: 10.5, color: T0.muted }); Gfx.text(c, "C(a), мкг/мл", px + pw, py + ph + 16, { size: 10.5, color: T0.muted, align: "right" });
+      // масштаб підлаштовується під розкид паралельних вимірювань навколо істинного значення
+      const dA = Math.max(.1 * cc.a, 1.6 * Math.max(0, ...R.map(r => Math.abs(r[0] - cc.a)))), dB = Math.max(.15 * cc.b, 1.6 * Math.max(0, ...R.map(r => Math.abs(r[1] - cc.b))));
+      const X = v => px + (clamp(v, cc.a - dA, cc.a + dA) - (cc.a - dA)) / (2 * dA) * pw, Y = v => py + ph - (clamp(v, cc.b - dB, cc.b + dB) - (cc.b - dB)) / (2 * dB) * ph;
+      for (let k = 0; k <= 4; k++) { const fx = k / 4; c.strokeStyle = rgba(T0.ink, .06); c.beginPath(); c.moveTo(px + fx * pw, py); c.lineTo(px + fx * pw, py + ph); c.moveTo(px, py + fx * ph); c.lineTo(px + pw, py + fx * ph); c.stroke();
+        Gfx.text(c, NA(cc.a - dA + 2 * dA * fx, 2), px + fx * pw, py + ph + 14, { align: "center", size: 9.5, color: T0.muted }); Gfx.text(c, NA(cc.b - dB + 2 * dB * (1 - fx), 2), px - 6, py + fx * ph, { align: "right", base: "middle", size: 9.5, color: T0.muted }); }
+      Gfx.text(c, "C(b), мкг/мл", px - 6, py - 8, { size: 10.5, color: T0.muted, align: "left" }); Gfx.text(c, "C(a), мкг/мл", px + pw, py + ph + 30, { size: 10.5, color: T0.muted, align: "right" });
       c.strokeStyle = "#2C7A4D"; c.setLineDash([4, 3]); c.beginPath(); c.moveTo(X(cc.a), py); c.lineTo(X(cc.a), py + ph); c.moveTo(px, Y(cc.b)); c.lineTo(px + pw, Y(cc.b)); c.stroke(); c.setLineDash([]);
       Gfx.sphere(c, X(cc.a), Y(cc.b), 8, "#2C7A4D"); Gfx.text(c, "істинне", X(cc.a) + 12, Y(cc.b) - 10, { size: 10.5, color: "#2C7A4D", weight: 700 });
       R.forEach(r => Gfx.sphere(c, X(r[0]), Y(r[1]), 5, "#C77A12")); if (R.length) { Gfx.sphere(c, X(aM), Y(bM), 7, "#B3363A"); Gfx.text(c, "середнє", X(aM) + 10, Y(bM) + 14, { size: 10.5, color: "#B3363A", weight: 700 }); }
@@ -100,6 +98,7 @@ App.def(11, {
       drawChart(cB2, { x: [-4, 4], y: [50, 160], xl: "зсув λ, нм", yl: "% від істинного", series: [{ pts: sa2, color: "#3FA66A", w: 2.2 }, { pts: sb2, color: "#C77A12", w: 2.2 }], hl: [{ y: 100, color: T0.muted }], legend: [{ label: "C(a)", color: "#3FA66A" }, { label: "C(b)", color: "#C77A12" }] });
     }
 
+    measure();
     M.init();
     return { stages: [stA, cS, stB, cB1, cB2], frame(dt, t) { if (mode === "a") drawA(t); else drawB(t); } };
   },

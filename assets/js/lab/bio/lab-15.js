@@ -12,7 +12,7 @@ App.def(15, {
     const CA = "#E0623A", CATP = "#E0A52B";
 
     /* ===================== A. Саркомер ===================== */
-    const S = { L: 2.5, ca: 0, atp: 1, load: .3, nerve: 0, act: 0, heads: [], t: 0, rigor: false, f: 0, last: 0, hist: [], pos: [] };
+    const S = { L: 2.5, L0: 2.5, ca: 0, atp: 1, load: .3, nerve: 0, act: 0, heads: [], t: 0, rigor: false, f: 0, last: 0, hist: [], pos: [] };
     const THICK = 1.6, THIN = 1.0;
     const Fl = L => { // залежність сили від довжини саркомера (Гордон, Хакслі, Джуліан)
       if (L < 1.27) return 0; if (L < 1.67) return (L - 1.27) / .4 * .84; if (L < 2.0) return .84 + (L - 1.67) / .33 * .16; if (L <= 2.25) return 1; if (L < 3.65) return 1 - (L - 2.25) / 1.4; return 0;
@@ -20,7 +20,7 @@ App.def(15, {
     const NH = 12; for (let i = 0; i < NH * 2; i++) S.heads.push({ st: 0, ph: Math.random() * 6, a: 0 });
     const stA = new Stage(A.st, { aspect: 1.9, minH: 340, maxH: 480, tag: "Саркомер: тонкі (актин) і товсті (міозин) нитки" });
     const rdA = UI.reads(A.st, [["L", "Довжина саркомера"], ["act", "Активація (Ca²⁺)"], ["f", "Сила, відн."], ["st", "Стан"]]);
-    UI.slider(A.ct, { id: "p15-l", label: "Початкова довжина саркомера", min: 1.4, max: 3.4, step: .05, value: S.L, unit: "мкм", on: v => { S.L = v; }, fmt: v => NA(v, 2) });
+    UI.slider(A.ct, { id: "p15-l", label: "Довжина саркомера в спокої", min: 1.4, max: 3.4, step: .05, value: S.L, unit: "мкм", on: v => { S.L0 = v; S.L = v; }, fmt: v => NA(v, 2) });
     UI.slider(A.ct, { id: "p15-ld", label: "Навантаження", min: 0, max: 1, step: .05, value: S.load, on: v => S.load = v, fmt: v => NA(v, 2) });
     UI.check(A.ct, { id: "p15-atp", label: "АТФ є в клітині (знімає ригор)", value: true, on: v => S.atp = v ? 1 : 0 });
     UI.buttons(A.ct, [{ label: "⚡ Нервовий імпульс (ацетилхолін → Ca²⁺)", pri: true, on: () => { S.nerve = 1; } }, { label: "Розслаблення", on: () => { S.nerve = 0; } }]);
@@ -33,8 +33,9 @@ App.def(15, {
       const target = S.nerve ? 1 : 0; S.ca += (target - S.ca) * (1 - Math.exp(-dt * (S.nerve ? 8 : (S.atp ? 2.2 : .15)))); S.act = clamp(Math.pow(S.ca, 2), 0, 1);
       const F = Fl(S.L) * S.act; S.f = F;
       // довжина: коротшання, якщо сила > навантаження
-      const net = F - S.load; const vmax = 1.4; S.L = clamp(S.L - (net > 0 ? 1 : -1) * Math.min(Math.abs(net), .5) * vmax * dt * (S.act > .05 || net < 0 ? 1 : 0) * (net < 0 ? .5 : 1), 1.3, 3.55);
-      if (S.act < .05 && S.atp) S.L += (2.5 - S.L) * dt * .6; // пасивна еластичність
+      const net = F - S.load, vmax = 1.4;
+      if (S.act > .05) S.L = clamp(S.L - Math.sign(net) * Math.min(Math.abs(net), .5) * vmax * dt * (net < 0 ? .5 : 1), 1.3, 3.55); // активна фаза: коротшання або розтягування
+      else if (S.atp) S.L += (S.L0 + .35 * S.load - S.L) * Math.min(1, dt * .8);          // розслаблення: пасивна еластичність
       S.t += dt; if (S.t - S.last > .08) { S.last = S.t; S.hist.push([S.t, S.ca, S.act, S.L]); if (S.hist.length > 400) S.hist.shift(); }
     }
     function drawA(time, dt) {
@@ -120,11 +121,11 @@ App.def(15, {
     }
 
     /* ===================== C. Лактат ===================== */
-    const Lq = { c: 12, std: 10, noise: .01, mat: 0 };
     const MATL = [["М’яз у спокої", 1.2], ["М’яз після навантаження", 14], ["Сироватка (норма)", 1.5], ["Сироватка (ацидоз)", 6]];
+    const Lq = { c: MATL[0][1], std: 10, noise: .01, mat: 0 };
     const stC = new Stage(C.st, { aspect: 2.0, minH: 320, maxH: 450, tag: "Колориметрія лактату (гідрохінон)" });
     const rdC = UI.reads(C.st, [["Ed", "E₄₉₀ дослід"], ["Est", "E₄₉₀ стандарт"], ["C", "Лактат, мМ"], ["nm", "Оцінка"]]);
-    UI.select(C.ct, { id: "p15c-m", label: "Зразок", value: 0, options: MATL.map((m, i) => [i, m[0] + " (≈ " + m[1] + " мМ)"]), on: v => { Lq.mat = +v; Lq.c = MATL[+v][1]; } });
+    UI.select(C.ct, { id: "p15c-m", label: "Зразок", value: 0, options: MATL.map((m, i) => [i, m[0] + " (≈ " + NA(m[1], 1) + " мМ)"]), on: v => { Lq.mat = +v; Lq.c = MATL[+v][1]; } });
     UI.slider(C.ct, { id: "p15c-s", label: "Стандарт: молочна кислота", min: 2, max: 20, step: 1, value: Lq.std, unit: "мМ", on: v => Lq.std = v });
     UI.slider(C.ct, { id: "p15c-n", label: "Шум приладу", min: 0, max: .03, step: .002, value: Lq.noise, on: v => Lq.noise = v, fmt: v => NA(v, 3) });
     UI.tip(C.ct, "Лактат + H₂SO₄ (нагрівання) → ацетальдегід; з гідрохіноном (та Cu²⁺-каталізатором) утворює червонувато-коричневу сполуку. <b>C<sub>д</sub> = C<sub>ст</sub>·E<sub>д</sub>/E<sub>ст</sub></b>.");

@@ -33,7 +33,7 @@ App.def(3, {
     UI.slider(A.ct, { id: "p3-p", label: "Парціальний тиск O₂", min: 0, max: 100, step: 1, value: P.p, unit: "мм рт. ст.", on: v => P.p = v });
     UI.slider(A.ct, { id: "p3-ph", label: "pH крові (ефект Бора)", min: 6.8, max: 7.8, step: .05, value: P.pH, on: v => P.pH = v, fmt: v => NA(v, 2) });
     UI.slider(A.ct, { id: "p3-b", label: "2,3-БФГ", min: 0, max: 8, step: .5, value: P.bpg, unit: "мМ", on: v => P.bpg = v, fmt: v => NA(v, 1) });
-    UI.slider(A.ct, { id: "p3-c", label: "c = K_R/K_T (глибина ТR-різниці)", min: .002, max: .05, step: .002, value: P.c, on: v => P.c = v, fmt: v => NA(v, 3) });
+    UI.slider(A.ct, { id: "p3-c", label: "c = K(R)/K(T) (глибина ТR-різниці)", min: .002, max: .05, step: .002, value: P.c, on: v => P.c = v, fmt: v => NA(v, 3) });
     UI.check(A.ct, { id: "p3-h", label: "Показати модель Хілла (n, P₅₀) замість MWC", value: false, on: v => { P.hill = v; } });
     UI.tip(A.ct, "У <b>T-стані</b> (напружена форма) спорідненість до O₂ мала, у <b>R-стані</b> — висока. Зв’язування O₂ однією субодиницею перемикає тетрамер у R-форму й полегшує приєднання наступних молекул — це <b>позитивна кооперативність</b>.");
     const chA = h("div", { class: "charts" }); A.bl.append(chA);

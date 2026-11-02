@@ -26,7 +26,7 @@ App.def(8, {
     UI.tip(A.ct, "Три реакції (<b>1, 3, 10</b>) необоротні та є точками регуляції. ФФК-1 гальмується АТФ і цитратом, активується АМФ і фруктозо-2,6-бісфосфатом. Без регенерації НАД⁺ гліколіз зупиняється: без O₂ це робить ЛДГ (піруват → лактат), з O₂ — дихальний ланцюг.");
     const chA = h("div", { class: "charts" }); A.bl.append(chA);
     const cA1 = UI.chart(chA, "Накопичення АТФ (чисто) та НАДН під час гліколізу");
-    const cA2 = UI.chart(chA, "Вихід АТФ на 1 глюкозу за етапами (модельний розрахунок)");
+    const cA2 = UI.chart(chA, "Вихід АТФ на 1 глюкозу: анаеробно та аеробно (виділено поточні умови)");
     const tbA = h("div", { class: "tblwrap" }); A.bl.append(h("div", { class: "chart" }, h("h4", null, "Енергетичний баланс 1 моль глюкози: методичка (38) та сучасні оцінки"), tbA));
     const pos = (i, W, H) => i <= 4 ? [W * (.1 + i * .19), H * .2] : [W * (.9 - (i - 5) * .19), H * .55];
     function stepA(dt) {
@@ -75,15 +75,22 @@ App.def(8, {
       rdA.set("glc", NA(Pg.glc, 0), "молекул"); rdA.set("atp", (Pg.atp >= 0 ? "+" : "") + NA(Pg.atp, 0)); rdA.set("nadh", NA(Pg.nadh, 0)); rdA.set("tot", NA(t.tot, 1), "АТФ");
       const H2 = Pg.hist, x0 = Math.max(0, Pg.t - 120);
       drawChart(cA1, { x: [x0, x0 + 120], y: [-5, Math.max(20, Pg.atp + 4, Pg.nadh + 4)], xl: "t, с", series: [{ pts: H2.map(r => [r[0], r[1]]), color: "#E0A52B", w: 2.4 }, { pts: H2.map(r => [r[0], r[2]]), color: "#2A8FB5", w: 2.4 }], legend: [{ label: "АТФ (чисто)", color: "#E0A52B" }, { label: "НАДН", color: "#2A8FB5" }] });
-      const po = Pg.po; const bars = Pg.aero ? [["гліколіз субстр.", 2], ["НАДН гліколізу", 2 * po], ["ПДГ", 2 * po], ["ЦТК", t.tca]] : [["гліколіз субстр.", 2]];
-      const c2 = cA2.ctx, W2 = cA2.W, H2b = cA2.H; c2.fillStyle = T0.sheet; c2.fillRect(0, 0, W2, H2b); const mx = Math.max(40, t.tot * 1.1), L = 14, bwid = (W2 - L * 2) / bars.length * .7;
-      bars.forEach(([n, v], i) => { const x = L + (W2 - L * 2) / bars.length * (i + .15), hh = v / mx * (H2b - 60); const g2 = c2.createLinearGradient(0, H2b - 30 - hh, 0, H2b - 30); g2.addColorStop(0, "#F0C14B"); g2.addColorStop(1, "#C77A12"); c2.fillStyle = g2; c2.fillRect(x, H2b - 30 - hh, bwid, hh); c2.fillStyle = T0.ink; c2.font = `700 12px ${FM()}`; c2.textAlign = "center"; c2.fillText(NA(v, 1), x + bwid / 2, H2b - 36 - hh); c2.font = `10.5px ${FB()}`; c2.fillStyle = T0.muted; c2.fillText(n, x + bwid / 2, H2b - 12); });
-      tbA.innerHTML = `<table class="t"><thead><tr><th>Етап</th><th>Реакція</th><th>Методичка (P/O = 3)</th><th>P/O = 2,5</th></tr></thead><tbody>
+      const aeroTot = (q) => { const g = 2 + 2 * q, pdh = 2 * q, tca = 2 * (3 * q + (q === 3 ? 2 : 1.5) + 1); return g + pdh + tca; };
+      const bars = [["анаеробно", 2, !Pg.aero, "→ лактат"], ["аеробно, P/O = 2,5", aeroTot(2.5), Pg.aero && Pg.po === 2.5, "сучасна оцінка"], ["аеробно, P/O = 3", aeroTot(3), Pg.aero && Pg.po === 3, "за методичкою"]];
+      const c2 = cA2.ctx, W2 = cA2.W, H2b = cA2.H; c2.fillStyle = T0.sheet; c2.fillRect(0, 0, W2, H2b);
+      const Lx = 14, Bt = 46, Tt = 24, mxv = 42, slot = (W2 - Lx * 2) / bars.length, bwid = slot * .56;
+      c2.strokeStyle = rgba(T0.ink, .08); c2.lineWidth = 1; for (const v of [10, 20, 30, 40]) { const yy = H2b - Bt - v / mxv * (H2b - Bt - Tt); c2.beginPath(); c2.moveTo(Lx, yy); c2.lineTo(W2 - Lx, yy); c2.stroke(); c2.fillStyle = T0.muted; c2.font = `10px ${FM()}`; c2.textAlign = "left"; c2.textBaseline = "bottom"; c2.fillText(v, Lx + 2, yy - 1); }
+      bars.forEach(([n, v, on, sub], i) => { const x = Lx + slot * i + (slot - bwid) / 2, hh = v / mxv * (H2b - Bt - Tt), y0 = H2b - Bt - hh;
+        const g2 = c2.createLinearGradient(0, y0, 0, y0 + hh); g2.addColorStop(0, on ? "#F0C14B" : "#CFC9B4"); g2.addColorStop(1, on ? "#C77A12" : "#A9A28A"); c2.fillStyle = g2; c2.fillRect(x, y0, bwid, hh);
+        if (on) { c2.strokeStyle = "#2C7A4D"; c2.lineWidth = 2.5; c2.strokeRect(x - 2, y0 - 2, bwid + 4, hh + 4); }
+        c2.fillStyle = T0.ink; c2.font = `700 13px ${FM()}`; c2.textAlign = "center"; c2.textBaseline = "alphabetic"; c2.fillText(NA(v, 0), x + bwid / 2, y0 - 6);
+        c2.font = `600 11px ${FB()}`; c2.fillStyle = on ? T0.ink : T0.muted; c2.fillText(n, x + bwid / 2, H2b - 26); c2.font = `10px ${FB()}`; c2.fillStyle = T0.muted; c2.fillText(sub, x + bwid / 2, H2b - 11); });
+      UI.html(tbA, `<table class="t"><thead><tr><th>Етап</th><th>Реакція</th><th>Методичка (P/O = 3)</th><th>P/O = 2,5</th></tr></thead><tbody>
       <tr><td>Гліколіз</td><td>субстратне фосфорилювання: +4, витрата −2</td><td class="n">2</td><td class="n">2</td></tr>
       <tr><td>2 НАДН (гліколіз)</td><td>через човникові механізми</td><td class="n">6</td><td class="n">5</td></tr>
       <tr><td>ПДГ (2 НАДН)</td><td>піруват → ацетил-КоА</td><td class="n">6</td><td class="n">5</td></tr>
       <tr><td>ЦТК (на 2 ацетил-КоА)</td><td>6 НАДН, 2 ФАДН₂, 2 ГТФ</td><td class="n">24</td><td class="n">20</td></tr>
-      <tr><td><b>Разом аеробно</b></td><td></td><td class="n"><b>38</b></td><td class="n"><b>32</b></td></tr></tbody></table>`;
+      <tr><td><b>Разом аеробно</b></td><td></td><td class="n"><b>38</b></td><td class="n"><b>32</b></td></tr></tbody></table>`);
     }
 
     /* ===================== B. Лактат / цикл Корі ===================== */
@@ -157,9 +164,9 @@ App.def(8, {
       const trueM = mono, trueO = tot - mono, Bo = Bs - Bm;
       Gfx.text(c, `B = c·k/m: моноцукри ${NA(Bm, 0)} мг/г · сума ${NA(Bs, 0)} мг/г · олігоцукри ${NA(Bo, 0)} мг/г`, W * .05, H * .93, { size: 12, weight: 700, color: T0.ink });
       rdC.set("Am", NA(Am, 3)); rdC.set("As", NA(As, 3)); rdC.set("bm", NA(Bm, 0), "мг/г"); rdC.set("bo", NA(Bo, 0), "мг/г");
-      const pts = []; for (let cc = 0; cc <= .7; cc += .02) pts.push([cc, aOf(cc)]); drawChart(cC, { x: [0, .7], y: [0, 1.3], xl: "C, мг/мл", yl: "A", series: [{ pts, color: "#1D3F9E", w: 2.4 }, { pts: [[0, 0], [.6, kA * .6]], color: T0.muted, w: 1.5, dash: [5, 4] }], marks: [{ x: cm, y: Am, color: "#B8481A", label: "моно" }, { x: cs, y: As, color: "#2C7A4D", label: "сума" }] });
+      const pts = []; for (let cc = 0; cc <= .7; cc += .02) pts.push([cc, aOf(cc)]); drawChart(cC, { x: [0, .7], y: [0, 1.3], xl: "C, мг/мл", yl: "A", series: [{ pts, color: "#1D3F9E", w: 2.4 }, { pts: [[0, 0], [.6, kA * .6]], color: T0.muted, w: 1.5, dash: [5, 4] }], marks: [{ x: cm, y: Am, color: "#B8481A", label: "моно" }, { x: cs, y: As, color: "#2C7A4D", label: "сума", align: "right" }] });
       const warn = (A) => A > 1.2 ? "поза діапазоном: розведіть" : A < .05 ? "занадто мало: зменшіть розведення" : "в межах";
-      tbC.innerHTML = `<table class="t"><thead><tr><th>Показник</th><th>Виміряно, мг/г</th><th>Істинне, мг/г</th><th>Статус</th></tr></thead><tbody><tr><td>Моноцукри</td><td class="n">${NA(Bm, 0)}</td><td class="n">${trueM}</td><td>${warn(Am)}</td></tr><tr><td>Сума цукрів</td><td class="n">${NA(Bs, 0)}</td><td class="n">${tot}</td><td>${warn(As)}</td></tr><tr><td>Олігоцукри (різниця)</td><td class="n">${NA(Bo, 0)}</td><td class="n">${trueO}</td><td></td></tr></tbody></table>`;
+      UI.html(tbC, `<table class="t"><thead><tr><th>Показник</th><th>Виміряно, мг/г</th><th>Істинне, мг/г</th><th>Статус</th></tr></thead><tbody><tr><td>Моноцукри</td><td class="n">${NA(Bm, 0)}</td><td class="n">${trueM}</td><td>${warn(Am)}</td></tr><tr><td>Сума цукрів</td><td class="n">${NA(Bs, 0)}</td><td class="n">${tot}</td><td>${warn(As)}</td></tr><tr><td>Олігоцукри (різниця)</td><td class="n">${NA(Bo, 0)}</td><td class="n">${trueO}</td><td></td></tr></tbody></table>`);
     }
 
     M.init();

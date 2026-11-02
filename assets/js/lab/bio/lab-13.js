@@ -67,7 +67,7 @@ App.def(13, {
       arr([DHA[0] - 24, DHA[1]], [GS[0] + 24, GS[1] + 14], CG, f.dhar, "ДГАР + 2GSH", -10);
       node(GS[0], GS[1], "GSH/GSSG", CG, X.GSH / (X.GSH + 2 * X.GSSG + 1e-6), 14);
       arr([GS[0] - 8, GS[1] - 24], [ASC[0] - 26, ASC[1] + 20], CN, f.gr, "ГР + НАДФН", -26);
-      Gfx.sphere(c, cx, cy, 10, CN); Gfx.text(c, "НАДФН", cx, cy, { align: "center", base: "middle", size: 8.5, color: "#fff", weight: 700 }); Gfx.chip(c, NA(X.N, 2), cx, cy + 22, { align: "center", size: 9.5 });
+      Gfx.sphere(c, cx, cy, 19, CN); Gfx.text(c, "НАДФН", cx, cy - 1, { align: "center", base: "middle", size: 9, color: "#fff", weight: 700 }); Gfx.chip(c, NA(X.N, 2), cx, cy + 32, { align: "center", size: 9.5 });
       Gfx.text(c, "Цикл Фойєра–Асада / аскорбат–глутатіон", cx, cy - R - 38, { align: "center", size: 11, weight: 700, color: T0.ink });
       // іскри ушкоджень
       if (X.H > .06 && dt > 0 && Math.random() < clamp(X.H * 3, 0, .9)) sparks.push({ x: Math.random() * W, y: my - 30, v: 40 + Math.random() * 40, t: 1 });
@@ -126,7 +126,7 @@ App.def(13, {
       // розрахунок за формулами (методика/виведення)
       const a = ve.a, b = Bt.vol; const ASCm = (Bt.mode === "asc" ? Bt.vol : a) * .088 * Bt.M * 100 / (Bt.mAl * Bt.n); const gshM = Math.max(0, (Bt.mode === "gsh" ? Bt.vol : ve.b) - Bt.k * a) * .307 * Bt.M * 100 / (Bt.mAl * Bt.n);
       rdB.set("res", Bt.mode === "asc" ? NA(ASCm, 1) + " мг%" : NA(gshM, 1) + " мг%");
-      tbB.innerHTML = `<table class="t"><thead><tr><th>Показник</th><th>Формула</th><th>Знайдено</th><th>Істинно</th></tr></thead><tbody><tr><td>Аскорбінова кислота</td><td>a·0,088·M·100/(m·n)</td><td class="n">${NA(Bt.mode === "asc" ? Bt.vol * .088 * Bt.M * 100 / (Bt.mAl * Bt.n) : ASCm, 1)} мг%</td><td class="n">${Bt.tA}</td></tr><tr><td>Глутатіон (після поправки на АСК)</td><td>(b − k·a)·0,307·M·100/(m·n)</td><td class="n">${NA(gshM, 1)} мг%</td><td class="n">${Bt.tG}</td></tr></tbody></table><p class="note">a — мл ДХФІФ, b — мл KIO₃, k = ${NA(Bt.k, 2)} (відношення об’ємів йодат/ДХФІФ для стандарту АСК), M = ${Bt.M} мл, m = ${Bt.mAl} мл, n = ${Bt.n} г. *У режимі глутатіону a береться з окремого титрування.</p>`;
+      UI.html(tbB, `<table class="t"><thead><tr><th>Показник</th><th>Формула</th><th>Знайдено</th><th>Істинно</th></tr></thead><tbody><tr><td>Аскорбінова кислота</td><td>a·0,088·M·100/(m·n)</td><td class="n">${NA(Bt.mode === "asc" ? Bt.vol * .088 * Bt.M * 100 / (Bt.mAl * Bt.n) : ASCm, 1)} мг%</td><td class="n">${Bt.tA}</td></tr><tr><td>Глутатіон (після поправки на АСК)</td><td>(b − k·a)·0,307·M·100/(m·n)</td><td class="n">${NA(gshM, 1)} мг%</td><td class="n">${Bt.tG}</td></tr></tbody></table><p class="note">a — мл ДХФІФ, b — мл KIO₃, k = ${NA(Bt.k, 2)} (відношення об’ємів йодат/ДХФІФ для стандарту АСК), M = ${Bt.M} мл, m = ${Bt.mAl} мл, n = ${Bt.n} г. *У режимі глутатіону a береться з окремого титрування.</p>`);
       const pts = []; const nd2 = need(); for (let v = 0; v <= nd2 + 1; v += .02) { const o = v - nd2; pts.push([v, o < -.005 ? 0 : clamp(o / .12, 0, 1) * 100]); }
       drawChart(cB, { x: [0, nd2 + 1], y: [0, 105], xl: "V титранту, мл", yl: "інтенсивність кольору", series: [{ pts, color: Bt.mode === "asc" ? "#C94F6E" : "#3B52A8", w: 2.6 }], vl: [{ x: Bt.vol, color: T0.ink, dash: [3, 3], label: "зараз" }, { x: nd2, color: "#2C7A4D", label: "еквів." }] });
     }
@@ -145,10 +145,10 @@ App.def(13, {
       c.fillStyle = Theme.dark ? "#18221c" : "#F1F4EC"; c.fillRect(0, 0, W, H); c.fillStyle = Theme.dark ? "#26332b" : "#CFC5A8"; c.fillRect(0, H * .84, W, H * .16);
       const k = Pc.act * .006 / Pc.m * Pc.m, D1 = Pc.D1, D2 = D1 * Math.exp(-k * Pc.t) + Pc.noise * Math.sin(time * 1.3);
       const colOf = D => mixc("#F6F6F2", "#1F3F9E", clamp(D / .9, 0, 1) * .95);
-      [["контроль (H₂SO₄ до H₂O₂)", D1, .15], ["дослід (2 хв, потім H₂SO₄)", D2, .45]].forEach(([n, D, fx]) => { const x = W * fx, tw = 42; Gfx.vial(c, x, H * .1, tw, H * .58, .68, colOf(D), {}); Gfx.text(c, n, x + tw / 2, H * .1 + H * .58 + 18, { align: "center", size: 10.5, weight: 700, color: T0.ink }); Gfx.text(c, "D = " + NA(D, 3), x + tw / 2, H * .1 + H * .58 + 36, { align: "center", size: 11, color: T0.muted }); });
+      [["контроль (H₂SO₄ до H₂O₂)", D1, .1], ["дослід (2 хв, потім H₂SO₄)", D2, .36]].forEach(([n, D, fx]) => { const x = W * fx, tw = 42; Gfx.vial(c, x, H * .1, tw, H * .58, .68, colOf(D), {}); Gfx.text(c, n, x + tw / 2, H * .1 + H * .58 + 18, { align: "center", size: 10.5, weight: 700, color: T0.ink }); Gfx.text(c, "D = " + NA(D, 3), x + tw / 2, H * .1 + H * .58 + 36, { align: "center", size: 11, color: T0.muted }); });
       const A = (D1 - D2) * Pc.V * Pc.V2 * 60 / (Pc.t * Pc.V1 * Pc.m);
       Gfx.text(c, `А = (D₁ − D₂)·V·V₂·60/(t·V₁·m) = ${NA(A, 2)}`, W * .06, H * .93, { size: 12.5, weight: 700, color: T0.ink });
-      const px = W * .66, py = H * .14, pw = W * .3, ph = H * .44; Gfx.rr(c, px, py, pw, ph, 12); c.fillStyle = Theme.dark ? "#2a3a30" : "#E5EAE1"; c.fill(); c.strokeStyle = T0.rule; c.stroke(); Gfx.rr(c, px + 12, py + 12, pw - 24, ph * .42, 8); c.fillStyle = "#0E1F14"; c.fill(); Gfx.text(c, "λ = 590 нм", px + 20, py + 26, { size: 10.5, color: "#7CD67F" }); Gfx.text(c, NA(D2, 3), px + pw - 22, py + 12 + ph * .21, { align: "right", base: "middle", size: 26, weight: 700, color: "#9FEFA2" });
+      Gfx.spectro(c, W * .6, H * .12, W * .36, H * .6, { lam: 590, A: D2, col: colOf(D2), text: NA(D2, 3), sub: "кювета 10 мм · індигокармін" });
       rdC.set("D1", NA(D1, 3)); rdC.set("D2", NA(D2, 3)); rdC.set("A", NA(A, 2)); rdC.set("col", D2 > .5 ? "синій" : D2 > .2 ? "блідо-блакитний" : "майже безбарвний");
       const pts = []; for (let t = 0; t <= 300; t += 5) pts.push([t, D1 * Math.exp(-k * t)]); drawChart(cC, { x: [0, 300], y: [0, 1], xl: "t, с", yl: "D₅₉₀", series: [{ pts, color: "#1F3F9E", w: 2.6 }], vl: [{ x: Pc.t, color: T0.ink, dash: [3, 3] }] });
     }

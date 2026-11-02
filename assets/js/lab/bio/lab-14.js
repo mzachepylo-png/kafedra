@@ -27,14 +27,14 @@ App.def(14, {
     const stA = new Stage(A.st, { aspect: 1.9, minH: 340, maxH: 480, tag: "Альгінатна гранула (розріз)" });
     const rdA = UI.reads(A.st, [["phi", "Модуль Тіле φ₀"], ["eta", "Ефективність η"], ["core", "[S] у центрі, % від поверхні"], ["v", "Швидкість, % від ідеальної"]]);
     UI.slider(A.ct, { id: "p14-R", label: "Радіус гранули", min: .2, max: 3, step: .1, value: P.R, unit: "мм", on: v => { P.R = v; initU(); }, fmt: v => NA(v, 1) });
-    UI.slider(A.ct, { id: "p14-l", label: "Завантаження ферментом (V_max)", min: .1, max: 4, step: .1, value: P.load, on: v => { P.load = v; initU(); }, fmt: v => NA(v, 1) + "×" });
+    UI.slider(A.ct, { id: "p14-l", label: "Завантаження ферментом (Vₘₐₓ)", min: .1, max: 4, step: .1, value: P.load, on: v => { P.load = v; initU(); }, fmt: v => NA(v, 1) + "×" });
     UI.slider(A.ct, { id: "p14-D", label: "Ефективна дифузійність D", min: .5, max: 8, step: .5, value: P.D, unit: "·10⁻¹⁰ м²/с", on: v => { P.D = v; initU(); }, fmt: v => NA(v, 1) });
-    UI.slider(A.ct, { id: "p14-K", label: "K_m", min: 1, max: 30, step: 1, value: P.Km, unit: "мМ", on: v => { P.Km = v; initU(); } });
+    UI.slider(A.ct, { id: "p14-K", label: "Kₘ", min: 1, max: 30, step: 1, value: P.Km, unit: "мМ", on: v => { P.Km = v; initU(); } });
     UI.slider(A.ct, { id: "p14-S", label: "[S] у розчині", min: 1, max: 100, step: 1, value: P.cs, unit: "мМ", on: v => { P.cs = v; initU(); } });
     UI.buttons(A.ct, [{ label: "Занурити гранулу заново", pri: true, on: () => initU() }]);
-    UI.tip(A.ct, "Субстрат має <b>дифундувати</b> в гранулу, тому великі гранули з великим завантаженням працюють лише поверхневим шаром (η ≪ 1): в центрі [S] → 0. Модуль Тіле <b>φ₀ = R·√(V_max/(K_m·D))</b> визначає, хто лімітує: реакція (φ₀ ≪ 1, η ≈ 1) чи дифузія (φ₀ ≫ 1, η ≈ 3/φ₀).");
+    UI.tip(A.ct, "Субстрат має <b>дифундувати</b> в гранулу, тому великі гранули з великим завантаженням працюють лише поверхневим шаром (η ≪ 1): в центрі [S] → 0. Модуль Тіле <b>φ₀ = R·√(Vₘₐₓ/(Kₘ·D))</b> визначає, хто лімітує: реакція (φ₀ ≪ 1, η ≈ 1) чи дифузія (φ₀ ≫ 1, η ≈ 3/φ₀).");
     const chA = h("div", { class: "charts" }); A.bl.append(chA);
-    const cA1 = UI.chart(chA, "Профіль [S] усередині гранули (u = c/c_s) за радіусом");
+    const cA1 = UI.chart(chA, "Профіль [S] усередині гранули (u = c/cₛ) за радіусом");
     const cA2 = UI.chart(chA, "Ефективність η від радіуса гранули для різних завантажень");
     function drawA(time, dt) {
       const c = stA.ctx, W = stA.W, H = stA.H, T0 = Theme.c; c.clearRect(0, 0, W, H);
@@ -59,7 +59,7 @@ App.def(14, {
       Gfx.text(c, `τ = ${NA(P.tau, 2)} (нестаціонарний → стаціонарний)`, gx, H * .5, { size: 10.5, color: T0.muted });
       rdA.set("phi", NA(ph, 2)); rdA.set("eta", NA(et, 2)); rdA.set("core", NA(core, 0), "%"); rdA.set("v", NA(et * 100, 0), "%");
       const pr = []; for (let i = 0; i <= P.N; i++) pr.push([i / P.N, P.u[i]]);
-      drawChart(cA1, { x: [0, 1], y: [0, 1.05], xl: "r/R", yl: "u = c/c_s", series: [{ pts: pr, color: "#B8481A", w: 2.6, fill: "rgba(184,72,26,.12)" }] });
+      drawChart(cA1, { x: [0, 1], y: [0, 1.05], xl: "r/R", yl: "u = c/cₛ", series: [{ pts: pr, color: "#B8481A", w: 2.6, fill: "rgba(184,72,26,.12)" }] });
       const mk = (ld) => { const pts = []; for (let r = .2; r <= 3.01; r += .2) { const p0 = Math.sqrt((r * 1e-3) ** 2 * (.05 * ld) / (P.D * 1e-10 * P.Km)), b = beta(); pts.push([r, etaAna(p0, b)]); } return pts; };
       drawChart(cA2, { x: [.2, 3], y: [0, 1.05], xl: "R, мм", yl: "η", series: [{ pts: mk(.3), color: "#2C7A4D", w: 2.2 }, { pts: mk(1), color: "#C77A12", w: 2.2 }, { pts: mk(3), color: "#B3363A", w: 2.2 }], marks: [{ x: P.R, y: et, color: "#B8481A", label: "зараз" }], legend: [{ label: "завант. 0,3×", color: "#2C7A4D" }, { label: "1×", color: "#C77A12" }, { label: "3×", color: "#B3363A" }] });
     }
@@ -81,7 +81,7 @@ App.def(14, {
     const chB = h("div", { class: "charts" }); B.bl.append(chB);
     const cB1 = UI.chart(chB, "Профіль перетворення вздовж колонки (S → P), мМ");
     const cB2 = UI.chart(chB, "Накопичений продукт за N циклів: іммобілізований (суцільна) та вільний фермент (пунктир)");
-    function react(R2) { // колонка з витісненням: dc/dτ = −(1−ε)/ε · η·V_max,гран · c/(K_m + c)
+    function react(R2) { // колонка з витісненням: dc/dτ = −(1−ε)/ε · η·Vₘₐₓ,гран · c/(Kₘ + c)
       const eta2 = etaAna(Math.sqrt((R2 * 1e-3) ** 2 * (.05 * Rx.load) / (P.D * 1e-10 * P.Km)), Rx.c0 / P.Km), A = .8, eps = .4, tau = Rx.L * A * eps / Rx.flow;
       const pts = [[0, Rx.c0]]; let c = Rx.c0; const nz = 60, dtau = tau / nz;
       for (let i = 0; i < nz; i++) { const v = (1 - eps) / eps * eta2 * 3 * Rx.load * c / (P.Km + c); c = Math.max(0, c - v * dtau); pts.push([(i + 1) * Rx.L / nz, c]); }

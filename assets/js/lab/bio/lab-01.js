@@ -164,7 +164,7 @@ App.def(1, {
       }
       // потік ентропії/тепла назовні
       if (X.sigma > 0.01) { const w = clamp(X.sigma * 10, 1.5, 9); Gfx.arrow(c, (g.x0 + g.x1) / 2 + 40, g.y0 - 6, (g.x0 + g.x1) / 2 + 40, g.y0 - 34, { col: COL.heat, w, head: 11, dash: [6, 4] }); Gfx.chip(c, "dₑS/dt < 0: ентропія виноситься", (g.x0 + g.x1) / 2 + 52, g.y0 - 22, { size: 10.5, fg: "#B8481A" }); }
-      Gfx.chip(c, "Зовнішнє середовище: S", 10, 14, { size: 10.5, fg: "#8A6410" }); Gfx.chip(c, "P (стік)", W - 10, 14, { size: 10.5, fg: "#2C7A4D", align: "right" });
+      Gfx.chip(c, "Зовнішнє середовище: S", 10, 42, { size: 10.5, fg: "#8A6410" }); Gfx.chip(c, "P (стік)", W - 10, 14, { size: 10.5, fg: "#2C7A4D", align: "right" });
       Gfx.chip(c, `Клітина · S ${NA(X.S, 2)} · P ${NA(X.Pp, 2)}`, (g.x0 + g.x1) / 2, g.y1 + 20, { align: "center", size: 11 });
       // стан
       const flux = Math.abs(d.Jin) + Math.abs(d.Jout) + Math.abs(d.v);
@@ -216,46 +216,59 @@ App.def(1, {
     const chB = UI.chart(B.bl, "Складові Δμ̃ (кДж/моль) для різних φ ззовні");
     function tableB() {
       const rows = [0, 15, 20].map(po => { const r = calc(po); return `<tr><td class="n">${po} мВ</td><td class="n">${NA(r.Aos, 0)}</td><td class="n">${NA(r.Ael, 0)}</td><td class="n"><b>${NA(r.mu / 1000, 2)}</b></td></tr>`; }).join("");
-      tb.innerHTML = `<table class="t"><thead><tr><th>φ₂</th><th>A осм., Дж/моль</th><th>A ел., Дж/моль</th><th>Δμ̃, кДж/моль</th></tr></thead><tbody>${rows}</tbody></table>`;
+      UI.html(tb, `<table class="t"><thead><tr><th>φ₂</th><th>A осм., Дж/моль</th><th>A ел., Дж/моль</th><th>Δμ̃, кДж/моль</th></tr></thead><tbody>${rows}</tbody></table>`);
     }
     function drawB(time) {
       const c = stB.ctx, W = stB.W, H = stB.H, T0 = Theme.c; c.clearRect(0, 0, W, H);
-      const my = H * .5, mx0 = 0, mx1 = W * .62, r = calc(Q.pout);
-      // фон: зовні (вище) — світліший
-      const o = c.createLinearGradient(0, 0, 0, my); o.addColorStop(0, Theme.dark ? "#16303f" : "#D9EAF6"); o.addColorStop(1, Theme.dark ? "#1b3b4d" : "#C4DDEE"); c.fillStyle = o; c.fillRect(0, 0, W, my);
-      const ii = c.createLinearGradient(0, my, 0, H); ii.addColorStop(0, Theme.dark ? "#2b4430" : "#E4EFD2"); ii.addColorStop(1, Theme.dark ? "#223a29" : "#D6E7BC"); c.fillStyle = ii; c.fillRect(0, my, W, H - my);
-      const gap = 24; Gfx.bilayer(c, 0, mx1, my, gap, time, { s: 1.15 });
-      // насос
-      c.save(); c.translate(mx1 * .5, my); c.rotate(0); Gfx.channel(c, 0, 0, gap, 44, .3 + .3 * Math.sin(time * 2), "#8B7BB5"); c.restore();
-      Gfx.text(c, "Na⁺/K⁺-АТФаза", mx1 * .5, my - gap / 2 - 18, { align: "center", size: 11, color: T0.muted, weight: 600 });
-      // іони
+      const my = H * .5, mx1 = Math.round(W * .6), r = calc(Q.pout), gap = 24, pumpX = mx1 * .42;
+      c.fillStyle = T0.sheet; c.fillRect(0, 0, W, H);
+      /* ---- сцена: зовні (вище), всередині (нижче) ---- */
+      c.save(); c.beginPath(); c.rect(0, 0, mx1, H); c.clip();
+      const o = c.createLinearGradient(0, 0, 0, my); o.addColorStop(0, Theme.dark ? "#16303f" : "#D9EAF6"); o.addColorStop(1, Theme.dark ? "#1b3b4d" : "#C4DDEE"); c.fillStyle = o; c.fillRect(0, 0, mx1, my);
+      const ii = c.createLinearGradient(0, my, 0, H); ii.addColorStop(0, Theme.dark ? "#2b4430" : "#E4EFD2"); ii.addColorStop(1, Theme.dark ? "#223a29" : "#D6E7BC"); c.fillStyle = ii; c.fillRect(0, my, mx1, H - my);
+      const rb = rng(21); for (let i = 0; i < 26; i++) { c.fillStyle = `rgba(255,255,255,${.04 + rb() * .06})`; c.beginPath(); c.arc(rb() * mx1, rb() * H, 5 + rb() * 18, 0, 7); c.fill(); }
+      Gfx.bilayer(c, 0, mx1, my, gap, time, { s: 1.15 });
+      // іони (положення стабільні, коливаються навколо власного центру)
       const rr = rng(7), nOut = Math.round(clamp(Q.cout / 6, 3, 50)), nIn = Math.round(clamp(Q.cin / 3, 3, 50));
-      for (let i = 0; i < nOut; i++) { const x = rr() * mx1, y = rr() * (my - gap / 2 - 16) + 8, ph = rr() * 6; Gfx.sphere(c, x + Math.sin(time * .9 + ph) * 6, y + Math.cos(time * .7 + ph) * 5, 5.2, COL.ion); }
-      for (let i = 0; i < nIn; i++) { const x = rr() * mx1, y = my + gap / 2 + 14 + rr() * (H - my - gap / 2 - 24), ph = rr() * 6; Gfx.sphere(c, x + Math.sin(time * .9 + ph) * 6, y + Math.cos(time * .7 + ph) * 5, 5.2, COL.ion); }
-      // заряди на мембрані
+      for (let i = 0; i < nOut; i++) { const x = 12 + rr() * (mx1 - 24), y = rr() * (my - gap / 2 - 36) + 22, ph = rr() * 6; Gfx.sphere(c, x + Math.sin(time * .9 + ph) * 6, y + Math.cos(time * .7 + ph) * 5, 5.2, COL.ion); }
+      for (let i = 0; i < nIn; i++) { const x = 12 + rr() * (mx1 - 24), y = my + gap / 2 + 18 + rr() * (H - my - gap / 2 - 44), ph = rr() * 6; Gfx.sphere(c, x + Math.sin(time * .9 + ph) * 6, y + Math.cos(time * .7 + ph) * 5, 5.2, COL.ion); }
+      // заряди біля мембрани
       const sgIn = clamp(-Q.pin / 120, 0, 1), sgOut = clamp(Q.pout / 40, 0, 1);
+      c.font = `700 14px ${FM()}`; c.textAlign = "center"; c.textBaseline = "middle";
       for (let x = 14; x < mx1; x += 26) {
-        c.font = `700 14px ${FM()}`; c.textAlign = "center"; c.textBaseline = "middle";
-        c.fillStyle = `rgba(179,54,58,${.25 + .65 * sgIn})`; c.fillText("−", x, my + gap / 2 + 9);
-        c.fillStyle = `rgba(42,106,147,${.2 + .6 * Math.max(sgIn, sgOut)})`; c.fillText("+", x + 13, my - gap / 2 - 9);
+        c.fillStyle = `rgba(179,54,58,${.25 + .65 * sgIn})`; c.fillText("−", x, my + gap / 2 + 10);
+        c.fillStyle = `rgba(42,106,147,${.2 + .6 * Math.max(sgIn, sgOut)})`; c.fillText("+", x + 13, my - gap / 2 - 10);
       }
-      // права панель: енергетичні сходинки
-      const px = W * .66, pw = W * .31, y0 = H * .14, atp = 50000, mxE = Math.max(atp, r.mu) * 1.04;
-      Gfx.text(c, "Енергія переносу 1 моль Na⁺ назовні", px, y0 - 12, { size: 11.5, color: T0.ink, weight: 700 });
-      const seg = (v0, v1, col, lab, y) => { const a = px + v0 / mxE * pw, b = px + v1 / mxE * pw; if (b - a < 1) return; const g2 = c.createLinearGradient(0, y, 0, y + 30); g2.addColorStop(0, shade(col, .25)); g2.addColorStop(1, shade(col, -.2)); c.fillStyle = g2; c.fillRect(a, y, b - a, 30); if (b - a > 54) Gfx.text(c, lab, (a + b) / 2, y + 15, { color: "#fff", size: 11, weight: 700, base: "middle", align: "center" }); };
-      seg(0, r.Aos, "#2A6A93", "A осм. " + NA(r.Aos / 1000, 2), y0); seg(r.Aos, r.Aos + r.Ael, "#B3363A", "A ел. " + NA(r.Ael / 1000, 2), y0);
-      Gfx.text(c, "Δμ̃ = " + NA(r.mu / 1000, 2) + " кДж/моль", px, y0 + 48, { size: 12, color: T0.ink, weight: 700 });
-      Gfx.text(c, "Для порівняння: 1 моль АТФ в клітині ≈ 50 кДж", px, y0 + 76, { size: 11, color: T0.muted });
-      seg(0, atp, "#C77A12", "АТФ ≈ 50 кДж", y0 + 86);
-      Gfx.text(c, `≈ ${NA(atp / Math.max(1, r.mu), 1)} моль Na⁺ на 1 моль АТФ (за цих умов)`, px, y0 + 134, { size: 11.5, color: T0.ink, weight: 600 });
-      const dF = Q.pin - r.E; Gfx.text(c, `Рушійна сила входу Na⁺: V − E(Na⁺) = ${NA(dF, 0)} мВ`, px, y0 + 158, { size: 11, color: T0.muted });
-      Gfx.text(c, `(E(Na⁺) = ${NA(r.E, 1)} мВ — потенціал Нернста)`, px, y0 + 176, { size: 11, color: T0.muted });
-      Gfx.arrow(c, mx1 * .5 + 40, my + 40, mx1 * .5 + 40, my - 40, { col: "#B8481A", w: 4, head: 11 }); Gfx.chip(c, "переносимо Na⁺ назовні", mx1 * .5 + 52, my + 0, { size: 10.5 });
-      Gfx.chip(c, "ЗОВНІ · c₂", 10, 14, { size: 10.5 }); Gfx.chip(c, "ВСЕРЕДИНІ · c₁", 10, H - 14, { size: 10.5 });
+      // насос, стрілка переносу, підписи
+      Gfx.channel(c, pumpX, my, gap, 46, .3 + .3 * Math.sin(time * 2), "#8B7BB5");
+      Gfx.chip(c, "Na⁺/K⁺-АТФаза", pumpX, my - gap / 2 - 36, { align: "center", size: 10.5 });
+      const ax = pumpX + 46; Gfx.arrow(c, ax, my + 56, ax, my - 56, { col: "#B8481A", w: 4, head: 11 });
+      Gfx.chip(c, "Na⁺ назовні", ax + 12, my, { size: 10.5, fg: "#8A3A10" });
+      Gfx.chip(c, "ЗОВНІ · c₂ = " + NA(Q.cout, 0) + " мМ", mx1 - 10, 16, { align: "right", size: 10.5 });
+      Gfx.chip(c, "ВСЕРЕДИНІ · c₁ = " + NA(Q.cin, 0) + " мМ", mx1 - 10, H - 16, { align: "right", size: 10.5 });
+      c.restore();
+      /* ---- права картка з енергетикою ---- */
+      const cx0 = mx1 + 14, cw = W - cx0 - 10, ch = H - 20, px = cx0 + 16, pw = cw - 32, atp = 50000, mxE = Math.max(atp, r.mu) * 1.04;
+      Gfx.rr(c, cx0, 10, cw, ch, 12); c.fillStyle = Theme.dark ? "rgba(255,255,255,.04)" : "#FFFFFF"; c.fill(); c.strokeStyle = T0.rule; c.lineWidth = 1; c.stroke();
+      let y = 34;
+      Gfx.text(c, "Енергія переносу 1 моль Na⁺ назовні", px, y, { size: 12, color: T0.ink, weight: 700 }); y += 16;
+      const bar = (v0, v1, col, yy) => { const a = px + v0 / mxE * pw, bb = px + v1 / mxE * pw; if (bb - a < .5) return; const g2 = c.createLinearGradient(0, yy, 0, yy + 28); g2.addColorStop(0, shade(col, .25)); g2.addColorStop(1, shade(col, -.2)); c.fillStyle = g2; c.fillRect(a, yy, bb - a, 28); };
+      c.fillStyle = alpha("#888888", .12); c.fillRect(px, y, pw, 28);
+      bar(0, r.Aos, "#2A6A93", y); bar(r.Aos, r.Aos + r.Ael, "#B3363A", y);
+      Gfx.text(c, "Δμ̃ = " + NA(r.mu / 1000, 2) + " кДж/моль", px, y + 48, { size: 14, color: T0.ink, weight: 700 });
+      // легенда
+      const lg = (x2, y2, col, t2) => { c.fillStyle = col; Gfx.rr(c, x2, y2 - 5, 10, 10, 2); c.fill(); Gfx.text(c, t2, x2 + 15, y2, { size: 11, color: T0.ink, base: "middle" }); };
+      lg(px, y + 70, "#2A6A93", "A осм. = " + NA(r.Aos / 1000, 2) + " кДж"); lg(px, y + 88, "#B3363A", "A ел. = " + NA(r.Ael / 1000, 2) + " кДж");
+      y += 118;
+      Gfx.text(c, "Для порівняння: 1 моль АТФ ≈ 50 кДж", px, y, { size: 11, color: T0.muted }); y += 12;
+      bar(0, atp, "#C77A12", y + 2); Gfx.text(c, "АТФ ≈ 50 кДж", px + 8, y + 16, { size: 11, color: "#fff", weight: 700, base: "middle" }); y += 52;
+      Gfx.text(c, `≈ ${NA(atp / Math.max(1, r.mu), 1)} моль Na⁺ на 1 моль АТФ`, px, y, { size: 12, color: T0.ink, weight: 600 }); y += 24;
+      Gfx.text(c, `E(Na⁺) = ${NA(r.E, 1)} мВ (потенціал Нернста)`, px, y, { size: 11, color: T0.muted }); y += 17;
+      Gfx.text(c, `Рушійна сила входу: V − E = ${NA(Q.pin - r.E, 0)} мВ`, px, y, { size: 11, color: T0.muted });
       rdB.set("os", NA(r.Aos, 0)); rdB.set("el", NA(r.Ael, 0)); rdB.set("mu", NA(r.mu / 1000, 2)); rdB.set("EN", NA(r.E, 1), "мВ");
       tableB();
       const cs = [0, 5, 10, 15, 20, 30, 40].map(po => { const q = calc(po); return [po, q.Aos / 1000, q.Ael / 1000]; });
-      drawChart(chB, { x: [0, 40], y: [0, 20], xl: "φ зовні, мВ", yl: "кДж/моль", series: [{ pts: cs.map(r2 => [r2[0], r2[1]]), color: "#2A6A93", w: 2.4 }, { pts: cs.map(r2 => [r2[0], r2[1] + r2[2]]), color: "#B3363A", w: 2.6 }], marks: [{ x: Q.pout, y: (r.Aos + r.Ael) / 1000, color: "#B3363A", label: "Δμ̃" }], legend: [{ label: "A осм.", color: "#2A6A93" }, { label: "Δμ̃ = A осм. + A ел.", color: "#B3363A" }] });
+      drawChart(chB, { x: [0, 40], y: [0, 20], xl: "φ зовні, мВ", yl: "кДж/моль", series: [{ pts: cs.map(r2 => [r2[0], r2[1]]), color: "#2A6A93", w: 2.4 }, { pts: cs.map(r2 => [r2[0], r2[1] + r2[2]]), color: "#B3363A", w: 2.6 }], marks: [{ x: Q.pout, y: (r.Aos + r.Ael) / 1000, color: "#B3363A", label: "Δμ̃ зараз" }], legend: [{ label: "A осм.", color: "#2A6A93" }, { label: "Δμ̃ = A осм. + A ел.", color: "#B3363A" }] });
     }
 
     resetA(); M.init();

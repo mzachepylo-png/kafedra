@@ -52,7 +52,7 @@ App.def(12, {
       const ser = TUBES.map(([n, d, tb], i) => ({ pts: Array.from({ length: 41 }, (_, k) => [k * .5, B1(tb, k * .5)]), color: ["#B8481A", "#8A8A8A", "#C77A12", "#2A6A93"][i], w: 2.4 }));
       drawChart(cA, { x: [0, 20], y: [0, 1.02], xl: "t, хв", yl: "забарвлення", series: ser, vl: [{ x: Math.min(20, P.t), color: T0.ink, dash: [3, 3] }], legend: TUBES.map((t, i) => ({ label: "№" + t[0], color: ["#B8481A", "#8A8A8A", "#C77A12", "#2A6A93"][i] })) });
       const st = (b) => b > .6 ? "темно-бура" : b > .25 ? "бура" : b > .06 ? "слабо-жовта" : "безбарвна";
-      tbA.innerHTML = `<table class="t"><thead><tr><th>№</th><th>Склад</th><th>Інтенсивність забарвлення (t = ${NA(P.t, 1)} хв)</th></tr></thead><tbody>${TUBES.map(([n, d, tb]) => `<tr><td>${n}</td><td>${d}</td><td>${st(B1(tb, P.t))}</td></tr>`).join("")}</tbody></table>`;
+      UI.html(tbA, `<table class="t"><thead><tr><th>№</th><th>Склад</th><th>Інтенсивність забарвлення (t = ${NA(P.t, 1)} хв)</th></tr></thead><tbody>${TUBES.map(([n, d, tb]) => `<tr><td>${n}</td><td>${d}</td><td>${st(B1(tb, P.t))}</td></tr>`).join("")}</tbody></table>`);
     }
 
     /* ================= B. Дегідрогенази ================= */
@@ -82,11 +82,11 @@ App.def(12, {
       if (S.ph === "incubate") { [["нативне", false, rN, .2], ["прокип’ячене", true, rB, .62]].forEach(([lab, bo, rr, fx]) => { const x = W * fx, tw = 56, ty = H * .1, th = H * .62; const liq = mixc("#2A4FB8", "#EDEBE0", clamp(rr * .85, 0, 1)); Gfx.vial(c, x, ty, tw, th, .7, mixc("#DDE4F4", liq, .5), { inside: (cc, ly) => { cc.fillStyle = "rgba(240,230,160,.55)"; cc.fillRect(x, ly, tw, 10); } });
           cotyl(c, x + tw / 2 - 6, ty + th - 18, 15, 10, rr, 0, .3); cotyl(c, x + tw / 2 + 8, ty + th - 28, 14, 9, rr, 0, -.5); cotyl(c, x + tw / 2 - 4, ty + th - 40, 14, 9, rr, 0, .1);
           Gfx.text(c, lab + " насіння", x + tw / 2, ty + th + 20, { align: "center", size: 11.5, weight: 700, color: T0.ink }); Gfx.chip(c, NA(rr * 100, 0) + " % МС → лейко", x + tw / 2, ty - 8, { align: "center", size: 10 }); });
-        Gfx.text(c, "водяна баня " + S.T + " °C", W * .4, H * .78, { align: "center", size: 11, color: T0.muted }); Gfx.chip(c, `t = ${NA(S.t, 1)} хв`, 10, 16, { size: 11.5 }); }
+        Gfx.text(c, "водяна баня " + S.T + " °C", W * .4, H * .78, { align: "center", size: 11, color: T0.muted }); Gfx.chip(c, `t = ${NA(S.t, 1)} хв`, W - 10, 16, { align: "right", size: 11.5 }); }
       else { [["нативне", rN, .22], ["прокип’ячене", rB, .62]].forEach(([lab, rr, fx]) => { const cx = W * fx, cy = H * .5; Gfx.rr(c, cx - 88, cy - 10, 176, 70, 14); c.fillStyle = "rgba(255,255,255,.7)"; c.fill(); c.strokeStyle = T0.muted; c.stroke(); Gfx.text(c, "порцелянова чашка", cx, cy + 74, { align: "center", size: 10, color: T0.muted });
           for (let k = 0; k < 4; k++) cotyl(c, cx - 60 + k * 40, cy + 22 + (k % 2) * 6, 16, 11, rr, 0, k * .6 - .6);
           Gfx.text(c, lab + " насіння", cx, cy - 26, { align: "center", size: 12, weight: 700, color: T0.ink }); Gfx.chip(c, rr < .05 ? "синє (лейко-МС окиснений O₂)" : "блідне/безбарвне", cx, cy - 46, { align: "center", size: 10 }); });
-        Gfx.chip(c, `на повітрі: ${NA(S.air, 1)} хв`, 10, 16, { size: 11.5 }); }
+        Gfx.chip(c, `на повітрі: ${NA(S.air, 1)} хв`, W - 10, 16, { align: "right", size: 11.5 }); }
       rdB.set("ph", S.ph === "incubate" ? "інкубація без O₂" : "контакт з повітрям"); rdB.set("r", NA(rN * 100, 0), "%"); rdB.set("rb", NA(rB * 100, 0), "%");
       rdB.set("res", S.ph === "incubate" ? (rN > .6 && rB < .1 ? "нативне: активні дегідрогенази" : "…") : (rN < .15 ? "МС знову окислено — колір повернувся" : "лейко-МС окиснюється"));
       const sN = [], sB = []; for (let k = 0; k <= 40; k++) { const t = k * .5; sN.push([t, (1 - Math.exp(-rK(false) * t)) * 100]); sB.push([t, (1 - Math.exp(-rK(true) * t)) * 100]); }
