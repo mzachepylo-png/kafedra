@@ -630,5 +630,61 @@
   "lic": "CC0",
   "w": 1000,
   "h": 885
+ },
+ "beans3": {
+  "title": "File:Navy Bean Seed to Seedling Germination.jpg",
+  "url": "https://commons.wikimedia.org/wiki/File:Navy_Bean_Seed_to_Seedling_Germination.jpg",
+  "artist": "<a href=\"//commons.wikimedia.org/w/index.php?title=User:LeafPiece&amp;action=edit&amp;redlink=1\" class=\"new\" title=\"User:LeafPiece (page does not exist)\">B. Domangue</a>",
+  "lic": "CC BY-SA 4.0",
+  "w": 1000,
+  "h": 714
+ },
+ "beans": {
+  "title": "File:Bean germination.jpg",
+  "url": "https://commons.wikimedia.org/wiki/File:Bean_germination.jpg",
+  "artist": "<a href=\"//commons.wikimedia.org/wiki/User:Doronenko\" title=\"User:Doronenko\">Doronenko</a>",
+  "lic": "CC BY-SA 3.0",
+  "w": 799,
+  "h": 570
+ },
+ "yeast2": {
+  "title": "File:Saccharomyces cerevisiae SEM.jpg",
+  "url": "https://commons.wikimedia.org/wiki/File:Saccharomyces_cerevisiae_SEM.jpg",
+  "artist": "Mogana Das Murtey and Patchamuthu Ramasamy",
+  "lic": "CC BY 3.0",
+  "w": 1000,
+  "h": 645
+ },
+ "skunkcabbage": {
+  "title": "File:WesternSkunkCabbage.JPG",
+  "url": "https://commons.wikimedia.org/wiki/File:WesternSkunkCabbage.JPG",
+  "artist": "<a href=\"//commons.wikimedia.org/w/index.php?title=User:Martin_Bravenboer&amp;action=edit&amp;redlink=1\" class=\"new\" title=\"User:Martin Bravenboer (page does not exist)\">Martin Bravenboer</a>",
+  "lic": "Public domain",
+  "w": 750,
+  "h": 1000
+ },
+ "sod": {
+  "title": "File:Superoxide dismutase Cu Zn site.jpg",
+  "url": "https://commons.wikimedia.org/wiki/File:Superoxide_dismutase_Cu_Zn_site.jpg",
+  "artist": "Dcrjsr",
+  "lic": "CC BY 3.0",
+  "w": 1000,
+  "h": 750
+ },
+ "calorimeter": {
+  "title": "File:Kalorimeter.png",
+  "url": "https://commons.wikimedia.org/wiki/File:Kalorimeter.png",
+  "artist": "Maciej J. Mrowinski",
+  "lic": "CC BY-SA 4.0",
+  "w": 750,
+  "h": 1000
+ },
+ "hfcs": {
+  "title": "File:Xylose-isomerase-reaction.png",
+  "url": "https://commons.wikimedia.org/wiki/File:Xylose-isomerase-reaction.png",
+  "artist": "Miles Benardout, Adam Le Gresley, Amr ElShaer and Stephen P. Wren",
+  "lic": "CC BY 4.0",
+  "w": 1000,
+  "h": 261
  }
 }
