@@ -165,7 +165,10 @@ const UI = {
   slider(parent, { id, label, min, max, step, value, unit = "", fmt: f, on }) {
     const out = h("b");
     const inp = h("input", { type: "range", id, min, max, step, value });
-    const show = () => out.textContent = (f ? f(+inp.value) : inp.value) + (unit ? " " + unit : "");
+    const show = () => {
+      out.textContent = (f ? f(+inp.value) : inp.value) + (unit ? " " + unit : "");
+      inp.style.setProperty("--pct", (clamp((+inp.value - +min) / ((+max - +min) || 1), 0, 1) * 100).toFixed(2) + "%");
+    };
     inp.addEventListener("input", () => { show(); on && on(+inp.value); });
     show();
     parent.append(h("div", { class: "ctl" }, h("label", { for: id }, h("span", null, label), out), inp));
@@ -503,8 +506,10 @@ const App = {
       const dt = Math.min(0.05, (t - last) / 1000); last = t;
       const L = this.active;
       if (L && L.inst && !document.hidden) {
-        const run = L.running; if (run) L.simT += dt;
-        try { L.inst.frame(run ? dt : 0, L.simT); } catch (e) { console.error(e); }
+        let run = L.running, d = dt;
+        if (!run && L.stepReq) { run = true; d = 1 / 30; L.stepReq = false; }   // «Крок» на паузі
+        if (run) L.simT += d;
+        try { L.inst.frame(run ? d : 0, L.simT); } catch (e) { console.error(e); }
       }
       requestAnimationFrame(loop);
     };
@@ -556,11 +561,12 @@ const App = {
     sec.append(h("section", { class: "ff-sec" }, secHead("01", "Теоретичні відомості"), th));
     // 02 модель
     const status = h("span", { class: "runbar__st" });
-    const setRun = (on) => { L.running = on; pauseB.textContent = on ? "⏸ Пауза" : "▶ Продовжити"; status.textContent = on ? "Модель працює" : "Пауза"; status.classList.toggle("on", on); };
+    const setRun = (on) => { L.running = on; pauseB.textContent = on ? "⏸ Пауза" : "▶ Продовжити"; status.textContent = on ? "Модель працює" : "Пауза: параметри можна змінювати, картинка не рухається"; status.classList.toggle("on", on); stepB.disabled = on; };
     const pauseB = h("button", { class: "btn pri", type: "button", onclick: () => setRun(!L.running) }, "⏸ Пауза");
+    const stepB = h("button", { class: "btn", type: "button", title: "Зробити один крок (≈ 0,03 с) на паузі", onclick: () => { L.stepReq = true; } }, "⏭ Крок");
     const resetB = h("button", { class: "btn", type: "button", onclick: () => this.reset(L) }, "↺ Скинути");
     const sim = h("div", { class: "panel sim" });
-    sec.append(h("section", { class: "ff-sec" }, secHead("02", "Інтерактивна модель"), h("div", { class: "runbar" }, pauseB, resetB, status), sim));
+    sec.append(h("section", { class: "ff-sec" }, secHead("02", "Інтерактивна модель"), h("div", { class: "runbar" }, pauseB, stepB, resetB, status), sim));
     const tabsBox = h("div", { class: "tabsbox" }); sim.append(tabsBox);
     const top = h("div", { class: "sim-top" }), stageBox = h("div", { style: "min-width:0;display:flex;flex-direction:column;gap:10px" }), ctrls = h("div", { class: "ctrls" });
     top.append(stageBox, ctrls); sim.append(top);

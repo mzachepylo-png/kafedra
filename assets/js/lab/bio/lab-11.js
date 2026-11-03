@@ -37,7 +37,9 @@ App.def(11, {
     function drawA(time) {
       const c = stA.ctx, W = stA.W, H = stA.H, T0 = Theme.c; c.clearRect(0, 0, W, H);
       c.fillStyle = Theme.dark ? "#18221c" : "#F1F4EC"; c.fillRect(0, 0, W, H);
-      const cc = tru(), col = Spectral.colorOf({ chlA: cc.a * .12, chlB: cc.b * .12, car: cc.car * .12 }, 1); const E665 = Aat(665, cc, Q.shift, true), E649 = Aat(649, cc, Q.shift, true), E654 = Aat(654, cc, Q.shift, true);
+      const cc = tru(), col = Spectral.colorOf({ chlA: cc.a * .12, chlB: cc.b * .12, car: cc.car * .12 }, 1); const nzk = [Q.leaf, Q.m, Q.dil, Q.shift, Q.noise, Q.stray].join();
+      if (!drawA.c || drawA.k !== nzk || Math.abs(time - drawA.t) > 1.6) { drawA.k = nzk; drawA.t = time; drawA.c = [Aat(665, cc, Q.shift, true), Aat(649, cc, Q.shift, true), Aat(654, cc, Q.shift, true)]; }   // показ приладу оновлюється раз на ~1,5 с, а не мерехтить щокадру
+      const [E665, E649, E654] = drawA.c;
       // колба з екстрактом і лист
       Gfx.vial(c, W * .1, H * .12, 60, H * .6, .7, mixc("#FFFFFF", col, 1), { label: "екстракт" });
       // прилад: джерело → монохроматор → кювета з екстрактом → детектор

@@ -67,7 +67,7 @@ App.def(7, {
       const c = stA.ctx, W = stA.W, H = stA.H, T0 = Theme.c; c.clearRect(0, 0, W, H);
       const bg = c.createLinearGradient(0, 0, 0, H); bg.addColorStop(0, Theme.dark ? "#1f2b24" : "#F1F5EC"); bg.addColorStop(1, Theme.dark ? "#16211b" : "#DDE7D6"); c.fillStyle = bg; c.fillRect(0, 0, W, H);
       const cols = 4, rows = 2, R = Math.min(W / cols * .32, H / rows * .34);
-      if (dt > 0) for (const e of ENZ) { e.t -= dt; if (e.t <= 0) { resample(e); e.t = .25 + Math.random() * .6; if (e.S && !e.Ia && !e.Ic && (P.type !== "noncomp" || !e.Ia)) e.P = 0; } e.P = Math.max(0, e.P - dt * 1.5); }
+      if (dt > 0) for (const e of ENZ) { e.t -= dt; if (e.t <= 0) { resample(e); e.t = .8 + Math.random() * 1.4; if (e.S && !e.Ia && !e.Ic && (P.type !== "noncomp" || !e.Ia)) e.P = 0; } e.P = Math.max(0, e.P - dt * 1.5); }
       ENZ.forEach((e, i) => { const cx = W * ((i % cols) + .5) / cols, cy = H * .4 * (Math.floor(i / cols) + .55) + (Math.floor(i / cols) ? H * .08 : 0); enzyme(c, cx, cy, R, { S: e.S, Ic: e.Ic, Ia: e.Ia, P: e.P, ph: e.ph }, time); });
       // вільні молекули у розчині
       const rr = rng(8), nS = Math.round(clamp(P.S * 1.3, 2, 40)), nI = Math.round(clamp(P.I * 1.5, 0, 30));
@@ -96,15 +96,16 @@ App.def(7, {
     UI.slider(B.ct, { id: "p7b-i", label: "Алостеричний інгібітор (кінцевий продукт, АТФ)", min: 0, max: 20, step: .1, value: 0, unit: "мМ", on: v => AL.Inh = v, fmt: v => NA(v, 1) });
     UI.tip(B.ct, "Ефектор зв’язується в іншому місці, ніж активний центр: <b>активатор</b> стабілізує R-форму (крива зсувається вліво), <b>інгібітор</b> — T-форму (вправо). У «позитивному/негативному зворотному зв’язку» ефектором часто є продукт шляху (ізолейцин для треонін-дезамінази).");
     const cB = UI.chart(B.bl, "v(S) для ферменту з алостеричною регуляцією: без ефекторів, з активатором, з інгібітором", { aspect: 2.4, minH: 210, maxH: 320 });
-    const EB = [0, 1, 2, 3].map(i => ({ S: [0, 0, 0, 0], R: false, ph: i }));
+    const EB = [0, 1, 2, 3].map(i => ({ S: [0, 0, 0, 0], R: false, ph: i })); let ebT = 0, ebRs = 0;
     function drawB(time, dt) {
       const c = stB.ctx, W = stB.W, H = stB.H, T0 = Theme.c; c.clearRect(0, 0, W, H);
       const bg = c.createLinearGradient(0, 0, 0, H); bg.addColorStop(0, Theme.dark ? "#241f2d" : "#F5F1F9"); bg.addColorStop(1, Theme.dark ? "#1b1724" : "#E6DFEF"); c.fillStyle = bg; c.fillRect(0, 0, W, H);
       const pr = Rf(AL.S);
-      if (dt > 0 && Math.random() < .12) { const R = Math.random() < pr; EB.forEach((e, i) => { e.R = R; e.S = [0, 1, 2, 3].map(() => Math.random() < Yal(AL.S) ? 1 : 0); }); }
+      if (dt > 0) { ebT -= dt; ebRs += ((EB[0].R ? 1 : 0) - ebRs) * (1 - Math.exp(-dt * 6)); }
+      if (dt > 0 && ebT <= 0) { ebT = 1 + Math.random() * 1.2; const R = Math.random() < pr; EB.forEach((e, i) => { e.R = R; e.S = [0, 1, 2, 3].map(() => Math.random() < Yal(AL.S) ? 1 : 0); }); }
       const R = Math.min(W * .11, H * .2), cx = W * .3, cy = H * .5, d = R * 1.15;
-      [[-d, -d], [d, -d], [d, d], [-d, d]].forEach(([dx, dy], i) => { const e = EB[0], sx = cx + dx * (e.R ? 1.05 : .92), sy = cy + dy * (e.R ? 1.05 : .92); c.save(); c.translate(sx, sy); c.rotate(i * Math.PI / 2 + (e.R ? .08 : -.06)); enzyme(c, 0, 0, R, { col: e.R ? "#B58FD9" : "#6F4F9A", S: e.S[i], Aa: AL.Act > .2 && (i % 2 === 0), Ia: AL.Inh > .2 && (i % 2 === 1), ph: i }, time); c.restore(); });
-      Gfx.chip(c, EB[0].R ? "R-форма (активна)" : "T-форма (неактивна)", cx, H * .92, { align: "center", size: 12, fg: EB[0].R ? "#6F3FA0" : "#5B4A7A" });
+      [[-d, -d], [d, -d], [d, d], [-d, d]].forEach(([dx, dy], i) => { const e = EB[0], sx = cx + dx * (.92 + .13 * ebRs), sy = cy + dy * (.92 + .13 * ebRs); c.save(); c.translate(sx, sy); c.rotate(i * Math.PI / 2 + (-.06 + .14 * ebRs)); enzyme(c, 0, 0, R, { col: mixHex("#6F4F9A", "#B58FD9", ebRs), S: e.S[i], Aa: AL.Act > .2 && (i % 2 === 0), Ia: AL.Inh > .2 && (i % 2 === 1), ph: i }, time); c.restore(); });
+      Gfx.chip(c, ebRs > .5 ? "R-форма (активна)" : "T-форма (неактивна)", cx, H * .92, { align: "center", size: 12, fg: ebRs > .5 ? "#6F3FA0" : "#5B4A7A" });
       // шкала S/ефекторів
       const px = W * .58, pw = W * .38; Gfx.text(c, "Ефектори в розчині", px, H * .16, { size: 12, weight: 700, color: T0.ink });
       const bar = (y, v, mx, col, lab) => { c.fillStyle = T0.rule; c.fillRect(px, y, pw, 12); c.fillStyle = col; c.fillRect(px, y, pw * clamp(v / mx, 0, 1), 12); Gfx.text(c, lab + " " + NA(v, 1) + " мМ", px, y - 6, { size: 11, color: T0.muted }); };

@@ -197,3 +197,8 @@
   #ff#ff .lab-pn a { max-width: none; }
   #ff#ff .mtab { padding: 8px 10px; font-size: 12.5px; }
 }
+
+/* панель керування анімацією: «приклеєна» під шапкою, щоб пауза завжди була під рукою */
+#ff#ff .runbar { position: sticky; top: calc(var(--header-h, 68px) + 8px); z-index: 30; margin: 0 0 14px; padding: 8px 12px; background: color-mix(in srgb, var(--paper) 97%, transparent); border: 1px solid var(--rule); border-radius: 12px; box-shadow: 0 4px 14px rgba(0, 0, 0, .08); backdrop-filter: blur(6px); }
+#ff#ff .runbar__st { font-size: 11.5px; line-height: 1.35; }
+#ff#ff .runbar .btn:disabled { opacity: .4; cursor: default; }

@@ -124,7 +124,8 @@ App.def(6, {
       const c = stC.ctx, W = stC.W, H = stC.H, T0 = Theme.c; c.clearRect(0, 0, W, H);
       c.fillStyle = Theme.dark ? "#18221c" : "#F1F4EC"; c.fillRect(0, 0, W, H); c.fillStyle = Theme.dark ? "#26332b" : "#CFC5A8"; c.fillRect(0, H * .84, W, H * .16);
       const r = calcC(), u = S.run ? clamp(S.t / 5, 0, 1) : 1; if (S.run) { S.t += dt; if (S.t > 6) S.run = false; }
-      const nx = (Math.random() - .5) * 2 * S.noise;
+      if (dt > 0) { S.nxT = (S.nxT || 0) - dt; if (S.nxT <= 0) { S.nxT = 1.4; S.nxG = (Math.random() - .5) * 2; } S.nxC = (S.nxC || 0) + ((S.nxG || 0) - (S.nxC || 0)) * (1 - Math.exp(-dt * 4)); }
+      const nx = (S.nxC || 0) * S.noise;   // шум повільно «дрейфує», а не мерехтить щокадру
       const colOf = (D) => mixc("#EFF3F5", "#1D3F9E", clamp(D * u / .95, 0, 1));
       const tw = 40, th = H * .5, ty = H * .16, xs = [W * .14, W * .38, W * .62];
       const labs = ["x: без гідролізу", "y: після гідролізу HCl", "стандарт 0,025 мг P"], Ds = [r.Dx, r.Dy, r.Dst];

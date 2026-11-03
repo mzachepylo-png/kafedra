@@ -21,12 +21,12 @@ App.def(3, {
     function nHOf() { const q = p50Of(), a = Y(q * .8), b = Y(q * 1.25); return (Math.log(b / (1 - b)) - Math.log(a / (1 - a))) / Math.log(1.25 / .8); }
 
     // стохастична модель одного тетрамера (Metropolis за рівноважними вагами MWC)
-    const Z = { R: false, m: [0, 0, 0, 0], fl: [0, 0, 0, 0], bound: 0, ox: [] };
+    const Z = { R: false, rs: 0, m: [0, 0, 0, 0], occ: [0, 0, 0, 0], fl: [0, 0, 0, 0], acc: 0, rate: 1 };
     const wgt = (R, k) => { const a = P.p / P.kr; return R ? Math.pow(a, k) : Lval() * Math.pow(P.c * a, k); };
     function mcStep() {
       const k0 = Z.m.reduce((a, b) => a + b, 0);
-      if (Math.random() < .25) { const nR = !Z.R; if (Math.random() < Math.min(1, wgt(nR, k0) / wgt(Z.R, k0))) { Z.R = nR; Z.fl[0] = Z.fl[1] = Z.fl[2] = Z.fl[3] = .6; } }
-      else { const i = Math.floor(Math.random() * 4), nm = Z.m.slice(); nm[i] ^= 1; const k1 = k0 + (nm[i] ? 1 : -1); if (Math.random() < Math.min(1, wgt(Z.R, k1) / wgt(Z.R, k0))) { Z.m = nm; Z.fl[i] = 1; if (nm[i]) Z.ox.push({ i, t: 0, dir: 1 }); else Z.ox.push({ i, t: 0, dir: -1 }); } }
+      if (Math.random() < .25) { const nR = !Z.R; if (Math.random() < Math.min(1, wgt(nR, k0) / wgt(Z.R, k0))) { Z.R = nR; Z.fl[0] = Z.fl[1] = Z.fl[2] = Z.fl[3] = .5; } }
+      else { const i = Math.floor(Math.random() * 4), nm = Z.m.slice(); nm[i] ^= 1; const k1 = k0 + (nm[i] ? 1 : -1); if (Math.random() < Math.min(1, wgt(Z.R, k1) / wgt(Z.R, k0))) { Z.m = nm; Z.fl[i] = 1; } }
     }
     const stA = new Stage(A.st, { aspect: 1.8, minH: 320, maxH: 470, tag: "Тетрамер гемоглобіну" });
     const rdA = UI.reads(A.st, [["p", "pO₂"], ["Y", "Насичення Y"], ["p50", "P₅₀"], ["nh", "n(Хілл)"]]);
@@ -34,6 +34,7 @@ App.def(3, {
     UI.slider(A.ct, { id: "p3-ph", label: "pH крові (ефект Бора)", min: 6.8, max: 7.8, step: .05, value: P.pH, on: v => P.pH = v, fmt: v => NA(v, 2) });
     UI.slider(A.ct, { id: "p3-b", label: "2,3-БФГ", min: 0, max: 8, step: .5, value: P.bpg, unit: "мМ", on: v => P.bpg = v, fmt: v => NA(v, 1) });
     UI.slider(A.ct, { id: "p3-c", label: "c = K(R)/K(T) (глибина ТR-різниці)", min: .002, max: .05, step: .002, value: P.c, on: v => P.c = v, fmt: v => NA(v, 3) });
+    UI.slider(A.ct, { id: "p3-sp", label: "Швидкість подій у моделі", min: .2, max: 3, step: .1, value: 1, unit: "×", on: v => Z.rate = v, fmt: v => NA(v, 1) });
     UI.check(A.ct, { id: "p3-h", label: "Показати модель Хілла (n, P₅₀) замість MWC", value: false, on: v => { P.hill = v; } });
     UI.tip(A.ct, "У <b>T-стані</b> (напружена форма) спорідненість до O₂ мала, у <b>R-стані</b> — висока. Зв’язування O₂ однією субодиницею перемикає тетрамер у R-форму й полегшує приєднання наступних молекул — це <b>позитивна кооперативність</b>.");
     const chA = h("div", { class: "charts" }); A.bl.append(chA);
@@ -43,11 +44,11 @@ App.def(3, {
       const c = stA.ctx, W = stA.W, H = stA.H, T0 = Theme.c; c.clearRect(0, 0, W, H);
       const bg = c.createLinearGradient(0, 0, 0, H); bg.addColorStop(0, Theme.dark ? "#3a1f22" : "#F9E4DF"); bg.addColorStop(1, Theme.dark ? "#2a1719" : "#F1CFC8"); c.fillStyle = bg; c.fillRect(0, 0, W, H);
       const rr = rng(2); for (let i = 0; i < 40; i++) { c.fillStyle = `rgba(190,60,60,${.04 + rr() * .06})`; c.beginPath(); c.arc(rr() * W, rr() * H, 6 + rr() * 22, 0, 7); c.fill(); }
-      const cx = W * .5, cy = H * .5, d = Math.min(W, H) * .24, s = Z.R ? 1.08 : .94, pos = [[-1, -1], [1, -1], [1, 1], [-1, 1]];
+      const cx = W * .5, cy = H * .5, d = Math.min(W, H) * .24, rs = Z.rs, s = .94 + .14 * rs, pos = [[-1, -1], [1, -1], [1, 1], [-1, 1]];
       // субодиниці
       for (let i = 0; i < 4; i++) {
-        const [sx, sy] = pos[i], x = cx + sx * d * (Z.R ? .62 : .5), y = cy + sy * d * (Z.R ? .62 : .5), r = d * .62 * s;
-        const col = Z.R ? "#E58A8A" : "#9B4B5C", fl = Z.fl[i];
+        const [sx, sy] = pos[i], x = cx + sx * d * (.5 + .12 * rs), y = cy + sy * d * (.5 + .12 * rs), r = d * .62 * s;
+        const col = mixHex("#9B4B5C", "#E58A8A", rs), fl = Z.fl[i], oc = Z.occ[i];
         Gfx.glow(c, x, y, r * 1.3, "#FF8A8A", .12 + fl * .25);
         const g = c.createRadialGradient(x - r * .3, y - r * .3, r * .1, x, y, r); g.addColorStop(0, shade(col, .5)); g.addColorStop(.6, col); g.addColorStop(1, shade(col, -.4));
         c.fillStyle = g; c.beginPath(); for (let k = 0; k <= 40; k++) { const a = k / 40 * Math.PI * 2, rad = r * (1 + .06 * Math.sin(a * 5 + i + time * .6)); const px = x + Math.cos(a) * rad, py = y + Math.sin(a) * rad; k ? c.lineTo(px, py) : c.moveTo(px, py); } c.fill();
@@ -55,14 +56,14 @@ App.def(3, {
         // гем
         const hx = x + sx * r * .2, hy = y + sy * r * .2;
         Gfx.rr(c, hx - 14, hy - 14, 28, 28, 5); c.fillStyle = "#7D1820"; c.fill(); c.strokeStyle = "#E8C8C0"; c.lineWidth = 1; c.stroke();
-        Gfx.sphere(c, hx, hy, 6.5, Z.m[i] ? "#D62A2A" : "#8A4A3A");
+        Gfx.sphere(c, hx, hy, 6.5, mixHex("#8A4A3A", "#D62A2A", oc));
         c.fillStyle = "#fff"; c.font = `700 8px ${FM()}`; c.textAlign = "center"; c.textBaseline = "middle"; c.fillText("Fe", hx, hy);
-        if (Z.m[i]) { Gfx.sphere(c, hx + sx * 13, hy + sy * 13, 6.5, "#EE5555"); Gfx.sphere(c, hx + sx * 13 + 7, hy + sy * 13 + (sy * 2), 5.5, "#EE5555"); }
+        if (oc > .02) { const off = 13 + (1 - oc) * 16; Gfx.sphere(c, hx + sx * off, hy + sy * off, 6.5, "#EE5555", { a: oc }); Gfx.sphere(c, hx + sx * off + 7, hy + sy * off + (sy * 2), 5.5, "#EE5555", { a: oc }); }
       }
       // молекули O2 у розчині
       const nO = Math.round(P.p / 100 * 26) + 2, rg = rng(8);
       for (let i = 0; i < nO; i++) { const ang = rg() * 6.28, rad = (d * 1.7 + rg() * Math.min(W, H) * .25), x = cx + Math.cos(ang + time * .05 * (i % 3 + 1) * .6) * rad * 1.25, y = cy + Math.sin(ang + time * .08) * rad * .8; if (x < 8 || x > W - 8 || y < 8 || y > H - 8) continue; Gfx.sphere(c, x, y, 4.4, "#EE5555", { a: .85 }); Gfx.sphere(c, x + 6, y + 2, 4.4, "#EE5555", { a: .85 }); }
-      Gfx.chip(c, Z.R ? "R-стан: висока спорідненість" : "T-стан: низька спорідненість", cx, H - 16, { align: "center", size: 12, fg: Z.R ? "#B3363A" : "#5B2A3A" });
+      Gfx.chip(c, rs > .5 ? "R-стан: висока спорідненість" : "T-стан: низька спорідненість", cx, H - 16, { align: "center", size: 12, fg: rs > .5 ? "#B3363A" : "#5B2A3A" });
       Gfx.chip(c, `зв’язано O₂: ${Z.m.reduce((a, b) => a + b, 0)} з 4`, cx, 16, { align: "center", size: 11.5 });
       // стан тетрамера = фактичне Y
       Gfx.text(c, "α₁β₁  α₂β₂", W * .06, H * .12, { size: 11, color: T0.muted }); Gfx.text(c, "субодиниці з гемом (Fe²⁺)", W * .06, H * .17, { size: 10.5, color: T0.muted });
@@ -152,7 +153,12 @@ App.def(3, {
       stages: [stA, cA1, cA2, stB, cB],
       frame(dt, t) {
         if (mode === "a") {
-          if (dt > 0) { for (let k = 0; k < 4; k++) mcStep(); for (let i = 0; i < 4; i++) Z.fl[i] = Math.max(0, Z.fl[i] - dt * 2); }
+          if (dt > 0) {
+            Z.acc += dt * 1.6 * Z.rate; while (Z.acc >= 1) { Z.acc -= 1; mcStep(); }   // ≈ 1–2 події/с: спокійно, без мерехтіння
+            const kk = 1 - Math.exp(-dt * 6);
+            for (let i = 0; i < 4; i++) { Z.fl[i] = Math.max(0, Z.fl[i] - dt * 1.5); Z.occ[i] += (Z.m[i] - Z.occ[i]) * kk; }
+            Z.rs += ((Z.R ? 1 : 0) - Z.rs) * kk;
+          }
           drawA(t); chartsA();
           rdA.set("p", NA(P.p, 0), "мм"); rdA.set("Y", NA(Y(P.p) * 100, 0), "%"); rdA.set("p50", NA(p50Of(), 1), "мм"); rdA.set("nh", NA(nHOf(), 2));
         } else { if (dt > 0) stepB(dt); drawB(t); chartsB(); }
