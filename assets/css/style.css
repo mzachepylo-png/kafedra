@@ -950,3 +950,6 @@ html:has(.lightbox[open]) { overflow: hidden; }
 .view-switch:active { transform: translateY(1px); }
 .force-desktop .view-switch { font-size: 1.6rem; min-height: 80px; padding: 16px 40px; }
 .force-desktop .view-switch svg { width: 32px; height: 32px; }
+
+/* Скорочення: при наведенні — розшифровка (абревіатура з поясненням при першій згадці є в тексті) */
+abbr[title]{text-decoration:underline dotted;text-decoration-thickness:1px;text-underline-offset:3px;cursor:help}
