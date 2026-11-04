@@ -118,7 +118,7 @@
 #ff#ff .lab-head h2 { max-width: none; font-size: clamp(25px, 2.3vw, 33px); line-height: 1.16; margin-bottom: 0; }
 #ff#ff .lab-head .model { display: block; width: fit-content; max-width: 100%; margin-top: 14px; padding: 8px 14px; text-align: left; font: 12.5px/1.55 var(--f-mono); color: var(--ink); background: var(--sheet); border: 1px solid var(--rule); border-left: 3px solid var(--chl); border-radius: 0 9px 9px 0; overflow-wrap: anywhere; }
 #ff#ff .lab-head .model::before { content: "Модель"; margin-right: 12px; font-weight: 700; font-size: 10.5px; letter-spacing: .12em; text-transform: uppercase; color: var(--chl); }
-#ff#ff .lab-src { margin: 0 0 6px; max-width: none; }
+#ff#ff .lab-src { margin: 22px 0 0; max-width: none; }
 
 /* ---------- панель моделі ---------- */
 #ff#ff .sim { padding: 16px; }
@@ -174,7 +174,7 @@
 #ff#ff .lab-pn small { font: 600 11px var(--f-mono); letter-spacing: .08em; text-transform: uppercase; color: var(--muted); }
 
 /* ---------- головна сторінка розділу ---------- */
-.bio-cred { margin: 0 0 22px; padding: 18px 22px; border-radius: 16px; border: 1px solid var(--rule, #C9D4CB); background: linear-gradient(135deg, #F8FAF6, #EEF3EC); display: grid; grid-template-columns: auto 1fr; gap: 6px 20px; align-items: start; }
+.bio-cred { margin: 26px 0 0; padding: 18px 22px; border-radius: 16px; border: 1px solid var(--rule, #C9D4CB); background: linear-gradient(135deg, #F8FAF6, #EEF3EC); display: grid; grid-template-columns: auto 1fr; gap: 6px 20px; align-items: start; }
 .bio-cred__body { min-width: 0; display: grid; gap: 8px; }
 .bio-cred__ic { grid-row: auto; width: 54px; height: 54px; border-radius: 14px; display: grid; place-items: center; background: #1B5E20; color: #EBD27F; }
 .bio-cred__ic svg { width: 28px; height: 28px; }

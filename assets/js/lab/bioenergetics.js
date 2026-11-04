@@ -532,7 +532,6 @@ const App = {
     sec.append(h("div", { class: "lab-head" },
       h("div", null, h("div", { class: "eyebrow" }, `Практичне заняття № ${L.n}`), h("h2", { id: "lab" + L.n + "-h" }, L.title)),
       h("div", { class: "model" }, L.model)));
-    sec.append(h("p", { class: "lab-src" }, h("b", null, "Джерело: "), `Ткаченко Т. А., Прилуцька С. В. Біоенергетичні основи біотехнологічних процесів. К.: НУБіП України, 2025 — практичне заняття № ${L.n}, с. ${L.pages}. Розширені пояснення, математичні моделі й візуалізації додано до матеріалу методички.`));
     const secHead = (n, t) => h("h3", { class: "ff-sec__h" }, h("span", { class: "n" }, n), t);
     // 01 теорія
     const th = h("div", { class: "panel bth" });
@@ -586,6 +585,7 @@ const App = {
     sec.append(h("nav", { class: "lab-pn" },
       pv ? h("a", { href: "#lab" + pv.n }, h("small", null, "← Попереднє заняття"), `ПЗ ${pv.n}. ${pv.short}`) : h("span"),
       nx ? h("a", { href: "#lab" + nx.n, class: "nx" }, h("small", null, "Наступне заняття →"), `ПЗ ${nx.n}. ${nx.short}`) : h("span")));
+    sec.append(h("p", { class: "lab-src" }, h("b", null, "Джерело: "), `Ткаченко Т. А., Прилуцька С. В. Біоенергетичні основи біотехнологічних процесів. К.: НУБіП України, 2025 — практичне заняття № ${L.n}, с. ${L.pages}. Розширені пояснення, математичні моделі й візуалізації додано до матеріалу методички.`));
   },
   reset(L) {
     L.inst?.stages?.forEach(st => st.ro?.disconnect());
