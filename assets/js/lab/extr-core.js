@@ -120,7 +120,7 @@ class Sim {
     this.sl = {};
     for (const p of def.params || []) {
       const wrap = el("label", "ex-ctl"); const out = document.createElement("output"); const inp = document.createElement("input"); inp.type = "range"; inp.min = p.min; inp.max = p.max; inp.step = p.step; inp.value = p.v; this.P[p.k] = p.v;
-      const show = () => { out.textContent = (p.f ? p.f(+inp.value) : fmt(+inp.value, p.d ?? 0)) + (p.u ? " " + p.u : ""); };
+      const show = () => { inp.style.setProperty("--pct", ((+inp.value - +inp.min) / ((+inp.max - +inp.min) || 1) * 100) + "%"); out.textContent = (p.f ? p.f(+inp.value) : fmt(+inp.value, p.d ?? 0)) + (p.u ? " " + p.u : ""); };
       inp.addEventListener("input", () => { this.P[p.k] = +inp.value; show(); this.dirty = true; p.on?.(this.S, this.P); });
       show(); const top = el("span", "ex-ctl__top"); top.append(document.createTextNode(p.label), out); wrap.append(top, inp); right.append(wrap); this.sl[p.k] = { inp, show };
     }
