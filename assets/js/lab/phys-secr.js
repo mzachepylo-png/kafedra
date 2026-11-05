@@ -1,6 +1,8 @@
 /* Конспект «Фізіологія виділення речовин»: типи секреції, видільні структури, формування вмістилищ, сольові залози.
    Якісні моделі за матеріалом посібника. */
 import { reg, D, C, fmt, clamp, lerp, smooth, rng, mixHex, alpha, hash01, btn } from "./extr-core.js";
+/* кегль, за якого плашка з текстом вміщується в maxW */
+const fitSz = (c, s, maxW, size) => { c.font = `700 ${size}px Inter, system-ui, sans-serif`; const w = c.measureText(s).width + 14; return w > maxW ? Math.max(7.5, size * maxW / w) : size; };
 const wrap = (c, text, x, y, maxW, lh, o = {}) => { c.font = `${o.weight || 600} ${o.size || 11}px Inter, system-ui, sans-serif`; const ws = text.split(" "); let line = "", yy = y; for (const w of ws) { const t = line ? line + " " + w : w; if (c.measureText(t).width > maxW && line) { D.txt(c, line, x, yy, o); line = w; yy += lh; } else line = t; } if (line) D.txt(c, line, x, yy, o); return yy; };
 const IMG = "../../../assets/img/phys/";
 
@@ -55,7 +57,7 @@ reg("e-secr", {
     }
     D.txt(c, SEC[mode].n, nar ? 12 : W * .5, nar ? H * .75 : 30, { size: 12.5, weight: 800, align: nar ? "left" : "left", color: C.ink });
     const tx = nar ? 12 : W * .5, ty = nar ? H * .82 : 52, tw = nar ? W - 24 : W * .46;
-    wrap(c, SEC[mode].d, tx, ty, tw, 16, { size: 11.5, color: C.soft, weight: 500 }); D.tag(c, msg, nar ? W / 2 : W * .5 + tw / 2, nar ? H - 12 : H - 24, { size: 10.5, bg: "#fff", stroke: C.rule, color: C.soft });
+    wrap(c, SEC[mode].d, tx, ty, tw, 16, { size: 11.5, color: C.soft, weight: 500 }); D.tag(c, msg, nar ? W / 2 : W * .5 + tw / 2, nar ? H - 12 : H - 24, { size: fitSz(c, msg, nar ? W - 8 : W - 16, 10.5), bg: "#fff", stroke: C.rule, color: C.soft });
   },
   reads: (S, P) => [["Тип секреції", SEC[P.mode].n, ""], ["Клітина лишається цілою?", P.mode === "hol" ? "ні — стає секретом" : P.mode === "apo" ? "частково втрачає цитоплазму" : "так", ""]],
 });
@@ -111,7 +113,7 @@ reg("e-comp", {
     if (p > .4) { const sr = (sch ? base * 1.15 : base * 1.3) * smooth(clamp((p - .4) / .5, 0, 1)); const g = c.createRadialGradient(cx, cy, 0, cx, cy, sr); g.addColorStop(0, "rgba(232,181,74,.95)"); g.addColorStop(1, "rgba(232,181,74,.35)"); c.fillStyle = g; c.beginPath(); c.arc(cx, cy, sr, 0, 7); c.fill(); }
     if (p > .9) D.txt(c, sch ? "міжклітинник з секретом" : "порожнина на місці розчинених клітин", cx, cy + R + 18, { size: 11, align: "center", weight: 700, color: C.soft });
     const tx = nar ? 14 : W * .62, ty = nar ? H * .8 : 40, tw = nar ? W - 28 : W * .34;
-    D.txt(c, sch ? "Схізогенне вмістилище" : "Лізигенне вмістилище", tx, nar ? ty - 6 : ty, { size: 13, weight: 800 });
+    D.txt(c, sch ? "Схізогенне вмістилище" : "Лізигенне вмістилище", tx, nar ? H - 12 : ty, { size: 13, weight: 800 });
     const steps = sch ? ["клітини розходяться, утворюється міжклітинник", "навколо порожнини — живі клітини епітелію", "епітелій виділяє секрет у порожнину"] : ["клітини групи нагромаджують секрет", "їхні стінки розчиняються", "на місці клітин — порожнина із секретом"];
     if (!nar) steps.forEach((s, i) => { const on = p > i * .33 + .05; c.fillStyle = on ? "#2F7D4F" : "#C9D8CE"; c.beginPath(); c.arc(tx + 8, ty + 36 + i * 36, 8, 0, 7); c.fill(); D.txt(c, `${i + 1}`, tx + 8, ty + 36 + i * 36, { size: 10.5, color: "#fff", align: "center", weight: 800 }); wrap(c, s, tx + 26, ty + 31 + i * 36, tw - 26, 14, { size: 11, color: on ? C.ink : C.muted, weight: 600 }); });
   },
@@ -140,7 +142,7 @@ reg("e-salt", {
     const gy = H * (nar ? .46 : .6), ground = c;
     c.fillStyle = mixHex("#8B6A47", "#D9CDB0", up * .6); c.fillRect(0, gy, nar ? W : W * .52, H - gy);
     if (up > .1) { c.fillStyle = `rgba(255,255,255,${up * .55})`; for (let i = 0; i < 40; i++) { c.beginPath(); c.arc(8 + hash01(i, 1) * ((nar ? W : W * .52) - 16), gy + 6 + hash01(i, 2) * (H - gy - 10), 1.6 + hash01(i, 3) * 2, 0, 7); c.fill(); } }
-    D.txt(c, "засолений ґрунт", 10, gy + 16, { size: 10.5, color: up > .5 ? "#6A5A3E" : "#F4E6C8", weight: 700 });
+    D.txt(c, "засолений ґрунт", 10, gy + (nar ? 9 : 16), { size: 10.5, color: up > .5 ? "#6A5A3E" : "#F4E6C8", weight: 700 });
     // рослина (солероса-стиль: сегментований м'ясистий стебель)
     const px = nar ? W * .3 : W * .26; const col = mixHex("#6FB563", "#C9B84A", clamp(S.leaf - .55, 0, .45) / .45 * (P.gl ? .3 : 1));
     c.strokeStyle = col; c.lineWidth = 16; c.lineCap = "round"; c.beginPath(); c.moveTo(px, gy); c.lineTo(px, gy - H * .3); c.stroke();

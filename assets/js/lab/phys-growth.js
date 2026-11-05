@@ -8,7 +8,7 @@ const wrap = (c, text, x, y, maxW, lh, o = {}) => { c.font = `${o.weight || 600}
 // відрізки по 1 мм від кінчика (1..14): відносна швидкість росту
 const ZONE = [0.02, 0.05, 0.9, 1.0, 0.7, 0.35, 0.12, 0.03, 0, 0, 0, 0, 0, 0];
 reg("g-zones", {
-  aspect: (w) => (w < 560 ? 0.95 : 1.7),
+  aspect: (w) => (w < 560 ? 0.8 : 1.7),
   params: [{ k: "h", label: "Час після нанесення міток", min: 0, max: 24, step: 1, v: 24, u: "год" }],
   buttons: [{ label: "▶ Прокрутити добу", pri: true, run: (S, P, sim) => { sim.P.h = 0; sim.sl.h.inp.value = 0; sim.sl.h.show(); S.play = true; } }],
   info: "Дослід <b>Ю. Сакса</b>: на кінчик молодого кореня тушшю наносять мітки через 1 мм і через добу вимірюють відстані. Перші 1–2 мітки від кінчика (<b>зона поділу</b>) майже не розійдуться — клітини діляться, але ще малі. Наступні 2–4 мітки віддаляються сильно — це <b>зона розтягування</b> (найбільшого росту). Далі відстані не змінюються: у <b>зоні диференціації та кореневих волосків</b> клітини вже виросли й спеціалізуються. Зона найбільшого росту кореня короткого й розташована близько до кінчика — тому корінь легко просувається в твердому ґрунті.",
@@ -18,7 +18,7 @@ reg("g-zones", {
     D.bg(c, W, H, "#F3F7EF", "#E7EFE2"); const nar = W < 560;
     // позиція міток: кумулятивний розтяг
     const N = 14, marks = [0]; for (let i = 0; i < N; i++) marks.push(marks[i] + 1 + ZONE[i] * 1.3 * (P.h / 24));
-    const total = marks[N], sc = Math.min((nar ? H * .46 : H * .72) / (14 + 1.3 * 2.5), 34);
+    const total = marks[N], sc = Math.min((nar ? H * .44 : H * .72) / (14 + 1.3 * 2.5), 34);
     const x0 = nar ? W * .22 : W * .18, y0 = H * (nar ? .08 : .1);
     const rootW = 38;
     // корінь: кінчик внизу
@@ -36,11 +36,11 @@ reg("g-zones", {
     const zlabel = [[0, marks[2], "зона поділу", "#B5574A"], [marks[2], marks[6], "зона розтягування (найбільший ріст)", "#3F7D45"], [marks[6], marks[N], "диференціація, кореневі волоски", "#4A6EA0"]];
     for (const [a, b, n, col] of zlabel) { const ym = y0 + (total - (a + b) / 2) * sc; if (!nar) { c.strokeStyle = col; c.lineWidth = 2; c.beginPath(); c.moveTo(x0 + rootW / 2 + 8, y0 + (total - b) * sc + 2); c.lineTo(x0 + rootW / 2 + 8, y0 + (total - a) * sc - 2); c.stroke(); D.txt(c, n, x0 + rootW / 2 + 16, ym, { size: 11, weight: 700, color: col }); } }
     // графік приростів
-    const gx = nar ? 14 : W * .54, gy = nar ? H * .58 : 34, gw = nar ? W - 28 : W * .42, gh = nar ? H * .32 : H * .66;
+    const gx = nar ? 14 : W * .54, gy = nar ? H * .66 : 34, gw = nar ? W - 28 : W * .42, gh = nar ? H * .27 : H * .66;
     const inc = []; for (let i = 0; i < N; i++) inc.push([i + 1, (marks[i + 1] - marks[i] - 1)]);
     const { X, Y } = D.chart(c, gx, gy, gw, gh, { x: [.5, 14.5], y: [0, 2.2], xt: [2, 4, 6, 8, 10, 12, 14], yt: [0, 1, 2], xl: "відрізок від кінчика, мм", yl: "приріст, мм", title: "Добовий приріст відрізків" });
     inc.forEach(([x, v], i) => { const col = i < 2 ? "#E8B7A9" : i < 6 ? "#7FBF63" : "#9CB7DC"; c.fillStyle = col; c.fillRect(X(x) - gw / 32, Y(v), gw / 16, Y(0) - Y(v)); });
-    D.tag(c, `довжина зони росту ≈ ${fmt(marks[6], 1)} мм`, nar ? W / 2 : gx + gw / 2, nar ? gy - 14 : gy + gh + 30, { size: 11, bg: "#fff", stroke: C.rule, color: C.soft });
+    D.tag(c, `довжина зони росту ≈ ${fmt(marks[6], 1)} мм`, nar ? W * .6 : gx + gw / 2, nar ? gy - 36 : gy + gh + 30, { size: 11, bg: "#fff", stroke: C.rule, color: C.soft });
   },
   reads: (S, P) => [["Час", fmt(P.h, 0), "год"], ["Найбільший приріст відрізка", fmt(1.3 * (P.h / 24), 2), "мм"], ["Зона найбільшого росту", "2–6 мм від кінчика", ""]],
 });
@@ -60,7 +60,7 @@ reg("g-curve", {
     const f = (x) => { const t = x / 100 * 12; if (P.mode === "s") return sig(t, K * 1.1, 6); if (P.mode === "dbl") return .55 * sig(t, K * 1.6, 3.2) + .45 * sig(t, K * 1.6, 8.8); return .35 * sig(t, K * 1.7, 2.6) + .15 * sig(t, K * 1.2, 6) + .5 * sig(t, K * 1.5, 9.4); };
     const xs = []; for (let x = 0; x <= 100; x += 1) xs.push(x); const cx = nar ? 14 : 44, gw = nar ? W - 30 : W * .62, gh = P.inc ? (nar ? H * .4 : H * .5) : (nar ? H * .72 : H * .78);
     const cum = xs.map(x => [x, f(x) * 100]), incs = xs.map(x => [x, Math.max(0, (f(Math.min(100, x + 1)) - f(x))) * 100 * 6]);
-    const ph = [{ x0: 0, x1: 18, col: "rgba(150,170,200,.18)", label: "латентна" }, { x0: 18, x1: 42, col: "rgba(120,190,110,.2)", label: "логарифмічна" }, { x0: 42, x1: 70, col: "rgba(230,190,90,.2)", label: "уповільнення" }, { x0: 70, x1: 100, col: "rgba(190,190,190,.18)", label: "стаціонарна" }];
+    const ph = [{ x0: 0, x1: 18, col: "rgba(150,170,200,.18)", label: "латентна" }, { x0: 18, x1: 42, col: "rgba(120,190,110,.2)", label: nar ? "логарифм." : "логарифмічна" }, { x0: 42, x1: 70, col: "rgba(230,190,90,.2)", label: "уповільнення" }, { x0: 70, x1: 100, col: "rgba(190,190,190,.18)", label: "стаціонарна" }];
     const gy = nar ? 30 : 36;
     const { X, Y } = D.chart(c, cx + (nar ? 20 : 0), gy, gw - (nar ? 20 : 0), gh, { x: [0, 100], y: [0, 100], xl: "час", yl: "розмір, %", xt: [0, 25, 50, 75, 100], yt: [0, 50, 100], bands: P.mode === "s" ? ph : [], series: [{ pts: cum, col: C.green, w: 3 }], marks: [{ x: P.t, y: f(P.t) * 100, col: C.red, r: 5 }], title: "Крива росту (сумарний розмір)" });
     if (P.inc) { const gy2 = gy + gh + (nar ? 34 : 38), gh2 = nar ? H * .2 : H - gy2 - 34; D.chart(c, cx + (nar ? 20 : 0), gy2, gw - (nar ? 20 : 0), Math.max(60, gh2), { x: [0, 100], y: [0, 14], xt: [0, 25, 50, 75, 100], yt: [0, 7, 14], xl: "час", yl: "приріст за добу", series: [{ pts: incs, col: C.amber, w: 2.6, fill: "rgba(232,163,59,.18)" }], marks: [{ x: P.t, y: incs[Math.round(P.t)][1], col: C.red, r: 5 }], title: "Щоденний приріст" }); }
@@ -117,7 +117,7 @@ reg("g-etio", {
 
 /* ====================== 4. ФІТОХРОМ: ЧЕРВОНЕ Й ДАЛЕКЕ ЧЕРВОНЕ СВІТЛО ====================== */
 reg("g-phyto", {
-  aspect: (w) => (w < 560 ? 1.0 : 1.85),
+  aspect: (w) => (w < 560 ? 0.8 : 1.85),
   buttons: [
     { label: "🔴 Червоне світло (≈ 660 нм)", pri: true, run: (S) => { S.queue = { type: "R", t: 0 }; } },
     { label: "⚫ Далеке червоне (≈ 730 нм)", run: (S) => { S.queue = { type: "FR", t: 0 }; } },
@@ -133,21 +133,21 @@ reg("g-phyto", {
     D.bg(c, W, H, "#F3F4F0", "#E7EAE2"); const nar = W < 560;
     // лампа
     const active = S.queue ? S.queue.type : null; const lamp = active === "R" ? "#E5322C" : active === "FR" ? "#7B1F2A" : "#B8BFB8";
-    const lx = nar ? W * .5 : W * .16, ly = H * .18; if (active) D.glow(c, lx, ly + 20, 90, lamp, active === "R" ? .6 : .3);
+    const lx = nar ? W * .5 : W * .16, ly = H * (nar ? .12 : .18); if (active) D.glow(c, lx, ly + 20, 90, lamp, active === "R" ? .6 : .3);
     c.fillStyle = "#58645E"; D.rr(c, lx - 28, ly - 22, 56, 26, 6); c.fill(); D.sphere(c, lx, ly + 6, 12, lamp);
     D.txt(c, active === "R" ? "червоне світло" : active === "FR" ? "далеке червоне світло" : "темрява", lx, ly + 36, { size: 11, align: "center", weight: 700, color: C.soft });
     // насінина / паросток
-    const sx = lx, sy = H * (nar ? .46 : .74); c.fillStyle = "#8B6A47"; D.rr(c, sx - 70, sy + 18, 140, 22, 6); c.fill();
+    const sx = lx, sy = H * (nar ? .36 : .74); c.fillStyle = "#8B6A47"; D.rr(c, sx - 70, sy + 18, 140, 22, 6); c.fill();
     D.sphere(c, sx, sy + 14, 12, "#C9A55B");
     if (S.germ > .05) { c.strokeStyle = "#7DBB6B"; c.lineWidth = 4; c.lineCap = "round"; c.beginPath(); c.moveTo(sx, sy + 8); c.quadraticCurveTo(sx - 4, sy - 22 * S.germ, sx + 8, sy - 46 * S.germ); c.stroke(); }
     D.txt(c, S.germ > .6 ? "насіння проросло" : "насіння спить", sx, sy + 56, { size: 11, align: "center", weight: 700, color: S.germ > .6 ? "#2F7D4F" : C.muted });
     // бари Pr / Pfr
-    const gx = nar ? 20 : W * .38, gw = nar ? W - 40 : W * .56; let y = nar ? H * .72 : 50;
+    const gx = nar ? 20 : W * .38, gw = nar ? W - 40 : W * .56; let y = nar ? H * .58 : 50;
     D.txt(c, "Форми фітохрому", gx, y - 16, { size: 12, weight: 700 });
     const bars = [["Pr — неактивна (поглинає ≈ 660 нм)", 1 - S.pfr, "#3F6FB0"], ["Pfr — активна (поглинає ≈ 730 нм)", S.pfr, "#C0392B"]];
     bars.forEach(([n, v, col], i) => { const yy = y + i * 46; D.txt(c, n, gx, yy, { size: 11, color: C.soft }); c.fillStyle = "#E4E8E2"; D.rr(c, gx, yy + 9, gw, 16, 8); c.fill(); c.fillStyle = col; D.rr(c, gx, yy + 9, Math.max(6, gw * v), 16, 8); c.fill(); D.txt(c, fmt(v * 100, 0) + " %", gx + gw, yy, { size: 11, align: "right", weight: 700 }); });
     // історія
-    const hy = nar ? H * .9 : y + 112; D.txt(c, "Послідовність освітлень (остання — справа)", gx, hy - 10, { size: 11, weight: 700 });
+    const hy = nar ? H * .86 : y + 112; D.txt(c, "Послідовність освітлень (остання — справа)", gx, hy - 10, { size: 11, weight: 700 });
     S.hist.forEach((h, i) => { const x = gx + i * 52; c.fillStyle = h === "R" ? "#E5322C" : "#7B1F2A"; D.rr(c, x, hy, 44, 22, 11); c.fill(); D.txt(c, h === "R" ? "ЧС" : "ДЧС", x + 22, hy + 11, { size: 11, color: "#fff", weight: 800, align: "center" }); });
     if (!S.hist.length) D.txt(c, "натискайте кнопки: чергуйте червоне й далеке червоне", gx, hy + 12, { size: 11, color: C.muted });
     const last = S.hist[S.hist.length - 1]; if (last) D.tag(c, last === "R" ? "остання — червоне: проростання ТАК" : "остання — далеке червоне: проростання НІ", nar ? W / 2 : gx + gw / 2, nar ? H - 8 : H - 18, { size: 11, bg: "#fff", stroke: last === "R" ? "#2F7D4F" : C.red, color: last === "R" ? "#2F7D4F" : C.red });
@@ -174,7 +174,7 @@ reg("g-temp", {
     const { X, Y } = D.chart(c, gx, gy, gw, gh, { x: [-2, 48], y: [0, 1.1], xt: [0, 10, 20, 30, 40], yt: [0, .5, 1], xl: "температура, °C", yl: "швидкість росту (відн.)", title: "Крива росту стебла й кореня",
       bands: [{ x0: ty.mn, x1: ty.op, col: "rgba(120,190,110,.12)" }, { x0: ty.op, x1: ty.mx, col: "rgba(230,160,90,.12)" }],
       series: [{ pts: xs.map(x => [x, tcurve(x, ty.mn, ty.op, ty.mx)]), col: C.green, w: 3 }, ...(P.root ? [{ pts: xs.map(x => [x, tcurve(x, ty.mn - 2, rO, ty.mx - 6)]), col: C.amber, w: 2.4, dash: [6, 4] }] : [])],
-      vl: [{ x: ty.mn, col: C.muted, label: "min" }, { x: ty.op, col: C.red, label: "оптимум" }, { x: ty.mx, col: C.muted, label: "max" }, { x: harm, col: "#3F6FB0", label: "гармонійний" }],
+      vl: [{ x: ty.mn, col: C.muted, label: "min" }, { x: ty.op, col: C.red, label: "оптимум" }, { x: ty.mx, col: C.muted, label: "max" }, { x: harm, col: "#3F6FB0", label: "гармонійний", dy: 13 }],
       marks: [{ x: P.T, y: tcurve(P.T, ty.mn, ty.op, ty.mx), col: C.red, r: 5 }] });
     const px = gx + (nar ? 0 : gw + 24), pw = nar ? gw : W - px - 14; let y = nar ? gy + gh + 44 : 40;
     D.txt(c, "Q₁₀ (правило Вант-Гоффа)", px, y - 8, { size: 11.5, weight: 700 });
@@ -190,7 +190,7 @@ reg("g-temp", {
 /* ====================== 6. ФОТОПЕРІОДИЗМ І ЯРОВИЗАЦІЯ ====================== */
 const PP = { sdp: { n: "Короткого дня", crit: 10 }, ldp: { n: "Довгого дня", crit: 13 }, dnp: { n: "Нейтральна", crit: 0 } };
 reg("g-photoper", {
-  aspect: (w) => (w < 560 ? 0.95 : 1.8),
+  aspect: (w) => (w < 560 ? 0.75 : 1.8),
   modes: [["sdp", "Рослина короткого дня"], ["ldp", "Рослина довгого дня"], ["dnp", "Нейтральна до довжини дня"]],
   params: [{ k: "day", label: "Тривалість дня (світла)", min: 4, max: 20, step: 0.5, v: 16, u: "год", d: 1 }, { k: "cold", label: "Холод: тривалість яровизації (озима форма)", min: 0, max: 60, step: 5, v: 0, u: "діб" }],
   toggles: [{ k: "flash", label: "Перервати ніч короткою спалахом червоного світла", v: false }, { k: "winter", label: "Озима форма (потребує яровизації)", v: false }],
@@ -202,7 +202,7 @@ reg("g-photoper", {
     D.bg(c, W, H, "#F2F5F0", "#E6ECE2"); const nar = W < 560;
     const pp = PP[P.mode]; const night = 24 - P.day, nightEff = P.flash ? Math.min(night, 3) : night; // спалах розбиває ніч
     // 24-годинний циліндр
-    const cx = nar ? W / 2 : W * .22, cy = nar ? H * .26 : H * .45, R = nar ? Math.min(W * .24, 78) : Math.min(H * .34, 100);
+    const cx = nar ? W / 2 : W * .22, cy = nar ? H * .19 : H * .45, R = nar ? Math.min(W * .24, 78) : Math.min(H * .34, 100);
     const a0 = -Math.PI / 2, dayA = P.day / 24 * Math.PI * 2;
     c.fillStyle = "#FFE9A6"; c.beginPath(); c.moveTo(cx, cy); c.arc(cx, cy, R, a0, a0 + dayA); c.fill();
     c.fillStyle = "#35476B"; c.beginPath(); c.moveTo(cx, cy); c.arc(cx, cy, R, a0 + dayA, a0 + Math.PI * 2); c.fill();
@@ -215,14 +215,14 @@ reg("g-photoper", {
     if (P.mode === "sdp") { photoOK = nightEff > 24 - pp.crit; why = photoOK ? "ніч довша за поріг" : "ніч закоротка" } else if (P.mode === "ldp") { photoOK = nightEff < 24 - pp.crit; why = photoOK ? "ніч коротка — достатньо світла" : "ніч задовга" } else { why = "не залежить від фотоперіоду"; }
     const needV = P.winter; const vernOK = !needV || P.cold >= 40; const flower = photoOK && vernOK;
     // рослина
-    const px = nar ? W / 2 : W * .66, py = nar ? H * .92 : H * .86, h = nar ? H * .26 : H * .56;
+    const px = nar ? W / 2 : W * .66, py = nar ? H * .95 : H * .86, h = nar ? H * .17 : H * .56;
     c.strokeStyle = "#4F9D50"; c.lineWidth = 7; c.lineCap = "round"; c.beginPath(); c.moveTo(px, py); c.lineTo(px, py - h * (flower ? 1 : .55)); c.stroke();
     for (const [dy, s] of [[.2, -1], [.3, 1], [.42, -1]]) { c.save(); c.translate(px, py - h * dy); c.rotate(s * .9 - Math.PI / 2 + (s > 0 ? Math.PI : 0)); c.fillStyle = "#5FAE5C"; c.beginPath(); c.ellipse(24, 0, 28, 10, 0, 0, 7); c.fill(); c.restore(); }
     const topY = py - h * (flower ? 1 : .55);
     if (flower) { for (let i = 0; i < 7; i++) { const a = i / 7 * 6.283; c.fillStyle = "#F4B6C6"; c.beginPath(); c.ellipse(px + Math.cos(a) * 16, topY + Math.sin(a) * 16, 11, 7, a, 0, 7); c.fill(); } D.sphere(c, px, topY, 8, "#E8B53A"); } else { c.fillStyle = "#79BE6B"; c.beginPath(); c.ellipse(px, topY - 6, 8, 14, 0, 0, 7); c.fill(); }
     D.tag(c, flower ? "цвітіння: ТАК" : "вегетація: цвітіння немає", px, topY - 36, { size: 11.5, bg: "#fff", stroke: flower ? "#2F7D4F" : C.muted, color: flower ? "#2F7D4F" : C.soft });
     // пояснення
-    const tx = nar ? 14 : W * .42, tw = nar ? W - 28 : W * .54; let ty2 = nar ? H * .52 : 40;
+    const tx = nar ? 14 : W * .42, tw = nar ? W - 28 : W * .54; let ty2 = nar ? H * .46 : 40;
     D.txt(c, `Тип: ${pp.n}`, tx, ty2, { size: 12, weight: 800 }); ty2 += 24;
     wrap(c, `Фотоперіод: ${why}${pp.crit ? ` (критична ніч ≈ ${24 - pp.crit} год)` : ""}.`, tx, ty2, tw, 15, { size: 11, color: C.soft, weight: 500 }); ty2 += 38;
     wrap(c, needV ? `Яровизація: ${P.cold} діб холоду ${vernOK ? "— достатньо." : "— замало (потрібно ≈ 40 діб)."}` : "Яровизація: не потрібна (яра форма).", tx, ty2, tw, 15, { size: 11, color: needV && !vernOK ? C.red : C.soft, weight: 500 });

@@ -7,6 +7,13 @@ const WATER = "#8EC1EA";
 function mixH(a, b, t) { const A = parseInt(a.slice(1), 16), B = parseInt(b.slice(1), 16); const f = (sh) => Math.round(lerp((A >> sh) & 255, (B >> sh) & 255, t)); return "#" + [16, 8, 0].map(sh => f(sh).toString(16).padStart(2, "0")).join(""); }
 const bell = (x, mu, s) => Math.exp(-0.5 * ((x - mu) / s) ** 2);
 const cl01 = (x) => clamp(x, 0, 1);
+/* текст на полотні: за потреби зменшує кегль, щоб підпис не обрізався краєм */
+function fitText(c, s, x, y, maxW, o = {}) {
+  let size = o.size || 11; const fam = getComputedStyle(document.body).getPropertyValue("--f-mono");
+  c.font = `${o.weight || ""} ${size}px ${fam}`; const w = c.measureText(s).width;
+  if (w > maxW) size = Math.max(7.5, size * maxW / w);
+  Draw.text(c, s, x, y, Object.assign({}, o, { size }));
+}
 function roundRect(c, x, y, w, hh, r) { c.beginPath(); c.moveTo(x + r, y); c.arcTo(x + w, y, x + w, y + hh, r); c.arcTo(x + w, y + hh, x, y + hh, r); c.arcTo(x, y + hh, x, y, r); c.arcTo(x, y, x + w, y, r); c.closePath(); }
 function bisect(f, a, b, n = 50) { let fa = f(a); for (let i = 0; i < n; i++) { const m = (a + b) / 2, fm = f(m); if ((fa < 0) === (fm < 0)) { a = m; fa = fm; } else b = m; } return (a + b) / 2; }
 function beaker(c, x, y, w, hh, level, col, o = {}) { // склянка з рідиною
@@ -92,7 +99,7 @@ App.add({
       if (Math.abs(flux) > .02) { const dir = flux > 0 ? 1 : -1; for (let k = 0; k < 3; k++) { const u = ((time * .8 + k / 3) % 1); const ax = cx + dir * (rw * 1.15 - u * 24); c.fillStyle = rgba(WATER.length ? "#2E6FB5" : "#000", .7 * (1 - u)); c.beginPath(); c.arc(ax, cy - rw * .95 + k * 6, 3, 0, 7); c.fill(); } Draw.text(c, flux > 0 ? "вода всередину" : "вода назовні", cx, cy - rw * .95 - 10, { align: "center", size: 10, color: T.data }); }
     }
     function charts() {
-      drawChart(ch, { x: [0, 90], y: [Math.min(-30, ...S.hist.map(p => p[1]) , dm(vEq(S.C)) - 2), Math.max(10, ...S.hist.map(p => p[1]), dm(vEq(S.C)) + 2)], xl: "хв", yl: "Δm, %", hl: [{ y: 0, color: Theme.c.muted }, { y: dm(vEq(S.C)), color: Theme.c.data, label: "рівновага" }], series: [{ pts: S.hist, color: Theme.c.data, w: 2.4 }], marks: [{ x: Math.min(90, S.t), y: dm(S.v), color: Theme.c.antho }] });
+      drawChart(ch, { x: [0, 90], y: [Math.min(-30, ...S.hist.map(p => p[1]) , dm(vEq(S.C)) - 2), Math.max(10, ...S.hist.map(p => p[1]), dm(vEq(S.C)) + 5)], xl: "хв", yl: "Δm, %", hl: [{ y: 0, color: Theme.c.muted }, { y: dm(vEq(S.C)), color: Theme.c.data, label: "рівновага" }], series: [{ pts: S.hist, color: Theme.c.data, w: 2.4 }], marks: [{ x: Math.min(90, S.t), y: dm(S.v), color: Theme.c.antho }] });
       const eq = []; for (let C = 0; C <= 0.8001; C += 0.02) eq.push([C, dm(vEq(C))]);
       const cIso = bisect((C) => dm(vEq(C)), 0, 1);
       drawChart(ch2, { x: [0, 0.8], y: [-50, 10], xl: "C, моль/л", yl: "Δm, %", hl: [{ y: 0, color: Theme.c.muted }], vl: [{ x: cIso, color: Theme.c.good, label: "ізотонічна C" }], series: [{ pts: eq, color: Theme.c.chl, w: 2.4 }], marks: [{ x: S.C, y: dm(vEq(S.C)), color: Theme.c.antho, label: "ваш розчин" }] });
@@ -215,7 +222,7 @@ App.add({
         draw(time);
         if (ch.dirty) { charts(); ch.dirty = false; }
         const L = LIQ[S.liq];
-        rd.set("a", fmt(S.a, 1), "мкм"); rd.set("k", fmt(Kg(), 0), "мМ"); rd.set("tg", fmt(target(), 1), "мкм"); rd.set("lq", L.name); rd.set("inf", S.inf < 1 ? "—" : `Ø ${fmt(Math.min(S.inf, 200) / 4, 0)} відн.`); rd.set("ac", L.ac > 50 ? "—" : fmt(L.ac, 1), "мкм");
+        rd.set("a", fmt(S.a, 1), "мкм"); rd.set("k", fmt(Kg(), 0), "мМ"); rd.set("tg", fmt(target(), 1), "мкм"); rd.set("lq", L.name); rd.set("inf", S.inf < 1 ? "—" : `Ø ${fmt(Math.min(S.inf, 200) / 4, 0)} відн.`); rd.set("ac", L.ac > 50 ? "не проникає" : fmt(L.ac, 1), L.ac > 50 ? "" : "мкм");
       },
     };
   },
@@ -259,7 +266,7 @@ App.add({
     const labels = stageBox.querySelectorAll(".reads .rd .k");
     UI.seg(ctrls, { label: "Гормон", value: S.mode, options: MODES, on: v => { S.mode = v; S.g = 0; sync(); ch.dirty = true; } });
     const sAux = UI.slider(ctrls, { id: "l15-lg", label: "Ауксин (ІОК), lg C [моль/л]", min: -12, max: -2, step: 0.1, value: S.lg, unit: "", fmt: v => fmt(v, 1), on: v => { S.lg = v; S.g = 0; ch.dirty = true; } });
-    const sGA = UI.slider(ctrls, { id: "l15-ga", label: "Гібереленова кислота (ГК₃)", min: 0, max: 100, step: 1, value: S.ga, unit: "мг/л", on: v => { S.ga = v; S.g = 0; ch.dirty = true; } });
+    const sGA = UI.slider(ctrls, { id: "l15-ga", label: "Гіберелова кислота (ГК₃)", min: 0, max: 100, step: 1, value: S.ga, unit: "мг/л", on: v => { S.ga = v; S.g = 0; ch.dirty = true; } });
     const sGen = UI.select(ctrls, { id: "l15-gen", label: "Генотип", value: S.gen, options: [["dwarf", "карликова лінія (дефіцит ГК)"], ["wt", "нормальна лінія"]], on: v => { S.gen = v; S.g = 0; ch.dirty = true; } });
     const sCK = UI.slider(ctrls, { id: "l15-ck", label: "Цитокінін (6-БАП)", min: 0, max: 10, step: 0.1, value: S.ck, unit: "мкМ", fmt: v => fmt(v, 1), on: v => { S.ck = v; S.g = 0; ch.dirty = true; } });
     const sAB = UI.slider(ctrls, { id: "l15-ab", label: "Абсцизова кислота (АБК)", min: 0, max: 50, step: 1, value: S.aba, unit: "мкМ", on: v => { S.aba = v; S.g = 0; ch.dirty = true; } });
@@ -286,34 +293,34 @@ App.add({
         c.strokeStyle = "#E7D3A0"; c.lineWidth = 5; c.lineCap = "round"; c.beginPath(); c.moveTo(x, gy); c.lineTo(x, gy + (H - gy - 26) * Math.min(1, rr * .62) * g); c.stroke();
         c.strokeStyle = "#7BB05B"; c.beginPath(); c.moveTo(x, gy); c.lineTo(x, gy - 30); c.stroke();
         // стебло (етіольоване)
-        x = w3 * 1.5; c.strokeStyle = "#8FBF68"; c.beginPath(); c.moveTo(x, gy); c.lineTo(x, gy - 130 * ss * .8 * g - 8); c.stroke(); c.fillStyle = "#4F9248"; c.beginPath(); c.ellipse(x + 5, gy - 130 * ss * .8 * g - 8, 11, 5, -.4, 0, 7); c.fill();
+        x = w3 * 1.5; c.strokeStyle = "#8FBF68"; c.beginPath(); c.moveTo(x, gy); c.lineTo(x, gy - Math.min(130 * ss * .8, gy - 30) * g - 8); c.stroke(); c.fillStyle = "#4F9248"; c.beginPath(); c.ellipse(x + 5, gy - Math.min(130 * ss * .8, gy - 30) * g - 8, 11, 5, -.4, 0, 7); c.fill();
         // живець
         x = w3 * 2.5; c.strokeStyle = "#7BB05B"; c.beginPath(); c.moveTo(x, gy - 70); c.lineTo(x, gy + 6); c.stroke(); c.fillStyle = "#4F9248"; c.beginPath(); c.ellipse(x - 12, gy - 60, 13, 6, .4, 0, 7); c.ellipse(x + 12, gy - 70, 13, 6, -.4, 0, 7); c.fill();
         c.lineWidth = 2; c.strokeStyle = "#E7D3A0"; const n = Math.round(nr * g); for (let i = 0; i < n; i++) { const a = (i / Math.max(1, n) - .5) * 2.1, L = 24 + (i % 3) * 8; c.beginPath(); c.moveTo(x, gy + 3); c.quadraticCurveTo(x + Math.sin(a) * L * .6, gy + 3 + L * .4, x + Math.sin(a) * L, gy + 3 + L * .9 * Math.cos(a * .5)); c.stroke(); }
         c.lineCap = "butt"; c.lineWidth = 1; cols.forEach((t, i) => Draw.text(c, t, w3 * (i + .5), H - 8, { align: "center", color: T.muted, size: 11 }));
-        Draw.text(c, `lg C = ${fmt(S.lg, 1)}`, 10, 18, { color: T.ink, size: 12 });
+        Draw.text(c, `lg C = ${fmt(S.lg, 1)}`, 10, 44, { color: T.ink, size: 12 });
       } else if (S.mode === "ga") {
         // чашка з насінням + рослини
         const px = W * .04, pw = W * .5, py = 30, ph = H - 60;
         c.fillStyle = Theme.dark ? "#223024" : "#F3F7E8"; roundRect(c, px, py, pw, ph, 12); c.fill(); c.strokeStyle = T.rule; c.stroke();
         const N = 40, gp = germ(S.ga, S.gen) / 100; for (let i = 0; i < N; i++) { const r = rng(i * 7 + 1), sx = px + 18 + (i % 8) * (pw - 36) / 7.2 + (r() - .5) * 8, sy = py + 18 + Math.floor(i / 8) * (ph - 36) / 4.4 + (r() - .5) * 8; const germ_i = (i + .5) / N < gp * g; c.fillStyle = "#B58A52"; c.beginPath(); c.ellipse(sx, sy, 6, 4, .5, 0, 7); c.fill(); if (germ_i) { c.strokeStyle = "#F4EBCF"; c.lineWidth = 2; c.beginPath(); c.moveTo(sx + 4, sy + 2); c.quadraticCurveTo(sx + 12, sy + 6, sx + 14 * g, sy + 3 + 6 * g); c.stroke(); c.lineWidth = 1; } }
-        Draw.text(c, "Насіння в чашці Петрі", px + 8, py - 10, { color: T.ink, size: 11 });
-        const hh = height(S.ga, S.gen) / 100, bx = W * .72; ground(c, W * .45, H, gy);
+        Draw.text(c, "Насіння в чашці Петрі", px + 8, py + ph + 14, { color: T.ink, size: 11 });
+        const hh = height(S.ga, S.gen) / 100, bx = W * .72;
         c.save(); c.beginPath(); c.rect(W * .58, 0, W * .42, H); c.clip(); ground(c, W, H, gy);
         for (let k = 0; k < 2; k++) { const x = bx - 24 + k * 48; c.strokeStyle = "#7CB460"; c.lineWidth = 6; c.lineCap = "round"; c.beginPath(); c.moveTo(x, gy); c.lineTo(x, gy - 55 * hh * g * (k ? 1 : 1)); c.stroke(); for (let n = 0; n < 4; n++) { const y = gy - 12 - n * 18 * hh * g; c.fillStyle = "#4F9248"; c.beginPath(); c.ellipse(x + (n % 2 ? 10 : -10), y, 10, 4, n % 2 ? -.4 : .4, 0, 7); c.fill(); } }
-        c.restore(); c.lineCap = "butt"; c.lineWidth = 1; Draw.text(c, "Висота пагона", W * .72, 22, { align: "center", color: T.ink, size: 11 });
+        c.restore(); c.lineCap = "butt"; c.lineWidth = 1; Draw.text(c, "Висота пагона", W * .72, 44, { align: "center", color: T.ink, size: 11 });
       } else if (S.mode === "ck") {
         const px = W * .04, pw = W * .5, py = 30, ph = H - 60; c.fillStyle = Theme.dark ? "#223024" : "#F3F7E8"; roundRect(c, px, py, pw, ph, 12); c.fill(); c.strokeStyle = T.rule; c.stroke();
         const N = 36, gp = germCK(S.ck, S.aba) / 100; for (let i = 0; i < N; i++) { const r = rng(i * 11 + 5), sx = px + 20 + (i % 6) * (pw - 40) / 5, sy = py + 22 + Math.floor(i / 6) * (ph - 44) / 5; const ok = (i * 0.61803 % 1) < gp * g; c.fillStyle = "#B58A52"; c.beginPath(); c.ellipse(sx, sy, 6, 4, r(), 0, 7); c.fill(); if (ok) { c.strokeStyle = "#F4EBCF"; c.lineWidth = 2; c.beginPath(); c.moveTo(sx, sy); c.quadraticCurveTo(sx + 8, sy + 3, sx + 12 * g, sy + 8 * g); c.stroke(); c.lineWidth = 1; } }
-        Draw.text(c, "Проростання насіння", px + 8, py - 10, { color: T.ink, size: 11 });
+        Draw.text(c, "Проростання насіння", px + 8, py + ph + 14, { color: T.ink, size: 11 });
         const keep = chlKeep(S.ck, S.aba) / 100; for (let k = 0; k < 4; k++) { const x = W * .66 + (k % 2) * 62, y = 70 + Math.floor(k / 2) * 80; const mix = 1 - keep * (.8 + .2 * g); const col = mixHex(Theme.dark ? "#5FA050" : "#4E9C3C", "#D9C940", clamp(1 - keep, 0, 1) * g + (1 - g) * 0); c.fillStyle = col; c.beginPath(); c.arc(x, y, 26, 0, 7); c.fill(); c.strokeStyle = rgba("#000", .25); c.stroke(); void mix; }
-        Draw.text(c, "Листкові диски (старіння)", W * .76, 22, { align: "center", color: T.ink, size: 11 });
+        fitText(c, "Листкові диски (старіння)", W * .76, 44, W * .46, { align: "center", color: T.ink, size: 11 });
       } else {
         const lenF = ethLen(S.eth) / 100, thF = ethThick(S.eth) / 100; const hook = cl01(S.eth / 2.5);
         c.fillStyle = Theme.dark ? "#161c14" : "#2C3B2A"; c.fillRect(0, 0, W, gy); ground(c, W, H, gy);
-        for (let k = 0; k < 5; k++) { const x = W * (.12 + k * .18) + 0; const L = 150 * lenF * g + 10, th = 3 + 5 * (thF - 1) * .8 + 2, xx = x; c.strokeStyle = "#E8DDA0"; c.lineWidth = th; c.lineCap = "round"; c.beginPath(); c.moveTo(xx, gy); c.lineTo(xx, gy - L); const rr = 8 + 5 * hook; c.arc(xx + rr, gy - L, rr, Math.PI, Math.PI * (1 + .9 * Math.max(.3, hook) * g) , false); c.stroke(); }
-        c.lineCap = "butt"; c.lineWidth = 1; Draw.text(c, "Етиольовані проростки в темряві", 12, 18, { color: "#cfe0c8", size: 11 });
-        Draw.text(c, "укорочення · потовщення · посилений апікальний гачок", W - 12, 18, { align: "right", color: "#cfe0c8", size: 10.5 });
+        for (let k = 0; k < 5; k++) { const x = W * (.12 + k * .18) + 0; const L = Math.min(150, gy - 84) * lenF * g + 10, th = 3 + 5 * (thF - 1) * .8 + 2, xx = x; c.strokeStyle = "#E8DDA0"; c.lineWidth = th; c.lineCap = "round"; c.beginPath(); c.moveTo(xx, gy); c.lineTo(xx, gy - L); const rr = 8 + 5 * hook; c.arc(xx + rr, gy - L, rr, Math.PI, Math.PI * (1 + .9 * Math.max(.3, hook) * g) , false); c.stroke(); }
+        c.lineCap = "butt"; c.lineWidth = 1; fitText(c, "Етіольовані проростки в темряві", 12, 44, W - 24, { color: "#cfe0c8", size: 11 });
+        fitText(c, "укорочення · потовщення · посилений апікальний гачок", W - 12, 62, W - 24, { align: "right", color: "#cfe0c8", size: 10.5 });
       }
     }
     function charts() {
@@ -351,12 +358,12 @@ App.add({
 <h3>Цитокініни й абсцизова кислота: антагонізм</h3>
 <p><b>Цитокініни</b> стимулюють поділ клітин і затримують старіння листків (хлорофіл довго зберігається); <b>абсцизова кислота (АБК)</b> гальмує проростання насіння й прискорює старіння. Їхній вплив протилежний, тому відповідь визначає співвідношення гормонів: цитокінін «знімає» гальмування АБК. У моделі це відображено як зменшення ефективної АБК: A<sub>еф</sub> = A / (1 + ЦК/K).</p>
 <h3>Етилен</h3>
-<p>Етилен — газоподібний гормон, що гальмує розтягнення і спонукає до радіального росту. Етиольовані проростки в його присутності виявляють «потрійну реакцію»: вкорочення і потовщення гіпокотиля та посилений апікальний гачок.</p>
+<p>Етилен — газоподібний гормон, що гальмує розтягнення і спонукає до радіального росту. Етіольовані проростки в його присутності виявляють «потрійну реакцію»: вкорочення і потовщення гіпокотиля та посилений апікальний гачок.</p>
 <div class="fix"><b>Про модель.</b> Положення оптимумів і форми кривих якісно відповідають описаним у літературі закономірностям; числові значення ілюстративні.</div>
 <h3>До контрольних питань</h3>
 <details class="qa"><summary>Чому корінь «чутливіший» до ауксину, ніж стебло?</summary><p>Оптимум розтягнення кореня припадає на значно менші концентрації; помірна для стебла доза вже гальмує ріст кореня (частково через етилен, який індукує ауксин).</p></details>
 <details class="qa"><summary>Як ГК виводять насіння зі спокою?</summary><p>Вони індукують синтез гідролаз, що мобілізують запасні речовини, і ослаблюють стримуючу дію АБК.</p></details>
-<details class="qa"><summary>Що означає «потрійна реакція»?</summary><p>Реакція етиольованого проростка на етилен: вкорочення гіпокотиля, його потовщення та утворення посиленого гачка.</p></details>`,
+<details class="qa"><summary>Що означає «потрійна реакція»?</summary><p>Реакція етіольованого проростка на етилен: вкорочення гіпокотиля, його потовщення та утворення посиленого гачка.</p></details>`,
 });
 
 /* ============ ЛР 16. Зони росту кореня й стебла ============ */
@@ -375,7 +382,7 @@ App.add({
     function positions(t) { // положення міток (від кінчика) після часу t, год
       const O = o(), out = []; for (let i = 0; i <= O.n; i++) { let x = i * O.l0; const nst = Math.max(20, Math.ceil(t / 0.1)), dt = t / nst; for (let k = 0; k < nst; k++) { const v1 = Vel(x), v2 = Vel(x + v1 * dt / 2); x += v2 * dt; } out.push(x); } return out; }
     const st = new Stage(stageBox, { aspect: 1.5, minH: 320, maxH: 500, tag: "Мічений орган" });
-    const rd = UI.reads(stageBox, [["t", "Час, год"], ["dl", "Приріст органа"], ["zone", "Зона найшвидшого росту"], ["sp", "Швидкість росту органа"]]);
+    const rd = UI.reads(stageBox, [["t", "Час, год"], ["dl", "Приріст органа"], ["zone", "Зона найшвидшого росту (від кінчика)"], ["sp", "Швидкість росту органа"]]);
     UI.seg(ctrls, { label: "Орган", value: S.org, options: [["root", "Корінь"], ["stem", "Стебло"]], on: v => { S.org = v; S.t = 0; ch.dirty = true; } });
     const tS = UI.slider(ctrls, { id: "l16-t", label: "Час після нанесення міток", min: 0, max: 24, step: 0.25, value: 0, unit: "год", fmt: v => fmt(v, 2), on: v => { S.t = v; S.play = false; ch.dirty = true; } });
     UI.slider(ctrls, { id: "l16-T", label: "Температура", min: 8, max: 38, step: 1, value: S.T, unit: "°C", on: v => { S.T = v; ch.dirty = true; } });
@@ -419,8 +426,8 @@ App.add({
       drawChart(ch, { x: [0.4, O.n + .6], y: [0, S.t === 0 ? 1 : mx], xt: Array.from({ length: O.n }, (_, i) => i + 1), xl: `сегмент (від кінчика, по ${O.l0} мм)`, yl: "приріст, мм", series: [{ pts: inc, bars: true, color: rgba(Theme.c.chl, .75), bw: 14 }] });
       const xmax = O.tipMax * 1.2, rs = [], vs = []; for (let k = 0; k <= 60; k++) { const x = xmax * k / 60; rs.push([x, r(x)]); vs.push([x, Vel(x)]); }
       const vm = Math.max(...vs.map(p => p[1]), 1e-6), rm = Math.max(...rs.map(p => p[1]), 1e-6);
-      drawChart(ch2, { x: [0, xmax], y: [0, 1.05], xl: "відстань від кінчика, мм", yl: "відносні одиниці", legend: [{ color: Theme.c.antho, label: "r(s) відн." }, { color: Theme.c.data, label: "V(x) відн." }], series: [{ pts: rs.map(p => [p[0], p[1] / rm]), color: Theme.c.antho, w: 2.4 }, { pts: vs.map(p => [p[0], p[1] / vm]), color: Theme.c.data, w: 2.4 }], vl: [{ x: O.s0, color: Theme.c.chl, label: "макс. r" }] });
-      rd.set("t", fmt(S.t, 2)); rd.set("dl", fmt(pos[O.n] - O.n * O.l0, 1), "мм"); rd.set("zone", `${fmt(Math.max(0, O.s0 - O.w), 1)}–${fmt(O.s0 + O.w, 1)}`, "мм від кінчика"); rd.set("sp", fmt(Vel(O.tipMax * 2), 2), "мм/год");
+      drawChart(ch2, { x: [0, xmax], y: [0, 1.05], xl: "відстань від кінчика, мм", yl: "відносні одиниці", legend: [{ color: Theme.c.antho, label: "r(s) відн." }, { color: Theme.c.data, label: "V(x) відн." }, { color: Theme.c.chl, label: "максимум r (пунктир)" }], series: [{ pts: rs.map(p => [p[0], p[1] / rm]), color: Theme.c.antho, w: 2.4 }, { pts: vs.map(p => [p[0], p[1] / vm]), color: Theme.c.data, w: 2.4 }], vl: [{ x: O.s0, color: Theme.c.chl }] });
+      rd.set("t", fmt(S.t, 2)); rd.set("dl", fmt(pos[O.n] - O.n * O.l0, 1), "мм"); rd.set("zone", `${fmt(Math.max(0, O.s0 - O.w), 1)}–${fmt(O.s0 + O.w, 1)}`, "мм"); rd.set("sp", fmt(Vel(O.tipMax * 2), 2), "мм/год");
     }
     return { stages: [st, ch, ch2], frame(dt, time) { if (S.play && dt > 0) { S.t = Math.min(24, S.t + dt * S.spd * 2.2); tS.set(S.t); ch.dirty = true; if (S.t >= 24) S.play = false; } draw(time); if (ch.dirty) { charts(); ch.dirty = false; } } };
   },
@@ -599,7 +606,7 @@ App.add({
       let sc, su, fa, head;
       if (S.mode === "seed") { const sim = simSeed(10); const k = Math.min(sim.length - 1, Math.round(S.d * 10)), p = sim[k]; const K = SEED[S.kind]; sc = p.St / 70; fa = p.L / 55; su = p.G / 30; head = `доба ${fmt(S.d, 1)}`; S.cur = p; S.sim = sim; }
       else { const sim = simTree(9); const k = Math.min(sim.length - 1, Math.round(S.d * 20)), p = sim[k]; sc = p.St / 60; su = p.G / 40; fa = p.F / 40; head = MON[Math.min(9, Math.round(S.d))]; S.cur = p; S.sim = sim; }
-      const R = nar ? Math.min(54, W * .14) : Math.min(78, H * .2);
+      const R = nar ? Math.min(54, W * .14) : Math.min(78, H * .2, W * .1);
       const xs = nar ? [W * .2, W * .5, W * .8] : [W * .17, W * .39, W * .61];
       const yy = nar ? H * .26 : H * .3;
       const starchCol = (v) => mixH("#D9C98B", "#2B1A4F", cl01(v)); const sugarCol = (v) => mixH("#EFE7C8", "#C4204A", cl01(v)); const fatCol = (v) => mixH("#EFE7C8", "#E8541B", cl01(v));
@@ -692,9 +699,9 @@ App.add({
       });
       // «ваша проба»
       const A = val(S.np, S.hh ? 1 : 0, S.t), A0 = val(null, 0, S.t);
-      const my = nar ? 40 + 2 * (vh + 46) : H * .66, mxw = 60, tx = nar ? 100 : W / 2 - 10, ta = nar ? "left" : "center"; vial(c, nar ? 24 : W / 2 - mxw / 2 - 90, my, mxw, nar ? H * .14 : H * .22, A, 0, "ваша", true);
+      const my = nar ? 40 + 2 * (vh + 46) : H * .66, mxw = 60, tx = nar ? 100 : W / 2 - mxw / 2 - 90 + mxw + 18, ta = "left"; vial(c, nar ? 24 : W / 2 - mxw / 2 - 90, my, mxw, nar ? H * .14 : H * .22, A, 0, "ваша", true);
       Draw.text(c, S.mode === "nbt" ? `A₅₄₀ = ${fmt(A, 3)}` : `F = ${fmt(A, 1)} ум. од.`, tx, my + 18, { align: ta, size: 16, color: T.ink, font: "display" });
-      Draw.text(c, S.mode === "nbt" ? "НСТ + ФМС + НАДН → O₂•⁻ → формазан" : "DCFH-DA → DCFH → (АФК) → DCF, 480/520 нм", tx, my + 40, { align: ta, size: 10.5, color: T.muted });
+      fitText(c, S.mode === "nbt" ? "НСТ + ФМС + НАДН → O₂•⁻ → формазан" : "DCFH-DA → DCFH → (АФК) → DCF, 480/520 нм", tx, my + 40, W - tx - 8, { align: ta, size: 10.5, color: T.muted });
       Draw.text(c, `t = ${S.mode === "nbt" ? fmt(S.t, 0) + " с" : fmt(S.t, 0) + " хв"}`, 12, 18, { size: 12, color: T.ink });
       // частинки: супероксид
       if (S.mode === "nbt") { const r = rng(9); for (let i = 0; i < 18; i++) { const px = W * .08 + r() * W * .84, py0 = H * .1 + r() * H * .1, tt = (time * .5 + r()) % 1; c.fillStyle = rgba("#E8A33B", (1 - tt) * .5 * cl01(P(S.np, S.hh ? 1 : 0) / 2)); c.beginPath(); c.arc(px, py0 + tt * 20, 2.4, 0, 7); c.fill(); } }
@@ -781,7 +788,7 @@ App.add({
       const dx = bx + 20, dy = by + bh - 56, dw = bw - 40; c.fillStyle = "#16221A"; roundRect(c, dx, dy, dw, 40, 8); c.fill(); Draw.text(c, `A = ${fmt(A || 0, 3)}`, dx + dw / 2, dy + 21, { align: "center", size: 20, color: "#8EF0B0", font: "display" });
       // права частина: ціль-графік у реальному часі
       if (S.enz === "sod") Draw.text(c, S.t < 7 ? "до НАДН: E₁" : "через 10 хв після НАДН: E₂", bx + bw / 2, cy + chh + 18, { align: "center", size: 11, color: T.ink });
-      Draw.text(c, S.enz === "cat" ? "H₂O₂ + молібдат амонію → жовтий комплекс" : S.enz === "apx" ? "аскорбат + H₂O₂ → дегідроаскорбат (A₂₉₀↓)" : "O₂•⁻ + НСТ → формазан (A₅₄₀↑); СОД конкурує", bx + bw / 2, by + bh + 14, { align: "center", size: 10.5, color: T.muted });
+      fitText(c, S.enz === "cat" ? "H₂O₂ + молібдат амонію → жовтий комплекс" : S.enz === "apx" ? "аскорбат + H₂O₂ → дегідроаскорбат (A₂₉₀↓)" : "O₂•⁻ + НСТ → формазан (A₅₄₀↑); СОД конкурує", bx + bw / 2, by + bh + 14, bw - 8, { align: "center", size: 10.5, color: T.muted });
       void time;
     }
     function charts() {
@@ -855,7 +862,7 @@ App.add({
         const tubes = [["К", Dk, false], ["Дослід", D, true]]; tubes.forEach(([lab, d, mine], i) => { const x = bx + bw * (.3 + i * .35) - 15; Draw.tube(c, x, by - 38, 30, bh * .9, [{ frac: 1, color: mixHex("#F3E6C6", "#D9367E", cl01(d / .6)) }], { fill: .5, label: lab }); });
         Draw.text(c, "100 °C, 10 хв", bx + bw / 2, by + bh + 16, { align: "center", size: 11, color: T.muted });
         Draw.text(c, `D₅₃₂ = ${fmt(D, 3)}`, 12, 44, { size: 14, color: T.ink });
-        Draw.text(c, "МДА + 2 ТБК → рожевий комплекс (λmax = 532 нм)", 12, 62, { size: 11, color: T.muted });
+        fitText(c, "МДА + 2 ТБК → рожевий комплекс (λmax = 532 нм)", 12, 62, W - 24, { size: 11, color: T.muted });
         // молекула МДА: схема справа
         if (!nar) { const mx = bx + bw + 24, my = H * .4; Draw.text(c, "Мембрана", mx, 40, { size: 12, color: T.ink }); const danger = cl01((mda(S.s, S.prot) - 12) / 70);
           for (let i = 0; i < 12; i++) { const y = 60 + i * 10; c.strokeStyle = mixHex("#7FBF63", "#4B3A5E", danger * (i % 3 ? .7 : 1)); c.lineWidth = 4; c.beginPath(); c.moveTo(mx, y); c.lineTo(mx + 70, y); c.stroke(); } c.lineWidth = 1;
@@ -863,7 +870,7 @@ App.add({
       } else {
         const ctrl = od(0) * k, std = od(40) * k, sam = od(noC(S.s) / S.f) * k; const bx = 14, by = H * .3, bh = H * .5; const items = [["Контроль", ctrl], ["Стандарт 40 мкмоль/л", std], ["Дослід", sam]]; const tw = (W - 40) / 3;
         items.forEach(([lab, e], i) => { const x = 20 + i * tw + tw / 2 - 16; Draw.tube(c, x, by - 20, 32, bh, [{ frac: 1, color: mixHex("#F6F1EA", "#B3197A", cl01((e - .01) / .5)) }], { fill: .5, label: i === 1 ? "ст." : i === 0 ? "К" : "Д" }); Draw.text(c, `E₅₅₀ = ${fmt(e, 3)}`, 20 + i * tw + tw / 2, by + bh + 14, { align: "center", size: 11, color: T.ink }); });
-        Draw.text(c, "NO → NO₂⁻ + реактиви Гріса → азосполука (λ = 550 нм)", 12, 18, { size: 12, color: T.ink });
+        fitText(c, "NO → NO₂⁻ + реактиви Гріса → азосполука (λ = 550 нм)", 12, 44, W - 24, { size: 12, color: T.ink });
         void time;
       }
     }

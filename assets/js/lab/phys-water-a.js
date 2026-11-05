@@ -155,8 +155,8 @@ reg("w-root", {
     const colX = (i) => L + i * cw; const rowY = (j) => T + j * rh;
     // фон-зони
     const zones = [[0, 1, "#E3F0D2", "ризодерма"], [1, 4, "#EEF5DC", "первинна кора"], [4, 5, "#F4E3B8", "ендодерма"], [5, 6, "#EDE1CB", "перицикл"], [6, 7, "#D3E8F4", "ксилема"]];
-    for (const [a, b, col, n] of zones) { c.fillStyle = col; c.fillRect(colX(a), T, (b - a) * cw, B - T); D.txt(c, n, colX(a) + (b - a) * cw / 2, T - 14, { size: 11, weight: 700, align: "center", color: C.soft }); }
-    D.txt(c, "ґрунтовий розчин →", L + 2, B + 18, { size: 11, color: C.blue, weight: 700 }); D.txt(c, "→ судини ксилеми", R - 2, B + 18, { size: 11, color: C.blue, weight: 700, align: "right" });
+    for (const [a, b, col, n] of zones) { c.fillStyle = col; c.fillRect(colX(a), T, (b - a) * cw, B - T); D.txt(c, n, colX(a) + (b - a) * cw / 2, T - (nar && a === 5 ? 28 : 14), { size: 11, weight: 700, align: "center", color: C.soft }); }
+    D.txt(c, "ґрунтовий розчин →", L + 2, B + 18, { size: 11, color: C.blue, weight: 700 }); if (!(nar && P.cas)) D.txt(c, "→ судини ксилеми", R - 2, B + 18, { size: 11, color: C.blue, weight: 700, align: "right" });
     // клітини (з тонкими стінками-апопластом)
     for (let i = 0; i < 6; i++) for (let j = 0; j < rows; j++) {
       const x = colX(i) + 3, y = rowY(j) + 3, w = cw - 6, h = rh - 6; const endo = i === 4;

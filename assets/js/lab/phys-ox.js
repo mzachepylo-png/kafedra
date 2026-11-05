@@ -9,7 +9,7 @@ function ros(P) {
   const dis = Pp * (sod / (sod + .15));              // потік дисмутації
   const O2 = Pp * (.15 / (sod + .15));               // супероксид, що лишився
   const H2O2 = (dis + .08 * Pp) / (.18 + 1.6 * cat);
-  const OH = fe * .55 * H2O2 + .05 * O2 * H2O2;      // Фентон + Хабер–Вайс
+  const OH = fe * .55 * H2O2 + .05 * O2 * H2O2;      // Фентон + Габер–Вайс
   const damage = clamp(OH * 3.2 + O2 * .5 + H2O2 * .15, 0, 1.6);
   const fate = damage < .12 ? "ros-sig" : damage < .35 ? "adapt" : damage < .7 ? "repair" : damage < 1.05 ? "apo" : "necro";
   return { O2, H2O2, OH, damage, fate };
@@ -57,9 +57,9 @@ reg("o-ros", {
 reg("o-lpo", {
   aspect: (w) => (w < 560 ? 0.95 : 2.0),
   params: [{ k: "oh", label: "Потік гідроксил-радикалів (ініціація)", min: 0, max: 100, step: 5, v: 20, u: "%" }, { k: "vit", label: "Токофероли (жиророзчинний антиоксидант)", min: 0, max: 100, step: 5, v: 20, u: "%" }],
-  toggles: [{ k: "fe", label: "Є Fe²⁺: розгалуження ланцюгів (Fe²⁺ + LOOH → ·OH + LO•)", v: false }, { k: "o2", label: "O₂ присутній", v: true }],
+  toggles: [{ k: "fe", label: "Є Fe²⁺: розгалуження ланцюгів (Fe²⁺ + LOOH → OH⁻ + LO•)", v: false }, { k: "o2", label: "O₂ присутній", v: true }],
   buttons: [{ label: "⚡ Один удар ·OH", pri: true, run: (S) => { const i = S.cells.findIndex(c => c === 0); const idx = Math.floor(Math.random() * S.cells.length); if (S.cells[idx] === 0) S.cells[idx] = 1; } }, { label: "↺ Нова мембрана", run: (S) => { S.cells.fill(0); } }],
-  info: "<b>Пероксидне окиснення ліпідів (ПОЛ)</b> — ланцюгова реакція: (1) <b>ініціація</b>: •OH відриває атом H від ненасиченої жирної кислоти (LH): •OH + LH → H₂O + L•; (2) <b>продовження</b>: L• + O₂ → LOO•, а LOO• + LH → LOOH + L• — реакції чергуються й самопідтримуються; (3) <b>розгалуження</b>: Fe²⁺ + LOOH → Fe³⁺ + •OH + LO•; (4) <b>обрив</b>: антиоксидант (токоферол) віддає атом H радикалу LOO•, і ланцюг припиняється. Продукти — гідропероксиди й ненасичені альдегіди (гено- і цитотоксичні); мембрана стає проникною.",
+  info: "<b>Пероксидне окиснення ліпідів (ПОЛ)</b> — ланцюгова реакція: (1) <b>ініціація</b>: •OH відриває атом H від ненасиченої жирної кислоти (LH): •OH + LH → H₂O + L•; (2) <b>продовження</b>: L• + O₂ → LOO•, а LOO• + LH → LOOH + L• — реакції чергуються й самопідтримуються; (3) <b>розгалуження</b>: Fe²⁺ + LOOH → Fe³⁺ + OH⁻ + LO•; (4) <b>обрив</b>: антиоксидант (токоферол) віддає атом H радикалу LOO•, і ланцюг припиняється. Продукти — гідропероксиди й ненасичені альдегіди (гено- і цитотоксичні); мембрана стає проникною.",
   init() { const r = rng(2); return { cells: new Array(48).fill(0), timer: new Array(48).fill(0), t: 0, leak: [] }; },
   step(S, P, dt) {
     const n = S.cells.length, W = 24; S.t += dt;

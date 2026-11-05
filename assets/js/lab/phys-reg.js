@@ -116,7 +116,7 @@ reg("r-tropism", {
     const photo = P.mode === "photo";
     const cx = nar ? W * .42 : W * .34, baseY = H * .74, L = Math.min(H * .6, 230);
     // ґрунт
-    c.fillStyle = "#8B6A47"; c.fillRect(0, baseY, W, H - baseY); D.txt(c, "ґрунт", 12, baseY + 16, { size: 10.5, color: "#F4E6C8" });
+    c.fillStyle = "#8B6A47"; c.fillRect(0, baseY, W, H - baseY); if (!nar) D.txt(c, "ґрунт", 12, baseY + 16, { size: 10.5, color: "#F4E6C8" });
     // сонце
     if (photo) { const a = P.ang * Math.PI / 180; const sx = cx + Math.sin(a) * W * .38, sy = H * .18; D.glow(c, sx, sy, 70, "#FFD46B", .6); D.sphere(c, sx, sy, 14, "#FFCB45"); D.arrow(c, sx - Math.sin(a) * 16, sy + 16, cx + Math.sin(a) * 40, baseY - L * .8, "#E8B24A", 2, 8); }
     // формула стебла з кривизною

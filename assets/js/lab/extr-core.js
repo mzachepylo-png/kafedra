@@ -80,7 +80,7 @@ export const D = {
       c.beginPath(); c.strokeStyle = s.col; c.lineWidth = s.w || 2.2; c.lineJoin = "round"; c.setLineDash(s.dash || []); s.pts.forEach(([px, py], i) => i ? c.lineTo(X(px), Y(py)) : c.moveTo(X(px), Y(py))); c.stroke(); c.setLineDash([]);
     }
     for (const m of o.marks || []) { c.fillStyle = m.col || C.red; c.beginPath(); c.arc(X(m.x), Y(m.y), m.r || 5, 0, 7); c.fill(); c.strokeStyle = "#fff"; c.lineWidth = 1.6; c.stroke(); if (m.label) D.txt(c, m.label, X(m.x) + (m.dx ?? 8), Y(m.y) + (m.dy ?? -9), { size: 11, color: m.col || C.red, align: m.align || "left", weight: 700 }); }
-    for (const v of o.vl || []) { c.strokeStyle = v.col || C.muted; c.setLineDash([4, 4]); c.beginPath(); c.moveTo(X(v.x), y); c.lineTo(X(v.x), y + h); c.stroke(); c.setLineDash([]); if (v.label) D.txt(c, v.label, X(v.x) + 4, y + 11, { size: 10.5, color: v.col || C.muted }); }
+    for (const v of o.vl || []) { c.strokeStyle = v.col || C.muted; c.setLineDash([4, 4]); c.beginPath(); c.moveTo(X(v.x), y); c.lineTo(X(v.x), y + h); c.stroke(); c.setLineDash([]); if (v.label) D.txt(c, v.label, X(v.x) + 4, y + 11 + (v.dy || 0), { size: 10.5, color: v.col || C.muted }); }
     c.restore();
     if (o.xl) D.txt(c, o.xl, x + w, y + h + 20, { size: 10.5, align: "right", color: C.muted });
     if (o.yl) { c.save(); c.translate(x - 38, y + h / 2); c.rotate(-Math.PI / 2); D.txt(c, o.yl, 0, 0, { size: 10.5, align: "center", color: C.muted }); c.restore(); }
