@@ -228,11 +228,11 @@ function organs(s){
   var shoots=SH.map(function(t){var g=sstep(t.th,t.th+.35,s.S);return{g:g,H:38*t.len*g}});
   var xf=Math.pow(Math.max(0,s.X-.012),.7);
   return{roots:roots,shoots:shoots,callusMM:s.X>.02?1.5+20*xf:0,latF:sstep(.3,.85,s.R)}}
-function jarInterior(inset){var P2=new Path2D(),rx=G.JW/2-inset;P2.moveTo(G.cx-rx,G.top);P2.lineTo(G.cx-rx,G.bot);P2.ellipse(G.cx,G.bot,rx,G.er,0,Math.PI,0,true);P2.lineTo(G.cx+rx,G.top);P2.closePath();return P2}
+function jarInterior(inset){var P2=new Path2D(),rx=Math.max(0,G.JW/2-inset);P2.moveTo(G.cx-rx,G.top);P2.lineTo(G.cx-rx,G.bot);P2.ellipse(G.cx,G.bot,rx,G.er,0,Math.PI,0,true);P2.lineTo(G.cx+rx,G.top);P2.closePath();return P2}
 function drawVessel(s){
   var fr=fit(cvV),ctx=fr.ctx,w=fr.w,h=fr.h;setGeom(w,h);
   if(!patA){patA=ctx.createPattern(TEX_A,'repeat');patC=ctx.createPattern(TEX_C,'repeat')}
-  var o=organs(s),px=G.px,rx=G.JW/2-2;
+  var o=organs(s),px=G.px,rx=Math.max(0,G.JW/2-2);
   // bench
   var bg=ctx.createLinearGradient(0,0,0,h);bg.addColorStop(0,'#f9faf6');bg.addColorStop(.75,'#eef1e8');bg.addColorStop(1,'#e3e7dc');ctx.fillStyle=bg;ctx.fillRect(0,0,w,h);
   ctx.save();ctx.translate(G.cx+8,G.bot+G.er*.7);ctx.scale(1,.17);var sg=ctx.createRadialGradient(0,0,0,0,0,G.JW*.64);sg.addColorStop(0,'rgba(30,40,25,.3)');sg.addColorStop(1,'rgba(30,40,25,0)');ctx.fillStyle=sg;ctx.beginPath();ctx.arc(0,0,G.JW*.64,0,7);ctx.fill();ctx.restore();
@@ -424,6 +424,8 @@ var disp=null,raf=0,last=0;
 function kick(){if(!raf)raf=requestAnimationFrame(frame)}
 function target(){var s=at(st.day);return{R:s.R,S:s.S,X:s.X,lA:Math.log10(st.A),lC:Math.log10(st.C)}}
 function frame(ts){raf=0;
+  // модель прихована (перехід до списку або іншої роботи): не малюємо на полотні нульової ширини; render() перезапустить цикл
+  if(!$('amc').getClientRects().length){last=0;return}
   if(st.playing){var dt=last?Math.min(.1,(ts-last)/1000):0;last=ts;st.day=Math.min(TMAX,st.day+dt*7);sD.value=st.day;texts();readouts();drawTS();if(st.day>=TMAX)stop()}
   var t=target();if(!disp||REDUCE)disp=Object.assign({},t);
   var mv=false,k=st.playing?.45:.14;for(var key in t){var d=t[key]-disp[key];if(Math.abs(d)>2e-4){disp[key]+=d*k;mv=true}else disp[key]=t[key]}
