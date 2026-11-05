@@ -59,7 +59,7 @@ konspekt/extraction/ — Екстракція БАР: 12 розділів (те�
 konspekt/fermentation/ — Бродіння: 10 розділів (шість типів — спиртове, оцтовокисле, молочнокисле, пропіоновокисле, маслянокисле, лимоннокисле), 22 структурні формули (SVG, RDKit), фото з Wikimedia Commons (збережені на сайті, `assets/img/ferm/`), 18 інтерактивних моделей (перехрестя пірувату, візочки NAD⁺, баланс рівнянь, енергетика, партія дріжджів, цикл Вуда–Веркмана, флавінова біфуркація, сир у розрізі, цитратний надсинтез)
                                      (Wikimedia Commons, assets/img/mgen/), навігація (зміст, лінійка частин, пошук, глосарій),
                                      нумерований список літератури; сторінка генерується: python3 tools/mgen/build.py
-konspekt/ion-transport/             — Транспорт іонів у клітинах рослин (9 розділів, 40 підрозділів):
+konspekt/plant-physiology/ion-transport/             — Транспорт іонів у клітинах рослин (9 розділів, 40 підрозділів):
                                      потенціал і Нернст, кінетика переносників, patch clamp, канали Shaker/TPK/TPC, HKT,
                                      HAK/KUP, SOS1/NHX, Ca²⁺-сигнали й сенсори, MSL/MCA, SLAC1/ALMT/CLC, NRT/PHT,
                                      H⁺-АТФази; бічна навігація з прогресом і пошуком, карта клітини, покажчик білків A–Z;
@@ -85,7 +85,7 @@ assets/js/lab/chroma-engine.js     — модель колонки: міграц
                                      розмивання за Ван-Деемтером, хроматограма (гаусіан / EMG при перевантаженні)
 assets/js/lab/chromatography.js, assets/css/chroma.css — інтерфейс «Хроматографії» (анімації лише на видимих полотнах)
 assets/js/lab/photosynthesis.js, assets/css/photosynthesis.css — «Фотосинтез»: покроковий програвач схем, CAM, FvCB
-assets/js/lab/plant-cell.js, assets/css/plant-cell.css — інтерактив конспекту «Рослинна і тваринна клітини»
+assets/js/lab/plant-cell.js, assets/css/plant-cell.css — інтерактив конспекту «Відмінності рослинної і тваринної клітин»
 assets/js/lab/cell-visuals.js              — шари стінки, «залізобетон», шляхи води в корені, цитокінез (той самий конспект)
 assets/fonts/, assets/css/fonts.css    — шрифти, розміщені на сайті (Inter, Lora, Alegreya, IBM Plex Sans, JetBrains Mono): жодних запитів до Google Fonts
 assets/js/lab/enzymes-konspekt.js, assets/css/enzymes.css — інтерактив конспекту «Ферменти»
