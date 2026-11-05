@@ -58,25 +58,34 @@ new MutationObserver(() => { Theme.read(); App.dirtyAll(); }).observe(document.d
 
 /* ---- canvas stage with DPR + resize ---- */
 class Stage {
-  constructor(parent, { aspect = 16 / 9, minH = 200, maxH = 520, tag = null, chart = false } = {}) {
+  constructor(parent, { aspect = 16 / 9, minH = 200, maxH = 520, tag = null, chart = false, minW = 0 } = {}) {
     this.wrap = h("div", { class: "stage" });
     this.cv = h("canvas");
     this.wrap.append(this.cv);
     if (tag) this.wrap.append(h("span", { class: "tag" }, tag));
     parent.append(this.wrap);
     this.ctx = this.cv.getContext("2d");
-    this.aspect = aspect; this.minH = minH; this.maxH = maxH;
+    this.aspect = aspect; this.minH = minH; this.maxH = maxH; this.minW = minW;
     this.W = 300; this.H = 200; this.dirty = true;
     this.ro = new ResizeObserver(() => this.resize());
     this.ro.observe(this.wrap);
     this.mouse = null;
     this.cv.addEventListener("pointermove", (e) => { const r = this.cv.getBoundingClientRect(); this.mouse = { x: e.clientX - r.left, y: e.clientY - r.top }; this.dirty = true; });
-    this.cv.addEventListener("pointerleave", () => { this.mouse = null; this.dirty = true; });
+    // дотик: «наведення» за торкнутою точкою; знімається дотиком поза полотном
+    this.cv.addEventListener("pointerdown", (e) => { if (e.pointerType === "mouse") return; const r = this.cv.getBoundingClientRect(); this.mouse = { x: e.clientX - r.left, y: e.clientY - r.top }; this.dirty = true; });
+    this.cv.addEventListener("pointerleave", (e) => { if (e.pointerType === "touch") return; this.mouse = null; this.dirty = true; });
+    document.addEventListener("pointerdown", (e) => { if (e.target !== this.cv && this.mouse) { this.mouse = null; this.dirty = true; } });
   }
   resize() {
-    const w = this.wrap.clientWidth || 300;
+    const avail = this.wrap.clientWidth || 300, w = Math.max(innerWidth <= 700 ? this.minW : 0, avail), wide = w > avail + 1;
     const hh = Math.round(clamp(w / this.aspect, this.minH, this.maxH));
     const d = Math.min(2, window.devicePixelRatio || 1);
+    // складні схеми на вузьких екранах: полотно не стискається, а гортається вбік
+    this.cv.style.width = wide ? w + "px" : ""; this.wrap.classList.toggle("xscroll", wide);
+    if (wide && !this.hint) { this.hint = h("div", { class: "xhint" }, "↔ Проведіть схему вбік"); this.wrap.after(this.hint); }
+    if (this.hint) this.hint.hidden = !wide;
+    if (wide && !this.centered && this.wrap.clientWidth) { this.centered = true; this.wrap.scrollLeft = (w - avail) / 2; } // спершу показуємо середину схеми
+    if (!wide) this.centered = false;
     this.cv.style.height = hh + "px";
     this.cv.width = Math.round(w * d); this.cv.height = Math.round(hh * d);
     this.ctx.setTransform(d, 0, 0, d, 0, 0);
@@ -271,7 +280,16 @@ const Draw = {
   },
   text(c, s, x, y, { size = 11, color = Theme.c.muted, align = "left", base = "alphabetic", font = "mono", weight = "" } = {}) {
     c.font = `${weight} ${size}px ${getComputedStyle(document.body).getPropertyValue(font === "mono" ? "--f-mono" : font === "display" ? "--f-display" : "--f-body")}`;
-    c.fillStyle = color; c.textAlign = align; c.textBaseline = base; c.fillText(s, x, y);
+    c.fillStyle = color; c.textAlign = align; c.textBaseline = base;
+    // текст не виходить за межі полотна (вузькі екрани)
+    const tr = c.getTransform();
+    if (!tr.b && !tr.c && tr.a > 0) {
+      const wd = c.measureText(s).width * tr.a, cwd = c.canvas.width, pad = 2 * tr.a;
+      const l = tr.e + (align === "center" ? x - wd / tr.a / 2 : (align === "right" || align === "end") ? x - wd / tr.a : x) * tr.a;
+      let dx = 0; if (l + wd > cwd - pad) dx = cwd - pad - (l + wd); if (l + dx < pad) dx = pad - l;
+      x += dx / tr.a;
+    }
+    c.fillText(s, x, y);
   },
 };
 
@@ -323,7 +341,7 @@ const App = {
     route();
     let last = performance.now();
     const loop = (t) => {
-      const dt = Math.min(0.05, (t - last) / 1000); last = t;
+      const dt = Math.max(0, Math.min(0.05, (t - last) / 1000)); last = t;
       const L = this.active;
       if (L && L.inst && !document.hidden) {
         // модель рухається лише після «Старт»; на паузі кадр малюється з dt = 0 (повзунки й підписи оновлюються)
@@ -1167,7 +1185,7 @@ App.add({
     UI.slider(ctrls, { id: "l6-dw", label: "Капілярність паперу D_w", min: 0.03, max: 0.2, step: 0.005, value: S.Dw, unit: "см²/с", fmt: v => fmt(v, 3), on: v => { S.Dw = v; ch.dirty = true; } });
     UI.slider(ctrls, { id: "l6-dip", label: "Нанесень витяжки на старт", min: 3, max: 25, step: 1, value: S.dips, unit: "раз", on: v => { S.dips = v; ch.dirty = true; } });
     UI.slider(ctrls, { id: "l6-sp", label: "Прискорення", min: 5, max: 120, step: 5, value: S.speed, unit: "×", on: v => S.speed = v });
-    ctrls.append(h("p", { class: "note" }, "Наведіть курсор на смужку: модель покаже відстань від старту і Rf у цій точці, як при вимірюванні лінійкою."));
+    ctrls.append(h("p", { class: "note" }, "Наведіть курсор (або торкніться) на смужку: модель покаже відстань від старту і Rf у цій точці, як при вимірюванні лінійкою."));
 
     const row = h("div", { class: "charts" }); below.append(row);
     const ch = UI.chart(row, "Денситограма смужки: поглинання вздовж напрямку руху");
@@ -1221,7 +1239,9 @@ App.add({
       Draw.text(c, "см", rx + 14, Y(10.6), { size: 10 });
       // labels for bands
       const lx = rx + 44;
-      for (const s of sp) { if (s.p.rf0 === 0 && S.ac === 0) continue; if (L < 0.8) break; c.strokeStyle = rgba(T.ink, .25); c.beginPath(); c.moveTo(sx + sw + 2, Y(s.y)); c.lineTo(lx - 4, Y(s.y)); c.stroke(); Draw.text(c, `${s.p.name}  Rf ${fmt(s.y / Math.max(L, 1e-6), 2)}`, lx, Y(s.y) + 4, { size: 11, color: T.ink, font: "body" }); }
+      const labs = L < 0.8 ? [] : sp.filter(s => !(s.p.rf0 === 0 && S.ac === 0)).map(s => ({ s, ty: Y(s.y) + 4 })).sort((a, b) => b.ty - a.ty);
+      for (let k = 1; k < labs.length; k++) if (labs[k - 1].ty - labs[k].ty < 12) labs[k].ty = labs[k - 1].ty - 12; // підписи не налізають один на одного
+      for (const { s, ty } of labs) { c.strokeStyle = rgba(T.ink, .25); c.beginPath(); c.moveTo(sx + sw + 2, Y(s.y)); c.lineTo(lx - 4, Y(s.y)); c.stroke(); Draw.text(c, `${s.p.name}  Rf ${fmt(s.y / Math.max(L, 1e-6), 2)}`, lx, ty, { size: 11, color: T.ink, font: "body" }); }
       // hover line
       if (st.mouse && st.mouse.x > sx - 10 && st.mouse.x < sx + sw + 10 && st.mouse.y > Y(L) - 4 && st.mouse.y < yStart + 4) {
         c.strokeStyle = T.antho; c.beginPath(); c.moveTo(sx - 10, st.mouse.y); c.lineTo(sx + sw + 10, st.mouse.y); c.stroke();
@@ -1753,7 +1773,8 @@ App.add({
     function mash(w, hh, col) { const cv = document.createElement("canvas"); cv.width = w; cv.height = hh; const c = cv.getContext("2d"); const r = rng(21); c.fillStyle = col; c.fillRect(0, 0, w, hh); for (let i = 0; i < w * hh / 18; i++) { c.fillStyle = `rgba(${r() < .5 ? "255,255,255" : "0,0,0"},${r() * .12})`; c.beginPath(); c.arc(r() * w, r() * hh, 1 + r() * 4, 0, 7); c.fill(); } return cv; }
     function draw() {
       const c = st.ctx, W = st.W, H = st.H, T = Theme.c; st.clear();
-      const R = Math.min(W * .3, H * .44), cx = W * .33, cy = H / 2;
+      const x0 = Math.min(W * .64, Math.max(W * .5, W - 160)); // на вузьких екранах права колонка не вилазить за полотно
+      const R = Math.min(W * .3, H * .44, x0 * .47), cx = x0 * .5156, cy = H / 2;
       c.beginPath(); c.arc(cx, cy, R, 0, 7); c.fillStyle = Theme.dark ? "#1b231e" : "#FFFFFF"; c.fill(); c.lineWidth = 3; c.strokeStyle = rgba(T.ink, .2); c.stroke(); c.lineWidth = 1;
       const key = PR[S.p].col + Math.round(R); if (key !== tk) { tex = mash(Math.ceil(R * 1.3), Math.ceil(R * 1.3), PR[S.p].col); tk = key; }
       c.save(); c.beginPath();
@@ -1771,7 +1792,7 @@ App.add({
       }
       c.restore();
       // timer + scale cards
-      const x0 = W * .64; Draw.text(c, `${Math.floor(S.t / 60)}:${String(Math.floor(S.t % 60)).padStart(2, "0")}`, x0, 34, { size: 22, color: T.ink, weight: 600 });
+      Draw.text(c, `${Math.floor(S.t / 60)}:${String(Math.floor(S.t % 60)).padStart(2, "0")}`, x0, 34, { size: 22, color: T.ink, weight: 600 });
       Draw.text(c, "після нанесення реактиву", x0, 50, { size: 10 });
       const sw = Math.min(30, (W - x0 - 16) / 7 - 4);
       for (let k = 0; k <= 6; k++) { const x = x0 + k * (sw + 4), y = 70; c.fillStyle = k === 0 ? "rgba(230,150,180,.6)" : Spectral.colorOf({ dpaBlue: k * 0.38 }, 1); c.fillRect(x, y, sw, sw); c.strokeStyle = Math.round(sc) === k ? T.antho : rgba(T.ink, .2); c.lineWidth = Math.round(sc) === k ? 2.5 : 1; c.strokeRect(x, y, sw, sw); c.lineWidth = 1; Draw.text(c, String(k), x + sw / 2, y + sw + 13, { align: "center", size: 10 }); }
@@ -2055,7 +2076,7 @@ App.add({
         c.beginPath(); c.roundRect ? c.roundRect(x + 4, 26, cw - 8, H - 32, 14) : c.rect(x + 4, 26, cw - 8, H - 32);
         c.fillStyle = Theme.dark ? "rgba(140,180,160,.06)" : "rgba(230,240,235,.7)"; c.fill(); c.strokeStyle = rgba(T.ink, .15); c.stroke();
         [...new Set(S.sel)].forEach((k, i) => {
-          const Lh = Math.min(rh * .78, cw * 1.05);
+          const Lh = Math.min(rh * .78, cw * .9);
           drawLeaf(c, k, x + cw / 2, 30 + i * rh + rh / 2 - Lh * .06, Lh, j, bp, time);
           if (S.hcl > 0) Draw.text(c, sign(D[k][j]), x + cw - 12, 30 + i * rh + 16, { align: "right", size: 13, color: T.ink, weight: 600 });
         });

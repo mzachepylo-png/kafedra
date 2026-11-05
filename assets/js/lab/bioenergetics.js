@@ -1,6 +1,6 @@
 // Біоенергетичні основи біотехнологічних процесів: ядро застосунку (код згенеровано з вихідних файлів).
 "use strict";
-const LABS = [{"n": 1, "pages": "6–10", "short": "Стаціонарний стан", "tag": "ентропія · μ̃ Na⁺", "title": "Вивчення стаціонарного стану термодинамічної системи та критеріїв його досягнення у біологічних системах", "model": "dS/dt = dᵢS/dt + dₑS/dt = 0 · μ̃ = μ⁰ + RT·ln c + zFφ"}, {"n": 2, "pages": "10–13", "short": "Ентальпія і рівновага", "tag": "Гесс · Ле Шательє", "title": "Ентальпія. Тепловий ефект біохімічної реакції", "model": "ΔH = Q_p · ln K = −ΔH/RT + ΔS/R · q = λ·ΔT/δ"}, {"n": 3, "pages": "13–18", "short": "Ліганди й кооперативність", "tag": "Хілл · порфірини", "title": "Вивчення принципів зв’язування лігандів з макромолекулами в біополімерах", "model": "Y = [L]ⁿ/(K₀,₅ⁿ + [L]ⁿ) · MWC · Mg²⁺ ⇄ 2H⁺ / Cu²⁺ / Zn²⁺ у порфіриновому ядрі"}, {"n": 4, "pages": "18–21", "short": "Потенціал спокою і дії", "tag": "Нернст · ГГК · Ходжкін–Хакслі", "title": "Вивчення механізмів формування потенціалу спокою і потенціалу дії на клітинній мембрані", "model": "Eᵢ = (RT/zF)·ln(cₒ/cᵢ) · V = (RT/F)·ln(ΣPcₒ/ΣPcᵢ) · C·dV/dt = −ΣI"}, {"n": 5, "pages": "21–23", "short": "Маркерні ферменти", "tag": "Фіске–Суббароу · центрифугування", "title": "Маркерні ензими плазматичної мембрани та ендомембран", "model": "A = ε·c·l · K = E₈₂₀/C_Фн · v_осідання = 2r²(ρ − ρ₀)ω²R/9η"}, {"n": 6, "pages": "23–27", "short": "Макроергічні сполуки", "tag": "ΔG′ · АТФ · енергетичний заряд", "title": "Макроергічні сполуки", "model": "ΔG = ΔG°′ + RT·ln([АДФ][Фн]/[АТФ]) · ЕЗ = ([АТФ] + ½[АДФ])/([АТФ]+[АДФ]+[АМФ])"}, {"n": 7, "pages": "27–32", "short": "Активатори й інгібітори", "tag": "Міхаеліс–Ментен · MWC · малонат", "title": "Вивчення шляхів активування та інгібування ферментів", "model": "v = Vmax[S]/(Kₘ(1 + [I]/Kᵢ) + [S]) · Y = [S]ⁿ/(K₀,₅ⁿ + [S]ⁿ)"}, {"n": 8, "pages": "32–36", "short": "Гліколіз і вуглеводи", "tag": "10 реакцій · баланс АТФ", "title": "Глюкоза як ключовий метаболіт обміну вуглеводів", "model": "C₆H₁₂O₆ + 2НАД⁺ + 2АДФ + 2Фн → 2 піруват + 2НАДН + 2АТФ · B = c·k/m"}, {"n": 9, "pages": "36–43", "short": "Цикл Кребса", "tag": "регуляція · мітка ¹⁴C", "title": "Вивчення механізмів регуляції циклу трикарбонових кислот", "model": "v = f(НАДН/НАД⁺, АТФ/АДФ, цитрат) · A = (D_к − D_д)·V/(ε·t·m)"}, {"n": 10, "pages": "43–48", "short": "Окисне фосфорилювання", "tag": "Мітчелл · дихальний контроль", "title": "Енергетичний обмін. Окисне фосфорилювання", "model": "Δp = Δψ − (2,3RT/F)·ΔpH · J(O₂) = f(АДФ, Δp) · P/O"}, {"n": 11, "pages": "48–50", "short": "Пігменти листка", "tag": "Бер–Ламберт · спектрофотометрія", "title": "Кількісне визначення пігментів листка", "model": "C_a = 13,7·E₆₆₅ − 5,76·E₆₄₉ · C_b = 25,8·E₆₄₉ − 7,60·E₆₆₅ · C_(a+b) = 25,1·E₆₅₄"}, {"n": 12, "pages": "50–53", "short": "Ферменти дихання", "tag": "пероксидаза · дегідрогенази", "title": "Дослідження ферментів дихання рослин", "model": "AH₂ + H₂O₂ → A + 2H₂O · МС (синій) ⇄ лейко-МС (безбарвний)"}, {"n": 13, "pages": "53–58", "short": "Антиоксидантна система", "tag": "СОД · аскорбат–глутатіон", "title": "Дослідження основних компонентів антиоксидантної системи рослин", "model": "O₂•⁻ → H₂O₂ → H₂O · GSH/GSSG · A = a·0,088·V/(m·n)"}, {"n": 14, "pages": "58–60", "short": "Іммобілізовані ферменти", "tag": "дифузія–реакція · Тіле", "title": "Застосування іммобілізованих ферментів та клітин у біотехнологічних процесах", "model": "φ = R·√(V/(Kₘ·D)) · η = 3(φ·cth φ − 1)/φ² · N = m·D/(a·V)"}, {"n": 15, "pages": "60–63", "short": "М’язове скорочення", "tag": "ковзання ниток · АТФ · лактат", "title": "Вивчення хімізму м’язового скорочення", "model": "F(L) · [Ca²⁺] → трономіозин → місткові цикли · КФ + АДФ → АТФ · піруват → лактат"}];
+const LABS = [{"n": 1, "pages": "6–10", "short": "Стаціонарний стан", "tag": "ентропія · μ̃ Na⁺", "title": "Вивчення стаціонарного стану термодинамічної системи та критеріїв його досягнення у біологічних системах", "model": "dS/dt = dᵢS/dt + dₑS/dt = 0 · μ̃ = μ⁰ + RT·ln c + zFφ"}, {"n": 2, "pages": "10–13", "short": "Ентальпія і рівновага", "tag": "Гесс · Ле Шательє", "title": "Ентальпія. Тепловий ефект біохімічної реакції", "model": "ΔH = Q_p · ln K = −ΔH/RT + ΔS/R · q = λ·ΔT/δ"}, {"n": 3, "pages": "13–18", "short": "Ліганди й кооперативність", "tag": "Хілл · порфірини", "title": "Вивчення принципів зв’язування лігандів з макромолекулами в біополімерах", "model": "Y = [L]ⁿ/(K₀,₅ⁿ + [L]ⁿ) · MWC · Mg²⁺ ⇄ 2H⁺ / Cu²⁺ / Zn²⁺ у порфіриновому ядрі"}, {"n": 4, "pages": "18–21", "short": "Потенціал спокою і дії", "tag": "Нернст · ГГК · Ходжкін–Хакслі", "title": "Вивчення механізмів формування потенціалу спокою і потенціалу дії на клітинній мембрані", "model": "Eᵢ = (RT/zF)·ln(cₒ/cᵢ) · V = (RT/F)·ln(ΣPcₒ/ΣPcᵢ) · C·dV/dt = −ΣI"}, {"n": 5, "pages": "21–23", "short": "Маркерні ферменти", "tag": "Фіске–Суббароу · центрифугування", "title": "Маркерні ензими плазматичної мембрани та ендомембран", "model": "A = ε·c·l · K = E₈₂₀/C_Фн · v_осідання = 2r²(ρ − ρ₀)ω²R/9η"}, {"n": 6, "pages": "23–27", "short": "Макроергічні сполуки", "tag": "ΔG′ · АТФ · енергетичний заряд", "title": "Макроергічні сполуки", "model": "ΔG = ΔG°′ + RT·ln([АДФ][Фн]/[АТФ]) · ЕЗ = ([АТФ] + ½[АДФ])/([АТФ]+[АДФ]+[АМФ])"}, {"n": 7, "pages": "27–32", "short": "Активатори й інгібітори", "tag": "Міхаеліс–Ментен · MWC · малонат", "title": "Вивчення шляхів активування та інгібування ферментів", "model": "v = Vmax[S]/(Kₘ(1 + [I]/Kᵢ) + [S]) · Y = [S]ⁿ/(K₀,₅ⁿ + [S]ⁿ)"}, {"n": 8, "pages": "32–36", "short": "Гліколіз і вуглеводи", "tag": "10 реакцій · баланс АТФ", "title": "Глюкоза як ключовий метаболіт обміну вуглеводів", "model": "C₆H₁₂O₆ + 2НАД⁺ + 2АДФ + 2Фн → 2 піруват + 2НАДН + 2АТФ · B = c·k/m"}, {"n": 9, "pages": "36–43", "short": "Цикл Кребса", "tag": "регуляція · мітка ¹⁴C", "title": "Вивчення механізмів регуляції циклу трикарбонових кислот", "model": "v = f(НАДН/НАД⁺, АТФ/АДФ, цитрат) · A = (D_к − D_д)·V/(ε·t·m)"}, {"n": 10, "pages": "43–48", "short": "Окисне фосфорилювання", "tag": "Мітчелл · дихальний контроль", "title": "Енергетичний обмін. Окисне фосфорилювання", "model": "Δp = Δψ − (2,3RT/F)·ΔpH · J(O₂) = f(АДФ, Δp) · P/O"}, {"n": 11, "pages": "48–50", "short": "Пігменти листка", "tag": "Бер–Ламберт · спектрофотометрія", "title": "Кількісне визначення пігментів листка", "model": "C_a = 13,7·E₆₆₅ − 5,76·E₆₄₉ · C_b = 25,8·E₆₄₉ − 7,60·E₆₆₅ · C_(a+b) = 25,1·E₆₅₄"}, {"n": 12, "pages": "50–53", "short": "Ферменти дихання", "tag": "пероксидаза · дегідрогенази", "title": "Дослідження ферментів дихання рослин", "model": "AH₂ + H₂O₂ → A + 2H₂O · МС (синій) ⇄ лейко-МС (безбарвний)"}, {"n": 13, "pages": "53–58", "short": "Антиоксидантна система", "tag": "СОД · аскорбат–глутатіон", "title": "Дослідження основних компонентів антиоксидантної системи рослин", "model": "O₂•⁻ → H₂O₂ → H₂O · GSH/GSSG · A = a·0,088·V/(m·n)"}, {"n": 14, "pages": "58–60", "short": "Іммобілізовані ферменти", "tag": "дифузія–реакція · Тіле", "title": "Застосування іммобілізованих ферментів та клітин у біотехнологічних процесах", "model": "φ = R·√(V/(Kₘ·D)) · η = 3(φ·cth φ − 1)/φ² · N = m·D/(a·V)"}, {"n": 15, "pages": "60–63", "short": "М’язове скорочення", "tag": "ковзання ниток · АТФ · лактат", "title": "Вивчення хімізму м’язового скорочення", "model": "F(L) · [Ca²⁺] → тропоміозин → місткові цикли · КФ + АДФ → АТФ · піруват → лактат"}];
 /* ============ CORE ============ */
 const $ = (s, r = document) => r.querySelector(s);
 function h(tag, attrs, ...kids) {
@@ -61,7 +61,7 @@ new MutationObserver(() => { Theme.read(); App.dirtyAll(); }).observe(document.d
 
 /* ---- canvas stage with DPR + resize ---- */
 class Stage {
-  constructor(parent, { aspect = 16 / 9, minH = 200, maxH = 520, tag = null, chart = false } = {}) {
+  constructor(parent, { aspect = 16 / 9, minH = 200, maxH = 520, tag = null, chart = false, minW = 0 } = {}) {
     this.wrap = h("div", { class: "stage" });
     this.cv = h("canvas");
     this.wrap.append(this.cv);
@@ -69,7 +69,7 @@ class Stage {
     parent.append(this.wrap);
     this.wrap._st = this;
     this.ctx = this.cv.getContext("2d");
-    this.aspect = aspect; this.minH = minH; this.maxH = maxH;
+    this.aspect = aspect; this.minH = minH; this.maxH = maxH; this.minW = minW;
     this.W = 300; this.H = 200; this.dirty = true;
     this.ro = new ResizeObserver(() => this.resize());
     this.ro.observe(this.wrap);
@@ -78,9 +78,15 @@ class Stage {
     this.cv.addEventListener("pointerleave", () => { this.mouse = null; this.dirty = true; });
   }
   resize() {
-    const w = this.wrap.clientWidth || 300;
+    const avail = this.wrap.clientWidth || 300, w = Math.max(innerWidth <= 700 ? this.minW : 0, avail), wide = w > avail + 1;
     const hh = Math.round(clamp(w / this.aspect, this.minH, this.maxH));
     const d = Math.min(2, window.devicePixelRatio || 1);
+    // складні схеми на вузьких екранах: полотно не стискається, а гортається вбік
+    this.cv.style.width = wide ? w + "px" : ""; this.wrap.classList.toggle("xscroll", wide);
+    if (wide && !this.hint) { this.hint = h("div", { class: "xhint" }, "↔ Проведіть схему вбік"); this.wrap.after(this.hint); }
+    if (this.hint) this.hint.hidden = !wide;
+    if (wide && !this.centered && this.wrap.clientWidth) { this.centered = true; this.wrap.scrollLeft = (w - avail) / 2; } // спершу показуємо середину схеми
+    if (!wide) this.centered = false;
     this.cv.style.height = hh + "px";
     this.cv.width = Math.round(w * d); this.cv.height = Math.round(hh * d);
     this.ctx.setTransform(d, 0, 0, d, 0, 0);
@@ -278,7 +284,16 @@ const Draw = {
   },
   text(c, s, x, y, { size = 11, color = Theme.c.muted, align = "left", base = "alphabetic", font = "mono", weight = "" } = {}) {
     c.font = `${weight} ${size}px ${getComputedStyle(document.body).getPropertyValue(font === "mono" ? "--f-mono" : font === "display" ? "--f-display" : "--f-body")}`;
-    c.fillStyle = color; c.textAlign = align; c.textBaseline = base; c.fillText(s, x, y);
+    c.fillStyle = color; c.textAlign = align; c.textBaseline = base;
+    // текст не виходить за межі полотна (вузькі екрани)
+    const tr = c.getTransform();
+    if (!tr.b && !tr.c && tr.a > 0) {
+      const wd = c.measureText(s).width * tr.a, cwd = c.canvas.width, pad = 2 * tr.a;
+      const l = tr.e + (align === "center" ? x - wd / tr.a / 2 : (align === "right" || align === "end") ? x - wd / tr.a : x) * tr.a;
+      let dx = 0; if (l + wd > cwd - pad) dx = cwd - pad - (l + wd); if (l + dx < pad) dx = pad - l;
+      x += dx / tr.a;
+    }
+    c.fillText(s, x, y);
   },
 };
 
@@ -331,6 +346,7 @@ const Gfx = {
     const size = o.size || 11; c.font = `${o.weight || 600} ${size}px ${FB()}`;
     const w = c.measureText(s).width + 14, hh = size + 9; let X = x;
     if (o.align === "center") X = x - w / 2; else if (o.align === "right") X = x - w;
+    { const tr = c.getTransform(); if (!tr.b && !tr.c && tr.a > 0) { const pad = 2 * tr.a, l = tr.e + X * tr.a, wd = w * tr.a; let dx = 0; if (l + wd > c.canvas.width - pad) dx = c.canvas.width - pad - (l + wd); if (l + dx < pad) dx = pad - l; X += dx / tr.a; } } // у межах полотна
     Gfx.rr(c, X, y - hh / 2, w, hh, hh / 2); c.fillStyle = o.bg || alpha(Theme.c.sheet.length === 7 ? Theme.c.sheet : "#ffffff", .92); c.fill();
     c.strokeStyle = o.stroke || Theme.c.rule; c.lineWidth = 1; c.stroke();
     c.fillStyle = o.fg || Theme.c.ink; c.textAlign = "left"; c.textBaseline = "middle"; c.fillText(s, X + 7, y + .5);
@@ -503,7 +519,7 @@ const App = {
     route();
     let last = performance.now();
     const loop = (t) => {
-      const dt = Math.min(0.05, (t - last) / 1000); last = t;
+      const dt = Math.max(0, Math.min(0.05, (t - last) / 1000)); last = t;
       const L = this.active;
       if (L && L.inst && !document.hidden) {
         let run = L.running, d = dt;

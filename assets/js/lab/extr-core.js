@@ -97,7 +97,7 @@ const tf = (v) => (Math.abs(v) >= 1000 ? String(Math.round(v)).replace(/\B(?=(\d
 const sims = new Set();
 let last = performance.now(), started = false;
 function loop(now) {
-  const dt = Math.min(.05, (now - last) / 1000); last = now;
+  const dt = Math.max(0, Math.min(.05, (now - last) / 1000)); last = now;
   if (!document.hidden) for (const s of sims) if (s.visible) s.tick(dt);
   requestAnimationFrame(loop);
 }
