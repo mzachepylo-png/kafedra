@@ -159,7 +159,7 @@ function drawChart(st, o) {
   if (o.yl) { c.save(); c.translate(11, Tp + ph / 2); c.rotate(-Math.PI / 2); c.textAlign = "center"; c.textBaseline = "middle"; c.fillText(o.yl, 0, 0); c.restore(); }
   if (o.legend) {
     let x = L + 8, y = Tp + 8; c.textAlign = "left"; c.textBaseline = "middle";
-    for (const g of o.legend) { c.fillStyle = g.color; c.fillRect(x, y - 1.5, 12, 3); c.fillStyle = T.ink; c.fillText(g.label, x + 16, y); x += c.measureText(g.label).width + 34; if (x > L + pw - 80) { x = L + 8; y += 15; } }
+    for (const g of o.legend) { if (x > L + 8 && x + 16 + c.measureText(g.label).width > st.W - 4) { x = L + 8; y += 15; } c.fillStyle = g.color; c.fillRect(x, y - 1.5, 12, 3); c.fillStyle = T.ink; c.fillText(g.label, x + 16, y); x += c.measureText(g.label).width + 34; if (x > L + pw - 80) { x = L + 8; y += 15; } }
   }
   return { X, Y, L, Tp, pw, ph, inv: (px) => { const t = (px - L) / pw; const v = lerp(x0, x1, t); return o.xlog ? Math.pow(10, v) : v; } };
 }

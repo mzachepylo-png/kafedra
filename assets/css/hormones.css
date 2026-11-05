@@ -214,6 +214,7 @@
 .amc .stats .stat:last-child{grid-column:auto}
 @media (pointer:coarse),(max-width:700px){
   .amc button{min-height:40px}
+  .amc summary{min-height:40px;display:flex;align-items:center}
   .amc input[type=range]{height:32px;touch-action:pan-y}
   .amc .toc a,.amc .toc--inline a{display:inline-flex;align-items:center;min-height:38px}
 }
