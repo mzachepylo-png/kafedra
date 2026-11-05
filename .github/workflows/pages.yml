@@ -40,9 +40,17 @@ jobs:
           npx --yes html-minifier-terser@7.2.0 --collapse-whitespace --remove-comments \
             --minify-css true --minify-js true --input-dir . --output-dir . --file-ext html
           for f in assets/css/*.css; do npx --yes clean-css-cli@5.6.3 -O1 -o "$f" "$f"; done
-          for f in assets/js/*.js; do npx --yes terser@5.36.0 "$f" -c -m -o "$f"; done
-          for f in assets/js/lab/*.js; do npx --yes terser@5.36.0 "$f" --module -c -m -o "$f"; done
-          for f in assets/js/lab/bio/*.js; do npx --yes terser@5.36.0 "$f" --module -c -m -o "$f"; done
+          # --module (перейменування змінних верхнього рівня) — лише для ES-модулів з import/export.
+          # Звичайні скрипти (plant-physiology.js + plant-physiology-2.js, bio/lab-*.js тощо) ділять
+          # глобальну область: з --module обидва отримують «const e…» і другий падає з SyntaxError.
+          for f in assets/js/*.js assets/js/lab/*.js assets/js/lab/bio/*.js; do
+            [ -f "$f" ] || continue
+            if grep -qE '^[[:space:]]*(import|export)[[:space:]{*]' "$f"; then
+              npx --yes terser@5.36.0 "$f" --module -c -m -o "$f"
+            else
+              npx --yes terser@5.36.0 "$f" -c -m -o "$f"
+            fi
+          done
 
       - uses: actions/upload-pages-artifact@v3
         with:
