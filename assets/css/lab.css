@@ -317,3 +317,11 @@ input[type="range"]:focus-visible::-webkit-slider-thumb { outline: 3px solid var
 .cp-gal--big { grid-template-columns: repeat(auto-fill, minmax(190px, 1fr)); }
 .cp-gal--big img { height: 210px; }
 
+
+/* ---- сенсорні екрани: зручніші цілі дотику (вигляд на ПК не змінюється) ---- */
+@media (pointer: coarse), (max-width: 700px) {
+  input[type="range"] { height: 38px; touch-action: pan-y; }
+  .seg button { min-height: 40px; }
+  .lab-section .btn--sm, .lab-section .btn--outline, .sim__bar .btn { min-height: 44px; }
+  .field input[type="checkbox"], .ctrl input[type="checkbox"] { width: 22px; height: 22px; }
+}

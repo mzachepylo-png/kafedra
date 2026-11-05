@@ -112,3 +112,9 @@
 .ps-plants--c3 { border-top: 4px solid #4CAF50; } .ps-plants--c3 li { border-left-color: #CFE8D0; }
 .ps-plants--c4 { border-top: 4px solid #DDBB4A; } .ps-plants--c4 li { border-left-color: #F1E3B0; }
 .ps-plants--cam { border-top: 4px solid #E8833A; } .ps-plants--cam li { border-left-color: #F6D2B5; }
+
+/* сенсорні екрани: зручніші цілі дотику */
+@media (pointer: coarse), (max-width: 700px) {
+  .ps-dots { gap: 8px; }
+  .ps-dots button { width: 38px; height: 38px; }
+}

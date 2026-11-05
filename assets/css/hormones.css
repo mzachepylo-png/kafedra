@@ -212,3 +212,9 @@
 .amc :where(.stats){position:static;margin-top:0;color:inherit}
 .amc :where(.stat){text-align:left;border-left:0;border-top:0}
 .amc .stats .stat:last-child{grid-column:auto}
+@media (pointer:coarse),(max-width:700px){
+  .amc button{min-height:40px}
+  .amc input[type=range]{height:32px;touch-action:pan-y}
+  .amc .toc a,.amc .toc--inline a{display:inline-flex;align-items:center;min-height:38px}
+}
+@media (pointer:coarse){.amc .chart canvas{touch-action:pan-y}}

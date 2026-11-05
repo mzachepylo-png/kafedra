@@ -89,3 +89,11 @@
 #cg-gel.seg { display: grid; grid-template-columns: 1fr; }
 .formula-grid .formula--wide { grid-column: 1 / -1; }
 .cmp thead th { background: #F4F1FC; color: #2A1E66; } .cmp tbody th { color: #2A1E66; }
+
+/* сенсорні екрани: зручніші цілі дотику; горизонтальне проведення по хроматограмі веде курсор, вертикальне — прокручує сторінку */
+#cg-chrom { touch-action: pan-y; }
+@media (pointer: coarse), (max-width: 700px) {
+  .cg__ctrl .seg button { min-height: 40px; }
+  .cg-check { min-height: 40px; }
+  .cg-check input { width: 22px; height: 22px; }
+}

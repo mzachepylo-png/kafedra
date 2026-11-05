@@ -92,3 +92,7 @@
 /* сумісність зі стилями сайту */
 :where(#qa-lab) h1,:where(#qa-lab) h2,:where(#qa-lab) h3,:where(#qa-lab) p{font-family:inherit;color:inherit;letter-spacing:normal}
 #qa-lab{margin-block:28px 8px}
+@media (pointer:coarse),(max-width:700px){
+  #qa-lab .qa-btn{min-height:44px}
+  #qa-lab .qa-seg button{min-height:44px;padding:7px 12px}
+}
