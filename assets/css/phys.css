@@ -1,0 +1,18 @@
+/* Статті розділу «Фізіологія рослин» (конспект): доповнення до extr.css */
+.page-hero--phys { background: radial-gradient(70% 120% at 88% 0%, rgba(80, 160, 190, .34), transparent 62%), radial-gradient(50% 90% at 6% 100%, rgba(120, 190, 90, .26), transparent 70%), linear-gradient(150deg, #07263A, #0C4A56 62%, #17604F); }
+.ex-article .cp-gal { margin: 18px 0; }
+.ph-dom { display: grid; gap: 14px; padding: 14px; }
+.ph-dom .ph-row { display: flex; flex-wrap: wrap; gap: 10px; align-items: center; }
+.ph-dom label { font-size: .86rem; font-weight: 600; display: grid; gap: 4px; color: var(--ink, #16221A); }
+.ph-dom input[type=number] { width: 100%; max-width: 120px; padding: 7px 8px; border: 1px solid var(--line, #C9D8CE); border-radius: 8px; font: inherit; }
+.ph-grid { display: grid; gap: 12px; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); }
+.ph-card { background: #fff; border: 1px solid var(--line, #C9D8CE); border-radius: 12px; padding: 12px 14px; }
+.ph-card b { display: block; font-size: .8rem; color: var(--muted, #6B7A70); font-weight: 600; margin-bottom: 4px; }
+.ph-card strong { font-size: 1.35rem; color: var(--green-700, #1D5A38); }
+.ph-card small { color: var(--muted, #6B7A70); }
+.ph-chips { display: flex; flex-wrap: wrap; gap: 8px; }
+.ph-chips button { border: 1px solid var(--line, #C9D8CE); background: #fff; border-radius: 999px; padding: 7px 13px; font: inherit; font-size: .84rem; font-weight: 600; cursor: pointer; }
+.ph-chips button[aria-pressed="true"] { background: var(--green-700, #1D5A38); color: #fff; border-color: transparent; }
+.ph-panel { background: #fff; border: 1px solid var(--line, #C9D8CE); border-radius: 14px; padding: 14px 16px; }
+.ph-panel h4 { margin: 0 0 6px; }
+.ph-panel svg { max-width: 100%; height: auto; }

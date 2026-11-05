@@ -142,7 +142,7 @@ class Sim {
   }
   setRun(on) { this.running = on; this.bPlay.textContent = on ? "⏸ Пауза" : "▶ Продовжити"; this.status.textContent = on ? "Модель працює" : "Пауза"; this.status.classList.toggle("on", on); this.bStep.disabled = on; }
   reset(keepRun) { this.S = this.def.init(this.P); this.t = 0; this.dirty = true; if (!keepRun) this.setRun(!REDUCED); }
-  resize() { const w = this.wrap.clientWidth || 600; const asp = this.def.aspect || 1.75; const h = Math.round(clamp(w / asp, 240, 560)); const d = Math.min(2, devicePixelRatio || 1); this.cv.style.height = h + "px"; this.cv.width = Math.round(w * d); this.cv.height = Math.round(h * d); this.ctx.setTransform(d, 0, 0, d, 0, 0); this.W = w; this.H = h; this.dirty = true; }
+  resize() { const w = this.wrap.clientWidth || 600; const asp = typeof this.def.aspect === "function" ? this.def.aspect(w) : (this.def.aspect || 1.75); const h = Math.round(clamp(w / asp, 240, 560)); const d = Math.min(2, devicePixelRatio || 1); this.cv.style.height = h + "px"; this.cv.width = Math.round(w * d); this.cv.height = Math.round(h * d); this.ctx.setTransform(d, 0, 0, d, 0, 0); this.W = w; this.H = h; this.dirty = true; }
   tick(dt) {
     let adv = 0;
     if (this.running) adv = dt * this.speed; else if (this.step1) { adv = 1 / 30; this.step1 = false; }
