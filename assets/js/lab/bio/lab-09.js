@@ -42,7 +42,7 @@ App.def(9, {
 
     /* ===================== A ===================== */
     const T = { s: 0, tok: [], nadh: 0, fadh: 0, gtp: 0, co2: 0, turns: 0, parts: [], carbon: "ch3", nTurn: 4 };
-    const stA = new Stage(A.st, { aspect: 1.9, minH: 350, maxH: 490, tag: "Цикл Кребса: матрикс мітохондрії" });
+    const stA = new Stage(A.st, { aspect: 1.9, minH: 350, maxH: 490, minW: 560, tag: "Цикл Кребса: матрикс мітохондрії" });
     const rdA = UI.reads(A.st, [["tr", "Обертів"], ["nadh", "НАДН"], ["fad", "ФАДН₂ / ГТФ"], ["co2", "CO₂ виділено"]]);
     UI.seg(A.ct, { label: "Мічений атом піровиноградної кислоти (¹⁴C)", value: "ch3", options: [["coo", "C1 (карбоксильний)"], ["co", "C2 (карбонільний)"], ["ch3", "C3 (метильний)"]], on: v => { T.carbon = v; } });
     UI.slider(A.ct, { id: "p9-n", label: "Кількість обертів для аналізу", min: 1, max: 6, step: 1, value: T.nTurn, on: v => T.nTurn = v });

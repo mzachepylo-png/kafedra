@@ -24,7 +24,7 @@ App.def(11, {
     const tru = () => { const L = LEAF[Q.leaf], f = Q.m * 1000 / Q.V / Q.dil; return { a: L.a * f, b: L.b * f, car: L.car * f }; }; // мкг/мл у кюветі
     const Aat = (l, c, sh = 0, noiseOn = false) => { let v = c.a * SPEC.a(l + sh) + c.b * SPEC.b(l + sh) + c.car * SPEC.car(l + sh); v = -Math.log10(Math.pow(10, -v) + Q.stray); return v + (noiseOn ? (Math.random() - .5) * 2 * Q.noise : 0); };
     function evalFormula(e665, e649, e654) { const Ca = 13.7 * e665 - 5.76 * e649, Cb = 25.8 * e649 - 7.6 * e665; return { Ca, Cb, sum1: Ca + Cb, sum2: 25.1 * e654 }; }
-    const stA = new Stage(A.st, { aspect: 1.9, minH: 340, maxH: 480, tag: "Спектрофотометр: екстракт у 96 % етанолі" });
+    const stA = new Stage(A.st, { aspect: 1.9, minH: 340, maxH: 480, minW: 500, tag: "Спектрофотометр: екстракт у 96 % етанолі" });
     const rdA = UI.reads(A.st, [["e", "E₆₆₅ / E₆₄₉ / E₆₅₄"], ["ca", "C(a) мкг/мл"], ["cb", "C(b) мкг/мл"], ["mg", "Хл (a+b), мг/г сирої маси"]]);
     UI.select(A.ct, { id: "p11-l", label: "Зразок листя", value: 0, options: LEAF.map((l, i) => [i, l.n]), on: v => Q.leaf = +v });
     UI.slider(A.ct, { id: "p11-m", label: "Наважка листя", min: .5, max: 4, step: .1, value: Q.m, unit: "г", on: v => Q.m = v, fmt: v => NA(v, 1) });

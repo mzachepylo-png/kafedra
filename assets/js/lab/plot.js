@@ -69,7 +69,11 @@ export class Plot {
     this.ro = new ResizeObserver(() => this.resize());
     this.ro.observe(host);
     this.canvas.addEventListener('pointermove', (e) => this.hover(e));
-    this.canvas.addEventListener('pointerleave', () => { this.hoverX = null; this.tip.hidden = true; this.draw(); });
+    // сенсорні екрани: підказка за дотиком (pointermove без руху не приходить) і не зникає, поки не торкнутися поза графіком
+    const clearHover = () => { this.hoverX = null; this.tip.hidden = true; this.draw(); };
+    this.canvas.addEventListener('pointerdown', (e) => { if (e.pointerType !== 'mouse') this.hover(e); });
+    this.canvas.addEventListener('pointerleave', (e) => { if (e.pointerType !== 'touch') clearHover(); });
+    document.addEventListener('pointerdown', (e) => { if (e.target !== this.canvas && this.hoverX != null) clearHover(); });
   }
 
   setOptions(o) { Object.assign(this.o, o); this.draw(); }
@@ -189,7 +193,7 @@ export class Plot {
       ctx.stroke(); ctx.setLineDash([]);
       if (g.label) {
         ctx.font = '600 11.5px system-ui, sans-serif'; ctx.fillStyle = g.color || '#8C6A10';
-        if (g.x !== undefined) { ctx.textAlign = 'left'; ctx.textBaseline = 'top'; ctx.fillText(g.label, X(g.x) + 4, m.t + 2); }
+        if (g.x !== undefined) { ctx.textBaseline = 'top'; const gx = X(g.x), flip = gx + 4 + ctx.measureText(g.label).width > w - 2; ctx.textAlign = flip ? 'right' : 'left'; ctx.fillText(g.label, flip ? gx - 4 : gx + 4, m.t + 2); }
         else { ctx.textAlign = 'right'; ctx.textBaseline = 'bottom'; ctx.fillText(g.label, m.l + pw - 4, Y(g.y) - 3); }
       }
     }

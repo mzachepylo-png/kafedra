@@ -154,7 +154,7 @@ App.add({
     function reset() { S.a = 1.5; S.t = 0; S.hist = [[0, S.a]]; S.inf = 0; S.infPlay = false; S.play = true; }
     reset();
     const rg = rng(14);
-    const st = new Stage(stageBox, { aspect: (stageBox.clientWidth || 700) < 560 ? 0.95 : 1.55, minH: 300, maxH: 460, tag: "Продихи й краплі" });
+    const st = new Stage(stageBox, { aspect: (stageBox.clientWidth || 700) < 560 ? 0.78 : 1.55, minH: 300, maxH: 460, tag: "Продихи й краплі" });
     const rd = UI.reads(stageBox, [["a", "Ширина щілини"], ["k", "K⁺ у замикальних клітинах"], ["tg", "Цільова ширина"], ["lq", "Рідина"], ["inf", "Пляма інфільтрації"], ["ac", "Критична ширина a_c"]]);
     UI.slider(ctrls, { id: "l14-l", label: "Освітленість (синє світло)", min: 0, max: 100, step: 5, value: S.light, unit: "%", on: v => { S.light = v; ch.dirty = true; } });
     UI.slider(ctrls, { id: "l14-k", label: "Калій у середовищі", min: 0, max: 60, step: 1, value: S.K, unit: "мМ", on: v => { S.K = v; ch.dirty = true; } });
@@ -185,7 +185,7 @@ App.add({
       const c = st.ctx, W = st.W, H = st.H, T = Theme.c; st.clear();
       const nar = W < 520, L = LIQ[S.liq];
       // епідерма
-      const ex = 10, ey = 12, ew = nar ? W - 20 : W * .6, eh = nar ? H * .55 : H - 24; const r = rng(7);
+      const ex = 10, ey = 12, ew = nar ? W - 20 : W * .6, eh = nar ? H * .45 : H - 24; const r = rng(7);
       c.save(); c.beginPath(); c.rect(ex, ey, ew, eh); c.clip();
       c.fillStyle = Theme.dark ? "#2e4026" : "#DDEBC8"; c.fillRect(ex, ey, ew, eh);
       for (let i = 0; i < 28; i++) { const px = ex + r() * ew, py = ey + r() * eh, rr = 24 + r() * 26; c.beginPath(); for (let k = 0; k < 9; k++) { const a = k / 9 * 6.283, rad = rr * (.8 + .35 * Math.sin(k * 2.7 + i)); const xx = px + Math.cos(a) * rad, yy = py + Math.sin(a) * rad * .8; k ? c.lineTo(xx, yy) : c.moveTo(xx, yy); } c.closePath(); c.strokeStyle = Theme.dark ? "rgba(160,200,130,.35)" : "rgba(95,140,70,.35)"; c.stroke(); }

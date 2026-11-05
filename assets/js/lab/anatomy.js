@@ -97,8 +97,13 @@ const HN={epid:'Епідерма з волосками — покривна',col
 function heroInit(){const hs=$('heroSvg'),tip=$('heroTip'),fg=hs.parentNode;let pinned=null;
  let hcur;const hl=t=>{if(t===hcur)return;hcur=t;hs.classList.toggle('hl',!!t);hs.querySelectorAll('.tz').forEach(g=>g.classList.toggle('on',g.dataset.t===t));document.querySelectorAll('#heroLegend button').forEach(b=>b.classList.toggle('on',b.dataset.t===t))};
  document.querySelectorAll('#heroLegend button').forEach(b=>{b.addEventListener('mouseenter',()=>hl(b.dataset.t));b.addEventListener('mouseleave',()=>hl(pinned));b.addEventListener('focus',()=>hl(b.dataset.t));b.addEventListener('blur',()=>hl(pinned));b.addEventListener('click',()=>{pinned=pinned===b.dataset.t?null:b.dataset.t;hl(pinned)})});
- hs.addEventListener('mousemove',e=>{const g=e.target.closest&&e.target.closest('.tz');if(!g){tip.style.opacity=0;hl(pinned);return}hl(g.dataset.t);const r=fg.getBoundingClientRect();tip.textContent=HN[g.dataset.t];tip.style.left=(e.clientX-r.left)+'px';tip.style.top=(e.clientY-r.top)+'px';tip.style.opacity=1});
- hs.addEventListener('mouseleave',()=>{tip.style.opacity=0;hl(pinned)})}
+ const show=e=>{const g=e.target.closest&&e.target.closest('.tz');if(!g){tip.style.opacity=0;hl(pinned);return}hl(g.dataset.t);const r=fg.getBoundingClientRect();tip.textContent=HN[g.dataset.t];tip.style.left=(e.clientX-r.left)+'px';tip.style.top=(e.clientY-r.top)+'px';tip.style.opacity=1};
+ let touchPtr=false; // дотик: підказка лишається, поки не торкнутись поза схемою
+ hs.addEventListener('pointerdown',e=>{touchPtr=e.pointerType!=='mouse';if(touchPtr)show(e)});
+ hs.addEventListener('pointermove',e=>{touchPtr=e.pointerType!=='mouse'});
+ hs.addEventListener('mousemove',show);
+ hs.addEventListener('mouseleave',()=>{if(touchPtr)return;tip.style.opacity=0;hl(pinned)});
+ document.addEventListener('pointerdown',e=>{if(e.pointerType!=='mouse'&&!hs.contains(e.target)){tip.style.opacity=0;hl(pinned)}})}
 
 /* ===== 1. МЕРИСТЕМИ ===== */
 function mitosis(st,c,r,a,R){const u=[Math.cos(a),Math.sin(a)],v=[-u[1],u[0]],Q=(s,t)=>[c[0]+u[0]*s+v[0]*t,c[1]+u[1]*s+v[1]*t];let o='';

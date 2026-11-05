@@ -19,7 +19,7 @@ App.def(6, {
       const atp = EC * A - d / 2, amp = A * (1 - EC) - d / 2; return { atp: Math.max(1e-6, atp), adp: Math.max(1e-6, d), amp: Math.max(1e-6, amp) };
     }
     function dG(atp, adp, pi, T) { return P.dG0 + R0 * (T + 273.15) * Math.log(Math.max(1e-9, adp * 1e-3 * pi * 1e-3) / Math.max(1e-9, atp * 1e-3)); }
-    const stA = new Stage(A.st, { aspect: 1.95, minH: 320, maxH: 460, tag: "АТФ + H₂O → АДФ + Фн" });
+    const stA = new Stage(A.st, { aspect: 1.95, minH: 320, maxH: 460, minW: 500, tag: "АТФ + H₂O → АДФ + Фн" });
     const rdA = UI.reads(A.st, [["atp", "[АТФ] / [АДФ] / [АМФ], мМ"], ["dG", "ΔG реальна"], ["dG0", "ΔG°′"], ["ec", "Енергетичний заряд"]]);
     UI.slider(A.ct, { id: "p6-ec", label: "Енергетичний заряд клітини", min: .3, max: .98, step: .01, value: P.EC, on: v => P.EC = v, fmt: v => NA(v, 2) });
     UI.slider(A.ct, { id: "p6-pool", label: "Пул аденілатів", min: 2, max: 15, step: .5, value: P.pool, unit: "мМ", on: v => P.pool = v, fmt: v => NA(v, 1) });

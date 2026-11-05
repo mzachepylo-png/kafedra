@@ -18,7 +18,7 @@ App.def(15, {
       if (L < 1.27) return 0; if (L < 1.67) return (L - 1.27) / .4 * .84; if (L < 2.0) return .84 + (L - 1.67) / .33 * .16; if (L <= 2.25) return 1; if (L < 3.65) return 1 - (L - 2.25) / 1.4; return 0;
     };
     const NH = 12; for (let i = 0; i < NH * 2; i++) S.heads.push({ st: 0, ph: Math.random() * 6, a: 0 });
-    const stA = new Stage(A.st, { aspect: 1.9, minH: 340, maxH: 480, tag: "Саркомер: тонкі (актин) і товсті (міозин) нитки" });
+    const stA = new Stage(A.st, { aspect: 1.9, minH: 340, maxH: 480, minW: 560, tag: "Саркомер: тонкі (актин) і товсті (міозин) нитки" });
     const rdA = UI.reads(A.st, [["L", "Довжина саркомера"], ["act", "Активація (Ca²⁺)"], ["f", "Сила, відн."], ["st", "Стан"]]);
     UI.slider(A.ct, { id: "p15-l", label: "Довжина саркомера в спокої", min: 1.4, max: 3.4, step: .05, value: S.L, unit: "мкм", on: v => { S.L0 = v; S.L = v; }, fmt: v => NA(v, 2) });
     UI.slider(A.ct, { id: "p15-ld", label: "Навантаження", min: 0, max: 1, step: .05, value: S.load, on: v => S.load = v, fmt: v => NA(v, 2) });
@@ -138,7 +138,7 @@ App.def(15, {
       [["№1 стандарт", Est], ["№2 дослід", Eds], ["№3 контроль (вода)", Eb]].forEach(([n, E], i) => { const x = W * (.1 + i * .22), tw = 38; Gfx.vial(c, x, H * .12, tw, H * .58, .66, col(E), {}); Gfx.text(c, n, x + tw / 2, H * .12 + H * .58 + 18, { align: "center", size: 10.5, weight: 700, color: T0.ink }); Gfx.text(c, "E = " + NA(E, 3), x + tw / 2, H * .12 + H * .58 + 36, { align: "center", size: 10.5, color: T0.muted }); });
       const Cd = Lq.std * (Eds - Eb) / (Est - Eb);
       Gfx.text(c, `C(д) = C(ст)·E(д)/E(ст) = ${NA(Lq.std, 1)}·${NA(Eds, 3)}/${NA(Est, 3)} = ${NA(Cd, 2)} мМ`, W * .05, H * .94, { size: 12.5, weight: 700, color: T0.ink });
-      const px = W * .74, py = H * .14; Gfx.text(c, "Норма (ориентири):", px, py, { size: 11, weight: 700, color: T0.ink }); ["спокій: 0,5–2 мМ", "навантаження: до 15–25 мМ", "ацидоз крові: > 4–5 мМ"].forEach((t, k) => Gfx.text(c, "• " + t, px, py + 18 + k * 16, { size: 10.5, color: T0.muted }));
+      const px = W * .74, py = H * .14; Gfx.text(c, "Норма (орієнтири):", px, py, { size: 11, weight: 700, color: T0.ink }); ["спокій: 0,5–2 мМ", "навантаження: до 15–25 мМ", "ацидоз крові: > 4–5 мМ"].forEach((t, k) => Gfx.text(c, "• " + t, px, py + 18 + k * 16, { size: 10.5, color: T0.muted }));
       rdC.set("Ed", NA(Eds, 3)); rdC.set("Est", NA(Est, 3)); rdC.set("C", NA(Cd, 2)); rdC.set("nm", Cd < 2 ? "норма" : Cd < 5 ? "підвищено" : "різко підвищено (ацидоз/навантаження)");
       const pts = []; for (let cc = 0; cc <= 25; cc += 1) pts.push([cc, e(cc)]); drawChart(cC, { x: [0, 25], y: [0, 1], xl: "C(лактату), мМ", yl: "E₄₉₀", series: [{ pts, color: "#8F3B22", w: 2.4 }], marks: [{ x: Cd, y: Eds, color: "#B8481A", label: "дослід" }, { x: Lq.std, y: Est, color: "#2C7A4D", label: "стандарт" }] });
     }

@@ -16,7 +16,7 @@ App.def(2, {
     const Kp = (T) => 12 * Math.exp(-(S.dH * 1000) / RG2 * (1 / (T + 273.15) - 1 / 293.15));
     const alEq = (T) => { const k = Kp(T); return k / (1 + k); };
     S.al = alEq(22);
-    const stA = new Stage(A.st, { aspect: 1.8, minH: 320, maxH: 470, tag: "Пробірка у водяній бані" });
+    const stA = new Stage(A.st, { aspect: 1.8, minH: 320, maxH: 470, minW: 500, tag: "Пробірка у водяній бані" });
     const rdA = UI.reads(A.st, [["tb", "T бані"], ["tt", "T пробірки"], ["al", "Частка комплексу"], ["K", "K′(T)"]]);
     UI.slider(A.ct, { id: "p2-dh", label: "ΔH реакції комплексоутворення", min: -90, max: -20, step: 5, value: S.dH, unit: "кДж/моль", on: v => { S.dH = v; } });
     UI.buttons(A.ct, [

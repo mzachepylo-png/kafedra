@@ -4,6 +4,7 @@ import { Plot, linspace, niceTicks, fmt } from './plot.js';
 import { sliders, segmented, setOut, num, sig, rng } from './ui.js';
 import { MODES, secKd, stokes, diffusion } from './chroma-data.js';
 import { simulate, plateHeight, program } from './chroma-engine.js';
+import './text-fit.js';
 
 const $ = (id) => document.getElementById(id);
 const REDUCED = matchMedia('(prefers-reduced-motion: reduce)').matches;
@@ -402,7 +403,9 @@ const column = (() => {
       const vin = r.prog.at(S.t);
       ctx.font = FONT; ctx.fillStyle = '#46584C';
       const cl = c.uniform ? `T = ${num(vin, 0)} °C` : `${shortCond(c.label)}: ${num(vin, c.digits ?? 0)}${c.unit ? ' ' + c.unit : ''}`;
-      ctx.fillText(cl, g.x0 + ctx.measureText(tl).width + 26, 18);
+      const cx0 = g.x0 + ctx.measureText(tl).width + 26;
+      if (cx0 + ctx.measureText(cl).width > w - 6) ctx.fillText(cl, g.x0, 35); // вузький екран: умови — другим рядком
+      else ctx.fillText(cl, cx0, 18);
     }
   }
   return { draw, setRun() { /* текстура залежить лише від виду */ }, fit: () => st.fit() };
@@ -433,7 +436,9 @@ const chrom = (() => {
   let hoverX = null;
   const st = hiCanvas(cv, (w) => clamp(Math.round(w / 2.6), 220, 320), () => draw());
   cv.addEventListener('pointermove', (e) => { const b = cv.getBoundingClientRect(); hoverX = e.clientX - b.left; draw(); });
-  cv.addEventListener('pointerleave', () => { hoverX = null; draw(); });
+  cv.addEventListener('pointerdown', (e) => { if (e.pointerType === 'mouse') return; const b = cv.getBoundingClientRect(); hoverX = e.clientX - b.left; draw(); });
+  cv.addEventListener('pointerleave', (e) => { if (e.pointerType === 'touch') return; hoverX = null; draw(); });
+  document.addEventListener('pointerdown', (e) => { if (e.target !== cv && hoverX != null) { hoverX = null; draw(); } });
   function draw() {
     const { ctx, w, h } = st;
     const r = S.run;
@@ -958,8 +963,9 @@ const micro = (() => {
     ctx.font = FONT;
     const out = [];
     if (P.mode === 'tlc' || P.mode === 'paper') {
-      const pwid = Math.min(w * (P.mode === 'tlc' ? 0.42 : 0.7), P.mode === 'tlc' ? 280 : 520), ph = h - 40;
-      const px = (w - pwid) / 2 - (w > 640 ? 80 : 0), py = 18;
+      const narrowTlc = P.mode === 'tlc' && w < 520; // телефон: вузька пластинка зліва, праворуч — місце для підписів
+      const pwid = narrowTlc ? Math.min(w * 0.32, 120) : Math.min(w * (P.mode === 'tlc' ? 0.42 : 0.7), P.mode === 'tlc' ? 280 : 520), ph = h - 40;
+      const px = narrowTlc ? 30 : (w - pwid) / 2 - (w > 640 ? 80 : 0), py = 18;
       // камера з елюентом
       ctx.fillStyle = 'rgba(46,120,200,.08)'; roundRect(ctx, px - 24, py - 6, pwid + 48, ph + 18, 14); ctx.fill();
       ctx.strokeStyle = 'rgba(46,120,200,.3)'; ctx.lineWidth = 1.5; ctx.stroke();

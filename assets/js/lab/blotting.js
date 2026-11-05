@@ -144,7 +144,7 @@ W.gantt = (root) => {
   const max = Math.max(...D.gantt.map(tot));
   m.innerHTML = `<div class="gn"><div class="gn__rows">${D.gantt.map((g) => `<div class="gn__row" data-id="${g.id}"><b>${g.name}</b><div class="gn__bar" style="--c:${g.col}">${g.steps.map((s, k) => `<button type="button" class="gn__seg" data-k="${k}" style="flex:${s[1]};min-width:3px" aria-label="${s[0]}: ${fmtT(s[1])}"><i style="height:${Math.max(18, (s[2] / s[1]) * 100)}%"></i></button>`).join('')}</div><span class="gn__tot">${fmtT(tot(g))}</span></div>`).join('')}</div>
     <div class="gn__axis" aria-hidden="true"><span>0</span><span>12 год</span><span>24 год</span><span>36 год</span><span>48 год</span></div>
-    <p class="gn__read" aria-live="polite">Наведіть курсор або клацніть на сегмент.</p></div>`;
+    <p class="gn__read" aria-live="polite">Наведіть курсор або торкніться сегмента.</p></div>`;
   const read = $('.gn__read', m);
   const info = (btn) => {
     const g = D.gantt.find((x) => x.id === btn.closest('.gn__row').dataset.id), s = g.steps[+btn.dataset.k];

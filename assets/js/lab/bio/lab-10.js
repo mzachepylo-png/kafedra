@@ -40,7 +40,7 @@ App.def(10, {
     for (let i = 0; i < 100; i++) stepE(.1);
 
     /* ============ A. Мембрана ============ */
-    const stA = new Stage(A.st, { aspect: 1.85, minH: 360, maxH: 500, tag: "Внутрішня мембрана мітохондрії" });
+    const stA = new Stage(A.st, { aspect: 1.85, minH: 360, maxH: 500, minW: 560, tag: "Внутрішня мембрана мітохондрії" });
     const rdA = UI.reads(A.st, [["dp", "Δp (протонрушійна сила)"], ["dpsi", "Δψ / 59·ΔpH"], ["o2", "Споживання O₂"], ["po", "P/O (АТФ на атом O)"]]);
     UI.seg(A.ct, { label: "Субстрат", value: "nadh", options: [["nadh", "НАДН-залежний (малат + глутамат)"], ["succ", "Сукцинат (ФАДН₂)"], ["both", "Обидва"], ["none", "Немає"]], on: v => { E.sub = v; } });
     UI.slider(A.ct, { id: "p10-adp", label: "[АДФ] у середовищі (підтримується)", min: 0, max: 400, step: 10, value: E.adp, unit: "мкМ", on: v => { E.adp = v; } });

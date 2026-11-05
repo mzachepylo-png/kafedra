@@ -27,7 +27,7 @@ App.def(13, {
       X.t += dts; if (X.t - X.last > .4) { X.last = X.t; X.hist.push([X.t, X.H, X.ASC / (X.ASC + X.MDHA + X.DHA), X.GSH / (X.GSH + 2 * X.GSSG + 1e-6), X.D]); if (X.hist.length > 300) X.hist.shift(); }
     }
     for (let i = 0; i < 400; i++) step(.1);
-    const stA = new Stage(A.st, { aspect: 1.9, minH: 350, maxH: 490, tag: "Знешкодження АФК у хлоропласті" });
+    const stA = new Stage(A.st, { aspect: 1.9, minH: 350, maxH: 490, minW: 560, tag: "Знешкодження АФК у хлоропласті" });
     const rdA = UI.reads(A.st, [["H", "H₂O₂ (відн.)"], ["asc", "АСК / (АСК + МДГА + ДГА)"], ["gsh", "GSH / (GSH + 2GSSG)"], ["dm", "Ушкодження мембран"]]);
     UI.slider(A.ct, { id: "p13-p", label: "Продукція АФК (стрес)", min: 0, max: 8, step: .25, value: P.P, on: v => P.P = v, fmt: v => NA(v, 2) + "×" });
     [["sod", "СОД"], ["cat", "Каталаза"], ["apx", "Аскорбатпероксидаза"], ["dhar", "ДГАР"], ["gr", "Глутатіонредуктаза"]].forEach(([k, l]) => UI.slider(A.ct, { id: "p13-" + k, label: l, min: 0, max: 2, step: .1, value: 1, on: v => P[k] = v, fmt: v => NA(v, 1) + "×" }));
@@ -47,7 +47,7 @@ App.def(13, {
       // мембрана тилакоїда внизу
       const my = H * .9; Gfx.bilayer(c, 0, W, my, 20, time, { s: 1.05, skip: x => false }); c.fillStyle = `rgba(179,54,58,${clamp(X.D * .5, 0, .5)})`; c.fillRect(0, my - 24, W, 48); Gfx.text(c, `мембрана тилакоїда · ушкодження ${NA(clamp(X.D * 20, 0, 100), 0)} %`, 12, my - 32, { size: 10.5, color: X.D > .5 ? "#B3363A" : T0.muted, weight: 700 });
       const node = (x, y, label, col, val, r0 = 14) => { const r = r0 + clamp(val, 0, 1.4) * 8; Gfx.glow(c, x, y, r * 2.2, col, .2); Gfx.sphere(c, x, y, r, col); Gfx.text(c, label, x, y + r + 15, { align: "center", size: 11, weight: 700, color: T0.ink }); Gfx.chip(c, NA(val, 2), x, y, { align: "center", size: 9.5 }); };
-      const arr = (a, b, col, flux, lab, off = 0) => { Gfx.arrow(c, a[0], a[1], b[0], b[1], { col, w: wid(flux), head: 9 }); if (lab) Gfx.chip(c, lab, (a[0] + b[0]) / 2 + off, (a[1] + b[1]) / 2 - 12, { align: "center", size: 9.5 }); };
+      const arr = (a, b, col, flux, lab, off = 0, dy = 0) => { Gfx.arrow(c, a[0], a[1], b[0], b[1], { col, w: wid(flux), head: 9 }); if (lab) Gfx.chip(c, lab, (a[0] + b[0]) / 2 + off, (a[1] + b[1]) / 2 - 12 + dy, { align: "center", size: 9.5 }); };
       // ліва частина: джерело та каскад
       const s0 = [W * .08, H * .2], O2m = [W * .2, H * .2], H2 = [W * .38, H * .2], H2O = [W * .38, H * .52];
       Gfx.text(c, "e⁻-витік ФС I, МТ", s0[0], s0[1] - 28, { align: "center", size: 10.5, color: T0.muted }); Gfx.sphere(c, s0[0], s0[1], 10, "#8A8A8A");
@@ -64,7 +64,7 @@ App.def(13, {
       node(ASC[0], ASC[1], "АСК", CA, X.ASC); node(MD[0], MD[1], "МДГА", CA, X.MDHA * 2, 10); node(DHA[0], DHA[1], "ДГА", CA, X.DHA * 2, 10);
       arr([ASC[0] + 22, ASC[1] + 6], [MD[0] - 12, MD[1] - 22], CA, f.apx, ""); arr([MD[0] - 10, MD[1] + 22], [ASC[0] + 10, ASC[1] + 26], CN, f.mdhar, "МДГАР + НАДФН", 36);
       arr([MD[0] - 14, MD[1] + 22], [DHA[0] + 16, DHA[1] - 14], CA, 1, "");
-      arr([DHA[0] - 24, DHA[1]], [GS[0] + 24, GS[1] + 14], CG, f.dhar, "ДГАР + 2GSH", -10);
+      arr([DHA[0] - 24, DHA[1]], [GS[0] + 24, GS[1] + 14], CG, f.dhar, "ДГАР + 2GSH", -18, 20);
       node(GS[0], GS[1], "GSH/GSSG", CG, X.GSH / (X.GSH + 2 * X.GSSG + 1e-6), 14);
       arr([GS[0] - 8, GS[1] - 24], [ASC[0] - 26, ASC[1] + 20], CN, f.gr, "ГР + НАДФН", -26);
       Gfx.sphere(c, cx, cy, 19, CN); Gfx.text(c, "НАДФН", cx, cy - 1, { align: "center", base: "middle", size: 9, color: "#fff", weight: 700 }); Gfx.chip(c, NA(X.N, 2), cx, cy + 32, { align: "center", size: 9.5 });

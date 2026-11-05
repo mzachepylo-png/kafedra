@@ -29,7 +29,7 @@ App.def(5, {
     function distrib() {
       const out = {}; for (const o of ORG) { let rem = 1; const row = []; for (let i = 0; i < 3; i++) { const f = o.r === 0 ? .03 : frac(o, ST[i].g, ST[i].t); const p = rem * f; row.push(p); rem -= p; } row.push(rem); out[o.k] = row; } return out;
     }
-    const stA = new Stage(A.st, { aspect: 2.0, minH: 330, maxH: 470, tag: "Ультрацентрифугування" });
+    const stA = new Stage(A.st, { aspect: 2.0, minH: 330, maxH: 470, minW: 560, tag: "Ультрацентрифугування" });
     const sel = { step: 0, tt: 0 };
     const rdA = UI.reads(A.st, [["g", "Прискорення"], ["rpm", "Оберти (ротор 8 см)"], ["pel", "Осад етапу"], ["pur", "Чистота маркера"]]);
     ST.forEach((s, i) => UI.slider(A.ct, { id: "p5-g" + i, label: `Етап ${i + 1}: g`, min: 100, max: i === 2 ? 200000 : 50000, step: 100, value: s.g, unit: "×g", on: v => { s.g = v; sel.step = i; sel.tt = 0; } }));
@@ -96,12 +96,12 @@ App.def(5, {
       const st = c => c;
       // стековані стовпці: кожен маркер — стовпець зі сегментами по фракціях
       const c = cA1.ctx, W = cA1.W, H = cA1.H, T0 = Theme.c; c.fillStyle = T0.sheet; c.fillRect(0, 0, W, H);
-      const L = 40, Rr = 8, Tp = 14, Bt = 92, pw = W - L - Rr, ph = H - Tp - Bt, n = ORG.length, bw = pw / n * .62, FC = ["#5B44A8", "#D1453B", "#3FA66A", "#B9C27A"];
+      const nar = W < 420, L = 40, Rr = nar ? 46 : 8, Tp = nar ? 30 : 14, Bt = nar ? 108 : 92, pw = W - L - Rr, ph = H - Tp - Bt, n = ORG.length, bw = pw / n * .62, FC = ["#5B44A8", "#D1453B", "#3FA66A", "#B9C27A"];
       c.font = `11px ${FM()}`; c.textAlign = "right"; c.textBaseline = "middle";
       for (let v = 0; v <= 100; v += 25) { const y = Tp + ph * (1 - v / 100); c.strokeStyle = rgba(T0.ink, .08); c.beginPath(); c.moveTo(L, y); c.lineTo(L + pw, y); c.stroke(); c.fillStyle = T0.muted; c.fillText(v, L - 6, y); }
       ORG.forEach((o, i) => { const x = L + pw / n * (i + .5) - bw / 2; let y = Tp + ph; d[o.k].forEach((v, j) => { const hh = v * ph; c.fillStyle = FC[j]; c.fillRect(x, y - hh, bw, hh); y -= hh; });
-        c.save(); c.translate(x + bw / 2, Tp + ph + 8); c.rotate(.5); c.fillStyle = T0.ink; c.textAlign = "left"; c.font = `10.5px ${FB()}`; c.fillText(o.ms || o.mk, 0, 6); c.restore(); });
-      let lx = L; names.forEach((nm, j) => { c.fillStyle = FC[j]; c.fillRect(lx, 2, 10, 8); c.fillStyle = T0.muted; c.textAlign = "left"; c.font = `10.5px ${FB()}`; c.fillText(nm, lx + 14, 7); lx += c.measureText(nm).width + 34; });
+        c.save(); c.translate(x + bw / 2, Tp + ph + 8); c.rotate(nar ? .9 : .5); c.fillStyle = T0.ink; c.textAlign = "left"; c.font = `10.5px ${FB()}`; c.fillText(o.ms || o.mk, 0, 6); c.restore(); });
+      let lx = L, ly = 7; names.forEach((nm, j) => { c.font = `10.5px ${FB()}`; const wn = c.measureText(nm).width; if (lx > L && lx + 14 + wn > W - 4) { lx = L; ly += 14; } c.fillStyle = FC[j]; c.fillRect(lx, ly - 5, 10, 8); c.fillStyle = T0.muted; c.textAlign = "left"; c.fillText(nm, lx + 14, ly); lx += wn + 34; });
     }
 
     /* ================= B. Фіске–Суббароу ================= */
