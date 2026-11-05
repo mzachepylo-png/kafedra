@@ -64,6 +64,13 @@ konspekt/plant-physiology/ion-transport/             — Транспорт іо
                                      HAK/KUP, SOS1/NHX, Ca²⁺-сигнали й сенсори, MSL/MCA, SLAC1/ALMT/CLC, NRT/PHT,
                                      H⁺-АТФази; бічна навігація з прогресом і пошуком, карта клітини, покажчик білків A–Z;
                                      42 фото — assets/img/ion/ (автор і ліцензія під кожним)
+konspekt/plant-physiology/<стаття>/  — п'ять статей за навчальним посібником «Фізіологія рослин», ч. ІІ (НУБіП, 2024):
+                                     water-regime (Водний режим рослин, 7 моделей), regulation (Системи регуляції у рослин, 6),
+                                     growth-development (Ріст і розвиток рослин, 7), excretion (Фізіологія виділення речовин, 4),
+                                     oxidative-stress (Резистентність рослин та окисний стрес, 3); у кожній — контрольні питання
+                                     й посилання на посібник наприкінці; рисунки з посібника — assets/img/phys/ (з підписом джерела);
+                                     моделі — assets/js/lab/phys-*.js (на ядрі extr-core.js), стилі — assets/css/phys.css;
+                                     сторінки генеруються скриптами-генераторами, а список розділу — konspekt/plant-physiology/index.html
 microscope/, modeling/             — переадресації зі старих адрес
 
 assets/css/style.css               — дизайн-система (кольори, типографіка, компоненти)
