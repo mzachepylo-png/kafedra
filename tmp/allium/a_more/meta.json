@@ -1,0 +1,357 @@
+{
+ "key": "a_more",
+ "candidates": [
+  {
+   "k": "a1",
+   "score": 22,
+   "pmcid": "PMC5264391",
+   "doi": "10.1038/srep40685",
+   "title": "Mitochondrial and Chromosomal Damage Induced by Oxidative Stress in Zn<sup>2+</sup> Ions, ZnO-Bulk and ZnO-NPs treated Allium cepa roots.",
+   "authors": [
+    {
+     "last": "Ahmed",
+     "initials": "B",
+     "first": "Bilal",
+     "full": "Ahmed B",
+     "collective": null
+    },
+    {
+     "last": "Dwivedi",
+     "initials": "S",
+     "first": "Sourabh",
+     "full": "Dwivedi S",
+     "collective": null
+    },
+    {
+     "last": "Abdin",
+     "initials": "MZ",
+     "first": "Malik Zainul",
+     "full": "Abdin MZ",
+     "collective": null
+    },
+    {
+     "last": "Azam",
+     "initials": "A",
+     "first": "Ameer",
+     "full": "Azam A",
+     "collective": null
+    },
+    {
+     "last": "Al-Shaeri",
+     "initials": "M",
+     "first": "Majed",
+     "full": "Al-Shaeri M",
+     "collective": null
+    },
+    {
+     "last": "Khan",
+     "initials": "MS",
+     "first": "Mohammad Saghir",
+     "full": "Khan MS",
+     "collective": null
+    },
+    {
+     "last": "Saquib",
+     "initials": "Q",
+     "first": "Quaiser",
+     "full": "Saquib Q",
+     "collective": null
+    },
+    {
+     "last": "Al-Khedhairy",
+     "initials": "AA",
+     "first": "Abdulaziz A",
+     "full": "Al-Khedhairy AA",
+     "collective": null
+    },
+    {
+     "last": "Musarrat",
+     "initials": "J",
+     "first": "Javed",
+     "full": "Musarrat J",
+     "collective": null
+    }
+   ],
+   "journal": "Scientific reports",
+   "journal_iso": "Sci Rep",
+   "volume": "7",
+   "issue": null,
+   "year": 2017,
+   "pages": "40685",
+   "license": "cc by",
+   "first_pub": "2017-01-25",
+   "fig_label": "Figure 2",
+   "caption": "Optical and confocal microscopic analyses of chromosomal damage in A. cepa root meristem cells. Chromosomal aberrations induced by ZnO-NPs, ZnO-Bulk, and Zn 2+ ions in A. cepa root meristem cells at different cell division stages are shown as: normal metaphase (A1), sticky metaphase (A2–A5), normal metaphase (B1), sticky metaphase (B2), sticky metaphase with loop (B3), sticky metaphase with laggard chromosome(B4), and disoriented metaphase (B5), normal anaphase (C1), chromosome bridges with lag (C2,C3), broken chromosome bridge (C4), single chromosome bridge (C5), normal anaphase (D1), sticky multipolar anaphase (D2), multipolar anaphase with chromosome bridges (D3), multipolar anaphase (D4), multipolar anaphase with single chromosome bridge (D5). EMS (10 mM) was taken as a positive control. (All images were at 1000X magnification).",
+   "href": "srep40685-f2.jpg",
+   "img_url": "https://cdn.ncbi.nlm.nih.gov/pmc/blobs/f7c2/5264391/f4a3cfc15487/srep40685-f2.jpg",
+   "orig_size": [
+    700,
+    461
+   ]
+  },
+  {
+   "k": "a2",
+   "score": 6,
+   "pmcid": "PMC5264391",
+   "doi": "10.1038/srep40685",
+   "title": "Mitochondrial and Chromosomal Damage Induced by Oxidative Stress in Zn<sup>2+</sup> Ions, ZnO-Bulk and ZnO-NPs treated Allium cepa roots.",
+   "authors": [
+    {
+     "last": "Ahmed",
+     "initials": "B",
+     "first": "Bilal",
+     "full": "Ahmed B",
+     "collective": null
+    },
+    {
+     "last": "Dwivedi",
+     "initials": "S",
+     "first": "Sourabh",
+     "full": "Dwivedi S",
+     "collective": null
+    },
+    {
+     "last": "Abdin",
+     "initials": "MZ",
+     "first": "Malik Zainul",
+     "full": "Abdin MZ",
+     "collective": null
+    },
+    {
+     "last": "Azam",
+     "initials": "A",
+     "first": "Ameer",
+     "full": "Azam A",
+     "collective": null
+    },
+    {
+     "last": "Al-Shaeri",
+     "initials": "M",
+     "first": "Majed",
+     "full": "Al-Shaeri M",
+     "collective": null
+    },
+    {
+     "last": "Khan",
+     "initials": "MS",
+     "first": "Mohammad Saghir",
+     "full": "Khan MS",
+     "collective": null
+    },
+    {
+     "last": "Saquib",
+     "initials": "Q",
+     "first": "Quaiser",
+     "full": "Saquib Q",
+     "collective": null
+    },
+    {
+     "last": "Al-Khedhairy",
+     "initials": "AA",
+     "first": "Abdulaziz A",
+     "full": "Al-Khedhairy AA",
+     "collective": null
+    },
+    {
+     "last": "Musarrat",
+     "initials": "J",
+     "first": "Javed",
+     "full": "Musarrat J",
+     "collective": null
+    }
+   ],
+   "journal": "Scientific reports",
+   "journal_iso": "Sci Rep",
+   "volume": "7",
+   "issue": null,
+   "year": 2017,
+   "pages": "40685",
+   "license": "cc by",
+   "first_pub": "2017-01-25",
+   "fig_label": "Figure 3",
+   "caption": "SEM micrographs showing ZnO-NPs deposition and tissue damage after exposure of A. cepa roots with ZnO-NPs. Panel (A and B) shows untreated control root tip and surface. Panel C, and D depict the tip and surface of ZnO-NPs (1000 μg/ml) treated roots at 50 and 10 μm scale, respectively. The attachment of nanometer scale charged particles, fissures and fractured tissues at root surface are shown by arrows (D inset).",
+   "href": "srep40685-f3.jpg",
+   "img_url": "https://cdn.ncbi.nlm.nih.gov/pmc/blobs/f7c2/5264391/781b80278f60/srep40685-f3.jpg",
+   "orig_size": [
+    787,
+    545
+   ]
+  },
+  {
+   "k": "a3",
+   "score": 6,
+   "pmcid": "PMC5264391",
+   "doi": "10.1038/srep40685",
+   "title": "Mitochondrial and Chromosomal Damage Induced by Oxidative Stress in Zn<sup>2+</sup> Ions, ZnO-Bulk and ZnO-NPs treated Allium cepa roots.",
+   "authors": [
+    {
+     "last": "Ahmed",
+     "initials": "B",
+     "first": "Bilal",
+     "full": "Ahmed B",
+     "collective": null
+    },
+    {
+     "last": "Dwivedi",
+     "initials": "S",
+     "first": "Sourabh",
+     "full": "Dwivedi S",
+     "collective": null
+    },
+    {
+     "last": "Abdin",
+     "initials": "MZ",
+     "first": "Malik Zainul",
+     "full": "Abdin MZ",
+     "collective": null
+    },
+    {
+     "last": "Azam",
+     "initials": "A",
+     "first": "Ameer",
+     "full": "Azam A",
+     "collective": null
+    },
+    {
+     "last": "Al-Shaeri",
+     "initials": "M",
+     "first": "Majed",
+     "full": "Al-Shaeri M",
+     "collective": null
+    },
+    {
+     "last": "Khan",
+     "initials": "MS",
+     "first": "Mohammad Saghir",
+     "full": "Khan MS",
+     "collective": null
+    },
+    {
+     "last": "Saquib",
+     "initials": "Q",
+     "first": "Quaiser",
+     "full": "Saquib Q",
+     "collective": null
+    },
+    {
+     "last": "Al-Khedhairy",
+     "initials": "AA",
+     "first": "Abdulaziz A",
+     "full": "Al-Khedhairy AA",
+     "collective": null
+    },
+    {
+     "last": "Musarrat",
+     "initials": "J",
+     "first": "Javed",
+     "full": "Musarrat J",
+     "collective": null
+    }
+   ],
+   "journal": "Scientific reports",
+   "journal_iso": "Sci Rep",
+   "volume": "7",
+   "issue": null,
+   "year": 2017,
+   "pages": "40685",
+   "license": "cc by",
+   "first_pub": "2017-01-25",
+   "fig_label": "Figure 4",
+   "caption": "TEM micrographs showing internalization and sub-cellular damage in A. cepa root meristem cells upon exposure with ZnO-NPs. Untreated cell showing normal architecture of nucleus (N), nucleolus (n), integrated mitochondria (M), intact nuclear membrane (N m), vacuoles (V), plasmodesmata (P) (panel A and B). Triangular periplasmic space is clearly visible in untreated cell (panel B). Magnified view of nuclear matrix and nucleolus of untreated cell (panel C and D). Images of roots treated with ZnO-NPs (1000 μg/ml) showing the influx of ZnO-NPs in cytoplasm and attachment to the vacuoles (panel E). Yellow arrow heads showing degeneration of nuclear constituents and significant swelling of mitochondria while red arrows and arrow heads showing attachment of ZnO-NPs onto the nuclear membrane and infiltration of ZnO-NPs in intracellular junctions (panel F). Analysis was performed at 200 keV. Magnified view showing the sequesteration of ZnO-NPs on nuclear membrane (panel G). Distribution of ZnO-NPs in cytoplasmic matrix (panel H). Magnification for images (panel A) 10,000x, (panel B) 30,000x, (panel C) 12,000x, (panel D) 20,000x, (panel E) 15,000x, (panel E inset) 20,000x, (panel F) 15,000x, (panel G) 20,000x, (panel G inset) 30,000x, (panel H) 20,000x, and (panel H inset) 25,000x.",
+   "href": "srep40685-f4.jpg",
+   "img_url": "https://cdn.ncbi.nlm.nih.gov/pmc/blobs/f7c2/5264391/ee2b05cab3d4/srep40685-f4.jpg",
+   "orig_size": [
+    787,
+    1066
+   ]
+  },
+  {
+   "k": "a4",
+   "score": 8,
+   "pmcid": "PMC5264391",
+   "doi": "10.1038/srep40685",
+   "title": "Mitochondrial and Chromosomal Damage Induced by Oxidative Stress in Zn<sup>2+</sup> Ions, ZnO-Bulk and ZnO-NPs treated Allium cepa roots.",
+   "authors": [
+    {
+     "last": "Ahmed",
+     "initials": "B",
+     "first": "Bilal",
+     "full": "Ahmed B",
+     "collective": null
+    },
+    {
+     "last": "Dwivedi",
+     "initials": "S",
+     "first": "Sourabh",
+     "full": "Dwivedi S",
+     "collective": null
+    },
+    {
+     "last": "Abdin",
+     "initials": "MZ",
+     "first": "Malik Zainul",
+     "full": "Abdin MZ",
+     "collective": null
+    },
+    {
+     "last": "Azam",
+     "initials": "A",
+     "first": "Ameer",
+     "full": "Azam A",
+     "collective": null
+    },
+    {
+     "last": "Al-Shaeri",
+     "initials": "M",
+     "first": "Majed",
+     "full": "Al-Shaeri M",
+     "collective": null
+    },
+    {
+     "last": "Khan",
+     "initials": "MS",
+     "first": "Mohammad Saghir",
+     "full": "Khan MS",
+     "collective": null
+    },
+    {
+     "last": "Saquib",
+     "initials": "Q",
+     "first": "Quaiser",
+     "full": "Saquib Q",
+     "collective": null
+    },
+    {
+     "last": "Al-Khedhairy",
+     "initials": "AA",
+     "first": "Abdulaziz A",
+     "full": "Al-Khedhairy AA",
+     "collective": null
+    },
+    {
+     "last": "Musarrat",
+     "initials": "J",
+     "first": "Javed",
+     "full": "Musarrat J",
+     "collective": null
+    }
+   ],
+   "journal": "Scientific reports",
+   "journal_iso": "Sci Rep",
+   "volume": "7",
+   "issue": null,
+   "year": 2017,
+   "pages": "40685",
+   "license": "cc by",
+   "first_pub": "2017-01-25",
+   "fig_label": "Figure 5",
+   "caption": "CLSM images of intracellular ROS generation and dissipation of mitochondrial membrane potential in A. cepa root after exposure with ZnO-NPs. Panels show the untreated control (UC) and treated roots with varying concentrations of ZnO-Bulk (panel A), ZnO-NPs (panel B) and Zn 2+ (panel C) stained with 25 μM DCFH-DA. Corresponding bar diagrams represent the % increase in DCF fluorescence of root meristem cells in UC and treated with ZnO-NPs, ZnO-Bulk, and Zn 2+ ions. CLSM images show the changes in mitochondrial membrane potential (ΔΨm) in A. cepa UC roots and those treated with varying concentrations of ZnO-Bulk (panel D), ZnO-NPs (panel E) and Zinc ions (panel F) after staining with Rhodamine123 (1 μg/ml). Dotted, dashed, and solid white color rectangular outlines denote the root elongation zone, meristematic region, and root tip, respectively.",
+   "href": "srep40685-f5.jpg",
+   "img_url": "https://cdn.ncbi.nlm.nih.gov/pmc/blobs/f7c2/5264391/eb1d742f546c/srep40685-f5.jpg",
+   "orig_size": [
+    787,
+    469
+   ]
+  }
+ ]
+}
