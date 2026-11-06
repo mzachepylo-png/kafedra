@@ -8,6 +8,7 @@ import unittest
 
 from store import (History, Preset, PresetError, Settings, default_preset_path, history_path,
                    migrate_legacy, open_startup_preset)
+from formats import apply_format, format_link_user
 from winsys import acquire_single_instance, hotkey_label, parse_hotkey
 
 
@@ -89,12 +90,12 @@ class PresetTests(TmpCase):
     def test_persist_roundtrip_unicode_and_reserved_formats(self):
         a = self.pr.add_category("Шаблони 🌍")
         self.pr.add_snippet(a["id"], "Привіт, світе 🌍")
-        self.pr.formats = [{"name": "future"}]
+        self.pr.formats.append({"id": "f2", "name": "future", "type": "from-newer-version", "color": "#112233"})
         self.pr.save()
         again = Preset.open(self.path)
         self.assertEqual(again.categories[0]["name"], "Шаблони 🌍")
         self.assertEqual(again.categories[0]["snippets"][0]["text"], "Привіт, світе 🌍")
-        self.assertEqual(again.formats, [{"name": "future"}])
+        self.assertEqual([f["name"] for f in again.formats], ["USER", "future"])   # невідомий формат не губиться
         with open(self.path, encoding="utf-8") as f:
             data = json.load(f)
         self.assertEqual(data["format"], "clipboard-memory-preset")
@@ -151,6 +152,122 @@ class PresetTests(TmpCase):
         self.assertEqual(self.pr.import_from(other.path), (1, 2))
         self.assertEqual([s["text"] for s in self.pr.snippets(a["id"])], ["same", "extra"])
         self.assertEqual(self.pr.import_from(other.path), (0, 0))   # повторний імпорт нічого не додає
+
+
+class ColorAndRenameTests(TmpCase):
+    def setUp(self):
+        super().setUp()
+        self.pr = Preset.open_or_create(self.p("work.preset.json"))
+        self.cat = self.pr.add_category("A")
+        self.s1 = self.pr.add_snippet(self.cat["id"], "one")
+        self.s2 = self.pr.add_snippet(self.cat["id"], "two")
+
+    def test_category_color_applies_to_all_its_snippets(self):
+        self.assertTrue(self.pr.set_category_color(self.cat["id"], "#AA0000"))
+        colors = {s["text"]: s["color"] for s in self.pr.snippets(self.cat["id"])}
+        self.assertEqual(colors, {"one": "#aa0000", "two": "#aa0000"})
+        new = self.pr.add_snippet(self.cat["id"], "three")           # нові записи підхоплюють колір папки
+        self.assertEqual(self.pr.snippets(self.cat["id"])[-1]["color"], "#aa0000")
+        self.assertIsNone(self.pr.snippets(self.cat["id"])[-1]["own_color"])
+
+    def test_snippet_color_overrides_and_survives_folder_color_change(self):
+        self.pr.set_snippet_color(self.s1["id"], "#00AA00")
+        self.pr.set_category_color(self.cat["id"], "#0000ff")
+        by = {s["text"]: s for s in self.pr.snippets(self.cat["id"])}
+        self.assertEqual((by["one"]["color"], by["one"]["own_color"]), ("#00aa00", "#00aa00"))
+        self.assertEqual((by["two"]["color"], by["two"]["own_color"]), ("#0000ff", None))
+        again = Preset.open(self.pr.path)                              # збереглось у файлі
+        self.assertEqual(again.snippets(self.cat["id"])[0]["own_color"], "#00aa00")
+        self.pr.set_snippet_color(self.s1["id"], None)                 # скидання → знову колір папки
+        self.assertEqual(self.pr.snippets(self.cat["id"])[0]["color"], "#0000ff")
+
+    def test_invalid_colors_rejected(self):
+        for bad in ("red", "#12345", "#gggggg", "", None, 5):
+            self.assertFalse(self.pr.set_category_color(self.cat["id"], bad), bad)
+            self.assertFalse(self.pr.set_format_color("builtin-user", bad), bad)
+        self.assertFalse(self.pr.set_snippet_color(self.s1["id"], "nope"))
+        self.assertFalse(self.pr.set_snippet_color("missing", "#112233"))
+
+    def test_builtin_user_format_exists_and_color_persists(self):
+        self.assertEqual([(f["name"], f["type"]) for f in self.pr.formats], [("USER", "link_user")])
+        self.assertTrue(self.pr.set_format_color("builtin-user", "#ff8800"))
+        self.assertEqual(Preset.open(self.pr.path).format("builtin-user")["color"], "#ff8800")
+
+    def test_old_preset_without_formats_gets_user_format(self):
+        with open(self.p("old.preset.json"), "w", encoding="utf-8") as f:
+            f.write('{"format": "clipboard-memory-preset", "version": 1, "categories": []}')
+        self.assertEqual(Preset.open(self.p("old.preset.json")).format("builtin-user")["name"], "USER")
+
+    def test_import_keeps_snippet_colors(self):
+        other = Preset.open_or_create(self.p("o.preset.json"))
+        oc = other.add_category("Нова")
+        sn = other.add_snippet(oc["id"], "x")
+        other.set_snippet_color(sn["id"], "#123456")
+        self.pr.import_from(other.path)
+        mine = next(c for c in self.pr.categories if c["name"] == "Нова")
+        self.assertEqual(mine["snippets"][0]["color"], "#123456")
+
+    def test_rename_preset_renames_file_too(self):
+        old = self.pr.path
+        self.assertEqual(self.pr.rename("  Робочі   копіпасти "), "Робочі копіпасти")
+        self.assertEqual(self.pr.name, "Робочі копіпасти")
+        self.assertEqual(os.path.basename(self.pr.path), "Робочі копіпасти.preset.json")
+        self.assertFalse(os.path.exists(old))
+        again = Preset.open(self.pr.path)
+        self.assertEqual((again.name, len(again.snippets())), ("Робочі копіпасти", 2))
+        self.assertFalse(self.pr.changed_on_disk())                    # власне перейменування не «зовнішня зміна»
+
+    def test_rename_name_only_keeps_file(self):
+        old = self.pr.path
+        self.pr.rename("Інша назва", rename_file=False)
+        self.assertEqual(self.pr.path, old)
+        self.assertEqual(Preset.open(old).name, "Інша назва")
+
+    def test_rename_rejects_bad_names_and_collisions(self):
+        for bad in ("", "   ", '<>:"/\\|?*'):
+            with self.assertRaises(PresetError):
+                self.pr.rename(bad)
+        Preset.open_or_create(self.p("busy.preset.json"))
+        with self.assertRaises(PresetError):
+            self.pr.rename("busy")
+        self.assertEqual(self.pr.name, "work")                          # не змінилось
+        self.assertEqual(os.path.basename(self.pr.path), "work.preset.json")
+
+    def test_rename_strips_forbidden_filename_characters(self):
+        self.pr.rename('A/B:C*D?')
+        self.assertEqual(os.path.basename(self.pr.path), "ABCD.preset.json")
+        self.assertEqual(self.pr.name, "A/B:C*D?")      # назва для показу лишається як ввів користувач
+
+
+class FormatTests(unittest.TestCase):
+    def test_user_format_examples_from_the_spec(self):
+        f = format_link_user
+        self.assertEqual(f("12334512"), "{LINK:USER:12334512:E}")
+        self.assertEqual(f("123123 325413 1232154"),
+                         "{LINK:USER:123123:E}, {LINK:USER:325413:E}, {LINK:USER:1232154:E}")
+        self.assertEqual(f("1242145, 125412412 51325"),
+                         "{LINK:USER:1242145:E}, {LINK:USER:125412412:E}, {LINK:USER:51325:E}")
+        self.assertEqual(f("53125, 1254125, 12634634, 26243423"),
+                         "{LINK:USER:53125:E}, {LINK:USER:1254125:E}, {LINK:USER:12634634:E}, {LINK:USER:26243423:E}")
+        self.assertEqual(f("User#12312421"), "{LINK:USER:12312421:E}")
+        self.assertEqual(f("User#12312421, User#23414132, User#1254124365"),
+                         "{LINK:USER:12312421:E}, {LINK:USER:23414132:E}, {LINK:USER:1254124365:E}")
+        self.assertEqual(f("User#7876976 User#67976, User#67987690"),
+                         "{LINK:USER:7876976:E}, {LINK:USER:67976:E}, {LINK:USER:67987690:E}")
+        self.assertEqual(f("123, User#45312  23512"),
+                         "{LINK:USER:123:E}, {LINK:USER:45312:E}, {LINK:USER:23512:E}")
+
+    def test_user_format_robustness(self):
+        f = format_link_user
+        self.assertEqual(f("  1\n2\r\n\t3 ,, 4;5  "), ", ".join("{LINK:USER:%d:E}" % n for n in range(1, 6)))
+        self.assertEqual(f("user#007"), "{LINK:USER:007:E}")            # ведучі нулі зберігаються
+        self.assertEqual(f(""), "")
+        self.assertEqual(f("немає чисел, User#"), "")
+        self.assertEqual(f(None), "")
+
+    def test_apply_format_dispatch(self):
+        self.assertEqual(apply_format("link_user", "5"), "{LINK:USER:5:E}")
+        self.assertEqual(apply_format("unknown", "5"), "")
 
 
 class HistoryTests(TmpCase):
@@ -256,6 +373,19 @@ class SettingsTests(TmpCase):
         self.assertEqual(s["recent_presets"], ["a", "b"])
         self.assertEqual(Settings(self.p("settings.json"))["preset_path"], "a")
         self.assertEqual(Settings(self.p("other.json"))["recent_presets"], [])   # дефолти не спільні
+
+
+class SettingsPathTests(TmpCase):
+    def test_replace_preset_path_updates_current_and_recent(self):
+        s = Settings(self.p("s.json"))
+        s.remember_preset("/a/old.preset.json")
+        s.remember_preset("/b/other.preset.json")
+        s.remember_preset("/a/old.preset.json")
+        s.replace_preset_path("/a/old.preset.json", "/a/new.preset.json")
+        self.assertEqual(s["preset_path"], "/a/new.preset.json")
+        self.assertEqual(s["recent_presets"], ["/a/new.preset.json", "/b/other.preset.json"])
+        s.replace_preset_path("/b/other.preset.json", "/b/renamed.preset.json")   # поточний не чіпається
+        self.assertEqual(s["preset_path"], "/a/new.preset.json")
 
 
 class HotkeyTests(unittest.TestCase):

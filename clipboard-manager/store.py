@@ -11,6 +11,7 @@ from __future__ import annotations
 
 import json
 import os
+import re
 import shutil
 import time
 import uuid
@@ -22,6 +23,9 @@ PRESET_FORMAT = "clipboard-memory-preset"
 PRESET_VERSION = 1
 PRESET_SUFFIX = ".preset.json"
 HISTORY = "__history__"      # «Історія буфера» — віртуальна вкладка (не категорія пресета)
+MAX_PRESET_NAME = 60
+COLOR_RE = re.compile(r"^#[0-9a-fA-F]{6}$")
+BUILTIN_FORMATS = [{"id": "builtin-user", "name": "USER", "type": "link_user", "color": "#0f6cbd"}]
 PALETTE = ["#0f6cbd", "#107c10", "#c239b3", "#d83b01", "#8764b8", "#038387", "#986f0b", "#e3008c"]
 
 
@@ -79,6 +83,14 @@ class Preset:
         self.categories: list[dict] = []
         self.formats: list[dict] = []
         self._mtime: int | None = None
+        self._ensure_builtin_formats()
+
+    def _ensure_builtin_formats(self) -> None:
+        """Вбудовані формати (зараз USER) є в кожному пресеті; свій колір формату зберігається."""
+        have = {f["id"] for f in self.formats}
+        for f in BUILTIN_FORMATS:
+            if f["id"] not in have:
+                self.formats.append(dict(f))
 
     # -- відкриття / створення ----------------------------------------------
     @classmethod
@@ -116,15 +128,23 @@ class Preset:
             if cid in seen:
                 continue
             seen.add(cid)
-            snippets = [
-                {"id": str(s.get("id") or uuid.uuid4().hex), "text": s["text"], "ts": float(s.get("ts", time.time()))}
-                for s in c.get("snippets", []) if isinstance(s, dict) and isinstance(s.get("text"), str)
-            ]
+            snippets = []
+            for s in c.get("snippets", []):
+                if isinstance(s, dict) and isinstance(s.get("text"), str):
+                    snip = {"id": str(s.get("id") or uuid.uuid4().hex), "text": s["text"],
+                            "ts": float(s.get("ts", time.time()))}
+                    if _color_ok(s.get("color")):
+                        snip["color"] = s["color"]       # власний колір запису (має пріоритет над кольором папки)
+                    snippets.append(snip)
             cats.append({"id": cid, "name": str(c["name"])[:MAX_CATEGORY_NAME],
-                         "color": str(c.get("color") or PALETTE[n % len(PALETTE)]), "snippets": snippets})
+                         "color": c["color"] if _color_ok(c.get("color")) else PALETTE[n % len(PALETTE)],
+                         "snippets": snippets})
         self.categories = cats
-        self.formats = [f for f in data.get("formats", []) if isinstance(f, dict)]
-        self.name = str(data.get("name") or _stem(self.path))
+        self.formats = [dict(f, color=f["color"] if _color_ok(f.get("color")) else PALETTE[0])
+                        for f in data.get("formats", [])
+                        if isinstance(f, dict) and f.get("id") and f.get("name")]   # невідомі типи не губимо
+        self._ensure_builtin_formats()
+        self.name = str(data.get("name") or _stem(self.path))[:MAX_PRESET_NAME]
         self._mtime = self._disk_mtime()
 
     def save(self) -> None:
@@ -276,12 +296,72 @@ class Preset:
         out = []
         for c in self.categories:
             if cat_id is None or c["id"] == cat_id:
-                out += [dict(s, category=c["id"]) for s in c["snippets"] if not q or q in s["text"].lower()]
+                out += [dict(s, category=c["id"], own_color=s.get("color"), color=s.get("color") or c["color"])
+                        for s in c["snippets"] if not q or q in s["text"].lower()]
         return out
 
     def count(self, cat_id: str) -> int:
         cat = self.category(cat_id)
         return len(cat["snippets"]) if cat else 0
+
+    # -- кольори --------------------------------------------------------------
+    def set_category_color(self, cat_id: str, color: str) -> bool:
+        """Колір папки одразу діє на всі її записи, які не мають власного кольору."""
+        cat = self.category(cat_id)
+        if not cat or not _color_ok(color):
+            return False
+        cat["color"] = color.lower()
+        self.save()
+        return True
+
+    def set_snippet_color(self, snippet_id: str, color: str | None) -> bool:
+        """Власний колір запису (зберігається у файлі й не змінюється з кольором папки). None — скинути."""
+        found = self.find_snippet(snippet_id)
+        if not found or (color is not None and not _color_ok(color)):
+            return False
+        if color is None:
+            found[1].pop("color", None)
+        else:
+            found[1]["color"] = color.lower()
+        self.save()
+        return True
+
+    def format(self, format_id: str | None) -> dict | None:
+        return next((f for f in self.formats if f["id"] == format_id), None)
+
+    def set_format_color(self, format_id: str, color: str) -> bool:
+        fmt = self.format(format_id)
+        if not fmt or not _color_ok(color):
+            return False
+        fmt["color"] = color.lower()
+        self.save()
+        return True
+
+    # -- назва пресета --------------------------------------------------------
+    def rename(self, new_name: str, rename_file: bool = True) -> str:
+        """Змінює назву пресета (і за потреби — ім'я файлу). Повертає нову назву.
+        Кидає PresetError, якщо назва порожня, зайнята або файл не вдалося перейменувати."""
+        name = " ".join(new_name.split())[:MAX_PRESET_NAME]
+        safe = re.sub(r'[\\/:*?"<>|\x00-\x1f]', "", name).strip(" .")
+        if not name or not safe:
+            raise PresetError("Назва не може бути порожньою або складатись лише зі службових символів.")
+        old_path, old_name = self.path, self.name
+        new_path = os.path.join(os.path.dirname(old_path), safe + PRESET_SUFFIX)
+        same_file = os.path.normcase(os.path.abspath(new_path)) == os.path.normcase(os.path.abspath(old_path))
+        if rename_file and not same_file and os.path.exists(new_path):
+            raise PresetError(f"Файл «{os.path.basename(new_path)}» уже існує в цій теці.")
+        self.name = name
+        self.save()
+        if rename_file and not same_file:
+            try:
+                os.replace(old_path, new_path)
+            except OSError as e:
+                self.name = old_name
+                self.save()
+                raise PresetError(f"Не вдалося перейменувати файл ({e.__class__.__name__}).") from None
+            self.path = new_path
+            self._mtime = self._disk_mtime()
+        return name
 
     # -- імпорт ---------------------------------------------------------------
     def import_from(self, path: str) -> tuple[int, int]:
@@ -298,12 +378,16 @@ class Preset:
             have = {s["text"] for s in mine["snippets"]}
             for s in oc["snippets"]:
                 if s["text"] not in have:
-                    mine["snippets"].append({"id": uuid.uuid4().hex, "text": s["text"], "ts": s["ts"]})
+                    mine["snippets"].append(dict(s, id=uuid.uuid4().hex))
                     have.add(s["text"])
                     new_snips += 1
         if new_cats or new_snips:
             self.save()
         return new_cats, new_snips
+
+
+def _color_ok(color) -> bool:
+    return isinstance(color, str) and bool(COLOR_RE.match(color))
 
 
 def _stem(path: str) -> str:
@@ -388,8 +472,8 @@ DEFAULT_SETTINGS = {
     "theme": "system",      # system | light | dark
     "preset_path": "",      # поточний файл-пресет ("" — типовий)
     "recent_presets": [],   # останні відкриті пресети
-    "width": 1000,
-    "height": 620,
+    "width": 1180,
+    "height": 660,
 }
 
 
@@ -417,6 +501,13 @@ class Settings:
         recent = [p for p in self.data["recent_presets"] if p != path]
         self.data["recent_presets"] = ([path] + recent)[:8]
         self.data["preset_path"] = path
+        self.save()
+
+    def replace_preset_path(self, old: str, new: str) -> None:
+        """Після перейменування файлу пресета: оновлює поточний шлях і список останніх."""
+        recent = [new if p == old else p for p in self.data["recent_presets"]]
+        self.data["recent_presets"] = list(dict.fromkeys(recent))[:8]
+        self.data["preset_path"] = new if self.data["preset_path"] == old else self.data["preset_path"]
         self.save()
 
     def save(self) -> None:
