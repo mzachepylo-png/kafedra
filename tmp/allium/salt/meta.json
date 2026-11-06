@@ -1,7 +1,0 @@
-{
- "key": "salt",
- "query": {
-  "epmc": "\"Allium cepa\" AND (NaCl OR salinity OR \"salt stress\" OR drought OR \"heat stress\") AND FIG:(aberration* OR mitotic OR anaphase OR root*)"
- },
- "candidates": []
-}

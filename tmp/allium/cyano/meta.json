@@ -1,7 +1,0 @@
-{
- "key": "cyano",
- "query": {
-  "epmc": "\"Allium cepa\" AND (microcystin* OR cylindrospermopsin OR cyanobacteri* OR cyanotoxin* OR Microcystis)"
- },
- "candidates": []
-}

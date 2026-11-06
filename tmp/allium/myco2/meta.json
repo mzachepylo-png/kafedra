@@ -1,7 +1,0 @@
-{
- "key": "myco2",
- "query": {
-  "epmc": "\"Allium cepa\" AND (mycotoxin* OR aflatoxin* OR ochratoxin* OR patulin OR fumonisin* OR zearalenone) AND (root OR roots OR mitotic)"
- },
- "candidates": []
-}

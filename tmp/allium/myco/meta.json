@@ -1,7 +1,0 @@
-{
- "key": "myco",
- "query": {
-  "epmc": "\"Allium cepa\" AND (mycotoxin* OR aflatoxin* OR ochratoxin OR fumonisin* OR zearalenone OR deoxynivalenol OR patulin OR Fusarium OR Aspergillus OR Penicillium)"
- },
- "candidates": []
-}
