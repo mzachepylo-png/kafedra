@@ -130,6 +130,17 @@ ES-модулі не працюють при відкритті файлу на�
 GitHub Actions мінімізує HTML/CSS/JS і публікує сайт на GitHub Pages
 (`.github/workflows/pages.yml`). Один раз увімкніть: **Settings → Pages → Source: GitHub Actions**.
 
+## Статистика і QR-код
+
+На сторінках стоїть Google Analytics 4 (`G-JWWGPMG71W`). QR-код для плакатів (`qr/qr-lab.svg`,
+`qr/qr-lab.png`) веде на `https://nubipfbr.online/qr/`. Ця сторінка одразу переводить на `/lab/`
+з мітками `utm_source=qr&utm_medium=print&utm_campaign=lab_poster`. У GA4 такі переходи видно в
+**Звіти → Залучення → Залучення трафіку** як джерело/канал **qr / print**.
+
+Різні плакати можна розрізнити: `https://nubipfbr.online/qr/?p=korpus3` додає `utm_content=korpus3`
+(у звіті — вимір «Вміст сеансу ручний» / *Session manual ad content*). Куди веде QR, змінюється
+в `qr/index.html` без передруку плакатів.
+
 ## Як додати лабораторну роботу
 
 1. Скопіюйте теку наявної роботи, напр. `lab/biochemistry/enzyme-kinetics/` → `lab/biochemistry/<нова>/`.

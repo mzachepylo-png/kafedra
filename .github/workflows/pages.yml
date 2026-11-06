@@ -32,7 +32,7 @@ jobs:
       - name: Build (minify)
         run: |
           mkdir dist
-          cp -r index.html about lab konspekt modeling microscope assets dist/
+          cp -r index.html about lab konspekt modeling microscope qr assets dist/
           cd dist
           # версія до CSS/JS, щоб після оновлення браузер не брав старі файли з кешу
           V="${GITHUB_SHA::8}"

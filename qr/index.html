@@ -1,0 +1,9 @@
+<!doctype html>
+<html lang="uk"><head><meta charset="utf-8"><title>Онлайн лабораторія — перехід за QR-кодом</title>
+<meta name="robots" content="noindex">
+<!-- Адреса з QR-кодів на плакатах: nubipfbr.online/qr/ (за потреби /qr/?p=назва-плаката).
+     Переводить на /lab/ з UTM-мітками, тож у Google Analytics ці переходи видно як джерело «qr / print». -->
+<meta http-equiv="refresh" content="0; url=../lab/?utm_source=qr&amp;utm_medium=print&amp;utm_campaign=lab_poster">
+<script>(function(){var p=(new URLSearchParams(location.search).get('p')||'').toLowerCase().replace(/[^a-z0-9_-]/g,'').slice(0,40);
+location.replace('../lab/?utm_source=qr&utm_medium=print&utm_campaign=lab_poster'+(p?'&utm_content='+p:''))})()</script></head>
+<body><p>Перехід до <a href="../lab/?utm_source=qr&amp;utm_medium=print&amp;utm_campaign=lab_poster">Онлайн лабораторії</a>…</p></body></html>
