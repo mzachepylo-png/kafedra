@@ -73,7 +73,7 @@ jobs:
           function Measure-Startup($exe, $label) {
             $env:CLIPBOARD_MEMORY_DIR = Join-Path $env:RUNNER_TEMP ("cm-" + $label + "-" + [guid]::NewGuid())
             $sw = [Diagnostics.Stopwatch]::StartNew()
-            $p = Start-Process -FilePath $exe -ArgumentList "--no-hotkey","--no-tray" -PassThru
+            $p = Start-Process -FilePath $exe -ArgumentList "--no-hotkey","--no-tray","--timing" -PassThru
             $name = $p.ProcessName
             $ms = -1
             while ($sw.ElapsedMilliseconds -lt 30000) {
@@ -81,14 +81,19 @@ jobs:
               if ($t.Count -gt 0) { $ms = $sw.ElapsedMilliseconds; break }
               Start-Sleep -Milliseconds 50
             }
+            Start-Sleep -Milliseconds 2200   # даємо застосунку дописати лог стадій (--timing)
             Get-Process -Name $name -ErrorAction SilentlyContinue | Stop-Process -Force
             Start-Sleep -Milliseconds 800
             Write-Host ("STARTUP {0}: window after {1} ms" -f $label, $ms)
           }
+          function Show-TimingLog($label) {
+            $log = Join-Path $env:CLIPBOARD_MEMORY_DIR "startup-timing.log"
+            if (Test-Path $log) { Write-Host "TIMING LOG ($label):"; Get-Content $log -Tail 20 | ForEach-Object { Write-Host "  $_" } }
+          }
           $one = (Resolve-Path dist/ClipboardMemory.exe).Path
           $dir = (Resolve-Path dist/ClipboardMemoryDir/ClipboardMemoryDir.exe).Path
           1..3 | ForEach-Object { Measure-Startup $one "onefile-run$_" }
-          1..3 | ForEach-Object { Measure-Startup $dir "onedir-run$_" }
+          1..3 | ForEach-Object { Measure-Startup $dir "onedir-run$_"; Show-TimingLog "onedir-run$_" }
 
       # Справжня гаряча клавіша на Windows: запуск прихованим → Ctrl+X показує вікно → Ctrl+X ховає
       - name: Hotkey end-to-end (Ctrl+X)

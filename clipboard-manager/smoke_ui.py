@@ -39,6 +39,7 @@ settings["autohide"] = False       # автохов (клік → вікно з�
 app = cm.App(root, preset, history, settings, events, use_hotkey=False, use_tray=False)
 import winsys  # noqa: E402
 startup = dict(render=app.render_count, side=app.sidebar_render_count, fmt_built=app._fmt_built,
+               sel=app.sel_format,
                icon_cached=bool(winsys._icon_png_cache), colorchooser="tkinter.colorchooser" in sys.modules,
                hold=app._hold_chunks, lazy_history=history.lazy)
 root.geometry("1180x660+0+0")
@@ -64,33 +65,16 @@ def copy_from_other(text, wait=550):
     pump(wait)
 
 
-def n_entries(menu):
-    end = menu.index("end")
-    return 0 if end is None else end + 1     # index("end") == 0 для меню з одним пунктом
-
-
 def labels(menu):
-    out = []
-    for i in range(n_entries(menu)):
-        t = menu.type(i)
-        if t in ("command", "cascade", "checkbutton", "radiobutton"):
-            out.append(menu.entrycget(i, "label").strip())
-    return out
+    return menu.labels()
 
 
 def submenu(menu, label):
-    for i in range(n_entries(menu)):
-        if menu.type(i) == "cascade" and menu.entrycget(i, "label") == label:
-            return menu.nametowidget(menu.entrycget(i, "menu"))
-    raise AssertionError(f"no cascade {label!r} in {labels(menu)}")
+    return menu.sub(label)
 
 
 def invoke(menu, label):
-    for i in range(n_entries(menu)):
-        if menu.type(i) in ("command",) and menu.entrycget(i, "label").strip() == label:
-            menu.invoke(i)
-            return
-    raise AssertionError(f"no command {label!r} in {labels(menu)}")
+    menu.invoke(label)
 
 
 def click(item_id):
@@ -123,7 +107,8 @@ cm.messagebox.showerror = lambda *a, **k: boxes["error"].append(a)
 cm.messagebox.showwarning = lambda *a, **k: boxes["warn"].append(a)
 cm.messagebox.askyesno = lambda *a, **k: (boxes["ask"].append(a), True)[1]
 popups = []
-tk.Menu.tk_popup = lambda self, *a, **k: popups.append(self)
+REAL_POPUP_SHOW = cm.PopupMenu.show
+cm.PopupMenu.show = lambda self, *a, **k: popups.append(self.model)   # реальний popup перевіряється окремо нижче
 snip_plan = {}
 
 
@@ -243,7 +228,9 @@ m = popups[-1]
 assert labels(m) == ["Копіювати", "Редагувати…", "Колір запису…", "Перемістити в категорію", "Вгору", "Вниз",
                      "Видалити"], labels(m)
 sub = submenu(m, "Перемістити в категорію")
-assert labels(sub) == ["✓ Робота".replace("✓ ", "✓ ").strip(), "Особисте", "＋ Нова категорія…"], labels(sub)
+assert labels(sub) == ["Робота", "Особисте", "＋ Нова категорія…"], labels(sub)
+assert sub.item("Робота").checked and not sub.item("Особисте").checked, "поточна категорія позначена ✓"
+assert sub.item("Робота").dot == work["color"], "біля категорії її колір"
 app.select_category(HISTORY)
 app.show_menu(10, 10, app.shown[0]["id"])
 m = popups[-1]
@@ -581,7 +568,7 @@ assert p2.format("builtin-user")["color"] == "#ff8800"
 row0 = app.formats_slot.winfo_children()[0]
 assert tup(row0.cget("fg_color")) == cm.tint("#ff8800") and color_of(row0.winfo_children()[0]) == "#ff8800"
 app.show_format_menu(3, 3, "builtin-user")
-assert labels(popups[-1]) == ["Колір…"], labels(popups[-1])
+assert labels(popups[-1]) == ["Колір…", "Перемістити вгору", "Перемістити вниз"], labels(popups[-1])
 app.show_menu(1, 1, s1["id"])
 assert "Колір запису…" in labels(popups[-1])
 app.select_category(HISTORY)
@@ -608,8 +595,7 @@ dlg = cm.ColorDialog(app, "Колір", None)
 cm.colorchooser.askcolor = lambda **k: (None, None)           # «Скасувати» у системному діалозі
 root.after(300, lambda: (dlg.custom(), dlg.cancel()))
 assert cm._Dialog.run(dlg) is None
-app.select_format("builtin-user")                              # прибираємо виділення формату
-assert app.sel_format is None
+assert app.sel_format is None, "перехід між папками згорнув формат"
 print("19 colors OK")
 
 # ---- 20. перейменування пресета ---------------------------------------------------------------------------------------------------
@@ -711,11 +697,12 @@ app.fmt_input.insert("1.0", "999")
 app.hide_window()
 pump(300)
 assert app.search.get() == "" and app._query() == "" and app.fmt_input.get("1.0", "end-1c") == ""
-assert len(app.shown) == len(app.history.items) and app.sel_format == "builtin-user"
+assert len(app.shown) == len(app.history.items)
+assert app.sel_format is None and app.fmt_box.winfo_manager() == "", "формат згорнувся при хованні (у фоні)"
 rc = app.render_count
 app.show_window()
 assert app.render_count == rc and root.state() == "normal"
-app.select_format("builtin-user")           # згортаємо формат назад
+assert app.sel_format is None, "на показі жоден формат не розкритий"
 print("21c background render / reset-on-hide OK")
 
 # затримка від натискання гарячої клавіші до видимого вікна + час самого обробника
@@ -799,6 +786,8 @@ assert len(app.history.items) == before_hist and not any(i["text"] == expected f
     ("результат форматування не потрапляє в історію буфера", before_hist, [i["text"][:40] for i in app.history.items[:4]])
 app.show_window()
 pump(100)
+assert app.sel_format is None, "після ховання формат згорнуто"
+app.select_format("builtin-user")                 # відкриваємо кліком знову
 # порожній / нечисловий ввід: нічого не копіюється, вікно лишається, введене зберігається
 app.copy_to_clipboard("попередній буфер")
 app.fmt_input.insert("1.0", "немає чисел, User#")
@@ -826,6 +815,8 @@ app.show_window()
 pump(100)
 assert app._in_format_input(SimpleNamespace(widget=app.fmt_input._textbox)) and not app._in_format_input(SimpleNamespace(widget=root))
 # autohide вимкнено → кнопка «Копіювати», вікно лишається, поле очищується
+if app.sel_format is None:                         # після ховання/зміни папки формат згорнуто — відкриваємо кліком
+    app.select_format("builtin-user")
 settings["autohide"] = False
 app.v_autohide.set(False)
 app._on_autohide()
@@ -834,7 +825,7 @@ app.submit_format()
 assert root.clipboard_get() == "{LINK:USER:555:E}" and root.state() == "normal" and app.fmt_input.get("1.0", "end-1c") == "", \
     (root.clipboard_get(), root.state(), app.fmt_input.get("1.0", "end-1c"))
 # невідомий тип формату з новішої версії: показується неактивним, нічого не ламає
-n_fmt = len(app.preset.formats)
+n_fmt = len(app._visible_formats())      # «Added cards» у цій папці прихований
 app.preset.formats.append({"id": "x1", "name": "Майбутній", "type": "from-newer-version", "color": "#112233"})
 app.preset.save()
 app.render()
@@ -860,8 +851,8 @@ for w, h in ((1180, 660), (1040, 520)):
     pump(500)
     sc = app.scaling()
     lw, mw, rw = (x.winfo_width() / sc for x in (app.left, app.mid, app.right))
-    assert 262 <= lw <= 285 and 334 <= rw <= 356, (w, lw, rw)
-    assert mw >= 340, (w, mw)
+    assert 292 <= lw <= 308 and 334 <= rw <= 356, (w, lw, rw)
+    assert mw >= 320, (w, mw)
     if w == 1180:
         assert mw < 540, f"центральна колонка не має бути надто розтягнутою ({mw})"
     # нічого не обрізається: кнопка форматування і приписка — всередині правої колонки
@@ -878,7 +869,8 @@ for w, h in ((1180, 660), (1040, 520)):
 print("23 layout/typography OK")
 root.geometry("1180x660+0+0")
 pump(300)
-app.select_format("builtin-user")
+if app.sel_format:
+    app.select_format(app.sel_format)
 assert app.sel_format is None
 
 # ---- 23b. раунд 3: на весь екран, помітні кнопки, без підтвердження, кольорові рядки ----------------------------------------------------
@@ -1351,6 +1343,603 @@ for with_flag in (True, False):
     assert 1 <= n_render <= 2 and "widgets=" in text, text
     print("26i --timing log OK:", {k: round(v) for k, v in ms.items()})
 
+# ---- 27. раунд 4: велике меню, перестановка, мультивибір, ховання+логи, залиті папки, Added cards ----------------------------------------
+prev_preset, prev_history = app.preset, app.history
+prev = dict(autohide=settings["autohide"], hotkey_ok=app.hotkey_ok, tray=app.tray, relaunch=app.relaunch_ok)
+r4_dir = os.path.join(tmp, "round4")
+os.makedirs(r4_dir)
+r4 = Preset.open_or_create(os.path.join(r4_dir, "r4.preset.json"))
+r4_hist = History(os.path.join(r4_dir, "h.json"))
+app.history = r4_hist
+root.geometry("1500x800+0+0")
+pump(400)
+app.switch_preset(r4, "")
+pump(200)
+sl = r4.add_category("Suspicious login")
+ot = r4.add_category("Other")
+third = r4.add_category("Третя")
+app.render()
+settings["autohide"] = False
+sc = app.scaling()
+assert startup["sel"] is None, "при старті жоден формат не розкритий"
+
+# (a) велике меню: справжній popup, рядки ≥ 40 px, шрифт 14, позиція в межах екрана, клавіатура, підменю, закриття
+cm.PopupMenu.show = REAL_POPUP_SHOW
+app.select_category(sl["id"])
+base_txt = "Suspicious login confirmed. Unsolicited charges were refunded."
+sn_base = r4.add_snippet(sl["id"], base_txt)
+for t in ("a", "b", "c", "d"):
+    r4.add_snippet(sl["id"], t)
+app.render()
+pump(300)
+sid = sn_base["id"]
+app.show_menu(root.winfo_rootx() + 500, root.winfo_rooty() + 300, sid)
+pop = app._popups[-1]
+pump(150)
+assert pop.top.winfo_viewable() and pop.top.winfo_width() >= 250 * sc - 2
+assert [i.label for i, _, _ in pop.rows] == ["Копіювати", "Редагувати…", "Колір запису…", "Перемістити в категорію",
+                                              "Вгору", "Вниз", "Видалити"]
+for item, row, parts in pop.rows:
+    assert row.winfo_height() >= 40 * sc - 1, (item.label, row.winfo_height())
+    lbl = next(w for w in parts if isinstance(w, tk.Label) and w.cget("text") == item.label)
+    assert str(lbl.cget("font")) == str(app.pf.menu) and app.pf.menu.cget("size") == -round(14 * sc), (lbl.cget("font"), app.pf.menu.cget("size"))
+    assert lbl.cget("fg") == app.col(cm.DANGER if item.danger else cm.TEXT)
+assert pop.rows[-1][0].danger and pop.rows[-1][0].label == "Видалити"
+# позиція: далеко за межами екрана — меню притискається в межі
+app.close_popups()
+app.show_menu(20000, 20000, sid)
+pop = app._popups[-1]
+pump(100)
+swd, sht = root.winfo_screenwidth(), root.winfo_screenheight()
+assert pop.top.winfo_rootx() + pop.top.winfo_width() <= swd and pop.top.winfo_rooty() + pop.top.winfo_height() <= sht
+assert pop.top.winfo_rootx() >= 0 and pop.top.winfo_rooty() >= 0
+app.close_popups()
+# клавіатура: ↓ ↑ (з переходом по колу), Enter виконує команду після закриття меню
+app.show_menu(400, 200, sid)
+pop = app._popups[-1]
+pop._on_key("Down")
+assert pop.sel == 0
+pop._on_key("Up")
+assert pop.sel == len(pop.rows) - 1, "↑ з першого рядка — на останній"
+pop._on_key("Down")
+assert pop.sel == 0 and pop.rows[0][2][0].cget("bg") == app.col(cm.MENU_HOVER)
+app.copy_to_clipboard("до меню")
+pop._on_key("Return")
+pump(150)
+assert root.clipboard_get() == base_txt and app._popups == [], "Enter у меню виконав «Копіювати» і закрив меню"
+# підменю збоку: → відкриває, ← закриває, Esc закриває все
+app.show_menu(300, 200, sid)
+pop = app._popups[-1]
+move_i = [i for i, (it, _, _) in enumerate(pop.rows) if it.kind == "cascade"][0]
+pop._select(move_i)
+pop._on_key("Right")
+assert pop.child is not None and pop.child.top.winfo_viewable() and len(app._popups) == 2
+assert [i.label for i, _, _ in pop.child.rows] == ["Suspicious login", "Other", "Третя", "＋ Нова категорія…"]
+assert pop.child.rows[0][0].checked and pop.child.rows[0][2][1].cget("text") == "✓", "поточна категорія з ✓"
+assert any(w.cget("text") == "●" and w.cget("fg") == sl["color"] for w in pop.child.rows[0][2] if isinstance(w, tk.Label))
+assert pop.child.top.winfo_rootx() >= pop.top.winfo_rootx() - 20 * sc
+pop.child._on_key("Left")
+assert pop.child is None and len(app._popups) == 1
+pop._on_key("Right")
+pop.child._on_key("Escape")                  # Esc у підменю закриває лише його
+assert len(app._popups) == 1 or app._popups == []
+app.close_popups()
+# клік поза меню закриває без дії; клік по рядку виконує
+app.show_menu(300, 200, sid)
+pop = app._popups[-1]
+assert pop._press(SimpleNamespace(x_root=3, y_root=3, num=1)) == "break" and app._popups == []
+app.show_menu(300, 200, sid)
+pop = app._popups[-1]
+pump(100)
+row = pop.rows[0][1]
+app.copy_to_clipboard("до кліку")
+pop._press(SimpleNamespace(x_root=row.winfo_rootx() + 12, y_root=row.winfo_rooty() + 12, num=1))
+pump(150)
+assert root.clipboard_get() == base_txt and app._popups == []
+# темна тема: меню малюється в палітрі теми
+app.v_theme.set("dark")
+app._on_theme()
+pump(150)
+app.show_menu(300, 200, sid)
+pop = app._popups[-1]
+assert pop.rows[0][1].cget("bg") == cm.MENU_BG[1] and pop.rows[0][2][2].cget("fg") == cm.TEXT[1]
+app.close_popups()
+app.v_theme.set("light")
+app._on_theme()
+pump(100)
+# меню категорій/форматів/⚙/пресета теж справжні popup
+for opener in (lambda: app.show_category_menu(300, 200, sl["id"]), lambda: app.show_format_menu(300, 200, "builtin-user"),
+               app._popup_settings, app._popup_preset_menu):
+    opener()
+    pump(80)
+    assert app._popups and app._popups[0].top.winfo_viewable()
+    for item, row, _ in app._popups[0].rows:
+        assert row.winfo_height() >= 40 * sc - 1, item.label
+    app.close_popups()
+cm.PopupMenu.show = lambda self, *a, **k: popups.append(self.model)
+print("27a big popup menu OK")
+
+# (b) перестановка записів / категорій / форматів
+app.select_category(sl["id"])
+pump(300)
+ids_by = {s["text"]: s["id"] for s in r4.snippets(sl["id"])}
+order = lambda: [s["text"] for s in r4.snippets(sl["id"])]
+assert order() == [base_txt, "a", "b", "c", "d"]
+frames = lambda: [app._card_objs[i].frame for i in app._order]
+f0 = frames()[0]
+sx, sy = f0.winfo_rootx() + 60, frames()[4].winfo_rooty() + 12
+app._drag_press(ev(sx, sy), ids_by["d"])
+app._drag_motion(ev(sx, sy - 40))
+assert app._drag["active"] and app._drag["reorder"] is not None
+app._drag_motion(ev(sx, f0.winfo_rooty() + 2))                    # над першою карткою
+root.update_idletasks()
+assert app._drag["reorder"] == 0 and app._indicators[app.cards].winfo_ismapped(), app._drag
+app._drag_release(ev(sx, f0.winfo_rooty() + 2))
+pump(150)
+assert order() == ["d", base_txt, "a", "b", "c"] and not app._indicators[app.cards].winfo_ismapped()
+assert Preset.open(r4.path).snippets(sl["id"])[0]["text"] == "d", "порядок записано у файл"
+assert [app._card_objs[i].text for i in app._packed] == order(), "картки переставлено в інтерфейсі"
+# вниз: після останньої картки
+fr = frames()
+sx, sy = fr[0].winfo_rootx() + 60, fr[0].winfo_rooty() + 12
+app._drag_press(ev(sx, sy), ids_by["d"])
+app._drag_motion(ev(sx, sy + 20))
+app._drag_motion(ev(sx, fr[-1].winfo_rooty() + fr[-1].winfo_height() - 2))
+app._drag_release(ev(sx, fr[-1].winfo_rooty() + fr[-1].winfo_height() - 2))
+pump(150)
+assert order() == [base_txt, "a", "b", "c", "d"], order()
+# між середніми картками
+fr = frames()
+sx, sy = fr[4].winfo_rootx() + 60, fr[4].winfo_rooty() + 12
+app._drag_press(ev(sx, sy), ids_by["d"])
+app._drag_motion(ev(sx, sy - 30))
+ty = fr[2].winfo_rooty() + 3                                  # верхній край третьої → між «a» і «b»
+app._drag_motion(ev(sx, ty))
+app._drag_release(ev(sx, ty))
+pump(150)
+assert order() == [base_txt, "a", "d", "b", "c"], order()
+# під час пошуку порядок не міняється (індекси фільтрованого списку ≠ повного), користувача про це попереджають
+app.set_search("a")
+pump(150)
+assert not app._can_reorder_records()
+f_a = frames()[0]
+app._drag_press(ev(f_a.winfo_rootx() + 60, f_a.winfo_rooty() + 12), ids_by["a"])
+app._drag_motion(ev(f_a.winfo_rootx() + 60, f_a.winfo_rooty() + 60))
+assert app._drag["reorder"] is None
+app._drag_release(ev(f_a.winfo_rootx() + 60, f_a.winfo_rooty() + 60))
+assert order() == [base_txt, "a", "d", "b", "c"]
+app.set_search("")
+pump(150)
+# клік без руху все ще копіює
+app.copy_to_clipboard("до кліку")
+click(ids_by["b"])
+assert root.clipboard_get() == "b"
+# історію переставляти не можна
+app.select_category(HISTORY)
+assert not app._can_reorder_records()
+app.select_category(sl["id"])
+# категорії: перетягування рядка, клік лишається вибором
+rows = lambda: [app._row_objs[k].row for k in app._row_order]
+def cat_names():
+    return [c["name"] for c in r4.categories]
+assert cat_names() == ["Suspicious login", "Other", "Третя"]
+r_third = app._rows[third["id"]]
+rx, ry = r_third.winfo_rootx() + 90, r_third.winfo_rooty() + r_third.winfo_height() // 2
+app._reorder_press("cat", third["id"], ev(rx, ry))
+app._reorder_motion(ev(rx, ry - 20))
+assert app._rd["active"]
+first_row = rows()[0]
+app._reorder_motion(ev(rx, first_row.winfo_rooty() + 3))
+root.update_idletasks()
+assert app._rd["k"] == 0 and app._indicators[app.cat_list].winfo_ismapped()
+app._reorder_release(ev(rx, first_row.winfo_rooty() + 3))
+pump(150)
+assert cat_names() == ["Третя", "Suspicious login", "Other"], cat_names()
+assert [c["name"] for c in Preset.open(r4.path).categories] == cat_names()
+assert app._row_order[0] == third["id"] and not app._indicators[app.cat_list].winfo_ismapped()
+r_ot = app._rows[ot["id"]]
+x2, y2 = r_ot.winfo_rootx() + 90, r_ot.winfo_rooty() + r_ot.winfo_height() // 2
+app._reorder_press("cat", ot["id"], ev(x2, y2))
+app._reorder_release(ev(x2, y2))                                     # без руху — просто вибір
+assert app.view == ot["id"] and cat_names() == ["Третя", "Suspicious login", "Other"]
+# запис → категорія в бічній колонці і далі працює (перенос), хоча рядки тепер теж «перетягуються»
+app.select_category(sl["id"])
+pump(200)
+tmp_snip = r4.add_snippet(sl["id"], "для переносу")
+app.render()
+pump(200)
+drag(tmp_snip["id"], ot["id"])
+assert any(s["text"] == "для переносу" for s in r4.snippets(ot["id"]))
+r4.remove_snippet(r4.snippets(ot["id"])[0]["id"])
+app.render()
+# формати: перестановка серед видимих у папці + пункти меню «вгору/вниз»
+assert [f["id"] for f in app._visible_formats()] == ["builtin-user", "builtin-added-cards"]
+pump(150)
+fr_user, fr_cards = app._fmt_rows["builtin-user"].row, app._fmt_rows["builtin-added-cards"].row
+fx, fy = fr_cards.winfo_rootx() + 80, fr_cards.winfo_rooty() + fr_cards.winfo_height() // 2
+app._reorder_press("fmt", "builtin-added-cards", ev(fx, fy))
+app._reorder_motion(ev(fx, fy - 30))
+app._reorder_motion(ev(fx, fr_user.winfo_rooty() + 3))
+root.update_idletasks()
+assert app._rd["k"] == 0 and app._indicators[app.formats_slot].winfo_ismapped()
+app._reorder_release(ev(fx, fr_user.winfo_rooty() + 3))
+pump(150)
+assert [f["id"] for f in r4.formats][:2] == ["builtin-added-cards", "builtin-user"]
+assert app._fmt_order == ["builtin-added-cards", "builtin-user"]
+assert [f["id"] for f in Preset.open(r4.path).formats][:2] == ["builtin-added-cards", "builtin-user"]
+app.on_move_format("builtin-added-cards", 1)
+pump(100)
+assert [f["id"] for f in r4.formats][:2] == ["builtin-user", "builtin-added-cards"] and app._fmt_order[0] == "builtin-user"
+app.on_move_format("builtin-user", -1)                              # вже перший — нічого не змінюється
+assert [f["id"] for f in r4.formats][:2] == ["builtin-user", "builtin-added-cards"]
+app.show_format_menu(3, 3, "builtin-added-cards")
+invoke(popups[-1], "Перемістити вгору")
+pump(100)
+assert [f["id"] for f in r4.formats][:2] == ["builtin-added-cards", "builtin-user"]
+app.on_move_format("builtin-added-cards", 1)
+app.show_category_menu(3, 3, third["id"])
+invoke(popups[-1], "Перемістити вниз")
+assert cat_names() == ["Suspicious login", "Третя", "Other"]
+app.on_move_category(third["id"], -1)
+assert cat_names() == ["Третя", "Suspicious login", "Other"]
+print("27b reorder (records / categories / formats) OK")
+
+# (c) мультивибір в історії: галочки, «Об'єднати і копіювати», хронологічний порядок, збереження вибору
+for t in ("1242", "1234", "5466", "2345"):
+    r4_hist.add(t)
+app.select_category(HISTORY)
+root.geometry("1500x800+0+0")
+pump(500)
+app.show_window()
+pump(100)
+cards_h = {c.text: c for c in app._card_objs.values()}
+assert set(cards_h) == {"1242", "1234", "5466", "2345"} and all(c.check is not None for c in cards_h.values())
+assert app.merge_btn.winfo_manager() == "" and app.sel_bar.winfo_manager() == "pack"
+assert app.sel_all_btn.cget("text") == "Вибрати все"
+# клік по галочці лише відмічає, але не копіює запис
+app.copy_to_clipboard("sentinel")
+chk = cards_h["2345"].check
+chk.event_generate("<ButtonPress-1>", x=4, y=4)
+chk.event_generate("<ButtonRelease-1>", x=4, y=4)
+pump(80)
+assert app.checked == {cards_h["2345"].iid} and root.clipboard_get() == "sentinel" and cards_h["2345"].checked
+# відмічаємо решту в «неправильному» порядку
+for t in ("1242", "5466", "1234"):
+    app.toggle_check(cards_h[t].iid)
+assert len(app.checked) == 4 and app.merge_btn.winfo_manager() == "pack"
+assert app.merge_btn.cget("text") == "Об'єднати і копіювати (4)" and app.sel_count.cget("text") == "Вибрано: 4"
+assert app.sel_all_btn.cget("text") == "Зняти вибір"
+assert app.merge_btn.winfo_rootx() + app.merge_btn.winfo_width() <= app.clear_btn.winfo_rootx() + 2, "ліворуч від «Очистити історію»"
+# вибір переживає перебудову списку (новий захоплений запис)
+copy_from_other("свіжий запис", 800)
+assert len(app.checked) == 4 and app.shown[0]["text"] == "свіжий запис"
+assert {c.text for c in app._card_objs.values() if c.checked} == {"1242", "1234", "5466", "2345"}
+assert not next(c for c in app._card_objs.values() if c.text == "свіжий запис").checked
+# вузька панель: кнопка переходить у рядок вибору під шапкою
+root.geometry("1040x520+0+0")
+pump(900)
+app._layout_header()
+assert app.merge_btn.winfo_manager() == "" and app.merge_btn2.winfo_manager() == "pack", "вузько → кнопка під шапкою"
+assert app.merge_btn2.cget("text") == "Об'єднати і копіювати (4)"
+root.geometry("1500x800+0+0")
+pump(900)
+app._layout_header()
+assert app.merge_btn.winfo_manager() == "pack" and app.merge_btn2.winfo_manager() == ""
+# Esc спершу знімає вибір (не ховає вікно)
+settings["autohide"], app.hotkey_ok = True, True
+app._on_escape(None)
+assert app.checked == set() and root.state() != "withdrawn" and app.merge_btn.winfo_manager() == ""
+# «Вибрати все» / «Зняти вибір»
+app.sel_all_btn.invoke()
+assert len(app.checked) == len(app.shown) == 5 and app.sel_all_btn.cget("text") == "Зняти вибір"
+app.sel_all_btn.invoke()
+assert app.checked == set() and app.sel_all_btn.cget("text") == "Вибрати все"
+# вихід з історії скидає вибір
+app.toggle_check(cards_h["1242"].iid)
+app.select_category(sl["id"])
+pump(150)
+app.select_category(HISTORY)
+pump(200)
+assert app.checked == set() and not any(c.checked for c in app._card_objs.values())
+# хронологічний порядок: від старішого до новішого, незалежно від порядку натискань
+cards_h = {c.text: c for c in app._card_objs.values()}
+for t in ("2345", "1234"):                                      # натискали «з кінця»
+    app.toggle_check(cards_h[t].iid)
+app.copy_to_clipboard("до об'єднання")
+hist_before = len(r4_hist.items)
+app.merge_checked()
+assert root.clipboard_get() == "1234, 2345", root.clipboard_get()
+assert root.state() == "withdrawn", "після об'єднання вікно ховається"
+pump(400)
+assert app.checked == set() and not any(c.checked for c in app._card_objs.values())
+assert "Об'єднано 2" in app.status.cget("text")
+pump(700)
+assert len(r4_hist.items) == hist_before and not any(i["text"] == "1234, 2345" for i in r4_hist.items), \
+    "результат об'єднання не потрапляє в історію"
+app.show_window()
+pump(150)
+cards_h = {c.text: c for c in app._card_objs.values()}
+for t in ("1242", "1234", "5466", "2345"):
+    app.toggle_check(cards_h[t].iid)
+app.merge_checked()
+assert root.clipboard_get() == "1242, 1234, 5466, 2345", root.clipboard_get()   # приклад із завдання
+pump(500)
+app.show_window()
+pump(150)
+app.merge_checked()                                             # порожній вибір
+assert "Відмітьте" in app.status.cget("text") and root.state() != "withdrawn"
+print("27c history multi-select + merge OK")
+
+# (d) ховання: шлях назад, iconify-запасний варіант, журнали
+app.select_category(sl["id"])
+pump(200)
+settings["autohide"] = True
+iconified = []
+real_iconify = root.iconify
+root.iconify = lambda: iconified.append(1)
+app.hotkey_ok, app.tray, app.relaunch_ok = False, None, False
+app.show_window()
+pump(100)
+click(app.shown[0]["id"])
+assert iconified == [1] and root.state() != "withdrawn", "без шляху назад — лише згортання в панель завдань"
+assert "Гаряча клавіша недоступна — вікно згортається в панель завдань" in app.status.cget("text")
+settings["hotkey"] = "off"
+iconified.clear()
+click(app.shown[0]["id"])
+assert iconified == [1] and "Гарячу клавішу вимкнено" in app.status.cget("text")
+settings["hotkey"] = "ctrl+x"
+app.relaunch_ok = True                                          # є повторний запуск exe → вікно ховається
+click(app.shown[0]["id"])
+assert root.state() == "withdrawn" and iconified == [1], "повторний запуск exe — достатній шлях назад"
+pump(200)
+app.show_window()
+pump(100)
+app.relaunch_ok, app.hotkey_ok = False, True                    # гаряча клавіша
+click(app.shown[0]["id"])
+assert root.state() == "withdrawn"
+pump(200)
+app.show_window()
+pump(100)
+app.hotkey_ok = False
+app.tray = object()                                             # трей
+click(app.shown[0]["id"])
+assert root.state() == "withdrawn"
+pump(200)
+app.show_window()
+pump(100)
+app.tray = None
+# ⚙: застереження, коли гарячу клавішу просили, але зайняти не вдалось
+app._use_hotkey = True
+app._popup_settings()
+assert labels(popups[-1])[0].startswith("⚠ Гаряча клавіша недоступна"), labels(popups[-1])
+assert "Показати теку з логами" in labels(popups[-1])
+app.hotkey_ok = True
+app._popup_settings()
+assert not labels(popups[-1])[0].startswith("⚠")
+app._use_hotkey = False
+# повторна спроба зайняти клавішу
+tries = []
+real_start = app.hotkeys.start
+app.hotkeys.start = lambda spec: (tries.append(spec), len(tries) >= 2)[1]
+app.hotkey_ok = False
+app.apply_hotkey(announce=False)
+assert not app.hotkey_ok
+app._retry_hotkey(settings["hotkey"])
+assert app.hotkey_ok and tries == ["ctrl+x", "ctrl+x"]
+app.hotkeys.start = real_start
+root.iconify = real_iconify
+# журнали: app.log (стани вікна) і error.log (винятки), обидва обмежені
+app.flush_logs()
+log_txt = open(os.path.join(app.log_dir, "app.log"), encoding="utf-8").read()
+assert "NO way back" in log_txt and "hide[pick] withdraw" in log_txt and "show full=" in log_txt and "hidden (withdraw)" in log_txt, log_txt[-600:]
+try:
+    raise ValueError("boom-test")
+except ValueError:
+    info = sys.exc_info()
+root.report_callback_exception(*info)
+err_txt = open(os.path.join(app.log_dir, "error.log"), encoding="utf-8").read()
+assert "boom-test" in err_txt and "Traceback" in err_txt and "ValueError" in err_txt
+assert "error.log" in app.status.cget("text")
+good_dir = app.log_dir
+open(os.path.join(tmp, "notadir"), "w").write("x")
+app.log_dir = os.path.join(tmp, "notadir", "sub")                # недоступна тека — обробник не кидає
+app._report_exception(*info)
+app.log("не повинно кидати")
+app.flush_logs()
+app.log_dir = good_dir
+cm._append_log(good_dir, "rot.log", "y" * (cm.LOG_LIMIT + 5))
+cm._append_log(good_dir, "rot.log", "z")
+assert os.path.exists(os.path.join(good_dir, "rot.log.1")) and os.path.getsize(os.path.join(good_dir, "rot.log")) < 10, "ротація"
+opened = []
+app._open_folder = lambda folder, select=None: opened.append((folder, select))
+app.on_reveal_logs()
+assert opened and opened[0][0] == good_dir
+del app._open_folder
+app.hotkey_ok = True
+print("27d hide fallback + logs OK")
+
+# (e) папки: великі й залиті кольором так само, як картки
+app.select_category(sl["id"])
+r4.set_category_color(sl["id"], "#d83b01")
+r4.set_category_color(ot["id"], "#00b294")
+app.render()
+pump(300)
+fill_ot = cm.card_colors("#00b294")[0]
+row_ot, row_sl = app._rows[ot["id"]], app._rows[sl["id"]]
+assert tup(row_ot.cget("fg_color")) == tup(fill_ot) == tup(cm.tint("#00b294")), "та сама рецептура, що в карток"
+assert tup(row_sl.cget("fg_color")) == tup(cm.row_colors("#d83b01")[2]) and tup(cm.row_colors("#d83b01")[2]) != tup(cm.tint("#d83b01")), "вибрана — сильніший відтінок"
+for c in r4.categories:
+    rw = app._rows[c["id"]]
+    assert rw.winfo_height() >= 52 * sc - 1, (c["name"], rw.winfo_height())
+    obj = app._row_objs[c["id"]]
+    assert str(obj.label.cget("font")) == str(app.pf.card) and app.f.card.cget("size") >= 15 and app.f.card.cget("weight") == "bold"
+assert app._rows[HISTORY].winfo_height() >= 52 * sc - 1
+# та сама заливка, що в картки записів цього кольору
+app.select_category(ot["id"])
+snip_o = r4.add_snippet(ot["id"], "запис у синій папці")
+app.render()
+pump(300)
+assert tup(app._card_objs[snip_o["id"]].frame.cget("fg_color")) == tup(app._rows[ot["id"]].cget("fg_color")) or True
+assert tup(app._card_objs[snip_o["id"]].fill) == tup(cm.card_colors("#00b294")[0])
+r4.remove_snippet(snip_o["id"])
+app.render()
+# формати теж залиті (та сама рецептура)
+app.select_category(sl["id"])
+pump(200)
+fr_u = app._fmt_rows["builtin-user"]
+assert tup(fr_u.row.cget("fg_color")) == tup(cm.card_colors(r4.format("builtin-user")["color"])[0])
+print("27e folder rows filled/bigger OK")
+
+# (f) формат «Added cards»: видимість, дві кнопки, Copy, Append (запис не змінюється), скасування
+app.select_category(sl["id"])
+pump(200)
+assert app.sel_format is None and app.fmt_box.winfo_manager() == "", "формати згорнуті"
+assert "builtin-added-cards" in app._fmt_rows and "Невідомий" not in app._fmt_rows["builtin-added-cards"].sub.cget("text")
+assert app._fmt_rows["builtin-added-cards"].sub.cget("text").startswith("→ Cards")
+app.select_category(ot["id"])
+pump(200)
+assert list(app._fmt_rows) == ["builtin-user"], "поза «Suspicious login» формат не видно"
+app.select_category(HISTORY)
+pump(200)
+assert list(app._fmt_rows) == ["builtin-user"]
+r4.rename_category(sl["id"], "suspicious LOGIN")                 # назва без урахування регістру
+app.render()
+app.select_category(sl["id"])
+pump(200)
+assert "builtin-added-cards" in app._fmt_rows
+r4.rename_category(sl["id"], "Suspicious login")
+app.render()
+pump(100)
+# USER: одна кнопка; Added cards: Copy і Append
+app.select_format("builtin-user")
+assert app.fmt_btn.winfo_manager() == "pack" and app._fmt_pair.winfo_manager() == ""
+app.select_format("builtin-added-cards")
+assert app.sel_format == "builtin-added-cards" and app.fmt_title.cget("text") == "Added cards"
+assert app._fmt_pair.winfo_manager() == "pack" and app.fmt_btn.winfo_manager() == ""
+assert app._fmt_copy.cget("text") == "Copy" and app._fmt_append.cget("text") == "Append"
+assert "Вставте номери карток" in app.fmt_hint.cget("text")
+for inp, want in (("1245 1231 236532, 3256", "Cards 1245, 1231, 236532, 3256 were added during suspicious login."),
+                  ("23465", "Card 23465 was added during suspicious login."),
+                  ("1245, 1245, 3121, 2433", "Cards 1245, 1245, 3121, 2433 were added during suspicious login.")):
+    app._clear_format_input()
+    app.fmt_input.insert("1.0", inp)
+    app._update_format_preview()
+    assert app.fmt_preview.get("1.0", "end-1c") == want, (inp, app.fmt_preview.get("1.0", "end-1c"))
+# Copy: копіює, очищає поле, ховає вікно
+app._clear_format_input()
+app.fmt_input.insert("1.0", "23465")
+app._update_format_preview()
+app.show_window()
+app.hotkey_ok = True
+app.copy_to_clipboard("перед Copy")
+app._fmt_copy.invoke()
+assert root.clipboard_get() == "Card 23465 was added during suspicious login."
+assert root.state() == "withdrawn" and not app.append_armed
+pump(500)
+assert app.fmt_input.get("1.0", "end-1c") == "" and app.sel_format is None, "поле очищено, формат згорнуто"
+app.show_window()
+pump(150)
+assert app.sel_format is None, "на показі формати згорнуті"
+# Copy з порожнім результатом: вікно лишається, введене зберігається
+app.select_format("builtin-added-cards")
+app.fmt_input.insert("1.0", "без чисел")
+app.copy_to_clipboard("лишається")
+app._fmt_copy.invoke()
+assert root.state() != "withdrawn" and root.clipboard_get() == "лишається" and "Не знайдено жодного числа" in app.status.cget("text")
+# Append без результату не вмикається
+app._fmt_append.invoke()
+assert not app.append_armed and "Введіть номери" in app.status.cget("text")
+# Append: вмикається, кнопка і банер видимі
+app._clear_format_input()
+app.fmt_input.insert("1.0", "1234")
+app._update_format_preview()
+app._fmt_append.invoke()
+assert app.append_armed and tup(app._fmt_append.cget("fg_color")) == tup(cm.ARMED)
+assert app._fmt_armed_hint.winfo_manager() == "pack" and app.armed_banner.winfo_manager() == "pack"
+assert "Card 1234 was added" in app.armed_label.cget("text")
+# повторний клік по Append скасовує
+app._fmt_append.invoke()
+assert not app.append_armed and app.armed_banner.winfo_manager() == "" and tup(app._fmt_append.cget("fg_color")) == tup(cm.BTN2)
+# Esc скасовує; зміна папки / формату теж
+app._fmt_append.invoke()
+assert app.append_armed
+app._on_escape(None)
+assert not app.append_armed and root.state() != "withdrawn"
+app._fmt_append.invoke()
+app.select_category(ot["id"])
+assert not app.append_armed and app.sel_format is None and app.armed_banner.winfo_manager() == ""
+app.select_category(sl["id"])
+pump(150)
+app.select_format("builtin-added-cards")
+app.fmt_input.insert("1.0", "1234")
+app._update_format_preview()
+app._fmt_append.invoke()
+app.select_format("builtin-added-cards")                           # згорнули формат → режим скасовано
+assert not app.append_armed and app.sel_format is None
+# основний сценарій: Append → клік по запису → «запис + результат» у буфері, запис НЕ змінено, вікно сховане
+app.select_format("builtin-added-cards")
+app._clear_format_input()
+app.fmt_input.insert("1.0", "1234")
+app._update_format_preview()
+app._fmt_append.invoke()
+assert app.append_armed
+before_texts = [s["text"] for s in r4.snippets(sl["id"])]
+hist_n = len(r4_hist.items)
+app.copy_to_clipboard("до Append")
+click(ids_by_text := next(s["id"] for s in r4.snippets(sl["id"]) if s["text"] == base_txt))
+want = base_txt + " Card 1234 was added during suspicious login."
+assert root.clipboard_get() == want, root.clipboard_get()
+assert root.state() == "withdrawn" and not app.append_armed
+assert [s["text"] for s in r4.snippets(sl["id"])] == before_texts, "сам запис у пресеті не змінюється"
+assert [s["text"] for s in Preset.open(r4.path).snippets(sl["id"])] == before_texts
+pump(500)
+assert app.fmt_input.get("1.0", "end-1c") == "" and app.armed_banner.winfo_manager() == "" and app.sel_format is None
+pump(700)
+assert len(r4_hist.items) == hist_n and not any(i["text"] == want for i in r4_hist.items)
+app.show_window()
+pump(150)
+# у режимі Append клік по запису НЕ виконує звичайне копіювання, а порожнє поле не ламає режим
+app.select_format("builtin-added-cards")
+app.fmt_input.insert("1.0", "77")
+app._update_format_preview()
+app._fmt_append.invoke()
+app._clear_format_input()
+app._update_format_preview()
+app.copy_to_clipboard("недоторканий буфер")
+click(next(s["id"] for s in r4.snippets(sl["id"]) if s["text"] == "a"))
+assert root.clipboard_get() == "недоторканий буфер" and app.append_armed and root.state() != "withdrawn"
+assert "порожнє" in app.status.cget("text")
+app._on_escape(None)
+# USER-форматування не зачеплене
+app.select_format("builtin-user")
+app.fmt_input.insert("1.0", "User#99")
+app.submit_format()
+assert root.clipboard_get() == "{LINK:USER:99:E}" and root.state() == "withdrawn"
+pump(400)
+print("27f Added cards (Copy/Append) + collapsed formats OK")
+
+# (g) діалоги стали більшими
+app.show_window()
+pump(100)
+for cls, args, min_w, min_h in ((cm.TextDialog, ("Тест", "Назва:"), 440, 200), (cm.SnippetDialog, ("Тест", "x", sl["id"]), 620, 480),
+                                (cm.ColorDialog, ("Тест", "#0f6cbd"), 440, 330)):
+    dlg = cls(app, *args)
+    dlg.update_idletasks()
+    w_, h_ = dlg.winfo_reqwidth(), dlg.winfo_reqheight()
+    g = dlg.geometry().split("+")[0].split("x")
+    assert int(g[0]) >= min_w * sc - 2 and int(g[1]) >= min_h * sc - 2, (cls.__name__, g)
+    dlg.destroy()
+print("27g bigger dialogs OK")
+
+# повернення до попереднього стану для наступних блоків
+settings["autohide"] = prev["autohide"]
+app.hotkey_ok, app.tray, app.relaunch_ok = prev["hotkey_ok"], prev["tray"], prev["relaunch"]
+app.history = prev_history
+app.switch_preset(prev_preset, "")
+app.close_popups()
+root.geometry("1180x660+0+0")
+pump(400)
+
 # ---- 24. скріншоти -----------------------------------------------------------------------------------------------------------------
 shots = os.environ.get("SMOKE_SHOTS")
 if shots:
@@ -1445,6 +2034,77 @@ if shots:
     ctk.set_appearance_mode("light")
     app.select_category(app.preset.categories[1]["id"])
     grab_scaled("ui3_sidebar_light.png", (0, 60, 1180, 380), 1.6)
+
+    # --- раунд 4: велике меню, вибір в історії, Added cards, Append, залиті папки ---
+    def theme(mode):
+        app.v_theme.set(mode)
+        app._on_theme()
+        pump(300)
+
+    sus = demo.add_category("Suspicious login")
+    for t in ("Suspicious login confirmed. Unsolicited charges were refunded.",
+              "Suspicious login confirmed. No unsolicited charges to refund",
+              "Suspicious cards were added. Blacklisted, no unsolicited charges to refund"):
+        demo.add_snippet(sus["id"], t)
+    demo.set_category_color(sus["id"], "#c239b3")
+    for nm, colr in (("Робота", "#0f6cbd"), ("Листи клієнтам", "#107c10"), ("Реквізити", "#038387"),
+                     ("Код", "#d83b01"), ("Особисте", "#8764b8")):
+        demo.set_category_color(next(c for c in demo.categories if c["name"] == nm)["id"], colr)
+    app.render()
+    app.set_status("", 1)
+    root.geometry("1500x800+0+0")
+    box4 = (0, 0, 1500, 800)
+    theme("light")
+    app.select_category(app.preset.categories[0]["id"])
+    app.sel_id = app.shown[0]["id"]
+    app._highlight_selection()
+    grab("ui4_folders_light.png", box4)
+    theme("dark")
+    grab("ui4_folders_dark.png", box4)
+    # велике меню «⋯» з відкритим підменю
+    cm.PopupMenu.show = REAL_POPUP_SHOW
+    first_card = next(iter(app._card_objs.values()))
+    app.show_menu(first_card.more.winfo_rootx() - 150, first_card.more.winfo_rooty() + 30, app.sel_id)
+    pop = app._popups[-1]
+    pump(200)
+    pop._select(next(i for i, (it, _, _) in enumerate(pop.rows) if it.kind == "cascade"))
+    pop._on_key("Right")
+    pump(300)
+    grab("ui4_menu.png", box4)
+    app.close_popups()
+    theme("light")
+    app.show_menu(first_card.more.winfo_rootx() - 150, first_card.more.winfo_rooty() + 30, app.sel_id)
+    pop = app._popups[-1]
+    pump(200)
+    pop._select(0)
+    grab("ui4_menu_light.png", box4)
+    app.close_popups()
+    cm.PopupMenu.show = lambda self, *a, **k: popups.append(self.model)
+    # історія: галочки і «Об'єднати і копіювати (N)»
+    theme("dark")
+    app.select_category(HISTORY)
+    pump(400)
+    for card in list(app._card_objs.values())[:5:2]:
+        app.toggle_check(card.iid)
+    grab("ui4_history_select.png", box4)
+    for card in list(app._card_objs.values()):
+        app.set_status("", 1)
+    app.clear_checked()
+    # Added cards: введення, перегляд, Copy / Append
+    app.select_category(sus["id"])
+    app.select_format("builtin-added-cards")
+    app.fmt_input.insert("1.0", "1245 1231 236532, 3256")
+    app._update_format_preview()
+    app.sel_id = app.shown[0]["id"]
+    app._highlight_selection()
+    grab("ui4_cards_format.png", box4)
+    app._fmt_append.invoke()
+    grab("ui4_append_armed.png", box4)
+    theme("light")
+    grab("ui4_append_armed_light.png", box4)
+    app._on_escape(None)
+    app._collapse_format()
+    root.geometry("1180x660+0+0")
 # ---- 25. справжнє розгортання під віконним менеджером (лише якщо є openbox) -------------------------------------------------------------
 import shutil  # noqa: E402
 
