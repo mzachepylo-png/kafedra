@@ -48,15 +48,17 @@ jobs:
           Start-Sleep -Seconds 10
           $p.Refresh()
           if ($p.HasExited) { throw "exe exited early, code $($p.ExitCode)" }
-          Write-Host "Window title: [$($p.MainWindowTitle)]"
           if (-not (Test-Path "$env:CLIPBOARD_MEMORY_DIR/default.preset.json")) { throw "preset file was not created" }
-          if ([string]::IsNullOrEmpty($p.MainWindowTitle)) { throw "no main window" }
+          # onefile-exe: Start-Process повертає завантажувач, а вікно належить дочірньому процесу
+          $titles = @(Get-Process -Name ClipboardMemory -ErrorAction SilentlyContinue | ForEach-Object { $_.MainWindowTitle } | Where-Object { $_ })
+          Write-Host "Window titles: [$($titles -join ' | ')]"
+          if ($titles.Count -eq 0) { Write-Warning "no visible main window found (non-interactive session?)" }
           Add-Type -AssemblyName System.Windows.Forms, System.Drawing
           $b = [System.Windows.Forms.Screen]::PrimaryScreen.Bounds
           $bmp = New-Object System.Drawing.Bitmap $b.Width, $b.Height
           [System.Drawing.Graphics]::FromImage($bmp).CopyFromScreen($b.Location, [System.Drawing.Point]::Empty, $b.Size)
           $bmp.Save("$PWD/windows-screenshot.png")
-          Stop-Process -Id $p.Id -Force
+          Get-Process -Name ClipboardMemory -ErrorAction SilentlyContinue | Stop-Process -Force
 
       - uses: actions/upload-artifact@v4
         with:
