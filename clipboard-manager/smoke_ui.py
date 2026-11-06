@@ -35,8 +35,9 @@ history = History(os.path.join(data_dir, "clipboard_history.json"))
 events = queue.Queue()
 
 root = ctk.CTk()
+settings["autohide"] = False       # автохов (клік → вікно зникає) перевіряється окремими кроками нижче
 app = cm.App(root, preset, history, settings, events, use_hotkey=False, use_tray=False)
-root.geometry("1000x620+0+0")
+root.geometry("1180x660+0+0")
 other = tk.Toplevel(root)                       # «інша програма», з якої копіюємо
 other.geometry("40x40+1250+740")
 
@@ -59,9 +60,14 @@ def copy_from_other(text, wait=550):
     pump(wait)
 
 
+def n_entries(menu):
+    end = menu.index("end")
+    return 0 if end is None else end + 1     # index("end") == 0 для меню з одним пунктом
+
+
 def labels(menu):
     out = []
-    for i in range((menu.index("end") or -1) + 1):
+    for i in range(n_entries(menu)):
         t = menu.type(i)
         if t in ("command", "cascade", "checkbutton", "radiobutton"):
             out.append(menu.entrycget(i, "label").strip())
@@ -69,14 +75,14 @@ def labels(menu):
 
 
 def submenu(menu, label):
-    for i in range((menu.index("end") or -1) + 1):
+    for i in range(n_entries(menu)):
         if menu.type(i) == "cascade" and menu.entrycget(i, "label") == label:
             return menu.nametowidget(menu.entrycget(i, "menu"))
     raise AssertionError(f"no cascade {label!r} in {labels(menu)}")
 
 
 def invoke(menu, label):
-    for i in range((menu.index("end") or -1) + 1):
+    for i in range(n_entries(menu)):
         if menu.type(i) in ("command",) and menu.entrycget(i, "label").strip() == label:
             menu.invoke(i)
             return
@@ -230,7 +236,8 @@ app.select_category(work["id"])
 snip_id = app.shown[0]["id"]
 app.show_menu(10, 10, snip_id)
 m = popups[-1]
-assert labels(m) == ["Копіювати", "Редагувати…", "Перемістити в категорію", "Вгору", "Вниз", "Видалити"], labels(m)
+assert labels(m) == ["Копіювати", "Редагувати…", "Колір запису…", "Перемістити в категорію", "Вгору", "Вниз",
+                     "Видалити"], labels(m)
 sub = submenu(m, "Перемістити в категорію")
 assert labels(sub) == ["✓ Робота".replace("✓ ", "✓ ").strip(), "Особисте", "＋ Нова категорія…"], labels(sub)
 app.select_category(HISTORY)
@@ -253,7 +260,8 @@ invoke(popups[-1], "Вгору")
 assert preset.snippets(work["id"])[0]["text"] == "Другий запис"
 # меню категорії
 app.show_category_menu(5, 5, work["id"])
-assert labels(popups[-1]) == ["Перейменувати…", "Перемістити вгору", "Перемістити вниз", "Видалити категорію…"]
+assert labels(popups[-1]) == ["Перейменувати…", "Колір…", "Перемістити вгору", "Перемістити вниз",
+                              "Видалити категорію…"], labels(popups[-1])
 answers[:] = ["Робота 2"]
 invoke(popups[-1], "Перейменувати…")
 assert preset.category(work["id"])["name"] == "Робота 2"
@@ -305,8 +313,8 @@ fd.askopenfilename = lambda **k: bad
 app.on_import_preset()
 assert len(boxes["error"]) == 2
 menu = app._build_preset_menu(app._new_menu())
-assert labels(menu)[:5] == ["Новий пресет…", "Відкрити пресет…", "Зберегти як…",
-                            "Імпортувати з файлу (додати до поточного)…", "Показати файл у теці"]
+assert labels(menu)[:6] == ["Новий пресет…", "Відкрити пресет…", "Зберегти як…", "Перейменувати пресет…",
+                            "Імпортувати з файлу (додати до поточного)…", "Показати файл у теці"], labels(menu)
 assert "Останні" in labels(menu)
 assert main_path in [p for p in settings["recent_presets"]]
 popped = []
@@ -353,7 +361,8 @@ app.hide_window()
 assert root.state() == "withdrawn"
 events.put("toggle")
 pump(900)
-assert root.state() == "normal" and app._popup_mode is True
+assert root.state() == "normal" and app._hidden is False
+settings["autohide"], app.hotkey_ok = True, True          # автохов діє завжди, коли є чим повернути вікно
 app.select_category(HISTORY)
 copy_from_other("текст для автохову")
 click(app.shown[0]["id"])
@@ -377,6 +386,7 @@ app._modal = 0
 events.put("show")
 pump(900)
 assert root.state() == "normal"
+settings["autohide"], app.hotkey_ok = False, False
 print("13 hotkey events OK")
 
 # ---- 14. видалення категорії з підтвердженням (кількість записів у тексті) ---------------------------------------------
@@ -479,16 +489,392 @@ new.wait(10)
 assert "Traceback" not in old.stderr.read().decode() + new.stderr.read().decode()
 print("18b new version replaces the old one OK")
 
-# ---- 19. скріншоти -----------------------------------------------------------------------------------------------------------------
+# =====================================================================================================================
+#  Раунд 2: кольори, перейменування пресета, миттєве ховання, формат USER, розкладка
+# =====================================================================================================================
+def tup(x):
+    return tuple(x) if isinstance(x, (list, tuple)) else x
+
+
+def lum(h):
+    r, g, b = [int(h.lstrip("#")[i:i + 2], 16) / 255 for i in (0, 2, 4)]
+    f = lambda c: c / 12.92 if c <= 0.03928 else ((c + 0.055) / 1.055) ** 2.4  # noqa: E731
+    return 0.2126 * f(r) + 0.7152 * f(g) + 0.0722 * f(b)
+
+
+def contrast(a, b):
+    la, lb = sorted((lum(a), lum(b)), reverse=True)
+    return (la + 0.05) / (lb + 0.05)
+
+
+# свіжий пресет і порожня історія, щоб кроки були детермінованими
+p2 = Preset.open_or_create(os.path.join(tmp, "colors.preset.json"))
+app.history = History(os.path.join(tmp, "h2.json"))
+app.switch_preset(p2, "")
+root.geometry("1180x660+0+0")
+pump(200)
+
+# ---- 19. кольори папок, записів і форматів -----------------------------------------------------------------------------------
+cA, cB = p2.add_category("Червоні"), p2.add_category("Сині")
+s1, s2 = p2.add_snippet(cA["id"], "перший"), p2.add_snippet(cA["id"], "другий")
+app.select_category(cA["id"])
+pump(100)
+color_answers = []
+cm.ColorDialog.run = lambda self: color_answers.pop(0)
+
+
+def card_bar(iid):
+    return app._cards[iid].winfo_children()[0]       # перший дочірній віджет картки — кольорова смужка
+
+
+def dot_color(cid):
+    return app._rows[cid].winfo_children()[0].cget("text_color")
+
+
+color_answers[:] = [("set", "#E81123")]
+app.on_category_color(cA["id"])
+assert p2.category(cA["id"])["color"] == "#e81123"
+for it in app.shown:
+    assert tup(app._cards[it["id"]].cget("fg_color")) == cm.tint("#e81123"), "фон картки = відтінок кольору папки"
+    assert card_bar(it["id"]).cget("fg_color") == "#e81123"
+assert dot_color(cA["id"]) == "#e81123", "крапка в списку категорій підхопила колір"
+assert "Колір категорії змінено" in app.status.cget("text")
+p2.add_snippet(cA["id"], "третій")                    # новий запис у папці одразу має колір папки
+app.render()
+assert all(tup(app._cards[i["id"]].cget("fg_color")) == cm.tint("#e81123") for i in app.shown) and len(app.shown) == 3
+color_answers[:] = [None]                              # скасування діалогу нічого не міняє
+app.on_category_color(cA["id"])
+assert p2.category(cA["id"])["color"] == "#e81123"
+
+color_answers[:] = [("set", "#00aa00")]               # власний колір запису
+app.on_snippet_color(s1["id"])
+assert tup(app._cards[s1["id"]].cget("fg_color")) == cm.tint("#00aa00") and card_bar(s1["id"]).cget("fg_color") == "#00aa00"
+assert tup(app._cards[s2["id"]].cget("fg_color")) == cm.tint("#e81123"), "інші записи лишились кольору папки"
+color_answers[:] = [("set", "#0000ff")]               # колір папки змінюється — власний колір запису НЕ перезаписується
+app.on_category_color(cA["id"])
+assert tup(app._cards[s1["id"]].cget("fg_color")) == cm.tint("#00aa00")
+assert tup(app._cards[s2["id"]].cget("fg_color")) == cm.tint("#0000ff") and dot_color(cA["id"]) == "#0000ff"
+assert Preset.open(p2.path).snippets(cA["id"])[0]["own_color"] == "#00aa00", "власний колір збережено у файлі"
+color_answers[:] = [("reset", None)]                  # «Як у папки»
+app.on_snippet_color(s1["id"])
+assert tup(app._cards[s1["id"]].cget("fg_color")) == cm.tint("#0000ff") and p2.snippets(cA["id"])[0]["own_color"] is None
+
+app.select_format("builtin-user")                      # колір формату
+color_answers[:] = [("set", "#ff8800")]
+app.on_format_color("builtin-user")
+assert p2.format("builtin-user")["color"] == "#ff8800"
+row0 = app.formats_slot.winfo_children()[0]
+assert tup(row0.cget("fg_color")) == cm.tint("#ff8800") and row0.winfo_children()[0].cget("fg_color") == "#ff8800"
+app.show_format_menu(3, 3, "builtin-user")
+assert labels(popups[-1]) == ["Колір…"], labels(popups[-1])
+app.show_menu(1, 1, s1["id"])
+assert "Колір запису…" in labels(popups[-1])
+app.select_category(HISTORY)
+app.history.add("для меню історії")
+app.render()
+app.show_menu(1, 1, app.shown[0]["id"])
+assert "Колір запису…" not in labels(popups[-1]), "записи історії кольору не мають"
+app.select_category(cA["id"])
+
+# справжній діалог вибору кольору
+dlg = cm.ColorDialog(app, "Колір", "#e81123", allow_reset=True)
+assert dlg.swatches["#e81123"].cget("text") == "✓" and dlg.swatches["#0f6cbd"].cget("text") == ""
+assert len(dlg.swatches) == 12
+root.after(300, dlg.swatches["#0f6cbd"].invoke)
+assert cm._Dialog.run(dlg) == ("set", "#0f6cbd")
+dlg = cm.ColorDialog(app, "Колір", "#0f6cbd", allow_reset=True)
+root.after(300, dlg.reset)
+assert cm._Dialog.run(dlg) == ("reset", None)
+dlg = cm.ColorDialog(app, "Колір", None)
+cm.colorchooser.askcolor = lambda **k: ((1, 2, 3), "#123456")
+root.after(300, dlg.custom)
+assert cm._Dialog.run(dlg) == ("set", "#123456")
+dlg = cm.ColorDialog(app, "Колір", None)
+cm.colorchooser.askcolor = lambda **k: (None, None)           # «Скасувати» у системному діалозі
+root.after(300, lambda: (dlg.custom(), dlg.cancel()))
+assert cm._Dialog.run(dlg) is None
+app.select_format("builtin-user")                              # прибираємо виділення формату
+assert app.sel_format is None
+print("19 colors OK")
+
+# ---- 20. перейменування пресета ---------------------------------------------------------------------------------------------------
+old_path = app.preset.path
+answers[:] = ["Мої   шаблони"]
+app.on_rename_preset()
+assert app.preset.path.endswith("Мої шаблони.preset.json") and os.path.exists(app.preset.path)
+assert not os.path.exists(old_path) and app.preset.name == "Мої шаблони"
+assert settings["preset_path"] == app.preset.path and old_path not in settings["recent_presets"]
+assert app.preset.path in settings["recent_presets"]
+assert "Мої шаблони" in root.title() and app.preset_name.cget("text") == "Мої шаблони"
+assert app.preset_file.cget("text") == "Мої шаблони.preset.json" and "перейменовано" in app.status.cget("text")
+assert Preset.open(app.preset.path).name == "Мої шаблони" and Preset.open(app.preset.path).count(cA["id"]) == 3
+errs = len(boxes["error"])
+busy = Preset.open_or_create(os.path.join(tmp, "Зайнято.preset.json"))
+for bad in ("Зайнято", "   ", '<>:"|?*'):
+    answers[:] = [bad]
+    app.on_rename_preset()
+    assert len(boxes["error"]) == errs + 1, bad
+    errs += 1
+    assert app.preset.name == "Мої шаблони" and app.preset.path.endswith("Мої шаблони.preset.json")
+answers[:] = [None]
+app.on_rename_preset()
+assert len(boxes["error"]) == errs and app.preset.name == "Мої шаблони"
+assert "Перейменувати пресет…" in labels(app._build_preset_menu(app._new_menu()))
+app._popup_settings()
+assert "Перейменувати пресет…" in labels(submenu(popups[-1], "Пресет"))
+# та сама початкова задача користувача: типовий пресет "default"
+dflt = Preset.open_or_create(os.path.join(tmp, "default.preset.json"))
+app.switch_preset(dflt, "")
+answers[:] = ["Робочий"]
+app.on_rename_preset()
+assert os.path.basename(app.preset.path) == "Робочий.preset.json" and not os.path.exists(os.path.join(tmp, "default.preset.json"))
+app.switch_preset(Preset.open(os.path.join(tmp, "Мої шаблони.preset.json")), "")       # повертаємось до кольорового пресета
+print("20 preset rename OK")
+
+# ---- 21. автохов: миттєво, спершу ховаємось — потім працюємо --------------------------------------------------------------------------
+settings["autohide"], app.hotkey_ok = True, True
+app.v_autohide.set(True)
+app._sync_submit_label()
+assert app.fmt_btn.cget("text") == "Копіювати і сховати"
+app.select_category(HISTORY)
+copy_from_other("для автохову 2")
+assert app.shown[0]["text"] == "для автохову 2"
+app.show_window()
+pump(150)
+render_log = []
+orig_render = app._render_list_now
+app._render_list_now = lambda *a, **k: (render_log.append(root.state()), orig_render(*a, **k))[1]
+target = app.shown[1]["id"] if len(app.shown) > 1 else app.shown[0]["id"]
+target_text = app._text_of(target)
+t0 = time.perf_counter()
+click(target)
+t_click_hide = time.perf_counter() - t0
+assert root.state() == "withdrawn" and root.clipboard_get() == target_text
+assert render_log == [], "до ховання вікна не має бути жодної перебудови списку"
+pump(300)
+assert render_log and all(st == "withdrawn" for st in render_log), render_log     # перебудова — лише коли вікна не видно
+assert app.history.items[0]["text"] == target_text, "запис піднявся в історії вже після ховання"
+app._render_list_now = orig_render
+print(f"21a click -> hidden in {t_click_hide * 1000:.1f} ms; renders only while hidden: {render_log}")
+
+# без гарячої клавіші й трея замість ховання — згортання (інакше вікно не повернути)
+app.hotkey_ok, app.tray = False, None
+app.show_window()
+pump(100)
+iconified = []
+root.iconify = lambda: iconified.append(1)        # у Xvfb без віконного менеджера справжнє згортання неможливе
+click(app.shown[0]["id"])
+del root.iconify
+assert iconified == [1] and root.state() == "normal", (iconified, root.state())     # згорнули, а не сховали
+app.hotkey_ok = True
+settings["autohide"] = True
+
+# показ — лише deiconify: 0 перебудов списку
+for n in range(3):
+    app.hide_window()
+    pump(250)
+    rc = app.render_count
+    app.show_window(near_cursor=True)
+    root.update_idletasks()
+    assert app.render_count == rc, "показ вікна не має перебудовувати список"
+print("21b show needs 0 renders OK")
+
+# зміни, поки вікно сховане, малюються у фоні (а не при показі)
+app.hide_window()
+pump(150)
+rc = app.render_count
+copy_from_other("надійшло поки вікно сховане", 700)
+assert app.render_count > rc, "перебудова мала відбутись у фоні"
+assert app.shown[0]["text"] == "надійшло поки вікно сховане" and not app._dirty
+rc = app.render_count
+app.show_window()
+assert app.render_count == rc
+# сховали → пошук і поле форматування очищаються самі, список готовий
+app.set_search("надійшло")
+app.select_format("builtin-user")
+app.fmt_input.insert("1.0", "999")
+app.hide_window()
+pump(300)
+assert app.search.get() == "" and app._query() == "" and app.fmt_input.get("1.0", "end-1c") == ""
+assert len(app.shown) == len(app.history.items) and app.sel_format == "builtin-user"
+rc = app.render_count
+app.show_window()
+assert app.render_count == rc and root.state() == "normal"
+app.select_format("builtin-user")           # згортаємо формат назад
+print("21c background render / reset-on-hide OK")
+
+# затримка від натискання гарячої клавіші до видимого вікна + час самого обробника
+lat, t_show, t_hide = [], [], []
+root.focus_displayof = lambda: root
+for n in range(12):
+    app.hide_window()
+    pump(220)
+    t0 = time.perf_counter()
+    events.put("toggle")
+    while root.state() != "normal":
+        root.update()
+        if time.perf_counter() - t0 > 2:
+            raise AssertionError("вікно не з'явилось")
+    lat.append(time.perf_counter() - t0)
+    pump(200)
+    t1 = time.perf_counter()
+    app.toggle_window()                      # видиме і «у фокусі» → ховає
+    t_hide.append(time.perf_counter() - t1)
+    assert root.state() == "withdrawn"
+    pump(200)
+    t2 = time.perf_counter()
+    app.toggle_window()
+    t_show.append(time.perf_counter() - t2)
+    assert root.state() == "normal"
+del root.focus_displayof
+print(f"21d hotkey->visible latency avg {sum(lat) / len(lat) * 1000:.1f} ms max {max(lat) * 1000:.1f} ms; "
+      f"toggle handler show avg {sum(t_show) / len(t_show) * 1000:.1f} ms max {max(t_show) * 1000:.1f} ms, "
+      f"hide avg {sum(t_hide) / len(t_hide) * 1000:.1f} ms max {max(t_hide) * 1000:.1f} ms")
+assert max(lat) < 0.25 and max(t_show) < 0.25 and max(t_hide) < 0.1
+
+# дебаунс і злиття подвійних натискань
+app.hide_window()
+pump(300)
+events.put("toggle")
+events.put("toggle")
+pump(150)
+assert root.state() == "withdrawn", "два toggle підряд скасовують одне одного"
+events.put("toggle")
+events.put("toggle")
+events.put("toggle")
+pump(150)
+assert root.state() == "normal", "три toggle підряд = один"
+app.hide_window()
+pump(300)
+app.toggle_window()
+st = root.state()
+app.toggle_window()                           # повторний виклик одразу — ігнорується (дебаунс)
+assert st == "normal" and root.state() == st
+pump(250)
+print("21e toggle coalescing / debounce OK")
+settings["autohide"], app.hotkey_ok = False, False
+app.v_autohide.set(False)
+app._on_autohide()
+assert app.fmt_btn.cget("text") == "Копіювати" and Settings(settings.path)["autohide"] is False
+
+# ---- 22. форматування USER ------------------------------------------------------------------------------------------------------------------
+app.select_category(HISTORY)
+assert app.sel_format is None and app.fmt_box.winfo_manager() == "" and app.fmt_idle.winfo_manager() == "pack"
+assert [f["name"] for f in app.preset.formats] == ["USER"]
+app.select_format("builtin-user")
+assert app.fmt_box.winfo_manager() == "pack" and app.fmt_idle.winfo_manager() == "" and app.fmt_title.cget("text") == "USER"
+inp = "123, User#45312  23512"
+expected = "{LINK:USER:123:E}, {LINK:USER:45312:E}, {LINK:USER:23512:E}"
+app.fmt_input.insert("1.0", inp)
+app._update_format_preview()
+assert app.fmt_preview.get("1.0", "end-1c") == expected
+assert app.fmt_preview.cget("state") == "disabled", "перегляд лише для читання"
+before_hist = len(app.history.items)
+settings["autohide"], app.hotkey_ok = True, True
+app.v_autohide.set(True)
+app._on_autohide()
+rc = app.render_count
+app.submit_format()
+assert root.clipboard_get() == expected, root.clipboard_get()
+assert root.state() == "withdrawn", "після форматування вікно ховається"
+pump(300)
+assert app.fmt_input.get("1.0", "end-1c") == "" and app.fmt_preview.get("1.0", "end-1c") == ""
+pump(700)
+assert len(app.history.items) == before_hist and not any(i["text"] == expected for i in app.history.items), \
+    ("результат форматування не потрапляє в історію буфера", before_hist, [i["text"][:40] for i in app.history.items[:4]])
+app.show_window()
+pump(100)
+# порожній / нечисловий ввід: нічого не копіюється, вікно лишається, введене зберігається
+app.copy_to_clipboard("попередній буфер")
+app.fmt_input.insert("1.0", "немає чисел, User#")
+app.submit_format()
+assert root.state() == "normal" and root.clipboard_get() == "попередній буфер"
+assert "Не знайдено жодного числа" in app.status.cget("text") and app.fmt_input.get("1.0", "end-1c") == "немає чисел, User#"
+# Enter виконує, Shift+Enter — новий рядок; клавіші в полі не копіюють виділений запис
+assert app._on_format_return(SimpleNamespace(state=1)) is None
+app._clear_format_input()
+app.fmt_input.insert("1.0", "User#7876976 User#67976, User#67987690")
+assert app._on_format_return(SimpleNamespace(state=0)) == "break"
+assert root.clipboard_get() == "{LINK:USER:7876976:E}, {LINK:USER:67976:E}, {LINK:USER:67987690:E}"
+pump(300)
+app.show_window()
+app.select_category(cA["id"])
+app.sel_id = app.shown[0]["id"]
+app.copy_to_clipboard("лишається")
+app._on_return(SimpleNamespace(widget=app.fmt_input._textbox))
+assert root.clipboard_get() == "лишається", "Enter у полі форматування не повинен копіювати виділену картку"
+app._on_return(SimpleNamespace(widget=root))
+assert root.clipboard_get() == app.shown[0]["text"]
+assert root.state() == "withdrawn", "Enter на виділеній картці копіює і (автохов) ховає вікно"
+pump(100)
+app.show_window()
+pump(100)
+assert app._in_format_input(SimpleNamespace(widget=app.fmt_input._textbox)) and not app._in_format_input(SimpleNamespace(widget=root))
+# autohide вимкнено → кнопка «Копіювати», вікно лишається, поле очищується
+settings["autohide"] = False
+app.v_autohide.set(False)
+app._on_autohide()
+app.fmt_input.insert("1.0", "555")
+app.submit_format()
+assert root.clipboard_get() == "{LINK:USER:555:E}" and root.state() == "normal" and app.fmt_input.get("1.0", "end-1c") == "", \
+    (root.clipboard_get(), root.state(), app.fmt_input.get("1.0", "end-1c"))
+# невідомий тип формату з новішої версії: показується неактивним, нічого не ламає
+app.preset.formats.append({"id": "x1", "name": "Майбутній", "type": "from-newer-version", "color": "#112233"})
+app.preset.save()
+app.render()
+assert len(app.formats_slot.winfo_children()) == 2
+app.preset.formats[:] = [f for f in app.preset.formats if f["id"] != "x1"]
+app.preset.save()
+app.render()
+app.select_format("builtin-user")
+assert app.sel_format is None, "повторний клік згортає область введення"
+app.select_format("builtin-user")
+print("22 USER format OK")
+
+# ---- 23. розкладка, типографіка, контраст ---------------------------------------------------------------------------------------------------
+assert app.f.card.cget("size") >= 15 and app.f.card.cget("weight") == "bold" and app.f.meta.cget("size") >= 12
+for mode, ci in (("light", 0), ("dark", 1)):
+    assert contrast(cm.META[ci], cm.CARD[ci]) >= 4.5, (mode, "meta")
+    assert contrast(cm.TEXT[ci], cm.CARD[ci]) >= 7, (mode, "text")
+    for color in cm.SWATCHES:                       # навіть на найсильнішому відтінку текст лишається читабельним
+        bg = cm.tint(color, 0.20, 0.28)[ci]
+        assert contrast(cm.TEXT[ci], bg) >= 4.5 and contrast(cm.META[ci], bg) >= 3.2, (mode, color)
+for w, h in ((1180, 660), (1040, 520)):
+    root.geometry(f"{w}x{h}+0+0")
+    pump(500)
+    sc = app.scaling()
+    lw, mw, rw = (x.winfo_width() / sc for x in (app.left, app.mid, app.right))
+    assert 262 <= lw <= 285 and 334 <= rw <= 356, (w, lw, rw)
+    assert mw >= 340, (w, mw)
+    if w == 1180:
+        assert mw < 540, f"центральна колонка не має бути надто розтягнутою ({mw})"
+    # нічого не обрізається: кнопка форматування і приписка — всередині правої колонки
+    bottom = app.right.winfo_rooty() + app.right.winfo_height()
+    for wdg in (app.fmt_btn, app.formats_note):
+        assert wdg.winfo_rooty() + wdg.winfo_height() <= bottom + 1, (w, h, wdg)
+        assert wdg.winfo_rooty() >= app.right.winfo_rooty()
+    assert app.fmt_btn.winfo_rooty() + app.fmt_btn.winfo_height() <= app.formats_note.winfo_rooty() + 1, (w, h, "кнопка налягає на приписку")
+    for card in app._cards.values():
+        assert card.winfo_width() <= app.cards.winfo_width() + 1
+    assert app._wrap_labels, "у відкритій категорії мають бути картки"
+    for lbl in app._wrap_labels:      # текст картки переноситься, а не обрізається по правому краю
+        assert lbl.winfo_reqwidth() <= lbl.winfo_width() + 2, (w, lbl.cget("text"), lbl.winfo_reqwidth(), lbl.winfo_width())
+print("23 layout/typography OK")
+root.geometry("1180x660+0+0")
+pump(300)
+app.select_format("builtin-user")
+assert app.sel_format is None
+
+# ---- 24. скріншоти -----------------------------------------------------------------------------------------------------------------
 shots = os.environ.get("SMOKE_SHOTS")
 if shots:
     os.makedirs(shots, exist_ok=True)
     sd = tempfile.mkdtemp()
     demo = Preset.open_or_create(os.path.join(sd, "Робочі шаблони.preset.json"))
     plan = {
-        "Робота": ["Добрий день! Дякую за звернення. Відповім протягом робочого дня.",
-                   "З повагою,\nМикита Зачепило\nтел. +380 50 123 45 67",
-                   "Прошу надіслати рахунок-фактуру на оплату до кінця тижня."],
+        "Робота": ["Suspicious login confirmed",
+                   "Добрий день! Дякую за звернення. Відповім протягом робочого дня.",
+                   "З повагою,\nМикита Зачепило\nтел. +380 50 123 45 67"],
         "Листи клієнтам": ["Вітаю! Нагадую про зустріч завтра об 11:00 в офісі.",
                            "Дякуємо за замовлення №{номер}! Відправимо його протягом 2 днів."],
         "Реквізити": ["UA21 3223 1300 0002 6007 2335 6600 1", "ЄДРПОУ 12345678 · ІПН 123456789012"],
@@ -500,7 +886,9 @@ if shots:
         c = demo.add_category(name)
         for t in texts:
             demo.add_snippet(c["id"], t)
-    demo.formats = []
+    own = demo.categories[0]["snippets"][1]["id"]
+    demo.set_snippet_color(own, "#d83b01")                       # запис із власним кольором
+    demo.set_format_color("builtin-user", "#8764b8")
     hist2 = History(os.path.join(sd, "h.json"))
     for t in ["https://github.com/mzachepylo-png/kafedra/pull/2", "Рахунок №2024-117 на суму 12 480,00 грн",
               "Зустріч у четвер о 15:30, кімната переговорів «Дніпро»", "npm run build && npm test",
@@ -509,32 +897,35 @@ if shots:
     app.history = hist2
     app.switch_preset(demo, "")
     app.set_status("✓ Скопійовано: Добрий день! Дякую за звернення…", 60000)
-    root.geometry("1000x620+0+0")
+    app.select_format("builtin-user")
+    app.fmt_input.insert("1.0", "123, User#45312  23512")
+    app._update_format_preview()
+    root.geometry("1180x660+0+0")
 
-    def grab(name):
-        pump(500)
-        subprocess.run([sys.executable if False else "/usr/local/bin/python3", "-c",
-                        f"from PIL import ImageGrab; ImageGrab.grab().crop((0,0,1000,620)).save({os.path.join(shots, name)!r})"],
+    def grab(name, box=(0, 0, 1180, 660)):
+        pump(600)
+        subprocess.run(["/usr/local/bin/python3", "-c",
+                        f"from PIL import ImageGrab; ImageGrab.grab().crop({box!r}).save({os.path.join(shots, name)!r})"],
                        check=True)
 
     app.select_category(app.preset.categories[0]["id"])
-    app.sel_id = app.shown[1]["id"]
+    app.sel_id = app.shown[0]["id"]
     app._highlight_selection()
     ctk.set_appearance_mode("light")
-    grab("ui_light.png")
+    grab("ui2_light.png")
     ctk.set_appearance_mode("dark")
-    grab("ui_dark.png")
+    grab("ui2_dark.png")
     ctk.set_appearance_mode("light")
+    app.select_category(app.preset.categories[3]["id"])
+    grab("ui2_format.png")
     app.select_category(HISTORY)
-    grab("ui_history.png")
-    dlg = cm.SnippetDialog(app, "Новий запис", "", app.preset.categories[0]["id"])
-    dlg.text.insert("1.0", "Добрий день! Це приклад нового запису.")
-    dlg.geometry("+240+120")
-    pump(600)
-    subprocess.run(["/usr/local/bin/python3", "-c",
-                    f"from PIL import ImageGrab; ImageGrab.grab().crop((0,0,1000,620)).save({os.path.join(shots, 'ui_dialog.png')!r})"],
-                   check=True)
+    grab("ui2_history.png")
+    dlg = cm.ColorDialog(app, "Колір категорії «Робота»", "#0f6cbd", allow_reset=False)
+    dlg.geometry("+380+200")
+    grab("ui2_color.png")
     dlg.destroy()
-    app._popup_preset_menu = app._popup_preset_menu  # (меню tk не знімаємо у Xvfb)
+    root.geometry("1040x520+0+0")
+    app.select_category(app.preset.categories[0]["id"])
+    grab("ui2_min.png", (0, 0, 1040, 520))
 print("ALL UI CHECKS OK")
 os._exit(0)   # без довгого прибирання ctk-after-колбеків
