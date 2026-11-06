@@ -16,7 +16,7 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        keys: ["arts:a_proto,a_ext", "arts:a_cyano,a_metal", "arts:a_more", "search:c_water,c_glass,c_test,c_tipx", "search:myco2,protect2"]
+        keys: ["final:", "search:c_w2,c_w3,c_w4"]
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-python@v5
@@ -24,11 +24,7 @@ jobs:
           python-version: "3.12"
       - run: pip install pillow==11.0.0
       - run: |
-          if [ "$(cut -d' ' -f1 tools/allium/mode.txt)" = "final" ]; then
-            [ "${{ matrix.keys }}" = "arts:a_proto,a_ext" ] && python tools/allium/fetch.py final || echo "final runs in the first job only"
-          else
-            K="${{ matrix.keys }}"; python tools/allium/fetch.py "${K%%:*}" "${K#*:}"
-          fi
+          K="${{ matrix.keys }}"; python tools/allium/fetch.py "${K%%:*}" "${K#*:}"
       - name: Commit results
         run: |
           git config user.name "github-actions[bot]"

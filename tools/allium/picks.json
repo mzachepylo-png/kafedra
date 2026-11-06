@@ -1,0 +1,321 @@
+{
+ "mit_reischig1": {
+  "src": "c_tip2/c2",
+  "thumb": "https://thumb.wikimedia.org/wikipedia/commons/thumb/e/e3/Mitosis_%28261_13%29_Pressed%3B_root_meristem_of_onion_%28cells_in_prophase%2C_metaphase%2C_anaphase%2C_telophase%29.jpg/1280px-Mitosis_%28261_13%29_Pressed%3B_root_meristem_of_onion_%28cells_in_prophase%2C_metaphase%2C_anaphase%2C_telophase%29.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
+  "width": 1100
+ },
+ "mit_reischig2": {
+  "src": "c_tip2/c3",
+  "thumb": "https://thumb.wikimedia.org/wikipedia/commons/thumb/1/15/Mitosis_%28261_15%29_Pressed%3B_root_meristem_of_onion.jpg/1280px-Mitosis_%28261_15%29_Pressed%3B_root_meristem_of_onion.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
+  "width": 1100
+ },
+ "mit_reischig3": {
+  "src": "c_tip2/c6",
+  "thumb": "https://thumb.wikimedia.org/wikipedia/commons/thumb/5/5c/Mitosis_%28261_14%29_Pressed%3B_root_meristem_of_onion_%28cells_in_prophase%2C_anaphase%29.jpg/1280px-Mitosis_%28261_14%29_Pressed%3B_root_meristem_of_onion_%28cells_in_prophase%2C_anaphase%29.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
+  "width": 1100
+ },
+ "mit_orcein": {
+  "src": "c_tip2/c4",
+  "thumb": "https://thumb.wikimedia.org/wikipedia/commons/thumb/8/8c/Mitosis_%28251_22%29_Pressed%3B_root_meristem_of_onion.jpg/1280px-Mitosis_%28251_22%29_Pressed%3B_root_meristem_of_onion.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
+  "width": 1100
+ },
+ "ana_natalie1": {
+  "src": "c_ana/c4",
+  "thumb": "https://thumb.wikimedia.org/wikipedia/commons/thumb/d/d9/Mitosis_in_onion_root_-_various_stages_%28Anaphase%29.jpg/1280px-Mitosis_in_onion_root_-_various_stages_%28Anaphase%29.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
+  "width": 1100
+ },
+ "ana_natalie2": {
+  "src": "c_ana/c5",
+  "thumb": "https://thumb.wikimedia.org/wikipedia/commons/thumb/d/dd/Mitosis_in_Onion_Root_-_various_stages_%28Anaphase_and_Telophase%29.jpg/1280px-Mitosis_in_Onion_Root_-_various_stages_%28Anaphase_and_Telophase%29.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
+  "width": 1100
+ },
+ "tip_overview": {
+  "src": "c_tipx/c1",
+  "thumb": "https://upload.wikimedia.org/wikipedia/commons/d/d3/Onion_root_mitosis.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail_unscaled",
+  "width": 1100
+ },
+ "onion_bulbs": {
+  "src": "c_onion/c2",
+  "thumb": "https://thumb.wikimedia.org/wikipedia/commons/thumb/0/08/Allium_cepa_%282944502550%29.jpg/1280px-Allium_cepa_%282944502550%29.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
+  "width": 1100
+ },
+ "root_section": {
+  "src": "c_roots/c1",
+  "thumb": "https://thumb.wikimedia.org/wikipedia/commons/thumb/b/b8/Onion_Root.jpg/1280px-Onion_Root.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
+  "width": 1100
+ },
+ "tip_cells1": {
+  "src": "c_tip2/c8",
+  "thumb": "https://thumb.wikimedia.org/wikipedia/commons/thumb/4/47/Onion_Root_Mitosis.jpg/1280px-Onion_Root_Mitosis.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
+  "width": 900
+ },
+ "tip_cells2": {
+  "src": "c_tip2/c7",
+  "thumb": "https://thumb.wikimedia.org/wikipedia/commons/thumb/3/31/Onion_cells_under_a_microscope.jpg/1280px-Onion_cells_under_a_microscope.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
+  "width": 700
+ },
+ "mit_normal_atlas": {
+  "src": "aberr/e1",
+  "pmcid": "PMC7729754",
+  "href": "ijms-21-09261-g001.jpg",
+  "width": 700,
+  "crop": [
+   0,
+   0,
+   0.292,
+   0.462
+  ]
+ },
+ "ab_aberr_pma": {
+  "src": "aberr/e1",
+  "pmcid": "PMC7729754",
+  "href": "ijms-21-09261-g001.jpg",
+  "width": 900,
+  "crop": [
+   0.29,
+   0,
+   0.7,
+   0.462
+  ]
+ },
+ "ab_break_tio2": {
+  "src": "a_ext/a2",
+  "pmcid": "PMC3913665",
+  "href": "pone.0087789.g002.jpg",
+  "width": 800,
+  "crop": [
+   0,
+   0,
+   0.5,
+   0.333
+  ]
+ },
+ "ab_sticky_tio2": {
+  "src": "a_ext/a2",
+  "pmcid": "PMC3913665",
+  "href": "pone.0087789.g002.jpg",
+  "width": 800,
+  "crop": [
+   0.5,
+   0,
+   1,
+   0.333
+  ]
+ },
+ "ab_bin_tio2": {
+  "src": "a_ext/a2",
+  "pmcid": "PMC3913665",
+  "href": "pone.0087789.g002.jpg",
+  "width": 800,
+  "crop": [
+   0,
+   0.333,
+   0.5,
+   0.667
+  ]
+ },
+ "ab_lag_tio2": {
+  "src": "a_ext/a2",
+  "pmcid": "PMC3913665",
+  "href": "pone.0087789.g002.jpg",
+  "width": 800,
+  "crop": [
+   0.5,
+   0.333,
+   1,
+   0.667
+  ]
+ },
+ "ab_mn_tio2": {
+  "src": "a_ext/a3",
+  "pmcid": "PMC3913665",
+  "href": "pone.0087789.g003.jpg",
+  "width": 800,
+  "crop": [
+   0.5,
+   0.333,
+   1,
+   0.667
+  ]
+ },
+ "ab_bud_tio2": {
+  "src": "a_ext/a3",
+  "pmcid": "PMC3913665",
+  "href": "pone.0087789.g003.jpg",
+  "width": 800,
+  "crop": [
+   0,
+   0.667,
+   0.5,
+   1
+  ]
+ },
+ "ab_tio2_all": {
+  "src": "a_ext/a2",
+  "pmcid": "PMC3913665",
+  "href": "pone.0087789.g002.jpg",
+  "width": 1000
+ },
+ "ab_bridge_zn": {
+  "src": "aberr/e5",
+  "pmcid": "PMC5264391",
+  "href": "srep40685-f2.jpg",
+  "width": 1000,
+  "panels": [
+   [
+    0.025,
+    0.555,
+    0.19,
+    0.745
+   ],
+   [
+    0.355,
+    0.555,
+    0.525,
+    0.745
+   ],
+   [
+    0.69,
+    0.555,
+    0.835,
+    0.745
+   ]
+  ]
+ },
+ "ab_sticky_zn": {
+  "src": "aberr/e5",
+  "pmcid": "PMC5264391",
+  "href": "srep40685-f2.jpg",
+  "width": 1000,
+  "panels": [
+   [
+    0.025,
+    0.135,
+    0.19,
+    0.325
+   ],
+   [
+    0.355,
+    0.135,
+    0.525,
+    0.325
+   ],
+   [
+    0.69,
+    0.135,
+    0.835,
+    0.325
+   ]
+  ]
+ },
+ "ab_multi_zn": {
+  "src": "aberr/e5",
+  "pmcid": "PMC5264391",
+  "href": "srep40685-f2.jpg",
+  "width": 1000,
+  "panels": [
+   [
+    0.025,
+    0.765,
+    0.19,
+    0.995
+   ],
+   [
+    0.355,
+    0.765,
+    0.525,
+    0.995
+   ],
+   [
+    0.53,
+    0.765,
+    0.685,
+    0.995
+   ]
+  ]
+ },
+ "ab_zn_all": {
+  "src": "aberr/e5",
+  "pmcid": "PMC5264391",
+  "href": "srep40685-f2.jpg",
+  "width": 1100,
+  "crop": [
+   0,
+   0,
+   0.84,
+   1
+  ]
+ },
+ "ab_vag_np": {
+  "src": "aberr/e4",
+  "pmcid": "PMC6586940",
+  "href": "41598_2019_45139_Fig11_HTML.jpg",
+  "width": 600,
+  "crop": [
+   0,
+   0,
+   0.25,
+   0.245
+  ]
+ },
+ "ab_ring_np": {
+  "src": "aberr/e4",
+  "pmcid": "PMC6586940",
+  "href": "41598_2019_45139_Fig11_HTML.jpg",
+  "width": 600,
+  "crop": [
+   0.5,
+   0,
+   0.75,
+   0.245
+  ]
+ },
+ "ab_cmit_np": {
+  "src": "aberr/e4",
+  "pmcid": "PMC6586940",
+  "href": "41598_2019_45139_Fig11_HTML.jpg",
+  "width": 600,
+  "crop": [
+   0.125,
+   0.25,
+   0.375,
+   0.49
+  ]
+ },
+ "ab_np_all": {
+  "src": "aberr/e4",
+  "pmcid": "PMC6586940",
+  "href": "41598_2019_45139_Fig11_HTML.jpg",
+  "width": 1000
+ },
+ "ab_frag_inula": {
+  "src": "aberr/e6",
+  "pmcid": "PMC2896651",
+  "href": "JBB2010-189252.001.jpg",
+  "width": 600,
+  "crop": [
+   0,
+   0,
+   0.5,
+   0.232
+  ]
+ },
+ "ab_inula_all": {
+  "src": "aberr/e6",
+  "pmcid": "PMC2896651",
+  "href": "JBB2010-189252.001.jpg",
+  "width": 800
+ },
+ "ab_herb": {
+  "src": "roots/e1",
+  "pmcid": "PMC4728438",
+  "href": "srep19768-f5.jpg",
+  "width": 1000,
+  "crop": [
+   0.07,
+   0,
+   0.94,
+   0.472
+  ]
+ }
+}
