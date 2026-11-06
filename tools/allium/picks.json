@@ -377,5 +377,25 @@
   "urls": [
    "https://cdn.ncbi.nlm.nih.gov/pmc/blobs/ee4c/4728438/032c0594dbc1/srep19768-f5.jpg"
   ]
+ },
+ "root_longsec": {
+  "src": "c_w3/c1",
+  "thumb": "https://thumb.wikimedia.org/wikipedia/commons/thumb/6/64/Allium-Mitose15-DM010x_BL28-P1bis3.jpg/1280px-Allium-Mitose15-DM010x_BL28-P1bis3.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
+  "width": 700
+ },
+ "elong_cells": {
+  "src": "c_w3/c2",
+  "thumb": "https://thumb.wikimedia.org/wikipedia/commons/thumb/0/0e/Allium-Differenzierung05-DM100x_HF_ba1.jpg/1280px-Allium-Differenzierung05-DM100x_HF_ba1.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
+  "width": 800
+ },
+ "fusarium_roots": {
+  "src": "c_w3/c3",
+  "thumb": "https://thumb.wikimedia.org/wikipedia/commons/thumb/2/28/Zwiebeln_Fusarium_oxysporium-Befall-2-DLR-NW-jk.jpg/1280px-Zwiebeln_Fusarium_oxysporium-Befall-2-DLR-NW-jk.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
+  "width": 1100
+ },
+ "pinkroot": {
+  "src": "c_w3/c6",
+  "thumb": "https://thumb.wikimedia.org/wikipedia/commons/thumb/7/76/Zwiebel_Setophoma_terrestris_%28Phoma%29_3-DLR-NW-jk.jpg/1280px-Zwiebel_Setophoma_terrestris_%28Phoma%29_3-DLR-NW-jk.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
+  "width": 1100
  }
 }
