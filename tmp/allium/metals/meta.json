@@ -1,0 +1,561 @@
+{
+ "key": "metals",
+ "query": {
+  "epmc": "\"Allium cepa\" AND (cadmium OR lead OR copper OR mercury OR chromium OR nickel OR \"heavy metal*\") AND FIG:(aberration* OR anaphase OR micronucle* OR bridge*)"
+ },
+ "candidates": [
+  {
+   "k": "e1",
+   "score": 22,
+   "pmcid": "PMC6586940",
+   "doi": "10.1038/s41598-019-45139-6",
+   "title": "Assessment on interactive prospectives of nanoplastics with plasma proteins and the toxicological impacts of virgin, coronated and environmentally released-nanoplastics.",
+   "authors": [
+    {
+     "last": "Gopinath",
+     "initials": "PM",
+     "first": "Ponnusamy Manogaran",
+     "full": "Gopinath PM",
+     "collective": null
+    },
+    {
+     "last": "Saranya",
+     "initials": "V",
+     "first": "Vinayagam",
+     "full": "Saranya V",
+     "collective": null
+    },
+    {
+     "last": "Vijayakumar",
+     "initials": "S",
+     "first": "Shanmugam",
+     "full": "Vijayakumar S",
+     "collective": null
+    },
+    {
+     "last": "Mythili Meera",
+     "initials": "M",
+     "first": "Mohan",
+     "full": "Mythili Meera M",
+     "collective": null
+    },
+    {
+     "last": "Ruprekha",
+     "initials": "S",
+     "first": "Sharma",
+     "full": "Ruprekha S",
+     "collective": null
+    },
+    {
+     "last": "Kunal",
+     "initials": "R",
+     "first": "Reshamwala",
+     "full": "Kunal R",
+     "collective": null
+    },
+    {
+     "last": "Pranay",
+     "initials": "A",
+     "first": "Agarwal",
+     "full": "Pranay A",
+     "collective": null
+    },
+    {
+     "last": "Thomas",
+     "initials": "J",
+     "first": "John",
+     "full": "Thomas J",
+     "collective": null
+    },
+    {
+     "last": "Mukherjee",
+     "initials": "A",
+     "first": "Amitava",
+     "full": "Mukherjee A",
+     "collective": null
+    },
+    {
+     "last": "Chandrasekaran",
+     "initials": "N",
+     "first": "Natarajan",
+     "full": "Chandrasekaran N",
+     "collective": null
+    }
+   ],
+   "journal": "Scientific reports",
+   "journal_iso": "Sci Rep",
+   "volume": "9",
+   "issue": "1",
+   "year": 2019,
+   "pages": "8860",
+   "license": "cc by",
+   "first_pub": "2019-06-20",
+   "fig_label": "Figure 11",
+   "caption": "Chromosome aberrations induced by (a – g) virgin- and (h – n) isolated-NPs on A. cepa root tip cells. (a & i) vagrant chromosome in anaphase; (b, h) disturbed metaphase with fragments; (c,h,j) metaphase with ring chromosome and breaks and gap; (d, l) giant cell showing polyploidy; (e, k) C - mitosis; (f & m) strap nucleus; (g, n) enucleated cell.",
+   "href": "41598_2019_45139_Fig11_HTML.jpg",
+   "img_url": "https://cdn.ncbi.nlm.nih.gov/pmc/blobs/28c6/6586940/3da801122ff6/41598_2019_45139_Fig11_HTML.jpg",
+   "orig_size": [
+    658,
+    520
+   ]
+  },
+  {
+   "k": "e2",
+   "score": 22,
+   "pmcid": "PMC5264391",
+   "doi": "10.1038/srep40685",
+   "title": "Mitochondrial and Chromosomal Damage Induced by Oxidative Stress in Zn<sup>2+</sup> Ions, ZnO-Bulk and ZnO-NPs treated Allium cepa roots.",
+   "authors": [
+    {
+     "last": "Ahmed",
+     "initials": "B",
+     "first": "Bilal",
+     "full": "Ahmed B",
+     "collective": null
+    },
+    {
+     "last": "Dwivedi",
+     "initials": "S",
+     "first": "Sourabh",
+     "full": "Dwivedi S",
+     "collective": null
+    },
+    {
+     "last": "Abdin",
+     "initials": "MZ",
+     "first": "Malik Zainul",
+     "full": "Abdin MZ",
+     "collective": null
+    },
+    {
+     "last": "Azam",
+     "initials": "A",
+     "first": "Ameer",
+     "full": "Azam A",
+     "collective": null
+    },
+    {
+     "last": "Al-Shaeri",
+     "initials": "M",
+     "first": "Majed",
+     "full": "Al-Shaeri M",
+     "collective": null
+    },
+    {
+     "last": "Khan",
+     "initials": "MS",
+     "first": "Mohammad Saghir",
+     "full": "Khan MS",
+     "collective": null
+    },
+    {
+     "last": "Saquib",
+     "initials": "Q",
+     "first": "Quaiser",
+     "full": "Saquib Q",
+     "collective": null
+    },
+    {
+     "last": "Al-Khedhairy",
+     "initials": "AA",
+     "first": "Abdulaziz A",
+     "full": "Al-Khedhairy AA",
+     "collective": null
+    },
+    {
+     "last": "Musarrat",
+     "initials": "J",
+     "first": "Javed",
+     "full": "Musarrat J",
+     "collective": null
+    }
+   ],
+   "journal": "Scientific reports",
+   "journal_iso": "Sci Rep",
+   "volume": "7",
+   "issue": null,
+   "year": 2017,
+   "pages": "40685",
+   "license": "cc by",
+   "first_pub": "2017-01-25",
+   "fig_label": "Figure 2",
+   "caption": "Optical and confocal microscopic analyses of chromosomal damage in A. cepa root meristem cells. Chromosomal aberrations induced by ZnO-NPs, ZnO-Bulk, and Zn 2+ ions in A. cepa root meristem cells at different cell division stages are shown as: normal metaphase (A1), sticky metaphase (A2–A5), normal metaphase (B1), sticky metaphase (B2), sticky metaphase with loop (B3), sticky metaphase with laggard chromosome(B4), and disoriented metaphase (B5), normal anaphase (C1), chromosome bridges with lag (C2,C3), broken chromosome bridge (C4), single chromosome bridge (C5), normal anaphase (D1), sticky multipolar anaphase (D2), multipolar anaphase with chromosome bridges (D3), multipolar anaphase (D4), multipolar anaphase with single chromosome bridge (D5). EMS (10 mM) was taken as a positive control. (All images were at 1000X magnification).",
+   "href": "srep40685-f2.jpg",
+   "img_url": "https://cdn.ncbi.nlm.nih.gov/pmc/blobs/f7c2/5264391/f4a3cfc15487/srep40685-f2.jpg",
+   "orig_size": [
+    700,
+    461
+   ]
+  },
+  {
+   "k": "e3",
+   "score": 10,
+   "pmcid": "PMC5821363",
+   "doi": "10.1371/journal.pone.0193156",
+   "title": "Analysis of aluminum toxicity in Hordeum vulgare roots with an emphasis on DNA integrity and cell cycle.",
+   "authors": [
+    {
+     "last": "Jaskowiak",
+     "initials": "J",
+     "first": "Joanna",
+     "full": "Jaskowiak J",
+     "collective": null
+    },
+    {
+     "last": "Tkaczyk",
+     "initials": "O",
+     "first": "Oliver",
+     "full": "Tkaczyk O",
+     "collective": null
+    },
+    {
+     "last": "Slota",
+     "initials": "M",
+     "first": "Michal",
+     "full": "Slota M",
+     "collective": null
+    },
+    {
+     "last": "Kwasniewska",
+     "initials": "J",
+     "first": "Jolanta",
+     "full": "Kwasniewska J",
+     "collective": null
+    },
+    {
+     "last": "Szarejko",
+     "initials": "I",
+     "first": "Iwona",
+     "full": "Szarejko I",
+     "collective": null
+    }
+   ],
+   "journal": "PloS one",
+   "journal_iso": "PLoS One",
+   "volume": "13",
+   "issue": "2",
+   "year": 2018,
+   "pages": "e0193156",
+   "license": "cc by",
+   "first_pub": "2018-02-21",
+   "fig_label": "Fig 6",
+   "caption": "Cytological effects of Al in root cells of barley seedlings cv. ‘Sebastian’. (A, A`) mitotic activity of control cells (A) and cells after Al 3+ treatment (A`), (B) interphase nucleus with micronucleus, (C) fragmented interphase nuclei. Bars represent 20 μm.",
+   "href": "pone.0193156.g006.jpg",
+   "img_url": "https://journals.plos.org/plosone/article/figure/image?size=large&id=10.1371/journal.pone.0193156.g006",
+   "orig_size": [
+    1732,
+    1495
+   ]
+  },
+  {
+   "k": "e4",
+   "score": 8,
+   "pmcid": "PMC6586940",
+   "doi": "10.1038/s41598-019-45139-6",
+   "title": "Assessment on interactive prospectives of nanoplastics with plasma proteins and the toxicological impacts of virgin, coronated and environmentally released-nanoplastics.",
+   "authors": [
+    {
+     "last": "Gopinath",
+     "initials": "PM",
+     "first": "Ponnusamy Manogaran",
+     "full": "Gopinath PM",
+     "collective": null
+    },
+    {
+     "last": "Saranya",
+     "initials": "V",
+     "first": "Vinayagam",
+     "full": "Saranya V",
+     "collective": null
+    },
+    {
+     "last": "Vijayakumar",
+     "initials": "S",
+     "first": "Shanmugam",
+     "full": "Vijayakumar S",
+     "collective": null
+    },
+    {
+     "last": "Mythili Meera",
+     "initials": "M",
+     "first": "Mohan",
+     "full": "Mythili Meera M",
+     "collective": null
+    },
+    {
+     "last": "Ruprekha",
+     "initials": "S",
+     "first": "Sharma",
+     "full": "Ruprekha S",
+     "collective": null
+    },
+    {
+     "last": "Kunal",
+     "initials": "R",
+     "first": "Reshamwala",
+     "full": "Kunal R",
+     "collective": null
+    },
+    {
+     "last": "Pranay",
+     "initials": "A",
+     "first": "Agarwal",
+     "full": "Pranay A",
+     "collective": null
+    },
+    {
+     "last": "Thomas",
+     "initials": "J",
+     "first": "John",
+     "full": "Thomas J",
+     "collective": null
+    },
+    {
+     "last": "Mukherjee",
+     "initials": "A",
+     "first": "Amitava",
+     "full": "Mukherjee A",
+     "collective": null
+    },
+    {
+     "last": "Chandrasekaran",
+     "initials": "N",
+     "first": "Natarajan",
+     "full": "Chandrasekaran N",
+     "collective": null
+    }
+   ],
+   "journal": "Scientific reports",
+   "journal_iso": "Sci Rep",
+   "volume": "9",
+   "issue": "1",
+   "year": 2019,
+   "pages": "8860",
+   "license": "cc by",
+   "first_pub": "2019-06-20",
+   "fig_label": "Figure 10",
+   "caption": "Percentage of mitotic index and chromosome aberration in the A. cepa root tip treated with virgin- and isolated-NPs.",
+   "href": "41598_2019_45139_Fig10_HTML.jpg",
+   "img_url": "https://cdn.ncbi.nlm.nih.gov/pmc/blobs/28c6/6586940/d7a170407270/41598_2019_45139_Fig10_HTML.jpg",
+   "orig_size": [
+    698,
+    523
+   ]
+  },
+  {
+   "k": "e5",
+   "score": 8,
+   "pmcid": "PMC5264391",
+   "doi": "10.1038/srep40685",
+   "title": "Mitochondrial and Chromosomal Damage Induced by Oxidative Stress in Zn<sup>2+</sup> Ions, ZnO-Bulk and ZnO-NPs treated Allium cepa roots.",
+   "authors": [
+    {
+     "last": "Ahmed",
+     "initials": "B",
+     "first": "Bilal",
+     "full": "Ahmed B",
+     "collective": null
+    },
+    {
+     "last": "Dwivedi",
+     "initials": "S",
+     "first": "Sourabh",
+     "full": "Dwivedi S",
+     "collective": null
+    },
+    {
+     "last": "Abdin",
+     "initials": "MZ",
+     "first": "Malik Zainul",
+     "full": "Abdin MZ",
+     "collective": null
+    },
+    {
+     "last": "Azam",
+     "initials": "A",
+     "first": "Ameer",
+     "full": "Azam A",
+     "collective": null
+    },
+    {
+     "last": "Al-Shaeri",
+     "initials": "M",
+     "first": "Majed",
+     "full": "Al-Shaeri M",
+     "collective": null
+    },
+    {
+     "last": "Khan",
+     "initials": "MS",
+     "first": "Mohammad Saghir",
+     "full": "Khan MS",
+     "collective": null
+    },
+    {
+     "last": "Saquib",
+     "initials": "Q",
+     "first": "Quaiser",
+     "full": "Saquib Q",
+     "collective": null
+    },
+    {
+     "last": "Al-Khedhairy",
+     "initials": "AA",
+     "first": "Abdulaziz A",
+     "full": "Al-Khedhairy AA",
+     "collective": null
+    },
+    {
+     "last": "Musarrat",
+     "initials": "J",
+     "first": "Javed",
+     "full": "Musarrat J",
+     "collective": null
+    }
+   ],
+   "journal": "Scientific reports",
+   "journal_iso": "Sci Rep",
+   "volume": "7",
+   "issue": null,
+   "year": 2017,
+   "pages": "40685",
+   "license": "cc by",
+   "first_pub": "2017-01-25",
+   "fig_label": "Figure 5",
+   "caption": "CLSM images of intracellular ROS generation and dissipation of mitochondrial membrane potential in A. cepa root after exposure with ZnO-NPs. Panels show the untreated control (UC) and treated roots with varying concentrations of ZnO-Bulk (panel A), ZnO-NPs (panel B) and Zn 2+ (panel C) stained with 25 μM DCFH-DA. Corresponding bar diagrams represent the % increase in DCF fluorescence of root meristem cells in UC and treated with ZnO-NPs, ZnO-Bulk, and Zn 2+ ions. CLSM images show the changes in mitochondrial membrane potential (ΔΨm) in A. cepa UC roots and those treated with varying concentrations of ZnO-Bulk (panel D), ZnO-NPs (panel E) and Zinc ions (panel F) after staining with Rhodamine123 (1 μg/ml). Dotted, dashed, and solid white color rectangular outlines denote the root elongation zone, meristematic region, and root tip, respectively.",
+   "href": "srep40685-f5.jpg",
+   "img_url": "https://cdn.ncbi.nlm.nih.gov/pmc/blobs/f7c2/5264391/eb1d742f546c/srep40685-f5.jpg",
+   "orig_size": [
+    787,
+    469
+   ]
+  },
+  {
+   "k": "e6",
+   "score": 8,
+   "pmcid": "PMC5821363",
+   "doi": "10.1371/journal.pone.0193156",
+   "title": "Analysis of aluminum toxicity in Hordeum vulgare roots with an emphasis on DNA integrity and cell cycle.",
+   "authors": [
+    {
+     "last": "Jaskowiak",
+     "initials": "J",
+     "first": "Joanna",
+     "full": "Jaskowiak J",
+     "collective": null
+    },
+    {
+     "last": "Tkaczyk",
+     "initials": "O",
+     "first": "Oliver",
+     "full": "Tkaczyk O",
+     "collective": null
+    },
+    {
+     "last": "Slota",
+     "initials": "M",
+     "first": "Michal",
+     "full": "Slota M",
+     "collective": null
+    },
+    {
+     "last": "Kwasniewska",
+     "initials": "J",
+     "first": "Jolanta",
+     "full": "Kwasniewska J",
+     "collective": null
+    },
+    {
+     "last": "Szarejko",
+     "initials": "I",
+     "first": "Iwona",
+     "full": "Szarejko I",
+     "collective": null
+    }
+   ],
+   "journal": "PloS one",
+   "journal_iso": "PLoS One",
+   "volume": "13",
+   "issue": "2",
+   "year": 2018,
+   "pages": "e0193156",
+   "license": "cc by",
+   "first_pub": "2018-02-21",
+   "fig_label": "Fig 9",
+   "caption": "Results of TUNEL test in root cells of barley seedlings cv. ‘Sebastian’. DAPI stained nuclei (A-H), with or without green fluorescence as a result of TUNEL reaction (A`-H`). (A, A`) control nuclei showing weak green fluorescence, (B, B`) positive control (DNAse solution was used to induce DNA strand breaks), (C, C`) negative control (nucleotide solution, without terminal transferase was used), (D, D`) not-treated cells, (E, E`) after treatment with 30 μM Al (nuclei with and without green fluorescence are shown), (F, F`) after treatment with 40 μM Al (nuclei with and without green fluorescence are shown) (G, G`) fragmented nucleus after treatment with 30 μM Al with green fluorescence, (H, H`) nuclei with micronucleus, both show green fluorescence. Bars represent 20 μm.",
+   "href": "pone.0193156.g009.jpg",
+   "img_url": "https://journals.plos.org/plosone/article/figure/image?size=large&id=10.1371/journal.pone.0193156.g009",
+   "orig_size": [
+    1127,
+    2400
+   ]
+  },
+  {
+   "k": "e7",
+   "score": 4,
+   "pmcid": "PMC9240970",
+   "doi": "10.1016/j.cub.2022.04.024",
+   "title": "Cryo-electron tomography of the onion cell wall shows bimodally oriented cellulose fibers and reticulated homogalacturonan networks.",
+   "authors": [
+    {
+     "last": "Nicolas",
+     "initials": "WJ",
+     "first": "William J",
+     "full": "Nicolas WJ",
+     "collective": null
+    },
+    {
+     "last": "Fäßler",
+     "initials": "F",
+     "first": "Florian",
+     "full": "Fäßler F",
+     "collective": null
+    },
+    {
+     "last": "Dutka",
+     "initials": "P",
+     "first": "Przemysław",
+     "full": "Dutka P",
+     "collective": null
+    },
+    {
+     "last": "Schur",
+     "initials": "FKM",
+     "first": "Florian K M",
+     "full": "Schur FKM",
+     "collective": null
+    },
+    {
+     "last": "Jensen",
+     "initials": "G",
+     "first": "Grant",
+     "full": "Jensen G",
+     "collective": null
+    },
+    {
+     "last": "Meyerowitz",
+     "initials": "E",
+     "first": "Elliot",
+     "full": "Meyerowitz E",
+     "collective": null
+    }
+   ],
+   "journal": "Current biology : CB",
+   "journal_iso": "Curr Biol",
+   "volume": "32",
+   "issue": "11",
+   "year": 2022,
+   "pages": "2375-2389.e6",
+   "license": "cc by",
+   "first_pub": "2022-05-03",
+   "fig_label": "Figure 2",
+   "caption": "Two features in tomograms of onion cell walls (A) Tomographic slice showing fibers (yellow arrowheads) and the filling material in between the fibers (red dashed region), the meshing. This tomogram originates from scale #6, 0.64 μm below the surface of the cell wall. (B) CNN segmentations of the fibers (yellow) and the meshing (red). (C) Magnified view from the red boxed region (A) showing fibers (yellow arrows), bridges between the fibers (red arrows), and patches of meshing (red dashed region). (D) CNN segmentation of the magnified region. (E) Composite image showing transverse views at different Y-levels of the segmented volume shown in (B). Tilting is the correction for the inclination of the lamella relative to that of the wall. Alternations of fibers (yellow) and meshing (red) are observed. (F) Relative occupancy of fibers versus meshing in three tomographic volumes equivalent to the one shown in this figure (blue squared column is the tomogram shown in this figure). See also Figures S1 and S2 and Video S1.",
+   "href": "gr2.jpg",
+   "img_url": "https://cdn.ncbi.nlm.nih.gov/pmc/blobs/4361/9240970/0896d2532299/gr2.jpg",
+   "orig_size": [
+    718,
+    926
+   ]
+  }
+ ]
+}

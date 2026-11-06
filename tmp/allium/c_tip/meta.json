@@ -1,0 +1,52 @@
+{
+ "key": "c_tip",
+ "query": {
+  "commons": "onion root tip mitosis"
+ },
+ "candidates": [
+  {
+   "k": "c1",
+   "file": "File:Onion Root Tip Cells Mitosis.jpg",
+   "url": "https://commons.wikimedia.org/wiki/File:Onion_Root_Tip_Cells_Mitosis.jpg",
+   "thumb": "https://thumb.wikimedia.org/wikipedia/commons/thumb/0/05/Onion_Root_Tip_Cells_Mitosis.jpg/1280px-Onion_Root_Tip_Cells_Mitosis.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
+   "w": 2592,
+   "h": 1944,
+   "artist": "Catfaster",
+   "license": "CC BY-SA 4.0",
+   "description": "​Onion root cells under phase-contrast microscope"
+  },
+  {
+   "k": "c2",
+   "file": "File:Mitosis in Onion Root Tip.jpg",
+   "url": "https://commons.wikimedia.org/wiki/File:Mitosis_in_Onion_Root_Tip.jpg",
+   "thumb": "https://thumb.wikimedia.org/wikipedia/commons/thumb/8/89/Mitosis_in_Onion_Root_Tip.jpg/1280px-Mitosis_in_Onion_Root_Tip.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
+   "w": 1424,
+   "h": 2532,
+   "artist": "Ibn Anvar",
+   "license": "CC0",
+   "description": "4 phases visible"
+  },
+  {
+   "k": "c3",
+   "file": "File:Microscopy image.jpg",
+   "url": "https://commons.wikimedia.org/wiki/File:Microscopy_image.jpg",
+   "thumb": "https://thumb.wikimedia.org/wikipedia/commons/thumb/b/b2/Microscopy_image.jpg/1280px-Microscopy_image.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
+   "w": 3024,
+   "h": 4032,
+   "artist": "Kalsums",
+   "license": "CC BY 4.0",
+   "description": "During a practial were we studied mitosis and mitotic index, we prepared a root tip from an onion, stained it and observed it under a microscope."
+  },
+  {
+   "k": "c4",
+   "file": "File:Microscope image.jpg",
+   "url": "https://commons.wikimedia.org/wiki/File:Microscope_image.jpg",
+   "thumb": "https://thumb.wikimedia.org/wikipedia/commons/thumb/2/2e/Microscope_image.jpg/1280px-Microscope_image.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
+   "w": 3024,
+   "h": 4032,
+   "artist": "Kalsums",
+   "license": "CC BY 4.0",
+   "description": "During a practial were we studied mitosis and mitotic index, we prepared a root tip from an onion, stained it and observed it under a microscope"
+  }
+ ]
+}

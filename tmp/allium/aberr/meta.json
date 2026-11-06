@@ -1,0 +1,836 @@
+{
+ "key": "aberr",
+ "query": {
+  "epmc": "\"Allium cepa\" AND (genotoxic* OR \"chromosomal aberrations\" OR \"chromosome aberrations\") AND FIG:(bridge* OR sticky OR laggard* OR \"c-mitosis\" OR \"c-metaphase\")"
+ },
+ "candidates": [
+  {
+   "k": "e1",
+   "score": 40,
+   "pmcid": "PMC7729754",
+   "doi": "10.3390/ijms21239261",
+   "title": "Phorbol 12-Myristate 13-Acetate Induced Toxicity Study and the Role of Tangeretin in Abrogating HIF-1α-NF-κB Crosstalk In Vitro and In Vivo.",
+   "authors": [
+    {
+     "last": "Chang",
+     "initials": "SN",
+     "first": "Sukkum Ngullie",
+     "full": "Chang SN",
+     "collective": null
+    },
+    {
+     "last": "Dey",
+     "initials": "DK",
+     "first": "Debasish Kumar",
+     "full": "Dey DK",
+     "collective": null
+    },
+    {
+     "last": "Oh",
+     "initials": "ST",
+     "first": "Seong Taek",
+     "full": "Oh ST",
+     "collective": null
+    },
+    {
+     "last": "Kong",
+     "initials": "WH",
+     "first": "Won Ho",
+     "full": "Kong WH",
+     "collective": null
+    },
+    {
+     "last": "Cho",
+     "initials": "KH",
+     "first": "Kiu Hyung",
+     "full": "Cho KH",
+     "collective": null
+    },
+    {
+     "last": "Al-Olayan",
+     "initials": "EM",
+     "first": "Ebtesam M",
+     "full": "Al-Olayan EM",
+     "collective": null
+    },
+    {
+     "last": "Hwang",
+     "initials": "BS",
+     "first": "Buyng Su",
+     "full": "Hwang BS",
+     "collective": null
+    },
+    {
+     "last": "Kang",
+     "initials": "SC",
+     "first": "Sun Chul",
+     "full": "Kang SC",
+     "collective": null
+    },
+    {
+     "last": "Park",
+     "initials": "JG",
+     "first": "Jae Gyu",
+     "full": "Park JG",
+     "collective": null
+    }
+   ],
+   "journal": "International journal of molecular sciences",
+   "journal_iso": "Int J Mol Sci",
+   "volume": "21",
+   "issue": "23",
+   "year": 2020,
+   "pages": "E9261",
+   "license": "cc by",
+   "first_pub": "2020-12-04",
+   "fig_label": "Figure 1",
+   "caption": "Chromosomal aberrations induced by phorbol 12-myristate 13-acetate (PMA) in the root tip meristem of Allium cepa. Acetocarmine stain was used for staining the root tips to observe the different stages of mitosis. (A – E) Normal stages of mitosis in onion root tip: (A) Interphase, (B) Prophase, (C) Metaphase, (D) Anaphase, (E) Telophase. Different aberrations were observed after PMA (0.1 μg, 1 μg, 10 μg) treatment for 24 h. (F) Micronucleus, (G) Loculated nucleus, (H) Nuclear lesion, (I) Multi-nucleated cell lesion, (J) C-metaphase, (K) Polyploidy and chromosomal bridge, (L) Laggard metaphase and anaphase, (M) Pulverized metaphase, (N) Mean root length of A. cepa, (O) Percentage of mitotic index, (P) Chromosomal aberrations and percentage of total abnormalities. Scale bar = 10 μm. The data are represented as the means ± S.D. of three independent experiments * p < 0.05, ** p < 0.01, *** p < 0.001 and ns (non-significant). Statistical significance analysis was carried out through a one-way analysis of variance (ANOVA) prism.",
+   "href": "ijms-21-09261-g001.jpg",
+   "img_url": "https://cdn.ncbi.nlm.nih.gov/pmc/blobs/ab14/7729754/5ecc64bbb7aa/ijms-21-09261-g001.jpg",
+   "orig_size": [
+    756,
+    771
+   ]
+  },
+  {
+   "k": "e2",
+   "score": 26,
+   "pmcid": "PMC8466497",
+   "doi": "10.3390/plants10091760",
+   "title": "Green Synthesized ZnO Nanoparticles Mediated by <i>Streptomyces plicatus</i>: Characterizations, Antimicrobial and Nematicidal Activities and Cytogenetic Effects.",
+   "authors": [
+    {
+     "last": "Kalaba",
+     "initials": "MH",
+     "first": "Mohamed H",
+     "full": "Kalaba MH",
+     "collective": null
+    },
+    {
+     "last": "Moghannem",
+     "initials": "SA",
+     "first": "Saad A",
+     "full": "Moghannem SA",
+     "collective": null
+    },
+    {
+     "last": "El-Hawary",
+     "initials": "AS",
+     "first": "Ahmad S",
+     "full": "El-Hawary AS",
+     "collective": null
+    },
+    {
+     "last": "Radwan",
+     "initials": "AA",
+     "first": "Ahmed A",
+     "full": "Radwan AA",
+     "collective": null
+    },
+    {
+     "last": "Sharaf",
+     "initials": "MH",
+     "first": "Mohamed H",
+     "full": "Sharaf MH",
+     "collective": null
+    },
+    {
+     "last": "Shaban",
+     "initials": "AS",
+     "first": "Abdelghany S",
+     "full": "Shaban AS",
+     "collective": null
+    }
+   ],
+   "journal": "Plants (Basel, Switzerland)",
+   "journal_iso": "Plants (Basel)",
+   "volume": "10",
+   "issue": "9",
+   "year": 2021,
+   "pages": "1760",
+   "license": "cc by",
+   "first_pub": "2021-08-25",
+   "fig_label": "Figure 11",
+   "caption": "Different treatments of ZnO nanoparticles caused anomalies in Vicia faba root meristems: (A, B) irregular prophase; (C – F) sticky chromosome (prophase, anaphase and telophase with bridges, respectively); (G – I) C-metaphase; (J, K) disturbed anaphase, (L) C-anaphase; (M – O) micronucleus at interphase; (P – R) chromosome breakage and forward at anaphase.",
+   "href": "plants-10-01760-g011.jpg",
+   "img_url": "https://cdn.ncbi.nlm.nih.gov/pmc/blobs/fc65/8466497/ebf1a621f698/plants-10-01760-g011.jpg",
+   "orig_size": [
+    782,
+    1184
+   ]
+  },
+  {
+   "k": "e3",
+   "score": 24,
+   "pmcid": "PMC5682307",
+   "doi": "10.3389/fchem.2017.00092",
+   "title": "Engineered Nickel Oxide Nanoparticle Causes Substantial Physicochemical Perturbation in Plants.",
+   "authors": [
+    {
+     "last": "Manna",
+     "initials": "I",
+     "first": "Indrani",
+     "full": "Manna I",
+     "collective": null
+    },
+    {
+     "last": "Bandyopadhyay",
+     "initials": "M",
+     "first": "Maumita",
+     "full": "Bandyopadhyay M",
+     "collective": null
+    }
+   ],
+   "journal": "Frontiers in chemistry",
+   "journal_iso": "Front Chem",
+   "volume": "5",
+   "issue": null,
+   "year": 2017,
+   "pages": "92",
+   "license": "cc by",
+   "first_pub": "2017-11-08",
+   "fig_label": "Figure 3",
+   "caption": "Aberrations induced by NiO-NP suspension in various species of Allium as observed under Optical, Flourescene and Confocal microscopes: (A) telophase bridge in A. sativum, (B) nucleus breakage in A. schoenoprasum, (C) laggards in A. porrum, (D) vagrants after duplication in A. cepa, (E) nucleus damage in A. cepa, (F) chromosome breakage in A. porrum, (G) C-mitosis in A. fistulosum, (H) binucleate cell in A. sativum, (I) double anaphase bridge in A. cepa, (J) micronucleus in A. cepa, (K) laggard and vagrant chromosomes in A. fistulosum, (L) anaphase bridge with laggard and early migration in A. porrum (bar = 10 μm).",
+   "href": "fchem-05-00092-g0003.jpg",
+   "img_url": "https://cdn.ncbi.nlm.nih.gov/pmc/blobs/7328/5682307/81647f4ffb23/fchem-05-00092-g0003.jpg",
+   "orig_size": [
+    708,
+    537
+   ]
+  },
+  {
+   "k": "e4",
+   "score": 22,
+   "pmcid": "PMC6586940",
+   "doi": "10.1038/s41598-019-45139-6",
+   "title": "Assessment on interactive prospectives of nanoplastics with plasma proteins and the toxicological impacts of virgin, coronated and environmentally released-nanoplastics.",
+   "authors": [
+    {
+     "last": "Gopinath",
+     "initials": "PM",
+     "first": "Ponnusamy Manogaran",
+     "full": "Gopinath PM",
+     "collective": null
+    },
+    {
+     "last": "Saranya",
+     "initials": "V",
+     "first": "Vinayagam",
+     "full": "Saranya V",
+     "collective": null
+    },
+    {
+     "last": "Vijayakumar",
+     "initials": "S",
+     "first": "Shanmugam",
+     "full": "Vijayakumar S",
+     "collective": null
+    },
+    {
+     "last": "Mythili Meera",
+     "initials": "M",
+     "first": "Mohan",
+     "full": "Mythili Meera M",
+     "collective": null
+    },
+    {
+     "last": "Ruprekha",
+     "initials": "S",
+     "first": "Sharma",
+     "full": "Ruprekha S",
+     "collective": null
+    },
+    {
+     "last": "Kunal",
+     "initials": "R",
+     "first": "Reshamwala",
+     "full": "Kunal R",
+     "collective": null
+    },
+    {
+     "last": "Pranay",
+     "initials": "A",
+     "first": "Agarwal",
+     "full": "Pranay A",
+     "collective": null
+    },
+    {
+     "last": "Thomas",
+     "initials": "J",
+     "first": "John",
+     "full": "Thomas J",
+     "collective": null
+    },
+    {
+     "last": "Mukherjee",
+     "initials": "A",
+     "first": "Amitava",
+     "full": "Mukherjee A",
+     "collective": null
+    },
+    {
+     "last": "Chandrasekaran",
+     "initials": "N",
+     "first": "Natarajan",
+     "full": "Chandrasekaran N",
+     "collective": null
+    }
+   ],
+   "journal": "Scientific reports",
+   "journal_iso": "Sci Rep",
+   "volume": "9",
+   "issue": "1",
+   "year": 2019,
+   "pages": "8860",
+   "license": "cc by",
+   "first_pub": "2019-06-20",
+   "fig_label": "Figure 11",
+   "caption": "Chromosome aberrations induced by (a – g) virgin- and (h – n) isolated-NPs on A. cepa root tip cells. (a & i) vagrant chromosome in anaphase; (b, h) disturbed metaphase with fragments; (c,h,j) metaphase with ring chromosome and breaks and gap; (d, l) giant cell showing polyploidy; (e, k) C - mitosis; (f & m) strap nucleus; (g, n) enucleated cell.",
+   "href": "41598_2019_45139_Fig11_HTML.jpg",
+   "img_url": "https://cdn.ncbi.nlm.nih.gov/pmc/blobs/28c6/6586940/3da801122ff6/41598_2019_45139_Fig11_HTML.jpg",
+   "orig_size": [
+    658,
+    520
+   ]
+  },
+  {
+   "k": "e5",
+   "score": 22,
+   "pmcid": "PMC5264391",
+   "doi": "10.1038/srep40685",
+   "title": "Mitochondrial and Chromosomal Damage Induced by Oxidative Stress in Zn<sup>2+</sup> Ions, ZnO-Bulk and ZnO-NPs treated Allium cepa roots.",
+   "authors": [
+    {
+     "last": "Ahmed",
+     "initials": "B",
+     "first": "Bilal",
+     "full": "Ahmed B",
+     "collective": null
+    },
+    {
+     "last": "Dwivedi",
+     "initials": "S",
+     "first": "Sourabh",
+     "full": "Dwivedi S",
+     "collective": null
+    },
+    {
+     "last": "Abdin",
+     "initials": "MZ",
+     "first": "Malik Zainul",
+     "full": "Abdin MZ",
+     "collective": null
+    },
+    {
+     "last": "Azam",
+     "initials": "A",
+     "first": "Ameer",
+     "full": "Azam A",
+     "collective": null
+    },
+    {
+     "last": "Al-Shaeri",
+     "initials": "M",
+     "first": "Majed",
+     "full": "Al-Shaeri M",
+     "collective": null
+    },
+    {
+     "last": "Khan",
+     "initials": "MS",
+     "first": "Mohammad Saghir",
+     "full": "Khan MS",
+     "collective": null
+    },
+    {
+     "last": "Saquib",
+     "initials": "Q",
+     "first": "Quaiser",
+     "full": "Saquib Q",
+     "collective": null
+    },
+    {
+     "last": "Al-Khedhairy",
+     "initials": "AA",
+     "first": "Abdulaziz A",
+     "full": "Al-Khedhairy AA",
+     "collective": null
+    },
+    {
+     "last": "Musarrat",
+     "initials": "J",
+     "first": "Javed",
+     "full": "Musarrat J",
+     "collective": null
+    }
+   ],
+   "journal": "Scientific reports",
+   "journal_iso": "Sci Rep",
+   "volume": "7",
+   "issue": null,
+   "year": 2017,
+   "pages": "40685",
+   "license": "cc by",
+   "first_pub": "2017-01-25",
+   "fig_label": "Figure 2",
+   "caption": "Optical and confocal microscopic analyses of chromosomal damage in A. cepa root meristem cells. Chromosomal aberrations induced by ZnO-NPs, ZnO-Bulk, and Zn 2+ ions in A. cepa root meristem cells at different cell division stages are shown as: normal metaphase (A1), sticky metaphase (A2–A5), normal metaphase (B1), sticky metaphase (B2), sticky metaphase with loop (B3), sticky metaphase with laggard chromosome(B4), and disoriented metaphase (B5), normal anaphase (C1), chromosome bridges with lag (C2,C3), broken chromosome bridge (C4), single chromosome bridge (C5), normal anaphase (D1), sticky multipolar anaphase (D2), multipolar anaphase with chromosome bridges (D3), multipolar anaphase (D4), multipolar anaphase with single chromosome bridge (D5). EMS (10 mM) was taken as a positive control. (All images were at 1000X magnification).",
+   "href": "srep40685-f2.jpg",
+   "img_url": "https://cdn.ncbi.nlm.nih.gov/pmc/blobs/f7c2/5264391/f4a3cfc15487/srep40685-f2.jpg",
+   "orig_size": [
+    700,
+    461
+   ]
+  },
+  {
+   "k": "e6",
+   "score": 18,
+   "pmcid": "PMC2896651",
+   "doi": "10.1155/2010/189252",
+   "title": "Evaluation of cytotoxicity and genotoxicity of Inula viscosa leaf extracts with Allium test.",
+   "authors": [
+    {
+     "last": "Aşkin Celik",
+     "initials": "T",
+     "first": "Tülay",
+     "full": "Aşkin Celik T",
+     "collective": null
+    },
+    {
+     "last": "Aslantürk",
+     "initials": "OS",
+     "first": "Ozlem Sultan",
+     "full": "Aslantürk OS",
+     "collective": null
+    }
+   ],
+   "journal": "Journal of biomedicine & biotechnology",
+   "journal_iso": "J Biomed Biotechnol",
+   "volume": "2010",
+   "issue": null,
+   "year": 2010,
+   "pages": "189252",
+   "license": "cc by",
+   "first_pub": "2010-06-23",
+   "fig_label": "Figure 1",
+   "caption": "Mitotic and chromosomal aberrations after the I n u l a v i s c o s a leaf extract treatments in A l l i u m c e p a root tip meristem cells visualized with light microscopy. (a) Fragments; (b) stickiness; (c) polar deviation and chromatid bridges; (d) membrane damage; (e) binucleated cell; (f) apoptotic bodies; (g and h) cells with damaged nucleus.",
+   "href": "JBB2010-189252.001.jpg",
+   "img_url": "https://cdn.ncbi.nlm.nih.gov/pmc/blobs/9569/2896651/2c67f547276a/JBB2010-189252.001.jpg",
+   "orig_size": [
+    425,
+    707
+   ]
+  },
+  {
+   "k": "e7",
+   "score": 12,
+   "pmcid": "PMC3913665",
+   "doi": "10.1371/journal.pone.0087789",
+   "title": "In vivo genotoxicity assessment of titanium dioxide nanoparticles by Allium cepa root tip assay at high exposure concentrations.",
+   "authors": [
+    {
+     "last": "Pakrashi",
+     "initials": "S",
+     "first": "Sunandan",
+     "full": "Pakrashi S",
+     "collective": null
+    },
+    {
+     "last": "Jain",
+     "initials": "N",
+     "first": "Nitin",
+     "full": "Jain N",
+     "collective": null
+    },
+    {
+     "last": "Dalai",
+     "initials": "S",
+     "first": "Swayamprava",
+     "full": "Dalai S",
+     "collective": null
+    },
+    {
+     "last": "Jayakumar",
+     "initials": "J",
+     "first": "Jerobin",
+     "full": "Jayakumar J",
+     "collective": null
+    },
+    {
+     "last": "Chandrasekaran",
+     "initials": "PT",
+     "first": "Prathna Thanjavur",
+     "full": "Chandrasekaran PT",
+     "collective": null
+    },
+    {
+     "last": "Raichur",
+     "initials": "AM",
+     "first": "Ashok M",
+     "full": "Raichur AM",
+     "collective": null
+    },
+    {
+     "last": "Chandrasekaran",
+     "initials": "N",
+     "first": "Natarajan",
+     "full": "Chandrasekaran N",
+     "collective": null
+    },
+    {
+     "last": "Mukherjee",
+     "initials": "A",
+     "first": "Amitava",
+     "full": "Mukherjee A",
+     "collective": null
+    }
+   ],
+   "journal": "PloS one",
+   "journal_iso": "PLoS One",
+   "volume": "9",
+   "issue": "2",
+   "year": 2014,
+   "pages": "e87789",
+   "license": "cc by",
+   "first_pub": "2014-02-04",
+   "fig_label": "Figure 2",
+   "caption": "Various aberrant features observed upon exposure to 100 µg/mL(A) Chromosome break, (B) Sticky chromosome, (C) Binucleate cells, (D) Laggard chromosome, (E) Clumped chromosome, (F) Diagonal anaphase.",
+   "href": "pone.0087789.g002.jpg",
+   "img_url": "https://journals.plos.org/plosone/article/figure/image?size=large&id=10.1371/journal.pone.0087789.g002",
+   "orig_size": [
+    1926,
+    2674
+   ]
+  },
+  {
+   "k": "e8",
+   "score": 12,
+   "pmcid": "PMC3913665",
+   "doi": "10.1371/journal.pone.0087789",
+   "title": "In vivo genotoxicity assessment of titanium dioxide nanoparticles by Allium cepa root tip assay at high exposure concentrations.",
+   "authors": [
+    {
+     "last": "Pakrashi",
+     "initials": "S",
+     "first": "Sunandan",
+     "full": "Pakrashi S",
+     "collective": null
+    },
+    {
+     "last": "Jain",
+     "initials": "N",
+     "first": "Nitin",
+     "full": "Jain N",
+     "collective": null
+    },
+    {
+     "last": "Dalai",
+     "initials": "S",
+     "first": "Swayamprava",
+     "full": "Dalai S",
+     "collective": null
+    },
+    {
+     "last": "Jayakumar",
+     "initials": "J",
+     "first": "Jerobin",
+     "full": "Jayakumar J",
+     "collective": null
+    },
+    {
+     "last": "Chandrasekaran",
+     "initials": "PT",
+     "first": "Prathna Thanjavur",
+     "full": "Chandrasekaran PT",
+     "collective": null
+    },
+    {
+     "last": "Raichur",
+     "initials": "AM",
+     "first": "Ashok M",
+     "full": "Raichur AM",
+     "collective": null
+    },
+    {
+     "last": "Chandrasekaran",
+     "initials": "N",
+     "first": "Natarajan",
+     "full": "Chandrasekaran N",
+     "collective": null
+    },
+    {
+     "last": "Mukherjee",
+     "initials": "A",
+     "first": "Amitava",
+     "full": "Mukherjee A",
+     "collective": null
+    }
+   ],
+   "journal": "PloS one",
+   "journal_iso": "PLoS One",
+   "volume": "9",
+   "issue": "2",
+   "year": 2014,
+   "pages": "e87789",
+   "license": "cc by",
+   "first_pub": "2014-02-04",
+   "fig_label": "Figure 3",
+   "caption": "Various aberrant features observed under fluorescence microscope upon exposure to 12.5 µg/mL(A)Sticky anaphase, (B) Diagonal anaphase, (C) Sticky metaphase, (D) Micronucleus formation, (E) Nuclear budding, (F) Binucleate cells.",
+   "href": "pone.0087789.g003.jpg",
+   "img_url": "https://journals.plos.org/plosone/article/figure/image?size=large&id=10.1371/journal.pone.0087789.g003",
+   "orig_size": [
+    1910,
+    2445
+   ]
+  },
+  {
+   "k": "e9",
+   "score": 10,
+   "pmcid": "PMC8466497",
+   "doi": "10.3390/plants10091760",
+   "title": "Green Synthesized ZnO Nanoparticles Mediated by <i>Streptomyces plicatus</i>: Characterizations, Antimicrobial and Nematicidal Activities and Cytogenetic Effects.",
+   "authors": [
+    {
+     "last": "Kalaba",
+     "initials": "MH",
+     "first": "Mohamed H",
+     "full": "Kalaba MH",
+     "collective": null
+    },
+    {
+     "last": "Moghannem",
+     "initials": "SA",
+     "first": "Saad A",
+     "full": "Moghannem SA",
+     "collective": null
+    },
+    {
+     "last": "El-Hawary",
+     "initials": "AS",
+     "first": "Ahmad S",
+     "full": "El-Hawary AS",
+     "collective": null
+    },
+    {
+     "last": "Radwan",
+     "initials": "AA",
+     "first": "Ahmed A",
+     "full": "Radwan AA",
+     "collective": null
+    },
+    {
+     "last": "Sharaf",
+     "initials": "MH",
+     "first": "Mohamed H",
+     "full": "Sharaf MH",
+     "collective": null
+    },
+    {
+     "last": "Shaban",
+     "initials": "AS",
+     "first": "Abdelghany S",
+     "full": "Shaban AS",
+     "collective": null
+    }
+   ],
+   "journal": "Plants (Basel, Switzerland)",
+   "journal_iso": "Plants (Basel)",
+   "volume": "10",
+   "issue": "9",
+   "year": 2021,
+   "pages": "1760",
+   "license": "cc by",
+   "first_pub": "2021-08-25",
+   "fig_label": "Figure 10",
+   "caption": "Cytotoxic effect of ZnO nanoparticles on root meristems of Vicia faba: (A) mitotic index (%), (B) phase index (%), (C) chromosome aberrations (%), (D) micronucleus (%).",
+   "href": "plants-10-01760-g010.jpg",
+   "img_url": "https://cdn.ncbi.nlm.nih.gov/pmc/blobs/fc65/8466497/a206aed65685/plants-10-01760-g010.jpg",
+   "orig_size": [
+    789,
+    1193
+   ]
+  },
+  {
+   "k": "e10",
+   "score": 8,
+   "pmcid": "PMC6586940",
+   "doi": "10.1038/s41598-019-45139-6",
+   "title": "Assessment on interactive prospectives of nanoplastics with plasma proteins and the toxicological impacts of virgin, coronated and environmentally released-nanoplastics.",
+   "authors": [
+    {
+     "last": "Gopinath",
+     "initials": "PM",
+     "first": "Ponnusamy Manogaran",
+     "full": "Gopinath PM",
+     "collective": null
+    },
+    {
+     "last": "Saranya",
+     "initials": "V",
+     "first": "Vinayagam",
+     "full": "Saranya V",
+     "collective": null
+    },
+    {
+     "last": "Vijayakumar",
+     "initials": "S",
+     "first": "Shanmugam",
+     "full": "Vijayakumar S",
+     "collective": null
+    },
+    {
+     "last": "Mythili Meera",
+     "initials": "M",
+     "first": "Mohan",
+     "full": "Mythili Meera M",
+     "collective": null
+    },
+    {
+     "last": "Ruprekha",
+     "initials": "S",
+     "first": "Sharma",
+     "full": "Ruprekha S",
+     "collective": null
+    },
+    {
+     "last": "Kunal",
+     "initials": "R",
+     "first": "Reshamwala",
+     "full": "Kunal R",
+     "collective": null
+    },
+    {
+     "last": "Pranay",
+     "initials": "A",
+     "first": "Agarwal",
+     "full": "Pranay A",
+     "collective": null
+    },
+    {
+     "last": "Thomas",
+     "initials": "J",
+     "first": "John",
+     "full": "Thomas J",
+     "collective": null
+    },
+    {
+     "last": "Mukherjee",
+     "initials": "A",
+     "first": "Amitava",
+     "full": "Mukherjee A",
+     "collective": null
+    },
+    {
+     "last": "Chandrasekaran",
+     "initials": "N",
+     "first": "Natarajan",
+     "full": "Chandrasekaran N",
+     "collective": null
+    }
+   ],
+   "journal": "Scientific reports",
+   "journal_iso": "Sci Rep",
+   "volume": "9",
+   "issue": "1",
+   "year": 2019,
+   "pages": "8860",
+   "license": "cc by",
+   "first_pub": "2019-06-20",
+   "fig_label": "Figure 10",
+   "caption": "Percentage of mitotic index and chromosome aberration in the A. cepa root tip treated with virgin- and isolated-NPs.",
+   "href": "41598_2019_45139_Fig10_HTML.jpg",
+   "img_url": "https://cdn.ncbi.nlm.nih.gov/pmc/blobs/28c6/6586940/d7a170407270/41598_2019_45139_Fig10_HTML.jpg",
+   "orig_size": [
+    698,
+    523
+   ]
+  },
+  {
+   "k": "e11",
+   "score": 8,
+   "pmcid": "PMC5264391",
+   "doi": "10.1038/srep40685",
+   "title": "Mitochondrial and Chromosomal Damage Induced by Oxidative Stress in Zn<sup>2+</sup> Ions, ZnO-Bulk and ZnO-NPs treated Allium cepa roots.",
+   "authors": [
+    {
+     "last": "Ahmed",
+     "initials": "B",
+     "first": "Bilal",
+     "full": "Ahmed B",
+     "collective": null
+    },
+    {
+     "last": "Dwivedi",
+     "initials": "S",
+     "first": "Sourabh",
+     "full": "Dwivedi S",
+     "collective": null
+    },
+    {
+     "last": "Abdin",
+     "initials": "MZ",
+     "first": "Malik Zainul",
+     "full": "Abdin MZ",
+     "collective": null
+    },
+    {
+     "last": "Azam",
+     "initials": "A",
+     "first": "Ameer",
+     "full": "Azam A",
+     "collective": null
+    },
+    {
+     "last": "Al-Shaeri",
+     "initials": "M",
+     "first": "Majed",
+     "full": "Al-Shaeri M",
+     "collective": null
+    },
+    {
+     "last": "Khan",
+     "initials": "MS",
+     "first": "Mohammad Saghir",
+     "full": "Khan MS",
+     "collective": null
+    },
+    {
+     "last": "Saquib",
+     "initials": "Q",
+     "first": "Quaiser",
+     "full": "Saquib Q",
+     "collective": null
+    },
+    {
+     "last": "Al-Khedhairy",
+     "initials": "AA",
+     "first": "Abdulaziz A",
+     "full": "Al-Khedhairy AA",
+     "collective": null
+    },
+    {
+     "last": "Musarrat",
+     "initials": "J",
+     "first": "Javed",
+     "full": "Musarrat J",
+     "collective": null
+    }
+   ],
+   "journal": "Scientific reports",
+   "journal_iso": "Sci Rep",
+   "volume": "7",
+   "issue": null,
+   "year": 2017,
+   "pages": "40685",
+   "license": "cc by",
+   "first_pub": "2017-01-25",
+   "fig_label": "Figure 5",
+   "caption": "CLSM images of intracellular ROS generation and dissipation of mitochondrial membrane potential in A. cepa root after exposure with ZnO-NPs. Panels show the untreated control (UC) and treated roots with varying concentrations of ZnO-Bulk (panel A), ZnO-NPs (panel B) and Zn 2+ (panel C) stained with 25 μM DCFH-DA. Corresponding bar diagrams represent the % increase in DCF fluorescence of root meristem cells in UC and treated with ZnO-NPs, ZnO-Bulk, and Zn 2+ ions. CLSM images show the changes in mitochondrial membrane potential (ΔΨm) in A. cepa UC roots and those treated with varying concentrations of ZnO-Bulk (panel D), ZnO-NPs (panel E) and Zinc ions (panel F) after staining with Rhodamine123 (1 μg/ml). Dotted, dashed, and solid white color rectangular outlines denote the root elongation zone, meristematic region, and root tip, respectively.",
+   "href": "srep40685-f5.jpg",
+   "img_url": "https://cdn.ncbi.nlm.nih.gov/pmc/blobs/f7c2/5264391/eb1d742f546c/srep40685-f5.jpg",
+   "orig_size": [
+    787,
+    469
+   ]
+  }
+ ]
+}

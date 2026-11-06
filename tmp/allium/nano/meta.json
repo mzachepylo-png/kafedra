@@ -1,0 +1,198 @@
+{
+ "key": "nano",
+ "query": {
+  "epmc": "\"Allium cepa\" AND nanoparticle* AND FIG:(aberration* OR anaphase OR micronucle* OR root* OR mitotic)"
+ },
+ "candidates": [
+  {
+   "k": "e1",
+   "score": 22,
+   "pmcid": "PMC6586940",
+   "doi": "10.1038/s41598-019-45139-6",
+   "title": "Assessment on interactive prospectives of nanoplastics with plasma proteins and the toxicological impacts of virgin, coronated and environmentally released-nanoplastics.",
+   "authors": [
+    {
+     "last": "Gopinath",
+     "initials": "PM",
+     "first": "Ponnusamy Manogaran",
+     "full": "Gopinath PM",
+     "collective": null
+    },
+    {
+     "last": "Saranya",
+     "initials": "V",
+     "first": "Vinayagam",
+     "full": "Saranya V",
+     "collective": null
+    },
+    {
+     "last": "Vijayakumar",
+     "initials": "S",
+     "first": "Shanmugam",
+     "full": "Vijayakumar S",
+     "collective": null
+    },
+    {
+     "last": "Mythili Meera",
+     "initials": "M",
+     "first": "Mohan",
+     "full": "Mythili Meera M",
+     "collective": null
+    },
+    {
+     "last": "Ruprekha",
+     "initials": "S",
+     "first": "Sharma",
+     "full": "Ruprekha S",
+     "collective": null
+    },
+    {
+     "last": "Kunal",
+     "initials": "R",
+     "first": "Reshamwala",
+     "full": "Kunal R",
+     "collective": null
+    },
+    {
+     "last": "Pranay",
+     "initials": "A",
+     "first": "Agarwal",
+     "full": "Pranay A",
+     "collective": null
+    },
+    {
+     "last": "Thomas",
+     "initials": "J",
+     "first": "John",
+     "full": "Thomas J",
+     "collective": null
+    },
+    {
+     "last": "Mukherjee",
+     "initials": "A",
+     "first": "Amitava",
+     "full": "Mukherjee A",
+     "collective": null
+    },
+    {
+     "last": "Chandrasekaran",
+     "initials": "N",
+     "first": "Natarajan",
+     "full": "Chandrasekaran N",
+     "collective": null
+    }
+   ],
+   "journal": "Scientific reports",
+   "journal_iso": "Sci Rep",
+   "volume": "9",
+   "issue": "1",
+   "year": 2019,
+   "pages": "8860",
+   "license": "cc by",
+   "first_pub": "2019-06-20",
+   "fig_label": "Figure 11",
+   "caption": "Chromosome aberrations induced by (a – g) virgin- and (h – n) isolated-NPs on A. cepa root tip cells. (a & i) vagrant chromosome in anaphase; (b, h) disturbed metaphase with fragments; (c,h,j) metaphase with ring chromosome and breaks and gap; (d, l) giant cell showing polyploidy; (e, k) C - mitosis; (f & m) strap nucleus; (g, n) enucleated cell.",
+   "href": "41598_2019_45139_Fig11_HTML.jpg",
+   "img_url": "https://cdn.ncbi.nlm.nih.gov/pmc/blobs/28c6/6586940/3da801122ff6/41598_2019_45139_Fig11_HTML.jpg",
+   "orig_size": [
+    658,
+    520
+   ]
+  },
+  {
+   "k": "e2",
+   "score": 8,
+   "pmcid": "PMC6586940",
+   "doi": "10.1038/s41598-019-45139-6",
+   "title": "Assessment on interactive prospectives of nanoplastics with plasma proteins and the toxicological impacts of virgin, coronated and environmentally released-nanoplastics.",
+   "authors": [
+    {
+     "last": "Gopinath",
+     "initials": "PM",
+     "first": "Ponnusamy Manogaran",
+     "full": "Gopinath PM",
+     "collective": null
+    },
+    {
+     "last": "Saranya",
+     "initials": "V",
+     "first": "Vinayagam",
+     "full": "Saranya V",
+     "collective": null
+    },
+    {
+     "last": "Vijayakumar",
+     "initials": "S",
+     "first": "Shanmugam",
+     "full": "Vijayakumar S",
+     "collective": null
+    },
+    {
+     "last": "Mythili Meera",
+     "initials": "M",
+     "first": "Mohan",
+     "full": "Mythili Meera M",
+     "collective": null
+    },
+    {
+     "last": "Ruprekha",
+     "initials": "S",
+     "first": "Sharma",
+     "full": "Ruprekha S",
+     "collective": null
+    },
+    {
+     "last": "Kunal",
+     "initials": "R",
+     "first": "Reshamwala",
+     "full": "Kunal R",
+     "collective": null
+    },
+    {
+     "last": "Pranay",
+     "initials": "A",
+     "first": "Agarwal",
+     "full": "Pranay A",
+     "collective": null
+    },
+    {
+     "last": "Thomas",
+     "initials": "J",
+     "first": "John",
+     "full": "Thomas J",
+     "collective": null
+    },
+    {
+     "last": "Mukherjee",
+     "initials": "A",
+     "first": "Amitava",
+     "full": "Mukherjee A",
+     "collective": null
+    },
+    {
+     "last": "Chandrasekaran",
+     "initials": "N",
+     "first": "Natarajan",
+     "full": "Chandrasekaran N",
+     "collective": null
+    }
+   ],
+   "journal": "Scientific reports",
+   "journal_iso": "Sci Rep",
+   "volume": "9",
+   "issue": "1",
+   "year": 2019,
+   "pages": "8860",
+   "license": "cc by",
+   "first_pub": "2019-06-20",
+   "fig_label": "Figure 10",
+   "caption": "Percentage of mitotic index and chromosome aberration in the A. cepa root tip treated with virgin- and isolated-NPs.",
+   "href": "41598_2019_45139_Fig10_HTML.jpg",
+   "img_url": "https://cdn.ncbi.nlm.nih.gov/pmc/blobs/28c6/6586940/d7a170407270/41598_2019_45139_Fig10_HTML.jpg",
+   "orig_size": [
+    698,
+    523
+   ]
+  }
+ ]
+}

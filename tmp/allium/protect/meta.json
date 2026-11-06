@@ -1,0 +1,7 @@
+{
+ "key": "protect",
+ "query": {
+  "epmc": "\"Allium cepa\" AND (antimutagen* OR antigenotox* OR probiotic* OR Lactobacillus OR Saccharomyces OR Chlorella OR Spirulina OR Trichoderma OR \"plant growth promoting\")"
+ },
+ "candidates": []
+}

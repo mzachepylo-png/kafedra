@@ -1,0 +1,297 @@
+{
+ "key": "mitosis",
+ "query": {
+  "epmc": "\"Allium cepa\" AND (mitotic OR mitosis) AND FIG:(prophase AND anaphase)"
+ },
+ "candidates": [
+  {
+   "k": "e1",
+   "score": 40,
+   "pmcid": "PMC7729754",
+   "doi": "10.3390/ijms21239261",
+   "title": "Phorbol 12-Myristate 13-Acetate Induced Toxicity Study and the Role of Tangeretin in Abrogating HIF-1α-NF-κB Crosstalk In Vitro and In Vivo.",
+   "authors": [
+    {
+     "last": "Chang",
+     "initials": "SN",
+     "first": "Sukkum Ngullie",
+     "full": "Chang SN",
+     "collective": null
+    },
+    {
+     "last": "Dey",
+     "initials": "DK",
+     "first": "Debasish Kumar",
+     "full": "Dey DK",
+     "collective": null
+    },
+    {
+     "last": "Oh",
+     "initials": "ST",
+     "first": "Seong Taek",
+     "full": "Oh ST",
+     "collective": null
+    },
+    {
+     "last": "Kong",
+     "initials": "WH",
+     "first": "Won Ho",
+     "full": "Kong WH",
+     "collective": null
+    },
+    {
+     "last": "Cho",
+     "initials": "KH",
+     "first": "Kiu Hyung",
+     "full": "Cho KH",
+     "collective": null
+    },
+    {
+     "last": "Al-Olayan",
+     "initials": "EM",
+     "first": "Ebtesam M",
+     "full": "Al-Olayan EM",
+     "collective": null
+    },
+    {
+     "last": "Hwang",
+     "initials": "BS",
+     "first": "Buyng Su",
+     "full": "Hwang BS",
+     "collective": null
+    },
+    {
+     "last": "Kang",
+     "initials": "SC",
+     "first": "Sun Chul",
+     "full": "Kang SC",
+     "collective": null
+    },
+    {
+     "last": "Park",
+     "initials": "JG",
+     "first": "Jae Gyu",
+     "full": "Park JG",
+     "collective": null
+    }
+   ],
+   "journal": "International journal of molecular sciences",
+   "journal_iso": "Int J Mol Sci",
+   "volume": "21",
+   "issue": "23",
+   "year": 2020,
+   "pages": "E9261",
+   "license": "cc by",
+   "first_pub": "2020-12-04",
+   "fig_label": "Figure 1",
+   "caption": "Chromosomal aberrations induced by phorbol 12-myristate 13-acetate (PMA) in the root tip meristem of Allium cepa. Acetocarmine stain was used for staining the root tips to observe the different stages of mitosis. (A – E) Normal stages of mitosis in onion root tip: (A) Interphase, (B) Prophase, (C) Metaphase, (D) Anaphase, (E) Telophase. Different aberrations were observed after PMA (0.1 μg, 1 μg, 10 μg) treatment for 24 h. (F) Micronucleus, (G) Loculated nucleus, (H) Nuclear lesion, (I) Multi-nucleated cell lesion, (J) C-metaphase, (K) Polyploidy and chromosomal bridge, (L) Laggard metaphase and anaphase, (M) Pulverized metaphase, (N) Mean root length of A. cepa, (O) Percentage of mitotic index, (P) Chromosomal aberrations and percentage of total abnormalities. Scale bar = 10 μm. The data are represented as the means ± S.D. of three independent experiments * p < 0.05, ** p < 0.01, *** p < 0.001 and ns (non-significant). Statistical significance analysis was carried out through a one-way analysis of variance (ANOVA) prism.",
+   "href": "ijms-21-09261-g001.jpg",
+   "img_url": "https://cdn.ncbi.nlm.nih.gov/pmc/blobs/ab14/7729754/5ecc64bbb7aa/ijms-21-09261-g001.jpg",
+   "orig_size": [
+    756,
+    771
+   ]
+  },
+  {
+   "k": "e2",
+   "score": 36,
+   "pmcid": "PMC5794979",
+   "doi": "10.1038/s41598-018-20317-0",
+   "title": "Comparison of plants with C3 and C4 carbon fixation pathways for remediation of polycyclic aromatic hydrocarbon contaminated soils.",
+   "authors": [
+    {
+     "last": "Sivaram",
+     "initials": "AK",
+     "first": "Anithadevi Kenday",
+     "full": "Sivaram AK",
+     "collective": null
+    },
+    {
+     "last": "Logeshwaran",
+     "initials": "P",
+     "first": "Panneerselvan",
+     "full": "Logeshwaran P",
+     "collective": null
+    },
+    {
+     "last": "Subashchandrabose",
+     "initials": "SR",
+     "first": "Suresh R",
+     "full": "Subashchandrabose SR",
+     "collective": null
+    },
+    {
+     "last": "Lockington",
+     "initials": "R",
+     "first": "Robin",
+     "full": "Lockington R",
+     "collective": null
+    },
+    {
+     "last": "Naidu",
+     "initials": "R",
+     "first": "Ravi",
+     "full": "Naidu R",
+     "collective": null
+    },
+    {
+     "last": "Megharaj",
+     "initials": "M",
+     "first": "Mallavarapu",
+     "full": "Megharaj M",
+     "collective": null
+    }
+   ],
+   "journal": "Scientific reports",
+   "journal_iso": "Sci Rep",
+   "volume": "8",
+   "issue": "1",
+   "year": 2018,
+   "pages": "2100",
+   "license": "cc by",
+   "first_pub": "2018-02-01",
+   "fig_label": "Figure 2",
+   "caption": "(a) Remediation efficacy testing with A. cepa meristem root cells exposed to unplanted contaminated and phytoremediated soils (60 th and 120 th day) - Mitotic index (%); (b) Remediation efficacy testing with A.cepa meristem root cells exposed to unplanted contaminated and phytoremediated soils (60 th and 120 th day) - total aberration (%) Bars with same letters do not differ significantly at the 5% level of significance according to Duncan Multiple Range Test (DMRT); (c) Chromosomal aberrant cells observed in A. cepa grown in contaminated soils (A) Prophase, (B) Metaphase, (C) Anaphase, (D) Telophase, (A1) Disturbed prophase, (A2) Bivacuolated cells, (A3) Multivacuolar cells, (A4) Micronuclei, (B1) Fragments, (B2) C-mitosis, and bridges, (B3) Disturbed metaphase, (B4) Sticky metaphase, (C1) Anaphase bridges, (C2) Laggards, (C3) Multipolar anaphase, (C4) Anaphase with vagrant laggards, (D1) Anaphase fragments.",
+   "href": "41598_2018_20317_Fig2_HTML.jpg",
+   "img_url": "https://cdn.ncbi.nlm.nih.gov/pmc/blobs/8b40/5794979/94e9df28d666/41598_2018_20317_Fig2_HTML.jpg",
+   "orig_size": [
+    760,
+    396
+   ]
+  },
+  {
+   "k": "e3",
+   "score": 26,
+   "pmcid": "PMC8466497",
+   "doi": "10.3390/plants10091760",
+   "title": "Green Synthesized ZnO Nanoparticles Mediated by <i>Streptomyces plicatus</i>: Characterizations, Antimicrobial and Nematicidal Activities and Cytogenetic Effects.",
+   "authors": [
+    {
+     "last": "Kalaba",
+     "initials": "MH",
+     "first": "Mohamed H",
+     "full": "Kalaba MH",
+     "collective": null
+    },
+    {
+     "last": "Moghannem",
+     "initials": "SA",
+     "first": "Saad A",
+     "full": "Moghannem SA",
+     "collective": null
+    },
+    {
+     "last": "El-Hawary",
+     "initials": "AS",
+     "first": "Ahmad S",
+     "full": "El-Hawary AS",
+     "collective": null
+    },
+    {
+     "last": "Radwan",
+     "initials": "AA",
+     "first": "Ahmed A",
+     "full": "Radwan AA",
+     "collective": null
+    },
+    {
+     "last": "Sharaf",
+     "initials": "MH",
+     "first": "Mohamed H",
+     "full": "Sharaf MH",
+     "collective": null
+    },
+    {
+     "last": "Shaban",
+     "initials": "AS",
+     "first": "Abdelghany S",
+     "full": "Shaban AS",
+     "collective": null
+    }
+   ],
+   "journal": "Plants (Basel, Switzerland)",
+   "journal_iso": "Plants (Basel)",
+   "volume": "10",
+   "issue": "9",
+   "year": 2021,
+   "pages": "1760",
+   "license": "cc by",
+   "first_pub": "2021-08-25",
+   "fig_label": "Figure 11",
+   "caption": "Different treatments of ZnO nanoparticles caused anomalies in Vicia faba root meristems: (A, B) irregular prophase; (C – F) sticky chromosome (prophase, anaphase and telophase with bridges, respectively); (G – I) C-metaphase; (J, K) disturbed anaphase, (L) C-anaphase; (M – O) micronucleus at interphase; (P – R) chromosome breakage and forward at anaphase.",
+   "href": "plants-10-01760-g011.jpg",
+   "img_url": "https://cdn.ncbi.nlm.nih.gov/pmc/blobs/fc65/8466497/ebf1a621f698/plants-10-01760-g011.jpg",
+   "orig_size": [
+    782,
+    1184
+   ]
+  },
+  {
+   "k": "e4",
+   "score": 10,
+   "pmcid": "PMC8466497",
+   "doi": "10.3390/plants10091760",
+   "title": "Green Synthesized ZnO Nanoparticles Mediated by <i>Streptomyces plicatus</i>: Characterizations, Antimicrobial and Nematicidal Activities and Cytogenetic Effects.",
+   "authors": [
+    {
+     "last": "Kalaba",
+     "initials": "MH",
+     "first": "Mohamed H",
+     "full": "Kalaba MH",
+     "collective": null
+    },
+    {
+     "last": "Moghannem",
+     "initials": "SA",
+     "first": "Saad A",
+     "full": "Moghannem SA",
+     "collective": null
+    },
+    {
+     "last": "El-Hawary",
+     "initials": "AS",
+     "first": "Ahmad S",
+     "full": "El-Hawary AS",
+     "collective": null
+    },
+    {
+     "last": "Radwan",
+     "initials": "AA",
+     "first": "Ahmed A",
+     "full": "Radwan AA",
+     "collective": null
+    },
+    {
+     "last": "Sharaf",
+     "initials": "MH",
+     "first": "Mohamed H",
+     "full": "Sharaf MH",
+     "collective": null
+    },
+    {
+     "last": "Shaban",
+     "initials": "AS",
+     "first": "Abdelghany S",
+     "full": "Shaban AS",
+     "collective": null
+    }
+   ],
+   "journal": "Plants (Basel, Switzerland)",
+   "journal_iso": "Plants (Basel)",
+   "volume": "10",
+   "issue": "9",
+   "year": 2021,
+   "pages": "1760",
+   "license": "cc by",
+   "first_pub": "2021-08-25",
+   "fig_label": "Figure 10",
+   "caption": "Cytotoxic effect of ZnO nanoparticles on root meristems of Vicia faba: (A) mitotic index (%), (B) phase index (%), (C) chromosome aberrations (%), (D) micronucleus (%).",
+   "href": "plants-10-01760-g010.jpg",
+   "img_url": "https://cdn.ncbi.nlm.nih.gov/pmc/blobs/fc65/8466497/a206aed65685/plants-10-01760-g010.jpg",
+   "orig_size": [
+    789,
+    1193
+   ]
+  }
+ ]
+}
