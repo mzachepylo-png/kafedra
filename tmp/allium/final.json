@@ -69,6 +69,20 @@
   ],
   "bytes": 49516
  },
+ "mit_normal_atlas": {
+  "size": [
+   221,
+   356
+  ],
+  "bytes": 19286
+ },
+ "ab_aberr_pma": {
+  "size": [
+   310,
+   356
+  ],
+  "bytes": 32338
+ },
  "ab_break_tio2": {
   "size": [
    800,
@@ -117,5 +131,82 @@
    1388
   ],
   "bytes": 117222
+ },
+ "ab_bridge_zn": {
+  "size": [
+   344,
+   87
+  ],
+  "bytes": 6948
+ },
+ "ab_sticky_zn": {
+  "size": [
+   344,
+   88
+  ],
+  "bytes": 4570
+ },
+ "ab_multi_zn": {
+  "size": [
+   352,
+   106
+  ],
+  "bytes": 7130
+ },
+ "ab_zn_all": {
+  "size": [
+   588,
+   461
+  ],
+  "bytes": 45728
+ },
+ "ab_vag_np": {
+  "size": [
+   164,
+   127
+  ],
+  "bytes": 5100
+ },
+ "ab_ring_np": {
+  "size": [
+   165,
+   127
+  ],
+  "bytes": 3090
+ },
+ "ab_cmit_np": {
+  "size": [
+   165,
+   125
+  ],
+  "bytes": 3296
+ },
+ "ab_np_all": {
+  "size": [
+   658,
+   520
+  ],
+  "bytes": 55236
+ },
+ "ab_frag_inula": {
+  "size": [
+   212,
+   164
+  ],
+  "bytes": 2876
+ },
+ "ab_inula_all": {
+  "size": [
+   425,
+   707
+  ],
+  "bytes": 28348
+ },
+ "ab_herb": {
+  "size": [
+   685,
+   366
+  ],
+  "bytes": 15570
  }
 }
