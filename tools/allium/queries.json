@@ -1,0 +1,21 @@
+{
+ "mitosis": {"epmc": "\"Allium cepa\" AND (mitotic OR mitosis) AND FIG:(prophase AND anaphase)"},
+ "aberr": {"epmc": "\"Allium cepa\" AND (genotoxic* OR \"chromosomal aberrations\" OR \"chromosome aberrations\") AND FIG:(bridge* OR sticky OR laggard* OR \"c-mitosis\" OR \"c-metaphase\")"},
+ "micronuc": {"epmc": "\"Allium cepa\" AND FIG:(micronucle* OR \"nuclear bud*\" OR binucleate*)"},
+ "metals": {"epmc": "\"Allium cepa\" AND (cadmium OR lead OR copper OR mercury OR chromium OR nickel OR \"heavy metal*\") AND FIG:(aberration* OR anaphase OR micronucle* OR bridge*)"},
+ "nano": {"epmc": "\"Allium cepa\" AND nanoparticle* AND FIG:(aberration* OR anaphase OR micronucle* OR root* OR mitotic)"},
+ "pest": {"epmc": "\"Allium cepa\" AND (pesticide* OR herbicide* OR insecticide* OR fungicide* OR glyphosate OR atrazine) AND FIG:(aberration* OR anaphase OR bridge* OR mitotic)"},
+ "pharma": {"epmc": "\"Allium cepa\" AND (drug* OR pharmaceutical* OR antibiotic* OR anticancer OR cyclophosphamide OR \"methyl methanesulfonate\") AND FIG:(aberration* OR anaphase OR micronucle*)"},
+ "extracts": {"epmc": "\"Allium cepa\" AND (extract* OR \"essential oil*\") AND (genotox* OR cytotox* OR antimutagen*) AND FIG:(aberration* OR anaphase OR mitotic OR micronucle*)"},
+ "myco": {"epmc": "\"Allium cepa\" AND (mycotoxin* OR aflatoxin* OR ochratoxin OR fumonisin* OR zearalenone OR deoxynivalenol OR patulin OR Fusarium OR Aspergillus OR Penicillium)"},
+ "cyano": {"epmc": "\"Allium cepa\" AND (microcystin* OR cylindrospermopsin OR cyanobacteri* OR cyanotoxin* OR Microcystis)"},
+ "protect": {"epmc": "\"Allium cepa\" AND (antimutagen* OR antigenotox* OR probiotic* OR Lactobacillus OR Saccharomyces OR Chlorella OR Spirulina OR Trichoderma OR \"plant growth promoting\")"},
+ "roots": {"epmc": "\"Allium cepa\" AND (toxicity OR phytotoxicity) AND FIG:(\"root length\" OR \"root growth\" OR \"onion bulbs\" OR \"bulbs\" OR \"roots of\")"},
+ "salt": {"epmc": "\"Allium cepa\" AND (NaCl OR salinity OR \"salt stress\" OR drought OR \"heat stress\") AND FIG:(aberration* OR mitotic OR anaphase OR root*)"},
+ "c_tip": {"commons": "onion root tip mitosis"},
+ "c_tip2": {"commons": "Allium cepa mitosis"},
+ "c_ana": {"commons": "onion anaphase"},
+ "c_bulb": {"commons": "onion bulb roots water"},
+ "c_onion": {"commons": "Allium cepa bulb"},
+ "c_roots": {"commons": "onion roots"}
+}

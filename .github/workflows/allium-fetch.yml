@@ -1,0 +1,32 @@
+# Тимчасово: фото для статті й моделі «Allium cepa тест».
+name: Fetch Allium cepa media (temporary)
+
+on:
+  push:
+    paths: ['tools/allium/**']
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  fetch:
+    runs-on: ubuntu-latest
+    timeout-minutes: 60
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - run: pip install pillow==11.0.0
+      - run: python tools/allium/fetch.py
+      - name: Commit results
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add -A tmp/allium 2>/dev/null || true
+          git add -A assets/img/allium 2>/dev/null || true
+          if git diff --cached --quiet; then echo "nothing to commit"; exit 0; fi
+          git commit -m "Fetch Allium cepa media"
+          git pull --rebase origin "${{ github.ref_name }}"
+          git push origin "HEAD:${{ github.ref_name }}"
