@@ -37,6 +37,10 @@ events = queue.Queue()
 root = ctk.CTk()
 settings["autohide"] = False       # автохов (клік → вікно зникає) перевіряється окремими кроками нижче
 app = cm.App(root, preset, history, settings, events, use_hotkey=False, use_tray=False)
+import winsys  # noqa: E402
+startup = dict(render=app.render_count, side=app.sidebar_render_count, fmt_built=app._fmt_built,
+               icon_cached=bool(winsys._icon_png_cache), colorchooser="tkinter.colorchooser" in sys.modules,
+               hold=app._hold_chunks, lazy_history=history.lazy)
 root.geometry("1180x660+0+0")
 other = tk.Toplevel(root)                       # «інша програма», з якої копіюємо
 other.geometry("40x40+1250+740")
@@ -429,13 +433,16 @@ for n in range(300):
 app.select_category(HISTORY)
 t0 = time.time()
 app.render()
+app.flush_render()        # картки малюються порціями; flush_render дороблює все відкладене
 root.update()
 dt = time.time() - t0
 assert len(app._cards) == cm.PAGE and dt < 4, (len(app._cards), dt)
 app._show_more()
+app.flush_render()
 assert len(app._cards) == 2 * cm.PAGE
 app.sel_id = app.shown[2 * cm.PAGE - 1]["id"]
 app._move_sel(1)          # стрілка вниз поза межею сторінки догружає картки
+app.flush_render()
 assert len(app._cards) > 2 * cm.PAGE
 print(f"17 pagination OK (render {dt:.2f}s for 300 items)")
 
@@ -523,6 +530,14 @@ color_answers = []
 cm.ColorDialog.run = lambda self: color_answers.pop(0)
 
 
+def color_of(w):
+    """Колір віджета: ctk-віджети мають fg_color, прості tk-віджети (смужки) — bg."""
+    try:
+        return w.cget("fg_color")
+    except tk.TclError:
+        return w.cget("bg")
+
+
 def card_bar(iid):
     return app._cards[iid].winfo_children()[0]       # перший дочірній віджет картки — кольорова смужка
 
@@ -536,7 +551,7 @@ app.on_category_color(cA["id"])
 assert p2.category(cA["id"])["color"] == "#e81123"
 for it in app.shown:
     assert tup(app._cards[it["id"]].cget("fg_color")) == cm.tint("#e81123"), "фон картки = відтінок кольору папки"
-    assert card_bar(it["id"]).cget("fg_color") == "#e81123"
+    assert color_of(card_bar(it["id"])) == "#e81123"
 assert dot_color(cA["id"]) == "#e81123", "крапка в списку категорій підхопила колір"
 assert "Колір категорії змінено" in app.status.cget("text")
 p2.add_snippet(cA["id"], "третій")                    # новий запис у папці одразу має колір папки
@@ -548,7 +563,7 @@ assert p2.category(cA["id"])["color"] == "#e81123"
 
 color_answers[:] = [("set", "#00aa00")]               # власний колір запису
 app.on_snippet_color(s1["id"])
-assert tup(app._cards[s1["id"]].cget("fg_color")) == cm.tint("#00aa00") and card_bar(s1["id"]).cget("fg_color") == "#00aa00"
+assert tup(app._cards[s1["id"]].cget("fg_color")) == cm.tint("#00aa00") and color_of(card_bar(s1["id"])) == "#00aa00"
 assert tup(app._cards[s2["id"]].cget("fg_color")) == cm.tint("#e81123"), "інші записи лишились кольору папки"
 color_answers[:] = [("set", "#0000ff")]               # колір папки змінюється — власний колір запису НЕ перезаписується
 app.on_category_color(cA["id"])
@@ -564,7 +579,7 @@ color_answers[:] = [("set", "#ff8800")]
 app.on_format_color("builtin-user")
 assert p2.format("builtin-user")["color"] == "#ff8800"
 row0 = app.formats_slot.winfo_children()[0]
-assert tup(row0.cget("fg_color")) == cm.tint("#ff8800") and row0.winfo_children()[0].cget("fg_color") == "#ff8800"
+assert tup(row0.cget("fg_color")) == cm.tint("#ff8800") and color_of(row0.winfo_children()[0]) == "#ff8800"
 app.show_format_menu(3, 3, "builtin-user")
 assert labels(popups[-1]) == ["Колір…"], labels(popups[-1])
 app.show_menu(1, 1, s1["id"])
@@ -760,7 +775,7 @@ assert app.fmt_btn.cget("text") == "Копіювати" and Settings(settings.pa
 # ---- 22. форматування USER ------------------------------------------------------------------------------------------------------------------
 app.select_category(HISTORY)
 assert app.sel_format is None and app.fmt_box.winfo_manager() == "" and app.fmt_idle.winfo_manager() == "pack"
-assert [f["name"] for f in app.preset.formats] == ["USER"]
+assert app.preset.formats[0]["name"] == "USER"      # USER — завжди перший вбудований формат
 app.select_format("builtin-user")
 assert app.fmt_box.winfo_manager() == "pack" and app.fmt_idle.winfo_manager() == "" and app.fmt_title.cget("text") == "USER"
 inp = "123, User#45312  23512"
@@ -819,10 +834,11 @@ app.submit_format()
 assert root.clipboard_get() == "{LINK:USER:555:E}" and root.state() == "normal" and app.fmt_input.get("1.0", "end-1c") == "", \
     (root.clipboard_get(), root.state(), app.fmt_input.get("1.0", "end-1c"))
 # невідомий тип формату з новішої версії: показується неактивним, нічого не ламає
+n_fmt = len(app.preset.formats)
 app.preset.formats.append({"id": "x1", "name": "Майбутній", "type": "from-newer-version", "color": "#112233"})
 app.preset.save()
 app.render()
-assert len(app.formats_slot.winfo_children()) == 2
+assert len(app.formats_slot.winfo_children()) == n_fmt + 1
 app.preset.formats[:] = [f for f in app.preset.formats if f["id"] != "x1"]
 app.preset.save()
 app.render()
@@ -1020,6 +1036,312 @@ for w, h in ((1366, 768), (1920, 1040), (2560, 1400), (1040, 520)):
 root.geometry("1180x660+0+0")
 pump(500)
 print("23b-f responsive columns OK")
+
+# ---- 26. оптимізація: рендер, пам'ять, пробудження, тема, миша, --timing ----------------------------------------------------------
+import threading  # noqa: E402
+
+settings["autohide"] = False
+app.set_search("")
+# 26a. старт: жодних дубльованих перебудов, важкі частини відкладені
+assert startup["render"] == 1 and startup["side"] == 1, startup
+assert startup["fmt_built"] is False, "область форматування (2 CTkTextbox) будується лише при виборі формату"
+assert not startup["icon_cached"] or os.name == "nt", "іконка не малюється до першого показу (Linux)"
+assert not startup["colorchooser"], "діалог вибору кольору не імпортується на старті"
+assert startup["lazy_history"] is True
+assert winsys._icon_png_cache or os.name == "nt", "іконка з'являється пізніше (після першого малювання)"
+print("26a startup deferrals OK", startup)
+
+
+def n_widgets(w):
+    return 1 + sum(n_widgets(c) for c in w.winfo_children())
+
+
+def full_rebuild():
+    """Знищує ВСІ картки, рядки категорій і форматів та будує з нуля — еталон для порівняння з оновленням на місці."""
+    app.flush_render()
+    for iid in list(app._card_objs):
+        app._card_objs.pop(iid).destroy()
+    app._cards.clear(); app._card_border.clear(); app._packed = []
+    for k in list(app._row_objs):
+        app._row_objs.pop(k).destroy()
+    app._rows.clear(); app._row_keys.clear(); app._row_fills.clear(); app._swatches.clear(); app._row_order = []
+    for fid in list(app._fmt_rows):
+        app._fmt_rows.pop(fid).destroy()
+    app._fmt_order = []
+    app._render_now()
+    app.flush_render()
+    root.update()
+
+
+def ui_state():
+    cards = []
+    for iid in app._order:
+        c = app._card_objs.get(iid)
+        if c is None:
+            cards.append((iid, None))
+            continue
+        cards.append((iid, c.body.cget("text"), c.meta.cget("text"), str(c.frame.cget("fg_color")),
+                      str(c.frame.cget("border_color")), c.frame.cget("border_width"), c.bar.cget("bg"),
+                      c.body.cget("bg"), c.meta.cget("bg"), c.more.cget("bg"), c.dele.cget("bg"), c.body.cget("fg")))
+    frames = {id(c.frame): i for i, c in app._card_objs.items()}
+    packed = [frames[id(w)] for w in app.cards.pack_slaves() if id(w) in frames]
+    side = []
+    for key in [HISTORY] + app._row_order:
+        r = app._row_objs[key]
+        side.append((key, r.label.cget("text"), r.num.cget("text"), str(r.row.cget("fg_color")),
+                     r.row.cget("border_width"), str(r.row.cget("border_color")), r.bar.cget("bg"),
+                     r.label.cget("bg"), r.label.cget("fg")))
+    side_order = [next(k for k, o in app._row_objs.items() if o.row is w) for w in app.cat_list.pack_slaves()
+                  if any(o.row is w for o in app._row_objs.values())]
+    fmts = [(f, r.name.cget("text"), str(r.row.cget("fg_color")), r.bar.cget("bg"), r.row.cget("border_width"))
+            for f, r in app._fmt_rows.items()]
+    return cards, packed, side, side_order, fmts
+
+
+# 26b. перші картки з'являються ДО решти (порціями), кінцевий результат той самий
+h26 = History(os.path.join(tmp, "h26.json"))      # власна історія на 300 записів (як вмикає її сама програма: lazy)
+h26.lazy = True
+for n in range(300):
+    h26.items.append({"id": f"z{n}", "text": f"Запис історії №{n}: Lorem ipsum dolor sit amet " * (1 + n % 4),
+                      "ts": time.time() - n})
+app.history = h26
+app.select_category(HISTORY)
+app.limit = cm.PAGE
+app.flush_render()
+for iid in list(app._card_objs):
+    app._card_objs.pop(iid).destroy()
+app._cards.clear(); app._card_border.clear(); app._packed = []
+chunk_log = []
+_orig_create = app._create_cards
+
+
+def _logged_create(n):
+    before = len(app._card_objs)
+    t_ = time.perf_counter()
+    _orig_create(n)
+    chunk_log.append((len(app._card_objs) - before, (time.perf_counter() - t_) * 1000))
+
+
+app._create_cards = _logged_create
+t0 = time.perf_counter()
+app.render_list(scroll_top=True)
+first_ms = (time.perf_counter() - t0) * 1000
+assert len(app._cards) == cm.FIRST_CHUNK and app.pending_render() and app._more_btn is None, len(app._cards)
+t0 = time.time()
+while app.pending_render() and time.time() - t0 < 20:
+    root.update()
+    time.sleep(0.001)
+app._create_cards = _orig_create
+assert len(app._cards) == cm.PAGE and not app.pending_render() and app._more_btn is not None
+sizes = [n for n, _ in chunk_log]
+assert sizes[0] == cm.FIRST_CHUNK and len(sizes) >= 5 and max(sizes[1:]) <= cm.NEXT_CHUNK and sum(sizes) == cm.PAGE, sizes
+worst_ms = max(ms for _, ms in chunk_log)
+assert worst_ms < 200, f"одна порція не має блокувати інтерфейс надовго: {worst_ms:.0f} мс"
+steps = sizes
+want = [i["id"] for i in app.shown[: cm.PAGE]]
+frames = {id(c): i for i, c in app._cards.items()}
+assert [frames[id(w)] for w in app.cards.pack_slaves() if id(w) in frames] == want, "порядок карток у pack"
+print(f"26b chunked render OK: first {cm.FIRST_CHUNK} cards in {first_ms:.0f} ms, chunks {steps}, "
+      f"worst chunk {worst_ms:.0f} ms")
+
+# 26c. оновлення на місці дають той самий UI, що й повна перебудова
+pp = Preset(os.path.join(tmp, "inplace.preset.json")); pp.save()
+app.switch_preset(pp, "t")
+c1, c2 = pp.add_category("Один"), pp.add_category("Два")
+sn = [pp.add_snippet(c1["id"], f"Запис {n}: " + "слово " * (n * 6) + ("\nдруга лінія" if n % 2 else "")) for n in range(1, 6)]
+sn6 = pp.add_snippet(c2["id"], "Інша категорія")
+app.select_category(c1["id"]); app.flush_render(); pump(150)
+mutations = [
+    ("колір запису", lambda: pp.set_snippet_color(sn[1]["id"], "#ff0000")),
+    ("колір папки", lambda: pp.set_category_color(c1["id"], "#00aa00")),
+    ("текст запису", lambda: pp.update_snippet(sn[2]["id"], "Змінений текст\nдруга лінія")),
+    ("порядок", lambda: pp.reorder_snippet(sn[4]["id"], -3)),
+    ("видалення", lambda: pp.remove_snippet(sn[0]["id"])),
+    ("новий запис", lambda: pp.add_snippet(c1["id"], "Зовсім новий запис у кінці")),
+    ("назва/порядок категорій", lambda: (pp.rename_category(c1["id"], "Перший"), pp.move_category(c2["id"], -1))),
+    ("скидання кольору", lambda: pp.set_snippet_color(sn[1]["id"], None)),
+]
+for name, mutate in mutations:
+    mutate()
+    app.render()
+    app.flush_render()
+    root.update()
+    inplace = ui_state()
+    full_rebuild()
+    rebuilt = ui_state()
+    if inplace != rebuilt:
+        for part, a_, b_ in zip(("cards", "packed", "side", "side_order", "fmts"), inplace, rebuilt):
+            if a_ != b_:
+                for ia, ib in zip(a_, b_):
+                    if ia != ib:
+                        diffs = [(k, x, y) for k, (x, y) in enumerate(zip(ia, ib)) if x != y] if isinstance(ia, tuple) else (ia, ib)
+                        print("DIFF", name, part, [str(d)[:90] for d in diffs])
+    assert inplace == rebuilt, f"оновлення на місці розійшлось із повною перебудовою: {name}"
+app._move_sel(1)
+sel_inplace = ui_state()
+full_rebuild()
+assert sel_inplace == ui_state(), "виділення"
+print(f"26c in-place == full rebuild OK ({len(mutations) + 1} змін)")
+
+# 26d. жодних витоків віджетів і службових словників після багатьох перебудов
+app.select_category(c1["id"]); app.set_search(""); app.flush_render(); pump(100)
+base_widgets, base_cards, base_rows = n_widgets(root), len(app._card_objs), len(app._row_objs)
+counts = []
+for i in range(20):
+    app.set_search("слово" if i % 2 == 0 else "")
+    app.flush_render()
+    app.select_category(c2["id"] if i % 3 == 0 else c1["id"])
+    app.flush_render()
+    app.render()
+    app.flush_render()
+    app.set_search("")
+    app.select_category(c1["id"])
+    app.flush_render()
+    counts.append(n_widgets(root))
+assert len(set(counts)) == 1 and counts[0] == base_widgets, (base_widgets, counts)
+assert len(app._card_objs) == len(app._cards) == base_cards and len(app._row_objs) == base_rows
+assert len(app._row_keys) == len(pp.categories) and len(app._swatches) == len(pp.categories) + len(app._fmt_rows)
+assert set(app._card_border) == set(app._card_objs)
+print(f"26d no widget leaks OK ({base_widgets} widgets stable over 20 cycles)")
+
+# 26e. запис історії — з таймера (не на кожне копіювання), але до диска доходить
+assert app.history.lazy is True
+copy_from_other("lazy-history-перевірка", wait=900)
+assert app.history.items and app.history.items[0]["text"] == "lazy-history-перевірка"
+assert History(app.history.path).items[0]["text"] == "lazy-history-перевірка", "flush() має записати історію з таймера"
+print("26e lazy history flush OK")
+
+# 26f. подія з іншого потоку будить цикл одразу (без опитування): затримка ≪ періоду страхувального опитування
+wq = cm.WakeQueue()
+wq.root = root
+saved_events, saved_toggle = app.events, app.toggle_window
+app.events = wq
+bind_id = root.bind("<<CMEvents>>", lambda e: app._drain_events(), add="+")
+stamps, lat = {}, []
+
+
+def rec():
+    stamps["t"] = time.perf_counter()
+    saved_toggle()
+
+
+app.toggle_window = rec
+
+
+def producer():
+    time.sleep(0.4)
+    for k in range(8):
+        time.sleep(0.2 + 0.019 * k)           # різні фази відносно 200-мс страхувального опитування
+        stamps.clear()
+        t = time.perf_counter()
+        wq.put("toggle")
+        for _ in range(400):
+            if "t" in stamps:
+                break
+            time.sleep(0.001)
+        lat.append(stamps.get("t", t + 9) - t)
+
+
+th = threading.Thread(target=producer, daemon=True)
+th.start()
+root.after(4600, root.quit)
+root.mainloop()
+th.join(5)
+root.unbind("<<CMEvents>>", bind_id)
+app.events, app.toggle_window = saved_events, saved_toggle
+if root.state() == "withdrawn":
+    app.show_window()
+assert len(lat) == 8 and max(lat) < 0.035, [round(x * 1000, 1) for x in lat]
+print("26f instant wake-up OK: latencies ms", [round(x * 1000, 1) for x in lat], "(страхувальне опитування — 200 мс)")
+
+# 26g. тема: прості tk-віджети перефарбовуються разом із ctk-віджетами
+app.select_category(c1["id"]); app.flush_render()
+old_theme = settings["theme"]
+for mode, idx in (("dark", 1), ("light", 0), ("dark", 1), (old_theme if old_theme in ("light", "dark") else "light", None)):
+    app.v_theme.set(mode)
+    app._on_theme()
+    pump(120)
+    if idx is None:
+        break
+    card = next(iter(app._card_objs.values()))
+    assert card.body.cget("bg") == app.col(card.cur) and card.body.cget("fg") == cm.TEXT[idx], (mode, card.body.cget("bg"))
+    assert app.status.cget("bg") == cm.BG[idx] and app.preset_name.cget("bg") == cm.ACCENT_SOFT[idx]
+    assert app.title_lbl.cget("bg") == cm.PANEL[idx] and app.formats_note.cget("fg") == cm.FAINT[idx]
+    row = next(iter(app._row_objs.values()))
+    assert row.label.cget("fg") == cm.TEXT[idx] and row.label.cget("bg") == app.col(cm._eff(row.cur))
+    assert app.col(cm.TEXT) == cm.TEXT[idx]
+print("26g theme recolor of plain widgets OK")
+
+# 26h. події миші напряму на картці: ховер і клік через спільні bindtags; кнопки картки не «клікають» картку
+app.select_category(c1["id"]); app.flush_render(); root.update()
+card = next(iter(app._card_objs.values()))
+iid = card.iid
+canvas = card.frame._canvas
+canvas.event_generate("<Enter>")
+root.update()
+assert card.hovering and str(card.frame.cget("fg_color")) == str(card.hover), "наведення підсвічує картку"
+canvas.event_generate("<Leave>")
+pump(80)
+assert not card.hovering, "курсор поза карткою — підсвітка знімається"
+calls = []
+saved_copy, saved_menu, saved_del = app.copy_item, app.show_menu, app.on_delete
+app.copy_item = lambda i: calls.append(("copy", i))
+app.show_menu = lambda x, y, i: calls.append(("menu", i))
+app.on_delete = lambda i: calls.append(("delete", i))
+for w in (card.body, card.meta, card.bar, canvas):
+    calls.clear()
+    w.event_generate("<ButtonPress-1>", x=4, y=4)
+    w.event_generate("<ButtonRelease-1>", x=4, y=4)
+    root.update()
+    assert calls == [("copy", iid)], (w, calls)
+calls.clear()
+card.body.event_generate("<Button-3>", x=4, y=4)
+root.update()
+assert calls == [("menu", iid)], calls
+calls.clear()
+card.dele.event_generate("<ButtonPress-1>", x=3, y=3)
+card.dele.event_generate("<ButtonRelease-1>", x=3, y=3)
+root.update()
+assert calls == [("delete", iid)] and app._drag is None, (calls, app._drag)
+calls.clear()
+card.more.event_generate("<ButtonPress-1>", x=3, y=3)
+card.more.event_generate("<ButtonRelease-1>", x=3, y=3)
+root.update()
+assert calls == [("menu", iid)], calls
+app.copy_item, app.show_menu, app.on_delete = saved_copy, saved_menu, saved_del
+print("26h card mouse events via bindtags OK")
+
+# 26i. --timing: журнал стадій запуску (і нуль накладних витрат без прапорця)
+with socket.socket() as s_:
+    s_.bind(("127.0.0.1", 0))
+    port_t = s_.getsockname()[1]
+env_t = dict(os.environ, CLIPBOARD_MEMORY_PORT=str(port_t))
+for with_flag in (True, False):
+    tdir = os.path.join(tmp, "timing_on" if with_flag else "timing_off")
+    argv = [sys.executable, os.path.join(HERE, "clipboard_manager.py"), "--data-dir", tdir, "--no-hotkey", "--no-tray"]
+    pr_ = subprocess.Popen(argv + (["--timing"] if with_flag else []), env=env_t, stderr=subprocess.PIPE,
+                           stdout=subprocess.PIPE)
+    time.sleep(3.2)
+    assert pr_.poll() is None, pr_.stderr.read().decode()
+    pr_.terminate()
+    pr_.wait(10)
+    log = os.path.join(tdir, "startup-timing.log")
+    if not with_flag:
+        assert not os.path.exists(log), "без --timing журнал не пишеться"
+        continue
+    text = open(log, encoding="utf-8").read()
+    stages = ["imports_done", "args_parsed", "single_instance_ok", "data_loaded", "root_created", "app_init_start",
+              "ui_built", "first_render", "first_map", "revealed", "late_init_done", "first_tick_done"]
+    ms = {}
+    for line in text.splitlines():
+        parts = line.split()
+        if parts and parts[0] in stages:
+            ms[parts[0]] = float(line.split("t_ms=")[1].split()[0])
+    assert all(st in ms for st in stages), (set(stages) - set(ms), text)
+    seq = [ms[st] for st in stages]
+    assert seq == sorted(seq), f"стадії мають іти по зростанню: {dict(zip(stages, seq))}"
+    assert "render_list_calls=1 " in text and "widgets=" in text
+    print("26i --timing log OK:", {k: round(v) for k, v in ms.items()})
 
 # ---- 24. скріншоти -----------------------------------------------------------------------------------------------------------------
 shots = os.environ.get("SMOKE_SHOTS")

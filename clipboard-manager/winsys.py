@@ -222,6 +222,60 @@ def notify(title: str, text: str) -> None:
     print(f"{title}: {text}", file=sys.stderr)
 
 
+def clipboard_sequence() -> int | None:
+    """Порядковий номер вмісту буфера обміну (Windows): змінюється, коли хтось щось скопіював.
+    Дозволяє опитування без відкриття буфера (OpenClipboard) щоразу. На інших системах — None."""
+    if os.name != "nt":
+        return None
+    try:
+        import ctypes
+        return int(ctypes.windll.user32.GetClipboardSequenceNumber())
+    except Exception:
+        return None
+
+
+ICON_VERSION = 1
+
+
+def icon_ico_path() -> str | None:
+    """Шлях до .ico іконки програми; файл створюється один раз і кешується в тимчасовій теці
+    (раніше PIL малював і зберігав його при кожному запуску й при кожному діалозі)."""
+    folder = os.environ.get("TEMP") or os.environ.get("TMP") or "/tmp"
+    path = os.path.join(folder, f"clipboard_memory_icon_v{ICON_VERSION}.ico")
+    try:
+        if os.path.getsize(path) > 0:
+            return path
+    except OSError:
+        pass
+    img = make_icon_image(256)
+    if img is None:
+        return None
+    tmp = f"{path}.{os.getpid()}.tmp"
+    try:
+        img.save(tmp, format="ICO", sizes=[(16, 16), (32, 32), (48, 48), (256, 256)])
+        os.replace(tmp, path)
+    except OSError:
+        return None
+    return path
+
+
+_icon_png_cache: dict[int, bytes] = {}
+
+
+def icon_png_base64(size: int = 64) -> bytes | None:
+    """PNG іконки у base64 для tk.PhotoImage (Linux/macOS); обчислюється один раз."""
+    if size not in _icon_png_cache:
+        img = make_icon_image(size)
+        if img is None:
+            return None
+        import base64
+        import io
+        buf = io.BytesIO()
+        img.save(buf, "PNG")
+        _icon_png_cache[size] = base64.b64encode(buf.getvalue())
+    return _icon_png_cache[size]
+
+
 def make_icon_image(size: int = 64):
     """Іконка програми (дошка з аркушем). Потрібен Pillow; без нього — None."""
     try:
