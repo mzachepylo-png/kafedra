@@ -470,6 +470,7 @@ DEFAULT_SETTINGS = {
     "topmost": False,
     "paused": False,
     "theme": "system",      # system | light | dark
+    "fullscreen": True,     # відкривати вікно розгорнутим на весь екран (гаряча клавіша / трей)
     "preset_path": "",      # поточний файл-пресет ("" — типовий)
     "recent_presets": [],   # останні відкриті пресети
     "width": 1180,
