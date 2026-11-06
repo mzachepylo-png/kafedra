@@ -470,8 +470,22 @@ class History:
             except OSError:
                 pass
 
+    # lazy=True (його вмикає програма): save() лише позначає зміну, а запис на диск робить flush()
+    # з фонового таймера — копіювання/кліки не чекають на файловий ввід-вивід.
+    lazy = False
+    _dirty = False
+
     def save(self) -> None:
+        if self.lazy:
+            self._dirty = True
+            return
         _write_json(self.path, {"version": 1, "items": self.items})
+
+    def flush(self) -> None:
+        """Записує історію на диск, якщо є незбережені зміни."""
+        if self._dirty:
+            self._dirty = False
+            _write_json(self.path, {"version": 1, "items": self.items})
 
     def find(self, item_id: str | None) -> dict | None:
         return next((i for i in self.items if i["id"] == item_id), None)
