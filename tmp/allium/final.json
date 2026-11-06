@@ -1,0 +1,121 @@
+{
+ "mit_reischig1": {
+  "size": [
+   1100,
+   704
+  ],
+  "bytes": 99592
+ },
+ "mit_reischig2": {
+  "size": [
+   1100,
+   704
+  ],
+  "bytes": 94002
+ },
+ "mit_reischig3": {
+  "size": [
+   1100,
+   704
+  ],
+  "bytes": 77820
+ },
+ "mit_orcein": {
+  "size": [
+   1100,
+   704
+  ],
+  "bytes": 125574
+ },
+ "ana_natalie1": {
+  "size": [
+   1100,
+   825
+  ],
+  "bytes": 46190
+ },
+ "ana_natalie2": {
+  "size": [
+   1100,
+   825
+  ],
+  "bytes": 46720
+ },
+ "onion_bulbs": {
+  "size": [
+   1100,
+   731
+  ],
+  "bytes": 21072
+ },
+ "root_section": {
+  "size": [
+   1100,
+   883
+  ],
+  "bytes": 127406
+ },
+ "tip_cells1": {
+  "size": [
+   900,
+   804
+  ],
+  "bytes": 78516
+ },
+ "tip_cells2": {
+  "size": [
+   700,
+   1245
+  ],
+  "bytes": 49516
+ },
+ "ab_break_tio2": {
+  "size": [
+   800,
+   739
+  ],
+  "bytes": 30836
+ },
+ "ab_sticky_tio2": {
+  "size": [
+   800,
+   739
+  ],
+  "bytes": 33926
+ },
+ "ab_bin_tio2": {
+  "size": [
+   800,
+   743
+  ],
+  "bytes": 32844
+ },
+ "ab_lag_tio2": {
+  "size": [
+   800,
+   743
+  ],
+  "bytes": 32518
+ },
+ "ab_mn_tio2": {
+  "size": [
+   800,
+   684
+  ],
+  "bytes": 14642
+ },
+ "ab_bud_tio2": {
+  "size": [
+   800,
+   682
+  ],
+  "bytes": 26644
+ },
+ "ab_tio2_all": {
+  "size": [
+   1000,
+   1388
+  ],
+  "bytes": 117222
+ }
+}
