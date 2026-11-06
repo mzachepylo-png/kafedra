@@ -1,0 +1,7 @@
+{
+ "key": "protect2",
+ "query": {
+  "epmc": "\"Allium cepa\" AND (antigenotoxic* OR antimutagenic* OR protective) AND FIG:(anaphase* OR micronucle* OR aberration* OR root*)"
+ },
+ "candidates": []
+}
