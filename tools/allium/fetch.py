@@ -64,7 +64,7 @@ def sheet(key, items):
     sh.save(f"{OUT}/sheet_{key}.jpg", quality=72)
 
 
-def epmc(key, q, per_art=2, max_arts=14, max_imgs=12):
+def epmc(key, q, per_art=2, max_arts=10, max_imgs=10):
     outdir = f"{OUT}/{key}"
     os.makedirs(outdir, exist_ok=True)
     url = f"{M.EPMC}/search?" + urllib.parse.urlencode(
@@ -149,6 +149,8 @@ def commons(key, q, n=8):
 
 def search(only):
     Q = json.load(open("tools/allium/queries.json", encoding="utf-8"))
+    if os.path.exists("tools/allium/queries2.json"):
+        Q.update(json.load(open("tools/allium/queries2.json", encoding="utf-8")))
     os.makedirs(OUT, exist_ok=True)
     for key, spec in Q.items():
         if only and key not in only:
@@ -157,6 +159,47 @@ def search(only):
         sheet(key, items)
         with open(f"{OUT}/{key}/meta.json", "w", encoding="utf-8") as fh:
             json.dump({"key": key, "query": spec, "candidates": cands}, fh, ensure_ascii=False, indent=1)
+
+
+def arts(only):
+    """Усі рисунки статей зі списку tools/allium/arts.json ({key: [PMCID, ...]}), лише відкриті ліцензії."""
+    spec = json.load(open("tools/allium/arts.json", encoding="utf-8"))
+    for key, ids in spec.items():
+        if only and key not in only:
+            continue
+        outdir = f"{OUT}/{key}"
+        os.makedirs(outdir, exist_ok=True)
+        cands, items, k = [], [], 0
+        for pmcid in ids:
+            try:
+                r = M.jget(f"{M.EPMC}/search?" + urllib.parse.urlencode({"query": f"PMCID:{pmcid}", "format": "json", "resultType": "core"}))["resultList"]["result"][0]
+            except Exception as e:
+                print("  meta error", pmcid, e)
+                continue
+            meta = M.art_meta(r)
+            if (meta.get("license") or "").lower() not in M.OK_LIC:
+                print("  skip licence", pmcid, meta.get("license"))
+                continue
+            try:
+                figs = M.figures(pmcid)
+            except Exception as e:
+                print("  xml error", pmcid, e)
+                continue
+            for f in figs[:10]:
+                if score(f["caption"]) < 0:
+                    continue
+                im, src = M.fig_image(pmcid, f["href"])
+                if im is None:
+                    continue
+                k += 1
+                M.save_thumb(im, f"{outdir}/a{k}.jpg", width=900)
+                items.append((f"{key}/a{k}", im.convert("RGB")))
+                cands.append({"k": f"a{k}", "score": score(f["caption"]), **meta, "fig_label": f["label"], "caption": f["caption"],
+                              "href": f["href"], "img_url": src, "orig_size": [im.width, im.height]})
+                print(f"  [a{k}] {meta['license']} {pmcid} {f['label']} | {f['caption'][:200]}")
+        sheet(key, items)
+        with open(f"{outdir}/meta.json", "w", encoding="utf-8") as fh:
+            json.dump({"key": key, "candidates": cands}, fh, ensure_ascii=False, indent=1)
 
 
 def final():
@@ -203,9 +246,11 @@ def final():
 
 
 if __name__ == "__main__":
-    mode = open("tools/allium/mode.txt").read().split() if os.path.exists("tools/allium/mode.txt") else ["search"]
+    mode = sys.argv[1:] or (open("tools/allium/mode.txt").read().split() if os.path.exists("tools/allium/mode.txt") else ["search"])
     if mode[0] == "final":
         final()
+    elif mode[0] == "arts":
+        arts({x for x in (mode[1] if len(mode) > 1 else "").split(",") if x})
     else:
         search({x for x in (mode[1] if len(mode) > 1 else "").split(",") if x})
     print("done", mode)
