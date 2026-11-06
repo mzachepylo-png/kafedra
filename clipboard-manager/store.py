@@ -25,7 +25,12 @@ PRESET_SUFFIX = ".preset.json"
 HISTORY = "__history__"      # «Історія буфера» — віртуальна вкладка (не категорія пресета)
 MAX_PRESET_NAME = 60
 COLOR_RE = re.compile(r"^#[0-9a-fA-F]{6}$")
-BUILTIN_FORMATS = [{"id": "builtin-user", "name": "USER", "type": "link_user", "color": "#0f6cbd"}]
+BUILTIN_FORMATS = [
+    {"id": "builtin-user", "name": "USER", "type": "link_user", "color": "#0f6cbd"},
+    # видно лише в папці з такою назвою (без урахування регістру); без "folders" формат видно скрізь
+    {"id": "builtin-added-cards", "name": "Added cards", "type": "cards_added", "color": "#c239b3",
+     "folders": ["Suspicious login"]},
+]
 PALETTE = ["#0f6cbd", "#107c10", "#c239b3", "#d83b01", "#8764b8", "#038387", "#986f0b", "#e3008c"]
 
 
@@ -303,6 +308,52 @@ class Preset:
     def count(self, cat_id: str) -> int:
         cat = self.category(cat_id)
         return len(cat["snippets"]) if cat else 0
+
+    # -- порядок (перестановка місцями) -----------------------------------------
+    @staticmethod
+    def _move_to(lst: list, item, index: int) -> bool:
+        if item not in lst:
+            return False
+        index = max(0, min(len(lst) - 1, index))
+        if lst.index(item) == index:
+            return False
+        lst.remove(item)
+        lst.insert(index, item)
+        return True
+
+    def move_category_to(self, cat_id: str, index: int) -> bool:
+        cat = self.category(cat_id)
+        if cat and self._move_to(self.categories, cat, index):
+            self.save()
+            return True
+        return False
+
+    def move_snippet_to(self, snippet_id: str, index: int) -> bool:
+        """Переставляє запис на позицію ``index`` у межах його категорії."""
+        found = self.find_snippet(snippet_id)
+        if found and self._move_to(found[0]["snippets"], found[1], index):
+            self.save()
+            return True
+        return False
+
+    def move_format_to(self, format_id: str, index: int) -> bool:
+        fmt = self.format(format_id)
+        if fmt and self._move_to(self.formats, fmt, index):
+            self.save()
+            return True
+        return False
+
+    def move_format(self, format_id: str, delta: int) -> bool:
+        fmt = self.format(format_id)
+        return bool(fmt) and self.move_format_to(format_id, self.formats.index(fmt) + delta)
+
+    def formats_for(self, cat_id: str | None) -> list[dict]:
+        """Формати, які треба показувати у відкритій папці (cat_id=None — історія буфера):
+        ті, що без обмеження "folders", і ті, чия папка має таку назву."""
+        cat = self.category(cat_id)
+        name = cat["name"].casefold() if cat else None
+        return [f for f in self.formats
+                if not f.get("folders") or (name and name in {str(x).casefold() for x in f["folders"]})]
 
     # -- кольори --------------------------------------------------------------
     def set_category_color(self, cat_id: str, color: str) -> bool:

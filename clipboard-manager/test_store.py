@@ -8,7 +8,8 @@ import unittest
 
 from store import (History, Preset, PresetError, Settings, default_preset_path, history_path,
                    migrate_legacy, open_startup_preset)
-from formats import apply_format, format_link_user
+from formats import (append_result, apply_format, format_actions, format_cards_added, format_link_user,
+                     join_values)
 from winsys import acquire_single_instance, hotkey_label, parse_hotkey
 
 
@@ -95,7 +96,7 @@ class PresetTests(TmpCase):
         again = Preset.open(self.path)
         self.assertEqual(again.categories[0]["name"], "Шаблони 🌍")
         self.assertEqual(again.categories[0]["snippets"][0]["text"], "Привіт, світе 🌍")
-        self.assertEqual([f["name"] for f in again.formats], ["USER", "future"])   # невідомий формат не губиться
+        self.assertEqual([f["name"] for f in again.formats], ["USER", "Added cards", "future"])   # невідомий формат не губиться
         with open(self.path, encoding="utf-8") as f:
             data = json.load(f)
         self.assertEqual(data["format"], "clipboard-memory-preset")
@@ -189,7 +190,8 @@ class ColorAndRenameTests(TmpCase):
         self.assertFalse(self.pr.set_snippet_color("missing", "#112233"))
 
     def test_builtin_user_format_exists_and_color_persists(self):
-        self.assertEqual([(f["name"], f["type"]) for f in self.pr.formats], [("USER", "link_user")])
+        self.assertEqual([(f["name"], f["type"]) for f in self.pr.formats],
+                         [("USER", "link_user"), ("Added cards", "cards_added")])
         self.assertTrue(self.pr.set_format_color("builtin-user", "#ff8800"))
         self.assertEqual(Preset.open(self.pr.path).format("builtin-user")["color"], "#ff8800")
 
@@ -239,7 +241,90 @@ class ColorAndRenameTests(TmpCase):
         self.assertEqual(self.pr.name, "A/B:C*D?")      # назва для показу лишається як ввів користувач
 
 
+class OrderAndScopeTests(TmpCase):
+    def setUp(self):
+        super().setUp()
+        self.pr = Preset.open_or_create(self.p("o.preset.json"))
+        self.a, self.b, self.c = (self.pr.add_category(n) for n in ("A", "B", "C"))
+
+    def names(self):
+        return [c["name"] for c in self.pr.categories]
+
+    def test_move_category_to_index(self):
+        self.assertTrue(self.pr.move_category_to(self.c["id"], 0))
+        self.assertEqual(self.names(), ["C", "A", "B"])
+        self.assertTrue(self.pr.move_category_to(self.c["id"], 99))        # поза межами → в кінець
+        self.assertEqual(self.names(), ["A", "B", "C"])
+        self.assertFalse(self.pr.move_category_to(self.c["id"], 2))        # вже там
+        self.assertFalse(self.pr.move_category_to("nope", 0))
+        self.assertEqual([c["name"] for c in Preset.open(self.pr.path).categories], ["A", "B", "C"])
+
+    def test_move_snippet_to_index_within_category(self):
+        s = [self.pr.add_snippet(self.a["id"], t) for t in ("one", "two", "three")]
+        self.assertTrue(self.pr.move_snippet_to(s[2]["id"], 0))
+        self.assertEqual([x["text"] for x in self.pr.snippets(self.a["id"])], ["three", "one", "two"])
+        self.assertTrue(self.pr.move_snippet_to(s[2]["id"], 1))
+        self.assertEqual([x["text"] for x in self.pr.snippets(self.a["id"])], ["one", "three", "two"])
+        self.assertFalse(self.pr.move_snippet_to("nope", 0))
+
+    def test_move_formats(self):
+        ids = [f["id"] for f in self.pr.formats]
+        self.assertEqual(ids, ["builtin-user", "builtin-added-cards"])
+        self.assertTrue(self.pr.move_format("builtin-added-cards", -1))
+        self.assertEqual([f["id"] for f in self.pr.formats], ["builtin-added-cards", "builtin-user"])
+        self.assertTrue(self.pr.move_format_to("builtin-added-cards", 1))
+        self.assertEqual([f["id"] for f in self.pr.formats], ["builtin-user", "builtin-added-cards"])
+        self.assertFalse(self.pr.move_format("builtin-user", -1))          # вже перший
+        self.assertEqual([f["id"] for f in Preset.open(self.pr.path).formats], ["builtin-user", "builtin-added-cards"])
+
+    def test_formats_visibility_per_folder(self):
+        sl = self.pr.add_category("  suspicious LOGIN ")                    # назва без урахування регістру
+        in_login = [f["name"] for f in self.pr.formats_for(sl["id"])]
+        self.assertEqual(in_login, ["USER", "Added cards"])
+        self.assertEqual([f["name"] for f in self.pr.formats_for(self.a["id"])], ["USER"])
+        self.assertEqual([f["name"] for f in self.pr.formats_for(None)], ["USER"])   # історія буфера
+        self.pr.rename_category(sl["id"], "Інша")
+        self.assertEqual([f["name"] for f in self.pr.formats_for(sl["id"])], ["USER"])
+
+    def test_old_preset_gets_added_cards_format(self):
+        with open(self.p("old.preset.json"), "w", encoding="utf-8") as f:
+            f.write('{"format": "clipboard-memory-preset", "version": 1, "categories": [], '
+                    '"formats": [{"id": "builtin-user", "name": "USER", "type": "link_user", "color": "#ff0000"}]}')
+        pr = Preset.open(self.p("old.preset.json"))
+        self.assertEqual([f["name"] for f in pr.formats], ["USER", "Added cards"])
+        self.assertEqual(pr.format("builtin-user")["color"], "#ff0000")    # власний колір не затирається
+
+
 class FormatTests(unittest.TestCase):
+    def test_cards_added_examples_from_the_spec(self):
+        f = format_cards_added
+        self.assertEqual(f("1245, 1245, 3121, 2433"),
+                         "Cards 1245, 1245, 3121, 2433 were added during suspicious login.")
+        self.assertEqual(f("1245 1231 236532, 3256"),
+                         "Cards 1245, 1231, 236532, 3256 were added during suspicious login.")
+        self.assertEqual(f("23465"), "Card 23465 was added during suspicious login.")
+        self.assertEqual(f("1234"), "Card 1234 was added during suspicious login.")
+        self.assertEqual(f("  7 \n"), "Card 7 was added during suspicious login.")
+        self.assertEqual(f(""), "")
+        self.assertEqual(f("без чисел"), "")
+
+    def test_append_result_does_not_mutate_and_joins_with_space(self):
+        base = "Suspicious login confirmed. Unsolicited charges were refunded."
+        res = format_cards_added("1234")
+        self.assertEqual(append_result(base, res), base + " Card 1234 was added during suspicious login.")
+        self.assertEqual(append_result(base + "  \n", res), base + " " + res)    # хвостові пробіли не дублюються
+        self.assertEqual(append_result("", res), res)
+
+    def test_join_values_and_actions(self):
+        self.assertEqual(join_values(["1242", "1234", "5466", "2345"]), "1242, 1234, 5466, 2345")
+        self.assertEqual(join_values([" a ", "", "  ", "b"]), "a, b")
+        self.assertEqual(join_values([]), "")
+        self.assertEqual(format_actions("cards_added"), ("copy", "append"))
+        self.assertEqual(format_actions("link_user"), ("copy",))
+        self.assertEqual(format_actions("unknown"), ("copy",))
+        self.assertEqual(apply_format("cards_added", "9"), "Card 9 was added during suspicious login.")
+
+
     def test_user_format_examples_from_the_spec(self):
         f = format_link_user
         self.assertEqual(f("12334512"), "{LINK:USER:12334512:E}")
