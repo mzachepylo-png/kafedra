@@ -2,6 +2,7 @@ import json
 import os
 import socket
 import tempfile
+import threading
 import time
 import unittest
 
@@ -270,21 +271,103 @@ class HotkeyTests(unittest.TestCase):
         self.assertEqual(hotkey_label("off"), "")
 
 
+def _free_port():
+    with socket.socket() as s:
+        s.bind(("127.0.0.1", 0))
+        return s.getsockname()[1]
+
+
+def _wait(cond, tries=100):
+    for _ in range(tries):
+        if cond():
+            return True
+        time.sleep(0.02)
+    return False
+
+
+def _fake_server(port, handler):
+    """Імітація чужого/старого сервера: handler(conn, data) відповідає як хоче."""
+    srv = socket.socket()
+    srv.setsockopt(socket.SOL_SOCKET, socket.SO_REUSEADDR, 1)
+    srv.bind(("127.0.0.1", port))
+    srv.listen(5)
+
+    def loop():
+        while True:
+            try:
+                conn, _ = srv.accept()
+            except OSError:
+                return
+            with conn:
+                conn.settimeout(0.5)
+                try:
+                    handler(conn, conn.recv(8))
+                except OSError:
+                    pass
+
+    threading.Thread(target=loop, daemon=True).start()
+    return srv
+
+
 class SingleInstanceTests(unittest.TestCase):
-    def test_second_instance_signals_first(self):
-        with socket.socket() as s:
-            s.bind(("127.0.0.1", 0))
-            port = s.getsockname()[1]
-        shown = []
-        first = acquire_single_instance(lambda: shown.append(1), port=port)
-        self.assertIsNotNone(first)
-        self.assertIsNone(acquire_single_instance(lambda: None, port=port))
-        for _ in range(50):
-            if shown:
-                break
-            time.sleep(0.02)
-        self.assertEqual(shown, [1])
+    def test_same_version_shows_existing_and_second_exits(self):
+        port, shown = _free_port(), []
+        first, st1 = acquire_single_instance(lambda: shown.append(1), lambda: None, version="3", port=port)
+        self.assertEqual(st1, "primary")
+        lock, st2 = acquire_single_instance(lambda: None, lambda: None, version="3", port=port)
+        self.assertEqual((lock, st2), (None, "existing"))
+        self.assertTrue(_wait(lambda: shown))
         first.close()
+
+    def test_newer_version_replaces_older(self):
+        port, quit_called = _free_port(), []
+        first, _ = acquire_single_instance(lambda: None, lambda: quit_called.append(1), version="2", port=port)
+        lock, status = acquire_single_instance(lambda: None, lambda: None, version="3", port=port)
+        self.assertEqual(status, "replaced")
+        self.assertIsNotNone(lock)
+        self.assertTrue(_wait(lambda: quit_called))       # стара копія отримала команду закритись
+        lock.close()
+
+    def test_older_never_replaces_newer(self):
+        port, quit_called = _free_port(), []
+        first, _ = acquire_single_instance(lambda: None, lambda: quit_called.append(1), version="5", port=port)
+        lock, status = acquire_single_instance(lambda: None, lambda: None, version="2", port=port)
+        self.assertEqual((lock, status), (None, "existing"))
+        time.sleep(0.1)
+        self.assertEqual(quit_called, [])
+        first.close()
+
+    def test_legacy_instance_without_version_protocol_is_reported(self):
+        port, shown = _free_port(), []
+
+        def legacy(conn, data):                  # як у старих збірках: розуміє лише b"show"
+            if data == b"show":
+                conn.sendall(b"ok")
+                shown.append(1)
+
+        fake = _fake_server(port, legacy)
+        lock, status = acquire_single_instance(lambda: None, lambda: None, version="3", port=port)
+        self.assertEqual((lock, status), (None, "outdated"))
+        self.assertTrue(_wait(lambda: shown))
+        fake.close()
+
+    def test_stuck_old_instance_is_reported(self):
+        port = _free_port()
+        fake = _fake_server(port, lambda conn, data: conn.sendall(b"ok 1") if data == b"ver?" else
+                            (conn.sendall(b"ok") if data == b"quit" else None))   # відповідає, але не закривається
+        t0 = time.time()
+        lock, status = acquire_single_instance(lambda: None, lambda: None, version="3", port=port)
+        self.assertEqual((lock, status), (None, "stuck"))
+        self.assertGreater(time.time() - t0, 4)
+        fake.close()
+
+    def test_foreign_listener_does_not_block_start(self):
+        port = _free_port()
+        fake = _fake_server(port, lambda conn, data: None)     # приймає й мовчить
+        lock, status = acquire_single_instance(lambda: None, lambda: None, version="3", port=port)
+        self.assertEqual(status, "foreign")
+        self.assertIsNotNone(lock)
+        fake.close()
 
 
 if __name__ == "__main__":

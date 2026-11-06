@@ -453,6 +453,32 @@ err = proc.stderr.read().decode()
 assert "Traceback" not in err, err
 print("18 main()/single instance OK")
 
+# ---- 18b. нова версія закриває стару й займає її місце ------------------------------------------------------------------------
+with socket.socket() as s2:
+    s2.bind(("127.0.0.1", 0))
+    port2 = s2.getsockname()[1]
+base_env = dict(os.environ, CLIPBOARD_MEMORY_PORT=str(port2))
+cmd = [sys.executable, os.path.join(HERE, "clipboard_manager.py"), "--data-dir", os.path.join(tmp, "takeover"),
+       "--no-hotkey", "--no-tray"]
+old = subprocess.Popen(cmd, env=dict(base_env, CLIPBOARD_MEMORY_VERSION="2"), stderr=subprocess.PIPE, stdout=subprocess.PIPE)
+time.sleep(3.0)
+assert old.poll() is None, old.stderr.read().decode()
+new = subprocess.Popen(cmd, env=dict(base_env, CLIPBOARD_MEMORY_VERSION="3"), stderr=subprocess.PIPE, stdout=subprocess.PIPE)
+for _ in range(100):                     # стара копія має сама закритись
+    if old.poll() is not None:
+        break
+    time.sleep(0.1)
+assert old.poll() == 0, ("old instance did not exit", old.poll())
+time.sleep(3.0)
+assert new.poll() is None, new.stderr.read().decode()         # нова працює далі
+# наступний запуск тієї самої версії лише показує вікно і виходить
+again = subprocess.run(cmd, env=dict(base_env, CLIPBOARD_MEMORY_VERSION="3"), capture_output=True, timeout=20)
+assert again.returncode == 0 and new.poll() is None
+new.terminate()
+new.wait(10)
+assert "Traceback" not in old.stderr.read().decode() + new.stderr.read().decode()
+print("18b new version replaces the old one OK")
+
 # ---- 19. скріншоти -----------------------------------------------------------------------------------------------------------------
 shots = os.environ.get("SMOKE_SHOTS")
 if shots:

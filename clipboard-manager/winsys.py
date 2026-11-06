@@ -6,10 +6,14 @@ from __future__ import annotations
 import os
 import queue
 import socket
+import sys
 import threading
+import time
 
 APP_ID = "ClipboardMemory"
 SINGLE_PORT = int(os.environ.get("CLIPBOARD_MEMORY_PORT", "47653"))
+# Номер версії для заміни старої копії новою (збільшувати при кожному релізі; v2 і раніше цього не вміють)
+APP_VERSION = os.environ.get("CLIPBOARD_MEMORY_VERSION", "3")
 
 HOTKEY_PRESETS = [
     ("ctrl+x", "Ctrl+X  (перехоплює «Вирізати» в усіх програмах)"),
@@ -105,9 +109,17 @@ class HotkeyListener:
         self._thread, self._tid = None, 0
 
 
-def acquire_single_instance(on_show, port: int = SINGLE_PORT):
-    """Повертає сокет-«замок», якщо ми перша копія. Якщо вже працює інша наша копія —
-    просить її показати вікно й повертає None (поточну треба закрити)."""
+def _ask(port: int, request: bytes, timeout: float = 0.7) -> bytes:
+    """Надсилає команду вже запущеній копії й повертає відповідь (порожню, якщо не відповіла)."""
+    try:
+        with socket.create_connection(("127.0.0.1", port), timeout=timeout) as c:
+            c.sendall(request)
+            return c.recv(32)
+    except OSError:
+        return b""
+
+
+def _bind(port: int):
     srv = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
     try:
         if os.name == "nt":
@@ -116,34 +128,79 @@ def acquire_single_instance(on_show, port: int = SINGLE_PORT):
             srv.setsockopt(socket.SOL_SOCKET, socket.SO_REUSEADDR, 1)
         srv.bind(("127.0.0.1", port))
         srv.listen(5)
+        return srv
     except OSError:
         srv.close()
+        return None
+
+
+def _serve(srv, version: str, on_show, on_quit) -> None:
+    """Приймає команди від наступних запусків: show (як у старих версіях), ver?, quit."""
+    while True:
         try:
-            with socket.create_connection(("127.0.0.1", port), timeout=0.7) as c:
-                c.sendall(b"show")
-                if c.recv(2) == b"ok":
-                    return None  # справді наша копія
+            conn, _ = srv.accept()
+        except OSError:
+            return
+        try:
+            with conn:
+                conn.settimeout(0.5)
+                cmd = conn.recv(8)
+                if cmd == b"show":
+                    conn.sendall(b"ok")
+                    on_show()
+                elif cmd == b"ver?":
+                    conn.sendall(b"ok " + version.encode())
+                elif cmd == b"quit" and on_quit:
+                    conn.sendall(b"ok")
+                    srv.close()           # одразу звільняємо порт для нової копії
+                    on_quit()
+                    return
         except OSError:
             pass
-        return _NoLock()  # порт зайнятий чимось стороннім — працюємо без замка
 
-    def serve() -> None:
-        while True:
-            try:
-                conn, _ = srv.accept()
-            except OSError:
-                return
-            try:
-                with conn:
-                    conn.settimeout(0.5)
-                    if conn.recv(8) == b"show":
-                        conn.sendall(b"ok")
-                        on_show()
-            except OSError:
-                pass
 
-    threading.Thread(target=serve, daemon=True).start()
-    return srv
+def _is_older(mine: str, theirs: str) -> bool:
+    try:
+        return int(theirs) < int(mine)
+    except ValueError:
+        return False
+
+
+def acquire_single_instance(on_show, on_quit=None, version: str = APP_VERSION, port: int = SINGLE_PORT):
+    """Запускає «замок» єдиної копії. Повертає (замок, статус):
+
+    * ``primary``  — ми перша копія (замок — сокет, його тримати до кінця роботи);
+    * ``replaced`` — працювала СТАРША версія: вона закрита, ми зайняли її місце;
+    * ``existing`` — вже працює така сама (або новіша) версія, їй надіслано «показати вікно»; замка нема;
+    * ``outdated`` — працює старша версія без підтримки заміни; її вікно показано, але закрити
+      її може лише користувач; замка нема;
+    * ``stuck``    — старша версія не закрилась за кілька секунд; замка нема;
+    * ``foreign``  — порт зайняла стороння програма; працюємо без замка.
+    """
+    srv = _bind(port)
+    status = "primary"
+    if srv is None:
+        reply = _ask(port, b"ver?")
+        if reply.startswith(b"ok "):
+            theirs = reply[3:].decode(errors="replace")
+            if not _is_older(version, theirs):
+                _ask(port, b"show")
+                return None, "existing"
+            _ask(port, b"quit")                       # просимо стару копію закритись
+            for _ in range(25):                       # до ~5 секунд чекаємо, поки вона звільнить порт
+                time.sleep(0.2)
+                srv = _bind(port)
+                if srv:
+                    status = "replaced"
+                    break
+            else:
+                return None, "stuck"
+        elif _ask(port, b"show") == b"ok":
+            return None, "outdated"                   # стара версія без обміну версіями
+        else:
+            return _NoLock(), "foreign"
+    threading.Thread(target=_serve, args=(srv, version, on_show, on_quit), daemon=True).start()
+    return srv, status
 
 
 class _NoLock:
@@ -151,6 +208,18 @@ class _NoLock:
 
     def close(self) -> None:
         pass
+
+
+def notify(title: str, text: str) -> None:
+    """Просте повідомлення користувачу (до створення головного вікна)."""
+    if os.name == "nt":
+        try:
+            import ctypes
+            ctypes.windll.user32.MessageBoxW(0, text, title, 0x40)  # MB_ICONINFORMATION
+            return
+        except Exception:
+            pass
+    print(f"{title}: {text}", file=sys.stderr)
 
 
 def make_icon_image(size: int = 64):

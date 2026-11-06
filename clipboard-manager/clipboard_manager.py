@@ -30,7 +30,7 @@ import customtkinter as ctk
 
 from store import (HISTORY, PRESET_SUFFIX, History, Preset, PresetError, Settings,
                    default_data_dir, history_path, open_startup_preset)
-from winsys import (HOTKEY_PRESETS, HotkeyListener, acquire_single_instance, hotkey_label,
+from winsys import (HOTKEY_PRESETS, HotkeyListener, acquire_single_instance, hotkey_label, notify,
                     make_icon_image, start_tray)
 
 APP_NAME = "Буфер обміну"
@@ -1230,9 +1230,16 @@ def main(argv: list[str] | None = None) -> int:
     args = parser.parse_args(argv)
 
     events: "queue.Queue[str]" = queue.Queue()
-    lock = acquire_single_instance(lambda: events.put("show"))
+    lock, status = acquire_single_instance(lambda: events.put("show"), lambda: events.put("quit"))
     if lock is None:
-        return 0  # вже працює інша копія — вона щойно показала своє вікно
+        if status == "outdated":
+            notify(APP_NAME, "Уже працює стара версія програми, яка не вміє оновлюватись автоматично.\n\n"
+                             "Закрийте її (у її вікні: ⚙ → «Вийти з програми», або іконка в треї → «Вийти») "
+                             "і запустіть програму ще раз.")
+        elif status == "stuck":
+            notify(APP_NAME, "Не вдалося закрити попередню копію програми. Закрийте її вручну "
+                             "(іконка в треї → «Вийти» або Диспетчер завдань) і запустіть знову.")
+        return 0  # інша копія вже працює (і, якщо можна, показала своє вікно)
 
     data_dir = os.path.abspath(args.data_dir)
     settings = Settings(os.path.join(data_dir, "settings.json"))
