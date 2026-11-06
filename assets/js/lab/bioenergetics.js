@@ -544,7 +544,7 @@ const App = {
   build(L) {
     L.built = true;
     const sec = L.sec; sec.replaceChildren();
-    L.running = true; L.simT = 0;
+    L.running = false; L.simT = 0;   // модель стоїть, доки студент не натисне «▶ Запустити»
     sec.append(h("div", { class: "lab-head" },
       h("div", null, h("div", { class: "eyebrow" }, `Практичне заняття № ${L.n}`), h("h2", { id: "lab" + L.n + "-h" }, L.title)),
       h("div", { class: "model" }, L.model)));
@@ -576,12 +576,19 @@ const App = {
     sec.append(h("section", { class: "ff-sec" }, secHead("01", "Теоретичні відомості"), th));
     // 02 модель
     const status = h("span", { class: "runbar__st" });
-    const setRun = (on) => { L.running = on; pauseB.textContent = on ? "⏸ Пауза" : "▶ Продовжити"; status.textContent = on ? "Модель працює" : "Пауза: параметри можна змінювати, картинка не рухається"; status.classList.toggle("on", on); stepB.disabled = on; };
-    const pauseB = h("button", { class: "btn pri", type: "button", onclick: () => setRun(!L.running) }, "⏸ Пауза");
+    const setRun = (on) => {
+      L.running = on; const fresh = !on && L.simT === 0;
+      pauseB.textContent = on ? "⏸ Пауза" : fresh ? "▶ Запустити" : "▶ Продовжити";
+      status.textContent = on ? "Модель працює" : fresh ? "Модель зупинена — натисніть «Запустити»" : "Пауза: параметри можна змінювати, картинка не рухається";
+      status.classList.toggle("on", on); stepB.disabled = on;
+    };
+    const pauseB = h("button", { class: "btn pri", type: "button", onclick: () => setRun(!L.running) }, "▶ Запустити");
     const stepB = h("button", { class: "btn", type: "button", title: "Зробити один крок (≈ 0,03 с) на паузі", onclick: () => { L.stepReq = true; } }, "⏭ Крок");
     const resetB = h("button", { class: "btn", type: "button", onclick: () => this.reset(L) }, "↺ Скинути");
     const sim = h("div", { class: "panel sim" });
     sec.append(h("section", { class: "ff-sec" }, secHead("02", "Інтерактивна модель"), h("div", { class: "runbar" }, pauseB, stepB, resetB, status), sim));
+    // кнопка досліду в самій моделі (не перемикач, не вкладка й не «Скинути») запускає модель, як у «Фізіології рослин»
+    sim.addEventListener("click", (e) => { const b = e.target.closest(".btn"); if (b && !L.running && !b.hasAttribute("aria-pressed") && !b.closest(".tabsbox") && !/скин|скид/i.test(b.textContent)) setRun(true); });
     const tabsBox = h("div", { class: "tabsbox" }); sim.append(tabsBox);
     const top = h("div", { class: "sim-top" }), stageBox = h("div", { style: "min-width:0;display:flex;flex-direction:column;gap:10px" }), ctrls = h("div", { class: "ctrls" });
     top.append(stageBox, ctrls); sim.append(top);
@@ -590,7 +597,7 @@ const App = {
     { let q = 0; const run = () => { q = 0; alignTables(sim); }; alignTables(sim);
       new MutationObserver(() => { if (!q) q = requestAnimationFrame(run); }).observe(sim, { childList: true, subtree: true }); }
     if (!L.inst.stages) L.inst.stages = [];
-    setRun(true);
+    setRun(false);
     // 03 питання
     const qs = h("div", { class: "panel qa-list" });
     const allB = h("button", { class: "btn", type: "button", onclick: () => { const open = !qs.querySelector("details:not([open])"); qs.querySelectorAll("details").forEach(d => d.open = !open); allB.textContent = open ? "Розгорнути всі відповіді" : "Згорнути всі"; } }, "Розгорнути всі відповіді");

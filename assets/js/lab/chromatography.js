@@ -564,7 +564,7 @@ const loop = visibleLoop($('cg-column'), (dt) => {
 playBtn.addEventListener('click', () => {
   if (S.playing) { S.playing = false; setPlayUI(); return; }
   if (S.t >= S.run.tEnd - 1e-6) S.t = 0;
-  S.playing = true; setPlayUI(); loop.start();
+  S.playing = true; setPlayUI(); loop.start(); micro.play();
 });
 $('cg-reset').addEventListener('click', () => {
   S.playing = false; S.t = 0; timeline.value = 0; timeline.style.setProperty('--pct', '0%'); setPlayUI(); drawAll(); micro.syncTime();
@@ -822,10 +822,12 @@ const micro = (() => {
     paintStationary(ctx, w, h, y0);
     parts.forEach((pt) => paintPart(ctx, pt));
   }
-  const ml = visibleLoop(cv, (dt) => { step(dt); paint(); });
+  // молекули рухаються лише під час аналізу (після «Запустити аналіз»)
+  const ml = visibleLoop(cv, (dt) => { if (!S.playing) { ml.stop(); return; } step(dt); paint(); });
   return {
     setMode(v) { viz = v; parts = []; layout(); paint(); },
-    refresh() { refresh(); paint(); if (REDUCED) ml.stop(); else ml.start(); },
+    refresh() { refresh(); paint(); if (REDUCED || !S.playing) ml.stop(); else ml.start(); },
+    play() { if (!REDUCED) ml.start(); },
     syncTime,
   };
 })();
@@ -894,7 +896,7 @@ const micro = (() => {
   segmented($('pl-mode'), 'pl-mode', [
     { value: 'tlc', label: 'ТШХ: пігменти листка' }, { value: 'paper', label: 'Папір: амінокислоти' },
     { value: 'circ', label: 'Кругова: катіони' }, { value: 'precip', label: 'Осадова колонка' },
-  ], 'tlc', (v) => { P.mode = v; P.prog = 0; P.developed = false; build(); run(); });
+  ], 'tlc', (v) => { P.mode = v; P.prog = 0; P.developed = false; build(); draw(); runLabel(false); });
   function build() {
     ctrl.innerHTML = '';
     sl = null;
@@ -927,8 +929,11 @@ const micro = (() => {
     }
   }
   let raf = 0, tStart = 0;
+  // підпис кнопки: до першого запуску — «Запустити», далі — «Повторити»
+  const runBtn = $('pl-run'), runIcon = runBtn.querySelector('svg').outerHTML;
+  const runLabel = (done) => { runBtn.innerHTML = runIcon + (done ? 'Повторити розділення' : 'Запустити розділення'); };
   function run() {
-    cancelAnimationFrame(raf);
+    cancelAnimationFrame(raf); runLabel(true);
     if (REDUCED) { P.prog = 1; draw(); return; }
     tStart = 0;
     const tick = (now) => {
@@ -1086,8 +1091,8 @@ const micro = (() => {
     else if (P.prog >= 1) box.innerHTML = out.map((o) => `<span><i style="background:${o.color}"></i>${o.name}: R<sub>f</sub> = ${num(o.rf, 2)}</span>`).join('');
     else box.innerHTML = '';
   }
-  build();
-  run();
+  // розділення починається лише після «Запустити розділення»
+  P.prog = 0; build(); draw(); runLabel(false);
 })();
 
 // =====================================================================
