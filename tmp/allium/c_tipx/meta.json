@@ -1,0 +1,19 @@
+{
+ "key": "c_tipx",
+ "query": {
+  "commons": "onion root tip squash"
+ },
+ "candidates": [
+  {
+   "k": "c1",
+   "file": "File:Onion root mitosis.jpg",
+   "url": "https://commons.wikimedia.org/wiki/File:Onion_root_mitosis.jpg",
+   "thumb": "https://upload.wikimedia.org/wikipedia/commons/d/d3/Onion_root_mitosis.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail_unscaled",
+   "w": 1122,
+   "h": 1150,
+   "artist": "staticd",
+   "license": "CC BY-SA 3.0",
+   "description": "Microscopic images of acetocarmine/orecein stained onion root tip squash. Visible are all the stages of mitosis - prophase, metaphase, anaphase and telophase"
+  }
+ ]
+}
