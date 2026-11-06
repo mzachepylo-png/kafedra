@@ -75,7 +75,7 @@ export const AGENTS = [
     note: 'Відновлення Cr(VI) → Cr(III) дає гідроксильні радикали та зшивки «ДНК–хром–білок».', art: 'metals', src: 'Torres-Bugarín et al., 2026' },
   { id: 'cu', name: 'Мідь (CuSO₄)', group: 'metal', unit: 'мг/л', min: 0.02, max: 30, def: 3, ec50: 4.5, n: 1.4, ca: 22, ec50ca: 3, mn: 8, horm: { h: 0.28, c: 0.35 },
     prof: { sticky: 5, bridge: 2, frag: 1, vag: 1 }, rootF: .7, irr: .45, brown: .7, tint: 'rgba(110,170,230,.35)',
-    note: 'Мікродози — кофактор SOD (гормезис), понад 2 мг/л — цикл Фентона, липкість і пікноз; позитивний контроль 0,6–6 мг/л.', art: 'metals', src: 'Voica et al., 2024' },
+    note: 'Мікродози — кофактор супероксиддисмутази (SOD, ферменту, що знешкоджує супероксид-радикал), тому стимулюють (гормезис); понад 2 мг/л — цикл Фентона, липкість і пікноз; позитивний контроль 0,6–6 мг/л.', art: 'metals', src: 'Voica et al., 2024' },
   { id: 'zn', name: 'Цинк (ZnSO₄)', group: 'metal', unit: 'мг/л', min: 1, max: 1000, def: 50, ec50: 220, n: 1.3, ca: 12, ec50ca: 180, mn: 5, horm: { h: 0.3, c: 15 },
     prof: { sticky: 3, cmit: 1, bridge: 1, vag: 1 }, rootF: .8, irr: .3, tint: 'rgba(240,240,240,.2)',
     note: 'Двофазна (горметична) дія: малі дози стимулюють поділ і синтез поліфенолів, великі — пригнічують.', art: 'metals', src: 'Voica et al., 2024' },
@@ -86,19 +86,19 @@ export const AGENTS = [
   { id: 'agnp', name: 'Наночастинки срібла без покриття', group: 'nano', unit: 'мг/л', min: 1, max: 300, def: 30, ec50: 45, n: 1.2, ca: 18, ec50ca: 30, mn: 6,
     prof: { sticky: 4, frag: 3, bridge: 2, mn: 1 }, rootF: .8, irr: .45, tint: 'rgba(190,175,140,.35)',
     note: 'Оксидативний стрес, розриви хромосом, метафазна липкість; діє і як «троянський кінь», вивільняючи Ag⁺.', art: 'nano', src: 'PMC8675964' },
-  { id: 'argovit', name: 'Argovit™ (AgNPs із ПВП)', group: 'nano', unit: 'мг/л', min: 1, max: 1000, def: 50, ec50: 2500, n: 1, ca: 3, ec50ca: 800, mn: 1.3, horm: { h: 0.88, c: 60 },
+  { id: 'argovit', name: 'Argovit™ (наносрібло з ПВП)', group: 'nano', unit: 'мг/л', min: 1, max: 1000, def: 50, ec50: 2500, n: 1, ca: 3, ec50ca: 800, mn: 1.3, horm: { h: 0.88, c: 60 },
     prof: { sticky: 1, bridge: 1 }, rootF: 1, irr: .1, tint: 'rgba(200,170,110,.35)',
-    note: 'Полімерне покриття змінює профіль: MI 23,0 % проти 12,5 % у контролі, мікроядра лише 2,6 ‰.', art: 'nano', src: 'Torres-Bugarín et al., 2026' },
+    note: 'Покриття полівінілпіролідоном (ПВП) змінює профіль: MI 23,0 % проти 12,5 % у контролі, мікроядра лише 2,6 ‰.', art: 'nano', src: 'Torres-Bugarín et al., 2026' },
   { id: 'sezno', name: 'Наночастинки Se/ZnO', group: 'nano', unit: 'ppm', min: 1, max: 80, def: 20, ec50: 26, n: 1.4, ca: 24, ec50ca: 18, mn: 8,
     prof: { sticky: 4, bridge: 4, vag: 3, cmit: 2 }, phase: 'pro', rootF: .9, irr: .4, tint: 'rgba(230,225,210,.3)',
-    note: 'Липкі анафази з множинними мостами, забігаючі хромосоми, затримка в профазі (Meganid et al., 2025).', art: 'nano', src: 'Meganid et al., 2025' },
+    note: 'Наночастинки селену й оксиду цинку; доза в ppm (мільйонних частках ≈ мг/л). Липкі анафази з множинними мостами, забігаючі хромосоми, затримка в профазі (Meganid et al., 2025).', art: 'nano', src: 'Meganid et al., 2025' },
   { id: 'tio2', name: 'Наночастинки TiO₂', group: 'nano', unit: 'мг/л', min: 10, max: 2000, def: 200, ec50: 900, n: 1.1, ca: 9, ec50ca: 600, mn: 4,
     prof: { sticky: 2, frag: 1, bridge: 1, mn: 1 }, rootF: 1.1, irr: .2, tint: 'rgba(250,250,250,.45)',
     note: 'Помірна генотоксичність, залежить від агрегації та розміру частинок.', art: 'nano', src: 'Torres-Bugarín et al., 2026' },
   // ---- пестициди
   { id: 'gly', name: 'Гліфосат (комерційна формуляція)', group: 'pest', unit: 'мг/л', min: 0.5, max: 200, def: 10, ec50: 18, n: 1.3, ca: 24, ec50ca: 10, mn: 9,
     prof: { bridge: 4, cmit: 3, vag: 2, mn: 2, sticky: 1 }, rootF: .6, irr: .45, tumor: true, tint: 'rgba(235,240,225,.25)',
-    note: 'Мости, К-мітоз, блукаючі хромосоми; формуляції з ПАР POEA токсичніші за чисту речовину.', art: 'pesticides', src: 'Nicuță et al., 2025' },
+    note: 'Мости, К-мітоз, блукаючі хромосоми; комерційні суміші з поверхнево-активною речовиною POEA (поліоксіетиленаміном) токсичніші за чистий гліфосат.', art: 'pesticides', src: 'Nicuță et al., 2025' },
   { id: 'imid', name: 'Імідаклоприд (інсектицид)', group: 'pest', unit: 'мг/л', min: 1, max: 1000, def: 100, ec50: 160, n: 1.2, ca: 16, ec50ca: 120, mn: 8,
     prof: { frag: 3, bridge: 3, mn: 3, sticky: 1 }, rootF: .9, irr: .4, tint: 'rgba(240,235,220,.25)',
     note: 'Хромосомні розриви, анафазні мости та мікроядра в інтерфазі (Bianchi et al., 2016).', art: 'pesticides', src: 'Nicuță et al., 2025' },
@@ -114,7 +114,7 @@ export const AGENTS = [
     note: 'Інтеркалятор ДНК та інгібітор топоізомерази II: численні мости й фрагменти.', art: 'pharma', src: 'Nicuță et al., 2025' },
   { id: 'mtx', name: 'Метотрексат (антиметаболіт)', group: 'pharma', unit: 'мг/л', min: 0.05, max: 50, def: 2, ec50: 2, n: 1.6, ca: 6, ec50ca: 5, mn: 3,
     prof: { frag: 2, bridge: 1, sticky: 1 }, phase: 'g1s', rootF: 1, irr: .2, tint: 'rgba(250,220,80,.38)',
-    note: 'Блокує тимідилатсинтазу і перехід G1/S: MI падає, а аберацій мало (цитостатичний ефект).', art: 'pharma', src: 'Nicuță et al., 2025' },
+    note: 'Блокує тимідилатсинтазу (фермент синтезу тиміну для ДНК) і перехід G1→S: MI падає, а аберацій мало (цитостатичний ефект).', art: 'pharma', src: 'Nicuță et al., 2025' },
   // ---- промислові полютанти і солі
   { id: 'bpa', name: 'Бісфенол А', group: 'ind', unit: 'мг/л', min: 1, max: 200, def: 30, ec50: 40, n: 1.3, ca: 20, ec50ca: 30, mn: 7,
     prof: { cmit: 4, multi: 3, lag: 3, vag: 1 }, phase: 'cmit', rootF: .9, irr: .35, tint: 'rgba(240,240,235,.25)',
@@ -123,31 +123,31 @@ export const AGENTS = [
     prof: { sticky: 3, bridge: 1, vag: 1, frag: 1 }, rootF: .55, irr: .2, tint: 'rgba(235,245,250,.3)',
     note: 'Осмотичний та іонний стрес гальмують ріст корінців сильніше, ніж поділ.', art: 'abiotic', src: 'Torres-Bugarín et al., 2026' },
   // ---- мікотоксини
-  { id: 'afb1', name: 'Афлатоксин B1 (Aspergillus flavus)', group: 'myco', unit: 'мкг/мл', min: 0.2, max: 30, def: 5, ec50: 3.5, n: 1.4, ca: 42, ec50ca: 3, mn: 16,
+  { id: 'afb1', name: 'Афлатоксин B1 (<i>Aspergillus flavus</i>)', group: 'myco', unit: 'мкг/мл', min: 0.2, max: 30, def: 5, ec50: 3.5, n: 1.4, ca: 42, ec50ca: 3, mn: 16,
     prof: { frag: 4, bridge: 4, cmit: 2, sticky: 2, mn: 3 }, rootF: .8, irr: .65, tint: 'rgba(240,230,180,.3)',
-    note: 'Біоактивація до 8,9-епоксиду, аддукти з N7-гуаніном, розриви, мости, мікроядра (Reiss, 1974).', art: 'mycotoxins', src: 'Reiss, 1974' },
-  { id: 'ota', name: 'Охратоксин А (Aspergillus, Penicillium)', group: 'myco', unit: 'мкг/мл', min: 0.5, max: 80, def: 10, ec50: 11, n: 1.3, ca: 28, ec50ca: 9, mn: 9,
+    note: 'Клітина перетворює його на реакційноздатний 8,9-епоксид, що утворює ковалентні сполуки (аддукти) з гуаніном ДНК: розриви, мости, мікроядра (Reiss, 1974).', art: 'mycotoxins', src: 'Reiss, 1974' },
+  { id: 'ota', name: 'Охратоксин А (<i>Aspergillus</i>, <i>Penicillium</i>)', group: 'myco', unit: 'мкг/мл', min: 0.5, max: 80, def: 10, ec50: 11, n: 1.3, ca: 28, ec50ca: 9, mn: 9,
     prof: { bridge: 3, vag: 3, cmit: 2, bin: 2 }, rootF: .5, irr: .45, tint: 'rgba(240,235,200,.3)',
     note: 'Інгібує фенілаланіл-тРНК-синтетазу: різке гальмування росту, мости, К-метафази (Lerda et al., 2010).', art: 'mycotoxins', src: 'Lerda et al., 2010' },
-  { id: 'pat', name: 'Патулін (Penicillium expansum)', group: 'myco', unit: 'мкг/мл', min: 0.5, max: 60, def: 8, ec50: 7, n: 1.5, ca: 36, ec50ca: 6, mn: 10,
+  { id: 'pat', name: 'Патулін (<i>Penicillium expansum</i>)', group: 'myco', unit: 'мкг/мл', min: 0.5, max: 60, def: 8, ec50: 7, n: 1.5, ca: 36, ec50ca: 6, mn: 10,
     prof: { cmit: 4, multi: 3, frag: 2, bridge: 1 }, phase: 'cmit', rootF: .8, irr: .5, tumor: true, tint: 'rgba(245,240,225,.25)',
     note: 'Тіолова веретенна отрута: К-мітоз, багатополюсні анафази, фрагментація ядерець.', art: 'mycotoxins', src: 'Reiss, 1974' },
-  { id: 'don', name: 'Дезоксиніваленол (Fusarium)', group: 'myco', unit: 'мкг/мл', min: 0.2, max: 50, def: 5, ec50: 4.5, n: 1.5, ca: 20, ec50ca: 5, mn: 7,
+  { id: 'don', name: 'Дезоксиніваленол (<i>Fusarium</i>)', group: 'myco', unit: 'мкг/мл', min: 0.2, max: 50, def: 5, ec50: 4.5, n: 1.5, ca: 20, ec50ca: 5, mn: 7,
     prof: { frag: 3, bridge: 3, sticky: 2, lag: 1 }, phase: 'g1s', rootF: .7, irr: .4, tint: 'rgba(240,225,215,.3)',
-    note: 'Блокує 60S-рибосоми («риботоксичний стрес»): блок G1/S і G2/M, пікноз ядер.', art: 'mycotoxins', src: 'Mycotoxins review, 2022' },
+    note: 'Блокує велику (60S) субодиницю рибосом — «риботоксичний стрес»: блок G1/S і G2/M, пікноз ядер.', art: 'mycotoxins', src: 'Mycotoxins review, 2022' },
   // ---- ціанотоксини
-  { id: 'mcylr', name: 'Мікроцистин-LR (Microcystis)', group: 'cyano', unit: 'мкг/мл', min: 0.05, max: 30, def: 3, ec50: 3, n: 1.3, ca: 30, ec50ca: 2.5, mn: 9,
+  { id: 'mcylr', name: 'Мікроцистин-LR (<i>Microcystis</i>)', group: 'cyano', unit: 'мкг/мл', min: 0.05, max: 30, def: 3, ec50: 3, n: 1.3, ca: 30, ec50ca: 2.5, mn: 9,
     prof: { cmit: 3, multi: 4, lag: 3, mn: 2 }, phase: 'cmit', rootF: .8, irr: .4, tint: 'rgba(120,180,90,.38)',
-    note: 'Інгібує протеїнфосфатази PP1/PP2A: гіперконденсація, зірчасті метафази, мультиполярні веретена (Máthé et al., 2013).', art: 'cyanotoxins', src: 'Máthé et al., 2013' },
+    note: 'Інгібує протеїнфосфатази PP1/PP2A (ферменти, що знімають фосфат з білків поділу): гіперконденсація, зірчасті метафази, мультиполярні веретена (Máthé et al., 2013).', art: 'cyanotoxins', src: 'Máthé et al., 2013' },
   { id: 'cyn', name: 'Циліндроспермопсин', group: 'cyano', unit: 'мкг/мл', min: 0.05, max: 30, def: 2, ec50: 2.2, n: 1.4, ca: 26, ec50ca: 2, mn: 11,
     prof: { multi: 4, lag: 3, frag: 2, mn: 2 }, rootF: .7, irr: .5, tint: 'rgba(110,170,110,.35)',
     note: 'Блокує синтез білка, порушує препрофазну стрічку: розщеплення полюсів, втрата хромосом.', art: 'cyanotoxins', src: 'Máthé et al., 2013' },
   // ---- мікробні біопестициди
-  { id: 'bt', name: 'Біоінсектицид Bacillus thuringiensis', group: 'biopest', unit: 'КУО/мл', min: 1e4, max: 1e9, def: 1e7, ec50: 3e8, n: 0.8, ca: 12, ec50ca: 2e8, mn: 5,
+  { id: 'bt', name: 'Біоінсектицид <i>Bacillus thuringiensis</i>', group: 'biopest', unit: 'КУО/мл', min: 1e4, max: 1e9, def: 1e7, ec50: 3e8, n: 0.8, ca: 12, ec50ca: 2e8, mn: 5,
     prof: { sticky: 3, cmit: 2, bridge: 2, lag: 1 }, rootF: 1, irr: .3, tint: 'rgba(230,225,200,.35)',
-    note: 'У підвищених дозах (разом з ад’ювантами) знижує MI і викликає аберації, як синтетичні пестициди.', art: 'biopesticides', src: 'MDPI Ecotoxicology' },
+    note: 'Дозу задають у КУО/мл (колонієутворювальних одиницях — живих клітинах — на мілілітр). У підвищених дозах (разом з технологічними добавками) знижує MI і викликає аберації, як синтетичні пестициди.', art: 'biopesticides', src: 'MDPI Ecotoxicology' },
   // ---- рослинні екстракти
-  { id: 'ehirta', name: 'Екстракт Euphorbia hirta', group: 'extract', unit: 'мкг/мл', min: 50, max: 2000, def: 500, ec50: 1700, n: 0.7, ca: 8, ec50ca: 900, mn: 4,
+  { id: 'ehirta', name: 'Екстракт <i>Euphorbia hirta</i>', group: 'extract', unit: 'мкг/мл', min: 50, max: 2000, def: 500, ec50: 1700, n: 0.7, ca: 8, ec50ca: 900, mn: 4,
     prof: { sticky: 3, bridge: 2, cmit: 2, vag: 1, mn: 1 }, rootF: .9, irr: .3, tint: 'rgba(140,150,80,.4)',
     note: 'MI 50,9 → 40,3 → 37,9 → 29,9 % за 0–125–500–1000 мкг/мл (Ping et al., 2012).', art: 'extracts', src: 'Ping et al., 2012' },
   { id: 'chamom', name: 'Настій ромашки лікарської', group: 'extract', unit: 'мг/мл', min: 0.5, max: 50, def: 10, ec50: 900, n: 1, ca: 0.5, ec50ca: 500, mn: 0.2,
@@ -160,18 +160,18 @@ export const AGENTS = [
   { id: 'inulin', name: 'Інулін (пребіотик)', group: 'protect', unit: 'мг/мл', min: 0.05, max: 20, def: 2, ec50: 1e4, n: 1, ca: 0, ec50ca: 1e4, mn: 0,
     prof: {}, rootF: 1, irr: 0, dr: { max: 0.66, K: 0.5, mode: 'bio' }, tint: 'rgba(245,245,240,.25)',
     note: 'Без власної токсичності; знижує аберації від MMS на 42,96–64,07 %, найкраще в пост-обробці (Mauro et al., 2014).', art: 'protective', src: 'Mauro et al., 2014' },
-  { id: 'bglucan', name: 'β-глюкан Saccharomyces cerevisiae', group: 'protect', unit: 'мг/мл', min: 0.05, max: 20, def: 2, ec50: 1e4, n: 1, ca: 0, ec50ca: 1e4, mn: 0,
+  { id: 'bglucan', name: 'β-глюкан <i>Saccharomyces cerevisiae</i>', group: 'protect', unit: 'мг/мл', min: 0.05, max: 20, def: 2, ec50: 1e4, n: 1, ca: 0, ec50ca: 1e4, mn: 0,
     prof: {}, rootF: 1, irr: 0, dr: { max: 0.6, K: 0.6, mode: 'des' }, tint: 'rgba(240,230,205,.3)',
     note: 'Десмутаген і біоантимутаген: адсорбує мутаген і стимулює репарацію ДНК.', art: 'protective', src: 'Mauro et al., 2014' },
-  { id: 'chlorella', name: 'Суспензія Chlorella vulgaris', group: 'protect', unit: 'мг/мл', min: 0.05, max: 20, def: 2, ec50: 1e4, n: 1, ca: 0, ec50ca: 1e4, mn: 0,
+  { id: 'chlorella', name: 'Суспензія <i>Chlorella vulgaris</i>', group: 'protect', unit: 'мг/мл', min: 0.05, max: 20, def: 2, ec50: 1e4, n: 1, ca: 0, ec50ca: 1e4, mn: 0,
     prof: {}, rootF: 1, irr: 0, dr: { max: 0.7, K: 1, mode: 'des', chelate: true }, tint: 'rgba(60,150,60,.45)',
     note: 'Хелатує Cu²⁺ і важкі метали хлорофіліном та полісахаридами, відновлює поділ (2022).', art: 'protective', src: 'Chlorella vulgaris in Allium cepa test, 2022' },
-  { id: 'lacto', name: 'Ферментат Lactobacillus plantarum', group: 'protect', unit: '%', min: 0.1, max: 20, def: 5, ec50: 1e4, n: 1, ca: 0, ec50ca: 1e4, mn: 0,
+  { id: 'lacto', name: 'Ферментат <i>Lactobacillus plantarum</i>', group: 'protect', unit: '%', min: 0.1, max: 20, def: 5, ec50: 1e4, n: 1, ca: 0, ec50ca: 1e4, mn: 0,
     prof: {}, rootF: 1, irr: 0, dr: { max: 0.45, K: 3, mode: 'aox' }, stim: { max: 0.08, K: 4 }, tint: 'rgba(240,235,215,.3)',
     note: 'Бактерії перетворюють глюкозиди на вільний кверцетин — сильніший захист ДНК від оксидативного стресу.', art: 'protective', src: 'Nicuță et al., 2025' },
-  { id: 'tricho', name: 'Метаболіти Trichoderma harzianum', group: 'protect', unit: '%', min: 0.1, max: 20, def: 5, ec50: 1e4, n: 1, ca: 0, ec50ca: 1e4, mn: 0,
+  { id: 'tricho', name: 'Метаболіти <i>Trichoderma harzianum</i>', group: 'protect', unit: '%', min: 0.1, max: 20, def: 5, ec50: 1e4, n: 1, ca: 0, ec50ca: 1e4, mn: 0,
     prof: {}, rootF: 1, irr: 0, dr: { max: 0.3, K: 4, mode: 'aox' }, stim: { max: 0.32, K: 3, root: 0.35 }, detox: 0.65, tint: 'rgba(170,200,140,.35)',
-    note: 'Ауксини (ІОК) і гібереліни прискорюють перехід G1→S і ріст корінців; знешкоджують мікотоксини.', art: 'protective', src: 'Endophytic Fungi, MDPI' },
+    note: 'Ауксини (індоліл-3-оцтова кислота, ІОК) і гібереліни — фітогормони росту — прискорюють перехід G1→S і ріст корінців; знешкоджують мікотоксини.', art: 'protective', src: 'Endophytic Fungi, MDPI' },
 ];
 export const byId = Object.fromEntries(AGENTS.map((a) => [a.id, a]));
 
@@ -280,7 +280,7 @@ export function simulate(sel, { t = 48, water = 'tap', protocol = 'sim', recover
   if (tot > 0) for (const [kk2, v] of Object.entries(prof)) mix[kk2] = v / tot;
   else Object.assign(mix, { bridge: .35, frag: .3, sticky: .2, vag: .15 });
 
-  const verdict = miRel < 0.22 ? 'lethal' : miRel < 0.5 ? 'sublethal' : miRel > 1.08 && ca < CONTROL.ca + 2 ? 'stim' : 'ok';
+  const verdict = miRel < 0.22 ? 'lethal' : miRel < 0.5 ? 'sublethal' : cm * kk > 0.25 ? 'cmit' : miRel > 1.08 && ca < CONTROL.ca + 2 ? 'stim' : 'ok';
   return {
     mi, miRel, ca, mn, na, len, roots, phases: { P, M, A, T }, mix, dr: dr * 100, protected: prot.length > 0 && toxic.some((x) => addCA(x.a, x.c) > 0),
     tumor: tumor * k, brown: brown * k, verdict, irr, cm: cm * kk, k,
@@ -306,8 +306,9 @@ const binom = (R, n, p) => { // нормальне наближення для �
   let k = 0; for (let i = 0; i < n; i++) if (R() < p) k++; return k;
 };
 
-/** «Підрахунок під мікроскопом»: N клітин (5 препаратів × 1000) і nAT анафаз-телофаз. */
-export function count(res, seed, { N = 5000, nAT = 300 } = {}) {
+/** «Підрахунок під мікроскопом»: N клітин (5 препаратів × 1000) і до nAT анафаз-телофаз;
+ *  анафази-телофази добирають з додаткових препаратів загалом до poolAT клітин (як у анафазо-телофазному тесті). */
+export function count(res, seed, { N = 5000, nAT = 300, poolAT = N } = {}) {
   const R = rand(seed);
   const div = binom(R, N, res.mi / 100);
   const ph = res.phases, p = {};
@@ -315,8 +316,8 @@ export function count(res, seed, { N = 5000, nAT = 300 } = {}) {
   p.M = binom(R, div - p.P, ph.M / Math.max(1e-9, ph.M + ph.A + ph.T));
   p.A = binom(R, div - p.P - p.M, ph.A / Math.max(1e-9, ph.A + ph.T));
   p.T = div - p.P - p.M - p.A;
-  const at = p.A + p.T;
-  const nScored = Math.min(nAT, at);
+  const atPool = poolAT > N ? binom(R, poolAT, res.mi / 100 * (ph.A + ph.T) / 100) : p.A + p.T;
+  const nScored = Math.min(nAT, Math.max(p.A + p.T, atPool));
   const aberr = binom(R, nScored, res.ca / 100);
   const mn = binom(R, N - div, res.mn / 1000);
   return { N, div, I: N - div, ...p, nAT: nScored, aberr, mn };

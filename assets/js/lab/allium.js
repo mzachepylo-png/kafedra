@@ -1,6 +1,6 @@
 // Модель «Allium cepa тест»: вибір чинників, запуск експозиції, пробірки з корінцями, мікроскоп, графіки, підрахунок і віртуальний експеримент.
 import { Plot } from './plot.js';
-import { num, sig, segmented, rng, hashSeed, renderTable, check, downloadCSV } from './ui.js';
+import { num, sig, segmented, rng, hashSeed, renderTable, downloadCSV } from './ui.js';
 import { AGENTS, GROUPS, ABERR, CLS, byId, simulate, ec50MI, count, chi2, CONTROL } from './allium-model.js';
 import { hiDPI, drawTubes, Slide, drawMicroscope, drawCine } from './allium-draw.js';
 
@@ -8,7 +8,9 @@ const $ = (id) => document.getElementById(id);
 const ART = '../../../konspekt/allium-cepa-test/';
 const PHOTOS = (() => { try { return JSON.parse($('al-photos-data')?.textContent || '{}'); } catch { return {}; } })();
 const REDUCED = matchMedia('(prefers-reduced-motion: reduce)').matches;
-const fmtC = (v) => v >= 1e4 ? v.toExponential(1).replace('.', ',').replace('e+', '·10^') : sig(v, v < 1 ? 2 : 3);
+const SUP = { '0': '⁰', '1': '¹', '2': '²', '3': '³', '4': '⁴', '5': '⁵', '6': '⁶', '7': '⁷', '8': '⁸', '9': '⁹', '-': '⁻' };
+const fmtC = (v) => { if (v < 1e4) return sig(v, v < 1 ? 2 : 3); const [m, e] = v.toExponential(1).split('e+'); return `${m.replace('.', ',')}·10${[...e].map((d) => SUP[d]).join('')}`; };
+const plain = (h) => String(h).replace(/<[^>]+>/g, '');
 
 // ------------------------------------------------------------------ стан
 const S = {
@@ -17,6 +19,7 @@ const S = {
   zoom: 1, view: { x: 450, y: 450 }, highlight: false, picked: null, seed: 7, cine: 'auto', cineT: 0, cinePlay: false,
 };
 const MAX_SEL = 3;
+let protoSeg = null;
 
 // ------------------------------------------------------------------ вибір чинників
 function buildPicker() {
@@ -33,7 +36,7 @@ function buildPicker() {
       for (const a of AGENTS.filter((x) => x.group === gid)) {
         const b = document.createElement('button');
         b.type = 'button'; b.className = 'al-chip' + (a.dr || a.stim ? ' al-chip--pos' : a.horm ? ' al-chip--horm' : '');
-        b.dataset.id = a.id; b.title = a.note;
+        b.dataset.id = a.id; b.title = plain(a.note);
         b.innerHTML = `<span class="al-chip__sign" aria-hidden="true">${a.dr || a.stim ? '+' : a.horm ? '±' : '−'}</span>${a.name}`;
         b.setAttribute('aria-pressed', 'false');
         b.addEventListener('click', () => toggle(a.id));
@@ -61,14 +64,15 @@ function renderActive() {
     const a = byId[s.id];
     const row = document.createElement('div'); row.className = 'al-act' + (a.dr || a.stim ? ' al-act--pos' : '');
     const lmin = Math.log10(a.min), lmax = Math.log10(a.max);
-    row.innerHTML = `<div class="al-act__head"><b>${a.name}</b><button type="button" class="al-act__x" aria-label="Прибрати ${a.name}">×</button></div>
+    row.innerHTML = `<div class="al-act__head"><b>${a.name}</b><button type="button" class="al-act__x" aria-label="Прибрати ${plain(a.name)}">×</button></div>
       <label class="al-act__lab"><span>Концентрація</span><output>${fmtC(s.c)} ${a.unit}</output></label>
-      <input type="range" min="${lmin}" max="${lmax}" step="any" value="${Math.log10(s.c)}" aria-label="Концентрація: ${a.name}">
+      <input type="range" min="${lmin}" max="${lmax}" step="any" value="${Math.log10(s.c)}" aria-label="Концентрація: ${plain(a.name)}">
       <p class="al-act__note">${a.note} <a href="${ART}#${a.art}">Теорія →</a></p>`;
     const inp = row.querySelector('input'), out = row.querySelector('output');
     const pct = () => inp.style.setProperty('--pct', ((inp.value - lmin) / (lmax - lmin) * 100) + '%');
     pct();
-    inp.addEventListener('input', () => { s.c = +(10 ** +inp.value).toPrecision(3); out.textContent = `${fmtC(s.c)} ${a.unit}`; pct(); update(); });
+    inp.addEventListener('input', () => { s.c = +(10 ** +inp.value).toPrecision(3); out.textContent = `${fmtC(s.c)} ${a.unit}`; pct(); S.dragging = true; update(); });
+    inp.addEventListener('change', () => { S.dragging = false; update(true); });
     row.querySelector('.al-act__x').addEventListener('click', () => toggle(a.id));
     box.append(row);
   }
@@ -113,6 +117,7 @@ function rebuildSlide(res, crossfade) {
   slide.assign(res);
   if (crossfade && !REDUCED) { prevCv = slideCv; slideCv = document.createElement('canvas'); fade = 0; fadeT0 = performance.now(); }
   slide.render(slideCv);
+  if (fade < 1) kick(); // плавна зміна поля зору навіть коли модель стоїть
   S.picked = null; showPicked();
 }
 function marks() {
@@ -174,7 +179,7 @@ let phA = null;
 function openPhoto(ph) {
   if (!ph) return;
   if (!phA) { phA = document.createElement('a'); phA.hidden = true; phA.dataset.lightbox = ''; document.body.append(phA); }
-  phA.href = ph.src; phA.dataset.caption = `${ph.caption} ${ph.cred.replace(/<[^>]+>/g, '')}`;
+  phA.href = ph.src; phA.dataset.caption = `${plain(ph.caption)} ${plain(ph.cred)}`;
   phA.click(); // lightbox.js перехоплює клік по a[data-lightbox]
 }
 
@@ -248,20 +253,22 @@ function readouts(res) {
   set('dr', res.protected ? `${num(res.dr, 0)} %` : '—');
   const L = leadAgent();
   const e = L && !byId[L.id].dr ? ec50MI(byId[L.id], { water: S.water, protocol: S.protocol }) : null;
-  set('ec50', e ? `${fmtC(e)} ${byId[L.id].unit}` : '—');
+  set('ec50', !e ? '—' : e > byId[L.id].max ? `&gt; ${fmtC(byId[L.id].max)} ${byId[L.id].unit}` : `${fmtC(e)} ${byId[L.id].unit}`);
   const v = $('al-verdict');
   // той самий критерій, що й у таблиці підрахунку: χ² для очікуваної кількості аберантних A–T (до 300 з 5000 клітин)
   const nAT = (r) => Math.min(300, 5000 * r.mi / 100 * (r.phases.A + r.phases.T) / 100);
-  const ctl = simulate([], { t: S.t, water: S.water }), n1 = nAT(res), n0 = nAT(ctl);
-  const genotox = res.ca > ctl.ca && chi2(Math.round(res.ca / 100 * n1), Math.round(n1), Math.round(ctl.ca / 100 * n0), Math.round(n0)).p < 0.05;
+  const o = curOpts(), ctl = simulate([], { ...o, protocol: 'sim' }), n1 = nAT(res), n0 = nAT(ctl);
+  const fewAT = n1 < 20;
+  const genotox = !fewAT && res.ca > ctl.ca && chi2(Math.round(res.ca / 100 * n1), Math.round(n1), Math.round(ctl.ca / 100 * n0), Math.round(n0)).p < 0.05;
   const txt = {
     lethal: ['al-v--bad', 'Летальна (мітоцидна) дія: MI нижче 22 % від контролю — меристема майже не ділиться.'],
     sublethal: ['al-v--warn', 'Сублетальна цитотоксичність: MI знизився більш ніж удвічі (поріг LCV).'],
     stim: ['al-v--good', 'Мітостимулювальна дія: поділ інтенсивніший, ніж у контролі, без приросту аберацій.'],
+    cmit: ['al-v--warn', 'К-мітоз: клітини зупинились у метафазі через ушкодження веретена, тому MI формально зріс — це не стимуляція поділу.'],
     ok: ['al-v--ok', res.miRel < 0.85 ? 'Помірна цитотоксичність: MI знижений, але вище порогу LCV.' : 'Цитотоксичності не виявлено: MI на рівні контролю.'],
   }[res.verdict];
   v.className = 'al-verdict ' + txt[0];
-  v.innerHTML = `<b>${txt[1]}</b> ${genotox ? `<span>Генотоксичність: частка аберантних анафаз–телофаз ${num(res.ca, 1)} % проти ${num(CONTROL.ca, 1)} % у контролі${res.mix ? ' — переважають ' + topTypes(res) : ''}.</span>` : '<span>Генотоксичного ефекту не виявлено.</span>'}${res.protected ? ` <span>Протектор знизив пошкодження на ${num(res.dr, 0)} % (%DR, ${{ pre: 'пре-обробка', sim: 'одночасна обробка', post: 'пост-обробка' }[S.protocol]}).</span>` : ''}`;
+  v.innerHTML = `<b>${txt[1]}</b> ${fewAT && res.ca > ctl.ca + 2 ? '<span>Анафаз і телофаз майже немає — аберації в анафазо-телофазному тесті оцінити неможливо (лише за мікроядрами й ядерними аномаліями).</span>' : genotox ? `<span>Генотоксичність: частка аберантних анафаз–телофаз ${num(res.ca, 1)} % проти ${num(CONTROL.ca, 1)} % у контролі${res.mix ? ' — переважають ' + topTypes(res) : ''}.</span>` : '<span>Генотоксичного ефекту не виявлено.</span>'}${res.protected ? ` <span>Протектор знизив пошкодження на ${num(res.dr, 0)} % (%DR, ${{ pre: 'пре-обробка', sim: 'одночасна обробка', post: 'пост-обробка' }[S.protocol]}).</span>` : ''}`;
 }
 function topTypes(res) {
   return Object.entries(res.mix).sort((a, b) => b[1] - a[1]).slice(0, 2).map(([k]) => `<a href="${ART}#${ABERR[k].art}">${ABERR[k].name.toLowerCase()}</a> (${CLS[ABERR[k].cls].name})`).join(' та ');
@@ -269,8 +276,9 @@ function topTypes(res) {
 
 // ------------------------------------------------------------------ підрахунок під мікроскопом і χ²
 function countTable() {
-  const res = simulate(S.sel, { t: S.t, water: S.water, protocol: S.protocol, recover: S.phase === 'recover' || S.phase === 'done' && S.recover ? Math.max(0, S.t - S.target) : 0 });
-  const ctl = simulate([], { t: S.t, water: S.water });
+  const o = curOpts();
+  const res = simulate(S.sel, o);
+  const ctl = simulate([], { ...o, protocol: 'sim' });
   const a = count(res, S.seed * 31 + 1), b = count(ctl, S.seed * 31 + 2);
   const head = ['', 'Клітин', 'I', 'P', 'M', 'A', 'T', 'MI, %', 'A–T оцінено', 'Аберантних', 'CA, %', 'MN'];
   const row = (n, c) => [n, c.N, c.I, c.P, c.M, c.A, c.T, num(c.div / c.N * 100, 1), c.nAT, c.aberr, c.nAT ? num(c.aberr / c.nAT * 100, 1) : '—', c.mn];
@@ -297,10 +305,11 @@ resetBtn.addEventListener('click', () => { resetRun(); update(true); });
 
 let raf = 0, last = 0, lastSlideT = -99, sway = 0, lastPlotTs = 0, lastCountT = -99;
 function kick() { if (!raf) { last = 0; raf = requestAnimationFrame(frame); } }
-function curRes() {
+function curOpts() {
   const rec = S.phase === 'recover' || (S.phase === 'done' && S.recover) ? Math.max(0, S.t - S.target) : 0;
-  return simulate(S.sel, { t: Math.min(S.t, S.target), water: S.water, protocol: S.protocol, recover: rec });
+  return { t: Math.min(S.t, S.target), water: S.water, protocol: S.protocol, recover: rec };
 }
+function curRes() { return simulate(S.sel, curOpts()); }
 function frame(ts) {
   raf = 0;
   const dt = last ? Math.min(0.05, (ts - last) / 1000) : 0; last = ts;
@@ -330,12 +339,16 @@ function render(refreshSlide = false) {
     drawTubes(tubesCtx, tubesSize.w, tubesSize.h, tm, { t: S.t, sway, maxLen: 60, tint: FACTORS.map((f) => tintFor(f)) });
   }
   const key = JSON.stringify([S.sel, S.water, S.protocol, S.recover, S.seed]);
-  if (refreshSlide || key !== lastAssignKey) { rebuildSlide(res, true); lastAssignKey = key; lastSlideT = S.t; }
+  if (refreshSlide || key !== lastAssignKey) {
+    clearTimeout(slideTimer);
+    if (S.dragging && !refreshSlide) slideTimer = setTimeout(() => { rebuildSlide(curRes(), true); lastAssignKey = key; drawMicro(); }, 220);
+    else { rebuildSlide(res, true); lastAssignKey = key; lastSlideT = S.t; }
+  }
   drawMicro();
   drawCineNow(res);
   readouts(res);
 }
-let plotTimer = 0;
+let plotTimer = 0, slideTimer = 0;
 function update(full) {
   render(full);
   clearTimeout(plotTimer); plotTimer = setTimeout(() => { drawPlots(); countTable(); renderPhotos(); }, full ? 0 : 120);
@@ -350,7 +363,7 @@ function renderPhotos() {
   if (!list.length) for (const p of PHOTOS.groups?.control || []) list.push(p);
   box.replaceChildren(...list.slice(0, 6).map((p) => {
     const f = document.createElement('figure'); f.className = 'cp';
-    f.innerHTML = `<a href="${p.src}" data-lightbox data-caption="${p.caption.replace(/"/g, '&quot;')} ${p.cred.replace(/<[^>]+>/g, '')}" aria-label="Відкрити фото в повному розмірі"><img src="${p.src}" alt="${p.alt}" loading="lazy" decoding="async" width="${p.w}" height="${p.h}"></a><figcaption>${p.caption}<span class="cp-cred">${p.cred}</span></figcaption>`;
+    f.innerHTML = `<a href="${p.src}" data-lightbox data-caption="${(plain(p.caption) + ' ' + plain(p.cred)).replace(/"/g, '&quot;')}" aria-label="Відкрити фото в повному розмірі"><img src="${p.src}" alt="${p.alt}" loading="lazy" decoding="async" width="${p.w}" height="${p.h}"></a><figcaption>${p.caption}<span class="cp-cred">${p.cred}</span></figcaption>`;
     return f;
   }));
   $('al-real-wrap').hidden = !list.length;
@@ -359,7 +372,7 @@ function renderPhotos() {
 // ------------------------------------------------------------------ налаштування
 function buildSettings() {
   segmented($('al-water'), 'al-water', [{ value: 'tap', label: 'Водопровідна' }, { value: 'dist', label: 'Дистильована' }], S.water, (v) => { S.water = v; resetRun(); update(true); });
-  segmented($('al-proto'), 'al-proto', [{ value: 'pre', label: 'Пре-обробка' }, { value: 'sim', label: 'Одночасно' }, { value: 'post', label: 'Пост-обробка' }], S.protocol, (v) => { S.protocol = v; update(true); });
+  protoSeg = segmented($('al-proto'), 'al-proto', [{ value: 'pre', label: 'Пре-обробка' }, { value: 'sim', label: 'Одночасно' }, { value: 'post', label: 'Пост-обробка' }], S.protocol, (v) => { S.protocol = v; resetRun(); update(true); });
   segmented($('al-time'), 'al-time', [{ value: '24', label: '24 год' }, { value: '48', label: '48 год' }, { value: '72', label: '72 год' }], String(S.target), (v) => { S.target = +v; resetRun(); update(true); });
   $('al-rec').addEventListener('change', (e) => { S.recover = e.target.checked; resetRun(); update(true); });
   segmented($('al-zoom'), 'al-zoom', [{ value: '1', label: '400×' }, { value: '2', label: '1000×' }], '1', (v) => { S.zoom = +v; drawMicro(); });
@@ -389,7 +402,8 @@ function buildSettings() {
 function applyPreset(name, scroll) {
   const p = PRESETS[name]; if (!p) return false;
   S.sel = p.sel.map((x) => ({ ...x }));
-  if (p.protocol && p.protocol !== S.protocol) document.querySelector(`#al-proto [data-value="${p.protocol}"]`)?.click();
+  const proto = p.protocol || 'sim';
+  if (proto !== S.protocol) { S.protocol = proto; protoSeg?.select(proto, false); }
   resetRun(); renderActive(); update(true);
   if (scroll) $('al-model').scrollIntoView({ behavior: REDUCED ? 'auto' : 'smooth', block: 'start' });
   return true;
@@ -417,7 +431,7 @@ function runExperiment() {
   const e = ec50MI(a);
   const base = e * (0.5 + R() * 0.5), fac = [0, 0.2, 0.5, 1, 2, 4];
   const cs = fac.map((f) => +(base * f).toPrecision(2));
-  const rows = cs.map((c, i) => { const res = simulate(c ? [{ id: a.id, c }] : [], { t: 48 }); const k = count(res, seed + i * 101, { N: 1000, nAT: 200 }); return { c, res, k }; });
+  const rows = cs.map((c, i) => { const res = simulate(c ? [{ id: a.id, c }] : [], { t: 48 }); const k = count(res, seed + i * 101, { N: 1000, nAT: 200, poolAT: 30000 }); return { c, res, k }; });
   EXP = { a, rows };
   $('al-exp').hidden = false;
   $('al-exp-cond').innerHTML = `<div class="readout"><div class="readout__label">Чинник</div><div class="readout__value" style="font-size:1rem">${a.name}</div></div><div class="readout"><div class="readout__label">Експозиція</div><div class="readout__value">48 год</div></div><div class="readout"><div class="readout__label">Препарат</div><div class="readout__value" style="font-size:1rem">1000 клітин на дозу</div></div>`;
@@ -434,9 +448,10 @@ function checkExperiment() {
   let ecTrue = null;
   for (let i = 1; i < rel.length - 1; i++) if (rel[i][1] >= 0.5 && rel[i + 1][1] < 0.5) { const [x1, y1] = rel[i], [x2, y2] = rel[i + 1]; ecTrue = 10 ** (x1 + (0.5 - y1) * (x2 - x1) / (y2 - y1)); }
   const hi = EXP.rows[EXP.rows.length - 1].k, caTrue = hi.nAT ? hi.aberr / hi.nAT * 100 : 0;
-  const ok1 = check(parse('al-a-mi'), miC, 0.05).ok, ok2 = ecTrue ? check(parse('al-a-ec'), ecTrue, 0.15).ok : null, ok3 = check(parse('al-a-ca'), caTrue, 0.08).ok;
+  const close = (v, t, rel, abs) => isFinite(v) && Math.abs(v - t) <= Math.max(rel * Math.abs(t), abs);
+  const ok1 = close(parse('al-a-mi'), miC, 0.05, 0.06), ok2 = ecTrue ? close(parse('al-a-ec'), ecTrue, 0.15, 0) : null, ok3 = close(parse('al-a-ca'), caTrue, 0.08, 0.15);
   const mark = (ok) => ok == null ? '—' : ok ? '✓' : '✗';
-  $('al-exp-verdict').innerHTML = `MI контролю: ${mark(ok1)} (${num(miC, 2)} %) · EC50 за MI: ${mark(ok2)}${ecTrue ? ` (≈ ${fmtC(ecTrue)} ${EXP.a.unit}, лінійна інтерполяція між сусідніми дозами в координатах lg C)` : ' (MI не впав нижче 50 %)'} · CA за найбільшої дози: ${mark(ok3)} (${num(caTrue, 1)} %)`;
+  $('al-exp-verdict').innerHTML = `MI контролю: ${mark(ok1)} (${num(miC, 2)} %) · EC50 за MI: ${mark(ok2)}${ecTrue ? ` (≈ ${sig(ecTrue, 3)} ${EXP.a.unit}, лінійна інтерполяція між сусідніми дозами в координатах lg C)` : ' (MI не впав нижче 50 %)'} · CA за найбільшої дози: ${mark(ok3)} (${num(caTrue, 1)} %)`;
   $('al-exp-verdict').className = 'verdict ' + (ok1 && ok3 && ok2 !== false ? 'verdict--ok' : 'verdict--bad');
 }
 
@@ -457,5 +472,6 @@ function init() {
   update(true);
   const m = /^#preset-([\w-]+)$/.exec(location.hash);
   if (m && applyPreset(m[1], false)) requestAnimationFrame(() => $('al-model').scrollIntoView({ block: 'start' }));
+  addEventListener('hashchange', () => { const h = /^#preset-([\w-]+)$/.exec(location.hash); if (h) applyPreset(h[1], true); });
 }
 init();

@@ -169,8 +169,12 @@ export function drawTubes(ctx, w, h, tubes, { t = 0, sway = 0, maxLen = 60, tint
     const fs = slot < 110 ? 0.86 : 1;
     ctx.textAlign = 'center'; ctx.fillStyle = '#183A22';
     ctx.font = `700 ${12.5 * fs}px system-ui, sans-serif`; ctx.fillText(tb.label, cx, bench + 20);
-    ctx.font = `600 ${11 * fs}px system-ui, sans-serif`; ctx.fillStyle = '#4C6152';
-    if (tb.sub) ctx.fillText(tb.sub, cx, bench + 34);
+    ctx.fillStyle = '#4C6152';
+    if (tb.sub) { // підпис не ширший за свою колонку
+      let f = 11 * fs; ctx.font = `600 ${f}px system-ui, sans-serif`;
+      while (f > 7.5 && ctx.measureText(tb.sub).width > slot - 6) { f -= 0.5; ctx.font = `600 ${f}px system-ui, sans-serif`; }
+      ctx.fillText(tb.sub, cx, bench + 34);
+    }
     ctx.fillStyle = '#183A22'; ctx.font = '700 11.5px ui-monospace, monospace';
     ctx.fillText(`${(res.len / 10).toFixed(1).replace('.', ',')} см`, cx, bench + (tb.sub ? 49 : 34));
   });
@@ -182,8 +186,11 @@ export function drawTubes(ctx, w, h, tubes, { t = 0, sway = 0, maxLen = 60, tint
     ctx.beginPath(); ctx.moveTo(rx, y); ctx.lineTo(rx + (big ? 7 : 4), y); ctx.stroke();
     if (big && mm) ctx.fillText(mm / 10 + ' см', rx + 9, y + 3);
   }
-  ctx.textAlign = 'right'; ctx.fillStyle = '#183A22'; ctx.font = '700 12px system-ui';
-  ctx.fillText(`Експозиція: ${Math.round(t)} год`, w - 10, 16);
+  // мітка часу на «плашці», щоб не зливалася з цибулиною
+  const lab = `${Math.round(t)} год`; ctx.font = '700 11.5px system-ui'; ctx.textAlign = 'right';
+  const tw2 = ctx.measureText(lab).width;
+  ctx.fillStyle = 'rgba(255,255,255,.85)'; ctx.beginPath(); ctx.roundRect(w - tw2 - 20, 6, tw2 + 14, 20, 10); ctx.fill();
+  ctx.fillStyle = '#183A22'; ctx.fillText(lab, w - 13, 20);
 }
 
 // =====================================================================================
@@ -541,13 +548,13 @@ export function drawCine(ctx, w, h, type, t, seed = 3) {
           if (ph === 'C' || t > 0.74) { nucleus(ctx, s * 0.02, ys[4] * 0.3, r0, r0, rand(seed + 2), tex, { nucleoli: 0 }); label = type === 'frag' ? 'Дрібне мікроядро з фрагмента (кластоген)' : 'Велике мікроядро з цілої хромосоми (анеуген)'; }
           else chromo(ctx, 0, ys[4] * 0.3, type === 'frag' ? Lc * 0.35 : Lc, Math.PI / 2, wd);
         }
-        if (type === 'vag' && ph === 'C') label = 'Дочірні клітини з різною кількістю хромосом (2n ± 1)';
         if (ph === 'C' && !multi) {
           const k = smooth(0.82, 0.98, t);
           ctx.strokeStyle = 'rgba(150,80,110,.6)'; ctx.lineWidth = 2;
           ctx.beginPath(); ctx.moveTo(0, -ch / 2 * k); ctx.lineTo(0, ch / 2 * k); ctx.stroke();
-          if (type !== 'bridge') label = 'Цитокінез: клітинна пластинка від центру до країв';
+          if (type !== 'bridge' && type !== 'frag' && type !== 'lag') label = 'Цитокінез: клітинна пластинка від центру до країв';
         }
+        if (type === 'vag' && ph === 'C') label = 'Дочірні клітини з різною кількістю хромосом (2n ± 1)';
       }
     }
   }

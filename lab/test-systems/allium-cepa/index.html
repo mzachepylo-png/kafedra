@@ -142,7 +142,7 @@
             <p>Відносний MI для кожного токсиканту описує <b>рівняння Хілла</b> (сигмоїдна залежність ефекту від дози) з горметичним множником для мікроелементів:</p>
             <div class="formula"><math display="block"><msub><mi>MI</mi><mtext>відн</mtext></msub><mo>=</mo><mfrac><mn>1</mn><mrow><mn>1</mn><mo>+</mo><msup><mrow><mo>(</mo><mi>C</mi><mo>/</mo><msub><mi>EC</mi><mn>50</mn></msub><mo>)</mo></mrow><mi>n</mi></msup></mrow></mfrac><mo>·</mo><mrow><mo>[</mo><mn>1</mn><mo>+</mo><mi>h</mi><mfrac><mi>C</mi><msub><mi>C</mi><mn>0</mn></msub></mfrac><msup><mi>e</mi><mrow><mn>1</mn><mo>−</mo><mi>C</mi><mo>/</mo><msub><mi>C</mi><mn>0</mn></msub></mrow></msup><mo>]</mo></mrow></math><span class="formula__n">(2)</span></div>
             <p class="where"><i>n</i> — коефіцієнт Хілла (крутизна кривої); <i>h</i> і <i>C</i><sub>0</sub> — висота й положення піку <b>гормезису</b> (стимуляції малими дозами, як у Cu, Zn, срібла з полімерним покриттям). Для кількох токсикантів ефекти множаться (модель незалежної дії Блісса).</p>
-            <p>Ефект розвивається не миттєво: речовина має увійти в меристему. Тому MI(t) = MI<sub>0</sub>·[1 − (1 − MI<sub>відн</sub>)(1 − e<sup>−t/τ</sup>)], τ ≈ 10 год. Ріст корінців — інтеграл швидкості росту в часі. Частка аберацій зростає за насиченням: CA = CA<sub>0</sub> + CA<sub>max</sub>·C<sup>m</sup>/(C<sup>m</sup> + EC<sub>CA</sub><sup>m</sup>).</p>
+            <p>Ефект розвивається не миттєво: речовина має увійти в меристему. Тому MI(t) = MI<sub>0</sub>·[1 − (1 − MI<sub>відн</sub>)(1 − e<sup>−t/τ</sup>)], τ ≈ 10 год (τ — характерний час, за який речовина надходить у меристему й ефект розвивається на ≈ 63 %). Ріст корінців — інтеграл швидкості росту в часі. Частка аберацій зростає за насиченням: CA = CA<sub>0</sub> + CA<sub>max</sub>·C<sup>m</sup>/(C<sup>m</sup> + EC<sub>CA</sub><sup>m</sup>), де CA<sub>0</sub> — частка аберацій у контролі, CA<sub>max</sub> — найбільший можливий приріст, EC<sub>CA</sub> — концентрація, за якої приріст сягає половини максимуму, m — крутизна кривої.</p>
             <p><b>Протектори</b> (пробіотики, β-глюкани, хлорела, прополіс) знижують аберації на величину <b>%DR</b> (Damage Reduction — коефіцієнт зниження пошкоджень):</p>
             <div class="formula"><math display="block"><mi>%DR</mi><mo>=</mo><mfrac><mrow><msub><mi>CA</mi><mi>A</mi></msub><mo>−</mo><msub><mi>CA</mi><mi>B</mi></msub></mrow><mrow><msub><mi>CA</mi><mi>A</mi></msub><mo>−</mo><msub><mi>CA</mi><mi>C</mi></msub></mrow></mfrac><mo>·</mo><mn>100</mn></math><span class="formula__n">(3)</span></div>
             <p class="where">CA<sub>A</sub> — аберації від самого мутагену, CA<sub>B</sub> — мутаген + протектор, CA<sub>C</sub> — негативний контроль (вода). Ефективність залежить від схеми: <b>десмутагени</b> (зв’язують мутаген поза ДНК) найкращі в одночасній обробці, <b>біоантимутагени</b> (стимулюють репарацію ДНК) — у пост-обробці, антиоксиданти — у пре-обробці. <a href="../../../konspekt/allium-cepa-test/#antimutagens">Схеми обробки →</a></p>
@@ -151,7 +151,7 @@
 
           <section class="lab-section" id="model">
             <h2><span class="n">03</span>Інтерактивна модель</h2>
-            <div class="prose"><p>Оберіть до трьох чинників, задайте концентрації та умови досліду і натисніть «Запустити»: модель пройде експозицію в прискореному часі. Ліворуч у сцені — негативний контроль, далі серія розведень C/10, C/3 і C. Під мікроскопом торкніться клітини, щоб дізнатися її стан, перетягуйте поле, вмикайте 1000×.</p></div>
+            <div class="prose"><p>Оберіть до трьох чинників, задайте концентрації та умови досліду і натисніть «Запустити»: модель пройде експозицію в прискореному часі. Ліворуч у сцені — негативний контроль, далі серія розведень C/10, C/3 і C. Віртуальний давлений препарат забарвлено ацетоорсеїном (розчином барвника орсеїну в оцтовій кислоті, що фарбує хромосоми в темно-червоний колір). Торкніться клітини, щоб дізнатися її стан, перетягуйте поле, вмикайте 1000×.</p></div>
             <div class="al" id="al-model">
               <div class="al-presets"><span>Швидкий старт</span>
                 <button type="button" data-preset="neg">Контроль (вода)</button>
@@ -160,7 +160,7 @@
                 <button type="button" data-preset="colch">Колхіцин: К-мітоз</button>
                 <button type="button" data-preset="cu_chl">Мідь + хлорела</button>
                 <button type="button" data-preset="mms_inu">MMS + інулін (пост-обробка)</button>
-                <button type="button" data-preset="afb1_tri">Афлатоксин B1 + Trichoderma</button>
+                <button type="button" data-preset="afb1_tri">Афлатоксин B1 + <i>Trichoderma</i></button>
                 <button type="button" data-preset="argovit">Гормезис: Argovit™</button>
               </div>
               <div class="al-grid">
@@ -238,7 +238,7 @@
 
           <section class="lab-section" id="experiment">
             <h2><span class="n">04</span>Віртуальний експеримент</h2>
-            <div class="prose"><p>Цибулини 48 год експонували в серії розчинів невідомого вам заздалегідь чинника (п’ять концентрацій і контроль). З кожного варіанта переглянули 1000 клітин меристеми та до 200 анафаз–телофаз. За таблицею підрахунку розрахуйте мітотичний індекс контролю (1), побудуйте графік MI від lg C і знайдіть EC<sub>50</sub> лінійною інтерполяцією між двома сусідніми дозами, а також частку аберантних анафаз–телофаз за найбільшої дози.</p></div>
+            <div class="prose"><p>Цибулини 48 год експонували в серії розчинів невідомого вам заздалегідь чинника (п’ять концентрацій і контроль). З кожного варіанта переглянули 1000 клітин меристеми для мітотичного індексу, а аберації оцінили на 200 анафазах–телофазах із додаткових препаратів (якщо стільки знайшлося). За таблицею підрахунку розрахуйте мітотичний індекс контролю (1), побудуйте графік MI від lg C і знайдіть EC<sub>50</sub> лінійною інтерполяцією між двома сусідніми дозами, а також частку аберантних анафаз–телофаз за найбільшої дози.</p></div>
             <div class="exp">
               <div class="exp__head">
                 <div><h3>Ваш варіант</h3><p>Прізвище або номер у журналі.</p></div>
@@ -253,9 +253,9 @@
                 <div class="row"><button class="btn btn--outline btn--sm" type="button" id="al-exp-csv">Завантажити дані (CSV)</button></div>
                 <h3 style="margin:8px 0 0">Ваші результати</h3>
                 <div class="answers">
-                  <label class="field">MI контролю, %<input id="al-a-mi" inputmode="decimal" autocomplete="off"></label>
-                  <label class="field">EC<sub>50</sub> за MI, <span id="al-a-ec-u"></span><input id="al-a-ec" inputmode="decimal" autocomplete="off"></label>
-                  <label class="field">Аберантні A–T за найбільшої дози, %<input id="al-a-ca" inputmode="decimal" autocomplete="off"></label>
+                  <label class="field"><span>MI контролю, %</span><input id="al-a-mi" inputmode="decimal" autocomplete="off"></label>
+                  <label class="field"><span>EC<sub>50</sub> за MI, <span id="al-a-ec-u"></span></span><input id="al-a-ec" inputmode="decimal" autocomplete="off"></label>
+                  <label class="field"><span>Аберантні A–T за найбільшої дози, %</span><input id="al-a-ca" inputmode="decimal" autocomplete="off"></label>
                 </div>
                 <div class="row"><button class="btn" type="button" id="al-exp-check">Перевірити</button></div>
                 <div class="verdict" id="al-exp-verdict" role="status"></div>

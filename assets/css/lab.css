@@ -325,3 +325,4 @@ input[type="range"]:focus-visible::-webkit-slider-thumb { outline: 3px solid var
   .lab-section .btn--sm, .lab-section .btn--outline, .sim__bar .btn { min-height: 44px; }
   .field input[type="checkbox"], .ctrl input[type="checkbox"] { width: 22px; height: 22px; }
 }
+.exp__body[hidden] { display: none; }
