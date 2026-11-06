@@ -42,7 +42,10 @@ TOGGLE_DEBOUNCE = 0.15         # с: подвійне натискання га�
 FONT = "Segoe UI"
 MONO = "Consolas"
 PAGE = 60                      # скільки карток малювати за раз (віджети ctk важкі)
-LEFT_W, RIGHT_W = 272, 344     # ширина бічних колонок (у «логічних» пікселях ctk)
+LEFT_W, RIGHT_W = 280, 344     # мінімальна ширина бічних колонок (у «логічних» пікселях ctk)
+LEFT_MAX, RIGHT_MAX = 380, 480  # верхня межа: на великому екрані колонки ростуть, але не безмежно
+LEFT_FRAC, RIGHT_FRAC = 0.17, 0.22   # частка ширини вікна
+CARD_MAX = 980                 # картки в центрі не розтягуються ширше за це (на весь екран лишаються поля)
 
 # Палітра: (світла тема, темна тема)
 BG = ("#eceff4", "#16171a")
@@ -63,6 +66,7 @@ ACCENT = "#0f6cbd"
 ACCENT_HOVER = "#115ea3"
 ACCENT_SOFT = ("#e3effc", "#1d3552")
 DANGER = ("#c42b1c", "#ff7a6e")
+DANGER_SOFT = ("#fde7e4", "#4a2623")
 BTN2 = ("#e3e6ec", "#33363d")
 BTN2_HOVER = ("#d4d9e1", "#3e424a")
 INPUT = ("#ffffff", "#2a2d33")
@@ -95,6 +99,15 @@ def blend(fg: str, bg: str, t: float) -> str:
 def tint(color: str, t_light: float = 0.11, t_dark: float = 0.19) -> tuple[str, str]:
     """Колір картки (світла, темна тема) = базовий фон картки з домішкою кольору запису/папки."""
     return blend(color, CARD[0], t_light), blend(color, CARD[1], t_dark)
+
+
+def row_colors(color: str | None) -> tuple[tuple, tuple, tuple, tuple]:
+    """(фон, фон при наведенні, фон вибраного, рамка) для рядка категорії/формату в бічній колонці."""
+    if not color:
+        return ("transparent", ROW_HOVER, ROW_SEL, PANEL_BORDER)
+    t = lambda a, b: (blend(color, PANEL[0], a), blend(color, PANEL[1], b))  # noqa: E731
+    return t(0.08, 0.13), t(0.16, 0.24), t(0.24, 0.36), (blend(color, PANEL_BORDER[0], 0.35),
+                                                         blend(color, PANEL_BORDER[1], 0.50))
 
 
 def card_colors(color: str | None) -> tuple[tuple, tuple, tuple]:
@@ -350,9 +363,18 @@ class App:
         self._cards: dict[str, ctk.CTkFrame] = {}
         self._row_keys: dict[tk.Widget, str] = {}
         self._rows: dict[str, ctk.CTkFrame] = {}
+        self._row_fills: dict[str, tuple] = {}
+        self._swatches: dict[str, ctk.CTkFrame] = {}     # кружечки-кнопки кольору: id категорії / формату
         self._drag: dict | None = None
         self._wrap = 330
         self._wrap_job: str | None = None
+        self._left_w, self._right_w = LEFT_W, RIGHT_W
+        self._name_chars = 18               # скільки символів назви категорії вміщується в рядок
+        self._mid_w = 600
+        self._card_pad = 6                  # бокові поля карток (на широкому екрані центрують обмежену колонку)
+        self._maximized = False             # ми розгорнули вікно (на show) і маємо його повернути до звичайного
+        self.maximize_count = 0             # скільки разів просили розгорнути (для тестів)
+        self._max_ts = 0.0
         self._size: tuple[int, int] | None = None
         self._ico_path: str | None = None
         self.menu: tk.Menu | None = None
@@ -518,6 +540,7 @@ class App:
         self.v_paused = tk.BooleanVar(value=self.settings["paused"])
         self.v_topmost = tk.BooleanVar(value=self.settings["topmost"])
         self.v_autohide = tk.BooleanVar(value=self.settings["autohide"])
+        self.v_fullscreen = tk.BooleanVar(value=self.settings["fullscreen"])
         self.v_hotkey = tk.StringVar(value=self.settings["hotkey"])
         self.v_theme = tk.StringVar(value=self.settings["theme"])
 
@@ -546,16 +569,17 @@ class App:
         head = ctk.CTkFrame(left, fg_color="transparent")
         head.pack(fill="x", padx=14, pady=(8, 2))
         ctk.CTkLabel(head, text="КАТЕГОРІЇ", anchor="w", text_color=MUTED, font=self.f.caps).pack(side="left")
-        ctk.CTkButton(head, text="＋ Нова", width=64, height=26, corner_radius=8, fg_color=ACCENT_SOFT,
-                      hover_color=BTN2_HOVER, text_color=ACCENT, font=self.f.small,
-                      command=self.on_new_category).pack(side="right")
+        self.new_cat_btn = ctk.CTkButton(head, text="＋ Нова", width=92, height=32, corner_radius=10,
+                                         fg_color=ACCENT, hover_color=ACCENT_HOVER, text_color="#ffffff",
+                                         font=self.f.bold, command=self.on_new_category)
+        self.new_cat_btn.pack(side="right")
 
         self.history_slot = ctk.CTkFrame(left, fg_color="transparent")
         self.history_slot.pack(fill="x", padx=2)
         ctk.CTkFrame(left, height=1, fg_color=PANEL_BORDER).pack(fill="x", padx=14, pady=(4, 4))
         self.cat_list = ctk.CTkScrollableFrame(left, fg_color="transparent", corner_radius=0,
                                                scrollbar_button_color=SCROLL, scrollbar_button_hover_color=SCROLL_HOVER)
-        self.cat_list.pack(fill="both", expand=True, padx=(2, 4), pady=(0, 8))
+        self.cat_list.pack(fill="both", expand=True, padx=(2, 2), pady=(0, 8))
 
     def _build_middle(self, cols) -> None:
         mid = self._panel(cols)
@@ -567,9 +591,10 @@ class App:
         self.title_lbl.pack(side="left")
         self.count_lbl = ctk.CTkLabel(head, text="", anchor="w", text_color=MUTED, font=self.f.body)
         self.count_lbl.pack(side="left", padx=(8, 0), pady=(3, 0))
-        self.clear_btn = ctk.CTkButton(head, text="Очистити історію", width=120, height=26, corner_radius=8,
-                                       fg_color="transparent", hover_color=BTN2, text_color=MUTED,
-                                       font=self.f.small, command=self.on_clear)
+        self.clear_btn = ctk.CTkButton(head, text="Очистити історію", width=150, height=32, corner_radius=10,
+                                       fg_color="transparent", hover_color=DANGER_SOFT, text_color=DANGER,
+                                       border_width=2, border_color=DANGER, font=self.f.bold,
+                                       command=self.on_clear)
         self.cards = ctk.CTkScrollableFrame(mid, fg_color="transparent", corner_radius=0,
                                             scrollbar_button_color=SCROLL, scrollbar_button_hover_color=SCROLL_HOVER)
         self.cards.pack(fill="both", expand=True, padx=(8, 4), pady=(0, 10))
@@ -583,9 +608,11 @@ class App:
         head = ctk.CTkFrame(right, fg_color="transparent")
         head.pack(fill="x", padx=14, pady=(16, 4))
         ctk.CTkLabel(head, text="ФОРМАТУВАННЯ", anchor="w", text_color=MUTED, font=self.f.caps).pack(side="left")
-        ctk.CTkButton(head, text="＋ Новий", width=64, height=26, corner_radius=8, fg_color=BTN2,
-                      text_color=FAINT, text_color_disabled=FAINT, font=self.f.small,
-                      state="disabled").pack(side="right")
+        self.new_fmt_btn = ctk.CTkButton(head, text="＋ Новий", width=96, height=32, corner_radius=10,
+                                         fg_color=ACCENT, hover_color=ACCENT_HOVER, text_color="#ffffff",
+                                         font=self.f.bold,
+                                         command=lambda: self.set_status("Власні формати з'являться пізніше"))
+        self.new_fmt_btn.pack(side="right")
 
         # внизу — приписка (пакується першою зі side=bottom, щоб ніколи не виштовхувалась)
         self.formats_note = ctk.CTkLabel(right, text="Інші формати — скоро", anchor="w", text_color=FAINT,
@@ -675,43 +702,79 @@ class App:
             w.destroy()
         self._row_keys.clear()
         self._rows.clear()
+        self._row_fills.clear()
+        self._swatches = {k: v for k, v in self._swatches.items() if k.startswith("fmt:")}
         self._side_row(self.history_slot, HISTORY, "Історія буфера", "#8a93a0", len(self.history.items),
                        droppable=False)
         for c in self.preset.categories:
             self._side_row(self.cat_list, c["id"], c["name"], c["color"], self.preset.count(c["id"]), real=True)
         if not self.preset.categories:
-            ctk.CTkLabel(self.cat_list, anchor="w", justify="left", wraplength=190, text_color=MUTED,
+            ctk.CTkLabel(self.cat_list, anchor="w", justify="left", wraplength=max(190, self._left_w - 70),
+                         text_color=MUTED,
                          font=self.f.small,
                          text="Категорій ще немає.\nНатисніть «＋ Нова», щоб створити першу — "
                               "а потім перетягніть у неї записи.").pack(fill="x", padx=12, pady=10)
+        self.cat_list.update_idletasks()
+        self._sync_scrollbars()
+
+    def _swatch(self, parent, color: str, on_click=None) -> ctk.CTkFrame:
+        """Кружечок кольору. З on_click — це видима кнопка «змінити колір» (рамка при наведенні, рука)."""
+        sw = ctk.CTkFrame(parent, width=18, height=18, corner_radius=9, fg_color=color, border_width=2,
+                          border_color=PANEL, cursor="hand2" if on_click else "arrow")
+        if on_click:
+            def click(e):
+                on_click()
+                return "break"
+
+            sw.bind("<Button-1>", click)
+            sw.bind("<Enter>", lambda e: (sw.configure(border_color=TEXT),
+                                          self.set_status("Клік по кружечку — змінити колір", 2500)))
+            sw.bind("<Leave>", lambda e: sw.configure(border_color=PANEL))
+        return sw
 
     def _side_row(self, parent, key: str, name: str, color: str, count: int,
                   droppable: bool = True, real: bool = False) -> None:
+        """Рядок категорії: кольорова смужка + підфарбований фон (як у карток), кружечок-кнопка кольору,
+        назва, лічильник і «⋯» притиснуті до правого краю."""
         selected = key == self.view
-        row = ctk.CTkFrame(parent, corner_radius=9, fg_color=ROW_SEL if selected else "transparent", cursor="hand2")
-        row.pack(fill="x", padx=8, pady=1)
-        dot = ctk.CTkLabel(row, text="●", text_color=color, font=self.f.body, width=16)
-        dot.pack(side="left", padx=(10, 6), pady=8)
+        fill, hover, sel_fill, border = row_colors(color if real else None)
+        row = ctk.CTkFrame(parent, corner_radius=10, fg_color=sel_fill if selected else fill,
+                           border_width=2 if selected and real else (1 if real else 0),
+                           border_color=color if selected and real else border, cursor="hand2")
+        row.pack(fill="x", padx=6, pady=2)
+        row.grid_columnconfigure(2, weight=1)
+        bar = ctk.CTkFrame(row, width=5, height=8, corner_radius=3, fg_color=color if real else NEUTRAL)
+        bar.grid(row=0, column=0, sticky="ns", padx=(7, 0), pady=8)
+        if real:
+            dot = self._swatch(row, color, lambda k=key: self.on_category_color(k))
+        else:
+            dot = ctk.CTkLabel(row, text="●", text_color=color, font=self.f.body, width=18)
+        dot.grid(row=0, column=1, padx=(9, 8), pady=9)
+        if real:
+            self._swatches[key] = dot
+        label = ctk.CTkLabel(row, text=clip(name, self._name_chars), anchor="w", text_color=TEXT,
+                             font=self.f.bold if selected else self.f.body, height=22)
+        label.grid(row=0, column=2, sticky="we", pady=7)
+        num = ctk.CTkLabel(row, text=str(count), text_color=META if selected else MUTED, font=self.f.small)
+        num.grid(row=0, column=3, padx=(4, 4 if real else 12))
         more = None
         if real:    # видима кнопка меню (перейменувати, колір, порядок, видалити)
             more = self._icon_button(row, "⋯", lambda e, k=key: self.show_category_menu(e.x_root, e.y_root, k))
-            more.pack(side="right", padx=(0, 6))
-        num = ctk.CTkLabel(row, text=str(count), text_color=MUTED, font=self.f.small)
-        num.pack(side="right", padx=(0, 4 if real else 10))
-        label = ctk.CTkLabel(row, text=clip(name, 18), anchor="w", text_color=TEXT,
-                             font=self.f.bold if selected else self.f.body)
-        label.pack(side="left", fill="x", expand=True)
-        parts = [row, dot, label, num]
+            more.grid(row=0, column=4, padx=(0, 6))
+        parts = [row, bar, label, num]
         self._rows[key] = row
+        self._row_fills[key] = (fill, sel_fill)
         if droppable:
             self._row_keys[row] = key
         self._bind_all(parts, "<Button-1>", lambda e, k=key: self.select_category(k))
+        if not real:
+            self._bind_all([dot], "<Button-1>", lambda e, k=key: self.select_category(k))
         if real:
-            self._bind_all(parts + [more], "<Button-3>",
+            self._bind_all(parts + [dot, more], "<Button-3>",
                            lambda e, k=key: self.show_category_menu(e.x_root, e.y_root, k))
         if not selected:
-            self._hoverable(row, parts + ([more] if more else []), lambda r=row: r.configure(fg_color=ROW_HOVER),
-                            lambda r=row: r.configure(fg_color="transparent"))
+            self._hoverable(row, parts + [dot] + ([more] if more else []), lambda r=row, c=hover: r.configure(fg_color=c),
+                            lambda r=row, c=fill: r.configure(fg_color=c))
 
     # -- форматування (права колонка) -------------------------------------------
     def _render_formats(self) -> None:
@@ -729,25 +792,31 @@ class App:
         fill, hover, border = card_colors(fmt["color"]) if known else (CARD, CARD, CARD_BORDER)
         row = ctk.CTkFrame(self.formats_slot, corner_radius=12, fg_color=fill, border_width=2 if selected else 1,
                            border_color=ACCENT if selected else border, cursor="hand2" if known else "arrow")
-        row.pack(fill="x", padx=10, pady=3)
-        row.grid_columnconfigure(1, weight=1)
+        row.pack(fill="x", padx=6, pady=3)
+        row.grid_columnconfigure(2, weight=1)
         bar = ctk.CTkFrame(row, width=6, height=8, corner_radius=3, fg_color=fmt["color"] if known else NEUTRAL)
         bar.grid(row=0, column=0, rowspan=2, sticky="ns", padx=(9, 0), pady=9)
+        swatch = (self._swatch(row, fmt["color"], lambda i=fid: self.on_format_color(i)) if known
+                  else ctk.CTkLabel(row, text="●", text_color=NEUTRAL, font=self.f.body, width=18))
+        swatch.grid(row=0, column=1, rowspan=2, padx=(9, 2))
+        if known:
+            self._swatches["fmt:" + fid] = swatch
         info = FORMAT_INFO.get(fmt.get("type"), ("Невідомий тип (з новішої версії програми)", ""))
         name = ctk.CTkLabel(row, text=clip(fmt["name"], 22), anchor="w", font=self.f.card,
                             text_color=TEXT if known else FAINT, height=22)
-        name.grid(row=0, column=1, sticky="we", padx=(10, 4), pady=(8, 0))
+        name.grid(row=0, column=2, sticky="we", padx=(8, 4), pady=(8, 0))
         sub = ctk.CTkLabel(row, text=clip(info[0], 40), anchor="w", font=self.f.small,
                            text_color=META if known else FAINT, height=16)
-        sub.grid(row=1, column=1, sticky="we", padx=(10, 4), pady=(0, 8))
-        parts = [row, name, sub]
+        sub.grid(row=1, column=2, sticky="we", padx=(8, 4), pady=(0, 8))
+        parts = [row, bar, name, sub]
         if known:
             more = self._icon_button(row, "⋯", lambda e, i=fid: self.show_format_menu(e.x_root, e.y_root, i))
-            more.grid(row=0, column=2, rowspan=2, padx=(0, 6))
+            more.grid(row=0, column=3, rowspan=2, padx=(0, 6))
             self._bind_all(parts, "<Button-1>", lambda e, i=fid: self.select_format(i))
-            self._bind_all(parts + [more], "<Button-3>", lambda e, i=fid: self.show_format_menu(e.x_root, e.y_root, i))
+            self._bind_all(parts + [swatch, more], "<Button-3>",
+                           lambda e, i=fid: self.show_format_menu(e.x_root, e.y_root, i))
             if not selected:
-                self._hoverable(row, parts + [more], lambda r=row, c=hover: r.configure(fg_color=c),
+                self._hoverable(row, parts + [swatch, more], lambda r=row, c=hover: r.configure(fg_color=c),
                                 lambda r=row, c=fill: r.configure(fg_color=c))
 
     def _sync_format_panel(self) -> None:
@@ -866,6 +935,7 @@ class App:
         self.cards.update_idletasks()
         canvas.yview_moveto(0 if scroll_top else y)
         self._highlight_selection()
+        self._sync_scrollbars()
 
     def _show_more(self) -> None:
         self.limit += PAGE
@@ -895,7 +965,7 @@ class App:
         fill, hover, border = card_colors(color)
         card = ctk.CTkFrame(self.cards, corner_radius=12, fg_color=fill, border_width=1,
                             border_color=border, cursor="hand2")
-        card.pack(fill="x", padx=6, pady=4)
+        card.pack(fill="x", padx=self._card_pad, pady=4)
         card.grid_columnconfigure(1, weight=1)
         bar = ctk.CTkFrame(card, width=6, height=8, corner_radius=3, fg_color=color or NEUTRAL)
         bar.grid(row=0, column=0, rowspan=2, sticky="ns", padx=(9, 0), pady=10)
@@ -927,16 +997,82 @@ class App:
         # bind() у CTkFrame вішається на його внутрішнє полотно, тож event.widget — це _canvas, а не сам фрейм
         if event.widget not in (self.mid, getattr(self.mid, "_canvas", None)):
             return
-        self._wrap = max(160, int(event.width / self.scaling()) - 150)
+        self._mid_w = int(event.width / self.scaling())
         if self._wrap_job:
             self.root.after_cancel(self._wrap_job)
         self._wrap_job = self.root.after(60, self._apply_wrap)
 
     def _apply_wrap(self) -> None:
+        """Ширина й поля карток від ширини центральної панелі: картки не ширші за CARD_MAX
+        (на великому екрані вони центруються), довгий текст переноситься по ширині картки."""
+        self._wrap_job = None
+        self._sync_scrollbars()                    # від цього залежить ширина полотна
+        try:
+            self.cards.update_idletasks()
+            usable = int(self.cards._parent_canvas.winfo_width() / self.scaling())
+        except (tk.TclError, AttributeError):
+            usable = 0
+        if usable < 200:                           # вікно ще не розкладено — груба оцінка
+            usable = self._mid_w - 28
+        usable = max(240, usable)
+        pad = max(6, (usable - CARD_MAX) // 2)
+        self._wrap = max(160, usable - 2 * pad - 150)
+        if pad != self._card_pad:
+            self._card_pad = pad
+            for card in self._cards.values():
+                try:
+                    card.pack_configure(padx=pad)
+                except tk.TclError:
+                    pass
         for lbl in self._wrap_labels:
             try:
                 lbl.configure(wraplength=self._wrap)
             except tk.TclError:
+                pass
+        self._sync_scrollbars()
+
+    def _relayout_now(self) -> None:
+        """Синхронна розкладка за поточним розміром вікна (на показі — до того, як вікно стане видимим)."""
+        if self._wrap_job:
+            self.root.after_cancel(self._wrap_job)
+        try:
+            self._apply_layout(self.root.winfo_width())
+            self.root.update_idletasks()
+            self._mid_w = int(self.mid.winfo_width() / self.scaling())
+            self._apply_wrap()
+            self.root.update_idletasks()
+        except tk.TclError:
+            pass
+
+    def _apply_layout(self, width_px: int) -> None:
+        """Бічні колонки ростуть разом із вікном: ліва clamp(280, 17%, 380), права clamp(344, 22%, 480)."""
+        w = width_px / self.scaling()
+        lw = int(min(LEFT_MAX, max(LEFT_W, w * LEFT_FRAC)))
+        rw = int(min(RIGHT_MAX, max(RIGHT_W, w * RIGHT_FRAC)))
+        if abs(lw - self._left_w) >= 3:
+            self._left_w = lw
+            self.left.configure(width=lw)
+            chars = max(14, int((lw - 130) / 7.6))
+            if chars != self._name_chars:
+                self._name_chars = chars
+                self.render_sidebar()
+        if abs(rw - self._right_w) >= 3:
+            self._right_w = rw
+            self.right.configure(width=rw)
+            self.fmt_hint.configure(wraplength=rw - 40)
+
+    def _sync_scrollbars(self) -> None:
+        """Смуга прокрутки з'являється лише коли вона потрібна — інакше вона відбирає ~16 px ширини в рядків."""
+        for sf in (self.cat_list, self.cards):
+            try:
+                canvas, bar = sf._parent_canvas, sf._scrollbar
+                box = canvas.bbox("all")
+                need = bool(box) and (box[3] - box[1]) > canvas.winfo_height() + 1
+                if need and not bar.winfo_ismapped():
+                    bar.grid()
+                elif not need and bar.winfo_ismapped():
+                    bar.grid_remove()
+            except (tk.TclError, AttributeError):
                 pass
 
     # -- вибір і клавіатура -------------------------------------------------
@@ -1061,7 +1197,8 @@ class App:
     def _mark_target(self, key: str | None, on: bool) -> None:
         row = self._rows.get(key) if key else None
         if row:
-            row.configure(fg_color=DROP if on else (ROW_SEL if key == self.view else "transparent"))
+            fill, sel_fill = self._row_fills.get(key, ("transparent", ROW_SEL))
+            row.configure(fg_color=DROP if on else (sel_fill if key == self.view else fill))
 
     # -- дії над записами -----------------------------------------------------
     def copy_to_clipboard(self, text: str) -> None:
@@ -1165,10 +1302,10 @@ class App:
             self.set_status("✓ Запис оновлено")
 
     def on_clear(self) -> None:
-        if messagebox.askyesno(APP_NAME, "Очистити історію буфера?\nЗаписи в категоріях пресета не зачіпаються.",
-                               parent=self.root):
-            self.history.clear()
-            self.render(scroll_top=True)
+        """Без підтвердження: історія — тимчасова, а записи пресета ця дія не зачіпає."""
+        self.history.clear()
+        self.render(scroll_top=True)
+        self.set_status("✓ Історію очищено")
 
     # -- категорії ----------------------------------------------------------
     def select_category(self, key: str) -> None:
@@ -1430,6 +1567,8 @@ class App:
         m.add_checkbutton(label="Завжди зверху", variable=self.v_topmost, command=self._on_topmost)
         m.add_checkbutton(label="Ховати вікно після вибору запису", variable=self.v_autohide,
                           command=self._on_autohide)
+        m.add_checkbutton(label="Відкривати на весь екран", variable=self.v_fullscreen,
+                          command=self._on_fullscreen)
         hot = self._new_menu(m)
         for spec, label in HOTKEY_PRESETS:
             hot.add_radiobutton(label=label, value=spec, variable=self.v_hotkey, command=self._on_hotkey_choice)
@@ -1439,7 +1578,7 @@ class App:
             theme.add_radiobutton(label=label, value=value, variable=self.v_theme, command=self._on_theme)
         m.add_cascade(label="Тема", menu=theme)
         m.add_separator()
-        m.add_command(label="Очистити історію буфера…", command=self.on_clear)
+        m.add_command(label="Очистити історію буфера", command=self.on_clear)
         m.add_command(label="Вийти з програми", command=self.quit)
         self._popup(m, self.gear.winfo_rootx(), self.gear.winfo_rooty() + self.gear.winfo_height())
 
@@ -1450,6 +1589,11 @@ class App:
     def _on_autohide(self) -> None:
         self.settings["autohide"] = self.v_autohide.get()
         self._sync_submit_label()
+
+    def _on_fullscreen(self) -> None:
+        self.settings["fullscreen"] = self.v_fullscreen.get()
+        self.set_status("Вікно відкриватиметься на весь екран" if self.v_fullscreen.get()
+                        else "Вікно відкриватиметься звичайного розміру біля курсора")
 
     def _on_topmost(self) -> None:
         self.settings["topmost"] = self.v_topmost.get()
@@ -1488,8 +1632,34 @@ class App:
     def _can_hide(self) -> bool:
         return bool(self.hotkey_ok or self.tray)
 
+    def _maximize(self) -> None:
+        """Розгортає вікно ДО показу (Windows: state("zoomed")), тож воно з'являється одразу на весь екран."""
+        self.maximize_count += 1
+        self._maximized = True
+        self._max_ts = time.monotonic()
+        try:
+            if os.name == "nt" or sys.platform == "darwin":
+                self.root.state("zoomed")
+            else:
+                self.root.attributes("-zoomed", True)
+        except tk.TclError:
+            pass
+
+    def _restore_normal(self) -> None:
+        if not self._maximized:
+            return
+        self._maximized = False
+        try:
+            if os.name == "nt" or sys.platform == "darwin":
+                self.root.state("normal")
+            else:
+                self.root.attributes("-zoomed", False)
+        except tk.TclError:
+            pass
+
     def show_window(self, near_cursor: bool = False) -> None:
-        """Показ — це лише deiconify: усе вже підготовлено при хованні (див. _reset_when_hidden)."""
+        """Показ — це розгортання (якщо ввімкнено) + deiconify: усе вже підготовлено при хованні
+        (див. _reset_when_hidden), тож жодної перебудови карток тут немає."""
         if self._flush_job is not None:        # запас: фонова перебудова ще не встигла — завершуємо її тут
             self.root.after_cancel(self._flush_job)
             self._flush_job = None
@@ -1498,17 +1668,23 @@ class App:
             self._hidden = False
             self._render_now(top)
         self._hidden = False
-        if near_cursor:
-            self._place_near_cursor()
-        fade = os.name == "nt"       # на Windows: невидимо → deiconify → домалювали → видимо (без «білого» блимання)
+        full = bool(self.settings["fullscreen"])
+        fade = os.name == "nt"       # на Windows: невидимо → розгорнули → домалювали → видимо (без «білого» блимання)
         try:
             if fade:
                 self.root.attributes("-alpha", 0.0)
+            if full:
+                self._maximize()
+            else:
+                self._restore_normal()
+                if near_cursor:
+                    self._place_near_cursor()
             self.root.deiconify()
             self.root.lift()
             self.root.attributes("-topmost", True)
             if fade:
                 self.root.update_idletasks()
+                self._relayout_now()
                 self.root.attributes("-alpha", 1.0)
         except tk.TclError:
             pass
@@ -1554,7 +1730,7 @@ class App:
         if now - self._last_toggle < TOGGLE_DEBOUNCE:     # подвійне натискання / дребезг — ігноруємо
             return
         self._last_toggle = now
-        if self.root.state() == "normal" and self.root.focus_displayof() is not None:
+        if self.root.state() in ("normal", "zoomed") and self.root.focus_displayof() is not None:
             self.hide_window()
         else:
             self.show_window(near_cursor=True)
@@ -1569,8 +1745,12 @@ class App:
         self.root.geometry(f"{int(w / s)}x{int(h / s)}+{x}+{y}")
 
     def _on_root_configure(self, event: tk.Event) -> None:
-        if event.widget is self.root and self.root.state() == "normal":
+        if event.widget is not self.root:
+            return
+        # розмір «звичайного» вікна: розгорнутий не запам'ятовуємо (на X11 Configure приходить ще до зміни стану)
+        if self.root.state() == "normal" and not (self._maximized and time.monotonic() - self._max_ts < 0.8):
             self._size = (event.width, event.height)
+        self._apply_layout(event.width)
 
     def _save_size(self) -> None:
         if self._size and self._size[0] > 200 and self._size[1] > 200:

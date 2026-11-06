@@ -528,7 +528,7 @@ def card_bar(iid):
 
 
 def dot_color(cid):
-    return app._rows[cid].winfo_children()[0].cget("text_color")
+    return app._swatches[cid].cget("fg_color")
 
 
 color_answers[:] = [("set", "#E81123")]
@@ -865,6 +865,162 @@ pump(300)
 app.select_format("builtin-user")
 assert app.sel_format is None
 
+# ---- 23b. раунд 3: на весь екран, помітні кнопки, без підтвердження, кольорові рядки ----------------------------------------------------
+root.geometry("1180x660+0+0")
+pump(300)
+# (a) показ гарячою клавішею/треєм розгортає вікно (перед deiconify); вимкнено — старий режим біля курсора
+assert settings["fullscreen"] is True
+settings["autohide"] = False
+app.hide_window()
+n = app.maximize_count
+events.put("show")
+pump(500)
+assert app.maximize_count == n + 1 and app._maximized, "show розгортає вікно"
+app.hide_window()
+events.put("toggle")
+pump(600)
+assert app.maximize_count == n + 2, "toggle (гаряча клавіша) теж розгортає вікно"
+app.v_fullscreen.set(False)
+app._on_fullscreen()
+assert settings["fullscreen"] is False and "звичайного" in app.status.cget("text")
+app.hide_window()
+app.show_window(near_cursor=True)
+pump(300)
+assert app.maximize_count == n + 2 and app._maximized is False, "при вимкненому режимі вікно не розгортається"
+app.v_fullscreen.set(True)
+app._on_fullscreen()
+assert settings["fullscreen"] is True
+settings["autohide"] = False
+print("23b-a fullscreen on show OK")
+
+# (b) «Очистити історію»: без діалогу підтвердження
+boxes["ask"].clear()
+app.history.add("тимчасовий запис 1")
+app.history.add("тимчасовий запис 2")
+app.select_category(HISTORY)
+pump(200)
+assert app.history.items
+app.on_clear()
+pump(100)
+assert not app.history.items and not app.shown and boxes["ask"] == [], boxes["ask"]
+assert "очищено" in app.status.cget("text")
+print("23b-b clear without confirmation OK")
+
+# (c) кнопки помітні: розмір, жирний шрифт, контраст, hover; «＋ Новий» не виглядає вимкненим і відповідає
+for name in ("clear_btn", "new_cat_btn", "new_fmt_btn"):
+    b = getattr(app, name)
+    assert b.cget("height") >= 32 and b.cget("width") >= 90, (name, b.cget("height"), b.cget("width"))
+    assert b.cget("font").cget("size") >= 13 and b.cget("font").cget("weight") == "bold", name
+    assert b.cget("state") == "normal", name
+for name in ("new_cat_btn", "new_fmt_btn"):
+    b = getattr(app, name)
+    assert b.cget("fg_color") == cm.ACCENT and b.cget("text_color") == "#ffffff"
+    assert contrast("#ffffff", cm.ACCENT) >= 4.5
+for ci in (0, 1):
+    assert contrast(cm.DANGER[ci], cm.PANEL[ci]) >= 3.0, ("clear_btn contrast", ci)
+assert app.clear_btn.cget("border_width") >= 2 and app.clear_btn.cget("text_color") == cm.DANGER
+app.set_status("")
+app.new_fmt_btn.invoke()
+assert app.status.cget("text") == "Власні формати з'являться пізніше"
+app.history.add("щоб кнопка очищення з'явилась")
+app.select_category(HISTORY)
+pump(200)
+assert app.clear_btn.winfo_ismapped() and app.clear_btn.winfo_height() >= 32, "кнопка «Очистити історію» видима"
+app.on_clear()
+print("23b-c noticeable buttons OK")
+
+# (d) кружечок-кнопка кольору на рядку категорії/формату відкриває палітру напряму, не вибираючи рядок
+cats = app.preset.categories
+assert len(cats) >= 2
+cA, cB = cats[0], cats[1]
+app.select_category(cA["id"])
+pump(200)
+asked = []
+orig_color_run = cm.ColorDialog.run
+cm.ColorDialog.run = lambda self: (asked.append(self.title()), self.destroy(), ("set", "#00b294"))[2]
+sw = app._swatches[cB["id"]]
+assert str(sw.cget("cursor")) == "hand2"
+sw._canvas.event_generate("<Button-1>", x=6, y=6)
+pump(300)
+assert asked and cB["name"] in asked[0], asked
+assert app.view == cA["id"], "клік по кружечку не перемикає категорію"
+assert app.preset.category(cB["id"])["color"] == "#00b294"
+assert Preset.open(app.preset.path).category(cB["id"])["color"] == "#00b294", "колір записано у файл"
+fill, hover, sel_fill, border = cm.row_colors("#00b294")
+assert app._rows[cB["id"]].cget("fg_color") == fill and fill != "transparent", "рядок категорії підфарбовано її кольором"
+assert app._rows[cA["id"]].cget("border_width") == 2 and app._rows[cB["id"]].cget("border_width") == 1, "вибрана категорія виділена"
+assert app._rows[cA["id"]].cget("fg_color") == cm.row_colors(cA["color"])[2], "вибраний рядок має сильніший відтінок"
+asked.clear()
+fsw = app._swatches["fmt:builtin-user"]
+cm.ColorDialog.run = lambda self: (asked.append(self.title()), self.destroy(), ("set", "#ffb900"))[2]
+fsw._canvas.event_generate("<Button-1>", x=6, y=6)
+pump(300)
+assert asked and app.preset.format("builtin-user")["color"] == "#ffb900"
+cm.ColorDialog.run = orig_color_run
+print("23b-d clickable swatches OK")
+
+# (e) рядки на всю ширину колонки, лічильник і «⋯» притиснуті до правого краю; смуга прокрутки не краде ширину
+root.geometry("1180x660+0+0")
+pump(600)
+sc = app.scaling()
+assert not app.cat_list._scrollbar.winfo_ismapped(), "смуга прокрутки сховалась, поки категорій мало"
+inner_right = app.cat_list._parent_canvas.winfo_rootx() + app.cat_list._parent_canvas.winfo_width()
+for c in app.preset.categories:
+    row = app._rows[c["id"]]
+    assert inner_right - (row.winfo_rootx() + row.winfo_width()) <= 12 * sc + 2, "рядок на всю ширину"
+    more = row.grid_slaves(row=0, column=4)[0]
+    gap = (row.winfo_rootx() + row.winfo_width()) - (more.winfo_rootx() + more.winfo_width())
+    assert gap <= 14 * sc, ("«⋯» притиснута до правого краю", gap)
+    num = row.grid_slaves(row=0, column=3)[0]
+    assert (more.winfo_rootx() - (num.winfo_rootx() + num.winfo_width())) <= 12 * sc
+hrow = app._rows[HISTORY]
+hnum = hrow.grid_slaves(row=0, column=3)[0]
+assert (hrow.winfo_rootx() + hrow.winfo_width()) - (hnum.winfo_rootx() + hnum.winfo_width()) <= 16 * sc, "лічильник історії справа"
+slot_right = app.formats_slot.winfo_rootx() + app.formats_slot.winfo_width()
+for w in app.formats_slot.winfo_children():
+    assert slot_right - (w.winfo_rootx() + w.winfo_width()) <= 10 * sc + 2, "рядок формату на всю ширину"
+    more = w.grid_slaves(row=0, column=3)[0]
+    assert (w.winfo_rootx() + w.winfo_width()) - (more.winfo_rootx() + more.winfo_width()) <= 14 * sc
+# багато категорій → з'являється смуга прокрутки
+extra = [app.preset.add_category(f"Тимчасова {i}") for i in range(14)]
+app.render()
+pump(500)
+assert app.cat_list._scrollbar.winfo_ismapped(), "смуга прокрутки з'являється, коли рядків багато"
+for c in extra:
+    app.preset.delete_category(c["id"])
+app.render()
+pump(500)
+assert not app.cat_list._scrollbar.winfo_ismapped()
+print("23b-e rows full width / right aligned OK")
+
+# (f) бічні колонки ростуть із вікном (clamp), а картки в центрі не ширші за CARD_MAX і центруються
+app.select_category(app.preset.categories[0]["id"])
+for w, h in ((1366, 768), (1920, 1040), (2560, 1400), (1040, 520)):
+    root.geometry(f"{w}x{h}+0+0")
+    pump(700)
+    sc = app.scaling()
+    want_l = int(min(cm.LEFT_MAX, max(cm.LEFT_W, w * cm.LEFT_FRAC)))
+    want_r = int(min(cm.RIGHT_MAX, max(cm.RIGHT_W, w * cm.RIGHT_FRAC)))
+    lw, mw, rw = (x.winfo_width() / sc for x in (app.left, app.mid, app.right))
+    assert abs(lw - want_l) <= 3 and abs(rw - want_r) <= 3, (w, lw, want_l, rw, want_r)
+    cw = [c.winfo_width() / sc for c in app._cards.values()]
+    assert cw and max(cw) <= cm.CARD_MAX + 2, (w, max(cw))
+    if w >= 1920:                                            # поля з обох боків однакові: колонка центрована
+        c0 = next(iter(app._cards.values()))
+        left_gap = c0.winfo_rootx() - app.cards._parent_canvas.winfo_rootx()
+        canvas_right = app.cards._parent_canvas.winfo_rootx() + app.cards._parent_canvas.winfo_width()
+        right_gap = canvas_right - (c0.winfo_rootx() + c0.winfo_width())
+        assert abs(left_gap - right_gap) <= 18 * sc, (w, left_gap, right_gap)
+        assert w < 2200 or cw[0] <= cm.CARD_MAX
+    for lbl in app._wrap_labels:
+        assert lbl.winfo_reqwidth() <= lbl.winfo_width() + 2, (w, lbl.cget("text"))
+    for wdg in (app.left, app.mid, app.right, app.add_btn, app.gear):          # нічого не вилазить за вікно
+        assert wdg.winfo_rootx() + wdg.winfo_width() <= root.winfo_rootx() + root.winfo_width() + 1, (w, wdg)
+    print(f"   {w}x{h}: left {lw:.0f} mid {mw:.0f} right {rw:.0f} card {max(cw):.0f}")
+root.geometry("1180x660+0+0")
+pump(500)
+print("23b-f responsive columns OK")
+
 # ---- 24. скріншоти -----------------------------------------------------------------------------------------------------------------
 shots = os.environ.get("SMOKE_SHOTS")
 if shots:
@@ -927,5 +1083,78 @@ if shots:
     root.geometry("1040x520+0+0")
     app.select_category(app.preset.categories[0]["id"])
     grab("ui2_min.png", (0, 0, 1040, 520))
+
+    # --- раунд 3: розгорнуте вікно, помітні кнопки, кольорові рядки ---
+    def grab_scaled(name, box, scale):
+        pump(600)
+        subprocess.run(["/usr/local/bin/python3", "-c",
+                        "from PIL import Image, ImageGrab\n"
+                        f"im = ImageGrab.grab().crop({box!r})\n"
+                        f"im = im.resize((int(im.width * {scale}), int(im.height * {scale})), Image.LANCZOS)\n"
+                        f"im.save({os.path.join(shots, name)!r})"], check=True)
+
+    sw_, sh_ = root.winfo_screenwidth(), root.winfo_screenheight()
+    code = app.preset.categories[3]
+    app.preset.set_category_color(code["id"], "#d83b01")
+    app.select_category(app.preset.categories[0]["id"])
+    app.sel_id = app.shown[0]["id"]
+    app.render()
+    if sw_ >= 1920 and sh_ >= 1080:
+        root.geometry("1920x1040+0+0")           # як розгорнуте вікно на моніторі 1920x1080 (мінус панель завдань)
+        ctk.set_appearance_mode("dark")
+        grab("ui3_fullhd_dark.png", (0, 0, 1920, 1040))
+        ctk.set_appearance_mode("light")
+        grab("ui3_fullhd_light.png", (0, 0, 1920, 1040))
+        ctk.set_appearance_mode("dark")
+        root.geometry("1366x768+0+0")
+        grab("ui3_hd.png", (0, 0, 1366, 768))
+    ctk.set_appearance_mode("dark")
+    app.select_category(HISTORY)
+    root.geometry("1180x660+0+0")
+    grab_scaled("ui3_sidebar.png", (0, 60, 1180, 380), 1.6)
+    ctk.set_appearance_mode("light")
+    app.select_category(app.preset.categories[1]["id"])
+    grab_scaled("ui3_sidebar_light.png", (0, 60, 1180, 380), 1.6)
+# ---- 25. справжнє розгортання під віконним менеджером (лише якщо є openbox) -------------------------------------------------------------
+import shutil  # noqa: E402
+
+if shutil.which("openbox") and os.environ.get("SMOKE_WM", "1") != "0":
+    wm = subprocess.Popen(["openbox", "--sm-disable"], stderr=subprocess.DEVNULL, stdout=subprocess.DEVNULL)
+    try:
+        pump(1500)
+        scr_w, scr_h = root.winfo_screenwidth(), root.winfo_screenheight()
+        settings["fullscreen"], settings["autohide"] = True, False
+        ctk.set_appearance_mode("light")
+        root.geometry("1180x660+100+60")
+        pump(600)
+        saved = (settings["width"], settings["height"])
+        app.hide_window()
+        pump(300)
+        events.put("show")
+        pump(1400)
+        assert root.winfo_width() >= scr_w - 8 and root.winfo_height() >= scr_h - 70, \
+            ("вікно має зайняти весь екран", root.winfo_width(), root.winfo_height(), scr_w, scr_h)
+        assert bool(root.attributes("-zoomed")), "вікно в розгорнутому стані"
+        assert abs(app._left_w - min(cm.LEFT_MAX, max(cm.LEFT_W, scr_w * cm.LEFT_FRAC))) <= 3, "колонки підлаштовані під повний екран"
+        app.hide_window()
+        pump(300)
+        assert (settings["width"], settings["height"]) == saved, "розгорнутий розмір не затирає звичайний"
+        settings["fullscreen"] = False
+        events.put("show")
+        pump(1400)
+        assert not root.attributes("-zoomed") and abs(root.winfo_width() - 1180) <= 3 and abs(root.winfo_height() - 660) <= 3, \
+            ("звичайний розмір повернувся", root.winfo_width(), root.winfo_height())
+        app.hide_window()
+        pump(300)
+        settings["fullscreen"] = True
+        events.put("toggle")
+        pump(1400)
+        assert bool(root.attributes("-zoomed")) and root.winfo_width() >= scr_w - 8, "гаряча клавіша розгортає вікно"
+        print(f"25 real window manager: maximized {root.winfo_width()}x{root.winfo_height()} of {scr_w}x{scr_h}, restored 1180x660 OK")
+    finally:
+        wm.terminate()
+else:
+    print("25 (пропущено: немає openbox)")
+
 print("ALL UI CHECKS OK")
 os._exit(0)   # без довгого прибирання ctk-after-колбеків
