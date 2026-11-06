@@ -41,6 +41,13 @@
   ],
   "bytes": 46720
  },
+ "tip_overview": {
+  "size": [
+   1100,
+   1127
+  ],
+  "bytes": 321638
+ },
  "onion_bulbs": {
   "size": [
    1100,
@@ -208,5 +215,33 @@
    366
   ],
   "bytes": 15570
+ },
+ "root_longsec": {
+  "size": [
+   700,
+   2481
+  ],
+  "bytes": 170038
+ },
+ "elong_cells": {
+  "size": [
+   800,
+   1067
+  ],
+  "bytes": 42180
+ },
+ "fusarium_roots": {
+  "size": [
+   1100,
+   879
+  ],
+  "bytes": 263088
+ },
+ "pinkroot": {
+  "size": [
+   1100,
+   825
+  ],
+  "bytes": 116618
  }
 }
