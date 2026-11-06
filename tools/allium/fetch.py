@@ -206,9 +206,22 @@ def final():
     picks = json.load(open("tools/allium/picks.json", encoding="utf-8"))
     os.makedirs("assets/img/allium", exist_ok=True)
     report = {}
+    old = json.load(open(f"{OUT}/final.json")) if os.path.exists(f"{OUT}/final.json") else {}
     for pid, s in picks.items():
         im = None
-        if s.get("thumb"):
+        if pid in old and os.path.exists(f"assets/img/allium/{pid}.webp"):
+            report[pid] = old[pid]
+            continue
+        for url in s.get("urls", []):
+            try:
+                im = M._open(M.http(url, tries=3, ua=M.BROWSER_UA))
+                break
+            except Exception as e:
+                print("  url fail", pid, e)
+        if im is not None:
+            pass
+        elif s.get("thumb"):
+            time.sleep(3)
             try:
                 im = M._open(M.http(s["thumb"], ua="kafedra-nubip-edu/1.0 (educational)"))
             except Exception as e:

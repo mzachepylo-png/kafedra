@@ -16,7 +16,7 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        keys: ["final:", "search:c_w2,c_w3,c_w4"]
+        keys: ["final:"]
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-python@v5

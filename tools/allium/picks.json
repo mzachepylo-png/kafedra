@@ -64,6 +64,9 @@
    0,
    0.292,
    0.462
+  ],
+  "urls": [
+   "https://cdn.ncbi.nlm.nih.gov/pmc/blobs/ab14/7729754/5ecc64bbb7aa/ijms-21-09261-g001.jpg"
   ]
  },
  "ab_aberr_pma": {
@@ -76,6 +79,9 @@
    0,
    0.7,
    0.462
+  ],
+  "urls": [
+   "https://cdn.ncbi.nlm.nih.gov/pmc/blobs/ab14/7729754/5ecc64bbb7aa/ijms-21-09261-g001.jpg"
   ]
  },
  "ab_break_tio2": {
@@ -88,6 +94,9 @@
    0,
    0.5,
    0.333
+  ],
+  "urls": [
+   "https://journals.plos.org/plosone/article/figure/image?size=large&id=10.1371/journal.pone.0087789.g002"
   ]
  },
  "ab_sticky_tio2": {
@@ -100,6 +109,9 @@
    0,
    1,
    0.333
+  ],
+  "urls": [
+   "https://journals.plos.org/plosone/article/figure/image?size=large&id=10.1371/journal.pone.0087789.g002"
   ]
  },
  "ab_bin_tio2": {
@@ -112,6 +124,9 @@
    0.333,
    0.5,
    0.667
+  ],
+  "urls": [
+   "https://journals.plos.org/plosone/article/figure/image?size=large&id=10.1371/journal.pone.0087789.g002"
   ]
  },
  "ab_lag_tio2": {
@@ -124,6 +139,9 @@
    0.333,
    1,
    0.667
+  ],
+  "urls": [
+   "https://journals.plos.org/plosone/article/figure/image?size=large&id=10.1371/journal.pone.0087789.g002"
   ]
  },
  "ab_mn_tio2": {
@@ -136,6 +154,9 @@
    0.333,
    1,
    0.667
+  ],
+  "urls": [
+   "https://journals.plos.org/plosone/article/figure/image?size=large&id=10.1371/journal.pone.0087789.g003"
   ]
  },
  "ab_bud_tio2": {
@@ -148,13 +169,19 @@
    0.667,
    0.5,
    1
+  ],
+  "urls": [
+   "https://journals.plos.org/plosone/article/figure/image?size=large&id=10.1371/journal.pone.0087789.g003"
   ]
  },
  "ab_tio2_all": {
   "src": "a_ext/a2",
   "pmcid": "PMC3913665",
   "href": "pone.0087789.g002.jpg",
-  "width": 1000
+  "width": 1000,
+  "urls": [
+   "https://journals.plos.org/plosone/article/figure/image?size=large&id=10.1371/journal.pone.0087789.g002"
+  ]
  },
  "ab_bridge_zn": {
   "src": "aberr/e5",
@@ -180,6 +207,9 @@
     0.835,
     0.745
    ]
+  ],
+  "urls": [
+   "https://cdn.ncbi.nlm.nih.gov/pmc/blobs/f7c2/5264391/f4a3cfc15487/srep40685-f2.jpg"
   ]
  },
  "ab_sticky_zn": {
@@ -206,6 +236,9 @@
     0.835,
     0.325
    ]
+  ],
+  "urls": [
+   "https://cdn.ncbi.nlm.nih.gov/pmc/blobs/f7c2/5264391/f4a3cfc15487/srep40685-f2.jpg"
   ]
  },
  "ab_multi_zn": {
@@ -232,6 +265,9 @@
     0.685,
     0.995
    ]
+  ],
+  "urls": [
+   "https://cdn.ncbi.nlm.nih.gov/pmc/blobs/f7c2/5264391/f4a3cfc15487/srep40685-f2.jpg"
   ]
  },
  "ab_zn_all": {
@@ -244,6 +280,9 @@
    0,
    0.84,
    1
+  ],
+  "urls": [
+   "https://cdn.ncbi.nlm.nih.gov/pmc/blobs/f7c2/5264391/f4a3cfc15487/srep40685-f2.jpg"
   ]
  },
  "ab_vag_np": {
@@ -256,6 +295,9 @@
    0,
    0.25,
    0.245
+  ],
+  "urls": [
+   "https://cdn.ncbi.nlm.nih.gov/pmc/blobs/28c6/6586940/3da801122ff6/41598_2019_45139_Fig11_HTML.jpg"
   ]
  },
  "ab_ring_np": {
@@ -268,6 +310,9 @@
    0,
    0.75,
    0.245
+  ],
+  "urls": [
+   "https://cdn.ncbi.nlm.nih.gov/pmc/blobs/28c6/6586940/3da801122ff6/41598_2019_45139_Fig11_HTML.jpg"
   ]
  },
  "ab_cmit_np": {
@@ -280,13 +325,19 @@
    0.25,
    0.375,
    0.49
+  ],
+  "urls": [
+   "https://cdn.ncbi.nlm.nih.gov/pmc/blobs/28c6/6586940/3da801122ff6/41598_2019_45139_Fig11_HTML.jpg"
   ]
  },
  "ab_np_all": {
   "src": "aberr/e4",
   "pmcid": "PMC6586940",
   "href": "41598_2019_45139_Fig11_HTML.jpg",
-  "width": 1000
+  "width": 1000,
+  "urls": [
+   "https://cdn.ncbi.nlm.nih.gov/pmc/blobs/28c6/6586940/3da801122ff6/41598_2019_45139_Fig11_HTML.jpg"
+  ]
  },
  "ab_frag_inula": {
   "src": "aberr/e6",
@@ -298,13 +349,19 @@
    0,
    0.5,
    0.232
+  ],
+  "urls": [
+   "https://cdn.ncbi.nlm.nih.gov/pmc/blobs/9569/2896651/2c67f547276a/JBB2010-189252.001.jpg"
   ]
  },
  "ab_inula_all": {
   "src": "aberr/e6",
   "pmcid": "PMC2896651",
   "href": "JBB2010-189252.001.jpg",
-  "width": 800
+  "width": 800,
+  "urls": [
+   "https://cdn.ncbi.nlm.nih.gov/pmc/blobs/9569/2896651/2c67f547276a/JBB2010-189252.001.jpg"
+  ]
  },
  "ab_herb": {
   "src": "roots/e1",
@@ -316,6 +373,9 @@
    0,
    0.94,
    0.472
+  ],
+  "urls": [
+   "https://cdn.ncbi.nlm.nih.gov/pmc/blobs/ee4c/4728438/032c0594dbc1/srep19768-f5.jpg"
   ]
  }
 }
