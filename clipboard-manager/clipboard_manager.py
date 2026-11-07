@@ -85,6 +85,7 @@ LEFT_MAX, RIGHT_MAX = 400, 480  # верхня межа: на великому �
 LEFT_FRAC, RIGHT_FRAC = 0.18, 0.22   # частка ширини вікна
 ROW_H = 54                     # висота рядка категорії (великі, повністю залиті кольором, як картки)
 LOG_LIMIT = 200_000            # app.log / error.log: при перевищенні старий файл відкладається в *.1
+CARD_RESERVE = 290             # справа від тексту картки: кнопки Copy / Copy and Close, галочка, «⋯», «✕»
 WIDE_HEADER = 700              # від такої ширини центральної панелі кнопка «Об'єднати» стоїть у шапці, а не під нею
 CARD_MAX = 980                 # картки в центрі не розтягуються ширше за це (на весь екран лишаються поля)
 
@@ -728,31 +729,46 @@ class Card:
         self.bar.grid(row=0, column=0, rowspan=2, sticky="ns", padx=(9, 0), pady=10)
         self.body = tk.Label(f, anchor="w", justify="left", font=pf.card, wraplength=wrap_px, cursor="hand2",
                              text=preview(self.text), bg=bg, fg=col(TEXT))
-        self.body.grid(row=0, column=1, sticky="we", padx=(12, 4), pady=(11, 0))
-        self.meta = tk.Label(f, anchor="w", font=pf.meta, cursor="hand2", bg=bg, fg=col(META),
-                             text=f"{time.strftime('%d.%m %H:%M', time.localtime(self.ts))}  ·  {len(self.text)} симв.")
-        self.meta.grid(row=1, column=1, sticky="we", padx=(12, 4), pady=(2, 10))
+        self.body.grid(row=0, column=1, sticky="we", padx=(12, 4), pady=12)
+        # дві кнопки замість «клік по всій картці»: Copy — копіює, вікно лишається; Copy and Close — копіює й ховає
+        self.btns = tk.Frame(f, bg=bg)
+        self.btns.grid(row=0, column=2, padx=(6, 6), pady=8)
+        self.btn_copy = self._action_button("Copy", BTN2, BTN2_HOVER, TEXT, lambda e: app.card_copy(self.iid, False))
+        self.btn_close = self._action_button("Copy and Close", ACCENT, ACCENT_HOVER, "#ffffff",
+                                            lambda e: app.card_copy(self.iid, True))
+        self.btn_copy.pack(fill="x", pady=(0, 5))
+        self.btn_close.pack(fill="x")
         self.check = None
         if checkable:
             self.size = max(16, int(24 * app.scaling()))
             self.check = tk.Canvas(f, width=self.size, height=self.size, highlightthickness=0, cursor="hand2", bg=bg)
-            self.check.grid(row=0, column=2, rowspan=2, padx=(4, 6))
+            self.check.grid(row=0, column=3, padx=(4, 6))
             self._draw_check()
         self.more = app._icon_button(f, "⋯", lambda e: app.show_menu(e.x_root, e.y_root, self.iid), bg_fn=self.bg_now)
         self.dele = app._icon_button(f, "✕", lambda e: app.on_delete(self.iid), hover_text=DANGER, bg_fn=self.bg_now)
-        self.more.grid(row=0, column=3, padx=(0, 2), pady=(8, 0))
-        self.dele.grid(row=0, column=4, padx=(0, 8), pady=(8, 0))
-        self.plain = (self.body, self.meta, self.more, self.dele) + ((self.check,) if self.check else ())
+        self.more.grid(row=0, column=4, padx=(0, 2), pady=(8, 0), sticky="n")
+        self.dele.grid(row=0, column=5, padx=(0, 8), pady=(8, 0), sticky="n")
+        self.plain = (self.body, self.more, self.dele) + ((self.check,) if self.check else ())
         # одна пара «bindtag» на всі картки замість ~25 прив'язок на кожну (див. App._init_tags)
-        for w in (f._canvas, self.bar, self.body, self.meta):
+        for w in (f._canvas, self.bar, self.body):
             w._cm_iid = self.iid
             w.bindtags(("CMCardClick", "CMCardHover") + w.bindtags())
-        for w in (self.more, self.dele) + ((self.check,) if self.check else ()):
+        for w in (self.more, self.dele, self.btns, self.btn_copy, self.btn_close) + ((self.check,) if self.check else ()):
             w._cm_iid = self.iid
             w.bindtags(("CMCardHover",) + w.bindtags())
             w.bind("<Button-3>", lambda e: app.show_menu(e.x_root, e.y_root, self.iid), add="+")
         if self.check is not None:      # клік по галочці НЕ копіює запис (власні bindtags без CMCardClick)
             self.check.bind("<Button-1>", lambda e: (app.toggle_check(self.iid), "break")[1])
+
+    def _action_button(self, text: str, bg, hover, fg, command) -> tk.Label:
+        col = self.app.col
+        lbl = tk.Label(self.btns, text=text, font=self.app.pf.bold, fg=col(fg), bg=col(bg), cursor="hand2",
+                       padx=14, pady=5)
+        lbl.bind("<Enter>", lambda e: lbl.configure(bg=col(hover)), add="+")
+        lbl.bind("<Leave>", lambda e: lbl.configure(bg=col(bg)), add="+")
+        lbl.bind("<Button-1>", lambda e: (command(e), "break")[1], add="+")
+        lbl._cm_colors = (bg, hover, fg)
+        return lbl
 
     def bg_now(self) -> str:
         return self.app.col(self.cur)
@@ -782,7 +798,6 @@ class Card:
         if text != self.text or ts != self.ts:
             self.text, self.ts = text, ts
             self.body.configure(text=preview(text))
-            self.meta.configure(text=f"{time.strftime('%d.%m %H:%M', time.localtime(ts))}  ·  {len(text)} симв.")
         if color != self.color:
             self.color = color
             self.fill, self.hover, self.border = card_colors(color)
@@ -798,7 +813,10 @@ class Card:
         bg = a.col(fill)
         self.bar.configure(bg=a.col(self.color or NEUTRAL))
         self.body.configure(bg=bg, fg=a.col(TEXT))
-        self.meta.configure(bg=bg, fg=a.col(META))
+        self.btns.configure(bg=bg)
+        for b in (self.btn_copy, self.btn_close):
+            c_bg, _, c_fg = b._cm_colors
+            b.configure(bg=a.col(c_bg), fg=a.col(c_fg))
         for w in (self.more, self.dele):
             w.configure(bg=bg, fg=a.col(MUTED))
         if self.check is not None:
@@ -811,6 +829,7 @@ class Card:
         bg = self.app.col(fill)
         for w in self.plain:
             w.configure(bg=bg)
+        self.btns.configure(bg=bg)
 
     def hover_on(self) -> None:
         if not self.hovering:
@@ -828,7 +847,14 @@ class Card:
             self.frame.configure(border_color=ACCENT if sel else self.border, border_width=2 if sel else 1)
 
     def destroy(self) -> None:
-        self.frame.destroy()
+        try:
+            self.frame.destroy()
+        except Exception:                # збій знищення одного віджета не повинен зупиняти перебудову всього списку
+            self.app._report_exception(*sys.exc_info())
+            try:
+                self.frame.pack_forget()
+            except Exception:
+                pass
 
 
 class SideRow:
@@ -1238,6 +1264,29 @@ class App:
             self._chunk_job = root.after(1, self._chunk_step)
         self._poll_events()
         root.after(250, self._tick)
+        self._start_watchdog()
+
+    # -- сторож зависання: якщо цикл подій Tk мовчить > 4 с, у error.log потрапляє, ЩО саме робив головний потік --
+    def _start_watchdog(self) -> None:
+        self._beat = time.monotonic()
+        main_id = threading.get_ident()
+
+        def watch() -> None:
+            reported = False
+            while True:
+                time.sleep(2.0)
+                lag = time.monotonic() - self._beat
+                if lag > 4.0 and not reported:
+                    reported = True
+                    frame = sys._current_frames().get(main_id)
+                    stack = "".join(traceback.format_stack(frame)) if frame else "(немає стеку)"
+                    _append_log(self.log_dir, "error.log",
+                                f"=== {time.strftime('%Y-%m-%d %H:%M:%S')} ІНТЕРФЕЙС НЕ ВІДПОВІДАЄ {lag:.1f} с. "
+                                f"Головний потік зараз:\n{stack}")
+                elif lag <= 4.0:
+                    reported = False
+
+        threading.Thread(target=watch, name="cm-watchdog", daemon=True).start()
 
     # -- запуск: показ готового вікна і відкладені ініціалізації -------------------------
     def _reveal_startup(self, was_hidden: bool) -> None:
@@ -1635,7 +1684,7 @@ class App:
         """(бокові поля карток, ширина переносу тексту) для доступної ширини списку."""
         usable = max(240, usable)
         pad = max(6, (usable - CARD_MAX) // 2)
-        return pad, max(160, usable - 2 * pad - 150)
+        return pad, max(140, usable - 2 * pad - CARD_RESERVE)
 
     def _set_scroll_space(self, need: bool, sb_w: int) -> None:
         """Смуга прокрутки забирає частину ширини списку: враховуємо це ДО створення карток (а не після)."""
@@ -1725,9 +1774,44 @@ class App:
     def _render_now(self, scroll_top: bool = False) -> None:
         if self.view != HISTORY and not self.preset.category(self.view):
             self.view = HISTORY
-        self._render_sidebar_now()
-        self._render_list_now(scroll_top)
-        self._render_formats()
+        for stage in (self._render_sidebar_now, lambda: self._render_list_now(scroll_top), self._render_formats):
+            try:
+                stage()
+            except Exception:
+                # одна зламана ділянка не повинна «вбивати» весь інтерфейс: пишемо в error.log й
+                # для списку записів пробуємо перебудувати картки з нуля
+                self._report_exception(*sys.exc_info())
+                if stage != self._render_sidebar_now and stage != self._render_formats:
+                    self._reset_cards()
+                    try:
+                        self._render_list_now(True)
+                    except Exception:
+                        self._report_exception(*sys.exc_info())
+
+    def _reset_cards(self) -> None:
+        """Аварійне очищення списку записів: усі картки знищуються й будуть створені заново."""
+        if self._chunk_job is not None:
+            self.root.after_cancel(self._chunk_job)
+            self._chunk_job = None
+        self._todo = []
+        for card in list(self._card_objs.values()):
+            try:
+                card.destroy()
+            except Exception:
+                pass
+        self._card_objs.clear()
+        self._cards.clear()
+        self._card_border.clear()
+        self._packed = []
+        self._order = []
+        for attr in ("_empty_box", "_more_btn"):
+            w = getattr(self, attr, None)
+            if w is not None:
+                try:
+                    w.destroy()
+                except Exception:
+                    pass
+                setattr(self, attr, None)
 
     def pending_render(self) -> bool:
         """Є відкладена робота з малювання (картки порціями, фонова перебудова) — для тестів і виміру."""
@@ -2411,6 +2495,7 @@ class App:
         if q == self._last_query:
             return
         self._last_query = q
+        self.log(f"search len={len(q)}")
         self.sel_id = None
         self.limit = PAGE
         self.render_list(scroll_top=True)
@@ -2536,8 +2621,7 @@ class App:
         if not d:
             return
         if not d["active"]:
-            self.copy_item(d["id"])
-            return
+            return                      # простий клік по картці лише виділяє її; копіюють кнопки Copy / Copy and Close
         d["ghost"].destroy()
         self._hide_indicators()
         self._mark_target(d["hover"], False)
@@ -2655,8 +2739,31 @@ class App:
 
         self._finish_pick("✓ Скопійовано: " + clip(preview(text, 1, 60).replace("\n", " "), 50), after)
 
-    def _append_to(self, base: str) -> None:
-        """Append: у буфер потрапляє «запис + результат форматування»; сам запис у пресеті НЕ змінюється."""
+    def card_copy(self, item_id: str | None, close: bool) -> None:
+        """Кнопки на картці. Copy — копіює, вікно лишається відкритим; Copy and Close — копіює й одразу ховає вікно.
+        У режимі Append обидві дописують результат форматування до тексту запису (а не копіюють сам запис)."""
+        text = self._text_of(item_id)
+        if text is None:
+            return
+        self.sel_id = item_id
+        self._highlight_selection()
+        self.log(f"card_copy close={close} armed={self.append_armed}")
+        if self.append_armed:
+            self._append_to(text, close)
+            return
+        self.copy_to_clipboard(text)
+        status = "✓ Скопійовано: " + clip(preview(text, 1, 60).replace("\n", " "), 50)
+
+        def after() -> None:      # піднімаємо запис в історії (при «Copy and Close» — вже ПІСЛЯ ховання вікна)
+            if self._is_history():
+                self.history.bump(item_id)
+                self.render(scroll_top=close)
+
+        self._finish_pick(status, after, hide=close)
+
+    def _append_to(self, base: str, close: bool | None = None) -> None:
+        """Append: у буфер потрапляє «запис + результат форматування»; сам запис у пресеті НЕ змінюється.
+        close: True — сховати вікно, False — лишити, None — за налаштуванням «автохов»."""
         result = self._format_result()
         if not result:
             self.set_status("Поле введення порожнє — нічого дописувати (Esc — вийти з режиму Append)")
@@ -2664,12 +2771,13 @@ class App:
         out = append_result(base, result)
         self.copy_to_clipboard(out)
         self.append_armed = False
-        self._finish_pick("✓ Дописано і скопійовано: " + clip(out.replace("\n", " "), 70), self._after_format_pick)
+        self._finish_pick("✓ Дописано і скопійовано: " + clip(out.replace("\n", " "), 70), self._after_format_pick,
+                          hide=close)
 
-    def _finish_pick(self, status: str, work=None) -> None:
-        """Завершення вибору: якщо ввімкнено автохов — вікно зникає ОДРАЗУ, а вся решта роботи
+    def _finish_pick(self, status: str, work=None, hide: bool | None = None) -> None:
+        """Завершення вибору: якщо ввімкнено автохов (або hide=True) — вікно зникає ОДРАЗУ, а вся решта роботи
         (запис на диск, перебудова карток) робиться вже у фоні, коли вікна не видно."""
-        hide = bool(self.settings["autohide"])
+        hide = bool(self.settings["autohide"]) if hide is None else hide
         if hide and not self._hide_or_iconify("pick"):
             status += "  ·  " + self._no_way_back_text()       # вікно лише згорнуте — пояснюємо чому
         self.set_status(status, 9000 if "·" in status else 4000)
@@ -2713,6 +2821,7 @@ class App:
                 self.set_status(f"✓ Переміщено в «{cat['name']}»")
 
     def on_delete(self, item_id: str) -> None:
+        self.log(f"delete {str(item_id)[:8]} view={self.view[:8]}")
         ids = [i["id"] for i in self.shown]
         if item_id in ids and item_id == self.sel_id:   # після видалення виділення переходить на сусіда
             nxt = ids[ids.index(item_id) + 1:] or ids[: ids.index(item_id)][::-1]
@@ -2758,6 +2867,7 @@ class App:
 
     # -- категорії ----------------------------------------------------------
     def select_category(self, key: str) -> None:
+        self.log(f"select_category {key[:8]}")
         if key != self.view:
             self._collapse_format()            # формати при переході між папками згорнуті, Append скасовано
             self.clear_checked()
@@ -3373,6 +3483,7 @@ class App:
     def _poll_events(self) -> None:
         """З WakeQueue події приходять миттєво (пробудження циклу Tk), а цей таймер лише підстраховує (≈5 разів
         на секунду). Зі звичайною чергою (тести) опитуємо кожні ~20 мс, як і раніше."""
+        self._beat = time.monotonic()
         self._drain_events()
         wake = isinstance(self.events, WakeQueue)
         self.root.after(EVENT_FALLBACK_MS if wake else EVENT_POLL_MS, self._poll_events)
@@ -3397,6 +3508,28 @@ class App:
             self.toggle_window()
 
     def _tick(self) -> None:
+        try:
+            self._tick_work()
+        except Exception:
+            self._report_exception(*sys.exc_info())     # помилка в одному такті не зупиняє опитування буфера
+        finally:
+            self.root.after(POLL_MS, self._tick)
+
+    def _release_stale_grab(self) -> None:
+        """Захоплення миші (grab), що лишилось від закритого меню/діалогу, «глушить» усі кліки в програмі.
+        Якщо жодного меню/діалогу немає, а захоплення є — знімаємо його."""
+        if self._popups or self._modal:
+            return
+        try:
+            g = self.root.grab_current()
+            if g is not None:
+                self.log(f"stale grab released: {g}")
+                g.grab_release()
+        except (tk.TclError, KeyError):
+            pass
+
+    def _tick_work(self) -> None:
+        self._release_stale_grab()
         if self.preset.reload():                     # файл пресета змінили ззовні (редактор, синхронізація)
             self._update_title()
             self.render()
@@ -3422,7 +3555,6 @@ class App:
         if not self._tick_marked:
             self._tick_marked = True
             _mark("first_tick_done")
-        self.root.after(POLL_MS, self._tick)
 
 
 def _tune_ctk() -> None:

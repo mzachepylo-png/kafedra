@@ -78,8 +78,10 @@ def invoke(menu, label):
 
 
 def click(item_id):
+    """Як раніше «клік по запису»: тепер це кнопка на картці (Copy and Close при автохові, інакше Copy)."""
     app._drag_press(ev(1, 1), item_id)
-    app._drag_release(ev(1, 1))
+    app._drag_release(ev(1, 1))           # простий клік по картці лише виділяє її
+    app.card_copy(item_id, bool(settings["autohide"]))
 
 
 def drag(item_id, key):
@@ -1078,9 +1080,9 @@ def ui_state():
         if c is None:
             cards.append((iid, None))
             continue
-        cards.append((iid, c.body.cget("text"), c.meta.cget("text"), str(c.frame.cget("fg_color")),
+        cards.append((iid, c.body.cget("text"), str(c.frame.cget("fg_color")),
                       str(c.frame.cget("border_color")), c.frame.cget("border_width"), c.bar.cget("bg"),
-                      c.body.cget("bg"), c.meta.cget("bg"), c.more.cget("bg"), c.dele.cget("bg"), c.body.cget("fg")))
+                      c.body.cget("bg"), c.more.cget("bg"), c.dele.cget("bg"), c.body.cget("fg")))
     frames = {id(c.frame): i for i, c in app._card_objs.items()}
     packed = [frames[id(w)] for w in app.cards.pack_slaves() if id(w) in frames]
     side = []
@@ -1282,16 +1284,23 @@ canvas.event_generate("<Leave>")
 pump(80)
 assert not card.hovering, "курсор поза карткою — підсвітка знімається"
 calls = []
-saved_copy, saved_menu, saved_del = app.copy_item, app.show_menu, app.on_delete
-app.copy_item = lambda i: calls.append(("copy", i))
+saved_copy, saved_menu, saved_del = app.card_copy, app.show_menu, app.on_delete
+app.card_copy = lambda i, close: calls.append(("copy", i, close))
 app.show_menu = lambda x, y, i: calls.append(("menu", i))
 app.on_delete = lambda i: calls.append(("delete", i))
-for w in (card.body, card.meta, card.bar, canvas):
+for w in (card.body, card.bar, canvas):
     calls.clear()
+    app.sel_id = None
     w.event_generate("<ButtonPress-1>", x=4, y=4)
     w.event_generate("<ButtonRelease-1>", x=4, y=4)
     root.update()
-    assert calls == [("copy", iid)], (w, calls)
+    assert calls == [] and app.sel_id == iid, (w, calls, app.sel_id)   # клік по картці лише виділяє, не копіює
+for btn, close in ((card.btn_copy, False), (card.btn_close, True)):
+    calls.clear()
+    btn.event_generate("<ButtonPress-1>", x=4, y=4)
+    btn.event_generate("<ButtonRelease-1>", x=4, y=4)
+    root.update()
+    assert calls == [("copy", iid, close)] and app._drag is None, (btn, calls)
 calls.clear()
 card.body.event_generate("<Button-3>", x=4, y=4)
 root.update()
@@ -1306,7 +1315,7 @@ card.more.event_generate("<ButtonPress-1>", x=3, y=3)
 card.more.event_generate("<ButtonRelease-1>", x=3, y=3)
 root.update()
 assert calls == [("menu", iid)], calls
-app.copy_item, app.show_menu, app.on_delete = saved_copy, saved_menu, saved_del
+app.card_copy, app.show_menu, app.on_delete = saved_copy, saved_menu, saved_del
 print("26h card mouse events via bindtags OK")
 
 # 26i. --timing: журнал стадій запуску (і нуль накладних витрат без прапорця)
@@ -2105,6 +2114,154 @@ if shots:
     app._on_escape(None)
     app._collapse_format()
     root.geometry("1180x660+0+0")
+# ---- 28. регресія «програма зламалась»: СПРАВЖНІ події миші/клавіатури + кнопки Copy / Copy and Close ----------------------------
+def real_click(w, button=1):
+    """Натискання мишею як від користувача: Enter → Press → Release на самому віджеті."""
+    root.update_idletasks()
+    x, y = max(1, w.winfo_width() // 2), max(1, w.winfo_height() // 2)
+    for e in ("<Enter>", f"<ButtonPress-{button}>", f"<ButtonRelease-{button}>"):
+        try:
+            w.event_generate(e, x=x, y=y)
+        except tk.TclError:
+            break                           # віджет знищено самим кліком (✕ видаляє картку)
+    pump(260)
+
+
+settings["autohide"] = False
+app.show_window()
+app.flush_render()
+app.set_search("")
+app.select_category(HISTORY)
+app.flush_render()
+pump(300)
+assert app.view == HISTORY and app.history.items
+# клік по рядку папки справжньою мишею
+folders = [c for c in app.preset.categories]
+assert len(folders) >= 2
+for c in folders[:2]:
+    real_click(app._row_objs[c["id"]].label)
+    assert app.view == c["id"], ("клік по папці має її відкрити", app.view, c["id"])
+    assert app.title_lbl.cget("text") == c["name"]
+    assert set(app._card_objs) == {i["id"] for i in app.shown}, "список записів відповідає папці, без залишків історії"
+real_click(app._row_objs[HISTORY].label)
+assert app.view == HISTORY and set(app._card_objs) == {i["id"] for i in app.shown[: app.limit]}
+assert app.clear_btn.winfo_manager(), "кнопка «Очистити історію» є в історії"
+
+# картки: немає дати/кількості символів; є дві кнопки; клік по тексту картки не копіює
+iid = app._order[0]
+card = app._card_objs[iid]
+assert not hasattr(card, "meta") and "симв" not in card.body.cget("text")
+assert card.btn_copy.cget("text") == "Copy" and card.btn_close.cget("text") == "Copy and Close"
+app.copy_to_clipboard("маркер")
+real_click(card.body)
+assert root.clipboard_get() == "маркер", "клік по тексту картки більше не копіює"
+assert app.sel_id == iid
+
+# Copy: копіює, вікно лишається
+app._hidden = False
+real_click(card.btn_copy)
+assert root.clipboard_get() == app._text_of(iid) and not app._hidden and root.state() != "withdrawn"
+# Copy and Close: копіює й ховає вікно (за наявності шляху назад)
+app.hotkey_ok = True
+iid = app._order[1]
+real_click(app._card_objs[iid].btn_close)
+assert root.clipboard_get() == app._text_of(iid), "Copy and Close копіює"
+assert app._hidden and root.state() == "withdrawn", "Copy and Close ховає вікно"
+app.show_window()
+pump(400)
+app.hotkey_ok = False
+
+# видалення справжнім кліком по ✕ (історія і папка)
+n0 = len(app.history.items)
+iid = app._order[-1]
+real_click(app._card_objs[iid].dele)
+assert len(app.history.items) == n0 - 1 and iid not in app._card_objs
+real_click(app._row_objs[folders[0]["id"]].label)
+n1 = app.preset.count(folders[0]["id"])
+if n1:
+    iid = app._order[0]
+    real_click(app._card_objs[iid].dele)
+    assert app.preset.count(folders[0]["id"]) == n1 - 1, "запис папки видаляється"
+
+# пошук (клавіатура в полі пошуку)
+real_click(app._row_objs[HISTORY].label)
+probe = app.history.items[0]["text"]
+app.search.focus_force()
+pump(100)
+app.search.insert(0, probe[:5])
+app.search._entry.event_generate("<KeyRelease>", keysym="a")
+pump(300)
+assert app._query() == probe[:5] and all(probe[:5].lower() in i["text"].lower() for i in app.shown) and app.shown
+app.set_search("")
+pump(200)
+
+# Append: обидві кнопки дописують і не змінюють запис; Copy лишає вікно, Copy and Close ховає
+add_cat = next((c for c in app.preset.categories if c["name"] == "Suspicious login"), None)
+if add_cat is None:
+    add_cat = app.preset.add_category("Suspicious login")
+    app.preset.add_snippet(add_cat["id"], "Suspicious login confirmed.")
+    app.render()
+    app.flush_render()
+real_click(app._row_objs[add_cat["id"]].label)
+app.select_format("builtin-added-cards")
+app.fmt_input.insert("1.0", "111, 222")
+app._update_format_preview()
+app.arm_append()
+assert app.append_armed
+sid_ = app._order[0]
+before = app._text_of(sid_)
+real_click(app._card_objs[sid_].btn_copy)                       # Copy у режимі Append
+assert root.clipboard_get().startswith(before) and "111" in root.clipboard_get() and not app.append_armed
+assert app._text_of(sid_) == before, "запис не змінюється"
+app.fmt_input.insert("1.0", "333")
+app._update_format_preview()
+app.arm_append()
+assert app.append_armed
+app.hotkey_ok = True
+real_click(app._card_objs[sid_].btn_close)                      # Copy and Close у режимі Append
+assert "333" in root.clipboard_get() and app._hidden
+app.show_window()
+pump(300)
+app.hotkey_ok = False
+
+# завислий grab від закритого меню не глушить кліки: сторож його знімає
+app.select_category(HISTORY)
+app.flush_render()
+pump(200)
+cm.PopupMenu.show = REAL_POPUP_SHOW
+app.show_menu(400, 200, app._order[0])
+pump(150)
+assert app._popups, ("меню має відкритись", app.view, app._order)
+pop_ = app._popups[-1]
+app._popups.clear()                         # «забули» меню, а grab лишився
+assert root.grab_current() is not None
+app._tick_work()
+assert root.grab_current() is None, "завислий grab знято"
+pop_.close()
+cm.PopupMenu.show = lambda self, *a, **k: popups.append(self.model)
+
+# аварійний режим: зламана ділянка малювання не вбиває інтерфейс
+saved_list = app._render_list_now
+calls_ = []
+
+
+def boom(scroll_top=False):
+    calls_.append(1)
+    if len(calls_) == 1:
+        raise RuntimeError("тестовий збій малювання")
+    return saved_list(scroll_top)
+
+
+app._render_list_now = boom
+errors_before = os.path.exists(os.path.join(data_dir, "error.log"))
+app.select_category(HISTORY)
+pump(300)
+app._render_list_now = saved_list
+assert len(calls_) == 2 and app.view == HISTORY and app._card_objs, "після збою список перебудовано з нуля"
+assert os.path.exists(os.path.join(data_dir, "error.log")), "збій записано в error.log"
+settings["autohide"] = True
+print("28 real-click regression (folders, delete, search, Append, Copy / Copy and Close, grab, resilient render) OK")
+
 # ---- 25. справжнє розгортання під віконним менеджером (лише якщо є openbox) -------------------------------------------------------------
 import shutil  # noqa: E402
 
