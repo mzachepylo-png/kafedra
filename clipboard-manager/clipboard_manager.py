@@ -85,7 +85,8 @@ LEFT_MAX, RIGHT_MAX = 400, 480  # верхня межа: на великому �
 LEFT_FRAC, RIGHT_FRAC = 0.18, 0.22   # частка ширини вікна
 ROW_H = 54                     # висота рядка категорії (великі, повністю залиті кольором, як картки)
 LOG_LIMIT = 200_000            # app.log / error.log: при перевищенні старий файл відкладається в *.1
-CARD_RESERVE = 290             # справа від тексту картки: кнопки Copy / Copy and Close, галочка, «⋯», «✕»
+ZONE_W = 150                   # права «службова» зона картки (галочка, «⋯», «✕»): клік там нічого не копіює
+CARD_RESERVE = 215             # справа від тексту картки: кнопки Copy / Copy and Close, галочка, «⋯», «✕»
 WIDE_HEADER = 700              # від такої ширини центральної панелі кнопка «Об'єднати» стоїть у шапці, а не під нею
 CARD_MAX = 980                 # картки в центрі не розтягуються ширше за це (на весь екран лишаються поля)
 
@@ -118,6 +119,7 @@ MENU_BG = ("#ffffff", "#25272c")
 MENU_BORDER = ("#cfd5de", "#454a53")
 MENU_HOVER = ("#e6f0fc", "#2f4560")
 MENU_SEP = ("#e3e6eb", "#3a3e45")
+COPIED = ("#2e9e57", "#2f9e5a")          # плашка «✓ Скопійовано» на картці
 ARMED = ("#d97706", "#f59e0b")           # режим Append: «заряджена» кнопка й банер
 ARMED_SOFT = ("#fdf0dc", "#473412")
 
@@ -727,48 +729,69 @@ class Card:
         f.grid_columnconfigure(1, weight=1)
         self.bar = tk.Frame(f, width=6, height=8, cursor="hand2", bg=col(self.color or NEUTRAL))
         self.bar.grid(row=0, column=0, rowspan=2, sticky="ns", padx=(9, 0), pady=10)
+        # ліва частина (смужка + текст) — зона копіювання: клік копіює запис; права — «службова», там клік нічого не робить,
+        # лише значки: галочка (історія), «⋯» (редагування, колір, переміщення…) і «✕» (видалити)
         self.body = tk.Label(f, anchor="w", justify="left", font=pf.card, wraplength=wrap_px, cursor="hand2",
-                             text=preview(self.text), bg=bg, fg=col(TEXT))
-        self.body.grid(row=0, column=1, sticky="we", padx=(12, 4), pady=12)
-        # дві кнопки замість «клік по всій картці»: Copy — копіює, вікно лишається; Copy and Close — копіює й ховає
-        self.btns = tk.Frame(f, bg=bg)
-        self.btns.grid(row=0, column=2, padx=(6, 6), pady=8)
-        self.btn_copy = self._action_button("Copy", BTN2, BTN2_HOVER, TEXT, lambda e: app.card_copy(self.iid, False))
-        self.btn_close = self._action_button("Copy and Close", ACCENT, ACCENT_HOVER, "#ffffff",
-                                            lambda e: app.card_copy(self.iid, True))
-        self.btn_copy.pack(fill="x", pady=(0, 5))
-        self.btn_close.pack(fill="x")
+                             text=preview(self.text), bg=bg, fg=col(TEXT), pady=8)
+        self.body.grid(row=0, column=1, sticky="nsew", padx=(12, 4), pady=4)   # відступ 4: видно заокруглену рамку картки
+        f.grid_rowconfigure(0, weight=1)
+        self.zone = tk.Frame(f, bg=bg, width=int(ZONE_W * app.scaling()), cursor="arrow")
+        self.zone.grid(row=0, column=2, sticky="ns", padx=(0, 4), pady=4)
+        self.zone.grid_propagate(False)
+        self.zone.grid_rowconfigure(0, weight=1)
         self.check = None
         if checkable:
             self.size = max(16, int(24 * app.scaling()))
-            self.check = tk.Canvas(f, width=self.size, height=self.size, highlightthickness=0, cursor="hand2", bg=bg)
-            self.check.grid(row=0, column=3, padx=(4, 6))
+            self.check = tk.Canvas(self.zone, width=self.size, height=self.size, highlightthickness=0,
+                                   cursor="hand2", bg=bg)
+            self.check.grid(row=0, column=0, padx=(6, 6))
             self._draw_check()
-        self.more = app._icon_button(f, "⋯", lambda e: app.show_menu(e.x_root, e.y_root, self.iid), bg_fn=self.bg_now)
-        self.dele = app._icon_button(f, "✕", lambda e: app.on_delete(self.iid), hover_text=DANGER, bg_fn=self.bg_now)
-        self.more.grid(row=0, column=4, padx=(0, 2), pady=(8, 0), sticky="n")
-        self.dele.grid(row=0, column=5, padx=(0, 8), pady=(8, 0), sticky="n")
+        self.more = app._icon_button(self.zone, "⋯", lambda e: app.show_menu(e.x_root, e.y_root, self.iid),
+                                     bg_fn=self.bg_now)
+        self.dele = app._icon_button(self.zone, "✕", lambda e: app.on_delete(self.iid), hover_text=DANGER,
+                                     bg_fn=self.bg_now)
+        self.more.grid(row=0, column=1, padx=(0, 2), pady=(8, 0), sticky="n")
+        self.dele.grid(row=0, column=2, padx=(0, 8), pady=(8, 0), sticky="n")
         self.plain = (self.body, self.more, self.dele) + ((self.check,) if self.check else ())
-        # одна пара «bindtag» на всі картки замість ~25 прив'язок на кожну (див. App._init_tags)
+        self.flash_job = None
+        self.flash_lbl = None
+        # одна пара «bindtag» на всі картки замість ~25 прив'язок на кожну (див. App._init_tags);
+        # клік у правій зоні ігнорується в App._drag_press (порівняння з лівим краєм self.zone)
         for w in (f._canvas, self.bar, self.body):
             w._cm_iid = self.iid
             w.bindtags(("CMCardClick", "CMCardHover") + w.bindtags())
-        for w in (self.more, self.dele, self.btns, self.btn_copy, self.btn_close) + ((self.check,) if self.check else ()):
+        for w in (self.more, self.dele, self.zone) + ((self.check,) if self.check else ()):
             w._cm_iid = self.iid
             w.bindtags(("CMCardHover",) + w.bindtags())
-            w.bind("<Button-3>", lambda e: app.show_menu(e.x_root, e.y_root, self.iid), add="+")
+            if w is not self.zone:
+                w.bind("<Button-3>", lambda e: app.show_menu(e.x_root, e.y_root, self.iid), add="+")
         if self.check is not None:      # клік по галочці НЕ копіює запис (власні bindtags без CMCardClick)
             self.check.bind("<Button-1>", lambda e: (app.toggle_check(self.iid), "break")[1])
 
-    def _action_button(self, text: str, bg, hover, fg, command) -> tk.Label:
-        col = self.app.col
-        lbl = tk.Label(self.btns, text=text, font=self.app.pf.bold, fg=col(fg), bg=col(bg), cursor="hand2",
-                       padx=14, pady=5)
-        lbl.bind("<Enter>", lambda e: lbl.configure(bg=col(hover)), add="+")
-        lbl.bind("<Leave>", lambda e: lbl.configure(bg=col(bg)), add="+")
-        lbl.bind("<Button-1>", lambda e: (command(e), "break")[1], add="+")
-        lbl._cm_colors = (bg, hover, fg)
-        return lbl
+    def flash(self) -> None:
+        """Ефект «скопійовано»: зелена плашка «✓ Скопійовано» поверх тексту на ~0,5 с."""
+        self.unflash()
+        try:
+            self.flash_lbl = lbl = tk.Label(self.frame, text="✓  Скопійовано", font=self.app.pf.bold, fg="#ffffff",
+                                            bg=self.app.col(COPIED), cursor="hand2")
+            lbl.place(in_=self.body, x=0, y=0, relwidth=1, relheight=1)
+            self.flash_job = self.frame.after(550, self.unflash)
+        except tk.TclError:
+            self.flash_lbl = self.flash_job = None
+
+    def unflash(self) -> None:
+        if self.flash_job is not None:
+            try:
+                self.frame.after_cancel(self.flash_job)
+            except tk.TclError:
+                pass
+            self.flash_job = None
+        if self.flash_lbl is not None:
+            try:
+                self.flash_lbl.destroy()
+            except tk.TclError:
+                pass
+            self.flash_lbl = None
 
     def bg_now(self) -> str:
         return self.app.col(self.cur)
@@ -813,10 +836,7 @@ class Card:
         bg = a.col(fill)
         self.bar.configure(bg=a.col(self.color or NEUTRAL))
         self.body.configure(bg=bg, fg=a.col(TEXT))
-        self.btns.configure(bg=bg)
-        for b in (self.btn_copy, self.btn_close):
-            c_bg, _, c_fg = b._cm_colors
-            b.configure(bg=a.col(c_bg), fg=a.col(c_fg))
+        self.zone.configure(bg=bg)
         for w in (self.more, self.dele):
             w.configure(bg=bg, fg=a.col(MUTED))
         if self.check is not None:
@@ -829,7 +849,7 @@ class Card:
         bg = self.app.col(fill)
         for w in self.plain:
             w.configure(bg=bg)
-        self.btns.configure(bg=bg)
+        self.zone.configure(bg=bg)
 
     def hover_on(self) -> None:
         if not self.hovering:
@@ -848,6 +868,7 @@ class Card:
 
     def destroy(self) -> None:
         try:
+            self.unflash()
             self.frame.destroy()
         except Exception:                # збій знищення одного віджета не повинен зупиняти перебудову всього списку
             self.app._report_exception(*sys.exc_info())
@@ -1352,11 +1373,16 @@ class App:
     def _make_pfonts(self) -> None:
         """Шрифти для простих tk-міток (розмір у фізичних пікселях з урахуванням масштабу екрана)."""
         s = self._pf_scale = self.scaling()
-        mk = lambda size, weight="normal": tkfont.Font(  # noqa: E731
-            root=self.root, family=FONT, size=-max(1, round(size * s)), weight=weight)
-        self.pf = SimpleNamespace(body=mk(13), small=mk(11), tiny=mk(10), bold=mk(13, "bold"), caps=mk(10, "bold"),
-                                  icon=mk(15, "bold"), card=mk(15, "bold"), meta=mk(12), title=mk(17, "bold"),
-                                  menu=mk(14))
+        spec = dict(body=(13, "normal"), small=(11, "normal"), tiny=(10, "normal"), bold=(13, "bold"),
+                    caps=(10, "bold"), icon=(15, "bold"), card=(15, "bold"), meta=(12, "normal"),
+                    title=(17, "bold"), menu=(14, "normal"))
+        old = getattr(self, "pf", None)
+        if old is not None:             # зміна масштабу: розмір шрифтів міняється НА МІСЦІ — усі віджети оновлюються самі
+            for name, (size, _) in spec.items():
+                getattr(old, name).configure(size=-max(1, round(size * s)))
+            return
+        self.pf = SimpleNamespace(**{n: tkfont.Font(root=self.root, family=FONT, size=-max(1, round(sz * s)),
+                                                    weight=w) for n, (sz, w) in spec.items()})
 
     def _label(self, parent, text: str, bg, fg, font, **kw) -> tk.Label:
         """Проста tk-мітка (≈0,4 мс замість ≈1,9 мс у ctk) з реєстрацією для перефарбування при зміні теми."""
@@ -1593,11 +1619,6 @@ class App:
         head = ctk.CTkFrame(right, fg_color="transparent")
         head.pack(fill="x", padx=14, pady=(16, 4))
         self._label(head, "ФОРМАТУВАННЯ", PANEL, MUTED, self.pf.caps, anchor="w").pack(side="left")
-        self.new_fmt_btn = ctk.CTkButton(head, text="＋ Новий", width=96, height=32, corner_radius=10,
-                                         fg_color=ACCENT, hover_color=ACCENT_HOVER, text_color="#ffffff",
-                                         font=self.f.bold,
-                                         command=lambda: self.set_status("Власні формати з'являться пізніше"))
-        self.new_fmt_btn.pack(side="right")
 
         # внизу — приписка (пакується першою зі side=bottom, щоб ніколи не виштовхувалась)
         self.formats_note = self._label(right, "Інші формати — скоро", PANEL, FAINT, self.pf.small, anchor="w")
@@ -2256,7 +2277,10 @@ class App:
         for w in (self.clear_btn, self.merge_btn):
             if w.winfo_manager():
                 w.pack_forget()
-        if hist:
+        if self._is_history():
+            empty = not self.history.items
+            self.clear_btn.configure(state="disabled" if empty else "normal",
+                                     border_color=FAINT if empty else DANGER)
             self.clear_btn.pack(side="right")
         if hist and n and wide:
             self.merge_btn.configure(text=f"Об'єднати і копіювати ({n})")
@@ -2586,6 +2610,13 @@ class App:
         return k
 
     def _drag_press(self, e: tk.Event, iid: str) -> None:
+        card = self._card_objs.get(iid)
+        try:
+            if card is not None and e.x_root >= card.zone.winfo_rootx():
+                self._drag = None               # права зона картки: клік нічого не робить
+                return
+        except tk.TclError:
+            pass
         self._drag = {"id": iid, "x": e.x_root, "y": e.y_root, "active": False, "ghost": None, "hover": None,
                       "reorder": None}
         self.sel_id = iid
@@ -2621,7 +2652,11 @@ class App:
         if not d:
             return
         if not d["active"]:
-            return                      # простий клік по картці лише виділяє її; копіюють кнопки Copy / Copy and Close
+            card = self._card_objs.get(d["id"])
+            if card is not None:
+                card.flash()                    # видно, що скопійовано
+            self.copy_item(d["id"])
+            return
         d["ghost"].destroy()
         self._hide_indicators()
         self._mark_target(d["hover"], False)
@@ -2738,28 +2773,6 @@ class App:
                 self.render(scroll_top=True)
 
         self._finish_pick("✓ Скопійовано: " + clip(preview(text, 1, 60).replace("\n", " "), 50), after)
-
-    def card_copy(self, item_id: str | None, close: bool) -> None:
-        """Кнопки на картці. Copy — копіює, вікно лишається відкритим; Copy and Close — копіює й одразу ховає вікно.
-        У режимі Append обидві дописують результат форматування до тексту запису (а не копіюють сам запис)."""
-        text = self._text_of(item_id)
-        if text is None:
-            return
-        self.sel_id = item_id
-        self._highlight_selection()
-        self.log(f"card_copy close={close} armed={self.append_armed}")
-        if self.append_armed:
-            self._append_to(text, close)
-            return
-        self.copy_to_clipboard(text)
-        status = "✓ Скопійовано: " + clip(preview(text, 1, 60).replace("\n", " "), 50)
-
-        def after() -> None:      # піднімаємо запис в історії (при «Copy and Close» — вже ПІСЛЯ ховання вікна)
-            if self._is_history():
-                self.history.bump(item_id)
-                self.render(scroll_top=close)
-
-        self._finish_pick(status, after, hide=close)
 
     def _append_to(self, base: str, close: bool | None = None) -> None:
         """Append: у буфер потрапляє «запис + результат форматування»; сам запис у пресеті НЕ змінюється.
@@ -3325,12 +3338,7 @@ class App:
         self._hidden = False
         self.close_popups()
         self.flush_render()                    # запас: фонова перебудова ще не встигла — завершуємо її тут
-        if abs(self.scaling() - self._pf_scale) > 0.01:          # екран змінив масштаб, поки вікно було сховане
-            self._make_pfonts()
-            self._card_objs.clear()
-            self._order = []
-            self._render_now(True)
-            self.flush_render()
+        self._check_scaling()                  # екран міг змінити масштаб, поки вікно було сховане
         full = bool(self.settings["fullscreen"])
         fade = os.name == "nt"       # на Windows: невидимо → розгорнули → домалювали → видимо (без «білого» блимання)
         try:
@@ -3455,6 +3463,8 @@ class App:
         if self._size and self._size[0] > 200 and self._size[1] > 200:
             s = self.scaling()
             size = (int(self._size[0] / s), int(self._size[1] / s))
+            size = (min(size[0], int(self.root.winfo_screenwidth() / s)),     # не більше за екран
+                    min(size[1], int(self.root.winfo_screenheight() / s)))
             if size != (self.settings["width"], self.settings["height"]):     # без зайвого запису на диск
                 self.settings.data["width"], self.settings.data["height"] = size
                 self.settings.save()
@@ -3515,6 +3525,49 @@ class App:
         finally:
             self.root.after(POLL_MS, self._tick)
 
+    def _check_scaling(self) -> None:
+        """Вікно перетягли на монітор з іншим масштабом (DPI): ctk масштабує свої віджети сам, а прості tk-віджети,
+        шрифти, переноси тексту й розмір вікна — лише тут. Раніше картки при цьому дублювались і розходились у розмірі."""
+        s = self.scaling()
+        if abs(s - self._pf_scale) <= 0.01:
+            return
+        self.log(f"scaling {self._pf_scale:.2f} -> {s:.2f}")
+        self._make_pfonts()
+        self._reset_cards()                                  # картки створюються заново вже з новим масштабом
+        if self._cat_hint is not None:
+            self._cat_hint.destroy()
+            self._cat_hint = None
+        self._left_w = self._right_w = -999                  # примусово перерахувати ширини колонок і переноси
+        try:
+            self.root.update_idletasks()
+            self._apply_layout(self.root.winfo_width())
+            if self._fmt_built:
+                self._fmt_armed_hint.configure(wraplength=int((self._right_w - 40) * s))
+        except tk.TclError:
+            pass
+        self._render_now(True)
+        self.flush_render()
+        self._refit_window()
+        self.root.after(300, self._relayout_now)
+
+    def _refit_window(self) -> None:
+        """Після зміни масштабу вікно не повинне виходити за межі екрана: розгорнуте — розгортаємо наново на
+        поточному моніторі, звичайне — повертаємо збережений розмір, обмежений розміром екрана."""
+        try:
+            s = self.scaling()
+            if self._is_zoomed():
+                if os.name == "nt":
+                    self.root.state("normal")
+                    self.root.update_idletasks()
+                    self.root.state("zoomed")
+                return
+            sw, sh = self.root.winfo_screenwidth() / s, self.root.winfo_screenheight() / s
+            w = int(min(self.settings["width"], max(1040, sw - 40)))
+            h = int(min(self.settings["height"], max(520, sh - 100)))
+            self.root.geometry(f"{w}x{h}")
+        except tk.TclError:
+            pass
+
     def _release_stale_grab(self) -> None:
         """Захоплення миші (grab), що лишилось від закритого меню/діалогу, «глушить» усі кліки в програмі.
         Якщо жодного меню/діалогу немає, а захоплення є — знімаємо його."""
@@ -3530,6 +3583,7 @@ class App:
 
     def _tick_work(self) -> None:
         self._release_stale_grab()
+        self._check_scaling()
         if self.preset.reload():                     # файл пресета змінили ззовні (редактор, синхронізація)
             self._update_title()
             self.render()

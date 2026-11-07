@@ -78,10 +78,11 @@ def invoke(menu, label):
 
 
 def click(item_id):
-    """Як раніше «клік по запису»: тепер це кнопка на картці (Copy and Close при автохові, інакше Copy)."""
-    app._drag_press(ev(1, 1), item_id)
-    app._drag_release(ev(1, 1))           # простий клік по картці лише виділяє її
-    app.card_copy(item_id, bool(settings["autohide"]))
+    """Клік по тексту картки (ліва зона) копіює запис."""
+    card = app._card_objs[item_id]
+    x = card.zone.winfo_rootx() - 5
+    app._drag_press(ev(x, 1), item_id)
+    app._drag_release(ev(x, 1))
 
 
 def drag(item_id, key):
@@ -917,21 +918,19 @@ assert "очищено" in app.status.cget("text")
 print("23b-b clear without confirmation OK")
 
 # (c) кнопки помітні: розмір, жирний шрифт, контраст, hover; «＋ Новий» не виглядає вимкненим і відповідає
-for name in ("clear_btn", "new_cat_btn", "new_fmt_btn"):
+for name in ("clear_btn", "new_cat_btn"):
     b = getattr(app, name)
     assert b.cget("height") >= 32 and b.cget("width") >= 90, (name, b.cget("height"), b.cget("width"))
     assert b.cget("font").cget("size") >= 13 and b.cget("font").cget("weight") == "bold", name
-    assert b.cget("state") == "normal", name
-for name in ("new_cat_btn", "new_fmt_btn"):
+    assert b.cget("state") == ("disabled" if name == "clear_btn" else "normal"), name   # порожня історія: «Очистити» неактивна
+assert not hasattr(app, "new_fmt_btn"), "кнопку «＋ Новий» у форматуванні прибрано"
+for name in ("new_cat_btn",):
     b = getattr(app, name)
     assert b.cget("fg_color") == cm.ACCENT and b.cget("text_color") == "#ffffff"
     assert contrast("#ffffff", cm.ACCENT) >= 4.5
 for ci in (0, 1):
     assert contrast(cm.DANGER[ci], cm.PANEL[ci]) >= 3.0, ("clear_btn contrast", ci)
 assert app.clear_btn.cget("border_width") >= 2 and app.clear_btn.cget("text_color") == cm.DANGER
-app.set_status("")
-app.new_fmt_btn.invoke()
-assert app.status.cget("text") == "Власні формати з'являться пізніше"
 app.history.add("щоб кнопка очищення з'явилась")
 app.select_category(HISTORY)
 pump(200)
@@ -1284,23 +1283,16 @@ canvas.event_generate("<Leave>")
 pump(80)
 assert not card.hovering, "курсор поза карткою — підсвітка знімається"
 calls = []
-saved_copy, saved_menu, saved_del = app.card_copy, app.show_menu, app.on_delete
-app.card_copy = lambda i, close: calls.append(("copy", i, close))
+saved_copy, saved_menu, saved_del = app.copy_item, app.show_menu, app.on_delete
+app.copy_item = lambda i: calls.append(("copy", i))
 app.show_menu = lambda x, y, i: calls.append(("menu", i))
 app.on_delete = lambda i: calls.append(("delete", i))
 for w in (card.body, card.bar, canvas):
     calls.clear()
-    app.sel_id = None
     w.event_generate("<ButtonPress-1>", x=4, y=4)
     w.event_generate("<ButtonRelease-1>", x=4, y=4)
     root.update()
-    assert calls == [] and app.sel_id == iid, (w, calls, app.sel_id)   # клік по картці лише виділяє, не копіює
-for btn, close in ((card.btn_copy, False), (card.btn_close, True)):
-    calls.clear()
-    btn.event_generate("<ButtonPress-1>", x=4, y=4)
-    btn.event_generate("<ButtonRelease-1>", x=4, y=4)
-    root.update()
-    assert calls == [("copy", iid, close)] and app._drag is None, (btn, calls)
+    assert calls == [("copy", iid)], (w, calls)
 calls.clear()
 card.body.event_generate("<Button-3>", x=4, y=4)
 root.update()
@@ -1315,7 +1307,7 @@ card.more.event_generate("<ButtonPress-1>", x=3, y=3)
 card.more.event_generate("<ButtonRelease-1>", x=3, y=3)
 root.update()
 assert calls == [("menu", iid)], calls
-app.card_copy, app.show_menu, app.on_delete = saved_copy, saved_menu, saved_del
+app.copy_item, app.show_menu, app.on_delete = saved_copy, saved_menu, saved_del
 print("26h card mouse events via bindtags OK")
 
 # 26i. --timing: журнал стадій запуску (і нуль накладних витрат без прапорця)
@@ -2147,29 +2139,33 @@ real_click(app._row_objs[HISTORY].label)
 assert app.view == HISTORY and set(app._card_objs) == {i["id"] for i in app.shown[: app.limit]}
 assert app.clear_btn.winfo_manager(), "кнопка «Очистити історію» є в історії"
 
-# картки: немає дати/кількості символів; є дві кнопки; клік по тексту картки не копіює
+# картки: немає дати/кількості символів і кнопок Copy; клік по тексту (ліва зона) копіює, права зона — ні
 iid = app._order[0]
 card = app._card_objs[iid]
-assert not hasattr(card, "meta") and "симв" not in card.body.cget("text")
-assert card.btn_copy.cget("text") == "Copy" and card.btn_close.cget("text") == "Copy and Close"
+assert not hasattr(card, "meta") and not hasattr(card, "btn_copy") and "симв" not in card.body.cget("text")
 app.copy_to_clipboard("маркер")
-real_click(card.body)
-assert root.clipboard_get() == "маркер", "клік по тексту картки більше не копіює"
-assert app.sel_id == iid
-
-# Copy: копіює, вікно лишається
-app._hidden = False
-real_click(card.btn_copy)
-assert root.clipboard_get() == app._text_of(iid) and not app._hidden and root.state() != "withdrawn"
-# Copy and Close: копіює й ховає вікно (за наявності шляху назад)
+real_click(card.zone)                                   # права зона: нічого не відбувається
+assert root.clipboard_get() == "маркер" and app._drag is None
+x_right = card.zone.winfo_rootx() + 10
+app._drag_press(ev(x_right, card.frame.winfo_rooty() + 5), iid)
+app._drag_release(ev(x_right, card.frame.winfo_rooty() + 5))
+assert root.clipboard_get() == "маркер", "клік правіше межі зони не копіює"
+settings["autohide"] = False
+real_click(card.body)                                   # ліва зона: копіюється + ефект «✓ Скопійовано»
+assert root.clipboard_get() == app._text_of(iid), "клік по тексту копіює"
+assert card.flash_lbl is not None and card.flash_lbl.cget("text").strip().endswith("Скопійовано"), "ефект на картці"
+pump(800)
+assert card.flash_lbl is None, "ефект зникає"
+# автохов: клік по тексту копіює й ховає вікно
 app.hotkey_ok = True
+settings["autohide"] = True
 iid = app._order[1]
-real_click(app._card_objs[iid].btn_close)
-assert root.clipboard_get() == app._text_of(iid), "Copy and Close копіює"
-assert app._hidden and root.state() == "withdrawn", "Copy and Close ховає вікно"
+real_click(app._card_objs[iid].body)
+assert root.clipboard_get() == app._text_of(iid) and app._hidden and root.state() == "withdrawn"
 app.show_window()
 pump(400)
 app.hotkey_ok = False
+settings["autohide"] = False
 
 # видалення справжнім кліком по ✕ (історія і папка)
 n0 = len(app.history.items)
@@ -2210,19 +2206,11 @@ app.arm_append()
 assert app.append_armed
 sid_ = app._order[0]
 before = app._text_of(sid_)
-real_click(app._card_objs[sid_].btn_copy)                       # Copy у режимі Append
+real_click(app._card_objs[sid_].body)                           # клік по тексту в режимі Append
 assert root.clipboard_get().startswith(before) and "111" in root.clipboard_get() and not app.append_armed
 assert app._text_of(sid_) == before, "запис не змінюється"
-app.fmt_input.insert("1.0", "333")
-app._update_format_preview()
-app.arm_append()
-assert app.append_armed
-app.hotkey_ok = True
-real_click(app._card_objs[sid_].btn_close)                      # Copy and Close у режимі Append
-assert "333" in root.clipboard_get() and app._hidden
 app.show_window()
 pump(300)
-app.hotkey_ok = False
 
 # завислий grab від закритого меню не глушить кліки: сторож його знімає
 app.select_category(HISTORY)
@@ -2259,8 +2247,43 @@ pump(300)
 app._render_list_now = saved_list
 assert len(calls_) == 2 and app.view == HISTORY and app._card_objs, "після збою список перебудовано з нуля"
 assert os.path.exists(os.path.join(data_dir, "error.log")), "збій записано в error.log"
+# «Очистити історію» лишається після очищення, але неактивна
+app.select_category(HISTORY)
+app.flush_render()
+pump(200)
+assert app.clear_btn.cget("state") == "normal" or not app.history.items
+app.on_clear()
+pump(200)
+assert app.clear_btn.winfo_ismapped() and app.clear_btn.cget("state") == "disabled", "порожня історія: кнопка неактивна"
+app.history.add("щось нове")
+app.render()
+pump(200)
+assert app.clear_btn.cget("state") == "normal"
+
+# перенесення вікна на монітор з іншим масштабом: жодних дублікатів карток, шрифти й картки в одному масштабі
+dpi_cat = app.preset.categories[0]["id"]
+for k_ in range(3):
+    app.preset.add_snippet(dpi_cat, f"запис для перевірки масштабу {k_}")
+app.select_category(dpi_cat)
+app.flush_render()
+pump(300)
+n_cards = len(app._card_objs)
+f0 = app.pf.card.cget("size")
+ctk.set_widget_scaling(1.5)
+ctk.set_window_scaling(1.5)
+pump(1500)
+assert abs(app.scaling() - app._pf_scale) < 0.01, ("масштаб підхоплено", app.scaling(), app._pf_scale)
+assert abs(app.pf.card.cget("size")) > abs(f0), ("шрифти зросли на місці", f0, app.pf.card.cget("size"))
+real_cards = [w for w in app.cards.winfo_children() if isinstance(w, ctk.CTkFrame)]
+assert len(app._card_objs) == n_cards and len(real_cards) == n_cards, ("без дублікатів", n_cards, len(real_cards))
+ctk.set_widget_scaling(1.0)
+ctk.set_window_scaling(1.0)
+pump(1500)
+real_cards = [w for w in app.cards.winfo_children() if isinstance(w, ctk.CTkFrame)]
+assert abs(app.pf.card.cget("size")) == abs(f0) and len(real_cards) == n_cards, "повернення на перший монітор"
+assert root.winfo_width() <= root.winfo_screenwidth() and root.winfo_height() <= root.winfo_screenheight()
 settings["autohide"] = True
-print("28 real-click regression (folders, delete, search, Append, Copy / Copy and Close, grab, resilient render) OK")
+print("28 real-click regression (folders, delete, search, Append, click-to-copy zone, flash, clear button, DPI change, grab, resilient render) OK")
 
 # ---- 25. справжнє розгортання під віконним менеджером (лише якщо є openbox) -------------------------------------------------------------
 import shutil  # noqa: E402
