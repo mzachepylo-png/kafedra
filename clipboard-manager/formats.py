@@ -4,7 +4,7 @@ from __future__ import annotations
 
 import re
 
-_NUMBERS = re.compile(r"\d+")
+_NUMBERS = re.compile(r"[0-9]+")
 
 
 def format_link_user(text: str) -> str:
@@ -52,7 +52,8 @@ def append_suspicious_cards(base: str, result: str) -> str:
     Якщо запис починається інакше — результат просто дописується в кінець."""
     base = (base or "").strip()
     if base.casefold().startswith(SUSPICIOUS_PREFIX.casefold()):
-        return result + base[len(SUSPICIOUS_PREFIX):]
+        rest = base[len(SUSPICIOUS_PREFIX):]
+        return result + (" " + rest if rest and not rest[0].isspace() else rest)
     return append_result(base, result)
 
 

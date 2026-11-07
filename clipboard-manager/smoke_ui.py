@@ -2469,6 +2469,116 @@ pump(600)
 settings.data["width"], settings.data["height"] = 1180, 660
 app._size = None
 
+# ---- 30. регресії зі звіту QA (раунд 5) ------------------------------------------------------------------------------------------------
+settings["autohide"] = False
+root.geometry("1180x660+0+0")
+pump(700)
+app.show_window()
+app._left_user = 0
+app._set_left_width(app._left_for(root.winfo_width() / app.scaling()))
+# (1) плитки: «Показати ще», порожній стан і пошук без збігів не кидають винятків
+errs = []
+app._report_exception = lambda *a: errs.append(a)
+app.set_rec_view("tiles")
+app.history = History(os.path.join(tmp, "h30.json"))
+for i_ in range(75):
+    app.history.add(f"qa рядок {i_}")
+app.select_category(HISTORY)
+app.flush_render()
+pump(400)
+assert app._more_btn is not None and app._more_btn.winfo_ismapped(), "«Показати ще» видно в плитках"
+app._show_more()
+app.flush_render()
+pump(300)
+assert len(app._card_objs) == 75 and not errs, errs
+app.set_search("zzzzzz-немає")
+pump(300)
+assert app._empty_box is not None and app._empty_box.winfo_ismapped() and not errs, errs
+app.set_search("")
+pump(200)
+# (3) плитки папок: усі папки видалено → перша нова з'являється без TclError
+app.set_cat_view("tiles")
+for c_ in list(app.preset.categories):
+    app.preset.delete_category(c_["id"])
+app.render()
+app.flush_render()
+pump(200)
+assert app._cat_hint is not None
+fresh = app.preset.add_category("Нова після порожнього")
+app.render()
+app.flush_render()
+pump(300)
+assert app._cat_hint is None and app._row_objs[fresh["id"]].row.winfo_ismapped() and not errs, errs
+# (5) висота плитки папки стабільна після перебудови сітки
+for n_ in range(3):
+    app.preset.add_category(f"Тест плиток {n_}")
+app.render()
+app.flush_render()
+pump(300)
+_, _, th_ = app._tile_dims()
+app._cat_sig = None
+app._arrange_cats()
+pump(300)
+hs = {app._row_objs[c_["id"]].row.winfo_height() for c_ in app.preset.categories}
+assert len(hs) == 1 and abs(next(iter(hs)) / app.scaling() - th_) <= 2, (hs, th_)
+app.set_cat_view("list")
+app.set_rec_view("list")
+# (4) границя не душить середню колонку
+app._splitter_press(ev(app.splitter.winfo_rootx(), 100))
+app._splitter_motion(ev(app.splitter.winfo_rootx() + 3000, 100))
+app._splitter_release(ev(app.splitter.winfo_rootx() + 3000, 100))
+pump(400)
+assert app.mid.winfo_width() / app.scaling() >= cm.MID_MIN - 8, app.mid.winfo_width()
+app._splitter_reset()
+pump(300)
+# (2) на стандартному вікні кнопки Copy/Append формату видно повністю
+sc30 = app.preset.add_category("Suspicious cards")
+app.render()
+app.flush_render()
+app.select_category(sc30["id"])
+app.select_format("builtin-suspicious-cards")
+pump(500)
+app._fit_format_box()
+pump(300)
+assert app._fmt_pair.winfo_ismapped() and app._fmt_pair.winfo_height() >= int(34 * app.scaling()), app._fmt_pair.winfo_height()
+assert app._fmt_pair.winfo_rooty() + app._fmt_pair.winfo_height() <= app.refund_box.winfo_rooty() + 2, "кнопки формату над швидкими фразами"
+# (6) Append формату після Append швидкої фрази заряджається (а не скасовує); Copy фрази не стирає поле формату
+app._refund_checks["Internal charges"].toggle()
+app.arm_refund_append()
+assert app.armed_src == "refund"
+app.fmt_input.insert("1.0", "555")
+app._update_format_preview()
+app.arm_append()
+assert app.append_armed and app.armed_src == "format", "перемикання джерела Append однією кнопкою"
+app._set_armed(False)
+app.submit_refund()
+assert app.fmt_input.get("1.0", "end-1c") == "555", "Copy швидкої фрази не стирає поле формату"
+app.submit_format()
+assert app.fmt_input.get("1.0", "end-1c") == ""
+# (9) formats: ASCII-цифри і пробіл після префікса
+from formats import append_suspicious_cards, format_suspicious_cards
+assert format_suspicious_cards("١٢٣ 5") == "Suspicious cards 5 were added."
+assert append_suspicious_cards("Suspicious cards were added.Blacklisted", "Suspicious cards 1 were added.") == "Suspicious cards 1 were added. Blacklisted"
+# (8) RGB: короткий HEX і підсвітка помилки
+dlg30 = cm.RGBDialog(app, "#112233")
+dlg30.hex.delete(0, "end")
+dlg30.hex.insert(0, "#f0a")
+dlg30._from_hex()
+assert dlg30.color() == "#ff00aa"
+dlg30.hex.delete(0, "end")
+dlg30.hex.insert(0, "zzzzzz")
+dlg30._from_hex()
+assert dlg30.hex.cget("border_color") == cm.DANGER
+dlg30.destroy()
+assert not errs, errs
+del app._report_exception
+print("30 QA regressions (tiles extras, hint/grid, tile height, splitter cap, fmt buttons, append sources, rgb) OK")
+settings["autohide"] = True
+root.geometry("1180x660+0+0")
+pump(600)
+settings.data["width"], settings.data["height"] = 1180, 660
+app._size = None
+
 # ---- 25. справжнє розгортання під віконним менеджером (лише якщо є openbox) -------------------------------------------------------------
 import shutil  # noqa: E402
 
