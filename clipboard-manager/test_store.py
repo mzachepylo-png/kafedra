@@ -96,7 +96,7 @@ class PresetTests(TmpCase):
         again = Preset.open(self.path)
         self.assertEqual(again.categories[0]["name"], "Шаблони 🌍")
         self.assertEqual(again.categories[0]["snippets"][0]["text"], "Привіт, світе 🌍")
-        self.assertEqual([f["name"] for f in again.formats], ["USER", "Added cards", "future"])   # невідомий формат не губиться
+        self.assertEqual([f["name"] for f in again.formats], ["USER", "Added cards", "Suspicious cards", "future"])   # невідомий формат не губиться
         with open(self.path, encoding="utf-8") as f:
             data = json.load(f)
         self.assertEqual(data["format"], "clipboard-memory-preset")
@@ -191,7 +191,8 @@ class ColorAndRenameTests(TmpCase):
 
     def test_builtin_user_format_exists_and_color_persists(self):
         self.assertEqual([(f["name"], f["type"]) for f in self.pr.formats],
-                         [("USER", "link_user"), ("Added cards", "cards_added")])
+                         [("USER", "link_user"), ("Added cards", "cards_added"),
+                          ("Suspicious cards", "suspicious_cards")])
         self.assertTrue(self.pr.set_format_color("builtin-user", "#ff8800"))
         self.assertEqual(Preset.open(self.pr.path).format("builtin-user")["color"], "#ff8800")
 
@@ -269,13 +270,14 @@ class OrderAndScopeTests(TmpCase):
 
     def test_move_formats(self):
         ids = [f["id"] for f in self.pr.formats]
-        self.assertEqual(ids, ["builtin-user", "builtin-added-cards"])
+        base = ["builtin-user", "builtin-added-cards", "builtin-suspicious-cards"]
+        self.assertEqual(ids, base)
         self.assertTrue(self.pr.move_format("builtin-added-cards", -1))
-        self.assertEqual([f["id"] for f in self.pr.formats], ["builtin-added-cards", "builtin-user"])
+        self.assertEqual([f["id"] for f in self.pr.formats], ["builtin-added-cards", "builtin-user", "builtin-suspicious-cards"])
         self.assertTrue(self.pr.move_format_to("builtin-added-cards", 1))
-        self.assertEqual([f["id"] for f in self.pr.formats], ["builtin-user", "builtin-added-cards"])
+        self.assertEqual([f["id"] for f in self.pr.formats], base)
         self.assertFalse(self.pr.move_format("builtin-user", -1))          # вже перший
-        self.assertEqual([f["id"] for f in Preset.open(self.pr.path).formats], ["builtin-user", "builtin-added-cards"])
+        self.assertEqual([f["id"] for f in Preset.open(self.pr.path).formats], base)
 
     def test_formats_visibility_per_folder(self):
         sl = self.pr.add_category("  suspicious LOGIN ")                    # назва без урахування регістру
@@ -283,6 +285,8 @@ class OrderAndScopeTests(TmpCase):
         self.assertEqual(in_login, ["USER", "Added cards"])
         self.assertEqual([f["name"] for f in self.pr.formats_for(self.a["id"])], ["USER"])
         self.assertEqual([f["name"] for f in self.pr.formats_for(None)], ["USER"])   # історія буфера
+        sc = self.pr.add_category("Suspicious cards")
+        self.assertEqual([f["name"] for f in self.pr.formats_for(sc["id"])], ["USER", "Suspicious cards"])
         self.pr.rename_category(sl["id"], "Інша")
         self.assertEqual([f["name"] for f in self.pr.formats_for(sl["id"])], ["USER"])
 
@@ -291,7 +295,7 @@ class OrderAndScopeTests(TmpCase):
             f.write('{"format": "clipboard-memory-preset", "version": 1, "categories": [], '
                     '"formats": [{"id": "builtin-user", "name": "USER", "type": "link_user", "color": "#ff0000"}]}')
         pr = Preset.open(self.p("old.preset.json"))
-        self.assertEqual([f["name"] for f in pr.formats], ["USER", "Added cards"])
+        self.assertEqual([f["name"] for f in pr.formats], ["USER", "Added cards", "Suspicious cards"])
         self.assertEqual(pr.format("builtin-user")["color"], "#ff0000")    # власний колір не затирається
 
 
@@ -583,6 +587,41 @@ class SingleInstanceTests(unittest.TestCase):
         self.assertEqual(status, "foreign")
         self.assertIsNotNone(lock)
         fake.close()
+
+
+class SuspiciousAndRefundTests(unittest.TestCase):
+    def test_suspicious_cards_format(self):
+        from formats import apply_format, format_actions
+        self.assertEqual(apply_format("suspicious_cards", "1245, 1254 2365"), "Suspicious cards 1245, 1254, 2365 were added.")
+        self.assertEqual(apply_format("suspicious_cards", "1246, 13254, 123, 124 13531 12423"),
+                         "Suspicious cards 1246, 13254, 123, 124, 13531, 12423 were added.")
+        self.assertEqual(apply_format("suspicious_cards", "нічого"), "")
+        self.assertEqual(format_actions("suspicious_cards"), ("copy", "append"))
+
+    def test_suspicious_cards_append_replaces_prefix(self):
+        from formats import append_suspicious_cards
+        res = "Suspicious cards 1245, 1254, 2365 were added."
+        self.assertEqual(append_suspicious_cards("Suspicious cards were added. Blacklisted, unsolicited charges refunded", res),
+                         "Suspicious cards 1245, 1254, 2365 were added. Blacklisted, unsolicited charges refunded")
+        self.assertEqual(append_suspicious_cards("Suspicious cards were added. Blacklisted, no unsolicited charges to refund", res),
+                         "Suspicious cards 1245, 1254, 2365 were added. Blacklisted, no unsolicited charges to refund")
+        self.assertEqual(append_suspicious_cards("Інший текст", res), "Інший текст " + res)
+
+    def test_refunds(self):
+        from formats import format_refunds
+        self.assertEqual(format_refunds([]), "")
+        self.assertEqual(format_refunds(["Active subscriptions"]), "Active subscriptions were refunded.")
+        self.assertEqual(format_refunds(["Internal charges"]), "Internal charges were refunded.")
+        self.assertEqual(format_refunds(["Internal charges", "Active subscriptions"]),
+                         "Active subscriptions and Internal charges were refunded.")
+        self.assertEqual(format_refunds(["Ignore billing check flag"]), "Ignore billing check flag was set.")
+        self.assertEqual(format_refunds(["No active subscriptions"]), "No active subscriptions.")
+        self.assertEqual(format_refunds(["No active subscriptions", "Internal charges"]), "No active subscriptions.")
+
+    def test_new_settings_defaults(self):
+        import tempfile, os
+        st = Settings(os.path.join(tempfile.mkdtemp(), "s.json"))
+        self.assertEqual((st["cat_view"], st["rec_view"], st["left_w"]), ("list", "list", 0))
 
 
 if __name__ == "__main__":

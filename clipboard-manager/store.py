@@ -30,6 +30,8 @@ BUILTIN_FORMATS = [
     # видно лише в папці з такою назвою (без урахування регістру); без "folders" формат видно скрізь
     {"id": "builtin-added-cards", "name": "Added cards", "type": "cards_added", "color": "#c239b3",
      "folders": ["Suspicious login"]},
+    {"id": "builtin-suspicious-cards", "name": "Suspicious cards", "type": "suspicious_cards", "color": "#e81123",
+     "folders": ["Suspicious cards"]},
 ]
 PALETTE = ["#0f6cbd", "#107c10", "#c239b3", "#d83b01", "#8764b8", "#038387", "#986f0b", "#e3008c"]
 
@@ -540,6 +542,9 @@ DEFAULT_SETTINGS = {
     "recent_presets": [],   # останні відкриті пресети
     "width": 1180,
     "height": 660,
+    "cat_view": "list",     # вигляд папок: list | tiles
+    "rec_view": "list",     # вигляд копіпастів: list | tiles
+    "left_w": 0,            # ширина лівої колонки, яку виставив користувач (0 — автоматично)
 }
 
 

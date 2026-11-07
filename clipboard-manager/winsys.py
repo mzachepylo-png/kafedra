@@ -13,7 +13,7 @@ import time
 APP_ID = "ClipboardMemory"
 SINGLE_PORT = int(os.environ.get("CLIPBOARD_MEMORY_PORT", "47653"))
 # Номер версії для заміни старої копії новою (збільшувати при кожному релізі; v2 і раніше цього не вміють)
-APP_VERSION = os.environ.get("CLIPBOARD_MEMORY_VERSION", "7")
+APP_VERSION = os.environ.get("CLIPBOARD_MEMORY_VERSION", "8")
 
 HOTKEY_PRESETS = [
     ("ctrl+x", "Ctrl+X  (перехоплює «Вирізати» в усіх програмах)"),
@@ -220,6 +220,35 @@ def notify(title: str, text: str) -> None:
         except Exception:
             pass
     print(f"{title}: {text}", file=sys.stderr)
+
+
+def work_area_at(x: int, y: int) -> tuple[int, int, int, int] | None:
+    """Робоча область (без панелі завдань) монітора, на якому лежить точка (x, y), у фізичних пікселях:
+    (ліво, верх, право, низ). Це потрібно для кількох моніторів: winfo_screenwidth() віддає лише ПЕРВИЙ екран,
+    тож меню на другому моніторі «притискалось» до першого. Поза Windows або при помилці — None."""
+    if os.name != "nt":
+        return None
+    try:
+        import ctypes
+        from ctypes import wintypes
+
+        class MONITORINFO(ctypes.Structure):
+            _fields_ = [("cbSize", wintypes.DWORD), ("rcMonitor", wintypes.RECT), ("rcWork", wintypes.RECT),
+                        ("dwFlags", wintypes.DWORD)]
+
+        user32 = ctypes.windll.user32
+        user32.MonitorFromPoint.argtypes = [wintypes.POINT, wintypes.DWORD]
+        user32.MonitorFromPoint.restype = wintypes.HANDLE
+        user32.GetMonitorInfoW.argtypes = [wintypes.HANDLE, ctypes.POINTER(MONITORINFO)]
+        mon = user32.MonitorFromPoint(wintypes.POINT(int(x), int(y)), 2)      # MONITOR_DEFAULTTONEAREST
+        info = MONITORINFO()
+        info.cbSize = ctypes.sizeof(MONITORINFO)
+        if not mon or not user32.GetMonitorInfoW(mon, ctypes.byref(info)):
+            return None
+        r = info.rcWork
+        return r.left, r.top, r.right, r.bottom
+    except Exception:
+        return None
 
 
 def clipboard_sequence() -> int | None:

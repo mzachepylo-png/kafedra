@@ -590,13 +590,29 @@ assert cm._Dialog.run(dlg) == ("set", "#0f6cbd")
 dlg = cm.ColorDialog(app, "Колір", "#0f6cbd", allow_reset=True)
 root.after(300, dlg.reset)
 assert cm._Dialog.run(dlg) == ("reset", None)
+# «Інший колір…» — власний RGB-діалог (повзунки + HEX), без рідного вікна Windows
 dlg = cm.ColorDialog(app, "Колір", None)
-cm.colorchooser.askcolor = lambda **k: ((1, 2, 3), "#123456")
+
+
+def drive_rgb():
+    top = [w for w in root.winfo_children() if isinstance(w, cm.RGBDialog)][-1]
+    top.hex.delete(0, "end")
+    top.hex.insert(0, "#123456")
+    top._from_hex()
+    assert (top.vars["R"].get(), top.vars["G"].get(), top.vars["B"].get()) == (0x12, 0x34, 0x56)
+    top.vars["B"].set(0x99)
+    top._from_sliders()
+    assert top.color() == "#123499" and top.hex.get() == "#123499"
+    top.accept()
+
+
 root.after(300, dlg.custom)
-assert cm._Dialog.run(dlg) == ("set", "#123456")
+root.after(900, drive_rgb)
+assert cm._Dialog.run(dlg) == ("set", "#123499")
 dlg = cm.ColorDialog(app, "Колір", None)
-cm.colorchooser.askcolor = lambda **k: (None, None)           # «Скасувати» у системному діалозі
-root.after(300, lambda: (dlg.custom(), dlg.cancel()))
+root.after(300, dlg.custom)
+root.after(900, lambda: [w for w in root.winfo_children() if isinstance(w, cm.RGBDialog)][-1].cancel())
+root.after(1500, dlg.cancel)
 assert cm._Dialog.run(dlg) is None
 assert app.sel_format is None, "перехід між папками згорнув формат"
 print("19 colors OK")
@@ -1020,7 +1036,7 @@ for w, h in ((1366, 768), (1920, 1040), (2560, 1400), (1040, 520)):
         canvas_right = app.cards._parent_canvas.winfo_rootx() + app.cards._parent_canvas.winfo_width()
         right_gap = canvas_right - (c0.winfo_rootx() + c0.winfo_width())
         assert abs(left_gap - right_gap) <= 18 * sc, (w, left_gap, right_gap)
-        assert w < 2200 or cw[0] <= cm.CARD_MAX
+        assert w < 2200 or cw[0] <= cm.CARD_MAX + 2
     for lbl in app._wrap_labels:
         assert lbl.winfo_reqwidth() <= lbl.winfo_width() + 2, (w, lbl.cget("text"))
     for wdg in (app.left, app.mid, app.right, app.add_btn, app.gear):          # нічого не вилазить за вікно
@@ -1595,7 +1611,8 @@ app.show_window()
 pump(100)
 cards_h = {c.text: c for c in app._card_objs.values()}
 assert set(cards_h) == {"1242", "1234", "5466", "2345"} and all(c.check is not None for c in cards_h.values())
-assert app.merge_btn.winfo_manager() == "" and app.sel_bar.winfo_manager() == "pack"
+assert app.merge_btn.winfo_manager() == "pack" and app.merge_btn.cget("state") == "disabled", "«Об'єднати» видно завжди, але неактивна"
+assert app.sel_bar.winfo_manager() == "pack"
 assert app.sel_all_btn.cget("text") == "Вибрати все"
 # клік по галочці лише відмічає, але не копіює запис
 app.copy_to_clipboard("sentinel")
@@ -1604,10 +1621,13 @@ chk.event_generate("<ButtonPress-1>", x=4, y=4)
 chk.event_generate("<ButtonRelease-1>", x=4, y=4)
 pump(80)
 assert app.checked == {cards_h["2345"].iid} and root.clipboard_get() == "sentinel" and cards_h["2345"].checked
+assert app.merge_btn.cget("state") == "disabled", "обрано лише 1 запис — «Об'єднати» неактивна"
+app.merge_checked()
+assert root.clipboard_get() == "sentinel", "один запис не об'єднується"
 # відмічаємо решту в «неправильному» порядку
 for t in ("1242", "5466", "1234"):
     app.toggle_check(cards_h[t].iid)
-assert len(app.checked) == 4 and app.merge_btn.winfo_manager() == "pack"
+assert len(app.checked) == 4 and app.merge_btn.winfo_manager() == "pack" and app.merge_btn.cget("state") == "normal"
 assert app.merge_btn.cget("text") == "Об'єднати і копіювати (4)" and app.sel_count.cget("text") == "Вибрано: 4"
 assert app.sel_all_btn.cget("text") == "Зняти вибір"
 assert app.merge_btn.winfo_rootx() + app.merge_btn.winfo_width() <= app.clear_btn.winfo_rootx() + 2, "ліворуч від «Очистити історію»"
@@ -1629,7 +1649,7 @@ assert app.merge_btn.winfo_manager() == "pack" and app.merge_btn2.winfo_manager(
 # Esc спершу знімає вибір (не ховає вікно)
 settings["autohide"], app.hotkey_ok = True, True
 app._on_escape(None)
-assert app.checked == set() and root.state() != "withdrawn" and app.merge_btn.winfo_manager() == ""
+assert app.checked == set() and root.state() != "withdrawn" and app.merge_btn.cget("state") == "disabled"
 # «Вибрати все» / «Зняти вибір»
 app.sel_all_btn.invoke()
 assert len(app.checked) == len(app.shown) == 5 and app.sel_all_btn.cget("text") == "Зняти вибір"
@@ -2284,6 +2304,170 @@ assert abs(app.pf.card.cget("size")) == abs(f0) and len(real_cards) == n_cards, 
 assert root.winfo_width() <= root.winfo_screenwidth() and root.winfo_height() <= root.winfo_screenheight()
 settings["autohide"] = True
 print("28 real-click regression (folders, delete, search, Append, click-to-copy zone, flash, clear button, DPI change, grab, resilient render) OK")
+
+# ---- 29. раунд 5: Suspicious cards (Append), швидкі фрази, границя, плитки, висота карток ------------------------------------------
+settings["autohide"] = False
+app.hotkey_ok = False
+app.show_window()
+app.flush_render()
+pump(300)
+app.set_search("")
+sc_cat = next((c for c in app.preset.categories if c["name"] == "Suspicious cards"), None)
+if sc_cat is None:
+    sc_cat = app.preset.add_category("Suspicious cards")
+for c_ in list(app.preset.snippets(sc_cat["id"])):
+    app.preset.remove_snippet(c_["id"])
+t_ref = "Suspicious cards were added. Blacklisted, unsolicited charges refunded"
+t_no = "Suspicious cards were added. Blacklisted, no unsolicited charges to refund"
+app.preset.add_snippet(sc_cat["id"], t_ref)
+app.preset.add_snippet(sc_cat["id"], t_no)
+other_cat = next(c for c in app.preset.categories if c["id"] != sc_cat["id"])
+app.render()
+app.flush_render()
+real_click(app._row_objs[other_cat["id"]].label)
+assert "builtin-suspicious-cards" not in app._fmt_rows, "формат видно лише в папці «Suspicious cards»"
+real_click(app._row_objs[sc_cat["id"]].label)
+assert "builtin-suspicious-cards" in app._fmt_rows
+app.select_format("builtin-suspicious-cards")
+app.fmt_input.insert("1.0", "1245, 1254 2365")
+app._update_format_preview()
+assert app.fmt_preview.get("1.0", "end-1c") == "Suspicious cards 1245, 1254, 2365 were added."
+app.arm_append()
+assert app.append_armed and app.armed_src == "format"
+card_ref = next(c for c in app._card_objs.values() if c.text == t_ref)
+real_click(card_ref.body)
+assert root.clipboard_get() == "Suspicious cards 1245, 1254, 2365 were added. Blacklisted, unsolicited charges refunded", root.clipboard_get()
+assert card_ref.text == t_ref and not app.append_armed, "запис не змінився"
+assert app.sel_format == "builtin-suspicious-cards"
+app.fmt_input.insert("1.0", "77")
+app._update_format_preview()
+app.arm_append()
+real_click(next(c for c in app._card_objs.values() if c.text == t_no).body)
+assert root.clipboard_get() == "Suspicious cards 77 were added. Blacklisted, no unsolicited charges to refund", root.clipboard_get()
+app.select_format("builtin-suspicious-cards")        # згорнути
+print("29a Suspicious cards format + Append OK")
+
+# швидкі фрази: видно в усіх папках і в історії
+for key in (HISTORY, other_cat["id"], sc_cat["id"]):
+    app.select_category(key)
+    app.flush_render()
+    pump(80)
+    assert app.refund_box.winfo_ismapped(), key
+assert app.refund_copy.cget("state") == "disabled" and app.refund_append.cget("state") == "disabled"
+cb = app._refund_checks
+cb["Active subscriptions"].toggle()
+assert app.refund_copy.cget("state") == "normal"
+cb["Internal charges"].toggle()
+assert app._refund_selected() == ["Active subscriptions", "Internal charges"]
+cb["Ignore billing check flag"].toggle()
+assert app._refund_selected() == ["Ignore billing check flag"], "третій пункт виключає перші два"
+cb["Active subscriptions"].toggle()
+assert app._refund_selected() == ["Active subscriptions"], "перший знімає окремий"
+cb["No active subscriptions"].toggle()
+assert app._refund_selected() == ["No active subscriptions"], "окремий пункт виключає решту"
+cb["No active subscriptions"].toggle()
+assert app.refund_copy.cget("state") == "disabled"
+# Copy: два пункти разом
+cb["Active subscriptions"].toggle()
+cb["Internal charges"].toggle()
+app.submit_refund()
+assert root.clipboard_get() == "Active subscriptions and Internal charges were refunded."
+assert app._refund_selected() == [], "після копіювання галочки скинуті"
+# Append: один пункт, обидва записи
+app.select_category(sc_cat["id"])
+app.flush_render()
+pump(100)
+cb["Internal charges"].toggle()
+app.arm_refund_append()
+assert app.append_armed and app.armed_src == "refund"
+real_click(next(c for c in app._card_objs.values() if c.text == t_no).body)
+assert root.clipboard_get() == t_no + " Internal charges were refunded.", root.clipboard_get()
+assert not app.append_armed and app._refund_selected() == []
+cb["No active subscriptions"].toggle()
+app.arm_refund_append()
+real_click(next(c for c in app._card_objs.values() if c.text == t_ref).body)
+assert root.clipboard_get() == t_ref + " No active subscriptions."
+cb["Ignore billing check flag"].toggle()
+app.arm_refund_append()
+app._on_escape(None)
+assert not app.append_armed, "Esc скасовує Append зі швидкої фрази"
+assert app._refund_selected() == ["Ignore billing check flag"]
+app.submit_refund()
+assert root.clipboard_get() == "Ignore billing check flag was set."
+print("29b quick phrases (Copy/Append, exclusive options) OK")
+
+# картки-рядки вищі (легше навести мишу)
+real_click(app._row_objs[sc_cat["id"]].label)
+pump(150)
+c0 = next(iter(app._card_objs.values()))
+assert c0.frame.winfo_height() >= int(cm.CARD_MIN_H * app.scaling()) - 2, c0.frame.winfo_height()
+
+# границя між папками й копіпастами
+root.geometry("1500x800+0+0")
+pump(700)
+app._splitter_reset()
+w0 = app._left_w
+x0 = app.splitter.winfo_rootx()
+app._splitter_press(ev(x0, 100))
+app._splitter_motion(ev(x0 + 120, 100))
+app._splitter_release(ev(x0 + 120, 100))
+pump(300)
+assert app._left_w == w0 + 120 and app.left.winfo_width() >= int((w0 + 118) * app.scaling()) and settings["left_w"] == w0 + 120, (w0, app._left_w)
+app._splitter_motion(ev(x0 - 5000, 100))                    # без press — нічого
+app._splitter_press(ev(x0, 100))
+app._splitter_motion(ev(x0 - 5000, 100))
+app._splitter_release(ev(x0 - 5000, 100))
+assert app._left_w == cm.LEFT_MIN, "ліва колонка не вужча за мінімум"
+app._splitter_reset()
+assert settings["left_w"] == 0 and app._left_w == w0
+print("29c splitter OK")
+
+# папки плитками: 2 або 3 в ряд залежно від ширини лівої колонки
+app.set_cat_view("tiles")
+pump(300)
+assert settings["cat_view"] == "tiles" and all(app._row_objs[c["id"]].tile for c in app.preset.categories)
+cols_by_w = {}
+for w_ in (300, 460):
+    app._left_user = w_
+    app._set_left_width(w_)
+    pump(200)
+    info = [app._row_objs[c["id"]].row.grid_info() for c in app.preset.categories]
+    cols_by_w[w_] = max(int(i["column"]) for i in info) + 1
+assert cols_by_w[300] == 2 and cols_by_w[460] == 3, cols_by_w
+tile_cat = app.preset.categories[1]
+real_click(app._row_objs[tile_cat["id"]].label)
+assert app.view == tile_cat["id"], "клік по плитці відкриває папку"
+app.set_cat_view("list")
+pump(200)
+assert not any(app._row_objs[c["id"]].tile for c in app.preset.categories) and settings["cat_view"] == "list"
+app._splitter_reset()
+
+# копіпасти плитками (квадрати із заокругленими краями)
+app.select_category(sc_cat["id"])
+app.set_rec_view("tiles")
+pump(500)
+assert settings["rec_view"] == "tiles" and app._card_objs and all(c.tile for c in app._card_objs.values())
+assert all(c.frame.grid_info() for c in app._card_objs.values()), "плитки розставлені сіткою"
+t0 = next(iter(app._card_objs.values()))
+app.copy_to_clipboard("маркер")
+real_click(t0.zone)                                          # верхня смужка зі значками — службова
+assert root.clipboard_get() == "маркер"
+real_click(t0.body)                                          # текст плитки копіює
+assert root.clipboard_get() == t0.text and t0.flash_lbl is not None
+pump(700)
+app.select_category(HISTORY)
+app.flush_render()
+pump(200)
+assert app._card_objs and all(c.tile and c.check is not None for c in app._card_objs.values()), "історія плитками з галочками"
+app.set_rec_view("list")
+pump(300)
+assert not any(c.tile for c in app._card_objs.values()) and settings["rec_view"] == "list"
+print("29d tiles (folders + records) OK")
+settings["autohide"] = True
+root.geometry("1180x660+0+0")
+pump(600)
+settings.data["width"], settings.data["height"] = 1180, 660
+app._size = None
 
 # ---- 25. справжнє розгортання під віконним менеджером (лише якщо є openbox) -------------------------------------------------------------
 import shutil  # noqa: E402

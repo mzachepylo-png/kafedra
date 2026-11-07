@@ -15,6 +15,7 @@
 from __future__ import annotations
 
 import os
+import re
 import time
 
 _T0 = time.perf_counter()          # початок імпорту модуля — точка відліку для --timing
@@ -40,10 +41,12 @@ from types import SimpleNamespace
 
 import customtkinter as ctk
 
-from formats import FORMATTERS, append_result, apply_format, format_actions, join_values
+from formats import (APPENDERS, FORMATTERS, NO_ACTIVE_OPTION, IGNORE_OPTION, REFUND_LABELS, REFUND_OPTIONS, STANDALONE_OPTIONS,
+                     append_result, apply_format,
+                     format_actions, format_refunds, join_values)
 from store import (HISTORY, PALETTE, PRESET_SUFFIX, History, Preset, PresetError, Settings,
                    default_data_dir, history_path, open_startup_preset)
-from winsys import (HOTKEY_PRESETS, HotkeyListener, acquire_single_instance, clipboard_sequence, hotkey_label,
+from winsys import (work_area_at, HOTKEY_PRESETS, HotkeyListener, acquire_single_instance, clipboard_sequence, hotkey_label,
                     icon_ico_path, icon_png_base64, notify, start_tray)
 
 class _LazyModule:
@@ -74,7 +77,13 @@ EVENT_FALLBACK_MS = 200        # з WakeQueue опитування лише пі
 FIRST_CHUNK = 8                # скільки НОВИХ карток малюємо синхронно (вистачає на перший екран) …
 NEXT_CHUNK = 8                 # … решту — порціями між подіями, щоб вікно з'являлось одразу
 SCROLLBAR_W = 13               # скільки логічних пікселів ширини забирає смуга прокрутки списку
-CARD_EST_H = 84                # орієнтовна висота картки (для передбачення смуги прокрутки до розкладки)
+REC_TILE_MIN = 230             # мінімальна ширина плитки копіпаста (px)
+CAT_TILE_MIN_LEFT = 380        # від такої ширини лівої колонки папки-плитки йдуть по 3 в ряд, вужче — по 2
+LEFT_MIN = 230                 # межі, в яких користувач може пересувати границю між папками і копіпастами
+LEFT_MAX_USER = 760
+COLOR_RE = re.compile(r"^#[0-9a-fA-F]{6}$")
+CARD_MIN_H = 68                # мінімальна висота картки-рядка: велика ціль для миші
+CARD_EST_H = 96                # орієнтовна висота картки (для передбачення смуги прокрутки до розкладки)
 SEARCH_DEBOUNCE_MS = 60        # пошук реагує на набір після короткої паузи, а не на кожну літеру
 TOGGLE_DEBOUNCE = 0.15         # с: подвійне натискання гарячої клавіші не «дзеленчить» вікном
 FONT = "Segoe UI"
@@ -133,6 +142,8 @@ FORMAT_INFO = {   # опис відомих типів форматів: (під
                   "Вставте ID: 123, User#456 789 …"),
     "cards_added": ("→ Cards …/Card … were added during suspicious login.",
                     "Вставте номери карток: 1245, 1231 236532 …"),
+    "suspicious_cards": ("→ Suspicious cards … were added.",
+                         "Вставте номери карток: 1245, 1254 2365 …"),
 }
 
 
@@ -353,12 +364,18 @@ class PopupMenu:
         top.bind("<FocusOut>", lambda e: app.root.after(120, app._check_popup_focus))
         top.update_idletasks()
         w, h = top.winfo_reqwidth(), top.winfo_reqheight()
-        sw, sh = app.root.winfo_screenwidth(), app.root.winfo_screenheight()
-        margin, taskbar = int(8 * s), int(48 * s)
-        if side_left is not None and x + w > sw - margin:        # підменю не вміщається праворуч — відкриваємо ліворуч
+        area = work_area_at(x, y)               # монітор, на якому клікнули (а не завжди перший екран)
+        if area:
+            ax0, ay0, ax1, ay1 = area
+            taskbar = 0
+        else:
+            ax0, ay0, ax1, ay1 = 0, 0, app.root.winfo_screenwidth(), app.root.winfo_screenheight()
+            taskbar = int(48 * s)
+        margin = int(8 * s)
+        if side_left is not None and x + w > ax1 - margin:       # підменю не вміщається праворуч — відкриваємо ліворуч
             x = side_left - w + int(10 * s)
-        x = max(margin, min(x, sw - w - margin))
-        y = max(margin, min(y, sh - h - taskbar))
+        x = max(ax0 + margin, min(x, ax1 - w - margin))
+        y = max(ay0 + margin, min(y, ay1 - h - taskbar - margin))
         top.geometry(f"{w}x{h}+{x}+{y}")
         top.deiconify()
         top.lift()
@@ -687,12 +704,86 @@ class ColorDialog(_Dialog):
         self.destroy()
 
     def custom(self) -> None:
+        hex_color = RGBDialog(self.app, self.current or None).run()
         try:
-            _, hex_color = colorchooser.askcolor(color=self.current or None, parent=self, title="Свій колір")
+            self.grab_set()                       # після вкладеного діалогу повертаємо захоплення собі
         except tk.TclError:
-            return
+            pass
         if hex_color:
             self.choose(hex_color)
+
+
+class RGBDialog(_Dialog):
+    """Власний вибір довільного кольору (замість рідного вікна Windows, яке відкривалось на першому моніторі
+    й ламалось поверх модальних вікон): три повзунки R/G/B, поле HEX і попередній перегляд.
+    Результат: "#rrggbb" або None."""
+
+    def __init__(self, app: "App", current: str | None):
+        super().__init__(app, "Свій колір (RGB)", 470, 390)
+        start = (current or "#0f6cbd").lower()
+        if not COLOR_RE.match(start):
+            start = "#0f6cbd"
+        r, g, b = _rgb(start)
+        card = ctk.CTkFrame(self, corner_radius=16, fg_color=PANEL, border_width=1, border_color=PANEL_BORDER)
+        card.pack(fill="both", expand=True, padx=14, pady=14)
+        self.preview = ctk.CTkFrame(card, height=64, corner_radius=14, fg_color=start, border_width=1,
+                                    border_color=PANEL_BORDER)
+        self.preview.pack(fill="x", padx=22, pady=(20, 10))
+        self.vars, self.labels = {}, {}
+        for name, val in (("R", r), ("G", g), ("B", b)):
+            row = ctk.CTkFrame(card, fg_color="transparent")
+            row.pack(fill="x", padx=22, pady=3)
+            ctk.CTkLabel(row, text=name, width=22, text_color=MUTED, font=app.f.dlg_bold).pack(side="left")
+            var = tk.IntVar(value=val)
+            sl = ctk.CTkSlider(row, from_=0, to=255, number_of_steps=255, variable=var,
+                               command=lambda v: self._from_sliders())
+            sl.pack(side="left", fill="x", expand=True, padx=8)
+            lab = ctk.CTkLabel(row, text=str(val), width=36, text_color=TEXT, font=app.f.dlg)
+            lab.pack(side="left")
+            self.vars[name], self.labels[name] = var, lab
+        hexrow = ctk.CTkFrame(card, fg_color="transparent")
+        hexrow.pack(fill="x", padx=22, pady=(10, 4))
+        ctk.CTkLabel(hexrow, text="HEX", width=40, text_color=MUTED, font=app.f.dlg_bold).pack(side="left")
+        self.hex = ctk.CTkEntry(hexrow, width=130, height=36, corner_radius=10, fg_color=INPUT,
+                                border_color=PANEL_BORDER, font=app.f.dlg, text_color=TEXT)
+        self.hex.pack(side="left", padx=(6, 0))
+        self.hex.insert(0, start)
+        self.hex.bind("<KeyRelease>", lambda e: self._from_hex())
+        btns = ctk.CTkFrame(card, fg_color="transparent")
+        btns.pack(fill="x", padx=22, pady=(14, 18), side="bottom")
+        ctk.CTkButton(btns, text="Обрати", width=110, height=40, corner_radius=12, fg_color=ACCENT,
+                      hover_color=ACCENT_HOVER, text_color="#ffffff", font=app.f.dlg_bold,
+                      command=self.accept).pack(side="left")
+        ctk.CTkButton(btns, text="Скасувати", width=100, height=40, corner_radius=12, fg_color="transparent",
+                      hover_color=BTN2, text_color=MUTED, font=app.f.dlg, command=self.cancel).pack(side="right")
+
+    def color(self) -> str:
+        return "#%02x%02x%02x" % tuple(int(self.vars[n].get()) for n in "RGB")
+
+    def _show(self, color: str) -> None:
+        self.preview.configure(fg_color=color)
+        for n in "RGB":
+            self.labels[n].configure(text=str(int(self.vars[n].get())))
+
+    def _from_sliders(self) -> None:
+        c = self.color()
+        self._show(c)
+        if self.hex.get().lower() != c:
+            self.hex.delete(0, "end")
+            self.hex.insert(0, c)
+
+    def _from_hex(self) -> None:
+        text = self.hex.get().strip().lower()
+        if len(text) == 6 and not text.startswith("#"):
+            text = "#" + text
+        if COLOR_RE.match(text):
+            for n, v in zip("RGB", _rgb(text)):
+                self.vars[n].set(v)
+            self._show(text)
+
+    def accept(self) -> None:
+        self.result = self.color()
+        self.destroy()
 
 
 # --------------------------------------------------------------------------- #
@@ -712,8 +803,8 @@ class Card:
     В історії (checkable) праворуч, перед «⋯», є галочка для вибору кількох значень."""
 
     def __init__(self, app: "App", parent, it: dict, pad: int, wrap_px: int, selected: bool = False,
-                 checkable: bool = False, checked: bool = False):
-        self.app, self.iid = app, it["id"]
+                 checkable: bool = False, checked: bool = False, tile: bool = False):
+        self.app, self.iid, self.tile = app, it["id"], tile
         self.text, self.ts, self.color = it["text"], it["ts"], it.get("color")
         self.fill, self.hover, self.border = card_colors(self.color)
         self.cur = self.fill
@@ -723,35 +814,47 @@ class Card:
         pf, col = app.pf, app.col
         bg = col(self.fill)
         # усі кольори й тексти — одразу в конструкторах: кожен зайвий configure() ctk-фрейма = ще одне перемальовування
-        self.frame = f = ctk.CTkFrame(parent, corner_radius=12, fg_color=self.fill, cursor="hand2",
+        self.frame = f = ctk.CTkFrame(parent, corner_radius=14 if tile else 12, fg_color=self.fill, cursor="hand2",
                                       border_width=2 if selected else 1,
-                                      border_color=ACCENT if selected else self.border)
+                                      border_color=ACCENT if selected else self.border,
+                                      **({"width": 10, "height": app._rec_tile_h} if tile else {}))
         f.grid_columnconfigure(1, weight=1)
+        if tile:                                       # плитка — «квадрат»: зверху службова смужка зі значками, нижче текст
+            f.grid_propagate(False)
+            f.grid_rowconfigure(1, weight=1)
         self.bar = tk.Frame(f, width=6, height=8, cursor="hand2", bg=col(self.color or NEUTRAL))
         self.bar.grid(row=0, column=0, rowspan=2, sticky="ns", padx=(9, 0), pady=10)
+        c0 = 1 if tile else 0                           # у плитці перед значками є розпірка (колонка 0)
         # ліва частина (смужка + текст) — зона копіювання: клік копіює запис; права — «службова», там клік нічого не робить,
         # лише значки: галочка (історія), «⋯» (редагування, колір, переміщення…) і «✕» (видалити)
         self.body = tk.Label(f, anchor="w", justify="left", font=pf.card, wraplength=wrap_px, cursor="hand2",
                              text=preview(self.text), bg=bg, fg=col(TEXT), pady=8)
-        self.body.grid(row=0, column=1, sticky="nsew", padx=(12, 4), pady=4)   # відступ 4: видно заокруглену рамку картки
-        f.grid_rowconfigure(0, weight=1)
-        self.zone = tk.Frame(f, bg=bg, width=int(ZONE_W * app.scaling()), cursor="arrow")
-        self.zone.grid(row=0, column=2, sticky="ns", padx=(0, 4), pady=4)
-        self.zone.grid_propagate(False)
-        self.zone.grid_rowconfigure(0, weight=1)
+        if tile:
+            self.body.configure(anchor="nw", pady=2)
+            self.body.grid(row=1, column=1, sticky="nsew", padx=(12, 10), pady=(0, 8))
+            self.zone = tk.Frame(f, bg=bg, height=int(34 * app.scaling()), cursor="arrow")
+            self.zone.grid(row=0, column=1, sticky="ew", padx=(0, 4), pady=(4, 0))
+            self.zone.grid_columnconfigure(0, weight=1)
+        else:
+            self.body.grid(row=0, column=1, sticky="nsew", padx=(12, 4), pady=4)   # відступ 4: видно заокруглену рамку
+            f.grid_rowconfigure(0, weight=1, minsize=int(CARD_MIN_H * app.scaling()))
+            self.zone = tk.Frame(f, bg=bg, width=int(ZONE_W * app.scaling()), cursor="arrow")
+            self.zone.grid(row=0, column=2, sticky="ns", padx=(0, 4), pady=4)
+            self.zone.grid_propagate(False)
+            self.zone.grid_rowconfigure(0, weight=1)
         self.check = None
         if checkable:
             self.size = max(16, int(24 * app.scaling()))
             self.check = tk.Canvas(self.zone, width=self.size, height=self.size, highlightthickness=0,
                                    cursor="hand2", bg=bg)
-            self.check.grid(row=0, column=0, padx=(6, 6))
+            self.check.grid(row=0, column=c0, padx=(6, 6))
             self._draw_check()
         self.more = app._icon_button(self.zone, "⋯", lambda e: app.show_menu(e.x_root, e.y_root, self.iid),
                                      bg_fn=self.bg_now)
         self.dele = app._icon_button(self.zone, "✕", lambda e: app.on_delete(self.iid), hover_text=DANGER,
                                      bg_fn=self.bg_now)
-        self.more.grid(row=0, column=1, padx=(0, 2), pady=(8, 0), sticky="n")
-        self.dele.grid(row=0, column=2, padx=(0, 8), pady=(8, 0), sticky="n")
+        self.more.grid(row=0, column=c0 + 1, padx=(0, 2), pady=(0 if tile else 8, 0), sticky="n")
+        self.dele.grid(row=0, column=c0 + 2, padx=(0, 4 if tile else 8), pady=(0 if tile else 8, 0), sticky="n")
         self.plain = (self.body, self.more, self.dele) + ((self.check,) if self.check else ())
         self.flash_job = None
         self.flash_lbl = None
@@ -795,6 +898,16 @@ class Card:
 
     def bg_now(self) -> str:
         return self.app.col(self.cur)
+
+    def inert(self, x_root: int, y_root: int) -> bool:
+        """Точка в службовій зоні картки (там клік нічого не копіює): праворуч у списку, у верхній смужці — у плитці."""
+        if self.tile:
+            return y_root < self.body.winfo_rooty()
+        return x_root >= self.zone.winfo_rootx()
+
+    def set_tile_h(self, h: int) -> None:
+        if self.tile:
+            self.frame.configure(height=h)
 
     def _draw_check(self) -> None:
         """Галочка: заокруглений квадрат — порожній (рамка) або заповнений акцентом із білою «пташкою»."""
@@ -883,8 +996,8 @@ class SideRow:
     лічильник, «⋯». ВЕЛИКИЙ (≥ 52 px) і залитий кольором папки повністю — як картки записів. Створюється один
     раз, далі оновлюється на місці. Рядки категорій можна перетягувати (міняти порядок)."""
 
-    def __init__(self, app: "App", parent, key: str, real: bool):
-        self.app, self.key, self.real = app, key, real
+    def __init__(self, app: "App", parent, key: str, real: bool, tile: bool = False):
+        self.app, self.key, self.real, self.tile = app, key, real, tile
         self.sig = None
         self.selected = False
         self.hovering = False
@@ -892,6 +1005,30 @@ class SideRow:
         self.color = None
         self.cur = "transparent"
         pf = app.pf
+        if tile:                                       # плитка: заокруглений «квадрат» (кружечок і «⋯» зверху, назва, лічильник)
+            self.row = ctk.CTkFrame(parent, corner_radius=14, fg_color="transparent", border_width=0,
+                                    border_color=PANEL_BORDER, cursor="hand2", width=10, height=96)
+            self.row.grid_propagate(False)
+            self.row.grid_columnconfigure(0, weight=1)
+            self.row.grid_rowconfigure(1, weight=1)
+            self.bar = tk.Frame(self.row, width=0, height=0)            # не показується; потрібна лише для colorize()
+            self.dot = app._swatch(self.row, "#888888", lambda k=key: app.on_category_color(k))
+            self.dot.grid(row=0, column=0, sticky="w", padx=(10, 0), pady=(10, 0))
+            self.more = app._icon_button(self.row, "⋯", lambda e: app.show_category_menu(e.x_root, e.y_root, key),
+                                         bg_fn=lambda: app.col(_eff(self.cur)))
+            self.more.grid(row=0, column=1, sticky="ne", padx=(0, 4), pady=(4, 0))
+            self.label = tk.Label(self.row, anchor="nw", justify="left", cursor="hand2", font=pf.bold,
+                                  wraplength=int(90 * app.scaling()))
+            self.label.grid(row=1, column=0, columnspan=2, sticky="nsew", padx=(10, 6), pady=(4, 0))
+            self.num = tk.Label(self.row, font=pf.meta, cursor="hand2", anchor="w")
+            self.num.grid(row=2, column=0, columnspan=2, sticky="w", padx=(10, 6), pady=(0, 8))
+            self.plain = [self.label, self.num, self.more]
+            parts = [self.row, self.label, self.num]
+            app._bind_all(parts, "<Button-1>", lambda e: app.select_category(key))      # у плитках без перетягування
+            app._bind_all(parts + [self.dot, self.more], "<Button-3>",
+                          lambda e: app.show_category_menu(e.x_root, e.y_root, key))
+            app._hoverable(self.row, parts + [self.dot, self.more], self._enter, self._leave)
+            return
         self.row = ctk.CTkFrame(parent, corner_radius=12, fg_color="transparent", border_width=0,
                                 border_color=PANEL_BORDER, cursor="hand2", height=ROW_H)
         self.row.grid_propagate(False)                 # висота рядка фіксована: ROW_H
@@ -927,6 +1064,11 @@ class SideRow:
             app._bind_all(parts + [self.dot], "<Button-1>", lambda e: app.select_category(key))
         app._hoverable(self.row, parts + [self.dot] + ([self.more] if self.more else []), self._enter, self._leave)
 
+    def set_size(self, height: int, wrap_px: int) -> None:
+        """Лише для плиток: висота «квадрата» і ширина переносу назви."""
+        self.row.configure(height=height)
+        self.label.configure(wraplength=wrap_px)
+
     def _enter(self) -> None:
         if not self.selected:
             self.hovering = True
@@ -959,7 +1101,7 @@ class SideRow:
             if self.real:
                 self.dot.configure(fg_color=color)
         if old is None or old[0] != name or old[4] != a._name_chars:
-            self.label.configure(text=clip(name, a._name_chars))
+            self.label.configure(text=name if self.tile else clip(name, a._name_chars))
         if old is None or old[2] != count:
             self.num.configure(text=str(count))
         self.selected = selected
@@ -1223,6 +1365,7 @@ class App:
         self.menu: MenuModel | None = None  # останнє показане меню (для тестів)
         self._popups: list[PopupMenu] = []
         self.checked: set[str] = set()      # відмічені галочками записи історії (для «Об'єднати і копіювати»)
+        self.armed_src: str | None = None   # що «заряджено» для Append: "format" | "refund"
         self.append_armed = False           # режим Append: наступний клік по запису допише результат формату
         self._rd: dict | None = None        # перетягування рядка категорії/формату (перестановка)
         self._indicators: dict = {}         # індикатори місця вставки (по контейнерах)
@@ -1248,6 +1391,12 @@ class App:
         root.attributes("-topmost", settings["topmost"])
         if os.name == "nt":
             self.apply_icon_to(root)        # .ico з кешу — майже безкоштовно; ставимо ДО першого показу
+        self.cat_tiles = settings["cat_view"] == "tiles"       # папки плитками
+        self.rec_tiles = settings["rec_view"] == "tiles"       # копіпасти плитками
+        self._left_user = int(settings["left_w"] or 0)          # ширина лівої колонки від користувача (0 — авто)
+        self._cat_cols = 2
+        self._cat_sig = None
+        self._rec_cols, self._rec_tile_h, self._rec_sig = 1, 140, None
         self._plan_layout(int(settings["width"] * self.scaling()))   # ширини колонок/переносів — одразу остаточні
 
         self._build_ui()
@@ -1503,9 +1652,11 @@ class App:
         cols.grid(row=1, column=0, sticky="nsew", padx=14)
         cols.grid_rowconfigure(0, weight=1)
         cols.grid_columnconfigure(0, weight=0)
-        cols.grid_columnconfigure(1, weight=1)
-        cols.grid_columnconfigure(2, weight=0)
+        cols.grid_columnconfigure(1, weight=0)
+        cols.grid_columnconfigure(2, weight=1)
+        cols.grid_columnconfigure(3, weight=0)
         self._build_left(cols)
+        self._build_splitter(cols)
         self._build_middle(cols)
         self._build_right(cols)
 
@@ -1531,7 +1682,7 @@ class App:
 
     def _build_left(self, cols) -> None:
         left = self._panel(cols, width=self._left_w)
-        left.grid(row=0, column=0, sticky="nsew", padx=(0, 7))
+        left.grid(row=0, column=0, sticky="nsew")
         left.pack_propagate(False)          # ширина колонки фіксована, довгі назви не розпирають її
         self.left = left
         # картка поточного пресета
@@ -1562,6 +1713,11 @@ class App:
                                          fg_color=ACCENT, hover_color=ACCENT_HOVER, text_color="#ffffff",
                                          font=self.f.bold, command=self.on_new_category)
         self.new_cat_btn.pack(side="right")
+        self.cat_view_btn = ctk.CTkButton(head, text="☰" if self.cat_tiles else "▦", width=38, height=32,
+                                          corner_radius=10, fg_color=BTN2, hover_color=BTN2_HOVER, text_color=TEXT,
+                                          font=self.f.icon,
+                                          command=lambda: self.set_cat_view("list" if self.cat_tiles else "tiles"))
+        self.cat_view_btn.pack(side="right", padx=(0, 6))
 
         self.history_slot = ctk.CTkFrame(left, fg_color="transparent")
         self.history_slot.pack(fill="x", padx=2)
@@ -1570,9 +1726,25 @@ class App:
                                                scrollbar_button_color=SCROLL, scrollbar_button_hover_color=SCROLL_HOVER)
         self.cat_list.pack(fill="both", expand=True, padx=(2, 2), pady=(0, 8))
 
+    def _build_splitter(self, cols) -> None:
+        """Границя між папками й копіпастами: тягнеться мишею (подвійний клік — скинути)."""
+        h = self.splitter = tk.Frame(cols, width=16, bg=self.col(BG), cursor="sb_h_double_arrow")
+        self._themed.append((h, BG, None))
+        h.grid(row=0, column=1, sticky="ns")
+        grip = tk.Frame(h, width=4, bg=self.col(PANEL_BORDER), cursor="sb_h_double_arrow")
+        self._themed.append((grip, PANEL_BORDER, None))
+        grip.place(relx=0.5, rely=0.5, anchor="center", relheight=0.08)
+        for w in (h, grip):
+            w.bind("<ButtonPress-1>", self._splitter_press)
+            w.bind("<B1-Motion>", self._splitter_motion)
+            w.bind("<ButtonRelease-1>", self._splitter_release)
+            w.bind("<Double-Button-1>", self._splitter_reset)
+        h.bind("<Enter>", lambda e: grip.configure(bg=self.col(ACCENT)))
+        h.bind("<Leave>", lambda e: grip.configure(bg=self.col(PANEL_BORDER)))
+
     def _build_middle(self, cols) -> None:
         mid = self._panel(cols)
-        mid.grid(row=0, column=1, sticky="nsew", padx=7)
+        mid.grid(row=0, column=2, sticky="nsew", padx=(0, 7))
         self.mid = mid
         head = ctk.CTkFrame(mid, fg_color="transparent")
         head.pack(fill="x", padx=18, pady=(14, 4))
@@ -1581,6 +1753,11 @@ class App:
         self.count_lbl = self._label(head, "", PANEL, MUTED, self.pf.body, anchor="w")
         self.count_lbl.pack(side="left", padx=(8, 0), pady=(3, 0))
         self.mid_head = head
+        self.rec_view_btn = ctk.CTkButton(head, text="☰ Список" if self.rec_tiles else "▦ Плитки", width=112,
+                                          height=32, corner_radius=10, fg_color=BTN2, hover_color=BTN2_HOVER,
+                                          text_color=TEXT, font=self.f.bold,
+                                          command=lambda: self.set_rec_view("list" if self.rec_tiles else "tiles"))
+        self.rec_view_btn.pack(side="right")
         self.clear_btn = ctk.CTkButton(head, text="Очистити історію", width=150, height=32, corner_radius=10,
                                        fg_color="transparent", hover_color=DANGER_SOFT, text_color=DANGER,
                                        border_width=2, border_color=DANGER, font=self.f.bold,
@@ -1613,7 +1790,7 @@ class App:
 
     def _build_right(self, cols) -> None:
         right = self._panel(cols, width=self._right_w)
-        right.grid(row=0, column=2, sticky="nsew", padx=(7, 0))
+        right.grid(row=0, column=3, sticky="nsew")
         right.pack_propagate(False)
         self.right = right
         head = ctk.CTkFrame(right, fg_color="transparent")
@@ -1624,12 +1801,106 @@ class App:
         self.formats_note = self._label(right, "Інші формати — скоро", PANEL, FAINT, self.pf.small, anchor="w")
         self.formats_note.pack(side="bottom", fill="x", padx=16, pady=(0, 12))
 
+        self._build_refund_box(right)
+
         self.formats_slot = ctk.CTkFrame(right, fg_color="transparent")
         self.formats_slot.pack(fill="x", padx=2)
         self.fmt_idle = self._label(right, "Оберіть формат, щоб ввести значення.", PANEL, MUTED, self.pf.small,
                                     anchor="w")
         # область введення вибраного формату (два CTkTextbox — найважчі віджети вікна) будується ЛІНИВО,
         # при першому виборі формату: див. _ensure_fmt і властивості fmt_box, fmt_input, …
+
+    def _build_refund_box(self, right) -> None:
+        """Постійний блок «швидких фраз» (видно в усіх папках): три пункти з галочками й кнопки Copy / Append.
+        Перші два можна поєднувати («Active subscriptions and Internal charges were refunded.»), третій — лише окремо."""
+        box = self.refund_box = ctk.CTkFrame(right, corner_radius=12, fg_color=CARD, border_width=1,
+                                             border_color=CARD_BORDER)
+        box.pack(side="bottom", fill="x", padx=12, pady=(0, 8))
+        self._label(box, "ШВИДКІ ФРАЗИ", CARD, MUTED, self.pf.caps, anchor="w").pack(fill="x", padx=14, pady=(10, 4))
+        self._refund_vars: dict[str, tk.BooleanVar] = {}
+        self._refund_checks: dict[str, ctk.CTkCheckBox] = {}
+        for opt in (*REFUND_OPTIONS, *STANDALONE_OPTIONS):
+            var = self._refund_vars[opt] = tk.BooleanVar(value=False)
+            cb = ctk.CTkCheckBox(box, text=REFUND_LABELS[opt], variable=var, font=self.f.body, text_color=TEXT,
+                                 checkbox_width=24, checkbox_height=24, corner_radius=7, border_width=2,
+                                 fg_color=ACCENT, hover_color=ACCENT_HOVER,
+                                 command=lambda o=opt: self._refund_toggle(o))
+            cb.pack(fill="x", padx=14, pady=5)
+            self._refund_checks[opt] = cb
+        pair = ctk.CTkFrame(box, fg_color="transparent")
+        pair.pack(fill="x", padx=12, pady=(6, 12))
+        pair.grid_columnconfigure((0, 1), weight=1, uniform="refpair")
+        self.refund_copy = ctk.CTkButton(pair, text="Copy", height=38, corner_radius=12, fg_color=BTN2,
+                                         hover_color=BTN2_HOVER, text_color=FAINT, font=self.f.bold,
+                                         state="disabled", command=self.submit_refund)
+        self.refund_copy.grid(row=0, column=0, sticky="ew", padx=(0, 5))
+        self.refund_append = ctk.CTkButton(pair, text="Append", height=38, corner_radius=12, fg_color=BTN2,
+                                           hover_color=BTN2_HOVER, text_color=FAINT, border_width=2,
+                                           border_color=BTN2, font=self.f.bold, state="disabled",
+                                           command=self.arm_refund_append)
+        self.refund_append.grid(row=0, column=1, sticky="ew", padx=(5, 0))
+
+    def _refund_selected(self) -> list[str]:
+        return [o for o, v in self._refund_vars.items() if v.get()]
+
+    def _refund_toggle(self, opt: str) -> None:
+        """Окремі пункти (Ignore billing check flag, No active subscriptions) виключають усі інші; перші два
+        поєднуються між собою, але знімають окремі."""
+        if self._refund_vars[opt].get():
+            alone = opt in STANDALONE_OPTIONS
+            for other in self._refund_vars:
+                if other != opt and (alone or other in STANDALONE_OPTIONS):
+                    self._refund_vars[other].set(False)
+        self._sync_refund_buttons()
+
+    def _sync_refund_buttons(self) -> None:
+        ready = bool(format_refunds(self._refund_selected()))
+        st = "normal" if ready else "disabled"
+        self.refund_copy.configure(state=st, fg_color=ACCENT if ready else BTN2,
+                                   hover_color=ACCENT_HOVER if ready else BTN2_HOVER,
+                                   text_color="#ffffff" if ready else FAINT)
+        armed = self.append_armed and self.armed_src == "refund"
+        if armed and not ready:
+            self._set_armed(False)
+            armed = False
+        self.refund_append.configure(state=st, text_color=TEXT if ready else FAINT)
+        if not armed:
+            self.refund_append.configure(fg_color=BTN2, hover_color=BTN2_HOVER, border_color=BTN2)
+        else:
+            self._refresh_banner(format_refunds(self._refund_selected()))
+
+    def _clear_refunds(self) -> None:
+        if any(v.get() for v in self._refund_vars.values()):
+            for v in self._refund_vars.values():
+                v.set(False)
+            self._sync_refund_buttons()
+
+    def submit_refund(self) -> None:
+        out = format_refunds(self._refund_selected())
+        if not out:
+            self.set_status("Позначте галочкою, що саме скопіювати")
+            return
+        self.copy_to_clipboard(out)
+        self.append_armed = False
+        self._finish_pick("✓ Скопійовано: " + clip(out, 60), self._after_format_pick)
+
+    def arm_refund_append(self) -> None:
+        if self.append_armed and self.armed_src == "refund":
+            self._set_armed(False)
+            self.set_status("Режим Append скасовано")
+            return
+        out = format_refunds(self._refund_selected())
+        if not out:
+            return
+        self._set_armed(True, "refund")
+        self._refresh_banner(out)
+        self.set_status("Append: клікніть запис — фраза буде дописана в його кінець (Esc — скасувати)", 9000)
+
+    def _armed_result(self) -> str:
+        """Що дописується в режимі Append: результат вибраного формату або обрана швидка фраза."""
+        if self.armed_src == "refund":
+            return format_refunds(self._refund_selected())
+        return self._format_result()
 
     def _ensure_fmt(self) -> None:
         """Будує область введення форматування (заголовок, підказка, поле, перегляд, кнопки)."""
@@ -1692,7 +1963,8 @@ class App:
         """Остаточні ширини колонок, назв і переносу тексту ОБЧИСЛЮЄМО за шириною вікна ще до побудови
         віджетів — тоді вони одразу створюються правильного розміру й нічого не «стрибає» після показу."""
         w = width_px / self.scaling()
-        self._left_w = int(min(LEFT_MAX, max(LEFT_W, w * LEFT_FRAC)))
+        self._left_w = self._left_for(w)
+        self._cat_cols = 3 if self._left_w >= CAT_TILE_MIN_LEFT else 2
         self._right_w = int(min(RIGHT_MAX, max(RIGHT_W, w * RIGHT_FRAC)))
         self._name_chars = max(12, int((self._left_w - 150) / 9.0))
         self._mid_w = int(w - 28 - self._left_w - self._right_w - 28)    # відступи рамки, колонок і панелей
@@ -1700,10 +1972,24 @@ class App:
         self._sb_cur = 0                                                 # скільки з цього забирає смуга прокрутки
         self._card_pad, self._wrap = self._wrap_for(self._usable0)
 
-    @staticmethod
-    def _wrap_for(usable: int) -> tuple[int, int]:
-        """(бокові поля карток, ширина переносу тексту) для доступної ширини списку."""
+    def _left_for(self, window_w: float) -> int:
+        """Ширина лівої колонки: від користувача (границя, яку можна пересунути) або за шириною вікна."""
+        if self._left_user:
+            return int(max(LEFT_MIN, min(self._left_user, LEFT_MAX_USER, window_w * 0.6)))
+        return int(min(LEFT_MAX, max(LEFT_W, window_w * LEFT_FRAC)))
+
+    def _wrap_for(self, usable: int) -> tuple[int, int]:
+        """(бокові поля карток, ширина переносу тексту) для доступної ширини списку. У режимі плиток заодно
+        рахує кількість колонок і висоту плитки (self._rec_cols / self._rec_tile_h)."""
         usable = max(240, usable)
+        if self.rec_tiles:
+            usable -= 14
+            gap = 12
+            cols = max(1, min(5, int((usable + gap) // (REC_TILE_MIN + gap))))
+            tile_w = (usable - 12 - (cols - 1) * gap) / cols
+            self._rec_cols = cols
+            self._rec_tile_h = int(max(104, min(190, tile_w * 0.66)))
+            return 6, int(max(90, tile_w - 48))
         pad = max(6, (usable - CARD_MAX) // 2)
         return pad, max(140, usable - 2 * pad - CARD_RESERVE)
 
@@ -1715,7 +2001,12 @@ class App:
             self._apply_wrap_values(*self._wrap_for(self._usable0 - sb))
 
     def _apply_wrap_values(self, pad: int, wrap: int) -> None:
-        if pad != self._card_pad:
+        if self.rec_tiles:
+            sig = (self._rec_cols, self._rec_tile_h)
+            if sig != self._rec_sig:                  # змінилась кількість колонок або висота плиток
+                self._rec_sig = sig
+                self._regrid_cards()
+        elif pad != self._card_pad:
             self._card_pad = pad
             for card in self._card_objs.values():
                 try:
@@ -1885,19 +2176,16 @@ class App:
         for c in self.preset.categories:
             obj = self._row_objs.get(c["id"])
             if obj is None:
-                obj = self._row_objs[c["id"]] = SideRow(self, self.cat_list, c["id"], real=True)
+                obj = self._row_objs[c["id"]] = SideRow(self, self.cat_list, c["id"], real=True, tile=self.cat_tiles)
                 self._rows[c["id"]] = obj.row
                 self._swatches[c["id"]] = obj.dot
                 self._row_keys[obj.row] = c["id"]
                 created = True
             obj.update(c["name"], c["color"], self.preset.count(c["id"]), c["id"] == self.view)
         if created or self._row_order != wanted:
-            for key in self._row_order:
-                if key in self._row_objs:
-                    self._row_objs[key].row.pack_forget()
-            for key in wanted:
-                self._row_objs[key].row.pack(fill="x", padx=6, pady=2)
             self._row_order = wanted
+            self._cat_sig = None
+        self._arrange_cats()
         if not wanted:
             if self._cat_hint is None:
                 self._cat_hint = tk.Label(
@@ -1909,7 +2197,85 @@ class App:
         elif self._cat_hint is not None:
             self._cat_hint.destroy()
             self._cat_hint = None
-        self._predict_scrollbar(self.cat_list, len(wanted) * (ROW_H + 6) + 12)
+        if self.cat_tiles:
+            cols, _, th = self._tile_dims()
+            self._predict_scrollbar(self.cat_list, -(-len(wanted) // cols) * (th + 8) + 12)
+        else:
+            self._predict_scrollbar(self.cat_list, len(wanted) * (ROW_H + 6) + 12)
+
+    def _tile_dims(self) -> tuple[int, float, int]:
+        """(колонок, ширина плитки, висота плитки) для папок-плиток за поточною шириною лівої колонки."""
+        cols = 3 if self._left_w >= CAT_TILE_MIN_LEFT else 2
+        tile_w = (self._left_w - 30 - 8 * (cols - 1) - 14) / cols
+        return cols, tile_w, int(max(84, min(132, tile_w * 0.86)))
+
+    def _arrange_cats(self) -> None:
+        """Розкладає рядки/плитки папок у лівій колонці (список — pack, плитки — grid по 2 або 3 в ряд)."""
+        wanted = self._row_order
+        if self.cat_tiles:
+            cols, tile_w, th = self._tile_dims()
+            sig = (True, cols, th, tuple(wanted), int(tile_w))
+        else:
+            sig = (False, 1, 0, tuple(wanted), 0)
+        if sig == self._cat_sig:
+            return
+        self._cat_sig = sig
+        for key in wanted:
+            obj = self._row_objs.get(key)
+            if obj is not None:
+                (obj.row.grid_forget if obj.tile else obj.row.pack_forget)()
+        if self.cat_tiles:
+            for c in range(3):
+                self.cat_list.grid_columnconfigure(c, weight=1 if c < cols else 0, uniform="cattile" if c < cols else "")
+            wrap = int(max(40, tile_w - 24) * self.scaling())
+            for i, key in enumerate(wanted):
+                obj = self._row_objs[key]
+                obj.set_size(th, wrap)
+                obj.row.grid(row=i // cols, column=i % cols, padx=3, pady=3, sticky="nsew")
+        else:
+            for key in wanted:
+                self._row_objs[key].row.pack(fill="x", padx=6, pady=2)
+
+    def set_cat_view(self, mode: str) -> None:
+        """Папки: список або плитки (по 2 чи 3 в ряд — залежно від ширини лівої колонки)."""
+        tiles = mode == "tiles"
+        if tiles == self.cat_tiles:
+            return
+        self.cat_tiles = tiles
+        self.settings["cat_view"] = mode
+        for key in [k for k in self._row_objs if k != HISTORY]:     # рядки іншого вигляду — знищуємо, створяться заново
+            obj = self._row_objs.pop(key)
+            self._rows.pop(key, None)
+            self._row_fills.pop(key, None)
+            self._swatches.pop(key, None)
+            self._row_keys.pop(obj.row, None)
+            obj.destroy()
+        self._row_order = []
+        self._cat_sig = None
+        self._sync_view_buttons()
+        self._render_sidebar_now()
+
+    def set_rec_view(self, mode: str) -> None:
+        """Копіпасти: список або плитки («квадрати» із заокругленими краями)."""
+        tiles = mode == "tiles"
+        if tiles == self.rec_tiles:
+            return
+        self.rec_tiles = tiles
+        self.settings["rec_view"] = mode
+        self._reset_cards()
+        for w in (self._empty_box, self._more_btn):
+            if w is not None:
+                w.destroy()
+        self._empty_box = self._more_btn = None
+        self._rec_sig = None
+        self._card_pad, self._wrap = self._wrap_for(self._usable0 - self._sb_cur)
+        self._sync_view_buttons()
+        self.render_list(scroll_top=True)
+        self.root.after(50, self._apply_wrap)
+
+    def _sync_view_buttons(self) -> None:
+        self.cat_view_btn.configure(text="☰" if self.cat_tiles else "▦")
+        self.rec_view_btn.configure(text="☰ Список" if self.rec_tiles else "▦ Плитки")
 
     def _swatch(self, parent, color: str, on_click=None) -> ctk.CTkFrame:
         """Кружечок кольору. З on_click — це видима кнопка «змінити колір» (рамка при наведенні, рука)."""
@@ -1996,7 +2362,7 @@ class App:
             right_h = self.right.winfo_height() / s
             if right_h < 200:                       # колонку ще не розкладено
                 return
-            used = 52 + self.formats_slot.winfo_reqheight() / s + 28      # шапка + рядки форматів + приписка
+            used = 52 + self.formats_slot.winfo_reqheight() / s + 28 + self.refund_box.winfo_reqheight() / s   # шапка + формати + приписка + швидкі фрази
             room = right_h - used - 140 - (28 if self.append_armed else 0)   # решта вмісту блоку (заголовок, підписи, кнопки)
             h_in = int(max(34, min(72, room / 2)))
             h_out = int(max(34, min(74, room - h_in)))
@@ -2022,6 +2388,7 @@ class App:
 
     def _collapse_format(self) -> None:
         """Згортає формат: без вибраного формату, без Append, з порожнім полем (при старті/ховання/зміна папки)."""
+        self._clear_refunds()
         if self.sel_format is None and not self.append_armed and not self._fmt_built:
             return
         had = self.sel_format is not None
@@ -2060,7 +2427,7 @@ class App:
     def _update_format_preview(self) -> None:
         out = self._format_result()
         self._set_preview(out)
-        if self.append_armed:
+        if self.append_armed and self.armed_src != "refund":
             self._refresh_banner(out)
 
     def _set_preview(self, text: str) -> None:
@@ -2093,6 +2460,7 @@ class App:
     def _after_format_pick(self) -> None:
         self._set_armed(False)
         self._clear_format_input()
+        self._clear_refunds()
 
     # -- режим Append: допис результату форматування до вибраного запису -----------------------------
     def arm_append(self) -> None:
@@ -2109,14 +2477,27 @@ class App:
         if not out:
             self.set_status("Введіть номери карток — поки немає що дописувати")
             return
-        self._set_armed(True)
+        self._set_armed(True, "format")
         self._refresh_banner(out)
         self.set_status("Append: клікніть запис — результат буде дописано в його кінець (Esc — скасувати)", 9000)
 
-    def _set_armed(self, on: bool) -> None:
+    def _set_armed(self, on: bool, src: str | None = None) -> None:
         self.append_armed = on
+        self.armed_src = src if on else None
+        if on and src == "refund" and self._fmt_built:
+            on_fmt = False
+        else:
+            on_fmt = on
+        if hasattr(self, "refund_append"):
+            if on and src == "refund":
+                self.refund_append.configure(fg_color=ARMED, hover_color=ARMED, border_color=ARMED,
+                                             text_color=("#ffffff", "#1b1b1b"))
+            elif self.refund_append.cget("state") == "normal":
+                self.refund_append.configure(fg_color=BTN2, hover_color=BTN2_HOVER, border_color=BTN2, text_color=TEXT)
+            else:
+                self.refund_append.configure(fg_color=BTN2, border_color=BTN2)
         if self._fmt_built:
-            if on:
+            if on_fmt:
                 self._fmt_append.configure(fg_color=ARMED, hover_color=ARMED, border_color=ARMED,
                                            text_color=("#ffffff", "#1b1b1b"))
                 if not self._fmt_armed_hint.winfo_manager():
@@ -2198,16 +2579,24 @@ class App:
                 card.set_checked(it["id"] in self.checked)
                 self._card_border[it["id"]] = card.border
         have = [i for i in ids if i in self._card_objs]
-        if [i for i in self._packed if i in self._card_objs] != have or len(self._packed) != len(have):
-            for iid in self._packed:
-                if iid in self._card_objs:
-                    self._card_objs[iid].frame.pack_forget()
-            for iid in have:
-                self._card_objs[iid].frame.pack(fill="x", padx=self._card_pad, pady=4)
-        self._packed = have
+        if self.rec_tiles:
+            self._packed = have
+            self._regrid_cards()
+        else:
+            if [i for i in self._packed if i in self._card_objs] != have or len(self._packed) != len(have):
+                for iid in self._packed:
+                    if iid in self._card_objs:
+                        self._card_objs[iid].frame.pack_forget()
+                for iid in have:
+                    self._card_objs[iid].frame.pack(fill="x", padx=self._card_pad, pady=4)
+            self._packed = have
         if not self.shown:
             self._empty_state()
-        need_bar = self._predict_scrollbar(self.cards, len(visible) * CARD_EST_H + 40)
+        if self.rec_tiles:
+            est = -(-len(visible) // self._rec_cols) * (self._rec_tile_h + 12) + 40
+        else:
+            est = len(visible) * CARD_EST_H + 40
+        need_bar = self._predict_scrollbar(self.cards, est)
         self._set_scroll_space(need_bar, SCROLLBAR_W)
 
         self._todo = [it for it in visible if it["id"] not in self._card_objs]
@@ -2225,6 +2614,25 @@ class App:
         else:
             self._finish_render()
 
+    def _regrid_cards(self) -> None:
+        """Плитки: розставляє вже створені картки за номером у списку, виставляє висоту й рівні колонки."""
+        cols = self._rec_cols
+        for c in range(5):
+            self.cards.grid_columnconfigure(c, weight=1 if c < cols else 0, uniform="rectile" if c < cols else "")
+        for i, iid in enumerate(self._order):
+            card = self._card_objs.get(iid)
+            if card is None:
+                continue
+            card.set_tile_h(self._rec_tile_h)
+            card.frame.grid(row=i // cols, column=i % cols, padx=6, pady=6, sticky="nsew")
+
+    def _place_extra(self, widget, **kw) -> None:
+        """«Показати ще…» і порожній стан: у плитках — окремий рядок сітки, у списку — pack."""
+        if self.rec_tiles:
+            widget.grid(row=100000, column=0, columnspan=5, sticky="ew", pady=kw.get("pady", 6))
+        else:
+            widget.pack(**kw)
+
     def _create_cards(self, n: int) -> None:
         if not self._todo or n <= 0:
             return
@@ -2233,11 +2641,15 @@ class App:
             it = self._todo.pop(0)
             iid = it["id"]
             card = Card(self, self.cards, it, self._card_pad, wrap_px, selected=iid == self.sel_id,
-                        checkable=self._is_history(), checked=iid in self.checked)
+                        checkable=self._is_history(), checked=iid in self.checked, tile=self.rec_tiles)
             self._card_objs[iid] = card
             self._cards[iid] = card.frame
             self._card_border[iid] = card.border
-            idx = self._order.index(iid)           # ставимо ПЕРЕД найближчою наступною вже створеною карткою
+            idx = self._order.index(iid)
+            if self.rec_tiles:                     # плитки: клітинка сітки за номером у списку
+                card.frame.grid(row=idx // self._rec_cols, column=idx % self._rec_cols, padx=6, pady=6, sticky="nsew")
+                continue
+            # список: ставимо ПЕРЕД найближчою наступною вже створеною карткою
             nxt = next((self._card_objs[j].frame for j in self._order[idx + 1:] if j in self._card_objs), None)
             card.frame.pack(fill="x", padx=self._card_pad, pady=4, **({"before": nxt} if nxt is not None else {}))
         self._packed = [i for i in self._order if i in self._card_objs]
@@ -2259,7 +2671,7 @@ class App:
             self._more_btn = ctk.CTkButton(self.cards, text=f"Показати ще ({more})", height=34, corner_radius=10,
                                            fg_color=BTN2, hover_color=BTN2_HOVER, text_color=TEXT,
                                            font=self.f.body, command=self._show_more)
-            self._more_btn.pack(pady=8)
+            self._place_extra(self._more_btn, pady=8)
         self._highlight_selection()
         self.root.after_idle(self._sync_scrollbars)
 
@@ -2269,31 +2681,35 @@ class App:
 
     # -- шапка історії: «Очистити», «Об'єднати і копіювати (N)», рядок вибору -----------------------
     def _layout_header(self) -> None:
-        """Розкладає кнопки шапки (порядок справа наліво: «Очистити історію», «Об'єднати і копіювати (N)»)
-        і рядок вибору «Вибрати все / Вибрано: N» під нею. У вузькій панелі кнопка об'єднання йде в рядок вибору."""
-        hist = self._is_history() and bool(self.history.items)
+        """Розкладає кнопки шапки (порядок справа наліво: перемикач вигляду, «Очистити історію», «Об'єднати і
+        копіювати») і рядок вибору «Вибрати все / Вибрано: N» під нею. В історії «Об'єднати» видно ЗАВЖДИ, але вона
+        неактивна, поки не відмічено хоча б 2 записи. У вузькій панелі ця кнопка йде в рядок вибору."""
+        in_hist = self._is_history()
         n = len(self.checked)
         wide = self._mid_w >= WIDE_HEADER
+        can = n >= 2
         for w in (self.clear_btn, self.merge_btn):
             if w.winfo_manager():
                 w.pack_forget()
-        if self._is_history():
+        label = f"Об'єднати і копіювати ({n})" if n else "Об'єднати і копіювати"
+        for btn in (self.merge_btn, self.merge_btn2):
+            btn.configure(text=label, state="normal" if can else "disabled",
+                          fg_color=ACCENT if can else BTN2, text_color="#ffffff" if can else FAINT)
+        if in_hist:
             empty = not self.history.items
             self.clear_btn.configure(state="disabled" if empty else "normal",
                                      border_color=FAINT if empty else DANGER)
-            self.clear_btn.pack(side="right")
-        if hist and n and wide:
-            self.merge_btn.configure(text=f"Об'єднати і копіювати ({n})")
-            self.merge_btn.pack(side="right", padx=(0, 8))
+            self.clear_btn.pack(side="right", padx=(0, 8))
+            if wide:
+                self.merge_btn.pack(side="right", padx=(0, 8))
         # рядок вибору під шапкою
-        if hist:
+        if in_hist:
             all_on = bool(self.shown) and all(i["id"] in self.checked for i in self.shown)
             self.sel_all_btn.configure(text="Зняти вибір" if all_on else "Вибрати все")
             self.sel_count.configure(text=f"Вибрано: {n}" if n else "")
             if self.merge_btn2.winfo_manager():
                 self.merge_btn2.pack_forget()
-            if n and not wide:
-                self.merge_btn2.configure(text=f"Об'єднати і копіювати ({n})")
+            if not wide:
                 self.merge_btn2.pack(side="right")
             if not self.sel_bar.winfo_manager():
                 self.sel_bar.pack(fill="x", padx=18, pady=(0, 6), before=self.cards._parent_frame)
@@ -2333,8 +2749,8 @@ class App:
         до новішого, незалежно від порядку натискань): 1242, 1234, 5466, 2345. Копіює й ховає вікно."""
         chosen = [it for it in reversed(self.history.items) if it["id"] in self.checked]   # історія: найновіші — першими
         out = join_values([it["text"] for it in chosen])
-        if not out:
-            self.set_status("Відмітьте галочками записи в історії")
+        if len(chosen) < 2:
+            self.set_status("Відмітьте галочками щонайменше 2 записи в історії")
             return
         self.copy_to_clipboard(out)
         self.checked = set()
@@ -2359,7 +2775,7 @@ class App:
             title = "У цій категорії ще порожньо"
             text = "Натисніть «＋ Додати» або перетягніть сюди запис з історії буфера."
         box = self._empty_box = ctk.CTkFrame(self.cards, fg_color="transparent")
-        box.pack(fill="x", pady=70)
+        self._place_extra(box, fill="x", pady=70)
         ctk.CTkLabel(box, text=title, text_color=TEXT, font=self.f.bold).pack()
         ctk.CTkLabel(box, text=text, text_color=MUTED, font=self.f.body, justify="center",
                      wraplength=max(200, self._wrap)).pack(pady=(6, 0))
@@ -2389,6 +2805,8 @@ class App:
             usable = 0
         if usable < 200:                           # вікно ще не розкладено — груба оцінка
             usable = self._mid_w - 28
+        else:
+            self._usable0 = usable + self._sb_cur  # актуальна ширина списку (границю між колонками можна рухати)
         pad, wrap = self._wrap_for(usable)
         self._apply_wrap_values(pad, wrap)
         self._sync_scrollbars()
@@ -2406,18 +2824,52 @@ class App:
         except tk.TclError:
             pass
 
+    def _set_left_width(self, lw: int) -> None:
+        """Нова ширина лівої колонки (вікно змінило розмір або користувач пересунув границю)."""
+        self._left_w = lw
+        self.left.configure(width=lw)
+        cols = 3 if lw >= CAT_TILE_MIN_LEFT else 2
+        chars = max(12, int((lw - 150) / 9.0))
+        if chars != self._name_chars:
+            self._name_chars = chars
+            self.render_sidebar()
+        if cols != self._cat_cols:
+            self._cat_cols = cols
+        if self.cat_tiles:
+            self._arrange_cats()
+
+    def _splitter_press(self, e) -> None:
+        self._split = (e.x_root, self._left_w)
+
+    def _splitter_motion(self, e) -> None:
+        if not getattr(self, "_split", None):
+            return
+        x0, w0 = self._split
+        s = self.scaling()
+        top = self.root.winfo_width() / s * 0.6
+        lw = int(max(LEFT_MIN, min(w0 + (e.x_root - x0) / s, LEFT_MAX_USER, top)))
+        if lw != self._left_w:
+            self._left_user = lw
+            self._set_left_width(lw)
+
+    def _splitter_release(self, e) -> None:
+        if getattr(self, "_split", None):
+            self._split = None
+            self.settings["left_w"] = int(self._left_user)
+
+    def _splitter_reset(self, e=None) -> None:
+        """Подвійний клік по границі — повернути автоматичну ширину."""
+        self._left_user = 0
+        self.settings["left_w"] = 0
+        self._set_left_width(self._left_for(self.root.winfo_width() / self.scaling()))
+
     def _apply_layout(self, width_px: int) -> None:
         """Бічні колонки ростуть разом із вікном: ліва clamp(280, 17%, 380), права clamp(344, 22%, 480)."""
         w = width_px / self.scaling()
-        lw = int(min(LEFT_MAX, max(LEFT_W, w * LEFT_FRAC)))
+        lw = self._left_for(w)
         rw = int(min(RIGHT_MAX, max(RIGHT_W, w * RIGHT_FRAC)))
         if abs(lw - self._left_w) >= 3:
-            self._left_w = lw
-            self.left.configure(width=lw)
-            chars = max(12, int((lw - 150) / 9.0))
-            if chars != self._name_chars:
-                self._name_chars = chars
-                self.render_sidebar()
+            self._set_left_width(lw)
         if abs(rw - self._right_w) >= 3:
             self._right_w = rw
             self.right.configure(width=rw)
@@ -2593,7 +3045,7 @@ class App:
             return False
 
     def _can_reorder_records(self) -> bool:
-        return not self._is_history() and not self._query().strip()
+        return not self._is_history() and not self._query().strip() and not self.rec_tiles
 
     def _cards_insert(self, dragged: str, x: int, y: int) -> int | None:
         """Куди вставити перетягуваний запис у відкритій папці: індекс у списку (або None поза списком)."""
@@ -2612,7 +3064,7 @@ class App:
     def _drag_press(self, e: tk.Event, iid: str) -> None:
         card = self._card_objs.get(iid)
         try:
-            if card is not None and e.x_root >= card.zone.winfo_rootx():
+            if card is not None and card.inert(e.x_root, e.y_root):
                 self._drag = None               # права зона картки: клік нічого не робить
                 return
         except tk.TclError:
@@ -2777,11 +3229,14 @@ class App:
     def _append_to(self, base: str, close: bool | None = None) -> None:
         """Append: у буфер потрапляє «запис + результат форматування»; сам запис у пресеті НЕ змінюється.
         close: True — сховати вікно, False — лишити, None — за налаштуванням «автохов»."""
-        result = self._format_result()
+        result = self._armed_result()
         if not result:
-            self.set_status("Поле введення порожнє — нічого дописувати (Esc — вийти з режиму Append)")
+            self.set_status("Поле введення порожнє — нічого дописувати (Esc — вийти з режиму Append)"
+                            if self.armed_src != "refund" else "Позначте фразу — нічого дописувати (Esc — вийти з режиму Append)")
             return
-        out = append_result(base, result)
+        fmt = self.preset.format(self.sel_format) if (self.sel_format and self.armed_src != "refund") else None
+        join = APPENDERS.get(fmt["type"], append_result) if fmt else append_result
+        out = join(base, result)
         self.copy_to_clipboard(out)
         self.append_armed = False
         self._finish_pick("✓ Дописано і скопійовано: " + clip(out.replace("\n", " "), 70), self._after_format_pick,
@@ -3429,9 +3884,10 @@ class App:
         s = self.scaling()
         w, h = self._size or (int(self.settings["width"] * s), int(self.settings["height"] * s))
         px, py = self.root.winfo_pointerxy()
-        sw, sh = self.root.winfo_screenwidth(), self.root.winfo_screenheight()
-        x = max(0, min(px - w // 2, sw - w))
-        y = max(0, min(py - 40, sh - h - 50))
+        area = work_area_at(px, py)             # вікно відкривається на тому моніторі, де зараз курсор
+        ax0, ay0, ax1, ay1 = area if area else (0, 0, self.root.winfo_screenwidth(), self.root.winfo_screenheight() - 50)
+        x = max(ax0, min(px - w // 2, ax1 - w))
+        y = max(ay0, min(py - 40, ay1 - h))
         self.root.geometry(f"{int(w / s)}x{int(h / s)}+{x}+{y}")
 
     def _on_root_configure(self, event: tk.Event) -> None:
@@ -3537,6 +3993,7 @@ class App:
         if self._cat_hint is not None:
             self._cat_hint.destroy()
             self._cat_hint = None
+        self._cat_sig = None
         self._left_w = self._right_w = -999                  # примусово перерахувати ширини колонок і переноси
         try:
             self.root.update_idletasks()
