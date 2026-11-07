@@ -579,6 +579,14 @@ class _Dialog(ctk.CTkToplevel):
         self.result = None
         self.destroy()
 
+    def destroy(self) -> None:
+        try:                  # ctk тримає посилання на знищені вікна в ScalingTracker — інакше кожен діалог «тече»
+            from customtkinter.windows.widgets.scaling import ScalingTracker
+            ScalingTracker.window_dpi_scaling_dict.pop(self, None)
+        except Exception:
+            pass
+        super().destroy()
+
 
 class TextDialog(_Dialog):
     def __init__(self, app: "App", title: str, prompt: str, initial: str = ""):
@@ -914,7 +922,8 @@ class Card:
         return x_root >= self.zone.winfo_rootx()
 
     def set_tile_h(self, h: int) -> None:
-        if self.tile:
+        if self.tile and h != getattr(self, "_tile_h", None):      # configure ctk-фрейма = повне перемалювання
+            self._tile_h = h
             self.frame.configure(height=h)
 
     def _draw_check(self) -> None:
@@ -1074,8 +1083,10 @@ class SideRow:
 
     def set_size(self, height: int, wrap_px: int) -> None:
         """Лише для плиток: висота «квадрата» і ширина переносу назви."""
-        self.row.configure(height=height)
-        self.label.configure(wraplength=wrap_px)
+        if (height, wrap_px) != getattr(self, "_size", None):
+            self._size = (height, wrap_px)
+            self.row.configure(height=height)
+            self.label.configure(wraplength=wrap_px)
 
     def _enter(self) -> None:
         if not self.selected:
@@ -1114,9 +1125,13 @@ class SideRow:
             self.num.configure(text=str(count))
         self.selected = selected
         self.hovering = False if selected else self.hovering
-        if self.real:
-            self.row.configure(border_width=2 if selected else 1, border_color=ACCENT if selected else self.border)
-        self.paint(self.sel_fill if selected else (self.hover if self.hovering else self.fill))
+        fill = self.sel_fill if selected else (self.hover if self.hovering else self.fill)
+        self.cur = fill
+        if self.real:      # один configure замість трьох (кожен = перемалювання ctk-фрейма)
+            self.row.configure(fg_color=fill, border_width=2 if selected else 1,
+                               border_color=ACCENT if selected else self.border)
+        else:
+            self.row.configure(fg_color=fill)
         self.colorize()
 
     def colorize(self) -> None:
@@ -2243,7 +2258,7 @@ class App:
         wanted = self._row_order
         if self.cat_tiles:
             cols, tile_w, th = self._tile_dims()
-            sig = (True, cols, th, tuple(wanted), int(tile_w))
+            sig = (True, cols, th, tuple(wanted), int(tile_w // 10))     # ширина плитки — кроками по 10 px (менше перемальовувань при тягненні границі)
         else:
             sig = (False, 1, 0, tuple(wanted), 0)
         if sig == self._cat_sig:

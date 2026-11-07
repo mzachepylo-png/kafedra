@@ -565,6 +565,8 @@ class Settings:
         return self.data[key]
 
     def __setitem__(self, key: str, value) -> None:
+        if key in self.data and self.data[key] == value:      # без зайвого запису на диск
+            return
         self.data[key] = value
         self.save()
 
