@@ -607,21 +607,39 @@ class SuspiciousAndRefundTests(unittest.TestCase):
                          "Suspicious cards 1245, 1254, 2365 were added. Blacklisted, no unsolicited charges to refund")
         self.assertEqual(append_suspicious_cards("Інший текст", res), "Інший текст " + res)
 
-    def test_refunds(self):
-        from formats import format_refunds
-        self.assertEqual(format_refunds([]), "")
-        self.assertEqual(format_refunds(["Active subscriptions"]), "Active subscriptions were refunded.")
-        self.assertEqual(format_refunds(["Internal charges"]), "Internal charges were refunded.")
-        self.assertEqual(format_refunds(["Internal charges", "Active subscriptions"]),
-                         "Active subscriptions and Internal charges were refunded.")
-        self.assertEqual(format_refunds(["Ignore billing check flag"]), "Ignore billing check flag was set.")
-        self.assertEqual(format_refunds(["No active subscriptions"]), "No active subscriptions.")
-        self.assertEqual(format_refunds(["No active subscriptions", "Internal charges"]), "No active subscriptions.")
+    def test_phrases_compose(self):
+        from formats import compose_phrases
+        from store import DEFAULT_PHRASES
+        act, internal, ignore, noact = DEFAULT_PHRASES
+        self.assertEqual(compose_phrases([]), "")
+        self.assertEqual(compose_phrases([act]), "Active subscriptions were refunded.")
+        self.assertEqual(compose_phrases([internal]), "Internal charges were refunded.")
+        self.assertEqual(compose_phrases([act, internal]), "Active subscriptions and Internal charges were refunded.")
+        self.assertEqual(compose_phrases([ignore]), "Ignore billing check flag was set.")
+        self.assertEqual(compose_phrases([noact]), "No active subscriptions.")
+        self.assertEqual(compose_phrases([internal, noact]), "No active subscriptions.")
+        self.assertEqual(compose_phrases([{"id": "x", "text": "  своя фраза:  "}]), "своя фраза:")
+
+    def test_phrases_add_remove_persist(self):
+        import tempfile, os
+        pr = Preset(os.path.join(tempfile.mkdtemp(), "p.preset.json"))
+        self.assertEqual([p["id"] for p in pr.phrases], ["ph-active", "ph-internal", "ph-ignore", "ph-noactive"])
+        ph = pr.add_phrase("  User blacklisted due to repeated TOS Violations, multiple chargebacks in accounts:  ")
+        self.assertEqual(ph["text"], "User blacklisted due to repeated TOS Violations, multiple chargebacks in accounts:")
+        self.assertIsNone(pr.add_phrase(ph["text"]))        # дублікат
+        self.assertIsNone(pr.add_phrase("   "))
+        self.assertTrue(pr.remove_phrase("ph-ignore"))
+        self.assertFalse(pr.remove_phrase("nope"))
+        again = Preset.open(pr.path)
+        self.assertEqual([p["id"] for p in again.phrases], ["ph-active", "ph-internal", "ph-noactive", ph["id"]])
+        for p in list(again.phrases):                        # можна видалити всі; порожній список не відновлюється
+            again.remove_phrase(p["id"])
+        self.assertEqual(Preset.open(pr.path).phrases, [])
 
     def test_new_settings_defaults(self):
         import tempfile, os
         st = Settings(os.path.join(tempfile.mkdtemp(), "s.json"))
-        self.assertEqual((st["cat_view"], st["rec_view"], st["left_w"]), ("list", "list", 0))
+        self.assertEqual((st["cat_view"], st["rec_view"], st["left_w"], st["clear_on_exit"]), ("list", "list", 0, True))
 
 
 if __name__ == "__main__":

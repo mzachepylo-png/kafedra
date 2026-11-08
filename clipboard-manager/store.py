@@ -33,6 +33,15 @@ BUILTIN_FORMATS = [
     {"id": "builtin-suspicious-cards", "name": "Suspicious cards", "type": "suspicious_cards", "color": "#e81123",
      "folders": ["Suspicious cards"]},
 ]
+# Швидкі фрази (права колонка). "part" — фраза, яку можна поєднувати з іншими такими ж у одне речення
+# («Active subscriptions and Internal charges were refunded.»); без "part" — окрема фраза, копіюється як є.
+DEFAULT_PHRASES = [
+    {"id": "ph-active", "text": "Active subscriptions were refunded", "part": "Active subscriptions"},
+    {"id": "ph-internal", "text": "Internal charges were refunded", "part": "Internal charges"},
+    {"id": "ph-ignore", "text": "Ignore billing check flag was set."},
+    {"id": "ph-noactive", "text": "No active subscriptions."},
+]
+MAX_PHRASE = 1000
 PALETTE = ["#0f6cbd", "#107c10", "#c239b3", "#d83b01", "#8764b8", "#038387", "#986f0b", "#e3008c"]
 
 
@@ -89,6 +98,7 @@ class Preset:
         self.name = name or _stem(path)
         self.categories: list[dict] = []
         self.formats: list[dict] = []
+        self.phrases: list[dict] = [dict(p) for p in DEFAULT_PHRASES]
         self._mtime: int | None = None
         self._ensure_builtin_formats()
 
@@ -151,13 +161,44 @@ class Preset:
                         for f in data.get("formats", [])
                         if isinstance(f, dict) and f.get("id") and f.get("name")]   # невідомі типи не губимо
         self._ensure_builtin_formats()
+        raw = data.get("phrases")
+        if isinstance(raw, list):                      # власні фрази; без ключа — типові
+            self.phrases = []
+            for p in raw:
+                if isinstance(p, dict) and isinstance(p.get("text"), str) and p["text"].strip():
+                    ph = {"id": str(p.get("id") or uuid.uuid4().hex), "text": p["text"].strip()[:MAX_PHRASE]}
+                    if isinstance(p.get("part"), str) and p["part"].strip():
+                        ph["part"] = p["part"].strip()
+                    self.phrases.append(ph)
+        else:
+            self.phrases = [dict(p) for p in DEFAULT_PHRASES]
         self.name = str(data.get("name") or _stem(self.path))[:MAX_PRESET_NAME]
         self._mtime = self._disk_mtime()
 
     def save(self) -> None:
         _write_json(self.path, {"format": PRESET_FORMAT, "version": PRESET_VERSION, "name": self.name,
-                                "categories": self.categories, "formats": self.formats})
+                                "categories": self.categories, "formats": self.formats,
+                                "phrases": self.phrases})
         self._mtime = self._disk_mtime()
+
+    # -- швидкі фрази -----------------------------------------------------------
+    def add_phrase(self, text: str) -> dict | None:
+        """Додає власну (окрему) фразу. Порожній текст і дублікат ігноруються."""
+        text = (text or "").strip()[:MAX_PHRASE]
+        if not text or any(p["text"] == text for p in self.phrases):
+            return None
+        ph = {"id": uuid.uuid4().hex, "text": text}
+        self.phrases.append(ph)
+        self.save()
+        return ph
+
+    def remove_phrase(self, phrase_id: str) -> bool:
+        before = len(self.phrases)
+        self.phrases = [p for p in self.phrases if p["id"] != phrase_id]
+        if len(self.phrases) == before:
+            return False
+        self.save()
+        return True
 
     def save_as(self, path: str, name: str | None = None) -> None:
         """«Зберегти як…»: пише копію у новий файл і далі працює вже з ним."""
@@ -545,6 +586,7 @@ DEFAULT_SETTINGS = {
     "cat_view": "list",     # вигляд папок: list | tiles
     "rec_view": "list",     # вигляд копіпастів: list | tiles
     "left_w": 0,            # ширина лівої колонки, яку виставив користувач (0 — автоматично)
+    "clear_on_exit": True,  # очищати історію буфера при закритті (виході) програми; згортання історію не чіпає
 }
 
 

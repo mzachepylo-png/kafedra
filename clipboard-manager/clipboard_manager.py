@@ -41,9 +41,7 @@ from types import SimpleNamespace
 
 import customtkinter as ctk
 
-from formats import (APPENDERS, FORMATTERS, NO_ACTIVE_OPTION, IGNORE_OPTION, REFUND_LABELS, REFUND_OPTIONS, STANDALONE_OPTIONS,
-                     append_result, apply_format,
-                     format_actions, format_refunds, join_values)
+from formats import APPENDERS, FORMATTERS, append_result, apply_format, compose_phrases, format_actions, join_values
 from store import (HISTORY, PALETTE, PRESET_SUFFIX, History, Preset, PresetError, Settings,
                    default_data_dir, history_path, open_startup_preset)
 from winsys import (work_area_at, HOTKEY_PRESETS, HotkeyListener, acquire_single_instance, clipboard_sequence, hotkey_label,
@@ -1288,6 +1286,7 @@ class _Fonts:
         self.dlg_bold = mk(14, "bold")
         self.card = mk(15, "bold")        # текст самого копіпасту
         self.meta = mk(12)                # дата і довжина під записом
+        self.phrase = mk(15)              # текст швидких фраз
         self.mono = ctk.CTkFont(family=MONO, size=12)
 
 
@@ -1546,7 +1545,7 @@ class App:
         """Шрифти для простих tk-міток (розмір у фізичних пікселях з урахуванням масштабу екрана)."""
         s = self._pf_scale = self.scaling()
         spec = dict(body=(13, "normal"), small=(11, "normal"), tiny=(10, "normal"), bold=(13, "bold"),
-                    caps=(10, "bold"), icon=(15, "bold"), card=(15, "bold"), meta=(12, "normal"),
+                    caps=(10, "bold"), icon=(15, "bold"), card=(15, "bold"), meta=(12, "normal"), phrase=(14, "normal"),
                     title=(17, "bold"), menu=(14, "normal"))
         old = getattr(self, "pf", None)
         if old is not None:             # зміна масштабу: розмір шрифтів міняється НА МІСЦІ — усі віджети оновлюються самі
@@ -1702,6 +1701,7 @@ class App:
         self.v_topmost = tk.BooleanVar(value=self.settings["topmost"])
         self.v_autohide = tk.BooleanVar(value=self.settings["autohide"])
         self.v_fullscreen = tk.BooleanVar(value=self.settings["fullscreen"])
+        self.v_clear_exit = tk.BooleanVar(value=self.settings["clear_on_exit"])
         self.v_hotkey = tk.StringVar(value=self.settings["hotkey"])
         self.v_theme = tk.StringVar(value=self.settings["theme"])
 
@@ -1832,64 +1832,107 @@ class App:
         head.pack(fill="x", padx=14, pady=(16, 4))
         self._label(head, "ФОРМАТУВАННЯ", PANEL, MUTED, self.pf.caps, anchor="w").pack(side="left")
 
-        # внизу — приписка (пакується першою зі side=bottom, щоб ніколи не виштовхувалась)
-        self.formats_note = self._label(right, "Інші формати — скоро", PANEL, FAINT, self.pf.small, anchor="w")
-        self.formats_note.pack(side="bottom", fill="x", padx=16, pady=(0, 12))
-
-        self._build_refund_box(right)
-
         self.formats_slot = ctk.CTkFrame(right, fg_color="transparent")
         self.formats_slot.pack(fill="x", padx=2)
-        self.fmt_idle = self._label(right, "Оберіть формат, щоб ввести значення.", PANEL, MUTED, self.pf.small,
-                                    anchor="w")
+        # швидкі фрази — посередині правої колонки (expand центрує блок у вільному місці під форматами)
+        self._build_refund_box(right)
         # область введення вибраного формату (два CTkTextbox — найважчі віджети вікна) будується ЛІНИВО,
         # при першому виборі формату: див. _ensure_fmt і властивості fmt_box, fmt_input, …
 
     def _build_refund_box(self, right) -> None:
-        """Постійний блок «швидких фраз» (видно в усіх папках): три пункти з галочками й кнопки Copy / Append.
-        Перші два можна поєднувати («Active subscriptions and Internal charges were refunded.»), третій — лише окремо."""
+        """Постійний блок «Швидкі фрази» (видно в усіх папках): фрази з галочками, кнопки Copy / Append, «＋» додає власну
+        фразу, «✕» біля фрази видаляє її. Фрази лежать у пресеті (preset.phrases)."""
         box = self.refund_box = ctk.CTkFrame(right, corner_radius=12, fg_color=CARD, border_width=1,
                                              border_color=CARD_BORDER)
-        box.pack(side="bottom", fill="x", padx=12, pady=(0, 6))
-        self._label(box, "ШВИДКІ ФРАЗИ", CARD, MUTED, self.pf.caps, anchor="w").pack(fill="x", padx=14, pady=(7, 1))
-        self._refund_vars: dict[str, tk.BooleanVar] = {}
-        self._refund_checks: dict[str, ctk.CTkCheckBox] = {}
-        for opt in (*REFUND_OPTIONS, *STANDALONE_OPTIONS):
-            var = self._refund_vars[opt] = tk.BooleanVar(value=False)
-            cb = ctk.CTkCheckBox(box, text=REFUND_LABELS[opt], variable=var, font=self.f.body, text_color=TEXT,
-                                 checkbox_width=22, checkbox_height=22, corner_radius=6, border_width=2,
-                                 fg_color=ACCENT, hover_color=ACCENT_HOVER,
-                                 command=lambda o=opt: self._refund_toggle(o))
-            cb.pack(fill="x", padx=14, pady=3)
-            self._refund_checks[opt] = cb
-        pair = ctk.CTkFrame(box, fg_color="transparent")
-        pair.pack(fill="x", padx=12, pady=(4, 8))
+        box.pack(side="top", fill="x", expand=True, padx=(22, 12), pady=8)
+        head = tk.Frame(box, bg=self.col(CARD))
+        self._themed.append((head, CARD, None))
+        head.pack(fill="x", padx=(18, 8), pady=(8, 2))
+        self._label(head, "ШВИДКІ ФРАЗИ", CARD, MUTED, self.pf.caps, anchor="w").pack(side="left")
+        self.phrase_add_btn = ctk.CTkButton(head, text="＋", width=34, height=28, corner_radius=9, fg_color=BTN2,
+                                            hover_color=BTN2_HOVER, text_color=TEXT, font=self.f.icon,
+                                            command=self.on_add_phrase)
+        self.phrase_add_btn.pack(side="right")
+        self.phrase_list = tk.Frame(box, bg=self.col(CARD))
+        self._themed.append((self.phrase_list, CARD, None))
+        self.phrase_list.pack(fill="x")
+        self._phrase_rows: dict[str, dict] = {}
+        self._phrase_sig = None
+        pair = tk.Frame(box, bg=self.col(CARD))
+        self._themed.append((pair, CARD, None))
+        pair.pack(fill="x", padx=(16, 12), pady=(6, 12))
         pair.grid_columnconfigure((0, 1), weight=1, uniform="refpair")
-        self.refund_copy = ctk.CTkButton(pair, text="Copy", height=34, corner_radius=12, fg_color=BTN2,
+        self.refund_copy = ctk.CTkButton(pair, text="Copy", height=36, corner_radius=12, fg_color=BTN2,
                                          hover_color=BTN2_HOVER, text_color=FAINT, font=self.f.bold,
                                          state="disabled", command=self.submit_refund)
         self.refund_copy.grid(row=0, column=0, sticky="ew", padx=(0, 5))
-        self.refund_append = ctk.CTkButton(pair, text="Append", height=34, corner_radius=12, fg_color=BTN2,
+        self.refund_append = ctk.CTkButton(pair, text="Append", height=36, corner_radius=12, fg_color=BTN2,
                                            hover_color=BTN2_HOVER, text_color=FAINT, border_width=2,
                                            border_color=BTN2, font=self.f.bold, state="disabled",
                                            command=self.arm_refund_append)
         self.refund_append.grid(row=0, column=1, sticky="ew", padx=(5, 0))
 
-    def _refund_selected(self) -> list[str]:
-        return [o for o, v in self._refund_vars.items() if v.get()]
+    def _render_phrases(self) -> None:
+        """Малює рядки фраз за preset.phrases (лише коли список змінився); стан галочок збережених фраз лишається."""
+        phrases = self.preset.phrases
+        sig = tuple((p["id"], p["text"]) for p in phrases)
+        if sig == self._phrase_sig:
+            return
+        self._phrase_sig = sig
+        wanted = {p["id"] for p in phrases}
+        for pid in [k for k in self._phrase_rows if k not in wanted]:
+            self._phrase_rows.pop(pid)["frame"].destroy()
+        wrap = int(max(120, self._right_w - 112) * self.scaling())
+        for row in self._phrase_rows.values():
+            row["frame"].pack_forget()
+            row["label"].configure(wraplength=wrap)
+        for p in phrases:
+            row = self._phrase_rows.get(p["id"])
+            if row is None:
+                row = self._phrase_rows[p["id"]] = self._make_phrase_row(p, wrap)
+            row["phrase"] = p
+            row["label"].configure(text=p["text"])
+            row["frame"].pack(fill="x", padx=(14, 6), pady=3)
+        self._sync_refund_buttons()
+        if not phrases:
+            self.set_status("Фраз немає — додайте свою кнопкою «＋»", 4000)
+        self.root.after_idle(self._fit_format_box)
 
-    def _refund_toggle(self, opt: str) -> None:
-        """Окремі пункти (Ignore billing check flag, No active subscriptions) виключають усі інші; перші два
-        поєднуються між собою, але знімають окремі."""
-        if self._refund_vars[opt].get():
-            alone = opt in STANDALONE_OPTIONS
-            for other in self._refund_vars:
-                if other != opt and (alone or other in STANDALONE_OPTIONS):
-                    self._refund_vars[other].set(False)
+    def _make_phrase_row(self, p: dict, wrap: int) -> dict:
+        frame = tk.Frame(self.phrase_list, bg=self.col(CARD))
+        self._themed.append((frame, CARD, None))
+        var = tk.BooleanVar(value=False)
+        cb = ctk.CTkCheckBox(frame, text="", variable=var, width=26, checkbox_width=24, checkbox_height=24,
+                             corner_radius=7, border_width=2, fg_color=ACCENT, hover_color=ACCENT_HOVER,
+                             command=lambda pid=p["id"]: self._refund_toggle(pid))
+        cb.pack(side="left", padx=(0, 8))
+        dele = self._icon_button(frame, "✕", lambda e, pid=p["id"]: self.on_remove_phrase(pid), hover_text=DANGER,
+                                 bg_fn=lambda: self.col(CARD))
+        dele.pack(side="right", padx=(4, 0))
+        label = tk.Label(frame, text=p["text"], font=self.pf.phrase, anchor="w", justify="left", cursor="hand2",
+                         bg=self.col(CARD), fg=self.col(TEXT), wraplength=wrap)
+        self._themed.append((label, CARD, TEXT))
+        label.pack(side="left", fill="x", expand=True)
+        label.bind("<Button-1>", lambda e, c=cb: c.toggle())
+        return {"frame": frame, "var": var, "cb": cb, "label": label, "dele": dele, "phrase": p}
+
+    def _refund_selected(self) -> list[dict]:
+        """Позначені фрази — у порядку, в якому вони лежать у пресеті."""
+        return [r["phrase"] for r in (self._phrase_rows.get(p["id"]) for p in self.preset.phrases)
+                if r is not None and r["var"].get()]
+
+    def _refund_toggle(self, pid: str) -> None:
+        """Окрема фраза (без "part") виключає всі інші; об'єднувані між собою поєднуються, але знімають окремі."""
+        row = self._phrase_rows[pid]
+        if row["var"].get():
+            alone = not row["phrase"].get("part")
+            for other_id, other in self._phrase_rows.items():
+                if other_id != pid and (alone or not other["phrase"].get("part")):
+                    other["var"].set(False)
         self._sync_refund_buttons()
 
     def _sync_refund_buttons(self) -> None:
-        ready = bool(format_refunds(self._refund_selected()))
+        ready = bool(compose_phrases(self._refund_selected()))
         st = "normal" if ready else "disabled"
         self.refund_copy.configure(state=st, fg_color=ACCENT if ready else BTN2,
                                    hover_color=ACCENT_HOVER if ready else BTN2_HOVER,
@@ -1902,16 +1945,31 @@ class App:
         if not armed:
             self.refund_append.configure(fg_color=BTN2, hover_color=BTN2_HOVER, border_color=BTN2)
         else:
-            self._refresh_banner(format_refunds(self._refund_selected()))
+            self._refresh_banner(compose_phrases(self._refund_selected()))
 
     def _clear_refunds(self) -> None:
-        if any(v.get() for v in self._refund_vars.values()):
-            for v in self._refund_vars.values():
-                v.set(False)
+        if any(r["var"].get() for r in self._phrase_rows.values()):
+            for r in self._phrase_rows.values():
+                r["var"].set(False)
             self._sync_refund_buttons()
 
+    def on_add_phrase(self) -> None:
+        text = TextDialog(self, "Нова швидка фраза", "Текст фрази:").run()
+        if text is None:
+            return
+        if not self.preset.add_phrase(text):
+            self.set_status("Порожня фраза або така вже є", 4000)
+            return
+        self._render_phrases()
+        self.set_status("✓ Фразу додано", 3000)
+
+    def on_remove_phrase(self, pid: str) -> None:
+        if self.preset.remove_phrase(pid):
+            self._render_phrases()
+            self.set_status("Фразу видалено", 3000)
+
     def submit_refund(self) -> None:
-        out = format_refunds(self._refund_selected())
+        out = compose_phrases(self._refund_selected())
         if not out:
             self.set_status("Позначте галочкою, що саме скопіювати")
             return
@@ -1924,7 +1982,7 @@ class App:
             self._set_armed(False)
             self.set_status("Режим Append скасовано")
             return
-        out = format_refunds(self._refund_selected())
+        out = compose_phrases(self._refund_selected())
         if not out:
             return
         self._set_armed(True, "refund")
@@ -1934,7 +1992,7 @@ class App:
     def _armed_result(self) -> str:
         """Що дописується в режимі Append: результат вибраного формату або обрана швидка фраза."""
         if self.armed_src == "refund":
-            return format_refunds(self._refund_selected())
+            return compose_phrases(self._refund_selected())
         return self._format_result()
 
     def _ensure_fmt(self) -> None:
@@ -1946,9 +2004,7 @@ class App:
         self._fmt_box = box = ctk.CTkFrame(right, fg_color=PANEL, corner_radius=0)
         self._fmt_title = self._label(box, "", PANEL, TEXT, pf.bold, anchor="w")
         self._fmt_title.pack(fill="x", padx=16, pady=(10, 0))
-        self._fmt_hint = self._label(box, "", PANEL, MUTED, pf.small, anchor="w", justify="left",
-                                     wraplength=int((self._right_w - 40) * self.scaling()))
-        self._fmt_hint.pack(fill="x", padx=16, pady=(2, 6))
+        self._fmt_title.pack_configure(pady=(10, 6))
         self._fmt_input = ctk.CTkTextbox(box, height=self._fmt_heights[0], wrap="word", corner_radius=10,
                                          border_width=1, border_color=PANEL_BORDER, fg_color=INPUT, text_color=TEXT,
                                          font=self.f.body, undo=True)
@@ -1989,7 +2045,6 @@ class App:
 
     fmt_box = _lazy_fmt("fmt_box")
     fmt_title = _lazy_fmt("fmt_title")
-    fmt_hint = _lazy_fmt("fmt_hint")
     fmt_input = _lazy_fmt("fmt_input")
     fmt_preview = _lazy_fmt("fmt_preview")
     fmt_btn = _lazy_fmt("fmt_btn")
@@ -2127,14 +2182,15 @@ class App:
     def _render_now(self, scroll_top: bool = False) -> None:
         if self.view != HISTORY and not self.preset.category(self.view):
             self.view = HISTORY
-        for stage in (self._render_sidebar_now, lambda: self._render_list_now(scroll_top), self._render_formats):
+        for stage, is_list in ((self._render_sidebar_now, False), (lambda: self._render_list_now(scroll_top), True),
+                               (self._render_formats, False), (self._render_phrases, False)):
             try:
                 stage()
             except Exception:
                 # одна зламана ділянка не повинна «вбивати» весь інтерфейс: пишемо в error.log й
                 # для списку записів пробуємо перебудувати картки з нуля
                 self._report_exception(*sys.exc_info())
-                if stage != self._render_sidebar_now and stage != self._render_formats:
+                if is_list:
                     self._reset_cards()
                     try:
                         self._render_list_now(True)
@@ -2371,18 +2427,12 @@ class App:
         """Показує область введення для вибраного формату (або підказку, якщо нічого не вибрано)."""
         fmt = self.preset.format(self.sel_format) if self.sel_format else None
         if fmt and fmt.get("type") in FORMATTERS:
-            info = FORMAT_INFO.get(fmt["type"], ("", ""))
             self.fmt_title.configure(text=fmt["name"])
-            self.fmt_hint.configure(text=info[1])
             self._show_actions("append" in format_actions(fmt["type"]))
-            self.fmt_idle.pack_forget()
             if not self.fmt_box.winfo_manager():
                 self.fmt_box.pack(fill="x", after=self.formats_slot)
-        else:
-            if self._fmt_built:
-                self._fmt_box.pack_forget()
-            if not self.fmt_idle.winfo_manager():
-                self.fmt_idle.pack(fill="x", padx=16, pady=(10, 0), after=self.formats_slot)
+        elif self._fmt_built:
+            self._fmt_box.pack_forget()
 
     def _show_actions(self, two: bool) -> None:
         """Одна кнопка (USER) або пара «Copy» / «Append» залежно від дій формату."""
@@ -2408,22 +2458,8 @@ class App:
             if right_h < 200:                       # колонку ще не розкладено
                 return
             overhead = self._fmt_box.winfo_reqheight() / s - sum(self._fmt_heights)    # усе в блоці, крім двох полів
-            note_on = bool(self.formats_note.winfo_manager())
-            hint_on = bool(self._fmt_hint.winfo_manager())
             room = (right_h - 52 - self.formats_slot.winfo_reqheight() / s - self.refund_box.winfo_reqheight() / s
-                    - (28 if note_on else 0) - overhead - 10 - (28 if self.append_armed else 0))
-            if note_on and room < 62:                   # на низькому вікні спершу ховаємо приписку «Інші формати — скоро»
-                self.formats_note.pack_forget()
-                room += 28
-            elif not note_on and room - 28 >= 100:
-                self.formats_note.pack(side="bottom", fill="x", padx=16, pady=(0, 12), before=self.refund_box)
-                room -= 28
-            if hint_on and room < 62:                   # потім підказку над полем
-                self._fmt_hint.pack_forget()
-                room += 24
-            elif not hint_on and room - 24 >= 90:
-                self._fmt_hint.pack(fill="x", padx=16, pady=(2, 6), after=self._fmt_title)
-                room -= 24
+                    - overhead - 22 - (28 if self.append_armed else 0))
             h_in = int(max(30, min(72, room / 2)))
             h_out = int(max(30, min(74, room - h_in)))
             if (h_in, h_out) != self._fmt_heights:
@@ -2936,7 +2972,9 @@ class App:
             self._right_w = rw
             self.right.configure(width=rw)
             if self._fmt_built:
-                self._fmt_hint.configure(wraplength=int((rw - 40) * self.scaling()))
+                self._fmt_armed_hint.configure(wraplength=int((rw - 40) * self.scaling()))
+            self._phrase_sig = None                  # фрази переносяться за новою шириною колонки
+            self.root.after_idle(self._render_phrases)
 
     def _predict_scrollbar(self, sf, est_h: int) -> bool:
         """Смугу прокрутки вирішуємо за кількістю рядків ДО розкладки, а не після: інакше вона «вистрибує»
@@ -3686,6 +3724,7 @@ class App:
         m.add_check("Завжди зверху", self.v_topmost, self._on_topmost)
         m.add_check("Ховати вікно після вибору запису", self.v_autohide, self._on_autohide)
         m.add_check("Відкривати на весь екран", self.v_fullscreen, self._on_fullscreen)
+        m.add_check("Очищати історію при виході з програми", self.v_clear_exit, self._on_clear_exit)
         hot = self._new_menu()
         for spec, label in HOTKEY_PRESETS:
             hot.add_radio(label, self.v_hotkey, spec, self._on_hotkey_choice)
@@ -3708,6 +3747,11 @@ class App:
     def _on_autohide(self) -> None:
         self.settings["autohide"] = self.v_autohide.get()
         self._sync_submit_label()
+
+    def _on_clear_exit(self) -> None:
+        self.settings["clear_on_exit"] = self.v_clear_exit.get()
+        self.set_status("Історія буде очищатись при виході з програми" if self.v_clear_exit.get()
+                        else "Історія зберігатиметься між запусками")
 
     def _on_fullscreen(self) -> None:
         self.settings["fullscreen"] = self.v_fullscreen.get()
@@ -4005,9 +4049,12 @@ class App:
         self.flush_logs()
         self._save_size()
         try:
+            if self.settings["clear_on_exit"]:        # справжній вихід (не згортання): історія буфера очищується
+                self.history.clear()
             self.history.flush()
         except OSError:
             pass
+        self.settings.save()                           # вигляд (список/плитки), ширина колонки й решта — на диск
         self.hotkeys.stop()
         if self.tray:
             try:

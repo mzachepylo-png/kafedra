@@ -780,10 +780,10 @@ assert app.fmt_btn.cget("text") == "Копіювати" and Settings(settings.pa
 
 # ---- 22. форматування USER ------------------------------------------------------------------------------------------------------------------
 app.select_category(HISTORY)
-assert app.sel_format is None and app.fmt_box.winfo_manager() == "" and app.fmt_idle.winfo_manager() == "pack"
+assert app.sel_format is None and app.fmt_box.winfo_manager() == "" and not hasattr(app, "fmt_idle")
 assert app.preset.formats[0]["name"] == "USER"      # USER — завжди перший вбудований формат
 app.select_format("builtin-user")
-assert app.fmt_box.winfo_manager() == "pack" and app.fmt_idle.winfo_manager() == "" and app.fmt_title.cget("text") == "USER"
+assert app.fmt_box.winfo_manager() == "pack" and app.fmt_title.cget("text") == "USER"
 inp = "123, User#45312  23512"
 expected = "{LINK:USER:123:E}, {LINK:USER:45312:E}, {LINK:USER:23512:E}"
 app.fmt_input.insert("1.0", inp)
@@ -876,10 +876,10 @@ for w, h in ((1180, 660), (1040, 520)):
         assert mw < 540, f"центральна колонка не має бути надто розтягнутою ({mw})"
     # нічого не обрізається: кнопка форматування і приписка — всередині правої колонки
     bottom = app.right.winfo_rooty() + app.right.winfo_height()
-    for wdg in (app.fmt_btn, app.formats_note):
+    assert not hasattr(app, "formats_note"), "приписку «Інші формати — скоро» прибрано"
+    for wdg in (app.fmt_btn,):
         assert wdg.winfo_rooty() + wdg.winfo_height() <= bottom + 1, (w, h, wdg)
         assert wdg.winfo_rooty() >= app.right.winfo_rooty()
-    assert app.fmt_btn.winfo_rooty() + app.fmt_btn.winfo_height() <= app.formats_note.winfo_rooty() + 1, (w, h, "кнопка налягає на приписку")
     for card in app._cards.values():
         assert card.winfo_width() <= app.cards.winfo_width() + 1
     assert app._wrap_labels, "у відкритій категорії мають бути картки"
@@ -1281,7 +1281,7 @@ for mode, idx in (("dark", 1), ("light", 0), ("dark", 1), (old_theme if old_them
     card = next(iter(app._card_objs.values()))
     assert card.body.cget("bg") == app.col(card.cur) and card.body.cget("fg") == cm.TEXT[idx], (mode, card.body.cget("bg"))
     assert app.status.cget("bg") == cm.BG[idx] and app.preset_name.cget("bg") == cm.ACCENT_SOFT[idx]
-    assert app.title_lbl.cget("bg") == cm.PANEL[idx] and app.formats_note.cget("fg") == cm.FAINT[idx]
+    assert app.title_lbl.cget("bg") == cm.PANEL[idx]
     row = next(iter(app._row_objs.values()))
     assert row.label.cget("fg") == cm.TEXT[idx] and row.label.cget("bg") == app.col(cm._eff(row.cur))
     assert app.col(cm.TEXT) == cm.TEXT[idx]
@@ -1838,7 +1838,6 @@ app.select_format("builtin-added-cards")
 assert app.sel_format == "builtin-added-cards" and app.fmt_title.cget("text") == "Added cards"
 assert app._fmt_pair.winfo_manager() == "pack" and app.fmt_btn.winfo_manager() == ""
 assert app._fmt_copy.cget("text") == "Copy" and app._fmt_append.cget("text") == "Append"
-assert "Вставте номери карток" in app.fmt_hint.cget("text")
 for inp, want in (("1245 1231 236532, 3256", "Cards 1245, 1231, 236532, 3256 were added during suspicious login."),
                   ("23465", "Card 23465 was added during suspicious login."),
                   ("1245, 1245, 3121, 2433", "Cards 1245, 1245, 3121, 2433 were added during suspicious login.")):
@@ -2354,17 +2353,34 @@ for key in (HISTORY, other_cat["id"], sc_cat["id"]):
     pump(80)
     assert app.refund_box.winfo_ismapped(), key
 assert app.refund_copy.cget("state") == "disabled" and app.refund_append.cget("state") == "disabled"
-cb = app._refund_checks
+def cb_(pid):
+    return app._phrase_rows[pid]["cb"]
+
+
+names = {"Active subscriptions": "ph-active", "Internal charges": "ph-internal", "Ignore billing check flag": "ph-ignore",
+         "No active subscriptions": "ph-noactive"}
+
+
+class _CB:
+    def __getitem__(self, k):
+        return cb_(names[k])
+
+
+def sel():
+    return [p["part"] if p.get("part") else p["text"] for p in app._refund_selected()]
+
+
+cb = _CB()
 cb["Active subscriptions"].toggle()
 assert app.refund_copy.cget("state") == "normal"
 cb["Internal charges"].toggle()
-assert app._refund_selected() == ["Active subscriptions", "Internal charges"]
+assert sel() == ["Active subscriptions", "Internal charges"]
 cb["Ignore billing check flag"].toggle()
-assert app._refund_selected() == ["Ignore billing check flag"], "третій пункт виключає перші два"
+assert sel() == ["Ignore billing check flag was set."], "третій пункт виключає перші два"
 cb["Active subscriptions"].toggle()
-assert app._refund_selected() == ["Active subscriptions"], "перший знімає окремий"
+assert sel() == ["Active subscriptions"], "перший знімає окремий"
 cb["No active subscriptions"].toggle()
-assert app._refund_selected() == ["No active subscriptions"], "окремий пункт виключає решту"
+assert sel() == ["No active subscriptions."], "окремий пункт виключає решту"
 cb["No active subscriptions"].toggle()
 assert app.refund_copy.cget("state") == "disabled"
 # Copy: два пункти разом
@@ -2372,7 +2388,7 @@ cb["Active subscriptions"].toggle()
 cb["Internal charges"].toggle()
 app.submit_refund()
 assert root.clipboard_get() == "Active subscriptions and Internal charges were refunded."
-assert app._refund_selected() == [], "після копіювання галочки скинуті"
+assert sel() == [], "після копіювання галочки скинуті"
 # Append: один пункт, обидва записи
 app.select_category(sc_cat["id"])
 app.flush_render()
@@ -2382,7 +2398,7 @@ app.arm_refund_append()
 assert app.append_armed and app.armed_src == "refund"
 real_click(next(c for c in app._card_objs.values() if c.text == t_no).body)
 assert root.clipboard_get() == t_no + " Internal charges were refunded.", root.clipboard_get()
-assert not app.append_armed and app._refund_selected() == []
+assert not app.append_armed and sel() == []
 cb["No active subscriptions"].toggle()
 app.arm_refund_append()
 real_click(next(c for c in app._card_objs.values() if c.text == t_ref).body)
@@ -2391,7 +2407,7 @@ cb["Ignore billing check flag"].toggle()
 app.arm_refund_append()
 app._on_escape(None)
 assert not app.append_armed, "Esc скасовує Append зі швидкої фрази"
-assert app._refund_selected() == ["Ignore billing check flag"]
+assert sel() == ["Ignore billing check flag was set."]
 app.submit_refund()
 assert root.clipboard_get() == "Ignore billing check flag was set."
 print("29b quick phrases (Copy/Append, exclusive options) OK")
@@ -2543,7 +2559,7 @@ pump(300)
 assert app._fmt_pair.winfo_ismapped() and app._fmt_pair.winfo_height() >= int(34 * app.scaling()), app._fmt_pair.winfo_height()
 assert app._fmt_pair.winfo_rooty() + app._fmt_pair.winfo_height() <= app.refund_box.winfo_rooty() + 2, "кнопки формату над швидкими фразами"
 # (6) Append формату після Append швидкої фрази заряджається (а не скасовує); Copy фрази не стирає поле формату
-app._refund_checks["Internal charges"].toggle()
+cb["Internal charges"].toggle()
 app.arm_refund_append()
 assert app.armed_src == "refund"
 app.fmt_input.insert("1.0", "555")
@@ -2573,6 +2589,92 @@ dlg30.destroy()
 assert not errs, errs
 del app._report_exception
 print("30 QA regressions (tiles extras, hint/grid, tile height, splitter cap, fmt buttons, append sources, rgb) OK")
+settings["autohide"] = True
+root.geometry("1180x660+0+0")
+pump(600)
+settings.data["width"], settings.data["height"] = 1180, 660
+app._size = None
+
+# ---- 31. раунд 6: свої швидкі фрази, центр правої колонки, очищення історії при виході, збереження вигляду -------------------------------
+settings["autohide"] = False
+root.geometry("1180x660+0+0")
+pump(600)
+app.show_window()
+app.select_category(HISTORY)
+app.flush_render()
+pump(200)
+box = app.refund_box
+centre = box.winfo_rooty() + box.winfo_height() / 2
+mid_y = app.right.winfo_rooty() + app.right.winfo_height() / 2
+assert abs(centre - mid_y) < app.right.winfo_height() * 0.22, ("швидкі фрази посередині правої колонки", centre, mid_y)
+assert not hasattr(app, "formats_note") and not hasattr(app, "fmt_idle"), "службові підписи прибрано"
+assert app.pf.phrase.cget("size") != 0 and app.phrase_add_btn.winfo_ismapped()
+n_ph = len(app.preset.phrases)
+long_phrase = "User blacklisted due to repeated TOS Violations, multiple chargebacks in accounts:"
+answers[:] = [long_phrase]
+app.on_add_phrase()
+pump(200)
+new_ph = app.preset.phrases[-1]
+assert new_ph["text"] == long_phrase and len(app.preset.phrases) == n_ph + 1 and new_ph["id"] in app._phrase_rows
+assert app._phrase_rows[new_ph["id"]]["label"].winfo_ismapped()
+answers[:] = [long_phrase]
+app.on_add_phrase()                                           # дублікат ігнорується
+assert len(app.preset.phrases) == n_ph + 1
+assert long_phrase in open(app.preset.path, encoding="utf-8").read(), "фраза збережена в пресеті"
+# своя фраза — окрема: знімає решту; Copy і Append
+app._phrase_rows["ph-active"]["cb"].toggle()
+app._phrase_rows[new_ph["id"]]["cb"].toggle()
+assert [p["id"] for p in app._refund_selected()] == [new_ph["id"]]
+app.submit_refund()
+assert root.clipboard_get() == long_phrase
+sc31 = app.preset.add_category("Фрази тест")
+app.preset.add_snippet(sc31["id"], t_ref)
+app.render()
+app.flush_render()
+app.select_category(sc31["id"])
+app.flush_render()
+pump(150)
+app._phrase_rows[new_ph["id"]]["cb"].toggle()
+app.arm_refund_append()
+real_click(next(c for c in app._card_objs.values() if c.text == t_ref).body)
+assert root.clipboard_get() == t_ref + " " + long_phrase, root.clipboard_get()
+# видалення (будь-якої фрази, і вбудованої)
+app.on_remove_phrase(new_ph["id"])
+app.on_remove_phrase("ph-ignore")
+pump(150)
+assert new_ph["id"] not in app._phrase_rows and "ph-ignore" not in app._phrase_rows
+assert long_phrase not in open(app.preset.path, encoding="utf-8").read()
+assert [p["id"] for p in cm.Preset.open(app.preset.path).phrases] == ["ph-active", "ph-internal", "ph-noactive"]
+print("31a own quick phrases (add/remove/Copy/Append, centered, no hints) OK")
+
+# вигляд (плитки/список) і границя зберігаються на диск
+app.set_cat_view("tiles")
+app.set_rec_view("tiles")
+app._left_user = 333
+settings["left_w"] = 333
+from store import Settings as _S
+again = _S(settings.path)
+assert (again["cat_view"], again["rec_view"], again["left_w"]) == ("tiles", "tiles", 333), again.data
+app.set_cat_view("list")
+app.set_rec_view("list")
+app._left_user = 0
+settings["left_w"] = 0
+# закриття програми: історія очищується (не при згортанні); вимкнути можна в налаштуваннях
+app.history.add("тимчасовий запис")
+app.hide_window()
+pump(200)
+assert any(i["text"] == "тимчасовий запис" for i in app.history.items), "згортання історію не чіпає"
+app.show_window()
+real_destroy = root.destroy
+root.destroy = lambda: None
+settings["clear_on_exit"] = False
+app.quit()
+assert any(i["text"] == "тимчасовий запис" for i in app.history.items), "з вимкненим налаштуванням історія лишається"
+settings["clear_on_exit"] = True
+app.quit()
+assert app.history.items == [] and History(app.history.path).items == [], "при виході історія очищена і на диску"
+root.destroy = real_destroy
+print("31b settings persisted, history cleared on exit only OK")
 settings["autohide"] = True
 root.geometry("1180x660+0+0")
 pump(600)

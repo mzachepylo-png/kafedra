@@ -57,37 +57,18 @@ def append_suspicious_cards(base: str, result: str) -> str:
     return append_result(base, result)
 
 
-# Блок «Refunds» (завжди видимий у правій колонці): пункти з галочками → одне речення.
-# Перші два можна обирати разом; «Ignore billing check flag» і «No active subscriptions» — лише окремо
-# (з іншими пунктами не поєднуються: вибір одного знімає решту).
-REFUND_OPTIONS = ("Active subscriptions", "Internal charges")
-IGNORE_OPTION = "Ignore billing check flag"
-NO_ACTIVE_OPTION = "No active subscriptions"
-STANDALONE_OPTIONS = (IGNORE_OPTION, NO_ACTIVE_OPTION)
-REFUND_LABELS = {
-    "Active subscriptions": "Active subscriptions were refunded",
-    "Internal charges": "Internal charges were refunded",
-    IGNORE_OPTION: "Ignore billing check flag was set",
-    NO_ACTIVE_OPTION: "No active subscriptions",
-}
-STANDALONE_TEXT = {
-    IGNORE_OPTION: "Ignore billing check flag was set.",
-    NO_ACTIVE_OPTION: "No active subscriptions.",
-}
+def compose_phrases(chosen) -> str:
+    """Швидкі фрази → готовий текст. ``chosen`` — список фраз {text, part?} у порядку, в якому вони лежать у пресеті.
 
-
-def format_refunds(selected) -> str:
-    """Active subscriptions were refunded. / Internal charges were refunded. /
-    Active subscriptions and Internal charges were refunded. / Ignore billing check flag was set. /
-    No active subscriptions.  Окремі пункти мають пріоритет і беруться лише самі."""
-    chosen = set(selected or ())
-    for opt in STANDALONE_OPTIONS:
-        if opt in chosen:
-            return STANDALONE_TEXT[opt]
-    items = [o for o in REFUND_OPTIONS if o in chosen]
-    if not items:
-        return ""
-    return f"{' and '.join(items)} were refunded."
+    Фрази з "part" поєднуються: Active subscriptions + Internal charges →
+    ``Active subscriptions and Internal charges were refunded.``; одна — ``Internal charges were refunded.``
+    Фраза без "part" — окрема: якщо вона є серед обраних, береться лише вона (текст як є)."""
+    chosen = list(chosen or ())
+    for p in chosen:
+        if not p.get("part"):
+            return (p.get("text") or "").strip()
+    parts = [p["part"] for p in chosen]
+    return f"{' and '.join(parts)} were refunded." if parts else ""
 
 
 FORMATTERS = {
