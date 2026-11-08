@@ -128,6 +128,7 @@ MENU_BORDER = ("#cfd5de", "#454a53")
 MENU_HOVER = ("#e6f0fc", "#2f4560")
 MENU_SEP = ("#e3e6eb", "#3a3e45")
 COPIED = ("#2e9e57", "#2f9e5a")          # плашка «✓ Скопійовано» на картці
+PAIR = ("#fff3c4", "#4b4220")             # жовтуватий фон пари об'єднуваних швидких фраз (Active subscriptions + Internal charges)
 ARMED = ("#d97706", "#f59e0b")           # режим Append: «заряджена» кнопка й банер
 ARMED_SOFT = ("#fdf0dc", "#473412")
 
@@ -143,6 +144,8 @@ FORMAT_INFO = {   # опис відомих типів форматів: (під
                     "Вставте номери карток: 1245, 1231 236532 …"),
     "suspicious_cards": ("→ Suspicious cards … were added.",
                          "Вставте номери карток: 1245, 1254 2365 …"),
+    "test_cards": ("→ Test cards … were added", ""),
+    "link_user_text": ("User #123 у тексті → {LINK:USER:123:E}", ""),
 }
 
 
@@ -919,6 +922,11 @@ class Card:
             return y_root < self.body.winfo_rooty()
         return x_root >= self.zone.winfo_rootx()
 
+    def set_drop(self, on: bool) -> None:
+        """Підсвітка плитки-цілі під час перетягування (перестановка)."""
+        self.frame.configure(border_color=ACCENT if (on or self.selected) else self.border,
+                             border_width=3 if on else (2 if self.selected else 1))
+
     def set_tile_h(self, h: int) -> None:
         if self.tile and h != getattr(self, "_tile_h", None):      # configure ctk-фрейма = повне перемалювання
             self._tile_h = h
@@ -1039,7 +1047,9 @@ class SideRow:
             self.num.grid(row=2, column=0, columnspan=2, sticky="w", padx=(10, 6), pady=(0, 8))
             self.plain = [self.label, self.num, self.more]
             parts = [self.row, self.label, self.num]
-            app._bind_all(parts, "<Button-1>", lambda e: app.select_category(key))      # у плитках без перетягування
+            app._bind_all(parts, "<ButtonPress-1>", lambda e: app._reorder_press("cat", key, e))   # клік — вибір,
+            app._bind_all(parts, "<B1-Motion>", lambda e: app._reorder_motion(e))               # перетягування —
+            app._bind_all(parts, "<ButtonRelease-1>", lambda e: app._reorder_release(e))        # перестановка
             app._bind_all(parts + [self.dot, self.more], "<Button-3>",
                           lambda e: app.show_category_menu(e.x_root, e.y_root, key))
             app._hoverable(self.row, parts + [self.dot, self.more], self._enter, self._leave)
@@ -1882,7 +1892,7 @@ class App:
         wanted = {p["id"] for p in phrases}
         for pid in [k for k in self._phrase_rows if k not in wanted]:
             self._phrase_rows.pop(pid)["frame"].destroy()
-        wrap = int(max(120, self._right_w - 112) * self.scaling())
+        wrap = int(max(120, self._right_w - 158) * self.scaling())
         for row in self._phrase_rows.values():
             row["frame"].pack_forget()
             row["label"].configure(wraplength=wrap)
@@ -1892,29 +1902,77 @@ class App:
                 row = self._phrase_rows[p["id"]] = self._make_phrase_row(p, wrap)
             row["phrase"] = p
             row["label"].configure(text=p["text"])
-            row["frame"].pack(fill="x", padx=(14, 6), pady=3)
+            row["frame"].pack(fill="x", padx=(14, 6), pady=2)
         self._sync_refund_buttons()
         if not phrases:
             self.set_status("Фраз немає — додайте свою кнопкою «＋»", 4000)
         self.root.after_idle(self._fit_format_box)
 
     def _make_phrase_row(self, p: dict, wrap: int) -> dict:
-        frame = tk.Frame(self.phrase_list, bg=self.col(CARD))
-        self._themed.append((frame, CARD, None))
+        bgc = PAIR if p.get("part") else CARD            # пара «Active subscriptions / Internal charges» — жовтувата
+        frame = tk.Frame(self.phrase_list, bg=self.col(bgc), cursor="fleur")
+        self._themed.append((frame, bgc, None))
         var = tk.BooleanVar(value=False)
         cb = ctk.CTkCheckBox(frame, text="", variable=var, width=26, checkbox_width=24, checkbox_height=24,
                              corner_radius=7, border_width=2, fg_color=ACCENT, hover_color=ACCENT_HOVER,
-                             command=lambda pid=p["id"]: self._refund_toggle(pid))
-        cb.pack(side="left", padx=(0, 8))
+                             bg_color=bgc, command=lambda pid=p["id"]: self._refund_toggle(pid))
+        cb.pack(side="left", padx=(6, 8), pady=3)
         dele = self._icon_button(frame, "✕", lambda e, pid=p["id"]: self.on_remove_phrase(pid), hover_text=DANGER,
-                                 bg_fn=lambda: self.col(CARD))
-        dele.pack(side="right", padx=(4, 0))
+                                 bg_fn=lambda c=bgc: self.col(c))
+        dele.pack(side="right", padx=(2, 4))
+        edit = self._icon_button(frame, "✎", lambda e, pid=p["id"]: self.on_edit_phrase(pid),
+                                 bg_fn=lambda c=bgc: self.col(c))
+        edit.pack(side="right", padx=(2, 0))
         label = tk.Label(frame, text=p["text"], font=self.pf.phrase, anchor="w", justify="left", cursor="hand2",
-                         bg=self.col(CARD), fg=self.col(TEXT), wraplength=wrap)
-        self._themed.append((label, CARD, TEXT))
+                         bg=self.col(bgc), fg=self.col(TEXT), wraplength=wrap, pady=4)
+        self._themed.append((label, bgc, TEXT))
         label.pack(side="left", fill="x", expand=True)
-        label.bind("<Button-1>", lambda e, c=cb: c.toggle())
-        return {"frame": frame, "var": var, "cb": cb, "label": label, "dele": dele, "phrase": p}
+        # клік по тексту — поставити/зняти галочку; перетягування за текст чи фон рядка — сортування
+        for w in (label, frame):
+            w.bind("<ButtonPress-1>", lambda e, pid=p["id"]: self._phrase_press(pid, e))
+            w.bind("<B1-Motion>", self._phrase_motion)
+            w.bind("<ButtonRelease-1>", self._phrase_release)
+        return {"frame": frame, "var": var, "cb": cb, "label": label, "dele": dele, "edit": edit, "phrase": p}
+
+    # -- перетягування фраз (сортування) ---------------------------------------------------------
+    def _phrase_press(self, pid: str, e) -> None:
+        self._pd = {"id": pid, "x": e.x_root, "y": e.y_root, "active": False, "ghost": None, "k": None}
+
+    def _phrase_motion(self, e) -> None:
+        d = getattr(self, "_pd", None)
+        if not d:
+            return
+        if not d["active"]:
+            if abs(e.x_root - d["x"]) + abs(e.y_root - d["y"]) < 8:
+                return
+            d["active"] = True
+            ph = next((p for p in self.preset.phrases if p["id"] == d["id"]), {"text": ""})
+            d["ghost"] = self._make_ghost(clip(ph["text"], 48))
+        d["ghost"].geometry(f"+{e.x_root + 14}+{e.y_root + 14}")
+        if self._inside(self.phrase_list, e.x_root, e.y_root, slack=24):
+            frames = [self._phrase_rows[p["id"]]["frame"] for p in self.preset.phrases
+                      if p["id"] != d["id"] and p["id"] in self._phrase_rows]
+            d["k"], iy = self._insert_point(frames, e.y_root)
+            self._show_indicator(self.phrase_list, iy, 6)
+        else:
+            d["k"] = None
+            self._hide_indicators()
+
+    def _phrase_release(self, e) -> None:
+        d, self._pd = getattr(self, "_pd", None), None
+        if not d:
+            return
+        if not d["active"]:                                   # просто клік по фразі = галочка
+            row = self._phrase_rows.get(d["id"])
+            if row is not None:
+                row["cb"].toggle()
+            return
+        d["ghost"].destroy()
+        self._hide_indicators()
+        if d["k"] is not None and self.preset.move_phrase_to(d["id"], d["k"]):
+            self._phrase_sig = None
+            self._render_phrases()
+            self.set_status("✓ Порядок фраз змінено", 3000)
 
     def _refund_selected(self) -> list[dict]:
         """Позначені фрази — у порядку, в якому вони лежать у пресеті."""
@@ -1962,6 +2020,20 @@ class App:
             return
         self._render_phrases()
         self.set_status("✓ Фразу додано", 3000)
+
+    def on_edit_phrase(self, pid: str) -> None:
+        ph = next((p for p in self.preset.phrases if p["id"] == pid), None)
+        if ph is None:
+            return
+        text = TextDialog(self, "Редагувати фразу", "Текст фрази:", ph["text"]).run()
+        if text is None:
+            return
+        if not self.preset.edit_phrase(pid, text):
+            self.set_status("Порожня фраза або така вже є", 4000)
+            return
+        self._render_phrases()
+        self._sync_refund_buttons()
+        self.set_status("✓ Фразу змінено", 3000)
 
     def on_remove_phrase(self, pid: str) -> None:
         if self.preset.remove_phrase(pid):
@@ -3151,7 +3223,7 @@ class App:
             return False
 
     def _can_reorder_records(self) -> bool:
-        return not self._is_history() and not self._query().strip() and not self.rec_tiles
+        return not self._is_history() and not self._query().strip()
 
     def _cards_insert(self, dragged: str, x: int, y: int) -> int | None:
         """Куди вставити перетягуваний запис у відкритій папці: індекс у списку (або None поза списком)."""
@@ -3176,7 +3248,7 @@ class App:
         except tk.TclError:
             pass
         self._drag = {"id": iid, "x": e.x_root, "y": e.y_root, "active": False, "ghost": None, "hover": None,
-                      "reorder": None}
+                      "reorder": None, "ctrl": bool(getattr(e, "state", 0) & 0x4), "tile": None}
         self.sel_id = iid
         self._highlight_selection()
 
@@ -3197,12 +3269,24 @@ class App:
             self._mark_target(target, True)
             d["hover"] = target
         d["reorder"] = None
+        tile_hover = None
         if target is None and not self._is_history():
             if self._can_reorder_records():
-                d["reorder"] = self._cards_insert(d["id"], e.x_root, e.y_root)
+                if self.rec_tiles:                 # плитки: запис стає на місце плитки, над якою відпустили
+                    tile_hover = self._tile_index_at(self._order, lambda i: self._card_objs[i].frame, e.x_root, e.y_root,
+                                                     self.cards._parent_canvas)
+                    d["reorder"] = tile_hover
+                else:
+                    d["reorder"] = self._cards_insert(d["id"], e.x_root, e.y_root)
             elif self._inside(self.cards._parent_canvas, e.x_root, e.y_root):
-                self.set_status("У режимі плиток порядок не змінюється — перемкніться на «Список»" if self.rec_tiles
-                                else "Щоб міняти порядок, скасуйте пошук (Esc)", 2500)
+                self.set_status("Щоб міняти порядок, скасуйте пошук (Esc)", 2500)
+        hover_id = self._order[tile_hover] if tile_hover is not None and tile_hover < len(self._order) else None
+        if hover_id != d.get("tile"):
+            for iid, on in ((d.get("tile"), False), (hover_id, True)):
+                card = self._card_objs.get(iid) if iid else None
+                if card is not None:
+                    card.set_drop(on)
+            d["tile"] = hover_id
         if d["reorder"] is None:
             self._hide_indicators()
 
@@ -3214,11 +3298,15 @@ class App:
             card = self._card_objs.get(d["id"])
             if card is not None:
                 card.flash()                    # видно, що скопійовано
-            self.copy_item(d["id"])
+            ctrl = d.get("ctrl") or bool(getattr(e, "state", 0) & 0x4)
+            self.copy_item(d["id"], hide=True if ctrl else None)      # Ctrl + клік: скопіювати й згорнути вікно
             return
         d["ghost"].destroy()
         self._hide_indicators()
         self._mark_target(d["hover"], False)
+        card = self._card_objs.get(d.get("tile")) if d.get("tile") else None
+        if card is not None:
+            card.set_drop(False)
         target = self._target_at(e.x_root, e.y_root)
         if target is not None:
             self.put_in_category(d["id"], target)
@@ -3250,6 +3338,17 @@ class App:
             name = (self.preset.category(d["key"]) or self.preset.format(d["key"]) or {"name": ""})["name"]
             d["ghost"] = self._make_ghost(clip(name, 40))
         d["ghost"].geometry(f"+{e.x_root + 14}+{e.y_root + 14}")
+        if d["kind"] == "cat" and self.cat_tiles:       # плитки папок: перетягнута папка стає на місце плитки під курсором
+            order = self._row_order
+            idx = self._tile_index_at(order, lambda k: self._row_objs[k].row, e.x_root, e.y_root, self.cat_list._parent_canvas)
+            hover = order[idx] if idx is not None else None
+            if hover != d.get("hover"):
+                self._mark_target(d.get("hover"), False)
+                if hover is not None and hover != d["key"]:
+                    self._mark_target(hover, True)
+                d["hover"] = hover
+            d["k"] = idx
+            return
         if self._inside(cfg["region"](self), e.x_root, e.y_root):
             frames = [cfg["widget"](self, k) for k in cfg["order"](self) if k != d["key"]]
             d["k"], iy = self._insert_point(frames, e.y_root)
@@ -3270,6 +3369,8 @@ class App:
             return
         d["ghost"].destroy()
         self._hide_indicators()
+        if d.get("hover"):
+            self._mark_target(d["hover"], False)
         if d["k"] is None:
             return
         if d["kind"] == "cat":
@@ -3292,6 +3393,22 @@ class App:
         if self.preset.move_format_to(fid, at):
             self.render()
             self.set_status("✓ Порядок форматів змінено")
+
+    @staticmethod
+    def _tile_index_at(order: list, frame_of, x: int, y: int, region=None) -> int | None:
+        """Номер плитки (за порядком ``order``), над якою зараз курсор; None — поза плитками/областю."""
+        try:
+            if region is not None and not (region.winfo_rootx() <= x < region.winfo_rootx() + region.winfo_width()
+                                           and region.winfo_rooty() <= y < region.winfo_rooty() + region.winfo_height()):
+                return None
+            for i, key in enumerate(order):
+                f = frame_of(key)
+                if (f.winfo_rootx() <= x < f.winfo_rootx() + f.winfo_width()
+                        and f.winfo_rooty() <= y < f.winfo_rooty() + f.winfo_height()):
+                    return i
+        except (tk.TclError, KeyError):
+            pass
+        return None
 
     def _target_at(self, x: int, y: int) -> str | None:
         w = self.root.winfo_containing(x, y)
@@ -3317,12 +3434,13 @@ class App:
         it = next((i for i in self.shown if i["id"] == item_id), None)
         return it["text"] if it else None
 
-    def copy_item(self, item_id: str | None) -> None:
+    def copy_item(self, item_id: str | None, hide: bool | None = None) -> None:
+        """hide=True — після копіювання одразу сховати вікно (Ctrl + клік); None — за налаштуванням «автохов»."""
         text = self._text_of(item_id)
         if text is None:
             return
         if self.append_armed:                  # режим Append: клік по запису = «текст запису + результат форматування»
-            self._append_to(text)
+            self._append_to(text, True if hide else None)
             return
         self.copy_to_clipboard(text)
 
@@ -3331,7 +3449,7 @@ class App:
                 self.history.bump(item_id)
                 self.render(scroll_top=True)
 
-        self._finish_pick("✓ Скопійовано: " + clip(preview(text, 1, 60).replace("\n", " "), 50), after)
+        self._finish_pick("✓ Скопійовано: " + clip(preview(text, 1, 60).replace("\n", " "), 50), after, hide=hide)
 
     def _append_to(self, base: str, close: bool | None = None) -> None:
         """Append: у буфер потрапляє «запис + результат форматування»; сам запис у пресеті НЕ змінюється.

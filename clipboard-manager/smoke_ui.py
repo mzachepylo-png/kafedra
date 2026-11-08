@@ -1300,7 +1300,7 @@ pump(80)
 assert not card.hovering, "курсор поза карткою — підсвітка знімається"
 calls = []
 saved_copy, saved_menu, saved_del = app.copy_item, app.show_menu, app.on_delete
-app.copy_item = lambda i: calls.append(("copy", i))
+app.copy_item = lambda i, hide=None: calls.append(("copy", i))
 app.show_menu = lambda x, y, i: calls.append(("menu", i))
 app.on_delete = lambda i: calls.append(("delete", i))
 for w in (card.body, card.bar, canvas):
@@ -1570,7 +1570,7 @@ assert any(s["text"] == "для переносу" for s in r4.snippets(ot["id"])
 r4.remove_snippet(r4.snippets(ot["id"])[0]["id"])
 app.render()
 # формати: перестановка серед видимих у папці + пункти меню «вгору/вниз»
-assert [f["id"] for f in app._visible_formats()] == ["builtin-user", "builtin-added-cards"]
+assert [f["id"] for f in app._visible_formats()] == ["builtin-user", "builtin-test-cards", "builtin-user2", "builtin-added-cards"]
 pump(150)
 fr_user, fr_cards = app._fmt_rows["builtin-user"].row, app._fmt_rows["builtin-added-cards"].row
 fx, fy = fr_cards.winfo_rootx() + 80, fr_cards.winfo_rooty() + fr_cards.winfo_height() // 2
@@ -1582,7 +1582,7 @@ assert app._rd["k"] == 0 and app._indicators[app.formats_slot].winfo_ismapped()
 app._reorder_release(ev(fx, fr_user.winfo_rooty() + 3))
 pump(150)
 assert [f["id"] for f in r4.formats][:2] == ["builtin-added-cards", "builtin-user"]
-assert app._fmt_order == ["builtin-added-cards", "builtin-user"]
+assert app._fmt_order[:2] == ["builtin-added-cards", "builtin-user"]
 assert [f["id"] for f in Preset.open(r4.path).formats][:2] == ["builtin-added-cards", "builtin-user"]
 app.on_move_format("builtin-added-cards", 1)
 pump(100)
@@ -1819,10 +1819,10 @@ assert "builtin-added-cards" in app._fmt_rows and "Невідомий" not in ap
 assert app._fmt_rows["builtin-added-cards"].sub.cget("text").startswith("→ Cards")
 app.select_category(ot["id"])
 pump(200)
-assert list(app._fmt_rows) == ["builtin-user"], "поза «Suspicious login» формат не видно"
+assert list(app._fmt_rows) == ["builtin-user", "builtin-test-cards", "builtin-user2"], "поза «Suspicious login» «Added cards» не видно"
 app.select_category(HISTORY)
 pump(200)
-assert list(app._fmt_rows) == ["builtin-user"]
+assert list(app._fmt_rows) == ["builtin-user", "builtin-test-cards", "builtin-user2"]
 r4.rename_category(sl["id"], "suspicious LOGIN")                 # назва без урахування регістру
 app.render()
 app.select_category(sl["id"])
@@ -2496,7 +2496,7 @@ app._set_left_width(app._left_for(root.winfo_width() / app.scaling()))
 errs = []
 app._report_exception = lambda *a: errs.append(a)
 app.set_rec_view("tiles")
-app.history = History(os.path.join(tmp, "h30.json"))
+app.history = History(os.path.join(tmp, "h30.json"), max_items=200)
 for i_ in range(75):
     app.history.add(f"qa рядок {i_}")
 app.select_category(HISTORY)
@@ -2675,6 +2675,149 @@ app.quit()
 assert app.history.items == [] and History(app.history.path).items == [], "при виході історія очищена і на диску"
 root.destroy = real_destroy
 print("31b settings persisted, history cleared on exit only OK")
+settings["autohide"] = True
+root.geometry("1180x660+0+0")
+pump(600)
+settings.data["width"], settings.data["height"] = 1180, 660
+app._size = None
+
+# ---- 32. раунд 7: Test cards / User2, історія 15, Ctrl+клік, перетягування плиток і фраз, редагування фраз, жовта пара -----------------
+settings["autohide"] = False
+app.hotkey_ok = False
+root.geometry("1500x800+0+0")
+pump(700)
+app.show_window()
+app.set_search("")
+app.select_category(HISTORY)
+app.flush_render()
+pump(200)
+# (формати) Test cards і User2 видно скрізь (як USER)
+assert {"builtin-test-cards", "builtin-user2"} <= set(app._fmt_rows)
+app.select_format("builtin-test-cards")
+app.fmt_input.insert("1.0", "214521, 1542 12541")
+app._update_format_preview()
+assert app.fmt_preview.get("1.0", "end-1c") == "Test cards 214521, 1542, 12541 were added"
+app.submit_format()
+assert root.clipboard_get() == "Test cards 214521, 1542, 12541 were added"
+app.select_format("builtin-test-cards")                          # згорнути
+app.select_format("builtin-user2")
+app.fmt_input.insert("1.0", "Прошу перевірити User #13513, а також user#77.")
+app._update_format_preview()
+assert app.fmt_preview.get("1.0", "end-1c") == "Прошу перевірити {LINK:USER:13513:E}, а також {LINK:USER:77:E}."
+app.submit_format()
+assert root.clipboard_get() == "Прошу перевірити {LINK:USER:13513:E}, а також {LINK:USER:77:E}."
+app._collapse_format()
+# історія тримає лише 15 останніх
+app.history = History(os.path.join(tmp, "h32.json"))
+assert app.history.max_items == 15
+for i_ in range(25):
+    app.history.add(f"рядок історії {i_}")
+assert len(app.history.items) == 15 and app.history.items[0]["text"] == "рядок історії 24"
+print("32a Test cards / User2 / history 15 OK")
+
+# Ctrl + клік по тексту картки: копіює і згортає (навіть без автохова)
+ctrl_cat = app.preset.add_category("Ctrl-тест")
+snips32 = [app.preset.add_snippet(ctrl_cat["id"], f"ctrl-запис {n}") for n in range(4)]
+app.render()
+app.flush_render()
+app.select_category(ctrl_cat["id"])
+app.flush_render()
+pump(200)
+app.hotkey_ok = True
+c0 = app._card_objs[snips32[0]["id"]]
+c0.body.event_generate("<ButtonPress-1>", x=8, y=8, state=0x4)
+c0.body.event_generate("<ButtonRelease-1>", x=8, y=8, state=0x4)
+pump(300)
+assert root.clipboard_get() == "ctrl-запис 0" and app._hidden and root.state() == "withdrawn", "Ctrl+клік копіює й згортає"
+app.show_window()
+pump(300)
+c1 = app._card_objs[snips32[1]["id"]]
+real_click(c1.body)                                              # без Ctrl — вікно лишається (автохов вимкнено)
+assert root.clipboard_get() == "ctrl-запис 1" and not app._hidden
+app.hotkey_ok = False
+print("32b Ctrl+click copy & hide OK")
+
+# перетягування плиток копіпастів (перестановка)
+app.set_rec_view("tiles")
+app.flush_render()
+pump(500)
+ids0 = [i["id"] for i in app.preset.snippets(ctrl_cat["id"])]
+fr0 = app._card_objs[ids0[0]].frame
+fr2 = app._card_objs[ids0[2]].frame
+sx, sy = app._card_objs[ids0[0]].body.winfo_rootx() + 10, app._card_objs[ids0[0]].body.winfo_rooty() + 10
+tx, ty = fr2.winfo_rootx() + fr2.winfo_width() // 2, fr2.winfo_rooty() + fr2.winfo_height() // 2
+app._drag_press(ev(sx, sy), ids0[0])
+app._drag_motion(ev(sx + 20, sy + 20))
+app._drag_motion(ev(tx, ty))
+assert app._drag["reorder"] == 2 and app._card_objs[ids0[2]].frame.cget("border_width") == 3, "плитка-ціль підсвічена"
+app._drag_release(ev(tx, ty))
+pump(300)
+ids1 = [i["id"] for i in app.preset.snippets(ctrl_cat["id"])]
+assert ids1 == [ids0[1], ids0[2], ids0[0], ids0[3]], ids1
+assert app._order[:4] == ids1
+app.set_rec_view("list")
+pump(200)
+
+# перетягування плиток папок
+extra = [app.preset.add_category(f"Тайл {n}") for n in range(3)]
+app.render()
+app.flush_render()
+app.set_cat_view("tiles")
+pump(500)
+order0 = list(app._row_order)
+r_first, r_third = app._row_objs[order0[0]].row, app._row_objs[order0[2]].row
+sx, sy = r_first.winfo_rootx() + 20, r_first.winfo_rooty() + 20
+tx, ty = r_third.winfo_rootx() + r_third.winfo_width() // 2, r_third.winfo_rooty() + r_third.winfo_height() // 2
+app._reorder_press("cat", order0[0], ev(sx, sy))
+app._reorder_motion(ev(sx + 25, sy + 25))
+app._reorder_motion(ev(tx, ty))
+assert app._rd["k"] == 2
+app._reorder_release(ev(tx, ty))
+pump(400)
+want = [order0[1], order0[2], order0[0]] + order0[3:]
+assert [c["id"] for c in app.preset.categories] == want, ([c["name"] for c in app.preset.categories])
+assert app._row_order == want
+app.set_cat_view("list")
+pump(200)
+print("32c tile drag-sort (records + folders) OK")
+
+# швидкі фрази: жовта пара, редагування, перетягування
+for row in app._phrase_rows.values():
+    want_bg = app.col(cm.PAIR if row["phrase"].get("part") else cm.CARD)
+    assert row["frame"].cget("bg") == want_bg and row["label"].cget("bg") == want_bg, row["phrase"]
+assert any(r["phrase"].get("part") for r in app._phrase_rows.values())
+ph0 = app.preset.phrases[0]
+old_text = ph0["text"]
+answers[:] = ["Змінена фраза про повернення"]
+app.on_edit_phrase(ph0["id"])
+pump(200)
+assert app._phrase_rows[ph0["id"]]["label"].cget("text") == "Змінена фраза про повернення"
+assert app.preset.phrases[0].get("part") == ph0.get("part"), "жовта пара не втрачається при редагуванні"
+assert "Змінена фраза про повернення" in open(app.preset.path, encoding="utf-8").read()
+answers[:] = [old_text]
+app.on_edit_phrase(ph0["id"])
+ids_ph = [p["id"] for p in app.preset.phrases]
+assert len(ids_ph) >= 3
+rows_ = [app._phrase_rows[i]["frame"] for i in ids_ph]
+sx, sy = rows_[0].winfo_rootx() + 60, rows_[0].winfo_rooty() + rows_[0].winfo_height() // 2
+last = rows_[-1]
+tx, ty = sx, last.winfo_rooty() + last.winfo_height() - 2
+checked_before = len(app._refund_selected())
+app._phrase_press(ids_ph[0], ev(sx, sy))
+app._phrase_motion(ev(sx, sy + 20))
+app._phrase_motion(ev(tx, ty))
+assert app._pd["k"] == len(ids_ph) - 1
+app._phrase_release(ev(tx, ty))
+pump(300)
+assert [p["id"] for p in app.preset.phrases] == ids_ph[1:] + [ids_ph[0]], [p["text"] for p in app.preset.phrases]
+assert [p["id"] for p in Preset.open(app.preset.path).phrases] == ids_ph[1:] + [ids_ph[0]]
+assert len(app._refund_selected()) == checked_before, "перетягування не ставить галочку"
+# простий клік по тексту фрази ставить галочку
+lbl = app._phrase_rows[ids_ph[0]]["label"]
+real_click(lbl)
+assert [p["id"] for p in app._refund_selected()] == [ids_ph[0]]
+app._clear_refunds()
+print("32d phrases: pair highlight, edit, drag-sort OK")
 settings["autohide"] = True
 root.geometry("1180x660+0+0")
 pump(600)

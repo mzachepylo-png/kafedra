@@ -96,7 +96,7 @@ class PresetTests(TmpCase):
         again = Preset.open(self.path)
         self.assertEqual(again.categories[0]["name"], "Шаблони 🌍")
         self.assertEqual(again.categories[0]["snippets"][0]["text"], "Привіт, світе 🌍")
-        self.assertEqual([f["name"] for f in again.formats], ["USER", "Added cards", "Suspicious cards", "future"])   # невідомий формат не губиться
+        self.assertEqual([f["name"] for f in again.formats], ["USER", "Test cards", "User2", "Added cards", "Suspicious cards", "future"])   # невідомий формат не губиться
         with open(self.path, encoding="utf-8") as f:
             data = json.load(f)
         self.assertEqual(data["format"], "clipboard-memory-preset")
@@ -191,8 +191,8 @@ class ColorAndRenameTests(TmpCase):
 
     def test_builtin_user_format_exists_and_color_persists(self):
         self.assertEqual([(f["name"], f["type"]) for f in self.pr.formats],
-                         [("USER", "link_user"), ("Added cards", "cards_added"),
-                          ("Suspicious cards", "suspicious_cards")])
+                         [("USER", "link_user"), ("Test cards", "test_cards"), ("User2", "link_user_text"),
+                          ("Added cards", "cards_added"), ("Suspicious cards", "suspicious_cards")])
         self.assertTrue(self.pr.set_format_color("builtin-user", "#ff8800"))
         self.assertEqual(Preset.open(self.pr.path).format("builtin-user")["color"], "#ff8800")
 
@@ -270,11 +270,12 @@ class OrderAndScopeTests(TmpCase):
 
     def test_move_formats(self):
         ids = [f["id"] for f in self.pr.formats]
-        base = ["builtin-user", "builtin-added-cards", "builtin-suspicious-cards"]
+        base = ["builtin-user", "builtin-test-cards", "builtin-user2", "builtin-added-cards", "builtin-suspicious-cards"]
         self.assertEqual(ids, base)
-        self.assertTrue(self.pr.move_format("builtin-added-cards", -1))
-        self.assertEqual([f["id"] for f in self.pr.formats], ["builtin-added-cards", "builtin-user", "builtin-suspicious-cards"])
-        self.assertTrue(self.pr.move_format_to("builtin-added-cards", 1))
+        self.assertTrue(self.pr.move_format("builtin-test-cards", -1))
+        self.assertEqual([f["id"] for f in self.pr.formats],
+                         ["builtin-test-cards", "builtin-user", "builtin-user2", "builtin-added-cards", "builtin-suspicious-cards"])
+        self.assertTrue(self.pr.move_format_to("builtin-test-cards", 1))
         self.assertEqual([f["id"] for f in self.pr.formats], base)
         self.assertFalse(self.pr.move_format("builtin-user", -1))          # вже перший
         self.assertEqual([f["id"] for f in Preset.open(self.pr.path).formats], base)
@@ -282,20 +283,21 @@ class OrderAndScopeTests(TmpCase):
     def test_formats_visibility_per_folder(self):
         sl = self.pr.add_category("  suspicious LOGIN ")                    # назва без урахування регістру
         in_login = [f["name"] for f in self.pr.formats_for(sl["id"])]
-        self.assertEqual(in_login, ["USER", "Added cards"])
-        self.assertEqual([f["name"] for f in self.pr.formats_for(self.a["id"])], ["USER"])
-        self.assertEqual([f["name"] for f in self.pr.formats_for(None)], ["USER"])   # історія буфера
+        self.assertEqual(in_login, ["USER", "Test cards", "User2", "Added cards"])
+        everywhere = ["USER", "Test cards", "User2"]
+        self.assertEqual([f["name"] for f in self.pr.formats_for(self.a["id"])], everywhere)
+        self.assertEqual([f["name"] for f in self.pr.formats_for(None)], everywhere)   # історія буфера
         sc = self.pr.add_category("Suspicious cards")
-        self.assertEqual([f["name"] for f in self.pr.formats_for(sc["id"])], ["USER", "Suspicious cards"])
+        self.assertEqual([f["name"] for f in self.pr.formats_for(sc["id"])], everywhere + ["Suspicious cards"])
         self.pr.rename_category(sl["id"], "Інша")
-        self.assertEqual([f["name"] for f in self.pr.formats_for(sl["id"])], ["USER"])
+        self.assertEqual([f["name"] for f in self.pr.formats_for(sl["id"])], ["USER", "Test cards", "User2"])
 
     def test_old_preset_gets_added_cards_format(self):
         with open(self.p("old.preset.json"), "w", encoding="utf-8") as f:
             f.write('{"format": "clipboard-memory-preset", "version": 1, "categories": [], '
                     '"formats": [{"id": "builtin-user", "name": "USER", "type": "link_user", "color": "#ff0000"}]}')
         pr = Preset.open(self.p("old.preset.json"))
-        self.assertEqual([f["name"] for f in pr.formats], ["USER", "Added cards", "Suspicious cards"])
+        self.assertEqual([f["name"] for f in pr.formats], ["USER", "Test cards", "User2", "Added cards", "Suspicious cards"])
         self.assertEqual(pr.format("builtin-user")["color"], "#ff0000")    # власний колір не затирається
 
 
@@ -587,6 +589,45 @@ class SingleInstanceTests(unittest.TestCase):
         self.assertEqual(status, "foreign")
         self.assertIsNotNone(lock)
         fake.close()
+
+
+class Round7Tests(unittest.TestCase):
+    def test_test_cards_and_user2(self):
+        from formats import apply_format, format_actions
+        self.assertEqual(apply_format("test_cards", "214521, 1542 12541"), "Test cards 214521, 1542, 12541 were added")
+        self.assertEqual(apply_format("test_cards", "без чисел"), "")
+        self.assertEqual(apply_format("link_user_text", "Привіт User #13513!"), "Привіт {LINK:USER:13513:E}!")
+        self.assertEqual(apply_format("link_user_text", "User#1, user # 2 і User #3"),
+                         "{LINK:USER:1:E}, {LINK:USER:2:E} і {LINK:USER:3:E}")
+        self.assertEqual(apply_format("link_user_text", "Users 5 без решітки"), "Users 5 без решітки")
+        self.assertEqual(apply_format("link_user_text", "   "), "")
+        self.assertEqual(format_actions("test_cards"), ("copy",))
+
+    def test_history_keeps_last_15(self):
+        import tempfile, os
+        from store import MAX_HISTORY
+        self.assertEqual(MAX_HISTORY, 15)
+        path = os.path.join(tempfile.mkdtemp(), "h.json")
+        h = History(path)
+        for i in range(40):
+            h.add(f"запис {i}")
+        self.assertEqual(len(h.items), 15)
+        self.assertEqual(h.items[0]["text"], "запис 39")
+        self.assertEqual(h.items[-1]["text"], "запис 25")
+        h2 = History(path, max_items=100)
+        for i in range(40):
+            h2.add(f"інший {i}")
+        self.assertEqual(len(History(path, max_items=100).items), 55)
+        self.assertEqual(len(History(path).items), 15, "стара довга історія обрізається при завантаженні")
+
+    def test_edit_phrase(self):
+        import tempfile, os
+        pr = Preset(os.path.join(tempfile.mkdtemp(), "p.preset.json"))
+        self.assertTrue(pr.edit_phrase("ph-noactive", "No active subscriptions found."))
+        self.assertFalse(pr.edit_phrase("ph-noactive", "   "))
+        self.assertFalse(pr.edit_phrase("ph-noactive", "Ignore billing check flag was set."))   # збіг з іншою
+        self.assertFalse(pr.edit_phrase("nope", "x"))
+        self.assertEqual(Preset.open(pr.path).phrases[-1]["text"], "No active subscriptions found.")
 
 
 class SuspiciousAndRefundTests(unittest.TestCase):

@@ -31,6 +31,22 @@ def format_cards_added(text: str) -> str:
     return f"Cards {', '.join(nums)} were added during suspicious login."
 
 
+def format_test_cards(text: str) -> str:
+    """Числа → ``Test cards 214521, 1542, 12541 were added`` (без крапки наприкінці). Порожньо, якщо чисел немає."""
+    nums = _NUMBERS.findall(text or "")
+    return f"Test cards {', '.join(nums)} were added" if nums else ""
+
+
+_USER_REF = re.compile(r"user\s*#\s*([0-9]+)", re.IGNORECASE)
+
+
+def format_user_text(text: str) -> str:
+    """Довільний текст, у якому кожне «User #13513» (також «User#13513», «user # 13513») замінюється на
+    ``{LINK:USER:13513:E}``; решта тексту лишається без змін."""
+    text = text or ""
+    return _USER_REF.sub(lambda m: "{LINK:USER:%s:E}" % m.group(1), text) if text.strip() else ""
+
+
 SUSPICIOUS_PREFIX = "Suspicious cards were added."
 
 
@@ -75,6 +91,8 @@ FORMATTERS = {
     "link_user": format_link_user,
     "cards_added": format_cards_added,
     "suspicious_cards": format_suspicious_cards,
+    "test_cards": format_test_cards,
+    "link_user_text": format_user_text,
 }
 
 # Які кнопки має панель формату: copy — просто скопіювати результат;

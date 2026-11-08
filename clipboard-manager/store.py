@@ -17,7 +17,7 @@ import time
 import uuid
 
 MAX_CHARS = 100_000          # довші тексти пропускаємо
-MAX_HISTORY = 200            # скільки записів автоісторії тримати
+MAX_HISTORY = 15             # скільки останніх копіювань тримає історія; старіші видаляються автоматично
 MAX_CATEGORY_NAME = 30
 PRESET_FORMAT = "clipboard-memory-preset"
 PRESET_VERSION = 1
@@ -28,6 +28,8 @@ COLOR_RE = re.compile(r"^#[0-9a-fA-F]{6}$")
 BUILTIN_FORMATS = [
     {"id": "builtin-user", "name": "USER", "type": "link_user", "color": "#0f6cbd"},
     # видно лише в папці з такою назвою (без урахування регістру); без "folders" формат видно скрізь
+    {"id": "builtin-test-cards", "name": "Test cards", "type": "test_cards", "color": "#d83b01"},
+    {"id": "builtin-user2", "name": "User2", "type": "link_user_text", "color": "#038387"},
     {"id": "builtin-added-cards", "name": "Added cards", "type": "cards_added", "color": "#c239b3",
      "folders": ["Suspicious login"]},
     {"id": "builtin-suspicious-cards", "name": "Suspicious cards", "type": "suspicious_cards", "color": "#e81123",
@@ -191,6 +193,25 @@ class Preset:
         self.phrases.append(ph)
         self.save()
         return ph
+
+    def edit_phrase(self, phrase_id: str, text: str) -> bool:
+        """Змінює текст фрази. Порожній текст і збіг з іншою фразою відхиляються."""
+        text = (text or "").strip()[:MAX_PHRASE]
+        ph = next((p for p in self.phrases if p["id"] == phrase_id), None)
+        if not ph or not text or any(p["text"] == text and p is not ph for p in self.phrases):
+            return False
+        if ph["text"] != text:
+            ph["text"] = text
+            self.save()
+        return True
+
+    def move_phrase_to(self, phrase_id: str, index: int) -> bool:
+        """Переставляє фразу на позицію ``index`` (перетягування у списку швидких фраз)."""
+        ph = next((p for p in self.phrases if p["id"] == phrase_id), None)
+        if ph and self._move_to(self.phrases, ph, index):
+            self.save()
+            return True
+        return False
 
     def remove_phrase(self, phrase_id: str) -> bool:
         before = len(self.phrases)
@@ -512,6 +533,7 @@ class History:
                 os.replace(path, path + ".bak")
             except OSError:
                 pass
+        del self.items[self.max_items:]          # стара довша історія обрізається до ліміту
 
     # lazy=True (його вмикає програма): save() лише позначає зміну, а запис на диск робить flush()
     # з фонового таймера — копіювання/кліки не чекають на файловий ввід-вивід.
