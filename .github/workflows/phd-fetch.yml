@@ -1,0 +1,33 @@
+# Тимчасово: сторінка аспірантів кафедри з nubip.edu.ua.
+name: Fetch PhD students page (temporary)
+
+on:
+  push:
+    paths: ['tools/phd/**']
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  fetch:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - run: python tools/phd/fetch.py $(cat tools/phd/urls.txt 2>/dev/null)
+      - name: Commit results
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add -A tmp/phd
+          if git diff --cached --quiet; then echo "nothing to commit"; exit 0; fi
+          git commit -m "Fetch PhD students page"
+          for i in 1 2 3 4 5; do
+            git pull --rebase origin "${{ github.ref_name }}" && git push origin "HEAD:${{ github.ref_name }}" && exit 0
+            sleep $((i * 5))
+          done
+          exit 1
