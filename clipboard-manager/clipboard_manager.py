@@ -97,6 +97,7 @@ LEFT_FRAC, RIGHT_FRAC = 0.18, 0.22   # частка ширини вікна
 ROW_H = 54                     # висота рядка категорії (великі, повністю залиті кольором, як картки)
 LOG_LIMIT = 200_000            # app.log / error.log: при перевищенні старий файл відкладається в *.1
 CHECK_SIZE = 48                # галочка вибору запису в історії (у 2 рази більша за звичайну)
+CAT_SCROLL_FACTOR = 2          # у скільки разів швидша прокрутка колесом у списку папок
 ZONE_W = 150                   # права «службова» зона картки (галочка, «⋯», «✕»): клік там нічого не копіює
 CARD_RESERVE = 260             # справа від тексту картки: кнопки Copy / Copy and Close, галочка, «⋯», «✕»
 WIDE_HEADER = 700              # від такої ширини центральної панелі кнопка «Об'єднати» стоїть у шапці, а не під нею
@@ -2064,6 +2065,18 @@ class App:
         self.cat_list = ctk.CTkScrollableFrame(left, fg_color="transparent", corner_radius=0,
                                                scrollbar_button_color=SCROLL, scrollbar_button_hover_color=SCROLL_HOVER)
         self.cat_list.pack(fill="both", expand=True, padx=(2, 2), pady=(0, 8))
+        self._speed_up_scroll(self.cat_list, CAT_SCROLL_FACTOR)
+
+    @staticmethod
+    def _speed_up_scroll(sf, factor: int) -> None:
+        """Прискорює прокрутку колесом миші в CTkScrollableFrame у ``factor`` разів: ctk прокручує на N «одиниць»,
+        а одиниця — це yscrollincrement полотна (Windows 1 px, macOS 8, Linux 30). Більша одиниця = швидше."""
+        try:
+            canvas = sf._parent_canvas
+            base = int(float(canvas.cget("yscrollincrement")) or 1)
+            canvas.configure(yscrollincrement=base * factor)
+        except (tk.TclError, AttributeError, ValueError):
+            pass
 
     def _build_splitter(self, cols) -> None:
         """Границя між папками й копіпастами: тягнеться мишею (подвійний клік — скинути)."""
@@ -3911,6 +3924,26 @@ class App:
             self.render()
             self.set_status("✓ Запис оновлено")
 
+    def on_edit_appends(self, item_id: str) -> None:
+        """«⋯» → «Додати / Редагувати аппенди…»: існуючий запис стає копіпастою v.2 (текст і папка не змінюються)."""
+        found = self.preset.find_snippet(item_id)
+        if not found:
+            return
+        cat, snip = found
+        res = V2OptionsDialog(self, snip.get("v2")).run()
+        if res is None:                                  # «Скасувати»
+            return
+        if self.preset.update_snippet(item_id, snip["text"], cat["id"], res or None):
+            self.render()
+            self.set_status("✓ Аппенди збережено — клік по запису відкриє вибір" if res
+                            else "Аппендів немає — запис знову звичайний")
+
+    def on_remove_appends(self, item_id: str) -> None:
+        found = self.preset.find_snippet(item_id)
+        if found and self.preset.update_snippet(item_id, found[1]["text"], found[0]["id"], None):
+            self.render()
+            self.set_status("Аппенди прибрано — запис знову звичайний")
+
     def on_clear(self) -> None:
         """Без підтвердження: історія — тимчасова, а записи пресета ця дія не зачіпає."""
         self.history.clear()
@@ -4045,6 +4078,11 @@ class App:
         m.add_command("Копіювати", lambda: self.copy_item(item_id), icon="❐")
         if not hist:
             m.add_command("Редагувати…", lambda: self.on_edit(item_id), icon="✎")
+            has_v2 = bool((self.preset.find_snippet(item_id) or (None, {}))[1].get("v2"))
+            m.add_command("Редагувати аппенди…" if has_v2 else "Додати аппенди…", lambda: self.on_edit_appends(item_id),
+                          icon="▶")
+            if has_v2:
+                m.add_command("Прибрати аппенди", lambda: self.on_remove_appends(item_id), icon="○")
             m.add_command("Колір запису…", lambda: self.on_snippet_color(item_id), icon="●")
         sub = self._new_menu()
         cur = None if hist else (self.preset.find_snippet(item_id) or ({"id": None},))[0]["id"]

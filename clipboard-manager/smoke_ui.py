@@ -228,7 +228,7 @@ app.select_category(work["id"])
 snip_id = app.shown[0]["id"]
 app.show_menu(10, 10, snip_id)
 m = popups[-1]
-assert labels(m) == ["Копіювати", "Редагувати…", "Колір запису…", "Перемістити в категорію", "Вгору", "Вниз",
+assert labels(m) == ["Копіювати", "Редагувати…", "Додати аппенди…", "Колір запису…", "Перемістити в категорію", "Вгору", "Вниз",
                      "Видалити"], labels(m)
 sub = submenu(m, "Перемістити в категорію")
 assert labels(sub) == ["Робота", "Особисте", "＋ Нова категорія…"], labels(sub)
@@ -1394,7 +1394,7 @@ app.show_menu(root.winfo_rootx() + 500, root.winfo_rooty() + 300, sid)
 pop = app._popups[-1]
 pump(150)
 assert pop.top.winfo_viewable() and pop.top.winfo_width() >= 250 * sc - 2
-assert [i.label for i, _, _ in pop.rows] == ["Копіювати", "Редагувати…", "Колір запису…", "Перемістити в категорію",
+assert [i.label for i, _, _ in pop.rows] == ["Копіювати", "Редагувати…", "Додати аппенди…", "Колір запису…", "Перемістити в категорію",
                                               "Вгору", "Вниз", "Видалити"]
 for item, row, parts in pop.rows:
     assert row.winfo_height() >= 40 * sc - 1, (item.label, row.winfo_height())
@@ -3051,6 +3051,51 @@ root.geometry("1180x660+0+0")
 pump(600)
 settings.data["width"], settings.data["height"] = 1180, 660
 app._size = None
+
+# ---- 34. раунд 9: швидша прокрутка папок, аппенди для наявних копіпастів через «⋯» -------------------------------------------
+settings["autohide"] = False
+app.show_window()
+pump(200)
+# прокрутка колесом у списку папок — удвічі швидша (одиниця прокрутки полотна подвоєна)
+probe = ctk.CTkScrollableFrame(root)
+base_inc = int(float(probe._parent_canvas.cget("yscrollincrement")))
+probe.destroy()
+assert int(float(app.cat_list._parent_canvas.cget("yscrollincrement"))) == base_inc * cm.CAT_SCROLL_FACTOR == base_inc * 2
+# «⋯» звичайного запису → «Додати аппенди…»; після збереження запис стає v.2, текст не змінюється
+ap_cat = app.preset.add_category("Аппенди меню")
+plain = app.preset.add_snippet(ap_cat["id"], "Звичайна копіпаста")
+app.render()
+app.flush_render()
+app.select_category(ap_cat["id"])
+app.flush_render()
+pump(200)
+app.show_menu(3, 3, plain["id"])
+assert "Додати аппенди…" in labels(popups[-1]) and "Прибрати аппенди" not in labels(popups[-1]), labels(popups[-1])
+saved_v2run = cm.V2OptionsDialog.run
+cm.V2OptionsDialog.run = lambda self: cm.clean_v2({"options": [{"text": "додаток", "kind": "end"}]})
+invoke(popups[-1], "Додати аппенди…")
+pump(200)
+got = next(s_ for s_ in app.preset.snippets(ap_cat["id"]) if s_["id"] == plain["id"])
+assert got["text"] == "Звичайна копіпаста" and got["v2"]["options"][0]["text"] == "додаток"
+assert app._card_objs[plain["id"]].v2 and app._card_objs[plain["id"]].body.cget("text").endswith("▶ v.2")
+app.show_menu(3, 3, plain["id"])
+assert "Редагувати аппенди…" in labels(popups[-1]) and "Прибрати аппенди" in labels(popups[-1])
+cm.V2OptionsDialog.run = lambda self: None                      # «Скасувати» — нічого не змінюється
+invoke(popups[-1], "Редагувати аппенди…")
+assert next(s_ for s_ in app.preset.snippets(ap_cat["id"]) if s_["id"] == plain["id"]).get("v2")
+app.show_menu(3, 3, plain["id"])
+invoke(popups[-1], "Прибрати аппенди")
+pump(200)
+got = next(s_ for s_ in app.preset.snippets(ap_cat["id"]) if s_["id"] == plain["id"])
+assert "v2" not in got and not app._card_objs[plain["id"]].v2
+cm.V2OptionsDialog.run = saved_v2run
+app.select_category(HISTORY)
+app.flush_render()
+app.show_menu(3, 3, app._order[0]) if app._order else None
+if app._order:
+    assert not any("аппенди" in l_ for l_ in labels(popups[-1])), "у записів історії аппендів немає"
+print("34 faster folder scroll + appends via ⋯ menu OK")
+settings["autohide"] = True
 
 # ---- 25. справжнє розгортання під віконним менеджером (лише якщо є openbox) -------------------------------------------------------------
 import shutil  # noqa: E402
