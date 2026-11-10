@@ -411,7 +411,7 @@ assert cm._Dialog.run(dlg) is None
 cats = app.preset.categories
 dlg = cm.SnippetDialog(app, "Новий", "", cats[0]["id"])
 root.after(400, lambda: (dlg.text.insert("1.0", "через справжній діалог"), dlg.cat_var.set(cats[1]["name"]), dlg.ok()))
-assert cm._Dialog.run(dlg) == ("через справжній діалог", cats[1]["id"])
+assert cm._Dialog.run(dlg) == ("через справжній діалог", cats[1]["id"], None)
 dlg = cm.SnippetDialog(app, "Порожній", "", cats[0]["id"])
 root.after(400, lambda: (dlg.ok(), dlg.cancel()))             # порожній текст не приймається
 assert cm._Dialog.run(dlg) is None
@@ -1570,7 +1570,7 @@ assert any(s["text"] == "для переносу" for s in r4.snippets(ot["id"])
 r4.remove_snippet(r4.snippets(ot["id"])[0]["id"])
 app.render()
 # формати: перестановка серед видимих у папці + пункти меню «вгору/вниз»
-assert [f["id"] for f in app._visible_formats()] == ["builtin-user", "builtin-test-cards", "builtin-user2", "builtin-added-cards"]
+assert [f["id"] for f in app._visible_formats()] == ["builtin-user", "builtin-user2", "builtin-added-cards"]
 pump(150)
 fr_user, fr_cards = app._fmt_rows["builtin-user"].row, app._fmt_rows["builtin-added-cards"].row
 fx, fy = fr_cards.winfo_rootx() + 80, fr_cards.winfo_rooty() + fr_cards.winfo_height() // 2
@@ -1668,7 +1668,10 @@ for t in ("2345", "1234"):                                      # натиска
     app.toggle_check(cards_h[t].iid)
 app.copy_to_clipboard("до об'єднання")
 hist_before = len(r4_hist.items)
-app.merge_checked()
+app.merge_checked()                                             # меню з 3 варіантами склеювання
+mm = popups[-1]
+assert labels(mm) == ["Копіювати як Suspicious cards", "Копіювати як Test cards", "Об'єднати і копіювати"], labels(mm)
+invoke(mm, "Об'єднати і копіювати")
 assert root.clipboard_get() == "1234, 2345", root.clipboard_get()
 assert root.state() == "withdrawn", "після об'єднання вікно ховається"
 pump(400)
@@ -1683,12 +1686,23 @@ cards_h = {c.text: c for c in app._card_objs.values()}
 for t in ("1242", "1234", "5466", "2345"):
     app.toggle_check(cards_h[t].iid)
 app.merge_checked()
-assert root.clipboard_get() == "1242, 1234, 5466, 2345", root.clipboard_get()   # приклад із завдання
+invoke(popups[-1], "Копіювати як Suspicious cards")
+assert root.clipboard_get() == "Suspicious cards 1242, 1234, 5466, 2345 were added.", root.clipboard_get()
 pump(500)
 app.show_window()
 pump(150)
+cards_h = {c.text: c for c in app._card_objs.values()}
+for t in ("1242", "1234", "5466"):
+    app.toggle_check(cards_h[t].iid)
+app.merge_checked()
+invoke(popups[-1], "Копіювати як Test cards")
+assert root.clipboard_get() == "Test cards 1242, 1234, 5466 were added", root.clipboard_get()
+pump(500)
+app.show_window()
+pump(150)
+n_pop = len(popups)
 app.merge_checked()                                             # порожній вибір
-assert "Відмітьте" in app.status.cget("text") and root.state() != "withdrawn"
+assert "Відмітьте" in app.status.cget("text") and root.state() != "withdrawn" and len(popups) == n_pop, "меню не відкривається без вибору"
 print("27c history multi-select + merge OK")
 
 # (d) ховання: шлях назад, iconify-запасний варіант, журнали
@@ -1819,10 +1833,10 @@ assert "builtin-added-cards" in app._fmt_rows and "Невідомий" not in ap
 assert app._fmt_rows["builtin-added-cards"].sub.cget("text").startswith("→ Cards")
 app.select_category(ot["id"])
 pump(200)
-assert list(app._fmt_rows) == ["builtin-user", "builtin-test-cards", "builtin-user2"], "поза «Suspicious login» «Added cards» не видно"
+assert list(app._fmt_rows) == ["builtin-user", "builtin-user2"], "поза «Suspicious login» «Added cards» не видно"
 app.select_category(HISTORY)
 pump(200)
-assert list(app._fmt_rows) == ["builtin-user", "builtin-test-cards", "builtin-user2"]
+assert list(app._fmt_rows) == ["builtin-user", "builtin-user2"]
 r4.rename_category(sl["id"], "suspicious LOGIN")                 # назва без урахування регістру
 app.render()
 app.select_category(sl["id"])
@@ -2691,15 +2705,8 @@ app.set_search("")
 app.select_category(HISTORY)
 app.flush_render()
 pump(200)
-# (формати) Test cards і User2 видно скрізь (як USER)
-assert {"builtin-test-cards", "builtin-user2"} <= set(app._fmt_rows)
-app.select_format("builtin-test-cards")
-app.fmt_input.insert("1.0", "214521, 1542 12541")
-app._update_format_preview()
-assert app.fmt_preview.get("1.0", "end-1c") == "Test cards 214521, 1542, 12541 were added"
-app.submit_format()
-assert root.clipboard_get() == "Test cards 214521, 1542, 12541 were added"
-app.select_format("builtin-test-cards")                          # згорнути
+# (формати) User2 видно скрізь (як USER); формат Test cards перенесено в меню «Об'єднати і копіювати»
+assert "builtin-user2" in app._fmt_rows and "builtin-test-cards" not in app._fmt_rows
 app.select_format("builtin-user2")
 app.fmt_input.insert("1.0", "Прошу перевірити User #13513, а також user#77.")
 app._update_format_preview()
@@ -2713,7 +2720,7 @@ assert app.history.max_items == 15
 for i_ in range(25):
     app.history.add(f"рядок історії {i_}")
 assert len(app.history.items) == 15 and app.history.items[0]["text"] == "рядок історії 24"
-print("32a Test cards / User2 / history 15 OK")
+print("32a User2 / history 15 OK")
 
 # Ctrl + клік по тексту картки: копіює і згортає (навіть без автохова)
 ctrl_cat = app.preset.add_category("Ctrl-тест")
@@ -2818,6 +2825,207 @@ real_click(lbl)
 assert [p["id"] for p in app._refund_selected()] == [ids_ph[0]]
 app._clear_refunds()
 print("32d phrases: pair highlight, edit, drag-sort OK")
+settings["autohide"] = True
+root.geometry("1180x660+0+0")
+pump(600)
+settings.data["width"], settings.data["height"] = 1180, 660
+app._size = None
+
+# ---- 33. раунд 8: великі галочки й «Об'єднати», згортання фраз, копіпасти v.2 (вікно вибору + редактор аппендів) ---------------------
+settings["autohide"] = False
+app.hotkey_ok = False
+root.geometry("1500x800+0+0")
+pump(600)
+app.show_window()
+app.set_search("")
+# (a) галочки в історії вдвічі більші, кнопка «Об'єднати і копіювати» велика
+app.history = History(os.path.join(tmp, "h33.json"))
+for t_ in ("111", "222", "333"):
+    app.history.add(t_)
+app.select_category(HISTORY)
+app.flush_render()
+pump(300)
+c33 = next(iter(app._card_objs.values()))
+assert c33.check is not None and int(c33.check.cget("width")) >= int(48 * app.scaling()) - 1, c33.check.cget("width")
+assert app.merge_btn.cget("height") >= 46 and app.merge_btn.cget("width") >= 280
+# (b) швидкі фрази згортаються (стан запам'ятовується)
+app.toggle_phrases()
+pump(200)
+assert settings["phrases_collapsed"] and app.refund_box.winfo_ismapped()
+assert not app.phrase_list.winfo_ismapped() and not app.phrase_pair.winfo_ismapped() and app.phrase_chev.cget("text") == "▸"
+from store import Settings as _S33
+assert _S33(settings.path)["phrases_collapsed"] is True
+app.toggle_phrases()
+pump(200)
+assert app.phrase_list.winfo_ismapped() and app.phrase_pair.winfo_ismapped() and not settings["phrases_collapsed"]
+print("33a big checkboxes/merge button, collapsible phrases OK")
+
+# (c) копіпаста v.2: клік відкриває вікно вибору аппендів
+v2cat = app.preset.add_category("V2 тест")
+v2data = {"options": [
+    {"text": "оранжевий", "kind": "group", "join": True, "children": [
+        {"text": "рожевий", "kind": "group", "join": True, "children": [{"text": "глибокий"}]},
+        {"text": "синій"}, {"text": "фіолетовий"}]},
+    {"text": "червоний", "kind": "addon", "on": False},
+    {"text": "зелений"}]}
+sn33 = app.preset.add_snippet(v2cat["id"], "Основний текст", v2data)
+sn33b = app.preset.add_snippet(v2cat["id"], "Основний 2", {"options": [
+    {"text": "лише відкриває", "kind": "group", "join": False, "children": [{"text": "кінець"}]},
+    {"text": "завжди", "kind": "addon", "on": True}]})
+app.render()
+app.flush_render()
+app.select_category(v2cat["id"])
+app.flush_render()
+pump(300)
+card33 = app._card_objs[sn33["id"]]
+assert card33.v2 and card33.body.cget("text").endswith("▶ v.2")
+
+
+def v2dlg():
+    return [w for w in root.winfo_children() if isinstance(w, cm.V2Dialog)][-1]
+
+
+def opt(dlg, text):
+    for fr in dlg.list.winfo_children():
+        for w in fr.winfo_children():
+            if isinstance(w, tk.Label) and w.cget("text").endswith(text):
+                return w
+    raise AssertionError(("немає аппенду", text))
+
+
+def preview_of(dlg):
+    return dlg.preview.get("1.0", "end-1c")
+
+
+log33 = []
+
+
+def flow1():
+    d = v2dlg()
+    log33.append(preview_of(d))
+    opt(d, "червоний").event_generate("<Button-1>", x=5, y=5)            # ◆ галочка
+    log33.append(preview_of(d))
+    opt(d, "оранжевий").event_generate("<Button-1>", x=5, y=5)           # ▶ підгрупа (додається сама)
+    log33.append(preview_of(d))
+    opt(d, "рожевий").event_generate("<Button-1>", x=5, y=5)
+    log33.append(preview_of(d))
+    d.back()                                                              # «Назад»
+    log33.append(preview_of(d))
+    opt(d, "рожевий").event_generate("<Button-1>", x=5, y=5)
+    opt(d, "глибокий").event_generate("<Button-1>", x=5, y=5, state=0)   # ● кінцевий без Ctrl
+
+
+app.copy_to_clipboard("до v2")
+root.after(500, flow1)
+real_click(card33.body)
+pump(300)
+assert log33 == ["Основний текст", "Основний текст червоний", "Основний текст оранжевий червоний",
+                 "Основний текст оранжевий рожевий червоний", "Основний текст оранжевий червоний"], log33
+assert root.clipboard_get() == "Основний текст оранжевий рожевий глибокий червоний", root.clipboard_get()
+assert not app._hidden and root.state() != "withdrawn", "кінцевий аппенд без Ctrl лише копіює (вікно лишається)"
+assert card33.flash_lbl is None or True
+# Ctrl + клік по кінцевому — копіює і ховає вікно програми
+app.hotkey_ok = True
+root.after(500, lambda: opt(v2dlg(), "зелений").event_generate("<Button-1>", x=5, y=5, state=0x4))
+real_click(card33.body)
+pump(300)
+assert root.clipboard_get() == "Основний текст зелений" and app._hidden, "Ctrl+клік по кінцевому ховає вікно"
+app.show_window()
+pump(300)
+# «Копіювати зараз» — без подальшого вибору
+root.after(500, lambda: (opt(v2dlg(), "оранжевий").event_generate("<Button-1>", x=5, y=5), v2dlg().now_btn.invoke()))
+real_click(card33.body)
+pump(300)
+assert root.clipboard_get() == "Основний текст оранжевий" and not app._hidden
+# «Скасувати» — нічого не копіюється
+app.copy_to_clipboard("маркер33")
+root.after(500, lambda: v2dlg().cancel())
+real_click(card33.body)
+pump(200)
+assert root.clipboard_get() == "маркер33"
+# підгрупа без «додавати текст» лише відкриває наступну групу; ◆ «увімк.» стоїть за замовчуванням
+card33b = app._card_objs[sn33b["id"]]
+log33b = []
+
+
+def flow2():
+    d = v2dlg()
+    log33b.append(preview_of(d))
+    opt(d, "лише відкриває").event_generate("<Button-1>", x=5, y=5)
+    log33b.append(preview_of(d))
+    opt(d, "кінець").event_generate("<Button-1>", x=5, y=5)
+
+
+root.after(500, flow2)
+real_click(card33b.body)
+pump(300)
+assert log33b == ["Основний 2 завжди", "Основний 2 завжди"], log33b
+assert root.clipboard_get() == "Основний 2 кінець завжди", root.clipboard_get()
+# Ctrl + клік по самій картці v.2 — лише основний текст, і вікно ховається
+card33.body.event_generate("<ButtonPress-1>", x=8, y=8, state=0x4)
+card33.body.event_generate("<ButtonRelease-1>", x=8, y=8, state=0x4)
+pump(300)
+assert root.clipboard_get() == "Основний текст" and app._hidden
+app.show_window()
+pump(300)
+app.hotkey_ok = False
+print("33b v.2 choice window (groups, addons, back, copy now, ctrl) OK")
+
+# (d) редактор аппендів і діалог запису з прапорцем v.2
+ed = cm.V2OptionsDialog(app, None)
+
+
+def edit_script():
+    def entry_of(i):
+        row = ed.list.winfo_children()[i]
+        return next(w for w in row.grid_slaves(row=0, column=1))
+    ed.add()
+    entry_of(0).insert(0, "аппенд 1")
+    ed._set_kind(ed.root_opts[0], "group")
+    ed.open_group(ed.root_opts[0])
+    assert ed.back_btn.winfo_manager() == "pack" and "аппенд 1" in ed.crumb.cget("text")
+    ed.add()
+    entry_of(0).insert(0, "вкладений")
+    ed.up()
+    ed.add()
+    entry_of(1).insert(0, "додатковий")
+    ed._set_kind(ed.root_opts[1], "addon")
+    ed.add()                                           # порожній — відкидається при збереженні
+    ed._move(ed.root_opts[1], -1)
+    ed.accept()
+
+
+root.after(400, edit_script)
+res33 = cm._Dialog.run(ed)
+assert [(n["text"], n["kind"]) for n in res33["options"]] == [("додатковий", "addon"), ("аппенд 1", "group")], res33
+assert res33["options"][1]["children"][0]["text"] == "вкладений" and res33["options"][1]["join"] is True
+sd = cm.SnippetDialog(app, "Новий v2", "", v2cat["id"])
+assert sd.v2_btn.cget("state") == "disabled"
+
+
+def sd_script():
+    sd.text.insert("1.0", "Копіпаста з діалогу")
+    sd.v2_var.set(True)
+    sd._sync_v2()
+    root.after(400, lambda: [w for w in root.winfo_children() if isinstance(w, cm.V2OptionsDialog)][-1].accept())
+    sd.edit_v2()                                        # вкладений редактор (порожній → без аппендів)
+    sd.v2 = {"options": [{"text": "x", "kind": "end"}]}
+    sd._sync_v2()
+    assert sd.v2_btn.cget("text") == "Аппенди… (1)"
+    sd.ok()
+
+
+root.after(400, sd_script)
+res_sd = cm._Dialog.run(sd)
+assert res_sd[0] == "Копіпаста з діалогу" and res_sd[1] == v2cat["id"] and res_sd[2]["options"][0]["text"] == "x", res_sd
+# редагування: v2 переходить у діалог і зберігається
+saved_run = cm.SnippetDialog.run
+cm.SnippetDialog.run = lambda self: (self.text.get("1.0", "end-1c") + " (ред.)", v2cat["id"], None)
+app.on_edit(sn33["id"])
+cm.SnippetDialog.run = saved_run
+got = next(s_ for s_ in app.preset.snippets(v2cat["id"]) if s_["id"] == sn33["id"])
+assert got["text"] == "Основний текст (ред.)" and "v2" not in got, "v2=None робить запис звичайним"
+print("33c v.2 editor + snippet dialog OK")
 settings["autohide"] = True
 root.geometry("1180x660+0+0")
 pump(600)

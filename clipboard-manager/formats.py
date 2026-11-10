@@ -31,12 +31,6 @@ def format_cards_added(text: str) -> str:
     return f"Cards {', '.join(nums)} were added during suspicious login."
 
 
-def format_test_cards(text: str) -> str:
-    """Числа → ``Test cards 214521, 1542, 12541 were added`` (без крапки наприкінці). Порожньо, якщо чисел немає."""
-    nums = _NUMBERS.findall(text or "")
-    return f"Test cards {', '.join(nums)} were added" if nums else ""
-
-
 _USER_REF = re.compile(r"user\s*#\s*([0-9]+)", re.IGNORECASE)
 
 
@@ -91,7 +85,6 @@ FORMATTERS = {
     "link_user": format_link_user,
     "cards_added": format_cards_added,
     "suspicious_cards": format_suspicious_cards,
-    "test_cards": format_test_cards,
     "link_user_text": format_user_text,
 }
 
@@ -127,3 +120,66 @@ def join_values(values, sep: str = ", ") -> str:
 def apply_format(fmt_type: str, text: str) -> str:
     fn = FORMATTERS.get(fmt_type)
     return fn(text) if fn else ""
+
+
+# --------------------------------------------------------------------------- #
+#  «Об'єднати і копіювати» з історії: варіанти склеювання (реєстр; нові варіанти додаються сюди)
+# --------------------------------------------------------------------------- #
+# (id, підпис у меню, шаблон або None). Шаблон: {values} — обрані значення через кому, від старішого до новішого.
+MERGE_ACTIONS = [
+    ("suspicious", "Копіювати як Suspicious cards", "Suspicious cards {values} were added."),
+    ("test", "Копіювати як Test cards", "Test cards {values} were added"),
+    ("plain", "Об'єднати і копіювати", None),
+]
+
+
+def apply_merge(action_id: str, values) -> str:
+    """Значення (у хронологічному порядку) → текст для буфера за варіантом ``action_id``."""
+    joined = join_values(values)
+    if not joined:
+        return ""
+    for aid, _label, template in MERGE_ACTIONS:
+        if aid == action_id:
+            return template.format(values=joined) if template else joined
+    return joined
+
+
+# --------------------------------------------------------------------------- #
+#  Копіпасти v.2: основний текст + дерево аппендів
+# --------------------------------------------------------------------------- #
+V2_KINDS = ("end", "group", "addon")      # кінцевий · підгрупа (відкриває наступне вікно) · додатковий (з галочкою)
+V2_MAX_DEPTH = 6
+V2_MAX_NODES = 60
+V2_MAX_TEXT = 1000
+
+
+def clean_v2(raw) -> dict | None:
+    """Перевіряє/нормалізує ``{"options": [вузли]}``; None, якщо аппендів немає. Вузол: {id, text, kind, join?, on?, children?}."""
+    import uuid
+
+    def clean_list(items, depth: int) -> list[dict]:
+        out = []
+        if not isinstance(items, list) or depth > V2_MAX_DEPTH:
+            return out
+        for n in items[:V2_MAX_NODES]:
+            if not isinstance(n, dict) or not isinstance(n.get("text"), str) or not n["text"].strip():
+                continue
+            kind = n.get("kind") if n.get("kind") in V2_KINDS else "end"
+            node = {"id": str(n.get("id") or uuid.uuid4().hex), "text": n["text"].strip()[:V2_MAX_TEXT], "kind": kind}
+            if kind == "group":
+                node["join"] = bool(n.get("join", True))      # чи додається текст самої підгрупи в результат
+                node["children"] = clean_list(n.get("children"), depth + 1)
+            elif kind == "addon":
+                node["on"] = bool(n.get("on", False))          # увімкнений за замовчуванням
+            out.append(node)
+        return out
+
+    opts = clean_list(raw.get("options") if isinstance(raw, dict) else None, 0)
+    return {"options": opts} if opts else None
+
+
+def v2_compose(main: str, steps, addons) -> str:
+    """Основний текст + обрані аппенди (у порядку кліків) + позначені додаткові — через пробіл."""
+    parts = [main or "", *steps, *addons]
+    return " ".join(p.strip() for p in parts if p and p.strip())
+

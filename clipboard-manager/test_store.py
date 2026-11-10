@@ -96,7 +96,7 @@ class PresetTests(TmpCase):
         again = Preset.open(self.path)
         self.assertEqual(again.categories[0]["name"], "Шаблони 🌍")
         self.assertEqual(again.categories[0]["snippets"][0]["text"], "Привіт, світе 🌍")
-        self.assertEqual([f["name"] for f in again.formats], ["USER", "Test cards", "User2", "Added cards", "Suspicious cards", "future"])   # невідомий формат не губиться
+        self.assertEqual([f["name"] for f in again.formats], ["USER", "User2", "Added cards", "Suspicious cards", "future"])   # невідомий формат не губиться
         with open(self.path, encoding="utf-8") as f:
             data = json.load(f)
         self.assertEqual(data["format"], "clipboard-memory-preset")
@@ -191,7 +191,7 @@ class ColorAndRenameTests(TmpCase):
 
     def test_builtin_user_format_exists_and_color_persists(self):
         self.assertEqual([(f["name"], f["type"]) for f in self.pr.formats],
-                         [("USER", "link_user"), ("Test cards", "test_cards"), ("User2", "link_user_text"),
+                         [("USER", "link_user"), ("User2", "link_user_text"),
                           ("Added cards", "cards_added"), ("Suspicious cards", "suspicious_cards")])
         self.assertTrue(self.pr.set_format_color("builtin-user", "#ff8800"))
         self.assertEqual(Preset.open(self.pr.path).format("builtin-user")["color"], "#ff8800")
@@ -270,12 +270,12 @@ class OrderAndScopeTests(TmpCase):
 
     def test_move_formats(self):
         ids = [f["id"] for f in self.pr.formats]
-        base = ["builtin-user", "builtin-test-cards", "builtin-user2", "builtin-added-cards", "builtin-suspicious-cards"]
+        base = ["builtin-user", "builtin-user2", "builtin-added-cards", "builtin-suspicious-cards"]
         self.assertEqual(ids, base)
-        self.assertTrue(self.pr.move_format("builtin-test-cards", -1))
+        self.assertTrue(self.pr.move_format("builtin-user2", -1))
         self.assertEqual([f["id"] for f in self.pr.formats],
-                         ["builtin-test-cards", "builtin-user", "builtin-user2", "builtin-added-cards", "builtin-suspicious-cards"])
-        self.assertTrue(self.pr.move_format_to("builtin-test-cards", 1))
+                         ["builtin-user2", "builtin-user", "builtin-added-cards", "builtin-suspicious-cards"])
+        self.assertTrue(self.pr.move_format_to("builtin-user2", 1))
         self.assertEqual([f["id"] for f in self.pr.formats], base)
         self.assertFalse(self.pr.move_format("builtin-user", -1))          # вже перший
         self.assertEqual([f["id"] for f in Preset.open(self.pr.path).formats], base)
@@ -283,21 +283,21 @@ class OrderAndScopeTests(TmpCase):
     def test_formats_visibility_per_folder(self):
         sl = self.pr.add_category("  suspicious LOGIN ")                    # назва без урахування регістру
         in_login = [f["name"] for f in self.pr.formats_for(sl["id"])]
-        self.assertEqual(in_login, ["USER", "Test cards", "User2", "Added cards"])
-        everywhere = ["USER", "Test cards", "User2"]
+        self.assertEqual(in_login, ["USER", "User2", "Added cards"])
+        everywhere = ["USER", "User2"]
         self.assertEqual([f["name"] for f in self.pr.formats_for(self.a["id"])], everywhere)
         self.assertEqual([f["name"] for f in self.pr.formats_for(None)], everywhere)   # історія буфера
         sc = self.pr.add_category("Suspicious cards")
         self.assertEqual([f["name"] for f in self.pr.formats_for(sc["id"])], everywhere + ["Suspicious cards"])
         self.pr.rename_category(sl["id"], "Інша")
-        self.assertEqual([f["name"] for f in self.pr.formats_for(sl["id"])], ["USER", "Test cards", "User2"])
+        self.assertEqual([f["name"] for f in self.pr.formats_for(sl["id"])], ["USER", "User2"])
 
     def test_old_preset_gets_added_cards_format(self):
         with open(self.p("old.preset.json"), "w", encoding="utf-8") as f:
             f.write('{"format": "clipboard-memory-preset", "version": 1, "categories": [], '
                     '"formats": [{"id": "builtin-user", "name": "USER", "type": "link_user", "color": "#ff0000"}]}')
         pr = Preset.open(self.p("old.preset.json"))
-        self.assertEqual([f["name"] for f in pr.formats], ["USER", "Test cards", "User2", "Added cards", "Suspicious cards"])
+        self.assertEqual([f["name"] for f in pr.formats], ["USER", "User2", "Added cards", "Suspicious cards"])
         self.assertEqual(pr.format("builtin-user")["color"], "#ff0000")    # власний колір не затирається
 
 
@@ -592,16 +592,14 @@ class SingleInstanceTests(unittest.TestCase):
 
 
 class Round7Tests(unittest.TestCase):
-    def test_test_cards_and_user2(self):
+    def test_user2(self):
         from formats import apply_format, format_actions
-        self.assertEqual(apply_format("test_cards", "214521, 1542 12541"), "Test cards 214521, 1542, 12541 were added")
-        self.assertEqual(apply_format("test_cards", "без чисел"), "")
         self.assertEqual(apply_format("link_user_text", "Привіт User #13513!"), "Привіт {LINK:USER:13513:E}!")
         self.assertEqual(apply_format("link_user_text", "User#1, user # 2 і User #3"),
                          "{LINK:USER:1:E}, {LINK:USER:2:E} і {LINK:USER:3:E}")
         self.assertEqual(apply_format("link_user_text", "Users 5 без решітки"), "Users 5 без решітки")
         self.assertEqual(apply_format("link_user_text", "   "), "")
-        self.assertEqual(format_actions("test_cards"), ("copy",))
+        self.assertEqual(format_actions("link_user_text"), ("copy",))
 
     def test_history_keeps_last_15(self):
         import tempfile, os
@@ -628,6 +626,68 @@ class Round7Tests(unittest.TestCase):
         self.assertFalse(pr.edit_phrase("ph-noactive", "Ignore billing check flag was set."))   # збіг з іншою
         self.assertFalse(pr.edit_phrase("nope", "x"))
         self.assertEqual(Preset.open(pr.path).phrases[-1]["text"], "No active subscriptions found.")
+
+
+class MergeAndV2Tests(unittest.TestCase):
+    def test_merge_actions(self):
+        from formats import MERGE_ACTIONS, apply_merge
+        vals = ["1242", "1234", "5466"]
+        self.assertEqual([a[0] for a in MERGE_ACTIONS], ["suspicious", "test", "plain"])
+        self.assertEqual(apply_merge("suspicious", vals), "Suspicious cards 1242, 1234, 5466 were added.")
+        self.assertEqual(apply_merge("test", vals), "Test cards 1242, 1234, 5466 were added")
+        self.assertEqual(apply_merge("plain", vals), "1242, 1234, 5466")
+        self.assertEqual(apply_merge("suspicious", ["a, b ", " c"]), "Suspicious cards a, b, c were added.")
+        self.assertEqual(apply_merge("test", []), "")
+        self.assertEqual(apply_merge("невідомий", ["1", "2"]), "1, 2")
+
+    def test_old_test_cards_format_is_dropped_on_load(self):
+        import json, tempfile, os
+        path = os.path.join(tempfile.mkdtemp(), "old.preset.json")
+        with open(path, "w", encoding="utf-8") as f:
+            json.dump({"format": "clipboard-memory-preset", "version": 1, "categories": [],
+                       "formats": [{"id": "builtin-test-cards", "name": "Test cards", "type": "test_cards", "color": "#d83b01"}]}, f)
+        self.assertNotIn("builtin-test-cards", [f["id"] for f in Preset.open(path).formats])
+
+    def test_clean_v2(self):
+        from formats import clean_v2
+        self.assertIsNone(clean_v2(None))
+        self.assertIsNone(clean_v2({"options": []}))
+        self.assertIsNone(clean_v2({"options": [{"text": "  "}]}))
+        v2 = clean_v2({"options": [
+            {"text": "оранж", "kind": "group", "join": False, "children": [{"text": "рожевий", "kind": "group"},
+                                                                          {"text": "синій"}, {"text": ""}]},
+            {"text": "червоний", "kind": "addon", "on": True},
+            {"text": "зелений", "kind": "що-завгодно"}]})
+        o, r, g = v2["options"]
+        self.assertEqual((o["kind"], o["join"], len(o["children"])), ("group", False, 2))
+        self.assertEqual(o["children"][0]["join"], True)               # за замовчуванням підгрупа додається
+        self.assertEqual(o["children"][0]["children"], [])
+        self.assertEqual((r["kind"], r["on"]), ("addon", True))
+        self.assertEqual(g["kind"], "end")
+
+    def test_v2_compose(self):
+        from formats import v2_compose
+        self.assertEqual(v2_compose("Основний", ["оранж", "рожевий"], ["червоний"]), "Основний оранж рожевий червоний")
+        self.assertEqual(v2_compose("Основний", [], []), "Основний")
+        self.assertEqual(v2_compose(" Основний ", ["", "x"], [" "]), "Основний x")
+
+    def test_v2_snippet_persist_and_edit(self):
+        import tempfile, os
+        pr = Preset(os.path.join(tempfile.mkdtemp(), "p.preset.json"))
+        cat = pr.add_category("К")
+        v2 = {"options": [{"text": "аппенд 1", "kind": "group", "children": [{"text": "вкладений"}]},
+                          {"text": "додатковий", "kind": "addon", "on": True}]}
+        sn = pr.add_snippet(cat["id"], "Основний текст", v2)
+        self.assertEqual(sn["v2"]["options"][0]["children"][0]["text"], "вкладений")
+        again = Preset.open(pr.path)
+        got = again.snippets(cat["id"])[0]
+        self.assertEqual(got["v2"], sn["v2"])
+        self.assertTrue(again.update_snippet(sn["id"], "Основний 2"))          # без v2="keep" аппенди лишаються
+        self.assertIn("v2", again.snippets(cat["id"])[0])
+        self.assertTrue(again.update_snippet(sn["id"], "Основний 2", v2=None))  # зробити звичайною
+        self.assertNotIn("v2", Preset.open(pr.path).snippets(cat["id"])[0])
+        self.assertTrue(again.update_snippet(sn["id"], "Основний 2", v2={"options": [{"text": "x"}]}))
+        self.assertEqual(Preset.open(pr.path).snippets(cat["id"])[0]["v2"]["options"][0]["kind"], "end")
 
 
 class SuspiciousAndRefundTests(unittest.TestCase):
@@ -680,7 +740,8 @@ class SuspiciousAndRefundTests(unittest.TestCase):
     def test_new_settings_defaults(self):
         import tempfile, os
         st = Settings(os.path.join(tempfile.mkdtemp(), "s.json"))
-        self.assertEqual((st["cat_view"], st["rec_view"], st["left_w"], st["clear_on_exit"]), ("list", "list", 0, True))
+        self.assertEqual((st["cat_view"], st["rec_view"], st["left_w"], st["clear_on_exit"], st["phrases_collapsed"]),
+                         ("list", "list", 0, True, False))
 
 
 if __name__ == "__main__":

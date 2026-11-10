@@ -16,6 +16,8 @@ import shutil
 import time
 import uuid
 
+from formats import clean_v2
+
 MAX_CHARS = 100_000          # довші тексти пропускаємо
 MAX_HISTORY = 15             # скільки останніх копіювань тримає історія; старіші видаляються автоматично
 MAX_CATEGORY_NAME = 30
@@ -28,7 +30,6 @@ COLOR_RE = re.compile(r"^#[0-9a-fA-F]{6}$")
 BUILTIN_FORMATS = [
     {"id": "builtin-user", "name": "USER", "type": "link_user", "color": "#0f6cbd"},
     # видно лише в папці з такою назвою (без урахування регістру); без "folders" формат видно скрізь
-    {"id": "builtin-test-cards", "name": "Test cards", "type": "test_cards", "color": "#d83b01"},
     {"id": "builtin-user2", "name": "User2", "type": "link_user_text", "color": "#038387"},
     {"id": "builtin-added-cards", "name": "Added cards", "type": "cards_added", "color": "#c239b3",
      "folders": ["Suspicious login"]},
@@ -44,6 +45,7 @@ DEFAULT_PHRASES = [
     {"id": "ph-noactive", "text": "No active subscriptions."},
 ]
 MAX_PHRASE = 1000
+REMOVED_BUILTIN_FORMATS = {"builtin-test-cards"}     # перенесено в меню «Об'єднати і копіювати» (з історії)
 PALETTE = ["#0f6cbd", "#107c10", "#c239b3", "#d83b01", "#8764b8", "#038387", "#986f0b", "#e3008c"]
 
 
@@ -154,6 +156,9 @@ class Preset:
                             "ts": float(s.get("ts", time.time()))}
                     if _color_ok(s.get("color")):
                         snip["color"] = s["color"]       # власний колір запису (має пріоритет над кольором папки)
+                    v2 = clean_v2(s.get("v2"))
+                    if v2:
+                        snip["v2"] = v2                  # копіпаста v.2: основний текст + дерево аппендів
                     snippets.append(snip)
             cats.append({"id": cid, "name": str(c["name"])[:MAX_CATEGORY_NAME],
                          "color": c["color"] if _color_ok(c.get("color")) else PALETTE[n % len(PALETTE)],
@@ -161,7 +166,8 @@ class Preset:
         self.categories = cats
         self.formats = [dict(f, color=f["color"] if _color_ok(f.get("color")) else PALETTE[0])
                         for f in data.get("formats", [])
-                        if isinstance(f, dict) and f.get("id") and f.get("name")]   # невідомі типи не губимо
+                        if isinstance(f, dict) and f.get("id") and f.get("name")
+                        and f.get("id") not in REMOVED_BUILTIN_FORMATS]   # невідомі типи не губимо
         self._ensure_builtin_formats()
         raw = data.get("phrases")
         if isinstance(raw, list):                      # власні фрази; без ключа — типові
@@ -307,8 +313,9 @@ class Preset:
                     return c, s
         return None
 
-    def add_snippet(self, cat_id: str, text: str) -> dict | None:
-        """Додає запис у категорію. Однаковий текст у тій самій категорії не дублюється."""
+    def add_snippet(self, cat_id: str, text: str, v2: dict | None = None) -> dict | None:
+        """Додає запис у категорію. Однаковий текст у тій самій категорії не дублюється.
+        v2 — аппенди копіпасти v.2 ({"options": [...]}), або None для звичайної."""
         cat = self.category(cat_id)
         if not cat or not _clean_text(text):
             return None
@@ -316,16 +323,26 @@ class Preset:
         if existing:
             return existing
         snip = {"id": uuid.uuid4().hex, "text": text, "ts": time.time()}
+        v2 = clean_v2(v2)
+        if v2:
+            snip["v2"] = v2
         cat["snippets"].append(snip)
         self.save()
         return snip
 
-    def update_snippet(self, snippet_id: str, text: str, cat_id: str | None = None) -> bool:
+    def update_snippet(self, snippet_id: str, text: str, cat_id: str | None = None, v2="keep") -> bool:
+        """v2: "keep" — не чіпати аппенди; None — зробити запис звичайним; dict — нові аппенди."""
         found = self.find_snippet(snippet_id)
         if not found or not _clean_text(text):
             return False
         cat, snip = found
         snip["text"] = text
+        if v2 != "keep":
+            new = clean_v2(v2)
+            if new:
+                snip["v2"] = new
+            else:
+                snip.pop("v2", None)
         if cat_id and cat_id != cat["id"] and self.category(cat_id):
             cat["snippets"].remove(snip)
             self.category(cat_id)["snippets"].append(snip)
@@ -608,6 +625,7 @@ DEFAULT_SETTINGS = {
     "cat_view": "list",     # вигляд папок: list | tiles
     "rec_view": "list",     # вигляд копіпастів: list | tiles
     "left_w": 0,            # ширина лівої колонки, яку виставив користувач (0 — автоматично)
+    "phrases_collapsed": False,  # швидкі фрази згорнуто
     "clear_on_exit": True,  # очищати історію буфера при закритті (виході) програми; згортання історію не чіпає
 }
 
