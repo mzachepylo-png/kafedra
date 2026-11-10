@@ -2886,6 +2886,7 @@ def v2dlg():
 
 
 def opt(dlg, text):
+    dlg.update()                                   # щойно перемальований рівень має з'явитись на екрані
     for fr in dlg.list.winfo_children():
         for w in fr.winfo_children():
             if isinstance(w, tk.Label) and w.cget("text").endswith(text):
@@ -2898,6 +2899,21 @@ def preview_of(dlg):
 
 
 log33 = []
+err33 = []
+
+
+def guard(fn):
+    """Помилка всередині модального вікна не повинна його «повісити»: записуємо й закриваємо вікно."""
+    def run():
+        try:
+            fn()
+        except Exception as ex:                   # noqa: BLE001
+            err33.append(repr(ex))
+            for w in root.winfo_children():
+                if isinstance(w, (cm.V2Dialog, cm.V2OptionsDialog, cm.SnippetDialog)):
+                    w.destroy()
+    return run
+
 
 
 def flow1():
@@ -2916,9 +2932,10 @@ def flow1():
 
 
 app.copy_to_clipboard("до v2")
-root.after(500, flow1)
+root.after(500, guard(flow1))
 real_click(card33.body)
 pump(300)
+assert not err33, err33
 assert log33 == ["Основний текст", "Основний текст червоний", "Основний текст оранжевий червоний",
                  "Основний текст оранжевий рожевий червоний", "Основний текст оранжевий червоний"], log33
 assert root.clipboard_get() == "Основний текст оранжевий рожевий глибокий червоний", root.clipboard_get()
@@ -2926,20 +2943,20 @@ assert not app._hidden and root.state() != "withdrawn", "кінцевий апп
 assert card33.flash_lbl is None or True
 # Ctrl + клік по кінцевому — копіює і ховає вікно програми
 app.hotkey_ok = True
-root.after(500, lambda: opt(v2dlg(), "зелений").event_generate("<Button-1>", x=5, y=5, state=0x4))
+root.after(500, guard(lambda: opt(v2dlg(), "зелений").event_generate("<Button-1>", x=5, y=5, state=0x4)))
 real_click(card33.body)
 pump(300)
 assert root.clipboard_get() == "Основний текст зелений" and app._hidden, "Ctrl+клік по кінцевому ховає вікно"
 app.show_window()
 pump(300)
 # «Копіювати зараз» — без подальшого вибору
-root.after(500, lambda: (opt(v2dlg(), "оранжевий").event_generate("<Button-1>", x=5, y=5), v2dlg().now_btn.invoke()))
+root.after(500, guard(lambda: (opt(v2dlg(), "оранжевий").event_generate("<Button-1>", x=5, y=5), v2dlg().now_btn.invoke())))
 real_click(card33.body)
 pump(300)
 assert root.clipboard_get() == "Основний текст оранжевий" and not app._hidden
 # «Скасувати» — нічого не копіюється
 app.copy_to_clipboard("маркер33")
-root.after(500, lambda: v2dlg().cancel())
+root.after(500, guard(lambda: v2dlg().cancel()))
 real_click(card33.body)
 pump(200)
 assert root.clipboard_get() == "маркер33"
@@ -2956,9 +2973,10 @@ def flow2():
     opt(d, "кінець").event_generate("<Button-1>", x=5, y=5)
 
 
-root.after(500, flow2)
+root.after(500, guard(flow2))
 real_click(card33b.body)
 pump(300)
+assert not err33, err33
 assert log33b == ["Основний 2 завжди", "Основний 2 завжди"], log33b
 assert root.clipboard_get() == "Основний 2 кінець завжди", root.clipboard_get()
 # Ctrl + клік по самій картці v.2 — лише основний текст, і вікно ховається
@@ -2995,8 +3013,9 @@ def edit_script():
     ed.accept()
 
 
-root.after(400, edit_script)
+root.after(400, guard(edit_script))
 res33 = cm._Dialog.run(ed)
+assert not err33, err33
 assert [(n["text"], n["kind"]) for n in res33["options"]] == [("додатковий", "addon"), ("аппенд 1", "group")], res33
 assert res33["options"][1]["children"][0]["text"] == "вкладений" and res33["options"][1]["join"] is True
 sd = cm.SnippetDialog(app, "Новий v2", "", v2cat["id"])
@@ -3015,8 +3034,9 @@ def sd_script():
     sd.ok()
 
 
-root.after(400, sd_script)
+root.after(400, guard(sd_script))
 res_sd = cm._Dialog.run(sd)
+assert not err33, err33
 assert res_sd[0] == "Копіпаста з діалогу" and res_sd[1] == v2cat["id"] and res_sd[2]["options"][0]["text"] == "x", res_sd
 # редагування: v2 переходить у діалог і зберігається
 saved_run = cm.SnippetDialog.run
