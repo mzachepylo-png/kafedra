@@ -1,0 +1,135 @@
+{
+ "key": "e13_cryo",
+ "query": {
+  "epmc": "plant cryopreservation vitrification PVS2 shoot tips"
+ },
+ "candidates": [
+  {
+   "k": "e1",
+   "score": 6,
+   "pmcid": "PMC7761154",
+   "doi": "10.3390/plants9121634",
+   "title": "Challenges and Prospects for the Conservation of Crop Genetic Resources in Field Genebanks, in In Vitro Collections and/or in Liquid Nitrogen.",
+   "authors": [
+    {
+     "last": "Panis",
+     "initials": "B",
+     "first": "Bart",
+     "full": "Panis B",
+     "collective": null
+    },
+    {
+     "last": "Nagel",
+     "initials": "M",
+     "first": "Manuela",
+     "full": "Nagel M",
+     "collective": null
+    },
+    {
+     "last": "Van den Houwe",
+     "initials": "I",
+     "first": "Ines",
+     "full": "Van den Houwe I",
+     "collective": null
+    }
+   ],
+   "journal": "Plants (Basel, Switzerland)",
+   "journal_iso": "Plants (Basel)",
+   "volume": "9",
+   "issue": "12",
+   "year": 2020,
+   "pages": "E1634",
+   "license": "cc by",
+   "first_pub": "2020-11-24",
+   "fig_label": "Figure 1",
+   "caption": "Pros and cons of storing crop genetic resources in field genebanks, in vitro and through cryopreservation. Arrows indicate the potential source material and target approach to maintain plant genetic resources for food and agriculture (PGRFA) and can be specific for each plant species.",
+   "href": "plants-09-01634-g001.jpg",
+   "img_url": "https://cdn.ncbi.nlm.nih.gov/pmc/blobs/bff6/7761154/90aea1e2a61f/plants-09-01634-g001.jpg",
+   "orig_size": [
+    784,
+    551
+   ]
+  },
+  {
+   "k": "e2",
+   "score": 4,
+   "pmcid": "PMC8467502",
+   "doi": "10.3390/plants10091889",
+   "title": "Epigenetic and Genetic Integrity, Metabolic Stability, and Field Performance of Cryopreserved Plants.",
+   "authors": [
+    {
+     "last": "Wang",
+     "initials": "MR",
+     "first": "Min-Rui",
+     "full": "Wang MR",
+     "collective": null
+    },
+    {
+     "last": "Bi",
+     "initials": "W",
+     "first": "Wenlu",
+     "full": "Bi W",
+     "collective": null
+    },
+    {
+     "last": "Shukla",
+     "initials": "MR",
+     "first": "Mukund R",
+     "full": "Shukla MR",
+     "collective": null
+    },
+    {
+     "last": "Ren",
+     "initials": "L",
+     "first": "Li",
+     "full": "Ren L",
+     "collective": null
+    },
+    {
+     "last": "Hamborg",
+     "initials": "Z",
+     "first": "Zhibo",
+     "full": "Hamborg Z",
+     "collective": null
+    },
+    {
+     "last": "Blystad",
+     "initials": "DR",
+     "first": "Dag-Ragnar",
+     "full": "Blystad DR",
+     "collective": null
+    },
+    {
+     "last": "Saxena",
+     "initials": "PK",
+     "first": "Praveen K",
+     "full": "Saxena PK",
+     "collective": null
+    },
+    {
+     "last": "Wang",
+     "initials": "QC",
+     "first": "Qiao-Chun",
+     "full": "Wang QC",
+     "collective": null
+    }
+   ],
+   "journal": "Plants (Basel, Switzerland)",
+   "journal_iso": "Plants (Basel)",
+   "volume": "10",
+   "issue": "9",
+   "year": 2021,
+   "pages": "1889",
+   "license": "cc by",
+   "first_pub": "2021-09-13",
+   "fig_label": "Figure 1",
+   "caption": "General cryopreservation procedures (black arrows), post-culture for recovery and re-establishment of plants in vivo (blue arrows), assessments of (epi)genetic stability and evaluations of field performance in cryo-derived regenerants/plants (red arrows), and measures taken to ensure (epi)genetic stability and true-to-type regenerants/plants recovered after cryopreservation (green arrows). DMSO, dimethyl sulfoxide; LN, liquid nitrogen; PGRs, plant growth regulators.",
+   "href": "plants-10-01889-g001.jpg",
+   "img_url": "https://cdn.ncbi.nlm.nih.gov/pmc/blobs/8543/8467502/0508bf6f9d57/plants-10-01889-g001.jpg",
+   "orig_size": [
+    773,
+    341
+   ]
+  }
+ ]
+}

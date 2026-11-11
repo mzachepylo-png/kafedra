@@ -1,0 +1,414 @@
+{
+ "key": "e10_micro",
+ "query": {
+  "epmc": "microspore embryogenesis Brassica napus"
+ },
+ "candidates": [
+  {
+   "k": "e1",
+   "score": 14,
+   "pmcid": "PMC5283764",
+   "doi": "10.1371/journal.pgen.1006562",
+   "title": "PRC2 Represses Hormone-Induced Somatic Embryogenesis in Vegetative Tissue of Arabidopsis thaliana.",
+   "authors": [
+    {
+     "last": "Mozgová",
+     "initials": "I",
+     "first": "Iva",
+     "full": "Mozgová I",
+     "collective": null
+    },
+    {
+     "last": "Muñoz-Viana",
+     "initials": "R",
+     "first": "Rafael",
+     "full": "Muñoz-Viana R",
+     "collective": null
+    },
+    {
+     "last": "Hennig",
+     "initials": "L",
+     "first": "Lars",
+     "full": "Hennig L",
+     "collective": null
+    }
+   ],
+   "journal": "PLoS genetics",
+   "journal_iso": "PLoS Genet",
+   "volume": "13",
+   "issue": "1",
+   "year": 2017,
+   "pages": "e1006562",
+   "license": "cc by",
+   "first_pub": "2017-01-17",
+   "fig_label": "Fig 2",
+   "caption": "2,4-D induces somatic embryo (SE) development in PRC2-depleted tissue. (A) 7-day 5 μM 2,4-D treatment of clf swn PRC2 mutants but not wild-type (WT) or single mutant shoot explants results in SE development. (B) 60-hour exposure to 5 μM 2,4-D is sufficient to induce efficient SE formation in clf swn. Following 2,4-D treatment, callus forms in WT (C) while SEs develop from clf swn (D). Stunted embryos form in clf swn after long (7-day) exposure to 2,4-D (E). (F–T) Morphology of explants: (F–I) clf swn explants on hormone-free medium. (J–L) clf swn explants treated with 2,4-D. (M–O) WT SEs originating from 2,4-D-treated ZEs. Generally, SEs do not develop after 2,4-D treatment of clf swn root (P), cotyledon or true leaf (Q) and hypocotyl (R). Occasionally, SE development on cotyledon margins was observed (S). No visible SE formation is observed at the end of a 7-day 2,4-D treatment of the clf swn shoot apex before transfer to hormone-free medium (T). Black arrowheads in (D, E, L, N) indicate the site of most frequent SE attachment to parental explant. Grey arrowheads in (H, I) point to vascular tissue attaching the SE-like structures to parental explants. Embryonic lipids (G, K, O, S) were visualized by Sudan Red 7B. Bars in graphs represent means ±SEM (N = 3–4 biol. replicates with 50 (A) or 30 (B) explants each). Red number above bars in (A) and (B) indicate the percentage of SE formation ±SEM in mock (DMSO)-treated explants. Scale bars: white = 2 mm, black = 0.2 mm. H-F -hormone-free medium, h—hour, d—day.",
+   "href": "pgen.1006562.g002.jpg",
+   "img_url": "https://journals.plos.org/plosgenetics/article/figure/image?size=large&id=10.1371/journal.pgen.1006562.g002",
+   "orig_size": [
+    3613,
+    2831
+   ]
+  },
+  {
+   "k": "e2",
+   "score": 12,
+   "pmcid": "PMC3714258",
+   "doi": "10.1371/journal.pone.0069261",
+   "title": "Extensive modulation of the transcription factor transcriptome during somatic embryogenesis in Arabidopsis thaliana.",
+   "authors": [
+    {
+     "last": "Gliwicka",
+     "initials": "M",
+     "first": "Marta",
+     "full": "Gliwicka M",
+     "collective": null
+    },
+    {
+     "last": "Nowak",
+     "initials": "K",
+     "first": "Katarzyna",
+     "full": "Nowak K",
+     "collective": null
+    },
+    {
+     "last": "Balazadeh",
+     "initials": "S",
+     "first": "Salma",
+     "full": "Balazadeh S",
+     "collective": null
+    },
+    {
+     "last": "Mueller-Roeber",
+     "initials": "B",
+     "first": "Bernd",
+     "full": "Mueller-Roeber B",
+     "collective": null
+    },
+    {
+     "last": "Gaj",
+     "initials": "MD",
+     "first": "Malgorzata D",
+     "full": "Gaj MD",
+     "collective": null
+    }
+   ],
+   "journal": "PloS one",
+   "journal_iso": "PLoS One",
+   "volume": "8",
+   "issue": "7",
+   "year": 2013,
+   "pages": "e69261",
+   "license": "cc by",
+   "first_pub": "2013-07-17",
+   "fig_label": "Figure 1",
+   "caption": "Developmental changes in Arabidopsis Col-0 and tanmei IZE explants induced on auxin-containing medium. A–D) Col-0 accession. E–H) tanmei mutant. Explants were induced on auxin-containing medium (E5) and monitored at days 0 (A, E), 5 (B, F), 10 (C, G) and 15 (D, H) of in vitro culture. A, E) Freshly isolated IZE 12 days after pollination (DAP). B) Straightening, enlargement and swelling of IZE cotyledons. C) Tissue proliferation and somatic embryo-like protuberances formed at adaxial side (arrow). D) Numerous somatic embryos at the adaxial side of IZE cotyledons. F) Anthocyanin accumulation in IZE cotyledons and tissue proliferation from IZE hypocotyl. G) Non-embryogenic watery callus. H) Progression of non-embryogenic callus production. Bars: 0.2 mm (A, B, E, F); 0.3 mm (C, G); 0.6 mm (H) and 1.0 mm (D).",
+   "href": "pone.0069261.g001.jpg",
+   "img_url": "https://journals.plos.org/plosone/article/figure/image?size=large&id=10.1371/journal.pone.0069261.g001",
+   "orig_size": [
+    2060,
+    948
+   ]
+  },
+  {
+   "k": "e3",
+   "score": 10,
+   "pmcid": "PMC5283764",
+   "doi": "10.1371/journal.pgen.1006562",
+   "title": "PRC2 Represses Hormone-Induced Somatic Embryogenesis in Vegetative Tissue of Arabidopsis thaliana.",
+   "authors": [
+    {
+     "last": "Mozgová",
+     "initials": "I",
+     "first": "Iva",
+     "full": "Mozgová I",
+     "collective": null
+    },
+    {
+     "last": "Muñoz-Viana",
+     "initials": "R",
+     "first": "Rafael",
+     "full": "Muñoz-Viana R",
+     "collective": null
+    },
+    {
+     "last": "Hennig",
+     "initials": "L",
+     "first": "Lars",
+     "full": "Hennig L",
+     "collective": null
+    }
+   ],
+   "journal": "PLoS genetics",
+   "journal_iso": "PLoS Genet",
+   "volume": "13",
+   "issue": "1",
+   "year": 2017,
+   "pages": "e1006562",
+   "license": "cc by",
+   "first_pub": "2017-01-17",
+   "fig_label": "Fig 3",
+   "caption": "2,4-D treatment is required to trigger the development of a functional root apical meristem. (A) Expression of PLT1 and PLT2 in clf swn and wild-type (WT) somatic embryos (SE), SE-like (SE-L) structures, zygotic embryos (ZE) and seedlings. (B) Expression of shoot (pCLV3:: GUS) and root (pWOX5:: NLS-GUS) apical meristem markers in WT-derived ZEs and SEs and in clf swn 2,4-D-induced SEs and mock SE-L structures. (C) Germination efficiency of SEs and SE-L structures after 7 days on hormone-free medium. Examples of germinated clf swn SEs or SE-L structures are shown on the right. Scale bars: white = 2 mm, unlabeled black = 0.2 mm. Bars in graphs represent means ±SEM (N = 2 biol. replicates, 40 embryos each). H-F—hormone-free medium, seedl–seedling, h—hour, d–day, DAG–days after germination.",
+   "href": "pgen.1006562.g003.jpg",
+   "img_url": "https://journals.plos.org/plosgenetics/article/figure/image?size=large&id=10.1371/journal.pgen.1006562.g003",
+   "orig_size": [
+    4211,
+    2378
+   ]
+  },
+  {
+   "k": "e4",
+   "score": 8,
+   "pmcid": "PMC5565672",
+   "doi": "10.1007/s00299-017-2169-1",
+   "title": "Selectable marker independent transformation of recalcitrant maize inbred B73 and sorghum P898012 mediated by morphogenic regulators BABY BOOM and WUSCHEL2.",
+   "authors": [
+    {
+     "last": "Mookkan",
+     "initials": "M",
+     "first": "Muruganantham",
+     "full": "Mookkan M",
+     "collective": null
+    },
+    {
+     "last": "Nelson-Vasilchik",
+     "initials": "K",
+     "first": "Kimberly",
+     "full": "Nelson-Vasilchik K",
+     "collective": null
+    },
+    {
+     "last": "Hague",
+     "initials": "J",
+     "first": "Joel",
+     "full": "Hague J",
+     "collective": null
+    },
+    {
+     "last": "Zhang",
+     "initials": "ZJ",
+     "first": "Zhanyuan J",
+     "full": "Zhang ZJ",
+     "collective": null
+    },
+    {
+     "last": "Kausch",
+     "initials": "AP",
+     "first": "Albert P",
+     "full": "Kausch AP",
+     "collective": null
+    }
+   ],
+   "journal": "Plant cell reports",
+   "journal_iso": "Plant Cell Rep",
+   "volume": "36",
+   "issue": "9",
+   "year": 2017,
+   "pages": "1477-1491",
+   "license": "cc by",
+   "first_pub": "2017-07-05",
+   "fig_label": "Fig. 3",
+   "caption": "Expression of PHP78891 in T 0 transgenics of maize B73. Maize B73 AGL1 PHP78891 calli after 3-day desiccation stress calli; comparable a (Brightfield image) and b (GFP image), AGL1 PHP78891 -SBV after 3-day desiccation shows higher GFP sector expression frequencies; c (brightfield image) and d (GFP image), homogeneously GFP expressing shoot in regeneration after 3 days desiccation; e (Brightfield image) and f (GFP image), GFP positive roots (right) and wild type (left); g (Brightfield image) and h (GFP image), tassel from PHP7889-SBV event after anthesis with GFP positive anthers; i (Brightfield image) and j (GFP image), isolated pollen showing 1:1 segregation for GFP; k (Brightfield image) and l (GFP image), silk from regenerated plant; m (Brightfield image) and n (GFP image), kernels from regenerated plant; o (Brightfield image) and p (GFP image), kernels from regenerated plant",
+   "href": "299_2017_2169_Fig3_HTML.jpg",
+   "img_url": "https://cdn.ncbi.nlm.nih.gov/pmc/blobs/6d31/5565672/c5a60406e355/299_2017_2169_Fig3_HTML.jpg",
+   "orig_size": [
+    708,
+    612
+   ]
+  },
+  {
+   "k": "e5",
+   "score": 8,
+   "pmcid": "PMC6409764",
+   "doi": "10.3390/plants8020038",
+   "title": "Using Morphogenic Genes to Improve Recovery and Regeneration of Transgenic Plants.",
+   "authors": [
+    {
+     "last": "Gordon-Kamm",
+     "initials": "B",
+     "first": "Bill",
+     "full": "Gordon-Kamm B",
+     "collective": null
+    },
+    {
+     "last": "Sardesai",
+     "initials": "N",
+     "first": "Nagesh",
+     "full": "Sardesai N",
+     "collective": null
+    },
+    {
+     "last": "Arling",
+     "initials": "M",
+     "first": "Maren",
+     "full": "Arling M",
+     "collective": null
+    },
+    {
+     "last": "Lowe",
+     "initials": "K",
+     "first": "Keith",
+     "full": "Lowe K",
+     "collective": null
+    },
+    {
+     "last": "Hoerster",
+     "initials": "G",
+     "first": "George",
+     "full": "Hoerster G",
+     "collective": null
+    },
+    {
+     "last": "Betts",
+     "initials": "S",
+     "first": "Scott",
+     "full": "Betts S",
+     "collective": null
+    },
+    {
+     "last": "Jones",
+     "initials": "AT",
+     "first": "And Todd",
+     "full": "Jones AT",
+     "collective": null
+    }
+   ],
+   "journal": "Plants (Basel, Switzerland)",
+   "journal_iso": "Plants (Basel)",
+   "volume": "8",
+   "issue": "2",
+   "year": 2019,
+   "pages": "E38",
+   "license": "cc by",
+   "first_pub": "2019-02-11",
+   "fig_label": "Figure 1",
+   "caption": "Methods for expression of morphogenic genes in plant transformation. WUS is used to exemplify the morphogenic gene expression cassettes, which could be designed for overexpression of the gene, downregulation of a gene, or combinations of genes, while the box labeled “GOI” (Genes Of Interest) represents trait gene expression cassettes. (A) Using a constitutive promoter, such as CaMV35S, to drive expression of a WUS gene results in growth stimulation of cells transformed with the T-DNA, either through somatic embryogenesis or through meristem proliferation. (B) Using an inducible promoter to drive expression of WUS will result in growth stimulation only when the plant tissue is exposed to the inducing stimulus (typically a chemical ligand). (C) Growth stimulation can also be effectively controlled by using a combination of constitutive expression of WUS and inducible expression of CRE recombinase to remove the WUS expression cassette. (D) Transforming the same plant cell with a T-DNA containing the WUS expression cassette and a second T-DNA containing the trait expression cassette will also provide transient growth stimulation sufficient to recover regenerable tissues, such as somatic embryos, without the integration of the morphogenic gene. (E) Using a single T-DNA containing the trait, with the WUS expression cassette outside the T-DNA Left Border sequence, higher numbers of the trait-containing T-DNA are introduced relative to the low numbers of “read-through” sequences containing the WUS gene, providing transient growth stimulation without WUS integration. IND pro is used to represent chemically inducible promoters, such as the estradiol-, glucocorticoid-, or tetracycline-responsive promoters in 1-B. Promoters that are induced by physical conditions, such as desiccation (e.g., the RAB17 promoter in [17]), are used to control recombinase-mediated excision (as in 1-C). CRE represents the CRE recombinase expression cassette and loxP are the CRE-recombinase target sites. RB and LB represent the right and left T-DNA border sequences, respectively.",
+   "href": "plants-08-00038-g001.jpg",
+   "img_url": "https://cdn.ncbi.nlm.nih.gov/pmc/blobs/b19f/6409764/57581a4cc267/plants-08-00038-g001.jpg",
+   "orig_size": [
+    747,
+    552
+   ]
+  },
+  {
+   "k": "e6",
+   "score": 6,
+   "pmcid": "PMC5565672",
+   "doi": "10.1007/s00299-017-2169-1",
+   "title": "Selectable marker independent transformation of recalcitrant maize inbred B73 and sorghum P898012 mediated by morphogenic regulators BABY BOOM and WUSCHEL2.",
+   "authors": [
+    {
+     "last": "Mookkan",
+     "initials": "M",
+     "first": "Muruganantham",
+     "full": "Mookkan M",
+     "collective": null
+    },
+    {
+     "last": "Nelson-Vasilchik",
+     "initials": "K",
+     "first": "Kimberly",
+     "full": "Nelson-Vasilchik K",
+     "collective": null
+    },
+    {
+     "last": "Hague",
+     "initials": "J",
+     "first": "Joel",
+     "full": "Hague J",
+     "collective": null
+    },
+    {
+     "last": "Zhang",
+     "initials": "ZJ",
+     "first": "Zhanyuan J",
+     "full": "Zhang ZJ",
+     "collective": null
+    },
+    {
+     "last": "Kausch",
+     "initials": "AP",
+     "first": "Albert P",
+     "full": "Kausch AP",
+     "collective": null
+    }
+   ],
+   "journal": "Plant cell reports",
+   "journal_iso": "Plant Cell Rep",
+   "volume": "36",
+   "issue": "9",
+   "year": 2017,
+   "pages": "1477-1491",
+   "license": "cc by",
+   "first_pub": "2017-07-05",
+   "fig_label": "Fig. 4",
+   "caption": "Transient and stable sorghum P898012 Transformation using PHP78891. a Transient expression EHA 101 PHP78891 3-day post-inoculation (GFP image); b Early stage somatic embryos (arrows) 13-day post-inoculation (GFP image). EHA 101 PHP78891 derived events after desiccation shows heterogeneous callus. c Brightfield and GFP image shows GFP positive embryogenic cluster within GFP negative organized callus. d Homogeneous GFP expressing embryogenic callus before desiccation (brightfield image); f corresponding GFP image showing heterogeneous callus after desiccation; g Heterogenous GFP expression in callus during plant regeneration (brightfield image); h corresponding GFP image",
+   "href": "299_2017_2169_Fig4_HTML.jpg",
+   "img_url": "https://cdn.ncbi.nlm.nih.gov/pmc/blobs/6d31/5565672/e61c08f33e27/299_2017_2169_Fig4_HTML.jpg",
+   "orig_size": [
+    681,
+    241
+   ]
+  },
+  {
+   "k": "e7",
+   "score": 4,
+   "pmcid": "PMC3714258",
+   "doi": "10.1371/journal.pone.0069261",
+   "title": "Extensive modulation of the transcription factor transcriptome during somatic embryogenesis in Arabidopsis thaliana.",
+   "authors": [
+    {
+     "last": "Gliwicka",
+     "initials": "M",
+     "first": "Marta",
+     "full": "Gliwicka M",
+     "collective": null
+    },
+    {
+     "last": "Nowak",
+     "initials": "K",
+     "first": "Katarzyna",
+     "full": "Nowak K",
+     "collective": null
+    },
+    {
+     "last": "Balazadeh",
+     "initials": "S",
+     "first": "Salma",
+     "full": "Balazadeh S",
+     "collective": null
+    },
+    {
+     "last": "Mueller-Roeber",
+     "initials": "B",
+     "first": "Bernd",
+     "full": "Mueller-Roeber B",
+     "collective": null
+    },
+    {
+     "last": "Gaj",
+     "initials": "MD",
+     "first": "Malgorzata D",
+     "full": "Gaj MD",
+     "collective": null
+    }
+   ],
+   "journal": "PloS one",
+   "journal_iso": "PLoS One",
+   "volume": "8",
+   "issue": "7",
+   "year": 2013,
+   "pages": "e69261",
+   "license": "cc by",
+   "first_pub": "2013-07-17",
+   "fig_label": "Figure 5",
+   "caption": "Cluster analysis. K -means clustering revealed four main expression patterns of TF genes in Col-0 embryogenic cultures. The levels of expression changes are given as 40-ddCt. The cluster analysis shows up-regulation of the great majority of TFs (B, C, D), and down-regulation of a small group of TFs (A). Increased TF expression was either restricted to the early stage of SE (C), or was observed during both SE stages, early and advanced (B, D).",
+   "href": "pone.0069261.g005.jpg",
+   "img_url": "https://journals.plos.org/plosone/article/figure/image?size=large&id=10.1371/journal.pone.0069261.g005",
+   "orig_size": [
+    1940,
+    2881
+   ]
+  }
+ ]
+}

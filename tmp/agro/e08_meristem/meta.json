@@ -1,0 +1,403 @@
+{
+ "key": "e08_meristem",
+ "query": {
+  "epmc": "meristem culture virus elimination potato thermotherapy"
+ },
+ "candidates": [
+  {
+   "k": "e1",
+   "score": 10,
+   "pmcid": "PMC8541583",
+   "doi": "10.3390/plants10102190",
+   "title": "Grapevine Shoot Tip Cryopreservation and Cryotherapy: Secure Storage of Disease-Free Plants.",
+   "authors": [
+    {
+     "last": "Bettoni",
+     "initials": "JC",
+     "first": "Jean Carlos",
+     "full": "Bettoni JC",
+     "collective": null
+    },
+    {
+     "last": "Marković",
+     "initials": "Z",
+     "first": "Zvjezdana",
+     "full": "Marković Z",
+     "collective": null
+    },
+    {
+     "last": "Bi",
+     "initials": "W",
+     "first": "Wenlu",
+     "full": "Bi W",
+     "collective": null
+    },
+    {
+     "last": "Volk",
+     "initials": "GM",
+     "first": "Gayle M",
+     "full": "Volk GM",
+     "collective": null
+    },
+    {
+     "last": "Matsumoto",
+     "initials": "T",
+     "first": "Toshikazu",
+     "full": "Matsumoto T",
+     "collective": null
+    },
+    {
+     "last": "Wang",
+     "initials": "QC",
+     "first": "Qiao-Chun",
+     "full": "Wang QC",
+     "collective": null
+    }
+   ],
+   "journal": "Plants (Basel, Switzerland)",
+   "journal_iso": "Plants (Basel)",
+   "volume": "10",
+   "issue": "10",
+   "year": 2021,
+   "pages": "2190",
+   "license": "cc by",
+   "first_pub": "2021-10-15",
+   "fig_label": "Figure 3",
+   "caption": "Immunohistological localization of Grapevine leafroll-associated virus-3 (GLRaV-3) in longitudinal section and cross section of shoot tips and histological observations of cell survival patterns in longitudinal sections of shoot tips following cryotherapy in grapevine cultivar Cabernet Sauvignon. Virus-infected cells are indicated by purple color (red arrows) reactions in (A, B), whereas no purple color reactions were spot in virus-free cells in (C). Surviving cells are densely stained with intact nucleus and nucleolus enclosed in a well-preserved cytoplasm (white arrows) in (D) as a positive control, dead cells are cytoplasm condensed with fractured plasma membrane (black arrows) in (E) as a negative control. Surviving cells in AD (F), and LP 1 (G), LP 2 (H), LP 3 (I), LP 4 (J) and dead cells in LP 5 (K) following cryotherapy are indicated by white arrows and black arrows. Bars = 10 μm. Source: Bi et al. [51].",
+   "href": "plants-10-02190-g003.jpg",
+   "img_url": "https://cdn.ncbi.nlm.nih.gov/pmc/blobs/cfe1/8541583/df31d4a0ac0b/plants-10-02190-g003.jpg",
+   "orig_size": [
+    800,
+    926
+   ]
+  },
+  {
+   "k": "e2",
+   "score": 8,
+   "pmcid": "PMC8541583",
+   "doi": "10.3390/plants10102190",
+   "title": "Grapevine Shoot Tip Cryopreservation and Cryotherapy: Secure Storage of Disease-Free Plants.",
+   "authors": [
+    {
+     "last": "Bettoni",
+     "initials": "JC",
+     "first": "Jean Carlos",
+     "full": "Bettoni JC",
+     "collective": null
+    },
+    {
+     "last": "Marković",
+     "initials": "Z",
+     "first": "Zvjezdana",
+     "full": "Marković Z",
+     "collective": null
+    },
+    {
+     "last": "Bi",
+     "initials": "W",
+     "first": "Wenlu",
+     "full": "Bi W",
+     "collective": null
+    },
+    {
+     "last": "Volk",
+     "initials": "GM",
+     "first": "Gayle M",
+     "full": "Volk GM",
+     "collective": null
+    },
+    {
+     "last": "Matsumoto",
+     "initials": "T",
+     "first": "Toshikazu",
+     "full": "Matsumoto T",
+     "collective": null
+    },
+    {
+     "last": "Wang",
+     "initials": "QC",
+     "first": "Qiao-Chun",
+     "full": "Wang QC",
+     "collective": null
+    }
+   ],
+   "journal": "Plants (Basel, Switzerland)",
+   "journal_iso": "Plants (Basel)",
+   "volume": "10",
+   "issue": "10",
+   "year": 2021,
+   "pages": "2190",
+   "license": "cc by",
+   "first_pub": "2021-10-15",
+   "fig_label": "Figure 1",
+   "caption": "Production and preparation of grapevine shoot tips for cryopreservation procedures. Nodal sections (micro-cuttings) sourced from either greenhouse-grown plants (A) or in vitro stock cultures (B), either with or without a two-week culture in shooting medium (C, D) prior to excision of apical shoot tips (D).",
+   "href": "plants-10-02190-g001.jpg",
+   "img_url": "https://cdn.ncbi.nlm.nih.gov/pmc/blobs/cfe1/8541583/e5e9f707075a/plants-10-02190-g001.jpg",
+   "orig_size": [
+    757,
+    244
+   ]
+  },
+  {
+   "k": "e3",
+   "score": 6,
+   "pmcid": "PMC7761154",
+   "doi": "10.3390/plants9121634",
+   "title": "Challenges and Prospects for the Conservation of Crop Genetic Resources in Field Genebanks, in In Vitro Collections and/or in Liquid Nitrogen.",
+   "authors": [
+    {
+     "last": "Panis",
+     "initials": "B",
+     "first": "Bart",
+     "full": "Panis B",
+     "collective": null
+    },
+    {
+     "last": "Nagel",
+     "initials": "M",
+     "first": "Manuela",
+     "full": "Nagel M",
+     "collective": null
+    },
+    {
+     "last": "Van den Houwe",
+     "initials": "I",
+     "first": "Ines",
+     "full": "Van den Houwe I",
+     "collective": null
+    }
+   ],
+   "journal": "Plants (Basel, Switzerland)",
+   "journal_iso": "Plants (Basel)",
+   "volume": "9",
+   "issue": "12",
+   "year": 2020,
+   "pages": "E1634",
+   "license": "cc by",
+   "first_pub": "2020-11-24",
+   "fig_label": "Figure 1",
+   "caption": "Pros and cons of storing crop genetic resources in field genebanks, in vitro and through cryopreservation. Arrows indicate the potential source material and target approach to maintain plant genetic resources for food and agriculture (PGRFA) and can be specific for each plant species.",
+   "href": "plants-09-01634-g001.jpg",
+   "img_url": "https://cdn.ncbi.nlm.nih.gov/pmc/blobs/bff6/7761154/90aea1e2a61f/plants-09-01634-g001.jpg",
+   "orig_size": [
+    784,
+    551
+   ]
+  },
+  {
+   "k": "e4",
+   "score": 6,
+   "pmcid": "PMC6173849",
+   "doi": "10.1186/s13007-018-0355-y",
+   "title": "In vitro thermotherapy-based methods for plant virus eradication.",
+   "authors": [
+    {
+     "last": "Wang",
+     "initials": "MR",
+     "first": "Min-Rui",
+     "full": "Wang MR",
+     "collective": null
+    },
+    {
+     "last": "Cui",
+     "initials": "ZH",
+     "first": "Zhen-Hua",
+     "full": "Cui ZH",
+     "collective": null
+    },
+    {
+     "last": "Li",
+     "initials": "JW",
+     "first": "Jing-Wei",
+     "full": "Li JW",
+     "collective": null
+    },
+    {
+     "last": "Hao",
+     "initials": "XY",
+     "first": "Xin-Yi",
+     "full": "Hao XY",
+     "collective": null
+    },
+    {
+     "last": "Zhao",
+     "initials": "L",
+     "first": "Lei",
+     "full": "Zhao L",
+     "collective": null
+    },
+    {
+     "last": "Wang",
+     "initials": "QC",
+     "first": "Qiao-Chun",
+     "full": "Wang QC",
+     "collective": null
+    }
+   ],
+   "journal": "Plant methods",
+   "journal_iso": "Plant Methods",
+   "volume": "14",
+   "issue": null,
+   "year": 2018,
+   "pages": "87",
+   "license": "cc by",
+   "first_pub": "2018-10-06",
+   "fig_label": "Fig. 2",
+   "caption": "Size of shoot tip in relation with shoot regeneration and virus-free frequency in thermotherapy-based methods. Cells in green color are healthy cells and in red color are virus-infected cells. Increased virus tirer is indicated in increased intensity of red color. AD apical dome, LP leaf primordium",
+   "href": "13007_2018_355_Fig2_HTML.jpg",
+   "img_url": "https://cdn.ncbi.nlm.nih.gov/pmc/blobs/3a55/6173849/1c33621242b0/13007_2018_355_Fig2_HTML.jpg",
+   "orig_size": [
+    640,
+    240
+   ]
+  },
+  {
+   "k": "e5",
+   "score": 4,
+   "pmcid": "PMC4647338",
+   "doi": "10.1186/s12864-015-2126-8",
+   "title": "Identification and characterization of microRNAs from in vitro-grown pear shoots infected with Apple stem grooving virus in response to high temperature using small RNA sequencing.",
+   "authors": [
+    {
+     "last": "Liu",
+     "initials": "J",
+     "first": "Juan",
+     "full": "Liu J",
+     "collective": null
+    },
+    {
+     "last": "Zhang",
+     "initials": "X",
+     "first": "XueJiao",
+     "full": "Zhang X",
+     "collective": null
+    },
+    {
+     "last": "Zhang",
+     "initials": "F",
+     "first": "FangPeng",
+     "full": "Zhang F",
+     "collective": null
+    },
+    {
+     "last": "Hong",
+     "initials": "N",
+     "first": "Ni",
+     "full": "Hong N",
+     "collective": null
+    },
+    {
+     "last": "Wang",
+     "initials": "G",
+     "first": "GuoPing",
+     "full": "Wang G",
+     "collective": null
+    },
+    {
+     "last": "Wang",
+     "initials": "A",
+     "first": "Aiming",
+     "full": "Wang A",
+     "collective": null
+    },
+    {
+     "last": "Wang",
+     "initials": "L",
+     "first": "LiPing",
+     "full": "Wang L",
+     "collective": null
+    }
+   ],
+   "journal": "BMC genomics",
+   "journal_iso": "BMC Genomics",
+   "volume": "16",
+   "issue": null,
+   "year": 2015,
+   "pages": "945",
+   "license": "cc by",
+   "first_pub": "2015-11-16",
+   "fig_label": "Fig. 1",
+   "caption": "Length distribution of small RNA reads in the 24 °C and 37 °C libraries constructed from in vitro-grown shoots of P. pyrifolia. Length distribution of sRNA reads (a) and unique sequences (b) in the two libraries",
+   "href": "12864_2015_2126_Fig1_HTML.jpg",
+   "img_url": "https://cdn.ncbi.nlm.nih.gov/pmc/blobs/313a/4647338/4b73e93706a0/12864_2015_2126_Fig1_HTML.jpg",
+   "orig_size": [
+    567,
+    455
+   ]
+  },
+  {
+   "k": "e6",
+   "score": 4,
+   "pmcid": "PMC4647338",
+   "doi": "10.1186/s12864-015-2126-8",
+   "title": "Identification and characterization of microRNAs from in vitro-grown pear shoots infected with Apple stem grooving virus in response to high temperature using small RNA sequencing.",
+   "authors": [
+    {
+     "last": "Liu",
+     "initials": "J",
+     "first": "Juan",
+     "full": "Liu J",
+     "collective": null
+    },
+    {
+     "last": "Zhang",
+     "initials": "X",
+     "first": "XueJiao",
+     "full": "Zhang X",
+     "collective": null
+    },
+    {
+     "last": "Zhang",
+     "initials": "F",
+     "first": "FangPeng",
+     "full": "Zhang F",
+     "collective": null
+    },
+    {
+     "last": "Hong",
+     "initials": "N",
+     "first": "Ni",
+     "full": "Hong N",
+     "collective": null
+    },
+    {
+     "last": "Wang",
+     "initials": "G",
+     "first": "GuoPing",
+     "full": "Wang G",
+     "collective": null
+    },
+    {
+     "last": "Wang",
+     "initials": "A",
+     "first": "Aiming",
+     "full": "Wang A",
+     "collective": null
+    },
+    {
+     "last": "Wang",
+     "initials": "L",
+     "first": "LiPing",
+     "full": "Wang L",
+     "collective": null
+    }
+   ],
+   "journal": "BMC genomics",
+   "journal_iso": "BMC Genomics",
+   "volume": "16",
+   "issue": null,
+   "year": 2015,
+   "pages": "945",
+   "license": "cc by",
+   "first_pub": "2015-11-16",
+   "fig_label": "Fig. 2",
+   "caption": "Characterization of miRNAs in the 24 °C and 37 °C in vitro pear shoot libraries. Length distribution of miRNA reads (a) and unique sequences (b) in the two libraries",
+   "href": "12864_2015_2126_Fig2_HTML.jpg",
+   "img_url": "https://cdn.ncbi.nlm.nih.gov/pmc/blobs/313a/4647338/69f699a2df1b/12864_2015_2126_Fig2_HTML.jpg",
+   "orig_size": [
+    567,
+    478
+   ]
+  }
+ ]
+}

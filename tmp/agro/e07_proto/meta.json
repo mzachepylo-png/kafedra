@@ -1,0 +1,546 @@
+{
+ "key": "e07_proto",
+ "query": {
+  "epmc": "mesophyll protoplast isolation fusion"
+ },
+ "candidates": [
+  {
+   "k": "e1",
+   "score": 10,
+   "pmcid": "PMC3561149",
+   "doi": "10.1371/journal.ppat.1003127",
+   "title": "Bifurcation of Arabidopsis NLR immune signaling via Ca²⁺-dependent protein kinases.",
+   "authors": [
+    {
+     "last": "Gao",
+     "initials": "X",
+     "first": "Xiquan",
+     "full": "Gao X",
+     "collective": null
+    },
+    {
+     "last": "Chen",
+     "initials": "X",
+     "first": "Xin",
+     "full": "Chen X",
+     "collective": null
+    },
+    {
+     "last": "Lin",
+     "initials": "W",
+     "first": "Wenwei",
+     "full": "Lin W",
+     "collective": null
+    },
+    {
+     "last": "Chen",
+     "initials": "S",
+     "first": "Sixue",
+     "full": "Chen S",
+     "collective": null
+    },
+    {
+     "last": "Lu",
+     "initials": "D",
+     "first": "Dongping",
+     "full": "Lu D",
+     "collective": null
+    },
+    {
+     "last": "Niu",
+     "initials": "Y",
+     "first": "Yajie",
+     "full": "Niu Y",
+     "collective": null
+    },
+    {
+     "last": "Li",
+     "initials": "L",
+     "first": "Lei",
+     "full": "Li L",
+     "collective": null
+    },
+    {
+     "last": "Cheng",
+     "initials": "C",
+     "first": "Cheng",
+     "full": "Cheng C",
+     "collective": null
+    },
+    {
+     "last": "McCormack",
+     "initials": "M",
+     "first": "Matthew",
+     "full": "McCormack M",
+     "collective": null
+    },
+    {
+     "last": "Sheen",
+     "initials": "J",
+     "first": "Jen",
+     "full": "Sheen J",
+     "collective": null
+    },
+    {
+     "last": "Shan",
+     "initials": "L",
+     "first": "Libo",
+     "full": "Shan L",
+     "collective": null
+    },
+    {
+     "last": "He",
+     "initials": "P",
+     "first": "Ping",
+     "full": "He P",
+     "collective": null
+    }
+   ],
+   "journal": "PLoS pathogens",
+   "journal_iso": "PLoS Pathog",
+   "volume": "9",
+   "issue": "1",
+   "year": 2013,
+   "pages": "e1003127",
+   "license": "cc by",
+   "first_pub": "2013-01-31",
+   "fig_label": "Figure 6",
+   "caption": "The compromised immune responses in cpk mutants. (A) Effector-induced WRKY28 phosphorylation was abolished in cpk5,6 mutant protoplasts. An in-gel kinase assay using fusion protein of MBP-WRKY28 DNA binding domain as a substrate was performed with protoplasts transfected with AvrRpm1 or a control vector. The equal protein loading was shown by CBS. (B) The cpk5,6 mutant plants were compromised in effector-mediated disease resistance. Plant leaves were hand-inoculated with Pst avrRpm1 or avrRpt2 at 5×10 5 cfu/ml. The bacterial growth was measured 4 dpi. The data are shown as mean ± SE of three repeats, and the asterisk (*) indicates a significant difference with p<0.05 when compared with data from WT plants. (C) Pst avrRpm1 -induced electrolyte leakage in plants. Plant leaves were hand-inoculated with Pst avrRpm1 at 1×10 8 cfu/ml, and leaf discs were excised at the indicated time points. The data are shown as the mean ± SE (n = 3) and the asterisk (*) indicates a significant difference between cpk1,2,5,6 and WT (p<0.05). (D) Effector-induced WRKY46 expression was reduced in cpk mutant plants. WRKY46 expression was detected in plants 6 hr after hand-inoculation with bacteria at 1×10 7 cfu/ml. The expression of WRKY46 was normalized to the expression of UBQ10. The data are shown as the mean ± SE from three independent biological replicates. * indicates a significant difference with p<0.05 when compared with data from WT plants. (E) Effector-induced SID2 expression was reduced in cpk mutant plants. (F) H 2 O 2 production was compromised in the cpk1,2 mutant plants. The leaves were hand-inoculated with H 2 O, Pst, Pst avrRpm1 and avrRpt2 at 5×10 7 cfu/ml, and excised at 24 hpi for DAB staining to detect H 2 O 2 production. The above experiments were repeated three times with similar results.",
+   "href": "ppat.1003127.g006.jpg",
+   "img_url": "https://journals.plos.org/plospathogens/article/figure/image?size=large&id=10.1371/journal.ppat.1003127.g006",
+   "orig_size": [
+    3874,
+    2023
+   ]
+  },
+  {
+   "k": "e2",
+   "score": 6,
+   "pmcid": "PMC3320591",
+   "doi": "10.1371/journal.ppat.1002643",
+   "title": "Sequential delivery of host-induced virulence effectors by appressoria and intracellular hyphae of the phytopathogen Colletotrichum higginsianum.",
+   "authors": [
+    {
+     "last": "Kleemann",
+     "initials": "J",
+     "first": "Jochen",
+     "full": "Kleemann J",
+     "collective": null
+    },
+    {
+     "last": "Rincon-Rivera",
+     "initials": "LJ",
+     "first": "Linda J",
+     "full": "Rincon-Rivera LJ",
+     "collective": null
+    },
+    {
+     "last": "Takahara",
+     "initials": "H",
+     "first": "Hiroyuki",
+     "full": "Takahara H",
+     "collective": null
+    },
+    {
+     "last": "Neumann",
+     "initials": "U",
+     "first": "Ulla",
+     "full": "Neumann U",
+     "collective": null
+    },
+    {
+     "last": "Ver Loren van Themaat",
+     "initials": "E",
+     "first": "E",
+     "full": "Ver Loren van Themaat E",
+     "collective": null
+    },
+    {
+     "last": "van der Does",
+     "initials": "HC",
+     "first": "H Charlotte",
+     "full": "van der Does HC",
+     "collective": null
+    },
+    {
+     "last": "Hacquard",
+     "initials": "S",
+     "first": "Stéphane",
+     "full": "Hacquard S",
+     "collective": null
+    },
+    {
+     "last": "Stüber",
+     "initials": "K",
+     "first": "Kurt",
+     "full": "Stüber K",
+     "collective": null
+    },
+    {
+     "last": "Will",
+     "initials": "I",
+     "first": "Isa",
+     "full": "Will I",
+     "collective": null
+    },
+    {
+     "last": "Schmalenbach",
+     "initials": "W",
+     "first": "Wolfgang",
+     "full": "Schmalenbach W",
+     "collective": null
+    },
+    {
+     "last": "Schmelzer",
+     "initials": "E",
+     "first": "Elmon",
+     "full": "Schmelzer E",
+     "collective": null
+    },
+    {
+     "last": "O'Connell",
+     "initials": "RJ",
+     "first": "Richard J",
+     "full": "O'Connell RJ",
+     "collective": null
+    }
+   ],
+   "journal": "PLoS pathogens",
+   "journal_iso": "PLoS Pathog",
+   "volume": "8",
+   "issue": "4",
+   "year": 2012,
+   "pages": "e1002643",
+   "license": "cc by",
+   "first_pub": "2012-04-05",
+   "fig_label": "Figure 3",
+   "caption": "Appressorial pores as an interface for focal ChEC delivery. Transformant appressoria expressing the wave 2 effectors ChEC36:mRFP (A–O) and ChEC6:mRFP (P, Q). Appressoria or penetration sites after removal of appressoria were examined by confocal laser scanning microscopy viewed from above (A, B, E–I, O–Q) or from the side (C, D), and with transmission electron microscopy (J, K) and scanning electron microscopy (L–N). (A–D) Bright field and maximum fluorescence intensity overlay images of appressoria. Black arrows indicate the anticlinal plant cell wall and white arrows the penetration pore. (E) Fluorescence overlay image of an appressorium showing weak peripheral labelling of intracellular structures. (F, G) Fluorescence recorded with identical settings at the base (F) and the center (G) of the appressorium shown in (E). Arrow indicates a fluorescent ring surrounding the brightly fluorescing pore. (H, I) Fluorescence overlays recorded with identical settings focused on appressorial pores (H) or biotrophic hyphae (BH) formed beneath a penetrated appressorium (arrow). (J) Median section through an appressorium viewed with transmission electron microscopy (fixed with glutaraldehyde-osmium tetroxide and embedded in epoxy resin). A penetration hypha evaginates from the pore (P). An additional layer of the appressorial wall (asterisk) forms a thickened ring (arrowheads) around the pore, continuous with the penetration hypha wall. PW, plant cell wall. (K) Immunogold labelling of an appressorial pore (arrow) using antibodies recognizing mRFP (cells fixed in formaldehyde-glutaraldehyde and embedded in acrylic resin). PW, plant cell wall. WD, host cell wall deposits. (L) Scanning electron microscope image showing attached turgid appressorium (A) and collapsed conidium (C) on a leaf surface. (M) Plant-exposed underside of detached appressoria with penetration pores (black arrows) and remnants of extracellular matrix and/or plant cuticle (white arrow). (N, O) Penetration sites from which appressoria were detached completely. (N) The lobed outline of a former appressorium is still visible (arrowheads) with a mark representing the penetration point (arrow). (O) Micrograph series representing different focal planes as fluorescence overlay (top panels) and corresponding black on white conversion of the fluorescence channel (bottom panels), focusing from the penetration point (left) downwards into the plant cell wall (right). Arrow: inserted penetration hypha. (P, Q) Fluorescence overlays focused on the appressorial pore (P) and the underlying plant cell wall (Q). Arrow, anticlinal plant cell wall. Images were recorded at 24 hours post inoculation (hpi) (A–G, K, P, Q), 32 hpi (J, L–O), 40 hpi (H, I). Scale bars: 5 µm (A, H, L, N, O, P) and 2 µm (C, E, M), 1 µm (J), 500 nm (K). See also Figure S4.",
+   "href": "ppat.1002643.g003.jpg",
+   "img_url": "https://journals.plos.org/plospathogens/article/figure/image?size=large&id=10.1371/journal.ppat.1002643.g003",
+   "orig_size": [
+    2014,
+    2757
+   ]
+  },
+  {
+   "k": "e3",
+   "score": 6,
+   "pmcid": "PMC3320591",
+   "doi": "10.1371/journal.ppat.1002643",
+   "title": "Sequential delivery of host-induced virulence effectors by appressoria and intracellular hyphae of the phytopathogen Colletotrichum higginsianum.",
+   "authors": [
+    {
+     "last": "Kleemann",
+     "initials": "J",
+     "first": "Jochen",
+     "full": "Kleemann J",
+     "collective": null
+    },
+    {
+     "last": "Rincon-Rivera",
+     "initials": "LJ",
+     "first": "Linda J",
+     "full": "Rincon-Rivera LJ",
+     "collective": null
+    },
+    {
+     "last": "Takahara",
+     "initials": "H",
+     "first": "Hiroyuki",
+     "full": "Takahara H",
+     "collective": null
+    },
+    {
+     "last": "Neumann",
+     "initials": "U",
+     "first": "Ulla",
+     "full": "Neumann U",
+     "collective": null
+    },
+    {
+     "last": "Ver Loren van Themaat",
+     "initials": "E",
+     "first": "E",
+     "full": "Ver Loren van Themaat E",
+     "collective": null
+    },
+    {
+     "last": "van der Does",
+     "initials": "HC",
+     "first": "H Charlotte",
+     "full": "van der Does HC",
+     "collective": null
+    },
+    {
+     "last": "Hacquard",
+     "initials": "S",
+     "first": "Stéphane",
+     "full": "Hacquard S",
+     "collective": null
+    },
+    {
+     "last": "Stüber",
+     "initials": "K",
+     "first": "Kurt",
+     "full": "Stüber K",
+     "collective": null
+    },
+    {
+     "last": "Will",
+     "initials": "I",
+     "first": "Isa",
+     "full": "Will I",
+     "collective": null
+    },
+    {
+     "last": "Schmalenbach",
+     "initials": "W",
+     "first": "Wolfgang",
+     "full": "Schmalenbach W",
+     "collective": null
+    },
+    {
+     "last": "Schmelzer",
+     "initials": "E",
+     "first": "Elmon",
+     "full": "Schmelzer E",
+     "collective": null
+    },
+    {
+     "last": "O'Connell",
+     "initials": "RJ",
+     "first": "Richard J",
+     "full": "O'Connell RJ",
+     "collective": null
+    }
+   ],
+   "journal": "PLoS pathogens",
+   "journal_iso": "PLoS Pathog",
+   "volume": "8",
+   "issue": "4",
+   "year": 2012,
+   "pages": "e1002643",
+   "license": "cc by",
+   "first_pub": "2012-04-05",
+   "fig_label": "Figure 5",
+   "caption": "ChECs accumulate in interfacial bodies and diffuse into the host cell wall. Transformant biotrophic hyphae expressing ChEC34:mRFP (wave 3 effector). (A, B) Bright field micrograph and corresponding maximum fluorescence intensity projection. Arrows: fluorescent foci. (C, D) Biotrophic hypha expressing CHEC34:mRFP viewed with confocal laser scanning microscopy settings optimized to show fluorescence in the penetrated epidermal cell wall (arrows). Arrowheads: unpenetrated wall of the same cell. (E, F) Transmission electron microscopy of a wild-type appressorium that produced a biotrophic hypha underneath with interfacial bodies (arrowheads). Arrows indicate the penetration site of the host cell wall. Cells were fixed with glutaraldehyde-osmium tetroxide and embedded in epoxy resin. (F) Close-up of an interfacial body (white asterisk) located between the plant plasma membrane (black arrowheads) and the fungal cell wall (black asterisk). (G, H) Immunogold cytochemistry using an antibody recognizing mRFP labels (G) interfacial bodies (arrows) or (H) the plant-fungal interface. Cells were fixed in formaldehyde-glutaraldehyde and embedded in acrylic resin. A, appressorium. FC, fungal cytoplasm. PC, plant cytoplasm. V, plant vacuole. BH, biotrophic hypha. (*) Fungal cell wall. Images were recorded at 40 hpi (A, B) and 43 hpi (C–H). Scale bars: 5 µm (A, C), 2.5 µm (E), 500 nm (F, G) and 250 nm (H).",
+   "href": "ppat.1002643.g005.jpg",
+   "img_url": "https://journals.plos.org/plospathogens/article/figure/image?size=large&id=10.1371/journal.ppat.1002643.g005",
+   "orig_size": [
+    2026,
+    1627
+   ]
+  },
+  {
+   "k": "e4",
+   "score": 4,
+   "pmcid": "PMC3561149",
+   "doi": "10.1371/journal.ppat.1003127",
+   "title": "Bifurcation of Arabidopsis NLR immune signaling via Ca²⁺-dependent protein kinases.",
+   "authors": [
+    {
+     "last": "Gao",
+     "initials": "X",
+     "first": "Xiquan",
+     "full": "Gao X",
+     "collective": null
+    },
+    {
+     "last": "Chen",
+     "initials": "X",
+     "first": "Xin",
+     "full": "Chen X",
+     "collective": null
+    },
+    {
+     "last": "Lin",
+     "initials": "W",
+     "first": "Wenwei",
+     "full": "Lin W",
+     "collective": null
+    },
+    {
+     "last": "Chen",
+     "initials": "S",
+     "first": "Sixue",
+     "full": "Chen S",
+     "collective": null
+    },
+    {
+     "last": "Lu",
+     "initials": "D",
+     "first": "Dongping",
+     "full": "Lu D",
+     "collective": null
+    },
+    {
+     "last": "Niu",
+     "initials": "Y",
+     "first": "Yajie",
+     "full": "Niu Y",
+     "collective": null
+    },
+    {
+     "last": "Li",
+     "initials": "L",
+     "first": "Lei",
+     "full": "Li L",
+     "collective": null
+    },
+    {
+     "last": "Cheng",
+     "initials": "C",
+     "first": "Cheng",
+     "full": "Cheng C",
+     "collective": null
+    },
+    {
+     "last": "McCormack",
+     "initials": "M",
+     "first": "Matthew",
+     "full": "McCormack M",
+     "collective": null
+    },
+    {
+     "last": "Sheen",
+     "initials": "J",
+     "first": "Jen",
+     "full": "Sheen J",
+     "collective": null
+    },
+    {
+     "last": "Shan",
+     "initials": "L",
+     "first": "Libo",
+     "full": "Shan L",
+     "collective": null
+    },
+    {
+     "last": "He",
+     "initials": "P",
+     "first": "Ping",
+     "full": "He P",
+     "collective": null
+    }
+   ],
+   "journal": "PLoS pathogens",
+   "journal_iso": "PLoS Pathog",
+   "volume": "9",
+   "issue": "1",
+   "year": 2013,
+   "pages": "e1003127",
+   "license": "cc by",
+   "first_pub": "2013-01-31",
+   "fig_label": "Figure 1",
+   "caption": "The requirement of Ca 2+ signaling in ETI. (A) AvrRpm1-, AvrB- and AvrRpt2-induced cell death was detected by Evan's blue staining at different time points after transfection in WT, rpm1 or rps2 protoplasts. Ctrl is a control vector. Data are shown as mean ± SD. (B) AvrRpm1, AvrB and AvrRpt2 activated endogenous WRKY46 expression in protoplasts. The transfected protoplasts were collected 6 hpt for real-time RT-PCR analysis. The expression of WRKY46 was normalized to the expression of UBQ10. The data are shown as the mean ± SE from three independent biological replicates. (C) Induction of WRKY46 by Pst avrRpm1 and avrB infection in plants. Plant leaves were hand-inoculated with control or bacteria at 1×10 7 cfu/ml. The samples were collected 6 hpi for real-time RT-PCR analysis. The expression of WRKY46 was normalized to the expression of UBQ10. The data are shown as the mean ± SE from three independent biological replicates. (D) Induction of WRKY46 in dexamethasone (DEX)-inducible avrRpt2 transgenic plants and protoplasts. The WRKY46 expression was detected 6 hr after DEX treatment with real-time RT-PCR analysis. The expression of WRKY46 was normalized to the expression of UBQ10. The data are shown as the mean ± SE from three independent biological replicates. (E) AvrRpm1, AvrB and AvrRpt2 activated WRKY46 promoter in protoplasts. The p WRKY46-LUC was co-transfected with avrRpm1, avrB, or avrRpt2, or a vector control in protoplasts and samples were collected at indicated time points. The UBQ-GUS was included as an internal transfection control. The relative luciferase activity was normalized with GUS activity. (F) AvrRpm1, AvrB and AvrRpt2-induced cell death was suppressed by calcium inhibitors in Arabidopsis protoplasts. The avrRpm1, avrB, or avrRpt2 was co-transfected with UBQ-GUS and incubated with 1 mM LaCl 3, 1 mM GdCl 3 or 10 µM RR. The samples were collected 16 hpt, and the cell death ratio was presented as the percentage of GUS activity repression in effector-transfected cells compared to control-transfected cells. (G) Effector-induced WRKY46 promoter activity was suppressed by calcium inhibitors in protoplasts. The samples were collected 6 hpt. The above experiments were repeated at least four times with similar results.",
+   "href": "ppat.1003127.g001.jpg",
+   "img_url": "https://journals.plos.org/plospathogens/article/figure/image?size=large&id=10.1371/journal.ppat.1003127.g001",
+   "orig_size": [
+    3857,
+    2388
+   ]
+  },
+  {
+   "k": "e5",
+   "score": 4,
+   "pmcid": "PMC4517869",
+   "doi": "10.1371/journal.pgen.1005399",
+   "title": "EIN3 and ORE1 Accelerate Degreening during Ethylene-Mediated Leaf Senescence by Directly Activating Chlorophyll Catabolic Genes in Arabidopsis.",
+   "authors": [
+    {
+     "last": "Qiu",
+     "initials": "K",
+     "first": "Kai",
+     "full": "Qiu K",
+     "collective": null
+    },
+    {
+     "last": "Li",
+     "initials": "Z",
+     "first": "Zhongpeng",
+     "full": "Li Z",
+     "collective": null
+    },
+    {
+     "last": "Yang",
+     "initials": "Z",
+     "first": "Zhen",
+     "full": "Yang Z",
+     "collective": null
+    },
+    {
+     "last": "Chen",
+     "initials": "J",
+     "first": "Junyi",
+     "full": "Chen J",
+     "collective": null
+    },
+    {
+     "last": "Wu",
+     "initials": "S",
+     "first": "Shouxin",
+     "full": "Wu S",
+     "collective": null
+    },
+    {
+     "last": "Zhu",
+     "initials": "X",
+     "first": "Xiaoyu",
+     "full": "Zhu X",
+     "collective": null
+    },
+    {
+     "last": "Gao",
+     "initials": "S",
+     "first": "Shan",
+     "full": "Gao S",
+     "collective": null
+    },
+    {
+     "last": "Gao",
+     "initials": "J",
+     "first": "Jiong",
+     "full": "Gao J",
+     "collective": null
+    },
+    {
+     "last": "Ren",
+     "initials": "G",
+     "first": "Guodong",
+     "full": "Ren G",
+     "collective": null
+    },
+    {
+     "last": "Kuai",
+     "initials": "B",
+     "first": "Benke",
+     "full": "Kuai B",
+     "collective": null
+    },
+    {
+     "last": "Zhou",
+     "initials": "X",
+     "first": "Xin",
+     "full": "Zhou X",
+     "collective": null
+    }
+   ],
+   "journal": "PLoS genetics",
+   "journal_iso": "PLoS Genet",
+   "volume": "11",
+   "issue": "7",
+   "year": 2015,
+   "pages": "e1005399",
+   "license": "cc by",
+   "first_pub": "2015-07-28",
+   "fig_label": "Fig 4",
+   "caption": "Ethylene-induced chl degradation through EIN3 and ORE1 is NYE1 -dependent. (A) Inducible overexpression of NYE1 reversed the stay-green phenotype of e in3 mutant under ethylene treatment. The dexamethasone (DEX)-inducible NYE1 line (NYE1iox) was crossed with ein3 to obtain NYE1iox ein3. The leaves of each indicated genotype were sprayed with 15 μmol/L DEX to induce NYE1 expression and underwent ethylene treatment for 4 d. (B) Quantification of total chl content in leaves of each indicated genotype and time point shown in (A). (C) The loss-of-function nye1 mutant repressed chl degradation of the inducible overexpression of EIN3 transgenic line during ethylene-induced senescence. The estradiol (EST)-inducible EIN3 line EIN3iox was crossed with nye1 to obtain EIN3iox nye1. Leaves were sprayed with 100 μmol/L EST to induce EIN3 expression and underwent ethylene treatments for 4 d. (D) Quantification of total chl content in leaves of each indicated genotype and time point shown in (C). (E) Inducible overexpression of NYE1 reversed the stay-green phenotype of nac2-1 mutant under ethylene treatment. The DEX-inducible NYE1 line (NYE1iox) was crossed with nac2-1 mutant to obtain NYE1iox nac2-1. The treatments were as in (A) except for different plant genotypes. (F) Quantitative analysis of total chl content in leaves of each indicated genotype and time point shown in (E). (G) The loss-of-function nye1 mutant repressed chl degradation caused by overexpression of ORE1 during ethylene-induced senescence. The leaves underwent ethylene treatment for 4 d. (H) Quantitative analysis of total chl content in leaves of each indicated genotype and time point shown in (G). For (A), (C), (E) and (G), the photographs were taken before (0 d) or after (4 d) induction and treatment. For (B), (D), (F) and (H), data are mean ± SEM (n > 4). ** p < 0.01, *** p < 0.001 (t -test). The total chl contents of all tested lines were similar before induction and treatment.",
+   "href": "pgen.1005399.g004.jpg",
+   "img_url": "https://journals.plos.org/plosgenetics/article/figure/image?size=large&id=10.1371/journal.pgen.1005399.g004",
+   "orig_size": [
+    977,
+    2064
+   ]
+  }
+ ]
+}

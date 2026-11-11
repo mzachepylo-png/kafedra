@@ -1,0 +1,643 @@
+{
+ "key": "e04_somatic",
+ "query": {
+  "epmc": "somatic embryogenesis carrot globular heart torpedo"
+ },
+ "candidates": [
+  {
+   "k": "e1",
+   "score": 14,
+   "pmcid": "PMC2788036",
+   "doi": "10.1111/j.1365-313x.2009.03880.x",
+   "title": "Auxin-induced WUS expression is essential for embryonic stem cell renewal during somatic embryogenesis in Arabidopsis.",
+   "authors": [
+    {
+     "last": "Su",
+     "initials": "YH",
+     "first": "Ying H",
+     "full": "Su YH",
+     "collective": null
+    },
+    {
+     "last": "Zhao",
+     "initials": "XY",
+     "first": "Xiang Y",
+     "full": "Zhao XY",
+     "collective": null
+    },
+    {
+     "last": "Liu",
+     "initials": "YB",
+     "first": "Yu B",
+     "full": "Liu YB",
+     "collective": null
+    },
+    {
+     "last": "Zhang",
+     "initials": "CL",
+     "first": "Chuan L",
+     "full": "Zhang CL",
+     "collective": null
+    },
+    {
+     "last": "O'Neill",
+     "initials": "SD",
+     "first": "Sharman D",
+     "full": "O'Neill SD",
+     "collective": null
+    },
+    {
+     "last": "Zhang",
+     "initials": "XS",
+     "first": "Xian S",
+     "full": "Zhang XS",
+     "collective": null
+    }
+   ],
+   "journal": "The Plant journal : for cell and molecular biology",
+   "journal_iso": "Plant J",
+   "volume": "59",
+   "issue": "3",
+   "year": 2009,
+   "pages": "448-460",
+   "license": "cc by",
+   "first_pub": "2009-08-01",
+   "fig_label": "Figure 1",
+   "caption": "Morphogenesis of Arabidopsis somatic embryos. (a–d) Morphology of somatic embryogenesis by light microscopy. (e–g) Morphology of somatic embryogenesis by scanning electron microscopy. (h, i) Patterns of pLEC2::GUS expression by light microscopy. (a, e) Disc-like embryonic calli from PSEs cultured in ECIM for 14 days. (b, f) Somatic pro-embryos on the surfaces of embryonic callus edges (arrowheads) in SEIM at 2 days. (c, g) Two cotyledon primordia and the SAM of an SSE at 4 days. (d) SSEs at 8 days. (h) Strong GUS signals representing LEC2 transcription accumulate in globular-stage somatic embryos (arrowheads) after 2 days in SEIM. (i) Pattern of LEC2 expression in an early heart-stage somatic embryo in sectioned tissue. EC, embryonic calli; Co, cotyledon; CP, cotyledon primordium; SAM, shoot apical meristem; SSE, secondary somatic embryo. Scale bars = 1.2 mm (a–d, h), 60 μm (e–g) and 80 μm (i).",
+   "href": "tpj0059-0448-f1.jpg",
+   "img_url": "https://cdn.ncbi.nlm.nih.gov/pmc/blobs/087f/2788036/993df7947fb2/tpj0059-0448-f1.jpg",
+   "orig_size": [
+    605,
+    570
+   ]
+  },
+  {
+   "k": "e2",
+   "score": 14,
+   "pmcid": "PMC2788036",
+   "doi": "10.1111/j.1365-313x.2009.03880.x",
+   "title": "Auxin-induced WUS expression is essential for embryonic stem cell renewal during somatic embryogenesis in Arabidopsis.",
+   "authors": [
+    {
+     "last": "Su",
+     "initials": "YH",
+     "first": "Ying H",
+     "full": "Su YH",
+     "collective": null
+    },
+    {
+     "last": "Zhao",
+     "initials": "XY",
+     "first": "Xiang Y",
+     "full": "Zhao XY",
+     "collective": null
+    },
+    {
+     "last": "Liu",
+     "initials": "YB",
+     "first": "Yu B",
+     "full": "Liu YB",
+     "collective": null
+    },
+    {
+     "last": "Zhang",
+     "initials": "CL",
+     "first": "Chuan L",
+     "full": "Zhang CL",
+     "collective": null
+    },
+    {
+     "last": "O'Neill",
+     "initials": "SD",
+     "first": "Sharman D",
+     "full": "O'Neill SD",
+     "collective": null
+    },
+    {
+     "last": "Zhang",
+     "initials": "XS",
+     "first": "Xian S",
+     "full": "Zhang XS",
+     "collective": null
+    }
+   ],
+   "journal": "The Plant journal : for cell and molecular biology",
+   "journal_iso": "Plant J",
+   "volume": "59",
+   "issue": "3",
+   "year": 2009,
+   "pages": "448-460",
+   "license": "cc by",
+   "first_pub": "2009-08-01",
+   "fig_label": "Figure 7",
+   "caption": "Polar auxin transport indicated by a pPIN1::PIN1-GFP reporter. (a) PIN1 polarization does not occur in embryonic calli (EC) cultured in ECIM for 14 days. (b) After 16 h in SEIM, PIN1 localization is polarized to the edge region of embryonic callus. The inset is an enlargement of the box. The arrows show the direction of PIN1 polarization within cells. (c) Increased PIN1 polarization in embryonic callus in SEIM at 24 h. (d, e) Polar localization of PIN1 (green) in early and late globular somatic pro-embryos. The arrows show the direction of PIN1 polarization. (f) Signals in regional cells that will produce cotyledon primordia. (g) At 36 h in SEIM, the signals for WUS transcripts and PIN1 are co-localized in the same domain within the callus. (h) Co-localization of WUS transcripts and PIN1 in the somatic pro-embryo. (i) WUS transcripts are localized in the SAM, whereas PIN1 signals are localized in the cotyledon primordia. SE1 and SE2, regions that will produce somatic embryos; Co, cotyledon; CP, cotyledon primordia; SAM, shoot apical meristem. Arrowheads in (a)–(c) indicate the edge of calli. Green signals are PIN1. Red signals in (a)–(f) and blue signals in (g)–(i) are chlorophyll autofluorescence. The red color in (g)–(i) indicates WUS signals. In Scale bars = 50 μm (a–f) and 60 μm (g–i).",
+   "href": "tpj0059-0448-f7.jpg",
+   "img_url": "https://cdn.ncbi.nlm.nih.gov/pmc/blobs/087f/2788036/7635b80359da/tpj0059-0448-f7.jpg",
+   "orig_size": [
+    624,
+    521
+   ]
+  },
+  {
+   "k": "e3",
+   "score": 12,
+   "pmcid": "PMC6214027",
+   "doi": "10.3390/ijms19103182",
+   "title": "5-Azacytidine: A Promoter of Epigenetic Changes in the Quest to Improve Plant Somatic Embryogenesis.",
+   "authors": [
+    {
+     "last": "Osorio-Montalvo",
+     "initials": "P",
+     "first": "Pedro",
+     "full": "Osorio-Montalvo P",
+     "collective": null
+    },
+    {
+     "last": "Sáenz-Carbonell",
+     "initials": "L",
+     "first": "Luis",
+     "full": "Sáenz-Carbonell L",
+     "collective": null
+    },
+    {
+     "last": "De-la-Peña",
+     "initials": "C",
+     "first": "Clelia",
+     "full": "De-la-Peña C",
+     "collective": null
+    }
+   ],
+   "journal": "International journal of molecular sciences",
+   "journal_iso": "Int J Mol Sci",
+   "volume": "19",
+   "issue": "10",
+   "year": 2018,
+   "pages": "E3182",
+   "license": "cc by",
+   "first_pub": "2018-10-16",
+   "fig_label": "Figure 1",
+   "caption": "In plant somatic embryogenesis, genetic (green) and epigenetic (yellow) mechanisms induce the development of embryogenic cells from any explant (cells isolated from the leaves, shoots or roots). Due to the totipotentiality properties of plant cells, a group of embryogenic cells can develop into a complete and functional plantlet.",
+   "href": "ijms-19-03182-g001.jpg",
+   "img_url": "https://cdn.ncbi.nlm.nih.gov/pmc/blobs/165c/6214027/bbd30cd46860/ijms-19-03182-g001.jpg",
+   "orig_size": [
+    759,
+    491
+   ]
+  },
+  {
+   "k": "e4",
+   "score": 10,
+   "pmcid": "PMC6331538",
+   "doi": "10.3389/fpls.2018.01915",
+   "title": "Pectin De-methylesterification and AGP Increase Promote Cell Wall Remodeling and Are Required During Somatic Embryogenesis of <i>Quercus suber</i>.",
+   "authors": [
+    {
+     "last": "Pérez-Pérez",
+     "initials": "Y",
+     "first": "Yolanda",
+     "full": "Pérez-Pérez Y",
+     "collective": null
+    },
+    {
+     "last": "Carneros",
+     "initials": "E",
+     "first": "Elena",
+     "full": "Carneros E",
+     "collective": null
+    },
+    {
+     "last": "Berenguer",
+     "initials": "E",
+     "first": "Eduardo",
+     "full": "Berenguer E",
+     "collective": null
+    },
+    {
+     "last": "Solís",
+     "initials": "MT",
+     "first": "María-Teresa",
+     "full": "Solís MT",
+     "collective": null
+    },
+    {
+     "last": "Bárány",
+     "initials": "I",
+     "first": "Ivett",
+     "full": "Bárány I",
+     "collective": null
+    },
+    {
+     "last": "Pintos",
+     "initials": "B",
+     "first": "Beatriz",
+     "full": "Pintos B",
+     "collective": null
+    },
+    {
+     "last": "Gómez-Garay",
+     "initials": "A",
+     "first": "Aránzazu",
+     "full": "Gómez-Garay A",
+     "collective": null
+    },
+    {
+     "last": "Risueño",
+     "initials": "MC",
+     "first": "María C",
+     "full": "Risueño MC",
+     "collective": null
+    },
+    {
+     "last": "Testillano",
+     "initials": "PS",
+     "first": "Pilar S",
+     "full": "Testillano PS",
+     "collective": null
+    }
+   ],
+   "journal": "Frontiers in plant science",
+   "journal_iso": "Front Plant Sci",
+   "volume": "9",
+   "issue": null,
+   "year": 2018,
+   "pages": "1915",
+   "license": "cc by",
+   "first_pub": "2019-01-08",
+   "fig_label": "FIGURE 2",
+   "caption": "Cellular organization of main stages of somatic embryogenesis. Micrographs of semithin sections stained by Toluidine blue. (A–C) Panoramic views of cluster of proembryogenic masses (A), torpedo embryo (B) and cotyledonary embryo (C). (D–G) Details at higher magnification of representative regions of (A–C), as indicated by arrows and squares. (D,E) PEMs showing clusters of embryogenic cells at the periphery (D), as indicated by thin arrow in (A), and inside (D), as indicated by open arrow in (A). (F) Torpedo embryo. (G) Cotyledonary embryo. Bars in (A,B): 0.5 mm, in (C): 1 mm, in (D,E): 20 μm.",
+   "href": "fpls-09-01915-g002.jpg",
+   "img_url": "https://cdn.ncbi.nlm.nih.gov/pmc/blobs/f06d/6331538/c7109699dabf/fpls-09-01915-g002.jpg",
+   "orig_size": [
+    733,
+    924
+   ]
+  },
+  {
+   "k": "e5",
+   "score": 10,
+   "pmcid": "PMC6331538",
+   "doi": "10.3389/fpls.2018.01915",
+   "title": "Pectin De-methylesterification and AGP Increase Promote Cell Wall Remodeling and Are Required During Somatic Embryogenesis of <i>Quercus suber</i>.",
+   "authors": [
+    {
+     "last": "Pérez-Pérez",
+     "initials": "Y",
+     "first": "Yolanda",
+     "full": "Pérez-Pérez Y",
+     "collective": null
+    },
+    {
+     "last": "Carneros",
+     "initials": "E",
+     "first": "Elena",
+     "full": "Carneros E",
+     "collective": null
+    },
+    {
+     "last": "Berenguer",
+     "initials": "E",
+     "first": "Eduardo",
+     "full": "Berenguer E",
+     "collective": null
+    },
+    {
+     "last": "Solís",
+     "initials": "MT",
+     "first": "María-Teresa",
+     "full": "Solís MT",
+     "collective": null
+    },
+    {
+     "last": "Bárány",
+     "initials": "I",
+     "first": "Ivett",
+     "full": "Bárány I",
+     "collective": null
+    },
+    {
+     "last": "Pintos",
+     "initials": "B",
+     "first": "Beatriz",
+     "full": "Pintos B",
+     "collective": null
+    },
+    {
+     "last": "Gómez-Garay",
+     "initials": "A",
+     "first": "Aránzazu",
+     "full": "Gómez-Garay A",
+     "collective": null
+    },
+    {
+     "last": "Risueño",
+     "initials": "MC",
+     "first": "María C",
+     "full": "Risueño MC",
+     "collective": null
+    },
+    {
+     "last": "Testillano",
+     "initials": "PS",
+     "first": "Pilar S",
+     "full": "Testillano PS",
+     "collective": null
+    }
+   ],
+   "journal": "Frontiers in plant science",
+   "journal_iso": "Front Plant Sci",
+   "volume": "9",
+   "issue": null,
+   "year": 2018,
+   "pages": "1915",
+   "license": "cc by",
+   "first_pub": "2019-01-08",
+   "fig_label": "FIGURE 7",
+   "caption": "Immunofluorescence of esterified and de-esterified pectins at advanced stages of somatic embryogenesis. Confocal microscopy images of merged fluorescence signals from pectins (green) and DAPI-stained nuclei (blue). (A,C,E) Immunofluorescence for esterified pectins with JIM7 antibodies (A), and LM20 antibodies (C,E). (B,D,F) Immunofluorescence for de-esterified pectins with JIM5 antibodies (B), and LM19 antibodies (D,F). (A–D) Torpedo embryo, region similar to Figure 2F. (E,F) Cotyledonary embryo, region similar to Figure 2G. Insets show higher magnification images of epidermis and subjacent tissues. Arrows point to epidermis cells. All pectin antibodies localize in cell walls. Bars represent 20 μm.",
+   "href": "fpls-09-01915-g007.jpg",
+   "img_url": "https://cdn.ncbi.nlm.nih.gov/pmc/blobs/f06d/6331538/dbe7011ac40c/fpls-09-01915-g007.jpg",
+   "orig_size": [
+    776,
+    1315
+   ]
+  },
+  {
+   "k": "e6",
+   "score": 8,
+   "pmcid": "PMC3483692",
+   "doi": "10.1186/1471-2229-12-110",
+   "title": "Transcript profiling reveals complex auxin signalling pathway and transcription regulation involved in dedifferentiation and redifferentiation during somatic embryogenesis in cotton.",
+   "authors": [
+    {
+     "last": "Yang",
+     "initials": "X",
+     "first": "Xiyan",
+     "full": "Yang X",
+     "collective": null
+    },
+    {
+     "last": "Zhang",
+     "initials": "X",
+     "first": "Xianlong",
+     "full": "Zhang X",
+     "collective": null
+    },
+    {
+     "last": "Yuan",
+     "initials": "D",
+     "first": "Daojun",
+     "full": "Yuan D",
+     "collective": null
+    },
+    {
+     "last": "Jin",
+     "initials": "F",
+     "first": "Fangyan",
+     "full": "Jin F",
+     "collective": null
+    },
+    {
+     "last": "Zhang",
+     "initials": "Y",
+     "first": "Yunchao",
+     "full": "Zhang Y",
+     "collective": null
+    },
+    {
+     "last": "Xu",
+     "initials": "J",
+     "first": "Jiao",
+     "full": "Xu J",
+     "collective": null
+    }
+   ],
+   "journal": "BMC plant biology",
+   "journal_iso": "BMC Plant Biol",
+   "volume": "12",
+   "issue": null,
+   "year": 2012,
+   "pages": "110",
+   "license": "cc by",
+   "first_pub": "2012-07-20",
+   "fig_label": "Figure 1",
+   "caption": "Schematic representation and histological observation of different time points/stages during somatic embryogenesis used for RNA-Seq analysis. Initial hypocotyl explants (A) used as control. Initial cellular dedifferentiation was sampled from explants after induction for 6 h, 24 h, and 48 h (B - D). Typical nonembryogenic calli (NECs) were sampled at 40 d of culture time (E) when the calluses were loosening and abundant, embryogenic calluses (ECs) were sampled after the first subculture when compact primary embryogenic clumps (F) were first identified. Different stages of somatic embryos [globular embryos (GEs), (G), torpedo embryos (TEs), (H), and cotyledon embryos (CEs), (I)] were sampled after synchronization control of somatic embryogenesis by suspension culture. Somatic embryogenesis in cotton passes through three different processes: dedifferentiation of cotton somatic cells, transition from NECs to ECs, and development of Somatic embryos. Histological analysis was made at 0 h, 3 h, 6 h, 12 h, 24 h, 48 h, 72 h, 7 d, 10 d, 15 d, 25 d, and 40 d after induction (J - U).",
+   "href": "1471-2229-12-110-1.jpg",
+   "img_url": "https://cdn.ncbi.nlm.nih.gov/pmc/blobs/3ee1/3483692/cdd01f560fe1/1471-2229-12-110-1.jpg",
+   "orig_size": [
+    600,
+    650
+   ]
+  },
+  {
+   "k": "e7",
+   "score": 8,
+   "pmcid": "PMC4449528",
+   "doi": "10.1186/s12870-015-0479-4",
+   "title": "Enhanced somatic embryogenesis in Theobroma cacao using the homologous BABY BOOM transcription factor.",
+   "authors": [
+    {
+     "last": "Florez",
+     "initials": "SL",
+     "first": "Sergio L",
+     "full": "Florez SL",
+     "collective": null
+    },
+    {
+     "last": "Erwin",
+     "initials": "RL",
+     "first": "Rachel L",
+     "full": "Erwin RL",
+     "collective": null
+    },
+    {
+     "last": "Maximova",
+     "initials": "SN",
+     "first": "Siela N",
+     "full": "Maximova SN",
+     "collective": null
+    },
+    {
+     "last": "Guiltinan",
+     "initials": "MJ",
+     "first": "Mark J",
+     "full": "Guiltinan MJ",
+     "collective": null
+    },
+    {
+     "last": "Curtis",
+     "initials": "WR",
+     "first": "Wayne R",
+     "full": "Curtis WR",
+     "collective": null
+    }
+   ],
+   "journal": "BMC plant biology",
+   "journal_iso": "BMC Plant Biol",
+   "volume": "15",
+   "issue": null,
+   "year": 2015,
+   "pages": "121",
+   "license": "cc by",
+   "first_pub": "2015-05-16",
+   "fig_label": "Figure 5",
+   "caption": "TcBBM overexpression in cacao leads to spontaneous direct somatic embryogenesis. A. 35S::TcBBM cacao embryo over-expressing TcBBM going through the process of spontaneous direct somatic embryogenesis. B. Further development of same E12-Ω-CaMV-35S::TcBBM cacao embryo (14 days after image on A). C. E12-Ω-CaMV-35S::TcBBM explant after 14 days of being subjected to hormone induced somatic embryogenesis. D. SCA6 wild-type cacao embryo showing normal cotyledon development and no spontaneous embryo regeneration. Image scale bars = 1 mm.",
+   "href": "12870_2015_479_Fig5_HTML.jpg",
+   "img_url": "https://cdn.ncbi.nlm.nih.gov/pmc/blobs/b593/4449528/74fdbb86c7ac/12870_2015_479_Fig5_HTML.jpg",
+   "orig_size": [
+    472,
+    388
+   ]
+  },
+  {
+   "k": "e8",
+   "score": 8,
+   "pmcid": "PMC4449528",
+   "doi": "10.1186/s12870-015-0479-4",
+   "title": "Enhanced somatic embryogenesis in Theobroma cacao using the homologous BABY BOOM transcription factor.",
+   "authors": [
+    {
+     "last": "Florez",
+     "initials": "SL",
+     "first": "Sergio L",
+     "full": "Florez SL",
+     "collective": null
+    },
+    {
+     "last": "Erwin",
+     "initials": "RL",
+     "first": "Rachel L",
+     "full": "Erwin RL",
+     "collective": null
+    },
+    {
+     "last": "Maximova",
+     "initials": "SN",
+     "first": "Siela N",
+     "full": "Maximova SN",
+     "collective": null
+    },
+    {
+     "last": "Guiltinan",
+     "initials": "MJ",
+     "first": "Mark J",
+     "full": "Guiltinan MJ",
+     "collective": null
+    },
+    {
+     "last": "Curtis",
+     "initials": "WR",
+     "first": "Wayne R",
+     "full": "Curtis WR",
+     "collective": null
+    }
+   ],
+   "journal": "BMC plant biology",
+   "journal_iso": "BMC Plant Biol",
+   "volume": "15",
+   "issue": null,
+   "year": 2015,
+   "pages": "121",
+   "license": "cc by",
+   "first_pub": "2015-05-16",
+   "fig_label": "Figure 6",
+   "caption": "TcBBM constitutive overexpression in cacao leads to an increase in embryonic potential. A. Number of embryos produced per explant generated from E12-Ω-CaMV-35S::TcBBM or SCA6 wild-type tissue. Error bars represent one standard deviation. Image of embryos produced from B. E12-Ω-CaMV-35S::TcBBM or C. SCA6 Wt explants. Image scale bars = 1 mm. (* represents a p-value < 0.05 for the Student’s t-test).",
+   "href": "12870_2015_479_Fig6_HTML.jpg",
+   "img_url": "https://cdn.ncbi.nlm.nih.gov/pmc/blobs/b593/4449528/a87e88c50162/12870_2015_479_Fig6_HTML.jpg",
+   "orig_size": [
+    778,
+    353
+   ]
+  },
+  {
+   "k": "e9",
+   "score": 8,
+   "pmcid": "PMC6214027",
+   "doi": "10.3390/ijms19103182",
+   "title": "5-Azacytidine: A Promoter of Epigenetic Changes in the Quest to Improve Plant Somatic Embryogenesis.",
+   "authors": [
+    {
+     "last": "Osorio-Montalvo",
+     "initials": "P",
+     "first": "Pedro",
+     "full": "Osorio-Montalvo P",
+     "collective": null
+    },
+    {
+     "last": "Sáenz-Carbonell",
+     "initials": "L",
+     "first": "Luis",
+     "full": "Sáenz-Carbonell L",
+     "collective": null
+    },
+    {
+     "last": "De-la-Peña",
+     "initials": "C",
+     "first": "Clelia",
+     "full": "De-la-Peña C",
+     "collective": null
+    }
+   ],
+   "journal": "International journal of molecular sciences",
+   "journal_iso": "Int J Mol Sci",
+   "volume": "19",
+   "issue": "10",
+   "year": 2018,
+   "pages": "E3182",
+   "license": "cc by",
+   "first_pub": "2018-10-16",
+   "fig_label": "Figure 3",
+   "caption": "(A) Relations between levels of cell differentiation, DNA methylation and embryogenic potential between different kinds of plant tissues used as explants; (B) differences in DNA methylation and embryogenic potential between embryogenic and non-embryogenic callus; (C) dynamics of DNA methylation levels throughout the SE process.",
+   "href": "ijms-19-03182-g003.jpg",
+   "img_url": "https://cdn.ncbi.nlm.nih.gov/pmc/blobs/165c/6214027/7063dc572f70/ijms-19-03182-g003.jpg",
+   "orig_size": [
+    776,
+    554
+   ]
+  },
+  {
+   "k": "e10",
+   "score": 4,
+   "pmcid": "PMC5566963",
+   "doi": "10.3389/fpls.2017.01460",
+   "title": "Somatic Embryogenesis in Coffee: The Evolution of Biotechnology and the Integration of Omics Technologies Offer Great Opportunities.",
+   "authors": [
+    {
+     "last": "Campos",
+     "initials": "NA",
+     "first": "Nádia A",
+     "full": "Campos NA",
+     "collective": null
+    },
+    {
+     "last": "Panis",
+     "initials": "B",
+     "first": "Bart",
+     "full": "Panis B",
+     "collective": null
+    },
+    {
+     "last": "Carpentier",
+     "initials": "SC",
+     "first": "Sebastien C",
+     "full": "Carpentier SC",
+     "collective": null
+    }
+   ],
+   "journal": "Frontiers in plant science",
+   "journal_iso": "Front Plant Sci",
+   "volume": "8",
+   "issue": null,
+   "year": 2017,
+   "pages": "1460",
+   "license": "cc by",
+   "first_pub": "2017-08-21",
+   "fig_label": "FIGURE 1",
+   "caption": "Scanning Electron Microscopy of coffee callus cells. (A) cells in the yellow friable callus arranged in clusters; (B) round cells in the yellow friable callus; (C,D) transparent watery callus with elongated cells. Adapted from © Padua et al., 2014. This picture is being reproduced with permission from the copyright holders.",
+   "href": "fpls-08-01460-g001.jpg",
+   "img_url": "https://cdn.ncbi.nlm.nih.gov/pmc/blobs/d452/5566963/86cfe8c386d5/fpls-08-01460-g001.jpg",
+   "orig_size": [
+    787,
+    509
+   ]
+  }
+ ]
+}
