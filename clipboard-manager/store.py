@@ -30,7 +30,7 @@ COLOR_RE = re.compile(r"^#[0-9a-fA-F]{6}$")
 BUILTIN_FORMATS = [
     {"id": "builtin-user", "name": "USER", "type": "link_user", "color": "#0f6cbd"},
     # видно лише в папці з такою назвою (без урахування регістру); без "folders" формат видно скрізь
-    {"id": "builtin-user2", "name": "User2", "type": "link_user_text", "color": "#038387"},
+    {"id": "builtin-user2", "name": "USER 2", "type": "link_user_text", "color": "#038387"},
     {"id": "builtin-added-cards", "name": "Added cards", "type": "cards_added", "color": "#c239b3",
      "folders": ["Suspicious login"]},
     {"id": "builtin-suspicious-cards", "name": "Suspicious cards", "type": "suspicious_cards", "color": "#e81123",
@@ -45,6 +45,8 @@ DEFAULT_PHRASES = [
     {"id": "ph-noactive", "text": "No active subscriptions."},
 ]
 MAX_PHRASE = 1000
+TOS_MIGRATION = "tos-reasons-v1"
+_TOS_TAIL = re.compile(r"due to TOS Violation\s*,\s*$", re.IGNORECASE)
 REMOVED_BUILTIN_FORMATS = {"builtin-test-cards"}     # перенесено в меню «Об'єднати і копіювати» (з історії)
 PALETTE = ["#0f6cbd", "#107c10", "#c239b3", "#d83b01", "#8764b8", "#038387", "#986f0b", "#e3008c"]
 
@@ -103,6 +105,7 @@ class Preset:
         self.categories: list[dict] = []
         self.formats: list[dict] = []
         self.phrases: list[dict] = [dict(p) for p in DEFAULT_PHRASES]
+        self.migrations: list[str] = [TOS_MIGRATION]      # новому пресету одноразові налаштування не потрібні
         self._mtime: int | None = None
         self._ensure_builtin_formats()
 
@@ -159,6 +162,8 @@ class Preset:
                     v2 = clean_v2(s.get("v2"))
                     if v2:
                         snip["v2"] = v2                  # копіпаста v.2: основний текст + дерево аппендів
+                    if isinstance(s.get("user_link"), bool):
+                        snip["user_link"] = s["user_link"]   # підставляти користувача з історії (in {LINK:USER:…:E})
                     snippets.append(snip)
             cats.append({"id": cid, "name": str(c["name"])[:MAX_CATEGORY_NAME],
                          "color": c["color"] if _color_ok(c.get("color")) else PALETTE[n % len(PALETTE)],
@@ -169,6 +174,10 @@ class Preset:
                         if isinstance(f, dict) and f.get("id") and f.get("name")
                         and f.get("id") not in REMOVED_BUILTIN_FORMATS]   # невідомі типи не губимо
         self._ensure_builtin_formats()
+        for f in self.formats:                         # «User2» перейменовано на «USER 2»
+            if f.get("id") == "builtin-user2" and f.get("name") == "User2":
+                f["name"] = "USER 2"
+        self.migrations = [m for m in data.get("migrations", []) if isinstance(m, str)]
         raw = data.get("phrases")
         if isinstance(raw, list):                      # власні фрази; без ключа — типові
             self.phrases = []
@@ -181,13 +190,42 @@ class Preset:
         else:
             self.phrases = [dict(p) for p in DEFAULT_PHRASES]
         self.name = str(data.get("name") or _stem(self.path))[:MAX_PRESET_NAME]
+        if self._migrate_tos():
+            self.save()
         self._mtime = self._disk_mtime()
 
     def save(self) -> None:
         _write_json(self.path, {"format": PRESET_FORMAT, "version": PRESET_VERSION, "name": self.name,
                                 "categories": self.categories, "formats": self.formats,
-                                "phrases": self.phrases})
+                                "phrases": self.phrases, "migrations": self.migrations})
         self._mtime = self._disk_mtime()
+
+    # -- одноразові налаштування даних -------------------------------------------
+    def _migrate_tos(self) -> bool:
+        """Одноразово: у папці «TOS Violation» записи, що закінчуються «… due to TOS Violation,», отримують вікно
+        вибору причини (аппенди v.2, перший пункт «Third-party payments») і підстановку користувача з історії."""
+        if TOS_MIGRATION in self.migrations:
+            return False
+        self.migrations.append(TOS_MIGRATION)     # без змін у записах — позначка збережеться з наступним save()
+        changed = False
+        for c in self.categories:
+            if c["name"].strip().casefold() != "tos violation":
+                continue
+            for s in c["snippets"]:
+                if _TOS_TAIL.search(s["text"]):
+                    if not s.get("v2"):
+                        s["v2"] = clean_v2({"options": [{"text": "Third-party payments", "kind": "end"}]})
+                    s["user_link"] = True
+                    changed = True
+        return changed
+
+    def set_snippet_user_link(self, snippet_id: str, on: bool) -> bool:
+        found = self.find_snippet(snippet_id)
+        if not found:
+            return False
+        found[1]["user_link"] = bool(on)
+        self.save()
+        return True
 
     # -- швидкі фрази -----------------------------------------------------------
     def add_phrase(self, text: str) -> dict | None:

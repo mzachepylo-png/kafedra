@@ -13,7 +13,7 @@ import time
 APP_ID = "ClipboardMemory"
 SINGLE_PORT = int(os.environ.get("CLIPBOARD_MEMORY_PORT", "47653"))
 # Номер версії для заміни старої копії новою (збільшувати при кожному релізі; v2 і раніше цього не вміють)
-APP_VERSION = os.environ.get("CLIPBOARD_MEMORY_VERSION", "13")
+APP_VERSION = os.environ.get("CLIPBOARD_MEMORY_VERSION", "14")
 
 HOTKEY_PRESETS = [
     ("ctrl+x", "Ctrl+X  (перехоплює «Вирізати» в усіх програмах)"),

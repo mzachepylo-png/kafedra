@@ -34,14 +34,24 @@ def format_cards_added(text: str) -> str:
 _USER_REF = re.compile(r"user\s*#\s*([0-9]+)", re.IGNORECASE)
 
 
+_USER2 = re.compile(r"\{LINK:USER:[0-9]+:E\}|user\s*#\s*([0-9]+)|(?<![\w#{:])([0-9]+)(?![\w}])", re.IGNORECASE)
+
+
 def format_user_text(text: str) -> str:
-    """Довільний текст, у якому кожне «User #13513» (також «User#13513», «user # 13513») замінюється на
-    ``{LINK:USER:13513:E}``; решта тексту лишається без змін."""
+    """USER 2: довільний текст, у якому кожне «User #13513» («User#13513», «user # 13513») і кожне окреме число
+    («214», як у USER) замінюється на ``{LINK:USER:13513:E}``; готові ``{LINK:USER:…:E}`` і решта тексту — без змін."""
     text = text or ""
-    return _USER_REF.sub(lambda m: "{LINK:USER:%s:E}" % m.group(1), text) if text.strip() else ""
+    if not text.strip():
+        return ""
+
+    def sub(m):
+        num = m.group(1) or m.group(2)
+        return "{LINK:USER:%s:E}" % num if num else m.group(0)
+    return _USER2.sub(sub, text)
 
 
 SUSPICIOUS_PREFIX = "Suspicious cards were added."
+_SUSPICIOUS_PREFIX_RE = re.compile(r"^\s*suspicious\s+cards\s+were\s+added\s*\.?", re.IGNORECASE)
 
 
 def format_suspicious_cards(text: str) -> str:
@@ -61,8 +71,9 @@ def append_suspicious_cards(base: str, result: str) -> str:
     → ``Suspicious cards 1245, 1254 were added. Blacklisted, unsolicited charges refunded``
     Якщо запис починається інакше — результат просто дописується в кінець."""
     base = (base or "").strip()
-    if base.casefold().startswith(SUSPICIOUS_PREFIX.casefold()):
-        rest = base[len(SUSPICIOUS_PREFIX):]
+    m = _SUSPICIOUS_PREFIX_RE.match(base)
+    if m:                                   # регістр і зайві пробіли в початку запису не заважають
+        rest = base[m.end():]
         return result + (" " + rest if rest and not rest[0].isspace() else rest)
     return append_result(base, result)
 
@@ -182,4 +193,58 @@ def v2_compose(main: str, steps, addons) -> str:
     """Основний текст + обрані аппенди (у порядку кліків) + позначені додаткові — через пробіл."""
     parts = [main or "", *steps, *addons]
     return " ".join(p.strip() for p in parts if p and p.strip())
+
+
+# --------------------------------------------------------------------------- #
+#  Дані з історії буфера (найновіші — першими)
+# --------------------------------------------------------------------------- #
+_NUMERIC_ENTRY = re.compile(r"^[0-9][0-9,\s]*$")
+# формати, що з порожнім полем беруть останні числові значення з історії
+AUTO_HISTORY_FORMATS = {"suspicious_cards", "cards_added"}
+
+
+def numbers_from_history(texts) -> str:
+    """Останні поспіль числові записи історії (найновіший першим) → «123, 542, 1234, 2365, 4562».
+    Числовий запис — лише цифри, коми й пробіли; перший запис з будь-яким іншим знаком (текст, крапка, дефіс…) — стоп."""
+    nums: list[str] = []
+    for t in texts:
+        s = (t or "").strip()
+        if not s or not _NUMERIC_ENTRY.match(s):
+            break
+        nums += _NUMBERS.findall(s)
+    return ", ".join(nums)
+
+
+_USER_ENTRY = re.compile(r"^\s*(?:\{LINK:USER:([0-9]+):E\}|(?:user\s*#\s*)?([0-9]+))\s*$", re.IGNORECASE)
+
+
+def last_user_id(texts) -> str | None:
+    """Найновіший запис історії, що є користувачем: ``{LINK:USER:1236:E}``, «User #1236» або просто число «214»."""
+    for t in texts:
+        m = _USER_ENTRY.match(t or "")
+        if m:
+            return m.group(1) or m.group(2)
+    return None
+
+
+def user_link(uid: str) -> str:
+    return "{LINK:USER:%s:E}" % uid
+
+
+_PLACEHOLDER = re.compile(r"(\bin\s+)_{2,}", re.IGNORECASE)
+
+
+def has_user_placeholder(text: str) -> bool:
+    """Текст із заглушкою «in ______» (такі записи за замовчуванням підставляють користувача з історії)."""
+    return bool(_PLACEHOLDER.search(text or ""))
+
+
+def apply_user_link(text: str, uid: str | None) -> str:
+    """«… in ______» → «… in {LINK:USER:214:E}»; без заглушки — дописує « in {LINK:USER:214:E}» у кінець."""
+    if not uid:
+        return text
+    link = user_link(uid)
+    if _PLACEHOLDER.search(text or ""):
+        return _PLACEHOLDER.sub(lambda m: m.group(1) + link, text, count=1)
+    return f"{(text or '').rstrip()} in {link}"
 

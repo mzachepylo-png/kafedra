@@ -96,7 +96,7 @@ class PresetTests(TmpCase):
         again = Preset.open(self.path)
         self.assertEqual(again.categories[0]["name"], "Шаблони 🌍")
         self.assertEqual(again.categories[0]["snippets"][0]["text"], "Привіт, світе 🌍")
-        self.assertEqual([f["name"] for f in again.formats], ["USER", "User2", "Added cards", "Suspicious cards", "future"])   # невідомий формат не губиться
+        self.assertEqual([f["name"] for f in again.formats], ["USER", "USER 2", "Added cards", "Suspicious cards", "future"])   # невідомий формат не губиться
         with open(self.path, encoding="utf-8") as f:
             data = json.load(f)
         self.assertEqual(data["format"], "clipboard-memory-preset")
@@ -191,7 +191,7 @@ class ColorAndRenameTests(TmpCase):
 
     def test_builtin_user_format_exists_and_color_persists(self):
         self.assertEqual([(f["name"], f["type"]) for f in self.pr.formats],
-                         [("USER", "link_user"), ("User2", "link_user_text"),
+                         [("USER", "link_user"), ("USER 2", "link_user_text"),
                           ("Added cards", "cards_added"), ("Suspicious cards", "suspicious_cards")])
         self.assertTrue(self.pr.set_format_color("builtin-user", "#ff8800"))
         self.assertEqual(Preset.open(self.pr.path).format("builtin-user")["color"], "#ff8800")
@@ -283,21 +283,21 @@ class OrderAndScopeTests(TmpCase):
     def test_formats_visibility_per_folder(self):
         sl = self.pr.add_category("  suspicious LOGIN ")                    # назва без урахування регістру
         in_login = [f["name"] for f in self.pr.formats_for(sl["id"])]
-        self.assertEqual(in_login, ["USER", "User2", "Added cards"])
-        everywhere = ["USER", "User2"]
+        self.assertEqual(in_login, ["USER", "USER 2", "Added cards"])
+        everywhere = ["USER", "USER 2"]
         self.assertEqual([f["name"] for f in self.pr.formats_for(self.a["id"])], everywhere)
         self.assertEqual([f["name"] for f in self.pr.formats_for(None)], everywhere)   # історія буфера
         sc = self.pr.add_category("Suspicious cards")
         self.assertEqual([f["name"] for f in self.pr.formats_for(sc["id"])], everywhere + ["Suspicious cards"])
         self.pr.rename_category(sl["id"], "Інша")
-        self.assertEqual([f["name"] for f in self.pr.formats_for(sl["id"])], ["USER", "User2"])
+        self.assertEqual([f["name"] for f in self.pr.formats_for(sl["id"])], ["USER", "USER 2"])
 
     def test_old_preset_gets_added_cards_format(self):
         with open(self.p("old.preset.json"), "w", encoding="utf-8") as f:
             f.write('{"format": "clipboard-memory-preset", "version": 1, "categories": [], '
                     '"formats": [{"id": "builtin-user", "name": "USER", "type": "link_user", "color": "#ff0000"}]}')
         pr = Preset.open(self.p("old.preset.json"))
-        self.assertEqual([f["name"] for f in pr.formats], ["USER", "User2", "Added cards", "Suspicious cards"])
+        self.assertEqual([f["name"] for f in pr.formats], ["USER", "USER 2", "Added cards", "Suspicious cards"])
         self.assertEqual(pr.format("builtin-user")["color"], "#ff0000")    # власний колір не затирається
 
 
@@ -597,7 +597,9 @@ class Round7Tests(unittest.TestCase):
         self.assertEqual(apply_format("link_user_text", "Привіт User #13513!"), "Привіт {LINK:USER:13513:E}!")
         self.assertEqual(apply_format("link_user_text", "User#1, user # 2 і User #3"),
                          "{LINK:USER:1:E}, {LINK:USER:2:E} і {LINK:USER:3:E}")
-        self.assertEqual(apply_format("link_user_text", "Users 5 без решітки"), "Users 5 без решітки")
+        self.assertEqual(apply_format("link_user_text", "Users 5 без решітки"), "Users {LINK:USER:5:E} без решітки")
+        self.assertEqual(apply_format("link_user_text", "214, 215"), "{LINK:USER:214:E}, {LINK:USER:215:E}")
+        self.assertEqual(apply_format("link_user_text", "вже {LINK:USER:9:E} і abc123"), "вже {LINK:USER:9:E} і abc123")
         self.assertEqual(apply_format("link_user_text", "   "), "")
         self.assertEqual(format_actions("link_user_text"), ("copy",))
 
@@ -688,6 +690,70 @@ class MergeAndV2Tests(unittest.TestCase):
         self.assertNotIn("v2", Preset.open(pr.path).snippets(cat["id"])[0])
         self.assertTrue(again.update_snippet(sn["id"], "Основний 2", v2={"options": [{"text": "x"}]}))
         self.assertEqual(Preset.open(pr.path).snippets(cat["id"])[0]["v2"]["options"][0]["kind"], "end")
+
+
+class HistoryAutofillAndUserLinkTests(unittest.TestCase):
+    def test_numbers_from_history(self):
+        from formats import numbers_from_history
+        self.assertEqual(numbers_from_history(["123", "542", "1234, 2365 4562", "Жовтень у Голосієві", "777"]),
+                         "123, 542, 1234, 2365, 4562")
+        self.assertEqual(numbers_from_history(["12.5", "7"]), "", "крапка — не число, стоп одразу")
+        self.assertEqual(numbers_from_history(["1-2", "7"]), "")
+        self.assertEqual(numbers_from_history(["  88 ,  99 "]), "88, 99")
+        self.assertEqual(numbers_from_history([]), "")
+
+    def test_formats_with_history_values(self):
+        from formats import apply_format, numbers_from_history
+        vals = numbers_from_history(["123", "542", "1234, 2365 4562", "текст"])
+        self.assertEqual(apply_format("cards_added", vals),
+                         "Cards 123, 542, 1234, 2365, 4562 were added during suspicious login.")
+        self.assertEqual(apply_format("suspicious_cards", vals), "Suspicious cards 123, 542, 1234, 2365, 4562 were added.")
+
+    def test_suspicious_append_robust_prefix(self):
+        from formats import append_suspicious_cards
+        res = "Suspicious cards 1234, 2365, 4562 were added."
+        self.assertEqual(append_suspicious_cards("Suspicious cards were added. Blacklisted, unsolicited charges refunded", res),
+                         "Suspicious cards 1234, 2365, 4562 were added. Blacklisted, unsolicited charges refunded")
+        self.assertEqual(append_suspicious_cards("suspicious  cards were added. Blacklisted, unsolicited charges refunded "
+                                                 "for the last 3 months.", res),
+                         "Suspicious cards 1234, 2365, 4562 were added. Blacklisted, unsolicited charges refunded "
+                         "for the last 3 months.")
+
+    def test_last_user_and_apply_link(self):
+        from formats import apply_user_link, has_user_placeholder, last_user_id
+        self.assertEqual(last_user_id(["текст", "{LINK:USER:1236:E}", "214"]), "1236")
+        self.assertEqual(last_user_id(["214", "{LINK:USER:1236:E}"]), "214")
+        self.assertEqual(last_user_id(["User #77"]), "77")
+        self.assertIsNone(last_user_id(["12, 13", "текст"]))
+        t1 = "User was blacklisted due to suspicious cards` usage in ___________"
+        self.assertTrue(has_user_placeholder(t1))
+        self.assertEqual(apply_user_link(t1, "214"), "User was blacklisted due to suspicious cards` usage in {LINK:USER:214:E}")
+        self.assertEqual(apply_user_link("User was blacklisted and can't have account due to background check in _____", "5"),
+                         "User was blacklisted and can't have account due to background check in {LINK:USER:5:E}")
+        self.assertEqual(apply_user_link("Blacklisted due to TOS Violation, Third-party payments", "214"),
+                         "Blacklisted due to TOS Violation, Third-party payments in {LINK:USER:214:E}")
+        self.assertEqual(apply_user_link("x in ____", None), "x in ____")
+
+    def test_tos_migration_and_user_link_flag(self):
+        import json, tempfile, os
+        path = os.path.join(tempfile.mkdtemp(), "t.preset.json")
+        with open(path, "w", encoding="utf-8") as f:
+            json.dump({"format": "clipboard-memory-preset", "version": 1, "categories": [
+                {"id": "c1", "name": "TOS Violation", "color": "#d83b01", "snippets": [
+                    {"id": "a", "text": "Blacklisted due to TOS Violation, ", "ts": 1},
+                    {"id": "b", "text": "Delayed deactivation process was started with blacklisted mark due to TOS Violation,", "ts": 1},
+                    {"id": "c", "text": "Інше", "ts": 1}]}],
+                "formats": [{"id": "builtin-user2", "name": "User2", "type": "link_user_text", "color": "#038387"}]}, f)
+        pr = Preset.open(path)
+        a, b, c = pr.snippets("c1")
+        self.assertEqual(a["v2"]["options"][0]["text"], "Third-party payments")
+        self.assertTrue(a["user_link"] and b["user_link"] and "v2" in b)
+        self.assertNotIn("v2", c)
+        self.assertEqual(pr.format("builtin-user2")["name"], "USER 2")
+        pr.update_snippet("a", a["text"], "c1", None)                      # прибрали аппенди — міграція не повертає їх
+        self.assertNotIn("v2", Preset.open(path).snippets("c1")[0])
+        self.assertTrue(pr.set_snippet_user_link("c", True))
+        self.assertTrue(Preset.open(path).snippets("c1")[2]["user_link"])
 
 
 class SuspiciousAndRefundTests(unittest.TestCase):

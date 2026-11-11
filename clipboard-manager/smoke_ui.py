@@ -228,7 +228,7 @@ app.select_category(work["id"])
 snip_id = app.shown[0]["id"]
 app.show_menu(10, 10, snip_id)
 m = popups[-1]
-assert labels(m) == ["Копіювати", "Редагувати…", "Додати аппенди…", "Колір запису…", "Перемістити в категорію", "Вгору", "Вниз",
+assert labels(m) == ["Копіювати", "Редагувати…", "Додати аппенди…", "Додавати користувача з історії (in {LINK:USER:…:E})", "Колір запису…", "Перемістити в категорію", "Вгору", "Вниз",
                      "Видалити"], labels(m)
 sub = submenu(m, "Перемістити в категорію")
 assert labels(sub) == ["Робота", "Особисте", "＋ Нова категорія…"], labels(sub)
@@ -1394,7 +1394,7 @@ app.show_menu(root.winfo_rootx() + 500, root.winfo_rooty() + 300, sid)
 pop = app._popups[-1]
 pump(150)
 assert pop.top.winfo_viewable() and pop.top.winfo_width() >= 250 * sc - 2
-assert [i.label for i, _, _ in pop.rows] == ["Копіювати", "Редагувати…", "Додати аппенди…", "Колір запису…", "Перемістити в категорію",
+assert [i.label for i, _, _ in pop.rows] == ["Копіювати", "Редагувати…", "Додати аппенди…", "Додавати користувача з історії (in {LINK:USER:…:E})", "Колір запису…", "Перемістити в категорію",
                                               "Вгору", "Вниз", "Видалити"]
 for item, row, parts in pop.rows:
     assert row.winfo_height() >= 40 * sc - 1, (item.label, row.winfo_height())
@@ -3096,6 +3096,183 @@ if app._order:
     assert not any("аппенди" in l_ for l_ in labels(popups[-1])), "у записів історії аппендів немає"
 print("34 faster folder scroll + appends via ⋯ menu OK")
 settings["autohide"] = True
+
+# ---- 35. раунд 10: прокрутка тексту в плитках, значення з історії, користувач з історії, TOS-причини, USER 2 ----------------------
+settings["autohide"] = False
+app.hotkey_ok = False
+root.geometry("1500x800+0+0")
+pump(600)
+app.show_window()
+app.set_search("")
+# (a) довгий текст у плитці прокручується колесом до кінця
+long_cat = app.preset.add_category("Довгі тексти")
+long_text = " ".join(f"Слово{n}" for n in range(220))
+long_sn = app.preset.add_snippet(long_cat["id"], long_text)
+app.render()
+app.flush_render()
+app.select_category(long_cat["id"])
+app.set_rec_view("tiles")
+app.flush_render()
+pump(600)
+tc = app._card_objs[long_sn["id"]]
+assert tc.clip is not None and tc.body.cget("text").startswith(long_text[:40]) and "…" not in tc.body.cget("text")
+over = tc._overflow()
+assert over > 0 and tc.more_hint.winfo_ismapped(), ("текст не вміщається — є стрілка ▼", over)
+for _ in range(300):
+    tc.body.event_generate("<Button-5>", x=5, y=5)
+pump(150)
+assert tc._off == tc._overflow() and not tc.more_hint.winfo_ismapped(), "докрутили до кінця"
+assert tc.body.winfo_y() == -tc._off
+for _ in range(300):
+    tc.body.event_generate("<Button-4>", x=5, y=5)
+pump(100)
+assert tc._off == 0
+app.copy_to_clipboard("маркер35")
+real_click(tc.body)
+assert root.clipboard_get() == long_text, "клік по тексту плитки й далі копіює"
+app.set_rec_view("list")
+pump(200)
+print("35a tile text scroll OK")
+
+def cat_named(name):
+    c_ = next((c for c in app.preset.categories if c["name"].casefold() == name.casefold()), None)
+    return c_ or app.preset.add_category(name)
+
+
+# (b) Suspicious cards / Added cards: порожнє поле → останні числові записи історії
+app.history = History(os.path.join(tmp, "h35.json"))
+for t_ in ("ще старіше 99", "Жовтень у Голосієві", "1234, 2365 4562", "542", "123"):
+    app.history.add(t_)
+sc35 = cat_named("Suspicious cards")
+sc_ref = app.preset.add_snippet(sc35["id"], "Suspicious cards were added. Blacklisted, unsolicited charges refunded")
+sc_3m = app.preset.add_snippet(sc35["id"], "Suspicious cards were added. Blacklisted, unsolicited charges refunded for the last 3 months.")
+sl35 = cat_named("Suspicious login")
+app.render()
+app.flush_render()
+app.select_category(sc35["id"])
+app.flush_render()
+app.select_format("builtin-suspicious-cards")
+pump(200)
+assert app.fmt_input.get("1.0", "end-1c") == ""
+assert app.fmt_preview.get("1.0", "end-1c") == "Suspicious cards 123, 542, 1234, 2365, 4562 were added."
+assert "історії" in app.fmt_title.cget("text")
+app.arm_append()
+real_click(app._card_objs[sc_3m["id"]].body)
+assert root.clipboard_get() == ("Suspicious cards 123, 542, 1234, 2365, 4562 were added. Blacklisted, unsolicited charges "
+                                "refunded for the last 3 months."), root.clipboard_get()
+assert app.sel_format == "builtin-suspicious-cards"
+app.fmt_input.insert("1.0", "1234, 2365 4562")                # введене має пріоритет
+app._update_format_preview()
+app.arm_append()
+real_click(app._card_objs[sc_ref["id"]].body)
+assert root.clipboard_get() == "Suspicious cards 1234, 2365, 4562 were added. Blacklisted, unsolicited charges refunded"
+app.select_category(sl35["id"])
+app.flush_render()
+app.select_format("builtin-added-cards")
+pump(150)
+assert app.fmt_preview.get("1.0", "end-1c") == "Cards 123, 542, 1234, 2365, 4562 were added during suspicious login."
+app.submit_format()
+assert root.clipboard_get() == "Cards 123, 542, 1234, 2365, 4562 were added during suspicious login."
+app.history.add("7.5")                                         # нечисловий найновіший запис — значень немає
+assert app.sel_format == "builtin-added-cards"
+app._update_format_preview()
+pump(100)
+assert app.fmt_preview.get("1.0", "end-1c") == ""
+app._collapse_format()
+print("35b formats take numbers from history OK")
+
+# (c) USER 2: і «User #123», і просто числа
+app.select_format("builtin-user2")
+assert app.preset.format("builtin-user2")["name"] == "USER 2"
+app.fmt_input.insert("1.0", "Check 214 and User #13513")
+app._update_format_preview()
+assert app.fmt_preview.get("1.0", "end-1c") == "Check {LINK:USER:214:E} and {LINK:USER:13513:E}"
+app._collapse_format()
+
+# (d) користувач з історії: «in ____» → in {LINK:USER:<останній>:E}
+app.history.add("{LINK:USER:1236:E}")
+app.history.add("214")
+ub = app.preset.add_snippet(sc35["id"], "User was blacklisted due to suspicious cards` usage in ___________")
+app.render()
+app.flush_render()
+app.select_category(sc35["id"])
+app.flush_render()
+pump(200)
+assert app._card_objs[ub["id"]].ulink and app._card_objs[ub["id"]].body.cget("text").endswith("@ user")
+real_click(app._card_objs[ub["id"]].body)
+assert root.clipboard_get() == "User was blacklisted due to suspicious cards` usage in {LINK:USER:214:E}", root.clipboard_get()
+app.show_menu(3, 3, ub["id"])
+lab = next(l_ for l_ in labels(popups[-1]) if "користувача з історії" in l_)
+assert lab.startswith("✓ ")
+invoke(popups[-1], lab)                                        # вимкнути
+pump(150)
+real_click(app._card_objs[ub["id"]].body)
+assert root.clipboard_get() == "User was blacklisted due to suspicious cards` usage in ___________"
+app.preset.set_snippet_user_link(ub["id"], True)
+app.render()
+app.flush_render()
+app.history.add("текст без користувача")
+app.history.add("ще текст")
+print("35c USER 2 + user link from history OK")
+
+# (e) TOS Violation: вікно вибору причини + галочка «Append in {LINK…}» + редагування пунктів
+app.history.add("{LINK:USER:777:E}")
+tos = cat_named("TOS Violation")
+t1 = app.preset.add_snippet(tos["id"], "Blacklisted due to TOS Violation,",
+                            {"options": [{"text": "Third-party payments", "kind": "end"}]})
+app.preset.set_snippet_user_link(t1["id"], True)
+app.render()
+app.flush_render()
+app.select_category(tos["id"])
+app.flush_render()
+pump(200)
+log35 = []
+
+
+def tos_flow():
+    d = v2dlg()
+    log35.append(d.link_var.get())
+    log35.append(d.link_cb.cget("text"))
+    log35.append(preview_of(d))
+    opt(d, "Third-party payments").event_generate("<Button-1>", x=5, y=5)
+
+
+root.after(500, guard(tos_flow))
+real_click(app._card_objs[t1["id"]].body)
+pump(300)
+assert not err33, err33
+assert log35[0] is True and "{LINK:USER:777:E}" in log35[1], log35
+assert log35[2] == "Blacklisted due to TOS Violation, in {LINK:USER:777:E}", log35
+assert root.clipboard_get() == "Blacklisted due to TOS Violation, Third-party payments in {LINK:USER:777:E}", root.clipboard_get()
+
+
+def tos_flow2():
+    d = v2dlg()
+    d.link_var.set(False)
+    d.refresh_preview()
+    log35.append(preview_of(d))
+    saved = cm.V2OptionsDialog.run
+    cm.V2OptionsDialog.run = lambda self: cm.clean_v2({"options": [{"text": "Third-party payments", "kind": "end"},
+                                                                    {"text": "Multiaccounting", "kind": "end"}]})
+    d.edit_options()                                            # «✎ Пункти…» — пункти змінено просто з вікна
+    cm.V2OptionsDialog.run = saved
+    opt(d, "Multiaccounting").event_generate("<Button-1>", x=5, y=5)
+
+
+root.after(500, guard(tos_flow2))
+real_click(app._card_objs[t1["id"]].body)
+pump(300)
+assert not err33, err33
+assert log35[3] == "Blacklisted due to TOS Violation,", log35
+assert root.clipboard_get() == "Blacklisted due to TOS Violation, Multiaccounting"
+got = next(s_ for s_ in app.preset.snippets(tos["id"]) if s_["id"] == t1["id"])
+assert [o["text"] for o in got["v2"]["options"]] == ["Third-party payments", "Multiaccounting"], "пункти збережені в записі"
+print("35d TOS reasons window + user link + inline edit OK")
+settings["autohide"] = True
+root.geometry("1180x660+0+0")
+pump(600)
+settings.data["width"], settings.data["height"] = 1180, 660
+app._size = None
 
 # ---- 25. справжнє розгортання під віконним менеджером (лише якщо є openbox) -------------------------------------------------------------
 import shutil  # noqa: E402

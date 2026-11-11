@@ -43,8 +43,9 @@ from types import SimpleNamespace
 
 import customtkinter as ctk
 
-from formats import (APPENDERS, FORMATTERS, MERGE_ACTIONS, append_result, apply_format, apply_merge, clean_v2,
-                     compose_phrases, format_actions, join_values, v2_compose)
+from formats import (APPENDERS, AUTO_HISTORY_FORMATS, FORMATTERS, MERGE_ACTIONS, append_result, apply_format,
+                     apply_merge, apply_user_link, clean_v2, compose_phrases, format_actions, has_user_placeholder,
+                     join_values, last_user_id, numbers_from_history, user_link, v2_compose)
 from store import (HISTORY, PALETTE, PRESET_SUFFIX, History, Preset, PresetError, Settings,
                    default_data_dir, history_path, open_startup_preset)
 from winsys import (work_area_at, HOTKEY_PRESETS, HotkeyListener, acquire_single_instance, clipboard_sequence, hotkey_label,
@@ -149,7 +150,7 @@ FORMAT_INFO = {   # опис відомих типів форматів: (під
                     "Вставте номери карток: 1245, 1231 236532 …"),
     "suspicious_cards": ("→ Suspicious cards … were added.",
                          "Вставте номери карток: 1245, 1254 2365 …"),
-    "link_user_text": ("User #123 у тексті → {LINK:USER:123:E}", ""),
+    "link_user_text": ("User #123 / 123 у тексті → {LINK:USER:123:E}", ""),
 }
 
 
@@ -847,9 +848,12 @@ class V2Dialog(_Dialog):
     «Назад» повертає на рівень вище. Ctrl + клік по кінцевому / «Копіювати зараз» — ще й ховає вікно програми.
     Результат: {"text": ..., "hide": bool} або None."""
 
-    def __init__(self, app: "App", main: str, v2: dict):
-        super().__init__(app, "Копіпаста з варіантами", 640, 640)
+    def __init__(self, app: "App", main: str, v2: dict, uid: str | None = None, link_on: bool = False,
+                 on_edit=None):
+        super().__init__(app, "Копіпаста з варіантами", 640, 700)
         self.main = main
+        self.uid = uid
+        self.on_edit = on_edit
         self.stack: list[tuple[list[dict], bool]] = [(v2["options"], False)]   # (аппенди рівня, чи додано крок при вході)
         self.steps: list[str] = []
         self.ticked: dict[str, bool] = {}                                    # id додаткового → стан галочки
@@ -866,8 +870,22 @@ class V2Dialog(_Dialog):
         self.list = ctk.CTkScrollableFrame(card, fg_color="transparent", corner_radius=0,
                                            scrollbar_button_color=SCROLL, scrollbar_button_hover_color=SCROLL_HOVER)
         self.list.pack(fill="both", expand=True, padx=10, pady=2)
+        # нижче — галочка «in {LINK:USER:…:E}» (останній користувач з історії буфера) і редагування пунктів
+        extra = ctk.CTkFrame(card, fg_color="transparent")
+        extra.pack(fill="x", padx=18, pady=(6, 0))
+        self.link_var = tk.BooleanVar(value=bool(link_on and uid))
+        self.link_cb = ctk.CTkCheckBox(
+            extra, text=f"Append  in {user_link(uid)}" if uid else "Append  in {LINK:USER:…:E} — у історії немає користувача",
+            variable=self.link_var, font=app.f.dlg, text_color=TEXT, checkbox_width=24, checkbox_height=24,
+            corner_radius=7, border_width=2, fg_color=ACCENT, hover_color=ACCENT_HOVER,
+            state="normal" if uid else "disabled", command=self.refresh_preview)
+        self.link_cb.pack(side="left")
+        if on_edit is not None:
+            ctk.CTkButton(extra, text="✎ Пункти…", width=120, height=36, corner_radius=10, fg_color=BTN2,
+                          hover_color=BTN2_HOVER, text_color=TEXT, font=app.f.dlg, command=self.edit_options
+                          ).pack(side="right")
         bottom = ctk.CTkFrame(card, fg_color="transparent")
-        bottom.pack(fill="x", padx=18, pady=(6, 16))
+        bottom.pack(fill="x", padx=18, pady=(10, 16))
         self.back_btn = ctk.CTkButton(bottom, text="◀ Назад", width=104, height=42, corner_radius=12, fg_color=BTN2,
                                       hover_color=BTN2_HOVER, text_color=TEXT, font=app.f.dlg, command=self.back)
         self.back_btn.pack(side="left")
@@ -885,7 +903,23 @@ class V2Dialog(_Dialog):
 
     def compose(self) -> str:
         extras = [a["text"] for a in self.addons if self.ticked.get(a["id"])]
-        return v2_compose(self.main, self.steps, extras)
+        out = v2_compose(self.main, self.steps, extras)
+        return apply_user_link(out, self.uid) if self.link_var.get() else out
+
+    def edit_options(self) -> None:
+        """«✎ Пункти…»: додати / прибрати / змінити пункти просто з вікна вибору (зберігаються в записі)."""
+        new = self.on_edit()
+        try:
+            self.grab_set()
+        except tk.TclError:
+            pass
+        if not new or not new.get("options"):
+            if new is not None:                       # усі пункти прибрано — вибору більше немає
+                self.cancel()
+            return
+        self.stack = [(new["options"], False)]
+        self.steps, self.ticked, self.addons = [], {}, []
+        self.render_level()
 
     def refresh_preview(self) -> None:
         self.preview.configure(state="normal")
@@ -1113,6 +1147,14 @@ def _eff(fill) -> object:
     return PANEL if fill == "transparent" else fill
 
 
+def card_user_link(it: dict) -> bool:
+    """Чи підставляє запис користувача з історії: явний прапорець запису або (за замовчуванням) заглушка «in ____»."""
+    if "category" not in it and "user_link" not in it:
+        return False                                    # історія буфера — без підстановки
+    flag = it.get("user_link")
+    return bool(flag) if isinstance(flag, bool) else has_user_placeholder(it.get("text", ""))
+
+
 class Card:
     """Картка запису. Живе між перебудовами списку: змінений текст/колір оновлюється на місці.
     В історії (checkable) праворуч, перед «⋯», є галочка для вибору кількох значень."""
@@ -1122,8 +1164,11 @@ class Card:
         self.app, self.iid, self.tile = app, it["id"], tile
         self.text, self.ts, self.color = it["text"], it["ts"], it.get("color")
         self.v2 = bool(it.get("v2"))
+        self.ulink = card_user_link(it)
         self.fill, self.hover, self.border = card_colors(self.color)
         self.cur = self.fill
+        self.clip = None                               # плитка: рамка, в якій довгий текст прокручується колесом
+        self._off = 0
         self.hovering = False
         self.selected = selected
         self.checked = bool(checked)
@@ -1146,8 +1191,20 @@ class Card:
         self.body = tk.Label(f, anchor="w", justify="left", font=pf.card, wraplength=wrap_px, cursor="hand2",
                              text=self.shown_text(), bg=bg, fg=col(TEXT), pady=8)
         if tile:
-            self.body.configure(anchor="nw", pady=2)
-            self.body.grid(row=1, column=1, sticky="nsew", padx=(12, 10), pady=(0, 8))
+            # плитка має фіксовану висоту: увесь текст лежить у «вікні» clip і прокручується колесом миші
+            self.clip = tk.Frame(f, bg=bg, cursor="hand2")
+            self.clip.grid(row=1, column=1, sticky="nsew", padx=(12, 10), pady=(0, 8))
+            self.body.destroy()
+            self.body = tk.Label(self.clip, anchor="nw", justify="left", font=pf.card, wraplength=wrap_px,
+                                 cursor="hand2", text=self.shown_text(), bg=bg, fg=col(TEXT), pady=2)
+            self.body.place(x=0, y=0, relwidth=1)
+            self.more_hint = tk.Label(self.clip, text="▼", font=pf.small, bg=bg, fg=col(MUTED), cursor="hand2")
+            for w in (self.clip, self.body, self.more_hint):
+                w.bind("<MouseWheel>", self._wheel)
+                w.bind("<Button-4>", self._wheel)
+                w.bind("<Button-5>", self._wheel)
+            self.clip.bind("<Configure>", lambda e: self._sync_hint(), add="+")
+            self.body.bind("<Configure>", lambda e: self._sync_hint(), add="+")
             self.zone = tk.Frame(f, bg=bg, height=int((60 if checkable else 34) * app.scaling()), cursor="arrow")
             self.zone.grid(row=0, column=1, sticky="ew", padx=(0, 4), pady=(4, 0))
             self.zone.grid_columnconfigure(0, weight=1)
@@ -1171,12 +1228,13 @@ class Card:
                                      bg_fn=self.bg_now)
         self.more.grid(row=0, column=c0 + 1, padx=(0, 2), pady=(0 if tile else 8, 0), sticky="n")
         self.dele.grid(row=0, column=c0 + 2, padx=(0, 4 if tile else 8), pady=(0 if tile else 8, 0), sticky="n")
-        self.plain = (self.body, self.more, self.dele) + ((self.check,) if self.check else ())
+        self.plain = (self.body, self.more, self.dele) + ((self.check,) if self.check else ()) + \
+            ((self.clip, self.more_hint) if self.clip is not None else ())
         self.flash_job = None
         self.flash_lbl = None
         # одна пара «bindtag» на всі картки замість ~25 прив'язок на кожну (див. App._init_tags);
         # клік у правій зоні ігнорується в App._drag_press (порівняння з лівим краєм self.zone)
-        for w in (f._canvas, self.bar, self.body):
+        for w in (f._canvas, self.bar, self.body) + ((self.clip, self.more_hint) if self.clip is not None else ()):
             w._cm_iid = self.iid
             w.bindtags(("CMCardClick", "CMCardHover") + w.bindtags())
         for w in (self.more, self.dele, self.zone) + ((self.check,) if self.check else ()):
@@ -1193,7 +1251,7 @@ class Card:
         try:
             self.flash_lbl = lbl = tk.Label(self.frame, text="✓  Скопійовано", font=self.app.pf.bold, fg="#ffffff",
                                             bg=self.app.col(COPIED), cursor="hand2")
-            lbl.place(in_=self.body, x=0, y=0, relwidth=1, relheight=1)
+            lbl.place(in_=self.clip or self.body, x=0, y=0, relwidth=1, relheight=1)
             self.flash_job = self.frame.after(550, self.unflash)
         except tk.TclError:
             self.flash_lbl = self.flash_job = None
@@ -1213,8 +1271,49 @@ class Card:
             self.flash_lbl = None
 
     def shown_text(self) -> str:
-        """Текст картки; у копіпасти v.2 — позначка «▶ v.2» (клік відкриває вікно вибору аппендів)."""
-        return preview(self.text) + ("   ▶ v.2" if self.v2 else "")
+        """Текст картки (у плитці — повністю, з прокруткою); позначки: «▶ v.2» — клік відкриває вибір аппендів,
+        «@ user» — підставляється користувач з історії (in {LINK:USER:…:E})."""
+        body = self.text.strip() if self.tile else preview(self.text)
+        return body + ("   ▶ v.2" if self.v2 else "") + ("   @ user" if self.ulink else "")
+
+    # -- прокрутка довгого тексту в плитці --------------------------------------------------------
+    def _overflow(self) -> int:
+        try:
+            return max(0, self.body.winfo_reqheight() - self.clip.winfo_height())
+        except tk.TclError:
+            return 0
+
+    def _wheel(self, e):
+        """Колесо над текстом плитки прокручує сам текст; коли він уже в кінці (або вміщується) — прокручується список."""
+        over = self._overflow()
+        if over <= 0:
+            return None
+        up = getattr(e, "num", 0) == 4 or getattr(e, "delta", 0) > 0
+        step = max(1, int(36 * self.app.scaling()))
+        new = max(0, min(over, self._off + (-step if up else step)))
+        if new == self._off:
+            return None                                 # край тексту — колесо далі гортає список
+        self._off = new
+        self.body.place_configure(y=-new)
+        self._sync_hint()
+        return "break"
+
+    def _sync_hint(self) -> None:
+        """Стрілка «▼» у кутку — є ще текст нижче."""
+        if self.clip is None:
+            return
+        over = self._overflow()
+        if self._off > over:
+            self._off = over
+            self.body.place_configure(y=-over)
+        try:
+            if over > 0 and self._off < over:
+                self.more_hint.place(relx=1.0, rely=1.0, anchor="se")
+                self.more_hint.lift()
+            else:
+                self.more_hint.place_forget()
+        except tk.TclError:
+            pass
 
     def bg_now(self) -> str:
         return self.app.col(self.cur)
@@ -1222,7 +1321,7 @@ class Card:
     def inert(self, x_root: int, y_root: int) -> bool:
         """Точка в службовій зоні картки (там клік нічого не копіює): праворуч у списку, у верхній смужці — у плитці."""
         if self.tile:
-            return y_root < self.body.winfo_rooty()
+            return y_root < (self.clip or self.body).winfo_rooty()
         return x_root >= self.zone.winfo_rootx()
 
     def set_drop(self, on: bool) -> None:
@@ -1257,9 +1356,9 @@ class Card:
     def sync(self, it: dict) -> None:
         """Оновлює картку на місці, якщо змінились текст, час або колір (інакше нічого не робить)."""
         text, ts, color = it["text"], it["ts"], it.get("color")
-        v2 = bool(it.get("v2"))
-        if text != self.text or ts != self.ts or v2 != self.v2:
-            self.text, self.ts, self.v2 = text, ts, v2
+        v2, ulink = bool(it.get("v2")), card_user_link(it)
+        if text != self.text or ts != self.ts or v2 != self.v2 or ulink != self.ulink:
+            self.text, self.ts, self.v2, self.ulink = text, ts, v2, ulink
             self.body.configure(text=self.shown_text())
         if color != self.color:
             self.color = color
@@ -1277,6 +1376,9 @@ class Card:
         self.bar.configure(bg=a.col(self.color or NEUTRAL))
         self.body.configure(bg=bg, fg=a.col(TEXT))
         self.zone.configure(bg=bg)
+        if self.clip is not None:
+            self.clip.configure(bg=bg)
+            self.more_hint.configure(bg=bg, fg=a.col(MUTED))
         for w in (self.more, self.dele):
             w.configure(bg=bg, fg=a.col(MUTED))
         if self.check is not None:
@@ -2893,6 +2995,8 @@ class App:
             self._clear_format_input()
         self.sel_format = new
         self._render_formats()
+        if self.sel_format:
+            self._update_format_preview()          # з порожнім полем — одразу значення з історії буфера
         self.right.update_idletasks()
         self._fit_format_box()
         if self.sel_format:
@@ -2930,15 +3034,27 @@ class App:
         if self.sel_id:
             self.copy_item(self.sel_id)
 
+    def _format_input(self, fmt: dict) -> str:
+        """Що форматувати: введене в поле, а якщо поле порожнє — для Suspicious cards / Added cards — останні
+        поспіль числові записи історії буфера (лише цифри, коми й пробіли; перший інший запис — стоп)."""
+        raw = self.fmt_input.get("1.0", "end-1c")
+        if not raw.strip() and fmt.get("type") in AUTO_HISTORY_FORMATS:
+            return numbers_from_history(i["text"] for i in self.history.items)
+        return raw
+
     def _format_result(self) -> str:
         fmt = self.preset.format(self.sel_format) if self.sel_format else None
         if not fmt or not self._fmt_built:
             return ""
-        return apply_format(fmt["type"], self.fmt_input.get("1.0", "end-1c"))
+        return apply_format(fmt["type"], self._format_input(fmt))
 
     def _update_format_preview(self) -> None:
         out = self._format_result()
         self._set_preview(out)
+        fmt = self.preset.format(self.sel_format) if self.sel_format else None
+        if fmt and self._fmt_built:
+            auto = fmt.get("type") in AUTO_HISTORY_FORMATS and not self.fmt_input.get("1.0", "end-1c").strip()
+            self.fmt_title.configure(text=fmt["name"] + ("   ·  значення з історії буфера" if auto and out else ""))
         if self.append_armed and self.armed_src != "refund":
             self._refresh_banner(out)
 
@@ -2961,7 +3077,7 @@ class App:
         fmt = self.preset.format(self.sel_format) if self.sel_format else None
         if not fmt:
             return
-        out = apply_format(fmt["type"], self.fmt_input.get("1.0", "end-1c"))
+        out = self._format_result()
         if not out:
             self.set_status("Не знайдено жодного числа — нічого копіювати")
             return
@@ -3804,6 +3920,12 @@ class App:
         if item and item.get("v2") and not self._is_history() and not hide:
             self._open_v2(item)                # копіпаста v.2: клік відкриває вікно вибору аппендів (Ctrl+клік — лише основний текст)
             return
+        if item and card_user_link(item):      # «… in ____» → «… in {LINK:USER:<останній з історії>:E}»
+            uid = self._last_user()
+            if uid:
+                text = apply_user_link(text, uid)
+            else:
+                self.set_status("У історії буфера немає користувача — скопійовано без {LINK:USER:…:E}", 6000)
         self.copy_to_clipboard(text)
 
         def after() -> None:      # піднімаємо запис в історії вже ПІСЛЯ ховання вікна
@@ -3815,11 +3937,28 @@ class App:
 
     def _open_v2(self, item: dict) -> None:
         """Вікно вибору аппендів для копіпасти v.2. Результат копіюється; вікно програми ховається лише при Ctrl + клік."""
-        res = V2Dialog(self, item["text"], item["v2"]).run()
+        res = V2Dialog(self, item["text"], item["v2"], uid=self._last_user(), link_on=card_user_link(item),
+                       on_edit=lambda: self._edit_appends_inline(item["id"])).run()
         if not res or not res["text"].strip():
             return
         self.copy_to_clipboard(res["text"])
         self._finish_pick("✓ Скопійовано: " + clip(res["text"].replace("\n", " "), 60), hide=bool(res["hide"]))
+
+    def _last_user(self) -> str | None:
+        """Останній користувач з історії буфера: {LINK:USER:1236:E}, «User #1236» або просто число."""
+        return last_user_id(i["text"] for i in self.history.items)
+
+    def _edit_appends_inline(self, item_id: str) -> dict | None:
+        """Редактор пунктів з вікна вибору; зберігає в запис. Повертає нові аппенди ({} — прибрано) або None (скасовано)."""
+        found = self.preset.find_snippet(item_id)
+        if not found:
+            return None
+        res = V2OptionsDialog(self, found[1].get("v2")).run()
+        if res is None:
+            return None
+        self.preset.update_snippet(item_id, found[1]["text"], found[0]["id"], res or None)
+        self.render()
+        return res
 
     def _append_to(self, base: str, close: bool | None = None) -> None:
         """Append: у буфер потрапляє «запис + результат форматування»; сам запис у пресеті НЕ змінюється.
@@ -3937,6 +4076,12 @@ class App:
             self.render()
             self.set_status("✓ Аппенди збережено — клік по запису відкриє вибір" if res
                             else "Аппендів немає — запис знову звичайний")
+
+    def on_toggle_user_link(self, item_id: str, on: bool) -> None:
+        if self.preset.set_snippet_user_link(item_id, on):
+            self.render()
+            self.set_status("Користувач з історії підставлятиметься: … in {LINK:USER:…:E}" if on
+                            else "Користувача з історії більше не підставляємо")
 
     def on_remove_appends(self, item_id: str) -> None:
         found = self.preset.find_snippet(item_id)
@@ -4083,6 +4228,10 @@ class App:
                           icon="▶")
             if has_v2:
                 m.add_command("Прибрати аппенди", lambda: self.on_remove_appends(item_id), icon="○")
+            item = next((i for i in self.shown if i["id"] == item_id), {})
+            on = card_user_link(item)
+            m.add_command(("✓ " if on else "") + "Додавати користувача з історії (in {LINK:USER:…:E})",
+                          lambda: self.on_toggle_user_link(item_id, not on), icon="@")
             m.add_command("Колір запису…", lambda: self.on_snippet_color(item_id), icon="●")
         sub = self._new_menu()
         cur = None if hist else (self.preset.find_snippet(item_id) or ({"id": None},))[0]["id"]
@@ -4689,6 +4838,8 @@ class App:
                     self._last_seen = text
                     if self.history.add(text):
                         self.sel_id = None
+                        if self.sel_format and self._fmt_built:
+                            self._update_format_preview()          # автозначення з історії оновлюються
                         if self._is_history():
                             self.render(scroll_top=True)
                         else:
