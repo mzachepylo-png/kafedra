@@ -1,19 +1,22 @@
-"""Тимчасово: сторінки про авторів посібника (НУБіП, ORCID) → tmp/agro/pages/."""
+"""Тимчасово: перевірка даних про авторів посібника (ORCID, Вікіпедія, пошук) → tmp/agro/pages/."""
 import os, time, urllib.parse, urllib.request
 UA = {"User-Agent": "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 Chrome/124 Safari/537.36", "Accept-Language": "uk,en;q=0.8"}
 OUT = "tmp/agro/pages"; os.makedirs(OUT, exist_ok=True)
-URLS = {
-    "nubip_kliachenko": "https://nubip.edu.ua/search/node?keys=" + urllib.parse.quote("Кляченко"),
-    "nubip_melnychuk": "https://nubip.edu.ua/search/node?keys=" + urllib.parse.quote("Мельничук Микола Дмитрович"),
-    "orcid_kliachenko": "https://pub.orcid.org/v3.0/expanded-search/?q=" + urllib.parse.quote("family-name:Kliachenko OR family-name:Klyachenko"),
-    "orcid_melnychuk": "https://pub.orcid.org/v3.0/expanded-search/?q=" + urllib.parse.quote("family-name:Melnychuk AND given-names:Mykola"),
-    "wiki_melnychuk": "https://uk.wikipedia.org/wiki/" + urllib.parse.quote("Мельничук_Микола_Дмитрович"),
-}
+q = urllib.parse.quote
+URLS = {}
+for oid in ["0000-0003-0821-4217", "0000-0001-7613-9197", "0000-0002-0459-5609", "0000-0002-4087-4082"]:
+    URLS[f"orcid_{oid}_person"] = f"https://pub.orcid.org/v3.0/{oid}/person"
+    URLS[f"orcid_{oid}_emp"] = f"https://pub.orcid.org/v3.0/{oid}/employments"
+for name in ["Мельничук Микола Дмитрович", "Кляченко Оксана Леонідівна"]:
+    URLS["wiki_" + name.split()[0]] = ("https://uk.wikipedia.org/w/api.php?action=query&format=json&prop=extracts|info&inprop=url&explaintext=1&redirects=1&titles=" + q(name))
+    URLS["wikisearch_" + name.split()[0]] = ("https://uk.wikipedia.org/w/api.php?action=query&format=json&list=search&srsearch=" + q(name))
+    URLS["ddg_" + name.split()[0]] = "https://html.duckduckgo.com/html/?q=" + q(name + " НУБіП")
 for k, u in URLS.items():
     try:
-        h = dict(UA); h["Accept"] = "application/json" if "orcid" in k else "text/html"
+        h = dict(UA); h["Accept"] = "application/json" if ("orcid" in k or "wiki" in k) else "text/html"
+        if "wiki" in k: h["User-Agent"] = "kafedra-nubip-edu/1.0 (educational; https://github.com/mzachepylo-png/kafedra)"
         with urllib.request.urlopen(urllib.request.Request(u, headers=h), timeout=60) as r:
-            open(f"{OUT}/{k}.{'json' if 'orcid' in k else 'html'}", "wb").write(r.read())
+            open(f"{OUT}/{k}.{'html' if k.startswith('ddg') else 'json'}", "wb").write(r.read())
         print("ok", k)
     except Exception as e:
         print("fail", k, e)
