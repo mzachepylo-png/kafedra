@@ -1,0 +1,96 @@
+{
+ "key": "c11_ecoli",
+ "query": {
+  "commons": "Escherichia coli colonies agar"
+ },
+ "candidates": [
+  {
+   "k": "c1",
+   "file": "File:Escherichia coli on agar.jpg",
+   "url": "https://commons.wikimedia.org/wiki/File:Escherichia_coli_on_agar.jpg",
+   "thumb": "https://thumb.wikimedia.org/wikipedia/commons/thumb/5/59/Escherichia_coli_on_agar.jpg/1280px-Escherichia_coli_on_agar.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
+   "w": 2200,
+   "h": 1308,
+   "artist": "HansN.",
+   "license": "CC BY-SA 4.0",
+   "description": "Escherichia coli colonies on sheep blood agar after 24 h at 37°C. \nFig. A, B: Most strains of E.coli produce smooth, circular, low-convex colonies with entire edge that are about 3-4 mm in diameter. They are greyish, butyrous and readily emulsified.\nFig. B, G: Partial digestion of erythrocytes may c"
+  },
+  {
+   "k": "c2",
+   "file": "File:Lactose fermenting colonies of Escherichia coli.jpg",
+   "url": "https://commons.wikimedia.org/wiki/File:Lactose_fermenting_colonies_of_Escherichia_coli.jpg",
+   "thumb": "https://thumb.wikimedia.org/wikipedia/commons/thumb/1/15/Lactose_fermenting_colonies_of_Escherichia_coli.jpg/1280px-Lactose_fermenting_colonies_of_Escherichia_coli.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
+   "w": 4000,
+   "h": 3000,
+   "artist": "Ajay Kumar Chaurasiya",
+   "license": "CC0",
+   "description": "Lactose fermenting (LF) colonies of Escherichia coli on CLED agar of urine culture after 24 hours of incubation"
+  },
+  {
+   "k": "c3",
+   "file": "File:Colonies of Escherichia coli on agar plate.jpg",
+   "url": "https://commons.wikimedia.org/wiki/File:Colonies_of_Escherichia_coli_on_agar_plate.jpg",
+   "thumb": "https://thumb.wikimedia.org/wikipedia/commons/thumb/d/df/Colonies_of_Escherichia_coli_on_agar_plate.jpg/1280px-Colonies_of_Escherichia_coli_on_agar_plate.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
+   "w": 3264,
+   "h": 2448,
+   "artist": "Gaurav",
+   "license": "CC BY 4.0",
+   "description": "Colonies of Escherichia coli on agar plate."
+  },
+  {
+   "k": "c4",
+   "file": "File:NLF Mucoid colonies of Escherichia coli.jpg",
+   "url": "https://commons.wikimedia.org/wiki/File:NLF_Mucoid_colonies_of_Escherichia_coli.jpg",
+   "thumb": "https://thumb.wikimedia.org/wikipedia/commons/thumb/b/b9/NLF_Mucoid_colonies_of_Escherichia_coli.jpg/1280px-NLF_Mucoid_colonies_of_Escherichia_coli.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
+   "w": 4000,
+   "h": 2250,
+   "artist": "Ajay Kumar Chaurasiya",
+   "license": "CC BY-SA 4.0",
+   "description": "NLF Mucoid colonies of Escherichia coli on CLED medium of urine culture"
+  },
+  {
+   "k": "c5",
+   "file": "File:Green colonies of Escherichia coli on agar plate.jpg",
+   "url": "https://commons.wikimedia.org/wiki/File:Green_colonies_of_Escherichia_coli_on_agar_plate.jpg",
+   "thumb": "https://thumb.wikimedia.org/wikipedia/commons/thumb/2/20/Green_colonies_of_Escherichia_coli_on_agar_plate.jpg/1280px-Green_colonies_of_Escherichia_coli_on_agar_plate.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
+   "w": 3264,
+   "h": 2448,
+   "artist": "Gaurav",
+   "license": "CC BY 4.0",
+   "description": "Colonies of Escherichia coli on agar plate expressing green fluorescent protein (GFP)."
+  },
+  {
+   "k": "c6",
+   "file": "File:Escherichia coli Colony Morphology on Blood Agar.jpg",
+   "url": "https://commons.wikimedia.org/wiki/File:Escherichia_coli_Colony_Morphology_on_Blood_Agar.jpg",
+   "thumb": "https://thumb.wikimedia.org/wikipedia/commons/thumb/1/15/Escherichia_coli_Colony_Morphology_on_Blood_Agar.jpg/1280px-Escherichia_coli_Colony_Morphology_on_Blood_Agar.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
+   "w": 3024,
+   "h": 4032,
+   "artist": "Ajay Kumar Chaurasiya",
+   "license": "CC0",
+   "description": "Escherichia coli Colony Morphology on Blood Agar"
+  },
+  {
+   "k": "c7",
+   "file": "File:Green flourescent colonies of Escherichia coli on agar plate.png",
+   "url": "https://commons.wikimedia.org/wiki/File:Green_flourescent_colonies_of_Escherichia_coli_on_agar_plate.png",
+   "thumb": "https://thumb.wikimedia.org/wikipedia/commons/thumb/6/61/Green_flourescent_colonies_of_Escherichia_coli_on_agar_plate.png/1280px-Green_flourescent_colonies_of_Escherichia_coli_on_agar_plate.png?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
+   "w": 2142,
+   "h": 1927,
+   "artist": "Gaurav",
+   "license": "CC BY 4.0",
+   "description": "Colonies of Escherichia coli on agar plate expressing green fluorescent protein (GFP)."
+  },
+  {
+   "k": "c8",
+   "file": "File:Escherichia coli Colony Morphology on MacConkey Agar.jpg",
+   "url": "https://commons.wikimedia.org/wiki/File:Escherichia_coli_Colony_Morphology_on_MacConkey_Agar.jpg",
+   "thumb": "https://thumb.wikimedia.org/wikipedia/commons/thumb/0/02/Escherichia_coli_Colony_Morphology_on_MacConkey_Agar.jpg/1280px-Escherichia_coli_Colony_Morphology_on_MacConkey_Agar.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
+   "w": 4032,
+   "h": 3024,
+   "artist": "Ajay Kumar Chaurasiya",
+   "license": "CC0",
+   "description": "Escherichia coli Colony Morphology on MacConkey Agar"
+  }
+ ]
+}

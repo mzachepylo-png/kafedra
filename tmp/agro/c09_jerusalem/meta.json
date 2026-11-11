@@ -1,0 +1,96 @@
+{
+ "key": "c09_jerusalem",
+ "query": {
+  "commons": "Helianthus tuberosus tuber"
+ },
+ "candidates": [
+  {
+   "k": "c1",
+   "file": "File:Topinambur pieczony (2).jpg",
+   "url": "https://commons.wikimedia.org/wiki/File:Topinambur_pieczony_(2).jpg",
+   "thumb": "https://thumb.wikimedia.org/wikipedia/commons/thumb/6/67/Topinambur_pieczony_%282%29.jpg/1280px-Topinambur_pieczony_%282%29.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
+   "w": 3233,
+   "h": 2424,
+   "artist": "Adrian Tync",
+   "license": "CC BY-SA 4.0",
+   "description": "baked Helianthus tuberosus tubers as food"
+  },
+  {
+   "k": "c2",
+   "file": "File:Topinambur pieczony 01.jpg",
+   "url": "https://commons.wikimedia.org/wiki/File:Topinambur_pieczony_01.jpg",
+   "thumb": "https://thumb.wikimedia.org/wikipedia/commons/thumb/e/e8/Topinambur_pieczony_01.jpg/1280px-Topinambur_pieczony_01.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
+   "w": 3117,
+   "h": 2337,
+   "artist": "Adrian Tync",
+   "license": "CC BY-SA 4.0",
+   "description": "baked Helianthus tuberosus tubers as food"
+  },
+  {
+   "k": "c3",
+   "file": "File:Helianthus tuberosus-fond noir.jpg",
+   "url": "https://commons.wikimedia.org/wiki/File:Helianthus_tuberosus-fond_noir.jpg",
+   "thumb": "https://thumb.wikimedia.org/wikipedia/commons/thumb/a/ab/Helianthus_tuberosus-fond_noir.jpg/1280px-Helianthus_tuberosus-fond_noir.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
+   "w": 2945,
+   "h": 2729,
+   "artist": "BastienM",
+   "license": "CC BY-SA 3.0",
+   "description": "Helianthus tuberosus (topinambour) sur fond noir, pris avec un Nikon D7000 et un objectif Micro-Nikkor 60mm 2.8 AF-D"
+  },
+  {
+   "k": "c4",
+   "file": "File:Helianthus tuberosus tuber harvest.jpg",
+   "url": "https://commons.wikimedia.org/wiki/File:Helianthus_tuberosus_tuber_harvest.jpg",
+   "thumb": "https://upload.wikimedia.org/wikipedia/commons/1/17/Helianthus_tuberosus_tuber_harvest.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail_unscaled",
+   "w": 640,
+   "h": 480,
+   "artist": "Eric Toensmeier",
+   "license": "CC BY-SA 3.0",
+   "description": "Vigorous-growing sunflower relative with sweet edible tubers. Perennial root crop, native (to central North America)."
+  },
+  {
+   "k": "c5",
+   "file": "File:Helianthus tuberosus tubers & flowers.jpg",
+   "url": "https://commons.wikimedia.org/wiki/File:Helianthus_tuberosus_tubers_%26_flowers.jpg",
+   "thumb": "https://upload.wikimedia.org/wikipedia/commons/6/68/Helianthus_tuberosus_tubers_%26_flowers.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail_unscaled",
+   "w": 600,
+   "h": 450,
+   "artist": "Ethanappleseed",
+   "license": "CC BY-SA 3.0",
+   "description": "Vigorous-growing sunflower relative with sweet edible tubers. Perennial root crop, native (to central North America)."
+  },
+  {
+   "k": "c6",
+   "file": "File:Helianthus tuberosus 15-p.bot-helian.tuber-39.jpg",
+   "url": "https://commons.wikimedia.org/wiki/File:Helianthus_tuberosus_15-p.bot-helian.tuber-39.jpg",
+   "thumb": "https://thumb.wikimedia.org/wikipedia/commons/thumb/3/3b/Helianthus_tuberosus_15-p.bot-helian.tuber-39.jpg/1280px-Helianthus_tuberosus_15-p.bot-helian.tuber-39.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
+   "w": 2381,
+   "h": 1772,
+   "artist": "\nAyotte, Gilles, 1948-",
+   "license": "CC BY-SA 4.0",
+   "description": "Nom français : topinambour. Nom anglais : Jerusalem artichoke. Rhizome tubérifère (tubercule) de topinambour, en coupe transversale."
+  },
+  {
+   "k": "c7",
+   "file": "File:Helianthus tuberosus 15-p.bot-helian.tuber-38.jpg",
+   "url": "https://commons.wikimedia.org/wiki/File:Helianthus_tuberosus_15-p.bot-helian.tuber-38.jpg",
+   "thumb": "https://thumb.wikimedia.org/wikipedia/commons/thumb/8/81/Helianthus_tuberosus_15-p.bot-helian.tuber-38.jpg/1280px-Helianthus_tuberosus_15-p.bot-helian.tuber-38.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
+   "w": 3399,
+   "h": 2061,
+   "artist": "\nAyotte, Gilles, 1948-",
+   "license": "CC BY-SA 4.0",
+   "description": "Nom français : topinambour. Nom anglais : Jerusalem artichoke. Rhizome tubérifère (tubercule) de topinambour, en coupe transversale et longitudinale."
+  },
+  {
+   "k": "c8",
+   "file": "File:Helianthus tuberosus 15-p.bot-helian.tuber-33.jpg",
+   "url": "https://commons.wikimedia.org/wiki/File:Helianthus_tuberosus_15-p.bot-helian.tuber-33.jpg",
+   "thumb": "https://thumb.wikimedia.org/wikipedia/commons/thumb/c/c7/Helianthus_tuberosus_15-p.bot-helian.tuber-33.jpg/1280px-Helianthus_tuberosus_15-p.bot-helian.tuber-33.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
+   "w": 2592,
+   "h": 3456,
+   "artist": "\nAyotte, Gilles, 1948-",
+   "license": "CC BY-SA 4.0",
+   "description": "Nom français : topinambour. Nom anglais : Jerusalem artichoke. Rhizomes tubérifères (tubercules) et base de la tige de topinambour."
+  }
+ ]
+}

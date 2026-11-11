@@ -1,0 +1,96 @@
+{
+ "key": "c13_cryo",
+ "query": {
+  "commons": "cryopreservation"
+ },
+ "candidates": [
+  {
+   "k": "c1",
+   "file": "File:Antonio e Biagio e Cesare Arrigo Cryopreservation Stem.jpg",
+   "url": "https://commons.wikimedia.org/wiki/File:Antonio_e_Biagio_e_Cesare_Arrigo_Cryopreservation_Stem.jpg",
+   "thumb": "https://thumb.wikimedia.org/wikipedia/commons/thumb/b/bf/Antonio_e_Biagio_e_Cesare_Arrigo_Cryopreservation_Stem.jpg/1280px-Antonio_e_Biagio_e_Cesare_Arrigo_Cryopreservation_Stem.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
+   "w": 3264,
+   "h": 2448,
+   "artist": "Ufficio Comunicazione, Azienda Ospedaliera SS. Antonio e Biagio e Cesare Arrigo, Alessandria, Biblioteca Biomedica Centro di Documentazione",
+   "license": "CC BY-SA 4.0",
+   "description": "Cryopreservation of stem cells in liquid nitrogen at Transfusional Center"
+  },
+  {
+   "k": "c2",
+   "file": "File:Antonio e Biagio e Cesare Arrigo Cryopreservation.jpg",
+   "url": "https://commons.wikimedia.org/wiki/File:Antonio_e_Biagio_e_Cesare_Arrigo_Cryopreservation.jpg",
+   "thumb": "https://thumb.wikimedia.org/wikipedia/commons/thumb/1/12/Antonio_e_Biagio_e_Cesare_Arrigo_Cryopreservation.jpg/1280px-Antonio_e_Biagio_e_Cesare_Arrigo_Cryopreservation.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
+   "w": 4608,
+   "h": 3456,
+   "artist": "Ufficio Comunicazione, Azienda Ospedaliera SS. Antonio e Biagio e Cesare Arrigo, Alessandria, Biblioteca Biomedica Centro di Documentazione",
+   "license": "CC BY-SA 4.0",
+   "description": "Cryopreservation of stem cells in liquid nitrogen"
+  },
+  {
+   "k": "c3",
+   "file": "File:Fvets-10-1201794-t001.jpg",
+   "url": "https://commons.wikimedia.org/wiki/File:Fvets-10-1201794-t001.jpg",
+   "thumb": "https://thumb.wikimedia.org/wikipedia/commons/thumb/9/9b/Fvets-10-1201794-t001.jpg/1280px-Fvets-10-1201794-t001.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
+   "w": 1897,
+   "h": 1306,
+   "artist": "Chen J, Liu X, Hu Y, Chen X and Tan S",
+   "license": "CC BY 4.0",
+   "description": "Summary of research on cryopreservation of some tissues and organs."
+  },
+  {
+   "k": "c4",
+   "file": "File:Fvets-10-1151254-t001.jpg",
+   "url": "https://commons.wikimedia.org/wiki/File:Fvets-10-1151254-t001.jpg",
+   "thumb": "https://thumb.wikimedia.org/wikipedia/commons/thumb/b/bd/Fvets-10-1151254-t001.jpg/1280px-Fvets-10-1151254-t001.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
+   "w": 1375,
+   "h": 1175,
+   "artist": "Antonouli S, Di Nisio V, Messini C, Daponte A, Rajender S, Anifandis G",
+   "license": "CC BY 4.0",
+   "description": "History of the improvement of oocyte, sperm and embryo cryopreservation."
+  },
+  {
+   "k": "c5",
+   "file": "File:Ijms-25-11124-g001.png",
+   "url": "https://commons.wikimedia.org/wiki/File:Ijms-25-11124-g001.png",
+   "thumb": "https://thumb.wikimedia.org/wikipedia/commons/thumb/6/62/Ijms-25-11124-g001.png/1280px-Ijms-25-11124-g001.png?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
+   "w": 1877,
+   "h": 2561,
+   "artist": "Khaydukova, I.V.; Ivannikova, V.M.; Zhidkov, D.A.; Belikov, N.V.; Peshkova, M.A.; Timashev, P.S.; Tsiganov, D.I.; Pushkarev, A.V.",
+   "license": "CC BY 4.0",
+   "description": "Human tissues and organs that have been researched for successful cryopreservation. The green captions denote the tissues that are routinely used in clinical practice and available in biobanks. The red ones represent tissues and organs that are currently only under research but have shown successful"
+  },
+  {
+   "k": "c6",
+   "file": "File:Cryopreservation USDA Gene Bank.jpg",
+   "url": "https://commons.wikimedia.org/wiki/File:Cryopreservation_USDA_Gene_Bank.jpg",
+   "thumb": "https://upload.wikimedia.org/wikipedia/commons/9/95/Cryopreservation_USDA_Gene_Bank.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail_unscaled",
+   "w": 864,
+   "h": 1296,
+   "artist": "USDA Gene Bank",
+   "license": "CC0",
+   "description": "Livestock germplasm being frozen in liquid nitrogen."
+  },
+  {
+   "k": "c7",
+   "file": "File:Cryopreservation Dewar (5544588680).jpg",
+   "url": "https://commons.wikimedia.org/wiki/File:Cryopreservation_Dewar_(5544588680).jpg",
+   "thumb": "https://thumb.wikimedia.org/wikipedia/commons/thumb/d/d4/Cryopreservation_Dewar_%285544588680%29.jpg/1280px-Cryopreservation_Dewar_%285544588680%29.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
+   "w": 1944,
+   "h": 2592,
+   "artist": "U.S. Fish and Wildlife Service Southeast Region",
+   "license": "Public domain",
+   "description": "The liquid nitrogen goes into the cryopreservation dewar. This filling is performed on a weekly basis to keep samples frozen. \nusfwsyouthambassadors.wordpress.com/\nwww.fws.gov/southeast/youthambassadors/meshes.html\nPhoto Taken By: Cody Meshes, USFWS\n\nDate Taken: 2-9-11"
+  },
+  {
+   "k": "c8",
+   "file": "File:Cryopreservation of placental tissue.png",
+   "url": "https://commons.wikimedia.org/wiki/File:Cryopreservation_of_placental_tissue.png",
+   "thumb": "https://thumb.wikimedia.org/wikipedia/commons/thumb/5/5b/Cryopreservation_of_placental_tissue.png/1280px-Cryopreservation_of_placental_tissue.png?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
+   "w": 1305,
+   "h": 1014,
+   "artist": "Прокопюк Владимир Юрьевич",
+   "license": "CC BY-SA 4.0",
+   "description": "Cryopreservation of placental tissue: up - live, modle - cryopreservation, bottom - cryopreservation.Hematoxylin eosine, neutral red, trypan blue."
+  }
+ ]
+}

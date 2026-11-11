@@ -1,0 +1,96 @@
+{
+ "key": "c12_page",
+ "query": {
+  "commons": "polyacrylamide gel electrophoresis"
+ },
+ "candidates": [
+  {
+   "k": "c1",
+   "file": "File:Polyacrylamide gel electrophoresis of Proteins.jpg",
+   "url": "https://commons.wikimedia.org/wiki/File:Polyacrylamide_gel_electrophoresis_of_Proteins.jpg",
+   "thumb": "https://thumb.wikimedia.org/wikipedia/commons/thumb/d/d5/Polyacrylamide_gel_electrophoresis_of_Proteins.jpg/1280px-Polyacrylamide_gel_electrophoresis_of_Proteins.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
+   "w": 2048,
+   "h": 1536,
+   "artist": "Jean-Etienne Minh-Duy Poirrier from Bruxelles, Belgium",
+   "license": "CC BY-SA 2.0",
+   "description": "Proteins in a 1D gel electrophoresis"
+  },
+  {
+   "k": "c2",
+   "file": "File:Electrophoresis gel combs 2.jpg",
+   "url": "https://commons.wikimedia.org/wiki/File:Electrophoresis_gel_combs_2.jpg",
+   "thumb": "https://thumb.wikimedia.org/wikipedia/commons/thumb/2/23/Electrophoresis_gel_combs_2.jpg/1280px-Electrophoresis_gel_combs_2.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
+   "w": 1808,
+   "h": 2503,
+   "artist": "real name: Nadina Wiórkiewicz\npl.wiki: Nadine90\ncommons: Nadine90",
+   "license": "CC BY-SA 3.0",
+   "description": "Different gel combs for SDS-PAGE"
+  },
+  {
+   "k": "c3",
+   "file": "File:Electrophoresis - Filling 1D gel wells with proteins mixture.jpg",
+   "url": "https://commons.wikimedia.org/wiki/File:Electrophoresis_-_Filling_1D_gel_wells_with_proteins_mixture.jpg",
+   "thumb": "https://thumb.wikimedia.org/wikipedia/commons/thumb/f/f1/Electrophoresis_-_Filling_1D_gel_wells_with_proteins_mixture.jpg/1280px-Electrophoresis_-_Filling_1D_gel_wells_with_proteins_mixture.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
+   "w": 2048,
+   "h": 1536,
+   "artist": "Jean-Etienne Poirrier",
+   "license": "CC BY-SA 2.0",
+   "description": "Electrophoresis. Filling 1D gel wells with proteins."
+  },
+  {
+   "k": "c4",
+   "file": "File:Electrophoresis gel combs 1.jpg",
+   "url": "https://commons.wikimedia.org/wiki/File:Electrophoresis_gel_combs_1.jpg",
+   "thumb": "https://thumb.wikimedia.org/wikipedia/commons/thumb/1/1e/Electrophoresis_gel_combs_1.jpg/1280px-Electrophoresis_gel_combs_1.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
+   "w": 1827,
+   "h": 2525,
+   "artist": "real name: Nadina Wiórkiewicz\npl.wiki: Nadine90\ncommons: Nadine90",
+   "license": "CC BY-SA 3.0",
+   "description": "Different gel combs for SDS-PAGE"
+  },
+  {
+   "k": "c5",
+   "file": "File:Polyacrylamid gel electrophoresis apparatus-01.jpg",
+   "url": "https://commons.wikimedia.org/wiki/File:Polyacrylamid_gel_electrophoresis_apparatus-01.jpg",
+   "thumb": "https://thumb.wikimedia.org/wikipedia/commons/thumb/a/a5/Polyacrylamid_gel_electrophoresis_apparatus-01.jpg/1280px-Polyacrylamid_gel_electrophoresis_apparatus-01.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
+   "w": 3520,
+   "h": 2492,
+   "artist": "Lilly_M",
+   "license": "CC BY-SA 3.0",
+   "description": "Polyacrylamid gel electrophoresis apparatus"
+  },
+  {
+   "k": "c6",
+   "file": "File:Polyacrylamid gel electrophoresis apparatus-02.jpg",
+   "url": "https://commons.wikimedia.org/wiki/File:Polyacrylamid_gel_electrophoresis_apparatus-02.jpg",
+   "thumb": "https://thumb.wikimedia.org/wikipedia/commons/thumb/8/80/Polyacrylamid_gel_electrophoresis_apparatus-02.jpg/1280px-Polyacrylamid_gel_electrophoresis_apparatus-02.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
+   "w": 3520,
+   "h": 2492,
+   "artist": "Lilly_M",
+   "license": "CC BY-SA 3.0",
+   "description": "Polyacrylamid gel electrophoresis apparatus"
+  },
+  {
+   "k": "c7",
+   "file": "File:Polyacrylamid gel electrophoresis apparatus-04.jpg",
+   "url": "https://commons.wikimedia.org/wiki/File:Polyacrylamid_gel_electrophoresis_apparatus-04.jpg",
+   "thumb": "https://thumb.wikimedia.org/wikipedia/commons/thumb/1/11/Polyacrylamid_gel_electrophoresis_apparatus-04.jpg/1280px-Polyacrylamid_gel_electrophoresis_apparatus-04.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
+   "w": 3520,
+   "h": 2492,
+   "artist": "Lilly_M",
+   "license": "CC BY-SA 3.0",
+   "description": "Polyacrylamid gel electrophoresis apparatus"
+  },
+  {
+   "k": "c8",
+   "file": "File:Polyacrylamid gel electrophoresis apparatus-03.jpg",
+   "url": "https://commons.wikimedia.org/wiki/File:Polyacrylamid_gel_electrophoresis_apparatus-03.jpg",
+   "thumb": "https://thumb.wikimedia.org/wikipedia/commons/thumb/8/8d/Polyacrylamid_gel_electrophoresis_apparatus-03.jpg/1280px-Polyacrylamid_gel_electrophoresis_apparatus-03.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
+   "w": 3520,
+   "h": 2492,
+   "artist": "Lilly_M",
+   "license": "CC BY-SA 3.0",
+   "description": "Polyacrylamid gel electrophoresis apparatus"
+  }
+ ]
+}

@@ -1,0 +1,96 @@
+{
+ "key": "c08_micro",
+ "query": {
+  "commons": "micropropagation"
+ },
+ "candidates": [
+  {
+   "k": "c1",
+   "file": "File:Tissue culture vials nci-vol-2142-300.jpg",
+   "url": "https://commons.wikimedia.org/wiki/File:Tissue_culture_vials_nci-vol-2142-300.jpg",
+   "thumb": "https://thumb.wikimedia.org/wikipedia/commons/thumb/9/97/Tissue_culture_vials_nci-vol-2142-300.jpg/1280px-Tissue_culture_vials_nci-vol-2142-300.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
+   "w": 1800,
+   "h": 2700,
+   "artist": "Unknown photographer/artist",
+   "license": "Public domain",
+   "description": "Tissue culture medium: Shown are vials containing tissue culture medium which provides nourishment to growing cells."
+  },
+  {
+   "k": "c2",
+   "file": "File:Tissue Culture.jpg",
+   "url": "https://commons.wikimedia.org/wiki/File:Tissue_Culture.jpg",
+   "thumb": "https://thumb.wikimedia.org/wikipedia/commons/thumb/f/fa/Tissue_Culture.jpg/1280px-Tissue_Culture.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
+   "w": 6000,
+   "h": 4000,
+   "artist": "Orla Keogh",
+   "license": "CC BY 4.0",
+   "description": "Using a pipetteboy to place media into a T75 flask."
+  },
+  {
+   "k": "c3",
+   "file": "File:Plant tissue culture of Violces.JPG",
+   "url": "https://commons.wikimedia.org/wiki/File:Plant_tissue_culture_of_Violces.JPG",
+   "thumb": "https://thumb.wikimedia.org/wikipedia/commons/thumb/8/86/Plant_tissue_culture_of_Violces.JPG/1280px-Plant_tissue_culture_of_Violces.JPG?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
+   "w": 2232,
+   "h": 3111,
+   "artist": "22Kartika",
+   "license": "CC BY-SA 3.0",
+   "description": "Plant tissue culture of Violces (African Violet)"
+  },
+  {
+   "k": "c4",
+   "file": "File:Tissue culture (hamster).jpg",
+   "url": "https://commons.wikimedia.org/wiki/File:Tissue_culture_(hamster).jpg",
+   "thumb": "https://thumb.wikimedia.org/wikipedia/commons/thumb/0/06/Tissue_culture_%28hamster%29.jpg/1280px-Tissue_culture_%28hamster%29.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
+   "w": 2700,
+   "h": 1800,
+   "artist": "Linda Bartlett (Photographer)",
+   "license": "Public domain",
+   "description": "\nTitle Tissue Culture (Hamster)\nDescription A technician performing a laboratory test. She is preparing a tissue culture of a hamster embryo. This is being done at the Frederick Cancer Research and Development Facility (FCRDF). The yellow glow that is visible in the background is the ultraviolet lig"
+  },
+  {
+   "k": "c5",
+   "file": "File:The process of plant micropropagation.jpg",
+   "url": "https://commons.wikimedia.org/wiki/File:The_process_of_plant_micropropagation.jpg",
+   "thumb": "https://thumb.wikimedia.org/wikipedia/commons/thumb/2/2a/The_process_of_plant_micropropagation.jpg/1280px-The_process_of_plant_micropropagation.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
+   "w": 4624,
+   "h": 3468,
+   "artist": "Viktor Husak",
+   "license": "CC0",
+   "description": "One of the new promising directions is microclonal plant propagation – plant propagation in vitro (in vitro). With the help of microclonal propagation, it is possible to obtain thousands of copies from a single plant."
+  },
+  {
+   "k": "c6",
+   "file": "File:Neuron in tissue culture.jpg",
+   "url": "https://commons.wikimedia.org/wiki/File:Neuron_in_tissue_culture.jpg",
+   "thumb": "https://thumb.wikimedia.org/wikipedia/commons/thumb/7/70/Neuron_in_tissue_culture.jpg/1280px-Neuron_in_tissue_culture.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
+   "w": 1315,
+   "h": 1033,
+   "artist": "GerryShaw",
+   "license": "CC BY-SA 3.0",
+   "description": "Cortical neuron stained with antibody to neurofilament subunit NF-L in green. In red are neuronal stem cells stained with antibody to alpha-internexin. Image created using antibodies from EnCor Biotechnology Inc."
+  },
+  {
+   "k": "c7",
+   "file": "File:Plant tissue culture sample.jpg",
+   "url": "https://commons.wikimedia.org/wiki/File:Plant_tissue_culture_sample.jpg",
+   "thumb": "https://thumb.wikimedia.org/wikipedia/commons/thumb/d/d5/Plant_tissue_culture_sample.jpg/1280px-Plant_tissue_culture_sample.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
+   "w": 5895,
+   "h": 3835,
+   "artist": "Syed Sajidul Islam",
+   "license": "CC BY-SA 4.0",
+   "description": "Plant Tissue Culture is a technique of growing cells, tissues or organs in sterilized nutrient media under controlled aseptic conditions. The plant material to be cultured may be cells, tissues or plant organs such as excised root tip, shoot tip, shoot bud, leaf petiole, inflorescence, anther, embry"
+  },
+  {
+   "k": "c8",
+   "file": "File:Laminar Flow Cabinet for Tissue Culture.jpg",
+   "url": "https://commons.wikimedia.org/wiki/File:Laminar_Flow_Cabinet_for_Tissue_Culture.jpg",
+   "thumb": "https://thumb.wikimedia.org/wikipedia/commons/thumb/e/ec/Laminar_Flow_Cabinet_for_Tissue_Culture.jpg/1280px-Laminar_Flow_Cabinet_for_Tissue_Culture.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
+   "w": 2592,
+   "h": 1944,
+   "artist": "Miles Smith",
+   "license": "CC BY-SA 2.0",
+   "description": "Laminar Flow Cabinet for Tissue Culture."
+  }
+ ]
+}

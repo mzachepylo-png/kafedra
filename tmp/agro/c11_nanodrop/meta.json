@@ -1,0 +1,85 @@
+{
+ "key": "c11_nanodrop",
+ "query": {
+  "commons": "spectrophotometer cuvette"
+ },
+ "candidates": [
+  {
+   "k": "c1",
+   "file": "File:Cuvette in spectrophotometer to obtain absorbance value.png",
+   "url": "https://commons.wikimedia.org/wiki/File:Cuvette_in_spectrophotometer_to_obtain_absorbance_value.png",
+   "thumb": "https://thumb.wikimedia.org/wikipedia/commons/thumb/4/42/Cuvette_in_spectrophotometer_to_obtain_absorbance_value.png/1280px-Cuvette_in_spectrophotometer_to_obtain_absorbance_value.png?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
+   "w": 1472,
+   "h": 1252,
+   "artist": "KhomchatK",
+   "license": "CC BY-SA 4.0",
+   "description": "Cuvette in spectrophotometer to obtain absorbance value"
+  },
+  {
+   "k": "c2",
+   "file": "File:Cuvette holder.jpg",
+   "url": "https://commons.wikimedia.org/wiki/File:Cuvette_holder.jpg",
+   "thumb": "https://thumb.wikimedia.org/wikipedia/commons/thumb/9/93/Cuvette_holder.jpg/1280px-Cuvette_holder.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
+   "w": 2136,
+   "h": 2192,
+   "artist": "TimVickers",
+   "license": "Public domain",
+   "description": "Cuvette holder in a temperature-controlled Beckman DU640 spectrophotometer"
+  },
+  {
+   "k": "c3",
+   "file": "File:Spectrophotometer cuvettes.JPG",
+   "url": "https://commons.wikimedia.org/wiki/File:Spectrophotometer_cuvettes.JPG",
+   "thumb": "https://thumb.wikimedia.org/wikipedia/commons/thumb/c/c8/Spectrophotometer_cuvettes.JPG/1280px-Spectrophotometer_cuvettes.JPG?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
+   "w": 1944,
+   "h": 2592,
+   "artist": "Retama",
+   "license": "CC BY-SA 4.0",
+   "description": "Spectrophotometer cuvettes: quartz (UV) and plastic (visible)"
+  },
+  {
+   "k": "c4",
+   "file": "File:Insert the Cuvette.JPG",
+   "url": "https://commons.wikimedia.org/wiki/File:Insert_the_Cuvette.JPG",
+   "thumb": "https://thumb.wikimedia.org/wikipedia/commons/thumb/3/3a/Insert_the_Cuvette.JPG/1280px-Insert_the_Cuvette.JPG?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
+   "w": 4000,
+   "h": 3000,
+   "artist": "Viv Rolfe",
+   "license": "CC BY-SA 4.0",
+   "description": "Inserting a cuvette into a spectrophotometer"
+  },
+  {
+   "k": "c5",
+   "file": "File:Spectrophotometer Assay Set Up.JPG",
+   "url": "https://commons.wikimedia.org/wiki/File:Spectrophotometer_Assay_Set_Up.JPG",
+   "thumb": "https://upload.wikimedia.org/wikipedia/commons/8/8d/Spectrophotometer_Assay_Set_Up.JPG?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail_unscaled",
+   "w": 1152,
+   "h": 864,
+   "artist": "Viv Rolfe",
+   "license": "CC BY-SA 4.0",
+   "description": "Images of a spectrophotometer experiment. Equipment from circa 2012."
+  },
+  {
+   "k": "c6",
+   "file": "File:Microvolume UV-Vis spectrophotometry - Implen NanoPhotometer NP80.jpg",
+   "url": "https://commons.wikimedia.org/wiki/File:Microvolume_UV-Vis_spectrophotometry_-_Implen_NanoPhotometer_NP80.jpg",
+   "thumb": "https://thumb.wikimedia.org/wikipedia/commons/thumb/f/f5/Microvolume_UV-Vis_spectrophotometry_-_Implen_NanoPhotometer_NP80.jpg/1280px-Microvolume_UV-Vis_spectrophotometry_-_Implen_NanoPhotometer_NP80.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
+   "w": 3840,
+   "h": 2160,
+   "artist": "Julia Ionov (Designer365)",
+   "license": "CC BY-SA 4.0",
+   "description": "A researcher applies a small-volume liquid sample to the measurement surface of an Implen NanoPhotometer NP80 UV-Vis spectrophotometer using a micropipette. Microvolume spectrophotometry enables absorbance measurements of microliter-volume samples without requiring a conventional cuvette."
+  },
+  {
+   "k": "c7",
+   "file": "File:Spectramator.jpg",
+   "url": "https://commons.wikimedia.org/wiki/File:Spectramator.jpg",
+   "thumb": "https://thumb.wikimedia.org/wikipedia/commons/thumb/9/9f/Spectramator.jpg/1280px-Spectramator.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
+   "w": 3024,
+   "h": 4032,
+   "artist": "Antheathcote1",
+   "license": "CC BY-SA 4.0",
+   "description": "Young women students in backgroundGoogle Lens AI overview   Confirm AI answers independently if possible \nThermo Scientific Spectronic 200 spectrophotometer with a blue top and white base, featuring a sample compartment with a cuvette rack."
+  }
+ ]
+}

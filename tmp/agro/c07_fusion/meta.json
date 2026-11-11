@@ -1,0 +1,30 @@
+{
+ "key": "c07_fusion",
+ "query": {
+  "commons": "protoplast fusion"
+ },
+ "candidates": [
+  {
+   "k": "c1",
+   "file": "File:The perfect sphere.jpg",
+   "url": "https://commons.wikimedia.org/wiki/File:The_perfect_sphere.jpg",
+   "thumb": "https://thumb.wikimedia.org/wikipedia/commons/thumb/d/de/The_perfect_sphere.jpg/1280px-The_perfect_sphere.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
+   "w": 4724,
+   "h": 2362,
+   "artist": "Massimo Vischi",
+   "license": "CC BY 4.0",
+   "description": "Protoplasts are plant cells deprived of the cell wall thanks to the combined action of the cellulase and pectinase enzymes. The protoplast in the photo, isolated from the foliar mesophyll of a tobacco plant (Nicotiana tabacum), takes on a spherical shape being devoid of the rigid wall but is still a"
+  },
+  {
+   "k": "c2",
+   "file": "File:Fpls-02-00032-g002.png",
+   "url": "https://commons.wikimedia.org/wiki/File:Fpls-02-00032-g002.png",
+   "thumb": "https://thumb.wikimedia.org/wikipedia/commons/thumb/e/e9/Fpls-02-00032-g002.png/1280px-Fpls-02-00032-g002.png?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
+   "w": 2361,
+   "h": 2086,
+   "artist": "Marcel C. van Verk, Lyda Neeleman, John F. Bol, Huub J. M. Linthorst",
+   "license": "CC BY 3.0",
+   "description": "Fluorescence resonance energy transfer analysis of NtWRKY12 interacting with NtWRKY12, TGA2.1, and TGA2.2. Arabidopsis protoplasts were cotransfected with the indicated expression constructs. (A) Protoplasts transfected with a plasmid encoding a YFP:CFP tandem fusion (solid line) and protoplasts tra"
+  }
+ ]
+}

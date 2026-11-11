@@ -1,0 +1,63 @@
+{
+ "key": "c09_kinetin",
+ "query": {
+  "commons": "kinetin"
+ },
+ "candidates": [
+  {
+   "k": "c1",
+   "file": "File:HYAL-1 Structure.png",
+   "url": "https://commons.wikimedia.org/wiki/File:HYAL-1_Structure.png",
+   "thumb": "https://thumb.wikimedia.org/wikipedia/commons/thumb/9/98/HYAL-1_Structure.png/1280px-HYAL-1_Structure.png?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
+   "w": 1480,
+   "h": 700,
+   "artist": "Camilahayashi",
+   "license": "CC BY-SA 4.0",
+   "description": "Structure of HYAL-1, PDB: 2PE4"
+  },
+  {
+   "k": "c2",
+   "file": "File:Chemical structures of zeatin, kinetin and N6-isopentenyladenine.tiff",
+   "url": "https://commons.wikimedia.org/wiki/File:Chemical_structures_of_zeatin,_kinetin_and_N6-isopentenyladenine.tiff",
+   "thumb": "https://thumb.wikimedia.org/wikipedia/commons/thumb/e/e9/Chemical_structures_of_zeatin%2C_kinetin_and_N6-isopentenyladenine.tiff/lossless-page1-960px-Chemical_structures_of_zeatin%2C_kinetin_and_N6-isopentenyladenine.tiff.png?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
+   "w": 997,
+   "h": 319,
+   "artist": "LastRun123",
+   "license": "CC BY-SA 4.0",
+   "description": "Structural formulas of three cytokinins: zeatin, kinetin, and N6-isopentenyladenine."
+  },
+  {
+   "k": "c3",
+   "file": "File:Kinetin.png",
+   "url": "https://commons.wikimedia.org/wiki/File:Kinetin.png",
+   "thumb": "https://thumb.wikimedia.org/wikipedia/commons/thumb/1/1b/Kinetin.png/1280px-Kinetin.png?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
+   "w": 1433,
+   "h": 2538,
+   "artist": "Azulene at English Wikipedia",
+   "license": "Public domain",
+   "description": "Chemical structure of kinetin, a plant growth hormone."
+  },
+  {
+   "k": "c4",
+   "file": "File:Hyaluronidase 1 2PE4.png",
+   "url": "https://commons.wikimedia.org/wiki/File:Hyaluronidase_1_2PE4.png",
+   "thumb": "https://thumb.wikimedia.org/wikipedia/commons/thumb/4/4f/Hyaluronidase_1_2PE4.png/1280px-Hyaluronidase_1_2PE4.png?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
+   "w": 2000,
+   "h": 1488,
+   "artist": "Fvasconcellos (talk · contribs)",
+   "license": "Public domain",
+   "description": "Ribbon diagram of human hyaluronidase 1. This  structure was created with PyMOL."
+  },
+  {
+   "k": "c5",
+   "file": "File:HYAL1 Mechanism.png",
+   "url": "https://commons.wikimedia.org/wiki/File:HYAL1_Mechanism.png",
+   "thumb": "https://thumb.wikimedia.org/wikipedia/commons/thumb/2/2e/HYAL1_Mechanism.png/1280px-HYAL1_Mechanism.png?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
+   "w": 1678,
+   "h": 2556,
+   "artist": "Camilahayashi",
+   "license": "CC BY-SA 4.0",
+   "description": "Mechanism of hyaluronic acid degradation by hyaluronidase 1 (HYAL-1)"
+  }
+ ]
+}

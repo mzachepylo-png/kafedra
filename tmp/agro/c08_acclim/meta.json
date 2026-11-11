@@ -1,0 +1,19 @@
+{
+ "key": "c08_acclim",
+ "query": {
+  "commons": "acclimatization plantlets"
+ },
+ "candidates": [
+  {
+   "k": "c1",
+   "file": "File:Banana plantlets transferred to soil (with vermicompost) from plant media.jpg",
+   "url": "https://commons.wikimedia.org/wiki/File:Banana_plantlets_transferred_to_soil_(with_vermicompost)_from_plant_media.jpg",
+   "thumb": "https://thumb.wikimedia.org/wikipedia/commons/thumb/c/c4/Banana_plantlets_transferred_to_soil_%28with_vermicompost%29_from_plant_media.jpg/1280px-Banana_plantlets_transferred_to_soil_%28with_vermicompost%29_from_plant_media.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
+   "w": 2344,
+   "h": 1459,
+   "artist": "Joydeep",
+   "license": "CC BY-SA 3.0",
+   "description": "Banana plantlets transferred to soil (with vermicompost) from plant media. The process is known as hardening. This process is done for acclimatization of plantlets to the soil as they were previously grown in plant media. After growing for some days the plantlets are transferred to the field."
+  }
+ ]
+}

@@ -1,0 +1,41 @@
+{
+ "key": "c10_anther",
+ "query": {
+  "commons": "anther culture"
+ },
+ "candidates": [
+  {
+   "k": "c1",
+   "file": "File:Plant tissue culture sample.jpg",
+   "url": "https://commons.wikimedia.org/wiki/File:Plant_tissue_culture_sample.jpg",
+   "thumb": "https://thumb.wikimedia.org/wikipedia/commons/thumb/d/d5/Plant_tissue_culture_sample.jpg/1280px-Plant_tissue_culture_sample.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
+   "w": 5895,
+   "h": 3835,
+   "artist": "Syed Sajidul Islam",
+   "license": "CC BY-SA 4.0",
+   "description": "Plant Tissue Culture is a technique of growing cells, tissues or organs in sterilized nutrient media under controlled aseptic conditions. The plant material to be cultured may be cells, tissues or plant organs such as excised root tip, shoot tip, shoot bud, leaf petiole, inflorescence, anther, embry"
+  },
+  {
+   "k": "c2",
+   "file": "File:Our new guide to rose culture (16384210090).jpg",
+   "url": "https://commons.wikimedia.org/wiki/File:Our_new_guide_to_rose_culture_(16384210090).jpg",
+   "thumb": "https://thumb.wikimedia.org/wikipedia/commons/thumb/c/c0/Our_new_guide_to_rose_culture_%2816384210090%29.jpg/1280px-Our_new_guide_to_rose_culture_%2816384210090%29.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
+   "w": 1477,
+   "h": 2301,
+   "artist": "Dingee &amp; Conard Co.; Henry G. Gilbert Nursery and Seed Trade Catalog Collection.",
+   "license": "Public domain",
+   "description": "ThELeadin^RnsEErawEi's nfAmEKina.llieDINGEE g CONARD ^. 25 \nyslEW ROSES FROM OVER THE SEA; \nBew IbarD^ ** IRambler '* IRoae, Ibelenc, \nOriginated in Germany and introduced by us for the first time \nlast year. In many respects it is an improvement over Crimson \nRambler, of which it is a seedling, bei"
+  },
+  {
+   "k": "c3",
+   "file": "File:Our new guide to rose culture (15951574123).jpg",
+   "url": "https://commons.wikimedia.org/wiki/File:Our_new_guide_to_rose_culture_(15951574123).jpg",
+   "thumb": "https://thumb.wikimedia.org/wikipedia/commons/thumb/a/af/Our_new_guide_to_rose_culture_%2815951574123%29.jpg/1280px-Our_new_guide_to_rose_culture_%2815951574123%29.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
+   "w": 1525,
+   "h": 2317,
+   "artist": "Dingee &amp; Conard Co.; Henry G. Gilbert Nursery and Seed Trade Catalog Collection.",
+   "license": "Public domain",
+   "description": "102 \"IBeDINGEESCONARD^.WESTERovE.pA. \n'^\"'^osMijiEFtoR^ Tuberous \nSummer=f lowering Bulbs. \nTUBEROUS-ROOTED BEGONIAS.— Unsurpassed for bedding and pot \nculture. As easily eared for as a Geranium. The large bulbs we send out pro- \nduce, all Summer in profusion, gorgeous and brilliant flowers three to"
+  }
+ ]
+}

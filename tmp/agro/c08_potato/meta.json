@@ -1,0 +1,96 @@
+{
+ "key": "c08_potato",
+ "query": {
+  "commons": "potato in vitro"
+ },
+ "candidates": [
+  {
+   "k": "c1",
+   "file": "File:In vitro Potato collection - VIR Department of Biotechnology - Pushkin, Saint Petersburg, Russia.jpg",
+   "url": "https://commons.wikimedia.org/wiki/File:In_vitro_Potato_collection_-_VIR_Department_of_Biotechnology_-_Pushkin,_Saint_Petersburg,_Russia.jpg",
+   "thumb": "https://thumb.wikimedia.org/wikipedia/commons/thumb/0/0c/In_vitro_Potato_collection_-_VIR_Department_of_Biotechnology_-_Pushkin%2C_Saint_Petersburg%2C_Russia.jpg/1280px-In_vitro_Potato_collection_-_VIR_Department_of_Biotechnology_-_Pushkin%2C_Saint_Petersburg%2C_Russia.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
+   "w": 3456,
+   "h": 2592,
+   "artist": "Luigi Guarino from Rome, Italy",
+   "license": "CC BY 2.0",
+   "description": "Potato collection"
+  },
+  {
+   "k": "c2",
+   "file": "File:The in vitro Potato collection - VIR Department of Biotechnology - Pushkin, Saint Petersburg, Russia.jpg",
+   "url": "https://commons.wikimedia.org/wiki/File:The_in_vitro_Potato_collection_-_VIR_Department_of_Biotechnology_-_Pushkin,_Saint_Petersburg,_Russia.jpg",
+   "thumb": "https://thumb.wikimedia.org/wikipedia/commons/thumb/1/18/The_in_vitro_Potato_collection_-_VIR_Department_of_Biotechnology_-_Pushkin%2C_Saint_Petersburg%2C_Russia.jpg/1280px-The_in_vitro_Potato_collection_-_VIR_Department_of_Biotechnology_-_Pushkin%2C_Saint_Petersburg%2C_Russia.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
+   "w": 2072,
+   "h": 2592,
+   "artist": "Luigi Guarino from Rome, Italy",
+   "license": "CC BY 2.0",
+   "description": "The in vitro Potato collection - VIR Department of Biotechnology - Pushkin, Saint Petersburg, Russia"
+  },
+  {
+   "k": "c3",
+   "file": "File:In vitro Potato micro-tubers - VIR Department of Biotechnology - Pushkin, Saint Petersburg, Russia.jpg",
+   "url": "https://commons.wikimedia.org/wiki/File:In_vitro_Potato_micro-tubers_-_VIR_Department_of_Biotechnology_-_Pushkin,_Saint_Petersburg,_Russia.jpg",
+   "thumb": "https://thumb.wikimedia.org/wikipedia/commons/thumb/9/92/In_vitro_Potato_micro-tubers_-_VIR_Department_of_Biotechnology_-_Pushkin%2C_Saint_Petersburg%2C_Russia.jpg/1280px-In_vitro_Potato_micro-tubers_-_VIR_Department_of_Biotechnology_-_Pushkin%2C_Saint_Petersburg%2C_Russia.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
+   "w": 3456,
+   "h": 2592,
+   "artist": "Luigi Guarino from Rome, Italy",
+   "license": "CC BY 2.0",
+   "description": "In vitro Potato micro-tubers"
+  },
+  {
+   "k": "c4",
+   "file": "File:In vitro Potato collection - VIR Department of Biotechnology - Pushkin, Saint Petersburg, Russia - (1).jpg",
+   "url": "https://commons.wikimedia.org/wiki/File:In_vitro_Potato_collection_-_VIR_Department_of_Biotechnology_-_Pushkin,_Saint_Petersburg,_Russia_-_(1).jpg",
+   "thumb": "https://thumb.wikimedia.org/wikipedia/commons/thumb/d/d2/In_vitro_Potato_collection_-_VIR_Department_of_Biotechnology_-_Pushkin%2C_Saint_Petersburg%2C_Russia_-_%281%29.jpg/1280px-In_vitro_Potato_collection_-_VIR_Department_of_Biotechnology_-_Pushkin%2C_Saint_Petersburg%2C_Russia_-_%281%29.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
+   "w": 3456,
+   "h": 2592,
+   "artist": "Luigi Guarino from Rome, Italy",
+   "license": "CC BY 2.0",
+   "description": "Potato collection"
+  },
+  {
+   "k": "c5",
+   "file": "File:In vitro Potato collection - VIR Department of Biotechnology - Pushkin, Saint Petersburg, Russia - (2).jpg",
+   "url": "https://commons.wikimedia.org/wiki/File:In_vitro_Potato_collection_-_VIR_Department_of_Biotechnology_-_Pushkin,_Saint_Petersburg,_Russia_-_(2).jpg",
+   "thumb": "https://thumb.wikimedia.org/wikipedia/commons/thumb/4/4a/In_vitro_Potato_collection_-_VIR_Department_of_Biotechnology_-_Pushkin%2C_Saint_Petersburg%2C_Russia_-_%282%29.jpg/1280px-In_vitro_Potato_collection_-_VIR_Department_of_Biotechnology_-_Pushkin%2C_Saint_Petersburg%2C_Russia_-_%282%29.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
+   "w": 2640,
+   "h": 1980,
+   "artist": "Luigi Guarino from Rome, Italy",
+   "license": "CC BY 2.0",
+   "description": "Potato collection"
+  },
+  {
+   "k": "c6",
+   "file": "File:Dr. Tatjana Gavrilenko and her in vitro Potato collection - VIR Department of Biotechnology - Pushkin, Saint Petersburg, Russia.jpg",
+   "url": "https://commons.wikimedia.org/wiki/File:Dr._Tatjana_Gavrilenko_and_her_in_vitro_Potato_collection_-_VIR_Department_of_Biotechnology_-_Pushkin,_Saint_Petersburg,_Russia.jpg",
+   "thumb": "https://thumb.wikimedia.org/wikipedia/commons/thumb/7/76/Dr._Tatjana_Gavrilenko_and_her_in_vitro_Potato_collection_-_VIR_Department_of_Biotechnology_-_Pushkin%2C_Saint_Petersburg%2C_Russia.jpg/1280px-Dr._Tatjana_Gavrilenko_and_her_in_vitro_Potato_collection_-_VIR_Department_of_Biotechnology_-_Pushkin%2C_Saint_Petersburg%2C_Russia.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
+   "w": 3456,
+   "h": 2592,
+   "artist": "Luigi Guarino from Rome, Italy",
+   "license": "CC BY 2.0",
+   "description": "Read about her work here: www.vaviblog.com/pavlovsks-potato-problems/"
+  },
+  {
+   "k": "c7",
+   "file": "File:In vitro wild potatoes - VIR Department of Biotechnology - Pushkin, Saint Petersburg, Russia.jpg",
+   "url": "https://commons.wikimedia.org/wiki/File:In_vitro_wild_potatoes_-_VIR_Department_of_Biotechnology_-_Pushkin,_Saint_Petersburg,_Russia.jpg",
+   "thumb": "https://thumb.wikimedia.org/wikipedia/commons/thumb/9/9d/In_vitro_wild_potatoes_-_VIR_Department_of_Biotechnology_-_Pushkin%2C_Saint_Petersburg%2C_Russia.jpg/1280px-In_vitro_wild_potatoes_-_VIR_Department_of_Biotechnology_-_Pushkin%2C_Saint_Petersburg%2C_Russia.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
+   "w": 3456,
+   "h": 2592,
+   "artist": "Luigi Guarino from Rome, Italy",
+   "license": "CC BY 2.0",
+   "description": "Wild potatoes"
+  },
+  {
+   "k": "c8",
+   "file": "File:PlantingPotatoes.jpg",
+   "url": "https://commons.wikimedia.org/wiki/File:PlantingPotatoes.jpg",
+   "thumb": "https://thumb.wikimedia.org/wikipedia/commons/thumb/b/bc/PlantingPotatoes.jpg/1280px-PlantingPotatoes.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
+   "w": 3264,
+   "h": 2448,
+   "artist": "Philippus Jacobus Steyn",
+   "license": "CC BY-SA 4.0",
+   "description": "Tissue culture potato plants being planted to produce mini-tubers."
+  }
+ ]
+}

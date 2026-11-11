@@ -1,0 +1,96 @@
+{
+ "key": "c11_gel",
+ "query": {
+  "commons": "agarose gel electrophoresis DNA"
+ },
+ "candidates": [
+  {
+   "k": "c1",
+   "file": "File:Agarose gel electrophoresis of DNA with annotation.png",
+   "url": "https://commons.wikimedia.org/wiki/File:Agarose_gel_electrophoresis_of_DNA_with_annotation.png",
+   "thumb": "https://thumb.wikimedia.org/wikipedia/commons/thumb/d/d7/Agarose_gel_electrophoresis_of_DNA_with_annotation.png/1280px-Agarose_gel_electrophoresis_of_DNA_with_annotation.png?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
+   "w": 2076,
+   "h": 2475,
+   "artist": "Ultrabem",
+   "license": "CC0",
+   "description": "Agarose gel electrophoresis of DNA with annotation"
+  },
+  {
+   "k": "c2",
+   "file": "File:Agarose gel electrophoresis of DNA.png",
+   "url": "https://commons.wikimedia.org/wiki/File:Agarose_gel_electrophoresis_of_DNA.png",
+   "thumb": "https://thumb.wikimedia.org/wikipedia/commons/thumb/e/ee/Agarose_gel_electrophoresis_of_DNA.png/1280px-Agarose_gel_electrophoresis_of_DNA.png?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
+   "w": 3024,
+   "h": 3608,
+   "artist": "Ultrabem",
+   "license": "CC0",
+   "description": "Agarose gel electrophoresis of DNA without annotation"
+  },
+  {
+   "k": "c3",
+   "file": "File:Agarose Gel DNA Electrophoresis.jpg",
+   "url": "https://commons.wikimedia.org/wiki/File:Agarose_Gel_DNA_Electrophoresis.jpg",
+   "thumb": "https://thumb.wikimedia.org/wikipedia/commons/thumb/2/2b/Agarose_Gel_DNA_Electrophoresis.jpg/1280px-Agarose_Gel_DNA_Electrophoresis.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
+   "w": 4000,
+   "h": 3000,
+   "artist": "Ajay Kumar Chaurasiya",
+   "license": "CC BY-SA 4.0",
+   "description": "Agarose Gel DNA Electrophoresis"
+  },
+  {
+   "k": "c4",
+   "file": "File:Agarose gel electrophoresis in UV light.jpg",
+   "url": "https://commons.wikimedia.org/wiki/File:Agarose_gel_electrophoresis_in_UV_light.jpg",
+   "thumb": "https://thumb.wikimedia.org/wikipedia/commons/thumb/0/0d/Agarose_gel_electrophoresis_in_UV_light.jpg/1280px-Agarose_gel_electrophoresis_in_UV_light.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
+   "w": 3024,
+   "h": 4032,
+   "artist": "YTEDG72.k",
+   "license": "CC BY 4.0",
+   "description": "Agarose gel electrophoresis in UV light"
+  },
+  {
+   "k": "c5",
+   "file": "File:GelDoc DNA gel electrophoresis photograph stained with ethidium bromide 05.jpg",
+   "url": "https://commons.wikimedia.org/wiki/File:GelDoc_DNA_gel_electrophoresis_photograph_stained_with_ethidium_bromide_05.jpg",
+   "thumb": "https://thumb.wikimedia.org/wikipedia/commons/thumb/b/bc/GelDoc_DNA_gel_electrophoresis_photograph_stained_with_ethidium_bromide_05.jpg/1280px-GelDoc_DNA_gel_electrophoresis_photograph_stained_with_ethidium_bromide_05.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
+   "w": 1498,
+   "h": 1477,
+   "artist": "Sgroey",
+   "license": "CC BY-SA 4.0",
+   "description": "GelDoc DNA gel electrophoresis photograph stained with ethidium bromide"
+  },
+  {
+   "k": "c6",
+   "file": "File:GelDoc DNA gel electrophoresis photograph stained with ethidium bromide 07.jpg",
+   "url": "https://commons.wikimedia.org/wiki/File:GelDoc_DNA_gel_electrophoresis_photograph_stained_with_ethidium_bromide_07.jpg",
+   "thumb": "https://thumb.wikimedia.org/wikipedia/commons/thumb/7/7f/GelDoc_DNA_gel_electrophoresis_photograph_stained_with_ethidium_bromide_07.jpg/1280px-GelDoc_DNA_gel_electrophoresis_photograph_stained_with_ethidium_bromide_07.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
+   "w": 1440,
+   "h": 625,
+   "artist": "Sgroey",
+   "license": "CC BY-SA 4.0",
+   "description": "GelDoc DNA gel electrophoresis photograph stained with ethidium bromide"
+  },
+  {
+   "k": "c7",
+   "file": "File:Agarose gel electrophoresis DNA.jpg",
+   "url": "https://commons.wikimedia.org/wiki/File:Agarose_gel_electrophoresis_DNA.jpg",
+   "thumb": "https://thumb.wikimedia.org/wikipedia/commons/thumb/0/06/Agarose_gel_electrophoresis_DNA.jpg/1280px-Agarose_gel_electrophoresis_DNA.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
+   "w": 2592,
+   "h": 1456,
+   "artist": "Microrao",
+   "license": "CC BY-SA 4.0",
+   "description": "Agarose gel electrophoresis"
+  },
+  {
+   "k": "c8",
+   "file": "File:Agarose gel slab for DNA Analysis, after the Electrophoresis run.jpg",
+   "url": "https://commons.wikimedia.org/wiki/File:Agarose_gel_slab_for_DNA_Analysis,_after_the_Electrophoresis_run.jpg",
+   "thumb": "https://thumb.wikimedia.org/wikipedia/commons/thumb/c/cb/Agarose_gel_slab_for_DNA_Analysis%2C_after_the_Electrophoresis_run.jpg/1280px-Agarose_gel_slab_for_DNA_Analysis%2C_after_the_Electrophoresis_run.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
+   "w": 4101,
+   "h": 2700,
+   "artist": "School of Natural Resources from Ann Arbor",
+   "license": "CC BY 2.0",
+   "description": "Agarose gel slab for DNA Analysis, after the Electrophoresis run"
+  }
+ ]
+}
