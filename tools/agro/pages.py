@@ -11,6 +11,11 @@ for name in ["Мельничук Микола Дмитрович", "Клячен
     URLS["wiki_" + name.split()[0]] = ("https://uk.wikipedia.org/w/api.php?action=query&format=json&prop=extracts|info&inprop=url&explaintext=1&redirects=1&titles=" + q(name))
     URLS["wikisearch_" + name.split()[0]] = ("https://uk.wikipedia.org/w/api.php?action=query&format=json&list=search&srsearch=" + q(name))
     URLS["ddg_" + name.split()[0]] = "https://html.duckduckgo.com/html/?q=" + q(name + " НУБіП")
+URLS = {
+    "ddg_mel2": "https://html.duckduckgo.com/html/?q=" + q("Мельничук Микола Дмитрович академік НААН біотехнологія"),
+    "ddg_mel3": "https://html.duckduckgo.com/html/?q=" + q("Мельничук Микола Дмитрович esu.com.ua"),
+    "irbis_mel": "https://irbis-nbuv.gov.ua/ASUA/0041928",
+}
 for k, u in URLS.items():
     try:
         h = dict(UA); h["Accept"] = "application/json" if ("orcid" in k or "wiki" in k) else "text/html"
