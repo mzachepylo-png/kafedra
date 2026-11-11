@@ -1,0 +1,20 @@
+<!doctype html><meta charset="utf-8"><style>body{margin:0;background:#fff}canvas{display:block;width:100%}div{width:1200px}</style>
+<div><canvas id="a"></canvas></div><div><canvas id="b"></canvas></div>
+<script type="module">
+import * as K from './assets/js/lab/agro/kit.js';
+{ const {ctx,w,h}=K.fit(document.getElementById('a'),{aspect:2.2,max:560});
+  const hy=K.scene(ctx,w,h,{kind:'bench'});
+  K.tube(ctx,60,hy-210,34,200,{medium:{level:.3,color:K.MAT.agar},plug:'foil',contents:(c,i)=>K.plantlet(c,i.x+i.w/2,i.surface,{height:90,nodes:5,leafLen:16,roots:{n:4,len:30},seed:4}),label:'Пробірка'});
+  K.tube(ctx,120,hy-210,34,200,{medium:{level:.3,color:K.MAT.agar},plug:'cotton',contents:(c,i)=>K.callus(c,i.x+i.w/2,i.surface+2,26,{seed:3}),label:'Калюс'});
+  K.flask(ctx,260,hy,170,{liquid:{level:.45,color:'#EFE7C0',cloudy:.6,bubbles:8},plug:'foil',label:'Колба 250 мл'});
+  K.jar(ctx,360,hy-150,110,150,{medium:{level:.22,color:K.MAT.agar},contents:(c,i)=>{K.plantlet(c,i.x+30,i.surface,{height:95,nodes:6,leafLen:15,roots:{n:5,len:22},seed:2});K.plantlet(c,i.x+70,i.surface,{height:80,nodes:5,leafLen:14,roots:{n:4,len:20},seed:9,tuber:.6});},label:'Банка'});
+  K.petri(ctx,600,hy+20,110,{contents:(c,p)=>{K.callus(c,p.cx-40,p.cy+5,30,{seed:1,green:.5});K.callus(c,p.cx+35,p.cy-8,26,{seed:2,brown:.6});K.callus(c,p.cx+5,p.cy+30,22,{seed:7});},label:'Чашка Петрі'});
+  K.beaker(ctx,760,hy-120,80,120,{liquid:{level:.6,color:'#C9E2EE'},label:'Стакан'});
+  K.callout(ctx,600,hy-10,720,hy-150,'Калюс на агарі МС');
+}
+{ const {ctx,w,h}=K.fit(document.getElementById('b'),{aspect:2.4,max:500});
+  K.scene(ctx,w,h,{kind:'dark'});
+  K.microField(ctx,230,h/2,200,(c,f)=>{const R=K.rng(4);for(let i=0;i<26;i++){K.plantCell(c,f.cx+(R()-.5)*360,f.cy+(R()-.5)*360,22+R()*14,16+R()*10,{seed:i,chloro:8,dead:R()>.7?1:0,stain:'evans',rot:R()*3});}},{scale:{px:60,text:'50 мкм'}});
+  K.microField(ctx,700,h/2,200,(c,f)=>{const R=K.rng(9);for(let i=0;i<18;i++){K.protoplast(c,f.cx+(R()-.5)*330,f.cy+(R()-.5)*330,18+R()*12,{seed:i,chloro:30});}});
+}
+</script>

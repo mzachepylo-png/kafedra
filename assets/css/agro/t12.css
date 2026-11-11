@@ -1,0 +1,16 @@
+/* Тема 12: сцена на всю ширину моделі, панелі керування — рядом під нею */
+#t12-models .ag-grid { grid-template-columns: 1fr; }
+#t12-models .ag-side { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 12px; }
+#t12-models .ag-reads { grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)); }
+#t12-models .ag-panel .seg button { min-height: 40px; }
+#t12-models .ag-presets { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 10px; }
+#t12-models .ag-presets .btn { min-height: 40px; }
+#t12-models .ag-tablewrap { margin-top: 10px; max-width: 520px; }
+.t12-lanes { margin: 10px 0 0; padding-left: 1.4em; font-size: .86rem; color: var(--ink-soft); columns: 2; column-gap: 18px; }
+.t12-lanes li { margin: 0 0 3px; break-inside: avoid; }
+.t12-recipe td:first-child { white-space: nowrap; }
+.ag-fig .t12-svgtxt { font: 600 13px system-ui, sans-serif; fill: #1F3A2A; }
+@media (max-width: 600px) {
+  .t12-lanes { columns: 1; }
+  #t12-models .ag-reads { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}
