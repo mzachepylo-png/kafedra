@@ -1,0 +1,210 @@
+/* Біоенергетичні основи біотехнологічних процесів: доповнення до plant-physiology.css */
+
+/* ---------- вкладки всередині моделі ---------- */
+#ff#ff .tabsbox:empty { display: none; }
+#ff#ff .mtabs { display: flex; flex-wrap: wrap; gap: 6px; margin: 0 0 12px; padding: 4px; background: var(--paper); border: 1px solid var(--rule); border-radius: 12px; }
+#ff#ff .mtab { flex: 1 1 auto; border: 0; background: transparent; color: var(--muted); border-radius: 9px; padding: 8px 14px; font-size: 13.5px; font-weight: 600; cursor: pointer; line-height: 1.25; }
+#ff#ff .mtab:hover { color: var(--ink); background: color-mix(in srgb, var(--sheet) 70%, transparent); }
+#ff#ff .mtab[aria-selected="true"] { background: var(--chl); color: #fff; box-shadow: 0 4px 12px -6px var(--chl); }
+#ff#ff .mbox[hidden] { display: none !important; }
+
+/* ---------- заголовок роботи ---------- */
+#ff#ff .lab-src { margin: -4px 0 14px; padding: 9px 12px; border-left: 3px solid var(--carot); background: color-mix(in srgb, var(--carot) 8%, var(--sheet)); border-radius: 0 8px 8px 0; font-size: 12.5px; line-height: 1.5; color: var(--muted); max-width: 90ch; }
+#ff#ff .lab-src b { color: var(--ink); }
+#ff#ff .loading { padding: 40px 0; text-align: center; }
+
+/* ---------- теорія ---------- */
+#ff#ff .bth { padding: 26px 32px 22px; max-width: none; position: relative; }
+#ff#ff .bth-main { min-width: 0; }
+#ff#ff .bth h3 { font-size: 22px; margin: 26px 0 8px; padding-top: 6px; scroll-margin-top: calc(var(--header-h, 68px) + 14px); }
+#ff#ff .bth h3:first-of-type { margin-top: 4px; }
+#ff#ff .bth h4 { font: 700 15px/1.3 var(--f-body); margin: 16px 0 4px; color: var(--chl); }
+#ff#ff .bth p, #ff#ff .bth li { font-size: 15.5px; line-height: 1.68; max-width: 80ch; }
+#ff#ff .bth p { margin: 0 0 10px; }
+#ff#ff .bth ul, #ff#ff .bth ol { margin: 0 0 10px; padding-left: 20px; }
+#ff#ff .bth li { margin-bottom: 4px; }
+#ff#ff .bth .lead { font-size: 17px; line-height: 1.62; color: var(--ink); max-width: 80ch; }
+#ff#ff .bth .eq { font-size: 19px; max-width: 100%; }
+#ff#ff .bth sup.rf { font-size: .7em; }
+
+/* зміст теорії: чіпи згори; на широких екранах — липка колонка праворуч */
+#ff#ff .bth-toc { display: flex; flex-wrap: wrap; gap: 6px; margin: 0 0 18px; padding-bottom: 14px; border-bottom: 1px dashed var(--rule); }
+#ff#ff .bth-toc .cap { display: none; }
+#ff#ff .bth-toc a { padding: 4px 11px; border-radius: 99px; background: var(--paper); border: 1px solid var(--rule); font-size: 12.5px; color: var(--ink); line-height: 1.4; }
+#ff#ff .bth-toc a:hover { border-color: var(--chl); color: var(--chl); }
+#ff#ff .bth-toc a.on { border-color: var(--chl); background: var(--chl-soft); color: var(--chl); font-weight: 600; }
+@media (min-width: 1400px) {
+  #ff#ff .bth { display: grid; grid-template-columns: minmax(0, 1fr) 232px; column-gap: 44px; align-items: start; }
+  #ff#ff .bth-main { grid-column: 1; grid-row: 1; }
+  #ff#ff .bth-toc { grid-column: 2; grid-row: 1; position: sticky; top: calc(var(--header-h, 68px) + 18px); flex-direction: column; flex-wrap: nowrap; gap: 1px; margin: 0; padding: 0 0 0 14px; border: 0; border-left: 2px solid var(--rule); max-height: calc(100vh - var(--header-h, 68px) - 44px); overflow: auto; }
+  #ff#ff .bth-toc .cap { display: block; font: 600 11px/1 var(--f-mono); letter-spacing: .12em; text-transform: uppercase; color: var(--muted); padding: 2px 0 10px; }
+  #ff#ff .bth-toc a { padding: 6px 9px; border: 0; border-radius: 7px; background: none; font-size: 13px; line-height: 1.35; }
+  #ff#ff .bth-toc a:hover { background: var(--paper); }
+  #ff#ff .bth-toc a.on { background: var(--chl-soft); }
+}
+
+/* фото з підписами */
+#ff#ff figure.bf { margin: 14px 0; border: 1px solid var(--rule); border-radius: 12px; background: var(--sheet); overflow: hidden; }
+#ff#ff figure.bf a { display: block; background: #fff; }
+#ff#ff figure.bf img { display: block; width: 100%; height: 100%; max-height: 300px; object-fit: cover; }
+#ff#ff figure.bf--contain img { object-fit: contain; background: #fff; }
+#ff#ff figure.bf figcaption { padding: 8px 12px 10px; font-size: 12.5px; line-height: 1.45; color: var(--muted); border-top: 1px solid var(--rule); }
+#ff#ff figure.bf .bf-cr { display: block; margin-top: 3px; font-size: 11px; opacity: .85; }
+#ff#ff figure.bf .bf-cr a { display: inline; background: none; color: inherit; text-decoration: underline; }
+#ff#ff .bf-gal { display: grid; grid-template-columns: repeat(auto-fit, minmax(230px, 1fr)); gap: 12px; margin: 14px 0; }
+#ff#ff .bf-gal figure.bf { margin: 0; }
+#ff#ff .bf-gal figure.bf img { height: 190px; }
+#ff#ff .bf-gal--1 { grid-template-columns: minmax(0, 620px); }
+#ff#ff .bf-gal--1 figure.bf img { height: auto; max-height: 300px; }
+#ff#ff .bf-gal--2 { grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); }
+#ff#ff .bf-gal--2 figure.bf img { height: 240px; }
+@media (min-width: 900px) {
+  #ff#ff figure.bf--side { float: right; width: min(330px, 40%); margin: 4px 0 12px 22px; }
+  #ff#ff figure.bf--side img { max-height: 260px; }
+}
+#ff#ff .bth-main::after { content: ""; display: block; clear: both; }
+
+/* виноски-блоки */
+#ff#ff .bcall { margin: 14px 0; padding: 11px 14px 11px 16px; border-radius: 0 10px 10px 0; border-left: 4px solid var(--chl); background: color-mix(in srgb, var(--chl) 8%, var(--sheet)); font-size: 14px; line-height: 1.55; max-width: 76ch; }
+#ff#ff .bcall > b { display: block; margin-bottom: 3px; font-size: 12px; letter-spacing: .09em; text-transform: uppercase; color: var(--chl); font-family: var(--f-mono); }
+#ff#ff .bcall p { margin: 0 0 6px; max-width: none; font-size: 14px; }
+#ff#ff .bcall p:last-child { margin-bottom: 0; }
+#ff#ff .bcall--warn { border-left-color: var(--warn); background: color-mix(in srgb, var(--warn) 9%, var(--sheet)); }
+#ff#ff .bcall--warn > b { color: var(--warn); }
+#ff#ff .bcall--task { border-left-color: var(--carot); background: color-mix(in srgb, var(--carot) 10%, var(--sheet)); }
+#ff#ff .bcall--task > b { color: #8C6A10; }
+#ff#ff .bcall--idea { border-left-color: var(--data); background: color-mix(in srgb, var(--data) 8%, var(--sheet)); }
+#ff#ff .bcall--idea > b { color: var(--data); }
+#ff#ff .bcall--model { border-left-color: var(--antho); background: color-mix(in srgb, var(--antho) 7%, var(--sheet)); }
+#ff#ff .bcall--model > b { color: var(--antho); }
+
+/* кроки */
+#ff#ff ol.bsteps { list-style: none; padding: 0; margin: 12px 0; counter-reset: bs; display: grid; gap: 8px; max-width: 76ch; }
+#ff#ff ol.bsteps > li { counter-increment: bs; position: relative; padding: 8px 12px 8px 46px; border: 1px solid var(--rule); border-radius: 10px; background: var(--paper); font-size: 14px; line-height: 1.5; min-height: 40px; }
+#ff#ff ol.bsteps > li::before { content: counter(bs); position: absolute; left: 10px; top: 8px; width: 26px; height: 26px; border-radius: 50%; background: var(--chl); color: #fff; display: grid; place-items: center; font: 700 13px var(--f-mono); }
+
+/* методика (згортається) */
+#ff#ff details.bproto { margin: 14px 0; border: 1px solid var(--rule); border-radius: 10px; background: var(--paper); max-width: 82ch; }
+#ff#ff details.bproto > summary { cursor: pointer; padding: 10px 14px; font-weight: 600; font-size: 14.5px; list-style: none; display: flex; align-items: center; gap: 10px; }
+#ff#ff details.bproto > summary::-webkit-details-marker { display: none; }
+#ff#ff details.bproto > summary::before { content: "▸"; color: var(--chl); transition: transform .15s; }
+#ff#ff details.bproto[open] > summary::before { transform: rotate(90deg); }
+#ff#ff details.bproto > div { padding: 2px 16px 12px; border-top: 1px dashed var(--rule); }
+#ff#ff details.bproto p, #ff#ff details.bproto li { font-size: 14px; }
+
+/* таблиці в теорії */
+#ff#ff table.bt { font-size: 13.5px; margin: 4px 0; }
+#ff#ff table.bt td, #ff#ff table.bt th { vertical-align: top; }
+#ff#ff table.bt td:first-child { font-weight: 600; }
+#ff#ff .tblwrap { margin: 10px 0 14px; border: 1px solid var(--rule); border-radius: 10px; background: var(--sheet); max-width: 100%; }
+
+/* ---------- модель ---------- */
+#ff#ff .bout { padding: 10px 12px; border: 1px solid var(--rule); border-radius: 10px; background: var(--paper); font-size: 13px; line-height: 1.55; }
+#ff#ff .bout b { font-weight: 600; }
+#ff#ff .bout.good { border-color: var(--good); background: color-mix(in srgb, var(--good) 8%, var(--paper)); }
+#ff#ff .bout.bad { border-color: var(--bad); background: color-mix(in srgb, var(--bad) 7%, var(--paper)); }
+#ff#ff .bout.warn { border-color: var(--warn); background: color-mix(in srgb, var(--warn) 8%, var(--paper)); }
+#ff#ff .bout code, #ff#ff .bth code { font: 600 12.5px var(--f-mono); }
+#ff#ff .bcalc { display: grid; gap: 8px; }
+#ff#ff .bcalc input[type=number], #ff#ff .ctl input[type=number] { width: 100%; padding: 6px 8px; border-radius: 7px; border: 1px solid var(--rule); background: var(--paper); font: 13px var(--f-mono); }
+#ff#ff .grid2 { display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 8px; }
+#ff#ff .legend { display: flex; flex-wrap: wrap; gap: 6px 14px; font-size: 12px; color: var(--muted); }
+#ff#ff .legend i { display: inline-block; width: 10px; height: 10px; border-radius: 50%; margin-right: 5px; vertical-align: -1px; }
+#ff#ff .sim h4 { margin: 0; }
+
+
+/* ---------- заголовок роботи (перекриває plant-physiology.css) ---------- */
+#ff#ff .lab-head { display: block; margin-bottom: 14px; }
+#ff#ff .lab-head h2 { max-width: none; font-size: clamp(25px, 2.3vw, 33px); line-height: 1.16; margin-bottom: 0; }
+#ff#ff .lab-head .model { display: block; width: fit-content; max-width: 100%; margin-top: 14px; padding: 8px 14px; text-align: left; font: 12.5px/1.55 var(--f-mono); color: var(--ink); background: var(--sheet); border: 1px solid var(--rule); border-left: 3px solid var(--chl); border-radius: 0 9px 9px 0; overflow-wrap: anywhere; }
+#ff#ff .lab-head .model::before { content: "Модель"; margin-right: 12px; font-weight: 700; font-size: 10.5px; letter-spacing: .12em; text-transform: uppercase; color: var(--chl); }
+#ff#ff .lab-src { margin: 22px 0 0; max-width: none; }
+
+/* ---------- панель моделі ---------- */
+#ff#ff .sim { padding: 16px; }
+@media (min-width: 721px) {
+  #ff#ff .sim-top { grid-template-columns: minmax(0, 1fr) 268px; gap: 18px; }
+}
+#ff#ff .ctrls { gap: 14px; }
+#ff#ff .ctl label, #ff#ff .ctl .lbl { align-items: baseline; }
+#ff#ff .ctl label > span { min-width: 0; }
+#ff#ff .ctl .lbl { margin-bottom: 6px; }
+#ff#ff .btns .btn { flex: 0 1 auto; }
+
+/* ---------- питання: виправлення позиції значка «?» (lab.css робить summary блоковим із абсолютним ::before) ---------- */
+#ff#ff .qa-list { padding: 6px 24px; }
+#ff#ff details.qa summary { display: block; position: relative; padding: 14px 4px 14px 40px; font-size: 15.5px; line-height: 1.45; }
+#ff#ff details.qa summary::before { position: absolute; left: 4px; top: 14px; }
+#ff#ff details.qa > div.qa-a { padding: 0 8px 16px 40px; }
+
+
+/* ---------- загальні покращення моделей ---------- */
+/* картки-показники: довгі тексти переносяться, а не обрізаються */
+#ff#ff .rd .v { white-space: normal; overflow: visible; text-overflow: clip; overflow-wrap: anywhere; line-height: 1.3; }
+#ff#ff .rd { flex: 1 1 160px; }
+/* однакова висота заголовків графіків: полотна вирівняні в ряд */
+#ff#ff .charts { align-items: start; }
+#ff#ff .chart h4 { min-height: 2.7em; display: flex; align-items: flex-end; }
+@media (max-width: 1100px) { #ff#ff .chart h4 { min-height: 0; } }
+/* таблиці в моделях: не розтягувати на всю ширину, вирівнювати заголовки чисел праворуч */
+#ff#ff .sim .tblwrap { max-width: 860px; }
+#ff#ff .sim table.t th.n { text-align: right; }
+#ff#ff .sim table.t td, #ff#ff .sim table.t th { padding: 6px 12px; }
+#ff#ff table.t td.n, #ff#ff table.t th.n { white-space: nowrap; }
+/* сітка повзунків (для моделей із великою кількістю параметрів) */
+#ff#ff .ctlgrid { display: grid; grid-template-columns: repeat(auto-fit, minmax(190px, 1fr)); gap: 12px 22px; padding: 12px 14px; border: 1px solid var(--rule); border-radius: 10px; background: var(--paper); }
+#ff#ff .ctlgrid > h5 { grid-column: 1 / -1; margin: 0; font: 600 11px/1 var(--f-mono); letter-spacing: .12em; text-transform: uppercase; color: var(--muted); }
+#ff#ff .ctlgrid .ctl-col { display: flex; flex-direction: column; gap: 12px; min-width: 0; }
+#ff#ff .ctlgrid .ctl-col > h5 { margin: 0; font: 700 12.5px/1.2 var(--f-body); color: var(--chl); }
+
+/* ---------- контрольні питання ---------- */
+#ff#ff .qa-bar { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 8px 16px; margin: 0 0 12px; }
+#ff#ff .qa-a { padding: 0 0 14px 40px; font-size: 14.5px; line-height: 1.6; color: var(--muted); max-width: 78ch; }
+#ff#ff .qa-a p { margin: 0 0 8px; padding: 0; font-size: 14.5px; }
+#ff#ff .qa-a ul { margin: 0 0 8px; padding-left: 18px; }
+#ff#ff .qa-a b { color: var(--ink); }
+#ff#ff .qa-a .eq { font-size: 16px; margin: 6px 0; }
+#ff#ff details.qa summary { font-size: 15px; line-height: 1.4; }
+
+/* ---------- навігація між роботами ---------- */
+#ff#ff .lab-pn { display: flex; justify-content: space-between; gap: 12px; margin: 30px 0 4px; padding-top: 18px; border-top: 1px solid var(--rule); }
+#ff#ff .lab-pn a { display: flex; flex-direction: column; gap: 2px; padding: 12px 16px; border: 1px solid var(--rule); border-radius: 12px; background: var(--sheet); font-weight: 600; font-size: 14px; line-height: 1.35; max-width: 48%; color: var(--ink); }
+#ff#ff .lab-pn a.nx { text-align: right; margin-left: auto; }
+#ff#ff .lab-pn a:hover { border-color: var(--chl); }
+#ff#ff .lab-pn small { font: 600 11px var(--f-mono); letter-spacing: .08em; text-transform: uppercase; color: var(--muted); }
+
+/* ---------- головна сторінка розділу ---------- */
+.bio-cred { margin: 26px 0 0; padding: 18px 22px; border-radius: 16px; border: 1px solid var(--rule, #C9D4CB); background: linear-gradient(135deg, #F8FAF6, #EEF3EC); display: grid; grid-template-columns: auto 1fr; gap: 6px 20px; align-items: start; }
+.bio-cred__body { min-width: 0; display: grid; gap: 8px; }
+.bio-cred__ic { grid-row: auto; width: 54px; height: 54px; border-radius: 14px; display: grid; place-items: center; background: #1B5E20; color: #EBD27F; }
+.bio-cred__ic svg { width: 28px; height: 28px; }
+.bio-cred h2 { margin: 0; font-size: 1.15rem; }
+.bio-cred p { margin: 0; font-size: .93rem; line-height: 1.55; color: #3d4d42; }
+.bio-cred dl { margin: 6px 0 0; display: grid; grid-template-columns: auto 1fr; gap: 3px 14px; font-size: .9rem; line-height: 1.5; }
+.bio-cred dt { color: #58695E; font-weight: 600; }
+.bio-cred dd { margin: 0; }
+.bio-cred .src { font-size: .82rem; color: #58695E; margin-top: 4px; }
+@media (max-width: 640px) { .bio-cred { grid-template-columns: 1fr; } .bio-cred dl { grid-template-columns: 1fr; } .bio-cred dt { margin-top: 4px; } }
+.work--bio .work__num span { background: linear-gradient(135deg, #1B5E20, #2C7A4D); }
+.bio-foot-cred { margin: 26px auto 0; max-width: 1500px; padding: 14px 18px; border-top: 1px solid var(--rule, #C9D4CB); font-size: 12.5px; line-height: 1.55; color: #58695E; }
+.bio-foot-cred b { color: #16221A; }
+
+@media (max-width: 720px) {
+  #ff#ff .bth { padding: 16px 14px 12px; }
+  #ff#ff .qa-list { padding: 4px 14px; }
+  #ff#ff .lab-head .model::before { display: block; margin: 0 0 3px; }
+  #ff#ff .lab-pn { flex-direction: column; }
+  #ff#ff .lab-pn a { max-width: none; }
+  #ff#ff .mtab { padding: 8px 10px; font-size: 12.5px; }
+}
+
+/* панель керування анімацією: «приклеєна» під шапкою, щоб пауза завжди була під рукою */
+#ff#ff .runbar { position: sticky; top: calc(var(--header-h, 68px) + 8px); z-index: 30; margin: 0 0 14px; padding: 8px 12px; background: color-mix(in srgb, var(--paper) 97%, transparent); border: 1px solid var(--rule); border-radius: 12px; box-shadow: 0 4px 14px rgba(0, 0, 0, .08); backdrop-filter: blur(6px); }
+#ff#ff .runbar__st { font-size: 11.5px; line-height: 1.35; }
+#ff#ff .runbar .btn:disabled { opacity: .4; cursor: default; }
+
+/* сенсорні екрани: зручніші цілі дотику (вигляд на ПК не змінюється) */
+@media (pointer: coarse), (max-width: 700px) {
+  #ff#ff .mtab { min-height: 40px; }
+  #ff#ff .bth-toc a { display: inline-flex; align-items: center; min-height: 38px; padding: 4px 13px; }
+}

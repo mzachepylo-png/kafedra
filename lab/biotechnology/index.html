@@ -1,0 +1,319 @@
+<!doctype html>
+<html lang="uk">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <title>Біотехнологія в агросфері — віртуальний практикум і математичні моделі (ЛР 1–55) | Кафедра фізіології, біохімії рослин та біоенергетики НУБіП України</title>
+  <meta name="description" content="Інтерактивні математичні моделі та візуалізації 55 лабораторних робіт за навчальним посібником М. Д. Мельничука, О. Л. Кляченко «Біотехнологія в агросфері» (НУБіП України, 2014): живильні середовища МС, калюсогенез, соматичний ембріогенез, суспензійні культури, протопласти, мікроклональне розмноження, гаплоїдія, генетична інженерія, пероксидаза, кріозбереження." />
+  <meta name="theme-color" content="#0F2A1D" />
+
+  <script>try{if(localStorage.getItem('theme')==='dark')document.documentElement.dataset.theme='dark'}catch(e){}</script>
+  <link rel="preload" href="../../assets/fonts/plus-jakarta-sans-cyrillic.woff2" as="font" type="font/woff2" crossorigin />
+  <link rel="preload" href="../../assets/fonts/fraunces-cyrillic.woff2" as="font" type="font/woff2" crossorigin />
+  <link rel="stylesheet" href="../../assets/css/fonts.css" />
+  <link rel="stylesheet" href="../../assets/css/style.css?v=20260419" />
+  <link rel="stylesheet" href="../../assets/css/lab.css?v=20260419" />
+  <link rel="stylesheet" href="../../assets/css/plant-physiology.css?v=20260419" />
+  <link rel="stylesheet" href="../../assets/css/biotechnology.css?v=20260419" />
+  <link rel="icon" href="../../assets/img/nubip-shield.png" type="image/png" />
+</head>
+<body class="page-sub page-lab">
+  <a href="#main" class="skip-link">Перейти до основного вмісту</a>
+
+  <div class="utilbar">
+    <div class="container utilbar__inner">
+      <div class="utilbar__left">
+        <span class="utilbar__uni">Національний університет біоресурсів і природокористування України</span>
+        <span class="utilbar__sep" aria-hidden="true">/</span>
+        <span class="utilbar__fac">Факультет захисту рослин, біотехнологій та екології</span>
+      </div>
+      <div class="utilbar__right">
+        <a href="../../about/" class="utilbar__link">Про кафедру</a>
+        <a href="../../konspekt/" class="utilbar__link">Конспекти</a>
+        <a href="../../lab/" class="utilbar__link" aria-current="page">Лабораторні</a>
+        <button class="theme-toggle" type="button" data-theme-toggle aria-label="Перемкнути темну тему" title="Темна / світла тема">
+          <svg class="theme-toggle__sun" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M6.34 17.66l-1.41 1.41M19.07 4.93l-1.41 1.41"/></svg>
+          <svg class="theme-toggle__moon" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <header class="site-header" id="top">
+    <div class="container site-header__inner">
+      <a href="../../" class="brand" aria-label="На головну">
+        <picture><source srcset="../../assets/img/nubip-shield.webp" type="image/webp" /><img class="brand__seal" src="../../assets/img/nubip-shield.png" width="44" height="54" alt="Герб НУБіП України" /></picture>
+        <span class="brand__text">
+          <span class="brand__kicker">Кафедра фізіології, біохімії рослин та біоенергетики</span>
+          <span class="brand__name">НУБіП України · Київ</span>
+        </span>
+      </a>
+      <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="site-nav" data-nav-toggle>
+        <span class="nav-toggle__bars" aria-hidden="true"></span>
+        <span class="sr-only">Меню</span>
+      </button>
+      <nav class="site-nav" id="site-nav" aria-label="Головна навігація" data-nav>
+        <ul class="site-nav__list">
+          <li><a href="../../">Головна</a></li>
+          <li><a href="../../about/">Про кафедру</a></li>
+          <li><a href="../../konspekt/">Конспекти лекцій</a></li>
+          <li><a href="../../lab/" aria-current="page">Лабораторні роботи</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <main id="main">
+    <header class="sub-hero sub-hero--compact">
+      <div class="container sub-hero__inner">
+        <nav class="breadcrumb" aria-label="Хлібні крихти">
+          <a href="../../">Головна</a><span aria-hidden="true">/</span>
+          <a href="../../lab/">Лабораторні роботи</a><span aria-hidden="true">/</span>
+          <span aria-current="page">Біотехнологія в агросфері</span>
+        </nav>
+        <div class="sub-hero__grid">
+          <div>
+            <p class="eyebrow">Дисципліна · спец. 162 «Біотехнології та біоінженерія», 201 «Агрономія», 202 «Захист і карантин рослин»</p>
+            <h1 class="sub-hero__title">Біотехнологія в агросфері</h1>
+            <p class="sub-hero__lead">Повний інтерактивний цикл із 13 тематичних модулів (55 лабораторних робіт) за навчальним посібником М.&nbsp;Д.&nbsp;Мельничука та О.&nbsp;Л.&nbsp;Кляченко: від приготування середовищ Мурасіге—Скуга, кінетики росту калюсу й соматичного ембріогенезу до злиття протопластів, гаплоїдії, агробактеріальної трансформації, зимограм пероксидази та кріозбереження.</p>
+          </div>
+          <aside class="sub-hero__meta">
+            <dl>
+              <div><dt>Модулів / Робіт</dt><dd>13 тем · 55 ЛР</dd></div>
+              <div><dt>Мат. моделей</dt><dd>35 інтерактивних симуляцій</dd></div>
+              <div><dt>Формат</dt><dd>Теорія · Протокол · 2D/3D Canvas · Q&amp;A</dd></div>
+            </dl>
+          </aside>
+        </div>
+      </div>
+    </header>
+
+    <section class="section" id="pp-list">
+      <div class="container">
+        <div class="bio-cred" aria-label="Бібліографічна довідка підручника">
+          <div>
+            <span class="bio-cred__tag">Навчальний посібник кафедри · НУБіП України</span>
+            <h2 class="bio-cred__title">М.&nbsp;Д.&nbsp;Мельничук, О.&nbsp;Л.&nbsp;Кляченко. «Біотехнологія в агросфері: навчальний посібник для студентів вищих навчальних закладів»</h2>
+            <p class="bio-cred__meta">Київ: НУБіП України, 2014. — 269&nbsp;с. Рекомендовано Вченою радою НУБіП України. Усі математичні моделі, рецептури живильних середовищ (табл.&nbsp;2–5), розрахункові формули камери Фукса—Розенталя, спектрофотометрії ДНК/РНК та кінетики гваяколової пероксидази відтворено у точній відповідності до лабораторного практикуму (розд.&nbsp;6, с.&nbsp;49–201).</p>
+          </div>
+          <div class="bio-cred__stats">
+            <div><b>13</b><small>Тем практикуму</small></div>
+            <div><b>55</b><small>Лабораторних робіт</small></div>
+            <div><b>35</b><small>Математичних моделей</small></div>
+            <div><b>269 с.</b><small>Базовий посібник</small></div>
+          </div>
+        </div>
+
+        <ol class="pp-list">
+          <li class="pp-item">
+            <a class="pp-item__link" href="#lab1">
+              <span class="pp-item__num">Тема 01 · ЛР 1–4</span>
+              <div class="pp-item__body">
+                <h2 class="pp-item__title">Приготування та стерилізація живильних середовищ для культури клітин і тканин (с. 50–57)</h2>
+                <p class="pp-item__excerpt">Кінетика парової стерилізації в автоклаві (121 °C, 1–1,2 атм; табл. 2 за об'ємами 20–2000 мл), конструктор живильних середовищ Мурасіге—Скуга (МС), Гамборга B₅, Уайта і Міллера (табл. 3), розрахунок осмотичного потенціалу Ψ<sub>s</sub> = −iCRT, іонної сили та pH-титрування (5,6–5,8) із гелеутворенням агару.</p>
+                <div class="pp-item__meta">
+                  <span>ЛР 1: Автоклавування</span><span>ЛР 2: Сток-розчини</span><span>ЛР 3–4: Середовище МС і pH</span>
+                  <span class="pp-item__cta">Відкрити модель →</span>
+                </div>
+              </div>
+            </a>
+          </li>
+
+          <li class="pp-item">
+            <a class="pp-item__link" href="#lab2">
+              <span class="pp-item__num">Тема 02 · ЛР 5–12</span>
+              <div class="pp-item__body">
+                <h2 class="pp-item__title">Стерилізація рослинного матеріалу, ізоляція експлантатів та фізіологічна полярність (с. 57–63)</h2>
+                <p class="pp-item__excerpt">Модель компромісу між мікробною контамінацією та фітотоксичним некрозом експлантатів (табл. 4: насіння сої, коренеплід моркви, бульба картоплі, листок тютюну; NaClO, H₂O₂, AgNO₃, HgCl₂), базипетальний полярний транспорт ІОК через PIN-білки та гістотопографія камбіального кільця коренеплоду <i>Daucus carota</i> L.</p>
+                <div class="pp-item__meta">
+                  <span>ЛР 5–6: Стерилізація (табл. 4)</span><span>ЛР 7: Полярність калюсогенезу</span><span>ЛР 8–12: Первинні експлантати</span>
+                  <span class="pp-item__cta">Відкрити модель →</span>
+                </div>
+              </div>
+            </a>
+          </li>
+
+          <li class="pp-item">
+            <a class="pp-item__link" href="#lab3">
+              <span class="pp-item__num">Тема 03 · ЛР 13–14</span>
+              <div class="pp-item__body">
+                <h2 class="pp-item__title">Ріст і розвиток калюсних культур та кількісні методи оцінки росту (с. 63–78)</h2>
+                <p class="pp-item__excerpt">S-подібна логістична крива росту калюсу (5 фаз: лаг, експоненційна, лінійна, сповільнення, стаціонарна), індекс приросту ΔW = (W<sub>t</sub> − W₀)/W₀, мацерація тканини за Брауном (5 % CrO₃ + 5 % HCl) та підрахунок густини клітин у камері Фукса—Розенталя N = n·V·10³ / (d·0,2).</p>
+                <div class="pp-item__meta">
+                  <span>ЛР 13: Камера Фукса—Розенталя</span><span>ЛР 14: Крива росту та фітогормони</span><span>Мацерація за Брауном</span>
+                  <span class="pp-item__cta">Відкрити модель →</span>
+                </div>
+              </div>
+            </a>
+          </li>
+
+          <li class="pp-item">
+            <a class="pp-item__link" href="#lab4">
+              <span class="pp-item__num">Тема 04 · ЛР 15–17</span>
+              <div class="pp-item__body">
+                <h2 class="pp-item__title">Морфогенез, органогенез та соматичний ембріогенез у тканинних культурах (с. 79–85)</h2>
+                <p class="pp-item__excerpt">Двовимірна фазова діаграма гормонального балансу Скуга—Міллера ([Ауксин] / [Цитокінін]: ризогенез, калюсогенез, каулогенез) та покрокова морфодинаміка соматичного ембріогенезу моркви при перенесенні на середовище без 2,4-Д (глобулярна → серцеподібна → торпедоподібна → сім'ядольна стадії).</p>
+                <div class="pp-item__meta">
+                  <span>ЛР 15: Органогенез Скуга—Міллера</span><span>ЛР 16: Індукція ембріогенезу</span><span>ЛР 17: Стадії ембріоїдів</span>
+                  <span class="pp-item__cta">Відкрити модель →</span>
+                </div>
+              </div>
+            </a>
+          </li>
+
+          <li class="pp-item">
+            <a class="pp-item__link" href="#lab5">
+              <span class="pp-item__num">Тема 05 · ЛР 18–22</span>
+              <div class="pp-item__body">
+                <h2 class="pp-item__title">Суспензійні культури клітин: гідродинаміка, агрегованість і кінетика росту (с. 85–92)</h2>
+                <p class="pp-item__excerpt">Гідродинаміка перемішування на шейкері (100–150 об/хв, масообмін O₂ k<sub>L</sub>a та зсувне напруження), розподіл за ступенем агрегованості (дрібна, середня, крупна), підрахунок густини X = M·N·1000 / 3,2 і життєздатності клітин за забарвленням синім Еванса / метиленовим синім та кінетика Моно у періодичному й проточному режимах.</p>
+                <div class="pp-item__meta">
+                  <span>ЛР 18–19: Ініціація й агрегованість</span><span>ЛР 20–21: Густина й життєздатність</span><span>ЛР 22: Хемостат і турбідостат</span>
+                  <span class="pp-item__cta">Відкрити модель →</span>
+                </div>
+              </div>
+            </a>
+          </li>
+
+          <li class="pp-item">
+            <a class="pp-item__link" href="#lab6">
+              <span class="pp-item__num">Тема 06 · ЛР 23</span>
+              <div class="pp-item__body">
+                <h2 class="pp-item__title">Клітинна селекція мутантів та сомаклональна мінливість <i>in vitro</i> (с. 93–97)</h2>
+                <p class="pp-item__excerpt">Відбір стрептоміцин-стійких ліній тютюну (<i>Nicotiana tabacum</i> L.) на селективному середовищі (0,5 мг/мл стрептоміцину): фотознебарвлення чутливих колоній через блокаду пластидних 70S рибосом проти зелених резистентних клонів із мутацією хлДНК 16S рРНК; порівняння прямої та ступінчастої селекції.</p>
+                <div class="pp-item__meta">
+                  <span>ЛР 23: Стрептоміцин-резистентність</span><span>Пряма vs ступінчаста селекція</span><span>Епігенетична адаптація</span>
+                  <span class="pp-item__cta">Відкрити модель →</span>
+                </div>
+              </div>
+            </a>
+          </li>
+
+          <li class="pp-item">
+            <a class="pp-item__link" href="#lab7">
+              <span class="pp-item__num">Тема 07 · ЛР 24–25</span>
+              <div class="pp-item__body">
+                <h2 class="pp-item__title">Ізольовані протопласти: ферментативне виділення, флотація та соматична гібридизація (с. 98–105)</h2>
+                <p class="pp-item__excerpt">Плазмоліз у градієнті сахарози (0,30–0,70 М) та ферментативний гідроліз клітинної стінки (Onozuka R-10, Macerozyme R-10, Driselase), очищення інтактних протопластів флотацією на межі розділу фаз сахароза / W-5, культивування в середовищі K-3 та ПЕГ/Ca²⁺-індуковане злиття у гетерокаріони й цибриди.</p>
+                <div class="pp-item__meta">
+                  <span>ЛР 24: Механічне виділення</span><span>ЛР 25: Ферментативне виділення</span><span>Флотація W-5 і ПЕГ-злиття</span>
+                  <span class="pp-item__cta">Відкрити модель →</span>
+                </div>
+              </div>
+            </a>
+          </li>
+
+          <li class="pp-item">
+            <a class="pp-item__link" href="#lab8">
+              <span class="pp-item__num">Тема 08 · ЛР 26–30</span>
+              <div class="pp-item__body">
+                <h2 class="pp-item__title">Мікроклональне розмноження та оздоровлення рослин від вірусів (с. 106–117)</h2>
+                <p class="pp-item__excerpt">Оптимізація розміру апікальної меристеми (100–250 мкм) у поєднанні з термотерапією (+37…38 °C) та хіміотерапією віразолом (рибавірином) для елімінації вірусів картоплі (PVX, PVY, PVS, PVM, PLRV), геометрична прогресія мультиплікації N<sub>m</sub> = N₀·K<sup>m</sup>, індукція мікробульб (60–80 г/л сахарози) та акліматизація <i>ex vitro</i>.</p>
+                <div class="pp-item__meta">
+                  <span>ЛР 27–28: Апікальна меристема</span><span>ЛР 26, 29: Мікроживцювання й мікробульби</span><span>ЛР 30: Акліматизація ex vitro</span>
+                  <span class="pp-item__cta">Відкрити модель →</span>
+                </div>
+              </div>
+            </a>
+          </li>
+
+          <li class="pp-item">
+            <a class="pp-item__link" href="#lab9">
+              <span class="pp-item__num">Тема 09 · ЛР 31–37</span>
+              <div class="pp-item__body">
+                <h2 class="pp-item__title">Культура ізольованих органів та специфічні біотести на фітогормони (с. 117–132)</h2>
+                <p class="pp-item__excerpt">Кількісні біотести за рівнянням Гілла: калюсний біотест сім'ядолей сої (<i>Glycine max</i> L.) на цитокініни (кінетин, БАП, зеатин; ЛР 35), експлантати бульб топінамбура (<i>Helianthus tuberosus</i> L.) на ауксини (ІОК, 2,4-Д, івін; ЛР 36) та морфогенез мікроживців стевії, картоплі й гвоздики (ІОК, кінетин, ГК₃; ЛР 37).</p>
+                <div class="pp-item__meta">
+                  <span>ЛР 31–34: Культура коренів і листків</span><span>ЛР 35: Біотест на цитокініни</span><span>ЛР 36–37: Ауксини, ГК₃ і стевія</span>
+                  <span class="pp-item__cta">Відкрити модель →</span>
+                </div>
+              </div>
+            </a>
+          </li>
+
+          <li class="pp-item">
+            <a class="pp-item__link" href="#lab10">
+              <span class="pp-item__num">Тема 10 · ЛР 38–40</span>
+              <div class="pp-item__body">
+                <h2 class="pp-item__title">Гаплоїдна біотехнологія (андрогенез, гіногенез) та ембріокультура (с. 132–140)</h2>
+                <p class="pp-item__excerpt">Культура пиляків ріпаку (<i>Brassica napus</i> L.) на стадії одноядерної вакуолізованої мікроспори, перемикання гаметофітного шляху на спорофітний холодовим шоком (+4 °C, 4 доби), колхіцинування до дигаплоїдів (DH, 2n; H<sub>k</sub> = 100 % за 1 покоління) та порятунок гібридних зародків (<i>embryo rescue</i>).</p>
+                <div class="pp-item__meta">
+                  <span>ЛР 38: Андрогенез ріпаку</span><span>ЛР 39: Гіногенез буряка</span><span>ЛР 40: Embryo rescue</span>
+                  <span class="pp-item__cta">Відкрити модель →</span>
+                </div>
+              </div>
+            </a>
+          </li>
+
+          <li class="pp-item">
+            <a class="pp-item__link" href="#lab11">
+              <span class="pp-item__num">Тема 11 · ЛР 41–50</span>
+              <div class="pp-item__body">
+                <h2 class="pp-item__title">Генетична інженерія рослин, плазмідна ДНК та спектрофотометрія нуклеїнових кислот (с. 142–183)</h2>
+                <p class="pp-item__excerpt">Індукція корончастих галів <i>Agrobacterium tumefaciens</i> на дисках моркви та трансформація листкових дисків тютюну (середовища R, R₁, R₂ з канаміцином і клафораном), ампліфікація плазміди pBR322 хлорамфеніколом, УФ-спектрофотометрія ДНК і РНК при 260/280 нм (C<sub>ДНК</sub> = D₂₆₀·50·K) та електрофорез в агарозному гелі.</p>
+                <div class="pp-item__meta">
+                  <span>ЛР 41–44: Agrobacterium і Т-ДНК</span><span>ЛР 45–48: Плазміда pBR322</span><span>ЛР 49–50: Електрофорез і D₂₆₀/D₂₈₀</span>
+                  <span class="pp-item__cta">Відкрити модель →</span>
+                </div>
+              </div>
+            </a>
+          </li>
+
+          <li class="pp-item">
+            <a class="pp-item__link" href="#lab12">
+              <span class="pp-item__num">Тема 12 · ЛР 51–53</span>
+              <div class="pp-item__body">
+                <h2 class="pp-item__title">Окисно-відновні ферменти як біохімічні маркери стресу та морфогенезу (с. 184–190)</h2>
+                <p class="pp-item__excerpt">Спектрофотометрична кінетика гваяколової пероксидази (λ = 470 нм, тетрагваякол) і пірокатехінової поліфенолоксидази (λ = 420 нм, о-хінон) за формулою A = (D₂ − D₁)·V·V₂·60 / ((t₂ − t₁)·V₁·H) та диск-електрофорез аніонних ізоферментів пероксидази в ПААГ за Девісом (бензидинова зимограма й R<sub>f</sub>).</p>
+                <div class="pp-item__meta">
+                  <span>ЛР 51: Активність пероксидази (470 нм)</span><span>ЛР 52: ПААГ-зимограма Девіса</span><span>ЛР 53: Поліфенолоксидаза (420 нм)</span>
+                  <span class="pp-item__cta">Відкрити модель →</span>
+                </div>
+              </div>
+            </a>
+          </li>
+
+          <li class="pp-item">
+            <a class="pp-item__link" href="#lab13">
+              <span class="pp-item__num">Тема 13 · ЛР 54–55</span>
+              <div class="pp-item__body">
+                <h2 class="pp-item__title">Кріозбереження рослинного матеріалу та захисна дія кріопротекторів (с. 191–201)</h2>
+                <p class="pp-item__excerpt">Термодинамічна двофакторна модель замерзання клітин П. Мазура (позахлітинне зневоднення проти внутрішньоклітинної кристалізації льоду, двоступеневе охолодження до −196 °C у рідкому азоті), кріозахисна дія сахарози й гліцерину на диски коренеплоду буряка (вихід бетаціаніну D₅₃₈ і плазмоліз у 8 % NaCl) та захист білків соку картоплі й капусти від кріокоагуляції.</p>
+                <div class="pp-item__meta">
+                  <span>Модель Мазура і вітрифікація PVS2</span><span>ЛР 54: Паренхіма буряка (−20 °C)</span><span>ЛР 55: Кріокоагуляція білків соку</span>
+                  <span class="pp-item__cta">Відкрити модель →</span>
+                </div>
+              </div>
+            </a>
+          </li>
+        </ol>
+      </div>
+    </section>
+
+    <div class="ff" id="ff" hidden>
+      <nav id="index" aria-label="Навігація між темами практикуму"></nav>
+      <div id="labs"></div>
+    </div>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container site-footer__inner">
+      <div class="site-footer__brand">
+        <picture><source srcset="../../assets/img/nubip-shield.webp" type="image/webp" /><img src="../../assets/img/nubip-shield.png" width="36" height="44" alt="" aria-hidden="true" loading="lazy" /></picture>
+        <div>
+          <p class="site-footer__title">Кафедра фізіології, біохімії рослин та біоенергетики</p>
+          <p class="site-footer__sub">Факультет захисту рослин, біотехнологій та екології · НУБіП України · вул. Героїв Оборони, 15, Київ, 03041</p>
+        </div>
+      </div>
+      <div class="site-footer__meta">
+        <p>Віртуальний лабораторний практикум за посібником М.&nbsp;Д.&nbsp;Мельничука, О.&nbsp;Л.&nbsp;Кляченко «Біотехнологія в агросфері» (К.: НУБіП України, 2014).</p>
+        <p><a href="#top">↑ На початок сторінки</a></p>
+      </div>
+    </div>
+  </footer>
+
+  <script src="../../assets/js/main.js?v=20260419" defer></script>
+  <script src="../../assets/js/lightbox.js?v=20260419" defer></script>
+  <script src="../../assets/js/lab/biotechnology.js?v=20260419" defer></script>
+</body>
+</html>
