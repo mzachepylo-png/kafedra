@@ -1,0 +1,41 @@
+# Тимчасово: фото для статті й моделі «Біотехнології в агросфері».
+name: Fetch agrobiotech media (temporary)
+
+on:
+  push:
+    paths: ['tools/agro/**']
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  fetch:
+    runs-on: ubuntu-latest
+    timeout-minutes: 45
+    strategy:
+      fail-fast: false
+      matrix:
+        keys: ["search:c01_autoclave,c01_laminar,c01_media,c01_filter,c02_callus,c02_tobacco,c02_explant,c03_hemocyt,c03_callus2,c04_somatic,c04_regen,c04_carrot,c05_suspension,c05_shaker,c05_evans,c06_tobacco,c06_albino", "search:c07_protoplast,c07_fusion,c08_micro,c08_potato,c08_meristem,c08_acclim,c09_kinetin,c09_jerusalem,c09_stevia,c10_anther,c10_microspore,c10_rapeseed,c11_gall,c11_gel,c11_ecoli,c11_nanodrop,c12_page,c12_browning,c12_horseradish,c13_ln2,c13_cryo,c13_beet", "search:e04_somatic,e05_evans,e07_proto,e08_meristem,e10_micro,e11_gall,e13_cryo"]
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - run: pip install pillow==11.0.0
+      - run: |
+          K="${{ matrix.keys }}"; python tools/agro/fetch.py "${K%%:*}" "${K#*:}"
+          if [ "${{ strategy.job-index }}" = "0" ]; then python tools/agro/pages.py; fi
+      - name: Commit results
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add -A tmp/agro 2>/dev/null || true
+          git add -A assets/img/agro 2>/dev/null || true
+          if git diff --cached --quiet; then echo "nothing to commit"; exit 0; fi
+          git commit -m "Fetch agrobiotech media (${{ matrix.keys }})"
+          for i in 1 2 3 4 5; do
+            git pull --rebase origin "${{ github.ref_name }}" && git push origin "HEAD:${{ github.ref_name }}" && exit 0
+            sleep $((i * 5))
+          done
+          exit 1

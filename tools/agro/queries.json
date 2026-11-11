@@ -1,0 +1,140 @@
+{
+ "c01_autoclave": {
+  "commons": "autoclave laboratory"
+ },
+ "c01_laminar": {
+  "commons": "laminar flow cabinet"
+ },
+ "c01_media": {
+  "commons": "plant tissue culture medium"
+ },
+ "c01_filter": {
+  "commons": "syringe filter sterile"
+ },
+ "c02_callus": {
+  "commons": "plant callus culture"
+ },
+ "c02_tobacco": {
+  "commons": "tobacco callus"
+ },
+ "c02_explant": {
+  "commons": "explant in vitro"
+ },
+ "c03_hemocyt": {
+  "commons": "hemocytometer"
+ },
+ "c03_callus2": {
+  "commons": "callus tissue culture growth"
+ },
+ "c04_somatic": {
+  "commons": "somatic embryogenesis"
+ },
+ "c04_regen": {
+  "commons": "shoot regeneration callus"
+ },
+ "c04_carrot": {
+  "commons": "carrot somatic embryos"
+ },
+ "c05_suspension": {
+  "commons": "plant cell suspension culture"
+ },
+ "c05_shaker": {
+  "commons": "orbital shaker flasks"
+ },
+ "c05_evans": {
+  "commons": "Evans blue staining"
+ },
+ "c06_tobacco": {
+  "commons": "Nicotiana tabacum in vitro"
+ },
+ "c06_albino": {
+  "commons": "albino plantlet"
+ },
+ "c07_protoplast": {
+  "commons": "plant protoplasts"
+ },
+ "c07_fusion": {
+  "commons": "protoplast fusion"
+ },
+ "c08_micro": {
+  "commons": "micropropagation"
+ },
+ "c08_potato": {
+  "commons": "potato in vitro"
+ },
+ "c08_meristem": {
+  "commons": "apical meristem"
+ },
+ "c08_acclim": {
+  "commons": "acclimatization plantlets"
+ },
+ "c09_kinetin": {
+  "commons": "kinetin"
+ },
+ "c09_jerusalem": {
+  "commons": "Helianthus tuberosus tuber"
+ },
+ "c09_stevia": {
+  "commons": "Stevia rebaudiana"
+ },
+ "c10_anther": {
+  "commons": "anther culture"
+ },
+ "c10_microspore": {
+  "commons": "microspores"
+ },
+ "c10_rapeseed": {
+  "commons": "Brassica napus flower"
+ },
+ "c11_gall": {
+  "commons": "crown gall Agrobacterium"
+ },
+ "c11_gel": {
+  "commons": "agarose gel electrophoresis DNA"
+ },
+ "c11_ecoli": {
+  "commons": "Escherichia coli colonies agar"
+ },
+ "c11_nanodrop": {
+  "commons": "spectrophotometer cuvette"
+ },
+ "c12_page": {
+  "commons": "polyacrylamide gel electrophoresis"
+ },
+ "c12_browning": {
+  "commons": "enzymatic browning"
+ },
+ "c12_horseradish": {
+  "commons": "horseradish root"
+ },
+ "c13_ln2": {
+  "commons": "liquid nitrogen dewar"
+ },
+ "c13_cryo": {
+  "commons": "cryopreservation"
+ },
+ "c13_beet": {
+  "commons": "beetroot slices"
+ },
+ "e04_somatic": {
+  "epmc": "somatic embryogenesis carrot globular heart torpedo"
+ },
+ "e05_evans": {
+  "epmc": "Evans blue viability plant cell suspension culture"
+ },
+ "e07_proto": {
+  "epmc": "mesophyll protoplast isolation fusion"
+ },
+ "e08_meristem": {
+  "epmc": "meristem culture virus elimination potato thermotherapy"
+ },
+ "e10_micro": {
+  "epmc": "microspore embryogenesis Brassica napus"
+ },
+ "e11_gall": {
+  "epmc": "Agrobacterium tumefaciens crown gall tumor plant"
+ },
+ "e13_cryo": {
+  "epmc": "plant cryopreservation vitrification PVS2 shoot tips"
+ }
+}
