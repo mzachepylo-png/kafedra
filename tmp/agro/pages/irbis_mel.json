@@ -1,0 +1,769 @@
+
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+
+<meta name="robots" content="nofollow" />
+
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+
+<META name = "description" content = "Наука України : доступ до знань">
+
+
+<link rel="stylesheet" href="/suak/css/style.css">
+
+<script language="JavaScript" src="/suak/js/script.js">
+
+<!--//-->
+</script>
+
+<script language="JavaScript">
+
+
+
+	function DropDown(it)
+	{
+		el1 = document.getElementById(it);
+		if(el1.style.display=="none")
+		{
+			el1.style.display="block";
+		}
+		else
+		{
+			el1.style.display="none";
+		}
+	}
+</script>
+
+
+
+
+</head>
+
+<body>
+
+<script type="text/javascript">
+
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-20600896-4']);
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+
+</script>
+
+
+
+
+
+  <script src="/suak/js/api-browser-master/dist/react/react.js"></script>
+    <script src="/suak/js/api-browser-master/dist/react/JSXTransformer.js"></script>
+    <script src="/suak/js/api-browser-master/dist/jquery/dist/jquery.min.js"></script>
+
+
+
+
+    
+
+
+    <script type="text/jsx">
+      function deleteArrayItem(arr, i) {
+        return arr.slice(0, i).concat(arr.slice(i+1));
+      }
+
+      function getQueryParams(qs) {
+        qs = qs.split("+").join(" ");
+        var params = {};
+        var tokens;
+        var re = /[?&]?([^=]+)=([^&]*)/g;
+        while (tokens = re.exec(qs)) {
+            params[decodeURIComponent(tokens[1])] = decodeURIComponent(tokens[2]);
+        }
+
+        return params;
+      } 
+
+      function parseFilterString(input) {
+        
+        var params = [];
+        var parts = input.split(",");
+        $.each(parts, function(i, part) {
+          var kv = part.split(":");
+          var key = kv[0];
+          var value = kv[1];
+          params.push({type: key, value: value});
+        });
+
+        return params;
+      }
+
+      function formatNumberLength(num, length) {
+        var r = "" + num;
+        while (r.length < length) {
+            r = "0" + r;
+        }
+        return r;
+      }
+
+      var App = React.createClass({
+        getInitialState: function() {
+          return {
+            query: null,
+            response: [],
+            filters: [],
+            queryState: "done"
+          };
+        },
+
+        componentDidMount: function() {
+          this.updateQueryFromLocationBar();
+          var q = this.constructQuery(this.state.filters);
+          this.fetchFromApi("works", q);
+        },
+
+        updateQueryFromLocationBar: function() {
+          var query = getQueryParams(window.location.hash.substring(1));
+          var filter = query.filter || "";
+          var filters = parseFilterString(filter);
+          this.setState({filters: filters});
+        },
+
+        constructQuery: function(filters) {
+          var query = "";
+
+          // TODO add search
+          if (filters.length > 0) {
+            query = query + "filter=";
+
+            query = query + $.map(filters, function(filter, i) {
+              if (filter.type !== undefined && filter.value !== undefined) {
+                return filter.type + ":" + filter.value;  
+              } else {
+                return null;
+              }
+            }).filter(function(x) { return x !== null;}).join(",");
+          }
+
+          return query;
+        },
+
+        filtersChanged: function(filters) {
+          this.setState({filters, filters});
+          var q = this.constructQuery(filters);
+
+          var entity = "works";
+          var qs = "#?entity=works&" + q;
+          
+          window.history.pushState({q: q}, "", qs);
+
+          this.fetchFromApi("works", q);
+        },
+
+        setApiResponse : function(response) {
+          this.setState({response: response});
+        },
+
+        fetchFromApi: function(entity, query) {
+          var self = this;
+
+          var entityBase = window.endpoints[entity];
+
+          var url = entityBase + "?" + query;
+
+          this.setState({"queryState": "waiting"});
+
+          $.ajax({
+            url: url,
+            dataType: "json",
+            type: "GET",
+            success: function(response) {
+              self.setApiResponse(response.message.items);
+              this.setState({"queryState": "done"});
+            }.bind(this),
+            error: function(xhr, status, err) {
+              console.error(this.props.url, status, err.toString());
+              this.setState({"queryState": "done"});
+            }.bind(this)
+          });
+        },
+
+        addFilter() {
+          var newFilter = {type: null, value: null};
+          var filters = $.extend([], this.state.filters);
+          filters.push(newFilter);
+
+          this.setState({filters: filters});
+
+          // Don"t update filters, it won"t be meaningful until there"s an interaction anyway.
+        },
+
+        removeFilter(filterI) {
+          var filters = deleteArrayItem(this.state.filters, filterI);
+          this.setState({filters: filters});
+
+          this.filtersChanged(filters);
+        },
+
+        // Called by the children.
+        setType(filterI, typeIdentifier) {
+          var filters = $.extend([], this.state.filters);
+
+          filters[filterI].type = typeIdentifier;
+
+          this.setState({filters: filters});
+
+          this.filtersChanged(filters);
+
+          // TODO add suggestion
+        },
+
+        setValue(filterI, value) {
+          var filters = $.extend([], this.state.filters);
+
+          filters[filterI].value = value;
+
+          this.setState({filters: filters});
+
+          this.filtersChanged(filters);
+        },
+
+        render: function() {
+          return (
+            <div className="row-inline">
+              <div className="col-md-12">
+                <div className="panel panel-default">
+                
+                 
+              </div>
+
+                <div>
+                  <WorkList items={this.state.response} state={this.state.queryState} />
+                </div>
+              </div>
+            </div>
+          );
+        }
+      });
+
+      var TextInput = React.createClass({
+        handleUpdate: function(event) {
+          this.props.controller.setValue(event.target.value);
+        },
+
+        render: function () {
+          return <div><div className="col-xs-6">
+                  <input type="text" className="form-control" onChange={this.handleUpdate} />
+                 </div></div>
+        }
+      });
+
+      var BooleanInput = React.createClass({
+        componentDidMount: function() {
+          // Because the default un-checked state is meaningful, apply it immediately.
+          this.props.controller.setValue("false");
+        },
+
+        handleUpdate: function(event) {
+          if (event.target.checked === true) {
+            this.props.controller.setValue("true");
+          } else {
+            this.props.controller.setValue("false");
+          }
+        },
+
+        render: function () {
+          return <div><div className="col-xs-6">
+                   <input type="checkbox" className="form-control" onChange={this.handleUpdate} />
+                 </div></div>
+        }
+      });
+
+      var DateInput = React.createClass({
+        getInitialState: function() {
+          var year = null;
+          var month = null;
+          var day = null;
+
+          if (this.props.value === null) {
+            year = new Date().getFullYear();
+          } else {
+            var ymd = this.props.value.split("-");
+            year = ymd[0] || new Date().getFullYear();
+            month = ymd[1] || null;
+            day = ymd[2] || null;  
+          }
+          
+          return {year: year, month: month, day: day};
+        },
+
+        handleUpdate: function(event) {
+          var year = this.state.year;
+          var month = this.state.month;
+          var day = this.state.day;
+
+          var value = event.target.value;
+          
+          if (value === "") {
+            value = null;
+          }
+
+          if (event.target.name === "year") {
+            year = value;
+            this.setState({year: value});
+          } if (event.target.name === "month") {
+            month = value;
+
+            if (value === null) {
+              this.setState({month: value});
+            } else {
+              day = null;
+              this.setState({day: "", month: value});
+            }
+            
+          } if (event.target.name === "day") {
+
+            day = value;
+            this.setState({day: value});
+          }
+
+
+          this.reportUpdate(year, month, day);
+        },
+
+        reportUpdate: function(year, month, day) {
+          console.log(year, month, day)
+
+          // Array of [year], [year, month] or [year, month, day].
+          var dateValue = "" + year;
+          
+          if (month !== null) {
+            dateValue += "-" + month;
+
+            if (day !== null) {
+              dateValue += "-" + day;
+            };
+          };
+
+          this.props.controller.setValue(dateValue);
+        },
+
+        render: function () {
+          var minYear = 1800;
+          var maxYear = new Date().getFullYear() + 2;
+          var minMonth = 1;
+          var maxMonth = 12;
+          var minDay = 1;
+          var maxDay = 31;
+
+          var showYear = true;
+          var showMonth = false;
+          var showDay = false;
+
+          var years = [];
+          for (var i=minYear; i <= maxYear; i++) {
+            years.push(<option key={i}>{formatNumberLength(i, 4)}</option>)
+          };
+
+          var months = [];
+          for (var i=minMonth; i <= maxMonth; i++) {
+            months.push(<option key={i}>{formatNumberLength(i, 2)}</option>)
+          };
+
+          var days = [];
+          for (var i=minDay; i <= maxDay; i++) {
+            days.push(<option key={i}>{formatNumberLength(i, 2)}</option>)
+          };
+
+          return <div>
+            <div className="col-xs-2">
+              <select name="year" value={this.state.year} className="form-control" onChange={this.handleUpdate}>
+                {years}
+              </select>
+              </div>
+              <div className="col-xs-2">
+              <select name="month" value={this.state.month} className="form-control" onChange={this.handleUpdate}>
+                <option></option>
+                {months}
+              </select>
+              </div>
+              <div className="col-xs-2">
+              <select name="day" value={this.state.day} className="form-control" onChange={this.handleUpdate}>
+                <option></option>
+                {days}
+              </select>
+            </div>
+          </div>
+
+        }
+      });
+
+      // Kind of polymorphic.
+      var QueryControl = React.createClass({
+        getInitialState: function() {
+          return {
+            // Created in edit mode.
+            state: "editing"
+          }
+        },
+
+        setType: function(event) {
+          if (event.target.name === "type") {
+            var typ = event.target.value;
+            this.props.controller.setType(this.props.i, typ);
+          }
+        },
+
+        setValue: function(value) {
+          // TODO VALIDATE 
+          this.props.controller.setValue(this.props.i, value);
+        },
+
+        render: function() {
+          var self = this;
+          
+          var filterType = null;
+          if (this.props.filter.type !== null) {
+            filterType = window.workFilters.filter(function(typ) {
+              return (typ.id === self.props.filter.type) }
+            )[0] || null;
+          }
+          
+          // A value field depending depending on the type of the filter.
+          // By default empty waiting for type.
+          
+          var valueElement = <span></span>;
+          if (filterType !== null) {
+            switch (filterType.valueType) {
+              case "text": valueElement = <TextInput controller={self} value={this.props.filter.value} />; break;
+              case "boolean": valueElement = <BooleanInput controller={self} value={this.props.filter.value} />; break;
+              case "date": valueElement = <DateInput controller={self} value={this.props.filter.value} />; break;
+            }  
+          }
+          
+          return <div className="row">
+            <div className="col-xs-3">
+              <select onChange={this.setType} name="type" value={this.props.filter.type} className="form-control">
+                  <option value="none" selected disabled>Select...</option> 
+                  {window.workFilters.map(function(typ, i) {
+                    return <option key={i} value={typ.id}>{typ.name}</option>
+                  })}
+                </select>
+              </div>
+              
+              {valueElement}
+              
+              <div className="col-xs-3">
+              <button type="button" className="btn" onClick={this.props.controller.removeFilter.bind(null, this.props.i)}>
+                  <span className="glyphicon glyphicon-minus" aria-hidden="true"></span>
+                </button>
+            </div>
+          </div>
+
+         
+        }
+      });
+
+      var QueryControls = React.createClass({
+        addFilter() {
+          this.props.app.addFilter();
+        },
+
+        removeFilter(filterI) {
+          this.props.app.removeFilter(filterI);
+        },
+
+        // Called by the children.
+        setType(filterI, typeIdentifier) {
+          this.props.app.setType(filterI, typeIdentifier)
+        },
+
+        setValue(filterI, value) {
+          this.props.app.setValue(filterI, value);
+        },
+
+        render: function() {
+          var self = this;
+        
+          return <div><form className="form-horizontal">
+            {this.props.filters.map(function (filter, i) {
+              return <div key={i}>
+                <QueryControl filter={filter} i={i} controller={self} />
+              </div>
+            })}
+          </form>
+         
+          </div>
+        }
+      });
+
+function convertTimestamp(timestamp) {
+var d = new Date(timestamp), // Конвертируем метку в миллисекунды
+yyyy = d.getFullYear(), // Конвертируем метку в год
+mm = ("0" + (d.getMonth() + 1)).slice(-2), // Конвертируем метку в месяц
+dd = ("0" + d.getDate()).slice(-2), // Конвертируем метку в число месяца
+hh = d.getHours(), // Конвертируем метку в часы
+h = hh,
+min = ("0" + d.getMinutes()).slice(-2), // Конвертируем метку в минуты
+time;
+ 
+time = yyyy; // Шаблон вывода: год-месяц-день, часы-минуты
+return time;
+}
+	  
+      var WorkList = React.createClass({
+        render: function() {
+        var style = {};
+		  
+          if (this.props.state === "waiting") {
+            style = {"color": "#c0473f !important"};
+          }
+
+          return <ol >
+              {this.props.items.map(function(item, i) {
+		
+				  return <li key={i}><strong>
+                ({convertTimestamp(item.created.timestamp)})</strong> {item.title} - <strong>DOI: </strong><a target="_blank" href={`https://doi.org/${item.DOI}`}>{item.DOI}</a>
+
+                </li>
+              })}
+            </ol>
+        }
+      });
+     
+      React.render(
+        <App apiBase="./api-mock"/>,
+        document.getElementById("content")
+      );
+    </script>
+
+
+
+
+		
+			<table align="center" cellpadding="0" cellspacing="0" width="800" border="0">
+			<tr>
+
+
+<td align="center">
+
+							<!--Место  для баннера-->
+<br><a href="/cgi-bin/suak/corp.exe?C21COM=F&I21DBN=SUAK&P21DBN=SUAK"><IMG SRC="/suak/images/logo.png" height="100" title="Інформаційний портал «Наука України : доступ до знань»"></a><hr>
+<div style="font-size:10pt;color:#36648B;"><strong>
+Координатор проекту: </strong><a href="http://nbuv.gov.ua/node/2456" style="font-size:11pt;color:white;" target="_blank"><strong>Національна бібліотека України імені В. І. Вернадського</a></strong></div><hr/>
+							<!--Место  для баннера-->
+							
+		
+</td></tr>
+</table>
+<table cellpadding="0" cellspacing="0" border="0" width="100%">
+			<tr>
+
+
+					<td align="center" colspan="3" width="100%"  height="100" >
+							<!--Место  для баннера-->
+<div id="wrapper">
+<div id="wrapper-top">
+
+<!-- start header -->
+<div id="header">
+<table width="800"><tr>
+
+<td valign="top" align="center" width="200" style="background-color:#e0e8f0;font-style:bold;font-
+size:11pt;padding:20px;" >
+	<p style="font-size:11pt;margin-bottom:20pt;" align="center"><a href="/cgi-bin/suak/corp.exe?C21COM=F&I21DBN=SUAK&P21DBN=SUAK"><span style="background-color:white;padding:8px;font-weight:bold;">Наукові&nbsp;бібліотеки&nbsp;України</span></a></p>
+
+	<p style="font-size:11pt;margin-bottom:20pt;" align="center"><span style="background-color:white;padding:8px;">&nbsp;<a  href="/cgi-bin/suak/corp.exe?C21COM=F&I21DBN=SLIR&P21DBN=SLIR"><strong>Наукові&nbsp;ресурси&nbsp;бібліотек</strong></a>&nbsp;</span></p>
+
+	<p style="font-size:11pt;margin-bottom:20pt;" align="center"><span style="background-color:white;padding:8px;">&nbsp;<a  href="/cgi-bin/suak/corp.exe?C21COM=F&I21DBN=SUOU&P21DBN=SUOU"><strong>Наукові&nbsp;установи</strong></a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span></p>
+
+	<p style="font-size:11pt;margin-bottom:0pt;" align="center"><span style="background-color:white;padding:8px;">&nbsp;<a  href="/cgi-bin/suak/corp.exe?C21COM=F&I21DBN=SAUA&P21DBN=SAUA"><strong>Науковці&nbsp;України</strong></a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span></p>
+	
+</td>
+
+<td ><center><a href="/cgi-bin/suak/corp.exe?C21COM=F&I21DBN=SAUA&P21DBN=SAUA"><IMG SRC="/suak/images/scientist.jpg" width="120" title="Науковці України" style="padding-left:20px;"></a></center></td>
+
+<td><center>
+
+<script type="text/javascript">
+/* <![CDATA[ */
+eval(unescape("eval%28function%28p%2Ca%2Cc%2Ck%2Ce%2Cr%29%7Be%3Dfunction%28c%29%7Breturn%28c%3Ca%3F%27%27%3Ae%28parseInt%28c/a%29%29%29+%28%28c%3Dc%25a%29%3E35%3FString.fromCharCode%28c+29%29%3Ac.toString%2836%29%29%7D%3Bif%28%21%27%27.replace%28/%5E/%2CString%29%29%7Bwhile%28c--%29r%5Be%28c%29%5D%3Dk%5Bc%5D%7C%7Ce%28c%29%3Bk%3D%5Bfunction%28e%29%7Breturn%20r%5Be%5D%7D%5D%3Be%3Dfunction%28%29%7Breturn%27%5C%5Cw+%27%7D%3Bc%3D1%7D%3Bwhile%28c--%29if%28k%5Bc%5D%29p%3Dp.replace%28new%20RegExp%28%27%5C%5Cb%27+e%28c%29+%27%5C%5Cb%27%2C%27g%27%29%2Ck%5Bc%5D%29%3Breturn%20p%7D%28%276%207%28a%2Cb%29%7Bn%7B4%282.9%29%7B3%20c%3D2.9%28%22o%22%29%3Bc.p%28b%2Cf%2Cf%29%3Ba.q%28c%29%7Dg%7B3%20c%3D2.r%28%29%3Ba.s%28%5C%27t%5C%27+b%2Cc%29%7D%7Du%28e%29%7B%7D%7D6%20h%28a%29%7B4%28a.8%29a%3Da.8%3B4%28a%3D%3D%5C%27%5C%27%29v%3B3%20b%3Da.w%28%5C%27%7C%5C%27%29%5B1%5D%3B3%20c%3B3%20d%3D2.x%28%5C%27y%5C%27%29%3Bz%283%20i%3D0%3Bi%3Cd.5%3Bi++%294%28d%5Bi%5D.A%3D%3D%5C%27B-C-D%5C%27%29c%3Dd%5Bi%5D%3B4%282.j%28%5C%27k%5C%27%29%3D%3DE%7C%7C2.j%28%5C%27k%5C%27%29.l.5%3D%3D0%7C%7Cc.5%3D%3D0%7C%7Cc.l.5%3D%3D0%29%7BF%286%28%29%7Bh%28a%29%7D%2CG%29%7Dg%7Bc.8%3Db%3B7%28c%2C%5C%27m%5C%27%29%3B7%28c%2C%5C%27m%5C%27%29%7D%7D%27%2C43%2C43%2C%27%7C%7Cdocument%7Cvar%7Cif%7Clength%7Cfunction%7CGTranslateFireEvent%7Cvalue%7CcreateEvent%7C%7C%7C%7C%7C%7Ctrue%7Celse%7CdoGTranslate%7C%7CgetElementById%7Cgoogle_translate_element2%7CinnerHTML%7Cchange%7Ctry%7CHTMLEvents%7CinitEvent%7CdispatchEvent%7CcreateEventObject%7CfireEvent%7Con%7Ccatch%7Creturn%7Csplit%7CgetElementsByTagName%7Cselect%7Cfor%7CclassName%7Cgoog%7Cte%7Ccombo%7Cnull%7CsetTimeout%7C500%27.split%28%27%7C%27%29%2C0%2C%7B%7D%29%29"))
+/* ]]> */
+</script><style type="text/css">
+<!--
+#goog-gt-tt {display:none !important;}
+
+.goog-te-banner-frame {display:none !important;}
+
+.goog-te-menu-value:hover {text-decoration:none !important;}
+
+body {top:0 !important;}
+
+#google_translate_element2 {display:none!important;}
+-->
+</style><div id="google_translate_element2"></div><div style="margin-bottom:5pt;">
+<script type="text/javascript">function googleTranslateElementInit2() {new google.translate.TranslateElement({pageLanguage: 'uk', autoDisplay: false}, 'google_translate_element2');}</script>
+<script type="text/javascript" src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit2"></script><select onchange="doGTranslate(this);"><option value="">Оберіть мову</option><option value="uk|uk" style="font-weight:bold;background:url('/gtranslate-files/16l.png') no-repeat scroll 0 -528px;padding-left:18px;">Ukrainian</option><option value="uk|ar" style="background:url('/gtranslate-files/16l.png') no-repeat scroll 0 -16px;padding-left:18px;">Arabic</option><option value="uk|hy" style="background:url('/gtranslate-files/16l.png') no-repeat scroll 0 -832px;padding-left:18px;">Armenian</option><option value="uk|az" style="background:url('/gtranslate-files/16l.png') no-repeat scroll 0 -848px;padding-left:18px;">Azerbaijani</option><option value="uk|be" style="background:url('/gtranslate-files/16l.png') no-repeat scroll 0 -768px;padding-left:18px;">Belarusian</option><option value="uk|bg" style="background:url('/gtranslate-files/16l.png') no-repeat scroll 0 -32px;padding-left:18px;">Bulgarian</option><option value="uk|zh-CN" style="background:url('/gtranslate-files/16l.png') no-repeat scroll 0 -48px;padding-left:18px;">Chinese (Simplified)</option><option value="uk|zh-TW" style="background:url('/gtranslate-files/16l.png') no-repeat scroll 0 -64px;padding-left:18px;">Chinese (Traditional)</option><option value="uk|cs" style="background:url('/gtranslate-files/16l.png') no-repeat scroll 0 -96px;padding-left:18px;">Czech</option><option value="uk|da" style="background:url('/gtranslate-files/16l.png') no-repeat scroll 0 -112px;padding-left:18px;">Danish</option><option value="uk|nl" style="background:url('/gtranslate-files/16l.png') no-repeat scroll 0 -128px;padding-left:18px;">Dutch</option><option value="uk|en" style="background:url('/gtranslate-files/16l.png') no-repeat scroll 0 -0px;padding-left:18px;">English</option><option value="uk|et" style="background:url('/gtranslate-files/16l.png') no-repeat scroll 0 -576px;padding-left:18px;">Estonian</option><option value="uk|fi" style="background:url('/gtranslate-files/16l.png') no-repeat scroll 0 -144px;padding-left:18px;">Finnish</option><option value="uk|fr" style="background:url('/gtranslate-files/16l.png') no-repeat scroll 0 -160px;padding-left:18px;">French</option><option value="uk|ka" style="background:url('/gtranslate-files/16l.png') no-repeat scroll 0 -880px;padding-left:18px;">Georgian</option><option value="uk|de" style="background:url('/gtranslate-files/16l.png') no-repeat scroll 0 -176px;padding-left:18px;">German</option><option value="uk|el" style="background:url('/gtranslate-files/16l.png') no-repeat scroll 0 -192px;padding-left:18px;">Greek</option><option value="uk|iw" style="background:url('/gtranslate-files/16l.png') no-repeat scroll 0 -416px;padding-left:18px;">Hebrew</option><option value="uk|hi" style="background:url('/gtranslate-files/16l.png') no-repeat scroll 0 -208px;padding-left:18px;">Hindi</option><option value="uk|hu" style="background:url('/gtranslate-files/16l.png') no-repeat scroll 0 -608px;padding-left:18px;">Hungarian</option><option value="uk|is" style="background:url('/gtranslate-files/16l.png') no-repeat scroll 0 -784px;padding-left:18px;">Icelandic</option><option value="uk|ga" style="background:url('/gtranslate-files/16l.png') no-repeat scroll 0 -736px;padding-left:18px;">Irish</option><option value="uk|it" style="background:url('/gtranslate-files/16l.png') no-repeat scroll 0 -224px;padding-left:18px;">Italian</option><option value="uk|ja" style="background:url('/gtranslate-files/16l.png') no-repeat scroll 0 -240px;padding-left:18px;">Japanese</option><option value="uk|ko" style="background:url('/gtranslate-files/16l.png') no-repeat scroll 0 -256px;padding-left:18px;">Korean</option><option value="uk|lv" style="background:url('/gtranslate-files/16l.png') no-repeat scroll 0 -448px;padding-left:18px;">Latvian</option><option value="uk|lt" style="background:url('/gtranslate-files/16l.png') no-repeat scroll 0 -464px;padding-left:18px;">Lithuanian</option><option value="uk|no" style="background:url('/gtranslate-files/16l.png') no-repeat scroll 0 -272px;padding-left:18px;">Norwegian</option><option value="uk|fa" style="background:url('/gtranslate-files/16l.png') no-repeat scroll 0 -672px;padding-left:18px;">Persian</option><option value="uk|pl" style="background:url('/gtranslate-files/16l.png') no-repeat scroll 0 -288px;padding-left:18px;">Polish</option><option value="uk|pt" style="background:url('/gtranslate-files/16l.png') no-repeat scroll 0 -304px;padding-left:18px;">Portuguese</option><option value="uk|ro" style="background:url('/gtranslate-files/16l.png') no-repeat scroll 0 -320px;padding-left:18px;">Romanian</option><option value="uk|ru" style="background:url('/gtranslate-files/16l.png') no-repeat scroll 0 -336px;padding-left:18px;">Russian</option><option value="uk|sr" style="background:url('/gtranslate-files/16l.png') no-repeat scroll 0 -480px;padding-left:18px;">Serbian</option><option value="uk|sk" style="background:url('/gtranslate-files/16l.png') no-repeat scroll 0 -496px;padding-left:18px;">Slovak</option><option value="uk|sl" style="background:url('/gtranslate-files/16l.png') no-repeat scroll 0 -512px;padding-left:18px;">Slovenian</option><option value="uk|es" style="background:url('/gtranslate-files/16l.png') no-repeat scroll 0 -352px;padding-left:18px;">Spanish</option><option value="uk|sw" style="background:url('/gtranslate-files/16l.png') no-repeat scroll 0 -720px;padding-left:18px;">Swahili</option><option value="uk|sv" style="background:url('/gtranslate-files/16l.png') no-repeat scroll 0 -368px;padding-left:18px;">Swedish</option></select>  </div>
+</div>
+
+<table align="center" cellspacing="5">
+<tr><td width="100" style="background-color:#e0e8f0;font-style:bold;font-
+size:9pt;padding:5px;"><center>
+<strong><small>Зареєструватись</small></strong><br><a href="http://nbuv.gov.ua/eform/submit/ua-scientist#10" target="_blank"><IMG SRC="/suak/images/inquiry.jpg" width="40" title="Реєстрація науковців України"></a>
+</td>
+
+<td width="100" style="background-color:#e0e8f0;font-style:bold;font-
+size:9pt;padding:5px;"><center>
+<strong><small>Пошук</small></strong><br>
+<a href="/cgi-bin/suak/corp.exe?C21COM=F&I21DBN=SAUA&P21DBN=SAUA"><IMG SRC="/suak/images/search.jpg" height="40" title="Пошук"></a>
+</td>
+
+<td width="100" style="background-color:#e0e8f0;font-style:bold;font-
+size:9pt;padding:5px;"><center>
+<strong><small>Про проект</small></strong><br>
+<a href="http://nbuv.gov.ua/eform/submit/ua-scientist" target="_blank"><IMG SRC="/suak/images/project.jpg" height="40" title="Інформація про проект"></a>
+</td></tr>
+<tr><td align="right"><a style="font-weight:bold;font-size:9pt;" href="http://nbuv.gov.ua/node/2712" target="_blank"><IMG SRC="/suak/images/feed_back.jpg" height="30" title="Інформація про проект"></a></td><td colspan="2" style="background-color:#e0e8f0;padding:5px;"><center><a style="font-weight:bold;font-size:9pt;" href="http://nbuv.gov.ua/node/2712" target="_blank">Зворотний зв'язок</a></center>
+</td></tr>
+
+</table>
+</td>
+
+</tr><tr>
+
+
+
+<td colspan="4" valign="center"><hr><h2>НАУКОВЦІ УКРАЇНИ</h2><center><span style="font-size:9pt;font-weight:bold;color:#000080;">cистема проходить тестування</span></center></td></tr></table>
+	
+<table><tr><td style="font-size:8pt;background-color:#F7F9FB;padding:6pt;text-align:justify;" width="750"><p>Наявний інформаційний масив про науковців України автоматично сформований на основі інформації із бібліографічних описів авторефератів дисертацій (кандидатів і докторів наук), захищених в Україні після 1996 р., список автоматично поповнюється в міру надходження авторфератів до фонду <a target="_blank" href="http://nbuv.gov.ua/">НБУВ</a>.<br>Якщо, ви не знайшли інформацію про себе, маєте бажання виправити або відобразити більш докладну інформацію про науковців України запрошуємо заповнити <a href="http://nbuv.gov.ua/eform/submit/ua-scientist#10" target="_blank">"Анкету науковця"</a>.<br>Більш докладна інформація буде сприяти точнішому налаштуванню пошукового профіля науковця. До реєстру науковців може також вноситись ретроспективна інформація та інформація про науковців, які не мають наукового ступеня, але мають наукові публікації.</p></td></tr><tr><td>&nbsp;</td></tr></table>
+
+</div>
+</div>   
+
+
+
+
+
+							<!--Место  для баннера-->
+							
+					</td>
+			</tr>
+			
+
+
+			<tr>
+					
+					<td width="90%" colspan="5" >
+							
+
+							
+					</td>
+
+
+
+				</tr>
+
+			<tr>
+	
+
+	
+
+<td valign="top"  bgcolor="#F9F9F9">
+
+
+
+
+					</td>
+</tr>
+</table>					
+<div id="TableContentr">
+<center><table  cellpadding="0" cellspacing="0" border="0" width="700">
+			<tr>
+
+	
+</td>
+</tr>
+</table>
+
+
+
+<TABLE class="advanced" BORDER=0 align="center" width="800">
+
+
+
+
+
+
+
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<title>Мельничук Микола Дмитрович</title><tr width=100%><td colspan="2" width=95%><center><span style="color:#2F2FCF;"><em>Пошуковий профіль науковця на порталі НБУВ</em></span></center><p style="font-size:10pt;"><span style="color:#3c6fa0;font-size:12pt;text-decoration:none;"><strong><a href="https://irbis-nbuv.gov.ua/ASUA/0041928" onclick="_gaq.push(['_trackEvent','Науковці України','',this.href]);" style="font-size:10pt;">ID: 0041928</a></strong></span> <img src="/suak/images/ie.png" width="20" style="border:1 solid white"> адреса матеріалу: <a href="https://irbis-nbuv.gov.ua/ASUA/0041928" onclick="_gaq.push(['_trackEvent','Науковці України','',this.href]);" style="font-size:10pt;">https://irbis-nbuv.gov.ua/ASUA/0041928</a></p><hr noshade size="1" color="#3c6fa0"></td></tr><tr><td valign="top" colspan="3"><table><tr><td></td><td width="100%"><span style="color:#3c6fa0;font-size:18pt;"><strong>Мельничук Микола Дмитрович</font></b></strong></span><br>(кандидат наук)</p></td><td valign="top"></td></tr></table></td></tr><tr><td colspan="2" valign="top"><hr noshade size="1" color="#3c6fa0"><ul><font color="#2a6496"><strong>Науковий ступінь:</strong></font><li><font color="#2F2FCF"> Рік: </font>2011.<font color="#2F2FCF"> Cтупінь: </font>Кандидат. <font color="#2F2FCF"> Спеціальність: </font>Технічні науки. <a href="/cgi-bin/suak/corp.exe?I21DBN=SAUA&P21DBN=SAUA&S21REF=10&S21CNR=20&S21STN=1&S21SRW=nz&S21SRD=UP&S21FMT=brief_elib&S21COLORTERMS=0&C21COM=S&2_S21P03=SPC=&2_S21STR=05.02.01">05.02.01 - Матеріалознавство</a><font color="#2F2FCF"> Місто: </font>Луцьк.<font color="#2F2FCF"> Установа: </font><A HREF="/cgi-bin/suak/corp.exe?I21DBN=SUOU&P21DBN=SUOU&S21REF=10&S21CNR=20&S21STN=1&S21SRW=nz&S21FMT=elib_all&S21COLORTERMS=0&C21COM=S&2_S21P03=NM=&2_S21STR=%D0%9B%D1%83%D1%86%D1%8C%D0%BA%D0%B8%D0%B9%20%D0%BD%D0%B0%D1%86%D1%96%D0%BE%D0%BD%D0%B0%D0%BB%D1%8C%D0%BD%D0%B8%D0%B9%20%D1%82%D0%B5%D1%85%D0%BD%D1%96%D1%87%D0%BD%D0%B8%D0%B9%20%D1%83%D0%BD%D1%96%D0%B2%D0%B5%D1%80%D1%81%D0%B8%D1%82%D0%B5%D1%82">Луцький національний технічний університет (Луцьк)</a></li></ul></td></tr><tr><td colspan="2"><hr noshade size="1" color="#3c6fa0"></td></tr><tr><td valign="top" width="60%"></td><td valign="top" width="40%"></td></tr><tr><td colspan="2"><hr noshade size="1" color="#3c6fa0"></td></tr><tr><td  colspan="2" valign="top" width="60%" style="padding:10pt;background-color:#F7F9FB;"><!--<center><a class="c" href="https://irbis-nbuv.gov.ua/cgi-bin/irbis_nbuv/cgiirbis_64.exe?C21COM=S&I21DBN=UJRN&P21DBN=UJRN&S21FMT=fullwebr&S21ALL=%28%3C.%3EA%3DМельничук М$.<.>%29&FT_REQUEST=&FT_PREFIX=&Z21ID=&S21STN=1&S21REF=10&S21CNR=20" target="_blank">Сформувати список публікацій</a></center>--><center><a class="c" href="https://irbis-nbuv.gov.ua/cgi-bin/irbis_nbuv/cgiirbis_64.exe?C21COM=S&I21DBN=UJRN&P21DBN=UJRN&S21FMT=fullwebr&S21ALL=(<.>A=Мельничук М. Д.$<.>)&FT_REQUEST=&FT_PREFIX=&Z21ID=&S21STN=1&S21REF=10&S21CNR=20" target="_blank">Сформувати список публікацій</a></center></td></tr><tr><td colspan="2" style="padding:15pt">
+
+
+<!####FORMAT=@insert_file>
+
+
+
+
+<!!FORMAT=@insert_export>
+
+</table>
+
+
+
+
+&nbsp;
+
+
+
+
+</td>
+
+
+
+<td valign="top">
+
+
+<td  colspan="3" class="bottom"><hr width="750">
+
+<p>Всі права захищені &copy; <a href="http://nbuv.gov.ua/">Національна бібліотека України імені В. І. Вернадського</a>
+						
+						</td>
+
+</td>
+</tr>
+
+
+
+				
+	</table>
+	</div>
+
+
+
+
+
+
+<script type="module" src="https://static.cloudflareinsights.com/beacon.min.js/vce701823e78c4301a35b7e07294d87301792088814092" integrity="sha512-UKNk8GbxkABxKcXYuLkO16EleLGUkcvJWtpSNmExE0Too3ZaFAxTscNWEc1OdAv5/BikHawapSCaiD2XCmp+Bw==" data-cf-beacon='{"version":"2024.11.0","token":"696fb330416b43dd8a408ee09999b66c","r":1,"spa":2}' crossorigin="anonymous"></script>
+<script>(function(){function c(){var b=a.contentDocument||(a.contentWindow&&a.contentWindow.document);if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'a58f1ce72f8dbe62',t:'MTc5NDQxOTE0OQ=='};var l=window.parent.location,o;try{o=new URL(l.origin).origin}catch(e){try{o=new URL(new URL(l.href).origin).origin}catch(e){o=''}}var u='/cdn-cgi/challenge-platform/scripts/jsd/main.js?ray=a58f1ce72f8dbe62',a=document.createElement('script');a.src=o?new URL(u,o).href:u;document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
+</html>
