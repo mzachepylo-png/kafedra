@@ -165,12 +165,12 @@ function initA() {
     const loupeR = wide ? Math.min(h * 0.3, 118) : Math.min(w * 0.2, 64);
     const areaL = 16, areaR = wide ? w - loupeR * 2 - 40 : w - 12;
     const slot = (areaR - areaL) / n;
-    const tw = clamp(slot * 0.58, 20, 48);
+    const tw = clamp(slot * 0.6, 20, 58);
     const hy = Math.round(h * (wide ? 0.8 : 0.82));
-    const th = Math.min(tw * 4.6, hy - (wide ? 70 : loupeR * 2 + 34));
+    const th = Math.min(tw * 4.8, hy - (wide ? 64 : loupeR * 2 + 64));
     const ty = hy - th - 10;
     const tubes = list.map((tb, i) => ({ ...tb, x: areaL + slot * (i + 0.5) - tw / 2, y: ty, w: tw, h: th, i }));
-    const loupe = wide ? { cx: w - loupeR - 22, cy: h * 0.44, r: loupeR } : { cx: w - loupeR - 14, cy: loupeR + 12, r: loupeR };
+    const loupe = wide ? { cx: w - loupeR - 22, cy: h * 0.44, r: loupeR } : { cx: w - loupeR - 14, cy: loupeR + 48, r: loupeR };
     return { w, h, hy, tubes, loupe, wide, n };
   }
 
@@ -295,7 +295,8 @@ function initA() {
     ctx.strokeStyle = rim; ctx.lineWidth = 6; ctx.beginPath(); ctx.arc(L.cx, L.cy, L.r + 2, 0, TAU); ctx.stroke();
     ctx.restore();
     const txt = tb.isX ? 'зразок X' : `${concLabel(tb.c)} мг/л`;
-    tagSmall(ctx, L.cx, L.cy - L.r - 10 < 14 ? L.cy + L.r + 22 : L.cy - L.r - 10, `Лупа ×${fnum(mag / 1, 0)} · ${txt}`, { color: '#FFF7DA', size: 11.5, weight: 700, bg: 'rgba(20,30,24,.7)' });
+    if (geo.wide) tagSmall(ctx, L.cx, L.cy - L.r - 10 < 14 ? L.cy + L.r + 22 : L.cy - L.r - 10, `Лупа ×${fnum(mag, 0)} · ${txt}`, { color: '#FFF7DA', size: 11.5, weight: 700, bg: 'rgba(20,30,24,.7)' });
+    else { tagSmall(ctx, L.cx - L.r - 12, L.cy + 6, `Лупа ×${fnum(mag, 0)}`, { align: 'right', color: '#FFF7DA', size: 11, weight: 700, bg: 'rgba(20,30,24,.7)' }); tagSmall(ctx, L.cx - L.r - 12, L.cy + 26, txt, { align: 'right', color: '#FFF7DA', size: 11, weight: 700, bg: 'rgba(20,30,24,.7)' }); }
     if (s.brown > 0.35) tagSmall(ctx, L.cx, L.cy + L.r - 12, 'побуріння', { color: '#FFE9D6', size: 10.5, bg: 'rgba(110,50,20,.8)' });
   }
 
@@ -588,46 +589,64 @@ function initB() {
   }
 
   function draw() {
-    const { ctx, w, h } = fit(cv, { aspect: isPhone() ? 0.8 : 1.45, min: 360, max: 560 });
+    const { ctx, w, h } = fit(cv, { aspect: isPhone() ? 0.62 : 1.45, min: 360, max: 640 });
     if (w < 80) return;
     const hourOfDay = (st.day % 1) * 24;
     const lightOn = st.day === 0 || hourOfDay < 14 || !runner.running;
-    const hy = Math.round(h * 0.84);
-    drawRoom(ctx, w, h, hy, lightOn);
-    const n = concs.length, pad = 14;
-    const slot = (w - 2 * pad) / n;
-    const jw = Math.min(slot * 0.84, 160), jh = Math.min(hy - 34, jw * 2.1, h * 0.8);
-    const jy = hy - jh;
+    const rows = w < 520 ? 2 : 1, cols = concs.length / rows;
+    const rowH = h / rows;
+    const hyOf = (r) => Math.round(rows === 1 ? h * 0.84 : rowH * (r + 1) - 42);
+    drawRoom(ctx, w, h, hyOf(rows - 1), lightOn);
+    const pad = 14;
+    const slot = (w - 2 * pad) / cols;
     geo = { jars: [] };
-    concs.forEach((c, i) => {
-      const jx = pad + slot * (i + 0.5) - jw / 2;
-      geo.jars.push({ x: jx, w: jw });
-      jarGlass(ctx, jx, jy, jw, jh);
-      const inner = { x: jx + 3, y: jy + jh * 0.09, w: jw - 6, h: jh * 0.9 };
-      const surf = jy + jh * 0.78;
-      ctx.save(); roundRect(ctx, jx, jy + jh * 0.07, jw, jh * 0.93, Math.min(14, jw * 0.14)); ctx.clip();
-      // агар
-      const ag = ctx.createLinearGradient(jx, 0, jx + jw, 0);
-      ag.addColorStop(0, 'rgba(196,186,140,.9)'); ag.addColorStop(0.3, 'rgba(244,238,210,.85)'); ag.addColorStop(1, 'rgba(190,180,135,.9)');
-      ctx.fillStyle = ag; ctx.fillRect(jx, surf, jw, jy + jh - surf);
-      ctx.strokeStyle = 'rgba(255,255,245,.9)'; ctx.lineWidth = 1.2; ctx.beginPath(); ctx.ellipse(jx + jw / 2, surf, jw / 2 - 1, Math.max(2, jw * 0.06), 0, Math.PI, TAU); ctx.stroke();
-      const m = cutting(st.sp, st.h, c, st.day);
-      const pxmm = (surf - inner.y - 6) / 108;
-      drawCutting(ctx, jx + jw / 2, surf, pxmm, m, st.sp, 7 + i * 31, inner);
-      ctx.restore();
-      jarFront(ctx, jx, jy, jw, jh);
-      if (i === st.sel) { ctx.save(); ctx.strokeStyle = '#E2B93B'; ctx.lineWidth = 2.5; roundRect(ctx, jx - 6, jy - jh * 0.06, jw + 12, jh + jh * 0.06 + 8, 12); ctx.stroke(); ctx.restore(); }
-      const fs = w < 420 ? 11 : 12.5;
-      tagSmall(ctx, jx + jw / 2, hy + 18, c === 0 ? 'Контроль' : `${concLabel(c)} мг/л`, { size: fs, weight: 800, color: '#173322', bg: 'rgba(255,255,255,.88)' });
-      tagSmall(ctx, jx + jw / 2, Math.min(h - 6, hy + 36), `L = ${Math.round(m.L)} мм`, { size: fs - 1, weight: 700, color: lightOn ? '#22382A' : '#E6EEF8' });
-    });
+    for (let r = 0; r < rows; r++) {
+      const hy = hyOf(r);
+      if (rows === 2 && r === 0) { // верхня полиця стелажа + лампа під нею для нижньої полиці
+        ctx.save();
+        const sg = ctx.createLinearGradient(0, hy, 0, hy + 12); sg.addColorStop(0, '#F4F6F2'); sg.addColorStop(0.4, '#C9CFC6'); sg.addColorStop(1, '#8E968B');
+        ctx.fillStyle = sg; ctx.fillRect(0, hy, w, 12);
+        ctx.fillStyle = 'rgba(0,0,0,.18)'; ctx.fillRect(0, hy + 12, w, 3);
+        const lg = ctx.createLinearGradient(0, hy + 44, 0, hy + 52); lg.addColorStop(0, lightOn ? '#FFFFFF' : '#5B6470'); lg.addColorStop(1, lightOn ? '#DDEBFF' : '#3B4350');
+        ctx.fillStyle = lg; roundRect(ctx, w * 0.06, hy + 44, w * 0.88, 7, 4); ctx.fill();
+        if (lightOn) { const c = ctx.createLinearGradient(0, hy + 50, 0, hy + rowH * 0.6); c.addColorStop(0, 'rgba(235,245,255,.4)'); c.addColorStop(1, 'rgba(235,245,255,0)'); ctx.fillStyle = c; ctx.fillRect(w * 0.04, hy + 50, w * 0.92, rowH * 0.6); }
+        ctx.restore();
+      }
+      const top = rows === 1 ? 30 : r * rowH + (r === 0 ? 34 : 62);
+      const jw = Math.min(slot * 0.8, 160), jh = Math.min(hy - top, jw * 2.1);
+      const jy = hy - jh;
+      for (let k = 0; k < cols; k++) {
+        const i = r * cols + k, c = concs[i];
+        const jx = pad + slot * (k + 0.5) - jw / 2;
+        geo.jars.push({ x: jx, w: jw, y: jy, h: jh });
+        jarGlass(ctx, jx, jy, jw, jh);
+        const inner = { x: jx + 3, y: jy + jh * 0.09, w: jw - 6, h: jh * 0.9 };
+        const surf = jy + jh * 0.8;
+        ctx.save(); roundRect(ctx, jx, jy + jh * 0.07, jw, jh * 0.93, Math.min(14, jw * 0.14)); ctx.clip();
+        const ag = ctx.createLinearGradient(jx, 0, jx + jw, 0);
+        ag.addColorStop(0, 'rgba(196,186,140,.9)'); ag.addColorStop(0.3, 'rgba(244,238,210,.85)'); ag.addColorStop(1, 'rgba(190,180,135,.9)');
+        ctx.fillStyle = ag; ctx.fillRect(jx, surf, jw, jy + jh - surf);
+        ctx.strokeStyle = 'rgba(255,255,245,.9)'; ctx.lineWidth = 1.2; ctx.beginPath(); ctx.ellipse(jx + jw / 2, surf, jw / 2 - 1, Math.max(2, jw * 0.06), 0, Math.PI, TAU); ctx.stroke();
+        const m = cutting(st.sp, st.h, c, st.day);
+        const pxmm = (surf - inner.y - 6) / 108;
+        drawCutting(ctx, jx + jw / 2, surf, pxmm, m, st.sp, 7 + i * 31, inner);
+        ctx.restore();
+        jarFront(ctx, jx, jy, jw, jh);
+        if (i === st.sel) { ctx.save(); ctx.strokeStyle = '#E2B93B'; ctx.lineWidth = 2.5; roundRect(ctx, jx - 6, jy - jh * 0.06, jw + 12, jh + jh * 0.06 + 8, 12); ctx.stroke(); ctx.restore(); }
+        const fs = w < 420 ? 11 : 12.5;
+        const darkLbl = !lightOn || (rows === 2 && r === 1 && false);
+        tagSmall(ctx, jx + jw / 2, hy + 18, c === 0 ? 'Контроль' : `${concLabel(c)} мг/л`, { size: fs, weight: 800, color: '#173322', bg: 'rgba(255,255,255,.9)' });
+        tagSmall(ctx, jx + jw / 2, Math.min(h - 5, hy + 35), `L = ${Math.round(m.L)} мм`, { size: fs - 1, weight: 700, color: darkLbl ? '#E6EEF8' : '#22382A' });
+      }
+    }
     hud.innerHTML = `<span>Доба ${Math.floor(st.day)} / ${st.D}</span><span>${lightOn ? '☀ світло' : '☾ темрява'} · 14 год</span><span>1000 лк · 25 °C</span>`;
   }
 
   cv.addEventListener('click', (e) => {
     if (!geo) return;
     const r = cv.getBoundingClientRect(), x = e.clientX - r.left;
-    geo.jars.forEach((j, i) => { if (x >= j.x - 8 && x <= j.x + j.w + 8) { st.sel = i; draw(); updateReads(); } });
+    const y = e.clientY - r.top;
+    geo.jars.forEach((j, i) => { if (x >= j.x - 8 && x <= j.x + j.w + 8 && y >= j.y - 20 && y <= j.y + j.h + 44) { st.sel = i; draw(); updateReads(); } });
   });
 
   function metricOf(m) { return st.metric === 'I' ? m.I : st.metric === 'K' ? m.K : m.roots; }

@@ -1,0 +1,377 @@
+<!doctype html>
+<html lang="uk" class="no-js">
+<head>
+  <meta charset="utf-8">
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-JWWGPMG71W"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+
+    gtag('config', 'G-JWWGPMG71W');
+  </script>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <script>try{if(localStorage.getItem('kf-view')==='desktop'){document.documentElement.classList.add('force-desktop');document.querySelector('meta[name=viewport]').setAttribute('content','width=1280')}}catch(e){}</script>
+  <title>Окисно-відновні ферменти — Біотехнології в агросфері, Онлайн лабораторія, НУБіП</title>
+  <meta name="description" content="Тема 12: активність пероксидази (гваякол, 470 нм) і поліфенолоксидази (пірокатехін, 420 нм), ізоферменти пероксидази в ПААГ за Девісом, Rf. Інтерактивні моделі спектрофотометра й зимограми.">
+  <meta name="theme-color" content="#08210F">
+  <link rel="icon" href="../../../assets/img/nubip-shield.png" type="image/png">
+  <link rel="stylesheet" href="../../../assets/css/style.css">
+  <link rel="stylesheet" href="../../../assets/css/lab.css">
+  <link rel="stylesheet" href="../../../assets/css/agro.css">
+  <link rel="stylesheet" href="../../../assets/css/agro/t12.css">
+  <script>document.documentElement.classList.replace('no-js', 'js')</script>
+</head>
+<body>
+  <a class="skip-link" href="#main">Перейти до змісту</a>
+
+  <header class="site-header">
+    <div class="container">
+      <a class="brand" href="../../../" aria-label="Кафедра фізіології, біохімії рослин та біоенергетики — на головну">
+        <img class="brand__logo" src="../../../assets/img/nubip-shield.webp" alt="" width="31" height="44">
+        <span class="brand__text">
+          <span class="brand__title">Кафедра ФБРтаБ</span>
+          <span class="brand__sub">Фізіологія, біохімія рослин та біоенергетика · НУБіП України</span>
+        </span>
+      </a>
+      <button class="nav-toggle" type="button" aria-controls="site-nav" aria-expanded="false" aria-label="Відкрити меню">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M4 7h16M4 12h16M4 17h16"/></svg>
+      </button>
+      <nav class="nav" id="site-nav" aria-label="Головна навігація">
+        <a class="nav__link" href="../../../">Головна</a>
+        <div class="nav__dd">
+          <a class="nav__link" href="../../../about/">Про кафедру
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m6 9 6 6 6-6"/></svg>
+          </a>
+          <div class="nav__menu">
+            <a href="../../../about/#department">Кафедра сьогодні<small>Місія, історія з 1898 р., наука</small></a>
+            <a href="../../../about/#team">Колектив<small>Викладачі та їхні наукові інтереси</small></a>
+            <div class="nav__group">
+              <a class="nav__group-title" href="../../../about/phd/">Доктор філософії (PhD)<small>Аспірантура кафедри</small></a>
+              <a class="nav__sub" href="../../../about/phd/#students">Наші аспіранти</a>
+              <a class="nav__sub" href="../../../about/phd/#programs">Освітньо-наукові програми</a>
+            </div>
+            <a href="../../../about/#achievements">Здобутки<small>Кафедри та викладачів</small></a>
+            <a href="../../../about/#faculty-history">Історія факультету<small>Від 1962 року до сьогодні</small></a>
+            <a href="../../../about/#administration">Адміністрація факультету<small>Деканат і контакти</small></a>
+            <a href="../../../about/#programs">Освітні програми<small>Бакалаврат · Магістратура · PhD</small></a>
+            <div class="nav__social">
+              <a class="nav__soc nav__soc--fb" href="https://www.facebook.com/profile.php?id=61596238078680&amp;locale=uk_UA" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M14 8.5V6.8c0-.8.5-1 .9-1H17V2.2L14 2.2c-3.3 0-4 2.4-4 4v2.3H7.5V12H10v10h4V12h2.8l.4-3.5H14Z"/></svg>Ми у Facebook</a>
+              <a class="nav__soc nav__soc--ig" href="https://www.instagram.com/plant_physio_chair/" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/></svg>Ми в Instagram</a>
+            </div>
+          </div>
+        </div>
+        <a class="nav__link" href="../../../#contacts">Контакти</a>
+        <a class="btn btn--green btn--kon btn--sm nav__lab" href="../../../konspekt/">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20V3H6.5A2.5 2.5 0 0 0 4 5.5z"/><path d="M4 19.5A2.5 2.5 0 0 0 6.5 22H20v-5"/></svg>
+          Конспект
+        </a>
+        <a class="btn btn--gold btn--lab btn--sm nav__lab" href="../../../lab/" aria-current="page">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 3h6M10 3v6l-5 9a2 2 0 0 0 1.7 3h10.6a2 2 0 0 0 1.7-3l-5-9V3"/><path d="M7.5 15h9"/></svg>
+          Онлайн лабораторія
+        </a>
+      </nav>
+      <div class="site-tools">
+        <span class="beta-badge" title="Сайт працює в тестовому режимі">Бета<span class="beta-badge__more">-версія</span></span>
+        <div class="report">
+          <button class="report__btn" type="button" aria-expanded="false" aria-controls="report-pop" title="Повідомити про проблему на сайті">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 9v4M12 17h.01"/><path d="M10.3 3.9 1.8 18a2 2 0 0 0 1.7 3h17a2 2 0 0 0 1.7-3L13.7 3.9a2 2 0 0 0-3.4 0Z"/></svg>
+            <span class="report__label">Повідомити про проблему</span>
+          </button>
+          <div class="report__pop" id="report-pop" role="dialog" aria-label="Повідомити про проблему на сайті" hidden>
+            <p>Знайшли помилку або щось працює не так? Опишіть проблему в короткій формі — так ми швидше її виправимо.</p>
+            <a class="report__form" href="https://forms.gle/yAqtSUqBYNnWgHQo6" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6M8 13h8M8 17h5"/></svg>Заповнити форму</a>
+            <p class="report__alt">Або напишіть нам у сторінці кафедри:</p>
+            <a class="report__fb" href="https://www.facebook.com/profile.php?id=61596238078680&amp;locale=uk_UA" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M14 8.5V6.8c0-.8.5-1 .9-1H17V2.2L14 2.2c-3.3 0-4 2.4-4 4v2.3H7.5V12H10v10h4V12h2.8l.4-3.5H14Z"/></svg>Facebook</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </header>
+
+    <main id="main" class="lab-main disc--agro">
+    <section class="page-hero page-hero--lab page-hero--agro">
+      <div class="lab-glow" aria-hidden="true"></div>
+      <div class="bg-molecules" aria-hidden="true" style="position:absolute;inset:0"></div>
+      <div class="container">
+        <nav class="breadcrumbs" aria-label="Навігаційний ланцюжок"><a href="../../../">Головна</a><span aria-hidden="true">/</span><a href="../../">Онлайн лабораторія</a><span aria-hidden="true">/</span><a href="../">Біотехнології в агросфері</a><span aria-hidden="true">/</span><span>Тема 12</span></nav>
+        <span class="kicker">Біотехнології в агросфері · Тема 12 · ЛР 51–53</span>
+        <h1>Використання біохімічних маркерів для оцінки біотехнологічного матеріалу</h1>
+        <p>Пероксидаза й поліфенолоксидаза — чутливі біохімічні маркери стану рослинної тканини: їхня активність і набір ізоферментів змінюються під дією стресу, у калюсі й у різних органах. Визначаємо активність за швидкістю потемніння розчину в кюветі спектрофотометра та розділяємо ізоформи в поліакриламідному гелі.</p>
+        <div class="lab-head"><span class="badge">ЛР 51–53</span><span class="badge">Спектрофотометрія</span><span class="badge">Електрофорез у ПААГ</span><span class="badge">Ферменти-маркери</span></div>
+      </div>
+    </section>
+
+    <div class="section" style="padding-top:48px">
+      <div class="container lab-doc">
+        <nav class="toc" aria-label="Зміст теми">
+          <h2>Зміст</h2>
+          <ol><li><a href="#goal">Мета і план</a></li><li><a href="#theory">Теоретичні відомості</a></li><li><a href="#model">Інтерактивна модель</a></li><li><a href="#protocol">Хід лабораторних робіт</a></li><li><a href="#questions">Контрольні питання</a></li><li><a href="#refs">Література</a></li><li><a href="#ag-auth-h">Автори посібника</a></li></ol>
+        </nav>
+
+        <article>
+<section class="lab-section" id="goal">
+            <h2><span class="n">01</span>Мета і план</h2>
+  <div class="goal">
+    <div><h3>Мета</h3><p>Навчитися оцінювати фізіологічний стан рослинного й біотехнологічного матеріалу (листків, калюсу, проростків) за <b>біохімічними маркерами</b> — активністю окисно-відновних ферментів пероксидази й поліфенолоксидази та спектром ізоферментів пероксидази.</p></div>
+    <div><h3>Знадобиться</h3><ul><li>спектрофотометр СФ-46 або ФЕК (фотоелектроколориметр), кювети 1 см, секундомір;</li><li>камера для вертикального електрофорезу, джерело живлення;</li><li>фосфатні й тріс-гліциновий буфери, гваякол, H<sub>2</sub>O<sub>2</sub>, пірокатехін, розчини для ПААГ, бензидин, аскорбінова кислота;</li><li>ступки, мірні колби на 25 мл, центрифуга.</li></ul></div>
+    <div><h3>Ви навчитеся</h3><ul><li>знімати кінетичну криву оптичної густини й рахувати активність за формулою посібника;</li><li>обирати довжину хвилі й розведення так, щоб залишатися в лінійному діапазоні приладу;</li><li>готувати гелі за Девісом, проявляти зимограму й обчислювати Rf ізоферментів.</li></ul></div>
+  </div>
+</section>
+
+<section class="lab-section prose" id="theory">
+            <h2><span class="n">02</span>Теоретичні відомості</h2>
+
+  <h3 id="t12-markers">Ферменти як біохімічні маркери</h3>
+  <p><b>Біохімічний маркер</b> — речовина або властивість (наприклад, активність ферменту), за зміною якої судять про стан організму, тканини чи клітинної культури. Для оцінки стійкості рослин до стресів і якості біотехнологічного матеріалу посібник пропонує два окисно-відновні ферменти — <b>пероксидазу</b> та <b>поліфенолоксидазу</b>. Обидва належать до класу <b>оксидоредуктаз</b> (КФ 1 — перший клас міжнародної класифікації ферментів; <a href="../../../konspekt/enzymes/#classes">класи ферментів у Конспекті</a>), обидва окиснюють феноли, а продукти реакції забарвлені. Тому швидкість реакції зручно стежити за тим, як темніє розчин.</p>
+  <p>За стресу (посуха, засолення, холод, ураження патогенами) у клітинах накопичуються <b>активні форми кисню</b> (АФК — пероксид водню H<sub>2</sub>O<sub>2</sub>, супероксид-аніон тощо) і розвивається окисний стрес. Пероксидаза разом із каталазою й супероксиддисмутазою входить до антиоксидантної системи і знешкоджує H<sub>2</sub>O<sub>2</sub>, тож її активність і число <b>ізоферментів</b> зазвичай зростають (<a href="../../../konspekt/plant-physiology/oxidative-stress/#defense">антиоксидантний захист</a>, <a href="../../../konspekt/stress-resistance/#antiox">стресостійкість</a>). У культурі <i>in vitro</i> (у пробірці, поза організмом) ці ферменти пов’язані з диференціацією клітин, здерев’янінням стінок і побурінням експлантатів.</p>
+
+  <h3 id="t12-pox">Пероксидаза і гваяколовий метод (ЛР 51)</h3>
+  <p><b>Пероксидаза</b> (КФ 1.11.1.7) — фермент, що містить гем (залізопорфірин), окиснює різні сполуки за допомогою пероксиду водню або органічних пероксидів. У рослин вона бере участь у диханні, знешкодженні H<sub>2</sub>O<sub>2</sub>, синтезі лігніну (полімеру, що здерев’янює клітинні стінки) й окисненні ауксину ІОК (індоліл-3-оцтової кислоти). Класичний субстрат для визначення — безбарвний <b>гваякол</b> (2-метоксифенол): пероксидаза окиснює його до бурого <b>тетрагваяколу</b>, який найсильніше поглинає світло при 470 нм:</p>
+  <div class="formula"><math display="block"><mn>4</mn><mtext> гваякол</mtext><mo>+</mo><mn>4</mn><msub><mi mathvariant="normal">H</mi><mn>2</mn></msub><msub><mi mathvariant="normal">O</mi><mn>2</mn></msub><mover><mo>⟶</mo><mtext>пероксидаза</mtext></mover><mtext>тетрагваякол</mtext><mo>+</mo><mn>8</mn><msub><mi mathvariant="normal">H</mi><mn>2</mn></msub><mi mathvariant="normal">O</mi></math></div>
+  <p>Кількість продукту вимірюють за <b>оптичною густиною</b> <i>D</i> (поглинанням, абсорбцією) — десятковим логарифмом відношення інтенсивності світла, що падає на кювету (<i>I</i><sub>0</sub>), до інтенсивності світла, що пройшло крізь неї (<i>I</i>). За законом <b>Бугера — Ламберта — Бера</b> вона пропорційна концентрації забарвленої речовини <i>c</i> і товщині шару <i>l</i>:</p>
+  <div class="formula"><math display="block"><mi>D</mi><mo>=</mo><mi>lg</mi><mfrac><msub><mi>I</mi><mn>0</mn></msub><mi>I</mi></mfrac><mo>=</mo><mi>ε</mi><mo>·</mo><mi>c</mi><mo>·</mo><mi>l</mi></math><span class="formula__n">(1)</span></div>
+  <p class="where">де <i>ε</i> — молярний коефіцієнт поглинання речовини на даній довжині хвилі. Пропорційність виконується лише до <i>D</i> ≈ 1–1,5: далі через розсіяне світло в приладі показання «лягають». Тому дуже активну витяжку розводять.</p>
+  <p>За посібником у кювету з робочою довжиною 1 см вносять 0,5 мл розчину гваяколу (183 мг на 25 мл води, ≈ 59 мМ), 1,5 мл 0,15 М фосфатного буфера pH 5,4, 0,5 мл ферментної витяжки й останнім — 0,5 мл 0,15 % H<sub>2</sub>O<sub>2</sub>. Разом <i>V</i><sub>2</sub> = 3,0 мл; у кюветі гваяколу ≈ 9,8 мМ, H<sub>2</sub>O<sub>2</sub> ≈ 7,4 мМ. Нуль приладу встановлюють за <b>контрольною кюветою</b>, де H<sub>2</sub>O<sub>2</sub> замінено 0,5 мл води. Оптичну густину при 470 нм записують через кожні 20 с протягом 2 хв. Активність виражають у відносних одиницях на 1 г сирої маси за 1 хв (с. 184–185):</p>
+  <div class="formula"><math display="block"><mi>A</mi><mo>=</mo><mfrac><mrow><mo>(</mo><msub><mi>D</mi><mn>2</mn></msub><mo>−</mo><msub><mi>D</mi><mn>1</mn></msub><mo>)</mo><mo>·</mo><mi>V</mi><mo>·</mo><msub><mi>V</mi><mn>2</mn></msub><mo>·</mo><mn>60</mn></mrow><mrow><mo>(</mo><msub><mi>t</mi><mn>2</mn></msub><mo>−</mo><msub><mi>t</mi><mn>1</mn></msub><mo>)</mo><mo>·</mo><msub><mi>V</mi><mn>1</mn></msub><mo>·</mo><mi>н</mi></mrow></mfrac></math><span class="formula__n">(2)</span></div>
+  <p class="where">де <i>D</i><sub>1</sub>, <i>D</i><sub>2</sub> — оптична густина на початку й наприкінці досліду; <i>t</i><sub>1</sub>, <i>t</i><sub>2</sub> — час початку й кінця, с; <i>V</i> — загальний об’єм витяжки, мл (25 мл); <i>V</i><sub>1</sub> — об’єм витяжки, взятий у реакцію, мл (0,5 мл); <i>V</i><sub>2</sub> — загальний об’єм рідини в кюветі, мл (3,0 мл); <i>н</i> — наважка, г (0,5 г); 60 — коефіцієнт переведення секунд у хвилини.</p>
+  <div class="callout"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 4h16v16H4z"/><path d="M8 9h8M8 13h5"/></svg><p><b>Приклад розрахунку.</b> <i>D</i><sub>1</sub> = 0,035, <i>D</i><sub>2</sub> = 0,455 за 120 с: <i>A</i> = (0,455 − 0,035)·25·3,0·60 / (120·0,5·0,5) = 1890 / 30 = <b>63</b> відн. од./(г·хв). Формула «обертає» розведення: якщо взяти вдвічі менше витяжки (<i>V</i><sub>1</sub> = 0,25 мл), ΔD зменшиться вдвічі, а <i>A</i> не зміниться — це легко перевірити в <a href="#model">моделі</a>.</p></div>
+
+  <h3 id="t12-ppo">Поліфенолоксидаза (ЛР 53)</h3>
+  <p><b>Поліфенолоксидаза</b> (ПФО, КФ 1.10.3.1, катехолоксидаза) — мідьвмісний фермент: два атоми міді активного центру зв’язують молекулу кисню. Без участі H<sub>2</sub>O<sub>2</sub> ПФО окиснює <b>о-дифеноли</b> (феноли з двома OH-групами поруч) киснем повітря до <b>о-хінонів</b> і води:</p>
+  <div class="formula"><math display="block"><mn>2</mn><mtext> о-дифенол</mtext><mo>+</mo><msub><mi mathvariant="normal">O</mi><mn>2</mn></msub><mover><mo>⟶</mo><mtext>ПФО (Cu)</mtext></mover><mn>2</mn><mtext> о-хінон</mtext><mo>+</mo><mn>2</mn><msub><mi mathvariant="normal">H</mi><mn>2</mn></msub><mi mathvariant="normal">O</mi></math></div>
+  <p>Хінони дуже реакційні: вони полімеризуються в бурі <b>меланіни</b>. Саме тому темніє зріз яблука чи картоплі, а в культурі <i>in vitro</i> буріють і гинуть експлантати й калюс — продукти окиснення фенолів токсичні для клітин. Субстрати мають різні робочі діапазони поглинання продуктів: <b>пірокатехін</b> — 366–420 нм, <b>ДОФА</b> (3,4-дигідроксифенілаланін) — 436–475 нм, <b>хлорогенова кислота</b> — 328–400 нм. За посібником у кювету 1 см вносять 0,5 мл ферментного препарату, 2,0 мл фосфатного буфера pH 7,4 і останнім — 0,5 мл 0,05 М пірокатехіну; одночасно з першою краплею вмикають секундомір і записують <i>D</i><sub>420</sub> через 20 с протягом 1 хв. Результат виражають як зміну оптичної густини за 1 хв на 1 г сирої маси (або на 1 мг білка) — у моделі її обчислено тією самою формулою (2) з <i>t</i><sub>2</sub> − <i>t</i><sub>1</sub> = 60 с.</p>
+  <p>Кінетична крива ПФО швидше відхиляється від прямої, ніж у пероксидази: хінони інактивують сам фермент («суїцидна» інактивація). Тому для розрахунку беруть початкову, лінійну ділянку.</p>
+
+  <h3 id="t12-page">Ізоферменти й електрофорез у ПААГ (ЛР 52)</h3>
+  <p><b>Ізоферменти</b> (ізоформи) — молекулярні форми одного ферменту, що каталізують ту саму реакцію, але відрізняються будовою, зарядом, розміром і, отже, рухливістю в електричному полі. Пероксидаза рослин представлена десятками ізоформ, специфічних для органів, фаз розвитку й стресів, тому <b>ізоферментний спектр</b> — набір смуг на гелі — слугує «відбитком» генотипу і стану тканини.</p>
+  <p>Розділяють ізоферменти <b>електрофорезом</b> — рухом заряджених молекул у гелі під дією електричного поля — у <b>ПААГ</b> (поліакриламідному гелі). Гель утворюється полімеризацією <b>акриламіду</b> з «зшивачем» <b>N,N′-метилен-бісакриламідом</b>; реакцію запускає <b>персульфат амонію</b> (ініціатор вільних радикалів), а <b>ТЕМЕД</b> (N,N,N′,N′-тетраметилетилендіамін) її прискорює. Що вища концентрація акриламіду (%T), то дрібніші пори і тим сильніше гель гальмує великі молекули.</p>
+  <p>Посібник використовує систему <b>Девіса</b> — <b>диск-електрофорез</b> з двох гелів: зверху <b>концентруючий</b> (великопористий, pH 6,7), де білки стискаються у вузьку зону, знизу <b>розділяючий</b> 7,5 % гель (pH 8,9), де вони розходяться за рухливістю. Блоки 115 × 115 × 2 мм, електродний тріс-гліциновий буфер pH 8,3; білки за цього pH заряджені негативно і рухаються до <b>анода</b> (+). Електрофорез ведуть спершу при 100 В, далі при 200 В до кінця розділення (у тексті посібника одиницю надруковано як «W»); положення фронту видно за барвником <b>бромфеноловим синім</b> (БФС).</p>
+  <div class="ag-tablewrap"><table class="ag-table t12-recipe">
+    <caption class="ag-note" style="caption-side:bottom;text-align:left">Склад гелів за посібником (с. 185–186) і концентрації, обчислені з частин. Об’єм одного блока 11,5 × 11,5 × 0,2 см ≈ 26,5 мл.</caption>
+    <thead><tr><th>Компонент</th><th>Розділяючий 7,5 %</th><th>Концентруючий «2,5 %»</th></tr></thead>
+    <tbody>
+      <tr><td>H<sub>2</sub>O</td><td>1 частина</td><td>3 частини</td></tr>
+      <tr><td>Буфер</td><td>«А» (тріс–HCl, pH 8,9) — 1 ч.</td><td>«В» (тріс–H<sub>3</sub>PO<sub>4</sub>, pH 6,7) — 1 ч.</td></tr>
+      <tr><td>Акриламід</td><td>«С» (30 % + 0,8 % біс) — 2 ч.</td><td>«Д» (10 % + 2,5 % біс) — 3 ч.</td></tr>
+      <tr><td>Персульфат амонію «F» (0,14 %)</td><td>4 частини</td><td>1 частина</td></tr>
+      <tr><td>ТЕМЕД</td><td>4 краплі</td><td>4 краплі</td></tr>
+      <tr><td><b>Акриламід у гелі</b></td><td class="num">30 · 2/8 = <b>7,5 %</b></td><td class="num">10 · 3/8 = <b>3,75 %</b></td></tr>
+      <tr><td>%T (акриламід + біс) / %C (частка біс)</td><td class="num">7,7 % / 2,6 %</td><td class="num">4,7 % / 20 %</td></tr>
+      <tr><td>Тріс у гелі</td><td class="num">≈ 0,38 М</td><td class="num">≈ 0,06 М</td></tr>
+    </tbody>
+  </table></div>
+  <div class="callout callout--gold"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 8v5M12 16h.01"/></svg><p><b>Перевірка рецептури.</b> Розділяючий гель справді виходить 7,5 %. А для концентруючого наведені частини (3 ч. розчину «Д» з 8) дають 3,75 % акриламіду, а не 2,5 %; 2,5 % вийде, якщо взяти 2 частини «Д» і 4 частини води. На концентрування великопористий гель 2,5–4 % працює однаково добре, але в протоколі варто зазначати фактичну концентрацію.</p></div>
+  <p>Після електрофорезу зони активності пероксидази «проявляють» прямо в гелі — отримують <b>зимограму</b> (електрофореграму, забарвлену за активністю ферменту). Гель кладуть у суміш бензидину, аскорбінової кислоти й H<sub>2</sub>O<sub>2</sub>: пероксидаза окиснює бензидин до синього продукту, а аскорбінова кислота відразу відновлює його назад. Забарвлення з’являється лише тоді, коли аскорбат у зоні вичерпано, тому за посібником</p>
+  <div class="formula"><math display="block"><msub><mi>t</mi><mtext>появи</mtext></msub><mo>=</mo><mi>k</mi><mo>·</mo><mfrac><msub><mi>C</mi><mtext>аск</mtext></msub><mi>a</mi></mfrac></math><span class="formula__n">(3)</span></div>
+  <p class="where">— час розвитку забарвлення прямо пропорційний концентрації аскорбінової кислоти <i>C</i><sub>аск</sub> і обернено пропорційний активності ізоферменту <i>a</i>; <i>k</i> — коефіцієнт для даних умов. Найактивніші смуги з’являються першими. Кожну ізоформу характеризують <b>відносною електрофоретичною рухливістю</b>:</p>
+  <div class="formula"><math display="block"><msub><mi>R</mi><mi>f</mi></msub><mo>=</mo><mfrac><msub><mi>l</mi><mtext>смуги</mtext></msub><msub><mi>l</mi><mtext>фронту</mtext></msub></mfrac></math><span class="formula__n">(4)</span></div>
+  <p class="where">де <i>l</i> — відстань від початку розділяючого гелю до середини смуги та до фронту БФС. Rf лежить між 0 і 1 і не залежить від тривалості електрофорезу, тож гелі різних дослідів можна порівнювати.</p>
+  <figure class="ag-fig">
+    <svg viewBox="0 0 640 300" role="img" aria-label="Схема зимограми: концентруючий і розділяючий гелі, лунки, смуги ізоферментів і вимірювання Rf">
+      <defs><linearGradient id="t12g" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#F1F3EC"/><stop offset="1" stop-color="#E1E8DF"/></linearGradient></defs>
+      <rect x="150" y="20" width="300" height="40" fill="#F6F7F1" stroke="#7F948A"/>
+      <rect x="150" y="60" width="300" height="220" fill="url(#t12g)" stroke="#7F948A"/>
+      <g fill="#C9D5D0"><rect x="165" y="22" width="32" height="18"/><rect x="215" y="22" width="32" height="18"/><rect x="265" y="22" width="32" height="18"/><rect x="315" y="22" width="32" height="18"/><rect x="365" y="22" width="32" height="18"/><rect x="415" y="22" width="22" height="18"/></g>
+      <g fill="#2B4C9B" opacity=".85"><rect x="165" y="92" width="32" height="6" rx="3"/><rect x="165" y="140" width="32" height="7" rx="3"/><rect x="165" y="168" width="32" height="5" rx="2"/><rect x="215" y="92" width="32" height="7" rx="3"/><rect x="215" y="118" width="32" height="5" rx="2"/><rect x="215" y="140" width="32" height="8" rx="3"/><rect x="215" y="168" width="32" height="7" rx="3"/><rect x="215" y="222" width="32" height="5" rx="2"/></g>
+      <line x1="150" y1="262" x2="450" y2="262" stroke="#4F6FD0" stroke-width="2" stroke-dasharray="6 4"/>
+      <line x1="480" y1="60" x2="480" y2="262" stroke="#1F3A2A" stroke-width="1.5"/><path d="M475 262h10M475 60h10" stroke="#1F3A2A"/>
+      <line x1="505" y1="60" x2="505" y2="144" stroke="#8C6A10" stroke-width="1.5"/><path d="M500 144h10M500 60h10" stroke="#8C6A10"/>
+      <text class="t12-svgtxt" x="488" y="250">l фронту</text>
+      <text class="t12-svgtxt" x="513" y="108" fill="#8C6A10">l смуги</text>
+      <text class="t12-svgtxt" x="20" y="44">концентруючий гель</text>
+      <text class="t12-svgtxt" x="20" y="64">(великі пори, pH 6,7)</text>
+      <text class="t12-svgtxt" x="20" y="160">розділяючий 7,5 %</text>
+      <text class="t12-svgtxt" x="20" y="180">гель (pH 8,9)</text>
+      <text class="t12-svgtxt" x="20" y="266" fill="#2B4C9B">фронт БФС</text>
+      <text class="t12-svgtxt" x="170" y="296">1</text><text class="t12-svgtxt" x="220" y="296">2</text><text class="t12-svgtxt" x="300" y="296">… доріжки (зразки)</text>
+      <text class="t12-svgtxt" x="470" y="40">− катод</text><text class="t12-svgtxt" x="470" y="292" fill="#A2281C">+ анод</text>
+      <text class="t12-svgtxt" x="545" y="150" fill="#8C6A10">Rf = l смуги / l фронту</text>
+    </svg>
+    <figcaption>Схема зимограми ізопероксидаз: зразки вносять у лунки концентруючого гелю, білки рухаються до анода; після проявлення кожну смугу характеризують величиною Rf (формула 4). Рисунок авторів сайту.</figcaption>
+  </figure>
+  <div class="callout callout--gold"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3l9 16H3z"/><path d="M12 10v4M12 17h.01"/></svg><p><b>Безпека.</b> Акриламід (мономер) — нейротоксин, бензидин — канцероген. Працюйте в рукавичках, бензидиновий розчин готуйте у витяжній шафі. У сучасних лабораторіях бензидин часто замінюють менш небезпечними хромогенами (наприклад, 3,3′,5,5′-тетраметилбензидином або гваяколом); принцип проявлення той самий.</p></div>
+
+  
+
+  <h3 id="t12-assumptions">Що в моделях — посібник, а що — наближення</h3>
+  <p>З посібника взято об’єми й концентрації реагентів, довжини хвиль, інтервали відліків, формулу (2), склад гелів, режим електрофорезу і залежність (3). Наближеннями є: «істинні» активності зразків і набір ізоформ на доріжках (умовні навчальні дані); інактивація ферменту під час реакції (кінетика першого порядку); 0,4 % розсіяного світла у фотометрі; зміна Rf з концентрацією гелю за лінійною залежністю Фергюсона (lg Rf спадає пропорційно %T, тим крутіше, чим більша молекула). Числа в моделі ілюструють закономірності, а не замінюють реальних вимірювань.</p>
+
+  <div class="ag-gloss">
+    <div><b>Оптична густина (D)</b><p>Поглинання світла розчином, D = lg(I₀/I); безрозмірна величина.</p></div>
+    <div><b>Сира маса</b><p>Маса свіжої тканини до висушування; активність рахують на 1 г сирої маси.</p></div>
+    <div><b>Ферментна витяжка</b><p>Центрифугат (рідина над осадом) гомогенату тканини в буфері.</p></div>
+    <div><b>ФЕК</b><p>Фотоелектроколориметр — простіший фотометр зі світлофільтрами замість монохроматора.</p></div>
+    <div><b>Ізоферменти</b><p>Молекулярні форми ферменту з однаковою дією, але різною будовою й рухливістю.</p></div>
+    <div><b>Зимограма</b><p>Гель після електрофорезу, забарвлений за активністю ферменту.</p></div>
+    <div><b>Rf</b><p>Відносна рухливість: відстань смуги, поділена на відстань фронту барвника.</p></div>
+    <div><b>о-Хінони</b><p>Продукти окиснення о-дифенолів; полімеризуються в бурі меланіни.</p></div>
+  </div>
+  <p class="ag-xlink">Будова ферментів і кінетика реакцій — у Конспекті: <a href="../../../konspekt/enzymes/#kinetics">кінетика ферментативних реакцій</a>, <a href="../../../konspekt/enzymes/#ph-temp">вплив pH і температури</a>. Модель цієї теми — <a href="#model">нижче</a>.</p>
+</section>
+
+<section class="lab-section" id="model">
+            <h2><span class="n">03</span>Інтерактивна модель</h2>
+  <div class="prose"><p>Три вкладки — три лабораторні роботи. У кожній змінюйте зразок і параметри: статичний кадр і графіки одразу показують розрахунок, а кнопка «▶ Запустити» проводить дослід у прискореному часі. Теорія до моделей — у підрозділах <a href="#t12-pox">пероксидаза</a>, <a href="#t12-page">ізоферменти</a>, <a href="#t12-ppo">поліфенолоксидаза</a>.</p></div>
+  <div id="t12-models">
+    <div class="ag-tabs" role="tablist" aria-label="Лабораторні роботи теми 12">
+      <button type="button" role="tab" id="t12-tab-51" aria-controls="t12-panel-51" data-hash="m51">ЛР 51 · Пероксидаза</button>
+      <button type="button" role="tab" id="t12-tab-52" aria-controls="t12-panel-52" data-hash="m52">ЛР 52 · Ізоферменти в ПААГ</button>
+      <button type="button" role="tab" id="t12-tab-53" aria-controls="t12-panel-53" data-hash="m53">ЛР 53 · Поліфенолоксидаза</button>
+    </div>
+    <div class="ag-tabpanel" id="t12-panel-51" role="tabpanel" aria-labelledby="t12-tab-51">
+      <div class="ag-model" id="m51">
+        <div class="ag-model__head"><div><h3>Кінетика окиснення гваяколу в кюветі СФ-46</h3><p>Бурий тетрагваякол накопичується в кюветі; стрілка приладу й графік показують зростання D при 470 нм. Активність — за формулою (2).</p></div></div>
+      </div>
+    </div>
+    <div class="ag-tabpanel" id="t12-panel-52" role="tabpanel" aria-labelledby="t12-tab-52" hidden>
+      <div class="ag-model" id="m52">
+        <div class="ag-model__head"><div><h3>Вертикальний диск-електрофорез і зимограма ізопероксидаз</h3><p>Зразки шести тканин розділяються в 7,5 % ПААГ, потім гель проявляють бензидином з аскорбатом: смуги з’являються в порядку спадання активності.</p></div></div>
+      </div>
+    </div>
+    <div class="ag-tabpanel" id="t12-panel-53" role="tabpanel" aria-labelledby="t12-tab-53" hidden>
+      <div class="ag-model" id="m53">
+        <div class="ag-model__head"><div><h3>Окиснення пірокатехіну поліфенолоксидазою</h3><p>Жовтий о-бензохінон швидко буріє; оберіть субстрат і довжину хвилі з його робочого діапазону, відліки — 1 хв через 20 с.</p></div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="lab-section prose ag-proto" id="protocol">
+            <h2><span class="n">04</span>Хід лабораторних робіт</h2>
+  <details open><summary>Робота 51. Визначення активності пероксидази <small>с. 184–185</small></summary><div class="ag-proto__body">
+    <p><b>Реактиви:</b> 0,15 М фосфатний буфер pH 5,4; 0,15 % H<sub>2</sub>O<sub>2</sub>; розчин гваяколу (183 мг на 25 мл води); рослинний матеріал.</p>
+    <ol>
+      <li>Наважку листків або калюсу 500 мг розтерти в ступці з невеликою кількістю фосфатного буфера, перенести в мірну колбу на 25 мл і довести буфером до мітки.</li>
+      <li>Відстояти 10 хв, центрифугувати 10 хв при 4000 об/хв; центрифугат — ферментна витяжка.</li>
+      <li>Контрольна кювета (1 см): 0,5 мл гваяколу + 1,5 мл буфера + 0,5 мл витяжки + 0,5 мл води. За нею встановити стрілку приладу на нуль при 470 нм.</li>
+      <li>Дослідна кювета: 0,5 мл гваяколу + 1,5 мл буфера + 0,5 мл витяжки + 0,5 мл 0,15 % H<sub>2</sub>O<sub>2</sub> (останнім), перемішати, увімкнути секундомір.</li>
+      <li>Записувати <i>D</i><sub>470</sub> через кожні 20 с протягом 2 хв; побудувати кінетичну криву.</li>
+      <li>Обчислити активність за формулою (2): <i>V</i> = 25 мл, <i>V</i><sub>1</sub> = 0,5 мл, <i>V</i><sub>2</sub> = 3,0 мл, <i>н</i> = 0,5 г, <i>t</i><sub>2</sub> − <i>t</i><sub>1</sub> = 120 с. Якщо <i>D</i> перевищує ≈ 1, повторити з розведеною витяжкою.</li>
+    </ol>
+  </div></details>
+  <details><summary>Робота 52. Вивчення ізоферментного спектра пероксидаз <small>с. 185–186</small></summary><div class="ag-proto__body">
+    <ol>
+      <li>2,5 г листків гомогенізувати з трикратним об’ємом тріс-гліцинового буфера pH 8,3 (тріс 6 г, гліцин 28,8 г, вода до 1 л; ≈ 0,05 М тріс, 0,38 М гліцин).</li>
+      <li>Центрифугувати 20 хв при 2000 <i>g</i>; для електрофорезу взяти супернатант.</li>
+      <li>Безпосередньо перед аналізом приготувати розчини «А», «В», «С», «Д», «F» і залити гелі за таблицею в <a href="#t12-page">теорії</a>: спершу розділяючий 7,5 %, після полімеризації — концентруючий з гребінкою для лунок. Блок 115 × 115 × 2 мм.</li>
+      <li>Внести зразки з бромфеноловим синім, залити електродний тріс-гліциновий буфер pH 8,3. Електрофорез: спершу 100 В, далі 200 В до кінця розподілу (фронт БФС за 0,5 см від низу гелю).</li>
+      <li>Проявлення: 20 мл основного розчину бензидину (2 г бензидину в 18 мл льодяної оцтової кислоти + 72 мл води) змішати з 70,4 мг аскорбінової кислоти, 20 мл 0,6 % H<sub>2</sub>O<sub>2</sub> і 60 мл води (у 100 мл: ≈ 4 мМ аскорбату, ≈ 0,12 % H<sub>2</sub>O<sub>2</sub>). Занурити гель і стежити за появою смуг.</li>
+      <li>Виміряти відстані до смуг і фронту, обчислити Rf за формулою (4), замалювати зимограму, порівняти зразки.</li>
+    </ol>
+  </div></details>
+  <details><summary>Робота 53. Визначення активності поліфенолоксидази <small>с. 186–187</small></summary><div class="ag-proto__body">
+    <p><b>Реактиви:</b> 0,05 М розчин пірокатехіну; фосфатний буфер pH 7,4 (у посібнику надруковано «1,15 М» — імовірно, 0,15 М); проростки або калюс.</p>
+    <ol>
+      <li>Наважку 500–1000 мг розтерти в ступці з фосфатним буфером (pH 7,0–7,4), перенести в мірну колбу на 25 мл, довести до мітки.</li>
+      <li>Центрифугувати 60 хв при 30 000 <i>g</i>.</li>
+      <li>У кювету 1 см внести 0,5 мл ферментного препарату, 2,0 мл буфера pH 7,4 і останнім — 0,5 мл пірокатехіну; з першою краплею ввімкнути секундомір. Контроль — дистильована вода.</li>
+      <li>Вимірювати <i>D</i><sub>420</sub> протягом 1 хв з інтервалом 20 с.</li>
+      <li>Результат виразити як зміну оптичної густини за 1 хв на 1 г сирої маси (або на 1 мг білка).</li>
+    </ol>
+  </div></details>
+</section>
+
+<section class="lab-section" id="questions">
+            <h2><span class="n">05</span>Контрольні питання</h2>
+  <div class="qa">
+    <details><summary>Дайте визначення ферментам пероксидаза й поліфенолоксидаза та розкажіть про їхні функціональні особливості.</summary><div>Пероксидаза — гемовий фермент, що окиснює феноли й інші сполуки пероксидом водню (знешкодження H<sub>2</sub>O<sub>2</sub>, синтез лігніну, окиснення ауксину). Поліфенолоксидаза — мідьвмісний фермент, що окиснює о-дифеноли киснем повітря до о-хінонів (захисні реакції, побуріння тканин).</div></details>
+    <details><summary>Чому H<sub>2</sub>O<sub>2</sub> вносять у кювету останнім і чому контрольна кювета — без нього?</summary><div>Реакція починається з моменту додавання субстрату-окисника; так момент старту збігається з увімкненням секундоміра. Контрольна кювета містить усі забарвлені компоненти, крім H<sub>2</sub>O<sub>2</sub>, тож прилад віднімає власне забарвлення витяжки й реактивів.</div></details>
+    <details><summary>Навіщо у формулі множники <i>V</i>/<i>V</i><sub>1</sub>, <i>V</i><sub>2</sub> і 60?</summary><div><i>V</i>/<i>V</i><sub>1</sub>·<i>н</i> перераховує результат з аліквоти витяжки на 1 г тканини, <i>V</i><sub>2</sub> враховує об’єм реакційної суміші, 60 переводить секунди в хвилини. Тому активність не залежить від того, скільки витяжки взято в кювету.</div></details>
+    <details><summary>Що робити, якщо оптична густина наприкінці досліду більша за 1,5?</summary><div>Вийти за межі лінійності приладу: розвести витяжку (менший <i>V</i><sub>1</sub> або менша наважка), бо інакше активність буде занижена.</div></details>
+    <details><summary>Чим концентруючий гель відрізняється від розділяючого?</summary><div>Великими порами й іншим pH (6,7 проти 8,9). У ньому білки стискаються у вузьку зону між іонами хлориду й гліцинату, а розділяються вже в дрібнопористому 7,5 % гелі.</div></details>
+    <details><summary>Чому сильніші смуги на зимограмі з’являються раніше?</summary><div>Аскорбінова кислота відновлює окиснений бензидин, доки не вичерпається; що активніший фермент у смузі, то швидше він її витрачає. Час появи t = k·C<sub>аск</sub>/a.</div></details>
+    <details><summary>Чому Rf, а не просто відстань, характеризує ізофермент?</summary><div>Відстань залежить від тривалості електрофорезу й напруги, а відношення до фронту барвника — ні; Rf дозволяє порівнювати різні гелі.</div></details>
+    <details><summary>Як ізоферментний спектр пероксидази використовують як маркер стійкості?</summary><div>За стресу з’являються нові (індуковані) ізоформи або посилюються наявні; порівнюючи спектри сортів чи ліній у контролі й під стресом, добирають стійкі генотипи та контролюють стабільність клітинних культур.</div></details>
+  </div>
+</section>
+
+<section class="lab-section" id="refs">
+            <h2><span class="n">06</span>Література</h2>
+  <ol class="refs">
+    <li>Мельничук, М. Д., &amp; Кляченко, О. Л. (2014). <i>Біотехнологія в агросфері: навчальний посібник</i> (с. 184–188). НУБіП України.</li>
+    <li>Chance, B., &amp; Maehly, A. C. (1955). Assay of catalases and peroxidases. <i>Methods in Enzymology, 2</i>, 764–775. <a href="https://doi.org/10.1016/S0076-6879(55)02300-8" target="_blank" rel="noopener">https://doi.org/10.1016/S0076-6879(55)02300-8</a></li>
+    <li>Davis, B. J. (1964). Disc electrophoresis — II. Method and application to human serum proteins. <i>Annals of the New York Academy of Sciences, 121</i>(2), 404–427. <a href="https://doi.org/10.1111/j.1749-6632.1964.tb14213.x" target="_blank" rel="noopener">https://doi.org/10.1111/j.1749-6632.1964.tb14213.x</a></li>
+    <li>Ferguson, K. A. (1964). Starch-gel electrophoresis — application to the classification of pituitary proteins and polypeptides. <i>Metabolism, 13</i>(10), 985–1002. <a href="https://doi.org/10.1016/S0026-0495(64)80018-4" target="_blank" rel="noopener">https://doi.org/10.1016/S0026-0495(64)80018-4</a></li>
+    <li>Passardi, F., Cosio, C., Penel, C., &amp; Dunand, C. (2005). Peroxidases have more functions than a Swiss army knife. <i>Plant Cell Reports, 24</i>(5), 255–265. <a href="https://doi.org/10.1007/s00299-005-0972-6" target="_blank" rel="noopener">https://doi.org/10.1007/s00299-005-0972-6</a></li>
+    <li>Mayer, A. M. (2006). Polyphenol oxidases in plants and fungi: Going places? A review. <i>Phytochemistry, 67</i>(21), 2318–2331. <a href="https://doi.org/10.1016/j.phytochem.2006.08.006" target="_blank" rel="noopener">https://doi.org/10.1016/j.phytochem.2006.08.006</a></li>
+  </ol>
+</section>
+          <aside class="ag-authors" aria-labelledby="ag-auth-h"><h2 id="ag-auth-h">Автори навчального посібника</h2><p>Лабораторні роботи, протоколи й рецептури цього розділу побудовано за посібником:</p><div class="ag-authors__list"><div class="ag-author"><b>Мельничук Микола Дмитрович</b><span>науковець у галузі біотехнології рослин; НУБіП України</span><a href="https://irbis-nbuv.gov.ua/ASUA/0041928" target="_blank" rel="noopener">Публікації (НБУ ім. В. І. Вернадського)</a></div><div class="ag-author"><b>Кляченко Оксана Леонідівна</b><span>докторка сільськогосподарських наук, професорка, академік АН вищої школи України; НУБіП України</span><a href="https://uk.wikipedia.org/wiki/Кляченко_Оксана_Леонідівна" target="_blank" rel="noopener">Вікіпедія</a><a href="https://orcid.org/0000-0002-4087-4082" target="_blank" rel="noopener">ORCID</a></div></div><div class="ag-book"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20V3H6.5A2.5 2.5 0 0 0 4 5.5z"/><path d="M4 19.5A2.5 2.5 0 0 0 6.5 22H20v-5"/></svg><span>Мельничук, М. Д., &amp; Кляченко, О. Л. (2014). <i>Біотехнологія в агросфері: навчальний посібник для студентів вищих навчальних закладів</i>. НУБіП України.</span></div></aside>
+          <div class="lab-nav"><a class="btn btn--outline" href="../genetic-engineering/">← Тема 11. Генетична інженерія</a><a class="btn" href="../cryopreservation/">Тема 13. Кріозбереження →</a></div>
+        </article>
+      </div>
+    </div>
+  </main>
+
+
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer__grid">
+        <div class="footer__brand">
+          <img src="../../../assets/img/nubip-shield.webp" alt="Герб НУБіП України" width="37" height="52" loading="lazy">
+          <div>
+            <strong>Кафедра фізіології, біохімії рослин та біоенергетики</strong>
+            Факультет захисту рослин, біотехнологій та екології<br>Національний університет біоресурсів і природокористування України
+          </div>
+        </div>
+        <div class="footer__col">
+          <h3>Розділи</h3>
+          <ul>
+            <li><a href="../../../about/">Про кафедру</a></li>
+            <li><a href="../../../about/#faculty-history">Історія факультету</a></li>
+            <li><a href="../../../about/#administration">Адміністрація факультету</a></li>
+            <li><a href="../../../about/#programs">Освітні програми</a></li>
+            <li><a href="../../../about/phd/">Доктор філософії (PhD)</a></li>
+            <li><a href="../../../about/#achievements">Здобутки</a></li>
+          </ul>
+        </div>
+        <div class="footer__col">
+          <h3>Для студентів</h3>
+          <ul>
+            <li><a href="../../../lab/">Онлайн лабораторія</a></li>
+            <li><a href="../../../lab/biochemistry/">Біохімія рослин</a></li>
+            <li><a href="../../../lab/plant-physiology/">Фізіологія рослин</a></li>
+            <li><a href="../../../lab/analytical-chemistry/">Аналітична хімія</a></li>
+            <li><a href="../../../lab/plant-anatomy/">Анатомія рослин</a></li>
+            <li><a href="../../../lab/instrumental/">Інструментальні методи</a></li>
+            <li><a href="../../../lab/test-systems/">Тест-системи</a></li>
+            <li><a href="../../../lab/bioenergetics/">Біоенергетика</a></li>
+            <li><a href="../../../konspekt/">Конспект</a></li>
+            <li><a href="../../../konspekt/pathogens/">Збудники хвороб рослин</a></li>
+            <li><a href="../../../konspekt/weeds/">Бур'яни України</a></li>
+            <li><a href="../../../konspekt/amino-acids/">Амінокислоти</a></li>
+            <li><a href="../../../konspekt/enzymes/">Ферменти</a></li>
+            <li><a href="../../../konspekt/plant-cell/">Відмінності рослинної і тваринної клітин</a></li>
+            <li><a href="../../../konspekt/plant-molecular-genetics/">Молекулярна генетика рослин</a></li>
+            <li><a href="../../../konspekt/plant-physiology/">Фізіологія рослин</a></li>
+            <li><a href="../../../konspekt/plant-physiology/ion-transport/">Транспорт іонів</a></li>
+            <li><a href="../../../konspekt/plant-physiology/water-regime/">Водний режим рослин</a></li>
+            <li><a href="../../../konspekt/plant-physiology/regulation/">Системи регуляції у рослин</a></li>
+            <li><a href="../../../konspekt/plant-physiology/growth-development/">Ріст і розвиток рослин</a></li>
+            <li><a href="../../../konspekt/plant-physiology/excretion/">Фізіологія виділення речовин</a></li>
+            <li><a href="../../../konspekt/plant-physiology/oxidative-stress/">Резистентність рослин та окисний стрес</a></li>
+            <li><a href="../../../konspekt/alkaloids/">Алкалоїди</a></li>
+            <li><a href="../../../konspekt/fermentation/">Бродіння</a></li>
+            <li><a href="../../../konspekt/stress-resistance/">Стійкість рослин до стресів</a></li>
+            <li><a href="../../../konspekt/extraction/">Екстракція БАР</a></li>
+            <li><a href="../../../konspekt/allium-cepa-test/"><i>Allium cepa</i> тест</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer__view">
+        <button class="view-switch" type="button" data-view-switch><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8M12 17v4"/></svg><span data-view-label>ПК-версія сайту</span></button>
+      </div>
+      <div class="footer__bottom">
+        <span>© <span data-year>2026</span> Кафедра фізіології, біохімії рослин та біоенергетики, НУБіП України</span>
+        <a href="https://nubip.edu.ua" target="_blank" rel="noopener">nubip.edu.ua</a>
+      </div>
+    </div>
+  </footer>
+
+  <script defer src="../../../assets/js/main.js"></script>
+  <script defer src="../../../assets/js/lightbox.js"></script>
+  <script type="module" src="../../../assets/js/lab/agro/t12.js"></script>
+</body>
+</html>
