@@ -1,0 +1,30 @@
+{
+ "key": "c05_suspension",
+ "query": {
+  "commons": "plant cell suspension culture"
+ },
+ "candidates": [
+  {
+   "k": "c1",
+   "file": "File:IPPRAS2.jpg",
+   "url": "https://commons.wikimedia.org/wiki/File:IPPRAS2.jpg",
+   "thumb": "https://thumb.wikimedia.org/wikipedia/commons/thumb/d/da/IPPRAS2.jpg/1280px-IPPRAS2.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
+   "w": 3415,
+   "h": 2489,
+   "artist": "Titovamv",
+   "license": "CC BY-SA 4.0",
+   "description": "Industrial bioreactors for cultivation of plant cell suspension cultures for the purpose of obtaining of secondary metabolites."
+  },
+  {
+   "k": "c2",
+   "file": "File:IPPRAS1.jpg",
+   "url": "https://commons.wikimedia.org/wiki/File:IPPRAS1.jpg",
+   "thumb": "https://thumb.wikimedia.org/wikipedia/commons/thumb/a/a2/IPPRAS1.jpg/1280px-IPPRAS1.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
+   "w": 3603,
+   "h": 2375,
+   "artist": "Titovamv",
+   "license": "CC BY-SA 4.0",
+   "description": "Industrial bioreactor, filtration and sterilization equipment, which are used in the cultivation of plant cell suspension cultures for obtaining jf secondary metabolites."
+  }
+ ]
+}

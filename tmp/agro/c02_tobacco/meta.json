@@ -1,0 +1,19 @@
+{
+ "key": "c02_tobacco",
+ "query": {
+  "commons": "tobacco callus"
+ },
+ "candidates": [
+  {
+   "k": "c1",
+   "file": "File:Callus1.jpg",
+   "url": "https://commons.wikimedia.org/wiki/File:Callus1.jpg",
+   "thumb": "https://thumb.wikimedia.org/wikipedia/commons/thumb/1/18/Callus1.jpg/1280px-Callus1.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
+   "w": 2000,
+   "h": 1334,
+   "artist": "Igge",
+   "license": "CC BY-SA 3.0",
+   "description": "Callus Nicotiana tabacum"
+  }
+ ]
+}

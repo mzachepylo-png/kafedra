@@ -1,0 +1,19 @@
+{
+ "key": "c06_albino",
+ "query": {
+  "commons": "albino plantlet"
+ },
+ "candidates": [
+  {
+   "k": "c1",
+   "file": "File:Drosera capensis albino flower stalk cutting with two growing plantlets.JPG",
+   "url": "https://commons.wikimedia.org/wiki/File:Drosera_capensis_albino_flower_stalk_cutting_with_two_growing_plantlets.JPG",
+   "thumb": "https://thumb.wikimedia.org/wikipedia/commons/thumb/1/1b/Drosera_capensis_albino_flower_stalk_cutting_with_two_growing_plantlets.JPG/1280px-Drosera_capensis_albino_flower_stalk_cutting_with_two_growing_plantlets.JPG?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
+   "w": 1745,
+   "h": 1309,
+   "artist": "Roarkes",
+   "license": "CC BY-SA 3.0",
+   "description": "Drosera capensis albino flower stalk cutting with two growing plantlets developed in one month."
+  }
+ ]
+}

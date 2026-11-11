@@ -1,0 +1,96 @@
+{
+ "key": "c02_explant",
+ "query": {
+  "commons": "explant in vitro"
+ },
+ "candidates": [
+  {
+   "k": "c1",
+   "file": "File:Aseptic in vitro cultivated plantlets of cucumber regenerated from shoot apical meristem explants on half-strength Murashige-Scoog medium supplemented with cytokinin 6-Benzylaminopurine in concentration 1 mg l.tif",
+   "url": "https://commons.wikimedia.org/wiki/File:Aseptic_in_vitro_cultivated_plantlets_of_cucumber_regenerated_from_shoot_apical_meristem_explants_on_half-strength_Murashige-Scoog_medium_supplemented_with_cytokinin_6-Benzylaminopurine_in_concentration_1_mg_l.tif",
+   "thumb": "https://thumb.wikimedia.org/wikipedia/commons/thumb/b/b0/Aseptic_in_vitro_cultivated_plantlets_of_cucumber_regenerated_from_shoot_apical_meristem_explants_on_half-strength_Murashige-Scoog_medium_supplemented_with_cytokinin_6-Benzylaminopurine_in_concentration_1_mg_l.tif/lossy-page1-1280px-thumbnail.tif.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
+   "w": 2560,
+   "h": 1920,
+   "artist": "Yuliya Krasylenko",
+   "license": "CC BY 4.0",
+   "description": "Aseptic in vitro cultivated plantlets of cucumber (Cucumis sativus L.) regenerated from shoot apical meristem explants on half-strength Murashige-Scoog medium supplemented with cytokinin 6-Benzylaminopurine (BAP) in concentration 1 mg/l. In plant biotechnology this approach is used for a large-scale"
+  },
+  {
+   "k": "c2",
+   "file": "File:Generation of RPE-like and NR-like tissues in vitro using Wntβ-catenin or Fgf stimulation.jpg",
+   "url": "https://commons.wikimedia.org/wiki/File:Generation_of_RPE-like_and_NR-like_tissues_in_vitro_using_Wnt%CE%B2-catenin_or_Fgf_stimulation.jpg",
+   "thumb": "https://thumb.wikimedia.org/wikipedia/commons/thumb/5/52/Generation_of_RPE-like_and_NR-like_tissues_in_vitro_using_Wnt%CE%B2-catenin_or_Fgf_stimulation.jpg/1280px-Generation_of_RPE-like_and_NR-like_tissues_in_vitro_using_Wnt%CE%B2-catenin_or_Fgf_stimulation.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
+   "w": 2140,
+   "h": 1958,
+   "artist": "Andrabi, M., Kuraku, S., Takata, N. et al.",
+   "license": "CC BY 4.0",
+   "description": "Figure 2: Generation of RPE-like and NR-like tissues in vitro using Wnt/β-catenin or Fgf stimulation. (a) Schematic of marker gene expression and signaling pathways that promote neural retina epithelial (NRE) tissue to form neural retina (NR) or retinal pigmented epithelial (RPE) tissues. (b) Transi"
+  },
+  {
+   "k": "c3",
+   "file": "File:Callus in MS-Media.png",
+   "url": "https://commons.wikimedia.org/wiki/File:Callus_in_MS-Media.png",
+   "thumb": "https://thumb.wikimedia.org/wikipedia/commons/thumb/7/7c/Callus_in_MS-Media.png/1280px-Callus_in_MS-Media.png?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
+   "w": 2000,
+   "h": 2667,
+   "artist": "Iripseudocorus",
+   "license": "CC BY-SA 4.0",
+   "description": "Murashige-Skoog is a common medium for somatic embryogenesis. The addition of certain plant growth regulators will encourage callus formation on plant explants, for example on Robusta coffee leaves. Callus will grow like a swelling on the explant and has meristematic properties. This callus can be s"
+  },
+  {
+   "k": "c4",
+   "file": "File:Monster of the deep.tif",
+   "url": "https://commons.wikimedia.org/wiki/File:Monster_of_the_deep.tif",
+   "thumb": "https://thumb.wikimedia.org/wikipedia/commons/thumb/2/26/Monster_of_the_deep.tif/lossless-page1-1280px-Monster_of_the_deep.tif.png?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
+   "w": 1791,
+   "h": 916,
+   "artist": "Olena12",
+   "license": "CC BY 4.0",
+   "description": "Multiphoton microscopy was used to visualize ovarian neoplasm, derived in vitro. Distorted ovarian body appears in white with blue follicles, collagen and elastin fibers in green as second harmonic generation. Highly autofluorescent fat emerges in various hues of blue and gray."
+  },
+  {
+   "k": "c5",
+   "file": "File:Plant Observation.jpg",
+   "url": "https://commons.wikimedia.org/wiki/File:Plant_Observation.jpg",
+   "thumb": "https://thumb.wikimedia.org/wikipedia/commons/thumb/3/32/Plant_Observation.jpg/1280px-Plant_Observation.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
+   "w": 3096,
+   "h": 4128,
+   "artist": "Iripseudocorus",
+   "license": "CC BY-SA 4.0",
+   "description": "The initial formation of callus looks like a small swelling at the edge of the explant or on the part that has been cut. Observation using a loupe can help determine the first time callus forms, and help see contamination in plant explants that may be missed by the eye."
+  },
+  {
+   "k": "c6",
+   "file": "File:Instructive growth factors regulating fate decisions in embryonic NCSCs..jpg",
+   "url": "https://commons.wikimedia.org/wiki/File:Instructive_growth_factors_regulating_fate_decisions_in_embryonic_NCSCs..jpg",
+   "thumb": "https://upload.wikimedia.org/wikipedia/commons/7/70/Instructive_growth_factors_regulating_fate_decisions_in_embryonic_NCSCs..jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail_unscaled",
+   "w": 500,
+   "h": 468,
+   "artist": "Shakhova, O., and Sommer, L., Neural crest-derived stem cells (May 4, 2010), StemBook, ed. The Stem Cell Research Community, StemBook, doi/10.3824/stembook.1.51.1, http://www.stembook.org.",
+   "license": "CC BY 3.0",
+   "description": "Schematic depiction of an in vitro culture system used to isolate NCSCs. The neural tube is isolated from a rodent or avian embryo at a developmental stage before in vivo neural crest cell delamination. After plating the neural tube onto a substrate-coated plastic dish, NCSCs emigrate from the dorsa"
+  },
+  {
+   "k": "c7",
+   "file": "File:Regenerated cucumber aseptically cultivated of half-strength Murashige and Scoog (MS) medium.tif",
+   "url": "https://commons.wikimedia.org/wiki/File:Regenerated_cucumber_aseptically_cultivated_of_half-strength_Murashige_and_Scoog_(MS)_medium.tif",
+   "thumb": "https://thumb.wikimedia.org/wikipedia/commons/thumb/8/83/Regenerated_cucumber_aseptically_cultivated_of_half-strength_Murashige_and_Scoog_%28MS%29_medium.tif/lossy-page1-1280px-Regenerated_cucumber_aseptically_cultivated_of_half-strength_Murashige_and_Scoog_%28MS%29_medium.tif.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
+   "w": 2560,
+   "h": 1920,
+   "artist": "Yuliya Krasylenko",
+   "license": "CC BY 4.0",
+   "description": "Aseptic in vitro cultivated plantlets of cucumber (Cucumis sativus L.) regenerated from shoot apical meristem explants o half-strength Murashige-Scoog medium. In plant biotechnology this approach is used for a large-scale micropropagation of plant material. Image was captured using Axio Zoom.V16 Ste"
+  },
+  {
+   "k": "c8",
+   "file": "File:Грибне зараження.jpg",
+   "url": "https://commons.wikimedia.org/wiki/File:%D0%93%D1%80%D0%B8%D0%B1%D0%BD%D0%B5_%D0%B7%D0%B0%D1%80%D0%B0%D0%B6%D0%B5%D0%BD%D0%BD%D1%8F.jpg",
+   "thumb": "https://thumb.wikimedia.org/wikipedia/commons/thumb/7/7d/%D0%93%D1%80%D0%B8%D0%B1%D0%BD%D0%B5_%D0%B7%D0%B0%D1%80%D0%B0%D0%B6%D0%B5%D0%BD%D0%BD%D1%8F.jpg/1280px-%D0%93%D1%80%D0%B8%D0%B1%D0%BD%D0%B5_%D0%B7%D0%B0%D1%80%D0%B0%D0%B6%D0%B5%D0%BD%D0%BD%D1%8F.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
+   "w": 2560,
+   "h": 1920,
+   "artist": "SaintSophia",
+   "license": "CC BY-SA 4.0",
+   "description": "fungal infection of an explant in vitro"
+  }
+ ]
+}

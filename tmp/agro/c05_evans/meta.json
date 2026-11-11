@@ -1,0 +1,30 @@
+{
+ "key": "c05_evans",
+ "query": {
+  "commons": "Evans blue staining"
+ },
+ "candidates": [
+  {
+   "k": "c1",
+   "file": "File:Pipeline for multiscale hyperdimensional analysis of organoids.webp",
+   "url": "https://commons.wikimedia.org/wiki/File:Pipeline_for_multiscale_hyperdimensional_analysis_of_organoids.webp",
+   "thumb": "https://thumb.wikimedia.org/wikipedia/commons/thumb/e/e8/Pipeline_for_multiscale_hyperdimensional_analysis_of_organoids.webp/1280px-Pipeline_for_multiscale_hyperdimensional_analysis_of_organoids.webp?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
+   "w": 1597,
+   "h": 2148,
+   "artist": "Alexandre Albanese, Justin M. Swaney, Dae Hee Yun, Nicholas B. Evans, Jenna M. Antonucci, Silvia Velasco, Chang Ho Sohn, Paola Arlotta, Lee Gehrke &amp; Kwanghun Chung",
+   "license": "CC BY 4.0",
+   "description": "(a) Scheme showing the pipeline where cerebral organoids are grown from stem cells, fixed in 4% PFA, then post-fixed with SHIELD poly-epoxide crosslinker. Organoids are then delipidated and labeled with antibodies using eFLASH for rapid uniform staining. An axially sweeping light-sheet microscope wa"
+  },
+  {
+   "k": "c2",
+   "file": "File:Nopoiulus kochii gonopod development 01.jpg",
+   "url": "https://commons.wikimedia.org/wiki/File:Nopoiulus_kochii_gonopod_development_01.jpg",
+   "thumb": "https://thumb.wikimedia.org/wikipedia/commons/thumb/5/55/Nopoiulus_kochii_gonopod_development_01.jpg/1280px-Nopoiulus_kochii_gonopod_development_01.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
+   "w": 3856,
+   "h": 3168,
+   "artist": "Leandro Drago, Giuseppe Fusco and Alessandro Minelli (Department of Biology, University of Padova, Via Ugo Bassi 58/B, I-35131 Padova, Italy)",
+   "license": "CC BY 2.5",
+   "description": "In the juliform millipede Nopoiulus kochii (Gervais, 1847) (Blaniulidae), the eighth and the ninth pair of trunk appendages are typical legs since their first appearance in the III post-embryonic instar and so remain in the IV instar (A, D, G), and only turn into short, scale-like appendages with th"
+  }
+ ]
+}

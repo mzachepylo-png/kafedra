@@ -1,0 +1,85 @@
+{
+ "key": "c03_hemocyt",
+ "query": {
+  "commons": "hemocytometer"
+ },
+ "candidates": [
+  {
+   "k": "c1",
+   "file": "File:Hemocytometer with penny.JPG",
+   "url": "https://commons.wikimedia.org/wiki/File:Hemocytometer_with_penny.JPG",
+   "thumb": "https://thumb.wikimedia.org/wikipedia/commons/thumb/7/78/Hemocytometer_with_penny.JPG/1280px-Hemocytometer_with_penny.JPG?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
+   "w": 1591,
+   "h": 957,
+   "artist": "Jeffrey M. Vinocur",
+   "license": "CC BY 2.5",
+   "description": "A hemocytometer:  each of the two semi-reflective rectangles is a chamber for counting cells.  A penny is shown for scale."
+  },
+  {
+   "k": "c2",
+   "file": "File:Hemocytometer with gloved hand.JPG",
+   "url": "https://commons.wikimedia.org/wiki/File:Hemocytometer_with_gloved_hand.JPG",
+   "thumb": "https://thumb.wikimedia.org/wikipedia/commons/thumb/1/18/Hemocytometer_with_gloved_hand.JPG/1280px-Hemocytometer_with_gloved_hand.JPG?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
+   "w": 1984,
+   "h": 1488,
+   "artist": "Jeffrey M. Vinocur",
+   "license": "CC BY 2.5",
+   "description": "A hemocytometer:  each of the two semi-reflective rectangles is a chamber for counting cells."
+  },
+  {
+   "k": "c3",
+   "file": "File:Hemocytometer.jpg",
+   "url": "https://commons.wikimedia.org/wiki/File:Hemocytometer.jpg",
+   "thumb": "https://thumb.wikimedia.org/wikipedia/commons/thumb/7/7e/Hemocytometer.jpg/1280px-Hemocytometer.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
+   "w": 3776,
+   "h": 2528,
+   "artist": "Todd",
+   "license": "CC BY-SA 2.0",
+   "description": "This is a hemocytometer, a counting chamber used to enumerate anything from blood cells, sperm to fungal spores, which is what I use it for. Lots of hours logged on this one."
+  },
+  {
+   "k": "c4",
+   "file": "File:Neubauer Haemocytomer.jpg",
+   "url": "https://commons.wikimedia.org/wiki/File:Neubauer_Haemocytomer.jpg",
+   "thumb": "https://thumb.wikimedia.org/wikipedia/commons/thumb/e/e4/Neubauer_Haemocytomer.jpg/1280px-Neubauer_Haemocytomer.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
+   "w": 4000,
+   "h": 3000,
+   "artist": "Ajay Kumar Chaurasiya",
+   "license": "CC BY-SA 4.0",
+   "description": "Neubauer haemocytomer is used for the manual cell counting of blood cells as well as spermatozoa."
+  },
+  {
+   "k": "c5",
+   "file": "File:Neubauer improved counting chamber.jpg",
+   "url": "https://commons.wikimedia.org/wiki/File:Neubauer_improved_counting_chamber.jpg",
+   "thumb": "https://thumb.wikimedia.org/wikipedia/commons/thumb/4/4d/Neubauer_improved_counting_chamber.jpg/1280px-Neubauer_improved_counting_chamber.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
+   "w": 2331,
+   "h": 955,
+   "artist": "User:Alcibiades",
+   "license": "Public domain",
+   "description": "Photography of a Neubauer counting chamber (upper one) and Neubauer improved counting chamber (lower one)"
+  },
+  {
+   "k": "c6",
+   "file": "File:Neubauer Improved Haemocytometer.jpg",
+   "url": "https://commons.wikimedia.org/wiki/File:Neubauer_Improved_Haemocytometer.jpg",
+   "thumb": "https://thumb.wikimedia.org/wikipedia/commons/thumb/7/74/Neubauer_Improved_Haemocytometer.jpg/1280px-Neubauer_Improved_Haemocytometer.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
+   "w": 4752,
+   "h": 3168,
+   "artist": "Matt Janicki from Evanston, IL, USA",
+   "license": "CC BY 2.0",
+   "description": "Hemocytometer"
+  },
+  {
+   "k": "c7",
+   "file": "File:Improved Neubauer haemacytometer - DPLA - b58e2c3a1138b5151c05ee7275208670 (page 2).jpg",
+   "url": "https://commons.wikimedia.org/wiki/File:Improved_Neubauer_haemacytometer_-_DPLA_-_b58e2c3a1138b5151c05ee7275208670_(page_2).jpg",
+   "thumb": "https://thumb.wikimedia.org/wikipedia/commons/thumb/3/3e/Improved_Neubauer_haemacytometer_-_DPLA_-_b58e2c3a1138b5151c05ee7275208670_%28page_2%29.jpg/1280px-Improved_Neubauer_haemacytometer_-_DPLA_-_b58e2c3a1138b5151c05ee7275208670_%28page_2%29.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
+   "w": 6534,
+   "h": 6533,
+   "artist": "Ingram &amp; Bell, Limited",
+   "license": "Public domain",
+   "description": "\nUsed for counting blood cells, this hemocytometer was manufactured in Germany. Case opens to reveal thick glass microscope slide with a rectangular indentation that creates a chamber. This chamber is engraved with a grid of perpendicular lines as well as the depth, maker name, and origin. Case also"
+  }
+ ]
+}

@@ -1,0 +1,85 @@
+{
+ "key": "c01_autoclave",
+ "query": {
+  "commons": "autoclave laboratory"
+ },
+ "candidates": [
+  {
+   "k": "c1",
+   "file": "File:Laboratory autoclave (cropped).jpg",
+   "url": "https://commons.wikimedia.org/wiki/File:Laboratory_autoclave_(cropped).jpg",
+   "thumb": "https://thumb.wikimedia.org/wikipedia/commons/thumb/a/a0/Laboratory_autoclave_%28cropped%29.jpg/1280px-Laboratory_autoclave_%28cropped%29.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
+   "w": 2217,
+   "h": 2376,
+   "artist": "real name: Nadina Wiórkiewicz\npl.wiki: Nadine90\ncommons: Nadine90",
+   "license": "CC BY-SA 3.0",
+   "description": "Small benchtop laboratory autoclave"
+  },
+  {
+   "k": "c2",
+   "file": "File:Autoclave machine at University For Development Laboratory.jpg",
+   "url": "https://commons.wikimedia.org/wiki/File:Autoclave_machine_at_University_For_Development_Laboratory.jpg",
+   "thumb": "https://thumb.wikimedia.org/wikipedia/commons/thumb/d/d4/Autoclave_machine_at_University_For_Development_Laboratory.jpg/1280px-Autoclave_machine_at_University_For_Development_Laboratory.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
+   "w": 3120,
+   "h": 4160,
+   "artist": "Issahaku Tidow",
+   "license": "CC0",
+   "description": "Autoclave machine is used to autoclaved various media such as MacConkey agar, nutrient agar etc"
+  },
+  {
+   "k": "c3",
+   "file": "File:Autoclave- sterilizer.jpg",
+   "url": "https://commons.wikimedia.org/wiki/File:Autoclave-_sterilizer.jpg",
+   "thumb": "https://thumb.wikimedia.org/wikipedia/commons/thumb/9/98/Autoclave-_sterilizer.jpg/1280px-Autoclave-_sterilizer.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
+   "w": 4064,
+   "h": 3048,
+   "artist": "Haisn6",
+   "license": "CC BY-SA 4.0",
+   "description": "The Autoclave- sterilizer is used for sterilizing the bio lab"
+  },
+  {
+   "k": "c4",
+   "file": "File:Autoclave at Vigyan Ashram.jpg",
+   "url": "https://commons.wikimedia.org/wiki/File:Autoclave_at_Vigyan_Ashram.jpg",
+   "thumb": "https://thumb.wikimedia.org/wikipedia/commons/thumb/5/5b/Autoclave_at_Vigyan_Ashram.jpg/1280px-Autoclave_at_Vigyan_Ashram.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
+   "w": 3000,
+   "h": 4000,
+   "artist": "Sinalkar Kanchan",
+   "license": "CC BY-SA 4.0",
+   "description": "Autoclave at Vigyan Ashram"
+  },
+  {
+   "k": "c5",
+   "file": "File:Laboratory autoclave.jpg",
+   "url": "https://commons.wikimedia.org/wiki/File:Laboratory_autoclave.jpg",
+   "thumb": "https://thumb.wikimedia.org/wikipedia/commons/thumb/1/16/Laboratory_autoclave.jpg/1280px-Laboratory_autoclave.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
+   "w": 2242,
+   "h": 3364,
+   "artist": "real name: Nadina Wiórkiewicz\npl.wiki: Nadine90\ncommons: Nadine90",
+   "license": "CC BY-SA 3.0",
+   "description": "Small benchtop laboratory autoclave"
+  },
+  {
+   "k": "c6",
+   "file": "File:Autoclave at the Aeronautical Materials Laboratory - DPLA - 4418dffad399b1fae8a6f1fbeff89548.jpg",
+   "url": "https://commons.wikimedia.org/wiki/File:Autoclave_at_the_Aeronautical_Materials_Laboratory_-_DPLA_-_4418dffad399b1fae8a6f1fbeff89548.jpg",
+   "thumb": "https://thumb.wikimedia.org/wikipedia/commons/thumb/f/f6/Autoclave_at_the_Aeronautical_Materials_Laboratory_-_DPLA_-_4418dffad399b1fae8a6f1fbeff89548.jpg/1280px-Autoclave_at_the_Aeronautical_Materials_Laboratory_-_DPLA_-_4418dffad399b1fae8a6f1fbeff89548.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
+   "w": 4469,
+   "h": 3483,
+   "artist": "United States. Navy; Naval Air Engineering Center (U.S.)",
+   "license": "Public domain",
+   "description": "\nGeneral view of an autoclave, used for the fabrication of plastics, at the Naval Air Engineering Center's Aeronautical Materials Laboratory. In the foreground, Laboratory Technical Director J. Hartley Bowen, Jr. converses with Division Superintendent C.A. Cassola, while in the background Technician"
+  },
+  {
+   "k": "c7",
+   "file": "File:Autoclave door.jpg",
+   "url": "https://commons.wikimedia.org/wiki/File:Autoclave_door.jpg",
+   "thumb": "https://thumb.wikimedia.org/wikipedia/commons/thumb/9/91/Autoclave_door.jpg/1280px-Autoclave_door.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
+   "w": 2050,
+   "h": 1989,
+   "artist": "Diane A. Reid (Photographer)",
+   "license": "Public domain",
+   "description": "\nTitle Autoclave Door\nDescription The door to an autoclave (used to wash glass media and other items in a laboratory).\nTopics/Categories  Science and Technology -- Laboratory Techniques/Equipment\nType Color, Photo\nSource National Cancer Institute"
+  }
+ ]
+}

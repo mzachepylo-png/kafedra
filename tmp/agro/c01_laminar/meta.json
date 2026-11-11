@@ -1,0 +1,96 @@
+{
+ "key": "c01_laminar",
+ "query": {
+  "commons": "laminar flow cabinet"
+ },
+ "candidates": [
+  {
+   "k": "c1",
+   "file": "File:Working inside the laminar flow cabinet.jpg",
+   "url": "https://commons.wikimedia.org/wiki/File:Working_inside_the_laminar_flow_cabinet.jpg",
+   "thumb": "https://thumb.wikimedia.org/wikipedia/commons/thumb/4/4f/Working_inside_the_laminar_flow_cabinet.jpg/1280px-Working_inside_the_laminar_flow_cabinet.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
+   "w": 5504,
+   "h": 3096,
+   "artist": "Sunmosk",
+   "license": "CC BY 4.0",
+   "description": "Working with biological samples implies sterile conditions. The laminar flow cabinet prevents contamination with the outside bacteria. In the photo: testing the prototype of portable device for monitoring of cell culture growth."
+  },
+  {
+   "k": "c2",
+   "file": "File:Laminar flow cabinet Microbiology Department.jpg",
+   "url": "https://commons.wikimedia.org/wiki/File:Laminar_flow_cabinet_Microbiology_Department.jpg",
+   "thumb": "https://thumb.wikimedia.org/wikipedia/commons/thumb/8/8f/Laminar_flow_cabinet_Microbiology_Department.jpg/1280px-Laminar_flow_cabinet_Microbiology_Department.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
+   "w": 3033,
+   "h": 3057,
+   "artist": "Chainwit.",
+   "license": "CC BY-SA 4.0",
+   "description": "A Laminar flow cabinet at a lab in Microbiology Department of Faculty of Medicine, Srinakharinwirot University in Bangkok, Thailand"
+  },
+  {
+   "k": "c3",
+   "file": "File:Laminar Flow Cabinet for Tissue Culture.jpg",
+   "url": "https://commons.wikimedia.org/wiki/File:Laminar_Flow_Cabinet_for_Tissue_Culture.jpg",
+   "thumb": "https://thumb.wikimedia.org/wikipedia/commons/thumb/e/ec/Laminar_Flow_Cabinet_for_Tissue_Culture.jpg/1280px-Laminar_Flow_Cabinet_for_Tissue_Culture.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
+   "w": 2592,
+   "h": 1944,
+   "artist": "Miles Smith",
+   "license": "CC BY-SA 2.0",
+   "description": "Laminar Flow Cabinet for Tissue Culture."
+  },
+  {
+   "k": "c4",
+   "file": "File:Laminar flow hood.jpg",
+   "url": "https://commons.wikimedia.org/wiki/File:Laminar_flow_hood.jpg",
+   "thumb": "https://thumb.wikimedia.org/wikipedia/commons/thumb/b/be/Laminar_flow_hood.jpg/1280px-Laminar_flow_hood.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
+   "w": 1596,
+   "h": 1064,
+   "artist": "Hugh Fox",
+   "license": "CC BY-SA 2.0",
+   "description": "A laminar flow hood, which provides a dust-free environnment where molten agar can solidify and dry without becoming contaminated."
+  },
+  {
+   "k": "c5",
+   "file": "File:Biocontainment laminar flow hood.jpg",
+   "url": "https://commons.wikimedia.org/wiki/File:Biocontainment_laminar_flow_hood.jpg",
+   "thumb": "https://thumb.wikimedia.org/wikipedia/commons/thumb/8/8d/Biocontainment_laminar_flow_hood.jpg/1280px-Biocontainment_laminar_flow_hood.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
+   "w": 2376,
+   "h": 4224,
+   "artist": "TimVickers",
+   "license": "Public domain",
+   "description": "Category 2 biocontainment laminar flow hood."
+  },
+  {
+   "k": "c6",
+   "file": "File:Working at the Laminar flow cabinet.jpg",
+   "url": "https://commons.wikimedia.org/wiki/File:Working_at_the_Laminar_flow_cabinet.jpg",
+   "thumb": "https://thumb.wikimedia.org/wikipedia/commons/thumb/b/b0/Working_at_the_Laminar_flow_cabinet.jpg/1280px-Working_at_the_Laminar_flow_cabinet.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
+   "w": 2048,
+   "h": 1536,
+   "artist": "Javier Quevedo from Madrid, Madrid",
+   "license": "CC BY-SA 2.0",
+   "description": "Working at the Laminar flow cabinet"
+  },
+  {
+   "k": "c7",
+   "file": "File:Laminar flow hood 2.jpg",
+   "url": "https://commons.wikimedia.org/wiki/File:Laminar_flow_hood_2.jpg",
+   "thumb": "https://thumb.wikimedia.org/wikipedia/commons/thumb/7/71/Laminar_flow_hood_2.jpg/1280px-Laminar_flow_hood_2.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
+   "w": 4224,
+   "h": 2376,
+   "artist": "TimVickers",
+   "license": "Public domain",
+   "description": "Work area in biocontainment level 2 suite"
+  },
+  {
+   "k": "c8",
+   "file": "File:Mixing the medications at the laminar flow cabinet.jpg",
+   "url": "https://commons.wikimedia.org/wiki/File:Mixing_the_medications_at_the_laminar_flow_cabinet.jpg",
+   "thumb": "https://thumb.wikimedia.org/wikipedia/commons/thumb/b/b2/Mixing_the_medications_at_the_laminar_flow_cabinet.jpg/1280px-Mixing_the_medications_at_the_laminar_flow_cabinet.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
+   "w": 3072,
+   "h": 2048,
+   "artist": "José Eugenio Gómez Rodríguez",
+   "license": "CC BY-SA 2.0",
+   "description": "Haciendo mezclas de medicamentos en la campana de flujo laminar.\n\nMixing the medications at the cabinet."
+  }
+ ]
+}
