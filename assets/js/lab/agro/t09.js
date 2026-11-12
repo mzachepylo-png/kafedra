@@ -111,19 +111,19 @@ function initA() {
   const root = $('t9a');
   if (!root) return;
   const cv = $('t9a-cv'), hud = $('t9a-hud');
-  const st = { sys: 'soy', sub: 'kin', series: 'protocol', D: 28, W0: 50, X: true, xi: 2, day: 0, sel: 1 };
+  const st = { sys: 'soy', sub: 'kin', series: 'protocol', D: 28, W0: 50, X: true, xi: 2, day: 0, sel: -1 };
 
   // ---- керування
   const segSys = segmented($('t9a-sys'), 't9a-sys', [{ value: 'soy', label: 'Соя · цитокініни' }, { value: 'top', label: 'Топінамбур · ауксини' }], st.sys, (v) => {
-    st.sys = v; st.sub = Object.keys(SYS[v].subs)[0]; st.xi = 1; buildSub(); st.sel = 1; refresh();
+    st.sys = v; st.sub = Object.keys(SYS[v].subs)[0]; st.xi = 1; buildSub(); st.sel = -1; refresh();
   });
   let segSub;
   function buildSub() {
     const host = $('t9a-sub'); host.replaceChildren(); host.className = '';
-    segSub = segmented(host, 't9a-sub', Object.entries(SYS[st.sys].subs).map(([k, p]) => ({ value: k, label: p.name })), st.sub, (v) => { st.sub = v; refresh(); });
+    segSub = segmented(host, 't9a-sub', Object.entries(SYS[st.sys].subs).map(([k, p]) => ({ value: k, label: p.name })), st.sub, (v) => { st.sub = v; st.sel = -1; refresh(); });
   }
   buildSub();
-  segmented($('t9a-series'), 't9a-series', [{ value: 'protocol', label: 'Як у посібнику' }, { value: 'calib', label: 'Калібрувальний ряд' }], st.series, (v) => { st.series = v; st.sel = 1; refresh(); });
+  segmented($('t9a-series'), 't9a-series', [{ value: 'protocol', label: 'Як у посібнику' }, { value: 'calib', label: 'Калібрувальний ряд' }], st.series, (v) => { st.series = v; st.sel = -1; refresh(); });
   const sl = sliders($('t9a-sl'), [
     { id: 'D', label: 'Тривалість культивування', min: 7, max: 35, step: 7, value: st.D, unit: 'діб', hint: 'Облік — що 7 діб (с. 128)' },
     { id: 'W0', label: 'Маса інокулюму W₀', min: 20, max: 150, step: 5, value: st.W0, unit: 'мг', hint: 'Інокулюм — шматочок калюсу, що його висаджують на середовище' },
@@ -161,13 +161,13 @@ function initA() {
   let geo = null;
   function layout(w, h) {
     const list = tubesList(), n = list.length;
-    const wide = w > 620;
-    const loupeR = wide ? Math.min(h * 0.3, 118) : Math.min(w * 0.2, 64);
+    const wide = w > 480;
+    const loupeR = wide ? Math.min(h * 0.26, w * 0.13 + (n < 5 ? 20 : 0), 104) : Math.min(w * 0.2, 64);
     const areaL = 16, areaR = wide ? w - loupeR * 2 - 40 : w - 12;
     const slot = (areaR - areaL) / n;
     const tw = clamp(slot * 0.6, 20, 58);
     const hy = Math.round(h * (wide ? 0.8 : 0.82));
-    const th = Math.min(tw * 4.8, hy - (wide ? 64 : loupeR * 2 + 64));
+    const th = Math.min(tw * (tw < 34 ? 6 : 4.4), hy - (wide ? 104 : loupeR * 2 + 64));
     const ty = hy - th - 10;
     const tubes = list.map((tb, i) => ({ ...tb, x: areaL + slot * (i + 0.5) - tw / 2, y: ty, w: tw, h: th, i }));
     const loupe = wide ? { cx: w - loupeR - 22, cy: h * 0.44, r: loupeR } : { cx: w - loupeR - 14, cy: loupeR + 48, r: loupeR };
@@ -222,7 +222,7 @@ function initA() {
   /** Калюс у пробірці: розмір ∝ ∛W; коли ширший за пробірку — стискається з боків і росте вгору. */
   function drawCallus(ctx, cx, by, W, innerW, opts, seed, mag = 1) {
     const S = SYS[st.sys];
-    let size = 0.56 * innerW * Math.cbrt(W / 300) * mag;
+    let size = 0.64 * innerW * Math.cbrt(W / 300) * mag;
     const half = size * 0.92, lim = innerW * 0.5 * mag;
     ctx.save();
     if (half > lim) { const sx = lim / half; ctx.translate(cx, by); ctx.scale(sx, 1 / Math.sqrt(sx)); ctx.translate(-cx, -by); }
@@ -231,7 +231,7 @@ function initA() {
   }
 
   function draw() {
-    const { ctx, w, h } = fit(cv, { aspect: isPhone() ? 0.92 : 1.9, min: 330, max: 520 });
+    const { ctx, w, h } = fit(cv, { aspect: isPhone() ? 0.92 : 1.5, min: 330, max: 520 });
     if (w < 80) return;
     geo = layout(w, h);
     const S = SYS[st.sys];
@@ -242,7 +242,7 @@ function initA() {
     geo.tubes.forEach((tb, i) => {
       const s = tubeState(tb, st.day);
       tube(ctx, tb.x, tb.y, tb.w, tb.h, {
-        medium: { level: 0.3, color: st.sys === 'soy' ? '#ECE3BF' : '#EEE7C6' }, plug: 'foil',
+        medium: { level: 0.24, color: st.sys === 'soy' ? '#ECE3BF' : '#EEE7C6' }, plug: 'foil',
         contents: (c, inn) => drawCallus(c, inn.x + inn.w / 2, inn.surface + 1, s.W, inn.w, s, 11 + i * 7),
       });
       // штатив: планка поперек пробірок
@@ -345,7 +345,7 @@ function initA() {
     if (xi >= 0) {
       const target = dW(fin[xi].W, st.W0); const cx = invert(st.sys, st.sub, target, st.W0, tEnd);
       guides.push({ y: target, color: '#7A3FA0', dash: [2, 3], label: 'X' });
-      if (isFinite(cx)) guides.push({ x: Math.log10(cx), color: '#7A3FA0', dash: [2, 3], label: 'C(X)' });
+      if (isFinite(cx)) guides.push({ x: Math.log10(cx), color: '#7A3FA0', dash: [2, 3] });
     }
     p1.set(series, guides);
 
@@ -376,7 +376,10 @@ function initA() {
     v.className = 'ag-verdict' + (over ? ' is-warn' : '');
   }
 
-  function refresh() { draw(); updateReads(); }
+  function refresh() {
+    if (st.sel < 0) { const l = tubesList(); let bi = 0; l.forEach((tb, i) => { if (!tb.isX && tubeState(tb, st.D).W > tubeState(l[bi], st.D).W) bi = i; }); st.sel = bi; }
+    draw(); updateReads();
+  }
 
   const runner = new Runner({
     btn: $('t9a-run'), reset: $('t9a-reset'), status: $('t9a-status'),
@@ -612,7 +615,7 @@ function initB() {
         if (lightOn) { const c = ctx.createLinearGradient(0, hy + 50, 0, hy + rowH * 0.6); c.addColorStop(0, 'rgba(235,245,255,.4)'); c.addColorStop(1, 'rgba(235,245,255,0)'); ctx.fillStyle = c; ctx.fillRect(w * 0.04, hy + 50, w * 0.92, rowH * 0.6); }
         ctx.restore();
       }
-      const top = rows === 1 ? 30 : r * rowH + (r === 0 ? 34 : 62);
+      const top = rows === 1 ? 44 : r * rowH + (r === 0 ? 70 : 62);
       const jw = Math.min(slot * 0.8, 160), jh = Math.min(hy - top, jw * 2.1);
       const jy = hy - jh;
       for (let k = 0; k < cols; k++) {

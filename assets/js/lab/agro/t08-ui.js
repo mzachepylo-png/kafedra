@@ -5,6 +5,7 @@ import { fit, setOut } from './kit.js';
 export function stageFit(cv, { desk = 16 / 9, mob = 0.82, min = 320, max = 560, mobMax = 620 } = {}) {
   return () => {
     const w = cv.parentElement.clientWidth;
+    if (w < 60) return null;
     const narrow = w < 640;
     return Object.assign(fit(cv, { aspect: narrow ? mob : desk, min, max: narrow ? mobMax : max }), { narrow });
   };

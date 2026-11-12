@@ -9,7 +9,7 @@ const DAYS = 45; // від посадки меристеми до пагона �
 export function init(root) {
   const $ = (id) => root.querySelector('#' + id);
   const cv = $('m1-cv');
-  const fitStage = stageFit(cv, { desk: 16 / 9, mob: 0.72, min: 340, max: 520, mobMax: 600 });
+  const fitStage = stageFit(cv, { desk: 16 / 9, mob: 0.54, min: 340, max: 520, mobMax: 720 });
   const st = { virus: 'pvx', L: 200, D: 0, T: 37, C: 0, show: true, seed: 1 };
   let res = meristem(st);
   let batch = [];
@@ -64,7 +64,7 @@ export function init(root) {
       { data: a, color: '#2E7D5B', label: 'безвірусні P<sub>вф</sub>'.replace(/<[^>]+>/g, ''), width: 2.5 },
       { data: b, color: '#B7791F', label: 'прижилися P_рег', width: 2.5, dash: [6, 4] },
       { data: c, color: '#8E3B2E', label: 'вихід здорових Y', width: 3, fill: 'rgba(142,59,46,.08)' },
-    ], [{ x: st.L, label: `L = ${st.L} мкм`, color: '#1F6F8B' }, { x: res.Lopt, label: `L_опт ≈ ${res.Lopt}`, color: '#8C6A10' }]);
+    ], [{ x: st.L, label: `L = ${st.L}`, color: '#1F6F8B' }, { x: res.Lopt, label: Math.abs(res.Lopt - st.L) > 160 ? `оптимум ${res.Lopt}` : '', color: '#8C6A10' }]);
     const d0 = [], d1 = [], sv = [];
     for (let d = 0; d <= 42; d++) {
       d0.push([d, 100 * meristem({ ...st, D: d, C: 0 }).Pvf]);
@@ -109,19 +109,20 @@ export function init(root) {
       const x0 = fx + r * 1.1 + Math.max(16, w * 0.035), x1 = w - 14;
       return { r, fx, fy, x0, x1, top: h * 0.2, th: h * 0.5, ey: h * 0.82, narrow };
     }
-    const r = Math.min(w * 0.4, h * 0.25);
+    const r = Math.min(w * 0.42, h * 0.24);
     const fx = w / 2, fy = r * 1.1 + 34;
-    const top = fy + r * 1.1 + 40;
-    return { r, fx, fy, x0: 14, x1: w - 14, top, th: h * 0.26, ey: h - 44, narrow };
+    const top = fy + r * 1.1 + 24;
+    return { r, fx, fy, x0: 14, x1: w - 14, top, th: h * 0.25, ey: h - 44, narrow };
   }
   function draw() {
-    const { ctx, w, h, narrow } = fitStage();
+    const F = fitStage(); if (!F) return;
+    const { ctx, w, h, narrow } = F;
     const day = anim.on ? anim.day : DAYS;
     const elisa = anim.on ? anim.elisa : 1;
     const g = geo = layout(w, h, narrow);
     scene(ctx, w, h, { kind: 'hood', horizon: narrow ? 0.62 : 0.6, light: 0.6 });
     // ----- бінокуляр: поле зору з апексом -----
-    const span = 1150; // мкм по вертикалі від верхівки до низу кола
+    const zoom = st.L <= 380 ? 2 : 1, span = zoom === 2 ? 620 : 1150; // мкм від верхівки до низу кола
     const s = (g.r * 1.74) / span;
     const topY = g.fy - g.r * 0.74;
     g.s = s; g.topY = topY;
@@ -130,15 +131,15 @@ export function init(root) {
       const a = apexField(c, g.fx, topY, s, { L: st.L, lam: res.lam, showVirus: st.show, cut, lift: lift * g.r * 0.25, r: g.r, cy: g.fy });
       // скальпель
       if (anim.on && anim.cut > 0 && anim.cut < 1) scalpel(c, g.fx - a.half + 2 * a.half * anim.cut, a.yCut, 0.03, Math.max(0.6, g.r / 200));
-      // мітки в полі зору
-      const lx = g.fx + g.r * 0.22;
+      // мітки в полі зору (короткі, у правій половині кола)
+      const lx = g.fx + g.r * (g.narrow ? 0.26 : 0.36), fsz = g.narrow ? 10 : 11;
       const ys = [];
       const place = (y) => { let yy = y; for (const p of ys) if (Math.abs(p - yy) < 24) yy = p + 24; ys.push(yy); return yy; };
-      callout(c, g.fx + 6, topY + 4, lx, place(topY - 6 > g.fy - g.r * 0.9 ? topY - 6 : g.fy - g.r * 0.82), 'купол меристеми', { dark: true, size: 11 });
-      if (st.show && a.Y(res.lam) < g.fy + g.r * 0.85) callout(c, g.fx + a.widthAt(res.lam) * s + 8, a.Y(res.lam), lx + 8, place(a.Y(res.lam) + 4), `межа без вірусу λ ≈ ${fnum(res.lam, 0)} мкм`, { dark: true, size: 11 });
-      callout(c, g.fx - a.half, a.yCut, g.fx - g.r * 0.92, a.yCut - 14 < g.fy - g.r * 0.6 ? a.yCut + 20 : a.yCut - 14, `зріз: ${st.L} мкм`, { dark: true, size: 11 });
-    }, { mode: 'dark', scale: { px: 200 * s, text: '200 мкм' } });
-    text(ctx, 'Бінокулярна лупа: верхівка паростка', g.fx, g.fy - g.r * 1.1 - 8, { align: 'center', size: 12, color: '#24372B', weight: 700 });
+      callout(c, g.fx + 4, topY + 6, lx, place(topY + 2), 'купол', { dark: true, size: fsz });
+      if (st.show && a.Y(res.lam) < g.fy + g.r * 0.8) callout(c, g.fx + a.widthAt(res.lam) * s, a.Y(res.lam), lx, place(a.Y(res.lam) + 4), `λ = ${fnum(res.lam, 0)} мкм`, { dark: true, size: fsz });
+      if (a.yCut < g.fy + g.r * 0.85) { if (g.narrow) { const ax = g.fx + a.widthAt(st.L) * s; callout(c, ax, a.yCut, Math.max(lx, ax + 10), place(a.yCut + 4), `L ${st.L} мкм`, { dark: true, size: fsz }); } else callout(c, g.fx - a.half, a.yCut, g.fx - a.half - 14, a.yCut + 4, `зріз ${st.L} мкм`, { dark: true, size: fsz }); }
+    }, { mode: 'dark', scale: zoom === 2 ? { px: 100 * s, text: '100 мкм' } : { px: 200 * s, text: '200 мкм' } });
+    if (!narrow) text(ctx, 'Бінокулярна лупа: верхівка паростка', g.fx, g.fy - g.r * 1.1 - 8, { align: 'center', size: 12, color: '#24372B', weight: 700 });
 
     // ----- штатив із 10 пробірками -----
     const n = batch.length, span2 = g.x1 - g.x0, cell = span2 / n;
@@ -166,10 +167,9 @@ export function init(root) {
           shoot(c, inn.x + inn.w / 2, sY, { h: H, nodes: Math.max(1, Math.round(1 + 4.5 * g0)), leafLen: Math.min(inn.w * 0.62, 5 + 13 * g0), leafW: crop === 'carn' ? 0.2 : 0.5, opposite: crop === 'carn', color: crop === 'carn' ? '#6F9E80' : MAT.leaf, seed: b.seed, stemW: Math.max(1, 2.2 * g0) });
         },
       });
-      // номер
-      text(ctx, String(i + 1), tubes[i].cx, ty + th + 22, { align: 'center', size: 10.5, color: '#2C4234', weight: 700 });
     });
-    rackFront(ctx, g.x0 - 8, ty + th * 0.8, span2 + 16, th * 0.2 + 6);
+    rackFront(ctx, g.x0 - 8, ty + th * 0.9, span2 + 16, th * 0.1 + 8);
+    tubes.forEach((t, i) => text(ctx, String(i + 1), t.cx, ty + th * 0.9 + 13, { align: 'center', size: 10, color: '#FFF4E2', weight: 800, shadowC: 'rgba(60,30,10,.6)' }));
     // ----- ІФА -----
     const ex = g.x0 + 6, ew = span2 - 12;
     const states = batch.map((b) => ({ na: !b.alive, v: b.free ? 0.05 + 0.04 * b.k : 0.75 + 0.25 * b.k }));
@@ -212,7 +212,7 @@ export function init(root) {
     if (!geo) return null;
     const r = cv.getBoundingClientRect(), x = e.clientX - r.left, y = e.clientY - r.top;
     if (Math.hypot(x - geo.fx, y - geo.fy) > geo.r) return null;
-    return clamp(Math.round((y - geo.topY) / geo.s / 10) * 10, 50, 1000);
+    return clamp(Math.round((y - geo.topY) / geo.s / 10) * 10, 50, geo.s > 0 && (geo.fy + geo.r - geo.topY) / geo.s < 700 ? 400 : 1000);
   };
   let drag = false;
   cv.addEventListener('pointerdown', (e) => { const L = toL(e); if (L == null) return; drag = true; cv.setPointerCapture(e.pointerId); sl.set('m1L', L); });

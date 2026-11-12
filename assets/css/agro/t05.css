@@ -1,0 +1,15 @@
+/* Тема 5 — суспензійна культура: широка сцена, панелі керування під нею */
+.t5m .ag-grid { grid-template-columns: minmax(0, 1fr); }
+.t5m .ag-side { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 12px; }
+.t5m .seg { display: flex; flex-wrap: wrap; width: 100%; }
+.t5m .seg button { flex: 1 1 auto; min-height: 40px; }
+.t5m .ag-tabs button { flex: 1 1 auto; }
+.t5-tools { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 12px; }
+.t5-tools .btn { min-height: 42px; flex: 1 1 auto; }
+.t5m .ag-plot canvas { display: block; width: 100%; }
+.t5m .ag-read b { font-size: 1.02rem; overflow-wrap: anywhere; }
+@media (max-width: 600px) {
+  .t5m .ag-reads { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .t5m .ag-stage__hud span { font-size: .7rem; padding: 3px 7px; }
+}
+.t5m .ag-read b.t5-word { font-size: .86rem; overflow-wrap: normal; word-break: normal; }

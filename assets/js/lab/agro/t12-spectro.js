@@ -124,7 +124,7 @@ function photometer(ctx, r, st) {
   for (const D of [0, 0.1, 0.2, 0.3, 0.5, 0.7, 1, 1.5, 2]) {
     const T = 100 * Math.pow(10, -D), a = ang(T);
     ctx.beginPath(); ctx.moveTo(cx + Math.cos(a) * R * 0.66, cy + Math.sin(a) * R * 0.66); ctx.lineTo(cx + Math.cos(a) * R * 0.6, cy + Math.sin(a) * R * 0.6); ctx.stroke();
-    if ([0, 0.2, 0.5, 1, 2].includes(D)) txt(ctx, fnum(D, D % 1 ? 1 : 0), cx + Math.cos(a) * R * 0.53, cy + Math.sin(a) * R * 0.53, { px: 8, align: 'center', base: 'middle', color: '#A23B2A' });
+    if ((st.narrow ? [0, 0.5, 1] : [0, 0.2, 0.5, 1]).includes(D)) txt(ctx, fnum(D, D % 1 ? 1 : 0), cx + Math.cos(a) * R * 0.53, cy + Math.sin(a) * R * 0.53, { px: 8, align: 'center', base: 'middle', color: '#A23B2A' });
   }
   txt(ctx, 'T, %', mx + 6, my + 12, { px: 8.5, color: '#2B332F' });
   txt(ctx, 'D', mx + mw - 6, my + 12, { px: 8.5, color: '#A23B2A', align: 'right', weight: 800 });
@@ -163,8 +163,8 @@ function photometer(ctx, r, st) {
   ctx.fillStyle = '#1A201E'; roundRect(ctx, sx - kr * 0.5, py + ph * 0.55, kr, kr * 1.6, 3); ctx.fill();
   ctx.fillStyle = '#C9C3AE'; roundRect(ctx, sx - kr * 0.38, py + ph * 0.58, kr * 0.76, kr * 0.7, 2); ctx.fill();
   // табличка
-  txt(ctx, 'СФ-46', x + w * 0.05, y + h * 0.9, { px: 11, weight: 800, color: '#4A4F48' });
-  txt(ctx, 'спектрофотометр', x + w * 0.05 + 46, y + h * 0.9, { px: 9, color: '#5E635B' });
+  const nw = txt(ctx, 'СФ-46', x + w * 0.05, y + h * 0.9, { px: 11, weight: 800, color: '#4A4F48' });
+  txt(ctx, 'спектрофотометр', x + w * 0.05 + nw + 6, y + h * 0.9, { px: 9, color: '#5E635B' });
   // кюветне відділення на кришці
   const cw = w * 0.26, ch = -dy * 0.55, cxp = x + w * 0.62 + dx * 0.25, cyp = y + dy * 0.72;
   ctx.fillStyle = '#4A524E'; ctx.beginPath(); ctx.moveTo(cxp, cyp + ch * 0.4); ctx.lineTo(cxp + cw, cyp + ch * 0.4); ctx.lineTo(cxp + cw + dx * 0.3, cyp - ch * 0.15); ctx.lineTo(cxp + dx * 0.3, cyp - ch * 0.15); ctx.closePath(); ctx.fill();
@@ -396,7 +396,7 @@ export class SpectroModel {
 
   draw() {
     const cv = this.F.canvas, narrow = cv.parentElement.clientWidth < 620;
-    const { ctx, w, h } = fit(cv, { aspect: narrow ? 0.82 : 1.85, min: 300, max: narrow ? 760 : 560 });
+    const { ctx, w, h } = fit(cv, { aspect: narrow ? 0.64 : 1.85, min: 300, max: narrow ? 760 : 560 });
     const DW = narrow ? 560 : 1000, S = w / DW, DH = h / S;
     setScale(S);
     ctx.save(); ctx.scale(S, S);
@@ -405,21 +405,21 @@ export class SpectroModel {
     const Dm = started ? (a.phase === 'pip' ? 0 : m.Dmax(tn)) : m.Dmax(cfg.t2);
     const Dshown = started && a.phase === 'pip' ? 0 : this.Dmeas();
     const brown = cfg.key === 'ppo' ? 0.18 * Math.pow(Dm, 1.4) : 0;
-    const st = { lam: this.p.lam, T: started ? a.T : 100 * Math.pow(10, -Dshown), on: true, D: Dshown, Dmax: Dm, spec: m.sub.spec, brown, pip: a.phase === 'pip' ? a.pip : 0, mixing: a.mixing };
-    const hy = scene(ctx, DW, DH, { kind: 'bench', horizon: narrow ? 0.84 : 0.74, light: 0.3 });
+    const st = { narrow, lam: this.p.lam, T: started ? a.T : 100 * Math.pow(10, -Dshown), on: true, D: Dshown, Dmax: Dm, spec: m.sub.spec, brown, pip: a.phase === 'pip' ? a.pip : 0, mixing: a.mixing };
+    const hy = scene(ctx, DW, DH, { kind: 'bench', horizon: narrow ? 0.86 : 0.74, light: 0.3 });
     let inst, inset, watch;
     if (narrow) {
-      inset = { x: 14, y: 14, w: DW - 28, h: DH * 0.47 };
-      inst = { x: 24, y: hy - DH * 0.2, w: DW * 0.66, h: DH * 0.22 };
-      watch = { x: DW * 0.86, y: hy - DH * 0.07, r: DW * 0.07 };
+      inset = { x: 14, y: 14, w: DW - 28, h: DH * 0.42 };
+      inst = { x: 16, y: hy - DH * 0.25, w: DW * 0.72, h: DH * 0.25 };
+      watch = { x: DW * 0.88, y: hy - DH * 0.2, r: DW * 0.065 };
     } else {
       inset = { x: DW * 0.585, y: 18, w: DW * 0.395, h: DH * 0.68 };
       inst = { x: DW * 0.04, y: hy - DH * 0.38, w: DW * 0.46, h: DH * 0.4 };
-      watch = { x: DW * 0.56, y: hy + (DH - hy) * 0.45, r: Math.min(DH * 0.075, 40) };
+      watch = { x: DW * 0.9, y: inset.y + inset.h + (DH - inset.y - inset.h) * 0.52, r: Math.min(DH * 0.07, 36) };
     }
     const P = photometer(ctx, inst, st);
     // контрольна кювета в штативі
-    const kx = inst.x + inst.w * (narrow ? 1.12 : 1.13), ky = hy + 6;
+    const kx = narrow ? DW * 0.86 : DW * 0.66, ky = narrow ? hy + (DH - hy) * 0.6 : hy + (DH - hy) * 0.55;
     ctrlCuvette(ctx, kx, ky, narrow ? 16 : 18, narrow ? 46 : 52);
     txt(ctx, 'контроль', kx + 8, ky + 18, { px: 9.5, align: 'center', color: '#3B4A40' });
     stopwatch(ctx, watch.x, watch.y, watch.r, started ? tn : cfg.t2, { running: a.phase === 'react' });
@@ -429,7 +429,7 @@ export class SpectroModel {
     ctx.strokeStyle = 'rgba(242,193,78,.55)'; ctx.setLineDash([4, 4]); ctx.lineWidth = 1.2;
     ctx.beginPath(); ctx.moveTo(P.lid[0], P.lid[1]); ctx.lineTo(narrow ? inset.x + inset.w * 0.5 : inset.x, narrow ? inset.y + inset.h : inset.y + inset.h * 0.5); ctx.stroke(); ctx.setLineDash([]);
     // підпис продукту біля кювети
-    if (Dm > 0.05) txt(ctx, `${m.sub.prod}`, C.cx + C.cw + 8, C.cy + C.chh * 0.35, { px: 10, color: '#F4E3C2', weight: 700 });
+    if (Dm > 0.05) txt(ctx, `${m.sub.prod}`, C.cx + C.cw / 2, C.cy - 8, { px: 10, color: '#F4E3C2', weight: 700, align: 'center' });
     ctx.restore();
     setHud(this.F.hud, [`${cfg.lab}`, `λ = ${Math.round(this.p.lam)} нм`, `t = ${Math.round(tn)} с`, `D = ${fnum(Dshown, 3)}`]);
   }

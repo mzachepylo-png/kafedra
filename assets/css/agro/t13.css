@@ -1,0 +1,21 @@
+/* Тема 13: сцена на всю ширину моделі, панелі керування — рядом під нею */
+#t13-models .ag-grid { grid-template-columns: 1fr; }
+#t13-models .ag-side { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 12px; }
+#t13-models .ag-reads { grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)); }
+#t13-models .ag-panel .seg button { min-height: 40px; }
+#t13-models .ag-presets { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 10px; }
+#t13-models .ag-presets .btn { min-height: 40px; }
+#t13-models .ag-tablewrap { margin-top: 10px; max-width: 520px; }
+@media (max-width: 600px) {
+  #t13-models .ag-reads { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}
+#t13-models .ag-reads { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+#t13-models .ag-panel .seg { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); width: 100%; }
+#t13-models .ag-panel .seg.is-n6 { grid-template-columns: repeat(6, minmax(0, 1fr)); }
+#t13-models .ag-panel .seg.is-n3 { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+@media (max-width: 600px) { #t13-models .ag-reads { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+@media (max-width: 620px) { #t13-models .ag-stage__hud { display: none; } }
+.t13-recipe { margin-top: 8px; }
+#t13-models .ctrl.is-disabled { opacity: .45; pointer-events: none; }
+.ag-fig .t13-svgtxt { font: 600 13px system-ui, sans-serif; fill: #1F3A2A; }
+#t13-models .ag-plots { grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); }

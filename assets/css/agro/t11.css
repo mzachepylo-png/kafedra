@@ -1,0 +1,29 @@
+/* Тема 11 «Молекулярна біологія та генетична інженерія»: дрібні доповнення до agro.css */
+
+/* кнопки-пресети в бічній панелі моделі */
+.ag-presets { display: flex; flex-wrap: wrap; gap: 6px; }
+.ag-presets .btn { flex: 1 1 auto; min-height: 38px; padding: 7px 11px; font-size: .84rem; }
+
+/* сегментований перемикач із пояснювальним дрібним текстом */
+.ag-panel .seg button small { display: block; font-weight: 600; font-size: .74rem; opacity: .72; }
+.ag-panel .seg { flex-wrap: wrap; }
+
+/* вкладки моделей: на вузьких екранах — горизонтальна прокрутка без обрізання */
+.ag-tabs[role="tablist"] { overflow-x: auto; flex-wrap: nowrap; padding-bottom: 4px; scrollbar-width: thin; }
+.ag-tabs[role="tablist"] button { white-space: nowrap; }
+@media (min-width: 900px) { .ag-tabs[role="tablist"] { flex-wrap: wrap; overflow: visible; } }
+
+/* формула-результат під показниками моделі Г */
+#t11d-formula { font-size: 1rem; text-align: center; }
+
+/* таблиці складу середовищ — компактніші на телефоні */
+@media (max-width: 600px) {
+  .ag-table th, .ag-table td { padding: 6px 7px; font-size: .84rem; }
+  .ag-presets .btn { font-size: .8rem; padding: 6px 9px; }
+}
+
+/* підписи під полотном моделей */
+.ag-model .ag-note { margin-top: 10px; }
+
+/* читабельність рядка стану під кнопкою запуску */
+.ag-runbar .ag-status { flex: 1 1 220px; }

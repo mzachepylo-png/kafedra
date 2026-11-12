@@ -236,18 +236,20 @@ export function genField(seed, { fr = [40, 50, 10], dead = 0.1, aggDead = 0.15, 
       const rx = (17 + R() * 12) * scale, ry = rx * (0.7 + R() * 0.28), rot = R() * Math.PI;
       if (!k) { cells.push({ x: 0, y: 0, rx, ry, rot }); continue; }
       let best = null;
-      for (let tr = 0; tr < 14; tr++) {
-        const b = cells[(R() * cells.length) | 0], a = R() * TAU, d = (b.rx + rx) * 0.82;
-        const c = { x: b.x + Math.cos(a) * d, y: b.y + Math.sin(a) * d * 0.95, rx, ry, rot };
-        let ov = 0; for (const o of cells) { const dd = Math.hypot(o.x - c.x, o.y - c.y); ov = Math.max(ov, (o.rx + c.rx) * 0.78 - dd); }
+      for (let tr = 0; tr < 28; tr++) {
+        const b = cells[(R() * cells.length) | 0], a = R() * TAU, d = (b.rx + rx) * 0.8;
+        const c = { x: b.x + Math.cos(a) * d, y: b.y + Math.sin(a) * d * 0.92, rx, ry, rot };
+        let ov = -1e9; for (const o of cells) { const dd = Math.hypot(o.x - c.x, o.y - c.y); ov = Math.max(ov, (o.rx + c.rx) * 0.76 - dd); }
         const dc = Math.hypot(c.x, c.y);
-        const score = ov * 4 + dc * 0.12;
+        const score = (ov > 0.5 ? 1000 + ov * 10 : 0) + dc;
         if (!best || score < best.score) best = { c, score };
       }
       cells.push(best.c);
     }
     const pDead = kind === 2 ? clamp(dead + aggDead, 0, 1) : kind === 1 ? clamp(dead + aggDead * 0.3, 0, 1) : dead;
     for (const c of cells) { c.dead = R() < pDead; c.seed = (R() * 1e6) | 0; c.shrink = c.dead ? 0.55 + R() * 0.3 : 1; }
+    const mx = cells.reduce((a, c) => a + c.x, 0) / cells.length, my = cells.reduce((a, c) => a + c.y, 0) / cells.length;
+    for (const c of cells) { c.x -= mx; c.y -= my; }
     let ext = 0; for (const c of cells) ext = Math.max(ext, Math.hypot(c.x, c.y) + c.rx);
     units.push({ kind, cells, ext, x: 0, y: 0 });
   }
@@ -263,7 +265,7 @@ export function layoutUnits(units, r, seed = 3) {
     for (let tr = 0; tr < 60 && !ok; tr++) {
       const a = R() * TAU, d = Math.sqrt(R()) * Math.max(0, r * 0.98 - u.ext * 0.4);
       u.x = Math.cos(a) * d; u.y = Math.sin(a) * d;
-      ok = placed.every((p) => Math.hypot(p.x - u.x, p.y - u.y) > (p.ext + u.ext) * 0.92);
+      ok = placed.every((p) => Math.hypot(p.x - u.x, p.y - u.y) > (p.ext + u.ext) * 1.0 + 2);
     }
     if (ok) placed.push(u); else u.skip = true;
   }
@@ -292,7 +294,7 @@ export function suspCell(ctx, x, y, c, { stain = 0, dye = 'evans', tint = '#E6DD
     const k = c.shrink, px = (rx - rx * 0.1) * k, py = (ry - rx * 0.1) * k, ox = (R() - 0.5) * rx * 0.2;
     const col = mix(mix(base, [150, 130, 90], 0.45), blue, stain);
     const g = ctx.createRadialGradient(ox - px * 0.3, -py * 0.3, 0.5, ox, 0, Math.max(px, py));
-    g.addColorStop(0, rgba(shade(col, 0.25), 0.75 + stain * 0.15)); g.addColorStop(1, rgba(shade(col, -0.3), 0.85 + stain * 0.1));
+    g.addColorStop(0, rgba(shade(col, 0.12 - stain * 0.05), 0.8 + stain * 0.15)); g.addColorStop(1, rgba(shade(col, -0.35), 0.9 + stain * 0.08));
     ctx.fillStyle = g; ctx.beginPath();
     for (let j = 0; j <= 14; j++) { const t = j / 14 * TAU, rr = 0.82 + 0.3 * noise(Math.cos(t) * 1.6 + c.seed % 97, Math.sin(t) * 1.6, 2); const X = ox + Math.cos(t) * px * rr, Y = Math.sin(t) * py * rr; j ? ctx.lineTo(X, Y) : ctx.moveTo(X, Y); }
     ctx.fill();

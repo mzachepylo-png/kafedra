@@ -1,0 +1,34 @@
+/* Тема 4 «Морфогенез і регенерація»: етапи ЛР 15, пресети, фазова карта, стадії ембріоїдів */
+.t4-map canvas { display: block; margin: 0 auto; touch-action: none; cursor: crosshair; border-radius: 10px; }
+.t4-map .ag-note { margin-top: 6px; }
+.t4-presets { display: flex; flex-wrap: wrap; gap: 6px; }
+.t4-presets button { flex: 1 1 calc(50% - 6px); min-height: 40px; padding: 6px 9px; border-radius: 10px; border: 1px solid var(--line); background: var(--green-50); font: 700 .8rem/1.25 var(--sans, inherit); color: var(--green-900); cursor: pointer; text-align: left; }
+.t4-presets button:hover { border-color: var(--green-700); }
+.t4-presets button[aria-pressed="true"] { background: var(--green-800); border-color: var(--green-800); color: #fff; }
+.t4-ctrlrow { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1.4fr); gap: 12px; margin-top: 12px; }
+@media (max-width: 760px) { .t4-ctrlrow { grid-template-columns: 1fr; } }
+.t4-lbl { margin: 10px 0 5px; font-size: .84rem; font-weight: 700; color: var(--ink-soft); }
+.t4-lbl:first-of-type { margin-top: 0; }
+.t4-ctrlrow .seg { width: 100%; }
+.t4-ctrlrow .seg button { flex: 1 1 auto; min-height: 40px; }
+.t4-take { margin-top: 12px; width: 100%; }
+.ag-read b.t4-path { font: 800 .95rem/1.3 var(--sans, inherit); }
+/* етапи ЛР 15 */
+.t4-steps { display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); gap: 6px; list-style: none; margin: 12px 0 0; padding: 0; counter-reset: none; }
+.t4-steps li { position: relative; padding: 8px 9px 9px; border-radius: 11px; background: var(--white); border: 1px solid var(--line); font-size: .78rem; line-height: 1.3; color: var(--muted); transition: background .3s, border-color .3s, color .3s; }
+.t4-steps li b { display: block; font: 800 .82rem var(--mono, monospace); color: var(--ink-soft); }
+.t4-steps li b::after { content: " доба"; font-weight: 600; font-size: .72rem; }
+.t4-steps li.is-done { background: #EAF5E6; border-color: #A9D3A0; color: var(--green-900); }
+.t4-steps li.is-done b { color: #23864A; }
+.t4-steps li.is-off { background: #F6F3EC; color: #9A9384; text-decoration: line-through; }
+@media (max-width: 640px) { .t4-steps { grid-template-columns: repeat(2, minmax(0, 1fr)); } .t4-steps li:last-child { grid-column: 1 / -1; } }
+/* стадії ембріоїдів */
+.t4-stages { display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); gap: 6px; list-style: none; margin: 12px 0 0; padding: 0; }
+.t4-stages li { --v: 0%; position: relative; display: grid; justify-items: center; gap: 2px; padding: 8px 4px 10px; border-radius: 12px; background: var(--white); border: 1px solid var(--line); overflow: hidden; text-align: center; }
+.t4-stages canvas { width: 46px; height: 46px; border-radius: 50%; }
+.t4-stages span { font-size: .74rem; font-weight: 700; color: var(--ink-soft); line-height: 1.2; }
+.t4-stages b { font: 800 .9rem var(--mono, monospace); color: var(--green-900); }
+.t4-stages i { position: absolute; left: 0; bottom: 0; height: 4px; width: var(--v); background: linear-gradient(90deg, #8FA83C, #3E8F3A); transition: width .25s; }
+.t4-stages li.is-on { border-color: #A9D3A0; background: #EFF7EC; }
+@media (max-width: 480px) { .t4-stages { grid-template-columns: repeat(3, minmax(0, 1fr)); } .t4-stages canvas { width: 40px; height: 40px; } }
+#t4a-reads, #t4c-reads { grid-template-columns: repeat(auto-fit, minmax(128px, 1fr)); }

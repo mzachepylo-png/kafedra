@@ -4,8 +4,9 @@
 //  • Температура насиченої пари — рівняння Антуана для води (99–374 °C): lg P[мм рт. ст.] = 8,14019 − 1810,94/(244,485 + T).
 //    Тиск у посібнику — надлишковий, «атм»; абсолютний P = 1 + p. При p = 1 атм → 120,7 ≈ 121 °C (с. 51, табл. 2).
 //  • Неповне видалення повітря: залишок ≈ 0,5 атм повітря (закон Дальтона) → пара має лише P − 0,5 атм → ≈ 112 °C при p = 1.
-//  • Прогрів середовища — закон Ньютона: dT/dt = (T_камери − T)/τ(V). τ(V) = 1,69·V^0,238 хв (V у мл) підібрано так,
-//    щоб саме режими табл. 2 (20–50 мл — 15 хв … 2000 мл — 40 хв при 1 атм) давали однакову надійність стерилізації.
+//  • Прогрів середовища — закон Ньютона: dT/dt = (T_камери − T)/τ(V). τ(V) = 2,4·V^0,195 хв (V у мл) — найповільніший
+//    прогрів, за якого КОЖЕН режим табл. 2 (20–50 мл — 15 хв … 2000 мл — 40 хв при 1 атм, с. 51) ще дає lg N ≤ −3
+//    (підбір за повним циклом: 9 хв нагріву + 6 хв набору тиску + витримка + повільне скидання).
 //  • Загибель спор — кінетика першого порядку: lg N = lg N₀ − F/D₁₂₁, F = ∫10^((T−121,1)/z) dt (летальність, хв),
 //    еталонний тест-мікроорганізм Geobacillus stearothermophilus: D₁₂₁ = 1,5 хв, z = 10 °C; N₀ = 10 спор/мл середовища.
 //    Ціль — імовірність нестерильності посудини ≤ 10⁻³.
@@ -25,7 +26,7 @@ const D121 = 1.5, Z = 10, ZQ = 25, C0 = 10, SAL = -3;
 
 /** Температура насиченої водяної пари (°C) за абсолютним тиском (атм). */
 export function tsat(pAbs) { const P = 760 * Math.max(0.05, pAbs); return 1810.94 / (8.14019 - Math.log10(P)) - 244.485; }
-export const tau = (V) => 1.69 * Math.pow(V, 0.238);
+export const tau = (V) => 2.4 * Math.pow(V, 0.195);
 
 /** Повний цикл автоклавування. Повертає ряди й підсумки. */
 export function simulate({ V, p, hold, purge = true, slow = true }, dt = 0.05) {
@@ -101,18 +102,18 @@ export function initAutoclave(root) {
     const V = VOLS[S.vi].v;
     sim = simulate({ V, p: S.p, hold: S.hold, purge: S.purge, slow: S.slow });
     ref = simulate({ V, p: 1, hold: VOLS[S.vi].tBook, purge: true, slow: true });
-    const ph = sim.phases;
+    const ph = sim.phases, narrow = root.clientWidth < 600;
     const markIdx = runner.started ? clamp(Math.round(tm / 0.25), 0, sim.t.length - 1) : null;
     const mk = (arr) => (markIdx != null ? [sim.t[markIdx], arr[markIdx]] : undefined);
     pT.set([
       { data: sim.t.map((t, i) => [t, sim.Tch[i]]), color: '#C2410C', label: 'камера (пара)', width: 2.2, marker: mk(sim.Tch) },
       { data: sim.t.map((t, i) => [t, sim.Tc[i]]), color: '#2563EB', label: `центр посудини (${VOLS[S.vi].label})`, width: 2.6, marker: mk(sim.Tc) },
-    ], [{ y: 121, color: '#8C6A10', label: '121 °C' }, { x: ph.t2, color: '#64748B', dash: [3, 4], label: 'старт витримки' }, { x: ph.t3, color: '#64748B', dash: [3, 4], label: 'скидання тиску' }]);
+    ], [{ y: 121, color: '#8C6A10', label: '121 °C' }, { x: ph.t2, color: '#64748B', dash: [3, 4], label: narrow ? '' : 'старт витримки' }, { x: ph.t3, color: '#64748B', dash: [3, 4], label: narrow ? '' : 'скидання тиску' }]);
     const y0 = Math.min(-8, Math.floor(SAL - 2)), y1 = Math.ceil(sim.lg0 + 1);
     pN.setOptions({ y: [y0, y1] });
     pN.set([
       { data: sim.t.map((t, i) => [t, Math.max(y0 - 1, sim.lg[i])]), color: '#7C3AED', label: 'lg N живих спор', width: 2.6, marker: mk(sim.lg.map((v) => Math.max(y0 - 1, v))) },
-    ], [{ y: 0, color: '#64748B', label: '1 спора на посудину' }, { y: SAL, color: '#15803D', label: 'ціль: 10⁻³' }, { x: ph.t2, color: '#64748B', dash: [3, 4] }]);
+    ], [{ y: 0, color: '#64748B', label: narrow ? '1 спора' : '1 спора на посудину' }, { y: SAL, color: '#15803D', label: 'ціль: 10⁻³' }, { x: ph.t2, color: '#64748B', dash: [3, 4] }]);
     // табл. 2 проти моделі — перераховуємо лише при зміні режиму
     const key = `${S.p}|${S.purge}|${S.slow}`;
     if (key !== needCache) {
@@ -140,7 +141,6 @@ export function initAutoclave(root) {
       need: isFinite(need) ? `${fnum(need, 0)} хв` : '> 4 год',
       deg: `${fnum(deg, 2)}×`,
     });
-    root.querySelectorAll('[data-out]').forEach((b) => { if (b.dataset.out === 'lg') return; });
     // вердикт
     let cls = '', msg = '';
     const lack = sim.lgEnd > SAL;
@@ -185,17 +185,16 @@ export function initAutoclave(root) {
     chip(ctx, rx, yy, `Камера ${fnum(st.Tch, 1)} °C`, { size: fs, color: '#9A3412' }); yy += fs + 14;
     chip(ctx, rx, yy, `Центр ${fnum(st.Tc, 1)} °C`, { size: fs, color: '#1D4ED8' }); yy += fs + 14;
     const holdT = st.phase === 3 ? st.t - sim.phases.t2 : st.phase > 3 ? S.hold : 0;
-    chip(ctx, rx, yy, `Витримка ${mmss(holdT)} / ${mmss(S.hold)}`, { size: fs }); yy += fs + 12;
+    chip(ctx, rx, yy, mob ? `${mmss(holdT)} з ${mmss(S.hold)}` : `Витримка ${mmss(holdT)} / ${mmss(S.hold)}`, { size: fs }); yy += fs + 12;
     // поле зору: спори Geobacillus у середовищі
     const fr = mob ? Math.min(w * 0.15, 52) : Math.min(h * 0.17, 74);
     const fy = Math.min(hy - fr - 6, yy + fr + 12);
-    const lgN = st.lg, lgDisp = clamp(lgN - (sim.lg0 - 3), -4, 3); // показуємо «вікно» у 3 порядки
+    const lgN = st.lg;
     microField(ctx, rx, fy, fr, (c, f) => drawSpores(c, f, lgN), { mode: 'phase' });
-    chip(ctx, rx, fy + fr + (mob ? 22 : 26), lgN > 0 ? `спор: 10^${fnum(lgN, 1)}` : `lg N = ${fnum(lgN, 1)}`, { size: fs - 0.5, dark: true });
+    chip(ctx, rx, fy + fr + (mob ? 22 : 26), lgN > 0 ? `живих спор: ${fnum(Math.pow(10, lgN), 0)}` : `lg N = ${fnum(lgN, 1)}`, { size: fs - 0.5, dark: true });
     // HUD
     const names = ['Готово до запуску', 'Нагрів і продування парою', 'Набір тиску', `Витримка ${fnum(sim.Tmax, 0)} °C`, S.slow ? 'Повільне скидання тиску' : 'Різке скидання тиску!', 'Цикл завершено'];
     hud.innerHTML = `<span>${names[st.phase]}</span><span>t = ${mmss(st.t)}</span>`;
-    void lgDisp;
   }
 
   function mmss(m) { const s = Math.max(0, Math.round(m * 60)); return `${String(Math.floor(s / 60)).padStart(2, '0')}:${String(s % 60).padStart(2, '0')}`; }
@@ -304,9 +303,8 @@ export function initAutoclave(root) {
     ctx.restore();
     // підписи (лише статичний кадр/широкий екран)
     if (cv.parentElement.clientWidth > 520) {
-      const lbl = (ax, ay, tx, ty, text) => { ctx.save(); ctx.strokeStyle = 'rgba(25,55,38,.55)'; ctx.lineWidth = 1; ctx.beginPath(); ctx.moveTo(ax, ay); ctx.lineTo(tx, ty); ctx.stroke(); ctx.fillStyle = '#1F3A2A'; ctx.beginPath(); ctx.arc(ax, ay, 2, 0, TAU); ctx.fill(); ctx.restore(); chip(ctx, tx + (tx < ax ? -2 : 2), ty + 4, text, { size: 11, align: tx < ax ? 'right' : 'left' }); };
-      lbl(vx - 6, ly - bw * 0.08, x0 - bw * 0.08, top - bw * 0.02, 'клапан повітря');
-      lbl(x0 + wall * 3, wy + 6, x0 - bw * 0.1, wy + bw * 0.12, 'вода, ТЕН');
+      chip(ctx, vx + 12, ly - bw * 0.11, 'клапан повітря', { size: 11, align: 'right' });
+      chip(ctx, ix0 + 8, iy1 - 6, 'вода й ТЕН (нагрівач)', { size: 10.5, align: 'left', dark: true });
     }
   }
 

@@ -149,8 +149,8 @@ export function initA() {
     const NAME = { shoots: 'пагони', roots: 'корені', callus: 'калюс', weak: 'слабкий ріст' };
     ctx.font = '800 12px system-ui, sans-serif'; ctx.textAlign = 'center'; ctx.textBaseline = 'middle';
     for (const k in centroids) {
-      const [cx, cy] = centroids[k];
       const m = ctx.measureText(NAME[k]).width;
+      const cx = clamp(centroids[k][0], G.m.l + m / 2 + 8, G.m.l + G.pw - m / 2 - 8), cy = clamp(centroids[k][1], G.m.t + 12, G.m.t + G.ph - 12);
       ctx.fillStyle = 'rgba(255,255,255,.82)'; roundRect(ctx, cx - m / 2 - 6, cy - 9, m + 12, 18, 9); ctx.fill();
       ctx.fillStyle = k === 'shoots' ? '#1F5A24' : k === 'roots' ? '#7A4A16' : '#4A4320'; ctx.fillText(NAME[k], cx, cy + 0.5);
     }
@@ -196,11 +196,11 @@ export function initA() {
     const phone = W < 620;
     const { ctx, w, h } = fit(cv, { aspect: phone ? 0.86 : 1.72, min: 320, max: 540 });
     const hy = scene(ctx, w, h, { kind: 'room', horizon: phone ? 0.74 : 0.72, light: 0.3 });
-    const s = phone ? Math.min(h * 0.56, w * 0.6) : Math.min(h * 0.74, w * 0.36);
-    const fcx = phone ? w * 0.3 : w * 0.27, by = phone ? h * 0.95 : hy + (h - hy) * 0.6;
+    const s = phone ? Math.min(h * 0.7, w * 0.7) : Math.min(h * 0.84, w * 0.4);
+    const fcx = phone ? w * 0.37 : w * 0.28, by = phone ? h * 0.93 : hy + (h - hy) * 0.62;
     const k = s / 70;                         // px на мм (колба 50 мл ≈ 70 мм заввишки)
-    const lr = phone ? Math.min(w * 0.24, h * 0.22) : Math.min(h * 0.36, w * 0.2);
-    const lcx = phone ? w * 0.72 : w * 0.7, lcy = phone ? h * 0.3 : h * 0.43;
+    const lr = phone ? Math.min(w * 0.2, h * 0.19) : Math.min(h * 0.36, w * 0.2);
+    const lcx = phone ? w * 0.76 : w * 0.72, lcy = phone ? h * 0.22 : h * 0.42;
     const d = clamp(2 * Math.cbrt(3 * dyn.mass / (2 * Math.PI)) * 10, 4, 22); // діаметр калюсу, мм (маса ≈ об'єм, см³)
     let calTop = by;
     const geo = {};
@@ -216,7 +216,6 @@ export function initA() {
     ctx.fillStyle = 'rgba(255,255,255,.16)';
     ctx.beginPath(); ctx.moveTo(ax, ay); ctx.lineTo(lcx + Math.cos(pa) * lr, lcy + Math.sin(pa) * lr); ctx.lineTo(lcx - Math.cos(pa) * lr, lcy - Math.sin(pa) * lr); ctx.closePath(); ctx.fill();
     ctx.strokeStyle = 'rgba(40,70,50,.25)'; ctx.setLineDash([3, 4]); ctx.stroke(); ctx.setLineDash([]);
-    ctx.fillStyle = '#1F3A2A'; ctx.beginPath(); ctx.arc(ax, ay, 2.4, 0, TAU); ctx.fill();
     ctx.restore();
     lens(ctx, lcx, lcy, lr, lensState(), { label: 'Лупа ×10: поверхня калюсу', seed: 5 + SA.passage });
   }
@@ -243,16 +242,18 @@ export function initA() {
       const Rz = rng(17);
       for (let i = 0; i < 6; i++) { const dx = (Rz() - 0.5) * dpx * 0.85; meristemZone(c, cx + dx, top(dx) + 2, dpx * (0.08 + Rz() * 0.06), dyn.zones, { light: SA.light }); }
     }
-    // апекси й мікропагони
-    const shown = dyn.apices.slice(0, 18);
-    shown.forEach((a, i) => {
-      if (SA.day < a.ti) return;
-      const q = (i + 0.5) / shown.length, dx = (q - 0.5) * dpx * 0.82 * (i % 2 ? 1 : 0.86);
-      const bx = cx + dx, byy = top(dx) + 1;
-      const hpx = a.h * k;
-      if (a.h < 1.2) { bud(c, bx, byy, k * (0.5 + a.h * 0.4), { green: SA.light ? 1 : 0.15, open: a.h / 2, seed: i }); return; }
-      plantlet(c, bx, byy, { height: hpx, nodes: clamp(Math.round(a.h / 4) + 2, 2, 6), leafLen: k * clamp(2 + a.h * 0.28, 2, 6.5), roots: { n: 0, len: 0 }, sway: (q - 0.5) * 0.5, pale: SA.light ? 0 : 0.85, seed: 40 + i });
-    });
+    // апекси й мікропагони: розкидані по куполу калюсу; задні — вище й дрібніші (перспектива)
+    const Rs = rng(57), shown = [];
+    dyn.apices.slice(0, 14).forEach((a, i) => { const u = Rs() * 2 - 1, depth = Rs(); shown.push({ a, i, u, depth }); });
+    shown.sort((p, q) => q.depth - p.depth);
+    for (const { a, i, u, depth } of shown) {
+      if (SA.day < a.ti) continue;
+      const dx = u * half * 0.8, bx = cx + dx, byy = top(dx) + 2 - depth * domeH * 0.35;
+      const sc = 1 - depth * 0.25;
+      if (a.h < 1.2) { bud(c, bx, byy, k * (0.45 + a.h * 0.35) * sc, { green: SA.light ? 1 : 0.15, open: a.h / 2, seed: i }); continue; }
+      const hh = a.h * (0.75 + 0.5 * ((i * 0.618) % 1));
+      plantlet(c, bx, byy, { height: hh * k * sc, nodes: clamp(Math.round(hh / 5) + 2, 2, 5), leafLen: k * sc * clamp(1.6 + hh * 0.18, 1.6, 4.2), roots: { n: 0, len: 0 }, sway: u * 0.35, pale: SA.light ? depth * 0.15 : 0.85, seed: 40 + i });
+    }
     return top(0);
   }
   function lensState() {
@@ -263,7 +264,7 @@ export function initA() {
     // осередки на ранній стадії (через 1 тиждень): світлі вузлики
     if (dyn.foci > 0.05 && dyn.zones < 0.3) for (let i = 0; i < 5; i++) zones.push({ x: (R() - 0.5) * 1.3, y: (R() - 0.5) * 1.3, r: 0.07, k: dyn.foci * 0.5 });
     const nB = Math.min(nZ, dyn.nAp);
-    for (let i = 0; i < nB; i++) { const a = dyn.apices[i]; buds.push({ x: zc[i][0], y: zc[i][1] + 0.05, s: 0.07 + Math.min(a.h, 8) / 8 * 0.11, green: SA.light ? 1 : 0.15, open: clamp(a.h / 6, 0, 1), seed: i }); }
+    for (let i = 0; i < nB; i++) { const a = dyn.apices[i]; buds.push({ x: zc[i][0], y: zc[i][1] + 0.05, s: 0.055 + Math.min(a.h, 8) / 8 * 0.06, green: SA.light ? 1 : 0.15, open: clamp(a.h / 6, 0, 1), seed: i }); }
     const nR = Math.min(4, dyn.nR);
     for (let i = 0; i < nR; i++) { const q = dyn.roots[i]; roots.push({ x: -0.5 + i * 0.33, y: 0.15 + (i % 2) * 0.2, len: Math.min(1.1, q.len / 10), ang: Math.PI / 2 + (i - 1.5) * 0.25, seed: 50 + i }); }
     return { zones, buds, roots, light: SA.light, tint: SA.light && dyn.zones > 0.5 ? '#E3E2B4' : '#EDE1BC', brown: o.path === 'weak' ? smooth(20, 60, SA.day) * 0.4 : 0 };
@@ -356,13 +357,13 @@ export function initB(getA) {
   function draw() {
     const W = cv.parentElement.clientWidth; if (!W) return;
     const phone = W < 620;
-    const { ctx, w, h } = fit(cv, { aspect: phone ? 0.95 : 2.1, min: 300, max: 470 });
+    const { ctx, w, h } = fit(cv, { aspect: W < 480 ? 1.0 : phone ? 1.35 : 2.1, min: 300, max: 470 });
     const hy = scene(ctx, w, h, { kind: SB.dark ? 'dark' : 'room', horizon: 0.86, light: 0.5 });
-    const n = 4, gap = phone ? w * 0.07 : w * 0.08;
-    const tw = Math.min(phone ? w * 0.085 : w * 0.05, 40), th = Math.min(h * 0.72, tw * 6.2);
+    const n = 4, tw = Math.min(44, (w - 36) / 14.3), gap = tw * 1.8;
+    const th = Math.min(h * 0.7, tw * 5.6);
     const groupW = n * tw + (n - 1) * tw * 0.75;
     const x0 = (w - 2 * groupW - gap) / 2, top = hy - th - 4;
-    const k = th / 150;                       // пробірка 150 мм
+    const k = th / 100;                       // пробірка ≈ 100 мм
     // штатив
     const rack = (x, ww) => {
       ctx.fillStyle = SB.dark ? '#2B3A33' : '#C7D0CC'; roundRect(ctx, x - 8, top + th * 0.18, ww + 16, 7, 3); ctx.fill();
@@ -378,10 +379,10 @@ export function initB(getA) {
           medium: { level: 0.3, color: MAT.agarMS, alpha: 0.85 }, plug: 'foil',
           contents: (c, I) => {
             const bx = I.x + I.w / 2;
-            for (let r = 0; r < st.n; r++) root(c, bx + (r - st.n / 2) * 1.4, I.surface + 1, st.len * k * (0.7 + 0.5 * ((r * 0.37 + i * 0.21) % 1)), Math.PI / 2 + (r - (st.n - 1) / 2) * 0.32, { seed: 9 + r + i * 7, width: Math.max(1.1, tw * 0.07) });
+            for (let r = 0; r < st.n; r++) root(c, bx + (r - st.n / 2) * 1.4, I.surface + 1, st.len * k * (0.7 + 0.5 * ((r * 0.37 + i * 0.21) % 1)), Math.PI / 2 + (r - (st.n - 1) / 2) * 0.32, { seed: 9 + r + i * 7, width: Math.max(1.3, tw * 0.08), color: '#FFFDF6', edge: -0.55 });
             // базальний калюс на зрізі
             callus(c, bx, I.surface + 1.5, tw * 0.16, { seed: 3 + i, n: 9, glossy: 0.5 });
-            plantlet(c, bx, I.surface, { height: hmm * k * 2.2, nodes: 3, leafLen: tw * 0.32, roots: { n: 0, len: 0 }, pale: SB.dark ? smooth(0, 14, SB.day) * 0.7 : 0, seed: 60 + i + g * 9, sway: (i - 1.5) * 0.06 });
+            plantlet(c, bx, I.surface, { height: hmm * k * 1.5, nodes: 3, leafLen: tw * 0.34, roots: { n: 0, len: 0 }, pale: SB.dark ? smooth(0, 14, SB.day) * 0.7 : 0, seed: 60 + i + g * 9, sway: (i - 1.5) * 0.06 });
           },
         });
       }
@@ -409,7 +410,7 @@ export function initB(getA) {
     p1.set([
       { data: sample((t) => 100 * rooted('iba', t, SB.dark), 0, 20, 120), color: '#3E8F3A', label: 'б) МС + ІМК + ГК', fill: 'rgba(62,143,58,.08)' },
       { data: sample((t) => 100 * rooted('ms', t, SB.dark), 0, 20, 120), color: '#B08A2E', label: 'а) МС без гормонів' },
-    ], [{ x: SB.day, label: `доба ${Math.round(SB.day)}` }, { x: 7, color: '#7A8A80', dash: [2, 4] }, { x: 14, color: '#7A8A80', dash: [2, 4], label: '7–14 діб (посібник)' }]);
+    ], [{ x: SB.day, label: `доба ${Math.round(SB.day)}` }, { x: 7, color: '#7A8A80', dash: [2, 4], label: '7–14 діб' }, { x: 14, color: '#7A8A80', dash: [2, 4] }]);
     const a = getA(), base = a ? a.o : null;
     const ser = (med) => { const out = []; for (let p = 1; p <= 12; p++) { const oo = organo({ aux: Z(SA.aux), auxType: SA.auxType, cyt: Z(SA.cyt), cytType: SA.cytType, light: SA.light, passage: p }); out.push([p, regenerants(oo.nShoots, med, SB.dark)]); } return out; };
     p2.set([

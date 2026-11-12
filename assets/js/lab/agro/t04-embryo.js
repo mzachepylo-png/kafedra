@@ -51,13 +51,13 @@ export function initC() {
       c.width = w * dpr; c.height = w * dpr; const x = c.getContext('2d'); x.setTransform(dpr, 0, 0, dpr, 0, 0);
       const g = x.createRadialGradient(w / 2, w / 2, 2, w / 2, w / 2, w * 0.7); g.addColorStop(0, '#2A2B22'); g.addColorStop(1, '#0E0F0B');
       x.fillStyle = g; x.beginPath(); x.arc(w / 2, w / 2, w / 2, 0, TAU); x.fill();
-      const p = STAGES[i].p, sc = w * (0.17 - Math.min(p, 4.5) * 0.017);
+      const p = STAGES[i].p, sc = w * (0.2 - Math.min(p, 4.5) * 0.024);
       embryo(x, w / 2, w * (0.52 + (p > 4 ? -0.06 : 0)), sc, p, { seed: i, light: 1 });
     });
   }
 
   const p1 = new Plot($('t4c-p1'), { xLabel: 'доба від посадки калюсу', yLabel: 'частка ембріоїдів, %', x: [0, SE.t3], y: [0, 100], xShort: 'доба', aspect: 1.7 });
-  const p2 = new Plot($('t4c-p2'), { xLabel: 'НОК у середовищі II, мг/л', yLabel: 'рослин на калюс (70 доба)', x: [0, 2], y: 'auto', xShort: 'НОК', aspect: 1.7 });
+  const p2 = new Plot($('t4c-p2'), { xLabel: 'НОК у середовищі II, мг/л', yLabel: 'рослин на калюс (70 доба)', x: [0, 1], y: 'auto', xShort: 'НОК', aspect: 1.7 });
 
   const runner = new Runner({
     btn: $('t4c-run'), reset: $('t4c-reset'), status: $('t4c-status'),
@@ -74,11 +74,11 @@ export function initC() {
   runner.play = () => { if (!runner.started || S.day >= SE.t3 - 0.5) { S.day = 0; sl.set('t4c-day', 0, true); } origPlay(); };
 
   function embryosNow() {
-    const nShow = Math.max(2, Math.round(14 * F.pot));
+    const nShow = Math.max(2, Math.round(10 * F.pot));
     const out = [];
     const R = rng(311);
-    for (let i = 0; i < 14; i++) {
-      const a = R() * TAU, d = Math.sqrt(R()) * 0.68, ang = (R() - 0.5) * 1.6 + (R() > 0.5 ? Math.PI : 0) * 0.15;
+    for (let i = 0; i < 10; i++) {
+      const a = R() * TAU, d = Math.sqrt(R()) * 0.6, ang = (R() - 0.5) * 1.6 + (R() > 0.5 ? Math.PI : 0) * 0.15;
       if (i >= nShow) continue;
       const p = seStage(S.day, TAU0(i * 17 + 3), U(i * 17 + 3), F);
       out.push({ x: Math.cos(a) * d, y: Math.sin(a) * d * 0.9, p, ang, i });
@@ -92,7 +92,7 @@ export function initC() {
     const step = STEP(S.day), light = step === 2 ? 1 : 0.55;
     const hy = scene(ctx, w, h, { kind: 'bench', horizon: phone ? 0.36 : 0.62, light: 0.25 });
     // чашка Петрі з калюсом
-    const pr = phone ? Math.min(w * 0.22, h * 0.13) : Math.min(w * 0.17, h * 0.32);
+    const pr = phone ? Math.min(w * 0.2, h * 0.12) : Math.min(w * 0.17, h * 0.32);
     const pcx = phone ? w * 0.26 : w * 0.2, pcy = phone ? h * 0.2 : hy + (h - hy) * 0.2;
     const emb = embryosNow();
     petri(ctx, pcx, pcy, pr, {
@@ -106,28 +106,29 @@ export function initC() {
         }
       },
     });
-    tagSmall(ctx, pcx, pcy + pr * 0.42 + pr * 0.16 + 18, 'Калюс люцерни', { bg: 'rgba(255,255,255,.85)', size: 11 });
+    if (phone) tagSmall(ctx, pcx + pr + 10, pcy + 4, 'Калюс люцерни', { bg: 'rgba(255,255,255,.85)', size: 11, align: 'left' });
+    else tagSmall(ctx, pcx, pcy + pr * 0.42 + pr * 0.16 + 18, 'Калюс люцерни', { bg: 'rgba(255,255,255,.85)', size: 11 });
     // поле зору стереомікроскопа
-    const mr = phone ? Math.min(w * 0.44, h * 0.33) : Math.min(h * 0.44, w * 0.25);
+    const mr = phone ? Math.min(w * 0.42, h * 0.33) : Math.min(h * 0.44, w * 0.25);
     const mcx = phone ? w * 0.5 : w * 0.66, mcy = phone ? h * 0.63 : h * 0.47;
     // промінь від чашки до поля зору
     ctx.save(); ctx.fillStyle = 'rgba(255,255,255,.13)';
     const ax = pcx + pr * 0.4, ay = pcy - pr * 0.1, ang = Math.atan2(mcy - ay, mcx - ax) + Math.PI / 2;
     ctx.beginPath(); ctx.moveTo(ax, ay); ctx.lineTo(mcx + Math.cos(ang) * mr, mcy + Math.sin(ang) * mr); ctx.lineTo(mcx - Math.cos(ang) * mr, mcy - Math.sin(ang) * mr); ctx.closePath(); ctx.fill(); ctx.restore();
     microField(ctx, mcx, mcy, mr, (c, f) => {
-      const tex = callusTexture(Math.round(f.r * 2), 9 + S.passage, step === 2 ? '#E7E2B0' : '#EDE0B0');
+      const tex = callusTexture(Math.round(f.r * 2), 9 + S.passage, step === 2 ? '#BDB27A' : '#C2AE76', 0.5);
       c.globalAlpha = 0.92; c.drawImage(tex, f.cx - f.r, f.cy - f.r, f.r * 2, f.r * 2); c.globalAlpha = 1;
       // старий калюс буріє
       if (S.passage > 3) { c.fillStyle = `rgba(110,72,28,${clamp((S.passage - 3) / 10, 0, 0.4)})`; c.fillRect(f.cx - f.r, f.cy - f.r, f.r * 2, f.r * 2); }
       for (const e of emb) {
         if (e.p < 0) continue;
-        const sc = f.r * (0.03 + 0.018 * Math.min(e.p, 4.6));
+        const sc = f.r * 0.03 * Math.exp(0.4 * Math.min(e.p, 4));  // ≈ 0,2 мм (глобула) … 3 мм (сім'ядольний)
         embryo(c, f.cx + e.x * f.r, f.cy + e.y * f.r, sc, e.p, { ang: e.ang, seed: e.i, light });
       }
-    }, { mode: 'dark', scale: { px: mr * 0.38, text: '1 мм' } });
+    }, { mode: 'dark', scale: { px: mr * 0.25, text: '1 мм' } });
     // підпис етапу
     const M = MEDIA[step];
-    const lx = phone ? w * 0.52 : w * 0.06, ly = phone ? h * 0.08 : h * 0.1;
+    const lx = phone ? w * 0.5 : w * 0.06, ly = phone ? h * 0.07 : h * 0.1;
     ctx.save(); ctx.font = `800 ${phone ? 12 : 13}px system-ui, sans-serif`; ctx.textAlign = phone ? 'left' : 'left';
     const lines = [M.name, M.light];
     const mw = Math.max(...lines.map((t) => ctx.measureText(t).width));
@@ -171,7 +172,7 @@ export function initC() {
       { x: SE.t1, label: 'II', color: '#7A8A80', dash: [3, 4] }, { x: SE.t2, label: 'III', color: '#7A8A80', dash: [3, 4] }, { x: S.day, color: '#8C6A10' },
     ]);
     const yieldAt = (naa) => { const FF = seFactors({ ...S, naa }); return SE.nMax * FF.pot * sePopulation(SE.t3, FF, 120)[4]; };
-    p2.set([{ data: sample(yieldAt, 0, 2, 60), color: '#3E8F3A', label: 'рослин-регенерантів', fill: 'rgba(62,143,58,.08)', marker: [S.naa, yieldAt(S.naa)] }], [{ x: 0.1, label: '0,1 (посібник)', color: '#7A8A80' }]);
+    p2.set([{ data: sample(yieldAt, 0, 1, 80), color: '#3E8F3A', label: 'рослин-регенерантів', fill: 'rgba(62,143,58,.08)', marker: S.naa <= 1 ? [S.naa, yieldAt(S.naa)] : undefined }], [{ x: 0.1, label: '0,1 (посібник)', color: '#7A8A80' }]);
   }
   function update() { draw(); reads(); plots(); }
   onResize(cv.parentElement, () => { draw(); drawIcons(); });

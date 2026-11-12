@@ -5,7 +5,7 @@ import { TAU, clamp, lerp, smooth, rng, fbm, noise, hex, rgba, mix, shade, offsc
 
 /* ---------------- Корінь ---------------- */
 /** Адвентивний корінь: звужений, злегка звивистий, з кореневими волосками за кінчиком. */
-export function root(ctx, x, y, len, ang, { seed = 1, width = 2.2, alpha = 1, hairs = true, color = '#F4ECD8' } = {}) {
+export function root(ctx, x, y, len, ang, { seed = 1, width = 2.2, alpha = 1, hairs = true, color = '#F4ECD8', edge = -0.28 } = {}) {
   if (len < 1) return;
   const R = rng(seed), n = Math.max(4, Math.round(len / 4));
   const pts = [[x, y]];
@@ -31,7 +31,7 @@ export function root(ctx, x, y, len, ang, { seed = 1, width = 2.2, alpha = 1, ha
   for (let i = 0; i < n; i++) {
     const w = width * (1 - (i / n) * 0.6);
     const [x0, y0] = pts[i], [x1, y1] = pts[i + 1];
-    ctx.strokeStyle = rgba(shade(c, -0.28)); ctx.lineWidth = w + 0.9; ctx.beginPath(); ctx.moveTo(x0, y0); ctx.lineTo(x1, y1); ctx.stroke();
+    ctx.strokeStyle = rgba(shade(c, edge)); ctx.lineWidth = w + 0.9; ctx.beginPath(); ctx.moveTo(x0, y0); ctx.lineTo(x1, y1); ctx.stroke();
   }
   for (let i = 0; i < n; i++) {
     const w = width * (1 - (i / n) * 0.6);
@@ -53,7 +53,7 @@ export function bud(ctx, x, y, s, { green = 1, seed = 1, open = 0 } = {}) {
   ctx.save();
   // листкові зачатки
   for (const side of [-1, 1]) {
-    const L = s * (1.25 + open * 1.6);
+    const L = s * (1.1 + open * 1.1);
     leaf(ctx, x + side * s * 0.35, y - s * 0.2, L, -Math.PI / 2 + side * (0.55 + open * 0.5), { color: '#' + c.map((v) => Math.round(v).toString(16).padStart(2, '0')).join(''), width: 0.55, veins: false });
   }
   const g = ctx.createRadialGradient(x - s * 0.35, y - s * 0.55, s * 0.08, x, y - s * 0.2, s * 1.05);
@@ -76,32 +76,41 @@ export function meristemZone(ctx, x, y, r, k, { light = true } = {}) {
 
 /* ---------------- Лупа: близький план поверхні калюсу ---------------- */
 const texCache = new Map();
-/** Карта рельєфу калюсу з освітленням (кешується за розміром і кольором). */
-export function callusTexture(size, seed, tint) {
-  const key = `${size}|${seed}|${tint}`;
+/**
+ * Близький план поверхні калюсу: щільні округлі вузлики (агрегати клітин) з об'ємним затіненням,
+ * темні щілини між ними, вологий полиск і зерно. Кешується за розміром, сідом і кольором.
+ */
+export function callusTexture(size, seed, tint, fine = 1) {
+  const key = `${size}|${seed}|${tint}|${fine}`;
   if (texCache.has(key)) return texCache.get(key);
   if (texCache.size > 12) texCache.clear();
-  const c = offscreen(size, size), x = c.getContext('2d'), d = x.createImageData(size, size);
-  const base = hex(tint), sc = 9 / size;
-  const H = (i, j) => {
-    const u = i * sc, v = j * sc;
-    // горбки-клітинні агрегати (вузлуватість) + дрібна зернистість
-    const n1 = fbm(u * 0.9, v * 0.9, seed, 4);
-    const n2 = noise(u * 3.2, v * 3.2, seed + 5);
-    return n1 * 0.8 + Math.pow(n2, 2) * 0.35;
-  };
-  for (let j = 0; j < size; j++) for (let i = 0; i < size; i++) {
-    const h = H(i, j), hx = H(i + 1, j) - h, hy = H(i, j + 1) - h;
-    const lam = clamp(0.62 - (hx * 0.62 + hy * 0.78) * 38, 0, 1.25); // світло зверху-ліворуч
-    const cav = clamp((h - 0.35) * 1.8, 0, 1);                       // западини темніші
-    const k = (0.42 + 0.62 * lam) * (0.55 + 0.45 * cav);
-    const p = (j * size + i) * 4;
-    d.data[p] = clamp(base[0] * k + (lam > 1.05 ? 40 : 0), 0, 255);
-    d.data[p + 1] = clamp(base[1] * k + (lam > 1.05 ? 40 : 0), 0, 255);
-    d.data[p + 2] = clamp(base[2] * k * 0.96 + (lam > 1.05 ? 34 : 0), 0, 255);
-    d.data[p + 3] = 255;
+  const c = offscreen(size, size), x = c.getContext('2d'), R = rng(seed * 7 + 1), base = hex(tint);
+  // щілини між вузликами
+  const bg = x.createRadialGradient(size * 0.4, size * 0.35, size * 0.1, size / 2, size / 2, size * 0.75);
+  bg.addColorStop(0, rgba(shade(base, -0.3))); bg.addColorStop(1, rgba(shade(base, -0.5)));
+  x.fillStyle = bg; x.fillRect(0, 0, size, size);
+  const nod = [];
+  const n = Math.round(size * size / 170 / (fine * fine));
+  for (let i = 0; i < n; i++) {
+    const r = size * fine * (0.03 + Math.pow(R(), 1.6) * 0.06);
+    nod.push({ x: R() * size, y: R() * size, r, k: R() });
   }
-  x.putImageData(d, 0, 0);
+  nod.sort((a, b) => a.r - b.r || a.y - b.y);
+  for (const b of nod) {
+    const cc = mix(base, b.k > 0.7 ? shade(base, 0.1) : shade(base, -0.08), b.k);
+    // м'яка тінь під вузликом
+    x.fillStyle = 'rgba(40,28,8,.28)'; x.beginPath(); x.ellipse(b.x + b.r * 0.18, b.y + b.r * 0.22, b.r * 1.02, b.r * 0.95, 0, 0, TAU); x.fill();
+    const g = x.createRadialGradient(b.x - b.r * 0.38, b.y - b.r * 0.42, b.r * 0.06, b.x, b.y, b.r);
+    g.addColorStop(0, rgba(shade(cc, 0.42))); g.addColorStop(0.45, rgba(cc)); g.addColorStop(0.85, rgba(shade(cc, -0.22))); g.addColorStop(1, rgba(shade(cc, -0.42)));
+    x.fillStyle = g; x.beginPath();
+    for (let j = 0; j <= 14; j++) { const t = j / 14 * TAU, rr = b.r * (0.9 + 0.12 * noise(Math.cos(t) * 1.6 + b.x, Math.sin(t) * 1.6 + b.y, seed)); const X = b.x + Math.cos(t) * rr, Y = b.y + Math.sin(t) * rr; j ? x.lineTo(X, Y) : x.moveTo(X, Y); }
+    x.fill();
+    // вологий полиск
+    if (b.r > 4) { x.fillStyle = 'rgba(255,255,245,.45)'; x.beginPath(); x.ellipse(b.x - b.r * 0.36, b.y - b.r * 0.42, b.r * 0.2, b.r * 0.11, -0.6, 0, TAU); x.fill(); }
+    // клітинна зернистість
+    x.fillStyle = rgba(shade(cc, -0.3), 0.25);
+    for (let k = 0; k < b.r * 0.6; k++) { const a = R() * TAU, d = R() * b.r * 0.8; x.beginPath(); x.arc(b.x + Math.cos(a) * d, b.y + Math.sin(a) * d, 0.5 + R() * 0.8, 0, TAU); x.fill(); }
+  }
   texCache.set(key, c);
   return c;
 }
@@ -161,34 +170,37 @@ export function lens(ctx, cx, cy, r, st, { label = '', seed = 4 } = {}) {
  */
 function embryoShape(p) {
   const q1 = clamp(p - 1, 0, 1), q2 = clamp(p - 2, 0, 1), q3 = clamp(p - 3, 0, 1), q4 = clamp(p - 4, 0, 1);
-  const W = lerp(1, 1.12, q1) * lerp(1, 0.62, q2) * lerp(1, 0.9, q3) * lerp(1, 0.85, q4);   // напівширина тіла
-  const Hb = lerp(1, 1.0, q1) * lerp(1, 1.75, q2) * lerp(1, 1.18, q3) * lerp(1, 1.3, q4);   // напівдовжина тіла
-  const lobe = 0.42 * q1 + 0.5 * q2 + 0.9 * q3 + 0.4 * q4;                                // довжина сім'ядоль
-  const spread = 0.12 + 0.18 * q1 + 0.05 * q2 + 0.25 * q3 + 0.55 * q4;                     // кут розходження
-  const notch = 0.18 * q1 + 0.25 * q2 + 0.45 * q3 + 0.2 * q4;                              // глибина виїмки
-  const radicle = 0.25 * q2 + 0.2 * q3 + 1.6 * q4;                                         // корінець
-  return { W, Hb, lobe, spread, notch, radicle, q1, q2, q3, q4 };
+  const W = 1 + 0.15 * q1 - 0.4 * q2 - 0.15 * q3 - 0.05 * q4;        // напівширина тіла (гіпокотиля)
+  const Hb = 1 + 0.7 * q2 + 0.25 * q3 + 0.3 * q4;                     // напівдовжина тіла
+  const lobe = 0.35 * q1 + 0.3 * q2 + 0.9 * q3 + 0.25 * q4;           // довжина сім'ядоль
+  const cw = Math.max(0.3, (0.5 + 0.0 * q1) * W + 0.12 * q3);         // ширина сім'ядолі
+  const spread = 0.3 * q1 - 0.15 * q2 + 0.3 * q3 + 0.5 * q4;          // розходження сім'ядоль
+  const notch = 0.22 * q1 + 0.1 * q2 + 0.35 * q3;                     // глибина виїмки між сім'ядолями
+  const radicle = 0.2 * q2 + 0.15 * q3 + 1.5 * q4;                    // корінець
+  return { W, Hb, lobe, cw, spread, notch, radicle, q1, q2, q3, q4 };
 }
 
 function embryoPath(ctx, S, sh) {
-  const { W, Hb, lobe, spread, notch, radicle } = sh;
-  const top = -Hb, bot = Hb + radicle;
-  const lw = W * S, tipY = (top - lobe) * S, nY = (top + notch) * S, cw = W * 0.55 * S;
+  const { W, Hb, lobe, cw, spread, notch, radicle } = sh;
+  const top = -Hb * S, bot = (Hb + radicle) * S, lw = W * S, c = cw * S;
   ctx.beginPath();
-  ctx.moveTo(0, bot * S);
-  // права сторона: корінець → тіло (гіпокотиль) → права сім'ядоля
-  ctx.bezierCurveTo(W * 0.35 * S, bot * S, W * 0.55 * S, Hb * S * 0.95, lw, Hb * S * 0.25);
-  if (lobe < 0.02) {
-    ctx.bezierCurveTo(lw * 1.02, -Hb * S * 0.6, lw * 0.55, top * S, 0, top * S);
-    ctx.bezierCurveTo(-lw * 0.55, top * S, -lw * 1.02, -Hb * S * 0.6, -lw, Hb * S * 0.25);
+  ctx.moveTo(0, bot);
+  // права сторона: корінець → тіло
+  ctx.bezierCurveTo(lw * 0.45, bot, lw * 0.75, Hb * S * 0.85, lw, Hb * S * 0.2);
+  if (lobe < 0.03) {
+    ctx.bezierCurveTo(lw * 1.02, -Hb * S * 0.6, lw * 0.55, top, 0, top);
+    ctx.bezierCurveTo(-lw * 0.55, top, -lw * 1.02, -Hb * S * 0.6, -lw, Hb * S * 0.2);
   } else {
-    const tx = cw + Math.sin(spread) * lobe * S, ty = tipY + (1 - Math.cos(spread)) * lobe * S * 0.6;
-    ctx.bezierCurveTo(lw * 1.05, -Hb * S * 0.3, tx + cw * 0.55, ty + lobe * S * 0.35, tx, ty);
-    ctx.bezierCurveTo(tx - cw * 0.55, ty - cw * 0.15, cw * 0.25, nY - cw * 0.2, 0, nY);
-    ctx.bezierCurveTo(-cw * 0.25, nY - cw * 0.2, -tx + cw * 0.55, ty - cw * 0.15, -tx, ty);
-    ctx.bezierCurveTo(-tx - cw * 0.55, ty + lobe * S * 0.35, -lw * 1.05, -Hb * S * 0.3, -lw, Hb * S * 0.25);
+    // кінчик правої сім'ядолі (заокруглений), виїмка між сім'ядолями
+    const tx = Math.max(lw * 0.5, c * 0.55) + Math.sin(spread) * lobe * S * 0.9, ty = top - lobe * S * Math.cos(spread * 0.6);
+    const nY = top + notch * S;
+    ctx.bezierCurveTo(lw * 1.04, top * 0.2, tx + c * 0.62, ty + c * 0.9, tx + c * 0.12, ty + c * 0.05);
+    ctx.bezierCurveTo(tx - c * 0.3, ty - c * 0.25, tx - c * 0.9, ty + c * 0.1, c * 0.12, nY);
+    ctx.quadraticCurveTo(0, nY - c * 0.12, -c * 0.12, nY);
+    ctx.bezierCurveTo(-tx + c * 0.9, ty + c * 0.1, -tx + c * 0.3, ty - c * 0.25, -tx - c * 0.12, ty + c * 0.05);
+    ctx.bezierCurveTo(-tx - c * 0.62, ty + c * 0.9, -lw * 1.04, top * 0.2, -lw, Hb * S * 0.2);
   }
-  ctx.bezierCurveTo(-W * 0.55 * S, Hb * S * 0.95, -W * 0.35 * S, bot * S, 0, bot * S);
+  ctx.bezierCurveTo(-lw * 0.75, Hb * S * 0.85, -lw * 0.45, bot, 0, bot);
   ctx.closePath();
 }
 
@@ -226,7 +238,7 @@ export function embryo(ctx, x, y, S, p, { ang = 0, seed = 1, light = 1, glow = 0
   embryoPath(ctx, S, sh);
   // заливка: восково-кремова, сім'ядолі зеленіють на пізніх стадіях
   const gr = clamp(smooth(2.6, 4.4, p) * light, 0, 1);
-  const cream = [244, 236, 200], green = [118, 178, 76];
+  const cream = [250, 246, 226], green = [118, 178, 76];
   const top = mix(cream, green, gr), bot = mix(cream, [240, 228, 186], 0.4);
   const lg = ctx.createLinearGradient(0, -(sh.Hb + sh.lobe) * S, 0, (sh.Hb + sh.radicle) * S);
   lg.addColorStop(0, rgba(top)); lg.addColorStop(0.45, rgba(mix(top, bot, 0.5))); lg.addColorStop(1, rgba(bot));
@@ -238,17 +250,18 @@ export function embryo(ctx, x, y, S, p, { ang = 0, seed = 1, light = 1, glow = 0
   rg.addColorStop(0, 'rgba(255,255,250,.75)'); rg.addColorStop(0.35, 'rgba(255,255,250,.08)'); rg.addColorStop(0.75, 'rgba(60,50,20,.12)'); rg.addColorStop(1, 'rgba(40,30,10,.38)');
   ctx.fillStyle = rg; ctx.fillRect(-L, -L * 1.6, 2 * L, 3.2 * L);
   // клітинна текстура
-  ctx.globalAlpha = 0.55; ctx.fillStyle = cellPattern(ctx, Math.max(1.2, S * 0.09)); ctx.fillRect(-L, -L * 1.6, 2 * L, 3.2 * L); ctx.globalAlpha = 1;
+  ctx.globalAlpha = 0.3; ctx.fillStyle = cellPattern(ctx, Math.max(1.2, S * 0.09)); ctx.fillRect(-L, -L * 1.6, 2 * L, 3.2 * L); ctx.globalAlpha = 1;
   // прокамбій (провідний тяж) — на торпедоподібній і сім'ядольній стадіях
   const pc = smooth(2.1, 3.0, p);
   if (pc > 0.02) {
     ctx.strokeStyle = `rgba(150,140,60,${0.35 * pc})`; ctx.lineWidth = S * 0.12; ctx.lineCap = 'round';
     ctx.beginPath(); ctx.moveTo(0, (sh.Hb + sh.radicle * 0.8) * S); ctx.lineTo(0, -(sh.Hb - sh.notch) * S * 0.7);
-    if (sh.lobe > 0.3) { ctx.moveTo(0, -(sh.Hb - sh.notch) * S * 0.7); ctx.lineTo(S * 0.5 * sh.W, -(sh.Hb + sh.lobe * 0.6) * S); ctx.moveTo(0, -(sh.Hb - sh.notch) * S * 0.7); ctx.lineTo(-S * 0.5 * sh.W, -(sh.Hb + sh.lobe * 0.6) * S); }
+    if (sh.lobe > 0.3) { const y0 = -(sh.Hb - sh.notch) * S * 0.7, yt = -(sh.Hb + sh.lobe * 0.55) * S, xt = (sh.W * 0.5 + Math.sin(sh.spread) * sh.lobe * 0.5) * S; ctx.moveTo(0, y0); ctx.quadraticCurveTo(xt * 0.4, y0 - S * 0.2, xt, yt); ctx.moveTo(0, y0); ctx.quadraticCurveTo(-xt * 0.4, y0 - S * 0.2, -xt, yt); }
     ctx.stroke();
   }
   ctx.restore();
   // протодерма — світлий обідок, контур
+  embryoPath(ctx, S, sh);
   ctx.strokeStyle = 'rgba(255,255,240,.6)'; ctx.lineWidth = Math.max(0.6, S * 0.06); ctx.stroke();
   ctx.strokeStyle = 'rgba(90,80,40,.55)'; ctx.lineWidth = 0.8; ctx.stroke();
   // полиск

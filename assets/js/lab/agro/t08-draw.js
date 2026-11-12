@@ -187,15 +187,20 @@ export function microtuber(ctx, x, y, r, { ang = 0.2, green = 0.15, seed = 1 } =
   const R = rng(seed);
   ctx.save(); ctx.translate(x, y); ctx.rotate(ang);
   shadow(ctx, r * 0.15, r * 0.75, r * 1.1, r * 0.3, 0.25);
-  const base = mix([231, 210, 150], [170, 190, 110], green);
+  const base = mix([224, 190, 122], [168, 182, 104], green);
   const g = ctx.createRadialGradient(-r * 0.4, -r * 0.45, r * 0.1, 0, 0, r * 1.25);
   g.addColorStop(0, rgba(shade(base, 0.45))); g.addColorStop(0.55, rgba(base)); g.addColorStop(1, rgba(shade(base, -0.42)));
   ctx.fillStyle = g; ctx.beginPath();
   for (let i = 0; i <= 18; i++) { const t = i / 18 * TAU, k = 1 + 0.06 * Math.sin(t * 3 + seed); const X = Math.cos(t) * r * 1.22 * k, Y = Math.sin(t) * r * 0.92 * k; i ? ctx.lineTo(X, Y) : ctx.moveTo(X, Y); }
   ctx.closePath(); ctx.fill();
   ctx.strokeStyle = rgba(shade(base, -0.5), 0.5); ctx.lineWidth = 0.6; ctx.stroke();
-  // вічка
-  for (let i = 0; i < 3; i++) { const a = R() * TAU, d = 0.55 + R() * 0.3, X = Math.cos(a) * r * 1.1 * d, Y = Math.sin(a) * r * 0.8 * d; ctx.strokeStyle = rgba(shade(base, -0.55), 0.65); ctx.lineWidth = 0.8; ctx.beginPath(); ctx.arc(X, Y, Math.max(0.8, r * 0.16), 0.2, Math.PI - 0.2); ctx.stroke(); }
+  // шкірка: дрібні цятки
+  if (r > 6) for (let i = 0; i < r * 2; i++) { const a = R() * TAU, d = Math.sqrt(R()) * 0.95; ctx.fillStyle = R() > 0.5 ? rgba(shade(base, 0.3), 0.35) : rgba(shade(base, -0.35), 0.25); ctx.beginPath(); ctx.arc(Math.cos(a) * r * 1.15 * d, Math.sin(a) * r * 0.85 * d, 0.5 + R() * 0.6, 0, TAU); ctx.fill(); }
+  // вічка: заглибина з бровою
+  for (let i = 0; i < 3; i++) { const a = -2.4 + i * 1.3 + R() * 0.4, d = 0.62 + R() * 0.2, X = Math.cos(a) * r * 1.1 * d, Y = Math.sin(a) * r * 0.8 * d, er = Math.max(0.8, r * 0.13);
+    const eg = ctx.createRadialGradient(X, Y + er * 0.2, 0, X, Y, er * 1.4); eg.addColorStop(0, rgba(shade(base, -0.5), 0.75)); eg.addColorStop(1, rgba(shade(base, -0.5), 0));
+    ctx.fillStyle = eg; ctx.beginPath(); ctx.ellipse(X, Y, er * 1.4, er * 0.9, a, 0, TAU); ctx.fill();
+    ctx.strokeStyle = rgba(shade(base, 0.4), 0.7); ctx.lineWidth = Math.max(0.6, r * 0.04); ctx.beginPath(); ctx.ellipse(X, Y - er * 0.4, er * 1.3, er * 0.7, a, Math.PI * 1.1, Math.PI * 1.9); ctx.stroke(); }
   // сочевички
   ctx.fillStyle = rgba(shade(base, -0.45), 0.45);
   for (let i = 0; i < 6; i++) { const a = R() * TAU, d = R() * 0.8; ctx.beginPath(); ctx.arc(Math.cos(a) * r * d, Math.sin(a) * r * 0.7 * d, Math.max(0.4, r * 0.05), 0, TAU); ctx.fill(); }
@@ -230,7 +235,7 @@ export function primordiaIn(L) { return PRIM.filter((p) => p.d < L).length; }
 export function apexField(ctx, cx, topY, s, { L = 200, lam = 130, showVirus = true, cut = 0, lift = 0, r = 200, cy = 0, seed = 4 } = {}) {
   const R = rng(seed);
   const dome = 70; // радіус купола, мкм
-  const widthAt = (d) => (d < dome ? Math.sqrt(Math.max(0, dome * dome - (dome - d) ** 2)) : dome + (d - dome) * 0.28); // мкм, напівширина осі
+  const widthAt = (d) => (d < dome ? Math.sqrt(Math.max(0, dome * dome - (dome - d) ** 2)) : dome + (d - dome) * 0.2); // мкм, напівширина осі
   const X = (um) => cx + um * s, Y = (d) => topY + d * s;
   // фон: скло чашки Петрі на темному столику, кільцеве світло
   const bg = ctx.createRadialGradient(cx - r * 0.2, cy - r * 0.3, r * 0.1, cx, cy, r * 1.1);
@@ -285,7 +290,7 @@ export function apexField(ctx, cx, topY, s, { L = 200, lam = 130, showVirus = tr
     if (showVirus) { // частка інфікованих клітин зростає з глибиною: 1 − exp(−(d/λ)²)
       const vgr = ctx.createLinearGradient(0, Y(0), 0, Y(Math.min(dMax, lam * 3)));
       const n = 8;
-      for (let i = 0; i <= n; i++) { const d = lam * 3 * i / n, p = 1 - Math.exp(-Math.pow(d / lam, 2)); vgr.addColorStop(i / n, `rgba(214,48,40,${0.55 * p})`); }
+      for (let i = 0; i <= n; i++) { const d = lam * 3 * i / n, p = 1 - Math.exp(-Math.pow(d / lam, 2)); vgr.addColorStop(i / n, `rgba(214,48,40,${0.36 * p})`); }
       ctx.fillStyle = vgr; ctx.fillRect(cx - r, Y(0), 2 * r, (dMax) * s + 2);
       ctx.fillStyle = 'rgba(160,20,20,.7)';
       const R2 = rng(11);
@@ -298,7 +303,7 @@ export function apexField(ctx, cx, topY, s, { L = 200, lam = 130, showVirus = tr
       primPath(p); const c = tissue(p.d);
       const g = ctx.createRadialGradient(X(p.side * widthAt(p.d) * 0.8), Y(p.d - p.hgt * 0.6), 1, X(p.side * widthAt(p.d)), Y(p.d - p.hgt * 0.3), p.hgt * s);
       g.addColorStop(0, rgba(shade(c, 0.25))); g.addColorStop(1, rgba(shade(c, -0.2)));
-      ctx.fillStyle = g; ctx.globalAlpha = 0.92; ctx.fill(); ctx.globalAlpha = 1;
+      ctx.fillStyle = g; ctx.globalAlpha = 0.72; ctx.fill(); ctx.globalAlpha = 1;
       ctx.strokeStyle = rgba(shade(c, -0.45), 0.55); ctx.lineWidth = 0.7; ctx.stroke();
     }
     // волога: відблиск на куполі

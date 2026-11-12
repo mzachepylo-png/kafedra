@@ -71,7 +71,7 @@ export function init(root) {
     p1.set([
       pure ? { data: pure, color: '#9AA8A0', label: 'якби p = 100 % (N₀·Kⁿ)', type: 'step', width: 2, dash: [5, 4] } : null,
       { data: d, color: '#2E7D5B', label: 'усього рослин N', type: 'step', width: 3, fill: 'rgba(46,125,91,.1)' },
-    ], [{ y: 5, label: '10⁵ — орієнтир посібника (за рік)', color: '#B7791F' }, { y: Math.log10(st.target), label: 'ціль', color: '#8E3B2E' }, { x: 365, color: 'rgba(31,111,139,.5)' }]);
+    ], [{ y: 5, label: '10⁵ — орієнтир посібника (за рік)', color: '#B7791F' }, { y: Math.log10(st.target), label: Math.abs(Math.log10(st.target) - 5) > 0.5 ? 'ціль' : '', color: '#8E3B2E' }, { x: 365, color: 'rgba(31,111,139,.5)' }]);
     if (st.mode === 'cut') {
       p2.setOptions({ xLabel: 'Інтервал τ, діб', yLabel: 'lg N за горизонт', x: [14, 35], xShort: 'τ' });
       const ser = (k) => { const a = []; for (let t = 14; t <= 35; t++) a.push([t, Math.log10(Math.max(1, cutting({ ...R0.o, k, tau: t }).N))]); return a; };
@@ -111,16 +111,17 @@ export function init(root) {
     return { ...cur, phase: clamp((day - (cur.day ?? 0)) / R0.per, 0, 1) };
   }
   function draw() {
-    const { ctx, w, h, narrow } = fitStage();
+    const F = fitStage(); if (!F) return;
+    const { ctx, w, h, narrow } = F;
     const day = anim.on ? anim.day : st.T;
-    const hy = scene(ctx, w, h, { kind: narrow ? 'hood' : 'hood', horizon: narrow ? 0.5 : 0.58, light: 0.3 });
+    const hy = scene(ctx, w, h, { kind: 'hood', horizon: narrow ? 0.36 : 0.58, light: 0.3 });
     const s = stockAt(day);
     const acc = st.mode === 'acc';
     // ліва частина
     const L = narrow ? { x: 0, w: w, cy: h * 0.27 } : { x: 0, w: w * 0.44, cy: h * 0.62 };
     if (!acc) {
-      const r = Math.min(L.w * 0.42, narrow ? h * 0.2 : h * 0.34);
-      const cx = L.x + L.w / 2, cy = narrow ? hy - r * 0.15 : hy + (h - hy) * 0.35;
+      const r = Math.min(L.w * 0.42, narrow ? h * 0.16 : h * 0.34);
+      const cx = L.x + L.w / 2, cy = narrow ? h * 0.2 : hy + (h - hy) * 0.35;
       const ph = anim.on ? s.phase : 0.98;
       const budsPer = st.crop === 'potato' ? 2 : 1;
       const nodes = Math.max(2, Math.round(2 + ph * (st.k * budsPer - 1)));
@@ -145,8 +146,8 @@ export function init(root) {
       if (anim.on && s.phase < 0.12 && s.i >= 0) scalpel(ctx, cx - r * 0.6 + r * 1.2 * (s.phase / 0.12), cy - r * 0.05, 0.25, Math.max(0.55, r / 190));
       text(ctx, `Мікроживці по ${st.crop === 'potato' ? '2 бруньки (картопля)' : '1 бруньці (гвоздика)'}, 3–5 мм`, cx, cy + r * 0.5 + 30, { align: 'center', size: 11.5, color: '#23382B', weight: 700 });
     } else {
-      const fs = narrow ? Math.min(h * 0.24, w * 0.3) : Math.min(h * 0.4, L.w * 0.36);
-      const by = narrow ? hy + 6 : hy + (h - hy) * 0.45;
+      const fs = narrow ? Math.min(h * 0.2, w * 0.27) : Math.min(h * 0.4, L.w * 0.36);
+      const by = narrow ? h * 0.3 : hy + (h - hy) * 0.45;
       const xs = narrow ? [w * 0.2, w * 0.5, w * 0.8] : [L.w * 0.2, L.w * 0.52, L.w * 0.84];
       const prog = anim.on ? clamp(s.i + 1, 0, 6) / 6 : 1;
       const stage = (cx, B, size, lbl, seed) => {
@@ -174,8 +175,8 @@ export function init(root) {
     const unitExp = Math.max(0, Math.ceil(Math.log10(Math.max(1, total) / 20)));
     const unit = Math.pow(10, unitExp);
     const shown = clamp(Math.ceil(total / unit), 1, 20);
-    const RX = narrow ? { x: 16, w: w - 32, top: h * 0.6 } : { x: w * 0.47, w: w * 0.5, top: h * 0.2 };
-    const per = 10, tw = Math.min(26, RX.w / per * 0.64), th = narrow ? h * 0.19 : h * 0.3;
+    const RX = narrow ? { x: 16, w: w - 32, top: h * 0.5 } : { x: w * 0.47, w: w * 0.5, top: h * 0.2 };
+    const per = 10, tw = Math.min(26, RX.w / per * 0.64), th = narrow ? h * 0.2 : h * 0.3;
     for (let row = 0; row < 2; row++) {
       const ty = RX.top + row * (th * 0.92 + 26) + (narrow ? 0 : 6);
       const tubes = []; for (let i = 0; i < per; i++) tubes.push({ cx: RX.x + RX.w / per * (i + 0.5), w: tw });
@@ -187,10 +188,10 @@ export function init(root) {
           contents: filled ? (c, inn) => { const R = rng(idx + 3); const g0 = anim.on ? clamp(0.35 + s.phase * 0.65, 0.3, 1) : 0.9; roots(c, inn.x + inn.w / 2, inn.surface, { n: 3, len: th * 0.14 * g0, seed: idx, w: 0.9 }); shoot(c, inn.x + inn.w / 2, inn.surface, { h: th * 0.5 * g0 * (0.8 + R() * 0.3), nodes: 3 + Math.round(g0 * 2), leafLen: tw * 0.62, leafW: st.crop === 'carn' && !acc ? 0.2 : 0.5, opposite: st.crop === 'carn' && !acc, color: st.crop === 'carn' && !acc ? '#6F9E80' : MAT.leaf, seed: idx * 5 + 1, stemW: 1.3 }); } : null,
         });
       });
-      rackFront(ctx, RX.x - 6, ty + th * 0.8, RX.w + 12, th * 0.2 + 5);
+      rackFront(ctx, RX.x - 6, ty + th * 0.9, RX.w + 12, th * 0.1 + 6);
     }
     // лічильник
-    const cy2 = narrow ? RX.top - 46 : RX.top - 46;
+    const cy2 = narrow ? RX.top - 58 : RX.top - 46;
     pill(ctx, `N = ${big(total)} рослин`, RX.x + RX.w / 2, Math.max(8, cy2), { align: 'center', size: 15 });
     text(ctx, unit > 1 ? `1 пробірка на стелажі ≈ 10${sup(unitExp)} рослин` : '1 пробірка = 1 рослина', RX.x + RX.w / 2, Math.max(8, cy2) + 40, { align: 'center', size: 11, color: '#2C4234', weight: 600 });
     // HUD

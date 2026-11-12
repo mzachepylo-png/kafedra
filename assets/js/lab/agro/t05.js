@@ -7,8 +7,8 @@ const $ = (id) => document.getElementById(id);
 const { TAU, clamp, lerp, smooth, rng, fnum } = K;
 const SUP = '⁰¹²³⁴⁵⁶⁷⁸⁹';
 const sup = (n) => String(n).replace('-', '⁻').replace(/\d/g, (d) => SUP[d]);
-const pow10 = (v) => (Math.abs(v - Math.round(v)) < 1e-6 ? `10${sup(Math.round(v))}` : fnum(Math.pow(10, v), 2));
-const sci = (v, d = 2) => (v >= 1e4 ? fnum(v, d) : fnum(v, v >= 100 ? 0 : 1));
+const pow10 = (v) => (Math.abs(v - Math.round(v)) < 1e-6 ? `10${sup(Math.round(v))}` : '');
+const sci = (v, d = 2) => (v >= 1e5 ? fnum(v, d) : v >= 100 ? Math.round(v).toLocaleString('uk-UA') : fnum(v, 1));
 const pct = (v, d = 0) => `${fnum(v, d)} %`;
 const visible = (el) => el && el.offsetParent !== null;
 const shared = { sim: null, day: 12, st: null };
@@ -52,11 +52,12 @@ class Bars {
   set(rows, opts = {}) { this.rows = rows; this.opts = opts; this.draw(); }
   draw() {
     const host = this.cv.parentElement, w = host.clientWidth; if (!w) return;
-    const rh = 30, top = 8, h = top + this.rows.length * rh + 34;
+    const nLeg = this.opts.legend ? Math.ceil(this.opts.legend.length / Math.max(1, Math.floor(w / 150))) : 0;
+    const rh = 30, top = 8, h = top + this.rows.length * rh + 26 + nLeg * 18;
     const dpr = Math.min(2, window.devicePixelRatio || 1);
     this.cv.width = w * dpr; this.cv.height = h * dpr; this.cv.style.height = h + 'px';
     const ctx = this.cv.getContext('2d'); ctx.setTransform(dpr, 0, 0, dpr, 0, 0); ctx.clearRect(0, 0, w, h);
-    const lw = Math.min(150, Math.max(92, w * 0.32)), x0 = lw + 6, x1 = w - 10, pw = x1 - x0;
+    const lw = Math.min(150, Math.max(92, w * 0.32)), x0 = lw + 6, x1 = w - 22, pw = x1 - x0;
     ctx.font = '600 12px system-ui, sans-serif'; ctx.textBaseline = 'middle';
     // сітка
     ctx.strokeStyle = '#E3EBE3'; ctx.fillStyle = '#46584C'; ctx.textAlign = 'center';
@@ -75,8 +76,8 @@ class Bars {
       if (r.mark != null) { const x = x0 + pw * r.mark / 100; ctx.strokeStyle = '#B23A2A'; ctx.lineWidth = 2; ctx.setLineDash([4, 3]); ctx.beginPath(); ctx.moveTo(x, y + 2); ctx.lineTo(x, y + rh - 2); ctx.stroke(); ctx.setLineDash([]); ctx.lineWidth = 1; }
     });
     if (this.opts.legend) {
-      let x = x0, y = h - 8; ctx.font = '600 11.5px system-ui, sans-serif'; ctx.textAlign = 'left';
-      for (const [c, t] of this.opts.legend) { const m = ctx.measureText(t).width; if (x + m + 22 > w) break; ctx.fillStyle = c; K.roundRect(ctx, x, y - 6, 12, 10, 3); ctx.fill(); ctx.fillStyle = '#46584C'; ctx.fillText(t, x + 16, y - 0.5); x += m + 30; }
+      let x = 8, y = top + this.rows.length * rh + 36; ctx.font = '600 11.5px system-ui, sans-serif'; ctx.textAlign = 'left';
+      for (const [c, t] of this.opts.legend) { const m = ctx.measureText(t).width; if (x + m + 22 > w) { x = 8; y += 18; } ctx.fillStyle = c; K.roundRect(ctx, x, y - 6, 12, 10, 3); ctx.fill(); ctx.fillStyle = '#46584C'; ctx.fillText(t, x + 16, y - 0.5); x += m + 30; }
     }
   }
 }
@@ -114,7 +115,7 @@ function modelA() {
     return Array.from({ length: 70 }, (_, i) => {
       const r = R() * tot, kind = r < fr[0] ? 0 : r < fr[0] + fr[1] ? 1 : 2;
       return { u: Math.sqrt(R()), v: Math.pow(R(), 0.8), th: R() * TAU, n: kind === 0 ? 1 : kind === 1 ? 3 + ((R() * 6) | 0) : 12 + ((R() * 10) | 0), px: kind === 0 ? 1.5 : 1.25, seed: i + 1, kind };
-    }).map((p) => (void o, p));
+    });
   }
 
   // графіки
@@ -203,14 +204,14 @@ function modelA() {
     const fr = M.aggFractions(a);
     const spd = M.SPECIES[st.sp];
     // шейкер
-    const SW = wide ? w * 0.6 : w * 0.94, sx = wide ? w * 0.03 : w * 0.03;
-    const yb = wide ? h * 0.93 : h * 0.58, bodyH = wide ? h * 0.15 : h * 0.085;
+    const SW = wide ? w * 0.64 : w * 0.94, sx = wide ? w * 0.03 : w * 0.03;
+    const yb = wide ? h * 0.93 : h * 0.54, bodyH = wide ? h * 0.15 : h * 0.085;
     const g = D.shakerBody(ctx, sx, yb, SW, bodyH, { rpm: st.rpm, day: st.day, on: true });
     const orbR = 2 + st.rpm / 45;
     const ox = Math.cos(phase) * orbR, oy = Math.sin(phase) * orbR * 0.45;
     const pl = D.shakerPlatform(ctx, g, ox, oy);
     const nF = wide ? 3 : 2;
-    const s = Math.min((SW - 2 * g.inset) / nF * 0.88, wide ? h * 0.62 : h * 0.36);
+    const s = Math.min((SW - 2 * g.inset) / nF * 0.95, wide ? h * 0.6 : h * 0.33);
     const amp = clamp((st.rpm - 40) / 140, 0.08, 1);
     const settle = 1 - smooth(55, 95, st.rpm);
     const nPart = Math.round(12 + 46 * smooth(4.6, 6.8, Math.log10(o.X)));
@@ -223,7 +224,7 @@ function modelA() {
       D.suspFlask(ctx, fx, fby, s, { phase: phase + i * 0.4, amp, level: 0.4, dens, parts: parts.slice(0, nPart), tint: spd.tint, settle, brown });
     }
     // поле зору — крапля суспензії
-    const fr2 = wide ? Math.min(w * 0.15, h * 0.36) : Math.min(w * 0.4, h * 0.19);
+    const fr2 = wide ? Math.min(w * 0.14, h * 0.34) : Math.min(w * 0.4, h * 0.19);
     const fcx = wide ? w * 0.82 : w * 0.5, fcy = wide ? h * 0.45 : h * 0.795;
     const img = fieldImg(fr2, o, fr);
     ctx.save(); ctx.beginPath(); ctx.arc(fcx, fcy, fr2, 0, TAU); ctx.clip();
@@ -234,7 +235,7 @@ function modelA() {
     D.scaleBar(ctx, fcx + fr2 * 0.05, fcy + fr2 * 0.74, 100 * umPx, '100 мкм');
     K.tagSmall(ctx, fcx, fcy - fr2 * 1.1 - 8, 'Крапля суспензії під мікроскопом', { color: '#EAF4EC', size: wide ? 12 : 11 });
     // підпис-виноска до колби
-    if (wide) K.callout(ctx, g.x0 + g.inset + (SW - 2 * g.inset) / 6 + ox, pl.yMid - s * 0.2, sx + 8, h * 0.1, `Колби 250 мл, по 100 мл середовища`, { dark: true, size: 11 });
+    if (wide) K.callout(ctx, g.x0 + g.inset + (SW - 2 * g.inset) / 6 + ox + s * 0.18, pl.yMid - s * 0.25, g.x0 + g.inset + (SW - 2 * g.inset) / 6 + s * 0.45, pl.yMid - s * 1.12, 'колба 250 мл · 100 мл суспензії', { dark: true, size: 11 });
   }
 
   // запуск: прискорений час (1 доба ≈ 0,6 с) + орбітальний рух платформи
@@ -398,11 +399,11 @@ function modelB() {
     });
     ctx.restore();
     D.eyepiece(ctx, cx, cy, R0);
-    K.tagSmall(ctx, cx, Math.min(h - 6, cy + R0 + 22), 'Сітка 4 × 4 мм, глибина 0,2 мм · ×30', { color: '#DCEBE0', size: 11 });
+    if (wide) K.tagSmall(ctx, cx, Math.min(h - 6, cy + R0 + 22), 'Сітка 4 × 4 мм, глибина 0,2 мм · ×30', { color: '#DCEBE0', size: 11 });
     // лупа: активний (або останній) квадрат
     const k = act >= 0 ? act : data.sq[data.sq.length - 1];
     const LR = wide ? Math.min(h * 0.3, w * 0.15) : Math.min(w * 0.3, h * 0.17);
-    const lcx = wide ? w * 0.63 : w * 0.33, lcy = wide ? h * 0.42 : h * 0.79;
+    const lcx = wide ? w * 0.655 : w * 0.33, lcy = wide ? h * 0.4 : h * 0.79;
     const q = S / 4, sxq = gx + (k % 4) * q, syq = gy + ((k / 4) | 0) * q;
     ctx.save(); ctx.strokeStyle = 'rgba(255,214,110,.55)'; ctx.setLineDash([4, 4]); ctx.beginPath(); ctx.moveTo(sxq + q, syq); ctx.lineTo(lcx - LR * 0.7, lcy - LR * 0.7); ctx.moveTo(sxq + q, syq + q); ctx.lineTo(lcx - LR * 0.7, lcy + LR * 0.7); ctx.stroke(); ctx.restore();
     ctx.save(); ctx.beginPath(); ctx.arc(lcx, lcy, LR, 0, TAU); ctx.clip();
@@ -426,7 +427,11 @@ function modelB() {
     F.cells.forEach(([x0, y0, kk], idx) => {
       const X = zx + (x0 - i0) * Z, Y = zy + (y0 - j0) * Z;
       if (X < lcx - LR - 10 || X > lcx + LR + 10 || Y < lcy - LR - 10 || Y > lcy + LR + 10) return;
-      D.suspCell(ctx, X, Y, { rx: zr * (0.85 + kk * 0.4), ry: zr * (0.7 + kk * 0.3), rot: kk * 6, seed: idx + 1, dead: false, shrink: 1 }, { tint: '#E3CF9A' });
+      const rx = zr * (0.85 + kk * 0.4), ry = zr * (0.72 + kk * 0.3);
+      const cg = ctx.createRadialGradient(X - rx * 0.35, Y - ry * 0.4, 0.3, X, Y, rx);
+      cg.addColorStop(0, 'rgba(250,236,196,.95)'); cg.addColorStop(0.6, 'rgba(196,160,92,.85)'); cg.addColorStop(1, 'rgba(110,82,38,.9)');
+      ctx.fillStyle = cg; ctx.beginPath(); ctx.ellipse(X, Y, rx, ry, kk * 6, 0, TAU); ctx.fill();
+      ctx.strokeStyle = 'rgba(80,58,24,.7)'; ctx.lineWidth = 0.7; ctx.stroke();
       if (inSq.has(idx) && shownSet.has(idx)) { ctx.strokeStyle = '#1F8A4C'; ctx.lineWidth = 1.8; ctx.beginPath(); ctx.moveTo(X - 3, Y); ctx.lineTo(X - 0.5, Y + 3); ctx.lineTo(X + 4, Y - 3.5); ctx.stroke(); shown++; }
       else if (!inSq.has(idx) && (Math.abs(X - zx - Z) < zr * 1.3 || Math.abs(Y - zy - Z) < zr * 1.3) && X > zx - zr && Y > zy - zr && X < zx + Z + zr * 1.3 && Y < zy + Z + zr * 1.3) {
         ctx.strokeStyle = '#B23A2A'; ctx.lineWidth = 1.6; ctx.beginPath(); ctx.moveTo(X - 3, Y - 3); ctx.lineTo(X + 3, Y + 3); ctx.moveTo(X + 3, Y - 3); ctx.lineTo(X - 3, Y + 3); ctx.stroke();
@@ -438,7 +443,7 @@ function modelB() {
     // табло підрахунку
     const tx = wide ? w * 0.8 : w * 0.7, ty = wide ? h * 0.1 : h * 0.66, tw = wide ? w * 0.18 : w * 0.28;
     ctx.save();
-    ctx.fillStyle = 'rgba(247,250,246,.94)'; K.roundRect(ctx, tx - 4, ty, tw + 8, wide ? h * 0.8 : h * 0.31, 10); ctx.fill();
+    ctx.fillStyle = 'rgba(247,250,246,.94)'; const lhh = wide ? Math.min(19, (h * 0.8 - 70) / (data.sq.length + 2)) : 14; K.roundRect(ctx, tx - 4, ty, tw + 8, 38 + data.sq.length * lhh + (wide ? 3.3 : 1.6) * lhh + 8, 10); ctx.fill();
     ctx.fillStyle = '#13241A'; ctx.font = `700 ${wide ? 12 : 11}px system-ui, sans-serif`; ctx.textAlign = 'left'; ctx.textBaseline = 'alphabetic';
     ctx.fillText(wide ? 'Журнал підрахунку' : 'Підрахунок', tx + 6, ty + 18);
     ctx.font = `600 ${wide ? 11.5 : 10.5}px system-ui, sans-serif`;
@@ -550,8 +555,8 @@ function modelC() {
     const key = `${R0}|${st.seed}|${st.a}|${st.viab}|${st.dye}`;
     if (cache.key === key) return cache;
     const fr = M.aggFractions(st.a);
-    const scale = R0 * 0.07 / 23;
-    const units = D.layoutUnits(D.genField(st.seed * 31, { fr, dead: 1 - st.viab, aggDead: 0.18, n: 30, scale }), R0, st.seed);
+    const scale = R0 * 0.058 / 23;
+    const units = D.layoutUnits(D.genField(st.seed * 31, { fr, dead: 1 - st.viab, aggDead: 0.18, n: 22, scale }), R0, st.seed);
     const mk = (stain) => {
       const c = K.offscreen(2 * R0 * dpr, 2 * R0 * dpr), x = c.getContext('2d'); x.scale(dpr, dpr);
       x.save(); x.beginPath(); x.arc(R0, R0, R0, 0, TAU); x.clip();
@@ -569,9 +574,9 @@ function modelC() {
     const { ctx, w, h, wide } = fitStage(cv, 1.9, 0.78);
     K.scene(ctx, w, h, { kind: 'bench', horizon: 0.78, light: 0.25 });
     const dpr = Math.min(2, window.devicePixelRatio || 1);
-    if (wide) D.microscope(ctx, w * 0.12, h * 0.92, Math.min(h * 0.8, w * 0.2), { slideColor: st.dye === 'evans' ? 'rgba(50,70,170,.6)' : 'rgba(40,110,180,.6)' });
+    if (wide) D.microscope(ctx, w * 0.13, h * 0.95, Math.min(h * 0.86, w * 0.24), { slideColor: st.dye === 'evans' ? 'rgba(50,70,170,.6)' : 'rgba(40,110,180,.6)' });
     const R0 = Math.round(wide ? Math.min(h * 0.45, w * 0.24) : Math.min(w * 0.48, h * 0.47));
-    const cx = wide ? w * 0.5 : w / 2, cy = h / 2;
+    const cx = wide ? w * 0.53 : w / 2, cy = h / 2;
     const L = layers(R0, dpr);
     ctx.save(); ctx.translate(cx - R0, cy - R0);
     ctx.drawImage(L.u, 0, 0, 2 * R0, 2 * R0);
@@ -610,7 +615,7 @@ function modelC() {
     }
     ctx.restore();
     D.eyepiece(ctx, cx, cy, R0);
-    D.scaleBar(ctx, cx + R0 * 0.18, cy + R0 * 0.8, 100 * R0 * 0.07 / 23, '100 мкм');
+    D.scaleBar(ctx, cx + R0 * 0.18, cy + R0 * 0.8, 100 * R0 * 0.058 / 23, '100 мкм');
     // легенда праворуч / під полем
     if (wide) {
       const lx = w * 0.79, items = [['#1E8A4C', 'жива одиночна', 0], ['#2449A8', 'мертва (синя)', 1], ['#C48C14', 'дрібний агрегат', 2], ['#A0521E', 'великий агрегат', 2]];
@@ -750,7 +755,7 @@ function modelD() {
       if (nC < 40) {
         const U = D.genField(7, { fr: [nC < 1.5 ? 100 : 0, nC < 1.5 ? 0 : 100, 0], dead: 0, n: 1, scale: sc * 3.2 });
         const u = U[0]; u.cells = u.cells.slice(0, Math.max(1, Math.round(nC)));
-        if (nC >= 1.5) { const R = rng(9); const cells = [{ x: 0, y: 0, rx: 17 * sc * 3.2, ry: 14 * sc * 3.2, rot: 0, dead: false, seed: 3, shrink: 1 }]; for (let i = 1; i < Math.round(nC); i++) { const b = cells[(R() * cells.length) | 0], a = R() * TAU; cells.push({ x: b.x + Math.cos(a) * b.rx * 1.6, y: b.y + Math.sin(a) * b.rx * 1.45, rx: 16 * sc * 3.2, ry: 13 * sc * 3.2, rot: R() * 3, dead: false, seed: i + 5, shrink: 1 }); } u.cells = cells; }
+        if (nC >= 1.5) { const R = rng(9); const cells = [{ x: 0, y: 0, rx: 17 * sc * 3.2, ry: 14 * sc * 3.2, rot: 0, dead: false, seed: 3, shrink: 1 }]; for (let i = 1; i < Math.round(nC); i++) { const b = cells[(R() * cells.length) | 0], a = R() * TAU; cells.push({ x: b.x + Math.cos(a) * b.rx * 1.6, y: b.y + Math.sin(a) * b.rx * 1.45, rx: 16 * sc * 3.2, ry: 13 * sc * 3.2, rot: R() * 3, dead: false, seed: i + 5, shrink: 1 }); } const mx = cells.reduce((a, c) => a + c.x, 0) / cells.length, my = cells.reduce((a, c) => a + c.y, 0) / cells.length; cells.forEach((c) => { c.x -= mx; c.y -= my; }); u.cells = cells; }
         D.drawUnits(ctx, lcx, lcy, [Object.assign(u, { x: 0, y: 0 })], { tint: '#E9DDB0' });
       } else D.colony(ctx, lcx, lcy, Math.min(LR * 0.8, 6 + Math.sqrt(nC) * 2.2), { seed: 4, tint: '#EDE2BE' });
       ctx.restore();

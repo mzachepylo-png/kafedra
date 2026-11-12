@@ -158,6 +158,8 @@ export function scene(ctx, w, h, { kind = 'bench', horizon = 0.66, light = 0.5 }
 
 /** М'яка контактна тінь під предметом (еліпс). */
 export function shadow(ctx, cx, cy, rx, ry, a = 0.28) {
+  rx = Math.max(0.5, rx || 0); ry = Math.max(0.25, ry || 0);
+  if (!isFinite(cx) || !isFinite(cy)) return;
   ctx.save();
   const g = ctx.createRadialGradient(cx, cy, 0, cx, cy, rx);
   g.addColorStop(0, `rgba(10,25,15,${a})`); g.addColorStop(0.55, `rgba(10,25,15,${a * 0.45})`); g.addColorStop(1, 'rgba(10,25,15,0)');
@@ -674,7 +676,9 @@ export class Runner {
   play() { if (this.done) this.reset(true); this.running = true; this.started = true; this.label(); this.loop(); }
   pause() { this.running = false; this.label(); }
   finish() { this.running = false; this.done = true; this.label(); this.drawFn(); }
-  reset(keepRunning = false) { this.t = 0; this.done = false; if (!keepRunning) { this.running = false; this.started = false; } this.stepFn(0, 0, true); this.label(); this.drawFn(); }
+  reset(keepRunning = false) { this.t = 0; this.done = false; if (!keepRunning) { this.running = false; this.started = false; } if (this.status) this.status.textContent = ''; this.stepFn(0, 0, true); this.label(); this.drawFn(); }
+  /** Текст рядка стану (якщо передано елемент status). */
+  say(text) { if (this.status) this.status.textContent = text; }
   loop() {
     cancelAnimationFrame(this.raf); this.last = 0;
     const tick = (ts) => {

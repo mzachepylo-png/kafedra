@@ -150,11 +150,11 @@ export class PageModel {
     const hy = scene(ctx, DW, DH, { kind: 'bench', horizon: narrow ? 0.93 : 0.86, light: 0.3 });
     let app, ps, tray;
     if (narrow) {
-      app = { x: 30, y: DH * 0.5, w: DW * 0.52, h: hy - DH * 0.5 };
+      app = { x: 52, y: DH * 0.52, w: DW * 0.5, h: hy - DH * 0.52 };
       ps = { x: DW * 0.64, y: hy - 96, w: DW * 0.32, h: 92 };
       tray = { x: 60, y: 46, w: DW - 100, h: DH * 0.38 };
     } else {
-      app = { x: DW * 0.03, y: 40, w: DW * 0.33, h: hy - 40 };
+      app = { x: DW * 0.075, y: 56, w: DW * 0.29, h: hy - 56 };
       ps = { x: DW * 0.385, y: hy - 112, w: DW * 0.15, h: 104 };
       tray = { x: DW * 0.6, y: 50, w: DW * 0.34, h: hy - 120 };
     }
@@ -166,76 +166,78 @@ export class PageModel {
     setHud(this.F.hud, ['ЛР 52', `ПААГ ${fnum(this.p.T, 1)} %`, s.run ? `${f.U} В` : 'струм вимкнено', `проявлення ${fnum(s.ts, 0)} хв`]);
   }
 
-  /** Камера для вертикального електрофорезу (2.5D). */
+  /** Камера для вертикального електрофорезу (2.5D): нижній бак, вертикальний блок із верхньою камерою, скляні пластини з гелем. */
   apparatus(ctx, r, s) {
     const { x, y, w, h } = r, by = y + h;
-    shadow(ctx, x + w / 2, by + 2, w * 0.6, 10, 0.35);
-    // нижній бак з буфером
-    const tankT = by - h * 0.36;
-    ctx.fillStyle = 'rgba(200,225,230,.22)'; roundRect(ctx, x, tankT, w, by - tankT, 8); ctx.fill();
-    let g = ctx.createLinearGradient(0, tankT + (by - tankT) * 0.25, 0, by); g.addColorStop(0, 'rgba(170,205,220,.45)'); g.addColorStop(1, 'rgba(140,180,200,.55)');
-    ctx.fillStyle = g; roundRect(ctx, x + 3, tankT + (by - tankT) * 0.25, w - 6, (by - tankT) * 0.75 - 3, 6); ctx.fill();
+    shadow(ctx, x + w / 2, by + 2, w * 0.62, 12, 0.38);
+    const tankT = by - h * 0.34, dz = h * 0.05;
+    // задня стінка бака
+    ctx.fillStyle = 'rgba(205,228,232,.35)'; roundRect(ctx, x + dz * 0.6, tankT - dz, w - dz * 0.6, by - tankT, 8); ctx.fill();
+    // блок (кремовий пластик)
+    const cx0 = x + w * 0.1, cw = w * 0.8, cy0 = y + h * 0.06, cb = by - h * 0.04;
+    let g = ctx.createLinearGradient(cx0, 0, cx0 + cw, 0); g.addColorStop(0, '#CDBFA0'); g.addColorStop(0.15, '#EFE6CF'); g.addColorStop(0.85, '#E8DEC4'); g.addColorStop(1, '#BBAD8E');
+    ctx.fillStyle = g; roundRect(ctx, cx0, cy0, cw, cb - cy0, 8); ctx.fill();
+    ctx.strokeStyle = 'rgba(110,95,60,.45)'; ctx.lineWidth = 1; ctx.stroke();
+    // верхня буферна камера
+    const ubT = cy0 + h * 0.03, ubB = cy0 + h * 0.16;
+    ctx.fillStyle = 'rgba(150,195,215,.55)'; ctx.fillRect(cx0 + cw * 0.08, ubT + (ubB - ubT) * 0.35, cw * 0.84, (ubB - ubT) * 0.65);
+    ctx.strokeStyle = 'rgba(255,255,255,.8)'; ctx.beginPath(); ctx.moveTo(cx0 + cw * 0.08, ubT + (ubB - ubT) * 0.35); ctx.lineTo(cx0 + cw * 0.92, ubT + (ubB - ubT) * 0.35); ctx.stroke();
     // скляні пластини з гелем
-    const gx = x + w * 0.16, gw = w * 0.68, gy = y + h * 0.12, gh = (by - h * 0.06) - gy;
+    const gx = cx0 + cw * 0.12, gw = cw * 0.76, gy = ubB - h * 0.035, gh = cb - h * 0.05 - gy;
     this.gelBox = { gx, gw, gy, gh };
-    // верхня буферна камера (позаду)
-    ctx.fillStyle = '#E9E4D2'; roundRect(ctx, gx - w * 0.04, gy - h * 0.06, gw + w * 0.08, h * 0.17, 5); ctx.fill();
-    ctx.fillStyle = 'rgba(150,190,210,.5)'; ctx.fillRect(gx - w * 0.03, gy - h * 0.02, gw + w * 0.06, h * 0.12);
-    // пластина
-    g = ctx.createLinearGradient(gx, 0, gx + gw, 0); g.addColorStop(0, 'rgba(225,238,240,.75)'); g.addColorStop(0.5, 'rgba(245,250,250,.6)'); g.addColorStop(1, 'rgba(220,235,238,.75)');
+    g = ctx.createLinearGradient(gx, 0, gx + gw, 0); g.addColorStop(0, 'rgba(215,232,234,.95)'); g.addColorStop(0.5, 'rgba(238,246,246,.92)'); g.addColorStop(1, 'rgba(212,229,232,.95)');
     ctx.fillStyle = g; ctx.fillRect(gx, gy, gw, gh);
-    // гель
-    const mm = gh / GEL.H;
-    const stackY = gy + GEL.stack * mm;
-    ctx.fillStyle = 'rgba(236,240,232,.85)'; ctx.fillRect(gx + 4, gy + 3, gw - 8, gh - 4);
-    ctx.fillStyle = 'rgba(214,226,214,.6)'; ctx.fillRect(gx + 4, stackY, gw - 8, gh - (stackY - gy) - 1);
-    ctx.strokeStyle = 'rgba(120,140,130,.5)'; ctx.setLineDash([3, 3]); ctx.beginPath(); ctx.moveTo(gx + 4, stackY); ctx.lineTo(gx + gw - 4, stackY); ctx.stroke(); ctx.setLineDash([]);
-    // лунки і барвник
+    const mm = gh / GEL.H, stackY = gy + GEL.stack * mm;
+    ctx.fillStyle = 'rgba(244,246,238,.9)'; ctx.fillRect(gx + 4, gy + 2, gw - 8, gh - 3);
+    ctx.fillStyle = 'rgba(222,232,220,.9)'; ctx.fillRect(gx + 4, stackY, gw - 8, gh - (stackY - gy) - 1);
+    ctx.strokeStyle = 'rgba(120,140,130,.55)'; ctx.setLineDash([3, 3]); ctx.beginPath(); ctx.moveTo(gx + 4, stackY); ctx.lineTo(gx + gw - 4, stackY); ctx.stroke(); ctx.setLineDash([]);
+    // лунки, зразки, фронт
     const lw = (gw - 8) / GEL.lanes;
     for (let i = 0; i < GEL.lanes; i++) {
-      const lx = gx + 4 + i * lw + lw * 0.15, ww = lw * 0.7;
-      ctx.fillStyle = 'rgba(180,200,205,.55)'; ctx.fillRect(lx, gy + 3, ww, GEL.stack * mm * 0.42);
+      const lx = gx + 4 + i * lw + lw * 0.15, ww = lw * 0.7, wh = GEL.stack * mm * 0.45;
+      ctx.fillStyle = 'rgba(175,198,205,.7)'; ctx.fillRect(lx, gy + 2, ww, wh);
       const fs = s.fr.s;
-      if (s.load > 0 && fs < 0.5) { ctx.fillStyle = rgba([40, 70, 200], 0.65 * s.load); ctx.fillRect(lx, gy + 3 + GEL.stack * mm * 0.42 * (1 - s.load), ww, GEL.stack * mm * 0.42 * s.load); }
+      if (s.load > 0 && fs < 0.5) { ctx.fillStyle = rgba([40, 70, 200], 0.7 * s.load); ctx.fillRect(lx, gy + 2 + wh * (1 - s.load), ww, wh * s.load); }
       else if (s.load > 0) {
-        // фронт бромфенолового синього: у концентруючому гелі зона стискається
-        const fy = gy + fs * mm, thick = fs < GEL.stack ? lerp(GEL.stack * 0.4, 1.4, fs / GEL.stack) * mm : 1.6 * mm;
-        const smile = (j) => Math.sin(Math.PI * (j + 0.5) / GEL.lanes) * 2.2;
+        const fy = gy + fs * mm, thick = fs < GEL.stack ? lerp(wh / mm, 1.4, fs / GEL.stack) * mm : 1.6 * mm;
+        const smile = Math.sin(Math.PI * (i + 0.5) / GEL.lanes) * 2;
         const fg = ctx.createLinearGradient(0, fy - thick, 0, fy + 1);
-        fg.addColorStop(0, 'rgba(40,70,200,.05)'); fg.addColorStop(1, 'rgba(40,70,200,.8)');
-        ctx.fillStyle = fg; ctx.fillRect(lx, fy - thick + smile(i), ww, thick);
+        fg.addColorStop(0, 'rgba(40,70,200,.05)'); fg.addColorStop(1, 'rgba(40,70,200,.85)');
+        ctx.fillStyle = fg; ctx.fillRect(lx, fy - thick + smile, ww, thick);
       }
     }
-    // блиск скла
-    g = ctx.createLinearGradient(gx, gy, gx + gw * 0.5, gy + gh); g.addColorStop(0, 'rgba(255,255,255,.35)'); g.addColorStop(0.35, 'rgba(255,255,255,0)');
+    g = ctx.createLinearGradient(gx, gy, gx + gw * 0.6, gy + gh); g.addColorStop(0, 'rgba(255,255,255,.4)'); g.addColorStop(0.3, 'rgba(255,255,255,0)');
     ctx.fillStyle = g; ctx.fillRect(gx, gy, gw, gh);
-    ctx.strokeStyle = 'rgba(80,110,105,.55)'; ctx.lineWidth = 1.2; ctx.strokeRect(gx, gy, gw, gh);
+    ctx.strokeStyle = 'rgba(80,110,105,.6)'; ctx.lineWidth = 1.2; ctx.strokeRect(gx, gy, gw, gh);
     // червоні затискачі
     for (const side of [-1, 1]) {
-      const cxp = side < 0 ? gx - w * 0.11 : gx + gw + w * 0.01, cw = w * 0.1;
-      g = ctx.createLinearGradient(cxp, 0, cxp + cw, 0); g.addColorStop(0, '#8E1F14'); g.addColorStop(0.4, '#C8392B'); g.addColorStop(1, '#7E1A11');
-      ctx.fillStyle = g; roundRect(ctx, cxp, gy + gh * 0.08, cw, gh * 0.62, 5); ctx.fill();
-      ctx.fillStyle = 'rgba(255,255,255,.18)'; ctx.fillRect(cxp + cw * 0.25, gy + gh * 0.1, 2, gh * 0.58);
+      const kw = w * 0.11, kx = side < 0 ? cx0 - kw * 0.55 : cx0 + cw - kw * 0.45, ky = gy + gh * 0.1, kh = gh * 0.34;
+      g = ctx.createLinearGradient(kx, 0, kx + kw, 0); g.addColorStop(0, '#8E1F14'); g.addColorStop(0.45, '#D2402F'); g.addColorStop(1, '#7E1A11');
+      ctx.fillStyle = g; roundRect(ctx, kx, ky, kw, kh, 5); ctx.fill();
+      ctx.fillStyle = 'rgba(0,0,0,.18)'; ctx.fillRect(kx, ky + kh * 0.45, kw, 2);
+      ctx.fillStyle = 'rgba(255,255,255,.22)'; ctx.fillRect(kx + kw * 0.22, ky + 3, 2, kh - 6);
     }
-    // електроди й дроти
-    const ex = gx + gw * 0.8;
-    ctx.fillStyle = '#B9C0BE'; ctx.fillRect(ex - 2, gy - h * 0.11, 4, h * 0.06);
-    ctx.fillStyle = '#B9C0BE'; ctx.fillRect(x + w - 16, tankT - 14, 4, 16);
-    this.term = { minus: [ex, gy - h * 0.11], plus: [x + w - 14, tankT - 14] };
-    // скло бака: блиск
-    ctx.strokeStyle = 'rgba(90,120,120,.5)'; ctx.lineWidth = 1.2; roundRect(ctx, x, tankT, w, by - tankT, 8); ctx.stroke();
-    ctx.fillStyle = 'rgba(255,255,255,.25)'; ctx.fillRect(x + 6, tankT + 4, 3, by - tankT - 10);
-    // бульбашки електролізу під час розділення
+    // передня стінка бака з буфером
+    ctx.fillStyle = 'rgba(200,226,232,.22)'; roundRect(ctx, x, tankT, w, by - tankT, 8); ctx.fill();
+    g = ctx.createLinearGradient(0, tankT + (by - tankT) * 0.3, 0, by); g.addColorStop(0, 'rgba(160,200,218,.40)'); g.addColorStop(1, 'rgba(130,175,198,.5)');
+    ctx.fillStyle = g; roundRect(ctx, x + 3, tankT + (by - tankT) * 0.3, w - 6, (by - tankT) * 0.7 - 3, 6); ctx.fill();
+    ctx.strokeStyle = 'rgba(255,255,255,.75)'; ctx.lineWidth = 1; ctx.beginPath(); ctx.moveTo(x + 4, tankT + (by - tankT) * 0.3); ctx.lineTo(x + w - 4, tankT + (by - tankT) * 0.3); ctx.stroke();
+    ctx.strokeStyle = 'rgba(90,120,120,.55)'; ctx.lineWidth = 1.2; roundRect(ctx, x, tankT, w, by - tankT, 8); ctx.stroke();
+    ctx.fillStyle = 'rgba(255,255,255,.3)'; ctx.fillRect(x + 6, tankT + 5, 3, by - tankT - 12);
     if (s.run) {
       const R = rng(Math.floor(performance.now() / 120));
-      ctx.fillStyle = 'rgba(255,255,255,.7)';
-      for (let i = 0; i < 10; i++) { ctx.beginPath(); ctx.arc(x + w * (0.2 + R() * 0.6), by - 8 - R() * (by - tankT) * 0.5, 0.8 + R() * 1.4, 0, TAU); ctx.fill(); }
+      ctx.fillStyle = 'rgba(255,255,255,.75)';
+      for (let i = 0; i < 12; i++) { ctx.beginPath(); ctx.arc(x + w * (0.15 + R() * 0.7), by - 6 - R() * (by - tankT) * 0.5, 0.8 + R() * 1.4, 0, TAU); ctx.fill(); }
     }
-    // підписи
-    txt(ctx, '− катод', ex + 8, gy - h * 0.09, { px: 10.5, weight: 700, color: '#1F2A24' });
-    txt(ctx, '+ анод', x + w - 4, tankT - 18, { px: 10.5, weight: 700, color: '#A2281C', align: 'right' });
-    txt(ctx, '2,5 %', gx - 6, gy + GEL.stack * mm * 0.6, { px: 9.5, align: 'right', color: '#33463B' });
-    txt(ctx, `${fnum(this.p.T, 1)} %`, gx - 6, gy + gh * 0.55, { px: 9.5, align: 'right', color: '#33463B' });
+    // клеми
+    const post = (px, py, c) => { ctx.fillStyle = '#C3C9C7'; ctx.fillRect(px - 2.5, py, 5, 14); ctx.fillStyle = c; ctx.beginPath(); ctx.arc(px, py, 4.5, 0, TAU); ctx.fill(); };
+    const pm = [cx0 + cw * 0.86, cy0 - 12], pp = [x + w - 14, tankT - 12];
+    post(pm[0], pm[1], '#1A1F1C'); post(pp[0], pp[1], '#B32A1E');
+    this.term = { minus: pm, plus: pp };
+    txt(ctx, '− катод', pm[0] - 8, pm[1] - 4, { px: 10.5, weight: 700, color: '#1F2A24', align: 'right' });
+    txt(ctx, '+ анод', pp[0] - 8, pp[1] - 4, { px: 10.5, weight: 700, color: '#A2281C', align: 'right' });
+    txt(ctx, '2,5 %', x - 6, gy + GEL.stack * mm * 0.6, { px: 9.5, align: 'right', base: 'middle', color: '#33463B' });
+    txt(ctx, `${fnum(this.p.T, 1)} %`, x - 6, gy + gh * 0.55, { px: 9.5, align: 'right', base: 'middle', color: '#33463B' });
     applyGrain(ctx, x, y, w, h, 0.03);
   }
 
@@ -246,17 +248,18 @@ export class PageModel {
     let g = ctx.createLinearGradient(0, y, 0, y + h); g.addColorStop(0, '#E7EAE6'); g.addColorStop(1, '#BFC5C0');
     ctx.fillStyle = g; roundRect(ctx, x, y, w, h, 6); ctx.fill();
     ctx.fillStyle = '#D5DAD5'; ctx.beginPath(); ctx.moveTo(x + 4, y); ctx.lineTo(x + w - 4, y); ctx.lineTo(x + w - 12, y - 10); ctx.lineTo(x + 12, y - 10); ctx.closePath(); ctx.fill();
-    ctx.fillStyle = '#132019'; roundRect(ctx, x + 8, y + 10, w - 16, h * 0.42, 4); ctx.fill();
+    const Sc = this.S, r1 = y + 10 + 10 / Sc, r2 = r1 + 14 / Sc;
+    ctx.fillStyle = '#132019'; roundRect(ctx, x + 8, y + 10, w - 16, Math.max(h * 0.42, 34 / Sc), 4); ctx.fill();
     const t = Math.min(this.runner.started ? this.anim.t : s.fr.tEnd, s.fr.tEnd);
     const U = s.run ? s.fr.U : 0, I = U ? U / (5.2 + 2.0 * s.fr.s / GEL.H) : 0;
-    txt(ctx, `${U} V`, x + 14, y + 10 + h * 0.17, { px: 12, font: 'mono', weight: 700, color: '#8DF5A8', base: 'middle' });
-    txt(ctx, `${fnum(I, 0)} mA`, x + w - 14, y + 10 + h * 0.17, { px: 10, font: 'mono', weight: 700, color: '#8DF5A8', base: 'middle', align: 'right' });
-    txt(ctx, `${Math.floor(t / 60)}:${String(Math.floor(t % 60)).padStart(2, '0')}`, x + 14, y + 10 + h * 0.34, { px: 10, font: 'mono', color: '#C6F7D2', base: 'middle' });
+    txt(ctx, `${U} V`, x + 14, r1, { px: 12, font: 'mono', weight: 700, color: '#8DF5A8', base: 'middle' });
+    txt(ctx, `${fnum(I, 0)} mA`, x + w - 14, r1, { px: 10, font: 'mono', weight: 700, color: '#8DF5A8', base: 'middle', align: 'right' });
+    txt(ctx, `${Math.floor(t / 60)}:${String(Math.floor(t % 60)).padStart(2, '0')}`, x + 14, r2, { px: 10, font: 'mono', color: '#C6F7D2', base: 'middle' });
     const jr = Math.min(7, w * 0.05);
     const jk = [[x + w * 0.3, y + h * 0.78, '#1A1F1C'], [x + w * 0.7, y + h * 0.78, '#B32A1E']];
     for (const [jx, jy, c] of jk) { ctx.fillStyle = c; ctx.beginPath(); ctx.arc(jx, jy, jr, 0, TAU); ctx.fill(); ctx.fillStyle = 'rgba(255,255,255,.3)'; ctx.beginPath(); ctx.arc(jx - 2, jy - 2, jr * 0.35, 0, TAU); ctx.fill(); }
     // дроти
-    const wire = (from, to, c) => { ctx.strokeStyle = c; ctx.lineWidth = 3; ctx.lineCap = 'round'; ctx.beginPath(); ctx.moveTo(from[0], from[1]); ctx.bezierCurveTo(from[0], from[1] + 60, to[0] + 40, to[1] - 50, to[0], to[1]); ctx.stroke(); ctx.strokeStyle = 'rgba(255,255,255,.25)'; ctx.lineWidth = 1; ctx.stroke(); };
+    const wire = (from, to, c) => { ctx.strokeStyle = c; ctx.lineWidth = 3; ctx.lineCap = 'round'; ctx.beginPath(); ctx.moveTo(from[0], from[1]); ctx.bezierCurveTo(from[0] + 10, from[1] + 40, to[0] + 70, to[1] - 30, to[0], to[1]); ctx.stroke(); ctx.strokeStyle = 'rgba(255,255,255,.25)'; ctx.lineWidth = 1; ctx.stroke(); };
     wire([jk[0][0], jk[0][1]], this.term.minus, '#1A1F1C');
     wire([jk[1][0], jk[1][1]], this.term.plus, '#B32A1E');
     txt(ctx, 'джерело живлення', x + w / 2, y + h + 15, { px: 9.5, align: 'center', color: '#33463B' });
@@ -283,7 +286,7 @@ export class PageModel {
     const lf = GEL.H - GEL.stack - GEL.stop, mm = gh / (GEL.H - GEL.stack);
     const lw = gw / GEL.lanes;
     if (s.stain) {
-      const col = mix([30, 55, 160], [110, 72, 40], smooth(6, 20, s.ts));
+      const col = mix([30, 55, 160], [110, 72, 40], 0.55 * smooth(5, 20, s.ts));
       for (let i = 0; i < GEL.lanes; i++) {
         for (const b of bands(i, this.p.T, this.p.asc)) {
           const I = intensity(b, s.ts); if (I <= 0.01) continue;

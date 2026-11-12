@@ -67,12 +67,13 @@ export function init(root) {
     return { has, n, Si, k, R };
   }
   function draw() {
-    const { ctx, w, h, narrow } = fitStage();
+    const F = fitStage(); if (!F) return;
+    const { ctx, w, h, narrow } = F;
     const day = anim.on ? anim.day : DAYS;
-    const hy = scene(ctx, w, h, { kind: 'room', horizon: narrow ? 0.56 : 0.78, light: 0.35 });
+    const hy = scene(ctx, w, h, { kind: 'room', horizon: narrow ? 0.56 : 0.86, light: 0.35 });
     const n = 5;
-    const RX = narrow ? { x: 18, w: w - 36, top: h * 0.08 } : { x: w * 0.04, w: w * 0.56, top: h * 0.1 };
-    const tw = Math.min(54, RX.w / n * 0.62), th = narrow ? h * 0.48 : h * 0.68;
+    const RX = narrow ? { x: 18, w: w - 36, top: h * 0.08 } : { x: w * 0.04, w: w * 0.56, top: h * 0.13 };
+    const tw = Math.min(54, RX.w / n * 0.62), th = narrow ? h * 0.48 : h * 0.74;
     const pxmm = (tw * 0.88) / 16; // внутрішній діаметр пробірки ≈ 16 мм
     const tubes = []; for (let i = 0; i < n; i++) tubes.push({ cx: RX.x + RX.w / n * (i + 0.5), w: tw });
     rackBack(ctx, RX.x - 4, RX.top + th * 0.12, RX.w + 8, tubes);
@@ -104,23 +105,23 @@ export function init(root) {
         },
       });
     });
-    rackFront(ctx, RX.x - 6, RX.top + th * 0.82, RX.w + 12, th * 0.18 + 4);
+    rackFront(ctx, RX.x - 6, RX.top + th * 0.93, RX.w + 12, th * 0.07 + 8);
     // лупа: збільшена мікробульба з міліметровою шкалою
     const m = r.mass(day), d = r.diam(m);
-    const L = narrow ? { cx: w * 0.3, cy: RX.top + th + (h - RX.top - th) * 0.5 + 4, r: Math.min(w * 0.22, (h - RX.top - th) * 0.4) } : { cx: w * 0.76, cy: h * 0.4, r: Math.min(w * 0.15, h * 0.3) };
+    const L = narrow ? { cx: w * 0.3, cy: RX.top + th + (h - RX.top - th) * 0.5 + 4, r: Math.min(w * 0.22, (h - RX.top - th) * 0.4) } : { cx: w * 0.735, cy: h * 0.38, r: Math.min(w * 0.115, h * 0.27) };
     microField(ctx, L.cx, L.cy, L.r, (c) => {
       const g = c.createLinearGradient(0, L.cy - L.r, 0, L.cy + L.r); g.addColorStop(0, '#F3EED6'); g.addColorStop(1, '#D9CFA6'); c.fillStyle = g; c.fillRect(L.cx - L.r, L.cy - L.r, 2 * L.r, 2 * L.r);
       const ppm = L.r / 6; // поле зору ≈ 12 мм
       c.strokeStyle = 'rgba(120,90,40,.25)'; c.lineWidth = 0.6; for (let x = -6; x <= 6; x++) { c.beginPath(); c.moveTo(L.cx + x * ppm, L.cy - L.r); c.lineTo(L.cx + x * ppm, L.cy + L.r); c.stroke(); c.beginPath(); c.moveTo(L.cx - L.r, L.cy + x * ppm); c.lineTo(L.cx + L.r, L.cy + x * ppm); c.stroke(); }
       if (d > 0) microtuber(c, L.cx, L.cy, d * ppm / 2 / 1.1, { ang: 0.15, green: 0.2, seed: 3 });
       else { c.strokeStyle = 'rgba(200,190,150,.9)'; c.lineWidth = 2; c.beginPath(); c.moveTo(L.cx - L.r * 0.6, L.cy + 4); c.quadraticCurveTo(L.cx, L.cy - 6, L.cx + L.r * 0.5, L.cy + 2); c.stroke(); }
-    }, { mode: 'bright', scale: { px: 5 * L.r / 6, text: '5 мм' } });
+    }, { mode: 'bright', scale: { px: 2 * L.r / 6, text: '2 мм' } });
     text(ctx, d > 0 ? `мікробульба Ø ${fnum(d, 1)} мм` : 'лише столон, без бульби', L.cx, L.cy + L.r * 1.1 + 20, { align: 'center', size: 12, weight: 700, color: '#23382B' });
     // пробірка для зберігання (після 60-ї доби)
     if (day >= 60 && m > 0) {
-      const sx = narrow ? w * 0.72 : w * 0.76, sw = narrow ? 30 : 34, sh2 = narrow ? Math.min(140, h - RX.top - th - 40) : h * 0.3, sy = narrow ? RX.top + th + 22 : h * 0.66;
+      const sx = narrow ? w * 0.75 : w * 0.925, sw = narrow ? 30 : 32, sh2 = narrow ? Math.min(140, h - RX.top - th - 46) : h * 0.5, sy = narrow ? RX.top + th + 24 : h * 0.3;
       tube(ctx, sx - sw / 2, sy, sw, sh2, { medium: { level: 0 }, plug: 'cotton', contents: (c, inn) => { for (let j = 0; j < 10; j++) { const R = rng(j + 40); microtuber(c, inn.x + inn.w * (0.25 + 0.5 * R()), inn.y + inn.h - 6 - j * Math.min(9, inn.h / 11), Math.min(inn.w * 0.28, 2.5 + d * 0.5), { ang: R() * 3, seed: j, green: 0.15 }); } } });
-      text(ctx, '10 шт. · +5 °C · 95 %', sx, sy + sh2 + 18, { align: 'center', size: 11, weight: 700, color: '#23382B' });
+      text(ctx, '+5 °C, 95 %', sx, sy + sh2 + 18, { align: 'center', size: 11, weight: 700, color: '#23382B' });
     }
     pill(ctx, anim.on ? `Доба ${Math.round(day)} з ${DAYS}` : `Прогноз на ${DAYS}-ту добу`, 10, 10);
     pill(ctx, `${REG[st.regime]}`, 10, 36, { dark: false });

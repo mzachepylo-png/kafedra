@@ -1,0 +1,8 @@
+/* Тема 10: гаплоїди та ембріокультура — уточнення розкладки моделей */
+#t10a .ag-reads, #t10b .ag-reads, #t10c .ag-reads { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+@media (max-width: 600px) { #t10a .ag-reads, #t10b .ag-reads, #t10c .ag-reads { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+#t10a .ag-read b, #t10b .ag-read b, #t10c .ag-read b { font-size: 1rem; overflow-wrap: anywhere; }
+.ag-presets { display: flex; flex-wrap: wrap; gap: 6px; align-items: center; margin-top: 10px; font-size: .84rem; color: var(--muted); }
+.ag-presets .btn { min-height: 40px; }
+#t10a .ag-table, #t10b .ag-table { margin-top: 14px; }
+#t10a .ag-plots { grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); }

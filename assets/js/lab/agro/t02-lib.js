@@ -216,7 +216,7 @@ export function vial(ctx, x, y, w, h, { level = 0.32, agar = MAT.agar, agarBrown
   ctx.save(); outline(); ctx.closePath(); ctx.fillStyle = 'rgba(222,238,233,.30)'; ctx.fill(); ctx.clip();
   // задня стінка: холодний відблиск
   const bg = ctx.createLinearGradient(0, y, 0, bot); bg.addColorStop(0, 'rgba(255,255,255,.12)'); bg.addColorStop(1, 'rgba(160,190,180,.12)'); ctx.fillStyle = bg; ctx.fillRect(x, y, w, h);
-  const surf = bot - (bot - body) * level * 1.0 - 2, ry = Math.max(2, w * 0.09), rx = w / 2 - 1.5;
+  const surf = bot - (bot - body) * level * 1.0 - 2, ry = Math.max(2, w * 0.09), rx = Math.max(2, w / 2 - 1.5);
   agarFill(ctx, x, surf, w, bot, { color: agar, brown: agarBrown });
   // поверхня агару (еліпс) — світліша
   let ac = hex(agar); if (agarBrown) ac = mix(ac, [176, 132, 70], agarBrown);

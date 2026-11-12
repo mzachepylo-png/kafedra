@@ -1,0 +1,27 @@
+/* Тема 1: середовища та стерилізація — лише стилі цієї теми */
+.t1-presets { display: flex; flex-wrap: wrap; gap: 6px; }
+.t1-presets .btn { min-height: 40px; font-size: .84rem; padding: .4em .8em; }
+.t1-grp + .t1-grp { margin-top: 12px; }
+.t1-grp > span { display: block; margin: 0 0 6px; font-size: .86rem; font-weight: 700; color: var(--ink); }
+.t1-grp .seg { display: flex; width: 100%; }
+.t1-grp .seg button { flex: 1 1 auto; min-height: 40px; }
+.t1-check { display: flex; gap: 10px; align-items: flex-start; margin: 10px 0 0; font-size: .88rem; line-height: 1.35; color: var(--ink-soft); cursor: pointer; }
+.t1-check input { flex: none; width: 20px; height: 20px; margin: 1px 0 0; accent-color: var(--green-700); }
+.t1-ok { color: #166534; font-weight: 700; }
+.t1-bad { color: #B23A2A; font-weight: 600; font-size: .85rem; }
+.ag-table tr.is-on td { background: #FFF6DB; }
+.ag-table tr.is-low td:last-child { color: #B23A2A; }
+.ag-table td small, .ag-table th small { font-weight: 500; color: var(--muted); }
+.t1-two { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 14px; margin-top: 14px; }
+@media (max-width: 900px) { .t1-two { grid-template-columns: 1fr; } }
+.t1-two > .ag-plot { min-width: 0; }
+.ag-read b small { font: 600 .74rem var(--sans, inherit); color: var(--muted); }
+.t1-key { display: flex; flex-wrap: wrap; gap: 6px 16px; margin: 8px 0 0; padding: 0; list-style: none; font-size: .82rem; color: var(--ink-soft); }
+.t1-key li { display: inline-flex; gap: 6px; align-items: center; }
+.t1-key i { width: 12px; height: 12px; border-radius: 50%; background: var(--c); box-shadow: inset 0 0 0 1px rgba(0,0,0,.15); }
+.ag-fig svg text { font-family: system-ui, -apple-system, "Segoe UI", sans-serif; }
+@media (max-width: 600px) {
+  .ag-panel { padding: 12px; }
+  .t1-grp .seg button { font-size: .82rem; padding-inline: .5em; }
+  .ag-reads { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}

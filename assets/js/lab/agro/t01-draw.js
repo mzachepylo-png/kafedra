@@ -76,10 +76,10 @@ export function gauge(ctx, cx, cy, r, value, { max = 3, unit = 'кгс/см²', 
     ctx.lineWidth = isM ? 1.6 : 0.7;
     const r0 = r * (isM ? 0.68 : 0.74), r1 = r * 0.86;
     ctx.beginPath(); ctx.moveTo(cx + Math.cos(a) * r0, cy + Math.sin(a) * r0); ctx.lineTo(cx + Math.cos(a) * r1, cy + Math.sin(a) * r1); ctx.stroke();
-    if (isM && Math.abs(v - Math.round(v)) < 1e-6) ctx.fillText(String(Math.round(v)), cx + Math.cos(a) * r * 0.5, cy + Math.sin(a) * r * 0.5);
+    if (isM && r > 22 && Math.abs(v - Math.round(v)) < 1e-6) ctx.fillText(String(Math.round(v)), cx + Math.cos(a) * r * 0.5, cy + Math.sin(a) * r * 0.5);
   }
-  font(ctx, Math.max(7, r * 0.13), 600); ctx.fillStyle = '#56625C';
-  ctx.fillText(unit, cx, cy + r * 0.38);
+  font(ctx, Math.max(7, r * 0.12), 600); ctx.fillStyle = '#56625C';
+  if (unit && r > 20) ctx.fillText(unit, cx, cy + r * 0.66);
   if (label && r > 34) ctx.fillText(label, cx, cy - r * 0.32);
   // стрілка
   const a = ang(value);

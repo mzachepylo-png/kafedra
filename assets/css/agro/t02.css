@@ -1,0 +1,19 @@
+/* Тема 2 «Культура калюсної тканини»: доповнення до agro.css */
+.agx .seg { display: flex; width: 100%; }
+.agx .seg button { flex: 1 1 auto; min-height: 40px; }
+.agx-presets { margin-bottom: 14px; }
+.agx-presets .seg button { flex: 1 1 140px; }
+.agx-lab { margin: 10px 0 6px; font-size: .86rem; font-weight: 700; color: var(--ink); }
+.agx-lab:first-of-type { margin-top: 0; }
+.agx-sl { margin-top: 12px; }
+.agx-sel select { width: 100%; min-height: 42px; padding: 8px 10px; border-radius: 10px; border: 1px solid var(--line); background: var(--white); font: inherit; font-size: .92rem; color: var(--ink); }
+.agx-check { display: flex; gap: 10px; align-items: flex-start; margin-top: 12px; font-size: .9rem; color: var(--ink-soft); cursor: pointer; min-height: 40px; }
+.agx-check input { width: 20px; height: 20px; margin-top: 1px; accent-color: var(--green-700); flex: none; }
+.agx-heat { position: relative; width: 100%; }
+.agx-heat canvas { display: block; width: 100%; cursor: crosshair; touch-action: pan-y; }
+.agx-medium { display: block; margin-top: 6px; font-size: .84rem; color: var(--ink-soft); }
+.agx-tabs button { flex: 1 1 220px; }
+@media (max-width: 600px) {
+  .ag-stage__hud span { font-size: .7rem; padding: 3px 7px; }
+  .agx-presets .seg button { flex: 1 1 45%; font-size: .82rem; padding: 7px 8px; }
+}
