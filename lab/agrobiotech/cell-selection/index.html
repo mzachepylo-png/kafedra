@@ -106,9 +106,15 @@
 
     <div class="section" style="padding-top:48px">
       <div class="container lab-doc">
-        <nav class="toc" aria-label="Зміст теми">
-          <h2>Зміст</h2>
-          <ol><li><a href="#goal">Мета і план</a></li><li><a href="#theory">Теоретичні відомості</a></li><li><a href="#model">Інтерактивна модель</a></li><li><a href="#protocol">Хід лабораторної роботи</a></li><li><a href="#questions">Контрольні питання</a></li><li><a href="#refs">Література</a></li><li><a href="#ag-auth-h">Автори посібника</a></li></ol>
+        <nav class="toc ag-toc" aria-label="Зміст теми">
+          <a class="ag-back" href="../"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M19 12H5M11 18l-6-6 6-6"/></svg>Біотехнології в агросфері</a>
+          <div class="ag-nav" data-ag-nav data-index="../search.json" data-base="../" data-topic="6"><form class="ag-search" role="search" autocomplete="off"><label class="ag-search__box"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg><input type="search" name="q" placeholder="Пошук у темі й розділі" aria-label="Пошук у темі й розділі"></label><div class="ag-search__bar"><span class="ag-search__count" aria-live="polite"></span><button type="button" data-dir="-1" aria-label="Попередній збіг">↑</button><button type="button" data-dir="1" aria-label="Наступний збіг">↓</button></div><div class="ag-search__out" hidden></div></form></div>
+          <details class="ag-toc__list" open>
+            <summary>Зміст теми</summary>
+            <h2>Зміст</h2>
+            <ol><li><a href="#goal">Мета і план</a></li><li><a href="#theory">Теоретичні відомості</a><ol class="toc__sub"><li><a href="#why">Навіщо селекція на рівні клітин</a></li><li><a href="#methods">Способи відбору мутантів</a></li><li><a href="#objects">Об&#x27;єкт селекції: калюс, суспензія чи…</a></li><li><a href="#streptomycin">Принцип ЛР 23: зелене серед білого</a></li><li><a href="#numbers">Скільки треба висіяти: трохи статистики</a></li><li><a href="#sublethal">Сублетальна концентрація</a></li><li><a href="#stability">Перевірка стабільності стійкості</a></li></ol></li><li><a href="#model">Інтерактивна модель</a></li><li><a href="#protocol">Хід лабораторної роботи</a><ol class="toc__sub"><li><a href="#lr-23">Робота 23. Селекція мутантів на рівні клітинних…</a></li></ol></li><li><a href="#questions">Контрольні питання</a></li><li><a href="#refs">Література</a></li><li><a href="#ag-auth-h">Автори посібника</a></li></ol>
+            <h2 class="ag-toc__topics-h">Теми розділу</h2><ol class="ag-toc__topics"><li><a href="../media-sterilization/">1. Живильні середовища та стерилізація</a></li><li><a href="../callus-culture/">2. Культура калюсної тканини</a></li></ol>
+          </details>
         </nav>
 
         <article>
@@ -278,7 +284,7 @@
 
 <section class="lab-section prose ag-proto" id="protocol">
             <h2><span class="n">04</span>Хід лабораторної роботи</h2>
-  <details open><summary>Робота 23. Селекція мутантів на рівні клітинних колоній. Висів суспензії на селективне живильне середовище <small>с. 95–96</small></summary><div class="ag-proto__body">
+  <details id="lr-23" open><summary>Робота 23. Селекція мутантів на рівні клітинних колоній. Висів суспензії на селективне живильне середовище <small>с. 95–96</small></summary><div class="ag-proto__body">
     <p><b>Мета:</b> отримати клітинні колонії, стійкі до антибіотиків. <b>Матеріали й обладнання:</b> ламінар-бокс, стерильні піпетки, чашки Петрі з селективним середовищем, клітинні суспензії тютюну.</p>
     <ol>
       <li>Відберіть 1 мл клітинної суспензії, отриманої з мезофілу (основної тканини) листків тютюну, і висійте на середовище: макросолі МС 100 мл, мікросолі МС 1 мл, Fe-хелат 5 мл, вітаміни МС 1 мл, ІОК 2 мг, БАП 0,5 мг, стрептоміцин 0,5 мг/мл, агар 8 г, сахароза 20 г (на 1 л), pH 5,0–5,5. Густину суспензії заздалегідь визначте в камері Фукса — Розенталя (тема 3).</li>
@@ -388,6 +394,7 @@
 
   <script defer src="../../../assets/js/main.js"></script>
   <script defer src="../../../assets/js/lightbox.js"></script>
+  <script type="module" src="../../../assets/js/lab/agro/nav.js"></script>
   <script type="module" src="../../../assets/js/lab/agro/t06.js"></script>
 </body>
 </html>

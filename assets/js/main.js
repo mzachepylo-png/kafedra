@@ -150,9 +150,10 @@
       toc.querySelectorAll('a.is-active, a.is-parent').forEach(function (a) { a.classList.remove('is-active', 'is-parent'); });
       best.a.classList.add('is-active');
       if (best.parent) best.parent.classList.add('is-parent');
-      if (toc.scrollHeight > toc.clientHeight + 2 && toc.offsetParent !== null) {
-        var t = best.a.getBoundingClientRect(), r = toc.getBoundingClientRect();
-        if (t.top < r.top + 40 || t.bottom > r.bottom - 24) toc.scrollTop += (t.top - r.top) - toc.clientHeight / 2 + t.height / 2;
+      var box = toc.querySelector('.ag-toc__list') || toc;
+      if (box.scrollHeight > box.clientHeight + 2 && toc.offsetParent !== null) {
+        var t = best.a.getBoundingClientRect(), r = box.getBoundingClientRect();
+        if (t.top < r.top + 40 || t.bottom > r.bottom - 24) box.scrollTop += (t.top - r.top) - box.clientHeight / 2 + t.height / 2;
       }
     }
     function onScroll() { if (!ticking) { ticking = true; requestAnimationFrame(update); } }

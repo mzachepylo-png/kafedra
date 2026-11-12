@@ -121,6 +121,31 @@ def authors_block(pre, level="h2"):
             f'<span>Мельничук, М. Д., &amp; Кляченко, О. Л. (2014). <i>Біотехнологія в агросфері: навчальний посібник для студентів вищих навчальних закладів</i>. НУБіП України.</span></div></aside>')
 
 
+SEARCH = []          # індекс пошуку по всіх опублікованих темах
+SEARCH_ICON = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg>'
+
+
+def short(s, n=46):
+    s = re.sub(r"\s+", " ", plain(s)).strip()
+    return s if len(s) <= n else s[:n - 1].rsplit(" ", 1)[0] + "…"
+
+
+def text_of(h):
+    h = re.sub(r"<(script|style|svg|canvas)[^>]*>.*?</\1>", " ", h, flags=re.S)
+    h = re.sub(r"<math[^>]*>.*?</math>", " (формула) ", h, flags=re.S)
+    h = re.sub(r"<[^>]+>", " ", h)
+    return re.sub(r"\s+", " ", html.unescape(h)).strip()
+
+
+def search_form(index_url, base, topic_n, placeholder):
+    return (f'<div class="ag-nav" data-ag-nav data-index="{index_url}" data-base="{base}" data-topic="{topic_n}">'
+            f'<form class="ag-search" role="search" autocomplete="off">'
+            f'<label class="ag-search__box">{SEARCH_ICON}<input type="search" name="q" placeholder="{placeholder}" aria-label="{placeholder}"></label>'
+            + ('<div class="ag-search__bar"><span class="ag-search__count" aria-live="polite"></span>'
+               '<button type="button" data-dir="-1" aria-label="Попередній збіг">↑</button><button type="button" data-dir="1" aria-label="Наступний збіг">↓</button></div>' if topic_n else '')
+            + '<div class="ag-search__out" hidden></div></form></div>')
+
+
 def build_topic(i, t):
     n = t["n"]
     frag_path = os.path.join(SRC, f"t{n:02d}.html")
@@ -144,6 +169,47 @@ def build_topic(i, t):
         toc.append((sid, plain(title)))
         return f'<section class="lab-section{extra}" id="{sid}">\n            <h2><span class="n">{k:02d}</span>{title}</h2>'
     raw = re.sub(r'<section class="lab-section( [^"]*)?" id="([^"]+)">\s*<h2>(.*?)</h2>', numh2, raw, flags=re.S)
+    # «Робота N» → id="lr-N" (посилання зі змісту й пошуку розкривають блок)
+    raw = re.sub(r'<details( open)?>(\s*)<summary>(\s*)Робота (\d+)\.', lambda mm: f'<details id="lr-{mm.group(4)}"{mm.group(1) or ""}>{mm.group(2)}<summary>{mm.group(3)}Робота {mm.group(4)}.', raw)
+    # підпункти змісту: h3 з id у теорії, роботи в ході робіт; контрольні питання — для пошуку
+    sections = {}
+    for mm in re.finditer(r'<section class="lab-section[^"]*" id="([^"]+)">(.*?)</section>', raw, flags=re.S):
+        sections[mm.group(1)] = mm.group(2)
+    subs = {}
+    for sid, body in sections.items():
+        items = []
+        for h in re.finditer(r'<h3 id="([^"]+)"[^>]*>(.*?)</h3>', body, flags=re.S):
+            items.append((h.group(1), short(h.group(2))))
+        for d in re.finditer(r'<details id="(lr-\d+)"[^>]*>\s*<summary>(.*?)</summary>', body, flags=re.S):
+            items.append((d.group(1), short(re.sub(r"<small>.*?</small>", "", d.group(2)), 52)))
+        if items:
+            subs[sid] = items
+    if t["n"] in PUBLISHED:
+        url = f'{t["slug"]}/'
+        for sid, body in sections.items():
+            title_sec = dict(toc).get(sid, "")
+            parts = re.split(r'(<h3 id="[^"]+"[^>]*>.*?</h3>|<details[^>]*>\s*<summary>.*?</summary>)', body, flags=re.S)
+            anchor, head_txt, buf = sid, title_sec, []
+
+            def flush():
+                txt = text_of("".join(buf))
+                if txt:
+                    SEARCH.append({"n": t["n"], "u": url, "a": anchor, "h": head_txt, "x": txt[:4000]})
+            for part in parts:
+                h3 = re.match(r'<h3 id="([^"]+)"[^>]*>(.*?)</h3>', part, flags=re.S)
+                det = re.match(r'<details(?: id="([^"]+)")?[^>]*>\s*<summary>(.*?)</summary>', part, flags=re.S)
+                if h3 or det:
+                    flush()
+                    buf = []
+                    if h3:
+                        anchor, head_txt = h3.group(1), short(h3.group(2), 80)
+                    else:
+                        anchor = det.group(1) or sid
+                        head_txt = short(re.sub(r"<small>.*?</small>", "", det.group(2)), 90)
+                        buf.append(det.group(2))
+                else:
+                    buf.append(part)
+            flush()
     pub = [x for x in topics if x["n"] in PUBLISHED] if t["n"] in PUBLISHED else topics
     j = pub.index(t) if t in pub else i
     prev_t = pub[j - 1] if j > 0 else None
@@ -157,7 +223,15 @@ def build_topic(i, t):
     desc = meta.get("desc") or plain(t["excerpt"])
     badges = "".join(f'<span class="badge">{esc(b)}</span>' for b in [t["labs"]] + meta.get("badges", []))
     lead = meta.get("lead") or t["excerpt"]
-    toc_html = "".join(f'<li><a href="#{sid}">{esc(tt)}</a></li>' for sid, tt in toc) + '<li><a href="#ag-auth-h">Автори посібника</a></li>'
+    def li(sid, tt):
+        sub = subs.get(sid)
+        inner = "".join(f'<li><a href="#{a}">{esc(b)}</a></li>' for a, b in sub) if sub else ""
+        return f'<li><a href="#{sid}">{esc(tt)}</a>' + (f'<ol class="toc__sub">{inner}</ol>' if inner else "") + "</li>"
+    toc_html = "".join(li(sid, tt) for sid, tt in toc) + '<li><a href="#ag-auth-h">Автори посібника</a></li>'
+    pub_list = [x for x in topics if x["n"] in PUBLISHED]
+    topics_html = "".join(
+        (f'<li><span class="is-cur">{x["n"]}. {esc(x["short"])}</span></li>' if x["n"] == t["n"] else f'<li><a href="../{x["slug"]}/">{x["n"]}. {esc(x["short"])}</a></li>')
+        for x in pub_list)
     js = f'\n  <script type="module" src="{pre}assets/js/lab/agro/t{n:02d}.js"></script>' if os.path.exists(os.path.join(ROOT, f"assets/js/lab/agro/t{n:02d}.js")) else ""
     page = head(title, desc, pre, css_extra, noindex=t["n"] not in PUBLISHED) + header_for(3) + f'''<main id="main" class="lab-main disc--agro">
     <section class="page-hero page-hero--lab page-hero--agro">
@@ -174,9 +248,15 @@ def build_topic(i, t):
 
     <div class="section" style="padding-top:48px">
       <div class="container lab-doc">
-        <nav class="toc" aria-label="Зміст теми">
-          <h2>Зміст</h2>
-          <ol>{toc_html}</ol>
+        <nav class="toc ag-toc" aria-label="Зміст теми">
+          <a class="ag-back" href="../"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M19 12H5M11 18l-6-6 6-6"/></svg>Біотехнології в агросфері</a>
+          {search_form("../search.json", "../", t["n"], "Пошук у темі й розділі")}
+          <details class="ag-toc__list" open>
+            <summary>Зміст теми</summary>
+            <h2>Зміст</h2>
+            <ol>{toc_html}</ol>
+            {('<h2 class="ag-toc__topics-h">Теми розділу</h2><ol class="ag-toc__topics">' + topics_html + '</ol>') if len(pub_list) > 1 else ''}
+          </details>
         </nav>
 
         <article>
@@ -190,7 +270,8 @@ def build_topic(i, t):
 ''' + footer_for(3) + f'''
 
   <script defer src="{pre}assets/js/main.js"></script>
-  <script defer src="{pre}assets/js/lightbox.js"></script>{js}
+  <script defer src="{pre}assets/js/lightbox.js"></script>
+  <script type="module" src="{pre}assets/js/lab/agro/nav.js"></script>{js}
 </body>
 </html>
 '''
@@ -241,6 +322,7 @@ def build_hub():
     <section class="section">
       <div class="container">
         {intro}
+        <div class="ag-hubsearch">{search_form("search.json", "", 0, "Пошук по всіх темах розділу")}</div>
         <div class="ag-hub">
           {"".join(cards)}
         </div>
@@ -252,6 +334,7 @@ def build_hub():
 
   <script defer src="{pre}assets/js/main.js"></script>
   <script defer src="{pre}assets/js/lightbox.js"></script>
+  <script type="module" src="{pre}assets/js/lab/agro/nav.js"></script>
 </body>
 </html>
 '''
@@ -270,4 +353,6 @@ if __name__ == "__main__":
             built.append(t["n"])
     if not only:
         build_hub()
+        json.dump(SEARCH, open(os.path.join(ROOT, BASE, "search.json"), "w", encoding="utf-8"), ensure_ascii=False, separators=(",", ":"))
+        print("search entries:", len(SEARCH))
     print("built topics:", built, "+ hub" if not only else "")

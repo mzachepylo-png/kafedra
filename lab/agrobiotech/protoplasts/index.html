@@ -106,9 +106,15 @@
 
     <div class="section" style="padding-top:48px">
       <div class="container lab-doc">
-        <nav class="toc" aria-label="Зміст теми">
-          <h2>Зміст</h2>
-          <ol><li><a href="#goal">Мета і план</a></li><li><a href="#theory">Теоретичні відомості</a></li><li><a href="#model">Інтерактивна модель</a></li><li><a href="#protocol">Хід лабораторних робіт</a></li><li><a href="#questions">Контрольні питання</a></li><li><a href="#refs">Література</a></li><li><a href="#ag-auth-h">Автори посібника</a></li></ol>
+        <nav class="toc ag-toc" aria-label="Зміст теми">
+          <a class="ag-back" href="../"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M19 12H5M11 18l-6-6 6-6"/></svg>Біотехнології в агросфері</a>
+          <div class="ag-nav" data-ag-nav data-index="../search.json" data-base="../" data-topic="7"><form class="ag-search" role="search" autocomplete="off"><label class="ag-search__box"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg><input type="search" name="q" placeholder="Пошук у темі й розділі" aria-label="Пошук у темі й розділі"></label><div class="ag-search__bar"><span class="ag-search__count" aria-live="polite"></span><button type="button" data-dir="-1" aria-label="Попередній збіг">↑</button><button type="button" data-dir="1" aria-label="Наступний збіг">↓</button></div><div class="ag-search__out" hidden></div></form></div>
+          <details class="ag-toc__list" open>
+            <summary>Зміст теми</summary>
+            <h2>Зміст</h2>
+            <ol><li><a href="#goal">Мета і план</a></li><li><a href="#theory">Теоретичні відомості</a><ol class="toc__sub"><li><a href="#what">Протопласт — клітина без стінки</a></li><li><a href="#mechanical">Механічне виділення і плазмоліз</a></li><li><a href="#enzymatic">Ферментативне виділення</a></li><li><a href="#purification">Очищення: флотація і відмивання</a></li><li><a href="#culture">Культивування і регенерація стінки</a></li><li><a href="#fusion">Злиття протопластів</a></li></ol></li><li><a href="#model">Інтерактивна модель</a></li><li><a href="#protocol">Хід лабораторних робіт</a><ol class="toc__sub"><li><a href="#lr-24">Робота 24. Виділення та культивування протопластів…</a></li><li><a href="#lr-25">Робота 25. Виділення та культивування протопластів…</a></li></ol></li><li><a href="#questions">Контрольні питання</a></li><li><a href="#refs">Література</a></li><li><a href="#ag-auth-h">Автори посібника</a></li></ol>
+            <h2 class="ag-toc__topics-h">Теми розділу</h2><ol class="ag-toc__topics"><li><a href="../media-sterilization/">1. Живильні середовища та стерилізація</a></li><li><a href="../callus-culture/">2. Культура калюсної тканини</a></li></ol>
+          </details>
         </nav>
 
         <article>
@@ -333,7 +339,7 @@
 
 <section class="lab-section prose ag-proto" id="protocol">
             <h2><span class="n">04</span>Хід лабораторних робіт</h2>
-  <details open><summary>Робота 24. Виділення та культивування протопластів механічним методом <small>с. 100–101</small></summary><div class="ag-proto__body">
+  <details id="lr-24" open><summary>Робота 24. Виділення та культивування протопластів механічним методом <small>с. 100–101</small></summary><div class="ag-proto__body">
     <p><b>Матеріали:</b> 1 М сахароза, дистильована вода, пробірки, штативи, піпетки на 10 мл, стерильні препарувальні голки, скляні палички, предметні й покривні скельця, фільтрувальний папір. <b>Об'єкт:</b> забарвлений епідерміс луски цибулі <i>Allium cepa</i> L., листки бегонії чи традесканції.</p>
     <ol>
       <li>Приготувати в пробірках розчини сахарози 0,3; 0,35; 0,4; 0,5; 0,55; 0,6; 0,7 М (розводячи 1 М сахарозу водою: <var>V</var><sub>1М</sub> = <var>C</var>·<var>V</var>).</li>
@@ -344,7 +350,7 @@
       <li>Прибрати тканину, накрити краплю покривним скельцем, розглянути при збільшенні ×30.</li>
       <li>Записати концентрацію, при якій спостерігались ізольовані протопласти, замалювати їх і зробити висновки.</li>
     </ol></div></details>
-  <details><summary>Робота 25. Виділення та культивування протопластів ферментативним методом <small>с. 101–105</small></summary><div class="ag-proto__body">
+  <details id="lr-25"><summary>Робота 25. Виділення та культивування протопластів ферментативним методом <small>с. 101–105</small></summary><div class="ag-proto__body">
     <p><b>Обладнання:</b> стерильні листки тютюну, ламінар-бокс, інвертований мікроскоп (з об'єктивами під столиком — для огляду чашок знизу), фільтр «Millipore», чашки Петрі, термостат, нейлонові фільтри, центрифужні пробірки, ферменти, середовища, міні-центрифуга.</p>
     <ol>
       <li>Ферментні розчини готують перед дослідом або за добу: для мезофілу — 0,5 % Cellulase, 0,5 % Macerozyme, 0,2 % Driselase; для калюсу — 2 % / 1 % / 0,5 %. Розчини центрифугують 5–10 хв при 2000 об/хв, стерилізують фільтром «Millipore» і розливають у стерильні чашки Петрі по 7–10 мл.</li>
@@ -460,6 +466,7 @@
 
   <script defer src="../../../assets/js/main.js"></script>
   <script defer src="../../../assets/js/lightbox.js"></script>
+  <script type="module" src="../../../assets/js/lab/agro/nav.js"></script>
   <script type="module" src="../../../assets/js/lab/agro/t07.js"></script>
 </body>
 </html>

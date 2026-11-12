@@ -106,9 +106,15 @@
 
     <div class="section" style="padding-top:48px">
       <div class="container lab-doc">
-        <nav class="toc" aria-label="Зміст теми">
-          <h2>Зміст</h2>
-          <ol><li><a href="#goal">Мета і план</a></li><li><a href="#theory">Теоретичні відомості</a></li><li><a href="#model">Інтерактивна модель</a></li><li><a href="#protocol">Хід лабораторних робіт</a></li><li><a href="#questions">Контрольні питання</a></li><li><a href="#refs">Література</a></li><li><a href="#ag-auth-h">Автори посібника</a></li></ol>
+        <nav class="toc ag-toc" aria-label="Зміст теми">
+          <a class="ag-back" href="../"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M19 12H5M11 18l-6-6 6-6"/></svg>Біотехнології в агросфері</a>
+          <div class="ag-nav" data-ag-nav data-index="../search.json" data-base="../" data-topic="3"><form class="ag-search" role="search" autocomplete="off"><label class="ag-search__box"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg><input type="search" name="q" placeholder="Пошук у темі й розділі" aria-label="Пошук у темі й розділі"></label><div class="ag-search__bar"><span class="ag-search__count" aria-live="polite"></span><button type="button" data-dir="-1" aria-label="Попередній збіг">↑</button><button type="button" data-dir="1" aria-label="Наступний збіг">↓</button></div><div class="ag-search__out" hidden></div></form></div>
+          <details class="ag-toc__list" open>
+            <summary>Зміст теми</summary>
+            <h2>Зміст</h2>
+            <ol><li><a href="#goal">Мета і план</a></li><li><a href="#theory">Теоретичні відомості</a><ol class="toc__sub"><li><a href="#criteria">Як оцінюють ріст калюсу</a></li><li><a href="#indices">Показники приросту</a></li><li><a href="#scurve">S-подібна крива росту</a></li><li><a href="#hormones">Гормональний склад середовища (ЛР 14)</a></li><li><a href="#brown">Метод Брауна: мацерація і камера Фукса —…</a></li><li><a href="#math">Як влаштована модель</a></li></ol></li><li><a href="#model">Інтерактивна модель</a></li><li><a href="#protocol">Хід лабораторних робіт</a><ol class="toc__sub"><li><a href="#lr-13">Робота 13. Підрахунок клітин за методом Брауна</a></li><li><a href="#lr-14">Робота 14. Пересаджування калюсу на свіже…</a></li></ol></li><li><a href="#questions">Контрольні питання</a></li><li><a href="#refs">Література</a></li><li><a href="#ag-auth-h">Автори посібника</a></li></ol>
+            <h2 class="ag-toc__topics-h">Теми розділу</h2><ol class="ag-toc__topics"><li><a href="../media-sterilization/">1. Живильні середовища та стерилізація</a></li><li><a href="../callus-culture/">2. Культура калюсної тканини</a></li></ol>
+          </details>
         </nav>
 
         <article>
@@ -269,7 +275,7 @@
 
 <section class="lab-section prose ag-proto" id="protocol">
             <h2><span class="n">04</span>Хід лабораторних робіт</h2>
-  <details open><summary>Робота 13. Підрахунок клітин за методом Брауна <small>с. 73–75</small></summary><div class="ag-proto__body">
+  <details id="lr-13" open><summary>Робота 13. Підрахунок клітин за методом Брауна <small>с. 73–75</small></summary><div class="ag-proto__body">
     <p><b>Мета:</b> підрахувати кількість клітин і визначити середню масу однієї клітини. <b>Матеріали:</b> мікроскопи, ваги, камера Фукса — Розенталя, предметні й покривні скельця, калюс гвоздики й топінамбура, стакани на 0,05–0,1 л, скляні палички.</p>
     <ol>
       <li>Взяти три наважки калюсу по 0,25 г або 0,5 г, помістити в пробірки й додати 5 мл розчину для мацерації.</li>
@@ -281,7 +287,7 @@
     </ol>
     <p>У <a href="#model">моделі</a> — вкладка «ЛР 13».</p>
   </div></details>
-  <details><summary>Робота 14. Пересаджування калюсу на свіже середовище з різним складом гормонів <small>с. 75–76</small></summary><div class="ag-proto__body">
+  <details id="lr-14"><summary>Робота 14. Пересаджування калюсу на свіже середовище з різним складом гормонів <small>с. 75–76</small></summary><div class="ag-proto__body">
     <p><b>Мета:</b> визначити динаміку росту калюсу залежно від гормонального складу середовища. <b>Матеріали:</b> ламінар-бокс, пінцети, ланцети, чашки Петрі, стерильні калюси, пеніцилінові флакони із середовищами різного складу.</p>
     <ol>
       <li>Приготувати середовища №1–4 (табл. 5) і автоклавувати 25 хв при 1 атм.</li>
@@ -395,6 +401,7 @@
 
   <script defer src="../../../assets/js/main.js"></script>
   <script defer src="../../../assets/js/lightbox.js"></script>
+  <script type="module" src="../../../assets/js/lab/agro/nav.js"></script>
   <script type="module" src="../../../assets/js/lab/agro/t03.js"></script>
 </body>
 </html>

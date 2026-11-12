@@ -106,9 +106,15 @@
 
     <div class="section" style="padding-top:48px">
       <div class="container lab-doc">
-        <nav class="toc" aria-label="Зміст теми">
-          <h2>Зміст</h2>
-          <ol><li><a href="#goal">Мета і план</a></li><li><a href="#theory">Теоретичні відомості</a></li><li><a href="#model">Інтерактивна модель</a></li><li><a href="#protocol">Хід лабораторних робіт</a></li><li><a href="#questions">Контрольні питання</a></li><li><a href="#refs">Література</a></li><li><a href="#ag-auth-h">Автори посібника</a></li></ol>
+        <nav class="toc ag-toc" aria-label="Зміст теми">
+          <a class="ag-back" href="../"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M19 12H5M11 18l-6-6 6-6"/></svg>Біотехнології в агросфері</a>
+          <div class="ag-nav" data-ag-nav data-index="../search.json" data-base="../" data-topic="12"><form class="ag-search" role="search" autocomplete="off"><label class="ag-search__box"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg><input type="search" name="q" placeholder="Пошук у темі й розділі" aria-label="Пошук у темі й розділі"></label><div class="ag-search__bar"><span class="ag-search__count" aria-live="polite"></span><button type="button" data-dir="-1" aria-label="Попередній збіг">↑</button><button type="button" data-dir="1" aria-label="Наступний збіг">↓</button></div><div class="ag-search__out" hidden></div></form></div>
+          <details class="ag-toc__list" open>
+            <summary>Зміст теми</summary>
+            <h2>Зміст</h2>
+            <ol><li><a href="#goal">Мета і план</a></li><li><a href="#theory">Теоретичні відомості</a><ol class="toc__sub"><li><a href="#t12-markers">Ферменти як біохімічні маркери</a></li><li><a href="#t12-pox">Пероксидаза і гваяколовий метод (ЛР 51)</a></li><li><a href="#t12-ppo">Поліфенолоксидаза (ЛР 53)</a></li><li><a href="#t12-page">Ізоферменти й електрофорез у ПААГ (ЛР 52)</a></li><li><a href="#t12-assumptions">Що в моделях — посібник, а що — наближення</a></li></ol></li><li><a href="#model">Інтерактивна модель</a></li><li><a href="#protocol">Хід лабораторних робіт</a><ol class="toc__sub"><li><a href="#lr-51">Робота 51. Визначення активності пероксидази</a></li><li><a href="#lr-52">Робота 52. Вивчення ізоферментного спектра…</a></li><li><a href="#lr-53">Робота 53. Визначення активності поліфенолоксидази</a></li></ol></li><li><a href="#questions">Контрольні питання</a></li><li><a href="#refs">Література</a></li><li><a href="#ag-auth-h">Автори посібника</a></li></ol>
+            <h2 class="ag-toc__topics-h">Теми розділу</h2><ol class="ag-toc__topics"><li><a href="../media-sterilization/">1. Живильні середовища та стерилізація</a></li><li><a href="../callus-culture/">2. Культура калюсної тканини</a></li></ol>
+          </details>
         </nav>
 
         <article>
@@ -241,7 +247,7 @@
 
 <section class="lab-section prose ag-proto" id="protocol">
             <h2><span class="n">04</span>Хід лабораторних робіт</h2>
-  <details open><summary>Робота 51. Визначення активності пероксидази <small>с. 184–185</small></summary><div class="ag-proto__body">
+  <details id="lr-51" open><summary>Робота 51. Визначення активності пероксидази <small>с. 184–185</small></summary><div class="ag-proto__body">
     <p><b>Реактиви:</b> 0,15 М фосфатний буфер pH 5,4; 0,15 % H<sub>2</sub>O<sub>2</sub>; розчин гваяколу (183 мг на 25 мл води); рослинний матеріал.</p>
     <ol>
       <li>Наважку листків або калюсу 500 мг розтерти в ступці з невеликою кількістю фосфатного буфера, перенести в мірну колбу на 25 мл і довести буфером до мітки.</li>
@@ -252,7 +258,7 @@
       <li>Обчислити активність за формулою (2): <i>V</i> = 25 мл, <i>V</i><sub>1</sub> = 0,5 мл, <i>V</i><sub>2</sub> = 3,0 мл, <i>н</i> = 0,5 г, <i>t</i><sub>2</sub> − <i>t</i><sub>1</sub> = 120 с. Якщо <i>D</i> перевищує ≈ 1, повторити з розведеною витяжкою.</li>
     </ol>
   </div></details>
-  <details><summary>Робота 52. Вивчення ізоферментного спектра пероксидаз <small>с. 185–186</small></summary><div class="ag-proto__body">
+  <details id="lr-52"><summary>Робота 52. Вивчення ізоферментного спектра пероксидаз <small>с. 185–186</small></summary><div class="ag-proto__body">
     <ol>
       <li>2,5 г листків гомогенізувати з трикратним об’ємом тріс-гліцинового буфера pH 8,3 (тріс 6 г, гліцин 28,8 г, вода до 1 л; ≈ 0,05 М тріс, 0,38 М гліцин).</li>
       <li>Центрифугувати 20 хв при 2000 <i>g</i>; для електрофорезу взяти супернатант.</li>
@@ -262,7 +268,7 @@
       <li>Виміряти відстані до смуг і фронту, обчислити Rf за формулою (4), замалювати зимограму, порівняти зразки.</li>
     </ol>
   </div></details>
-  <details><summary>Робота 53. Визначення активності поліфенолоксидази <small>с. 186–187</small></summary><div class="ag-proto__body">
+  <details id="lr-53"><summary>Робота 53. Визначення активності поліфенолоксидази <small>с. 186–187</small></summary><div class="ag-proto__body">
     <p><b>Реактиви:</b> 0,05 М розчин пірокатехіну; фосфатний буфер pH 7,4 (у посібнику надруковано «1,15 М» — імовірно, 0,15 М); проростки або калюс.</p>
     <ol>
       <li>Наважку 500–1000 мг розтерти в ступці з фосфатним буфером (pH 7,0–7,4), перенести в мірну колбу на 25 мл, довести до мітки.</li>
@@ -374,6 +380,7 @@
 
   <script defer src="../../../assets/js/main.js"></script>
   <script defer src="../../../assets/js/lightbox.js"></script>
+  <script type="module" src="../../../assets/js/lab/agro/nav.js"></script>
   <script type="module" src="../../../assets/js/lab/agro/t12.js"></script>
 </body>
 </html>

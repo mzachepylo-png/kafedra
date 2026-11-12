@@ -106,9 +106,15 @@
 
     <div class="section" style="padding-top:48px">
       <div class="container lab-doc">
-        <nav class="toc" aria-label="Зміст теми">
-          <h2>Зміст</h2>
-          <ol><li><a href="#goal">Мета і план</a></li><li><a href="#theory">Теоретичні відомості</a></li><li><a href="#model">Інтерактивна модель</a></li><li><a href="#protocol">Хід лабораторних робіт</a></li><li><a href="#questions">Контрольні питання</a></li><li><a href="#refs">Література</a></li><li><a href="#ag-auth-h">Автори посібника</a></li></ol>
+        <nav class="toc ag-toc" aria-label="Зміст теми">
+          <a class="ag-back" href="../"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M19 12H5M11 18l-6-6 6-6"/></svg>Біотехнології в агросфері</a>
+          <div class="ag-nav" data-ag-nav data-index="../search.json" data-base="../" data-topic="9"><form class="ag-search" role="search" autocomplete="off"><label class="ag-search__box"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg><input type="search" name="q" placeholder="Пошук у темі й розділі" aria-label="Пошук у темі й розділі"></label><div class="ag-search__bar"><span class="ag-search__count" aria-live="polite"></span><button type="button" data-dir="-1" aria-label="Попередній збіг">↑</button><button type="button" data-dir="1" aria-label="Наступний збіг">↓</button></div><div class="ag-search__out" hidden></div></form></div>
+          <details class="ag-toc__list" open>
+            <summary>Зміст теми</summary>
+            <h2>Зміст</h2>
+            <ol><li><a href="#goal">Мета і план</a></li><li><a href="#theory">Теоретичні відомості</a><ol class="toc__sub"><li><a href="#phytohormones">П&#x27;ять груп фітогормонів</a></li><li><a href="#balance">Баланс ауксинів і цитокінінів визначає долю…</a></li><li><a href="#bioassay">Біотест: тканина як «прилад» для вимірювання…</a></li><li><a href="#media">Склад середовищ для біотестів</a></li><li><a href="#dose">Крива «доза — відповідь» і рівняння моделі</a></li><li><a href="#cuttings">Мікроживці на середовищах з різними гормонами</a></li></ol></li><li><a href="#model">Інтерактивна модель</a></li><li><a href="#protocol">Хід лабораторних робіт</a><ol class="toc__sub"><li><a href="#lr-35">Робота 35. Ізольована тканина сої як тест-система…</a></li><li><a href="#lr-36">Робота 36. Культура тканини топінамбура як…</a></li><li><a href="#lr-37">Робота 37. Вплив ауксинів, цитокінінів і…</a></li></ol></li><li><a href="#questions">Контрольні питання</a></li><li><a href="#refs">Література</a></li><li><a href="#ag-auth-h">Автори посібника</a></li></ol>
+            <h2 class="ag-toc__topics-h">Теми розділу</h2><ol class="ag-toc__topics"><li><a href="../media-sterilization/">1. Живильні середовища та стерилізація</a></li><li><a href="../callus-culture/">2. Культура калюсної тканини</a></li></ol>
+          </details>
         </nav>
 
         <article>
@@ -299,7 +305,7 @@
 
 <section class="lab-section prose ag-proto" id="protocol">
             <h2><span class="n">04</span>Хід лабораторних робіт</h2>
-  <details open><summary>Робота 35. Ізольована тканина сої як тест-система на цитокініни <small>с. 128–129</small></summary><div class="ag-proto__body">
+  <details id="lr-35" open><summary>Робота 35. Ізольована тканина сої як тест-система на цитокініни <small>с. 128–129</small></summary><div class="ag-proto__body">
     <p><b>Мета:</b> отримати калюсну тканину сої на середовищах з різним вмістом цитокінінів.</p>
     <ol>
       <li>Приготуйте середовища з різним вмістом цитокінінів (табл. 9) і автоклавуйте 25 хв при 1 атм. Контроль — безгормональне середовище.</li>
@@ -309,7 +315,7 @@
       <li>Наприкінці побудуйте графіки: на горизонтальній осі — номери калюсів (варіанти), на вертикальній — ростові характеристики. Зробіть висновок про вплив різних концентрацій цитокінінів на ріст калюсу сої.</li>
     </ol>
   </div></details>
-  <details><summary>Робота 36. Культура тканини топінамбура як тест-система на ауксини <small>с. 129–130</small></summary><div class="ag-proto__body">
+  <details id="lr-36"><summary>Робота 36. Культура тканини топінамбура як тест-система на ауксини <small>с. 129–130</small></summary><div class="ag-proto__body">
     <p><b>Мета:</b> отримати калюсну тканину топінамбура на середовищах з різним вмістом ауксинів.</p>
     <ol>
       <li>Приготуйте середовища з різним вмістом ауксинів (табл. 10), автоклавуйте 25 хв при 1 атм. Контроль — безгормональне середовище.</li>
@@ -319,7 +325,7 @@
       <li>Побудуйте графіки впливу препаратів ауксинової дії на ріст калюсу; зробіть висновки про дію кожного препарату.</li>
     </ol>
   </div></details>
-  <details><summary>Робота 37. Вплив ауксинів, цитокінінів і гіберелінів на ріст і розвиток мікроживців <small>с. 131</small></summary><div class="ag-proto__body">
+  <details id="lr-37"><summary>Робота 37. Вплив ауксинів, цитокінінів і гіберелінів на ріст і розвиток мікроживців <small>с. 131</small></summary><div class="ag-proto__body">
     <p><b>Мета:</b> вивчити вплив регуляторів росту на ріст і розвиток мікроживців стевії, картоплі, гвоздики.</p>
     <ol>
       <li>Приготуйте середовища з досліджуваними регуляторами різної концентрації (табл. 11: ІОК, кінетин, ГК по 0,1; 0,5; 1,0 мг/л на основі МС; сахароза 20 г, агар 8 г, pH 5,6–5,8), автоклавуйте 25 хв при 1 атм.</li>
@@ -432,6 +438,7 @@
 
   <script defer src="../../../assets/js/main.js"></script>
   <script defer src="../../../assets/js/lightbox.js"></script>
+  <script type="module" src="../../../assets/js/lab/agro/nav.js"></script>
   <script type="module" src="../../../assets/js/lab/agro/t09.js"></script>
 </body>
 </html>

@@ -105,9 +105,15 @@
 
     <div class="section" style="padding-top:48px">
       <div class="container lab-doc">
-        <nav class="toc" aria-label="Зміст теми">
-          <h2>Зміст</h2>
-          <ol><li><a href="#goal">Мета і план</a></li><li><a href="#theory">Теоретичні відомості</a></li><li><a href="#model">Інтерактивна модель</a></li><li><a href="#protocol">Хід лабораторних робіт</a></li><li><a href="#questions">Контрольні питання</a></li><li><a href="#refs">Література</a></li><li><a href="#ag-auth-h">Автори посібника</a></li></ol>
+        <nav class="toc ag-toc" aria-label="Зміст теми">
+          <a class="ag-back" href="../"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M19 12H5M11 18l-6-6 6-6"/></svg>Біотехнології в агросфері</a>
+          <div class="ag-nav" data-ag-nav data-index="../search.json" data-base="../" data-topic="2"><form class="ag-search" role="search" autocomplete="off"><label class="ag-search__box"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg><input type="search" name="q" placeholder="Пошук у темі й розділі" aria-label="Пошук у темі й розділі"></label><div class="ag-search__bar"><span class="ag-search__count" aria-live="polite"></span><button type="button" data-dir="-1" aria-label="Попередній збіг">↑</button><button type="button" data-dir="1" aria-label="Наступний збіг">↓</button></div><div class="ag-search__out" hidden></div></form></div>
+          <details class="ag-toc__list" open>
+            <summary>Зміст теми</summary>
+            <h2>Зміст</h2>
+            <ol><li><a href="#goal">Мета і план</a></li><li><a href="#theory">Теоретичні відомості</a><ol class="toc__sub"><li><a href="#callus">Калюс і дедиференціація</a></li><li><a href="#hormones">Ауксини, цитокініни та їх співвідношення</a></li><li><a href="#types">Типи, колір і полярність калюсу</a></li><li><a href="#passage">Ріст і пасаж</a></li><li><a href="#properties">Особливі властивості калюсних клітин</a></li><li><a href="#media">Експлантати й середовища ЛР 8–12</a></li><li><a href="#math">Як влаштована модель</a></li></ol></li><li><a href="#model">Інтерактивна модель</a></li><li><a href="#protocol">Хід лабораторних робіт</a><ol class="toc__sub"><li><a href="#lr-8">Робота 8. Отримання і культивування калюсної…</a></li><li><a href="#lr-9">Робота 9. Перенесення (пасаж) калюсної тканини на…</a></li><li><a href="#lr-10">Робота 10. Отримання калюсної тканини з листків…</a></li><li><a href="#lr-11">Робота 11. Отримання калюсів з незрілих зародків і…</a></li><li><a href="#lr-12">Робота 12. Отримання калюсів із корінців квасолі</a></li></ol></li><li><a href="#questions">Контрольні питання</a></li><li><a href="#refs">Література</a></li><li><a href="#ag-auth-h">Автори посібника</a></li></ol>
+            <h2 class="ag-toc__topics-h">Теми розділу</h2><ol class="ag-toc__topics"><li><a href="../media-sterilization/">1. Живильні середовища та стерилізація</a></li><li><span class="is-cur">2. Культура калюсної тканини</span></li></ol>
+          </details>
         </nav>
 
         <article>
@@ -284,7 +290,7 @@
 
 <section class="lab-section prose ag-proto" id="protocol">
             <h2><span class="n">04</span>Хід лабораторних робіт</h2>
-  <details open><summary>Робота 8. Отримання і культивування калюсної тканини сої <small>с. 66–67</small></summary><div class="ag-proto__body">
+  <details id="lr-8" open><summary>Робота 8. Отримання і культивування калюсної тканини сої <small>с. 66–67</small></summary><div class="ag-proto__body">
     <p><b>Мета:</b> отримати калюс сої для субкультивування і використання як тест-системи на цитокініни (тема 9).</p>
     <ol>
       <li>Взяти стерильні сім’ядолі сої, отримані в роботі 5 (тема 1).</li>
@@ -295,7 +301,7 @@
     </ol>
     <p>У <a href="#model">моделі</a> — пресет «ЛР 8 · соя».</p>
   </div></details>
-  <details><summary>Робота 9. Перенесення (пасаж) калюсної тканини на свіже живильне середовище <small>с. 67–68</small></summary><div class="ag-proto__body">
+  <details id="lr-9"><summary>Робота 9. Перенесення (пасаж) калюсної тканини на свіже живильне середовище <small>с. 67–68</small></summary><div class="ag-proto__body">
     <p><b>Матеріал:</b> калюс соняшнику, ріпаку, пшениці, цукрових буряків; флакони зі стерильним середовищем, пінцети, скальпелі, чашки Петрі.</p>
     <ol>
       <li>Перенести первинний калюс із пеніцилінового флакона в стерильну чашку Петрі.</li>
@@ -307,7 +313,7 @@
     </ol>
     <p>У <a href="#model">моделі</a> — вкладка «ЛР 9. Пасаж».</p>
   </div></details>
-  <details><summary>Робота 10. Отримання калюсної тканини з листків тютюну <small>с. 68–70</small></summary><div class="ag-proto__body">
+  <details id="lr-10"><summary>Робота 10. Отримання калюсної тканини з листків тютюну <small>с. 68–70</small></summary><div class="ag-proto__body">
     <p>Тютюн легко дедиференціюється й утворює швидкоростучий калюс, тому це зручна модель для вивчення обміну речовин калюсних тканин. Калюс отримують на середовищі МС з ауксинами.</p>
     <ol>
       <li>Приготувати середовища МС з додаванням: а) 1,0 мг/л 2,4-Д + 0,2 мг/л БАП; б) 1,0 мг/л ІОК + 0,2 мг/л БАП.</li>
@@ -319,7 +325,7 @@
     </ol>
     <p>У <a href="#model">моделі</a> порівняйте пресети «ЛР 10а» і «ЛР 10б».</p>
   </div></details>
-  <details><summary>Робота 11. Отримання калюсів з незрілих зародків і вузлів кущення пшениці <small>с. 70–71</small></summary><div class="ag-proto__body">
+  <details id="lr-11"><summary>Робота 11. Отримання калюсів з незрілих зародків і вузлів кущення пшениці <small>с. 70–71</small></summary><div class="ag-proto__body">
     <p>Калюс пшениці використовують для вивчення солестійкості, стійкості до температурного стресу, отримання суспензій і протопластів. Особливість середовищ для злаків — високий вміст ауксинів (2,4-Д, НОК до 10 мг/л).</p>
     <ol>
       <li>Незрілі зернівки ізолювати на 12-ту добу від початку цвітіння (стадія молочної стиглості) і зберігати в холодильнику при +4 °C.</li>
@@ -331,7 +337,7 @@
     </ol>
     <p>У <a href="#model">моделі</a> — пресети «ЛР 11 · зародки» і «ЛР 11 · вузли кущення».</p>
   </div></details>
-  <details><summary>Робота 12. Отримання калюсів із корінців квасолі <small>с. 71–72</small></summary><div class="ag-proto__body">
+  <details id="lr-12"><summary>Робота 12. Отримання калюсів із корінців квасолі <small>с. 71–72</small></summary><div class="ag-proto__body">
     <ol>
       <li>Насіння квасолі покласти в чашки Петрі (по 15 насінин), залити 6 % розчином хлораміну на 20 хв, тричі по 15 хв промити стерильною водою.</li>
       <li>Залити стерильною водою й залишити набухати на 24 год.</li>
@@ -447,6 +453,7 @@
 
   <script defer src="../../../assets/js/main.js"></script>
   <script defer src="../../../assets/js/lightbox.js"></script>
+  <script type="module" src="../../../assets/js/lab/agro/nav.js"></script>
   <script type="module" src="../../../assets/js/lab/agro/t02.js"></script>
 </body>
 </html>

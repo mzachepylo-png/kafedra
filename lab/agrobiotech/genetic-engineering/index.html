@@ -106,9 +106,15 @@
 
     <div class="section" style="padding-top:48px">
       <div class="container lab-doc">
-        <nav class="toc" aria-label="Зміст теми">
-          <h2>Зміст</h2>
-          <ol><li><a href="#goal">Мета і план</a></li><li><a href="#theory">Теоретичні відомості</a></li><li><a href="#model">Інтерактивна модель</a></li><li><a href="#protocol">Хід лабораторних робіт</a></li><li><a href="#questions">Контрольні питання</a></li><li><a href="#refs">Література</a></li><li><a href="#ag-auth-h">Автори посібника</a></li></ol>
+        <nav class="toc ag-toc" aria-label="Зміст теми">
+          <a class="ag-back" href="../"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M19 12H5M11 18l-6-6 6-6"/></svg>Біотехнології в агросфері</a>
+          <div class="ag-nav" data-ag-nav data-index="../search.json" data-base="../" data-topic="11"><form class="ag-search" role="search" autocomplete="off"><label class="ag-search__box"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg><input type="search" name="q" placeholder="Пошук у темі й розділі" aria-label="Пошук у темі й розділі"></label><div class="ag-search__bar"><span class="ag-search__count" aria-live="polite"></span><button type="button" data-dir="-1" aria-label="Попередній збіг">↑</button><button type="button" data-dir="1" aria-label="Наступний збіг">↓</button></div><div class="ag-search__out" hidden></div></form></div>
+          <details class="ag-toc__list" open>
+            <summary>Зміст теми</summary>
+            <h2>Зміст</h2>
+            <ol><li><a href="#goal">Мета і план</a></li><li><a href="#theory">Теоретичні відомості</a><ol class="toc__sub"><li><a href="#agro">1. Agrobacterium tumefaciens і природна…</a></li><li><a href="#vectors">2. Вектори: від Ті-плазміди до бінарної…</a></li><li><a href="#methods">3. Методи трансформації та добір…</a></li><li><a href="#traits">4. Що дають ці методи в агросфері</a></li><li><a href="#nucleic">5. Виділення нуклеїнових кислот</a></li><li><a href="#electro">6. Гель-електрофорез</a></li><li><a href="#spectro">7. Кількісне визначення ДНК і РНК</a></li></ol></li><li><a href="#model">Інтерактивна модель</a></li><li><a href="#protocol">Хід лабораторних робіт</a><ol class="toc__sub"><li><a href="#lr-41">Робота 41. Приготування живильного середовища для…</a></li><li><a href="#lr-42">Робота 42. Трансформація клітин коренеплоду моркви</a></li><li><a href="#lr-43">Робота 43. Трансформація клітин томатів</a></li><li><a href="#lr-44">Робота 44. Трансформація методом «листкових дисків»</a></li><li><a href="#lr-45">Робота 45. Виділення ядерної ДНК з рослинних тканин</a></li><li><a href="#lr-46">Робота 46. Ампліфікація плазміди</a></li><li><a href="#lr-47">Робота 47. Виділення плазмідної ДНК</a></li><li><a href="#lr-48">Робота 48. Виділення рослинної РНК</a></li><li><a href="#lr-49">Робота 49. Гель-електрофорез рослинної РНК</a></li><li><a href="#lr-50">Робота 50. Кількісне визначення рослинної ДНК або…</a></li></ol></li><li><a href="#questions">Контрольні питання</a></li><li><a href="#refs">Література</a></li><li><a href="#ag-auth-h">Автори посібника</a></li></ol>
+            <h2 class="ag-toc__topics-h">Теми розділу</h2><ol class="ag-toc__topics"><li><a href="../media-sterilization/">1. Живильні середовища та стерилізація</a></li><li><a href="../callus-culture/">2. Культура калюсної тканини</a></li></ol>
+          </details>
         </nav>
 
         <article>
@@ -552,7 +558,7 @@
             <h2><span class="n">04</span>Хід лабораторних робіт</h2>
   <p>Усі роботи з живим матеріалом виконують у ламінар-боксі; інструменти стерилізують обпалюванням у полум'ї спиртівки після занурення в 96 % етиловий спирт.</p>
 
-  <details>
+  <details id="lr-41">
     <summary>Робота 41. Приготування живильного середовища для культивування <i>A. tumefaciens</i> <small>с. 172–173</small></summary>
     <div class="ag-proto__body">
       <p><b>Мета:</b> наростити <i>A. tumefaciens</i> для трансформації рослинних клітин і виділення Ті-плазміди.</p>
@@ -568,7 +574,7 @@
     </div>
   </details>
 
-  <details>
+  <details id="lr-42">
     <summary>Робота 42. Трансформація клітин коренеплоду моркви <small>с. 173–175</small></summary>
     <div class="ag-proto__body">
       <p><b>Мета:</b> одержати трансформовані клітини коренеплоду моркви під дією <i>A. tumefaciens</i>.</p>
@@ -587,7 +593,7 @@
     </div>
   </details>
 
-  <details>
+  <details id="lr-43">
     <summary>Робота 43. Трансформація клітин томатів <small>с. 175</small></summary>
     <div class="ag-proto__body">
       <p><b>Мета:</b> одержати трансформацію стеблових клітин томата під дією патогенного штаму.</p>
@@ -601,7 +607,7 @@
     </div>
   </details>
 
-  <details>
+  <details id="lr-44">
     <summary>Робота 44. Трансформація методом «листкових дисків» <small>с. 176–177</small></summary>
     <div class="ag-proto__body">
       <p><b>Мета:</b> одержати трансформовані клітини методом «листкових дисків».</p>
@@ -619,7 +625,7 @@
     </div>
   </details>
 
-  <details>
+  <details id="lr-45">
     <summary>Робота 45. Виділення ядерної ДНК з рослинних тканин <small>с. 177–178</small></summary>
     <div class="ag-proto__body">
       <p><b>Мета:</b> оволодіти методикою виділення рослинної ДНК. Ядерну ДНК використовують для аналізу соматичних гібридів методом Саузерн-блот-гібридизації (перенесення розділених у гелі фрагментів на мембрану й виявлення потрібного фрагмента міченим зондом).</p>
@@ -638,7 +644,7 @@
     </div>
   </details>
 
-  <details>
+  <details id="lr-46">
     <summary>Робота 46. Ампліфікація плазміди <small>с. 178–179</small></summary>
     <div class="ag-proto__body">
       <p><b>Мета:</b> одержати велике число копій плазміди.</p>
@@ -655,7 +661,7 @@
     </div>
   </details>
 
-  <details>
+  <details id="lr-47">
     <summary>Робота 47. Виділення плазмідної ДНК <small>с. 179–181</small></summary>
     <div class="ag-proto__body">
       <p><b>Мета:</b> оволодіти методикою виділення плазмідної ДНК. Плазміди — невеликі кільцеві молекули ДНК, здатні до автономної реплікації незалежно від хромосом.</p>
@@ -676,7 +682,7 @@
     </div>
   </details>
 
-  <details>
+  <details id="lr-48">
     <summary>Робота 48. Виділення рослинної РНК <small>с. 181–182</small></summary>
     <div class="ag-proto__body">
       <p><b>Мета:</b> оволодіти методикою виділення РНК — рибонуклеїнової кислоти, що складається з рибози, залишків фосфорної кислоти й азотистих основ (аденіну, гуаніну, цитозину, урацилу).</p>
@@ -695,7 +701,7 @@
     </div>
   </details>
 
-  <details>
+  <details id="lr-49">
     <summary>Робота 49. Гель-електрофорез рослинної РНК <small>с. 182–183</small></summary>
     <div class="ag-proto__body">
       <p><b>Мета:</b> визначити молекулярну масу РНК електрофорезом в агарозному гелі після денатурації гліоксалем і диметилсульфоксидом.</p>
@@ -712,7 +718,7 @@
     </div>
   </details>
 
-  <details>
+  <details id="lr-50">
     <summary>Робота 50. Кількісне визначення рослинної ДНК або РНК <small>с. 183</small></summary>
     <div class="ag-proto__body">
       <p><b>Мета:</b> визначити кількість ДНК або РНК у препаратах спектрофотометричним методом.</p>
@@ -835,6 +841,7 @@
 
   <script defer src="../../../assets/js/main.js"></script>
   <script defer src="../../../assets/js/lightbox.js"></script>
+  <script type="module" src="../../../assets/js/lab/agro/nav.js"></script>
   <script type="module" src="../../../assets/js/lab/agro/t11.js"></script>
 </body>
 </html>

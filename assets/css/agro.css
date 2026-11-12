@@ -106,3 +106,57 @@
 .ag-card.is-soon:hover { transform: none; box-shadow: var(--shadow-sm); border-color: var(--line); }
 .ag-card.is-soon .ag-card__img img { filter: grayscale(.55) brightness(.85); }
 .ag-card__soon { position: absolute; right: 12px; top: 12px; padding: 4px 10px; border-radius: 999px; background: rgba(255, 255, 255, .9); color: var(--green-900); font: 700 .74rem var(--sans, inherit); }
+
+/* ---------- Навігація збоку й пошук ---------- */
+.ag-toc { display: flex; flex-direction: column; gap: 14px; }
+.ag-back { display: inline-flex; align-items: center; gap: 8px; padding: 9px 12px; border-radius: 12px; background: var(--green-50); border: 1px solid var(--green-200); color: var(--green-900); font-weight: 700; font-size: .9rem; text-decoration: none; transition: background .2s, border-color .2s; }
+.toc a.ag-back { border-left: 1px solid var(--green-200); margin: 0; padding: 9px 12px; color: var(--green-900); }
+.ag-back:hover, .toc a.ag-back:hover { background: var(--white); border-color: var(--gold-500); color: var(--green-900); }
+.ag-back svg { width: 16px; height: 16px; flex: none; }
+.ag-search { position: relative; display: flex; flex-direction: column; gap: 6px; }
+.ag-search__box { display: flex; align-items: center; gap: 8px; padding: 0 10px; border-radius: 12px; background: var(--white); border: 1px solid var(--line); transition: border-color .2s, box-shadow .2s; }
+.ag-search__box:focus-within { border-color: var(--green-500); box-shadow: 0 0 0 3px rgba(76, 175, 80, .15); }
+.ag-search__box svg { width: 16px; height: 16px; flex: none; color: var(--muted); }
+.ag-search__box input { flex: 1; min-width: 0; height: 40px; border: 0; outline: 0; background: transparent; font: inherit; font-size: .9rem; color: var(--ink); }
+.ag-search__bar { display: flex; align-items: center; gap: 4px; min-height: 0; }
+.ag-search__count { flex: 1; font-size: .78rem; color: var(--muted); }
+.ag-search__count:empty + button, .ag-search__count:empty + button + button { display: none; }
+.ag-search__bar button { width: 30px; height: 28px; border-radius: 8px; border: 1px solid var(--line); background: var(--white); color: var(--green-800); font-weight: 800; cursor: pointer; }
+.ag-search__bar button:hover { border-color: var(--green-500); }
+.ag-search__out { padding: 8px; border-radius: 12px; background: var(--white); border: 1px solid var(--line); box-shadow: var(--shadow-sm); font-size: .84rem; max-height: 46vh; overflow: auto; }
+.ag-search__out ul { list-style: none; margin: 0; padding: 0; display: grid; gap: 4px; border: 0; }
+.toc .ag-search__out a, .ag-search__out a { display: block; padding: 7px 8px; margin: 0; border: 0; border-radius: 8px; color: var(--ink-soft); text-decoration: none; }
+.ag-search__out a:hover { background: var(--green-50); }
+.ag-search__out b { display: block; color: var(--green-900); font-size: .82rem; }
+.ag-search__out span { display: block; margin-top: 2px; font-size: .78rem; line-height: 1.4; }
+.ag-search__out mark, mark.ag-hit { background: #FFE58A; color: inherit; border-radius: 3px; padding: 0 1px; }
+mark.ag-hit.is-cur { background: #FFB547; box-shadow: 0 0 0 2px #FFB547; }
+.ag-search__h { margin: 2px 4px 6px; font-size: .72rem; font-weight: 800; letter-spacing: .08em; text-transform: uppercase; color: var(--gold-700); }
+.ag-search__none, .ag-search__more { margin: 4px; color: var(--muted); }
+.ag-toc__list > summary { display: none; }
+.ag-toc__list > h2 { margin-top: 2px; }
+.ag-toc__topics-h { margin-top: 18px !important; }
+.ag-toc__topics { font-size: .86rem; }
+.ag-toc__topics .is-cur { display: block; padding: 6px 0 6px 14px; margin-left: -2px; border-left: 2px solid var(--gold-500); color: var(--green-900); font-weight: 700; }
+.toc .toc__sub { list-style: none; margin: 2px 0 6px; padding: 0 0 0 12px; border-left: 0; font-size: .84rem; }
+.toc .toc__sub a { padding: 4px 0 4px 12px; }
+.ag-hubsearch { max-width: 560px; margin: 0 0 22px; }
+.ag-hubsearch .ag-search__out { position: absolute; left: 0; right: 0; top: 46px; z-index: 20; }
+/* телефон і планшет: панель вгорі, зміст згортається */
+@media (max-width: 1080px) {
+  .lab-doc .toc.ag-toc { display: flex; position: static; max-height: none; overflow: visible; padding: 0 0 18px; margin-bottom: 18px; border-bottom: 1px solid var(--line); }
+  .ag-toc__list > summary { display: flex; align-items: center; gap: 8px; min-height: 44px; padding: 0 12px; border-radius: 12px; background: var(--white); border: 1px solid var(--line); cursor: pointer; font-weight: 700; color: var(--green-900); list-style: none; }
+  .ag-toc__list > summary::-webkit-details-marker { display: none; }
+  .ag-toc__list > summary::after { content: "▾"; margin-left: auto; color: var(--muted); }
+  .ag-toc__list[open] > summary::after { content: "▴"; }
+  .ag-toc__list[open] > summary { margin-bottom: 10px; }
+  .ag-toc__list > h2:first-of-type { display: none; }
+  .ag-search__out { max-height: 60vh; }
+}
+/* шапка змісту (назад + пошук) не прокручується разом із переліком */
+.toc a.ag-back { display: flex; }
+@media (min-width: 1081px) {
+  .toc.ag-toc { overflow: visible; max-height: none; padding-right: 0; }
+  .ag-toc__list { max-height: calc(100dvh - var(--header-h) - 150px); overflow-y: auto; overscroll-behavior: contain; scrollbar-width: thin; scrollbar-color: var(--line) transparent; padding-right: 6px; }
+  .ag-toc .ag-search__out { max-height: calc(100dvh - var(--header-h) - 200px); }
+}

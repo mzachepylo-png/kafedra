@@ -106,9 +106,15 @@
 
     <div class="section" style="padding-top:48px">
       <div class="container lab-doc">
-        <nav class="toc" aria-label="Зміст теми">
-          <h2>Зміст</h2>
-          <ol><li><a href="#goal">Мета і план</a></li><li><a href="#theory">Теоретичні відомості</a></li><li><a href="#model">Інтерактивна модель</a></li><li><a href="#protocol">Хід лабораторних робіт</a></li><li><a href="#questions">Контрольні питання</a></li><li><a href="#refs">Література</a></li><li><a href="#ag-auth-h">Автори посібника</a></li></ol>
+        <nav class="toc ag-toc" aria-label="Зміст теми">
+          <a class="ag-back" href="../"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M19 12H5M11 18l-6-6 6-6"/></svg>Біотехнології в агросфері</a>
+          <div class="ag-nav" data-ag-nav data-index="../search.json" data-base="../" data-topic="13"><form class="ag-search" role="search" autocomplete="off"><label class="ag-search__box"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg><input type="search" name="q" placeholder="Пошук у темі й розділі" aria-label="Пошук у темі й розділі"></label><div class="ag-search__bar"><span class="ag-search__count" aria-live="polite"></span><button type="button" data-dir="-1" aria-label="Попередній збіг">↑</button><button type="button" data-dir="1" aria-label="Наступний збіг">↓</button></div><div class="ag-search__out" hidden></div></form></div>
+          <details class="ag-toc__list" open>
+            <summary>Зміст теми</summary>
+            <h2>Зміст</h2>
+            <ol><li><a href="#goal">Мета і план</a></li><li><a href="#theory">Теоретичні відомості</a><ol class="toc__sub"><li><a href="#t13-banks">Колекції та кріобанки</a></li><li><a href="#t13-cryo">Що таке кріозбереження</a></li><li><a href="#t13-ice">Лід: позаклітинний і внутрішньоклітинний</a></li><li><a href="#t13-protect">Кріопротектори та інші механізми стійкості</a></li><li><a href="#t13-program">Підготовка, програмне заморожування,…</a></li><li><a href="#t13-labs">Теорія лабораторних робіт 54–55</a></li><li><a href="#t13-assume">Що в моделях — посібник, а що — наближення</a></li></ol></li><li><a href="#model">Інтерактивна модель</a></li><li><a href="#protocol">Хід лабораторних робіт</a><ol class="toc__sub"><li><a href="#lr-54">Робота 54. Захисна дія кріопротекторів на…</a></li><li><a href="#lr-55">Робота 55. Вплив кріопротекторів на білки…</a></li></ol></li><li><a href="#questions">Контрольні питання</a></li><li><a href="#refs">Література</a></li><li><a href="#ag-auth-h">Автори посібника</a></li></ol>
+            <h2 class="ag-toc__topics-h">Теми розділу</h2><ol class="ag-toc__topics"><li><a href="../media-sterilization/">1. Живильні середовища та стерилізація</a></li><li><a href="../callus-culture/">2. Культура калюсної тканини</a></li></ol>
+          </details>
         </nav>
 
         <article>
@@ -248,7 +254,7 @@
 <section class="lab-section prose ag-proto" id="protocol">
             <h2><span class="n">04</span>Хід лабораторних робіт</h2>
   <p class="ag-note">У тексті посібника ці роботи пронумеровано 53 і 54 (номер 53 уже має робота з поліфенолоксидазою теми 12); тут — наскрізна нумерація 54 і 55.</p>
-  <details open><summary>Робота 54. Захисна дія кріопротекторів на стійкість рослинних клітин до низьких температур <small>с. 198–200</small></summary><div class="ag-proto__body">
+  <details id="lr-54" open><summary>Робота 54. Захисна дія кріопротекторів на стійкість рослинних клітин до низьких температур <small>с. 198–200</small></summary><div class="ag-proto__body">
     <ol>
       <li>Приготувати охолоджувальну суміш: 3 частини снігу або льоду + 1 частина кухонної солі (≈ −20 °C).</li>
       <li>Вирізати з коренеплоду буряка пластинки товщиною 5 мм, пробковим свердлом Ø 5–6 мм зробити висічки.</li>
@@ -261,7 +267,7 @@
       <li>Зробити висновки про захисну дію кріопротекторів на цитоплазму.</li>
     </ol>
   </div></details>
-  <details><summary>Робота 55. Вплив кріопротекторів на білки цитоплазми за дії негативних температур <small>с. 200–201</small></summary><div class="ag-proto__body">
+  <details id="lr-55"><summary>Робота 55. Вплив кріопротекторів на білки цитоплазми за дії негативних температур <small>с. 200–201</small></summary><div class="ag-proto__body">
     <ol>
       <li>Очищену картоплю натерти, віджати сік крізь подвійну марлю, дати відстоятися крохмалю, злити надосадову рідину.</li>
       <li>Листя капусти дрібно нашинкувати, віджати сік, профільтрувати крізь марлю.</li>
@@ -375,6 +381,7 @@
 
   <script defer src="../../../assets/js/main.js"></script>
   <script defer src="../../../assets/js/lightbox.js"></script>
+  <script type="module" src="../../../assets/js/lab/agro/nav.js"></script>
   <script type="module" src="../../../assets/js/lab/agro/t13.js"></script>
 </body>
 </html>
