@@ -30,6 +30,7 @@ tmp = tempfile.mkdtemp()
 data_dir = os.path.join(tmp, "data")
 os.makedirs(data_dir)
 settings = Settings(os.path.join(data_dir, "settings.json"))
+settings["folder_first"] = False   # більшість перевірок — у класичному вигляді; режим «спочатку папка» — розділ 37
 preset, warn = open_startup_preset(settings, data_dir)
 history = History(os.path.join(data_dir, "clipboard_history.json"))
 events = queue.Queue()
@@ -3479,6 +3480,148 @@ root.geometry("1180x660+0+0")
 pump(600)
 settings.data["width"], settings.data["height"] = 1180, 660
 app._size = None
+
+# ---- 37. режим «спочатку папка»: вибір папки → записи, «Назад» / Esc, клавіші в правій колонці, Alt+Enter -------
+settings["autohide"] = False
+app.hotkey_ok = False
+root.geometry("1500x800+0+0")
+pump(400)
+app.show_window()
+ff_cats = [cat_named(n) for n in ("Пап 1", "Пап 2", "Пап 3")]
+for c_ in ff_cats:
+    for n_ in range(2):
+        app.preset.add_snippet(c_["id"], f"{c_['name']} рядок {n_}")
+app.select_category(HISTORY)
+app.render()
+app.flush_render()
+assert not app.folder_first
+app.set_folder_first(True)
+app.flush_render()
+pump(500)
+assert settings["folder_first"] is True and app.page == "folders" and app.cat_tiles
+assert app.left.winfo_ismapped() and not app.mid.winfo_ismapped() and not app.splitter.winfo_ismapped()
+assert app.title_lbl.cget("text") == "Оберіть папку", app.title_lbl.cget("text")
+assert app.left.winfo_rootx() + app.left.winfo_width() > app.right.winfo_rootx() - 40, "папки — на всю ширину зліва"
+assert app._tile_dims()[0] >= 3, app._tile_dims()
+assert not app.cat_view_btn.winfo_ismapped()
+pump(300)
+# стартова сторінка — по центру: блок плиток посередині, «Історія» рівно над ним
+tiles_ = [app._row_objs[c_["id"]].row for c_ in app.preset.categories]
+cols_ = app._tile_dims()[0]
+lx_ = tiles_[0].winfo_rootx()
+rx_ = tiles_[cols_ - 1].winfo_rootx() + tiles_[cols_ - 1].winfo_width()
+ax_ = app.cat_list._parent_canvas.winfo_rootx()
+aw_ = app.cat_list._parent_canvas.winfo_width()
+assert abs((lx_ - ax_) - (ax_ + aw_ - rx_)) <= 12, (lx_ - ax_, ax_ + aw_ - rx_)
+hrow_ = app._row_objs[HISTORY].row
+assert abs(hrow_.winfo_rootx() - lx_) <= 3 and abs(hrow_.winfo_rootx() + hrow_.winfo_width() - rx_) <= 3
+# Space на папці відкриває її записи
+assert app.nav_zone == "folders"
+app._nav_mark(ff_cats[0]["id"])
+app._on_space(SimpleNamespace(keysym="space", keycode=32, widget=root, state=0))
+app.flush_render()
+pump(400)
+assert app.page == "records" and app.view == ff_cats[0]["id"] and app.nav_zone == "cards"
+assert app.mid.winfo_ismapped() and not app.left.winfo_ismapped() and app.back_btn.winfo_ismapped()
+assert app.title_lbl.cget("text") == "Пап 1"
+assert app.mid.winfo_rootx() - root.winfo_rootx() < 40, "записи — на всю ширину зліва"
+assert len(app._card_objs) == 2
+# Esc → до вибору папки (курсор на щойно відкритій), ще Esc → сховати
+app._on_escape(SimpleNamespace(widget=root))
+pump(200)
+assert app.page == "folders" and app.nav_zone == "folders" and app.nav_cat == ff_cats[0]["id"]
+assert app.left.winfo_ismapped() and not app.mid.winfo_ismapped()
+hid_ = []
+saved_hide_ = app._hide_or_iconify
+app._hide_or_iconify = lambda why="pick": hid_.append(why) or True
+app._on_escape(SimpleNamespace(widget=root))
+assert hid_ == ["escape"], hid_
+app._hide_or_iconify = saved_hide_
+# «Назад»
+app.select_category(ff_cats[1]["id"])
+app.flush_render()
+pump(200)
+assert app.page == "records"
+app.back_btn.invoke()
+pump(200)
+assert app.page == "folders"
+# ховання → наступний показ знову з вибору папки
+app.select_category(ff_cats[1]["id"])
+app.flush_render()
+app._hidden = True
+app._reset_when_hidden()
+app._hidden = False
+assert app.page == "folders"
+# записи: Alt+A з лівого краю — назад до папок; Alt+D з правого — у праву колонку
+app.select_category(ff_cats[2]["id"])
+app.flush_render()
+pump(200)
+app.nav_move("s")
+assert app.sel_id is not None
+app.nav_move("a")
+assert app.page == "folders"
+app.select_category(ff_cats[2]["id"])
+app.flush_render()
+pump(200)
+app.nav_move("s")
+app.nav_move("d")
+assert app.nav_zone == "right" and app.nav_right and app.nav_right[0] == "fmt", (app.nav_zone, app.nav_right)
+app.nav_move("a")
+assert app.nav_zone == "cards" and app.nav_right is None
+app.back_to_folders()
+# права колонка з вибору папки: формат + фраза → Alt+Enter
+app._nav_mark(HISTORY)
+app.nav_move("d")
+assert app.nav_zone == "right" and app.nav_right == ("fmt", app._fmt_order[0])
+fmt_ = app.preset.format(app._fmt_order[0])
+app._on_space(SimpleNamespace(keysym="space", keycode=32, widget=root, state=0))
+pump(150)
+assert app.sel_format == fmt_["id"] and app.nav_right == ("fmt", fmt_["id"])
+app.fmt_input.insert("1.0", "12345")
+app._update_format_preview()
+fmt_out_ = app._format_result()
+assert fmt_out_, fmt_out_
+for _ in range(30):
+    app.nav_move("s")
+    if app.nav_right[0] != "fmt":
+        break
+if app.nav_right[0] == "head":                     # фрази згорнуті — Space розгортає
+    app._on_space(SimpleNamespace(keysym="space", keycode=32, widget=root, state=0))
+    pump(200)
+assert app.nav_right[0] == "phr", app.nav_right
+assert not isinstance(root.focus_get(), tk.Text), "на фразах пробіл не друкується в поле формату"
+target_ = next(p for p in app.preset.phrases if p["text"].startswith("No active subscriptions"))
+for _ in range(30):
+    if app.nav_right == ("phr", target_["id"]):
+        break
+    app.nav_move("s")
+assert app.nav_right == ("phr", target_["id"])
+assert app._phrase_rows[target_["id"]]["frame"].cget("highlightthickness") == 2
+app._on_space(SimpleNamespace(keysym="space", keycode=32, widget=root, state=0))
+pump(100)
+assert app._phrase_rows[target_["id"]]["var"].get()
+app._on_format_return(SimpleNamespace(state=cm.ALT_MASK, widget=app.fmt_input._textbox))
+pump(200)
+assert root.clipboard_get() == fmt_out_ + " " + target_["text"].strip(), root.clipboard_get()
+assert not app._phrase_rows[target_["id"]]["var"].get() and not app.fmt_input.get("1.0", "end-1c")
+# лише фрази (без формату) — теж Alt+Enter
+app._phrase_rows[target_["id"]]["cb"].toggle()
+app.submit_with_phrases()
+assert root.clipboard_get() == target_["text"].strip()
+app.nav_move("a")
+assert app.nav_zone == "folders" and app.nav_cat == HISTORY and app.nav_right is None
+# назад у класичний вигляд
+app.set_folder_first(False)
+app.flush_render()
+pump(400)
+assert settings["folder_first"] is False and not app.folder_first
+assert app.left.winfo_ismapped() and app.mid.winfo_ismapped() and app.splitter.winfo_ismapped()
+assert not app.back_btn.winfo_ismapped() and app.cat_view_btn.winfo_ismapped()
+assert app.cat_tiles == (settings["cat_view"] == "tiles")
+assert app.left.winfo_width() < app.mid.winfo_width() + 600
+root.geometry("1180x660+0+0")
+pump(400)
+print("37 folder-first mode OK")
 
 # ---- 25. справжнє розгортання під віконним менеджером (лише якщо є openbox) -------------------------------------------------------------
 import shutil  # noqa: E402

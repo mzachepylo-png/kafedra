@@ -101,6 +101,8 @@ LOG_LIMIT = 200_000            # app.log / error.log: при перевищен�
 CHECK_SIZE = 48                # галочка вибору запису в історії (у 2 рази більша за звичайну)
 # біт Alt у event.state: на Windows — 0x20000 (0x8 там означає увімкнений NumLock!), на Linux/X11 — 0x8
 ALT_MASK = 0x20000 if os.name == "nt" else 0x8
+PICK_TILE_MIN = 230          # мінімальна ширина плитки папки на сторінці вибору папки (режим «спочатку папка»)
+PICK_TILE_MAX = 300          # … і максимальна: блок плиток стоїть по центру, а не розтягується на весь екран
 CAT_SCROLL_FACTOR = 2          # у скільки разів швидша прокрутка колесом у списку папок
 ZONE_W = 150                   # права «службова» зона картки (галочка, «⋯», «✕»): клік там нічого не копіює
 CARD_RESERVE_FOLDER = 195       # те саме для записів папок (службова зона без галочки)
@@ -1785,6 +1787,8 @@ class App:
         self._search_text = ""                 # внутрішній фільтр (поля пошуку в інтерфейсі немає)
         self.nav_zone = "cards"                # клавіатурна навігація: "folders" (ліва колонка) або "cards" (записи)
         self.nav_cat: str | None = None        # папка під «курсором» у зоні папок
+        self.nav_right: tuple | None = None    # пункт правої колонки під «курсором»: ("fmt", id) | ("phr", id) | ("head", None)
+        self._nav_prev: tuple = ("cards", None)   # звідки прийшли в праву колонку (зона, папка під курсором)
         self._last_cat: str | None = None
         self._status_job: str | None = None
         self._search_job: str | None = None
@@ -1855,7 +1859,10 @@ class App:
         root.attributes("-topmost", settings["topmost"])
         if os.name == "nt":
             self.apply_icon_to(root)        # .ico з кешу — майже безкоштовно; ставимо ДО першого показу
-        self.cat_tiles = settings["cat_view"] == "tiles"       # папки плитками
+        # режим «спочатку папка»: сторінка "folders" (лише плитки папок) → "records" (записи папки, «Назад» / Esc)
+        self.folder_first = bool(settings["folder_first"])
+        self.page = "folders"
+        self.cat_tiles = settings["cat_view"] == "tiles" or self.folder_first   # папки плитками (у режимі папок — завжди)
         self.rec_tiles = settings["rec_view"] == "tiles"       # копіпасти плитками
         self._left_user = int(settings["left_w"] or 0)          # ширина лівої колонки від користувача (0 — авто)
         self._cat_cols = 2
@@ -1864,6 +1871,9 @@ class App:
         self._plan_layout(int(settings["width"] * self.scaling()))   # ширини колонок/переносів — одразу остаточні
 
         self._build_ui()
+        self._apply_page()
+        if self.folder_first:                  # старт — на сторінці вибору папки, «курсор» на поточній папці
+            self.nav_zone, self.nav_cat = "folders", self.view
         self._update_title()
         self._init_tags()
         # Прив'язка root.bind("<Configure>") успадковується КОЖНИМ дочірнім віджетом (≈500 викликів на кожен
@@ -2162,6 +2172,8 @@ class App:
         root.bind("<Right>", lambda e: self._arrow_h(e, 1))
         root.bind("<Left>", lambda e: self._arrow_h(e, -1))
         root.bind("<Return>", self._on_return)
+        root.bind("<Alt-Return>", lambda e: (self.submit_with_phrases(), "break")[1])
+        root.bind("<Alt-KP_Enter>", lambda e: (self.submit_with_phrases(), "break")[1])
         # навігація: Alt+W/S — вище/нижче, Alt+A/D — ліворуч/праворуч (між папками й записами), Space — відкрити папку
         # або скопіювати запис, Alt+Space — скопіювати й сховати вікно. Працює і з українською/російською розкладкою.
         root.bind("<Alt-KeyPress>", self._on_alt_key)
@@ -2176,6 +2188,7 @@ class App:
         self.v_autohide = tk.BooleanVar(value=self.settings["autohide"])
         self.v_fullscreen = tk.BooleanVar(value=self.settings["fullscreen"])
         self.v_clear_exit = tk.BooleanVar(value=self.settings["clear_on_exit"])
+        self.v_folder_first = tk.BooleanVar(value=self.settings["folder_first"])
         self.v_hotkey = tk.StringVar(value=self.settings["hotkey"])
         self.v_theme = tk.StringVar(value=self.settings["theme"])
 
@@ -2225,6 +2238,7 @@ class App:
                                                scrollbar_button_color=SCROLL, scrollbar_button_hover_color=SCROLL_HOVER)
         self.cat_list.pack(fill="both", expand=True, padx=(2, 2), pady=(0, 8))
         self._speed_up_scroll(self.cat_list, CAT_SCROLL_FACTOR)
+        left.bind("<Configure>", self._on_left_resize, add="+")
 
     @staticmethod
     def _speed_up_scroll(sf, factor: int) -> None:
@@ -2275,6 +2289,10 @@ class App:
                                           text_color=TEXT, font=self.f.bold,
                                           command=lambda: self.set_rec_view("list" if self.rec_tiles else "tiles"))
         self.rec_view_btn.pack(side="right")
+        # режим «спочатку папка»: повернення до вибору папки (те саме — Esc)
+        self.back_btn = ctk.CTkButton(head, text="←  Назад", width=112, height=36, corner_radius=10, fg_color=BTN2,
+                                      hover_color=BTN2_HOVER, text_color=TEXT, font=self.f.bold,
+                                      command=self.back_to_folders)
         self.clear_btn = ctk.CTkButton(head, text="Очистити історію", width=150, height=32, corner_radius=10,
                                        fg_color="transparent", hover_color=DANGER_SOFT, text_color=DANGER,
                                        border_width=2, border_color=DANGER, font=self.f.bold,
@@ -2644,6 +2662,9 @@ class App:
         self._right_w = int(min(RIGHT_MAX, max(RIGHT_W, w * RIGHT_FRAC)))
         self._name_chars = max(12, int((self._left_w - 150) / 9.0))
         self._mid_w = int(w - 28 - self._left_w - self._right_w - 28)    # відступи рамки, колонок і панелей
+        self._pick_w = int(w - 28 - self._right_w - 7)                   # ліва панель на всю ширину (режим папок)
+        if self.folder_first:
+            self._mid_w = self._pick_w                                   # записи займають усе місце зліва
         self._usable0 = self._mid_w - 16                                 # мінус поля й рамка прокручуваної області
         self._sb_cur = 0                                                 # скільки з цього забирає смуга прокрутки
         self._card_pad, self._wrap = self._wrap_for(self._usable0)
@@ -2893,7 +2914,27 @@ class App:
             self._predict_scrollbar(self.cat_list, len(wanted) * (ROW_H + 6) + 12)
 
     def _tile_dims(self) -> tuple[int, float, int]:
-        """(колонок, ширина плитки, висота плитки) для папок-плиток за поточною шириною лівої колонки."""
+        """(колонок, ширина плитки, висота плитки) для папок-плиток за поточною шириною лівої колонки.
+        У режимі «спочатку папка» на сторінці вибору папки плитки займають усю ширину: 2–6 у ряд, більші."""
+        if self._picking():
+            w = max(300, self._pick_w)
+            cols = max(2, min(6, int((w - 44) // PICK_TILE_MIN)))
+            tile_w = min(PICK_TILE_MAX, (w - 30 - 8 * (cols - 1) - 14) / cols)
+            n = len(self.preset.categories)
+            rows = 1
+            if n:                                      # рівні ряди: 6 папок → 3×2, а не 4 + 2; блок — по центру
+                rows = -(-n // cols)
+                cols = max(1, -(-n // rows))
+            th = max(110, min(170, tile_w * 0.6))
+            ph = getattr(self, "_pick_h", 0)
+            if ph > 200:                               # на низькому вікні плитки нижчі, щоб ряди вміщались
+                try:
+                    head = self.history_slot.winfo_y() / self.scaling()
+                except tk.TclError:
+                    head = 175
+                fit = (ph - head - (ROW_H + 25)) / rows - 6
+                th = max(92, min(th, fit))
+            return cols, tile_w, int(th)
         cols = 3 if self._left_w >= CAT_TILE_MIN_LEFT else 2
         tile_w = (self._left_w - 30 - 8 * (cols - 1) - 14) / cols
         return cols, tile_w, int(max(84, min(132, tile_w * 0.86)))
@@ -2901,9 +2942,19 @@ class App:
     def _arrange_cats(self) -> None:
         """Розкладає рядки/плитки папок у лівій колонці (список — pack, плитки — grid по 2 або 3 в ряд)."""
         wanted = self._row_order
+        picking = self._picking()
+        top = 0
         if self.cat_tiles:
             cols, tile_w, th = self._tile_dims()
-            sig = (True, cols, th, tuple(wanted), int(tile_w // 10))     # ширина плитки — кроками по 10 px (менше перемальовувань при тягненні границі)
+            if picking:                                  # стартова сторінка: блок плиток — по центру і по вертикалі
+                rows = -(-len(wanted) // cols) if wanted else 0
+                try:                                     # місце під шапкою (пресет, «Категорії») — не залежить від відступу
+                    avail = (self.left.winfo_height() - self.history_slot.winfo_y()) / self.scaling() - 12
+                except (tk.TclError, AttributeError):
+                    avail = 0
+                content = ROW_H + 4 + 9 + rows * (th + 6)   # «Історія» + лінія + плитки
+                top = int(max(0, (avail - content) / 2)) if avail > 80 else 0
+            sig = (True, picking, cols, th, tuple(wanted), int(tile_w // 10), top // 8)     # ширина плитки — кроками по 10 px (менше перемальовувань при тягненні границі)
         else:
             sig = (False, 1, 0, tuple(wanted), 0)
         if sig == self._cat_sig:
@@ -2913,26 +2964,73 @@ class App:
             obj = self._row_objs.get(key)
             if obj is not None and not obj.tile:
                 obj.row.pack_forget()
+        sc = self.scaling()
         if self.cat_tiles:
-            for c in range(3):
-                self.cat_list.grid_columnconfigure(c, weight=1 if c < cols else 0, uniform="cattile" if c < cols else "")
-            wrap = int(max(40, tile_w - 24) * self.scaling())
+            off = 1 if picking else 0                    # у режимі вибору — порожні колонки-розпірки з боків
+            for c in range(8):
+                if picking:
+                    side = c == 0 or c == cols + 1
+                    self.cat_list.grid_columnconfigure(c, weight=1 if side else 0,
+                                                       minsize=int(tile_w * sc) if 1 <= c <= cols else 0,
+                                                       uniform="cattile" if 1 <= c <= cols else "")
+                else:
+                    self.cat_list.grid_columnconfigure(c, weight=1 if c < cols else 0, minsize=0,
+                                                       uniform="cattile" if c < cols else "")
+            wrap = int(max(40, tile_w - 24) * sc)
             for i, key in enumerate(wanted):
                 obj = self._row_objs[key]
                 obj.set_size(th, wrap)
-                obj.row.grid(row=i // cols, column=i % cols, padx=3, pady=3, sticky="nsew")
+                if picking:
+                    obj.row.configure(width=int(tile_w))
+                obj.row.grid(row=i // cols, column=off + i % cols, padx=3, pady=3, sticky="nsew")
                 obj.row.grid_propagate(False)               # висота плитки фіксована
         else:
             for key in wanted:
                 self._row_objs[key].row.pack(fill="x", padx=6, pady=2)
+        hist = self._row_objs.get(HISTORY)
+        if hist is not None:
+            if picking and self.cat_tiles:
+                hist.row.pack_configure(pady=(2 + top, 2))
+                if getattr(self, "_hist_job", None) is None:
+                    self._hist_job = self.root.after(30, self._center_history)
+            else:
+                self._hist_pad = None
+                hist.row.pack_configure(padx=6, pady=2)
+
+    def _center_history(self) -> None:
+        """Сторінка вибору папки: рядок «Історія буфера» — рівно над блоком плиток (за їхнім фактичним місцем)."""
+        self._hist_job = None
+        hist = self._row_objs.get(HISTORY)
+        tiles = [self._row_objs[k].row for k in self._row_order if k in self._row_objs]
+        if hist is None or not tiles or not self._picking() or not self.cat_tiles:
+            return
+        try:
+            self.root.update_idletasks()
+            cols = self._tile_dims()[0]
+            first, last = tiles[0], tiles[min(cols, len(tiles)) - 1]
+            sx, sw = self.history_slot.winfo_rootx(), self.history_slot.winfo_width()
+            left = first.winfo_rootx() - sx
+            right = sx + sw - (last.winfo_rootx() + last.winfo_width())
+            if left < 0 or right < 0 or first.winfo_width() < 20:
+                return
+            s = self.scaling()
+            pad = (int(left / s), int(right / s))
+            if pad != getattr(self, "_hist_pad", None):
+                self._hist_pad = pad
+                hist.row.pack_configure(padx=pad)
+        except tk.TclError:
+            pass
 
     def set_cat_view(self, mode: str) -> None:
         """Папки: список або плитки (по 2 чи 3 в ряд — залежно від ширини лівої колонки)."""
         tiles = mode == "tiles"
         if tiles == self.cat_tiles:
             return
-        self.cat_tiles = tiles
         self.settings["cat_view"] = mode
+        self._rebuild_cat_rows(tiles)
+
+    def _rebuild_cat_rows(self, tiles: bool) -> None:
+        self.cat_tiles = tiles
         for key in [k for k in self._row_objs if k != HISTORY]:     # рядки іншого вигляду — знищуємо, створяться заново
             obj = self._row_objs.pop(key)
             self._rows.pop(key, None)
@@ -3111,6 +3209,9 @@ class App:
         return self._fmt_built and getattr(event, "widget", None) is self._fmt_input._textbox
 
     def _on_format_return(self, event) -> str | None:
+        if event.state & ALT_MASK:      # Alt+Enter — результат форматування + обрані швидкі фрази
+            self.submit_with_phrases()
+            return "break"
         if event.state & 0x1:           # Shift+Enter — звичайний новий рядок
             return None
         self.submit_format()
@@ -3238,7 +3339,7 @@ class App:
 
     def _sync_banner(self) -> None:
         """Банер угорі: колір відкритої папки (як у її рядку ліворуч), для історії — нейтральний."""
-        cat = None if self._is_history() else self.preset.category(self.view)
+        cat = None if (self._is_history() or self._picking()) else self.preset.category(self.view)
         color = cat["color"] if cat else None
         _fill, _hover, sel, border = row_colors(color)
         sig = (color, self._dark)
@@ -3310,9 +3411,7 @@ class App:
         if self.checked:                       # галочки є лише в історії і лише для наявних записів
             self.checked = (self.checked & {i["id"] for i in self.history.items}) if self._is_history() else set()
 
-        self.title_lbl.configure(text=self._view_name())
-        self.count_lbl.configure(text=str(len(self.shown)))
-        self._fit_banner()
+        self._sync_title()
         self._sync_banner()
         self._layout_header()
 
@@ -3757,6 +3856,246 @@ class App:
         self.nav_activate(hide=None)
         return "break"
 
+    # -- режим «спочатку папка»: сторінка вибору папки → сторінка записів ---------------------------------
+    def _picking(self) -> bool:
+        """Зараз видно сторінку вибору папки (режим «спочатку папка»)."""
+        return self.folder_first and self.page == "folders"
+
+    def _apply_page(self) -> None:
+        """Розкладка колонок за режимом: класичний (папки | границя | записи) або одна з двох сторінок."""
+        if not self.folder_first:
+            self.left.grid(row=0, column=0, columnspan=1, sticky="nsew", padx=0)
+            self.splitter.grid()
+            self.mid.grid(row=0, column=2, columnspan=1, sticky="nsew", padx=(0, 7))
+        elif self.page == "folders":
+            self.mid.grid_remove()
+            self.splitter.grid_remove()
+            self.left.grid(row=0, column=0, columnspan=3, sticky="nsew", padx=(0, 7))
+        else:
+            self.left.grid_remove()
+            self.splitter.grid_remove()
+            self.mid.grid(row=0, column=0, columnspan=3, sticky="nsew", padx=(0, 7))
+        show_back = self.folder_first and self.page == "records"
+        if show_back and not self.back_btn.winfo_manager():
+            self.back_btn.pack(side="left")
+        elif not show_back and self.back_btn.winfo_manager():
+            self.back_btn.pack_forget()
+        if self.folder_first and self.cat_view_btn.winfo_manager():
+            self.cat_view_btn.pack_forget()            # у режимі папок вони завжди плитками
+        elif not self.folder_first and not self.cat_view_btn.winfo_manager():
+            self.cat_view_btn.pack(side="right", padx=(0, 6))
+        self._cat_sig = None
+        self._arrange_cats()
+        self._sync_banner()
+        self._sync_title()
+
+    def _set_page(self, page: str) -> None:
+        self.page = page
+        self._apply_page()
+        if not self.folder_first:
+            return
+        if page == "folders":
+            self.nav_zone = "folders"
+            self._nav_mark(self.view if (self.view == HISTORY or self.view in self._row_objs) else HISTORY)
+        else:
+            self._nav_mark(None)
+            self.nav_zone = "cards"
+        self.log(f"page {page}")
+
+    def back_to_folders(self) -> None:
+        """Кнопка «Назад» / Esc / Alt+A з лівого краю записів: повернення до вибору папки."""
+        if self.folder_first and self.page != "folders":
+            if self.nav_zone == "right":
+                self._nav_leave_right()
+            self._set_page("folders")
+
+    def set_folder_first(self, on: bool) -> None:
+        """Перемикач режиму (меню ⚙): «спочатку папка» ↔ класичні три колонки."""
+        on = bool(on)
+        self.v_folder_first.set(on)
+        if on == self.folder_first:
+            return
+        if self.nav_zone == "right":
+            self._nav_leave_right()
+        self.settings["folder_first"] = on
+        self.folder_first = on
+        want_tiles = on or self.settings["cat_view"] == "tiles"
+        if want_tiles != self.cat_tiles:
+            self._rebuild_cat_rows(want_tiles)
+            self._sync_view_buttons()
+        if on:
+            self._set_page("folders")
+        else:
+            self._nav_mark(None)
+            self.nav_zone = "cards"
+            self._apply_page()
+        self.root.after_idle(self._relayout_now)
+        self.set_status("Режим «спочатку папка»: оберіть папку, потім запис (Esc — назад)" if on
+                        else "Класичний вигляд: папки й записи поруч", 5000)
+
+    def _on_left_resize(self, e) -> None:
+        if e.widget not in (self.left, getattr(self.left, "_canvas", None)) or not self._picking():
+            return
+        w, h = int(e.width / self.scaling()), int(e.height / self.scaling())
+        if w > 50 and (abs(w - self._pick_w) >= 4 or abs(h - getattr(self, "_pick_h", 0)) >= 8):
+            self._pick_w, self._pick_h = w, h
+            self._arrange_cats()
+        if getattr(self, "_pick_job", None) is None:      # після розкладки: смуга прокрутки й «Історія» над плитками
+            self._pick_job = self.root.after(60, self._after_pick_resize)
+
+    def _after_pick_resize(self) -> None:
+        self._pick_job = None
+        self._sync_scrollbars()
+        self._center_history()
+
+    def _sync_title(self) -> None:
+        """Назва в банері: на сторінці вибору папки — «Оберіть папку» й кількість папок."""
+        if self._picking():
+            self.title_lbl.configure(text="Оберіть папку")
+            self.count_lbl.configure(text=str(len(self.preset.categories)))
+            keys = "Alt+W/A/S/D — навігація · Space — відкрити папку · Esc — сховати"
+        else:
+            self.title_lbl.configure(text=self._view_name())
+            self.count_lbl.configure(text=str(len(self.shown)))
+            keys = ("Alt+W/A/S/D — навігація · Space — копіювати · " +
+                    ("Esc — до папок" if self.folder_first else "Alt+Space — копіювати й сховати") +
+                    " · Alt+Enter — формат + фрази")
+        if self.keys_lbl.cget("text") != keys:
+            self.keys_lbl.configure(text=keys)
+        self._fit_banner()
+
+    # -- клавіатурна навігація по правій колонці: формати й швидкі фрази --------------------------------
+    def _nav_folders_right(self) -> None:
+        if self._picking():
+            self._nav_enter_right()
+        else:
+            self._nav_set_zone("cards")
+
+    def _right_items(self) -> list[tuple]:
+        items = [("fmt", fid) for fid in self._fmt_order if fid in self._fmt_rows]
+        if self._phrases_collapsed or getattr(self, "_phr_auto", False):
+            items.append(("head", None))
+        else:
+            items += [("phr", p["id"]) for p in self.preset.phrases if p["id"] in self._phrase_rows]
+        return items
+
+    def _nav_enter_right(self) -> None:
+        items = self._right_items()
+        if not items:
+            return
+        self._nav_prev = (self.nav_zone, self.nav_cat)
+        if self.nav_zone == "folders":
+            self._nav_mark(None)
+        self.nav_zone = "right"
+        self._right_mark(items[0])
+        self.set_status("Форматування й фрази: Alt+W/S — вище/нижче, Space — вибрати, "
+                        "Alt+Enter — формат + фрази, Alt+A — назад", 6000)
+
+    def _nav_leave_right(self) -> None:
+        self._right_mark(None)
+        zone, cat = self._nav_prev
+        self.nav_zone = zone if zone in ("folders", "cards") else "cards"
+        if self.nav_zone == "folders":
+            self._nav_mark(cat or self.view)
+        if isinstance(self.root.focus_get() if self._safe_focus() else None, (tk.Entry, tk.Text)):
+            self.root.focus_set()
+
+    def _safe_focus(self) -> bool:
+        try:
+            self.root.focus_get()
+            return True
+        except (tk.TclError, KeyError):
+            return False
+
+    def _right_mark(self, item: tuple | None) -> None:
+        """Підсвічує пункт правої колонки під клавіатурним «курсором» (попередній — гасить)."""
+        old, self.nav_right = self.nav_right, item
+        if old is not None:
+            self._paint_right(old, False)
+        if item is not None:
+            self._paint_right(item, True)
+            kind, key = item
+            if kind == "fmt" and key == self.sel_format and self._fmt_built:
+                self.fmt_input.focus_set()             # на відкритому форматі — одразу можна вводити
+            elif kind != "fmt" and self._safe_focus() and isinstance(self.root.focus_get(), (tk.Entry, tk.Text)):
+                self.root.focus_set()                  # на фразах пробіл ставить галочку, а не друкується в поле
+            self._ensure_right_visible(item)
+
+    def _paint_right(self, item: tuple, on: bool) -> None:
+        kind, key = item
+        try:
+            if kind == "fmt":
+                row, fmt = self._fmt_rows.get(key), self.preset.format(key)
+                if row is None or fmt is None:
+                    return
+                if on:
+                    row.row.configure(border_width=3, border_color=ACCENT)
+                else:
+                    row.sig = None
+                    row.update(fmt, key == self.sel_format)
+            elif kind == "phr":
+                r = self._phrase_rows.get(key)
+                if r is not None:
+                    r["frame"].configure(highlightthickness=2 if on else 0, highlightbackground=self.col(ACCENT),
+                                         highlightcolor=self.col(ACCENT))
+            else:
+                self.phrase_head.configure(highlightthickness=2 if on else 0, highlightbackground=self.col(ACCENT),
+                                           highlightcolor=self.col(ACCENT))
+        except tk.TclError:
+            pass
+
+    def _ensure_right_visible(self, item: tuple) -> None:
+        pass                                           # права колонка не прокручується — усе й так видно
+
+    def _nav_move_right(self, k: str) -> None:
+        items = self._right_items()
+        if not items:
+            self._nav_leave_right()
+            return
+        i = items.index(self.nav_right) if self.nav_right in items else 0
+        if k == "a":
+            self._nav_leave_right()
+        elif k == "w":
+            self._right_mark(items[max(0, i - 1)])
+        elif k == "s":
+            self._right_mark(items[min(len(items) - 1, i + 1)])
+
+    def _nav_activate_right(self) -> None:
+        """Space на пункті правої колонки: формат — відкрити/закрити, фраза — галочка, заголовок — розгорнути."""
+        item = self.nav_right
+        if item is None:
+            return
+        kind, key = item
+        if kind == "fmt":
+            self.select_format(key)
+            self._right_mark(item)                     # перемальований рядок не губить «курсор»
+        elif kind == "phr":
+            r = self._phrase_rows.get(key)
+            if r is not None:
+                r["cb"].toggle()
+        else:
+            self.toggle_phrases()
+            items = self._right_items()
+            nxt = next((it for it in items if it[0] == "phr"), items[-1] if items else None)
+            self.nav_right = None
+            self._right_mark(nxt)
+
+    def submit_with_phrases(self) -> None:
+        """Alt+Enter: результат вибраного формату + обрані швидкі фрази (через пробіл) → буфер обміну."""
+        fmt_out = self._format_result().strip() if self.sel_format else ""
+        ph = (self._phrase_text() or "").strip()
+        out = " ".join(x for x in (fmt_out, ph) if x)
+        if not out:
+            self.set_status("Немає що копіювати: відкрийте формат і/або позначте швидкі фрази", 5000)
+            return
+        self.copy_to_clipboard(out)
+        self.append_armed = False
+
+        def after() -> None:
+            self._after_format_pick("format")
+            self._clear_refunds()
+        self._finish_pick("✓ Скопійовано: " + clip(out, 60), after)
+
     def _nav_folders(self) -> list[str]:
         return [HISTORY] + [k for k in self._row_order if k in self._row_objs]
 
@@ -3794,7 +4133,9 @@ class App:
             pass
 
     def nav_move(self, k: str) -> None:
-        if self.nav_zone == "folders":
+        if self.nav_zone == "right":
+            self._nav_move_right(k)
+        elif self.nav_zone == "folders":
             self._nav_move_folders(k)
         else:
             self._nav_move_cards(k)
@@ -3810,18 +4151,18 @@ class App:
             elif k == "s":
                 i = min(len(order) - 1, i + 1)
             elif k == "d":
-                self._nav_set_zone("cards")
+                self._nav_folders_right()
                 return
             else:
                 return
             self._nav_mark(order[i])
             return
-        cols = self._cat_cols
+        cols = self._tile_dims()[0]
         if cur == HISTORY:                       # «Історія» — окремий рядок над плитками
             if k == "s" and cats:
                 self._nav_mark(cats[0])
             elif k == "d":
-                self._nav_set_zone("cards")
+                self._nav_folders_right()
             return
         j = cats.index(cur)
         if k == "w":
@@ -3836,14 +4177,20 @@ class App:
             if j % cols < cols - 1 and j + 1 < len(cats):
                 self._nav_mark(cats[j + 1])
             else:
-                self._nav_set_zone("cards")
+                self._nav_folders_right()
 
     def _nav_move_cards(self, k: str) -> None:
         ids = [i["id"] for i in self.shown]
         cols = self._rec_cols if self.rec_tiles else 1
         idx = ids.index(self.sel_id) if self.sel_id in ids else -1
         if k == "a" and (cols == 1 or idx <= 0 or idx % cols == 0):
-            self._nav_set_zone("folders")          # лівий край записів → до папок
+            if self.folder_first:
+                self.back_to_folders()             # лівий край записів → до вибору папки
+            else:
+                self._nav_set_zone("folders")      # лівий край записів → до папок
+            return
+        if k == "d" and (cols == 1 or idx < 0 or idx % cols == cols - 1 or idx + 1 >= len(ids)):
+            self._nav_enter_right()                # правий край записів → форматування й швидкі фрази
             return
         if not ids:
             return
@@ -3859,12 +4206,14 @@ class App:
         elif k == "a":
             self._move_sel(-1)
         elif k == "d":
-            if cols > 1 and idx % cols < cols - 1 and idx + 1 < len(ids):
-                self._move_sel(1)
+            self._move_sel(1)
 
     def nav_activate(self, hide: bool | None) -> None:
         """Space: у папках — відкрити папку (і перейти до її записів); у записах — скопіювати.
         Alt+Space — те саме, але після копіювання вікно ховається (як Ctrl + клік)."""
+        if self.nav_zone == "right":
+            self._nav_activate_right()
+            return
         if self.nav_zone == "folders":
             key = self.nav_cat or self.view
             self._nav_mark(None)
@@ -3937,7 +4286,12 @@ class App:
         elif self.checked:
             self.clear_checked()
         else:
-            self._hide_or_iconify("escape")
+            if self.nav_zone == "right":
+                self._nav_leave_right()
+            if self.folder_first and self.page == "records":
+                self.back_to_folders()             # Esc: із записів — до вибору папки; ще раз — сховати
+            else:
+                self._hide_or_iconify("escape")
 
     def _on_delete_key(self, event: tk.Event):
         if isinstance(event.widget, (tk.Entry, tk.Text)) or not self.sel_id:
@@ -4368,6 +4722,8 @@ class App:
                 self.set_search("")
             self.limit = PAGE
             self.render(scroll_top=True)
+            if self.folder_first:
+                self._set_page("records")
             self.set_status("✓ Додано")
 
     def on_edit(self, item_id: str) -> None:
@@ -4426,6 +4782,8 @@ class App:
         self.sel_id = None
         self.limit = PAGE
         self.render(scroll_top=True)
+        if self.folder_first and self.page != "records":
+            self._set_page("records")
 
     def on_new_category(self, for_item: str | None = None, select: bool = True) -> dict | None:
         name = TextDialog(self, "Нова категорія", "Назва категорії:").run()
@@ -4706,6 +5064,8 @@ class App:
         m.add_check("Ховати вікно після вибору запису", self.v_autohide, self._on_autohide)
         m.add_check("Відкривати на весь екран", self.v_fullscreen, self._on_fullscreen)
         m.add_check("Очищати історію при виході з програми", self.v_clear_exit, self._on_clear_exit)
+        m.add_check("Режим «спочатку папка» (вибір папки → записи)", self.v_folder_first,
+                    lambda: self.set_folder_first(self.v_folder_first.get()))
         hot = self._new_menu()
         for spec, label in HOTKEY_PRESETS:
             hot.add_radio(label, self.v_hotkey, spec, self._on_hotkey_choice)
@@ -4948,6 +5308,10 @@ class App:
         готуємо список до наступного показу — тоді показ не потребує жодної перебудови."""
         if not self._hidden:
             return
+        if self.nav_zone == "right":
+            self._nav_leave_right()
+        if self.folder_first and self.page != "folders":
+            self._set_page("folders")               # гаряча клавіша відкриває вибір папки
         needs = bool(self._query()) or self.limit != PAGE
         if self._query():
             self._search_text = ""

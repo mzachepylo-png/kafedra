@@ -839,5 +839,17 @@ class SuspiciousAndRefundTests(unittest.TestCase):
                          ("list", "list", 0, True, False))
 
 
+class FolderFirstSettingTest(unittest.TestCase):
+    def test_default_on_and_persisted(self):
+        import tempfile
+        from store import Settings
+        d = tempfile.mkdtemp()
+        path = os.path.join(d, "settings.json")
+        st = Settings(path)
+        self.assertIs(st["folder_first"], True)
+        st["folder_first"] = False
+        self.assertIs(Settings(path)["folder_first"], False)
+
+
 if __name__ == "__main__":
     unittest.main()
