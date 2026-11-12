@@ -3209,8 +3209,15 @@ pump(150)
 real_click(app._card_objs[ub["id"]].body)
 assert root.clipboard_get() == "User was blacklisted due to suspicious cards` usage in ___________"
 app.preset.set_snippet_user_link(ub["id"], True)
+mid_ph = app.preset.add_snippet(sc35["id"], "Disputes on legit transactions in deleted duplicate account ___________. "
+                                            "Clawback can't be set, card was blacklisted.")
 app.render()
 app.flush_render()
+pump(150)
+assert app._card_objs[mid_ph["id"]].ulink, "заглушка «___» посеред тексту — підстановка ввімкнена сама"
+real_click(app._card_objs[mid_ph["id"]].body)
+assert root.clipboard_get() == ("Disputes on legit transactions in deleted duplicate account {LINK:USER:214:E}. "
+                                "Clawback can't be set, card was blacklisted."), root.clipboard_get()
 app.history.add("текст без користувача")
 app.history.add("ще текст")
 print("35c USER 2 + user link from history OK")

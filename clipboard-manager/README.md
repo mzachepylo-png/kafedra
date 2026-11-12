@@ -171,3 +171,7 @@ xvfb-run -a python smoke_ui.py # перевірка вікна (потрібен
 - **TOS Violation**: записи, що закінчуються «due to TOS Violation,», один раз автоматично отримують вікно вибору причини (перший пункт «Third-party payments») і підстановку користувача. У вікні вибору: внизу галочка «Append in {LINK:USER:…:E}» і кнопка «✎ Пункти…» — додати / прибрати / змінити причини. Результат: `Blacklisted due to TOS Violation, Third-party payments in {LINK:USER:214:E}`.
 - **USER 2** (перейменовано з «User2»): крім `User #123`, перетворює й окремі числа (`214` → `{LINK:USER:214:E}`); готові `{LINK:USER:…:E}` не чіпає.
 
+## Раунд 11
+
+- Заглушка «___» (3 і більше підкреслень) може стояти **будь-де в тексті**, не лише після «in»: кожна замінюється на `{LINK:USER:<останній користувач>:E}`. Приклад: `Disputes on legit transactions in deleted duplicate account ___________. Clawback can't be set, card was blacklisted.` → `… duplicate account {LINK:USER:214:E}. Clawback can't be set, card was blacklisted.` Такі записи вмикають підстановку самі; якщо заглушки немає, а підстановку ввімкнено через «⋯», у кінець дописується « in {LINK:USER:…:E}».
+

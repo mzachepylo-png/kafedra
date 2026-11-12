@@ -231,20 +231,22 @@ def user_link(uid: str) -> str:
     return "{LINK:USER:%s:E}" % uid
 
 
-_PLACEHOLDER = re.compile(r"(\bin\s+)_{2,}", re.IGNORECASE)
+_PLACEHOLDER = re.compile(r"_{3,}")
 
 
 def has_user_placeholder(text: str) -> bool:
-    """Текст із заглушкою «in ______» (такі записи за замовчуванням підставляють користувача з історії)."""
+    """Текст із заглушкою «___» (3+ підкреслення) — такі записи за замовчуванням підставляють користувача з історії."""
     return bool(_PLACEHOLDER.search(text or ""))
 
 
 def apply_user_link(text: str, uid: str | None) -> str:
-    """«… in ______» → «… in {LINK:USER:214:E}»; без заглушки — дописує « in {LINK:USER:214:E}» у кінець."""
+    """Кожна заглушка «___________» (3+ підкреслення) будь-де в тексті → ``{LINK:USER:214:E}``:
+    «… in deleted duplicate account ___________. Clawback …» → «… account {LINK:USER:214:E}. Clawback …».
+    Без заглушки — дописує « in {LINK:USER:214:E}» у кінець."""
     if not uid:
         return text
     link = user_link(uid)
     if _PLACEHOLDER.search(text or ""):
-        return _PLACEHOLDER.sub(lambda m: m.group(1) + link, text, count=1)
+        return _PLACEHOLDER.sub(lambda m: link, text)
     return f"{(text or '').rstrip()} in {link}"
 

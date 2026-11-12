@@ -733,6 +733,12 @@ class HistoryAutofillAndUserLinkTests(unittest.TestCase):
         self.assertEqual(apply_user_link("Blacklisted due to TOS Violation, Third-party payments", "214"),
                          "Blacklisted due to TOS Violation, Third-party payments in {LINK:USER:214:E}")
         self.assertEqual(apply_user_link("x in ____", None), "x in ____")
+        t2 = "Disputes on legit transactions in deleted duplicate account ___________. Clawback can't be set, card was blacklisted."
+        self.assertTrue(has_user_placeholder(t2))
+        self.assertEqual(apply_user_link(t2, "214"), "Disputes on legit transactions in deleted duplicate account "
+                                                     "{LINK:USER:214:E}. Clawback can't be set, card was blacklisted.")
+        self.assertEqual(apply_user_link("a ___ b ____", "1"), "a {LINK:USER:1:E} b {LINK:USER:1:E}")
+        self.assertFalse(has_user_placeholder("snake__case"))
 
     def test_tos_migration_and_user_link_flag(self):
         import json, tempfile, os
