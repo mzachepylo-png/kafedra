@@ -101,6 +101,7 @@ LOG_LIMIT = 200_000            # app.log / error.log: при перевищен�
 CHECK_SIZE = 48                # галочка вибору запису в історії (у 2 рази більша за звичайну)
 CAT_SCROLL_FACTOR = 2          # у скільки разів швидша прокрутка колесом у списку папок
 ZONE_W = 150                   # права «службова» зона картки (галочка, «⋯», «✕»): клік там нічого не копіює
+CARD_RESERVE_FOLDER = 195       # те саме для записів папок (службова зона без галочки)
 CARD_RESERVE = 260             # справа від тексту картки: кнопки Copy / Copy and Close, галочка, «⋯», «✕»
 WIDE_HEADER = 700              # від такої ширини центральної панелі кнопка «Об'єднати» стоїть у шапці, а не під нею
 CARD_MAX = 980                 # картки в центрі не розтягуються ширше за це (на весь екран лишаються поля)
@@ -778,7 +779,7 @@ class V2OptionsDialog(_Dialog):
         kind = node.get("kind", "end")
         color = V2_COLORS[kind]
         row = ctk.CTkFrame(self.list, corner_radius=12, fg_color=tint(color, 0.16, 0.26), border_width=1,
-                           border_color=blend(color, CARD_BORDER[0], 0.5))
+                           border_color=(blend(color, CARD_BORDER[0], 0.5), blend(color, CARD_BORDER[1], 0.55)))
         row.pack(fill="x", padx=4, pady=4)
         menu = ctk.CTkOptionMenu(row, values=list(V2_KIND_BY_LABEL), width=150, height=36, corner_radius=10,
                                  fg_color=BTN2, button_color=BTN2_HOVER, button_hover_color=BTN2_HOVER,
@@ -1012,7 +1013,7 @@ class ColorDialog(_Dialog):
     def __init__(self, app: "App", title: str, current: str | None, allow_reset: bool = False,
                  reset_label: str = "Як у папки"):
         rows = (len(SWATCHES) + self.COLUMNS - 1) // self.COLUMNS
-        super().__init__(app, title, 470, 230 + rows * 58)
+        super().__init__(app, title, 470, 160 + rows * 58)
         self.current = (current or "").lower()
         card = ctk.CTkFrame(self, corner_radius=16, fg_color=PANEL, border_width=1, border_color=PANEL_BORDER)
         card.pack(fill="both", expand=True, padx=14, pady=14)
@@ -1023,8 +1024,11 @@ class ColorDialog(_Dialog):
         self.swatches: dict[str, ctk.CTkButton] = {}
         for n, color in enumerate(SWATCHES):
             mark = "✓" if color.lower() == self.current else ""
+            r_, g_, b_ = _rgb(color)
+            light = (0.299 * r_ + 0.587 * g_ + 0.114 * b_) > 170          # на світлих кольорах — темна галочка
             b = ctk.CTkButton(grid, text=mark, width=48, height=48, corner_radius=24, fg_color=color,
-                              hover_color=blend(color, "#000000", 0.18), text_color="#ffffff", font=app.f.icon,
+                              hover_color=blend(color, "#000000", 0.18), text_color="#1b1b1b" if light else "#ffffff",
+                              font=app.f.icon,
                               command=lambda c=color: self.choose(c))
             b.grid(row=n // self.COLUMNS, column=n % self.COLUMNS, padx=5, pady=5)
             self.swatches[color] = b
@@ -1370,12 +1374,13 @@ class Card:
             self.frame.configure(border_color=ACCENT if self.selected else self.border)
             self.colorize()
 
-    def colorize(self) -> None:
-        """Розставляє кольори за поточними станом і темою (викликається й при зміні теми)."""
+    def colorize(self, frame: bool = True) -> None:
+        """Розставляє кольори за поточними станом і темою. frame=False (зміна теми): ctk-фрейм перемальовується сам."""
         a = self.app
         fill = self.hover if self.hovering else self.fill
         self.cur = fill
-        self.frame.configure(fg_color=fill)
+        if frame:
+            self.frame.configure(fg_color=fill)
         bg = a.col(fill)
         self.bar.configure(bg=a.col(self.color or NEUTRAL))
         self.body.configure(bg=bg, fg=a.col(TEXT))
@@ -1504,7 +1509,16 @@ class SideRow:
         if (height, wrap_px) != getattr(self, "_size", None):
             self._size = (height, wrap_px)
             self.row.configure(height=height)
-            self.label.configure(wraplength=wrap_px)
+            self.label.configure(wraplength=wrap_px, text=self._tile_text())
+
+    def _tile_text(self) -> str:
+        """Назва в плитці — не більше двох рядків (далі «…»), щоб не налазила на лічильник."""
+        name = getattr(self, "_name", "") or ""
+        size = getattr(self, "_size", None)
+        if not size:
+            return name
+        per_line = max(6, int(size[1] / max(1, self.app.pf.bold.measure("n"))))
+        return clip(name, per_line * 2 - 2)
 
     def _enter(self) -> None:
         if not self.selected:
@@ -1538,18 +1552,20 @@ class SideRow:
             if self.real:
                 self.dot.configure(fg_color=color)
         if old is None or old[0] != name or old[4] != a._name_chars:
-            self.label.configure(text=name if self.tile else clip(name, a._name_chars))
+            self._name = name
+            self.label.configure(text=self._tile_text() if self.tile else clip(name, a._name_chars))
         if old is None or old[2] != count:
             self.num.configure(text=str(count))
         self.selected = selected
         self.hovering = False if selected else self.hovering
         fill = self.sel_fill if selected else (self.hover if self.hovering else self.fill)
         self.cur = fill
-        if self.real:      # один configure замість трьох (кожен = перемалювання ctk-фрейма)
-            self.row.configure(fg_color=fill, border_width=2 if selected else 1,
-                               border_color=ACCENT if selected else self.border)
-        else:
-            self.row.configure(fg_color=fill)
+        if old is None or old[1] != color or old[3] != selected:   # configure ctk-фрейма = перемалювання — лише за потреби
+            if self.real:
+                self.row.configure(fg_color=fill, border_width=2 if selected else 1,
+                                   border_color=ACCENT if selected else self.border)
+            else:
+                self.row.configure(fg_color=fill)
         self.colorize()
 
     def colorize(self) -> None:
@@ -1991,12 +2007,23 @@ class App:
             return
         self._dark = dark
         self.root.after_idle(self._sync_banner)
-        for w, bg, fg in self._themed:
-            if fg is None:                              # звичайний tk.Frame (без кольору тексту)
-                w.configure(bg=self.col(bg))
-            else:
-                w.configure(bg=self.col(bg), fg=self.col(fg))
-        for obj in (*self._card_objs.values(), *self._row_objs.values(), *self._fmt_rows.values()):
+        alive = []
+        for item in self._themed:
+            w, bg, fg = item
+            try:
+                if not w.winfo_exists():               # віджет уже знищено (видалена фраза тощо) — прибираємо зі списку
+                    continue
+                if fg is None:                          # звичайний tk.Frame (без кольору тексту)
+                    w.configure(bg=self.col(bg))
+                else:
+                    w.configure(bg=self.col(bg), fg=self.col(fg))
+                alive.append(item)
+            except tk.TclError:
+                continue
+        self._themed = alive
+        for obj in self._card_objs.values():
+            obj.colorize(frame=False)
+        for obj in (*self._row_objs.values(), *self._fmt_rows.values()):
             obj.colorize()
         if self._cat_hint is not None:
             self._cat_hint.configure(bg=self.col(PANEL), fg=self.col(MUTED))
@@ -2047,7 +2074,10 @@ class App:
                        fg=self.col(MUTED), bg=bg_fn() if bg_fn else self.col(PANEL))
 
         def enter(e=None):
-            lbl.configure(bg=self.col(hover_bg), fg=self.col(hover_text))
+            if bg_fn is not None:                     # на кольоровій картці/рядку — лише колір значка, без сірого квадрата
+                lbl.configure(fg=self.col(hover_text if hover_text != TEXT else ACCENT))
+            else:
+                lbl.configure(bg=self.col(hover_bg), fg=self.col(hover_text))
 
         def leave(e=None):
             lbl.configure(bg=bg_fn() if bg_fn else self.col(PANEL), fg=self.col(MUTED))
@@ -2290,7 +2320,7 @@ class App:
         фразу, «✕» біля фрази видаляє її. Фрази лежать у пресеті (preset.phrases)."""
         box = self.refund_box = ctk.CTkFrame(right, corner_radius=12, fg_color=CARD, border_width=1,
                                              border_color=CARD_BORDER)
-        box.pack(side="top", fill="x", expand=True, padx=(22, 12), pady=8)
+        box.pack(side="top", fill="x", expand=True, padx=8, pady=8)
         self._phrases_collapsed = bool(self.settings["phrases_collapsed"])
         head = self.phrase_head = tk.Frame(box, bg=self.col(CARD), cursor="hand2")
         self._themed.append((head, CARD, None))
@@ -2307,7 +2337,7 @@ class App:
         self.phrase_add_btn.pack(side="right")
         self.phrase_list = tk.Frame(box, bg=self.col(CARD))
         self._themed.append((self.phrase_list, CARD, None))
-        self.phrase_list.pack(fill="x")
+        self.phrase_list.pack(fill="x", padx=2)              # не зафарбовує бічні рамки картки
         self._phrase_rows: dict[str, dict] = {}
         self._phrase_sig = None
         pair = self.phrase_pair = tk.Frame(box, bg=self.col(CARD))
@@ -2328,17 +2358,22 @@ class App:
 
     def toggle_phrases(self) -> None:
         """Згорнути / розгорнути блок «Швидкі фрази» (стан запам'ятовується)."""
+        if getattr(self, "_phr_auto", False):              # тимчасово згорнуті — клік розгортає їх
+            self._phr_auto = False
+            self._phr_no_auto = True                       # і більше не згортаємо самі, доки формат відкритий
+            self._apply_phrases_collapse()
+            return
         self._phrases_collapsed = not self._phrases_collapsed
         self.settings["phrases_collapsed"] = self._phrases_collapsed
         self._apply_phrases_collapse()
 
     def _apply_phrases_collapse(self) -> None:
-        if self._phrases_collapsed:
+        if self._phrases_collapsed or getattr(self, "_phr_auto", False):
             for w in (self.phrase_list, self.phrase_pair, self.phrase_add_btn):
                 w.pack_forget()
             self.phrase_chev.configure(text="▸")
         else:
-            self.phrase_list.pack(fill="x", after=self.phrase_head)
+            self.phrase_list.pack(fill="x", padx=2, after=self.phrase_head)
             self.phrase_pair.pack(fill="x", padx=(16, 12), pady=(6, 12), after=self.phrase_list)
             self.phrase_add_btn.pack(side="right")
             self.phrase_chev.configure(text="▾")
@@ -2353,7 +2388,10 @@ class App:
         self._phrase_sig = sig
         wanted = {p["id"] for p in phrases}
         for pid in [k for k in self._phrase_rows if k not in wanted]:
-            self._phrase_rows.pop(pid)["frame"].destroy()
+            gone = self._phrase_rows.pop(pid)
+            dead = {gone["frame"], gone["label"], gone["dele"], gone["edit"]}
+            self._themed = [t for t in self._themed if t[0] not in dead]
+            gone["frame"].destroy()
         wrap = int(max(120, self._right_w - 158) * self.scaling())
         for row in self._phrase_rows.values():
             row["frame"].pack_forget()
@@ -2364,7 +2402,7 @@ class App:
                 row = self._phrase_rows[p["id"]] = self._make_phrase_row(p, wrap)
             row["phrase"] = p
             row["label"].configure(text=p["text"])
-            row["frame"].pack(fill="x", padx=(14, 6), pady=2)
+            row["frame"].pack(fill="x", padx=10, pady=2)
         self._sync_refund_buttons()
         if not phrases:
             self.set_status("Фраз немає — додайте свою кнопкою «＋»", 4000)
@@ -2385,6 +2423,8 @@ class App:
         edit = self._icon_button(frame, "✎", lambda e, pid=p["id"]: self.on_edit_phrase(pid),
                                  bg_fn=lambda c=bgc: self.col(c))
         edit.pack(side="right", padx=(2, 0))
+        self._themed.append((dele, bgc, MUTED))      # фон значків ✎ / ✕ перефарбовується зі зміною теми
+        self._themed.append((edit, bgc, MUTED))
         label = tk.Label(frame, text=p["text"], font=self.pf.phrase, anchor="w", justify="left", cursor="hand2",
                          bg=self.col(bgc), fg=self.col(TEXT), wraplength=wrap, pady=4)
         self._themed.append((label, bgc, TEXT))
@@ -2626,7 +2666,8 @@ class App:
             self._rec_tile_h = int(max(104, min(190, tile_w * 0.66)))
             return 6, int(max(90, tile_w - 48))
         pad = max(6, (usable - CARD_MAX) // 2)
-        return pad, max(140, usable - 2 * pad - CARD_RESERVE)
+        reserve = CARD_RESERVE if self._is_history() else CARD_RESERVE_FOLDER     # у папках немає великої галочки
+        return pad, max(140, usable - 2 * pad - reserve)
 
     def _set_scroll_space(self, need: bool, sb_w: int) -> None:
         """Смуга прокрутки забирає частину ширини списку: враховуємо це ДО створення карток (а не після)."""
@@ -2971,7 +3012,7 @@ class App:
             self.fmt_title.configure(text=fmt["name"])
             self._show_actions("append" in format_actions(fmt["type"]))
             if not self.fmt_box.winfo_manager():
-                self.fmt_box.pack(fill="x", after=self.formats_slot)
+                self.fmt_box.pack(fill="x", padx=2, after=self.formats_slot)
         elif self._fmt_built:
             self._fmt_box.pack_forget()
 
@@ -2989,10 +3030,17 @@ class App:
                 self._fmt_btn.pack(fill="x")
 
     def _fit_format_box(self) -> None:
-        """На низькому вікні поле введення й перегляд результату стискаються (мін. 34 px), щоб кнопки не
-        виходили за край правої колонки; на високому — повертаються до звичайного розміру."""
+        """На низькому вікні поле введення й перегляд результату стискаються (мін. 30 px), щоб кнопки не
+        виходили за край правої колонки; якщо й цього мало — швидкі фрази тимчасово згортаються (до закриття формату
+        або збільшення вікна; збережене налаштування не змінюється)."""
         try:
-            if not self._fmt_built or not self._fmt_box.winfo_manager():
+            fmt_open = self._fmt_built and bool(self._fmt_box.winfo_manager())
+            if not fmt_open:
+                self._phr_no_auto = False
+            if getattr(self, "_phr_auto", False) and not fmt_open:
+                self._phr_auto = False                      # формат закрито — фрази знову розгорнуті
+                self._apply_phrases_collapse()
+            if not fmt_open:
                 return
             s = self.scaling()
             right_h = self.right.winfo_height() / s
@@ -3001,6 +3049,16 @@ class App:
             overhead = self._fmt_box.winfo_reqheight() / s - sum(self._fmt_heights)    # усе в блоці, крім двох полів
             room = (right_h - 52 - self.formats_slot.winfo_reqheight() / s - self.refund_box.winfo_reqheight() / s
                     - overhead - 22 - (28 if self.append_armed else 0))
+            auto = getattr(self, "_phr_auto", False)
+            if not auto and not self._phrases_collapsed and room < 60 and not getattr(self, "_phr_no_auto", False):
+                self._phr_full_h = self.refund_box.winfo_reqheight() / s
+                self._phr_auto = True
+                self._apply_phrases_collapse()             # місця замало — фрази згортаються, кнопки формату видно
+                return
+            if auto and room - (getattr(self, "_phr_full_h", 0) - self.refund_box.winfo_reqheight() / s) >= 60:
+                self._phr_auto = False
+                self._apply_phrases_collapse()
+                return
             h_in = int(max(30, min(72, room / 2)))
             h_out = int(max(30, min(74, room - h_in)))
             if (h_in, h_out) != self._fmt_heights:
@@ -3211,6 +3269,8 @@ class App:
     # з'являється миттєво, а пошук/зміна кольору/видалення не перебудовують усе з нуля.
     def _render_list_now(self, scroll_top: bool = False) -> None:
         self.render_count += 1
+        if hasattr(self, "_usable0"):                        # історія й папки резервують різну ширину справа
+            self._apply_wrap_values(*self._wrap_for(self._usable0 - self._sb_cur))
         if self._chunk_job is not None:
             self.root.after_cancel(self._chunk_job)
             self._chunk_job = None
@@ -3531,12 +3591,23 @@ class App:
         x0, w0 = self._split
         s = self.scaling()
         lw = int(self._left_cap(self.root.winfo_width() / s, w0 + (e.x_root - x0) / s))
-        if lw != self._left_w:
+        self._split_pending = lw                       # застосовуємо не частіше ніж раз на 50 мс (без ривків)
+        if getattr(self, "_split_job", None) is None:
+            self._split_job = self.root.after(50, self._splitter_apply)
+
+    def _splitter_apply(self) -> None:
+        self._split_job = None
+        lw = getattr(self, "_split_pending", None)
+        if lw is not None and lw != self._left_w:
             self._left_user = lw
             self._set_left_width(lw)
 
     def _splitter_release(self, e) -> None:
+        if getattr(self, "_split_job", None) is not None:
+            self.root.after_cancel(self._split_job)
+            self._split_job = None
         if getattr(self, "_split", None):
+            self._splitter_apply()
             self._split = None
             self.settings["left_w"] = int(self._left_user)
 

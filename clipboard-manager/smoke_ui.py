@@ -1958,7 +1958,7 @@ print("27f Added cards (Copy/Append) + collapsed formats OK")
 app.show_window()
 pump(100)
 for cls, args, min_w, min_h in ((cm.TextDialog, ("Тест", "Назва:"), 440, 200), (cm.SnippetDialog, ("Тест", "x", sl["id"]), 620, 480),
-                                (cm.ColorDialog, ("Тест", "#0f6cbd"), 440, 330)):
+                                (cm.ColorDialog, ("Тест", "#0f6cbd"), 440, 270)):
     dlg = cls(app, *args)
     dlg.update_idletasks()
     w_, h_ = dlg.winfo_reqwidth(), dlg.winfo_reqheight()
@@ -2615,6 +2615,9 @@ pump(600)
 app.show_window()
 app.select_category(HISTORY)
 app.flush_render()
+pump(200)
+app._collapse_format()                                       # формат закрито — фрази розгорнуті (не авто-згорнуті)
+app._fit_format_box()
 pump(200)
 box = app.refund_box
 centre = box.winfo_rooty() + box.winfo_height() / 2
@@ -3400,6 +3403,39 @@ app.submit_refund()
 assert root.clipboard_get() == "Email boss@company.com was connected during suspicious login", root.clipboard_get()
 app.on_remove_phrase(ph["id"])
 print("36c users in turn + email in quick phrase OK")
+# (d) QA: на низькому вікні з відкритим форматом фрази згортаються самі (кнопки формату видно), потім розгортаються
+root.geometry("1180x660+0+0")
+pump(700)
+assert not settings["phrases_collapsed"]
+app.select_category(nav_cats[0]["id"])
+app.select_format("builtin-user2")
+pump(300)
+app._fit_format_box()
+pump(300)
+assert app._phr_auto and not app.phrase_list.winfo_ismapped(), "місця замало — фрази згорнуто тимчасово"
+assert app._fmt_btn.winfo_ismapped() and not settings["phrases_collapsed"]
+app.toggle_phrases()                                            # клік по заголовку — розгорнути попри брак місця
+pump(300)
+app._fit_format_box()
+pump(200)
+assert app.phrase_list.winfo_ismapped() and not app._phr_auto
+app._collapse_format()
+pump(300)
+app._fit_format_box()
+pump(200)
+assert app.phrase_list.winfo_ismapped() and not app._phr_auto
+# (e) QA: значки ✎/✕ фраз перефарбовуються зі зміною теми; поле формату не зафарбовує рамку панелі
+row0 = next(iter(app._phrase_rows.values()))
+ctk.set_appearance_mode("dark")
+app._set_dark(True)
+pump(300)
+assert row0["dele"].cget("bg") == row0["frame"].cget("bg") == row0["edit"].cget("bg"), "темна тема: фон значків = фон рядка"
+ctk.set_appearance_mode("light")
+app._set_dark(False)
+pump(300)
+assert row0["dele"].cget("bg") == row0["frame"].cget("bg")
+assert app.phrase_list.pack_info()["padx"] in (2, "2")
+print("36d/e QA fixes (auto-collapse phrases, themed icons, panel borders) OK")
 settings["autohide"] = True
 root.geometry("1180x660+0+0")
 pump(600)
