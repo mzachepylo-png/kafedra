@@ -1,0 +1,488 @@
+{
+ "t01-autoclave-vertical": {
+  "src": "t01-autoclave-vertical.webp",
+  "w": 900,
+  "h": 1157,
+  "caption": "Вертикальний лабораторний автоклав — апарат для стерилізації насиченою водяною парою під тиском. На кришці — манометр (прилад, що показує надлишковий тиск), клапан випуску повітря з чорною ручкою й запобіжний клапан; внизу — зливний кран і блок електронагрівача. Саме такий автоклав показано в розрізі в моделі.",
+  "alt": "Блискучий сталевий вертикальний автоклав із манометром і клапанами на кришці",
+  "cred_html": "<a href=\"https://commons.wikimedia.org/wiki/File:Autoclave_at_Vigyan_Ashram.jpg\" target=\"_blank\" rel=\"noopener\">Sinalkar Kanchan</a>, Wikimedia Commons · CC BY-SA 4.0",
+  "cred_plain": "Sinalkar Kanchan, Wikimedia Commons · CC BY-SA 4.0"
+ },
+ "t01-autoclave-bench": {
+  "src": "t01-autoclave-bench.webp",
+  "w": 900,
+  "h": 965,
+  "caption": "Настільний горизонтальний автоклав із відчиненими дверцятами: усередині видно кошик для посуду й термодатчик. Сучасні автоклави самі продувають камеру парою, витримують заданий режим (наприклад, 121 °C, 20 хв) і повільно скидають тиск.",
+  "alt": "Настільний автоклав із відчиненою круглою камерою",
+  "cred_html": "<a href=\"https://commons.wikimedia.org/wiki/File:Laboratory_autoclave_(cropped).jpg\" target=\"_blank\" rel=\"noopener\">Nadina Wiórkiewicz</a>, Wikimedia Commons · CC BY-SA 3.0",
+  "cred_plain": "Nadina Wiórkiewicz, Wikimedia Commons · CC BY-SA 3.0"
+ },
+ "t01-laminar-dishes": {
+  "src": "t01-laminar-dishes.webp",
+  "w": 1100,
+  "h": 733,
+  "caption": "Чашки Петрі з агаризованим середовищем застигають у ламінар-боксі — шафі, куди вентилятор подає повітря крізь HEPA-фільтри (високоефективні фільтри, що затримують частинки ≥ 0,3 мкм). Рівний потік стерильного повітря не дає спорам із кімнати осісти на відкрите середовище.",
+  "alt": "Ряди відкритих чашок Петрі на робочій поверхні ламінар-бокса з перфорованою задньою стінкою",
+  "cred_html": "<a href=\"https://commons.wikimedia.org/wiki/File:Laminar_flow_hood.jpg\" target=\"_blank\" rel=\"noopener\">Hugh Fox</a>, Wikimedia Commons · CC BY-SA 2.0",
+  "cred_plain": "Hugh Fox, Wikimedia Commons · CC BY-SA 2.0"
+ },
+ "t01-laminar-work": {
+  "src": "t01-laminar-work.webp",
+  "w": 1100,
+  "h": 619,
+  "caption": "Робота в ламінар-боксі: руки в рукавичках, усі матеріали — в глибині робочої зони, рухи над відкритим посудом мінімальні. Асептика (сукупність прийомів, що не допускають мікроорганізмів до стерильного матеріалу) починається з правильної організації робочого місця.",
+  "alt": "Дослідниця працює з чашками й пробірками в ламінар-боксі",
+  "cred_html": "<a href=\"https://commons.wikimedia.org/wiki/File:Working_inside_the_laminar_flow_cabinet.jpg\" target=\"_blank\" rel=\"noopener\">Sunmosk</a>, Wikimedia Commons · CC BY 4.0",
+  "cred_plain": "Sunmosk, Wikimedia Commons · CC BY 4.0"
+ },
+ "t01-flasks-media": {
+  "src": "t01-flasks-media.webp",
+  "w": 1100,
+  "h": 716,
+  "caption": "Колби Ерленмеєра (конічні колби) з агаризованим живильним середовищем і рослинами <i>in vitro</i>, закриті ковпачками з алюмінієвої фольги. Середовище розливають на ½–⅔ об'єму посудини, закривають фольгою або ватними пробками й автоклавують.",
+  "alt": "Ряд конічних колб із прозорим середовищем і зеленими рослинами, закритих фольгою",
+  "cred_html": "<a href=\"https://commons.wikimedia.org/wiki/File:Plant_tissue_culture_sample.jpg\" target=\"_blank\" rel=\"noopener\">Syed Sajidul Islam</a>, Wikimedia Commons · CC BY-SA 4.0",
+  "cred_plain": "Syed Sajidul Islam, Wikimedia Commons · CC BY-SA 4.0"
+ },
+ "t01-cucumber-ms": {
+  "src": "t01-cucumber-ms.webp",
+  "w": 1000,
+  "h": 750,
+  "caption": "Асептичні рослини огірка (<i>Cucumis sativus</i> L.), регенеровані з апікальних меристем (верхівкових твірних тканин пагона) на половинному середовищі Мурасіге — Скуга (½ МС) з 1 мг/л цитокініну 6-БАП (6-бензиламінопурину). ½ МС — середовище, у якому всі солі взято вдвічі розведеними, як у пропису для проростків сої (ЛР 5).",
+  "alt": "Зелені пагони огірка з листочками на прозорому агарі",
+  "cred_html": "<a href=\"https://commons.wikimedia.org/wiki/File:Aseptic_in_vitro_cultivated_plantlets_of_cucumber_regenerated_from_shoot_apical_meristem_explants_on_half-strength_Murashige-Scoog_medium_supplemented_with_cytokinin_6-Benzylaminopurine_in_concentration_1_mg_l.tif\" target=\"_blank\" rel=\"noopener\">Yuliya Krasylenko</a>, Wikimedia Commons · CC BY 4.0",
+  "cred_plain": "Yuliya Krasylenko, Wikimedia Commons · CC BY 4.0"
+ },
+ "t02-tobacco-callus-petri": {
+  "src": "t02-tobacco-callus-petri.webp",
+  "w": 1100,
+  "h": 734,
+  "caption": "Калюс тютюну (<i>Nicotiana tabacum</i> L.) у чашці Петрі: пухкі зернисті грудки світло-зеленого кольору. Калюс (від лат. <i>callus</i> — мозоль) — неорганізована тканина з дедиференційованих клітин, тобто клітин, що втратили спеціалізацію й знову діляться; зелений відтінок з'являється, коли калюс вирощують на світлі.",
+  "alt": "Світло-зелені грудки калюсу тютюну на агарі в чашці Петрі",
+  "cred_html": "<a href=\"https://commons.wikimedia.org/wiki/File:Callus1.jpg\" target=\"_blank\" rel=\"noopener\">Igge</a>, Wikimedia Commons · CC BY-SA 3.0",
+  "cred_plain": "Igge, Wikimedia Commons · CC BY-SA 3.0"
+ },
+ "t02-ficus-callus-stem": {
+  "src": "t02-ficus-callus-stem.webp",
+  "w": 1100,
+  "h": 730,
+  "caption": "Білий зернистий калюс уздовж сегмента стебла фікуса Бенджаміна (<i>Ficus benjamina</i> L.). Калюс утворюється насамперед на зрізах і пораненнях експлантата (фрагмента органа, перенесеного на живильне середовище), де клітини найлегше переходять до поділу.",
+  "alt": "Сегмент стебла, вкритий білими горбками калюсу, на темному тлі",
+  "cred_html": "<a href=\"https://commons.wikimedia.org/wiki/File:DSC08922_Ficus_benjamina_callus.jpg\" target=\"_blank\" rel=\"noopener\">Engine9</a>, Wikimedia Commons · CC0",
+  "cred_plain": "Engine9, Wikimedia Commons · CC0"
+ },
+ "t02-coffee-leaf-callus": {
+  "src": "t02-coffee-leaf-callus.webp",
+  "w": 900,
+  "h": 1200,
+  "caption": "Калюс на листковому експлантаті кави (<i>Coffea canephora</i> Pierre ex A. Froehner) на середовищі Мурасіге — Скуга (МС): у центрі — залишок жовтуватої тканини листка, по краях — напівпрозорі горбки калюсу. Такий калюс є першим кроком непрямого соматичного ембріогенезу (утворення зародків із нестатевих клітин через калюс).",
+  "alt": "Шматок листка з білими напівпрозорими горбками калюсу по краях",
+  "cred_html": "<a href=\"https://commons.wikimedia.org/wiki/File:Callus_in_coffea_canephora_leaf.png\" target=\"_blank\" rel=\"noopener\">Iripseudocorus</a>, Wikimedia Commons · CC BY-SA 4.0",
+  "cred_plain": "Iripseudocorus, Wikimedia Commons · CC BY-SA 4.0"
+ },
+ "t02-wound-callus-acer": {
+  "src": "t02-wound-callus-acer.webp",
+  "w": 900,
+  "h": 911,
+  "caption": "Калюс у природі: валик ранової тканини, що заростає місце зрізаної гілки клена-явора (<i>Acer pseudoplatanus</i> L.). Так виконується захисна функція калюсу в інтактній (неушкодженій, цілій) рослині, описана М. Кренке.",
+  "alt": "Кора клена з округлим валиком калюсу навколо зрізу гілки",
+  "cred_html": "<a href=\"https://commons.wikimedia.org/wiki/File:Wound_healing._Callus_growth._Acer_pseudoplatanus._Long_Preston.jpg\" target=\"_blank\" rel=\"noopener\">Rosser1954</a>, Wikimedia Commons · CC BY 4.0",
+  "cred_plain": "Rosser1954, Wikimedia Commons · CC BY 4.0"
+ },
+ "t02-callus-ms-jar": {
+  "src": "t02-callus-ms-jar.webp",
+  "w": 800,
+  "h": 694,
+  "caption": "Калюс на агаризованому середовищі МС у скляній культуральній посудині, закритій плівкою. Посудини з калюсом тримають у термостаті або культуральній кімнаті за +25 °C.",
+  "alt": "Жовтий калюс на агарі в скляній банці під плівкою",
+  "cred_html": "<a href=\"https://commons.wikimedia.org/wiki/File:Callus_in_MS-Media.png\" target=\"_blank\" rel=\"noopener\">Iripseudocorus</a>, Wikimedia Commons · CC BY-SA 4.0",
+  "cred_plain": "Iripseudocorus, Wikimedia Commons · CC BY-SA 4.0"
+ },
+ "t03-callus-tubes": {
+  "src": "t03-callus-tubes.webp",
+  "w": 900,
+  "h": 840,
+  "caption": "Пробірки з калюсами на агаризованих середовищах різного складу: колір середовища й калюсу, а також інтенсивність росту в окремих варіантах різні. Тому кожен варіант досліду з калюсом закладають у шестикратній повторності (на шести однакових посудинах).",
+  "alt": "Чотири пробірки в штативі з агаризованим середовищем і калюсом",
+  "cred_html": "<a href=\"https://commons.wikimedia.org/wiki/File:%D0%9A%D0%B0%D0%BB%D0%BB%D1%83%D1%81.jpg\" target=\"_blank\" rel=\"noopener\">Atayevagulnar</a>, Wikimedia Commons · CC BY-SA 4.0",
+  "cred_plain": "Atayevagulnar, Wikimedia Commons · CC BY-SA 4.0"
+ },
+ "t03-hemocytometer-pipette": {
+  "src": "t03-hemocytometer-pipette.webp",
+  "w": 1000,
+  "h": 670,
+  "caption": "Заповнення лічильної камери (гемоцитометра — товстого предметного скла з вигравіюваною сіткою і заглибленням відомої глибини) краплею суспензії з піпетки під притерте покривне скельце. Камера Фукса — Розенталя влаштована так само, але має глибину 0,2 мм і сітку з 16 великих квадратів по 1 мм².",
+  "alt": "Піпетка вносить краплю суспензії в лічильну камеру під покривне скло",
+  "cred_html": "<a href=\"https://commons.wikimedia.org/wiki/File:Hemocytometer.jpg\" target=\"_blank\" rel=\"noopener\">Todd</a>, Wikimedia Commons · CC BY-SA 2.0",
+  "cred_plain": "Todd, Wikimedia Commons · CC BY-SA 2.0"
+ },
+ "t03-hemocytometer-scale": {
+  "src": "t03-hemocytometer-scale.webp",
+  "w": 900,
+  "h": 541,
+  "caption": "Лічильна камера поруч із монетою для масштабу: дві дзеркальні площадки — це дві лічильні сітки, по обидва боки від яких лежать опори для покривного скельця.",
+  "alt": "Скляна лічильна камера з двома сітками поруч із монетою",
+  "cred_html": "<a href=\"https://commons.wikimedia.org/wiki/File:Hemocytometer_with_penny.JPG\" target=\"_blank\" rel=\"noopener\">Jeffrey M. Vinocur</a>, Wikimedia Commons · CC BY 2.5",
+  "cred_plain": "Jeffrey M. Vinocur, Wikimedia Commons · CC BY 2.5"
+ },
+ "t04-se-cotton-stages": {
+  "src": "t04-se-cotton-stages.webp",
+  "w": 201,
+  "h": 129,
+  "caption": "Стадії соматичного ембріогенезу бавовнику (<i>Gossypium hirsutum</i> L.): глобулярний (GE), торпедоподібний (TE) і сім'ядольний (CE) ембріоїди. Ембріоїд — біполярна зародкоподібна структура, що розвивається із соматичної (нестатевої) клітини калюсу й має водночас меристеми кореня та пагона.",
+  "alt": "Три соматичні ембріоїди бавовнику на чорному тлі: кулястий, видовжений і з сім'ядолями",
+  "cred_html": "Yang et al. (2012), Figure 1, <i>BMC Plant Biol</i> <a href=\"https://doi.org/10.1186/1471-2229-12-110\" target=\"_blank\" rel=\"noopener\">doi:10.1186/1471-2229-12-110</a> · CC BY",
+  "cred_plain": "Yang et al. (2012), Figure 1, BMC Plant Biol, doi:10.1186/1471-2229-12-110 · CC BY"
+ },
+ "t04-se-arabidopsis": {
+  "src": "t04-se-arabidopsis.webp",
+  "w": 605,
+  "h": 191,
+  "caption": "Соматичний ембріогенез арабідопсису (<i>Arabidopsis thaliana</i> (L.) Heynh.) під стереомікроскопом: ембріогенний калюс (EC), проембріо на краю калюсу (стрілки) і зачатки сім'ядоль (CP) навколо апікальної меристеми пагона (SAM) — твірної тканини верхівки. Масштаб 1,2 мм.",
+  "alt": "Кремові горбкуваті ембріогенні калюси з дрібними зародками на поверхні",
+  "cred_html": "Su et al. (2009), Figure 1, <i>Plant J</i> <a href=\"https://doi.org/10.1111/j.1365-313x.2009.03880.x\" target=\"_blank\" rel=\"noopener\">doi:10.1111/j.1365-313x.2009.03880.x</a> · CC BY",
+  "cred_plain": "Su et al. (2009), Figure 1, Plant J, doi:10.1111/j.1365-313x.2009.03880.x · CC BY"
+ },
+ "t04-se-oak-sections": {
+  "src": "t04-se-oak-sections.webp",
+  "w": 733,
+  "h": 296,
+  "caption": "Напівтонкі зрізи стадій соматичного ембріогенезу корка дуба (<i>Quercus suber</i> L.), забарвлення толуїдиновим синім: проембріогенна маса (A), торпедоподібний (B) і сім'ядольний (C) ембріоїди. У торпедоподібному видно провідний тяж — прокамбій. Масштаб 0,5 мм (A, B) і 1 мм (C).",
+  "alt": "Три синьо-фіолетові мікроскопічні зрізи: куляста маса клітин, видовжений зародок і зародок із двома сім'ядолями",
+  "cred_html": "Pérez-Pérez et al. (2018), FIGURE 2, <i>Front Plant Sci</i> <a href=\"https://doi.org/10.3389/fpls.2018.01915\" target=\"_blank\" rel=\"noopener\">doi:10.3389/fpls.2018.01915</a> · CC BY",
+  "cred_plain": "Pérez-Pérez et al. (2018), FIGURE 2, Front Plant Sci, doi:10.3389/fpls.2018.01915 · CC BY"
+ },
+ "t04-se-cacao": {
+  "src": "t04-se-cacao.webp",
+  "w": 472,
+  "h": 388,
+  "caption": "Соматичні ембріоїди какао (<i>Theobroma cacao</i> L.): A, B — вторинний (повторний) ембріогенез на поверхні зародка; C — багато ембріоїдів на експлантаті; D — нормальний зародок із розвиненими сім'ядолями. Масштаб 1 мм.",
+  "alt": "Чотири панелі з кремовими соматичними зародками какао на темному тлі",
+  "cred_html": "Florez et al. (2015), Figure 5, <i>BMC Plant Biol</i> <a href=\"https://doi.org/10.1186/s12870-015-0479-4\" target=\"_blank\" rel=\"noopener\">doi:10.1186/s12870-015-0479-4</a> · CC BY",
+  "cred_plain": "Florez et al. (2015), Figure 5, BMC Plant Biol, doi:10.1186/s12870-015-0479-4 · CC BY"
+ },
+ "t04-switchgrass-embryos": {
+  "src": "t04-switchgrass-embryos.webp",
+  "w": 1100,
+  "h": 825,
+  "caption": "Соматичні ембріоїди проса прутоподібного (<i>Panicum virgatum</i> L.), що сформувалися <i>in vitro</i> на калюсі: білі глянцеві горбки з зеленуватими зачатками. Так під бінокулярною лупою виглядає ембріогенний калюс злаків.",
+  "alt": "Білі блискучі горбки ембріогенного калюсу з зеленими ділянками на чорному тлі",
+  "cred_html": "<a href=\"https://commons.wikimedia.org/wiki/File:Conger_type_callus_3ms_White_Light.TIF\" target=\"_blank\" rel=\"noopener\">Jason Burris</a>, Wikimedia Commons · CC0",
+  "cred_plain": "Jason Burris, Wikimedia Commons · CC0"
+ },
+ "t05-bioreactors": {
+  "src": "t05-bioreactors.webp",
+  "w": 1100,
+  "h": 802,
+  "caption": "Промислові біореактори (ферментери — герметичні ємності з мішалкою й подачею стерильного повітря) для вирощування суспензій рослинних клітин і отримання вторинних метаболітів (речовин на кшталт алкалоїдів і глікозидів, які клітина синтезує не для власного росту).",
+  "alt": "Зал із нержавіючими біореакторами для культури рослинних клітин",
+  "cred_html": "<a href=\"https://commons.wikimedia.org/wiki/File:IPPRAS2.jpg\" target=\"_blank\" rel=\"noopener\">Titovamv</a>, Wikimedia Commons · CC BY-SA 4.0",
+  "cred_plain": "Titovamv, Wikimedia Commons · CC BY-SA 4.0"
+ },
+ "t07-tobacco-sphere": {
+  "src": "t07-tobacco-sphere.webp",
+  "w": 768,
+  "h": 640,
+  "caption": "Протопласт із мезофілу листка тютюну (<i>Nicotiana tabacum</i> L.) після обробки целюлазою й пектиназою: без жорсткої стінки клітина набуває форми кулі; по периферії — хлоропласти, у центрі — вакуоля (диференціально-інтерференційний контраст — метод мікроскопії, що підкреслює рельєф).",
+  "alt": "Сферичний зелений протопласт тютюну серед уламків тканини",
+  "cred_html": "<a href=\"https://commons.wikimedia.org/wiki/File:The_perfect_sphere.jpg\" target=\"_blank\" rel=\"noopener\">Massimo Vischi</a>, Wikimedia Commons · CC BY 4.0",
+  "cred_plain": "Massimo Vischi, Wikimedia Commons · CC BY 4.0"
+ },
+ "t07-isolated": {
+  "src": "t07-isolated.webp",
+  "w": 1100,
+  "h": 664,
+  "caption": "Суспензія ізольованих протопластів мезофілу: зелені кулі різного розміру з хлоропластами; безбарвні — протопласти з клітин без хлоропластів (епідермісу, судин).",
+  "alt": "Багато круглих протопластів із зеленими хлоропластами у світлому полі",
+  "cred_html": "<a href=\"https://commons.wikimedia.org/wiki/File:Plant_protoplasts.jpg\" target=\"_blank\" rel=\"noopener\">Carin Jarl</a>, Wikimedia Commons · CC BY-SA 4.0",
+  "cred_plain": "Carin Jarl, Wikimedia Commons · CC BY-SA 4.0"
+ },
+ "t07-division": {
+  "src": "t07-division.webp",
+  "w": 1100,
+  "h": 685,
+  "caption": "Перший поділ клітини, що виникла з протопласта після регенерації клітинної стінки: дві дочірні клітини ще разом — початок мікроколонії.",
+  "alt": "Дві щойно поділені рослинні клітини під мікроскопом",
+  "cred_html": "<a href=\"https://commons.wikimedia.org/wiki/File:Plant_cell_division.jpg\" target=\"_blank\" rel=\"noopener\">Carin Jarl</a>, Wikimedia Commons · CC BY-SA 4.0",
+  "cred_plain": "Carin Jarl, Wikimedia Commons · CC BY-SA 4.0"
+ },
+ "t08-shoot-tip-virus": {
+  "src": "t08-shoot-tip-virus.webp",
+  "w": 640,
+  "h": 240,
+  "caption": "Розмір верхівки пагона, регенерація і безвірусність: у куполі апікальної меристеми (AD, apical dome) і наймолодших листкових зачатках (LP, leaf primordium — примордій) клітини здорові (зелені), нижче вірусу більше (червоні). Чим менший експлантат, тим частіше він безвірусний, але тим гірше регенерує пагін.",
+  "alt": "Схема верхівки пагона з куполом меристеми, примордіями і зоною, ураженою вірусом, між трикутниками «регенерація» і «безвірусність»",
+  "cred_html": "Wang et al. (2018), Fig. 2, <i>Plant Methods</i> <a href=\"https://doi.org/10.1186/s13007-018-0355-y\" target=\"_blank\" rel=\"noopener\">doi:10.1186/s13007-018-0355-y</a> · CC BY",
+  "cred_plain": "Wang et al. (2018), Fig. 2, Plant Methods, doi:10.1186/s13007-018-0355-y · CC BY"
+ },
+ "t08-grape-shoot-tip-ihc": {
+  "src": "t08-grape-shoot-tip-ihc.webp",
+  "w": 800,
+  "h": 357,
+  "caption": "Поздовжній і поперечний зрізи верхівок пагона винограду (<i>Vitis vinifera</i> L.) після імуногістохімічного фарбування (виявлення вірусного білка антитілами): фіолетові клітини (червоні стрілки) містять вірус скручування листя GLRaV-3, у куполі меристеми (AD) і примордіях (LP) його немає (A, B); C — безвірусна верхівка.",
+  "alt": "Мікрофото зрізів верхівки пагона винограду з позначеними куполом меристеми і листковими примордіями",
+  "cred_html": "Bettoni et al. (2021), Figure 3, <i>Plants (Basel)</i> <a href=\"https://doi.org/10.3390/plants10102190\" target=\"_blank\" rel=\"noopener\">doi:10.3390/plants10102190</a> · CC BY",
+  "cred_plain": "Bettoni et al. (2021), Figure 3, Plants (Basel), doi:10.3390/plants10102190 · CC BY"
+ },
+ "t08-crassula-apex": {
+  "src": "t08-crassula-apex.webp",
+  "w": 1100,
+  "h": 476,
+  "caption": "Верхівка пагона товстянки (<i>Crassula ovata</i> (Mill.) Druce): між молодими листками видно конус наростання з листковими зачатками (ліворуч) і пару нових листків, що з них розвинулися (праворуч). Саме цю ділянку вичленяють під бінокулярною лупою.",
+  "alt": "Верхівка пагона товстянки з апікальною меристемою до і після розвитку листків",
+  "cred_html": "<a href=\"https://commons.wikimedia.org/wiki/File:Apical_Meristems_in_Crassula_ovata.png\" target=\"_blank\" rel=\"noopener\">Daniel,levine</a>, Wikimedia Commons · CC BY-SA 3.0",
+  "cred_plain": "Daniel,levine, Wikimedia Commons · CC BY-SA 3.0"
+ },
+ "t08-laminar-work": {
+  "src": "t08-laminar-work.webp",
+  "w": 1100,
+  "h": 825,
+  "caption": "Робота в ламінар-боксі (шафі зі стерильним потоком повітря через HEPA-фільтр — високоефективний фільтр твердих частинок): біля спиртівки інструменти обпалюють, а експлантати пересаджують на свіже середовище.",
+  "alt": "Лаборантка в захисному одязі пересаджує рослини в ламінар-боксі біля спиртівки",
+  "cred_html": "<a href=\"https://commons.wikimedia.org/wiki/File:The_process_of_plant_micropropagation.jpg\" target=\"_blank\" rel=\"noopener\">Viktor Husak</a>, Wikimedia Commons · CC0",
+  "cred_plain": "Viktor Husak, Wikimedia Commons · CC0"
+ },
+ "t08-flasks-plantlets": {
+  "src": "t08-flasks-plantlets.webp",
+  "w": 1100,
+  "h": 716,
+  "caption": "Колби Ерленмейєра з агаризованим живильним середовищем і мікропагонами під фольгою на полиці світлової кімнати — етап власне мікророзмноження.",
+  "alt": "Ряд колб Ерленмейєра з рослинками на живильному середовищі",
+  "cred_html": "<a href=\"https://commons.wikimedia.org/wiki/File:Plant_tissue_culture_sample.jpg\" target=\"_blank\" rel=\"noopener\">Syed Sajidul Islam</a>, Wikimedia Commons · CC BY-SA 4.0",
+  "cred_plain": "Syed Sajidul Islam, Wikimedia Commons · CC BY-SA 4.0"
+ },
+ "t08-potato-collection": {
+  "src": "t08-potato-collection.webp",
+  "w": 1100,
+  "h": 825,
+  "caption": "Колекція сортів картоплі (<i>Solanum tuberosum</i> L.) <i>in vitro</i>: пробірки з рослинами-регенерантами на стелажах світлової кімнати. Так безвірусний матеріал зберігають і розмножують мікроживцюванням.",
+  "alt": "Пробірки з рослинами картоплі в контейнерах на освітлених стелажах",
+  "cred_html": "<a href=\"https://commons.wikimedia.org/wiki/File:In_vitro_Potato_collection_-_VIR_Department_of_Biotechnology_-_Pushkin,_Saint_Petersburg,_Russia_-_(1).jpg\" target=\"_blank\" rel=\"noopener\">Luigi Guarino from Rome, Italy</a>, Wikimedia Commons · CC BY 2.0",
+  "cred_plain": "Luigi Guarino from Rome, Italy, Wikimedia Commons · CC BY 2.0"
+ },
+ "t08-potato-microtubers-vir": {
+  "src": "t08-potato-microtubers-vir.webp",
+  "w": 794,
+  "h": 960,
+  "caption": "Пробірка з рослиною картоплі на середовищі з високим вмістом сахарози: на столонах (підземних пагонах) формуються мікробульби — дрібні бульби <i>in vitro</i>, безвірусний насіннєвий матеріал.",
+  "alt": "Рука тримає пробірку з рослиною картоплі, столонами й коренями",
+  "cred_html": "<a href=\"https://commons.wikimedia.org/wiki/File:In_vitro_Potato_micro-tubers_-_VIR_Department_of_Biotechnology_-_Pushkin,_Saint_Petersburg,_Russia.jpg\" target=\"_blank\" rel=\"noopener\">Luigi Guarino from Rome, Italy</a>, Wikimedia Commons · CC BY 2.0",
+  "cred_plain": "Luigi Guarino from Rome, Italy, Wikimedia Commons · CC BY 2.0"
+ },
+ "t08-banana-hardening": {
+  "src": "t08-banana-hardening.webp",
+  "w": 1100,
+  "h": 685,
+  "caption": "Рослини банана (<i>Musa</i> sp.) після перенесення з пробірок у субстрат: етап адаптації <i>ex vitro</i> (поза пробіркою), або загартування, коли листки вчаться регулювати продихи, а корені — поглинати воду з ґрунту.",
+  "alt": "Густі молоді рослини банана в субстраті після пересаджування з культури in vitro",
+  "cred_html": "<a href=\"https://commons.wikimedia.org/wiki/File:Banana_plantlets_transferred_to_soil_(with_vermicompost)_from_plant_media.jpg\" target=\"_blank\" rel=\"noopener\">Joydeep</a>, Wikimedia Commons · CC BY-SA 3.0",
+  "cred_plain": "Joydeep, Wikimedia Commons · CC BY-SA 3.0"
+ },
+ "t09-cytokinin-structures": {
+  "src": "t09-cytokinin-structures.webp",
+  "w": 960,
+  "h": 307,
+  "caption": "Структурні формули трьох цитокінінів (фітогормонів, що стимулюють поділ клітин): природного зеатину, синтетичного кінетину (6-фурфуриламінопурину) та N<sup>6</sup>-ізопентеніладеніну. Усі вони — похідні аденіну з бічним ланцюгом при атомі азоту N<sup>6</sup>, тому й діють на ті самі рецептори.",
+  "alt": "Структурні формули зеатину, кінетину та ізопентеніладеніну",
+  "cred_html": "<a href=\"https://commons.wikimedia.org/wiki/File:Chemical_structures_of_zeatin,_kinetin_and_N6-isopentenyladenine.tiff\" target=\"_blank\" rel=\"noopener\">LastRun123</a>, Wikimedia Commons · CC BY-SA 4.0",
+  "cred_plain": "LastRun123, Wikimedia Commons · CC BY-SA 4.0"
+ },
+ "t09-topinambur-tubers": {
+  "src": "t09-topinambur-tubers.webp",
+  "w": 1100,
+  "h": 1019,
+  "caption": "Бульби топінамбура (<i>Helianthus tuberosus</i> L.) та їхні поперечні зрізи. Біла запасна паренхіма (тканина з однорідних тонкостінних клітин) бульби — джерело експлантатів (шматочків тканини для культури <i>in vitro</i>) для ауксинового біотесту.",
+  "alt": "Рожеві бульби топінамбура та білі зрізи на чорному тлі",
+  "cred_html": "<a href=\"https://commons.wikimedia.org/wiki/File:Helianthus_tuberosus-fond_noir.jpg\" target=\"_blank\" rel=\"noopener\">BastienM</a>, Wikimedia Commons · CC BY-SA 3.0",
+  "cred_plain": "BastienM, Wikimedia Commons · CC BY-SA 3.0"
+ },
+ "t09-topinambur-section": {
+  "src": "t09-topinambur-section.webp",
+  "w": 1100,
+  "h": 667,
+  "caption": "Поперечний і поздовжній зрізи бульби топінамбура. Однорідна паренхіма без власного запасу активних ауксинів ділиться лише тоді, коли ауксин (гормон, що індукує поділ і розтягнення клітин) додано в середовище, — на цьому й ґрунтується тест-система ЛР 36.",
+  "alt": "Зрізи бульби топінамбура з білою паренхімою",
+  "cred_html": "<a href=\"https://commons.wikimedia.org/wiki/File:Helianthus_tuberosus_15-p.bot-helian.tuber-38.jpg\" target=\"_blank\" rel=\"noopener\">Ayotte, Gilles, 1948-</a>, Wikimedia Commons · CC BY-SA 4.0",
+  "cred_plain": "Ayotte, Gilles, 1948-, Wikimedia Commons · CC BY-SA 4.0"
+ },
+ "t09-stevia": {
+  "src": "t09-stevia.webp",
+  "w": 900,
+  "h": 970,
+  "caption": "Стевія (<i>Stevia rebaudiana</i> Bertoni) — один з об'єктів ЛР 37. Її мікроживці (одновузлові відрізки пагона рослини-регенеранта) розмножують <i>in vitro</i> на середовищах з різними регуляторами росту.",
+  "alt": "Пагони стевії з супротивними листками",
+  "cred_html": "<a href=\"https://commons.wikimedia.org/wiki/File:Stevia_rebaudiana_foliage.jpg\" target=\"_blank\" rel=\"noopener\">Ethel Aardvark</a>, Wikimedia Commons · CC BY 3.0",
+  "cred_plain": "Ethel Aardvark, Wikimedia Commons · CC BY 3.0"
+ },
+ "t10-rapeseed-buds": {
+  "src": "t10-rapeseed-buds.webp",
+  "w": 1100,
+  "h": 737,
+  "caption": "Суцвіття ріпаку (<i>Brassica napus</i> L.): розкрита квітка і китиця зелених бутонів різного розміру. Для андрогенезу (розвитку рослини з чоловічого гаметофіту) відбирають закриті бутони, пиляки яких містять переважно одноядерні мікроспори.",
+  "alt": "Жовта квітка ріпаку і група зелених бутонів",
+  "cred_html": "<a href=\"https://commons.wikimedia.org/wiki/File:(MHNT)_Brassica_napus_-_Flower.jpg\" target=\"_blank\" rel=\"noopener\">Didier Descouens</a>, Wikimedia Commons · CC BY-SA 4.0",
+  "cred_plain": "Didier Descouens, Wikimedia Commons · CC BY-SA 4.0"
+ },
+ "t10-tetrads": {
+  "src": "t10-tetrads.webp",
+  "w": 1100,
+  "h": 550,
+  "caption": "Тетради мікроспор (четвірки гаплоїдних клітин, що утворилися з материнської клітини пилку внаслідок мейозу — редукційного поділу) ще в спільній калозній оболонці. Ядра забарвлені в червонуватий колір. Ця стадія для культури пиляків ще зарана.",
+  "alt": "Тетради мікроспор під мікроскопом з червонуватими ядрами",
+  "cred_html": "<a href=\"https://commons.wikimedia.org/wiki/File:Tetrad_footprints.jpg\" target=\"_blank\" rel=\"noopener\">Massimo Vischi</a>, Wikimedia Commons · CC BY 4.0",
+  "cred_plain": "Massimo Vischi, Wikimedia Commons · CC BY 4.0"
+ },
+ "t10-young-pollen": {
+  "src": "t10-young-pollen.webp",
+  "w": 900,
+  "h": 900,
+  "caption": "Молоді пилкові зерна гібіскуса (<i>Hibiscus schizopetalus</i>) невдовзі після звільнення мікроспор із тетрад: з'являється екзина (зовнішня шипувата оболонка пилку).",
+  "alt": "Округлі жовті молоді пилкові зерна під мікроскопом",
+  "cred_html": "<a href=\"https://commons.wikimedia.org/wiki/File:Pollen_Cell_of_Hibiscus_schizopetalus.png\" target=\"_blank\" rel=\"noopener\">Strellagium</a>, Wikimedia Commons · CC BY 4.0",
+  "cred_plain": "Strellagium, Wikimedia Commons · CC BY 4.0"
+ },
+ "t10-culture-flasks": {
+  "src": "t10-culture-flasks.webp",
+  "w": 1100,
+  "h": 716,
+  "caption": "Рослини-регенеранти в колбах на агаризованому живильному середовищі в культуральній кімнаті. Так дорощують і регенеранти, отримані з пиляків, насіннєвих зачатків або ізольованих зародків.",
+  "alt": "Ряд колб із зеленими рослинками на живильному середовищі",
+  "cred_html": "<a href=\"https://commons.wikimedia.org/wiki/File:Plant_tissue_culture_sample.jpg\" target=\"_blank\" rel=\"noopener\">Syed Sajidul Islam</a>, Wikimedia Commons · CC BY-SA 4.0",
+  "cred_plain": "Syed Sajidul Islam, Wikimedia Commons · CC BY-SA 4.0"
+ },
+ "t10-embryo-culture": {
+  "src": "t10-embryo-culture.webp",
+  "w": 1100,
+  "h": 271,
+  "caption": "Незрілий зиготичний зародок (зародок, що розвинувся з заплідненої яйцеклітини) <i>Arabidopsis thaliana</i>, ізольований на 12-ту добу після запилення, на живильному середовищі з ауксином: 0, 5, 10 і 21 доба культури. Зародок випрямляється, сім'ядолі збільшуються, а згодом утворюються соматичні зародки й калюс (Gliwicka et al., 2013).",
+  "alt": "Чотири стадії росту ізольованого зародка арабідопсису на середовищі",
+  "cred_html": "Gliwicka et al. (2013), Figure 1, <i>PLoS One</i> <a href=\"https://doi.org/10.1371/journal.pone.0069261\" target=\"_blank\" rel=\"noopener\">doi:10.1371/journal.pone.0069261</a> · CC BY",
+  "cred_plain": "Gliwicka et al. (2013), Figure 1, PLoS One, doi:10.1371/journal.pone.0069261 · CC BY"
+ },
+ "t11-crown-gall-forsythia": {
+  "src": "t11-crown-gall-forsythia.webp",
+  "w": 1100,
+  "h": 825,
+  "caption": "Корончастий гал (пухлина, спричинена ґрунтовою бактерією <i>Agrobacterium tumefaciens</i>) на здерев'янілому пагоні форзиції. Клітини гала несуть у хромосомах вбудовану Т-ДНК (англ. <i>transferred DNA</i> — ділянка Ті-плазміди, що переноситься) і діляться неконтрольовано, бо самі синтезують ауксини й цитокініни — фітогормони росту.",
+  "alt": "Горбкувата бура пухлина — корончастий гал — на гілці форзиції",
+  "cred_html": "<a href=\"https://commons.wikimedia.org/wiki/File:Agrobacterium_tumefaciens_-_Agalla_de_la_corona_(6896084714).jpg\" target=\"_blank\" rel=\"noopener\">jacilluch</a>, Wikimedia Commons · CC BY-SA 2.0",
+  "cred_plain": "jacilluch, Wikimedia Commons · CC BY-SA 2.0"
+ },
+ "t11-crown-gall-crape": {
+  "src": "t11-crown-gall-crape.webp",
+  "w": 1000,
+  "h": 933,
+  "caption": "Корончастий гал біля основи стовбура лагерстремії: типова локалізація — місце поранення кори, куди проникають агробактерії. Сама бактерія в клітину не входить, а лишається в міжклітинному просторі й «живиться» опінами (похідними амінокислот, які синтезує трансформована клітина).",
+  "alt": "Велика бура пухлина на стовбурі деревної рослини",
+  "cred_html": "<a href=\"https://commons.wikimedia.org/wiki/File:Crape_myrtle_(Lagerstroemia_sp.)_Crown_gall_disease_(49772271993).jpg\" target=\"_blank\" rel=\"noopener\">Scot Nelson</a>, Wikimedia Commons · CC0",
+  "cred_plain": "Scot Nelson, Wikimedia Commons · CC0"
+ },
+ "t11-ecoli-colonies": {
+  "src": "t11-ecoli-colonies.webp",
+  "w": 1000,
+  "h": 750,
+  "caption": "Колонії <i>Escherichia coli</i> на агаризованому середовищі. Саме з окремої колонії (нащадків однієї клітини, отже — одного клону) засівають нічну культуру для ампліфікації (збільшення числа копій) плазміди у лабораторних роботах 46–47.",
+  "alt": "Чашка Петрі з дрібними білуватими колоніями кишкової палички",
+  "cred_html": "<a href=\"https://commons.wikimedia.org/wiki/File:Colonies_of_Escherichia_coli_on_agar_plate.jpg\" target=\"_blank\" rel=\"noopener\">Gaurav</a>, Wikimedia Commons · CC BY 4.0",
+  "cred_plain": "Gaurav, Wikimedia Commons · CC BY 4.0"
+ },
+ "t11-gel-uv": {
+  "src": "t11-gel-uv.webp",
+  "w": 1000,
+  "h": 1334,
+  "caption": "Агарозний гель у світлі ультрафіолетового (УФ) трансілюмінатора: ДНК видно завдяки бромистому етидію — барвнику, який вбудовується між парами основ і яскраво флуоресціює під УФ. Ліворуч — маркер довжин (суміш фрагментів відомого розміру), праворуч — проби.",
+  "alt": "Світіння смуг ДНК в агарозному гелі під ультрафіолетом",
+  "cred_html": "<a href=\"https://commons.wikimedia.org/wiki/File:Agarose_gel_electrophoresis_in_UV_light.jpg\" target=\"_blank\" rel=\"noopener\">YTEDG72.k</a>, Wikimedia Commons · CC BY 4.0",
+  "cred_plain": "YTEDG72.k, Wikimedia Commons · CC BY 4.0"
+ },
+ "t11-gel-bands": {
+  "src": "t11-gel-bands.webp",
+  "w": 900,
+  "h": 887,
+  "caption": "Електрофореграма, забарвлена бромистим етидієм: чим коротший фрагмент ДНК, тим далі він мігрує від лунки за той самий час. Ліва доріжка — маркер молекулярних мас, решта — зразки плазмідної ДНК.",
+  "alt": "Червоно-оранжеві смуги ДНК у гелі з доріжкою маркера",
+  "cred_html": "<a href=\"https://commons.wikimedia.org/wiki/File:GelDoc_DNA_gel_electrophoresis_photograph_stained_with_ethidium_bromide_05.jpg\" target=\"_blank\" rel=\"noopener\">Sgroey</a>, Wikimedia Commons · CC BY-SA 4.0",
+  "cred_plain": "Sgroey, Wikimedia Commons · CC BY-SA 4.0"
+ },
+ "t11-cuvettes": {
+  "src": "t11-cuvettes.webp",
+  "w": 900,
+  "h": 1200,
+  "caption": "Кварцові кювети з довжиною оптичного шляху 10 мм. Кварц, на відміну від скла, пропускає ультрафіолет, тому саме в таких кюветах вимірюють поглинання нуклеїнових кислот при 260 нм (лабораторна робота 50).",
+  "alt": "Три прозорі кварцові кювети для спектрофотометра",
+  "cred_html": "<a href=\"https://commons.wikimedia.org/wiki/File:Spectrophotometer_cuvettes.JPG\" target=\"_blank\" rel=\"noopener\">Retama</a>, Wikimedia Commons · CC BY-SA 4.0",
+  "cred_plain": "Retama, Wikimedia Commons · CC BY-SA 4.0"
+ },
+ "t11-spectrophotometer": {
+  "src": "t11-spectrophotometer.webp",
+  "w": 1100,
+  "h": 936,
+  "caption": "Спектрофотометр із кюветним відділенням: зразок у кюветі ставлять на шляху монохроматичного (одна довжина хвилі) променя, прилад показує оптичну густину <i>D</i>. Перед вимірюванням прилад «обнуляють» за чистим буфером.",
+  "alt": "Кювета у відкритому кюветному відділенні спектрофотометра й екран приладу",
+  "cred_html": "<a href=\"https://commons.wikimedia.org/wiki/File:Cuvette_in_spectrophotometer_to_obtain_absorbance_value.png\" target=\"_blank\" rel=\"noopener\">KhomchatK</a>, Wikimedia Commons · CC BY-SA 4.0",
+  "cred_plain": "KhomchatK, Wikimedia Commons · CC BY-SA 4.0"
+ },
+ "t12-page-loading": {
+  "src": "t12-page-loading.webp",
+  "w": 1100,
+  "h": 825,
+  "caption": "Внесення зразків у лунки вертикального поліакриламідного гелю (ПААГ): синій барвник у пробах дозволяє бачити, як вони опускаються на дно лунок, а згодом — стежити за фронтом електрофорезу (руху заряджених молекул у гелі під дією електричного поля).",
+  "alt": "Піпетка вносить сині зразки в лунки гелю між скляними пластинами з червоними затискачами",
+  "cred_html": "<a href=\"https://commons.wikimedia.org/wiki/File:Electrophoresis_-_Filling_1D_gel_wells_with_proteins_mixture.jpg\" target=\"_blank\" rel=\"noopener\">Jean-Etienne Poirrier</a>, Wikimedia Commons · CC BY-SA 2.0",
+  "cred_plain": "Jean-Etienne Poirrier, Wikimedia Commons · CC BY-SA 2.0"
+ },
+ "t12-page-apparatus": {
+  "src": "t12-page-apparatus.webp",
+  "w": 1100,
+  "h": 779,
+  "caption": "Камера для вертикального електрофорезу: ліворуч — блок із верхньою буферною камерою й електродами, праворуч — нижній бак із кришкою та дротами до джерела живлення (чорний — катод «−», червоний — анод «+»).",
+  "alt": "Розібрана камера для вертикального електрофорезу з прозорим баком і кабелями живлення",
+  "cred_html": "<a href=\"https://commons.wikimedia.org/wiki/File:Polyacrylamid_gel_electrophoresis_apparatus-02.jpg\" target=\"_blank\" rel=\"noopener\">Lilly_M</a>, Wikimedia Commons · CC BY-SA 3.0",
+  "cred_plain": "Lilly_M, Wikimedia Commons · CC BY-SA 3.0"
+ },
+ "t12-horseradish": {
+  "src": "t12-horseradish.webp",
+  "w": 1000,
+  "h": 666,
+  "caption": "Корені хрону (<i>Armoracia rusticana</i> G. Gaertn., B. Mey. &amp; Scherb.) — класичне джерело пероксидази: саме з них виділяють препарат HRP (від англ. horseradish peroxidase), який використовують як стандарт активності та в імуноферментному аналізі.",
+  "alt": "Товсті світлі корені хрону на ринковому прилавку",
+  "cred_html": "<a href=\"https://commons.wikimedia.org/wiki/File:Gem%C3%BCsestand_am_Viktualienmarkt_M%C3%BCnchen_04.jpg\" target=\"_blank\" rel=\"noopener\">Kritzolina</a>, Wikimedia Commons · CC BY-SA 4.0",
+  "cred_plain": "Kritzolina, Wikimedia Commons · CC BY-SA 4.0"
+ },
+ "t13-genebanks": {
+  "src": "t13-genebanks.webp",
+  "w": 784,
+  "h": 551,
+  "caption": "Три способи зберігати генетичні ресурси рослин: польова колекція (field genebank), колекція <i>in vitro</i> (у пробірках, рослини треба регулярно пасажувати) і кріобанк у рідкому азоті. Кріобанк займає найменше місця, дешевий у тривалому утриманні й зберігає генетичну стабільність понад 100 років, але потребує розроблення протоколу для кожного виду (за Panis et al., 2020).",
+  "alt": "Схема: польова колекція, колекція in vitro і кріобанк з переліком переваг і недоліків",
+  "cred_html": "Panis et al. (2020), Figure 1, <i>Plants (Basel)</i> <a href=\"https://doi.org/10.3390/plants9121634\" target=\"_blank\" rel=\"noopener\">doi:10.3390/plants9121634</a> · CC BY",
+  "cred_plain": "Panis et al. (2020), Figure 1, Plants (Basel), doi:10.3390/plants9121634 · CC BY"
+ },
+ "t13-cryo-tongs": {
+  "src": "t13-cryo-tongs.webp",
+  "w": 864,
+  "h": 752,
+  "caption": "Робота з кріобанком: зразки в ампулах і соломинках (контейнерах для заморожування) переносять щипцями в рідкий азот (−196 °C). Спеціальні кріорукавиці захищають від холодових опіків.",
+  "alt": "Руки в синіх кріорукавицях опускають щипцями тримач із соломинками в посудину з рідким азотом",
+  "cred_html": "<a href=\"https://commons.wikimedia.org/wiki/File:Cryopreservation_USDA_Gene_Bank.jpg\" target=\"_blank\" rel=\"noopener\">USDA Gene Bank</a>, Wikimedia Commons · CC0",
+  "cred_plain": "USDA Gene Bank, Wikimedia Commons · CC0"
+ },
+ "t13-dewar-canes": {
+  "src": "t13-dewar-canes.webp",
+  "w": 1000,
+  "h": 750,
+  "caption": "Посудина Дьюара (сосуд із вакуумною теплоізоляцією між подвійними стінками) з рідким азотом: зразки підвішено на тримачах уздовж стінки, щоб у малому об’ємі вмістити якомога більше. Азот доливають щотижня — для збереження генофонду температура не повинна підніматися вище −140 °C.",
+  "alt": "Відкрита горловина посудини Дьюара з рідким азотом і тримачами зразків",
+  "cred_html": "<a href=\"https://commons.wikimedia.org/wiki/File:Filling_Cryopreservation_Dewar_with_Liquid_Nitrogen_(5544592746).jpg\" target=\"_blank\" rel=\"noopener\">U.S. Fish and Wildlife Service Southeast Region</a>, Wikimedia Commons · Public domain",
+  "cred_plain": "U.S. Fish and Wildlife Service Southeast Region, Wikimedia Commons · Public domain"
+ },
+ "t13-beet-tissue": {
+  "src": "t13-beet-tissue.webp",
+  "w": 1000,
+  "h": 666,
+  "caption": "Розріз коренеплоду буряка (<i>Beta vulgaris</i> L.): червоно-фіолетове забарвлення дає пігмент бетаціанін у вакуолях живих клітин; світлі кільця — провідні пучки. З такої тканини вирізають висічки для ЛР 54: якщо мембрани пошкоджено морозом, пігмент виходить у розчин.",
+  "alt": "Розрізаний коренеплід буряка з концентричними світлими й малиновими кільцями",
+  "cred_html": "<a href=\"https://commons.wikimedia.org/wiki/File:Beetroot_tissue_and_color.jpg\" target=\"_blank\" rel=\"noopener\">Tris_T7</a>, Wikimedia Commons · CC BY-SA 3.0",
+  "cred_plain": "Tris_T7, Wikimedia Commons · CC BY-SA 3.0"
+ }
+}
