@@ -160,3 +160,21 @@ mark.ag-hit.is-cur { background: #FFB547; box-shadow: 0 0 0 2px #FFB547; }
   .ag-toc__list { max-height: calc(100dvh - var(--header-h) - 150px); overflow-y: auto; overscroll-behavior: contain; scrollbar-width: thin; scrollbar-color: var(--line) transparent; padding-right: 6px; }
   .ag-toc .ag-search__out { max-height: calc(100dvh - var(--header-h) - 200px); }
 }
+
+/* ---------- Пов'язані матеріали (перехресні посилання на повторюваний матеріал) ---------- */
+.ag-see { margin: 16px 0 24px; padding: 12px 14px 10px; border-radius: 14px; background: linear-gradient(180deg, var(--disc-2, #E7F3EC), rgba(231, 243, 236, .35)); border: 1px solid rgba(46, 125, 91, .22); }
+.ag-see__h { margin: 0 0 8px; font-size: .74rem; font-weight: 700; letter-spacing: .06em; text-transform: uppercase; color: var(--disc, #2E7D5B); }
+.prose .ag-see ul, .ag-see ul { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)); gap: 6px; }
+.prose .ag-see li, .ag-see li { margin: 0; padding: 0; }
+.prose .ag-see li::before, .ag-see li::before { content: none; display: none; }
+.ag-see a, .ag-see__a { display: flex; gap: 10px; align-items: flex-start; height: 100%; padding: 8px 10px; border-radius: 10px; background: var(--white, #fff); border: 1px solid var(--line); color: var(--ink); text-decoration: none; font-size: .88rem; line-height: 1.35; transition: border-color .15s, box-shadow .15s, transform .15s; }
+.ag-see a:hover, .ag-see a:focus-visible { border-color: var(--disc, #2E7D5B); box-shadow: var(--shadow-sm); transform: translateY(-1px); }
+.ag-see__k { flex: none; margin-top: 1px; padding: 2px 7px; border-radius: 999px; font-size: .7rem; font-weight: 700; white-space: nowrap; background: var(--disc, #2E7D5B); color: #fff; }
+.ag-see__k--model { background: #2F5E9E; }
+.ag-see__k--konspekt { background: #8A5A12; }
+.ag-see__t { display: flex; flex-direction: column; gap: 1px; min-width: 0; }
+.ag-see__t small { font-size: .74rem; color: var(--muted); }
+.ag-see .is-soon .ag-see__a { opacity: .62; background: transparent; border-style: dashed; }
+.ag-see .is-soon em { margin-left: auto; flex: none; font-style: normal; font-size: .7rem; color: var(--muted); }
+.ag-see .is-soon .ag-see__k { background: var(--muted); }
+.ag-soonlink { border-bottom: 1px dotted var(--muted); cursor: help; }

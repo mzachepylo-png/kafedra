@@ -12,6 +12,9 @@
   {{photos:id1,id2,...}}  або  {{photos:id1,id2|cp-gal--2}} — галерея фото (з лайтбоксом і підписами)
   {{photo:id}}             — одне фото на всю ширину
   id з посібника пишуться як book:<id>.
+  {{see:t09#balance,@m-hormones}} — блок «Пов'язані матеріали»: tN#якір — підрозділ іншої теми (назва береться з h3),
+                           @ключ — сторінка сайту з xrefs.json. Неопубліковані теми на опублікованих сторінках
+                           показуються як «готується» без посилання.
 """
 import html
 import json
@@ -30,6 +33,7 @@ book = json.load(open(os.path.join(SRC, "book_photos.json"), encoding="utf-8"))
 photos = json.load(open(os.path.join(SRC, "photos.json"), encoding="utf-8")) if os.path.exists(os.path.join(SRC, "photos.json")) else {}
 authors = json.load(open(os.path.join(SRC, "authors.json"), encoding="utf-8")) if os.path.exists(os.path.join(SRC, "authors.json")) else []
 
+XREFS = json.load(open(os.path.join(SRC, "xrefs.json"), encoding="utf-8")) if os.path.exists(os.path.join(SRC, "xrefs.json")) else {}
 PUBLISHED = set(json.load(open(os.path.join(SRC, "published.json")))) if os.path.exists(os.path.join(SRC, "published.json")) else set()
 tpl = open(TEMPLATE, encoding="utf-8").read()
 HEAD_END = tpl.index("</head>")
@@ -84,6 +88,69 @@ def expand(body, pre):
     return body
 
 
+_H3 = {}
+
+
+def topic_h3(n):
+    """{якір: назва} підрозділів теми n (h3 з id і секції h2)."""
+    if n not in _H3:
+        d = {}
+        p = os.path.join(SRC, f"t{n:02d}.html")
+        if os.path.exists(p):
+            src = open(p, encoding="utf-8").read()
+            for m in re.finditer(r'<section class="lab-section[^"]*" id="([^"]+)">\s*<h2>(.*?)</h2>', src, re.S):
+                d[m.group(1)] = plain(m.group(2)).strip()
+            for m in re.finditer(r'<h3 id="([^"]+)"[^>]*>(.*?)</h3>', src, re.S):
+                d[m.group(1)] = re.sub(r"\s+", " ", plain(m.group(2))).strip()
+        _H3[n] = d
+    return _H3[n]
+
+
+def see_block(spec, cur_n, pre):
+    """Блок перехресних посилань на повторюваний матеріал."""
+    by_n = {t["n"]: t for t in topics}
+    items = []
+    for key in [k.strip() for k in spec.split(",") if k.strip()]:
+        if key.startswith("@"):
+            x = XREFS[key[1:]]
+            items.append(f'<li><a href="{pre}{x["url"]}"><span class="ag-see__k ag-see__k--{x["kind_cls"]}">{x["kind"]}</span>'
+                         f'<span class="ag-see__t">{x["title"]}</span></a></li>')
+            continue
+        m = re.match(r"t(\d+)(?:#(.+))?$", key)
+        n, anchor = int(m.group(1)), m.group(2) or ""
+        t = by_n[n]
+        title = topic_h3(n).get(anchor) if anchor else None
+        if anchor and title is None:
+            raise SystemExit(f"see: немає якоря {key}")
+        label = title or plain(t["title"])
+        if anchor == "model":
+            label = "Інтерактивна модель: " + plain(t["title"])
+        sub = "" if not title or anchor == "model" else f'<small>{plain(t["title"])}</small>'
+        badge = f'<span class="ag-see__k">Тема {n}</span>'
+        if cur_n in PUBLISHED and n not in PUBLISHED:
+            items.append(f'<li class="is-soon"><span class="ag-see__a">{badge}<span class="ag-see__t">{label}{sub}</span>'
+                         f'<em>готується</em></span></li>')
+        else:
+            href = f'../{t["slug"]}/' + (f"#{anchor}" if anchor else "")
+            items.append(f'<li><a href="{href}">{badge}<span class="ag-see__t">{label}{sub}</span></a></li>')
+    return ('<aside class="ag-see" aria-label="Пов\'язані матеріали"><p class="ag-see__h">Пов\'язані матеріали</p>'
+            f'<ul>{"".join(items)}</ul></aside>')
+
+
+def unlink_unpublished(raw, cur_n):
+    """На опублікованій сторінці посилання на неопубліковані теми → текст без посилання."""
+    if cur_n not in PUBLISHED:
+        return raw
+    hidden = {t["slug"] for t in topics if t["n"] not in PUBLISHED}
+
+    def rep(m):
+        slug = m.group(2)
+        if slug not in hidden:
+            return m.group(0)
+        return f'<span class="ag-soonlink" title="Тема готується">{m.group(3)}</span>'
+    return re.sub(r'<a href="\.\./(([a-z0-9-]+))/[^"]*"[^>]*>(.*?)</a>', rep, raw, flags=re.S)
+
+
 def head(title, desc, pre, css_extra=(), noindex=False):
     css = "".join(f'\n  <link rel="stylesheet" href="{pre}assets/css/{c}">' for c in ("style.css", "lab.css", "agro.css") + tuple(css_extra))
     return (f'<!doctype html>\n<html lang="uk" class="no-js">\n<head>\n  {GA.strip()}\n  <title>{esc(title)}</title>\n'
@@ -132,6 +199,7 @@ def short(s, n=46):
 
 def text_of(h):
     h = re.sub(r"<(script|style|svg|canvas)[^>]*>.*?</\1>", " ", h, flags=re.S)
+    h = re.sub(r'<aside class="ag-see".*?</aside>', " ", h, flags=re.S)
     h = re.sub(r"<math[^>]*>.*?</math>", " (формула) ", h, flags=re.S)
     h = re.sub(r"<[^>]+>", " ", h)
     return re.sub(r"\s+", " ", html.unescape(h)).strip()
@@ -159,6 +227,8 @@ def build_topic(i, t):
         raw = raw[m.end():]
     pre = "../../../"
     raw = expand(raw, pre)
+    raw = re.sub(r"\{\{see:([^}]+)\}\}", lambda mm: see_block(mm.group(1), n, pre), raw)
+    raw = unlink_unpublished(raw, n)
     # нумерація h2 і зміст
     toc, k = [], 0
 

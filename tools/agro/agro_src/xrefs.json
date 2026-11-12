@@ -1,0 +1,92 @@
+{
+ "m-hormones": {
+  "url": "lab/plant-physiology/#hormones",
+  "kind": "Модель",
+  "kind_cls": "model",
+  "title": "Вплив фітогормонів: корінь, пагін чи калус (правило Скуга — Міллера)"
+ },
+ "k-auxin": {
+  "url": "konspekt/plant-physiology/regulation/#auxins",
+  "kind": "Конспект",
+  "kind_cls": "konspekt",
+  "title": "Фітогормони. Ауксини"
+ },
+ "k-ck": {
+  "url": "konspekt/plant-physiology/regulation/#ck-ga",
+  "kind": "Конспект",
+  "kind_cls": "konspekt",
+  "title": "Цитокініни й гібереліни"
+ },
+ "k-aba": {
+  "url": "konspekt/plant-physiology/regulation/#aba-eth",
+  "kind": "Конспект",
+  "kind_cls": "konspekt",
+  "title": "Абсцизова кислота й етилен"
+ },
+ "k-inter": {
+  "url": "konspekt/plant-physiology/regulation/#interaction",
+  "kind": "Конспект",
+  "kind_cls": "konspekt",
+  "title": "Взаємодія гормонів і практичне застосування"
+ },
+ "k-curve": {
+  "url": "konspekt/plant-physiology/growth-development/#curve-sec",
+  "kind": "Конспект",
+  "kind_cls": "konspekt",
+  "title": "Вимірювання росту й крива росту"
+ },
+ "k-cell": {
+  "url": "konspekt/plant-cell/",
+  "kind": "Конспект",
+  "kind_cls": "konspekt",
+  "title": "Рослинна клітина: стінка, вакуоля, пластиди"
+ },
+ "k-enz": {
+  "url": "konspekt/enzymes/#kinetics",
+  "kind": "Конспект",
+  "kind_cls": "konspekt",
+  "title": "Ферменти: кінетика та інгібування"
+ },
+ "k-oxid": {
+  "url": "konspekt/plant-physiology/oxidative-stress/#defense",
+  "kind": "Конспект",
+  "kind_cls": "konspekt",
+  "title": "Антиоксидантна захисна система"
+ },
+ "k-frost": {
+  "url": "konspekt/stress-resistance/#frost",
+  "kind": "Конспект",
+  "kind_cls": "konspekt",
+  "title": "Морозостійкість рослин"
+ },
+ "k-molgen": {
+  "url": "konspekt/plant-molecular-genetics/",
+  "kind": "Конспект",
+  "kind_cls": "konspekt",
+  "title": "Молекулярна генетика рослин"
+ },
+ "m-enzkin": {
+  "url": "lab/biochemistry/enzyme-kinetics/",
+  "kind": "Модель",
+  "kind_cls": "model",
+  "title": "ЛР 1 з біохімії: кінетика ферментативних реакцій"
+ },
+ "m-tph": {
+  "url": "lab/biochemistry/temperature-ph/",
+  "kind": "Модель",
+  "kind_cls": "model",
+  "title": "ЛР 2 з біохімії: вплив температури і pH на ферменти"
+ },
+ "m-gel": {
+  "url": "lab/instrumental/blotting/#gel-sim",
+  "kind": "Модель",
+  "kind_cls": "model",
+  "title": "Модель гель-електрофорезу (розділ «Блоттинг»)"
+ },
+ "m-bradford": {
+  "url": "lab/biochemistry/protein-bradford/",
+  "kind": "Модель",
+  "kind_cls": "model",
+  "title": "Спектрофотометрія і калібрувальна крива (білок за Бредфорд)"
+ }
+}

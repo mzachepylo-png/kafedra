@@ -54,7 +54,7 @@ function clearMarks() {
 function visible(node) {
   const el = node.parentElement;
   if (!el) return false;
-  if (el.closest('script,style,noscript,canvas,svg,.toc,.ag-search,[hidden],button,select,option,textarea,input')) return false;
+  if (el.closest('script,style,noscript,canvas,svg,.toc,.ag-search,.ag-see,[hidden],button,select,option,textarea,input')) return false;
   return true;
 }
 function markPage(q) {
