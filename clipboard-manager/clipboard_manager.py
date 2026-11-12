@@ -99,6 +99,8 @@ LEFT_FRAC, RIGHT_FRAC = 0.18, 0.22   # частка ширини вікна
 ROW_H = 54                     # висота рядка категорії (великі, повністю залиті кольором, як картки)
 LOG_LIMIT = 200_000            # app.log / error.log: при перевищенні старий файл відкладається в *.1
 CHECK_SIZE = 48                # галочка вибору запису в історії (у 2 рази більша за звичайну)
+# біт Alt у event.state: на Windows — 0x20000 (0x8 там означає увімкнений NumLock!), на Linux/X11 — 0x8
+ALT_MASK = 0x20000 if os.name == "nt" else 0x8
 CAT_SCROLL_FACTOR = 2          # у скільки разів швидша прокрутка колесом у списку папок
 ZONE_W = 150                   # права «службова» зона картки (галочка, «⋯», «✕»): клік там нічого не копіює
 CARD_RESERVE_FOLDER = 195       # те саме для записів папок (службова зона без галочки)
@@ -2114,16 +2116,20 @@ class App:
         self.banner.grid(row=0, column=0, sticky="ew")
         self.banner.grid_propagate(False)
         self.banner.grid_rowconfigure(0, weight=1)
-        self.banner.grid_columnconfigure(2, weight=1)
+        self.banner.grid_columnconfigure(1, weight=1)
         self.banner_bar = tk.Frame(self.banner, width=6, height=8)
         self.banner_bar.grid(row=0, column=0, sticky="ns", padx=(10, 0), pady=8)
-        self.title_lbl = tk.Label(self.banner, text="", font=self.pf.title, anchor="w")
-        self.title_lbl.grid(row=0, column=1, sticky="w", padx=(12, 0))
-        self.count_lbl = tk.Label(self.banner, text="", font=self.pf.body, anchor="w")
-        self.count_lbl.grid(row=0, column=2, sticky="w", padx=(10, 0), pady=(3, 0))
+        # назва папки + кількість — точно посередині банера (place поверх сітки)
+        self.banner_mid = tk.Frame(self.banner, bd=0, highlightthickness=0)
+        self.banner_mid.place(relx=0.5, rely=0.5, anchor="center")
+        self.title_lbl = tk.Label(self.banner_mid, text="", font=self.pf.title)
+        self.title_lbl.pack(side="left")
+        self.count_lbl = tk.Label(self.banner_mid, text="", font=self.pf.body)
+        self.count_lbl.pack(side="left", padx=(10, 0), pady=(3, 0))
         self.keys_lbl = tk.Label(self.banner, text="Alt+W/A/S/D — навігація · Space — відкрити / копіювати · "
                                                    "Alt+Space — копіювати й сховати", font=self.pf.small, anchor="e")
-        self.keys_lbl.grid(row=0, column=3, sticky="e", padx=(10, 14))
+        self.keys_lbl.grid(row=0, column=2, sticky="e", padx=(10, 14))
+        self.banner.bind("<Configure>", lambda e: self._fit_banner(), add="+")
         self.add_btn = ctk.CTkButton(top, text="＋  Додати", height=42, width=120, corner_radius=14,
                                      fg_color=ACCENT, hover_color=ACCENT_HOVER, font=self.f.bold,
                                      command=self.on_add)
@@ -2160,6 +2166,7 @@ class App:
         # або скопіювати запис, Alt+Space — скопіювати й сховати вікно. Працює і з українською/російською розкладкою.
         root.bind("<Alt-KeyPress>", self._on_alt_key)
         root.bind("<KeyPress-space>", self._on_space)
+        root.bind_all("<ButtonPress-1>", self._nav_focus, add="+")
         root.bind("<Escape>", self._on_escape)
         root.bind("<Delete>", self._on_delete_key)
         root.bind("<Control-n>", lambda e: self.on_add())
@@ -3241,8 +3248,27 @@ class App:
         bg = self.col(sel)
         self.banner.configure(fg_color=sel, border_color=border)
         self.banner_bar.configure(bg=self.col(color or NEUTRAL))
+        self.banner_mid.configure(bg=bg)
         for w, fg in ((self.title_lbl, TEXT), (self.count_lbl, MUTED), (self.keys_lbl, MUTED)):
             w.configure(bg=bg, fg=self.col(fg))
+
+    def _fit_banner(self) -> None:
+        """Підказка клавіш праворуч ховається, якщо не влазить поруч із назвою по центру."""
+        try:
+            w = self.banner.winfo_width()
+            if w <= 1:
+                return
+            mid_right = w / 2 + self.banner_mid.winfo_reqwidth() / 2
+            keys_left = w - 14 - self.keys_lbl.winfo_reqwidth()
+            fits = mid_right + 16 <= keys_left
+            shown = bool(self.keys_lbl.winfo_manager())
+            if fits and not shown:
+                self.keys_lbl.grid()
+            elif not fits and shown:
+                self.keys_lbl.grid_remove()
+            self.banner_mid.lift()
+        except tk.TclError:
+            pass
 
     def _view_name(self) -> str:
         if self._is_history():
@@ -3286,6 +3312,7 @@ class App:
 
         self.title_lbl.configure(text=self._view_name())
         self.count_lbl.configure(text=str(len(self.shown)))
+        self._fit_banner()
         self._sync_banner()
         self._layout_header()
 
@@ -3694,6 +3721,20 @@ class App:
         table = self._NAV_VK if os.name == "nt" else self._NAV_X11
         return table.get(getattr(e, "keycode", None))
 
+    def _nav_focus(self, e=None) -> None:
+        """Клік не в поле введення забирає фокус із поля (формат, фрази) — інакше Space і Alt+W/A/S/D
+        «застрягали» в полі введення формату після його вибору."""
+        w = getattr(e, "widget", None)
+        if isinstance(w, (tk.Entry, tk.Text)):
+            return
+        try:
+            if w is not None and w.winfo_toplevel() is not self.root:
+                return
+            if isinstance(self.root.focus_get(), (tk.Entry, tk.Text)):
+                self.root.focus_set()
+        except (tk.TclError, KeyError, AttributeError):
+            pass
+
     def _typing(self, e) -> bool:
         return isinstance(getattr(e, "widget", None), (tk.Entry, tk.Text))
 
@@ -3710,8 +3751,9 @@ class App:
     def _on_space(self, e):
         if self._typing(e) or self._modal:
             return None
-        if getattr(e, "state", 0) & (0x8 | 0x20000):    # Alt+Space обробляє _on_alt_key
+        if getattr(e, "state", 0) & ALT_MASK:           # Alt+Space обробляє _on_alt_key
             return None
+        self.log(f"space zone={self.nav_zone} sel={str(self.sel_id)[:8]}")
         self.nav_activate(hide=None)
         return "break"
 
@@ -3972,6 +4014,7 @@ class App:
         return k
 
     def _drag_press(self, e: tk.Event, iid: str) -> None:
+        self._nav_focus(e)
         card = self._card_objs.get(iid)
         try:
             if card is not None and card.inert(e.x_root, e.y_root):
@@ -4055,6 +4098,7 @@ class App:
     }
 
     def _reorder_press(self, kind: str, key: str, e: tk.Event) -> None:
+        self._nav_focus(e)
         self._rd = {"kind": kind, "key": key, "x": e.x_root, "y": e.y_root, "active": False, "ghost": None,
                     "k": None}
 

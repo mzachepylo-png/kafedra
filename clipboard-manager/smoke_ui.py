@@ -3308,6 +3308,21 @@ assert app.title_lbl.cget("text") == "Нав Б" and app.count_lbl.cget("text") 
 assert tup(app.banner.cget("fg_color")) == tup(cm.row_colors("#ffb900")[2]), app.banner.cget("fg_color")
 assert app.title_lbl.cget("bg") == app.col(cm.row_colors("#ffb900")[2])
 assert app.title_lbl.winfo_rooty() < app.mid.winfo_rooty(), "назва папки — угорі, де був пошук"
+# назва + кількість — посередині банера
+bx, bw = app.banner.winfo_rootx(), app.banner.winfo_width()
+mx, mw = app.banner_mid.winfo_rootx(), app.banner_mid.winfo_width()
+assert abs((mx + mw / 2) - (bx + bw / 2)) <= 2, (mx, mw, bx, bw)
+assert app.banner_mid.cget("bg") == app.title_lbl.cget("bg")
+if app.keys_lbl.winfo_manager():                   # підказка клавіш не налазить на назву
+    assert app.keys_lbl.winfo_rootx() >= mx + mw, (app.keys_lbl.winfo_rootx(), mx + mw)
+root.geometry("900x700+0+0")                         # вузьке вікно: підказка ховається, назва лишається по центру
+pump(500)
+bx, bw = app.banner.winfo_rootx(), app.banner.winfo_width()
+mx, mw = app.banner_mid.winfo_rootx(), app.banner_mid.winfo_width()
+assert abs((mx + mw / 2) - (bx + bw / 2)) <= 2
+assert not app.keys_lbl.winfo_manager() or app.keys_lbl.winfo_rootx() >= mx + mw
+root.geometry("1500x800+0+0")
+pump(500)
 print("36a banner OK")
 
 
@@ -3356,6 +3371,29 @@ assert root.clipboard_get() == app._text_of(second) and app._hidden
 app.show_window()
 pump(300)
 app.hotkey_ok = False
+# Windows: увімкнений NumLock дає біт 0x8 у state — це НЕ Alt, Space має працювати (раніше ігнорувався)
+saved_mask = cm.ALT_MASK
+cm.ALT_MASK = 0x20000
+app.copy_to_clipboard("маркер-numlock")
+app._on_space(SimpleNamespace(keysym="space", keycode=32, widget=root, state=0x8))
+pump(150)
+assert root.clipboard_get() == app._text_of(app.sel_id), "Space з NumLock копіює"
+# фокус застряг у полі формату (після вибору формату) — клік по картці повертає фокус вікну, Space працює
+app._fmt_input.focus_set()
+pump(100)
+card_ = app._card_objs[app.sel_id]
+app._nav_focus(SimpleNamespace(widget=card_))
+pump(100)
+assert not isinstance(root.focus_get(), (tk.Entry, tk.Text)), root.focus_get()
+app._nav_focus(SimpleNamespace(widget=app._fmt_input._textbox))   # клік у саме поле — фокус лишається там
+app._fmt_input._textbox.focus_set()
+pump(50)
+before_ = root.focus_get()
+app._nav_focus(SimpleNamespace(widget=app._fmt_input._textbox))
+assert root.focus_get() is before_
+root.focus_set()
+pump(50)
+cm.ALT_MASK = saved_mask
 # у полі введення Space працює як звичайно
 app.select_format("builtin-user2")
 inner = app.fmt_input._textbox
