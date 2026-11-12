@@ -117,17 +117,19 @@ function modelA() {
     ctx.save(); ctx.beginPath(); ctx.rect(cx - R0, cy - R0, st.cut > 0 ? cutX - (cx - R0) : 2 * R0, 2 * R0); ctx.clip();
     for (const c of cellCache.cells) {
       const cc = { ...c, x: cx - R0 + c.x, y: cy - R0 + c.y };
-      const isCut = st.cut > 0 && cc.x + cc.w > cutX - cw * o.aspect * 0.9 * st.cut;
+      const isCut = st.cut > 0 && cc.x + cc.w > cutX - 2 && cc.x < cutX;
       D.epiCell(ctx, cc, { V: r.V, form: r.form, hue: o.hue, cut: isCut });
     }
     ctx.restore();
     if (st.cut > 0) {
       // край зруйнованої тканини та крапля розчину з протопластами
       ctx.strokeStyle = 'rgba(120,100,80,.5)'; ctx.lineWidth = 1.2; ctx.setLineDash([3, 3]); ctx.beginPath(); ctx.moveTo(cutX, cy - R0); ctx.lineTo(cutX, cy + R0); ctx.stroke(); ctx.setLineDash([]);
-      const Rr = rng(31 + st.sel), nI = Math.round(r.n * st.cut * 0.45), nB = Math.round((10 - r.n * 0.2) * st.cut);
-      const d0 = cw * 0.95 * Math.cbrt(o.aspect), rr = d0 * r.d * 0.62;
-      for (let i = 0; i < nB; i++) anthoProto(ctx, cutX + 10 + Rr() * (cx + R0 - cutX - 20), cy - R0 * 0.8 + Rr() * R0 * 1.6, rr * 0.9, o.hue, { burst: 1, seed: i + 7 });
-      for (let i = 0; i < nI; i++) anthoProto(ctx, cutX + rr + 6 + Rr() * Math.max(4, cx + R0 * 0.85 - cutX - 2 * rr), cy - R0 * 0.75 + Rr() * R0 * 1.5, rr * (0.85 + Rr() * 0.3), o.hue, { seed: i + 1 });
+      const Rr = rng(31 + st.sel), nI = Math.round(r.n * st.cut * 0.25), nB = Math.round((7 - r.n * 0.15) * st.cut);
+      const d0 = cw * Math.cbrt(o.aspect * 0.5), rr = d0 * r.d * 0.62;
+      const placed = [];
+      const tryPlace = (rad) => { for (let k = 0; k < 40; k++) { const x = cutX + rad + 4 + Rr() * Math.max(4, cx + R0 * 0.92 - cutX - 2 * rad - 4), y = cy - R0 * 0.85 + rad + Rr() * (R0 * 1.7 - 2 * rad); if (Math.hypot(x - cx, y - cy) > R0 - rad * 0.6) continue; if (placed.every((q) => Math.hypot(q[0] - x, q[1] - y) > q[2] + rad + 3)) { placed.push([x, y, rad]); return [x, y]; } } return null; };
+      for (let i = 0; i < nI; i++) { const rad = rr * (0.85 + Rr() * 0.3), q = tryPlace(rad); if (q) anthoProto(ctx, q[0], q[1], rad, o.hue, { seed: i + 1 }); }
+      for (let i = 0; i < nB; i++) { const q = tryPlace(rr * 0.8); if (q) anthoProto(ctx, q[0], q[1], rr * 0.8, o.hue, { burst: 1, seed: i + 7 }); }
     }
     // голка
     if (st.cut > 0 && st.cut < 1) {

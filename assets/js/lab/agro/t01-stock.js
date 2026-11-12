@@ -180,9 +180,9 @@ export function initStock(root) {
     const done = anim.phase === 'done' || anim.phase === 'fill';
     const added = anim.phase === 'idle' ? 0 : clamp((step + (anim.phase === 'weigh' ? clamp((f - 0.6) / 0.4, 0, 1) : 1)) / n, 0, 1);
     const bkW = sw * 0.55, bkH = sw * 0.62;
-    beaker(ctx, sx + (sw - bkW) / 2, plate - bkH, bkW, bkH, { liquid: { level: done ? 0.08 : 0.35 + 0.35 * added, color: S.key === 'fe' ? (added > 0.6 ? '#E2D58A' : '#DDE9EC') : '#DDE9EC', bubbles: on ? 6 : 0, t }, label: mob ? '' : 'стакан' });
+    beaker(ctx, sx + (sw - bkW) / 2, plate - bkH, bkW, bkH, { liquid: { level: done ? 0.08 : 0.35 + 0.35 * added, color: S.key === 'fe' ? (added > 0.6 ? '#E2D58A' : '#DDE9EC') : '#DDE9EC', bubbles: on ? 6 : 0, t } });
     if (on && !done) { // вир і мішальник
-      ctx.save(); const mx = sx + sw / 2, my = plate - 5; ctx.translate(mx, my); ctx.rotate(t * 9); ctx.fillStyle = '#F5F5F0'; roundRect(ctx, -bkW * 0.18, -2, bkW * 0.36, 4, 2); ctx.fill(); ctx.restore();
+      ctx.save(); const mx = sx + sw / 2, my = plate - 5, L = bkW * 0.36 * (0.25 + 0.75 * Math.abs(Math.cos(t * 9))); ctx.fillStyle = '#F5F5F0'; ctx.strokeStyle = 'rgba(0,0,0,.25)'; roundRect(ctx, mx - L / 2, my - 2, L, 4.5, 2); ctx.fill(); ctx.stroke(); ctx.restore();
     }
     // мірна колба
     const vx = mob ? w * 0.86 : w * 0.66, vs = mob ? w * 0.18 : Math.min(w * 0.13, 110);
