@@ -164,20 +164,22 @@ export function initGel(bus) {
   function draw() {
     if (!canvas.parentElement || canvas.parentElement.clientWidth < 80) return;
     const narrow = canvas.parentElement.clientWidth < 600;
-    const { ctx, w, h } = fit(canvas, { aspect: narrow ? 1.0 : 1.62, min: 320, max: 540 });
+    const { ctx, w, h } = fit(canvas, { aspect: narrow ? 0.92 : 1.42, min: 320, max: 560 });
     const t = runner ? runner.t : 0;
     if (!L) return;
     if (state.view === 'run') {
-      scene(ctx, w, h, { kind: 'bench', horizon: 0.56 });
-      gelTank(ctx, w * 0.08, h * 0.14, w * 0.84, h * 0.78, {
+      scene(ctx, w, h, { kind: 'bench', horizon: 0.52 });
+      gelTank(ctx, w * 0.05, h * 0.08, w * 0.9, h * 0.86, {
         volt: state.volt, front: L.front / GEL_CM, running: runner && runner.running, lanes: L.list, t,
       });
-      chip(ctx, 12, 22, `Фронт барвника: ${fnum(L.front, 2)} см · ${fnum(state.hours, 1)} год`, { align: 'left', size: narrow ? 10.5 : 11.5 });
-      chip(ctx, w - 12, 22, 'Смуг ДНК ще не видно — гель фарбують після розділення', { align: 'right', size: narrow ? 9.5 : 11 });
+      chip(ctx, 10, h - 10, `Фронт барвника ${fnum(L.front, 2)} см · ${fnum(state.hours, 1)} год`, { align: 'left', size: narrow ? 10 : 11.5 });
+      if (!narrow) chip(ctx, w - 10, h - 10, 'Смуг ДНК ще не видно — гель фарбують після розділення', { align: 'right', size: 11 });
     } else {
       scene(ctx, w, h, { kind: 'dark', horizon: 0.92 });
-      const padL = narrow ? 34 : 56;
+      const padL = narrow ? 24 : 34;
+      const labelW = narrow ? 34 : 46;
       const g = transilluminator(ctx, padL, 10, w - padL - 10, h - 34, {
+        padLeft: labelW,
         lanes: L.list.map((ln) => ({
           bands: ln.bands.map((b) => ({ rf: clamp(b.cm / GEL_CM, 0, 1), bright: b.bright, h: b.h, smear: b.smear })),
         })),
@@ -190,33 +192,43 @@ export function initGel(bus) {
       ctx.textAlign = 'right'; ctx.textBaseline = 'middle';
       for (let cm = 0; cm <= GEL_CM; cm += 2) {
         const y = g.gel.wellY + g.gel.runH * (cm / GEL_CM) + 3;
-        ctx.beginPath(); ctx.moveTo(g.gel.x - 6, y); ctx.lineTo(g.gel.x - 2, y); ctx.stroke();
-        ctx.fillText(`${cm}`, g.gel.x - 8, y);
+        ctx.beginPath(); ctx.moveTo(g.gel.x - 7, y); ctx.lineTo(g.gel.x - 3, y); ctx.stroke();
+        ctx.fillText(`${cm}`, g.gel.x - 9, y);
       }
+      ctx.save();
+      ctx.translate(10, g.gel.y + g.gel.h / 2); ctx.rotate(-Math.PI / 2);
+      ctx.textAlign = 'center'; ctx.font = `600 ${narrow ? 8.5 : 10}px system-ui, sans-serif`;
+      ctx.fillText('см від лунки', 0, 0);
+      ctx.restore();
       ctx.restore();
       // підписи доріжок
       ctx.save();
       ctx.font = `700 ${narrow ? 9.5 : 11}px system-ui, sans-serif`;
       ctx.fillStyle = '#E7F2EC'; ctx.textAlign = 'center'; ctx.textBaseline = 'alphabetic';
       for (let i = 0; i < L.list.length; i++) {
-        ctx.fillText(L.list[i].name, g.gel.x + g.gel.laneW * (i + 0.5), g.gel.y - 4);
+        ctx.fillText(L.list[i].name, g.gel.lanesX + g.gel.laneW * (i + 0.5), g.gel.y - 4);
       }
       ctx.restore();
-      // підписи маркерних смуг
+      // підписи смуг маркера — у лівому полі гелю
       ctx.save();
       ctx.font = `600 ${narrow ? 8 : 9.5}px ui-monospace, monospace`;
-      ctx.fillStyle = 'rgba(236,246,240,.85)'; ctx.textAlign = 'right'; ctx.textBaseline = 'middle';
+      ctx.textAlign = 'right'; ctx.textBaseline = 'middle';
+      const want = [3000, 2000, 1500, 1000, 600, 300, 100];
       let lastY = -99;
       for (const b of L.list[0].bands) {
-        if (b.bright < 0.12) continue;
+        if (!want.includes(b.bp) || b.bright < 0.1) continue;
         const y = g.gel.wellY + g.gel.runH * clamp(b.cm / GEL_CM, 0, 1) + 3;
         if (y - lastY < (narrow ? 9 : 11)) continue;
         lastY = y;
-        ctx.fillText(`${b.bp}`, g.gel.x + g.gel.laneW * 0.5 - (narrow ? 11 : 16), y);
+        const tx = g.gel.lanesX - 4;
+        ctx.strokeStyle = 'rgba(236,246,240,.35)'; ctx.lineWidth = 0.8;
+        ctx.beginPath(); ctx.moveTo(tx + 1, y); ctx.lineTo(tx + 3.5, y); ctx.stroke();
+        ctx.fillStyle = 'rgba(240,247,242,.9)';
+        ctx.fillText(`${b.bp}`, tx, y);
       }
       ctx.restore();
-      chip(ctx, 10, h - 12, 'УФ-трансілюмінатор 312 нм · бромистий етидій 0,5 мкг/мл', { align: 'left', dark: true, size: narrow ? 9 : 11 });
-      chip(ctx, w - 10, h - 12, `М — маркер · 1, 2 — проба · К — контроль`, { align: 'right', dark: true, size: narrow ? 9 : 11 });
+      chip(ctx, 10, h - 10, 'УФ-трансілюмінатор 312 нм · бромистий етидій 0,5 мкг/мл', { align: 'left', dark: true, size: narrow ? 8.5 : 11 });
+      if (!narrow) chip(ctx, w - 10, h - 10, 'М — маркер (п. н.) · 1, 2 — проба · К — контроль', { align: 'right', dark: true, size: 11 });
     }
   }
 

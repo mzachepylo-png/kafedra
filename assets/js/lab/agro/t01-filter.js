@@ -95,15 +95,15 @@ export function initFilter(root) {
     if (!C) return;
     const mob = cv.parentElement.clientWidth < 480;
     const { ctx, w, h } = fit(cv, { aspect: mob ? 0.8 : 1.3, min: 380, max: 540 });
-    const hy = scene(ctx, w, h, { kind: 'bench', horizon: 0.88 });
+    const hy = scene(ctx, w, h, { kind: 'bench', horizon: mob ? 0.88 : 0.84 });
     const t = performance.now() / 1000;
     const vNow = phase === 'idle' ? 0 : vAt(Math.min(tm, C.T));
-    const fs = mob ? Math.min(w * 0.42, h * 0.36) : Math.min(h * 0.42, w * 0.22);
-    const fx = mob ? w * 0.33 : w * 0.3, fby = hy + 8;
+    const fs = mob ? Math.min(w * 0.42, h * 0.36) : Math.min(h * 0.44, w * 0.27);
+    const fx = mob ? w * 0.3 : w * 0.27, fby = hy + (mob ? 8 : 4);
     const geo = bunsenFlask(ctx, fx, fby, fs, { level: clamp(vNow / (S.V * 1.6), 0, 0.7), color: '#EDE7C4', cloudy: phase === 'done' && (S.fastAir || C.pNS > 0.5) ? 0.15 : 0 });
     // шланг до насоса
     const ax = geo.arm[0], ay = geo.arm[1];
-    const px = mob ? w * 0.86 : w * 0.56, py = hy - fs * 0.15;
+    const px = mob ? w * 0.84 : w * 0.6, py = hy - fs * 0.15;
     ctx.save(); ctx.lineCap = 'round';
     ctx.strokeStyle = '#3B2A22'; ctx.lineWidth = Math.max(4, fs * 0.05);
     ctx.beginPath(); ctx.moveTo(ax, ay); ctx.bezierCurveTo(ax + fs * 0.3, ay - fs * 0.05, px - fs * 0.25, py - fs * 0.5, px - fs * 0.05, py - fs * 0.32); ctx.stroke();
@@ -120,7 +120,7 @@ export function initFilter(root) {
     drawPump(ctx, px, py, fs, phase === 'filt');
     // вакуумметр
     const vac = phase === 'filt' ? S.dp : phase === 'air' ? S.dp * (S.fastAir ? Math.max(0, 1 - airT / 0.15) : Math.max(0, 1 - airT / 1.4)) : 0;
-    drawVacGauge(ctx, px + fs * 0.02, py - fs * 0.72, fs * 0.13, vac);
+    drawVacGauge(ctx, px - fs * 0.32, py - fs * 0.62, fs * 0.13, vac);
     // фільтр
     const fil = seitzFilter(ctx, geo.tipX, geo.tipY, fs * 0.95, { level: clamp(1 - vNow / S.V, 0, 1) * 0.92 * (phase === 'idle' ? 1 : 1), color: '#EDE7C4', t, damaged: S.damaged });
     // краплі / струмінь
@@ -144,17 +144,17 @@ export function initFilter(root) {
       ctx.save(); ctx.fillStyle = 'rgba(255,255,255,.8)'; for (let i = 0; i < 4; i++) { const p = (t * 1.5 + i / 4) % 1; ctx.beginPath(); ctx.arc(gx - fs * 0.1 * p, gy, 1.6, 0, TAU); ctx.fill(); } ctx.restore();
     }
     // збірка шарів фільтра (схема) — на широкому екрані
-    if (!mob) drawStack(ctx, w * 0.035, h * 0.08, Math.min(w * 0.16, 170), S);
+    if (w > 760) drawStack(ctx, w * 0.03, 58, Math.min(w * 0.16, 170), S);
     // поле: розріз мембрани
-    const mr = mob ? Math.min(w * 0.2, 70) : Math.min(h * 0.27, 120);
-    const mx = mob ? w * 0.78 : w * 0.8, my = mob ? h * 0.2 + 10 : h * 0.42;
+    const mr = mob ? Math.min(w * 0.2, 70) : Math.min(w * 0.15, h * 0.24, 130);
+    const mx = mob ? w * 0.76 : w - mr * 1.18 - 8, my = mob ? mr * 1.1 + 52 : Math.max(mr * 1.15 + 48, h * 0.3);
     microField(ctx, mx, my, mr, (c, f) => drawMembrane(c, f, t), { mode: 'bright' });
     chip(ctx, mx, my + mr * 1.1 + 18, `розріз мембрани ${fnum(S.d, 2)} мкм`, { size: mob ? 10.5 : 11.5, dark: true });
     // підписи
     if (!mob) {
-      chip(ctx, geo.tipX - fs * 0.48, fil.topY + fs * 0.12, 'фільтр Зейтца', { size: 11, align: 'right' });
-      chip(ctx, fx - fs * 0.5, fby - fs * 0.35, 'колба Бунзена', { size: 11, align: 'right' });
-      chip(ctx, px, py + fs * 0.24, 'водоструминний насос', { size: 11 });
+      chip(ctx, geo.tipX + fs * 0.34, fil.topY + fs * 0.1, 'фільтр Зейтца', { size: 11, align: 'left' });
+      chip(ctx, fx, Math.min(h - 6, fby + 26), 'колба Бунзена', { size: 11 });
+      chip(ctx, px, Math.min(h - 6, fby + 26), 'водоструминний насос', { size: 11 });
     }
     const names = { idle: 'Фільтр зібрано й простерилізовано (30 хв, 1 атм)', filt: `Фільтрування: ${fnum(vNow, 0)} / ${S.V} мл`, air: S.fastAir ? 'Вакуум знято різко' : 'Повільно впускаємо повітря', done: 'Готово: у ламінар-боксі перелити фільтрат у стерильну колбу' };
     hud.innerHTML = `<span>${names[phase]}</span>${phase !== 'idle' ? `<span>t = ${fnum(Math.min(tm, C.T), 1)} хв</span>` : ''}`;
@@ -207,7 +207,7 @@ export function initFilter(root) {
 
   // частинки над мембраною в полі «розрізу»
   function drawMembrane(c, f, t) {
-    const { cx, cy, r } = f, d = S.d, scale = r / 1.6; // мкм → px: поле ≈ 3,2 мкм
+    const { cx, cy, r } = f, d = S.d, scale = r / 3.2; // мкм → px: поле зору ≈ 6,4 мкм
     const my = cy + r * 0.15, mh = r * 0.42;
     // мембрана: пориста губка
     c.save();
@@ -223,16 +223,17 @@ export function initFilter(root) {
     // частинки: рух униз, затримання за розміром
     const run = phase === 'filt' || phase === 'air' || phase === 'done';
     const R2 = rng(3);
-    const list = [{ s: 0.6, n: 7, col: '#C2410C', rod: true }, { s: 0.3, n: 6, col: '#B45309', rod: true }, { s: 2.2, n: 1, col: '#5B7A3A' }, { s: 0.15, n: 5, col: '#7C3AED' }, { s: 0.03, n: 10, col: '#0E7490' }, { s: 0.008, n: 18, col: '#334155' }];
+    const list = [{ s: 0.6, n: 5, col: '#C2410C', rod: true }, { s: 0.3, n: 5, col: '#D97706', rod: true }, { s: 1.6, n: 1, col: '#5B7A3A' }, { s: 0.15, n: 6, col: '#7C3AED' }, { s: 0.03, n: 10, col: '#0E7490' }, { s: 0.008, n: 18, col: '#334155' }];
     for (const p of list) {
       const L = lrvEff(p.s, d, S.damaged), passP = Math.pow(10, -L);
       for (let i = 0; i < p.n; i++) {
         const x0 = cx + (R2() - 0.5) * r * 1.6, sp = 0.25 + R2() * 0.3, off = R2();
         const passes = R2() < Math.max(passP, S.damaged && R2() < 0.3 ? 1 : 0);
         let y = cy - r + ((run ? t * sp : 0) + off) % 1 * (r * 1.9);
-        if (!passes && y > my - p.s * scale * 0.6) y = my - Math.max(1.5, p.s * scale * 0.5) - (i % 3) * 0.5; // затримано на поверхні
+        if (!passes && y > my - p.s * scale * 0.5) y = my - Math.max(1.5, p.s * scale * 0.5); // затримано на поверхні
         if (passes && y > my && y < my + mh) c.globalAlpha = 0.75; else c.globalAlpha = 1;
         const sz = Math.max(1.1, p.s * scale * 0.5);
+        if (p.s > 1) { c.save(); c.globalAlpha = 1; const gg = c.createRadialGradient(x0 - sz * 0.3, y - sz * 0.3, 1, x0, y, sz); gg.addColorStop(0, '#9DB86E'); gg.addColorStop(1, '#3F5A25'); c.fillStyle = gg; c.beginPath(); c.arc(x0, y, sz, 0, TAU); c.fill(); c.restore(); continue; }
         c.fillStyle = p.col;
         if (p.rod) { c.save(); c.translate(x0, y); c.rotate(off * 3); c.beginPath(); c.ellipse(0, 0, sz * 2.2, sz, 0, 0, TAU); c.fill(); c.fillStyle = 'rgba(255,255,255,.35)'; c.beginPath(); c.ellipse(-sz * 0.6, -sz * 0.3, sz * 0.8, sz * 0.3, 0, 0, TAU); c.fill(); c.restore(); }
         else { c.beginPath(); c.arc(x0, y, sz, 0, TAU); c.fill(); }
@@ -241,9 +242,10 @@ export function initFilter(root) {
     c.globalAlpha = 1;
     c.restore();
     // легенда всередині поля
-    font(c, Math.max(9, r * 0.09), 700); c.textAlign = 'left';
-    const lg = [['бактерії', '#C2410C'], ['мікоплазми', '#7C3AED'], ['молекули', '#334155']];
-    lg.forEach(([n, col], i) => { const yy = cy - r * 0.62 + i * r * 0.13; c.fillStyle = col; c.beginPath(); c.arc(cx - r * 0.55, yy - 3, 3, 0, TAU); c.fill(); c.fillStyle = '#26352C'; c.fillText(n, cx - r * 0.48, yy); });
+    const lf = Math.max(9, Math.min(12, r * 0.09)), ls = lf * 1.3; font(c, lf, 700); c.textAlign = 'left';
+    c.fillStyle = 'rgba(255,255,255,.75)'; roundRect(c, cx - r * 0.7, cy - r * 0.72 - lf, lf * 9.5, ls * 4 + 6, 6); c.fill();
+    const lg = [['бактерії', '#C2410C'], ['спора гриба', '#5B7A3A'], ['мікоплазми', '#7C3AED'], ['віруси, молекули', '#334155']];
+    lg.forEach(([n, col], i) => { const yy = cy - r * 0.72 + 4 + i * ls; c.fillStyle = col; c.beginPath(); c.arc(cx - r * 0.7 + 8, yy - lf * 0.35, 3, 0, TAU); c.fill(); c.fillStyle = '#26352C'; c.fillText(n, cx - r * 0.7 + 15, yy); });
   }
 
   const runner = new Runner({

@@ -75,10 +75,10 @@ export const ROTOR_R = 9;                     // см, радіус бакет-�
 export const rcf = (rpm, r = ROTOR_R) => 1.118e-5 * r * rpm * rpm;   // відносна відцентрова сила, ×g
 /** Густина (г/см³) і в'язкість (мПа·с) розчинів при +25 °C (наближення за довідковими даними). */
 export function medium(kind, C) {
-  if (kind === 'w5') return { rho: 1.019, mu: 0.95, name: 'W-5' };
+  if (kind === 'w5') return { rho: 1.019, mu: 0.95, name: 'W-5', gen: 'W-5' };
   const salts = 0.005;
-  if (kind === 'sucrose') return { rho: 0.998 + 0.1295 * C + salts, mu: 0.89 * Math.exp(0.95 * C), name: 'сахароза' };
-  return { rho: 0.998 + 0.069 * C + salts, mu: 0.89 * Math.exp(0.5 * C), name: 'маніт' };
+  if (kind === 'sucrose') return { rho: 0.998 + 0.1295 * C + salts, mu: 0.89 * Math.exp(0.95 * C), name: 'сахароза', gen: 'сахарози' };
+  return { rho: 0.998 + 0.069 * C + salts, mu: 0.89 * Math.exp(0.5 * C), name: 'маніт', gen: 'маніту' };
 }
 /** Частинки: інтактний протопласт, клітинні уламки (стінки), вільні хлоропласти. r — радіус, мкм; ρ — г/см³. */
 export const PARTS = {

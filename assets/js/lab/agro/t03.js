@@ -325,7 +325,7 @@ function modelB(sampleFn) {
     // формула з підстановкою
     const nB = isFinite(S.nBar) ? fnum(S.nBar, 1) : 'n';
     const kPart = st.dil > 1 ? `<mo>·</mo><mn>${st.dil}</mn>` : '';
-    $('t3b-formula').innerHTML = `<math display="block"><mi>N</mi><mo>=</mo><mfrac><mrow><mi>n</mi><mo>·</mo><mi>V</mi>${st.dil > 1 ? '<mo>·</mo><mi>k</mi>' : ''}<mo>·</mo><msup><mn>10</mn><mn>3</mn></msup></mrow><mrow><mi>d</mi><mo>·</mo><mn>0,2</mn></mrow></mfrac><mo>=</mo><mfrac><mrow><mn>${nB}</mn><mo>·</mo><mn>${fnum(st.V, 1)}</mn>${kPart}<mo>·</mo><msup><mn>10</mn><mn>3</mn></msup></mrow><mrow><mn>${fnum(st.d, 2)}</mn><mo>·</mo><mn>0,2</mn></mrow></mfrac><mo>=</mo><mn>${isFinite(S.N) ? fnum(S.N, 2) : '?'}</mn><mtext> клітин/г</mtext></math>`;
+    $('t3b-formula').innerHTML = `<math display="block"><mi>N</mi><mo>=</mo><mfrac><mrow><mi>n</mi><mo>·</mo><mi>V</mi>${st.dil > 1 ? '<mo>·</mo><mi>k</mi>' : ''}<mo>·</mo><msup><mn>10</mn><mn>3</mn></msup></mrow><mrow><mi>d</mi><mo>·</mo><mn>0,2</mn></mrow></mfrac><mo>=</mo><mfrac><mrow><mn>${nB}</mn><mo>·</mo><mn>${fnum(st.V, 1)}</mn>${kPart}<mo>·</mo><msup><mn>10</mn><mn>3</mn></msup></mrow><mrow><mn>${fnum(st.d, 2)}</mn><mo>·</mo><mn>0,2</mn></mrow></mfrac><mo>=</mo><mn>${isFinite(S.N) ? fnum(S.N, 2) : '?'}</mn><mspace width="0.4em"/><mtext>клітин/г</mtext></math>`;
     $('t3b-hud').innerHTML = `<span>${CULT[st.cult].name} · ${MED[st.med - 1].short} · ${st.day} діб</span><span>заповнення ${st.fill} · квадрат ${st.sq}</span>`;
     // вердикт
     let txt = '', cls = '';
@@ -355,6 +355,8 @@ function modelB(sampleFn) {
       if (m && m.size) mine.push([i, m.size]);
       if (st.prepared && (st.show || (m && m.size))) tr.push([i, square(f, q).n]);
     }
+    const ymax = Math.max(10, lam + 3 * sd, ...mine.map((p) => p[1]), ...tr.map((p) => p[1])) * 1.12;
+    p1.setOptions({ y: [0, ymax] });
     p1.set([
       { data: tr, color: '#9AA39C', type: 'points', r: 5, label: 'за правилом (модель)' },
       { data: mine, color: '#2E7D5B', type: 'points', r: 5.5, label: 'ваш підрахунок' },
@@ -373,8 +375,8 @@ function modelB(sampleFn) {
     const ow = narrow ? w : w * 0.4, oh = narrow ? h * 0.36 : h;
     drawPrep(ctx, 0, 0, ow, oh, T, dpr);
     // поле зору
-    const fr = narrow ? Math.min(w * 0.46, (h - oh) * 0.46) : Math.min((w - ow) * 0.46, h * 0.45);
-    const fcx = narrow ? w / 2 : ow + (w - ow) / 2, fcy = narrow ? oh + (h - oh) / 2 + 4 : h / 2;
+    const fr = narrow ? Math.min(w * 0.46, (h - oh) * 0.43) : Math.min((w - ow) * 0.45, h * 0.43);
+    const fcx = narrow ? w / 2 : ow + (w - ow) / 2, fcy = narrow ? oh + (h - oh) / 2 - 8 : h / 2 - 12;
     const S = st.prepared || st.prep > 0.75 ? square() : null;
     const scale = fr * 1.02; // px на 1 мм (великий квадрат займає ~ половину діаметра поля)
     const ox = fcx - scale / 2, oy = fcy - scale / 2;
@@ -398,8 +400,8 @@ function modelB(sampleFn) {
         tag(c, fcx, fcy + 4, 'Камера порожня', { size: 13, dark: true });
       }
     }, { mode: 'bright' });
-    tag(ctx, fcx, fcy - fr * 1.1 - 8 < 14 ? fcy + fr * 1.1 + 18 : fcy - fr * 1.1 - 8, `Великий квадрат ${st.sq} (1 × 1 мм) · ×100`, { size: 11.5, dark: true });
-    if (S) tag(ctx, fcx, Math.min(h - 8, fcy + fr * 1.1 + (fcy - fr * 1.1 - 8 < 14 ? 40 : 20)), `позначено: ${(marks.get(key()) || new Set()).size}${st.show ? ` · за правилом: ${S.n}` : ''}`, { size: 11.5, dark: true });
+    const nm = (marks.get(key()) || new Set()).size;
+    tag(ctx, fcx, Math.min(h - 8, fcy + fr * 1.08 + 20), `Квадрат ${st.sq} (1 × 1 мм), ×100 · позначено: ${S ? nm : '—'}${S && st.show ? ` · за правилом: ${S.n}` : ''}`, { size: 12, dark: true });
     cv.setAttribute('aria-label', `Поле зору: великий квадрат ${st.sq} камери Фукса — Розенталя з клітинами калюсу; торкайтеся клітин, щоб рахувати`);
   }
   function drawGrid(c, ox, oy, s, fcx, fcy, fr) {
@@ -449,7 +451,7 @@ function modelB(sampleFn) {
     ctx.fillStyle = g; ctx.fillRect(x0, y0, w, h);
     K.applyGrain(ctx, x0, y0, w, h, 0.04);
     // пробірки з мацератом (3 наважки)
-    const tw = Math.min(w * 0.08, 30), th = Math.min(h * 0.5, tw * 4.6), ty = y0 + (h > 300 ? h * 0.1 : 14);
+    const tw = Math.min(w * 0.085, 34), th = Math.min(h * 0.42, tw * 4.4), ty = y0 + 46;
     const macT = smooth(0, 0.35, p), shake = p > 0.35 && p < 0.5 ? Math.sin(p * 220) * 0.12 : 0;
     for (let i = 0; i < 3; i++) {
       const tx = x0 + w * 0.08 + i * tw * 1.6;
@@ -488,13 +490,13 @@ function modelB(sampleFn) {
     const cs = smooth(0.55, 0.8, p), cxs = lerp(cx + cw * 0.7, cx - cw * 0.02, cs);
     if (cs > 0) {
       const kw = cw * 0.44, kh = ch * 0.78, kx = cxs - kw / 2, ky = cy - kh / 2 - ch * 0.04;
-      ctx.fillStyle = 'rgba(230,245,250,.32)'; ctx.beginPath(); ctx.moveTo(kx + kh * 0.25, ky); ctx.lineTo(kx + kw + kh * 0.25, ky); ctx.lineTo(kx + kw, ky + kh); ctx.lineTo(kx, ky + kh); ctx.closePath(); ctx.fill();
-      ctx.strokeStyle = 'rgba(255,255,255,.85)'; ctx.lineWidth = 1; ctx.stroke();
+      ctx.fillStyle = 'rgba(225,242,250,.45)'; ctx.beginPath(); ctx.moveTo(kx + kh * 0.25, ky); ctx.lineTo(kx + kw + kh * 0.25, ky); ctx.lineTo(kx + kw, ky + kh); ctx.lineTo(kx, ky + kh); ctx.closePath(); ctx.fill();
+      ctx.strokeStyle = 'rgba(255,255,255,.95)'; ctx.lineWidth = 1.4; ctx.stroke(); ctx.strokeStyle = 'rgba(60,90,100,.35)'; ctx.lineWidth = 0.8; ctx.stroke();
       if (st.newton && p > 0.8) {
         // інтерференційні кільця на опорах (райдужні смуги)
         const ra = smooth(0.8, 0.9, p);
-        for (const ex of [kx + kh * 0.12 + 6, kx + kw + kh * 0.12 - 6]) for (let k = 0; k < 4; k++) {
-          ctx.strokeStyle = `hsla(${(k * 70 + 10) % 360},80%,60%,${0.55 * ra})`; ctx.lineWidth = 1.4; ctx.beginPath(); ctx.ellipse(ex, ky + kh * 0.5, 3 + k * 2.2, 6 + k * 3.4, 0, 0, TAU); ctx.stroke();
+        for (const ex of [kx + kh * 0.12 + 7, kx + kw + kh * 0.12 - 7]) for (let k = 0; k < 4; k++) {
+          ctx.strokeStyle = `hsla(${(k * 70 + 10) % 360},75%,58%,${0.42 * ra})`; ctx.lineWidth = 1.1; ctx.beginPath(); ctx.ellipse(ex, ky + kh * 0.5, 1.5 + k * 1.4, kh * (0.12 + k * 0.07), -0.25, 0, TAU); ctx.stroke();
         }
       }
     }
@@ -508,7 +510,7 @@ function modelB(sampleFn) {
     tag(ctx, cx, cy + ch * 0.5 + 24, st.newton ? 'Камера Фукса — Розенталя · глибина 0,2 мм' : 'Скельце не притерто: глибина > 0,2 мм', { size: 11, color: st.newton ? '#173322' : '#9A2A1A' });
     const steps = ['1. мацерація', '2. струшування', '3. крапля в камеру', '4. покривне скельце', '5. підрахунок'];
     const si = st.prepared ? 4 : p < 0.35 ? 0 : p < 0.45 ? 1 : p < 0.6 ? 2 : p < 0.85 ? 3 : 4;
-    if (st.prep > 0 || st.prepared) tag(ctx, x0 + w - 8, y0 + 22, steps[si], { size: 11.5, dark: true, align: 'right' });
+    if (st.prep > 0 || st.prepared) tag(ctx, x0 + w - 10, ty + 16, `Крок ${steps[si]}`, { size: 11.5, dark: true, align: 'right' });
     ctx.restore();
   }
 

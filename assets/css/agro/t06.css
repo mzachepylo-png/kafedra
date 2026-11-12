@@ -23,4 +23,5 @@
 .t6-chips li.is-cur b { color: var(--gold-300); }
 .ag-read.t6-ok b { color: #23864A; }
 .ag-read.t6-warn b { color: #B5641E; }
-#t6a-reads, #t6b-reads { grid-template-columns: repeat(auto-fit, minmax(132px, 1fr)); }
+#t6a-reads { grid-template-columns: repeat(auto-fit, minmax(132px, 1fr)); }
+#t6b-reads { grid-template-columns: repeat(auto-fit, minmax(112px, 1fr)); }

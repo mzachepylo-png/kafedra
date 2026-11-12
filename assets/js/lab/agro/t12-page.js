@@ -142,7 +142,9 @@ export class PageModel {
   }
 
   draw() {
-    const cv = this.F.canvas, narrow = cv.parentElement.clientWidth < 620;
+    const cv = this.F.canvas;
+    if (cv.parentElement.clientWidth < 60) return; // вкладка прихована — малюємо, коли стане видимою
+    const narrow = cv.parentElement.clientWidth < 620;
     const { ctx, w, h } = fit(cv, { aspect: narrow ? 0.62 : 1.75, min: 320, max: narrow ? 900 : 580 });
     const DW = narrow ? 560 : 1000, S = w / DW, DH = h / S; this.S = S;
     setScale(S); ctx.save(); ctx.scale(S, S);

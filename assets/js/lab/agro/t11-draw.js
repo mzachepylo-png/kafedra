@@ -561,12 +561,14 @@ export function gelTank(ctx, x, y, w, h, { volt = 35, front = 0, running = false
   pg.addColorStop(0, '#E9EEEF'); pg.addColorStop(1, '#97A4A7');
   ctx.fillStyle = pg; roundRect(ctx, sx, sy, sw, sh, 5); ctx.fill();
   ctx.strokeStyle = 'rgba(40,60,55,.3)'; ctx.lineWidth = 1; ctx.stroke();
-  ctx.fillStyle = '#101D18'; roundRect(ctx, sx + sw * 0.08, sy + sh * 0.2, sw * 0.5, sh * 0.55, 3); ctx.fill();
+  const dw2 = sw * 0.56, dh2 = sh * 0.5;
+  ctx.fillStyle = '#101D18'; roundRect(ctx, sx + sw * 0.07, sy + sh * 0.24, dw2, dh2, 3); ctx.fill();
   ctx.fillStyle = running ? '#9DE8B1' : '#5A6F64';
-  ctx.font = `700 ${Math.max(9, sh * 0.34)}px ui-monospace, monospace`; ctx.textAlign = 'center'; ctx.textBaseline = 'middle';
-  ctx.fillText(`${Math.round(volt)} В`, sx + sw * 0.33, sy + sh * 0.48);
+  ctx.font = `700 ${Math.max(8, Math.min(dh2 * 0.6, dw2 * 0.26))}px ui-monospace, monospace`;
+  ctx.textAlign = 'center'; ctx.textBaseline = 'middle';
+  ctx.fillText(`${Math.round(volt)} В`, sx + sw * 0.07 + dw2 / 2, sy + sh * 0.24 + dh2 / 2);
   ctx.fillStyle = running ? '#F05A4B' : '#55655E';
-  ctx.beginPath(); ctx.arc(sx + sw * 0.78, sy + sh * 0.35, Math.max(2.5, sh * 0.09), 0, TAU); ctx.fill();
+  ctx.beginPath(); ctx.arc(sx + sw * 0.82, sy + sh * 0.4, Math.max(2.5, sh * 0.08), 0, TAU); ctx.fill();
   // дроти
   ctx.strokeStyle = '#B23A2A'; ctx.lineWidth = 1.8;
   ctx.beginPath(); ctx.moveTo(sx + sw * 0.7, sy + sh); ctx.quadraticCurveTo(x + w * 0.12, sy + sh * 1.6, x + w * 0.04, tankY - 4); ctx.stroke();
@@ -580,7 +582,7 @@ export function gelTank(ctx, x, y, w, h, { volt = 35, front = 0, running = false
  * смуги ДНК світяться оранжево-рожевим (бромистий етидій).
  * lanes: [{label, bands: [{rf, bright 0..1, w, smear 0..1}]}]
  */
-export function transilluminator(ctx, x, y, w, h, { lanes = [], front = 1, glow = 1, t = 0, scaleCm = null } = {}) {
+export function transilluminator(ctx, x, y, w, h, { lanes = [], front = 1, glow = 1, t = 0, padLeft = 0 } = {}) {
   // корпус приладу
   const bodyPad = Math.min(16, w * 0.035);
   ctx.save();
@@ -608,11 +610,13 @@ export function transilluminator(ctx, x, y, w, h, { lanes = [], front = 1, glow 
   ctx.globalCompositeOperation = 'source-over';
 
   const n = Math.max(1, lanes.length);
-  const laneW = gw / n;
+  const lanesX = gx + padLeft;
+  const lanesW = gw - padLeft;
+  const laneW = lanesW / n;
   const wellY = gy + gh * 0.045;
   const runH = gh * 0.88;
   for (let i = 0; i < n; i++) {
-    const lx = gx + laneW * (i + 0.5);
+    const lx = lanesX + laneW * (i + 0.5);
     const bw = laneW * 0.62;
     // лунка
     ctx.fillStyle = 'rgba(12,8,30,.72)';
@@ -671,7 +675,7 @@ export function transilluminator(ctx, x, y, w, h, { lanes = [], front = 1, glow 
   ctx.strokeStyle = 'rgba(255,255,255,.18)'; ctx.lineWidth = 1;
   roundRect(ctx, gx, gy, gw, gh, 4); ctx.stroke();
   ctx.restore();
-  return { gel: { x: gx, y: gy, w: gw, h: gh, wellY, runH, laneW, n } };
+  return { gel: { x: gx, y: gy, w: gw, h: gh, wellY, runH, laneW, n, lanesX } };
 }
 
 /** Моток ниток ДНК в етанолі (видимий осад при осадженні). */

@@ -325,8 +325,8 @@ function modelC() {
     ], [{ x: st.tMin, color: '#13241A' }]);
     let cls = '', msg;
     if (st.step === 'float') {
-      if (res.proto.v >= 0) { msg = `<b>Протопласти не спливають:</b> густина ${res.med.name}у ${fnum(res.med.rho, 3)} г/см³ ≤ густини протопласта (≈ ${fnum(M.PARTS.proto.rho, 3)} г/см³), і вони осідають разом з уламками. Візьміть сахарозу або підвищте концентрацію.`; cls = 'is-bad'; }
-      else { msg = `<b>Флотація:</b> у розчині ${res.med.name}и (${fnum(res.med.rho, 3)} г/см³) цілі протопласти легші за середовище і спливають зі швидкістю ${fnum(-res.proto.v, 2)} мм/с, а уламки стінок (≈ ${fnum(M.PARTS.debris.rho, 2)} г/см³) осідають. У верхньому зеленому шарі — ${pct(res.yield)} протопластів, чистота ${pct(res.purity)}. Шар збирають пастерівською піпеткою.`; if (res.yield < 0.7) cls = 'is-warn'; }
+      if (res.proto.v >= 0) { msg = `<b>Протопласти не спливають:</b> густина розчину ${res.med.gen} ${fnum(res.med.rho, 3)} г/см³ ≤ густини протопласта (≈ ${fnum(M.PARTS.proto.rho, 3)} г/см³), і вони осідають разом з уламками. Візьміть сахарозу або підвищте концентрацію.`; cls = 'is-bad'; }
+      else { msg = `<b>Флотація:</b> у розчині ${res.med.gen} (${fnum(res.med.rho, 3)} г/см³) цілі протопласти легші за середовище і спливають зі швидкістю ${fnum(-res.proto.v, 2)} мм/с, а уламки стінок (≈ ${fnum(M.PARTS.debris.rho, 2)} г/см³) осідають. У верхньому зеленому шарі — ${pct(res.yield)} протопластів, чистота ${pct(res.purity)}. Шар збирають пастерівською піпеткою.`; if (res.yield < 0.7) cls = 'is-warn'; }
       if (res.damage > 0.15) { msg += ' Забагато обертів — протопласти деформуються.'; cls = 'is-warn'; }
     } else {
       msg = `<b>Відмивання в W-5:</b> W-5 (${fnum(res.med.rho, 3)} г/см³) легший за протопласти, тож при ${fnum(res.g, 0)} × g вони осідають: за ${fnum(st.tMin, 1)} хв в осаді ${pct(res.proto.pellet)}, пошкоджено ${pct(res.damage)}. Після ${st.washes} відмивань ферменту лишається ${fnum(M.enzymeLeft(st.washes) * 100, 4)} % від початкового.`;
@@ -345,7 +345,7 @@ function modelC() {
     if (wide) D.miniCentrifuge(ctx, w * 0.04, h * 0.5, Math.min(w * 0.24, 220), { angle: st.angle, spin: st.spin, rpm: st.rpm, timeTxt: `${Math.floor(st.tMin * st.p)}:${String(Math.round((st.tMin * st.p * 60) % 60)).padStart(2, '0')}` });
     // велика пробірка
     const tw = wide ? Math.min(w * 0.12, 110) : w * 0.26, th = wide ? h * 0.78 : h * 0.8;
-    const tcx = wide ? w * 0.47 : w * 0.3, ttop = wide ? h * 0.12 : h * 0.1;
+    const tcx = wide ? w * 0.45 : w * 0.3, ttop = wide ? h * 0.12 : h * 0.1;
     const med = res.med;
     const tint = st.step === 'float' ? (st.kind === 'sucrose' ? [236, 228, 196] : [232, 234, 220]) : [228, 238, 240];
     const H = M.COLUMN;
@@ -376,12 +376,12 @@ function modelC() {
     });
     // підписи зон
     const ly = ttop + th * 0.22;
-    if (st.step === 'float' && res.proto.v < 0 && st.p > 0.5) K.callout(ctx, tcx + tw * 0.3, ly + 6, tcx + tw * 0.75 + 20, ly - 22, 'зелений шар цілих протопластів', { size: wide ? 11.5 : 10.5 });
-    if (st.p > 0.5) K.callout(ctx, tcx, ttop + th - 6, tcx + tw * 0.6 + 20, ttop + th - 4, st.step === 'float' ? 'осад: уламки, мертві клітини' : 'осад протопластів', { size: wide ? 11.5 : 10.5 });
+    if (st.step === 'float' && res.proto.v < 0 && st.p > 0.5) K.callout(ctx, tcx - tw * 0.3, ly + 6, wide ? tcx - tw * 0.8 - 10 : tcx + tw * 0.2, wide ? ly - 30 : ly - 34, wide ? 'зелений шар цілих протопластів' : 'шар протопластів', { size: wide ? 11.5 : 10.5 });
+    if (st.p > 0.5 && wide) K.callout(ctx, tcx - 2, ttop + th - 8, tcx - tw * 0.9 - 10, ttop + th - 2, st.step === 'float' ? 'осад: уламки, мертві клітини' : 'осад протопластів', { size: 11.5 });
     // легенда/фізика
     if (wide) {
       const lx = w * 0.64, ly2 = h * 0.14;
-      ctx.save(); ctx.fillStyle = 'rgba(255,255,255,.92)'; K.roundRect(ctx, lx, ly2, w * 0.33, h * 0.72, 12); ctx.fill();
+      ctx.save(); ctx.textAlign = 'left'; ctx.textBaseline = 'alphabetic'; ctx.fillStyle = 'rgba(255,255,255,.92)'; K.roundRect(ctx, lx, ly2, w * 0.33, h * 0.72, 12); ctx.fill();
       ctx.fillStyle = '#13241A'; ctx.font = '700 13px system-ui, sans-serif'; ctx.fillText('Закон Стокса', lx + 14, ly2 + 24);
       ctx.font = 'italic 600 13px Georgia, serif'; ctx.fillText('v = 2/9 · Δρ · g · RCF · r² / μ', lx + 14, ly2 + 48);
       ctx.font = '600 12px system-ui, sans-serif';
@@ -392,7 +392,7 @@ function modelC() {
       ctx.restore();
     } else {
       const lx = w * 0.56, ly2 = h * 0.12;
-      ctx.save(); ctx.fillStyle = 'rgba(255,255,255,.92)'; K.roundRect(ctx, lx, ly2, w * 0.41, 126, 10); ctx.fill();
+      ctx.save(); ctx.textAlign = 'left'; ctx.textBaseline = 'alphabetic'; ctx.fillStyle = 'rgba(255,255,255,.92)'; K.roundRect(ctx, lx, ly2, w * 0.41, 126, 10); ctx.fill();
       ctx.font = '600 11px system-ui, sans-serif';
       [['#2E7D5B', 'протопласти', res.proto.v], ['#8A6A2E', 'уламки', res.debris.v], ['#5E8F3A', 'хлоропласти', res.chl.v]].forEach(([c, t, v], i) => { const y = ly2 + 22 + i * 34; ctx.fillStyle = c; ctx.beginPath(); ctx.arc(lx + 12, y - 4, 5, 0, TAU); ctx.fill(); ctx.fillStyle = '#13241A'; ctx.fillText(t, lx + 22, y); ctx.fillStyle = v < 0 ? '#1F7A45' : '#8A4A20'; ctx.fillText(`${v < 0 ? '↑' : '↓'} ${fnum(Math.abs(v), 2)} мм/с`, lx + 22, y + 14); });
       ctx.restore();
@@ -445,6 +445,7 @@ function modelD() {
     if (st.mode === 'culture') {
       const r = M.culture({ dens: st.dens, T: st.T, light: st.light, t: st.day });
       K.setOut($('t7d-reads'), { a: pct(r.wall), b: pct(r.div), c: pct(r.PE, 1), d: st.day > 3 ? `≈ ${Math.round(r.cells)}` : '1', e: sci(st.dens * r.colonies), f: '—' });
+      $('t7d-reads').lastElementChild.hidden = true;
       $('t7d-reads').querySelectorAll('small').forEach((s, i) => { s.textContent = ['Протопластів зі стінкою', 'Поділилися', 'Ефективність утворення колоній', 'Клітин у мікроколонії', 'Колоній в 1 мл', '—'][i]; });
       p1.setOptions({ xLabel: 'Доба культивування', x: [0, 20], y: [0, 100], yLabel: '%' });
       const dd = K.linspace(0, 20, 81).map((t) => [t, M.culture({ dens: st.dens, T: st.T, light: st.light, t })]);
@@ -467,6 +468,7 @@ function modelD() {
     } else {
       const f = M.fusion({ peg: st.peg, ca: st.ca, p: st.p, t: st.tf });
       K.setOut($('t7d-reads'), { a: fnum(f.lam, 2), b: pct(f.un), c: pct(f.het, 1), d: pct(f.homo, 1), e: pct(f.multi, 1), f: pct(f.viab) });
+      $('t7d-reads').lastElementChild.hidden = false;
       $('t7d-reads').querySelectorAll('small').forEach((s, i) => { s.textContent = ['λ — партнерів на протопласт', 'Не злилися', 'Гетерокаріони A + B', 'Гомокаріони A + A, B + B', 'Багатоядерні (≥ 3)', 'Життєздатність'][i]; });
       p1.setOptions({ xLabel: 'Концентрація ПЕГ, %', x: [0, 50], y: [0, 100], yLabel: '% протопластів' });
       const pp = K.linspace(0, 50, 101).map((g) => [g, M.fusion({ peg: g, ca: st.ca, p: st.p, t: st.tf })]);
@@ -509,7 +511,7 @@ function modelD() {
         const nC = divides ? r.cells : 1;
         if (nC < 1.5) { D.proto(ctx, s.x, s.y, pr, { type: 'meso', seed: s.seed, wall, oval: wall * 0.6, rot: s.c * 3, light: 1 - smooth(4, 14, st.day) * 0.5 }); continue; }
         // мікроколонія: щільне скупчення клітин зі стінками
-        const N = Math.min(40, Math.round(nC)), Rr = rng(s.seed), pts = [[0, 0]], cr = pr * Math.max(0.42, 0.9 / Math.pow(N, 0.18));
+        const N = Math.min(28, Math.round(nC)), Rr = rng(s.seed), pts = [[0, 0]], cr = pr * Math.max(0.5, 0.95 / Math.pow(N, 0.2));
         for (let i = 1; i < N; i++) { let best = null; for (let k = 0; k < 18; k++) { const b = pts[(Rr() * pts.length) | 0], a = Rr() * TAU, c2 = [b[0] + Math.cos(a) * cr * 1.75, b[1] + Math.sin(a) * cr * 1.6]; const ov = pts.reduce((m, q) => Math.max(m, cr * 1.6 - Math.hypot(q[0] - c2[0], q[1] - c2[1])), -99); const sc = (ov > 0.5 ? 100 : 0) + Math.hypot(...c2); if (!best || sc < best.sc) best = { c2, sc }; } pts.push(best.c2); }
         const mx = pts.reduce((a, q) => a + q[0], 0) / N, my = pts.reduce((a, q) => a + q[1], 0) / N;
         pts.forEach((q, i) => D.proto(ctx, s.x + q[0] - mx, s.y + q[1] - my, cr, { type: 'meso', seed: s.seed * 7 + i, wall: 1, oval: 0.5, rot: i, light: 0.4 }));
@@ -528,7 +530,7 @@ function modelD() {
       // розкладка по сітці
       const cols = 4, cellW = 1.7 * R0 / cols;
       cand.forEach((s, i) => {
-        const gx = cx - 0.85 * R0 + (i % cols + 0.5) * cellW + (s.u - 0.5) * cellW * 0.25, gy = cy - 0.85 * R0 + ((i / cols) | 0) * cellW + cellW * 0.5 + (s.v - 0.5) * cellW * 0.25;
+        const gx = cx - 0.85 * R0 + (i % cols + 0.5) * cellW + (s.u - 0.5) * cellW * 0.45, gy = cy - 0.85 * R0 + ((i / cols) | 0) * cellW + cellW * 0.5 + (s.v - 0.5) * cellW * 0.45;
         if (Math.hypot(gx - cx, gy - cy) > R0 * 0.9) return;
         const types = [s.a < st.p ? 'meso' : 'callus', s.b < st.p ? 'meso' : 'callus', s.c * 3 % 1 < st.p ? 'meso' : 'callus'];
         if (s.kind === 1) { D.proto(ctx, gx, gy, pr * 1.05, { type: types[0], seed: s.seed }); return; }
@@ -549,9 +551,9 @@ function modelD() {
     }
     if (wide) {
       const lx = w * 0.7, ly = h * 0.16;
-      ctx.save(); ctx.fillStyle = 'rgba(255,255,255,.93)'; K.roundRect(ctx, lx, ly, w * 0.27, st.mode === 'culture' ? 170 : 200, 12); ctx.fill();
+      ctx.save(); ctx.fillStyle = 'rgba(255,255,255,.93)'; K.roundRect(ctx, lx, ly, w * 0.28, st.mode === 'culture' ? 158 : 186, 12); ctx.fill();
       const items = st.mode === 'culture'
-        ? [['meso', 0, 'протопласт (без стінки)'], ['meso', 1, 'нова стінка, клітина видовжується'], ['col', 0, 'мікроколонія після поділів'], ['burst', 0, 'загиблий протопласт']]
+        ? [['meso', 0, 'протопласт (без стінки)'], ['meso', 1, 'відновлена стінка'], ['col', 0, 'мікроколонія після поділів'], ['burst', 0, 'загиблий протопласт']]
         : [['meso', 0, 'А — мезофіл (хлоропласти)'], ['callus', 0, 'Б — калюс (вакуоля)'], ['hetero', 0, 'гетерокаріон А + Б'], ['multi', 0, 'багатоядерний продукт']];
       items.forEach(([tp, wl, t], i) => {
         const y = ly + 30 + i * (st.mode === 'culture' ? 36 : 42), x = lx + 24;

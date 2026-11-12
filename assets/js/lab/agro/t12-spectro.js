@@ -395,7 +395,9 @@ export class SpectroModel {
   Dmeas() { const m = this.m, tn = this.tNow(); return a0(m.meas(m.Dmax(tn) * m.fl)); function a0(v) { return Math.max(0, v); } }
 
   draw() {
-    const cv = this.F.canvas, narrow = cv.parentElement.clientWidth < 620;
+    const cv = this.F.canvas;
+    if (cv.parentElement.clientWidth < 60) return; // вкладка прихована — малюємо, коли стане видимою
+    const narrow = cv.parentElement.clientWidth < 620;
     const { ctx, w, h } = fit(cv, { aspect: narrow ? 0.64 : 1.85, min: 300, max: narrow ? 760 : 560 });
     const DW = narrow ? 560 : 1000, S = w / DW, DH = h / S;
     setScale(S);

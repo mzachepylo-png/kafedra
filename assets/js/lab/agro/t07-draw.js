@@ -248,7 +248,7 @@ export function miniCentrifuge(ctx, x, y, s, { angle = 0, spin = 0, rpm = 1000, 
   ctx.font = `700 ${Math.max(9, dh * 0.6)}px ui-monospace, Menlo, monospace`; ctx.fillStyle = '#7CF0B4'; ctx.textBaseline = 'middle'; ctx.textAlign = 'left';
   ctx.fillText(`${Math.round(rpm)}`, dx + 5, dy + dh / 2 + 0.5);
   ctx.textAlign = 'right'; ctx.fillStyle = '#FFD27A'; ctx.fillText(timeTxt, dx + dw - 5, dy + dh / 2 + 0.5);
-  ctx.textBaseline = 'alphabetic';
+  ctx.textBaseline = 'alphabetic'; ctx.textAlign = 'left';
 }
 
 /* ================= Поле зору ================= */

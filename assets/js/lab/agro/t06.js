@@ -105,8 +105,8 @@ function initA() {
       ctx.fillStyle = g; ctx.fillRect(0, 0, w, h);
     }
     // велика чашка
-    const r = wide ? Math.min(w * 0.25, h * 0.6) : Math.min(w * 0.44, h * 0.34);
-    const cx = wide ? w * 0.29 : w * 0.5, cy = wide ? h * 0.53 : h * 0.38, tilt = 0.56;
+    const r = wide ? Math.min(w * 0.235, h * 0.6) : Math.min(w * 0.44, h * 0.34);
+    const cx = wide ? w * 0.27 : w * 0.5, cy = wide ? h * 0.53 : h * 0.38, tilt = 0.56;
     const d = diam(S.day, O.Gg), pxmm = r / 45;      // чашка 90 мм
     let hot = null;
     petri(ctx, cx, cy, r, {
@@ -131,10 +131,10 @@ function initA() {
         }
       },
     });
-    tagSmall(ctx, cx, Math.min(h - 8, cy + r * tilt + r * 0.1 + 22), `Чашка ${S.sel + 1} з ${S.k}: МС + ІОК + БАП + стрептоміцин ${fnum(S.C, 2)} мг/мл`, { bg: 'rgba(255,255,255,.88)', size: wide ? 11.5 : 10.5 });
+    tagSmall(ctx, cx, Math.min(h - 8, cy + r * tilt + r * 0.1 + 30), `Чашка ${S.sel + 1} з ${S.k}: МС + ІОК + БАП + стрептоміцин ${fnum(S.C, 2)} мг/мл`, { bg: 'rgba(255,255,255,.88)', size: wide ? 11.5 : 10.5 });
     // лупа на стійкій колонії
-    const lr = wide ? Math.min(w * 0.11, h * 0.25) : Math.min(w * 0.17, h * 0.13);
-    const lx = wide ? w * 0.6 : w * 0.8, ly = wide ? h * 0.32 : h * 0.1 + lr * 0.3;
+    const lr = wide ? Math.min(w * 0.095, h * 0.24) : Math.min(w * 0.17, h * 0.13);
+    const lx = wide ? w * 0.615 : w * 0.8, ly = wide ? h * 0.32 : h * 0.1 + lr * 0.3;
     if (hot && d > 0.3) {
       ctx.save(); ctx.fillStyle = dark ? 'rgba(255,255,255,.07)' : 'rgba(255,255,255,.16)';
       const ang = Math.atan2(ly - hot.y, lx - hot.x) + Math.PI / 2;
@@ -204,7 +204,7 @@ function initA() {
     const tot = plates.reduce((s, p) => s + p.r, 0), L = lightK(S.day);
     setOut($('t6a-reads'), {
       N: fnum(O.N, 0), PE: `${fnum(O.PE * 100, 1)} %`, lam: fnum(O.lam, O.lam < 1 ? 2 : 1),
-      found: L > 0.3 && S.C > 0.05 ? `${tot}` : '— (ще не видно)', P: `${fnum(O.P * 100, 0)} %`, k95: O.k95 > 999 ? '> 1000' : `${O.k95}`,
+      found: L > 0.3 && S.C > 0.05 ? `${tot}` : 'ще не видно', P: `${fnum(O.P * 100, 0)} %`, k95: O.k95 > 999 ? '> 1000' : `${O.k95}`,
     });
     const v = $('t6a-verdict'); let txt, cls = '';
     if (S.C < 0.05) { txt = `<b>Контроль без антибіотика.</b> На світлі зеленіють <i>усі</i> ${fnum(O.N, 0)} колоній — відрізнити стійкі неможливо. Саме стрептоміцин робить відбір «видимим».`; cls = 'is-warn'; }
@@ -236,9 +236,9 @@ function initB() {
   let plan = schedule(S), states = [], exp = expected(plan);
   segmented($('t6b-scheme'), 't6b-scheme', [{ value: 'direct', label: 'Пряма' }, { value: 'step', label: 'Ступінчаста' }], S.scheme, (v) => { S.scheme = v; rebuild(); });
   const sl = sliders($('t6b-ctrl'), [
-    { id: 't6b-c', label: 'NaCl у селективному середовищі', min: 0, max: 300, step: 5, value: S.c, unit: 'мМ', digits: 0, format: (v) => `${fnum(v, 0)} мМ (${fnum(v * 58.44 / 1000, 1)} г/л)`, hint: 'мМ — мілімоль на літр; 1 мМ NaCl = 0,058 г/л.' },
-    { id: 't6b-sel', label: 'Пасажів на селективному середовищі', min: 4, max: 6, step: 1, value: S.nSel, unit: '', hint: 'За посібником 4–6.' },
-    { id: 't6b-non', label: 'Пасажів без селективного фактора', min: 0, max: 3, step: 1, value: S.nNon, unit: '', hint: 'За посібником 2–3; 0 — без перевірки.' },
+    { id: 't6b-c', label: 'NaCl у середовищі', min: 0, max: 300, step: 5, value: S.c, unit: '', digits: 0, format: (v) => `${fnum(v, 0)} мМ (${fnum(v * 58.44 / 1000, 1)} г/л)`, hint: 'мМ — мілімоль на літр; 1 мМ NaCl = 0,058 г/л.' },
+    { id: 't6b-sel', label: 'Пасажів із NaCl', min: 4, max: 6, step: 1, value: S.nSel, unit: '', hint: 'За посібником 4–6.' },
+    { id: 't6b-non', label: 'Пасажів без NaCl', min: 0, max: 3, step: 1, value: S.nNon, unit: '', hint: 'За посібником 2–3; 0 — без перевірки.' },
   ], () => { S.c = sl.values['t6b-c']; S.nSel = sl.values['t6b-sel']; S.nNon = sl.values['t6b-non']; rebuild(); });
   $('t6b-show').addEventListener('change', (e) => { S.show = e.target.checked; draw(); });
   const p1 = new Plot($('t6b-p1'), { xLabel: 'NaCl, мМ', yLabel: '% від контролю', x: [0, 300], y: [0, 100], xShort: 'NaCl', aspect: 1.7 });
@@ -286,11 +286,11 @@ function initB() {
   function draw() {
     const W = cv.parentElement.clientWidth; if (!W) return;
     const wide = W >= 700;
-    const { ctx, w, h } = fit(cv, { aspect: wide ? 2.5 : 0.95, min: 300, max: 460 });
+    const { ctx, w, h } = fit(cv, { aspect: wide ? 2.2 : 0.95, min: 300, max: 460 });
     scene(ctx, w, h, { kind: 'hood', horizon: wide ? 0.2 : 0.14, light: 0.5 });
     const k = Math.min(Math.floor(S.pos), plan.length), P = k < plan.length ? plan[Math.min(k, plan.length - 1)] : plan[plan.length - 1];
     const cur = S.pos < 1e-6 ? { kind: 'sel', c: plan[0].c } : plan[Math.min(k, plan.length - 1)];
-    const r = wide ? Math.min(w * 0.105, h * 0.42) : Math.min(w * 0.22, h * 0.21);
+    const r = wide ? Math.min(w * 0.112, h * 0.46) : Math.min(w * 0.225, h * 0.22);
     const centers = wide ? [0, 1, 2, 3].map((i) => [w * (0.14 + i * 0.24), h * 0.55]) : [0, 1, 2, 3].map((i) => [w * (0.27 + (i % 2) * 0.46), h * (0.3 + Math.floor(i / 2) * 0.42)]);
     const medCol = cur.kind === 'non' ? '#EFE8C8' : '#E4E6D2';
     centers.forEach(([cx, cy], d) => {
@@ -300,12 +300,12 @@ function initB() {
           for (let i = 0; i < 12; i++) {
             const cl = states[d * 12 + i]; if (!cl) continue;
             const gx = i % 4, gy = Math.floor(i / 4);
-            const x = Q.cx + (gx - 1.5) * Q.rx * 0.42, y = Q.cy + (gy - 1) * Q.ry * 0.55;
+            const x = Q.cx + (gx - 1.5) * Q.rx * 0.45, y = Q.cy + (gy - 1) * Q.ry * 0.6;
             const { a, b, f } = stateAt(cl);
             const alive = (s) => (s === 'S' || s === 'A' || s === 'G' ? 1 : 0);
             const life = lerp(alive(a), alive(b), f);
             const grow = 0.55 + 0.45 * Math.min(1, (S.pos + 1) / 4) * (cur.kind === 'non' ? 1 : growth(cur.c / (b === 'G' ? B.kG : b === 'A' ? B.kA : 1)));
-            const size = r * 0.11 * cl.sz * (0.55 + 0.45 * life) * grow;
+            const size = r * 0.17 * cl.sz * (0.5 + 0.5 * life) * grow;
             callus(c, x, y + size * 0.3, size, { color: '#F0E6C2', friable: 0.45, brown: 1 - life + (b === 'X' ? 0.5 : 0), seed: cl.seed, n: 9, glossy: 0.6 * life });
             if (S.show) {
               const st = f > 0.5 ? b : a, col = st === 'G' ? '#2E8B3A' : st === 'A' ? '#D98A1C' : st === 'S' ? '#8A949C' : null;
@@ -355,7 +355,7 @@ function initB() {
       { data: Ss, color: '#8A949C', label: 'чутливі' },
       { data: Aa, color: '#D98A1C', label: 'адаптовані (нестабільні)' },
       { data: G, color: '#2E8B3A', label: 'генетично стійкі' },
-    ], [{ x: S.nSel, label: 'без NaCl', color: '#7A8A80', dash: [3, 4] }, { x: plan.length - 1, label: 'повернення', color: '#7A8A80', dash: [3, 4] }]);
+    ], [{ x: S.nSel, label: 'без NaCl', color: '#7A8A80', dash: [3, 4] }, { x: plan.length - 1, label: 'П', color: '#7A8A80', dash: [3, 4] }]);
   }
   onResize(cv.parentElement, () => draw());
   rebuild();
