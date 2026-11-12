@@ -25,3 +25,4 @@
 .ag-read.t6-warn b { color: #B5641E; }
 #t6a-reads { grid-template-columns: repeat(auto-fit, minmax(132px, 1fr)); }
 #t6b-reads { grid-template-columns: repeat(auto-fit, minmax(112px, 1fr)); }
+#t6b-zone b { font-size: .95rem; }

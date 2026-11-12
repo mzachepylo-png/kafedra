@@ -7,6 +7,7 @@
 .t1-grp .seg button { flex: 1 1 auto; min-height: 40px; }
 .t1-check { display: flex; gap: 10px; align-items: flex-start; margin: 10px 0 0; font-size: .88rem; line-height: 1.35; color: var(--ink-soft); cursor: pointer; }
 .t1-check input { flex: none; width: 20px; height: 20px; margin: 1px 0 0; accent-color: var(--green-700); }
+.t1-check + .ctrl, .t1-check + .t1-check { margin-top: 12px; }
 .t1-ok { color: #166534; font-weight: 700; }
 .t1-bad { color: #B23A2A; font-weight: 600; font-size: .85rem; }
 .ag-table tr.is-on td { background: #FFF6DB; }

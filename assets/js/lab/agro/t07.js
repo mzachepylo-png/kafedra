@@ -105,8 +105,8 @@ function modelA() {
     hits = D.tubeRack(ctx, rx, ry, rw, rh, { conc: M.SERIES, sel: st.sel, hue: o.hue, deg: degs });
     if (wide) K.tagSmall(ctx, rx + rw / 2, ry - 14, 'Торкніться пробірки, щоб розглянути препарат', { color: '#173322', bg: 'rgba(255,255,255,.85)', size: 11 });
     // поле зору
-    const R0 = wide ? Math.min(h * 0.45, w * 0.25) : Math.min(w * 0.46, h * 0.29);
-    const cx = wide ? w * 0.7 : w / 2, cy = wide ? h * 0.5 : h * 0.69;
+    const R0 = wide ? Math.min(h * 0.45, w * 0.25) : Math.min(w * 0.46, h * 0.28);
+    const cx = wide ? w * 0.7 : w / 2, cy = wide ? h * 0.5 : h * 0.7;
     const r = M.mech(M.SERIES[st.sel], st.obj, st.tMin);
     const cw = R0 * 0.19;
     const key = `${st.obj}|${R0}`;
@@ -140,7 +140,7 @@ function modelA() {
     ctx.restore();
     D.ocular(ctx, cx, cy, R0);
     D.scaleBar(ctx, cx - R0 * 0.62, cy + R0 * 0.8, cw * 0.95 / 0.06 * 0.1, '100 мкм');
-    K.tagSmall(ctx, cx, cy - R0 * 1.1 - 6, `${fnum(M.SERIES[st.sel], 2)} М · ${M.FORMS[r.form]}`, { color: '#173322', bg: 'rgba(255,255,255,.88)', size: 11 });
+    if (wide) K.tagSmall(ctx, cx, cy - R0 * 1.1 - 6, `${fnum(M.SERIES[st.sel], 2)} М · ${M.FORMS[r.form]}`, { color: '#173322', bg: 'rgba(255,255,255,.88)', size: 11 });
   }
   let runner;
   $('t7a-run').addEventListener('click', () => { if (runner && (!runner.started || runner.done)) { st.tMin = 0; st.cut = 0; } });
@@ -246,7 +246,7 @@ function modelB() {
       const R2 = rng(9);
       for (let i = 0; i < nP; i++) { const a = R2() * TAU, d = Math.sqrt(R2()) * 0.9; c.fillStyle = st.mat === 'leaf' ? `rgba(60,130,50,${0.3 + R2() * 0.4})` : `rgba(200,190,140,${0.4 + R2() * 0.4})`; c.beginPath(); c.arc(p.cx + Math.cos(a) * d * p.rx, p.cy + Math.sin(a) * d * p.ry, 0.8 + R2() * 1.1, 0, TAU); c.fill(); }
     } });
-    K.tagSmall(ctx, pcx, pcy + pr * 0.42 + pr * 0.16 + 22, `${fnum(st.cel, 1)} % Cellulase · ${fnum(st.mac, 1)} % Macerozyme · ${fnum(st.dri, 2)} % Driselase`, { color: '#173322', bg: 'rgba(255,255,255,.88)', size: wide ? 11 : 10 });
+    if (wide) K.tagSmall(ctx, pcx, pcy + pr * 0.42 + pr * 0.16 + 22, `${fnum(st.cel, 1)} % Cellulase · ${fnum(st.mac, 1)} % Macerozyme · ${fnum(st.dri, 2)} % Driselase`, { color: '#173322', bg: 'rgba(255,255,255,.88)', size: wide ? 11 : 10 });
     // поле зору
     const R0 = Math.round(wide ? Math.min(h * 0.45, w * 0.24) : Math.min(w * 0.46, h * 0.3));
     const cx = wide ? w * 0.7 : w / 2, cy = wide ? h * 0.5 : h * 0.66;
@@ -259,7 +259,7 @@ function modelB() {
     ctx.restore();
     D.ocular(ctx, cx, cy, R0);
     D.scaleBar(ctx, cx + R0 * 0.2, cy + R0 * 0.8, R0 * 0.105 * 2 * 50 / 45, '50 мкм');
-    K.tagSmall(ctx, cx, cy - R0 * 1.1 - 6, r.W > 0.6 ? 'клітини ще у стінках' : r.W > 0.15 ? 'стінки тоншають, клітини округлюються' : 'вільні сферичні протопласти', { color: '#173322', bg: 'rgba(255,255,255,.88)', size: 11 });
+    if (wide) K.tagSmall(ctx, cx, cy - R0 * 1.1 - 6, r.W > 0.6 ? 'клітини ще у стінках' : r.W > 0.15 ? 'стінки тоншають, клітини округлюються' : 'вільні сферичні протопласти', { color: '#173322', bg: 'rgba(255,255,255,.88)', size: 11 });
   }
   let runner;
   $('t7b-run').addEventListener('click', () => { if (runner && (!runner.started || runner.done)) { st.t = 0; sl2.set('t7b-t', 0, true); } });
@@ -376,7 +376,7 @@ function modelC() {
     });
     // підписи зон
     const ly = ttop + th * 0.22;
-    if (st.step === 'float' && res.proto.v < 0 && st.p > 0.5) K.callout(ctx, tcx - tw * 0.3, ly + 6, wide ? tcx - tw * 0.8 - 10 : tcx + tw * 0.2, wide ? ly - 30 : ly - 34, wide ? 'зелений шар цілих протопластів' : 'шар протопластів', { size: wide ? 11.5 : 10.5 });
+    if (wide && st.step === 'float' && res.proto.v < 0 && st.p > 0.5) K.callout(ctx, tcx - tw * 0.3, ly + 6, wide ? tcx - tw * 0.8 - 10 : tcx + tw * 0.2, wide ? ly - 30 : ly - 34, wide ? 'зелений шар цілих протопластів' : 'шар протопластів', { size: wide ? 11.5 : 10.5 });
     if (st.p > 0.5 && wide) K.callout(ctx, tcx - 2, ttop + th - 8, tcx - tw * 0.9 - 10, ttop + th - 2, st.step === 'float' ? 'осад: уламки, мертві клітини' : 'осад протопластів', { size: 11.5 });
     // легенда/фізика
     if (wide) {

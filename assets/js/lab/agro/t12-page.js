@@ -246,6 +246,12 @@ export class PageModel {
   /** Джерело живлення з дисплеєм і дротами. */
   supply(ctx, r, s, app) {
     const { x, y, w, h } = r;
+    const jr = Math.min(7, w * 0.05);
+    const jk = [[x + w * 0.3, y + h * 0.78, '#1A1F1C'], [x + w * 0.7, y + h * 0.78, '#B32A1E']];
+    // дроти
+    const wire = (from, to, c) => { ctx.strokeStyle = c; ctx.lineWidth = 3; ctx.lineCap = 'round'; ctx.beginPath(); ctx.moveTo(from[0], from[1]); ctx.bezierCurveTo(from[0] + 10, from[1] + 40, to[0] + 70, to[1] - 30, to[0], to[1]); ctx.stroke(); ctx.strokeStyle = 'rgba(255,255,255,.25)'; ctx.lineWidth = 1; ctx.stroke(); };
+    wire([jk[0][0], jk[0][1]], this.term.minus, '#1A1F1C');
+    wire([jk[1][0], jk[1][1]], this.term.plus, '#B32A1E');
     shadow(ctx, x + w / 2, y + h + 2, w * 0.6, 7, 0.35);
     let g = ctx.createLinearGradient(0, y, 0, y + h); g.addColorStop(0, '#E7EAE6'); g.addColorStop(1, '#BFC5C0');
     ctx.fillStyle = g; roundRect(ctx, x, y, w, h, 6); ctx.fill();
@@ -257,13 +263,7 @@ export class PageModel {
     txt(ctx, `${U} V`, x + 14, r1, { px: 12, font: 'mono', weight: 700, color: '#8DF5A8', base: 'middle' });
     txt(ctx, `${fnum(I, 0)} mA`, x + w - 14, r1, { px: 10, font: 'mono', weight: 700, color: '#8DF5A8', base: 'middle', align: 'right' });
     txt(ctx, `${Math.floor(t / 60)}:${String(Math.floor(t % 60)).padStart(2, '0')}`, x + 14, r2, { px: 10, font: 'mono', color: '#C6F7D2', base: 'middle' });
-    const jr = Math.min(7, w * 0.05);
-    const jk = [[x + w * 0.3, y + h * 0.78, '#1A1F1C'], [x + w * 0.7, y + h * 0.78, '#B32A1E']];
-    for (const [jx, jy, c] of jk) { ctx.fillStyle = c; ctx.beginPath(); ctx.arc(jx, jy, jr, 0, TAU); ctx.fill(); ctx.fillStyle = 'rgba(255,255,255,.3)'; ctx.beginPath(); ctx.arc(jx - 2, jy - 2, jr * 0.35, 0, TAU); ctx.fill(); }
-    // дроти
-    const wire = (from, to, c) => { ctx.strokeStyle = c; ctx.lineWidth = 3; ctx.lineCap = 'round'; ctx.beginPath(); ctx.moveTo(from[0], from[1]); ctx.bezierCurveTo(from[0] + 10, from[1] + 40, to[0] + 70, to[1] - 30, to[0], to[1]); ctx.stroke(); ctx.strokeStyle = 'rgba(255,255,255,.25)'; ctx.lineWidth = 1; ctx.stroke(); };
-    wire([jk[0][0], jk[0][1]], this.term.minus, '#1A1F1C');
-    wire([jk[1][0], jk[1][1]], this.term.plus, '#B32A1E');
+    for (const [jx, jy, c] of jk) { ctx.strokeStyle = c; ctx.lineWidth = 3; ctx.beginPath(); ctx.moveTo(jx, jy); ctx.quadraticCurveTo(jx + 2, jy + 14, jx + 6, y + h + 6); ctx.stroke(); ctx.fillStyle = c; ctx.beginPath(); ctx.arc(jx, jy, jr, 0, TAU); ctx.fill(); ctx.fillStyle = 'rgba(255,255,255,.3)'; ctx.beginPath(); ctx.arc(jx - 2, jy - 2, jr * 0.35, 0, TAU); ctx.fill(); }
     txt(ctx, 'джерело живлення', x + w / 2, y + h + 15, { px: 9.5, align: 'center', color: '#33463B' });
   }
 

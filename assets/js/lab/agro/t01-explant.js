@@ -238,13 +238,13 @@ export function initExplant(root) {
   function drawDishes(ctx, w, h, res, mob, o, t) {
     const hy = scene(ctx, w, h, { kind: 'hood', horizon: 0.16 });
     const per = S.obj === 'soy' ? 5 : 6, nd = Math.ceil(S.n / per);
-    const cols = mob ? 2 : Math.min(4, nd), rows = Math.ceil(nd / cols);
-    const cw = w / cols, rh = (h - hy - 10) / rows;
-    const r = Math.min(cw * 0.42, rh * 0.95 / (0.42 * 2 + 0.3) * 0.5 * 2.1);
+    let cols = 1, r = 0;
+    for (let c = 1; c <= nd; c++) { const rr = Math.min(w / c * 0.46, ((h - hy - 14) / Math.ceil(nd / c) - 34) / 1.1); if (rr > r) { r = rr; cols = c; } }
+    const rows = Math.ceil(nd / cols), cw = w / cols, rh = (h - hy - 14) / rows;
     let k = 0;
     for (let d = 0; d < nd; d++) {
       const ci = d % cols, ri = Math.floor(d / cols);
-      const cx = cw * (ci + 0.5), cy = hy + rh * (ri + 0.5);
+      const nIn = Math.min(cols, nd - ri * cols), cx = (w - nIn * cw) / 2 + cw * (ci + 0.5), cy = hy + 8 + rh * ri + (rh - 34) * 0.48;
       const items = res.slice(d * per, d * per + per);
       petri(ctx, cx, cy, r, { tilt: 0.42, medium: { color: S.obj === 'soy' ? '#E9E3C3' : '#E6E1BE' }, lid: true, contents: (c, p) => {
         items.forEach((e, j) => {
@@ -264,7 +264,7 @@ export function initExplant(root) {
           k++;
         });
       } });
-      if (!mob || d < 2) chip(ctx, cx, cy + r * 0.42 + r * 0.16 + 22, `чашка ${d + 1}`, { size: 10.5 });
+      chip(ctx, cx, cy + r * 0.62 + 24, `чашка ${d + 1}`, { size: 10.5 });
     }
     // підсумок на полотні
     if (runner.started && day >= 3) {

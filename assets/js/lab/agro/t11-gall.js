@@ -139,54 +139,59 @@ export function initGall() {
   /* ---------- сцена ---------- */
   function draw() {
     if (!canvas.parentElement || canvas.parentElement.clientWidth < 80) return;
-    const { ctx, w, h } = fit(canvas, { aspect: canvas.parentElement.clientWidth < 560 ? 1.12 : 1.72, min: 300, max: 520 });
+    const narrow = canvas.parentElement.clientWidth < 560;
+    const { ctx, w, h } = fit(canvas, { aspect: narrow ? 1.12 : 1.52, min: 300, max: 520 });
     const t = runner ? runner.t : 0;
-    const hy = scene(ctx, w, h, { kind: 'room', horizon: 0.58 });
-    const narrow = w < 560;
+    const hy = scene(ctx, w, h, { kind: 'room', horizon: narrow ? 0.38 : 0.42 });
     const day = state.day;
     const showBact = day < 3 && state.strain !== 'none';
+    const baseY = hy + (h - hy) * 0.46;
 
-    if (state.obj === 'carrot') {
-      const r = Math.min(w * (narrow ? 0.27 : 0.21), (h - hy) * 1.25, 110);
-      const y = hy + (h - hy) * (narrow ? 0.42 : 0.4);
-      drawCarrotDish(ctx, w * (narrow ? 0.32 : 0.3), y, r, true, t);
-      drawCarrotDish(ctx, w * (narrow ? 0.76 : 0.72), y, r * 0.82, false, t);
-      if (showBact) swarm(ctx, w * (narrow ? 0.32 : 0.3), y - r * 0.2, r, t);
-      chip(ctx, w * (narrow ? 0.32 : 0.3), y + r * 0.54 + 24, 'Інокульовані диски', { size: narrow ? 10.5 : 12 });
-      chip(ctx, w * (narrow ? 0.76 : 0.72), y + r * 0.46 + 22, 'Контроль', { size: narrow ? 10.5 : 12 });
-    } else if (state.obj === 'tomato') {
-      const th = Math.min((h - 40) * 0.74, 230);
-      const tw = th * 0.19;
-      const x1 = w * (narrow ? 0.26 : 0.3), x2 = w * (narrow ? 0.66 : 0.66);
-      drawTomatoTube(ctx, x1, hy + 26, tw, th, true, t);
-      drawTomatoTube(ctx, x2, hy + 26, tw, th, false, t);
-      if (m && m.gallD > 0.4) {
-        callout(ctx, x1 + tw * 0.5 + 6, hy + 26 + th * 0.52, Math.min(w - 10, x1 + tw * 1.5), hy + 10,
-          `Гал ⌀ ${fnum(m.gallD, 1)} мм`, { size: narrow ? 10.5 : 11.5 });
+    if (state.obj === 'carrot' || state.obj === 'disc') {
+      const r = Math.min(w * (narrow ? 0.245 : 0.235), (h - hy) * 0.78, 118);
+      const r2 = r * 0.78;
+      const x1 = w * (narrow ? 0.3 : 0.31), x2 = w * (narrow ? 0.75 : 0.735);
+      const drawDish = state.obj === 'carrot' ? drawCarrotDish : drawDiscDish;
+      // підписи — над чашками, щоб не накладалися на шкалу часу
+      chip(ctx, x1, baseY - r * 0.5 - 10, state.obj === 'carrot' ? 'Інокульовані диски' : `R1 + канаміцин ${fnum(state.kan, 0)} мг/л`, { size: narrow ? 10 : 11.5 });
+      chip(ctx, x2, baseY - r2 * 0.5 - 10, state.obj === 'carrot' ? 'Контроль (без бактерії)' : 'Контроль (без вектора)', { size: narrow ? 10 : 11.5 });
+      drawDish(ctx, x1, baseY, r, true, t);
+      drawDish(ctx, x2, baseY, r2, false, t);
+      if (showBact && state.obj === 'carrot') swarm(ctx, x1, baseY - r * 0.25, r, t);
+      if (state.obj === 'carrot' && m && m.gallD > 0.5 && !narrow) {
+        callout(ctx, x1 + r * 0.1, baseY - r * 0.12, Math.min(w - 120, x1 + r * 1.05), baseY + r * 0.62,
+          `Гали ⌀ ${fnum(m.gallD, 1)} мм на камбіальному кільці`, { size: 11 });
       }
     } else {
-      const r = Math.min(w * (narrow ? 0.27 : 0.21), (h - hy) * 1.25, 110);
-      const y = hy + (h - hy) * (narrow ? 0.42 : 0.4);
-      drawDiscDish(ctx, w * (narrow ? 0.32 : 0.3), y, r, true, t);
-      drawDiscDish(ctx, w * (narrow ? 0.76 : 0.72), y, r * 0.82, false, t);
-      chip(ctx, w * (narrow ? 0.32 : 0.3), y + r * 0.54 + 24, `R1 + канаміцин ${fnum(state.kan, 0)} мг/л`, { size: narrow ? 10 : 11.5 });
-      chip(ctx, w * (narrow ? 0.76 : 0.72), y + r * 0.46 + 22, 'Контроль (без вектора)', { size: narrow ? 10 : 11.5 });
+      const th = Math.min((h - 44) * 0.82, 250);
+      const tw = th * 0.2;
+      const x1 = w * (narrow ? 0.28 : 0.33), x2 = w * (narrow ? 0.7 : 0.67);
+      const top = Math.max(hy - th * 0.45, 26);
+      drawTomatoTube(ctx, x1, top, tw, th, true, t);
+      drawTomatoTube(ctx, x2, top, tw, th, false, t);
+      if (m && m.gallD > 0.4) {
+        callout(ctx, x1 + tw * 0.55, top + th * 0.46, Math.min(w - 110, x1 + tw * 1.6), top + th * 0.16,
+          `Гал ⌀ ${fnum(m.gallD, 1)} мм`, { size: narrow ? 10.5 : 11.5 });
+      }
     }
 
     // шкала часу внизу
-    const bx = 14, bw = w - 28, by = h - 16;
+    const bx = 14, bw = w - 28, by = h - 14;
     ctx.save();
     ctx.fillStyle = 'rgba(12,32,22,.16)';
     roundRect(ctx, bx, by - 6, bw, 7, 3.5); ctx.fill();
     ctx.fillStyle = '#2E7D5B';
     roundRect(ctx, bx, by - 6, Math.max(3, bw * (day / MAX_DAY)), 7, 3.5); ctx.fill();
-    for (const d of [7, 14, 21]) {
+    ctx.font = '600 9.5px system-ui, sans-serif'; ctx.textAlign = 'center';
+    for (const d of [0, 7, 14, 21, 28]) {
       const px = bx + bw * (d / MAX_DAY);
-      ctx.fillStyle = 'rgba(12,32,22,.45)';
-      ctx.fillRect(px, by - 11, 1.4, 5);
-      ctx.font = '600 9.5px system-ui, sans-serif'; ctx.textAlign = 'center';
-      ctx.fillText(d, px, by - 13);
+      ctx.fillStyle = 'rgba(12,32,22,.5)';
+      ctx.fillRect(px, by - 10, 1.2, 4);
+      ctx.fillText(`${d}`, px, by - 12);
     }
+    ctx.fillStyle = 'rgba(12,32,22,.5)';
+    ctx.textAlign = 'right';
+    ctx.fillText('доба', bx + bw, by + 12);
     ctx.restore();
     chip(ctx, w - 12, 22, `${fnum(day, 0)} доба · ${fnum(state.T, 1)} °C`, { align: 'right', size: 11.5 });
   }

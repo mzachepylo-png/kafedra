@@ -17,7 +17,7 @@ export const SPECTRA = {
   // тетрагваякол: широка смуга з максимумом 470 нм
   tg: (l) => 0.97 * sg(l, 470, 52) + 0.18 * sg(l, 340, 30),
   // о-бензохінон (пірокатехін): плато 366–420 нм
-  cat: (l) => sg(l, 393, 34, 4),
+  cat: (l) => sg(l, 393, 34, 4) + 0.3 * sg(l, 445, 40),
   // дофахром (ДОФА): 436–475 нм
   dopa: (l) => sg(l, 458, 30, 4) + 0.25 * sg(l, 330, 25),
   // хінон хлорогенової кислоти: 328–400 нм
@@ -83,9 +83,9 @@ export function compute(cfg, p) {
 }
 
 /* ---------------- Колір розчину в кюветі з поглинання ---------------- */
-function solColor(spec, Dm, brown = 0) {
+function solColor(spec, Dm, brown = 0, gain = 0.9) {
   const ch = [610, 545, 462];
-  return ch.map((l) => 248 * Math.pow(10, -(Dm * spec(l) + brown * SPECTRA.mel(l)) * 0.9));
+  return ch.map((l) => 248 * Math.pow(10, -(Dm * spec(l) + brown * SPECTRA.mel(l)) * gain));
 }
 
 /* ---------------- Спектрофотометр СФ-46 (2.5D) ---------------- */
@@ -212,7 +212,7 @@ function cuvetteInset(ctx, r, st) {
   // кювета
   shadow(ctx, cx + cw / 2, cy + chh + 2, cw * 0.8, 4, 0.5);
   const lev = cy + chh * 0.25;
-  const col = solColor(st.spec, st.Dmax, st.brown);
+  const col = solColor(st.spec, st.Dmax, st.brown, st.gain);
   ctx.save(); ctx.beginPath(); ctx.rect(cx, cy, cw, chh); ctx.clip();
   ctx.fillStyle = 'rgba(210,230,226,.12)'; ctx.fillRect(cx, cy, cw, chh);
   // рідина
@@ -406,8 +406,8 @@ export class SpectroModel {
     const started = this.runner.started;
     const Dm = started ? (a.phase === 'pip' ? 0 : m.Dmax(tn)) : m.Dmax(cfg.t2);
     const Dshown = started && a.phase === 'pip' ? 0 : this.Dmeas();
-    const brown = cfg.key === 'ppo' ? 0.18 * Math.pow(Dm, 1.4) : 0;
-    const st = { narrow, lam: this.p.lam, T: started ? a.T : 100 * Math.pow(10, -Dshown), on: true, D: Dshown, Dmax: Dm, spec: m.sub.spec, brown, pip: a.phase === 'pip' ? a.pip : 0, mixing: a.mixing };
+    const brown = cfg.key === 'ppo' ? 0.4 * Math.pow(Dm, 1.2) : 0;
+    const st = { narrow, gain: cfg.key === 'ppo' ? 2.4 : 0.9, lam: this.p.lam, T: started ? a.T : 100 * Math.pow(10, -Dshown), on: true, D: Dshown, Dmax: Dm, spec: m.sub.spec, brown, pip: a.phase === 'pip' ? a.pip : 0, mixing: a.mixing };
     const hy = scene(ctx, DW, DH, { kind: 'bench', horizon: narrow ? 0.86 : 0.74, light: 0.3 });
     let inst, inset, watch;
     if (narrow) {

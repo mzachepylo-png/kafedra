@@ -71,7 +71,7 @@ function initA() {
     const nDraw = Math.min(P.N, 2600), cols = [];
     for (let i = 0; i < nDraw; i++) { const a = Rb() * TAU, d = Math.sqrt(Rb()) * 0.94; cols.push({ u: Math.cos(a) * d, v: Math.sin(a) * d, s: Math.exp((Rb() - 0.5) * 0.7), R: 0, rot: Rb() * TAU }); }
     for (let i = 0; i < P.r; i++) { const a = Rb() * TAU, d = Math.sqrt(Rb()) * 0.85; cols.push({ u: Math.cos(a) * d, v: Math.sin(a) * d, s: 1.15 + Rb() * 0.3, R: Rb() < A.chim ? 2 : 1, rot: Rb() * TAU }); }
-    cols.sort((a, b) => a.v - b.v);
+    cols.sort((a, b) => (a.R ? 1 : 0) - (b.R ? 1 : 0) || a.v - b.v); // стійкі — поверх сусідів
     big = { cols, scale: P.N > nDraw ? P.N / nDraw : 1 };
   }
 
@@ -290,12 +290,12 @@ function initB() {
     scene(ctx, w, h, { kind: 'hood', horizon: wide ? 0.2 : 0.14, light: 0.5 });
     const k = Math.min(Math.floor(S.pos), plan.length), P = k < plan.length ? plan[Math.min(k, plan.length - 1)] : plan[plan.length - 1];
     const cur = S.pos < 1e-6 ? { kind: 'sel', c: plan[0].c } : plan[Math.min(k, plan.length - 1)];
-    const r = wide ? Math.min(w * 0.112, h * 0.46) : Math.min(w * 0.225, h * 0.22);
+    const r = wide ? Math.min(w * 0.115, h * 0.42) : Math.min(w * 0.225, h * 0.22);
     const centers = wide ? [0, 1, 2, 3].map((i) => [w * (0.14 + i * 0.24), h * 0.55]) : [0, 1, 2, 3].map((i) => [w * (0.27 + (i % 2) * 0.46), h * (0.3 + Math.floor(i / 2) * 0.42)]);
     const medCol = cur.kind === 'non' ? '#EFE8C8' : '#E4E6D2';
     centers.forEach(([cx, cy], d) => {
       petri(ctx, cx, cy, r, {
-        tilt: 0.5, medium: { color: medCol },
+        tilt: 0.62, medium: { color: medCol },
         contents: (c, Q) => {
           for (let i = 0; i < 12; i++) {
             const cl = states[d * 12 + i]; if (!cl) continue;
@@ -314,7 +314,7 @@ function initB() {
           }
         },
       });
-      tagSmall(ctx, cx, cy + r * 0.5 + r * 0.16 + 16, `Чашка ${d + 1}`, { color: '#1F3A2A', size: 10.5 });
+      tagSmall(ctx, cx, cy + r * 0.62 + r * 0.16 + 16, `Чашка ${d + 1}`, { color: '#1F3A2A', size: 10.5 });
     });
     const head = S.pos >= plan.length ? 'Підсумок: стабільні лінії' : cur.kind === 'non' ? 'Пасаж без NaCl (перевірка)' : cur.kind === 'ret' ? `Повернення на ${fnum(cur.c, 0)} мМ NaCl` : `Селекція: ${fnum(cur.c, 0)} мМ NaCl`;
     $('t6b-hud').innerHTML = `<span>${head}</span>`;

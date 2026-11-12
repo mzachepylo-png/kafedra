@@ -70,7 +70,7 @@ export function initPrep(bus) {
   syncCtrls();
 
   let m = null, spec = null;
-  const VOL = { plasmid: 0.05, nuclear: 1.0, rna: 0.5 };   // мл буфера ТЕ / води для розчинення осаду
+  const VOL = { plasmid: 1.0, nuclear: 1.0, rna: 0.5 };   // мл буфера ТЕ / води для розчинення осаду
 
   function recompute() {
     m = prepState({ ...state, cultureMl: 500 });
@@ -156,48 +156,55 @@ export function initPrep(bus) {
   /* ---------- сцена: конвеєр із чотирьох станцій ---------- */
   function draw() {
     if (!canvas.parentElement || canvas.parentElement.clientWidth < 80) return;
-    const { ctx, w, h } = fit(canvas, { aspect: canvas.parentElement.clientWidth < 620 ? 1.05 : 1.78, min: 300, max: 520 });
+    const narrow = canvas.parentElement.clientWidth < 620;
+    const { ctx, w, h } = fit(canvas, { aspect: narrow ? 1.0 : 1.62, min: 300, max: 540 });
     const t = runner ? runner.t : 0;
-    const narrow = w < 620;
-    const hy = scene(ctx, w, h, { kind: 'bench', horizon: narrow ? 0.3 : 0.52 });
+    scene(ctx, w, h, { kind: 'bench', horizon: narrow ? 0.5 : 0.56 });
     const pl = state.sample === 'plasmid';
     const act = state.stage;
 
-    const cells = narrow
-      ? [[0.25, 0.3], [0.75, 0.3], [0.25, 0.78], [0.75, 0.78]]
-      : [[0.14, 0.62], [0.38, 0.62], [0.62, 0.62], [0.87, 0.62]];
-    const unit = narrow ? w * 0.4 : w * 0.2;
-
-    for (let i = 0; i < 4; i++) {
-      const [fx, fy] = cells[i];
-      const cx = w * fx, by = h * fy;
-      const activeK = clamp(1 - Math.abs(act - i), 0, 1);
-      // підсвітка активної станції
-      if (activeK > 0.02) {
-        ctx.save();
-        const g = ctx.createRadialGradient(cx, by - unit * 0.3, unit * 0.1, cx, by - unit * 0.3, unit * 0.9);
-        g.addColorStop(0, `rgba(255,236,170,${0.5 * activeK})`);
-        g.addColorStop(1, 'rgba(255,236,170,0)');
-        ctx.fillStyle = g;
-        ctx.fillRect(cx - unit, by - unit * 1.4, unit * 2, unit * 1.8);
-        ctx.restore();
-      }
-      drawStation(ctx, i, cx, by, unit, t, activeK);
-      const name = STAGES[i].name;
-      chip(ctx, cx, by + (narrow ? 20 : 24), `${i + 1}. ${name}`, { size: narrow ? 10 : 11.5 });
+    // чотири станції: у рядок (десктоп) або 2×2 (телефон)
+    const cells = [];
+    let unit;
+    if (narrow) {
+      unit = Math.min(w * 0.4, h * 0.3);
+      const bx = [w * 0.27, w * 0.74], by = [h * 0.44, h * 0.9];
+      for (let i = 0; i < 4; i++) cells.push([bx[i % 2], by[i >> 1]]);
+    } else {
+      unit = Math.min(w * 0.215, h * 0.5);
+      const by = h * 0.82;
+      for (let i = 0; i < 4; i++) cells.push([w * (0.13 + i * 0.247), by]);
     }
-    // стрілки потоку
+
+    // стрілки потоку — за об'єктами
     for (let i = 0; i < 3; i++) {
       const [x1, y1] = cells[i], [x2, y2] = cells[i + 1];
       if (narrow && i === 1) {
-        arrow(ctx, w * x1, h * y1 + 30, w * x2, h * y2 - unit * 0.55, { color: 'rgba(30,70,45,.3)', dash: [4, 4] });
-      } else {
-        arrow(ctx, w * x1 + unit * 0.46, h * y1 - unit * 0.3, w * x2 - unit * 0.46, h * y2 - unit * 0.3, { color: 'rgba(30,70,45,.35)' });
+        arrow(ctx, x1, y1 + unit * 0.2, x2, y2 - unit * 0.95, { color: 'rgba(30,70,45,.3)', dash: [5, 4] });
+      } else if (!narrow || i !== 1) {
+        const yy = y1 - unit * 0.42;
+        arrow(ctx, x1 + unit * 0.44, yy, x2 - unit * 0.44, yy, { color: 'rgba(30,70,45,.32)' });
       }
     }
+
+    for (let i = 0; i < 4; i++) {
+      const [cx, by] = cells[i];
+      const activeK = clamp(1 - Math.abs(act - i), 0, 1);
+      if (activeK > 0.02) {
+        ctx.save();
+        const g = ctx.createRadialGradient(cx, by - unit * 0.42, unit * 0.1, cx, by - unit * 0.42, unit * 0.95);
+        g.addColorStop(0, `rgba(255,232,150,${0.55 * activeK})`);
+        g.addColorStop(1, 'rgba(255,232,150,0)');
+        ctx.fillStyle = g;
+        ctx.fillRect(cx - unit, by - unit * 1.5, unit * 2, unit * 1.9);
+        ctx.restore();
+      }
+      drawStation(ctx, i, cx, by, unit, t, activeK);
+      chip(ctx, cx, by + (narrow ? 16 : 20), `${i + 1}. ${STAGES[i].name}`, { size: narrow ? 9.5 : 11 });
+    }
     // підпис поточного кроку
-    const s = STAGES[Math.min(3, Math.floor(act))];
-    chip(ctx, 12, 22, s.sub[pl ? 'plasmid' : 'tissue'], { align: 'left', size: narrow ? 10 : 11.5 });
+    const sTxt = STAGES[Math.min(3, Math.floor(act))].sub[pl ? 'plasmid' : 'tissue'];
+    chip(ctx, 10, 20, sTxt, { align: 'left', size: narrow ? 9.5 : 11.5 });
   }
 
   function drawStation(ctx, i, cx, by, unit, t, active) {
@@ -257,7 +264,7 @@ export function initPrep(bus) {
       });
       if (active > 0.25) dnaThreads(ctx, cx, topY + tubeH * 0.45, tubeW * 0.72, { amount: active * rec, seed: 6, t });
       chip(ctx, cx, by - tubeH - unit * 0.1, state.sample === 'plasmid' ? 'ізопропанол' : '2 об’єми етанолу', { size: 10 });
-      if (m) chip(ctx, cx, by + (canvas.clientWidth < 620 ? 36 : 42), `${fnum(m.yieldUg, m.yieldUg < 100 ? 1 : 0)} мкг`, { size: 11 });
+      if (m) chip(ctx, cx, by - tubeH - unit * 0.32, `${fnum(m.yieldUg, m.yieldUg < 100 ? 1 : 0)} мкг`, { size: 11 });
     }
   }
 

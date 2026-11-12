@@ -33,7 +33,7 @@ export function initSpec(bus) {
   });
   const plotK = new Plot($('t11d-plot2'), {
     xLabel: 'Кратність розведення K', yLabel: 'D₂₆₀ у кюветі', xShort: 'K',
-    x: [1, 200], y: 'auto', aspect: 1.6,
+    x: [1, 200], y: [0, 2.2], aspect: 1.6,
   });
 
   document.querySelectorAll('[data-t11d-preset]').forEach((b) => b.addEventListener('click', () => {
@@ -175,8 +175,6 @@ export function initSpec(bus) {
       const b = bars[i];
       const bx = px + pw * (0.14 + i * 0.28);
       const bh = (b.v / maxV) * (ph * 0.5);
-      ctx.fillStyle = 'rgba(20,45,30,.07)';
-      roundRect(ctx, bx, py + ph * 0.2, bw, ph * 0.52, 4); ctx.fill();
       ctx.fillStyle = b.c;
       roundRect(ctx, bx, baseY - bh, bw, Math.max(2, bh), 4); ctx.fill();
       ctx.font = `700 ${narrow ? 10 : 11.5}px ui-monospace, monospace`;
@@ -186,6 +184,8 @@ export function initSpec(bus) {
       ctx.fillStyle = '#4A5B50';
       ctx.fillText(`${b.l} нм`, bx + bw / 2, baseY + 13);
     }
+    ctx.strokeStyle = 'rgba(30,70,45,.25)'; ctx.lineWidth = 1;
+    ctx.beginPath(); ctx.moveTo(px + pw * 0.08, baseY + 0.5); ctx.lineTo(px + pw * 0.92, baseY + 0.5); ctx.stroke();
     ctx.font = `700 ${narrow ? 11 : 12.5}px system-ui, sans-serif`;
     ctx.fillStyle = '#17321F'; ctx.textAlign = 'center';
     ctx.fillText(`D₂₆₀/D₂₈₀ = ${fnum(s.R, 2)}`, px + pw / 2, py + ph * 0.92);
