@@ -200,7 +200,7 @@ export function drawTubes(ctx, w, h, tubes, { t = 0, sway = 0, maxLen = 60, tint
     const fs = slot < 110 ? 0.86 : 1;
     ctx.textAlign = 'center'; ctx.fillStyle = '#183A22';
     ctx.font = `700 ${12.5 * fs}px system-ui, sans-serif`; ctx.fillText(tb.label, cx, bench + 20);
-    ctx.fillStyle = '#4C6152';
+    ctx.fillStyle = '#2F4536';
     if (tb.sub) { // підпис не ширший за свою колонку
       let f = 11 * fs; ctx.font = `600 ${f}px system-ui, sans-serif`;
       while (f > 7.5 && ctx.measureText(tb.sub).width > slot - 6) { f -= 0.5; ctx.font = `600 ${f}px system-ui, sans-serif`; }

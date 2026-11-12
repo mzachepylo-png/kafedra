@@ -11,71 +11,138 @@ const REDUCED = matchMedia('(prefers-reduced-motion: reduce)').matches;
 const SUP = { '0': '⁰', '1': '¹', '2': '²', '3': '³', '4': '⁴', '5': '⁵', '6': '⁶', '7': '⁷', '8': '⁸', '9': '⁹', '-': '⁻' };
 const fmtC = (v) => { if (v < 1e4) return sig(v, v < 1 ? 2 : 3); const [m, e] = v.toExponential(1).split('e+'); return `${m.replace('.', ',')}·10${[...e].map((d) => SUP[d]).join('')}`; };
 const plain = (h) => String(h).replace(/<[^>]+>/g, '');
+const ease = (k) => 1 - Math.pow(1 - k, 3);
 
 // ------------------------------------------------------------------ стан
 const S = {
   sel: [{ id: 'cd', c: 3 }], water: 'tap', protocol: 'sim', target: 48, recover: false,
   t: 0, running: false, phase: 'idle', // idle | expo | recover | done
-  zoom: 1, view: { x: 450, y: 450 }, highlight: false, picked: null, seed: 7, cine: 'auto', cineT: 0, cinePlay: false,
+  zoom: 1, zv: 1, rewind: null, view: { x: 450, y: 450 }, highlight: false, picked: null, seed: 7, cine: 'auto', cineT: 0, cinePlay: false,
 };
 const MAX_SEL = 3;
-let protoSeg = null;
 
 // ------------------------------------------------------------------ вибір чинників
+const role = (a) => (a.dr || a.stim ? 'prot' : a.horm ? 'horm' : 'tox');
+const ROLE = { tox: 'токсикант', prot: 'протектор', horm: 'гормезис' };
+const ROLE_TIP = { tox: 'Речовина, дію якої перевіряємо', prot: 'Сам не шкодить; знижує пошкодження від мутагену', horm: 'Малі дози стимулюють поділ, великі — пригнічують' };
+let pickFilter = 'all';
 function buildPicker() {
   const box = $('al-pick');
-  const kinds = [['abiotic', 'Абіотичні чинники'], ['biotic', 'Біотичні чинники']];
-  for (const [kind, title] of kinds) {
-    const col = document.createElement('div'); col.className = 'al-pick__col';
-    col.innerHTML = `<h4>${title}</h4>`;
-    for (const [gid, g] of Object.entries(GROUPS)) {
-      if (g.kind !== kind) continue;
-      const grp = document.createElement('div'); grp.className = 'al-pick__grp';
-      grp.innerHTML = `<div class="al-pick__gname">${g.name}</div>`;
-      const chips = document.createElement('div'); chips.className = 'al-chips';
-      for (const a of AGENTS.filter((x) => x.group === gid)) {
-        const b = document.createElement('button');
-        b.type = 'button'; b.className = 'al-chip' + (a.dr || a.stim ? ' al-chip--pos' : a.horm ? ' al-chip--horm' : '');
-        b.dataset.id = a.id; b.title = plain(a.note);
-        b.innerHTML = `<span class="al-chip__sign" aria-hidden="true">${a.dr || a.stim ? '+' : a.horm ? '±' : '−'}</span>${a.name}`;
-        b.setAttribute('aria-pressed', 'false');
-        b.addEventListener('click', () => toggle(a.id));
-        chips.append(b);
-      }
-      grp.append(chips); col.append(grp);
+  for (const [gid, g] of Object.entries(GROUPS)) {
+    const grp = document.createElement('div'); grp.className = 'al-pick__grp'; grp.dataset.group = gid;
+    grp.innerHTML = `<div class="al-pick__gname">${g.name}<span>${g.kind === 'biotic' ? 'біотичні' : 'абіотичні'}</span></div>`;
+    const chips = document.createElement('div'); chips.className = 'al-chips';
+    for (const a of AGENTS.filter((x) => x.group === gid)) {
+      const b = document.createElement('button');
+      b.type = 'button'; b.className = 'al-chip al-chip--' + role(a);
+      b.dataset.id = a.id; b.dataset.role = role(a); b.dataset.q = (plain(a.name) + ' ' + plain(g.name) + ' ' + plain(a.note)).toLowerCase();
+      b.innerHTML = `<span class="al-chip__name">${a.name}</span><span class="al-chip__state" aria-hidden="true"></span>`;
+      b.addEventListener('click', () => toggle(a.id));
+      chips.append(b);
     }
-    box.append(col);
+    grp.append(chips); box.append(grp);
   }
+  segmented($('al-pick-tabs'), 'al-pick-tabs', [{ value: 'all', label: 'Усі' }, { value: 'tox', label: 'Токсиканти' }, { value: 'prot', label: 'Протектори' }], 'all', (v) => { pickFilter = v; filterPicker(); });
+  $('al-pick-q').addEventListener('input', filterPicker);
+  $('al-add').addEventListener('click', () => setPicker($('al-pickpanel').hidden));
+}
+function setPicker(open) {
+  $('al-pickpanel').hidden = !open;
+  $('al-add').setAttribute('aria-expanded', String(open));
+  $('al-add').classList.toggle('is-open', open);
+  if (open && matchMedia('(min-width: 961px)').matches) $('al-pick-q').focus({ preventScroll: true });
+}
+function filterPicker() {
+  const q = $('al-pick-q').value.trim().toLowerCase();
+  document.querySelectorAll('.al-pick__grp').forEach((g) => {
+    let any = false;
+    g.querySelectorAll('.al-chip').forEach((b) => {
+      const okRole = pickFilter === 'all' || (pickFilter === 'prot' ? b.dataset.role === 'prot' : b.dataset.role !== 'prot');
+      const ok = okRole && (!q || b.dataset.q.includes(q));
+      b.hidden = !ok; any = any || ok;
+    });
+    g.hidden = !any;
+  });
 }
 function toggle(id) {
   const i = S.sel.findIndex((x) => x.id === id);
   if (i >= 0) S.sel.splice(i, 1);
   else {
-    if (S.sel.length >= MAX_SEL) S.sel.shift();
+    if (S.sel.length >= MAX_SEL) { // не викидаємо мовчки — пояснюємо
+      const q = $('al-quota'); q.classList.remove('al-quota--shake'); void q.offsetWidth; q.classList.add('al-quota--shake');
+      flashHint('Можна поєднати не більше трьох чинників. Приберіть один із вибраних (×), щоб додати інший.');
+      return;
+    }
     S.sel.push({ id, c: byId[id].def });
   }
+  document.querySelectorAll('[data-preset]').forEach((b) => b.setAttribute('aria-pressed', 'false'));
   resetRun(); renderActive(); update(true);
+}
+let hintTimer = 0;
+function flashHint(t) { const h = $('al-sel-hint'); h.textContent = t; h.hidden = false; h.classList.add('al-hint--warn'); clearTimeout(hintTimer); hintTimer = setTimeout(() => { h.classList.remove('al-hint--warn'); selHint(); }, 4000); }
+function selHint() {
+  const h = $('al-sel-hint');
+  const tox = S.sel.filter((x) => role(byId[x.id]) !== 'prot'), prot = S.sel.filter((x) => role(byId[x.id]) === 'prot');
+  const t = prot.length && !tox.length ? 'Протектор сам по собі не шкодить і нічого не «лікує» у воді. Додайте мутаген (наприклад, MMS або кадмій), щоб побачити, наскільки протектор знижує пошкодження (%DR).'
+    : tox.length >= 2 ? 'Кілька токсикантів діють незалежно: частки клітин, що продовжують ділитися, перемножуються (модель Блісса).' : '';
+  h.textContent = t; h.hidden = !t;
+}
+function solColor(a, k = 1) {
+  const m = /rgba?\(([^)]+)\)/.exec(a.tint || '');
+  if (!m) return 'rgba(215,232,240,.6)';
+  const [r, g, b] = m[1].split(',').map((x) => x.trim());
+  return `rgba(${r},${g},${b},${(0.35 + 0.45 * k).toFixed(2)})`;
 }
 function renderActive() {
   const box = $('al-active'); box.replaceChildren();
-  document.querySelectorAll('.al-chip').forEach((b) => b.setAttribute('aria-pressed', String(S.sel.some((x) => x.id === b.dataset.id))));
-  if (!S.sel.length) { box.innerHTML = '<p class="al-empty">Оберіть до трьох чинників зі списку — або залиште порожнім, щоб побачити негативний контроль (вода).</p>'; return; }
-  for (const s of S.sel) {
-    const a = byId[s.id];
-    const row = document.createElement('div'); row.className = 'al-act' + (a.dr || a.stim ? ' al-act--pos' : '');
-    const lmin = Math.log10(a.min), lmax = Math.log10(a.max);
-    row.innerHTML = `<div class="al-act__head"><b>${a.name}</b><button type="button" class="al-act__x" aria-label="Прибрати ${plain(a.name)}">×</button></div>
-      <label class="al-act__lab"><span>Концентрація</span><output>${fmtC(s.c)} ${a.unit}</output></label>
-      <input type="range" min="${lmin}" max="${lmax}" step="any" value="${Math.log10(s.c)}" aria-label="Концентрація: ${plain(a.name)}">
-      <p class="al-act__note">${a.note} <a href="${ART}#${a.art}">Теорія →</a></p>`;
-    const inp = row.querySelector('input'), out = row.querySelector('output');
-    const pct = () => inp.style.setProperty('--pct', ((inp.value - lmin) / (lmax - lmin) * 100) + '%');
-    pct();
-    inp.addEventListener('input', () => { s.c = +(10 ** +inp.value).toPrecision(3); out.textContent = `${fmtC(s.c)} ${a.unit}`; pct(); S.dragging = true; update(); });
-    inp.addEventListener('change', () => { S.dragging = false; update(true); });
-    row.querySelector('.al-act__x').addEventListener('click', () => toggle(a.id));
-    box.append(row);
+  const full = S.sel.length >= MAX_SEL;
+  document.querySelectorAll('.al-chip').forEach((b) => {
+    const on = S.sel.some((x) => x.id === b.dataset.id);
+    b.dataset.state = on ? 'added' : full ? 'full' : 'add';
+    b.setAttribute('aria-pressed', String(on));
+    b.setAttribute('aria-disabled', String(!on && full));
+    b.title = on ? 'Вже в розчині — натисніть, щоб прибрати' : full ? 'Ліміт: 3 чинники. Спершу приберіть один із вибраних' : 'Додати в розчин';
+  });
+  const q = $('al-quota');
+  q.innerHTML = `<b>${S.sel.length}</b> з ${MAX_SEL}`;
+  q.title = 'Скільки чинників у розчині (максимум 3)';
+  $('al-add').disabled = false;
+  $('al-add').querySelector('span').nextSibling.textContent = full ? ' Каталог (ліміт 3 — приберіть один)' : S.sel.length ? ' Додати ще чинник' : ' Додати чинник із каталогу';
+  if (!S.sel.length) {
+    box.innerHTML = '<li class="al-flask al-flask--water"><span class="al-flask__vial" style="--sol:rgba(200,225,238,.7)" aria-hidden="true"></span><div><b>Лише вода — негативний контроль</b><p>Усі чотири пробірки однакові. Додайте токсикант із каталогу, щоб побачити його дію.</p></div></li>';
+    selHint(); return;
   }
+  for (const s of S.sel) {
+    const a = byId[s.id], r = role(a);
+    const li = document.createElement('li'); li.className = 'al-flask al-flask--' + r;
+    const lmin = Math.log10(a.min), lmax = Math.log10(a.max), uid = 'al-c-' + a.id;
+    const e = r === 'prot' ? null : ec50MI(a, { water: S.water, protocol: S.protocol });
+    const ePct = e && e >= a.min && e <= a.max ? (Math.log10(e) - lmin) / (lmax - lmin) * 100 : null;
+    li.innerHTML = `<span class="al-flask__vial" aria-hidden="true"></span>
+      <div class="al-flask__body">
+        <div class="al-flask__head"><div><b>${a.name}</b> <span class="al-role al-role--${r}" title="${ROLE_TIP[r]}">${ROLE[r]}</span></div><button type="button" class="al-flask__x" aria-label="Прибрати: ${plain(a.name)}" title="Прибрати з розчину">×</button></div>
+        <div class="al-flask__lab"><label for="${uid}">Концентрація C${r === 'prot' ? ' (однакова в усіх пробірках)' : ''}</label><output for="${uid}">${fmtC(s.c)} ${a.unit}</output></div>
+        <input type="range" id="${uid}" min="${lmin}" max="${lmax}" step="any" value="${Math.log10(s.c)}">
+        ${ePct != null ? `<div class="al-flask__ecrow"><span class="al-flask__ec" style="left:${Math.min(88, Math.max(12, ePct))}%;--tick:${ePct}%" title="EC₅₀ — концентрація, за якої мітотичний індекс падає вдвічі">EC₅₀ ≈ ${fmtC(e)}</span></div>` : ''}<div class="al-flask__scale"><span>${fmtC(a.min)}</span><span>${fmtC(a.max)} ${a.unit}</span></div>
+        ${r === 'prot' ? '<div class="al-set al-flask__proto"><span>Коли додаємо протектор <a href="../../../konspekt/allium-cepa-test/#antimutagens" title="Пояснення в Конспекті" target="_blank" rel="noopener">?</a></span><div class="al-proto"></div></div>' : ''}
+        <details class="al-flask__more"><summary>Як діє</summary><p>${a.note} <a href="${ART}#${a.art}" target="_blank" rel="noopener">Теорія ↗</a></p></details>
+      </div>`;
+    const inp = li.querySelector('input'), out = li.querySelector('output'), vial = li.querySelector('.al-flask__vial');
+    const paint = () => {
+      const k = (inp.value - lmin) / (lmax - lmin);
+      inp.style.setProperty('--pct', k * 100 + '%');
+      vial.style.setProperty('--sol', solColor(a, k));
+      inp.setAttribute('aria-valuetext', `${fmtC(s.c)} ${a.unit}`);
+    };
+    paint();
+    inp.addEventListener('input', () => { s.c = +(10 ** +inp.value).toPrecision(3); out.textContent = `${fmtC(s.c)} ${a.unit}`; paint(); S.dragging = true; if (S.phase !== 'idle') resetRun(); update(); });
+    inp.addEventListener('change', () => { S.dragging = false; update(true); });
+    li.querySelector('.al-flask__x').addEventListener('click', () => toggle(a.id));
+    const pr = li.querySelector('.al-proto');
+    if (pr) segmented(pr, 'al-proto-' + a.id, [{ value: 'pre', label: 'Перед' }, { value: 'sim', label: 'Разом' }, { value: 'post', label: 'Після' }], S.protocol, (v) => { S.protocol = v; renderActive(); resetRun(); update(true); });
+    box.append(li);
+  }
+  selHint();
 }
 
 // ------------------------------------------------------------------ сцена з пробірками: контроль + серія розведень
@@ -102,7 +169,7 @@ function tubesModel(t, recover) {
 function tintFor(f) {
   if (!f || !S.sel.length) return null;
   const a = byId[(S.sel.find((x) => !byId[x.id].dr) || S.sel[0]).id];
-  return a.tint ? a.tint.replace(/[\d.]+\)$/, (m) => (parseFloat(m) * (0.35 + 0.65 * f)).toFixed(2) + ')') : null;
+  return a.tint ? a.tint.replace(/[\d.]+\)$/, (m) => Math.min(0.8, parseFloat(m) * (0.6 + 1.4 * f)).toFixed(2) + ')') : null;
 }
 
 // ------------------------------------------------------------------ мікроскоп
@@ -116,7 +183,7 @@ function rebuildSlide(res, crossfade) {
   const fresh = !slide || slide.seed !== S.seed;
   if (fresh) slide = new Slide(900, S.seed);
   slide.assign(res);
-  const fadeIn = crossfade && !REDUCED;
+  const fadeIn = crossfade && !REDUCED && !S.running; // під час експозиції клітини змінюються поступово — без копіювання всього поля
   if (fresh || !slideCv.width) {
     if (fadeIn && slideCv.width) { prevCv = slideCv; slideCv = document.createElement('canvas'); fade = 0; fadeT0 = performance.now(); }
     slide.render(slideCv);
@@ -132,7 +199,21 @@ function rebuildSlide(res, crossfade) {
   }
   if (fade < 1) kick(); // плавна зміна поля зору навіть коли модель стоїть
   microDirty = true;
-  S.picked = null; showPicked();
+  // обрана клітина лишається обраною, лише оновлюється її стан
+  if (S.picked && !fresh) S.picked = slide.cells[pickedIdx] || null; else if (fresh) S.picked = null;
+  showPicked();
+}
+let pickedIdx = -1, abCursor = -1;
+function pick(c) { S.picked = c; pickedIdx = c ? slide.cells.indexOf(c) : -1; showPicked(); microDirty = true; drawMicro(); }
+function nextAberration() {
+  if (!slide) return;
+  const lim = 260 / (1 + (S.zv - 1) * 1.5);
+  const list = slide.cells.filter((c) => c.ab && c.ab !== 'ghost' && c.cx > lim && c.cy > lim && c.cx < 900 - lim && c.cy < 900 - lim)
+    .sort((x, y) => (x.st === 'I') - (y.st === 'I') || x.cy - y.cy || x.cx - y.cx); // спершу аберації поділу, далі ядерні аномалії
+  if (!list.length) { $('al-cell').innerHTML = '<p class="al-cell__hint">У цьому полі зору аберацій немає. Спробуйте «Інше поле зору» або більшу концентрацію.</p>'; return; }
+  abCursor = (abCursor + 1) % list.length;
+  const c = list[abCursor];
+  S.view.x = c.cx; S.view.y = c.cy; pick(c);
 }
 function marks() {
   if (!S.highlight || !slide) return [];
@@ -140,9 +221,9 @@ function marks() {
 }
 function drawMicro() {
   if (!microCtx) return;
-  const z = S.zoom === 1 ? 1 : 2.5;
+  const z = 1 + (S.zv - 1) * 1.5;
   S.view.x = Math.max(260 / z, Math.min(900 - 260 / z, S.view.x)); S.view.y = Math.max(260 / z, Math.min(900 - 260 / z, S.view.y));
-  microGeom = drawMicroscope(microCtx, microSize, microSize, slideCv, prevCv, fade, { ...S.view, z }, { highlight: S.picked, marks: marks(), scaleUm: z > 1 ? 10 : 20, label: `${z > 1 ? '1000' : '400'}× · ацетоорсеїн` });
+  microGeom = drawMicroscope(microCtx, microSize, microSize, slideCv, prevCv, fade, { ...S.view, z }, { highlight: S.picked, marks: marks(), scaleUm: S.zoom > 1 ? 10 : 20, label: `Пробірка C · ${S.zoom > 1 ? '1000' : '400'}× · ${S.phase === 'idle' ? '0 год' : Math.round(Math.min(S.t, S.target)) + ' год'}` });
 }
 let microGeom = null;
 function cellAt(ev) {
@@ -214,7 +295,7 @@ function cineType(res) {
 }
 function drawCineNow(res) {
   if (!cineCtx) return;
-  const ty = cineType(res);
+  const ty = cineType(S.phase === 'idle' ? res : finalRes());
   const label = drawCine(cineCtx, cineSize.w, cineSize.h, ty, S.cineT);
   $('al-cine-lab').textContent = label;
 }
@@ -258,6 +339,18 @@ function drawPlots() {
 // ------------------------------------------------------------------ результати
 function readouts(res) {
   const set = (k, v) => { const el = document.querySelector(`[data-out="${k}"]`); if (el) el.innerHTML = v; };
+  const L = leadAgent(), hours = Math.round(Math.min(S.t, S.target));
+  $('al-readhead').innerHTML = S.phase === 'idle' ? 'Показники з’являться після запуску експозиції.'
+    : `Пробірка <b>C</b>${L ? ` · ${plain(byId[L.id].name)} ${fmtC(L.c)} ${byId[L.id].unit}` : ''} · <b>${hours} год</b>${S.phase === 'recover' || (S.phase === 'done' && S.recover) ? ' + відновлення' : ''} · порівняння з контролем`;
+  if (S.phase === 'idle') {
+    for (const k of ['mi', 'mirel', 'pi', 'ca', 'mn', 'len', 'dr']) set(k, '—');
+    set('len', '0,8 см');
+    const v0 = $('al-verdict'); v0.className = 'al-verdict al-verdict--idle';
+    v0.innerHTML = `<b>Ще нічого не виміряно</b><span>Оберіть чинник (крок 1), натисніть «▶ Запустити» і дочекайтеся кінця ${S.target}-годинної експозиції — тоді тут з’явиться висновок про цито- та генотоксичність.</span>`;
+    const L0 = leadAgent(), e0 = L0 && role(byId[L0.id]) !== 'prot' ? ec50MI(byId[L0.id], { water: S.water, protocol: S.protocol }) : null;
+    set('ec50', !e0 ? '—' : e0 > byId[L0.id].max ? `&gt; ${fmtC(byId[L0.id].max)} ${byId[L0.id].unit}` : `${fmtC(e0)} ${byId[L0.id].unit}`);
+    return;
+  }
   set('mi', `${num(res.mi, 1)} %`);
   set('mirel', `${num(res.miRel * 100, 0)} %`);
   set('pi', `${num(res.phases.P, 0)} / ${num(res.phases.M, 0)} / ${num(res.phases.A + res.phases.T, 0)}`);
@@ -265,7 +358,6 @@ function readouts(res) {
   set('mn', `${num(res.mn, 1)} ‰`);
   set('len', `${num(res.len / 10, 1)} см`);
   set('dr', res.protected ? `${num(res.dr, 0)} %` : '—');
-  const L = leadAgent();
   const e = L && !byId[L.id].dr ? ec50MI(byId[L.id], { water: S.water, protocol: S.protocol }) : null;
   set('ec50', !e ? '—' : e > byId[L.id].max ? `&gt; ${fmtC(byId[L.id].max)} ${byId[L.id].unit}` : `${fmtC(e)} ${byId[L.id].unit}`);
   const v = $('al-verdict');
@@ -281,8 +373,9 @@ function readouts(res) {
     cmit: ['al-v--warn', 'К-мітоз: клітини зупинились у метафазі через ушкодження веретена, тому MI формально зріс — це не стимуляція поділу.'],
     ok: ['al-v--ok', res.miRel < 0.85 ? 'Помірна цитотоксичність: MI знижений, але вище порогу LCV.' : 'Цитотоксичності не виявлено: MI на рівні контролю.'],
   }[res.verdict];
+  const pre = S.phase !== 'done' ? `<em class="al-verdict__pre">Попередньо, ${hours} год:</em> ` : '';
   v.className = 'al-verdict ' + txt[0];
-  v.innerHTML = `<b>${txt[1]}</b> ${fewAT && res.ca > ctl.ca + 2 ? '<span>Анафаз і телофаз майже немає — аберації в анафазо-телофазному тесті оцінити неможливо (лише за мікроядрами й ядерними аномаліями).</span>' : genotox ? `<span>Генотоксичність: частка аберантних анафаз–телофаз ${num(res.ca, 1)} % проти ${num(CONTROL.ca, 1)} % у контролі${res.mix ? ' — переважають ' + topTypes(res) : ''}.</span>` : '<span>Генотоксичного ефекту не виявлено.</span>'}${res.protected ? ` <span>Протектор знизив пошкодження на ${num(res.dr, 0)} % (%DR, ${{ pre: 'пре-обробка', sim: 'одночасна обробка', post: 'пост-обробка' }[S.protocol]}).</span>` : ''}`;
+  v.innerHTML = `<b>${pre}${txt[1]}</b> ${fewAT && res.ca > ctl.ca + 2 ? '<span>Анафаз і телофаз майже немає — аберації в анафазо-телофазному тесті оцінити неможливо (лише за мікроядрами й ядерними аномаліями).</span>' : genotox ? `<span>Генотоксичність: частка аберантних анафаз–телофаз ${num(res.ca, 1)} % проти ${num(CONTROL.ca, 1)} % у контролі${res.mix ? ' — переважають ' + topTypes(res) : ''}.</span>` : '<span>Генотоксичного ефекту не виявлено.</span>'}${res.protected ? ` <span>Протектор знизив пошкодження на ${num(res.dr, 0)} % (%DR, ${{ pre: 'пре-обробка', sim: 'одночасна обробка', post: 'пост-обробка' }[S.protocol]}).</span>` : ''}`;
 }
 function topTypes(res) {
   return Object.entries(res.mix).sort((a, b) => b[1] - a[1]).slice(0, 2).map(([k]) => `<a href="${ART}#${ABERR[k].art}">${ABERR[k].name.toLowerCase()}</a> (${CLS[ABERR[k].cls].name})`).join(' та ');
@@ -290,6 +383,9 @@ function topTypes(res) {
 
 // ------------------------------------------------------------------ підрахунок під мікроскопом і χ²
 function countTable() {
+  const wrap = document.querySelector('.al-countwrap');
+  wrap.classList.toggle('is-idle', S.phase === 'idle');
+  if (S.phase === 'idle') { $('al-count').innerHTML = ''; $('al-chi').innerHTML = 'Таблиця підрахунку з’явиться після запуску експозиції.'; return; }
   const o = curOpts();
   const res = simulate(S.sel, o);
   const ctl = simulate([], { ...o, protocol: 'sim' });
@@ -302,17 +398,39 @@ function countTable() {
   S.lastCount = { a, b };
 }
 
+function onDone() {
+  for (const el of [$('al-verdict'), ...document.querySelectorAll('#al-model .readout')]) { el.classList.remove('is-new'); void el.offsetWidth; el.classList.add('is-new'); }
+  countTable();
+}
 // ------------------------------------------------------------------ час і анімація
 const runBtn = $('al-run'), resetBtn = $('al-reset'), statusEl = $('al-status');
-function resetRun() { S.running = false; S.t = 0; S.phase = 'idle'; runBtn.textContent = '▶ Запустити'; setStatus(); }
-function setStatus() {
-  const msg = { idle: 'Модель зупинена — натисніть «Запустити». Цибулини вже пророщені у воді (корінці 0,8 см).', expo: `Експозиція в розчині: ${Math.round(S.t)} з ${S.target} год`, recover: `Відновлення в чистій воді: ${Math.round(S.t - S.target)} з 24 год`, done: 'Експозицію завершено. Розгляньте препарат і підрахуйте клітини.' }[S.phase];
-  statusEl.textContent = S.running ? msg : S.phase === 'idle' ? msg : S.phase === 'done' ? msg : 'Пауза. ' + msg;
-  statusEl.classList.toggle('on', S.running);
+function resetRun() {
+  // «перемотка» корінців до початку замість миттєвого стрибка
+  if (S.t > 0.5 && !REDUCED) { S.rewind = { from: S.t, t0: performance.now() }; kick(); }
+  S.running = false; if (!S.rewind) S.t = 0; S.phase = 'idle'; runBtn.textContent = '▶ Запустити'; setStatus();
 }
+let lastSrPhase = '';
+function setStatus() {
+  const end = S.target + (S.recover ? 24 : 0);
+  const msg = { idle: 'Цибулини пророщені у воді (корінці 0,8 см). Натисніть «Запустити» — модель пройде експозицію в прискореному часі.', expo: `Експозиція в розчині: ${Math.round(S.t)} з ${S.target} год`, recover: `Відновлення в чистій воді: ${Math.round(S.t - S.target)} з 24 год`, done: 'Готово. Тепер розгляньте препарат під мікроскопом.' }[S.phase];
+  const txt = S.running || S.phase === 'idle' || S.phase === 'done' ? msg : 'Пауза. ' + msg;
+  if (statusEl.textContent !== txt) statusEl.textContent = txt;
+  statusEl.classList.toggle('on', S.running);
+  $('al-prog').style.transform = `scaleX(${S.phase === 'idle' ? 0 : Math.min(1, S.t / end)})`;
+  $('al-prog').parentElement.classList.toggle('is-on', S.phase !== 'idle');
+  if ($('al-model').dataset.phase !== S.phase) $('al-model').dataset.phase = S.phase;
+  // для скрінрідера — лише зміна фази, а не кожна година
+  const ph = S.running ? S.phase : S.phase === 'done' ? 'done' : 'idle';
+  if (ph !== lastSrPhase) { lastSrPhase = ph; $('al-sr').textContent = { idle: '', expo: 'Експозицію розпочато.', recover: 'Відновлення в чистій воді.', done: 'Експозицію завершено. Результати оновлено.' }[ph] || ''; }
+  if (goBtn.hidden !== (S.phase !== 'done')) goBtn.hidden = S.phase !== 'done';
+}
+const goBtn = document.createElement('button');
+goBtn.type = 'button'; goBtn.className = 'btn btn--green al-go'; goBtn.hidden = true; goBtn.textContent = 'Крок 4: до мікроскопа ↓';
+goBtn.addEventListener('click', () => $('al-step4').scrollIntoView({ behavior: REDUCED ? 'auto' : 'smooth', block: 'start' }));
+runBtn.after(resetBtn); resetBtn.after(goBtn);
 runBtn.addEventListener('click', () => {
   if (S.running) { S.running = false; runBtn.textContent = '▶ Продовжити'; setStatus(); return; }
-  if (S.phase === 'done' || S.phase === 'idle') { S.t = 0; S.phase = 'expo'; }
+  if (S.phase === 'done' || S.phase === 'idle') { S.rewind = null; S.t = 0; S.phase = 'expo'; }
   S.running = true; runBtn.textContent = '⏸ Пауза'; setStatus(); kick();
 });
 resetBtn.addEventListener('click', () => { resetRun(); update(true); });
@@ -324,6 +442,7 @@ function curOpts() {
   return { t: Math.min(S.t, S.target), water: S.water, protocol: S.protocol, recover: rec };
 }
 function curRes() { return simulate(S.sel, curOpts()); }
+function finalRes() { return simulate(S.sel, { t: S.target, water: S.water, protocol: S.protocol, recover: S.recover ? 24 : 0 }); }
 function frame(ts) {
   raf = 0;
   const dt = last ? Math.min(0.05, (ts - last) / 1000) : 0; last = ts;
@@ -332,16 +451,23 @@ function frame(ts) {
     const end = S.target + (S.recover ? 24 : 0);
     S.t = Math.min(end, S.t + dt * (REDUCED ? 30 : 7));
     S.phase = S.t >= end ? 'done' : S.t > S.target ? 'recover' : 'expo';
-    if (S.phase === 'done') { S.running = false; runBtn.textContent = '▶ Запустити знову'; }
+    if (S.phase === 'done') { S.running = false; runBtn.textContent = '▶ Запустити знову'; onDone(); }
     sway += dt * 1.3;
     setStatus(); need = S.running;
     // графік часу й таблиця підрахунку оновлюються під час експозиції (не щокадру)
     if (ts - lastPlotTs > 350 || !S.running) { lastPlotTs = ts; drawPlots(); }
     if (Math.abs(S.t - lastCountT) >= 6 || !S.running) { lastCountT = S.t; countTable(); }
   }
+  if (S.rewind) {
+    const k = Math.min(1, (performance.now() - S.rewind.t0) / 450);
+    S.t = S.rewind.from * (1 - ease(k)); sway += dt * 1.3;
+    if (k >= 1) { S.rewind = null; S.t = 0; update(true); } else need = true;
+  }
+  if (Math.abs(S.zv - S.zoom) > 0.002) { S.zv += (S.zoom - S.zv) * Math.min(1, dt * 12 || 0.2); if (Math.abs(S.zv - S.zoom) < 0.01) S.zv = S.zoom; microDirty = true; need = true; }
   if (S.cinePlay) { S.cineT = (S.cineT + dt / 9) % 1; $('al-cine-t').value = S.cineT; need = true; }
   if (fade < 1) { fade = Math.min(1, (performance.now() - fadeT0) / 450); if (fade >= 1) prevCv = null; need = true; microDirty = true; }
   render(S.running && Math.abs(S.t - lastSlideT) >= 4, true);
+  if (S.running || S.rewind) setStatus();
   if (!need) readouts(curRes());
   if (need) raf = requestAnimationFrame(frame);
 }
@@ -393,10 +519,9 @@ function renderPhotos() {
 // ------------------------------------------------------------------ налаштування
 function buildSettings() {
   segmented($('al-water'), 'al-water', [{ value: 'tap', label: 'Водопровідна' }, { value: 'dist', label: 'Дистильована' }], S.water, (v) => { S.water = v; resetRun(); update(true); });
-  protoSeg = segmented($('al-proto'), 'al-proto', [{ value: 'pre', label: 'Пре-обробка' }, { value: 'sim', label: 'Одночасно' }, { value: 'post', label: 'Пост-обробка' }], S.protocol, (v) => { S.protocol = v; resetRun(); update(true); });
   segmented($('al-time'), 'al-time', [{ value: '24', label: '24 год' }, { value: '48', label: '48 год' }, { value: '72', label: '72 год' }], String(S.target), (v) => { S.target = +v; resetRun(); update(true); });
   $('al-rec').addEventListener('change', (e) => { S.recover = e.target.checked; resetRun(); update(true); });
-  segmented($('al-zoom'), 'al-zoom', [{ value: '1', label: '400×' }, { value: '2', label: '1000×' }], '1', (v) => { S.zoom = +v; drawMicro(); });
+  segmented($('al-zoom'), 'al-zoom', [{ value: '1', label: '400×' }, { value: '2', label: '1000×' }], '1', (v) => { S.zoom = +v; microCv.style.touchAction = S.zoom > 1 ? 'none' : 'pan-y'; kick(); });
   $('al-hl').addEventListener('change', (e) => { S.highlight = e.target.checked; drawMicro(); });
   $('al-field').addEventListener('click', () => { S.seed = (S.seed * 7 + 13) % 9973; update(true); });
   $('al-recount').addEventListener('click', () => { S.seed = (S.seed * 7 + 13) % 9973; update(true); });
@@ -409,14 +534,16 @@ function buildSettings() {
   document.querySelectorAll('[data-preset]').forEach((b) => b.addEventListener('click', () => applyPreset(b.dataset.preset, true)));
   // мікроскоп: перетягування поля, торкання клітини
   let drag = null;
-  microCv.addEventListener('pointerdown', (e) => { drag = { x: e.clientX, y: e.clientY, vx: S.view.x, vy: S.view.y, moved: false }; microCv.setPointerCapture(e.pointerId); });
+  $('al-next-ab').addEventListener('click', nextAberration);
+  microCv.style.touchAction = 'pan-y';
+  microCv.addEventListener('pointerdown', (e) => { if (e.pointerType === 'touch' && S.zoom === 1) { drag = { x: e.clientX, y: e.clientY, vx: S.view.x, vy: S.view.y, moved: false, touch: true }; return; } drag = { x: e.clientX, y: e.clientY, vx: S.view.x, vy: S.view.y, moved: false }; microCv.setPointerCapture(e.pointerId); });
   microCv.addEventListener('pointermove', (e) => {
     if (!drag || !microGeom) return;
     const dx = e.clientX - drag.x, dy = e.clientY - drag.y;
     if (Math.hypot(dx, dy) > 4) drag.moved = true;
-    if (drag.moved) { S.view.x = drag.vx - dx / microGeom.k; S.view.y = drag.vy - dy / microGeom.k; drawMicro(); }
+    if (drag.moved && !drag.touch) { S.view.x = drag.vx - dx / microGeom.k; S.view.y = drag.vy - dy / microGeom.k; drawMicro(); }
   });
-  microCv.addEventListener('pointerup', (e) => { if (drag && !drag.moved) { S.picked = cellAt(e); showPicked(); drawMicro(); } drag = null; });
+  microCv.addEventListener('pointerup', (e) => { if (drag && !drag.moved) pick(cellAt(e)); drag = null; });
   microCv.addEventListener('pointercancel', () => { drag = null; });
 }
 /** Пресет: набір чинників і схема обробки (кнопки «Швидкий старт» і посилання зі статті …#preset-cd). */
@@ -424,7 +551,8 @@ function applyPreset(name, scroll) {
   const p = PRESETS[name]; if (!p) return false;
   S.sel = p.sel.map((x) => ({ ...x }));
   const proto = p.protocol || 'sim';
-  if (proto !== S.protocol) { S.protocol = proto; protoSeg?.select(proto, false); }
+  S.protocol = proto;
+  document.querySelectorAll('[data-preset]').forEach((b) => b.setAttribute('aria-pressed', String(b.dataset.preset === name)));
   resetRun(); renderActive(); update(true);
   if (scroll) $('al-model').scrollIntoView({ behavior: REDUCED ? 'auto' : 'smooth', block: 'start' });
   return true;
@@ -455,7 +583,7 @@ function runExperiment() {
   const rows = cs.map((c, i) => { const res = simulate(c ? [{ id: a.id, c }] : [], { t: 48 }); const k = count(res, seed + i * 101, { N: 1000, nAT: 200, poolAT: 30000 }); return { c, res, k }; });
   EXP = { a, rows };
   $('al-exp').hidden = false;
-  $('al-exp-cond').innerHTML = `<div class="readout"><div class="readout__label">Чинник</div><div class="readout__value" style="font-size:1rem">${a.name}</div></div><div class="readout"><div class="readout__label">Експозиція</div><div class="readout__value">48 год</div></div><div class="readout"><div class="readout__label">Препарат</div><div class="readout__value" style="font-size:1rem">1000 клітин на дозу</div></div>`;
+  $('al-exp-cond').innerHTML = `<div class="readout"><div class="readout__label">Чинник</div><div class="readout__value" style="font-size:1rem" id="al-exp-name">невідомий (з’явиться після перевірки)</div></div><div class="readout"><div class="readout__label">Експозиція</div><div class="readout__value">48 год</div></div><div class="readout"><div class="readout__label">Препарат</div><div class="readout__value" style="font-size:1rem">1000 клітин на дозу</div></div>`;
   renderTable($('al-exp-table'), [`C, ${a.unit}`, 'I', 'P', 'M', 'A', 'T', 'A–T оцінено', 'Аберантних A–T', 'Мікроядер'], rows.map((r) => [r.c ? fmtC(r.c) : '0 (контроль)', r.k.I, r.k.P, r.k.M, r.k.A, r.k.T, r.k.nAT, r.k.aberr, r.k.mn]));
   $('al-exp-verdict').textContent = '';
   ['al-a-mi', 'al-a-ec', 'al-a-ca'].forEach((id) => { $(id).value = ''; });
@@ -473,12 +601,14 @@ function checkExperiment() {
   const ok1 = close(parse('al-a-mi'), miC, 0.05, 0.06), ok2 = ecTrue ? close(parse('al-a-ec'), ecTrue, 0.15, 0) : null, ok3 = close(parse('al-a-ca'), caTrue, 0.08, 0.15);
   const mark = (ok) => ok == null ? '—' : ok ? '✓' : '✗';
   $('al-exp-verdict').innerHTML = `MI контролю: ${mark(ok1)} (${num(miC, 2)} %) · EC50 за MI: ${mark(ok2)}${ecTrue ? ` (≈ ${sig(ecTrue, 3)} ${EXP.a.unit}, лінійна інтерполяція між сусідніми дозами в координатах lg C)` : ' (MI не впав нижче 50 %)'} · CA за найбільшої дози: ${mark(ok3)} (${num(caTrue, 1)} %)`;
+  $('al-exp-name').innerHTML = EXP.a.name;
   $('al-exp-verdict').className = 'verdict ' + (ok1 && ok3 && ok2 !== false ? 'verdict--ok' : 'verdict--bad');
 }
 
 // ------------------------------------------------------------------ запуск
 function init() {
   buildPicker(); buildSettings(); renderActive();
+  document.querySelectorAll('[data-preset]').forEach((b) => b.setAttribute('aria-pressed', String(b.dataset.preset === 'cd')));
   doseP = new Plot($('al-plot-dose'), { xLabel: 'lg C', yLabel: '%', y: [0, 110], aspect: 1.55, xFmt: (v) => num(v, Math.abs(v) < 10 ? 1 : 0) });
   timeP = new Plot($('al-plot-time'), { xLabel: 'Час, год', yLabel: 'MI, % · L, см', aspect: 1.55, y: 'auto' });
   $('al-exp-run').addEventListener('click', runExperiment);

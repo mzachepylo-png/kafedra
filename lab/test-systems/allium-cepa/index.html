@@ -158,7 +158,7 @@
             <h2><span class="n">03</span>Інтерактивна модель</h2>
             <div class="prose"><p>Оберіть до трьох чинників, задайте концентрації та умови досліду і натисніть «Запустити»: модель пройде експозицію в прискореному часі. Ліворуч у сцені — негативний контроль, далі серія розведень C/10, C/3 і C. Віртуальний давлений препарат забарвлено ацетоорсеїном (розчином барвника орсеїну в оцтовій кислоті, що фарбує хромосоми в темно-червоний колір). Торкніться клітини, щоб дізнатися її стан, перетягуйте поле, вмикайте 1000×.</p></div>
             <div class="al" id="al-model">
-              <div class="al-presets"><span>Швидкий старт</span>
+              <div class="al-presets" role="group" aria-label="Готові досліди"><span>Готові досліди</span>
                 <button type="button" data-preset="neg">Контроль (вода)</button>
                 <button type="button" data-preset="mms">MMS — позитивний контроль</button>
                 <button type="button" data-preset="cd">Кадмій</button>
@@ -170,43 +170,59 @@
               </div>
               <div class="al-grid">
                 <div class="al-side">
-                  <h3>1. Чинники</h3>
-                  <div id="al-active"></div>
-                  <details class="al-pickwrap" open><summary>Каталог: абіотичні й біотичні чинники</summary><div class="al-pick" id="al-pick"></div></details>
-                  <h3>2. Умови досліду</h3>
-                  <div class="al-set"><span>Вода для контролю й розчинів <a href="../../../konspekt/allium-cepa-test/#controls" title="Пояснення в Конспекті">?</a></span><div id="al-water"></div></div>
-                  <div class="al-set"><span>Тривалість експозиції <a href="../../../konspekt/allium-cepa-test/#protocol" title="Пояснення в Конспекті">?</a></span><div id="al-time"></div></div>
-                  <div class="al-set"><span>Схема для протектора <a href="../../../konspekt/allium-cepa-test/#antimutagens" title="Пояснення в Конспекті">?</a></span><div id="al-proto"></div></div>
+                  <section class="al-step" id="al-step1" aria-labelledby="al-s1h">
+                    <header class="al-step__head"><span class="al-step__n">1</span><h3 id="al-s1h">Що додаємо в розчин</h3><span class="al-quota" id="al-quota"></span></header>
+                    <ul class="al-flasks" id="al-active"></ul>
+                    <p class="al-hint" id="al-sel-hint" hidden></p>
+                    <button type="button" class="al-addbtn" id="al-add" aria-expanded="false" aria-controls="al-pickpanel"><span aria-hidden="true">+</span> Додати чинник із каталогу</button>
+                    <div class="al-pickpanel" id="al-pickpanel" hidden>
+                      <input type="search" id="al-pick-q" placeholder="Пошук: кадмій, MMS, хлорела…" aria-label="Пошук чинника" autocomplete="off">
+                      <div id="al-pick-tabs"></div>
+                      <p class="al-pick__legend"><span class="al-dot al-dot--tox"></span>токсикант — те, що перевіряємо · <span class="al-dot al-dot--prot"></span>протектор — захищає від мутагену · <span class="al-dot al-dot--horm"></span>гормезис — малі дози стимулюють</p>
+                      <div class="al-pick" id="al-pick"></div>
+                    </div>
+                  </section>
+                  <section class="al-step" id="al-step2" aria-labelledby="al-s2h">
+                    <header class="al-step__head"><span class="al-step__n">2</span><h3 id="al-s2h">Умови досліду</h3></header>
+                  <div class="al-set"><span>Вода для контролю й розчинів <a href="../../../konspekt/allium-cepa-test/#controls" title="Пояснення в Конспекті" target="_blank" rel="noopener">?</a></span><div id="al-water"></div></div>
+                  <div class="al-set"><span>Тривалість експозиції <a href="../../../konspekt/allium-cepa-test/#protocol" title="Пояснення в Конспекті" target="_blank" rel="noopener">?</a></span><div id="al-time"></div></div>
                   <label class="al-check"><input type="checkbox" id="al-rec"> Відновлення: ще 24 год у чистій воді</label>
+                  </section>
                 </div>
                 <div class="al-main">
+                  <header class="al-step__head"><span class="al-step__n">3</span><h3>Експозиція: цибулини в розчинах</h3></header>
                   <div class="al-runbar">
                     <button class="btn btn--gold" type="button" id="al-run">▶ Запустити</button>
                     <button class="btn btn--outline" type="button" id="al-reset">↺ Скинути</button>
-                    <span class="al-status" id="al-status" aria-live="polite"></span>
+                    <span class="al-status" id="al-status"></span>
+                    <span class="visually-hidden" id="al-sr" aria-live="polite"></span>
+                    <div class="al-prog" aria-hidden="true"><i id="al-prog"></i></div>
                   </div>
                   <div class="al-stage"><canvas id="al-tubes" role="img" aria-label="Цибулини в пробірках: контроль і серія розведень, довжина корінців"></canvas></div>
-                  <div class="al-verdict" id="al-verdict" aria-live="polite"></div>
+                  <p class="al-tubes-legend"><b>Контроль</b> — лише вода · <b>C</b> — обрана вами концентрація · <b>C/3</b>, <b>C/10</b> — розведення (протектор в усіх пробірках однаковий). Нижче — показники для пробірки <b>C</b>.</p>
+                  <div class="al-verdict" id="al-verdict"></div>
+                  <p class="al-readhead" id="al-readhead"></p>
                   <div class="readouts">
-                    <div class="readout"><div class="readout__label">Мітотичний індекс <a href="../../../konspekt/allium-cepa-test/#biomarkers" title="Пояснення в Конспекті">?</a></div><div class="readout__value" data-out="mi">—</div></div>
+                    <div class="readout"><div class="readout__label">Мітотичний індекс <a href="../../../konspekt/allium-cepa-test/#biomarkers" title="Пояснення в Конспекті" target="_blank" rel="noopener">?</a></div><div class="readout__value" data-out="mi">—</div></div>
                     <div class="readout"><div class="readout__label">MI від контролю</div><div class="readout__value" data-out="mirel">—</div></div>
-                    <div class="readout"><div class="readout__label">P / M / A+T, % <a href="../../../konspekt/allium-cepa-test/#cell-cycle" title="Пояснення в Конспекті">?</a></div><div class="readout__value" data-out="pi">—</div></div>
-                    <div class="readout readout--gold"><div class="readout__label">Аберантні A–T <a href="../../../konspekt/allium-cepa-test/#atlas" title="Пояснення в Конспекті">?</a></div><div class="readout__value" data-out="ca">—</div></div>
-                    <div class="readout"><div class="readout__label">Мікроядра <a href="../../../konspekt/allium-cepa-test/#micronuclei" title="Пояснення в Конспекті">?</a></div><div class="readout__value" data-out="mn">—</div></div>
+                    <div class="readout"><div class="readout__label">P / M / A+T, % <a href="../../../konspekt/allium-cepa-test/#cell-cycle" title="Пояснення в Конспекті" target="_blank" rel="noopener">?</a></div><div class="readout__value" data-out="pi">—</div></div>
+                    <div class="readout readout--gold"><div class="readout__label">Аберантні A–T <a href="../../../konspekt/allium-cepa-test/#atlas" title="Пояснення в Конспекті" target="_blank" rel="noopener">?</a></div><div class="readout__value" data-out="ca">—</div></div>
+                    <div class="readout"><div class="readout__label">Мікроядра <a href="../../../konspekt/allium-cepa-test/#micronuclei" title="Пояснення в Конспекті" target="_blank" rel="noopener">?</a></div><div class="readout__value" data-out="mn">—</div></div>
                     <div class="readout"><div class="readout__label">Довжина корінців</div><div class="readout__value" data-out="len">—</div></div>
-                    <div class="readout"><div class="readout__label">EC<sub>50</sub> за MI <a href="../../../konspekt/allium-cepa-test/#biomarkers" title="Пояснення в Конспекті">?</a></div><div class="readout__value" data-out="ec50">—</div></div>
-                    <div class="readout"><div class="readout__label">%DR протектора <a href="../../../konspekt/allium-cepa-test/#antimutagens" title="Пояснення в Конспекті">?</a></div><div class="readout__value" data-out="dr">—</div></div>
+                    <div class="readout"><div class="readout__label">EC<sub>50</sub> за MI <a href="../../../konspekt/allium-cepa-test/#biomarkers" title="Пояснення в Конспекті" target="_blank" rel="noopener">?</a></div><div class="readout__value" data-out="ec50">—</div></div>
+                    <div class="readout"><div class="readout__label">%DR протектора <a href="../../../konspekt/allium-cepa-test/#antimutagens" title="Пояснення в Конспекті" target="_blank" rel="noopener">?</a></div><div class="readout__value" data-out="dr">—</div></div>
                   </div>
                 </div>
               </div>
 
+              <header class="al-step__head al-step__head--wide" id="al-step4"><span class="al-step__n">4</span><h3>Препарат з пробірки C під мікроскопом</h3><span class="al-step__sub">Тягніть поле зору, торкніться клітини або натисніть «Знайти аберацію».</span></header>
               <div class="al-micro-wrap">
                 <div class="al-micro-view">
                   <canvas id="al-micro" role="img" aria-label="Давлений препарат меристеми кінчика корінця під мікроскопом"></canvas>
-                  <div class="al-micro-bar"><div id="al-zoom"></div><label class="al-check"><input type="checkbox" id="al-hl"> Позначити аберації</label><button class="btn btn--outline btn--sm" type="button" id="al-field">Інше поле зору</button></div>
+                  <div class="al-micro-bar"><div id="al-zoom"></div><button class="btn btn--gold btn--sm" type="button" id="al-next-ab">Знайти аберацію ▸</button><label class="al-check"><input type="checkbox" id="al-hl"> Позначити всі аберації</label><button class="btn btn--outline btn--sm" type="button" id="al-field">Інше поле зору</button></div>
                 </div>
                 <div class="al-micro-side">
-                  <div class="al-card"><h4>Клітина під курсором</h4><div id="al-cell"></div></div>
+                  <div class="al-card"><h4>Обрана клітина</h4><div id="al-cell" aria-live="polite"></div></div>
                   <div class="al-card"><h4>Позначки</h4><ul class="al-legend">
                     <li><i style="--c:#C2410C"></i><span><a href="../../../konspekt/allium-cepa-test/#clastogens">Кластогенні</a>: мости, фрагменти, дрібні мікроядра</span></li>
                     <li><i style="--c:#6D28D9"></i><span><a href="../../../konspekt/allium-cepa-test/#aneugens">Анеугенні</a>: К-мітоз, відстаючі, блукаючі хромосоми, мультиполярні анафази</span></li>
@@ -215,7 +231,7 @@
                   </ul></div>
                   <div class="al-card al-cine"><h4>Поділ у динаміці</h4>
                     <canvas id="al-cine" role="img" aria-label="Анімація поділу клітини меристеми"></canvas>
-                    <div id="al-cine-lab" aria-live="polite"></div>
+                    <div id="al-cine-lab"></div>
                     <div class="al-cine__bar"><button type="button" id="al-cine-play" aria-label="Відтворити поділ">▶</button><input type="range" id="al-cine-t" min="0" max="1" step="0.002" value="0" aria-label="Стадія поділу"><select id="al-cine-type" aria-label="Тип поділу"></select></div>
                   </div>
                 </div>
@@ -230,6 +246,7 @@
                 <h4>Підрахунок під мікроскопом: 5 препаратів × 1000 клітин, до 300 анафаз–телофаз</h4>
                 <div class="data-wrap"><table class="data-table" id="al-count"></table></div>
                 <p id="al-chi"></p>
+                <p class="al-count-legend">I — інтерфаза, P — профаза, M — метафаза, A — анафаза, T — телофаза; MI — мітотичний індекс (частка клітин, що діляться); CA — частка аберантних анафаз–телофаз; MN — мікроядра.</p>
                 <div><button class="btn btn--outline btn--sm" type="button" id="al-recount">Повторити підрахунок на нових препаратах</button></div>
               </div>
 
