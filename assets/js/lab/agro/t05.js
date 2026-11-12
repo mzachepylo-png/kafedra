@@ -376,7 +376,7 @@ function modelB() {
     const { ctx, w, h, wide } = fitStage(cv, 1.9, 0.6);
     K.scene(ctx, w, h, { kind: 'dark' });
     const dpr = Math.min(2, window.devicePixelRatio || 1);
-    const R0 = wide ? Math.min(w * 0.25, h * 0.45) : Math.min(w * 0.47, h * 0.29);
+    const R0 = wide ? Math.min(w * 0.25, h * 0.45) : Math.min(w * 0.45, h * 0.27);
     const cx = wide ? w * 0.27 : w / 2, cy = wide ? h * 0.5 : R0 + 22;
     const S = Math.round(R0 * 1.3), gx = cx - S / 2, gy = cy - S / 2;
     const F = data.fills[Math.min(anim.f, data.fills.length - 1)];
@@ -403,7 +403,7 @@ function modelB() {
     // лупа: активний (або останній) квадрат
     const k = act >= 0 ? act : data.sq[data.sq.length - 1];
     const LR = wide ? Math.min(h * 0.3, w * 0.15) : Math.min(w * 0.3, h * 0.17);
-    const lcx = wide ? w * 0.655 : w * 0.33, lcy = wide ? h * 0.4 : h * 0.79;
+    const lcx = wide ? w * 0.655 : w * 0.33, lcy = wide ? h * 0.4 : h * 0.8;
     const q = S / 4, sxq = gx + (k % 4) * q, syq = gy + ((k / 4) | 0) * q;
     ctx.save(); ctx.strokeStyle = 'rgba(255,214,110,.55)'; ctx.setLineDash([4, 4]); ctx.beginPath(); ctx.moveTo(sxq + q, syq); ctx.lineTo(lcx - LR * 0.7, lcy - LR * 0.7); ctx.moveTo(sxq + q, syq + q); ctx.lineTo(lcx - LR * 0.7, lcy + LR * 0.7); ctx.stroke(); ctx.restore();
     ctx.save(); ctx.beginPath(); ctx.arc(lcx, lcy, LR, 0, TAU); ctx.clip();

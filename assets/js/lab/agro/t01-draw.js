@@ -406,13 +406,20 @@ export function soySprout(ctx, x, y, r, stage, { rot = 0, seed = 1 } = {}) {
     if (stage > 0.5) { ctx.strokeStyle = 'rgba(250,245,230,.75)'; ctx.lineWidth = 0.7; for (let i = 0; i < 6; i++) { const t = 0.4 + i * 0.1, px = r * 0.2 + L * 0.5 * t, py = r * 0.5 + L * t; ctx.beginPath(); ctx.moveTo(px, py); ctx.lineTo(px + (R() - 0.5) * r * 1.2, py + R() * r * 0.4); ctx.stroke(); } }
   }
   ctx.restore();
-  if (stage > 0.45) { // сім'ядолі розкриваються (зеленіють)
+  if (stage > 0.45) { // сім'ядолі розкриваються (зеленіють); поруч — скинута насінна шкірка
     const k = clamp((stage - 0.45) / 0.5, 0, 1), g = mix([226, 196, 120], [110, 170, 70], k);
+    ctx.save(); ctx.translate(x - r * 0.9, y + r * 0.55); ctx.rotate(rot + 0.6);
+    ctx.fillStyle = 'rgba(205,170,100,.85)'; ctx.beginPath(); ctx.ellipse(0, 0, r * 0.55, r * 0.22, 0, 0, Math.PI * 1.6); ctx.fill(); ctx.restore();
+    ctx.strokeStyle = rgba(mix([200, 190, 120], [120, 160, 80], k)); ctx.lineWidth = Math.max(1.4, r * 0.22); ctx.lineCap = 'round';
+    ctx.beginPath(); ctx.moveTo(x + r * 0.2, y + r * 0.4); ctx.quadraticCurveTo(x - r * 0.3, y + r * 0.3, x, y - r * 0.15 * k); ctx.stroke();
     for (const s of [-1, 1]) {
       ctx.save(); ctx.translate(x + s * r * 0.45 * k, y - r * 0.2 * k); ctx.rotate(rot + s * 0.5 * k);
       const gg = ctx.createRadialGradient(-r * 0.3, -r * 0.3, 1, 0, 0, r * 0.9);
       gg.addColorStop(0, rgba(shade(g, 0.35))); gg.addColorStop(1, rgba(shade(g, -0.3)));
       ctx.fillStyle = gg; ctx.beginPath(); ctx.ellipse(0, 0, r * (0.75 + 0.2 * k), r * 0.55, 0, 0, TAU); ctx.fill();
+      ctx.strokeStyle = rgba(shade(g, -0.35), 0.5); ctx.lineWidth = 0.7; ctx.stroke();
+      ctx.strokeStyle = rgba(shade(g, 0.4), 0.6); ctx.beginPath(); ctx.moveTo(-r * 0.6, 0); ctx.lineTo(r * 0.6, 0); ctx.stroke();
+      ctx.fillStyle = 'rgba(255,255,255,.25)'; ctx.beginPath(); ctx.ellipse(-r * 0.2, -r * 0.22, r * 0.35, r * 0.12, -0.2, 0, TAU); ctx.fill();
       ctx.restore();
     }
   } else soySeed(ctx, x, y, r, { rot, seed, swell: stage * 2 });

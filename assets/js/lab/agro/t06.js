@@ -192,7 +192,9 @@ function initA() {
     ctx.strokeStyle = mg; ctx.lineWidth = Math.max(4, r * 0.08); ctx.beginPath(); ctx.arc(cx, cy, r + ctx.lineWidth / 2, 0, TAU); ctx.stroke();
     ctx.restore();
     const lab = g > 0.3 ? (chim ? 'Химерна: зелений сектор' : 'Стійка колонія — зелена') : lightK(S.day) > 0 ? 'Стійка колонія' : 'Колонія (у темряві — біла)';
-    tagSmall(ctx, cx, cy + r + 22, lab, { bg: dark ? 'rgba(235,245,238,.92)' : 'rgba(255,255,255,.9)', size: 11 });
+    ctx.save(); ctx.font = '600 11px system-ui, sans-serif'; const tw = ctx.measureText(lab).width; ctx.restore();
+    const W = ctx.canvas.width / (ctx.getTransform().a || 1);
+    tagSmall(ctx, clamp(cx, tw / 2 + 8, W - tw / 2 - 8), cy + r + 22, lab, { bg: dark ? 'rgba(235,245,238,.92)' : 'rgba(255,255,255,.9)', size: 11 });
   }
   cv.addEventListener('click', (e) => {
     const rc = cv.getBoundingClientRect(), x = e.clientX - rc.left, y = e.clientY - rc.top;

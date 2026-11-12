@@ -11,7 +11,8 @@
 .t6-check { display: inline-flex; align-items: center; gap: 8px; min-height: 42px; font-size: .88rem; font-weight: 600; color: var(--ink-soft); cursor: pointer; }
 .t6-check input { width: 20px; height: 20px; accent-color: var(--green-800); }
 .t6-legend { display: flex; flex-wrap: wrap; align-items: center; gap: 4px 14px; }
-.t6-legend i { display: inline-block; width: 14px; height: 9px; border-radius: 50%; border: 2.4px solid var(--c); margin-right: -8px; }
+.t6-legend span { display: inline-flex; align-items: center; gap: 6px; white-space: nowrap; }
+.t6-legend i { display: inline-block; width: 14px; height: 9px; border-radius: 50%; border: 2.4px solid var(--c); }
 .t6-chips { display: flex; flex-wrap: wrap; gap: 5px; list-style: none; margin: 12px 0 0; padding: 0; }
 .t6-chips li { display: grid; min-width: 62px; padding: 6px 8px; border-radius: 10px; border: 1px solid var(--line); background: var(--white); font-size: .74rem; line-height: 1.25; color: var(--muted); text-align: center; transition: background .25s, border-color .25s; }
 .t6-chips li b { font: 800 .86rem var(--mono, monospace); color: var(--ink-soft); }

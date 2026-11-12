@@ -236,7 +236,7 @@ export function initExplant(root) {
   }
 
   function drawDishes(ctx, w, h, res, mob, o, t) {
-    const hy = scene(ctx, w, h, { kind: 'hood', horizon: 0.16 });
+    const hy = scene(ctx, w, h, { kind: 'hood', horizon: mob ? 0.17 : 0.14 });
     const per = S.obj === 'soy' ? 5 : 6, nd = Math.ceil(S.n / per);
     let cols = 1, r = 0;
     for (let c = 1; c <= nd; c++) { const rr = Math.min(w / c * 0.46, ((h - hy - 14) / Math.ceil(nd / c) - 34) / 1.1); if (rr > r) { r = rr; cols = c; } }
@@ -288,7 +288,7 @@ export function initExplant(root) {
   function mix3(a, b, c2, d, e, f, k) { return [lerp(a, d, k), lerp(b, e, k), lerp(c2, f, k)]; }
 
   function drawVials(ctx, w, h, res, mob, o, t) {
-    const hy = scene(ctx, w, h, { kind: 'hood', horizon: 0.14 });
+    const hy = scene(ctx, w, h, { kind: 'hood', horizon: mob ? 0.17 : 0.14 });
     const cols = mob ? 5 : Math.min(10, Math.ceil(S.n / 2)), rows = Math.ceil(S.n / cols);
     const left = mob ? 8 : w * 0.2, cw = (w - left - 8) / cols, rh = (h - hy - 10) / rows;
     const vw = Math.min(cw * 0.72, rh * 0.5), vh = Math.min(rh * 0.82, vw * 1.6);

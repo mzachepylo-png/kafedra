@@ -180,10 +180,12 @@ export function initPrep(bus) {
     for (let i = 0; i < 3; i++) {
       const [x1, y1] = cells[i], [x2, y2] = cells[i + 1];
       if (narrow && i === 1) {
-        arrow(ctx, x1, y1 + unit * 0.2, x2, y2 - unit * 0.95, { color: 'rgba(30,70,45,.3)', dash: [5, 4] });
-      } else if (!narrow || i !== 1) {
-        const yy = y1 - unit * 0.42;
-        arrow(ctx, x1 + unit * 0.44, yy, x2 - unit * 0.44, yy, { color: 'rgba(30,70,45,.32)' });
+        // перехід з верхнього рядка в нижній — праворуч, повз об'єкти
+        const mx = Math.min(w - 10, x1 + unit * 0.78);
+        arrow(ctx, mx, y1 - unit * 0.3, mx, y2 - unit * 1.05, { color: 'rgba(30,70,45,.28)', dash: [5, 4] });
+      } else {
+        const yy = y1 - unit * 1.12;
+        arrow(ctx, x1 + unit * 0.42, yy, x2 - unit * 0.42, yy, { color: 'rgba(30,70,45,.3)' });
       }
     }
 
@@ -225,10 +227,10 @@ export function initPrep(bus) {
     } else if (i === 1) {
       if (pl) {
         const wb = waterBath(ctx, cx, by, unit * 0.92, { temp: 100, boil: active > 0.3 ? 1 : 0.2, t, label: '' });
-        eppendorf(ctx, cx + unit * 0.05, wb.innerTop - unit * 0.42, unit * 0.17, unit * 0.52, {
-          liquid: 0.7, color: '#DDE7D4', cloudy: 0.4, open: false,
+        eppendorf(ctx, cx + unit * 0.06, wb.innerTop - unit * 0.46, unit * 0.18, unit * 0.74, {
+          liquid: 0.72, color: '#DDE7D4', cloudy: 0.4, open: false,
         });
-        chip(ctx, cx, by - unit * 0.62, `${fnum(state.lysisSec, 0)} с`, { size: 10.5 });
+        chip(ctx, cx + unit * 0.06, wb.innerTop - unit * 0.54, `${fnum(state.lysisSec, 0)} с`, { size: 10.5 });
       } else {
         // лізис у буфері: пробірка з гомогенатом
         eppendorf(ctx, cx, by - unit * 0.78, unit * 0.26, unit * 0.78, {
@@ -264,7 +266,7 @@ export function initPrep(bus) {
       });
       if (active > 0.25) dnaThreads(ctx, cx, topY + tubeH * 0.45, tubeW * 0.72, { amount: active * rec, seed: 6, t });
       chip(ctx, cx, by - tubeH - unit * 0.1, state.sample === 'plasmid' ? 'ізопропанол' : '2 об’єми етанолу', { size: 10 });
-      if (m) chip(ctx, cx, by - tubeH - unit * 0.32, `${fnum(m.yieldUg, m.yieldUg < 100 ? 1 : 0)} мкг`, { size: 11 });
+      if (m) chip(ctx, cx + unit * 0.24, by - tubeH * 0.42, `${fnum(m.yieldUg, m.yieldUg < 100 ? 1 : 0)} мкг`, { size: 10.5, align: 'left' });
     }
   }
 

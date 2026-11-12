@@ -451,10 +451,11 @@ function modelB(sampleFn) {
     ctx.fillStyle = g; ctx.fillRect(x0, y0, w, h);
     K.applyGrain(ctx, x0, y0, w, h, 0.04);
     // пробірки з мацератом (3 наважки)
-    const tw = Math.min(w * 0.085, 34), th = Math.min(h * 0.42, tw * 4.4), ty = y0 + 46;
+    const strip = w / h > 1.4;
+    const tw = Math.min(w * (strip ? 0.06 : 0.085), 34), th = Math.min(h * (strip ? 0.5 : 0.42), tw * 4.4), ty = y0 + (strip ? 70 : 46);
     const macT = smooth(0, 0.35, p), shake = p > 0.35 && p < 0.5 ? Math.sin(p * 220) * 0.12 : 0;
     for (let i = 0; i < 3; i++) {
-      const tx = x0 + w * 0.08 + i * tw * 1.6;
+      const tx = x0 + w * (strip ? 0.04 : 0.08) + i * tw * 1.6;
       ctx.save(); ctx.translate(tx + tw / 2, ty + th); ctx.rotate(shake * (i % 2 ? 1 : -1)); ctx.translate(-tx - tw / 2, -ty - th);
       K.tube(ctx, tx, ty, tw, th, { medium: { level: 0.42, color: st.mix === 'cr' ? '#E9B46A' : '#F2EEDC', gel: false, cloudy: 0.2 + 0.7 * macT * T.M }, plug: null, contents: (c, inn) => {
         // шматочки тканини розпадаються
@@ -463,9 +464,9 @@ function modelB(sampleFn) {
       } });
       ctx.restore();
     }
-    tag(ctx, x0 + w * 0.08 + tw * 2.1, ty + th + 18, `мацерація: ${fnum(macT * st.hours, 1)} год`, { size: 11 });
+    tag(ctx, strip ? x0 + 8 : x0 + w * 0.08 + tw * 2.1, ty + th + 18, `мацерація: ${fnum(macT * st.hours, 1)} год`, { size: 11, align: strip ? 'left' : 'center' });
     // лічильна камера (2.5D): товсте скло з двома сітками й покривним скельцем
-    const cx = x0 + w * 0.52, cy = y0 + h * (h > 300 ? 0.72 : 0.62), cw = Math.min(w * 0.86, 330), ch = cw * 0.34;
+    const cx = x0 + w * (strip ? 0.66 : 0.52), cy = y0 + h * (strip ? 0.6 : 0.72), cw = Math.min(w * (strip ? 0.58 : 0.86), 330), ch = cw * 0.34;
     const sx = cx - cw / 2, sy = cy - ch / 2;
     K.shadow(ctx, cx + 6, cy + ch * 0.55, cw * 0.55, ch * 0.18, 0.3);
     const sg = ctx.createLinearGradient(sx, sy, sx, sy + ch); sg.addColorStop(0, 'rgba(235,245,242,.9)'); sg.addColorStop(1, 'rgba(190,210,205,.9)');
@@ -507,10 +508,10 @@ function modelB(sampleFn) {
       ctx.beginPath(); ctx.moveTo(px - 3, y0); ctx.lineTo(px - 3, py - 14); ctx.lineTo(px, py - 4); ctx.lineTo(px + 3, py - 14); ctx.lineTo(px + 3, y0); ctx.fill(); ctx.stroke();
       ctx.fillStyle = 'rgba(233,180,106,.85)'; ctx.beginPath(); ctx.arc(px, py, 3, 0, TAU); ctx.fill();
     }
-    tag(ctx, cx, cy + ch * 0.5 + 24, st.newton ? 'Камера Фукса — Розенталя · глибина 0,2 мм' : 'Скельце не притерто: глибина > 0,2 мм', { size: 11, color: st.newton ? '#173322' : '#9A2A1A' });
+    tag(ctx, strip ? x0 + w - 8 : cx, cy + ch * 0.5 + 24, st.newton ? (strip ? 'Камера Ф.–Р. · 0,2 мм' : 'Камера Фукса — Розенталя · глибина 0,2 мм') : (strip ? 'Глибина > 0,2 мм!' : 'Скельце не притерто: глибина > 0,2 мм'), { size: 11, color: st.newton ? '#173322' : '#9A2A1A', align: strip ? 'right' : 'center' });
     const steps = ['1. мацерація', '2. струшування', '3. крапля в камеру', '4. покривне скельце', '5. підрахунок'];
     const si = st.prepared ? 4 : p < 0.35 ? 0 : p < 0.45 ? 1 : p < 0.6 ? 2 : p < 0.85 ? 3 : 4;
-    if (st.prep > 0 || st.prepared) tag(ctx, x0 + w - 10, ty + 16, `Крок ${steps[si]}`, { size: 11.5, dark: true, align: 'right' });
+    if (st.prep > 0 || st.prepared) tag(ctx, x0 + w - 10, strip ? y0 + 76 : ty + 16, `Крок ${steps[si]}`, { size: 11.5, dark: true, align: 'right' });
     ctx.restore();
   }
 
