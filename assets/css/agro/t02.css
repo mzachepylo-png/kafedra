@@ -17,3 +17,5 @@
   .ag-stage__hud span { font-size: .7rem; padding: 3px 7px; }
   .agx-presets .seg button { flex: 1 1 45%; font-size: .82rem; padding: 7px 8px; }
 }
+.agx-g { color: #1E8E4E; font-weight: 700; }
+.agx-r { color: #C0392B; font-weight: 700; }

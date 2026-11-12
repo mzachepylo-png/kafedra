@@ -225,8 +225,8 @@ export function initExplant(root) {
   function draw() {
     if (!M) return;
     const o = OBJECTS[S.obj];
-    const mob = cv.parentElement.clientWidth < 620;
-    const { ctx, w, h } = fit(cv, { aspect: mob ? 0.78 : 1.9, min: 360, max: 520 });
+    const mob = cv.parentElement.clientWidth < 480;
+    const { ctx, w, h } = fit(cv, { aspect: mob ? 0.78 : 1.35, min: 360, max: 520 });
     const res = outcomes();
     const t = performance.now() / 1000;
     if (o.method === 'chem') drawDishes(ctx, w, h, res, mob, o, t);

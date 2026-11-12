@@ -57,7 +57,7 @@ export function seg(panel, label, options, value, on) {
   const box = el('div');
   wrap.append(box); panel.append(wrap);
   const r = segmented(box, label, options, value, on);
-  if (options.length === 3 || options.length === 6) box.classList.add('is-n' + options.length);
+  if ([3, 5, 6].includes(options.length) && options.every((o) => String(o.label).length <= 9)) box.classList.add('is-n' + options.length);
   return r;
 }
 /** Повзунки в панелі. */

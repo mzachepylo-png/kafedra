@@ -93,8 +93,8 @@ export function initFilter(root) {
 
   function draw() {
     if (!C) return;
-    const mob = cv.parentElement.clientWidth < 620;
-    const { ctx, w, h } = fit(cv, { aspect: mob ? 0.8 : 1.8, min: 380, max: 540 });
+    const mob = cv.parentElement.clientWidth < 480;
+    const { ctx, w, h } = fit(cv, { aspect: mob ? 0.8 : 1.3, min: 380, max: 540 });
     const hy = scene(ctx, w, h, { kind: 'bench', horizon: 0.88 });
     const t = performance.now() / 1000;
     const vNow = phase === 'idle' ? 0 : vAt(Math.min(tm, C.T));

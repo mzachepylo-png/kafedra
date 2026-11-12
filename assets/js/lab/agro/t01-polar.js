@@ -92,8 +92,8 @@ export function initPolar(root) {
 
   function draw() {
     if (!R) return;
-    const mob = cv.parentElement.clientWidth < 620;
-    const { ctx, w, h } = fit(cv, { aspect: mob ? 0.72 : 1.9, min: 380, max: 540 });
+    const mob = cv.parentElement.clientWidth < 480;
+    const { ctx, w, h } = fit(cv, { aspect: mob ? 0.72 : 1.3, min: 380, max: 540 });
     if (S.tis === 'willow') drawWillow(ctx, w, h, mob); else drawDiscs(ctx, w, h, mob);
     hud.innerHTML = `<span>${fnum(wk, 1)} тиж. культивування</span><span>${S.tis === 'willow' ? 'волога камера, світло' : 'термостат +25 °C, темрява'}</span>`;
   }

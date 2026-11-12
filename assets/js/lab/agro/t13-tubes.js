@@ -202,7 +202,7 @@ export class TubesModel {
     const u = this.runner.started ? this.anim.u : 1, ph = this.phase(u), beet = this.cfg.key === 'beet';
     const hy = scene(ctx, DW, DH, { kind: 'bench', horizon: narrow ? 0.92 : 0.86, light: 0.3 });
     let rack, inset;
-    if (narrow) { inset = { cx: DW / 2, cy: DH * 0.26, r: Math.min(DW * 0.4, DH * 0.22) }; rack = { x: 18, w: DW - 36, by: hy, h: DH * 0.42 }; }
+    if (narrow) { inset = { cx: DW / 2, cy: DH * 0.285, r: Math.min(DW * 0.4, DH * 0.205) }; rack = { x: 18, w: DW - 36, by: hy, h: DH * 0.42 }; }
     else { rack = { x: DW * 0.03, w: DW * 0.56, by: hy, h: DH * 0.72 }; inset = { cx: DW * 0.795, cy: DH * 0.45, r: Math.min(DH * 0.36, 178) }; }
     this.bench(ctx, rack, u, ph);
     if (beet) this.beetMicro(ctx, inset, u, ph); else this.molecules(ctx, inset, u, ph);
@@ -388,8 +388,8 @@ export class TubesModel {
     ctx.restore();
     ctx.strokeStyle = 'rgba(255,255,255,.12)'; roundRect(ctx, box.x, box.y, box.w, box.h, 18); ctx.stroke();
     txt(ctx, frozen ? 'під час заморожування: лід і концентровані прошарки' : X > 0.1 ? `після розморожування: ${fnum(X * 100, 0)} % білка в пластівцях` : 'білки в нативному стані', f.cx, box.y + 18, { px: 10.5, align: 'center', color: '#EAF3FF', weight: 700, max: box.w - 16 });
-    txt(ctx, 'білок + гідратна оболонка', box.x + 12, box.y + box.h - 30, { px: 9.5, color: '#BFD9F5' });
-    txt(ctx, tb.s || tb.g ? `${tb.s ? '● сахароза ' : ''}${tb.g ? '• гліцерин' : ''}` : 'без протектора', box.x + 12, box.y + box.h - 14, { px: 9.5, color: '#F5E1A8' });
+    txt(ctx, 'білок + гідратна оболонка', box.x + 14, box.y + box.h - 32, { px: 9.5, color: '#DCEBFA', bg: 'rgba(8,20,34,.75)' });
+    txt(ctx, tb.s || tb.g ? `${tb.s ? '● сахароза ' : ''}${tb.g ? '• гліцерин' : ''}` : 'без протектора', box.x + 14, box.y + box.h - 13, { px: 9.5, color: '#F5E1A8', bg: 'rgba(8,20,34,.75)' });
     txt(ctx, 'Схема на рівні молекул (не в масштабі)', f.cx, box.y + box.h + 16, { px: 10.5, align: 'center', color: '#1F3A2A' });
   }
 }

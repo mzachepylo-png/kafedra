@@ -80,7 +80,7 @@ export function initStock(root) {
   const slV = sliders($('[data-ctl="vm"]'), [{ id: 'Vm', label: 'Об\'єм середовища', min: 100, max: 2000, step: 50, value: S.Vm, unit: 'мл' }], () => { S.Vm = slV.values.Vm; recalc(); });
 
   const pSI = new Plot($('[data-plot="si"]'), { xLabel: 'Кратність маточника макросолей, ×', yLabel: 'Індекс насичення CaSO₄', xShort: 'k', x: [1, 50], y: [-2, 2.5], ariaLabel: 'Індекс насичення гіпсу в маточнику макросолей від кратності' });
-  const pErr = new Plot($('[data-plot="err"]'), { xLabel: 'Кратність маточника, ×', yLabel: 'Похибка зважування, %', xShort: 'k', ariaLabel: 'Відносна похибка найменшої наважки від кратності маточника' });
+  const pErr = new Plot($('[data-plot="err"]'), { xLabel: 'Кратність маточника, × (lg-шкала)', yLabel: 'Похибка зважування, %', xShort: 'k', xFmt: (v) => fnum(Math.pow(10, v), 0), ariaLabel: 'Відносна похибка найменшої наважки від кратності маточника' });
 
   function current() {
     if (S.key === 'horm') {
@@ -135,10 +135,10 @@ export function initStock(root) {
     const key = S.key === 'horm' ? 'micro' : S.key, st2 = STOCKS[key];
     const minC = Math.min(...st2.items.map((r) => r[1]));
     const kk = []; for (let lk = 0; lk <= 3.0001; lk += 0.05) kk.push(Math.pow(10, lk));
-    pErr.setOptions({ y: [0, 10], x: [1, 1000] });
+    pErr.setOptions({ y: [0, 10], x: [0, 3] });
     pErr.set([
-      { data: kk.map((k) => [k, Math.min(12, BAL_D / (minC * k * st2.curV / 1000) * 100)]), color: '#0E7490', label: `найменша наважка: ${st2.items.find((r) => r[1] === minC)[0]}, ${st2.curV} мл`, width: 2.4 },
-      { data: [[st2.curK, Math.min(10, BAL_D / (minC * st2.curK * st2.curV / 1000) * 100)]], type: 'points', color: '#DC2626', label: 'ваш маточник', r: 6 },
+      { data: kk.map((k) => [Math.log10(k), Math.min(12, BAL_D / (minC * k * st2.curV / 1000) * 100)]), color: '#0E7490', label: `найменша наважка: ${st2.items.find((r) => r[1] === minC)[0]}, ${st2.curV} мл`, width: 2.4 },
+      { data: [[Math.log10(st2.curK), Math.min(10, BAL_D / (minC * st2.curK * st2.curV / 1000) * 100)]], type: 'points', color: '#DC2626', label: 'ваш маточник', r: 6 },
     ], [{ y: 1, color: '#B91C1C', label: 'допуск 1 %' }]);
     // вердикт
     let cls = '', msg = '';
@@ -160,21 +160,21 @@ export function initStock(root) {
   /* ---------- сцена ---------- */
   const N_PER = 1.0; // с на компонент
   function draw() {
-    const mob = cv.parentElement.clientWidth < 620;
-    const { ctx, w, h } = fit(cv, { aspect: mob ? 1.0 : 2.1, min: 330, max: 470 });
+    const mob = cv.parentElement.clientWidth < 480;
+    const { ctx, w, h } = fit(cv, { aspect: mob ? 1.0 : 1.55, min: 330, max: 470 });
     const hy = scene(ctx, w, h, { kind: 'bench', horizon: 0.86 });
     const t = performance.now() / 1000;
     const cur = current();
     const n = cur.items.length;
     const step = anim.step, f = anim.f;
     // ваги
-    const bwid = mob ? w * 0.36 : Math.min(w * 0.2, 220);
+    const bwid = mob ? w * 0.36 : Math.min(w * 0.26, 230);
     const bx = mob ? w * 0.04 : w * 0.04;
     let reading = 0, heap = 0;
     if (anim.phase === 'weigh' && step >= 0) { const r = cur.items[step]; const e = clamp(f / 0.6, 0, 1); reading = r.mg * (1 - Math.pow(1 - e, 3)); heap = clamp(e, 0, 1); }
     balance(ctx, bx, hy + 6, bwid, { reading: `${fnum(reading / 1000, reading >= 10000 ? 3 : 4)} g`, heap: heap * clamp(Math.log10(1 + (cur.items[Math.max(0, step)]?.mg || 1)) / 4.5, 0.15, 1), heapColor: S.key === 'fe' ? (step === 0 ? '#BFD8B0' : '#FFFFFF') : '#FFFFFF' });
     // мішалка + стакан
-    const sx = mob ? w * 0.5 : w * 0.3, sw = mob ? w * 0.32 : Math.min(w * 0.17, 180);
+    const sx = mob ? w * 0.5 : w * 0.33, sw = mob ? w * 0.32 : Math.min(w * 0.22, 190);
     const on = anim.phase !== 'idle' && anim.phase !== 'done';
     const plate = stirrer(ctx, sx, hy + 6, sw, { on, t, hot: S.key === 'fe' && anim.phase === 'boil' ? 1 : S.key === 'horm' && on ? 0.4 : 0 });
     const done = anim.phase === 'done' || anim.phase === 'fill';
@@ -185,19 +185,21 @@ export function initStock(root) {
       ctx.save(); const mx = sx + sw / 2, my = plate - 5; ctx.translate(mx, my); ctx.rotate(t * 9); ctx.fillStyle = '#F5F5F0'; roundRect(ctx, -bkW * 0.18, -2, bkW * 0.36, 4, 2); ctx.fill(); ctx.restore();
     }
     // мірна колба
-    const vx = mob ? w * 0.86 : w * 0.53, vs = mob ? w * 0.18 : Math.min(w * 0.1, 96);
+    const vx = mob ? w * 0.86 : w * 0.66, vs = mob ? w * 0.18 : Math.min(w * 0.13, 110);
     const lvl = anim.phase === 'fill' ? 1 + clamp(f, 0, 1) : anim.phase === 'done' ? 2 : 0;
     volumetric(ctx, vx, hy + 4, vs, { level: lvl, color: S.key === 'fe' ? '#E2D58A' : '#E3EEF0', label: `${cur.V >= 1000 ? cur.V / 1000 + ' л' : cur.V}`, t, swirl: anim.phase === 'fill' ? 0.8 : 0 });
     // пляшки з темного скла
     if (!mob) {
       const keys = ['macro', 'micro', 'fe', 'vit', 'horm'];
-      const bw2 = Math.min(w * 0.065, 62), gap = bw2 * 0.25, x0 = w - (bw2 + gap) * keys.length - w * 0.02;
+      const shelfY = h * 0.42;
+      { const sg = ctx.createLinearGradient(0, shelfY, 0, shelfY + 10); sg.addColorStop(0, '#E9E2D2'); sg.addColorStop(1, '#B9AE98'); ctx.fillStyle = sg; ctx.fillRect(w * 0.42, shelfY, w * 0.58, 9); ctx.fillStyle = 'rgba(0,0,0,.12)'; ctx.fillRect(w * 0.42, shelfY + 9, w * 0.58, 6); }
+      const bw2 = Math.min(w * 0.075, 62), gap = bw2 * 0.22, x0 = w - (bw2 + gap) * keys.length - w * 0.02 + gap;
       keys.forEach((k, i) => {
         const sel = k === S.key, hh = bw2 * (k === 'macro' ? 2.3 : 1.9);
         const lab = k === 'horm' ? HORMONES.find((x) => x.id === S.horm).n : STOCKS[k].short;
         const sub = k === 'horm' ? `${fnum(S.hc, S.hc < 1 ? 1 : 0)} мг/мл` : `${STOCKS[k].curK}×`;
-        darkBottle(ctx, x0 + i * (bw2 + gap), hy + 6, bw2, hh, { label: lab, sub, fill: sel && anim.phase !== 'done' ? 0 : 0.75 });
-        if (sel) { ctx.save(); ctx.strokeStyle = 'rgba(212,160,23,.95)'; ctx.lineWidth = 2; roundRect(ctx, x0 + i * (bw2 + gap) - 4, hy + 6 - hh - 6, bw2 + 8, hh + 12, 8); ctx.stroke(); ctx.restore(); }
+        darkBottle(ctx, x0 + i * (bw2 + gap), shelfY, bw2, hh, { label: lab, sub, fill: sel && anim.phase !== 'done' ? 0 : 0.75 });
+        if (sel) { ctx.save(); ctx.strokeStyle = 'rgba(212,160,23,.95)'; ctx.lineWidth = 2; roundRect(ctx, x0 + i * (bw2 + gap) - 4, shelfY - hh - 6, bw2 + 8, hh + 12, 8); ctx.stroke(); ctx.restore(); }
       });
     }
     // HUD

@@ -154,23 +154,22 @@ function modelA() {
   function draw() {
     if (cv.parentElement.clientWidth < 60) return;
     const cw0 = cv.parentElement.clientWidth, narrow = cw0 < 760, tiny = cw0 < 480;
-    const { ctx, w, h } = K.fit(cv, { aspect: tiny ? 0.92 : narrow ? 1.3 : 1.9, min: 330, max: 560 });
+    const { ctx, w, h } = K.fit(cv, { aspect: tiny ? 0.95 : narrow ? 1.15 : 1.9, min: 330, max: 560 });
     const dpr = DPR(), t = st.t, c = M.c;
-    const hy = K.scene(ctx, w, h, { kind: 'bench', horizon: tiny ? 0.42 : 0.52 });
-    // ваги
-    const bw = tiny ? Math.min(w * 0.46, 170) : narrow ? Math.min(w * 0.34, 190) : Math.min(w * 0.24, 230);
-    const bx = w - bw - (tiny ? 12 : w * 0.03), by = tiny ? hy - bw * 0.05 : hy + (h - hy) * 0.25;
+    const hy = K.scene(ctx, w, h, { kind: 'bench', horizon: narrow ? 0.46 : 0.52 });
+    // ваги: на вузькій сцені — угорі праворуч, на широкій — праворуч від флаконів
+    const bw = tiny ? Math.min(w * 0.44, 170) : narrow ? Math.min(w * 0.34, 200) : Math.min(w * 0.24, 230);
+    const bx = w - bw - (narrow ? 14 : w * 0.03), by = narrow ? hy - bw * 0.2 : hy + (h - hy) * 0.25;
     const V = M.med[st.sel - 1], Wsel = at(V.sim, 'W', t);
     const sizeOf = (m, px) => Math.cbrt((3 * m) / (2 * Math.PI)) * px * 1.08;
-    const brownOf = (X) => clamp((at(X.sim, 'dead', t) / Math.max(1, at(X.sim, 'W', t))) * 2.6, 0, 1);
+    const brownOf = (X) => clamp((at(X.sim, 'dead', t) / Math.max(1, at(X.sim, 'W', t))) * 1.5, 0, 1);
     balance(ctx, bx, by, bw, Wsel, { label: `Ваги: ${V.m.short}`, content: (px, py) => {
-      // чашка Петрі на шальці з калюсом
       ctx.save(); ctx.fillStyle = 'rgba(230,240,236,.55)'; ctx.strokeStyle = 'rgba(80,110,100,.55)'; ctx.beginPath(); ctx.ellipse(px, py - 2, bw * 0.19, bw * 0.045, 0, 0, TAU); ctx.fill(); ctx.stroke(); ctx.restore();
       drawCallus(ctx, px, py - 1, Math.min(sizeOf(Wsel, bw / 70), bw * 0.13), { seed: 40 + st.sel, friable: clamp(c.fr + V.m.fr, 0.1, 0.9), color: c.color, yellow: c.yellow, brown: brownOf(V), dpr });
     } });
     // флакони
-    const area = tiny ? [10, w - 10] : [w * 0.03, bx - w * 0.04];
-    const n = 4, vw = Math.min((area[1] - area[0]) / (n + 0.6), tiny ? 82 : 128), vh = vw * 1.55, gap = ((area[1] - area[0]) - n * vw) / (n + 1);
+    const area = narrow ? [10, w - 10] : [w * 0.03, bx - w * 0.04];
+    const n = 4, vw = Math.min((area[1] - area[0]) / (n + 0.6), narrow ? 120 : 128), vh = vw * 1.55, gap = ((area[1] - area[0]) - n * vw) / (n + 1);
     const vby = h - 34;
     M.med.forEach((X, i) => {
       const x = area[0] + gap + i * (vw + gap), W = at(X.sim, 'W', t);
