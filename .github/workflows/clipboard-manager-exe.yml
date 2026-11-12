@@ -1,0 +1,145 @@
+# Збирає ClipboardMemory.exe (менеджер буфера обміну) на Windows.
+# Готовий файл: вкладка Actions → потрібний запуск → Artifacts → ClipboardMemory-exe.
+name: Build clipboard-manager exe
+
+on:
+  push:
+    paths:
+      - "clipboard-manager/**"
+      - ".github/workflows/clipboard-manager-exe.yml"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  build:
+    runs-on: windows-latest
+    defaults:
+      run:
+        working-directory: clipboard-manager
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Unit tests
+        run: python -m unittest -v
+
+      - name: Build exe
+        run: |
+          python -m pip install -r requirements.txt pyinstaller
+          python -c "from winsys import make_icon_image; make_icon_image(256).save('app.ico', sizes=[(16,16),(32,32),(48,48),(64,64),(128,128),(256,256)])"
+          pyinstaller --onefile --windowed --name ClipboardMemory --icon app.ico --collect-all customtkinter --collect-submodules pystray clipboard_manager.py
+
+      # Для порівняння швидкості старту: той самий код, але «тека» без розпакування при кожному запуску
+      - name: Build onedir variant
+        run: |
+          pyinstaller --onedir --windowed --name ClipboardMemoryDir --icon app.ico --collect-all customtkinter --collect-submodules pystray clipboard_manager.py
+          Compress-Archive -Path dist/ClipboardMemoryDir -DestinationPath dist/ClipboardMemory-folder.zip
+
+      - name: Check exe exists
+        run: |
+          if (-not (Test-Path dist/ClipboardMemory.exe)) { throw "exe not built" }
+          Get-Item dist/ClipboardMemory.exe | Select-Object Name, Length
+
+      # Запускаємо зібраний exe: він має створити пресет і показати вікно (ловить помилки пакування)
+      - name: Smoke-test the exe
+        run: |
+          $env:CLIPBOARD_MEMORY_DIR = Join-Path $env:RUNNER_TEMP "cm"
+          $exe = (Resolve-Path dist/ClipboardMemory.exe).Path
+          $p = Start-Process -FilePath $exe -ArgumentList "--no-hotkey","--no-tray" -PassThru
+          Start-Sleep -Seconds 10
+          $p.Refresh()
+          if ($p.HasExited) { throw "exe exited early, code $($p.ExitCode)" }
+          if (-not (Test-Path "$env:CLIPBOARD_MEMORY_DIR/default.preset.json")) { throw "preset file was not created" }
+          # onefile-exe: Start-Process повертає завантажувач, а вікно належить дочірньому процесу
+          $titles = @(Get-Process -Name ClipboardMemory -ErrorAction SilentlyContinue | ForEach-Object { $_.MainWindowTitle } | Where-Object { $_ })
+          Write-Host "Window titles: [$($titles -join ' | ')]"
+          if ($titles.Count -eq 0) { Write-Warning "no visible main window found (non-interactive session?)" }
+          Add-Type -AssemblyName System.Windows.Forms, System.Drawing
+          $b = [System.Windows.Forms.Screen]::PrimaryScreen.Bounds
+          $bmp = New-Object System.Drawing.Bitmap $b.Width, $b.Height
+          [System.Drawing.Graphics]::FromImage($bmp).CopyFromScreen($b.Location, [System.Drawing.Point]::Empty, $b.Size)
+          $bmp.Save("$PWD/windows-screenshot.png")
+          Get-Process -Name ClipboardMemory -ErrorAction SilentlyContinue | Stop-Process -Force
+
+      # Скільки мілісекунд від запуску до появи вікна (3 запуски кожного варіанта) — для оптимізації
+      - name: Measure startup time
+        continue-on-error: true
+        run: |
+          function Measure-Startup($exe, $label) {
+            $env:CLIPBOARD_MEMORY_DIR = Join-Path $env:RUNNER_TEMP ("cm-" + $label + "-" + [guid]::NewGuid())
+            $sw = [Diagnostics.Stopwatch]::StartNew()
+            $p = Start-Process -FilePath $exe -ArgumentList "--no-hotkey","--no-tray","--timing" -PassThru
+            $name = $p.ProcessName
+            $ms = -1
+            while ($sw.ElapsedMilliseconds -lt 30000) {
+              $t = @(Get-Process -Name $name -ErrorAction SilentlyContinue | ForEach-Object { $_.MainWindowTitle } | Where-Object { $_ })
+              if ($t.Count -gt 0) { $ms = $sw.ElapsedMilliseconds; break }
+              Start-Sleep -Milliseconds 50
+            }
+            Start-Sleep -Milliseconds 2200   # даємо застосунку дописати лог стадій (--timing)
+            Get-Process -Name $name -ErrorAction SilentlyContinue | Stop-Process -Force
+            Start-Sleep -Milliseconds 800
+            Write-Host ("STARTUP {0}: window after {1} ms" -f $label, $ms)
+          }
+          function Show-TimingLog($label) {
+            $log = Join-Path $env:CLIPBOARD_MEMORY_DIR "startup-timing.log"
+            if (Test-Path $log) { Write-Host "TIMING LOG ($label):"; Get-Content $log -Tail 20 | ForEach-Object { Write-Host "  $_" } }
+          }
+          $one = (Resolve-Path dist/ClipboardMemory.exe).Path
+          $dir = (Resolve-Path dist/ClipboardMemoryDir/ClipboardMemoryDir.exe).Path
+          1..3 | ForEach-Object { Measure-Startup $one "onefile-run$_" }
+          1..3 | ForEach-Object { Measure-Startup $dir "onedir-run$_"; Show-TimingLog "onedir-run$_" }
+
+      # Справжня гаряча клавіша на Windows: запуск прихованим → Ctrl+X показує вікно → Ctrl+X ховає
+      - name: Hotkey end-to-end (Ctrl+X)
+        continue-on-error: true
+        run: |
+          $env:CLIPBOARD_MEMORY_DIR = Join-Path $env:RUNNER_TEMP ("cm-hotkey-" + [guid]::NewGuid())
+          Add-Type -AssemblyName System.Windows.Forms
+          function Window-Visible($name) {
+            @(Get-Process -Name $name -ErrorAction SilentlyContinue | ForEach-Object { $_.MainWindowTitle } | Where-Object { $_ }).Count -gt 0
+          }
+          function Wait-Until($cond, $timeoutMs) {
+            $sw = [Diagnostics.Stopwatch]::StartNew()
+            while ($sw.ElapsedMilliseconds -lt $timeoutMs) { if (& $cond) { return $sw.ElapsedMilliseconds }; Start-Sleep -Milliseconds 20 }
+            return -1
+          }
+          $exe = (Resolve-Path dist/ClipboardMemoryDir/ClipboardMemoryDir.exe).Path
+          $p = Start-Process -FilePath $exe -ArgumentList "--minimized" -PassThru
+          $name = $p.ProcessName
+          Start-Sleep -Seconds 6
+          $hiddenAtStart = -not (Window-Visible $name)
+          Write-Host "HOTKEY start hidden (--minimized): $hiddenAtStart"
+          [System.Windows.Forms.SendKeys]::SendWait("^x")
+          $showMs = Wait-Until { Window-Visible $name } 4000
+          Write-Host "HOTKEY Ctrl+X shows the window: $($showMs -ge 0) (after $showMs ms)"
+          Start-Sleep -Seconds 1
+          [System.Windows.Forms.SendKeys]::SendWait("^x")
+          $hideMs = Wait-Until { -not (Window-Visible $name) } 4000
+          Write-Host "HOTKEY Ctrl+X hides the window: $($hideMs -ge 0) (after $hideMs ms)"
+          Get-Process -Name $name -ErrorAction SilentlyContinue | Stop-Process -Force
+          if (-not ($hiddenAtStart -and $showMs -ge 0 -and $hideMs -ge 0)) { throw "hotkey e2e failed" }
+
+      - uses: actions/upload-artifact@v4
+        with:
+          name: ClipboardMemory-exe
+          path: clipboard-manager/dist/ClipboardMemory.exe
+          if-no-files-found: error
+
+      - uses: actions/upload-artifact@v4
+        with:
+          name: ClipboardMemory-folder
+          path: clipboard-manager/dist/ClipboardMemory-folder.zip
+          if-no-files-found: error
+
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: windows-screenshot
+          path: clipboard-manager/windows-screenshot.png
+          if-no-files-found: ignore
