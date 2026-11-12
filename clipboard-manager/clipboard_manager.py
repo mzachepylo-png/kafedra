@@ -44,8 +44,9 @@ from types import SimpleNamespace
 import customtkinter as ctk
 
 from formats import (APPENDERS, AUTO_HISTORY_FORMATS, FORMATTERS, MERGE_ACTIONS, append_result, apply_format,
-                     apply_merge, apply_user_link, clean_v2, compose_phrases, format_actions, has_user_placeholder,
-                     join_values, last_user_id, numbers_from_history, user_link, v2_compose)
+                     apply_merge, apply_user_link, clean_v2, compose_phrases, fill_email, fill_placeholders, format_actions,
+                     has_user_placeholder, join_values, last_email, last_user_id, numbers_from_history, user_ids_from_history,
+                     user_link, v2_compose)
 from store import (HISTORY, PALETTE, PRESET_SUFFIX, History, Preset, PresetError, Settings,
                    default_data_dir, history_path, open_startup_preset)
 from winsys import (work_area_at, HOTKEY_PRESETS, HotkeyListener, acquire_single_instance, clipboard_sequence, hotkey_label,
@@ -849,11 +850,12 @@ class V2Dialog(_Dialog):
     Результат: {"text": ..., "hide": bool} або None."""
 
     def __init__(self, app: "App", main: str, v2: dict, uid: str | None = None, link_on: bool = False,
-                 on_edit=None):
+                 on_edit=None, filler=None):
         super().__init__(app, "Копіпаста з варіантами", 640, 700)
         self.main = main
         self.uid = uid
         self.on_edit = on_edit
+        self.filler = filler                   # заповнення заглушок з історії (email, користувачі по черзі)
         self.stack: list[tuple[list[dict], bool]] = [(v2["options"], False)]   # (аппенди рівня, чи додано крок при вході)
         self.steps: list[str] = []
         self.ticked: dict[str, bool] = {}                                    # id додаткового → стан галочки
@@ -904,6 +906,8 @@ class V2Dialog(_Dialog):
     def compose(self) -> str:
         extras = [a["text"] for a in self.addons if self.ticked.get(a["id"])]
         out = v2_compose(self.main, self.steps, extras)
+        if self.filler is not None:
+            return self.filler(out, self.link_var.get())
         return apply_user_link(out, self.uid) if self.link_var.get() else out
 
     def edit_options(self) -> None:
@@ -1760,6 +1764,9 @@ class App:
         self._last_seen: str | None = None
         self._clip_seq: int | None = None   # номер вмісту буфера (Windows): без змін — буфер не відкриваємо
         self._last_query = ""
+        self._search_text = ""                 # внутрішній фільтр (поля пошуку в інтерфейсі немає)
+        self.nav_zone = "cards"                # клавіатурна навігація: "folders" (ліва колонка) або "cards" (записи)
+        self.nav_cat: str | None = None        # папка під «курсором» у зоні папок
         self._last_cat: str | None = None
         self._status_job: str | None = None
         self._search_job: str | None = None
@@ -1983,6 +1990,7 @@ class App:
         if dark == self._dark:
             return
         self._dark = dark
+        self.root.after_idle(self._sync_banner)
         for w, bg, fg in self._themed:
             if fg is None:                              # звичайний tk.Frame (без кольору тексту)
                 w.configure(bg=self.col(bg))
@@ -2070,13 +2078,22 @@ class App:
         top = ctk.CTkFrame(root, fg_color="transparent")
         top.grid(row=0, column=0, sticky="ew", padx=14, pady=(14, 8))
         top.grid_columnconfigure(0, weight=1)
-        self.search = ctk.CTkEntry(top, height=42, corner_radius=14, fg_color=INPUT, border_color=PANEL_BORDER,
-                                   placeholder_text="Пошук у відкритому розділі…", font=self.f.body,
-                                   text_color=TEXT)
-        self.search.grid(row=0, column=0, sticky="ew")
-        self.search.bind("<KeyRelease>", lambda e: self._schedule_search(), add="+")
-        for ev in ("<<Paste>>", "<<Cut>>", "<<Clear>>"):
-            self.search.bind(ev, lambda e: self.root.after_idle(self._schedule_search), add="+")
+        # банер відкритої папки (замість пошуку): назва, кількість записів, фон — колір папки
+        self.banner = ctk.CTkFrame(top, height=42, corner_radius=14, fg_color=ROW_SEL, border_width=1,
+                                   border_color=PANEL_BORDER)
+        self.banner.grid(row=0, column=0, sticky="ew")
+        self.banner.grid_propagate(False)
+        self.banner.grid_rowconfigure(0, weight=1)
+        self.banner.grid_columnconfigure(2, weight=1)
+        self.banner_bar = tk.Frame(self.banner, width=6, height=8)
+        self.banner_bar.grid(row=0, column=0, sticky="ns", padx=(10, 0), pady=8)
+        self.title_lbl = tk.Label(self.banner, text="", font=self.pf.title, anchor="w")
+        self.title_lbl.grid(row=0, column=1, sticky="w", padx=(12, 0))
+        self.count_lbl = tk.Label(self.banner, text="", font=self.pf.body, anchor="w")
+        self.count_lbl.grid(row=0, column=2, sticky="w", padx=(10, 0), pady=(3, 0))
+        self.keys_lbl = tk.Label(self.banner, text="Alt+W/A/S/D — навігація · Space — відкрити / копіювати · "
+                                                   "Alt+Space — копіювати й сховати", font=self.pf.small, anchor="e")
+        self.keys_lbl.grid(row=0, column=3, sticky="e", padx=(10, 14))
         self.add_btn = ctk.CTkButton(top, text="＋  Додати", height=42, width=120, corner_radius=14,
                                      fg_color=ACCENT, hover_color=ACCENT_HOVER, font=self.f.bold,
                                      command=self.on_add)
@@ -2109,10 +2126,13 @@ class App:
         root.bind("<Right>", lambda e: self._arrow_h(e, 1))
         root.bind("<Left>", lambda e: self._arrow_h(e, -1))
         root.bind("<Return>", self._on_return)
+        # навігація: Alt+W/S — вище/нижче, Alt+A/D — ліворуч/праворуч (між папками й записами), Space — відкрити папку
+        # або скопіювати запис, Alt+Space — скопіювати й сховати вікно. Працює і з українською/російською розкладкою.
+        root.bind("<Alt-KeyPress>", self._on_alt_key)
+        root.bind("<KeyPress-space>", self._on_space)
         root.bind("<Escape>", self._on_escape)
         root.bind("<Delete>", self._on_delete_key)
         root.bind("<Control-n>", lambda e: self.on_add())
-        root.bind("<Control-f>", lambda e: self._focus_search())
 
         self.v_paused = tk.BooleanVar(value=self.settings["paused"])
         self.v_topmost = tk.BooleanVar(value=self.settings["topmost"])
@@ -2212,10 +2232,6 @@ class App:
         self.mid = mid
         head = ctk.CTkFrame(mid, fg_color="transparent")
         head.pack(fill="x", padx=18, pady=(14, 4))
-        self.title_lbl = self._label(head, "", PANEL, TEXT, self.pf.title, anchor="w")
-        self.title_lbl.pack(side="left")
-        self.count_lbl = self._label(head, "", PANEL, MUTED, self.pf.body, anchor="w")
-        self.count_lbl.pack(side="left", padx=(8, 0), pady=(3, 0))
         self.mid_head = head
         self.rec_view_btn = ctk.CTkButton(head, text="☰ Список" if self.rec_tiles else "▦ Плитки", width=112,
                                           height=32, corner_radius=10, fg_color=BTN2, hover_color=BTN2_HOVER,
@@ -2449,7 +2465,7 @@ class App:
         if not armed:
             self.refund_append.configure(fg_color=BTN2, hover_color=BTN2_HOVER, border_color=BTN2)
         else:
-            self._refresh_banner(compose_phrases(self._refund_selected()))
+            self._refresh_banner(self._phrase_text())
 
     def _clear_refunds(self) -> None:
         if any(r["var"].get() for r in self._phrase_rows.values()):
@@ -2486,8 +2502,13 @@ class App:
             self._render_phrases()
             self.set_status("Фразу видалено", 3000)
 
-    def submit_refund(self) -> None:
+    def _phrase_text(self) -> str:
+        """Обрані швидкі фрази → текст; «Email ___» отримує останній email з історії, «___» — користувачів."""
         out = compose_phrases(self._refund_selected())
+        return fill_placeholders(out, self._history_texts()) if out else out
+
+    def submit_refund(self) -> None:
+        out = self._phrase_text()
         if not out:
             self.set_status("Позначте галочкою, що саме скопіювати")
             return
@@ -2500,7 +2521,7 @@ class App:
             self._set_armed(False)
             self.set_status("Режим Append скасовано")
             return
-        out = compose_phrases(self._refund_selected())
+        out = self._phrase_text()
         if not out:
             return
         self._set_armed(True, "refund")
@@ -2510,7 +2531,7 @@ class App:
     def _armed_result(self) -> str:
         """Що дописується в режимі Append: результат вибраного формату або обрана швидка фраза."""
         if self.armed_src == "refund":
-            return compose_phrases(self._refund_selected())
+            return self._phrase_text()
         return self._format_result()
 
     def _ensure_fmt(self) -> None:
@@ -2800,6 +2821,8 @@ class App:
         if created or self._row_order != wanted:
             self._row_order = wanted
             self._cat_sig = None
+        if self.nav_zone == "folders" and self.nav_cat in self._row_objs:
+            self._mark_target(self.nav_cat, True)         # перемальований рядок не губить клавіатурний «курсор»
         if wanted and self._cat_hint is not None:        # підказку (pack) прибираємо ДО розкладки плиток (grid)
             self._cat_hint.destroy()
             self._cat_hint = None
@@ -3148,13 +3171,28 @@ class App:
             text="Режим Append — клікніть запис: до нього допишеться\n«" + clip(result, 90) + "»  (Esc — скасувати)"
             if result else "Режим Append — клікніть запис (поле введення порожнє)  ·  Esc — скасувати")
 
+    def _sync_banner(self) -> None:
+        """Банер угорі: колір відкритої папки (як у її рядку ліворуч), для історії — нейтральний."""
+        cat = None if self._is_history() else self.preset.category(self.view)
+        color = cat["color"] if cat else None
+        _fill, _hover, sel, border = row_colors(color)
+        sig = (color, self._dark)
+        if getattr(self, "_banner_sig", None) == sig:          # configure ctk-фрейму = перемалювання — лише при зміні
+            return
+        self._banner_sig = sig
+        bg = self.col(sel)
+        self.banner.configure(fg_color=sel, border_color=border)
+        self.banner_bar.configure(bg=self.col(color or NEUTRAL))
+        for w, fg in ((self.title_lbl, TEXT), (self.count_lbl, MUTED), (self.keys_lbl, MUTED)):
+            w.configure(bg=bg, fg=self.col(fg))
+
     def _view_name(self) -> str:
         if self._is_history():
             return "Історія буфера"
         return (self.preset.category(self.view) or {"name": ""})["name"]
 
     def _query(self) -> str:
-        return self.search.get() if self.search.winfo_exists() else ""
+        return self._search_text
 
     def _collect(self) -> list[dict]:
         q = self._query()
@@ -3188,6 +3226,7 @@ class App:
 
         self.title_lbl.configure(text=self._view_name())
         self.count_lbl.configure(text=str(len(self.shown)))
+        self._sync_banner()
         self._layout_header()
 
         visible = self.shown[: self.limit]
@@ -3566,6 +3605,169 @@ class App:
             return None
         return self._move_sel(delta)
 
+    # -- клавіатурна навігація Alt+W/A/S/D, Space, Alt+Space ---------------------------------------------
+    _NAV_KEYSYMS = {
+        "w": "w", "cyrillic_tse": "w",
+        "s": "s", "ukrainian_i": "s", "cyrillic_yeru": "s",
+        "a": "a", "cyrillic_ef": "a",
+        "d": "d", "cyrillic_ve": "d",
+        "space": "space",
+    }
+    _NAV_VK = {87: "w", 83: "s", 65: "a", 68: "d", 32: "space"}          # Windows: віртуальні коди не залежать від розкладки
+    _NAV_X11 = {25: "w", 39: "s", 38: "a", 40: "d", 65: "space"}
+
+    def _nav_key(self, e) -> str | None:
+        k = self._NAV_KEYSYMS.get(str(getattr(e, "keysym", "")).lower())
+        if k:
+            return k
+        table = self._NAV_VK if os.name == "nt" else self._NAV_X11
+        return table.get(getattr(e, "keycode", None))
+
+    def _typing(self, e) -> bool:
+        return isinstance(getattr(e, "widget", None), (tk.Entry, tk.Text))
+
+    def _on_alt_key(self, e):
+        k = self._nav_key(e)
+        if k is None:
+            return None
+        if k == "space":
+            self.nav_activate(hide=True)
+        else:
+            self.nav_move(k)
+        return "break"                         # не віддаємо Alt+… системі (меню вікна) і полям введення
+
+    def _on_space(self, e):
+        if self._typing(e) or self._modal:
+            return None
+        if getattr(e, "state", 0) & (0x8 | 0x20000):    # Alt+Space обробляє _on_alt_key
+            return None
+        self.nav_activate(hide=None)
+        return "break"
+
+    def _nav_folders(self) -> list[str]:
+        return [HISTORY] + [k for k in self._row_order if k in self._row_objs]
+
+    def _nav_set_zone(self, zone: str) -> None:
+        if zone == self.nav_zone and (zone == "cards" or self.nav_cat):
+            return
+        self.nav_zone = zone
+        if zone == "folders":
+            self._nav_mark(self.nav_cat or self.view)
+            self.set_status("Папки: Alt+W/S — вище/нижче, Space — відкрити, Alt+D — до записів", 4000)
+        else:
+            self._nav_mark(None)
+
+    def _nav_mark(self, key: str | None) -> None:
+        """Підсвітка папки під клавіатурним «курсором» (у зоні папок)."""
+        if self.nav_cat and self.nav_cat in self._row_objs:
+            self._mark_target(self.nav_cat, False)
+        self.nav_cat = key
+        if key and key in self._row_objs:
+            self._mark_target(key, True)
+            self._ensure_visible_in(self.cat_list, self._row_objs[key].row)
+
+    def _ensure_visible_in(self, sf, widget) -> None:
+        try:
+            sf.update_idletasks()
+            canvas = sf._parent_canvas
+            top, bottom = widget.winfo_y(), widget.winfo_y() + widget.winfo_height()
+            total, view = max(1, sf.winfo_height()), canvas.winfo_height()
+            y0 = canvas.canvasy(0)
+            if top < y0:
+                canvas.yview_moveto(max(0, (top - 6) / total))
+            elif bottom > y0 + view:
+                canvas.yview_moveto(min(1, (bottom + 6 - view) / total))
+        except (tk.TclError, AttributeError):
+            pass
+
+    def nav_move(self, k: str) -> None:
+        if self.nav_zone == "folders":
+            self._nav_move_folders(k)
+        else:
+            self._nav_move_cards(k)
+
+    def _nav_move_folders(self, k: str) -> None:
+        order = self._nav_folders()
+        cur = self.nav_cat if self.nav_cat in order else (self.view if self.view in order else HISTORY)
+        i = order.index(cur)
+        cats = order[1:]
+        if not self.cat_tiles:
+            if k == "w":
+                i = max(0, i - 1)
+            elif k == "s":
+                i = min(len(order) - 1, i + 1)
+            elif k == "d":
+                self._nav_set_zone("cards")
+                return
+            else:
+                return
+            self._nav_mark(order[i])
+            return
+        cols = self._cat_cols
+        if cur == HISTORY:                       # «Історія» — окремий рядок над плитками
+            if k == "s" and cats:
+                self._nav_mark(cats[0])
+            elif k == "d":
+                self._nav_set_zone("cards")
+            return
+        j = cats.index(cur)
+        if k == "w":
+            self._nav_mark(cats[j - cols] if j - cols >= 0 else HISTORY)
+        elif k == "s":
+            if j + cols < len(cats):
+                self._nav_mark(cats[j + cols])
+        elif k == "a":
+            if j % cols:
+                self._nav_mark(cats[j - 1])
+        elif k == "d":
+            if j % cols < cols - 1 and j + 1 < len(cats):
+                self._nav_mark(cats[j + 1])
+            else:
+                self._nav_set_zone("cards")
+
+    def _nav_move_cards(self, k: str) -> None:
+        ids = [i["id"] for i in self.shown]
+        cols = self._rec_cols if self.rec_tiles else 1
+        idx = ids.index(self.sel_id) if self.sel_id in ids else -1
+        if k == "a" and (cols == 1 or idx <= 0 or idx % cols == 0):
+            self._nav_set_zone("folders")          # лівий край записів → до папок
+            return
+        if not ids:
+            return
+        if idx < 0:
+            self._move_sel(1)
+            return
+        if k == "w":
+            if idx - cols >= 0:
+                self._move_sel(-cols)
+        elif k == "s":
+            if idx + cols < len(ids):
+                self._move_sel(cols)
+        elif k == "a":
+            self._move_sel(-1)
+        elif k == "d":
+            if cols > 1 and idx % cols < cols - 1 and idx + 1 < len(ids):
+                self._move_sel(1)
+
+    def nav_activate(self, hide: bool | None) -> None:
+        """Space: у папках — відкрити папку (і перейти до її записів); у записах — скопіювати.
+        Alt+Space — те саме, але після копіювання вікно ховається (як Ctrl + клік)."""
+        if self.nav_zone == "folders":
+            key = self.nav_cat or self.view
+            self._nav_mark(None)
+            self.nav_zone = "cards"
+            self.select_category(key)
+            self.flush_render()
+            return
+        if not self.sel_id or self._text_of(self.sel_id) is None:
+            return
+        card = self._card_objs.get(self.sel_id)
+        if card is not None:
+            item = next((i for i in self.shown if i["id"] == self.sel_id), {})
+            if not (item.get("v2") and not hide and not self.append_armed):
+                card.flash()
+        self.copy_item(self.sel_id, hide=True if hide else None)
+
     def _move_sel(self, delta: int) -> str:
         if not self.shown:
             return "break"
@@ -3595,25 +3797,10 @@ class App:
         elif bottom > y0 + view:
             canvas.yview_moveto(min(1, (bottom + 6 - view) / total))
 
-    def _focus_search(self) -> None:
-        self.search.focus_set()
-        try:
-            self.search.select_range(0, "end")
-        except tk.TclError:
-            pass
-
     def set_search(self, text: str) -> None:
-        """Програмно задає пошуковий запит (також для тестів)."""
-        self.search.delete(0, "end")
-        if text:
-            self.search.insert(0, text)
+        """Внутрішній фільтр записів (поля пошуку в інтерфейсі більше немає; лишився для тестів і скидання)."""
+        self._search_text = text or ""
         self._on_search()
-
-    def _schedule_search(self) -> None:
-        """Пошук реагує після короткої паузи в наборі: швидкий набір не перебудовує список на кожну літеру."""
-        if self._search_job is not None:
-            self.root.after_cancel(self._search_job)
-        self._search_job = self.root.after(SEARCH_DEBOUNCE_MS, self._on_search)
 
     def _on_search(self) -> None:
         if self._search_job is not None:
@@ -3920,12 +4107,8 @@ class App:
         if item and item.get("v2") and not self._is_history() and not hide:
             self._open_v2(item)                # копіпаста v.2: клік відкриває вікно вибору аппендів (Ctrl+клік — лише основний текст)
             return
-        if item and card_user_link(item):      # «… in ____» → «… in {LINK:USER:<останній з історії>:E}»
-            uid = self._last_user()
-            if uid:
-                text = apply_user_link(text, uid)
-            else:
-                self.set_status("У історії буфера немає користувача — скопійовано без {LINK:USER:…:E}", 6000)
+        if item and not self._is_history():
+            text = self._fill_snippet(text, card_user_link(item))
         self.copy_to_clipboard(text)
 
         def after() -> None:      # піднімаємо запис в історії вже ПІСЛЯ ховання вікна
@@ -3938,11 +4121,29 @@ class App:
     def _open_v2(self, item: dict) -> None:
         """Вікно вибору аппендів для копіпасти v.2. Результат копіюється; вікно програми ховається лише при Ctrl + клік."""
         res = V2Dialog(self, item["text"], item["v2"], uid=self._last_user(), link_on=card_user_link(item),
-                       on_edit=lambda: self._edit_appends_inline(item["id"])).run()
+                       on_edit=lambda: self._edit_appends_inline(item["id"]),
+                       filler=lambda txt, on: self._fill_snippet(txt, on, warn=False)).run()
         if not res or not res["text"].strip():
             return
         self.copy_to_clipboard(res["text"])
         self._finish_pick("✓ Скопійовано: " + clip(res["text"].replace("\n", " "), 60), hide=bool(res["hide"]))
+
+    def _history_texts(self) -> list[str]:
+        return [i["text"] for i in self.history.items]
+
+    def _fill_snippet(self, text: str, link_on: bool, warn: bool = True) -> str:
+        """Заповнення тексту з історії буфера: «Email ___» → останній email; «___» → користувачі ПО ЧЕРЗІ (останній,
+        передостанній … до 8); без заглушки й з увімкненою підстановкою — « in {LINK:USER:<останній>:E}» у кінці."""
+        texts = self._history_texts()
+        out = fill_email(text, last_email(texts))
+        if link_on:
+            users = user_ids_from_history(texts)
+            out = apply_user_link(out, users)
+            if warn and not users:
+                self.set_status("У історії буфера немає користувача — скопійовано без {LINK:USER:…:E}", 6000)
+        if warn and has_user_placeholder(out) and link_on:
+            self.set_status("Користувачів в історії менше, ніж заглушок «___» — решта лишилась порожньою", 6000)
+        return out
 
     def _last_user(self) -> str | None:
         """Останній користувач з історії буфера: {LINK:USER:1236:E}, «User #1236» або просто число."""
@@ -4098,6 +4299,9 @@ class App:
     # -- категорії ----------------------------------------------------------
     def select_category(self, key: str) -> None:
         self.log(f"select_category {key[:8]}")
+        if self.nav_zone == "folders":                 # клік мишею по папці — «курсор» повертається до записів
+            self._nav_mark(None)
+            self.nav_zone = "cards"
         if key != self.view:
             self._collapse_format()            # формати при переході між папками згорнуті, Append скасовано
             self.clear_checked()
@@ -4593,7 +4797,7 @@ class App:
             pass
         self.root.after(150, self._restore_topmost)
         self.root.focus_force()
-        self.search.focus_set()
+        self.root.focus_set()                  # фокус на вікні — працюють Alt+W/A/S/D, Space, Alt+Space
         self.log(f"show full={full} maximized={self._maximized} state={self.root.state()}")
 
     def _restore_topmost(self) -> None:
@@ -4631,7 +4835,7 @@ class App:
             return
         needs = bool(self._query()) or self.limit != PAGE
         if self._query():
-            self.search.delete(0, "end")
+            self._search_text = ""
             self._last_query = ""
         self._collapse_format()                  # наступного разу формати згорнуті, Append скасовано, поле порожнє
         if self.checked:

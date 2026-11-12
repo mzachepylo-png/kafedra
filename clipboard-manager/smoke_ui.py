@@ -215,7 +215,7 @@ app.copy_item(app.sel_id)
 assert root.clipboard_get() == app.shown[0]["text"]
 app.set_search("sel")
 app._on_escape(None)                 # Esc очищає пошук
-assert app.search.get() == ""
+assert app._query() == "" and not hasattr(app, "search"), "поля пошуку немає"
 sel = app.sel_id
 app._on_delete_key(SimpleNamespace(widget=root))       # Delete видаляє виділений запис
 assert preset.find_snippet(sel) is None and preset.count(home["id"]) == 1
@@ -715,7 +715,7 @@ app.select_format("builtin-user")
 app.fmt_input.insert("1.0", "999")
 app.hide_window()
 pump(300)
-assert app.search.get() == "" and app._query() == "" and app.fmt_input.get("1.0", "end-1c") == ""
+assert app._query() == "" and app.fmt_input.get("1.0", "end-1c") == ""
 assert len(app.shown) == len(app.history.items)
 assert app.sel_format is None and app.fmt_box.winfo_manager() == "", "формат згорнувся при хованні (у фоні)"
 rc = app.render_count
@@ -1281,7 +1281,9 @@ for mode, idx in (("dark", 1), ("light", 0), ("dark", 1), (old_theme if old_them
     card = next(iter(app._card_objs.values()))
     assert card.body.cget("bg") == app.col(card.cur) and card.body.cget("fg") == cm.TEXT[idx], (mode, card.body.cget("bg"))
     assert app.status.cget("bg") == cm.BG[idx] and app.preset_name.cget("bg") == cm.ACCENT_SOFT[idx]
-    assert app.title_lbl.cget("bg") == cm.PANEL[idx]
+    pump(60)
+    cat_ = None if app._is_history() else app.preset.category(app.view)
+    assert app.title_lbl.cget("bg") == app.col(cm.row_colors(cat_["color"] if cat_ else None)[2]), "банер перефарбовано"
     row = next(iter(app._row_objs.values()))
     assert row.label.cget("fg") == cm.TEXT[idx] and row.label.cget("bg") == app.col(cm._eff(row.cur))
     assert app.col(cm.TEXT) == cm.TEXT[idx]
@@ -2215,10 +2217,7 @@ if n1:
 # пошук (клавіатура в полі пошуку)
 real_click(app._row_objs[HISTORY].label)
 probe = app.history.items[0]["text"]
-app.search.focus_force()
-pump(100)
-app.search.insert(0, probe[:5])
-app.search._entry.event_generate("<KeyRelease>", keysym="a")
+app.set_search(probe[:5])                                      # поля пошуку немає — внутрішній фільтр
 pump(300)
 assert app._query() == probe[:5] and all(probe[:5].lower() in i["text"].lower() for i in app.shown) and app.shown
 app.set_search("")
@@ -3275,6 +3274,132 @@ assert root.clipboard_get() == "Blacklisted due to TOS Violation, Multiaccountin
 got = next(s_ for s_ in app.preset.snippets(tos["id"]) if s_["id"] == t1["id"])
 assert [o["text"] for o in got["v2"]["options"]] == ["Third-party payments", "Multiaccounting"], "пункти збережені в записі"
 print("35d TOS reasons window + user link + inline edit OK")
+settings["autohide"] = True
+root.geometry("1180x660+0+0")
+pump(600)
+settings.data["width"], settings.data["height"] = 1180, 660
+app._size = None
+
+# ---- 36. раунд 12: без пошуку, банер папки, навігація Alt+W/A/S/D + Space, кілька користувачів, email ---------------------------
+settings["autohide"] = False
+app.hotkey_ok = False
+root.geometry("1500x800+0+0")
+pump(600)
+app.show_window()
+app.set_search("")
+app.set_rec_view("list")
+app.set_cat_view("list")
+pump(200)
+# (a) банер: назва й колір відкритої папки
+nav_cats = [cat_named(n) for n in ("Нав А", "Нав Б", "Нав В")]
+app.preset.set_category_color(nav_cats[1]["id"], "#ffb900")
+for c_ in nav_cats:
+    for n_ in range(3):
+        app.preset.add_snippet(c_["id"], f"{c_['name']} запис {n_}")
+app.render()
+app.flush_render()
+app.select_category(nav_cats[1]["id"])
+app.flush_render()
+pump(200)
+assert app.title_lbl.cget("text") == "Нав Б" and app.count_lbl.cget("text") == "3"
+assert tup(app.banner.cget("fg_color")) == tup(cm.row_colors("#ffb900")[2]), app.banner.cget("fg_color")
+assert app.title_lbl.cget("bg") == app.col(cm.row_colors("#ffb900")[2])
+assert app.title_lbl.winfo_rooty() < app.mid.winfo_rooty(), "назва папки — угорі, де був пошук"
+print("36a banner OK")
+
+
+# (b) навігація клавішами (і з українською розкладкою)
+def key(sym, alt=True):
+    w = root.focus_get() or root
+    state = 0x8 if alt else 0
+    if alt:
+        app._on_alt_key(SimpleNamespace(keysym=sym, keycode=0, widget=w, state=state))
+    else:
+        app._on_space(SimpleNamespace(keysym=sym, keycode=0, widget=w, state=state))
+    pump(120)
+
+
+assert app.nav_zone == "cards"
+ids_b = [i["id"] for i in app.shown]
+app.sel_id = ids_b[0]
+app._highlight_selection()
+key("s")
+assert app.sel_id == ids_b[1], "Alt+S — нижче"
+key("Cyrillic_tse")                                             # Alt+Ц (укр. розкладка) = Alt+W
+assert app.sel_id == ids_b[0], "Alt+W — вище"
+key("a")                                                        # лівий край записів → папки
+assert app.nav_zone == "folders" and app.nav_cat == nav_cats[1]["id"]
+assert tup(app._row_objs[nav_cats[1]["id"]].row.cget("fg_color")) == tup(cm.DROP), "курсор на папці підсвічено"
+key("s")
+order = app._nav_folders()
+assert app.nav_cat == order[order.index(nav_cats[1]["id"]) + 1]
+key("w")
+key("w")
+assert app.nav_cat == order[order.index(nav_cats[1]["id"]) - 1]
+key("s")
+key("s")                                                        # тепер «Нав В»
+target = app.nav_cat
+key("space", alt=False)                                         # Space — відкрити папку
+assert app.view == target and app.nav_zone == "cards" and app.sel_id == app.shown[0]["id"]
+assert app.title_lbl.cget("text") == app.preset.category(target)["name"]
+app.copy_to_clipboard("маркер36")
+key("space", alt=False)                                         # Space — скопіювати
+assert root.clipboard_get() == app._text_of(app.sel_id) and not app._hidden
+key("Cyrillic_yeru")                                            # Alt+Ы (рос.) = Alt+S
+second = app.sel_id
+app.hotkey_ok = True
+key("space")                                                    # Alt+Space — скопіювати й сховати
+assert root.clipboard_get() == app._text_of(second) and app._hidden
+app.show_window()
+pump(300)
+app.hotkey_ok = False
+# у полі введення Space працює як звичайно
+app.select_format("builtin-user2")
+inner = app.fmt_input._textbox
+assert app._on_space(SimpleNamespace(keysym="space", keycode=0, widget=inner, state=0)) is None
+app._collapse_format()
+# плитки: Alt+A/D по ряду, Alt+W/S на ±колонки
+app.set_rec_view("tiles")
+app.flush_render()
+pump(400)
+ids_t = [i["id"] for i in app.shown]
+cols = app._rec_cols
+app.sel_id = ids_t[0]
+app._highlight_selection()
+if cols > 1 and len(ids_t) > 1:
+    key("d")
+    assert app.sel_id == ids_t[1]
+    key("a")
+    assert app.sel_id == ids_t[0]
+key("a")
+assert app.nav_zone == "folders"
+key("d")
+assert app.nav_zone == "cards"
+app.set_rec_view("list")
+pump(200)
+print("36b keyboard navigation OK")
+
+# (c) кілька заглушок — користувачі по черзі; email у швидкій фразі
+app.history = History(os.path.join(tmp, "h36.json"))
+for t_ in ("old@mail.org", "{LINK:USER:5:E}", "текст", "User #9", "214", "boss@company.com", "{LINK:USER:3:E}"):
+    app.history.add(t_)
+multi = app.preset.add_snippet(nav_cats[0]["id"], "Users ___ and ___ and ____ (and ___).")
+app.render()
+app.flush_render()
+app.select_category(nav_cats[0]["id"])
+app.flush_render()
+pump(200)
+real_click(app._card_objs[multi["id"]].body)
+assert root.clipboard_get() == "Users {LINK:USER:3:E} and {LINK:USER:214:E} and {LINK:USER:9:E} (and {LINK:USER:5:E}).", \
+    root.clipboard_get()
+ph = app.preset.add_phrase("Email _____ was connected during suspicious login")
+app._render_phrases()
+pump(150)
+app._phrase_rows[ph["id"]]["cb"].toggle()
+app.submit_refund()
+assert root.clipboard_get() == "Email boss@company.com was connected during suspicious login", root.clipboard_get()
+app.on_remove_phrase(ph["id"])
+print("36c users in turn + email in quick phrase OK")
 settings["autohide"] = True
 root.geometry("1180x660+0+0")
 pump(600)

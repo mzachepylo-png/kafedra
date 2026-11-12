@@ -218,6 +218,32 @@ def numbers_from_history(texts) -> str:
 _USER_ENTRY = re.compile(r"^\s*(?:\{LINK:USER:([0-9]+):E\}|(?:user\s*#\s*)?([0-9]+))\s*$", re.IGNORECASE)
 
 
+def user_ids_from_history(texts, limit: int = 8) -> list[str]:
+    """Користувачі з історії, найновіший першим, без повторів (до ``limit``): останній, передостанній, …"""
+    out: list[str] = []
+    for t in texts:
+        m = _USER_ENTRY.match(t or "")
+        if m:
+            uid = m.group(1) or m.group(2)
+            if uid not in out:
+                out.append(uid)
+                if len(out) >= limit:
+                    break
+    return out
+
+
+_EMAIL = re.compile(r"[A-Za-z0-9._%+-]+@[A-Za-z0-9-]+(?:\.[A-Za-z0-9-]+)+")
+
+
+def last_email(texts) -> str | None:
+    """Найновіший email в історії буфера (перший email у найновішому записі, де він є)."""
+    for t in texts:
+        m = _EMAIL.search(t or "")
+        if m:
+            return m.group(0)
+    return None
+
+
 def last_user_id(texts) -> str | None:
     """Найновіший запис історії, що є користувачем: ``{LINK:USER:1236:E}``, «User #1236» або просто число «214»."""
     for t in texts:
@@ -239,14 +265,43 @@ def has_user_placeholder(text: str) -> bool:
     return bool(_PLACEHOLDER.search(text or ""))
 
 
-def apply_user_link(text: str, uid: str | None) -> str:
-    """Кожна заглушка «___________» (3+ підкреслення) будь-де в тексті → ``{LINK:USER:214:E}``:
-    «… in deleted duplicate account ___________. Clawback …» → «… account {LINK:USER:214:E}. Clawback …».
-    Без заглушки — дописує « in {LINK:USER:214:E}» у кінець."""
-    if not uid:
+_EMAIL_PLACEHOLDER = re.compile(r"(\be-?mail\s+)_{3,}", re.IGNORECASE)
+MAX_USER_PLACEHOLDERS = 8
+
+
+def fill_email(text: str, email: str | None) -> str:
+    """«Email _____ was connected …» → «Email name@mail.com was connected …» (заглушка одразу після слова Email)."""
+    if not email:
         return text
-    link = user_link(uid)
+    return _EMAIL_PLACEHOLDER.sub(lambda m: m.group(1) + email, text or "")
+
+
+def apply_user_link(text: str, uids) -> str:
+    """Заглушки «___» (3+ підкреслення) → користувачі з історії ПО ЧЕРЗІ: перша — останній користувач,
+    друга — передостанній … (до 8). Якщо користувачів менше, ніж заглушок, решта лишається «___».
+    Без заглушки — дописує « in {LINK:USER:<останній>:E}» у кінець. ``uids`` — рядок або список (найновіший першим)."""
+    if isinstance(uids, str):
+        uids = [uids]
+    uids = [u for u in (uids or []) if u]
+    if not uids:
+        return text
     if _PLACEHOLDER.search(text or ""):
-        return _PLACEHOLDER.sub(lambda m: link, text)
-    return f"{(text or '').rstrip()} in {link}"
+        users = uids[:MAX_USER_PLACEHOLDERS]
+        used = 0
+
+        def sub(m):
+            nonlocal used
+            if used < len(users):
+                used += 1
+                return user_link(users[used - 1])
+            return m.group(0)
+        return _PLACEHOLDER.sub(sub, text)
+    return f"{(text or '').rstrip()} in {user_link(uids[0])}"
+
+
+def fill_placeholders(text: str, history_texts) -> str:
+    """Повне заповнення тексту з історії: спершу «Email ___» — останній email, потім «___» — користувачі по черзі."""
+    texts = list(history_texts)
+    out = fill_email(text, last_email(texts))
+    return apply_user_link(out, user_ids_from_history(texts)) if _PLACEHOLDER.search(out) else out
 

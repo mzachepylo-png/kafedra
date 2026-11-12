@@ -737,7 +737,30 @@ class HistoryAutofillAndUserLinkTests(unittest.TestCase):
         self.assertTrue(has_user_placeholder(t2))
         self.assertEqual(apply_user_link(t2, "214"), "Disputes on legit transactions in deleted duplicate account "
                                                      "{LINK:USER:214:E}. Clawback can't be set, card was blacklisted.")
-        self.assertEqual(apply_user_link("a ___ b ____", "1"), "a {LINK:USER:1:E} b {LINK:USER:1:E}")
+        self.assertEqual(apply_user_link("a ___ b ____", "1"), "a {LINK:USER:1:E} b ____", "1 користувач — 1 заглушка")
+
+    def test_several_placeholders_take_users_in_turn(self):
+        from formats import apply_user_link, fill_placeholders, user_ids_from_history
+        hist = ["{LINK:USER:3:E}", "текст", "214", "3", "User #9", "12, 13", "{LINK:USER:5:E}"]
+        self.assertEqual(user_ids_from_history(hist), ["3", "214", "9", "5"], "найновіший першим, без повторів")
+        self.assertEqual(apply_user_link("A ___ and B ___.", user_ids_from_history(hist)),
+                         "A {LINK:USER:3:E} and B {LINK:USER:214:E}.")
+        ids = [str(n) for n in range(1, 11)]
+        txt = " ".join(["___"] * 10)
+        out = apply_user_link(txt, ids)
+        self.assertEqual(out.split(" ")[:8], ["{LINK:USER:%d:E}" % n for n in range(1, 9)])
+        self.assertEqual(out.split(" ")[8:], ["___", "___"], "не більше 8 користувачів")
+        self.assertEqual(fill_placeholders("Users ___ and ___", ["7"]), "Users {LINK:USER:7:E} and ___")
+
+    def test_email_from_history(self):
+        from formats import fill_placeholders, has_user_placeholder, last_email
+        hist = ["123", "Contact: John.Doe+x@mail.example.com please", "old@x.org"]
+        self.assertEqual(last_email(hist), "John.Doe+x@mail.example.com")
+        self.assertIsNone(last_email(["no mail", "a@b"]))
+        self.assertEqual(fill_placeholders("Email _____ was connected during suspicious login", hist),
+                         "Email John.Doe+x@mail.example.com was connected during suspicious login")
+        self.assertEqual(fill_placeholders("Email _____ was connected during suspicious login", ["no"]),
+                         "Email _____ was connected during suspicious login", "без email — заглушка лишається")
         self.assertFalse(has_user_placeholder("snake__case"))
 
     def test_tos_migration_and_user_link_flag(self):
