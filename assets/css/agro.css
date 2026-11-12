@@ -102,3 +102,7 @@
   .ag-model { padding: 10px; border-radius: 16px; }
   .cp-gal--big .cp img { height: 150px; }
 }
+.ag-card.is-soon { cursor: default; opacity: .78; }
+.ag-card.is-soon:hover { transform: none; box-shadow: var(--shadow-sm); border-color: var(--line); }
+.ag-card.is-soon .ag-card__img img { filter: grayscale(.55) brightness(.85); }
+.ag-card__soon { position: absolute; right: 12px; top: 12px; padding: 4px 10px; border-radius: 999px; background: rgba(255, 255, 255, .9); color: var(--green-900); font: 700 .74rem var(--sans, inherit); }

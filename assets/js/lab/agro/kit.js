@@ -8,6 +8,21 @@ export { Plot, sample, linspace } from '../plot.js';
 export { sliders, segmented, num, sig, setOut, renderTable, downloadCSV } from '../ui.js';
 
 export const REDUCED = matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+// Захист від винятків Canvas при дуже малих або прихованих полотнах (ширина ≈ 0 у неактивній вкладці):
+// від'ємні радіуси обрізаються до нуля, а не обривають кадр.
+(() => {
+  const P = CanvasRenderingContext2D.prototype;
+  if (P.__agroSafe) return;
+  P.__agroSafe = true;
+  const nn = (v) => (v > 0 ? v : 0);
+  const { arc, arcTo, ellipse } = P;
+  P.arc = function (x, y, r, a0, a1, ccw) { return arc.call(this, x, y, nn(r), a0, a1, ccw); };
+  P.arcTo = function (x1, y1, x2, y2, r) { return arcTo.call(this, x1, y1, x2, y2, nn(r)); };
+  P.ellipse = function (x, y, rx, ry, rot, a0, a1, ccw) { return ellipse.call(this, x, y, nn(rx), nn(ry), rot, a0, a1, ccw); };
+  const { createRadialGradient } = P;
+  P.createRadialGradient = function (x0, y0, r0, x1, y1, r1) { return createRadialGradient.call(this, x0, y0, nn(r0), x1, y1, nn(r1)); };
+})();
 export const TAU = Math.PI * 2;
 export const clamp = (x, a, b) => Math.max(a, Math.min(b, x));
 export const lerp = (a, b, t) => a + (b - a) * t;
