@@ -1,0 +1,574 @@
+{
+ "t01-autoclave-vertical": {
+  "crop": [
+   0.05,
+   0.08,
+   0.9,
+   0.9
+  ],
+  "width": 900,
+  "thumb": "https://thumb.wikimedia.org/wikipedia/commons/thumb/5/5b/Autoclave_at_Vigyan_Ashram.jpg/1280px-Autoclave_at_Vigyan_Ashram.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail"
+ },
+ "t01-autoclave-bench": {
+  "crop": [
+   0,
+   0,
+   1,
+   1
+  ],
+  "width": 900,
+  "thumb": "https://thumb.wikimedia.org/wikipedia/commons/thumb/a/a0/Laboratory_autoclave_%28cropped%29.jpg/1280px-Laboratory_autoclave_%28cropped%29.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail"
+ },
+ "t01-laminar-dishes": {
+  "crop": [
+   0,
+   0,
+   1,
+   1
+  ],
+  "width": 1100,
+  "thumb": "https://thumb.wikimedia.org/wikipedia/commons/thumb/b/be/Laminar_flow_hood.jpg/1280px-Laminar_flow_hood.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail"
+ },
+ "t01-laminar-work": {
+  "crop": [
+   0,
+   0,
+   1,
+   1
+  ],
+  "width": 1100,
+  "thumb": "https://thumb.wikimedia.org/wikipedia/commons/thumb/4/4f/Working_inside_the_laminar_flow_cabinet.jpg/1280px-Working_inside_the_laminar_flow_cabinet.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail"
+ },
+ "t01-flasks-media": {
+  "crop": [
+   0,
+   0,
+   1,
+   1
+  ],
+  "width": 1100,
+  "thumb": "https://thumb.wikimedia.org/wikipedia/commons/thumb/d/d5/Plant_tissue_culture_sample.jpg/1280px-Plant_tissue_culture_sample.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail"
+ },
+ "t01-cucumber-ms": {
+  "crop": [
+   0,
+   0,
+   1,
+   1
+  ],
+  "width": 1000,
+  "thumb": "https://thumb.wikimedia.org/wikipedia/commons/thumb/b/b0/Aseptic_in_vitro_cultivated_plantlets_of_cucumber_regenerated_from_shoot_apical_meristem_explants_on_half-strength_Murashige-Scoog_medium_supplemented_with_cytokinin_6-Benzylaminopurine_in_concentration_1_mg_l.tif/lossy-page1-1280px-thumbnail.tif.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail"
+ },
+ "t02-tobacco-callus-petri": {
+  "crop": [
+   0,
+   0,
+   1,
+   1
+  ],
+  "width": 1100,
+  "thumb": "https://thumb.wikimedia.org/wikipedia/commons/thumb/1/18/Callus1.jpg/1280px-Callus1.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail"
+ },
+ "t02-ficus-callus-stem": {
+  "crop": [
+   0,
+   0,
+   1,
+   1
+  ],
+  "width": 1100,
+  "thumb": "https://thumb.wikimedia.org/wikipedia/commons/thumb/0/0a/DSC08922_Ficus_benjamina_callus.jpg/1280px-DSC08922_Ficus_benjamina_callus.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail"
+ },
+ "t02-coffee-leaf-callus": {
+  "crop": [
+   0,
+   0,
+   1,
+   1
+  ],
+  "width": 900,
+  "thumb": "https://thumb.wikimedia.org/wikipedia/commons/thumb/6/60/Callus_in_coffea_canephora_leaf.png/1280px-Callus_in_coffea_canephora_leaf.png?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail"
+ },
+ "t02-wound-callus-acer": {
+  "crop": [
+   0,
+   0.05,
+   1,
+   0.75
+  ],
+  "width": 900,
+  "thumb": "https://thumb.wikimedia.org/wikipedia/commons/thumb/1/18/Wound_healing._Callus_growth._Acer_pseudoplatanus._Long_Preston.jpg/1280px-Wound_healing._Callus_growth._Acer_pseudoplatanus._Long_Preston.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail"
+ },
+ "t02-callus-ms-jar": {
+  "crop": [
+   0,
+   0.35,
+   1,
+   1
+  ],
+  "width": 800,
+  "thumb": "https://thumb.wikimedia.org/wikipedia/commons/thumb/7/7c/Callus_in_MS-Media.png/1280px-Callus_in_MS-Media.png?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail"
+ },
+ "t03-callus-tubes": {
+  "crop": [
+   0,
+   0.3,
+   1,
+   1
+  ],
+  "width": 900,
+  "thumb": "https://thumb.wikimedia.org/wikipedia/commons/thumb/9/9a/%D0%9A%D0%B0%D0%BB%D0%BB%D1%83%D1%81.jpg/1280px-%D0%9A%D0%B0%D0%BB%D0%BB%D1%83%D1%81.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail"
+ },
+ "t03-hemocytometer-pipette": {
+  "crop": [
+   0,
+   0,
+   1,
+   1
+  ],
+  "width": 1000,
+  "thumb": "https://thumb.wikimedia.org/wikipedia/commons/thumb/7/7e/Hemocytometer.jpg/1280px-Hemocytometer.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail"
+ },
+ "t03-hemocytometer-scale": {
+  "crop": [
+   0,
+   0,
+   1,
+   1
+  ],
+  "width": 900,
+  "thumb": "https://thumb.wikimedia.org/wikipedia/commons/thumb/7/78/Hemocytometer_with_penny.JPG/1280px-Hemocytometer_with_penny.JPG?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail"
+ },
+ "t04-se-cotton-stages": {
+  "crop": [
+   0.665,
+   0.06,
+   1,
+   0.258
+  ],
+  "width": 1100,
+  "urls": [
+   "https://cdn.ncbi.nlm.nih.gov/pmc/blobs/3ee1/3483692/cdd01f560fe1/1471-2229-12-110-1.jpg"
+  ],
+  "pmcid": "PMC3483692",
+  "href": "1471-2229-12-110-1.jpg"
+ },
+ "t04-se-arabidopsis": {
+  "crop": [
+   0,
+   0,
+   1,
+   0.335
+  ],
+  "width": 1100,
+  "urls": [
+   "https://cdn.ncbi.nlm.nih.gov/pmc/blobs/087f/2788036/993df7947fb2/tpj0059-0448-f1.jpg"
+  ],
+  "pmcid": "PMC2788036",
+  "href": "tpj0059-0448-f1.jpg"
+ },
+ "t04-se-oak-sections": {
+  "crop": [
+   0,
+   0,
+   1,
+   0.32
+  ],
+  "width": 1100,
+  "urls": [
+   "https://cdn.ncbi.nlm.nih.gov/pmc/blobs/f06d/6331538/c7109699dabf/fpls-09-01915-g002.jpg"
+  ],
+  "pmcid": "PMC6331538",
+  "href": "fpls-09-01915-g002.jpg"
+ },
+ "t04-se-cacao": {
+  "crop": [
+   0,
+   0,
+   1,
+   1
+  ],
+  "width": 1000,
+  "urls": [
+   "https://cdn.ncbi.nlm.nih.gov/pmc/blobs/b593/4449528/74fdbb86c7ac/12870_2015_479_Fig5_HTML.jpg"
+  ],
+  "pmcid": "PMC4449528",
+  "href": "12870_2015_479_Fig5_HTML.jpg"
+ },
+ "t04-switchgrass-embryos": {
+  "crop": [
+   0,
+   0,
+   1,
+   1
+  ],
+  "width": 1100,
+  "thumb": "https://thumb.wikimedia.org/wikipedia/commons/thumb/4/4e/Conger_type_callus_3ms_White_Light.TIF/lossy-page1-1280px-Conger_type_callus_3ms_White_Light.TIF.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail"
+ },
+ "t05-bioreactors": {
+  "crop": [
+   0,
+   0,
+   1,
+   1
+  ],
+  "width": 1100,
+  "thumb": "https://thumb.wikimedia.org/wikipedia/commons/thumb/d/da/IPPRAS2.jpg/1280px-IPPRAS2.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail"
+ },
+ "t07-tobacco-sphere": {
+  "crop": [
+   0.2,
+   0,
+   0.8,
+   1
+  ],
+  "width": 1100,
+  "thumb": "https://thumb.wikimedia.org/wikipedia/commons/thumb/d/de/The_perfect_sphere.jpg/1280px-The_perfect_sphere.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail"
+ },
+ "t07-isolated": {
+  "crop": [
+   0.015,
+   0.06,
+   0.985,
+   0.94
+  ],
+  "width": 1100,
+  "thumb": "https://thumb.wikimedia.org/wikipedia/commons/thumb/d/db/Plant_protoplasts.jpg/1280px-Plant_protoplasts.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail"
+ },
+ "t07-division": {
+  "crop": [
+   0.03,
+   0.06,
+   0.97,
+   0.94
+  ],
+  "width": 1100,
+  "thumb": "https://thumb.wikimedia.org/wikipedia/commons/thumb/2/2e/Plant_cell_division.jpg/1280px-Plant_cell_division.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail"
+ },
+ "t08-shoot-tip-virus": {
+  "crop": [
+   0,
+   0,
+   1,
+   1
+  ],
+  "width": 1100,
+  "urls": [
+   "https://cdn.ncbi.nlm.nih.gov/pmc/blobs/3a55/6173849/1c33621242b0/13007_2018_355_Fig2_HTML.jpg"
+  ],
+  "pmcid": "PMC6173849",
+  "href": "13007_2018_355_Fig2_HTML.jpg"
+ },
+ "t08-grape-shoot-tip-ihc": {
+  "crop": [
+   0,
+   0,
+   1,
+   0.385
+  ],
+  "width": 1100,
+  "urls": [
+   "https://cdn.ncbi.nlm.nih.gov/pmc/blobs/cfe1/8541583/df31d4a0ac0b/plants-10-02190-g003.jpg"
+  ],
+  "pmcid": "PMC8541583",
+  "href": "plants-10-02190-g003.jpg"
+ },
+ "t08-crassula-apex": {
+  "crop": [
+   0,
+   0,
+   1,
+   1
+  ],
+  "width": 1100,
+  "thumb": "https://thumb.wikimedia.org/wikipedia/commons/thumb/d/d6/Apical_Meristems_in_Crassula_ovata.png/1280px-Apical_Meristems_in_Crassula_ovata.png?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail"
+ },
+ "t08-laminar-work": {
+  "crop": [
+   0,
+   0,
+   1,
+   1
+  ],
+  "width": 1100,
+  "thumb": "https://thumb.wikimedia.org/wikipedia/commons/thumb/2/2a/The_process_of_plant_micropropagation.jpg/1280px-The_process_of_plant_micropropagation.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail"
+ },
+ "t08-flasks-plantlets": {
+  "crop": [
+   0,
+   0,
+   1,
+   1
+  ],
+  "width": 1100,
+  "thumb": "https://thumb.wikimedia.org/wikipedia/commons/thumb/d/d5/Plant_tissue_culture_sample.jpg/1280px-Plant_tissue_culture_sample.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail"
+ },
+ "t08-potato-collection": {
+  "crop": [
+   0,
+   0,
+   1,
+   1
+  ],
+  "width": 1100,
+  "thumb": "https://thumb.wikimedia.org/wikipedia/commons/thumb/d/d2/In_vitro_Potato_collection_-_VIR_Department_of_Biotechnology_-_Pushkin%2C_Saint_Petersburg%2C_Russia_-_%281%29.jpg/1280px-In_vitro_Potato_collection_-_VIR_Department_of_Biotechnology_-_Pushkin%2C_Saint_Petersburg%2C_Russia_-_%281%29.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail"
+ },
+ "t08-potato-microtubers-vir": {
+  "crop": [
+   0,
+   0,
+   0.62,
+   1
+  ],
+  "width": 900,
+  "thumb": "https://thumb.wikimedia.org/wikipedia/commons/thumb/9/92/In_vitro_Potato_micro-tubers_-_VIR_Department_of_Biotechnology_-_Pushkin%2C_Saint_Petersburg%2C_Russia.jpg/1280px-In_vitro_Potato_micro-tubers_-_VIR_Department_of_Biotechnology_-_Pushkin%2C_Saint_Petersburg%2C_Russia.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail"
+ },
+ "t08-banana-hardening": {
+  "crop": [
+   0,
+   0,
+   1,
+   1
+  ],
+  "width": 1100,
+  "thumb": "https://thumb.wikimedia.org/wikipedia/commons/thumb/c/c4/Banana_plantlets_transferred_to_soil_%28with_vermicompost%29_from_plant_media.jpg/1280px-Banana_plantlets_transferred_to_soil_%28with_vermicompost%29_from_plant_media.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail"
+ },
+ "t09-cytokinin-structures": {
+  "crop": [
+   0,
+   0,
+   1,
+   1
+  ],
+  "width": 1000,
+  "thumb": "https://thumb.wikimedia.org/wikipedia/commons/thumb/e/e9/Chemical_structures_of_zeatin%2C_kinetin_and_N6-isopentenyladenine.tiff/lossless-page1-960px-Chemical_structures_of_zeatin%2C_kinetin_and_N6-isopentenyladenine.tiff.png?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail"
+ },
+ "t09-topinambur-tubers": {
+  "crop": [
+   0,
+   0,
+   1,
+   1
+  ],
+  "width": 1100,
+  "thumb": "https://thumb.wikimedia.org/wikipedia/commons/thumb/a/ab/Helianthus_tuberosus-fond_noir.jpg/1280px-Helianthus_tuberosus-fond_noir.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail"
+ },
+ "t09-topinambur-section": {
+  "crop": [
+   0,
+   0,
+   1,
+   1
+  ],
+  "width": 1100,
+  "thumb": "https://thumb.wikimedia.org/wikipedia/commons/thumb/8/81/Helianthus_tuberosus_15-p.bot-helian.tuber-38.jpg/1280px-Helianthus_tuberosus_15-p.bot-helian.tuber-38.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail"
+ },
+ "t09-stevia": {
+  "crop": [
+   0,
+   0,
+   1,
+   1
+  ],
+  "width": 900,
+  "thumb": "https://thumb.wikimedia.org/wikipedia/commons/thumb/3/3e/Stevia_rebaudiana_foliage.jpg/1280px-Stevia_rebaudiana_foliage.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail"
+ },
+ "t10-rapeseed-buds": {
+  "crop": [
+   0,
+   0,
+   1,
+   1
+  ],
+  "width": 1100,
+  "thumb": "https://thumb.wikimedia.org/wikipedia/commons/thumb/9/99/%28MHNT%29_Brassica_napus_-_Flower.jpg/1280px-%28MHNT%29_Brassica_napus_-_Flower.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail"
+ },
+ "t10-tetrads": {
+  "crop": [
+   0,
+   0,
+   1,
+   1
+  ],
+  "width": 1100,
+  "thumb": "https://thumb.wikimedia.org/wikipedia/commons/thumb/5/5b/Tetrad_footprints.jpg/1280px-Tetrad_footprints.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail"
+ },
+ "t10-young-pollen": {
+  "crop": [
+   0,
+   0,
+   1,
+   1
+  ],
+  "width": 900,
+  "thumb": "https://thumb.wikimedia.org/wikipedia/commons/thumb/2/24/Pollen_Cell_of_Hibiscus_schizopetalus.png/1280px-Pollen_Cell_of_Hibiscus_schizopetalus.png?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail"
+ },
+ "t10-culture-flasks": {
+  "crop": [
+   0,
+   0,
+   1,
+   1
+  ],
+  "width": 1100,
+  "thumb": "https://thumb.wikimedia.org/wikipedia/commons/thumb/d/d5/Plant_tissue_culture_sample.jpg/1280px-Plant_tissue_culture_sample.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail"
+ },
+ "t10-embryo-culture": {
+  "crop": [
+   0.085,
+   0,
+   1,
+   0.49
+  ],
+  "width": 1100,
+  "urls": [
+   "https://journals.plos.org/plosone/article/figure/image?size=large&id=10.1371/journal.pone.0069261.g001"
+  ],
+  "pmcid": "PMC3714258",
+  "href": "pone.0069261.g001.jpg"
+ },
+ "t11-crown-gall-forsythia": {
+  "crop": [
+   0,
+   0,
+   1,
+   1
+  ],
+  "width": 1100,
+  "thumb": "https://thumb.wikimedia.org/wikipedia/commons/thumb/0/00/Agrobacterium_tumefaciens_-_Agalla_de_la_corona_%286896084714%29.jpg/1280px-Agrobacterium_tumefaciens_-_Agalla_de_la_corona_%286896084714%29.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail"
+ },
+ "t11-crown-gall-crape": {
+  "crop": [
+   0,
+   0.08,
+   1,
+   0.78
+  ],
+  "width": 1000,
+  "thumb": "https://thumb.wikimedia.org/wikipedia/commons/thumb/4/4d/Crape_myrtle_%28Lagerstroemia_sp.%29_Crown_gall_disease_%2849772271993%29.jpg/1280px-Crape_myrtle_%28Lagerstroemia_sp.%29_Crown_gall_disease_%2849772271993%29.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail"
+ },
+ "t11-ecoli-colonies": {
+  "crop": [
+   0,
+   0,
+   1,
+   1
+  ],
+  "width": 1000,
+  "thumb": "https://thumb.wikimedia.org/wikipedia/commons/thumb/d/df/Colonies_of_Escherichia_coli_on_agar_plate.jpg/1280px-Colonies_of_Escherichia_coli_on_agar_plate.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail"
+ },
+ "t11-gel-uv": {
+  "crop": [
+   0,
+   0,
+   1,
+   1
+  ],
+  "width": 1000,
+  "thumb": "https://thumb.wikimedia.org/wikipedia/commons/thumb/0/0d/Agarose_gel_electrophoresis_in_UV_light.jpg/1280px-Agarose_gel_electrophoresis_in_UV_light.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail"
+ },
+ "t11-gel-bands": {
+  "crop": [
+   0,
+   0,
+   1,
+   1
+  ],
+  "width": 900,
+  "thumb": "https://thumb.wikimedia.org/wikipedia/commons/thumb/b/bc/GelDoc_DNA_gel_electrophoresis_photograph_stained_with_ethidium_bromide_05.jpg/1280px-GelDoc_DNA_gel_electrophoresis_photograph_stained_with_ethidium_bromide_05.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail"
+ },
+ "t11-cuvettes": {
+  "crop": [
+   0,
+   0,
+   1,
+   1
+  ],
+  "width": 900,
+  "thumb": "https://thumb.wikimedia.org/wikipedia/commons/thumb/c/c8/Spectrophotometer_cuvettes.JPG/1280px-Spectrophotometer_cuvettes.JPG?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail"
+ },
+ "t11-spectrophotometer": {
+  "crop": [
+   0,
+   0,
+   1,
+   1
+  ],
+  "width": 1100,
+  "thumb": "https://thumb.wikimedia.org/wikipedia/commons/thumb/4/42/Cuvette_in_spectrophotometer_to_obtain_absorbance_value.png/1280px-Cuvette_in_spectrophotometer_to_obtain_absorbance_value.png?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail"
+ },
+ "t12-page-loading": {
+  "crop": [
+   0,
+   0,
+   1,
+   1
+  ],
+  "width": 1100,
+  "thumb": "https://thumb.wikimedia.org/wikipedia/commons/thumb/f/f1/Electrophoresis_-_Filling_1D_gel_wells_with_proteins_mixture.jpg/1280px-Electrophoresis_-_Filling_1D_gel_wells_with_proteins_mixture.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail"
+ },
+ "t12-page-apparatus": {
+  "crop": [
+   0,
+   0,
+   1,
+   1
+  ],
+  "width": 1100,
+  "thumb": "https://thumb.wikimedia.org/wikipedia/commons/thumb/8/80/Polyacrylamid_gel_electrophoresis_apparatus-02.jpg/1280px-Polyacrylamid_gel_electrophoresis_apparatus-02.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail"
+ },
+ "t12-horseradish": {
+  "crop": [
+   0,
+   0,
+   1,
+   1
+  ],
+  "width": 1000,
+  "thumb": "https://thumb.wikimedia.org/wikipedia/commons/thumb/4/4e/Gem%C3%BCsestand_am_Viktualienmarkt_M%C3%BCnchen_04.jpg/1280px-Gem%C3%BCsestand_am_Viktualienmarkt_M%C3%BCnchen_04.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail"
+ },
+ "t13-genebanks": {
+  "crop": [
+   0,
+   0,
+   1,
+   1
+  ],
+  "width": 1100,
+  "urls": [
+   "https://cdn.ncbi.nlm.nih.gov/pmc/blobs/bff6/7761154/90aea1e2a61f/plants-09-01634-g001.jpg"
+  ],
+  "pmcid": "PMC7761154",
+  "href": "plants-09-01634-g001.jpg"
+ },
+ "t13-cryo-tongs": {
+  "crop": [
+   0,
+   0.42,
+   1,
+   1
+  ],
+  "width": 1000,
+  "thumb": "https://upload.wikimedia.org/wikipedia/commons/9/95/Cryopreservation_USDA_Gene_Bank.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail_unscaled"
+ },
+ "t13-dewar-canes": {
+  "crop": [
+   0,
+   0,
+   1,
+   1
+  ],
+  "width": 1000,
+  "thumb": "https://thumb.wikimedia.org/wikipedia/commons/thumb/5/51/Filling_Cryopreservation_Dewar_with_Liquid_Nitrogen_%285544592746%29.jpg/1280px-Filling_Cryopreservation_Dewar_with_Liquid_Nitrogen_%285544592746%29.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail"
+ },
+ "t13-beet-tissue": {
+  "crop": [
+   0,
+   0,
+   1,
+   1
+  ],
+  "width": 1000,
+  "thumb": "https://thumb.wikimedia.org/wikipedia/commons/thumb/7/7a/Beetroot_tissue_and_color.jpg/1280px-Beetroot_tissue_and_color.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail"
+ }
+}
