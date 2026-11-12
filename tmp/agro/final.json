@@ -1,0 +1,380 @@
+{
+ "t01-autoclave-vertical": {
+  "size": [
+   900,
+   1157
+  ],
+  "bytes": 104322
+ },
+ "t01-autoclave-bench": {
+  "size": [
+   900,
+   965
+  ],
+  "bytes": 74618
+ },
+ "t01-laminar-dishes": {
+  "size": [
+   1100,
+   733
+  ],
+  "bytes": 135974
+ },
+ "t01-laminar-work": {
+  "size": [
+   1100,
+   619
+  ],
+  "bytes": 61196
+ },
+ "t01-flasks-media": {
+  "size": [
+   1100,
+   716
+  ],
+  "bytes": 20564
+ },
+ "t01-cucumber-ms": {
+  "size": [
+   1000,
+   750
+  ],
+  "bytes": 25310
+ },
+ "t02-tobacco-callus-petri": {
+  "size": [
+   1100,
+   734
+  ],
+  "bytes": 34568
+ },
+ "t02-ficus-callus-stem": {
+  "size": [
+   1100,
+   730
+  ],
+  "bytes": 35478
+ },
+ "t02-coffee-leaf-callus": {
+  "size": [
+   900,
+   1200
+  ],
+  "bytes": 142182
+ },
+ "t02-wound-callus-acer": {
+  "size": [
+   900,
+   911
+  ],
+  "bytes": 208486
+ },
+ "t02-callus-ms-jar": {
+  "size": [
+   800,
+   694
+  ],
+  "bytes": 39494
+ },
+ "t03-callus-tubes": {
+  "size": [
+   900,
+   840
+  ],
+  "bytes": 46124
+ },
+ "t03-hemocytometer-pipette": {
+  "size": [
+   1000,
+   670
+  ],
+  "bytes": 56426
+ },
+ "t03-hemocytometer-scale": {
+  "size": [
+   900,
+   541
+  ],
+  "bytes": 47324
+ },
+ "t04-se-cotton-stages": {
+  "size": [
+   201,
+   129
+  ],
+  "bytes": 3382
+ },
+ "t04-se-arabidopsis": {
+  "size": [
+   605,
+   191
+  ],
+  "bytes": 12786
+ },
+ "t04-se-oak-sections": {
+  "size": [
+   733,
+   296
+  ],
+  "bytes": 26588
+ },
+ "t04-se-cacao": {
+  "size": [
+   472,
+   388
+  ],
+  "bytes": 18262
+ },
+ "t04-switchgrass-embryos": {
+  "size": [
+   1100,
+   825
+  ],
+  "bytes": 16676
+ },
+ "t05-bioreactors": {
+  "size": [
+   1100,
+   802
+  ],
+  "bytes": 180306
+ },
+ "t07-tobacco-sphere": {
+  "size": [
+   768,
+   640
+  ],
+  "bytes": 21042
+ },
+ "t07-isolated": {
+  "size": [
+   1100,
+   664
+  ],
+  "bytes": 57770
+ },
+ "t07-division": {
+  "size": [
+   1100,
+   685
+  ],
+  "bytes": 115604
+ },
+ "t08-shoot-tip-virus": {
+  "size": [
+   640,
+   240
+  ],
+  "bytes": 15196
+ },
+ "t08-grape-shoot-tip-ihc": {
+  "size": [
+   800,
+   357
+  ],
+  "bytes": 43414
+ },
+ "t08-crassula-apex": {
+  "size": [
+   1100,
+   476
+  ],
+  "bytes": 60510
+ },
+ "t08-laminar-work": {
+  "size": [
+   1100,
+   825
+  ],
+  "bytes": 79200
+ },
+ "t08-flasks-plantlets": {
+  "size": [
+   1100,
+   716
+  ],
+  "bytes": 20564
+ },
+ "t08-potato-collection": {
+  "size": [
+   1100,
+   825
+  ],
+  "bytes": 91214
+ },
+ "t08-potato-microtubers-vir": {
+  "size": [
+   794,
+   960
+  ],
+  "bytes": 43276
+ },
+ "t08-banana-hardening": {
+  "size": [
+   1100,
+   685
+  ],
+  "bytes": 150528
+ },
+ "t09-cytokinin-structures": {
+  "size": [
+   960,
+   307
+  ],
+  "bytes": 8402
+ },
+ "t09-topinambur-tubers": {
+  "size": [
+   1100,
+   1019
+  ],
+  "bytes": 107568
+ },
+ "t09-topinambur-section": {
+  "size": [
+   1100,
+   667
+  ],
+  "bytes": 40534
+ },
+ "t09-stevia": {
+  "size": [
+   900,
+   970
+  ],
+  "bytes": 148116
+ },
+ "t10-rapeseed-buds": {
+  "size": [
+   1100,
+   737
+  ],
+  "bytes": 37694
+ },
+ "t10-tetrads": {
+  "size": [
+   1100,
+   550
+  ],
+  "bytes": 43844
+ },
+ "t10-young-pollen": {
+  "size": [
+   900,
+   900
+  ],
+  "bytes": 159108
+ },
+ "t10-culture-flasks": {
+  "size": [
+   1100,
+   716
+  ],
+  "bytes": 20564
+ },
+ "t10-embryo-culture": {
+  "size": [
+   1100,
+   271
+  ],
+  "bytes": 16454
+ },
+ "t11-crown-gall-forsythia": {
+  "size": [
+   1100,
+   825
+  ],
+  "bytes": 98670
+ },
+ "t11-crown-gall-crape": {
+  "size": [
+   1000,
+   933
+  ],
+  "bytes": 274342
+ },
+ "t11-ecoli-colonies": {
+  "size": [
+   1000,
+   750
+  ],
+  "bytes": 64868
+ },
+ "t11-gel-uv": {
+  "size": [
+   1000,
+   1334
+  ],
+  "bytes": 23346
+ },
+ "t11-gel-bands": {
+  "size": [
+   900,
+   887
+  ],
+  "bytes": 17108
+ },
+ "t11-cuvettes": {
+  "size": [
+   900,
+   1200
+  ],
+  "bytes": 89074
+ },
+ "t11-spectrophotometer": {
+  "size": [
+   1100,
+   936
+  ],
+  "bytes": 48342
+ },
+ "t12-page-loading": {
+  "size": [
+   1100,
+   825
+  ],
+  "bytes": 48540
+ },
+ "t12-page-apparatus": {
+  "size": [
+   1100,
+   779
+  ],
+  "bytes": 28844
+ },
+ "t12-horseradish": {
+  "size": [
+   1000,
+   666
+  ],
+  "bytes": 87290
+ },
+ "t13-genebanks": {
+  "size": [
+   784,
+   551
+  ],
+  "bytes": 60910
+ },
+ "t13-cryo-tongs": {
+  "size": [
+   864,
+   752
+  ],
+  "bytes": 43740
+ },
+ "t13-dewar-canes": {
+  "size": [
+   1000,
+   750
+  ],
+  "bytes": 67690
+ },
+ "t13-beet-tissue": {
+  "size": [
+   1000,
+   666
+  ],
+  "bytes": 134302
+ }
+}
