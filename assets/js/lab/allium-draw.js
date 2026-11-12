@@ -19,13 +19,17 @@ export function hiDPI(canvas, w, h) {
 }
 
 /** Текстура шуму (зернистість цитоплазми, хроматину, лусок). */
+const noiseCache = new Map();
 function noiseTex(size, seed, { dots = 1400, rMin = 0.3, rMax = 1.3, alpha = 0.2, color = '0,0,0' } = {}) {
+  const key = [size, seed, dots, rMin, rMax, alpha, color].join('|');
+  if (noiseCache.has(key)) return noiseCache.get(key);
   const c = document.createElement('canvas'); c.width = c.height = size;
   const g = c.getContext('2d'), R = rand(seed);
   for (let i = 0; i < dots; i++) {
     g.fillStyle = `rgba(${color},${alpha * (0.3 + 0.7 * R())})`;
     g.beginPath(); g.arc(R() * size, R() * size, rMin + R() * (rMax - rMin), 0, TAU2); g.fill();
   }
+  noiseCache.set(key, c);
   return c;
 }
 
@@ -86,27 +90,52 @@ function bulbSprite(w, seed) {
   return sprite;
 }
 
-/** Корінь: звужена напівпрозора біла трубка з тінню, відблиском і кореневим чохликом. */
+/** Корінь: звужена напівпрозора біла трубка (контур-полігон, три шари), кореневий чохлик. */
+function rootOutline(ctx, pts, wAt, dx) {
+  const n = pts.length, L = [], Rr = [];
+  for (let i = 0; i < n; i++) {
+    const [x0, y0] = pts[Math.max(0, i - 1)], [x1, y1] = pts[Math.min(n - 1, i + 1)];
+    let nx = -(y1 - y0), ny = x1 - x0; const d = Math.hypot(nx, ny) || 1; nx /= d; ny /= d;
+    const hw = wAt(i / (n - 1)) / 2, [x, y] = pts[i];
+    L.push([x + dx + nx * hw, y + ny * hw]); Rr.push([x + dx - nx * hw, y - ny * hw]);
+  }
+  ctx.beginPath(); ctx.moveTo(L[0][0], L[0][1]);
+  for (let i = 1; i < n; i++) ctx.lineTo(L[i][0], L[i][1]);
+  const [ex, ey] = pts[n - 1], hw = wAt(1) / 2;
+  ctx.arc(ex + dx, ey, hw, Math.atan2(L[n - 1][1] - ey, L[n - 1][0] - ex - dx), Math.atan2(Rr[n - 1][1] - ey, Rr[n - 1][0] - ex - dx), false);
+  for (let i = n - 1; i >= 0; i--) ctx.lineTo(Rr[i][0], Rr[i][1]);
+  ctx.closePath(); ctx.fill();
+}
 function drawRoot(ctx, pts, w0, tipCol, tumor) {
-  const n = pts.length;
-  const layer = (wf, col, dx) => {
-    ctx.strokeStyle = col;
-    for (let i = 0; i < n - 1; i++) {
-      const f = i / (n - 1);
-      ctx.lineWidth = Math.max(0.6, lerp(w0, w0 * 0.62, f) * wf + (tumor && f > 0.85 ? tumor * w0 * 1.4 * (f - 0.85) / 0.15 * wf : 0));
-      ctx.beginPath(); ctx.moveTo(pts[i][0] + dx, pts[i][1]); ctx.lineTo(pts[i + 1][0] + dx, pts[i + 1][1]); ctx.stroke();
-    }
-  };
-  layer(1.25, 'rgba(150,140,110,.35)', 0.6);
-  layer(1, 'rgba(240,236,220,.96)', 0);
-  layer(0.42, 'rgba(255,255,255,.85)', -w0 * 0.2);
-  const [x, y] = pts[n - 1], [px, py] = pts[n - 2];
+  const wAt = (wf) => (f) => Math.max(0.6, lerp(w0, w0 * 0.62, f) * wf + (tumor && f > 0.85 ? tumor * w0 * 1.4 * (f - 0.85) / 0.15 * wf : 0));
+  ctx.fillStyle = 'rgba(150,140,110,.35)'; rootOutline(ctx, pts, wAt(1.25), 0.6);
+  ctx.fillStyle = 'rgba(240,236,220,.96)'; rootOutline(ctx, pts, wAt(1), 0);
+  ctx.fillStyle = 'rgba(255,255,255,.8)'; rootOutline(ctx, pts, wAt(0.42), -w0 * 0.2);
+  const n = pts.length, [x, y] = pts[n - 1], [px, py] = pts[n - 2];
   const a = Math.atan2(y - py, x - px), r = w0 * 0.42 * (1 + 1.5 * tumor);
   ctx.save(); ctx.translate(x, y); ctx.rotate(a);
   const tg = ctx.createLinearGradient(-r * 3, 0, r * 1.2, 0);
   tg.addColorStop(0, 'rgba(255,255,250,0)'); tg.addColorStop(0.55, tipCol); tg.addColorStop(1, 'rgba(215,200,150,.55)');
   ctx.fillStyle = tg; ctx.beginPath(); ctx.ellipse(-r * 0.8, 0, r * 2.2, r * 1.05, 0, 0, TAU2); ctx.fill();
   ctx.restore();
+}
+
+/** Сталі параметри корінців пробірки: однакові між кадрами, тож корінці не «перестрибують». */
+const rootCache = new Map();
+const MAX_ROOTS = 18, ROOT_SEG = 14;
+function rootSet(i) {
+  if (rootCache.has(i)) return rootCache.get(i);
+  const R = rand(1000 + i * 17), roots = [];
+  // позиції вздовж денця рівномірно, порядок появи — випадковий
+  const order = Array.from({ length: MAX_ROOTS }, (_, k) => k);
+  for (let k = order.length - 1; k > 0; k--) { const j = Math.floor(R() * (k + 1)); [order[k], order[j]] = [order[j], order[k]]; }
+  for (let k = 0; k < MAX_ROOTS; k++) {
+    const u = (order[k] + 0.2 + R() * 0.6) / MAX_ROOTS;
+    roots.push({ u, lf: 0.7 + 0.45 * R(), sp: (u - 0.5) * 1.1 + (R() - 0.5) * 0.3, w: 3.4 + R() * 1.1, h: R(), hs: R() < 0.5 ? -1 : 1, ph: R() * TAU2,
+      hairs: Array.from({ length: 8 }, () => [2 + R() * 4, 2 + R() * 2]) });
+  }
+  rootCache.set(i, roots);
+  return roots;
 }
 
 /**
@@ -124,7 +153,7 @@ export function drawTubes(ctx, w, h, tubes, { t = 0, sway = 0, maxLen = 60, tint
   const pxmm = (th - 14) / maxLen;
   tubes.forEach((tb, i) => {
     const cx = 34 + slot * (i + 0.5), x0 = cx - tw / 2;
-    const res = tb.res, R = rand(1000 + i * 17);
+    const res = tb.res;
     const sh = ctx.createRadialGradient(cx, bench + 5, 2, cx, bench + 5, tw);
     sh.addColorStop(0, 'rgba(60,50,30,.38)'); sh.addColorStop(1, 'rgba(60,50,30,0)');
     ctx.fillStyle = sh; ctx.fillRect(cx - tw, bench - 4, tw * 2, 20);
@@ -133,27 +162,29 @@ export function drawTubes(ctx, w, h, tubes, { t = 0, sway = 0, maxLen = 60, tint
     ctx.fillStyle = tint[i] || 'rgba(215,232,240,.32)';
     ctx.fillRect(x0 + 2, liqTop, tw - 4, bench - liqTop - 2);
     ctx.save(); ctx.beginPath(); ctx.rect(x0 + 3, rim - 6, tw - 6, bench - rim + 2); ctx.clip();
-    const L = res.len, nr = Math.min(18, Math.round(res.roots * 0.8));
+    const L = res.len, nrF = Math.min(MAX_ROOTS, res.roots * 0.8);
     const tipCol = res.brown > 0.05 ? `rgb(${Math.round(lerp(248, 150, res.brown))},${Math.round(lerp(240, 100, res.brown))},${Math.round(lerp(212, 55, res.brown))})` : 'rgba(250,244,220,.95)';
-    ctx.lineCap = 'round';
-    const order = Array.from({ length: nr }, (_, k) => k).sort(() => R() - 0.5);
-    for (const k of order) {
-      const u = (k + 0.2 + R() * 0.6) / nr, sx = cx + (u - 0.5) * tw * 0.5, sy = rim - 2;
-      const li = Math.max(4, L * (0.7 + 0.45 * R()) * pxmm);
-      const spread = (u - 0.5) * 1.1 + (R() - 0.5) * 0.3;
-      const seg = Math.max(5, Math.round(li / 9)), pts = [];
-      const hook = res.tumor > 0.2 && R() < res.tumor ? (R() < 0.5 ? -1 : 1) * res.tumor : 0;
-      for (let s2 = 0; s2 <= seg; s2++) {
-        const f = s2 / seg, yy = sy + f * li;
-        let xx = sx + Math.sin(f * 1.3) * spread * Math.min(li, tw * 1.2) * 0.38 + Math.sin(sway + k * 1.7 + f * 3) * 1.4 * f;
-        if (hook && f > 0.78) xx += hook * Math.pow((f - 0.78) / 0.22, 2) * 10;
+    const roots = rootSet(i);
+    for (let k = 0; k < roots.length; k++) {
+      const rt = roots[k];
+      const emerge = smooth(0, 1, nrF - k); // новий корінець виростає з нуля, а не з'являється одразу довгим
+      if (emerge <= 0) continue;
+      const sx = cx + (rt.u - 0.5) * tw * 0.5, sy = rim - 2;
+      const li = Math.max(2, L * rt.lf * pxmm * emerge);
+      // гачок/пухлинка на кінчику плавно наростає з дозою (без порогів)
+      const hk = res.tumor * smooth(rt.h, rt.h + 0.25, res.tumor * 1.25);
+      const pts = [];
+      for (let s2 = 0; s2 <= ROOT_SEG; s2++) {
+        const f = s2 / ROOT_SEG, yy = sy + f * li;
+        let xx = sx + Math.sin(f * 1.3) * rt.sp * Math.min(li, tw * 1.2) * 0.38 + Math.sin(sway + rt.ph + f * 3) * 1.4 * f;
+        if (hk > 0.01 && f > 0.78) xx += rt.hs * hk * Math.pow((f - 0.78) / 0.22, 2) * 10;
         pts.push([clamp(xx, x0 + 6, x0 + tw - 6), yy]);
       }
-      if (li > 60) {
-        ctx.strokeStyle = 'rgba(250,250,240,.45)'; ctx.lineWidth = 0.5;
-        for (let q = 1; q < Math.min(seg - 2, 5); q++) { const [hx, hy] = pts[q]; for (const sgn of [-1, 1]) { ctx.beginPath(); ctx.moveTo(hx, hy); ctx.lineTo(hx + sgn * (2 + R() * 4), hy + 2 + R() * 2); ctx.stroke(); } }
+      if (li > 60) { // кореневі волоски
+        ctx.strokeStyle = `rgba(250,250,240,${0.45 * smooth(60, 80, li)})`; ctx.lineWidth = 0.5;
+        for (let q = 1; q < 5; q++) { const [hx, hy] = pts[q], [ax, ay] = rt.hairs[q]; for (const sgn of [-1, 1]) { ctx.beginPath(); ctx.moveTo(hx, hy); ctx.lineTo(hx + sgn * ax, hy + ay); ctx.stroke(); } }
       }
-      drawRoot(ctx, pts, 3.4 + R() * 1.1, tipCol, hook ? Math.abs(hook) : res.tumor * 0.4);
+      drawRoot(ctx, pts, rt.w * (0.55 + 0.45 * emerge), tipCol, Math.max(hk, res.tumor * 0.4));
     }
     ctx.restore();
     // скло
@@ -386,37 +417,53 @@ export class Slide {
       }
     }
   }
+  /** Повне малювання препарату (при зміні поля зору). */
   render(canvas) {
     const S = this.size, dpr = 2.2;
     canvas.width = canvas.height = Math.round(S * dpr);
     const ctx = canvas.getContext('2d'); ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
     ctx.fillStyle = '#EFDCE3'; ctx.fillRect(0, 0, S, S);
-    const tex = noiseTex(128, 11, { dots: 3600, alpha: 0.5, color: '55,8,40', rMin: 0.4, rMax: 1.9 });
-    const ctex = noiseTex(160, 5, { dots: 1800, alpha: 0.12, color: '150,60,110', rMin: 0.3, rMax: 1.4 });
-    const cpat = ctx.createPattern(ctex, 'repeat');
-    for (const c of this.cells) {
-      const R = rand(c.seed);
-      ctx.save();
-      ctx.beginPath(); c.poly.forEach(([x, y], i) => i ? ctx.lineTo(x, y) : ctx.moveTo(x, y)); ctx.closePath();
-      const ghost = c.ab === 'ghost';
-      ctx.fillStyle = ghost ? 'rgba(246,238,240,.9)' : `rgba(${226 + (R() * 10 | 0)},${190 + (R() * 14 | 0)},${204 + (R() * 10 | 0)},.92)`;
-      ctx.fill();
-      if (!ghost) { ctx.fillStyle = cpat; ctx.fill(); }
-      ctx.strokeStyle = 'rgba(160,90,125,.5)'; ctx.lineWidth = 1.5; ctx.stroke();
-      ctx.clip();
-      ctx.translate(c.cx, c.cy); ctx.rotate(this.angle);
-      if (c.ab) drawAberr(ctx, c.ab, c.s, R, tex);
-      else drawCellState(ctx, c.st, c.s, R, tex, c.w);
-      ctx.restore();
-    }
-    // пил на склі і легка розфокусованість об'єктива (один прохід розмиття для всього препарату)
+    for (const c of this.cells) this.drawCell(ctx, c);
+    // пил на склі
     const R = rand(this.seed + 3);
     for (let i = 0; i < 40; i++) { ctx.fillStyle = `rgba(90,40,60,${0.05 + R() * 0.12})`; ctx.beginPath(); ctx.arc(R() * S, R() * S, 0.6 + R() * 2.2, 0, TAU2); ctx.fill(); }
-    if ('filter' in ctx) {
-      const tmp = document.createElement('canvas'); tmp.width = canvas.width; tmp.height = canvas.height;
-      tmp.getContext('2d').drawImage(canvas, 0, 0);
-      ctx.setTransform(1, 0, 0, 1, 0, 0); ctx.filter = 'blur(0.7px)'; ctx.drawImage(tmp, 0, 0); ctx.filter = 'none';
-    }
+    this.drawn = this.cells.map((c) => c.st + '/' + c.ab);
+  }
+  /** Перемальовує лише клітини, стан яких змінився після assign(): під час експозиції — кілька мс замість повного кадру. */
+  patch(canvas) {
+    if (!this.drawn || canvas.width !== Math.round(this.size * 2.2)) { this.render(canvas); return this.cells.length; }
+    const ctx = canvas.getContext('2d'); ctx.setTransform(2.2, 0, 0, 2.2, 0, 0);
+    let n = 0;
+    this.cells.forEach((c, i) => {
+      const k = c.st + '/' + c.ab;
+      if (k === this.drawn[i]) return;
+      this.drawn[i] = k; n++;
+      ctx.save(); this.path(ctx, c, 1.04); ctx.fillStyle = '#EFDCE3'; ctx.fill(); ctx.restore();
+      this.drawCell(ctx, c);
+    });
+    return n;
+  }
+  path(ctx, c, grow = 1) {
+    ctx.beginPath();
+    c.poly.forEach(([x, y], i) => { const px = c.cx + (x - c.cx) * grow, py = c.cy + (y - c.cy) * grow; i ? ctx.lineTo(px, py) : ctx.moveTo(px, py); });
+    ctx.closePath();
+  }
+  drawCell(ctx, c) {
+    const tex = noiseTex(128, 11, { dots: 3600, alpha: 0.5, color: '55,8,40', rMin: 0.4, rMax: 1.9 });
+    if (!this.cpat) this.cpat = ctx.createPattern(noiseTex(160, 5, { dots: 1800, alpha: 0.12, color: '150,60,110', rMin: 0.3, rMax: 1.4 }), 'repeat');
+    const R = rand(c.seed);
+    ctx.save();
+    this.path(ctx, c);
+    const ghost = c.ab === 'ghost';
+    ctx.fillStyle = ghost ? 'rgba(246,238,240,.9)' : `rgba(${226 + (R() * 10 | 0)},${190 + (R() * 14 | 0)},${204 + (R() * 10 | 0)},.92)`;
+    ctx.fill();
+    if (!ghost) { ctx.fillStyle = this.cpat; ctx.fill(); }
+    ctx.strokeStyle = 'rgba(160,90,125,.5)'; ctx.lineWidth = 1.5; ctx.stroke();
+    ctx.clip();
+    ctx.translate(c.cx, c.cy); ctx.rotate(this.angle);
+    if (c.ab) drawAberr(ctx, c.ab, c.s, R, tex);
+    else drawCellState(ctx, c.st, c.s, R, tex, c.w);
+    ctx.restore();
   }
   hit(x, y) {
     for (const c of this.cells) if (inPoly(x, y, c.poly)) return c;

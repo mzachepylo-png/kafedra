@@ -107,17 +107,31 @@ function tintFor(f) {
 
 // ------------------------------------------------------------------ мікроскоп
 const microCv = $('al-micro');
-let microSize = 0, microCtx = null, slide = null, slideCv = document.createElement('canvas'), prevCv = null, fade = 1, fadeT0 = 0, lastAssignKey = '';
+let microSize = 0, microCtx = null, slide = null, slideCv = document.createElement('canvas'), prevCv = null, spareCv = null, microDirty = true, fade = 1, fadeT0 = 0, lastAssignKey = '';
 function sizeMicro() {
   const w = Math.min(microCv.parentElement.clientWidth, 560); if (!w || w === microSize) return;
   microSize = w; microCtx = hiDPI(microCv, w, w).ctx;
 }
 function rebuildSlide(res, crossfade) {
-  if (!slide || slide.seed !== S.seed) slide = new Slide(900, S.seed);
+  const fresh = !slide || slide.seed !== S.seed;
+  if (fresh) slide = new Slide(900, S.seed);
   slide.assign(res);
-  if (crossfade && !REDUCED) { prevCv = slideCv; slideCv = document.createElement('canvas'); fade = 0; fadeT0 = performance.now(); }
-  slide.render(slideCv);
+  const fadeIn = crossfade && !REDUCED;
+  if (fresh || !slideCv.width) {
+    if (fadeIn && slideCv.width) { prevCv = slideCv; slideCv = document.createElement('canvas'); fade = 0; fadeT0 = performance.now(); }
+    slide.render(slideCv);
+  } else {
+    // змінюються лише окремі клітини: копія старого поля для плавного переходу + точкове перемальовування
+    if (fadeIn) {
+      if (!spareCv) spareCv = document.createElement('canvas');
+      if (spareCv.width !== slideCv.width) { spareCv.width = slideCv.width; spareCv.height = slideCv.height; }
+      const g = spareCv.getContext('2d'); g.setTransform(1, 0, 0, 1, 0, 0); g.drawImage(slideCv, 0, 0);
+    }
+    const n = slide.patch(slideCv);
+    if (fadeIn && n) { prevCv = spareCv; fade = 0; fadeT0 = performance.now(); }
+  }
   if (fade < 1) kick(); // плавна зміна поля зору навіть коли модель стоїть
+  microDirty = true;
   S.picked = null; showPicked();
 }
 function marks() {
@@ -326,12 +340,16 @@ function frame(ts) {
     if (Math.abs(S.t - lastCountT) >= 6 || !S.running) { lastCountT = S.t; countTable(); }
   }
   if (S.cinePlay) { S.cineT = (S.cineT + dt / 9) % 1; $('al-cine-t').value = S.cineT; need = true; }
-  if (fade < 1) { fade = Math.min(1, (performance.now() - fadeT0) / 450); if (fade >= 1) prevCv = null; need = true; }
-  render(S.running && Math.abs(S.t - lastSlideT) >= 4);
+  if (fade < 1) { fade = Math.min(1, (performance.now() - fadeT0) / 450); if (fade >= 1) prevCv = null; need = true; microDirty = true; }
+  render(S.running && Math.abs(S.t - lastSlideT) >= 4, true);
+  if (!need) readouts(curRes());
   if (need) raf = requestAnimationFrame(frame);
 }
-function render(refreshSlide = false) {
-  sizeTubes(); sizeMicro(); sizeCine();
+let lastReadTs = 0, lastCineKey = '';
+let sizeDirty = true;
+function render(refreshSlide = false, live = false) {
+  // розміри полотен читаємо лише після зміни розмітки (читання clientWidth щокадру змушує браузер перераховувати верстку)
+  if (!live || sizeDirty) { sizeTubes(); sizeMicro(); sizeCine(); sizeDirty = false; }
   const res = curRes();
   if (tubesCtx) {
     const rec = S.phase === 'recover' || (S.phase === 'done' && S.recover) ? Math.max(0, S.t - S.target) : 0;
@@ -344,9 +362,12 @@ function render(refreshSlide = false) {
     if (S.dragging && !refreshSlide) slideTimer = setTimeout(() => { rebuildSlide(curRes(), true); lastAssignKey = key; drawMicro(); }, 220);
     else { rebuildSlide(res, true); lastAssignKey = key; lastSlideT = S.t; }
   }
-  drawMicro();
-  drawCineNow(res);
-  readouts(res);
+  // під час анімації мікроскоп, кінограму й показники оновлюємо лише коли вони справді змінились
+  if (!live || microDirty) { drawMicro(); microDirty = false; }
+  const cineKey = cineType(res) + S.cineT;
+  if (!live || S.cinePlay || cineKey !== lastCineKey) { drawCineNow(res); lastCineKey = cineKey; }
+  const now = performance.now();
+  if (!live || now - lastReadTs > 250) { lastReadTs = now; readouts(res); }
 }
 let plotTimer = 0, slideTimer = 0;
 function update(full) {
@@ -467,7 +488,7 @@ function init() {
   setStatus();
   let vis = true;
   new IntersectionObserver((es) => { vis = es[0].isIntersecting; if (vis && (S.running || S.cinePlay)) kick(); }).observe($('al-model'));
-  new ResizeObserver(() => render(false)).observe($('al-model'));
+  new ResizeObserver(() => { sizeDirty = true; render(false); }).observe($('al-model'));
   document.addEventListener('visibilitychange', () => { if (!document.hidden && (S.running || S.cinePlay)) kick(); });
   update(true);
   const m = /^#preset-([\w-]+)$/.exec(location.hash);
