@@ -11,14 +11,29 @@ if (length(new)) install.packages(new)
 invisible(lapply(pkgs, library, character.only = TRUE))
 
 # --- 1. Авторизація і propertyId -------------------------------------
-ga_auth()                               # відкриє браузер лише перший раз
+# ЗАПУСКАЙТЕ ВЕСЬ ФАЙЛ кнопкою «Source» (Ctrl+Shift+S), а не «Run».
+# Якщо виділити все і натиснути «Run», R читає наступні рядки скрипту
+# як відповіді на меню «Enter a number between 1 and 2» → нічого не будується.
+#
+# email = TRUE — взяти вже збережений вхід Google без меню вибору акаунта
+# (перший раз відкриється браузер для входу).
+ga_auth(email = TRUE)
 
 # propertyId — це ЧИСЛО (напр. 412345678), а не "G-JWWGPMG71W".
 # Знайти: таблиця нижче (стовпчик propertyId) або
 # GA → Адміністратор → Відомості про ресурс → «Ідентифікатор ресурсу».
-print(ga_account_list("ga4"))
+props <- ga_account_list("ga4")
+print(props)
 
-prop  <- 123456789                      # <-- ВСТАВТЕ СВІЙ propertyId
+prop  <- NA                             # <-- впишіть propertyId, напр. 412345678
+if (is.na(prop)) {
+  if (nrow(props) == 1) {
+    prop <- props$propertyId[1]         # ресурс один — беремо його
+    message("Використовую propertyId = ", prop)
+  } else {
+    stop("Впишіть propertyId у рядок `prop <- ...` (див. таблицю вище).")
+  }
+}
 start <- "2026-10-01"
 end   <- "2026-11-14"
 
