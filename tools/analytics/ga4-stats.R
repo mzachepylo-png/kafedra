@@ -15,8 +15,16 @@ invisible(lapply(pkgs, library, character.only = TRUE))
 # Якщо виділити все і натиснути «Run», R читає наступні рядки скрипту
 # як відповіді на меню «Enter a number between 1 and 2» → нічого не будується.
 #
+# Власний Google Cloud-проєкт (обов'язково): спільний проєкт пакета
+# googleAnalyticsR не має увімкненого Google Analytics Data API → помилка 403.
+# Як створити client.json — див. README.md у цій папці.
+client_json <- "C:/Users/ВАШ_КОРИСТУВАЧ/Documents/ga-client.json"   # <-- шлях до файлу
+googleAuthR::gar_set_client(
+  json   = client_json,
+  scopes = "https://www.googleapis.com/auth/analytics.readonly")
+
 # email = TRUE — взяти вже збережений вхід Google без меню вибору акаунта
-# (перший раз відкриється браузер для входу).
+# (для нового client.json браузер відкриється ще раз — це нормально).
 ga_auth(email = TRUE)
 
 # propertyId — це ЧИСЛО (напр. 412345678), а не "G-JWWGPMG71W".
