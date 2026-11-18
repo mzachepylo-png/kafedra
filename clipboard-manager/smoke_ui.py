@@ -3888,6 +3888,232 @@ root.geometry("1180x660+0+0")
 pump(400)
 print("39 folder-first speed (no re-arrange, single redraw, throttled resize, quiet header) OK")
 
+# ---- 40. QA режиму «спочатку папка»: смуга прокрутки й «Історія» на сторінці вибору, меню під курсором, фокус і
+#          клавіші на сторінці вибору, підсвітка правої колонки, сітка клітинок (стрілки, вузьке вікно), назви папок
+settings["autohide"] = False
+app.hotkey_ok = False
+root.geometry("1500x800+0+0")
+pump(400)
+app.show_window()
+q_cats = [cat_named(f"QA {n_}") for n_ in range(7)]
+for c_ in q_cats[:2]:
+    for n_ in range(3):
+        app.preset.add_snippet(c_["id"], f"{c_['name']} плитка {n_}")
+app.set_folder_first(True)
+app.set_rec_view("tiles")
+app.back_to_folders()
+saved_cats_ = app.preset.categories                # (a)–(b): лише 7 папок цього розділу (без змін пресета на диску)
+app.preset.categories = [c for c in saved_cats_ if c in q_cats]
+app.render()
+app.flush_render()
+pump(500)
+
+
+def q_align():
+    cols_ = app._tile_dims()[0]
+    tl_ = [app._row_objs[c["id"]].row for c in app.preset.categories]
+    h_ = app._row_objs[HISTORY].row
+    return (abs(h_.winfo_rootx() - tl_[0].winfo_rootx()),
+            abs(h_.winfo_rootx() + h_.winfo_width() - tl_[cols_ - 1].winfo_rootx() - tl_[cols_ - 1].winfo_width()))
+
+
+# (a) висота списку папок змінилась без зміни вікна (відступ «Історії») — зайва смуга прокрутки зникає, «Історія»
+#     знову рівно над плитками (раніше лишалась непотрібна смуга, а після повернення з папки «Історія» була зсунута)
+bar_ = app.cat_list._scrollbar
+assert app.page == "folders"
+box_ = app.cat_list._parent_canvas.bbox("all")
+assert box_[3] - box_[1] < app.cat_list._parent_canvas.winfo_height(), "плитки вміщаються — смуга не потрібна"
+bar_.grid()                                        # «застаріла» смуга, як після першої розкладки
+hrow_ = app._row_objs[HISTORY].row
+hrow_.pack_configure(pady=(400, 2))                # висота списку папок змінюється без зміни вікна…
+pump(300)
+app._cat_sig = None
+app._arrange_cats()                                # …і повертається: смугу звіряємо заново
+pump(500)
+assert not bar_.winfo_ismapped(), "непотрібна смуга прокрутки списку папок"
+assert max(q_align()) <= 3, q_align()
+app.select_category(q_cats[0]["id"])
+app.flush_render()
+pump(200)
+bar_.grid()                                        # смуга змінилась, поки була відкрита папка
+pump(100)
+app.back_to_folders()
+pump(500)
+assert not bar_.winfo_ismapped() and max(q_align()) <= 3, (bar_.winfo_ismapped(), q_align())
+# (b) 7 папок на широкому вікні: плитки за фактичною кількістю колонок (4 + 3), а не вузькі (пораховані на 6 у ряд)
+root.geometry("1900x1000+0+0")
+pump(600)
+cols_, tw_, th_ = app._tile_dims()
+assert cols_ == 4 and abs(tw_ - min(cm.PICK_TILE_MAX, (app._pick_w - 30 - 8 * 3 - 14) / 4)) < 1, (cols_, tw_, app._pick_w)
+assert abs(app._row_objs[q_cats[0]["id"]].row.winfo_width() - tw_ * app.scaling()) <= 3
+app.preset.categories = saved_cats_
+app.render()
+app.flush_render()
+# (c) великий шрифт назв на низькій плитці: другий рядок не обрізається навпіл — лише рядки, що вміщаються
+root.geometry("1180x660+0+0")
+pump(600)
+long_ = app.preset.add_category("Дуже довга назва папки для п")
+app.render()
+app.flush_render()
+app.set_pick_font(24)
+pump(500)
+lt_ = app._row_objs[long_["id"]]
+assert lt_.label.winfo_reqheight() <= lt_.label.winfo_height() + 3, (lt_.label.winfo_reqheight(), lt_.label.winfo_height())
+assert lt_.label.cget("text").endswith("…"), lt_.label.cget("text")
+app.set_pick_font(16.5)
+app.preset.delete_category(long_["id"])
+app.render()
+app.flush_render()
+root.geometry("1500x800+0+0")
+pump(500)
+# (d) меню «⋯» / правий клік відкривається кутом просто під курсором: тремтіння руки на 1–2 px не закриває його;
+#     навскіс до підменю (через сусідній пункт) — підменю не зникає
+app.select_category(q_cats[0]["id"])
+app.flush_render()
+pump(200)
+ptr_ = [(300, 200)]
+root.winfo_pointerxy = lambda: ptr_[0]
+fake_show_ = cm.PopupMenu.show
+cm.PopupMenu.show = REAL_POPUP_SHOW
+app.show_menu(300, 200, app.shown[0]["id"])
+pump(200)
+pop_ = app._popups[0]
+assert pop_.top.winfo_rootx() == 300 and pop_.top.winfo_rooty() == 200
+ptr_[0] = (298, 199)
+pump(700)
+assert app._popups, "меню закрилось від зсуву курсора на 2 px"
+casc_ = next(i for i, (it, _, _) in enumerate(pop_.rows) if it.kind == "cascade")
+ptr_[0] = row_xy(pop_, casc_)
+pump(450)
+assert pop_.child is not None
+nb_ = casc_ + 1 if casc_ + 1 < len(pop_.rows) else casc_ - 1
+r_ = pop_.rows[nb_][1]
+ptr_[0] = (r_.winfo_rootx() + r_.winfo_width() - 15, r_.winfo_rooty() + r_.winfo_height() // 2)
+pump(90)
+ptr_[0] = row_xy(pop_.child, 0)
+pump(600)
+assert pop_.child is not None, "підменю зникло з-під курсора (навскіс через сусідній пункт)"
+assert pop_.sel == casc_
+ptr_[0] = (pop_.top.winfo_rootx() - 300, pop_.top.winfo_rooty() + 5)
+pump(700)
+assert not app._popups
+del root.winfo_pointerxy
+cm.PopupMenu.show = fake_show_
+# (e) Esc із папки, коли курсор у полі формату: фокус іде з поля — Space на сторінці вибору відкриває папку
+app.select_format(app._fmt_order[0])
+pump(150)
+app.fmt_input.focus_set()
+pump(100)
+app._on_escape(SimpleNamespace(widget=app.fmt_input._textbox))
+pump(100)
+assert app.page == "folders" and not isinstance(root.focus_get(), (tk.Entry, tk.Text)), root.focus_get()
+app._collapse_format()
+# (f) на сторінці вибору папки Delete / Enter / стрілки не чіпають запис щойно закритої (невидимої) папки
+app.select_category(q_cats[0]["id"])
+app.flush_render()
+pump(200)
+app.nav_move("s")
+sel_ = app.sel_id
+assert sel_
+app.back_to_folders()
+n0_ = app.preset.count(q_cats[0]["id"])
+copied_ = []
+saved_copy_ = app.copy_item
+app.copy_item = lambda *a, **k: copied_.append(a)
+app._on_delete_key(SimpleNamespace(widget=root))
+app._on_return(SimpleNamespace(widget=root))
+app._arrow_v(1)
+app._arrow_h(SimpleNamespace(widget=root), 1)
+app.copy_item = saved_copy_
+assert app.preset.count(q_cats[0]["id"]) == n0_ and not copied_ and app.sel_id == sel_, (copied_, app.sel_id)
+# (g) Esc на сторінці вибору з відміченими (невидимими) записами історії — ховає вікно, а не «знімає вибір»
+app.history.add("qa чек 1")
+app.history.add("qa чек 2")
+app.select_category(HISTORY)
+app.flush_render()
+app.toggle_check_all()
+assert app.checked
+app.back_to_folders()
+hid_ = []
+saved_hide_ = app._hide_or_iconify
+app._hide_or_iconify = lambda why="pick": hid_.append(why) or True
+app._on_escape(SimpleNamespace(widget=root))
+app._hide_or_iconify = saved_hide_
+assert hid_ == ["escape"], hid_
+app.clear_checked()
+# (h) права колонка: клік мишею по папці гасить «курсор» формату; Space на іншому форматі — відкриває його
+app._nav_mark(HISTORY)
+app.nav_move("d")
+assert app.nav_zone == "right"
+app.select_category(q_cats[1]["id"])
+app.flush_render()
+assert app.nav_right is None and app.nav_zone == "cards"
+assert all(r.row.cget("border_width") in (1, 2) for r in app._fmt_rows.values())
+app.back_to_folders()
+if len(app._fmt_order) >= 2:
+    app._nav_mark(HISTORY)
+    app.nav_move("d")
+    app._on_space(SimpleNamespace(keysym="space", keycode=65, widget=root, state=0))
+    pump(150)
+    assert app.sel_format == app._fmt_order[0]
+    app.nav_move("s")
+    assert not isinstance(root.focus_get(), (tk.Entry, tk.Text)), "Space не повинен друкуватись у поле відкритого формату"
+    app._on_space(SimpleNamespace(keysym="space", keycode=65, widget=root, state=0))
+    pump(150)
+    assert app.sel_format == app._fmt_order[1], app.sel_format
+    app.nav_move("a")
+    app._collapse_format()
+# (i) сітка клітинок: стрілки — до сусідньої плитки на екрані (не за списком); Alt+A без вибору — до папок
+app.select_category(q_cats[1]["id"])
+app.flush_render()
+pump(300)
+ids_ = [i["id"] for i in app.shown]
+assert app._cells_on() and len(ids_) == 3
+assert app._move_to_cell(ids_[0], (1, 2))
+app.render()
+app.flush_render()
+pump(200)
+app.sel_id = ids_[1]                               # (0, 1); у списку наступний — ids_[2] (0, 2), нижче — ids_[0] (1, 2)
+app._arrow_v(1)
+assert app.sel_id == ids_[0], app._cell_of
+app._arrow_v(1)                                    # нижче нікого — стрілка нікуди не веде
+assert app.sel_id == ids_[0] and app.page == "records"
+app._arrow_h(SimpleNamespace(widget=root), -1)     # ліворуч у ряду 1 нікого — лишаємось (не «Назад»)
+assert app.sel_id == ids_[0] and app.page == "records"
+app.sel_id = None
+app.nav_move("a")
+assert app.page == "folders", "Alt+A без вибраної плитки — до вибору папки (як у списку)"
+# (j) вузьке вікно: перестановка не перезаписує збережене місце плитки, що не вміщається (колонка 3)
+app.preset.set_snippet_cells({ids_[0]: (0, 3), ids_[1]: (0, 0), ids_[2]: (0, 1)})
+root.geometry("900x700+0+0")
+pump(600)
+app.select_category(q_cats[1]["id"])
+app.flush_render()
+pump(400)
+assert app._rec_cols < 4, app._rec_cols
+assert app._move_to_cell(ids_[1], (2, 0))
+disk_ = {s["id"]: s.get("cell") for s in app.preset.category(q_cats[1]["id"])["snippets"]}
+assert disk_[ids_[0]] == [0, 3] and disk_[ids_[1]] == [2, 0], disk_
+root.geometry("1500x800+0+0")
+pump(600)
+app.render()
+app.flush_render()
+assert app._cell_of[ids_[0]] == (0, 3), app._cell_of
+# (k) перенесення в іншу папку — місце з попередньої папки не тягнеться за записом
+app.put_in_category(ids_[0], q_cats[0]["id"])
+assert "cell" not in app.preset.find_snippet(ids_[0])[1]
+# (l) порожня папка в режимі «спочатку папка»: підказка без «перетягніть з історії» (історії поруч не видно)
+app.select_category(q_cats[2]["id"])
+app.flush_render()
+pump(200)
+texts_ = [w.cget("text") for w in app._empty_box.winfo_children()]
+assert any("Зберегти в категорію" in t for t in texts_) and not any("перетягніть" in t for t in texts_), texts_
+app._clear_refunds()
+app.back_to_folders()
+root.geometry("1180x660+0+0")
+pump(400)
+print("40 folder-first QA (scrollbar/history, menus at pointer, picker keys, right column, cells, names) OK")
+
 # ---- 25. справжнє розгортання під віконним менеджером (лише якщо є openbox) -------------------------------------------------------------
 import shutil  # noqa: E402
 

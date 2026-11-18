@@ -892,6 +892,23 @@ class Round15StoreTest(unittest.TestCase):
         bad = Preset.open_or_create(p.path)
         self.assertTrue(all("cell" not in s for s in bad.category(c["id"])["snippets"]))
 
+    def test_snippet_cell_dropped_when_moved_to_another_folder(self):
+        # місце плитки — від старої папки: у новій запис стає в першу вільну клітинку, а не «десь унизу»
+        p, Preset = self._preset()
+        c1, c2 = p.add_category("Звідки"), p.add_category("Куди")
+        a = p.add_snippet(c1["id"], "a")
+        b = p.add_snippet(c1["id"], "b")
+        p.set_snippet_cells({a["id"]: (5, 3), b["id"]: (4, 2)})
+        self.assertTrue(p.move_snippet(a["id"], c2["id"]))
+        self.assertNotIn("cell", p.find_snippet(a["id"])[1])
+        self.assertTrue(p.update_snippet(b["id"], "b2", c2["id"]))
+        self.assertNotIn("cell", p.find_snippet(b["id"])[1])
+        again = Preset.open_or_create(p.path)
+        self.assertTrue(all("cell" not in s for s in again.category(c2["id"])["snippets"]))
+        p.set_snippet_cells({a["id"]: (1, 1)})
+        self.assertTrue(p.update_snippet(a["id"], "a2", c2["id"]))          # та сама папка — місце лишається
+        self.assertEqual(p.find_snippet(a["id"])[1]["cell"], [1, 1])
+
     def test_pick_font_default(self):
         import tempfile
         from store import Settings

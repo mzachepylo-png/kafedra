@@ -441,6 +441,7 @@ class Preset:
                 snip.pop("v2", None)
         if cat_id and cat_id != cat["id"] and self.category(cat_id):
             cat["snippets"].remove(snip)
+            snip.pop("cell", None)            # місце в сітці — від старої папки; у новій — перша вільна клітинка
             self.category(cat_id)["snippets"].append(snip)
         self.save()
         return True
@@ -452,6 +453,7 @@ class Preset:
         cat, snip = found
         if cat is not dest:
             cat["snippets"].remove(snip)
+            snip.pop("cell", None)            # місце в сітці — від старої папки; у новій — перша вільна клітинка
             dest["snippets"].append(snip)
             self.save()
         return True

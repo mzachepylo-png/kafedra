@@ -1556,8 +1556,24 @@ class SideRow:
         size = getattr(self, "_size", None)
         if not size:
             return name
-        per_line = max(6, int(size[1] / max(1, (getattr(self, "_font", None) or self.app.pf.bold).measure("n"))))
-        return clip(name, per_line * 2 - 2)
+        font = getattr(self, "_font", None) or self.app.pf.bold
+        per_line = max(6, int(size[1] / max(1, font.measure("n"))))
+        # скільки рядків справді вміщається між «⋯» і лічильником: на низькому вікні з великим шрифтом (⚙ → «Розмір
+        # назв папок») другий рядок обрізався навпіл — тоді лише один рядок і «…»
+        try:
+            sc = self.app.scaling()
+            room = size[0] * sc - 41 * sc - self.num.winfo_reqheight()
+            lines = max(1, min(2, int((room + 2) // max(1, font.metrics("linespace")))))
+        except tk.TclError:
+            lines = 2
+        if lines == 1:                               # один рядок — міряємо точно (назви короткі, ≤ 30 символів)
+            if font.measure(name) <= size[1]:
+                return name
+            n = len(name)
+            while n > 1 and font.measure(name[:n - 1].rstrip() + "…") > size[1]:
+                n -= 1
+            return name[:n - 1].rstrip() + "…"
+        return clip(name, per_line * lines - 2)
 
     def _enter(self) -> None:
         if not self.selected:
@@ -2227,8 +2243,8 @@ class App:
         self.status.grid(row=2, column=0, sticky="ew", padx=20, pady=(6, 8))
 
         # клавіатура
-        root.bind("<Down>", lambda e: None if self._in_format_input(e) else self._move_sel(self._rec_cols if self.rec_tiles else 1))
-        root.bind("<Up>", lambda e: None if self._in_format_input(e) else self._move_sel(-self._rec_cols if self.rec_tiles else -1))
+        root.bind("<Down>", lambda e: None if self._in_format_input(e) else self._arrow_v(1))
+        root.bind("<Up>", lambda e: None if self._in_format_input(e) else self._arrow_v(-1))
         root.bind("<Right>", lambda e: self._arrow_h(e, 1))
         root.bind("<Left>", lambda e: self._arrow_h(e, -1))
         root.bind("<Return>", self._on_return)
@@ -2300,6 +2316,9 @@ class App:
         self.cat_list.pack(fill="both", expand=True, padx=(2, 2), pady=(0, 8))
         self._speed_up_scroll(self.cat_list, CAT_SCROLL_FACTOR)
         left.bind("<Configure>", self._on_left_resize, add="+")
+        # висота списку папок змінюється й без зміни вікна (відступ «Історії» над блоком плиток) — смугу
+        # прокрутки й місце «Історії» звіряємо тоді заново (інакше лишалась непотрібна смуга й зсунута «Історія»)
+        self.cat_list._parent_canvas.bind("<Configure>", self._on_cat_canvas_resize, add="+")
 
     @staticmethod
     def _speed_up_scroll(sf, factor: int) -> None:
@@ -3045,12 +3064,14 @@ class App:
         if self._picking():
             w = max(300, self._pick_w)
             cols = max(2, min(6, int((w - 44) // PICK_TILE_MIN)))
-            tile_w = min(PICK_TILE_MAX, (w - 30 - 8 * (cols - 1) - 14) / cols)
             n = len(self.preset.categories)
             rows = 1
             if n:                                      # рівні ряди: 6 папок → 3×2, а не 4 + 2; блок — по центру
                 rows = -(-n // cols)
                 cols = max(1, -(-n // rows))
+            # ширина — за ФАКТИЧНОЮ кількістю колонок (7 папок на широкому екрані — 4 + 3 ширші плитки, а не вузькі,
+            # пораховані на 6 у ряд); 1 колонка — не ширша, ніж була б при двох
+            tile_w = min(PICK_TILE_MAX, (w - 30 - 8 * (max(2, cols) - 1) - 14) / max(2, cols))
             th = max(110, min(170, tile_w * 0.6))
             ph = getattr(self, "_pick_h", 0)
             if ph > 200:                               # на низькому вікні плитки нижчі, щоб ряди вміщались
@@ -3084,7 +3105,8 @@ class App:
                 except (tk.TclError, AttributeError):
                     avail = 0
                 content = ROW_H + 4 + 9 + rows * (th + 6)   # «Історія» + лінія + плитки
-                top = int(max(0, (avail - content) / 2)) if avail > 80 else 0
+                # без жодної папки — не центруємо: під «Історією» лише підказка «Категорій ще немає» (зверху списку)
+                top = int(max(0, (avail - content) / 2)) if avail > 80 and wanted else 0
             sig = (True, picking, cols, th, tuple(wanted), int(tile_w // 10), top // 8)     # ширина плитки — кроками по 10 px (менше перемальовувань при тягненні границі)
         else:
             sig = (False, 1, 0, tuple(wanted), 0)
@@ -3119,13 +3141,16 @@ class App:
                 self._row_objs[key].row.pack(fill="x", padx=6, pady=2)
         hist = self._row_objs.get(HISTORY)
         if hist is not None:
+            # pack_configure — це tkinter напряму (ctk масштабує лише pack()): відступи — уже в пікселях
+            self._hist_pad = None                        # розкладка змінилась (або масштаб) — місце «Історії» заново
             if picking and self.cat_tiles:
-                hist.row.pack_configure(pady=(2 + top, 2))
-                if getattr(self, "_hist_job", None) is None:
+                hist.row.pack_configure(pady=(int((2 + top) * sc), int(2 * sc)))
+                if not wanted:                           # папок не лишилось — «Історія» знову на всю ширину
+                    hist.row.pack_configure(padx=int(6 * sc))
+                elif getattr(self, "_hist_job", None) is None:
                     self._hist_job = self.root.after(30, self._center_history)
             else:
-                self._hist_pad = None
-                hist.row.pack_configure(padx=6, pady=2)
+                hist.row.pack_configure(padx=int(6 * sc), pady=int(2 * sc))
 
     def _center_history(self) -> None:
         """Сторінка вибору папки: рядок «Історія буфера» — рівно над блоком плиток (за їхнім фактичним місцем)."""
@@ -3143,8 +3168,7 @@ class App:
             right = sx + sw - (last.winfo_rootx() + last.winfo_width())
             if left < 0 or right < 0 or first.winfo_width() < 20:
                 return
-            s = self.scaling()
-            pad = (int(left / s), int(right / s))
+            pad = (left, right)                          # пікселі: pack_configure ctk не масштабує
             if pad != getattr(self, "_hist_pad", None):
                 self._hist_pad = pad
                 hist.row.pack_configure(padx=pad)
@@ -3348,7 +3372,7 @@ class App:
         return "break"
 
     def _on_return(self, event) -> None:
-        if self._in_format_input(event):
+        if self._in_format_input(event) or self._picking():     # на сторінці вибору папки записів не видно
             return
         if self.sel_id:
             self.copy_item(self.sel_id)
@@ -3712,17 +3736,25 @@ class App:
         old = self._cell_of.get(iid)
         if old is None or old == rc:
             return False
-        cells = dict(self._cell_of)
         other = self._cell_taken.get(rc)
+        # плитки, чия збережена клітинка — правіше, ніж є колонок у вузькому вікні, стоять тимчасово в першій вільній:
+        # їхнє справжнє місце не перезаписуємо (у ширшому вікні вони повернуться туди)
+        wide = {i["id"] for i in self.shown if i.get("cell") and i["cell"][1] >= self._rec_cols}
+        cells = {k: v for k, v in self._cell_of.items() if k not in wide or k in (iid, other)}
         cells[iid] = rc
         if other is not None and other != iid:
             cells[other] = old
         self.preset.set_snippet_cells(cells)
         return True
 
-    def _nav_cells(self, k: str) -> None:
-        """Alt+W/A/S/D у сітці клітинок: до найближчої плитки в напрямку (порожні клітинки пропускаються)."""
+    def _nav_cells(self, k: str, edges: bool = True) -> None:
+        """Alt+W/A/S/D у сітці клітинок: до найближчої плитки в напрямку (порожні клітинки пропускаються).
+        edges=False (стрілки) — з краю нікуди не переходимо (ні до папок, ні в праву колонку)."""
         cur = self._cell_of.get(self.sel_id)
+        if cur is None and edges and k in ("a", "d"):
+            # нічого ще не вибрано — як у списку й звичайних плитках: Alt+A — до папок, Alt+D — у праву колонку
+            self.back_to_folders() if k == "a" else self._nav_enter_right()
+            return
         if cur is None:
             first = min(self._cell_of.items(), key=lambda kv: kv[1], default=None)
             if first:
@@ -3737,9 +3769,9 @@ class App:
                     if r == cr and (c < cc if k == "a" else c > cc)]
         if cand:
             self._select_card(min(cand)[2])
-        elif k == "a":
+        elif k == "a" and edges:
             self.back_to_folders()
-        elif k == "d":
+        elif k == "d" and edges:
             self._nav_enter_right()
 
     def _select_card(self, iid: str) -> None:
@@ -3927,7 +3959,10 @@ class App:
             title, text = "Створіть першу категорію", "Натисніть «＋ Нова» ліворуч."
         else:
             title = "У цій категорії ще порожньо"
-            text = "Натисніть «＋ Додати» або перетягніть сюди запис з історії буфера."
+            # у режимі «спочатку папка» історія й папка не видно разом — перетягнути нема звідки
+            text = ("Натисніть «＋ Додати» або збережіть запис з історії буфера: «⋯» → «Зберегти в категорію»."
+                    if self.folder_first else
+                    "Натисніть «＋ Додати» або перетягніть сюди запис з історії буфера.")
         box = self._empty_box = ctk.CTkFrame(self.cards, fg_color="transparent")
         self._place_extra(box, fill="x", pady=70)
         ctk.CTkLabel(box, text=title, text_color=TEXT, font=self.f.bold).pack()
@@ -4071,12 +4106,16 @@ class App:
                     continue
                 box = canvas.bbox("all")
                 need = bool(box) and (box[3] - box[1]) > canvas.winfo_height() + 1
-                if need and not bar.winfo_manager():
+                if need == bool(bar.winfo_manager()):
+                    continue
+                if need:
                     bar.grid()
-                elif not need and bar.winfo_manager():
+                else:
                     bar.grid_remove()
-                    bar._last_geometry_manager_call = None
                 bar._last_geometry_manager_call = None   # інакше ctk покаже її знову при зміні DPI
+                if sf is self.cat_list and self._picking() and getattr(self, "_hist_job", None) is None:
+                    # смуга з'явилась / зникла — блок плиток зсунувся: «Історія» знову рівно над ним
+                    self._hist_job = self.root.after(30, self._center_history)
             except (tk.TclError, AttributeError):
                 pass
 
@@ -4087,9 +4126,21 @@ class App:
 
     def _arrow_h(self, e, delta: int):
         """← / → у режимі плиток рухають виділення по ряду (у полях введення — звичайний рух курсора)."""
-        if not self.rec_tiles or isinstance(e.widget, (tk.Entry, tk.Text)):
+        if not self.rec_tiles or isinstance(e.widget, (tk.Entry, tk.Text)) or self._picking():
             return None
+        if self._cells_on() and self._cell_of:          # сітка клітинок: сусідня плитка на екрані, а не в списку
+            self._nav_cells("d" if delta > 0 else "a", edges=False)
+            return "break"
         return self._move_sel(delta)
+
+    def _arrow_v(self, delta: int):
+        """↑ / ↓: на ряд вище/нижче (плитки) або на запис (список)."""
+        if self._picking():                              # записів на сторінці вибору папки не видно
+            return None
+        if self._cells_on() and self._cell_of:
+            self._nav_cells("s" if delta > 0 else "w", edges=False)
+            return "break"
+        return self._move_sel(delta * (self._rec_cols if self.rec_tiles else 1))
 
     # -- клавіатурна навігація Alt+W/A/S/D, Space, Alt+Space ---------------------------------------------
     _NAV_KEYSYMS = {
@@ -4176,10 +4227,16 @@ class App:
         # підпис розкладки (_cat_sig) уже враховує сторінку, режим і розміри: та сама сторінка вибору папки
         # після повернення із записів — нічого не перекладаємо й не перемальовуємо
         self._arrange_cats()
+        if self._picking() and getattr(self, "_pick_job", None) is None:
+            # поки була відкрита папка, смуга прокрутки списку папок могла з'явитись / зникнути — звіряємо її
+            # й місце «Історії» над плитками
+            self._pick_job = self.root.after(30, self._after_pick_resize)
         self._sync_banner()
         self._sync_title()
 
     def _set_page(self, page: str) -> None:
+        if self.nav_zone == "right":
+            self._right_mark(None)             # підсвітка формату / фрази не лишається на новій сторінці
         self.page = page
         self._apply_page()
         if not self.folder_first:
@@ -4187,6 +4244,8 @@ class App:
         if page == "folders":
             self.nav_zone = "folders"
             self._nav_mark(self.view if (self.view == HISTORY or self.view in self._row_objs) else HISTORY)
+            if self._safe_focus() and isinstance(self.root.focus_get(), (tk.Entry, tk.Text)):
+                self.root.focus_set()          # фокус лишався в полі формату — Space друкувався туди, а не відкривав папку
         else:
             self._nav_mark(None)
             self.nav_zone = "cards"
@@ -4241,6 +4300,10 @@ class App:
         if getattr(self, "_pick_job", None) is None:      # після розкладки: смуга прокрутки й «Історія» над плитками
             self._pick_job = self.root.after(60, self._after_pick_resize)
 
+    def _on_cat_canvas_resize(self, e) -> None:
+        if self._picking() and getattr(self, "_pick_job", None) is None:
+            self._pick_job = self.root.after(60, self._after_pick_resize)
+
     def _pick_arrange(self) -> None:
         self._pick_arr_job = None
         self._pick_arr_t = time.monotonic()
@@ -4253,6 +4316,10 @@ class App:
         self._pick_job = None
         if getattr(self, "_pick_arr_job", None) is not None:
             return                                     # розкладка ще попереду — вона й запланує цей крок після себе
+        try:
+            self.root.update_idletasks()               # нова висота «Історії» (відступ) уже змінила висоту списку папок
+        except tk.TclError:
+            return
         self._sync_scrollbars()
         self._center_history()
 
@@ -4326,8 +4393,10 @@ class App:
             kind, key = item
             if kind == "fmt" and key == self.sel_format and self._fmt_built:
                 self.fmt_input.focus_set()             # на відкритому форматі — одразу можна вводити
-            elif kind != "fmt" and self._safe_focus() and isinstance(self.root.focus_get(), (tk.Entry, tk.Text)):
-                self.root.focus_set()                  # на фразах пробіл ставить галочку, а не друкується в поле
+            elif self._safe_focus() and isinstance(self.root.focus_get(), (tk.Entry, tk.Text)):
+                # на фразах пробіл ставить галочку, на іншому (закритому) форматі — відкриває його, а не друкується
+                # в поле відкритого формату
+                self.root.focus_set()
             self._ensure_right_visible(item)
 
     def _paint_right(self, item: tuple, on: bool) -> None:
@@ -4599,7 +4668,7 @@ class App:
         elif self.append_armed:
             self._set_armed(False)
             self.set_status("Режим Append скасовано")
-        elif self.checked:
+        elif self.checked and not self._picking():     # на сторінці вибору папки галочок історії не видно
             self.clear_checked()
         else:
             if self.nav_zone == "right":
@@ -4610,7 +4679,8 @@ class App:
                 self._hide_or_iconify("escape")
 
     def _on_delete_key(self, event: tk.Event):
-        if isinstance(event.widget, (tk.Entry, tk.Text)) or not self.sel_id:
+        # на сторінці вибору папки sel_id — запис щойно закритої (невидимої) папки: Delete видаляв його без сліду
+        if isinstance(event.widget, (tk.Entry, tk.Text)) or not self.sel_id or self._picking():
             return None
         self.on_delete(self.sel_id)
 
@@ -5105,6 +5175,9 @@ class App:
     # -- категорії ----------------------------------------------------------
     def select_category(self, key: str) -> None:
         self.log(f"select_category {key[:8]}")
+        if self.nav_zone == "right":                   # клік мишею по папці з правої колонки — «курсор» там гасне
+            self._right_mark(None)
+            self.nav_zone = "cards"
         if self.nav_zone == "folders":                 # клік мишею по папці — «курсор» повертається до записів
             self._nav_mark(None)
             self.nav_zone = "cards"
@@ -5659,9 +5732,23 @@ class App:
             x, y = xy
             inside = next((p for p in reversed(pops) if p.contains(x, y)), None)
             if inside is not None:
-                self._popup_entered = True
                 self._popup_out_since = None
+                anc = inside.parent
+                while anc is not None:
+                    # курсор дійшов до підменю навскіс, зачепивши сусідній пункт батьківського меню, — заплановане
+                    # закриття підменю скасовуємо (інакше підменю зникало просто з-під курсора)
+                    if anc._sub_job is not None and anc.child is not None:
+                        anc._cancel_sub_job()
+                        anc._poll_row = -1
+                        own = next((k for k, (it, _, _) in enumerate(anc.rows) if it.sub is anc.child.model), -1)
+                        if own >= 0:
+                            anc._select(own)           # підсвітка — знову на пункті, чиє це підменю
+                    anc = anc.parent
                 i = inside.row_at(x, y)
+                if i >= 0:
+                    # «побував у меню» — лише над пунктом: «⋯» і правий клік відкривають меню кутом просто під
+                    # курсором, і без цього тремтіння руки на 1–2 px уліво/вгору закривало щойно відкрите меню
+                    self._popup_entered = True
                 if i >= 0 and i != inside._poll_row:
                     inside._hover(i)
             elif self._popup_entered and self._popup_out_since is None:
