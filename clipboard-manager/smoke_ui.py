@@ -3782,6 +3782,112 @@ root.geometry("1180x660+0+0")
 pump(400)
 print("38 DPI/hotkey page/close/menus/phrases/font/cells OK")
 
+# ---- 39. швидкодія режиму «спочатку папка»: без зайвих перекладань і перемальовувань ------------------------------------
+settings["autohide"] = False
+app.hotkey_ok = False
+root.geometry("1500x800+0+0")
+pump(400)
+app.show_window()
+p_cats = [cat_named(n) for n in ("Швидко 1", "Швидко 2")]
+for c_ in p_cats:
+    for n_ in range(4):
+        app.preset.add_snippet(c_["id"], f"{c_['name']} плитка {n_}")
+app.set_folder_first(True)
+app.set_rec_view("tiles")
+app.back_to_folders()
+app.render()                                       # нові папки (додано прямо в пресет) — на сторінці вибору
+app.flush_render()
+pump(400)
+assert app.page == "folders"
+sizes_ = []
+saved_set_size_ = cm.SideRow.set_size
+cm.SideRow.set_size = lambda self, *a, **k: (sizes_.append(self.key), saved_set_size_(self, *a, **k))[1]
+sig_ = app._cat_sig
+# (a) записи папки: ліва колонка схована — плитки папок не перекладаються; повернення — без жодної роботи
+app.select_category(p_cats[0]["id"])
+app.flush_render()
+pump(300)
+assert app.page == "records" and app._cat_sig == sig_ and not sizes_, (sizes_[:5], app._cat_sig, sig_)
+app.back_to_folders()
+pump(300)
+assert app.page == "folders" and app._cat_sig == sig_ and not sizes_, (sizes_[:5], app._cat_sig, sig_)
+app.select_category(p_cats[1]["id"])
+app.flush_render()
+app._hidden = True                                 # ховання з папки → сторінка вибору (без перекладання плиток)
+app._reset_when_hidden()
+app._hidden = False
+assert app.page == "folders" and not sizes_, sizes_[:5]
+cm.SideRow.set_size = saved_set_size_
+# (b) плитки папок: ширина й висота — як розраховано, без перемальовування за старим розміром
+cols_, tw_, th_ = app._tile_dims()
+s_ = app.scaling()
+for c_ in p_cats:
+    row_ = app._row_objs[c_["id"]].row
+    assert abs(row_.cget("width") - tw_) <= 10 and row_.cget("height") == th_, (row_.cget("width"), row_.cget("height"), tw_, th_)
+    assert abs(row_.winfo_height() - th_ * s_) <= 2, (row_.winfo_height(), th_)
+# (c) зміна розміру сторінки вибору: десятки <Configure> поспіль → 1–2 розкладки, остання — за найсвіжішим розміром
+arr_ = []
+saved_arr_ = cm.App._arrange_cats
+cm.App._arrange_cats = lambda self: (arr_.append(1), saved_arr_(self))[1]
+w0_, h0_ = app.left._canvas.winfo_width(), app.left._canvas.winfo_height()
+for k_ in range(20):
+    app._on_left_resize(SimpleNamespace(widget=app.left._canvas, width=w0_ - 10 * k_, height=h0_ - 9 * k_))
+assert len(arr_) <= 2, len(arr_)
+pump(300)
+assert app._pick_w == int((w0_ - 190) / s_) and app._pick_h == int((h0_ - 171) / s_), (app._pick_w, app._pick_h)
+assert app._cat_sig[2:4] == app._tile_dims()[0:3:2], (app._cat_sig, app._tile_dims())
+cm.App._arrange_cats = saved_arr_
+root.geometry("1400x760+0+0")                      # справжній розмір — плитки знову за ним
+pump(500)
+assert app._cat_sig[2:4] == app._tile_dims()[0:3:2], (app._cat_sig, app._tile_dims())
+tiles_ = [app._row_objs[c_["id"]].row for c_ in app.preset.categories]
+assert abs(tiles_[0].winfo_height() - app._tile_dims()[2] * s_) <= 2
+# (d) плитки записів створюються одразу потрібної ширини (ctk малює їх один раз)
+app.select_category(p_cats[1]["id"])
+app.flush_render()
+pump(400)
+app.back_to_folders()
+pump(200)
+app.select_category(p_cats[0]["id"])              # нові картки (інша папка) за вже усталеної ширини панелі
+app.flush_render()
+pump(400)
+for iid_ in [i["id"] for i in app.shown]:
+    f_ = app._card_objs[iid_].frame
+    assert abs(f_.winfo_width() / s_ - app._rec_tile_w) <= 2, (f_.winfo_width(), app._rec_tile_w)
+    assert abs(f_.cget("width") - f_.winfo_width() / s_) <= 2, (f_.cget("width"), f_.winfo_width())
+    assert abs(f_.winfo_height() / s_ - app._rec_tile_h) <= 2, (f_.winfo_height(), app._rec_tile_h)
+# (e) render без змін не перемальовує кнопки шапки й не міняє тексти банера
+cfg_ = []
+saved_btn_cfg_ = ctk.CTkButton.configure
+ctk.CTkButton.configure = lambda self, *a, **k: (cfg_.append(k), saved_btn_cfg_(self, *a, **k))[1]
+title_ = app.title_lbl.cget("text")
+app.render()
+app.flush_render()
+app._apply_wrap()
+assert not cfg_, cfg_[:3]
+ctk.CTkButton.configure = saved_btn_cfg_
+assert app.title_lbl.cget("text") == title_ == "Швидко 1"
+app.select_category(HISTORY)                       # в історії кнопки шапки — як і раніше
+app.flush_render()
+pump(200)
+assert app.clear_btn.winfo_ismapped() and app.sel_bar.winfo_ismapped()
+assert app.clear_btn.cget("state") == ("disabled" if not app.history.items else "normal")
+# (f) клавіатурний «курсор» у форматах: після нього рамка рядка — як у звичайного (обраного / ні)
+app.back_to_folders()
+pump(200)
+app._nav_mark(HISTORY)
+app.nav_move("d")
+assert app.nav_zone == "right"
+for _ in range(len(app._fmt_order) + 1):
+    app.nav_move("s")
+app.nav_move("a")
+for fid_, r_ in app._fmt_rows.items():
+    want_ = 2 if fid_ == app.sel_format else 1
+    assert r_.row.cget("border_width") == want_, (fid_, r_.row.cget("border_width"), want_)
+root.geometry("1180x660+0+0")
+pump(400)
+print("39 folder-first speed (no re-arrange, single redraw, throttled resize, quiet header) OK")
+
 # ---- 25. справжнє розгортання під віконним менеджером (лише якщо є openbox) -------------------------------------------------------------
 import shutil  # noqa: E402
 

@@ -106,6 +106,7 @@ CELL_LINE = ("#e1e5eb", "#2c3038")   # ледь помітні рамки пор
 CELL_EXTRA_ROWS = 2          # порожніх рядів клітинок під останньою плиткою — щоб було куди перетягнути
 PICK_TILE_MAX = 300
 PICK_FONT_SIZES = (13, 14, 15, 16.5, 18, 20, 22, 24)          # … і максимальна: блок плиток стоїть по центру, а не розтягується на весь екран
+PICK_RESIZE_MS = 40           # сторінка вибору папки: розкладка плиток під час зміни розміру вікна — не частіше
 CAT_SCROLL_FACTOR = 2          # у скільки разів швидша прокрутка колесом у списку папок
 ZONE_W = 150                   # права «службова» зона картки (галочка, «⋯», «✕»): клік там нічого не копіює
 CARD_RESERVE_FOLDER = 195       # те саме для записів папок (службова зона без галочки)
@@ -1165,6 +1166,20 @@ def _eff(fill) -> object:
     return PANEL if fill == "transparent" else fill
 
 
+def _ctk_resize(frame, width: int | None = None, height: int | None = None) -> None:
+    """Новий бажаний розмір CTkFrame БЕЗ негайного перемальовування. Штатний configure(width=…, height=…) малює
+    фрейм двічі (окремо на ширину й висоту) ще за СТАРИМ розміром — справжній розмір приходить пізніше подією
+    <Configure>, і тоді ctk однаково перемальовує його вдруге. Тут: лише розмір (як у ctk), малює подія <Configure>
+    (а якщо фактичний розмір не змінився — малювати й нічого)."""
+    try:
+        ctk.CTkBaseClass._set_dimensions(frame, width, height)     # бажаний розмір + розмір самого tk.Frame
+        frame._canvas.configure(width=frame._apply_widget_scaling(frame._desired_width),
+                                height=frame._apply_widget_scaling(frame._desired_height))
+    except AttributeError:
+        kw = {k: v for k, v in (("width", width), ("height", height)) if v is not None}
+        frame.configure(**kw)
+
+
 def card_user_link(it: dict) -> bool:
     """Чи підставляє запис користувача з історії: явний прапорець запису або (за замовчуванням) заглушка «in ____»."""
     if "category" not in it and "user_link" not in it:
@@ -1196,7 +1211,8 @@ class Card:
         self.frame = f = ctk.CTkFrame(parent, corner_radius=14 if tile else 12, fg_color=self.fill, cursor="hand2",
                                       border_width=2 if selected else 1,
                                       border_color=ACCENT if selected else self.border,
-                                      **({"width": 10, "height": app._rec_tile_h} if tile else {}))
+                                      **({"width": getattr(app, "_rec_tile_w", 10), "height": app._rec_tile_h}
+                                         if tile else {}))
         f.grid_columnconfigure(1, weight=1)
         if tile:                                       # плитка — «квадрат»: зверху службова смужка зі значками, нижче текст
             f.grid_propagate(False)
@@ -1350,7 +1366,7 @@ class Card:
     def set_tile_h(self, h: int) -> None:
         if self.tile and h != getattr(self, "_tile_h", None):      # configure ctk-фрейма = повне перемалювання
             self._tile_h = h
-            self.frame.configure(height=h)
+            _ctk_resize(self.frame, height=h)                        # малює вже подія <Configure> — один раз
 
     def _draw_check(self) -> None:
         """Галочка: заокруглений квадрат — порожній (рамка) або заповнений акцентом із білою «пташкою»."""
@@ -1514,16 +1530,23 @@ class SideRow:
             app._bind_all(parts + [self.dot], "<Button-1>", lambda e: app.select_category(key))
         app._hoverable(self.row, parts + [self.dot] + ([self.more] if self.more else []), self._enter, self._leave)
 
-    def set_size(self, height: int, wrap_px: int, font=None) -> None:
-        """Лише для плиток: висота «квадрата», ширина переносу назви й шрифт (на сторінці вибору папки — більший)."""
+    def set_size(self, height: int, wrap_px: int, font=None, width: int | None = None) -> None:
+        """Лише для плиток: висота «квадрата», ширина переносу назви й шрифт (на сторінці вибору папки — більший).
+        width — бажана ширина плитки (сторінка вибору папки); None — не змінювати."""
         font = font or self.app.pf.bold
         if font is not getattr(self, "_font", None):
             self._font = font
             self._size = None
             self.label.configure(font=font)
+        # ширина й висота — ОДНИМ викликом і без перемальовування за старим розміром (див. _ctk_resize)
+        w = width if width is not None and width != getattr(self, "_width", None) else None
+        h = height if height != getattr(self, "_height", None) else None
+        if w is not None or h is not None:
+            _ctk_resize(self.row, w, h)
+            if w is not None:
+                self._width = w
+            self._height = height
         if (height, wrap_px) != getattr(self, "_size", None):
-            if height != (getattr(self, "_size", None) or (None,))[0]:
-                self.row.configure(height=height)
             self._size = (height, wrap_px)
             self.label.configure(wraplength=wrap_px, text=self._tile_text())
 
@@ -2786,6 +2809,9 @@ class App:
             tile_w = (usable - 12 - (cols - 1) * gap) / cols
             self._rec_cols = cols
             self._rec_tile_h = int(max(104, min(190, tile_w * 0.66)))
+            # ширина, яку плитці фактично дасть сітка (рівні колонки на всю ширину полотна, padx=6 з кожного боку):
+            # плитка одразу створюється такою — ctk малює її один раз, а не спершу вузькою, а потім ще раз
+            self._rec_tile_w = max(10, int((usable + 14) / cols) - 12)
             return 6, int(max(90, tile_w - 48))
         pad = max(6, (usable - CARD_MAX) // 2)
         reserve = CARD_RESERVE if self._is_history() else CARD_RESERVE_FOLDER     # у папках немає великої галочки
@@ -3043,6 +3069,11 @@ class App:
         """Розкладає рядки/плитки папок у лівій колонці (список — pack, плитки — grid по 2 або 3 в ряд)."""
         wanted = self._row_order
         picking = self._picking()
+        if self.folder_first and not picking:
+            # сторінка записів: ліва колонка схована — розкладати плитки нема для кого (раніше тут їх щоразу
+            # перекладало в «класичні» 2–3 в ряд, а при поверненні — назад: ~25 перемальовувань ctk-фреймів туди й
+            # назад). Розкладка сторінки вибору лишається як є і при поверненні не потребує жодної роботи.
+            return
         top = 0
         if self.cat_tiles:
             cols, tile_w, th = self._tile_dims()
@@ -3080,9 +3111,7 @@ class App:
             font = self.pf.pick if picking else self.pf.bold
             for i, key in enumerate(wanted):
                 obj = self._row_objs[key]
-                obj.set_size(th, wrap, font)
-                if picking:
-                    obj.row.configure(width=int(tile_w))
+                obj.set_size(th, wrap, font, int(tile_w) if picking else None)
                 obj.row.grid(row=i // cols, column=off + i % cols, padx=3, pady=3, sticky="nsew")
                 obj.row.grid_propagate(False)               # висота плитки фіксована
         else:
@@ -3541,7 +3570,7 @@ class App:
         have = [i for i in ids if i in self._card_objs]
         if self.rec_tiles:
             self._packed = have
-            self._regrid_cards()
+            self._regrid_cards(cells_ready=cells)
         else:
             if self._cell_ph:
                 self._sync_cells()                 # рамки клітинок (grid) — геть до pack карток
@@ -3578,14 +3607,16 @@ class App:
         else:
             self._finish_render()
 
-    def _regrid_cards(self) -> None:
-        """Плитки: розставляє вже створені картки за номером у списку, виставляє висоту й рівні колонки."""
+    def _regrid_cards(self, cells_ready: bool = False) -> None:
+        """Плитки: розставляє вже створені картки за номером у списку, виставляє висоту й рівні колонки.
+        cells_ready — клітинки щойно пораховано (_render_list_now), вдруге не рахуємо."""
         cols = self._rec_cols
         for c in range(5):
             self.cards.grid_columnconfigure(c, weight=1 if c < cols else 0, uniform="rectile" if c < cols else "")
         cells = self._cells_on()
-        if cells:
-            self._compute_cells([i for i in self.shown if i["id"] in set(self._order)])
+        if cells and not cells_ready:
+            order = set(self._order)                   # множина — один раз, а не на кожен запис (було O(n²))
+            self._compute_cells([i for i in self.shown if i["id"] in order])
         for i, iid in enumerate(self._order):
             card = self._card_objs.get(iid)
             if card is None:
@@ -3643,7 +3674,9 @@ class App:
             self._cell_ph.pop(rc).destroy()
         s = self.scaling()
         h, pad = int(self._rec_tile_h * s), int(6 * s)
-        for rc in sorted(want):
+        same_h = h == getattr(self, "_cell_ph_h", None)     # висота наявних рамок уже та — не питаємо кожну (cget)
+        self._cell_ph_h = h
+        for rc in sorted(want - self._cell_ph.keys()) if same_h else sorted(want):
             ph = self._cell_ph.get(rc)
             if ph is None:
                 ph = self._cell_ph[rc] = tk.Frame(self.cards, bg=self.col(PANEL), height=h, highlightthickness=1,
@@ -3780,29 +3813,44 @@ class App:
         n = len(self.checked)
         wide = self._mid_w >= WIDE_HEADER
         can = n >= 2
-        for w in (self.clear_btn, self.merge_btn):
-            if w.winfo_manager():
-                w.pack_forget()
+        # викликається на кожен render і зміну ширини: configure ctk-кнопки = повне перемалювання, а pack_forget/pack —
+        # перерозкладка шапки, тож усе це — лише коли щось справді змінилось
+        packed = (bool(self.clear_btn.winfo_manager()), bool(self.merge_btn.winfo_manager()))
+        if packed != (in_hist, in_hist and wide):
+            for w in (self.clear_btn, self.merge_btn):
+                if w.winfo_manager():
+                    w.pack_forget()
+            if in_hist:
+                self.clear_btn.pack(side="right", padx=(0, 8))
+                if wide:
+                    self.merge_btn.pack(side="right", padx=(0, 8))
         label = f"Об'єднати і копіювати ({n})" if n else "Об'єднати і копіювати"
-        for btn in (self.merge_btn, self.merge_btn2):
-            btn.configure(text=label, state="normal" if can else "disabled",
-                          fg_color=ACCENT if can else BTN2, text_color="#ffffff" if can else FAINT)
+        if getattr(self, "_merge_sig", None) != (label, can):
+            self._merge_sig = (label, can)
+            for btn in (self.merge_btn, self.merge_btn2):
+                btn.configure(text=label, state="normal" if can else "disabled",
+                              fg_color=ACCENT if can else BTN2, text_color="#ffffff" if can else FAINT)
         if in_hist:
             empty = not self.history.items
-            self.clear_btn.configure(state="disabled" if empty else "normal",
-                                     border_color=FAINT if empty else DANGER)
-            self.clear_btn.pack(side="right", padx=(0, 8))
-            if wide:
-                self.merge_btn.pack(side="right", padx=(0, 8))
+            if getattr(self, "_clear_sig", None) != empty:
+                self._clear_sig = empty
+                self.clear_btn.configure(state="disabled" if empty else "normal",
+                                         border_color=FAINT if empty else DANGER)
         # рядок вибору під шапкою
         if in_hist:
             all_on = bool(self.shown) and all(i["id"] in self.checked for i in self.shown)
-            self.sel_all_btn.configure(text="Зняти вибір" if all_on else "Вибрати все")
-            self.sel_count.configure(text=f"Вибрано: {n}" if n else "")
-            if self.merge_btn2.winfo_manager():
-                self.merge_btn2.pack_forget()
-            if not wide:
-                self.merge_btn2.pack(side="right")
+            sel_text = "Зняти вибір" if all_on else "Вибрати все"
+            if getattr(self, "_sel_all_text", None) != sel_text:
+                self._sel_all_text = sel_text
+                self.sel_all_btn.configure(text=sel_text)
+            count_text = f"Вибрано: {n}" if n else ""
+            if self.sel_count.cget("text") != count_text:
+                self.sel_count.configure(text=count_text)
+            if bool(self.merge_btn2.winfo_manager()) != (not wide):
+                if self.merge_btn2.winfo_manager():
+                    self.merge_btn2.pack_forget()
+                if not wide:
+                    self.merge_btn2.pack(side="right")
             if not self.sel_bar.winfo_manager():
                 self.sel_bar.pack(fill="x", padx=18, pady=(0, 6), before=self.cards._parent_frame)
         elif self.sel_bar.winfo_manager():
@@ -4125,7 +4173,8 @@ class App:
             self.cat_view_btn.pack_forget()            # у режимі папок вони завжди плитками
         elif not self.folder_first and not self.cat_view_btn.winfo_manager():
             self.cat_view_btn.pack(side="right", padx=(0, 6))
-        self._cat_sig = None
+        # підпис розкладки (_cat_sig) уже враховує сторінку, режим і розміри: та сама сторінка вибору папки
+        # після повернення із записів — нічого не перекладаємо й не перемальовуємо
         self._arrange_cats()
         self._sync_banner()
         self._sync_title()
@@ -4180,29 +4229,48 @@ class App:
         w, h = int(e.width / self.scaling()), int(e.height / self.scaling())
         if w > 50 and (abs(w - self._pick_w) >= 4 or abs(h - getattr(self, "_pick_h", 0)) >= 8):
             self._pick_w, self._pick_h = w, h
-            self._arrange_cats()
+            # тягнуть край вікна — <Configure> приходить десятками за секунду, а кожна розкладка перемальовує всі
+            # плитки. Перша подія — одразу (без «стрибка» при розгортанні), далі — не частіше ніж раз на PICK_RESIZE_MS
+            # (остання — обов'язково, за найсвіжішим розміром)
+            if getattr(self, "_pick_arr_job", None) is None:
+                if (time.monotonic() - getattr(self, "_pick_arr_t", 0.0)) * 1000 >= PICK_RESIZE_MS:
+                    self._pick_arr_t = time.monotonic()
+                    self._arrange_cats()
+                else:
+                    self._pick_arr_job = self.root.after(PICK_RESIZE_MS, self._pick_arrange)
         if getattr(self, "_pick_job", None) is None:      # після розкладки: смуга прокрутки й «Історія» над плитками
             self._pick_job = self.root.after(60, self._after_pick_resize)
 
+    def _pick_arrange(self) -> None:
+        self._pick_arr_job = None
+        self._pick_arr_t = time.monotonic()
+        if self._picking():
+            self._arrange_cats()
+            if getattr(self, "_pick_job", None) is None:
+                self._pick_job = self.root.after(60, self._after_pick_resize)
+
     def _after_pick_resize(self) -> None:
         self._pick_job = None
+        if getattr(self, "_pick_arr_job", None) is not None:
+            return                                     # розкладка ще попереду — вона й запланує цей крок після себе
         self._sync_scrollbars()
         self._center_history()
 
     def _sync_title(self) -> None:
         """Назва в банері: на сторінці вибору папки — «Оберіть папку» й кількість папок."""
         if self._picking():
-            self.title_lbl.configure(text="Оберіть папку")
-            self.count_lbl.configure(text=str(len(self.preset.categories)))
+            title, count = "Оберіть папку", str(len(self.preset.categories))
             keys = "Alt+W/A/S/D — навігація · Space — відкрити папку · Esc — сховати"
         else:
-            self.title_lbl.configure(text=self._view_name())
-            self.count_lbl.configure(text=str(len(self.shown)))
+            title, count = self._view_name(), str(len(self.shown))
             keys = ("Alt+W/A/S/D — навігація · Space — копіювати · " +
                     ("Esc — до папок" if self.folder_first else "Alt+Space — копіювати й сховати") +
                     " · Alt+Enter — формат + фрази")
-        if self.keys_lbl.cget("text") != keys:
-            self.keys_lbl.configure(text=keys)
+        # викликається на кожен render і перехід між сторінками: той самий текст — без configure (і без
+        # перерахунку розміру міток та перемальовування банера)
+        for lbl, text in ((self.title_lbl, title), (self.count_lbl, count), (self.keys_lbl, keys)):
+            if lbl.cget("text") != text:
+                lbl.configure(text=text)
         self._fit_banner()
 
     # -- клавіатурна навігація по правій колонці: формати й швидкі фрази --------------------------------
@@ -4271,6 +4339,10 @@ class App:
                     return
                 if on:
                     row.row.configure(border_width=3, border_color=ACCENT)
+                elif row.sig == (fmt["name"], fmt["color"], fmt.get("type"), key == self.sel_format):
+                    # «курсор» змінив лише рамку — повертаємо лише рамку (одне перемальовування замість трьох)
+                    row.row.configure(border_width=2 if row.selected else 1,
+                                      border_color=ACCENT if row.selected else row.border)
                 else:
                     row.sig = None
                     row.update(fmt, key == self.sel_format)
