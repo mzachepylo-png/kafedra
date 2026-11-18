@@ -45,6 +45,8 @@ DEFAULT_PHRASES = [
     {"id": "ph-noactive", "text": "No active subscriptions."},
 ]
 MAX_PHRASE = 1000
+MAX_CELL_ROW = 400        # межі сітки плиток папки (рядок, колонка)
+MAX_CELL_COL = 12
 TOS_MIGRATION = "tos-reasons-v1"
 _TOS_TAIL = re.compile(r"due to TOS Violation\s*,\s*$", re.IGNORECASE)
 REMOVED_BUILTIN_FORMATS = {"builtin-test-cards"}     # перенесено в меню «Об'єднати і копіювати» (з історії)
@@ -164,6 +166,10 @@ class Preset:
                         snip["v2"] = v2                  # копіпаста v.2: основний текст + дерево аппендів
                     if isinstance(s.get("user_link"), bool):
                         snip["user_link"] = s["user_link"]   # підставляти користувача з історії (in {LINK:USER:…:E})
+                    cell = s.get("cell")
+                    if (isinstance(cell, list) and len(cell) == 2 and all(type(v) is int for v in cell)
+                            and 0 <= cell[0] < MAX_CELL_ROW and 0 <= cell[1] < MAX_CELL_COL):
+                        snip["cell"] = list(cell)            # місце плитки в сітці папки (режим «спочатку папка»)
                     snippets.append(snip)
             cats.append({"id": cid, "name": str(c["name"])[:MAX_CATEGORY_NAME],
                          "color": c["color"] if _color_ok(c.get("color")) else PALETTE[n % len(PALETTE)],
@@ -186,6 +192,10 @@ class Preset:
                     ph = {"id": str(p.get("id") or uuid.uuid4().hex), "text": p["text"].strip()[:MAX_PHRASE]}
                     if isinstance(p.get("part"), str) and p["part"].strip():
                         ph["part"] = p["part"].strip()
+                    if _color_ok(p.get("color")):
+                        ph["color"] = p["color"]                 # власний колір фрази
+                    if isinstance(p.get("user_link"), bool) and p["user_link"]:
+                        ph["user_link"] = True                   # дописувати користувача з історії
                     self.phrases.append(ph)
         else:
             self.phrases = [dict(p) for p in DEFAULT_PHRASES]
@@ -256,6 +266,54 @@ class Preset:
             self.save()
             return True
         return False
+
+    def _phrase(self, phrase_id: str) -> dict | None:
+        return next((p for p in self.phrases if p["id"] == phrase_id), None)
+
+    def set_phrase_color(self, phrase_id: str, color: str | None) -> bool:
+        """Власний колір фрази; None — прибрати."""
+        ph = self._phrase(phrase_id)
+        if not ph or (color is not None and not _color_ok(color)):
+            return False
+        if color is None:
+            ph.pop("color", None)
+        else:
+            ph["color"] = color.lower()
+        self.save()
+        return True
+
+    def set_phrase_user_link(self, phrase_id: str, on: bool) -> bool:
+        """Дописувати до фрази користувача з історії ({LINK:USER:…:E}) або заповнювати ним «___»."""
+        ph = self._phrase(phrase_id)
+        if not ph:
+            return False
+        if on:
+            ph["user_link"] = True
+        else:
+            ph.pop("user_link", None)
+        self.save()
+        return True
+
+    def set_snippet_cells(self, cells: dict) -> bool:
+        """Місця плиток у сітці папки: {snippet_id: (рядок, колонка) | None}. Один запис на диск."""
+        changed = False
+        for sid, cell in cells.items():
+            found = self.find_snippet(sid)
+            if not found:
+                continue
+            snip = found[1]
+            if cell is None:
+                changed |= snip.pop("cell", None) is not None
+                continue
+            r, c = int(cell[0]), int(cell[1])
+            if not (0 <= r < MAX_CELL_ROW and 0 <= c < MAX_CELL_COL):
+                continue
+            if snip.get("cell") != [r, c]:
+                snip["cell"] = [r, c]
+                changed = True
+        if changed:
+            self.save()
+        return changed
 
     def remove_phrase(self, phrase_id: str) -> bool:
         before = len(self.phrases)
@@ -665,6 +723,7 @@ DEFAULT_SETTINGS = {
     "left_w": 0,            # ширина лівої колонки, яку виставив користувач (0 — автоматично)
     "phrases_collapsed": False,  # швидкі фрази згорнуто
     "clear_on_exit": True,  # очищати історію буфера при закритті (виході) програми; згортання історію не чіпає
+    "pick_font": 16.5,      # розмір назв папок на сторінці вибору папки (режим «спочатку папка»)
     "folder_first": True,   # режим «спочатку папка»: при відкритті — лише вибір папки, записи після вибору (Esc — назад)
 }
 

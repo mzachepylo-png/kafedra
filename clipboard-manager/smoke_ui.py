@@ -3468,11 +3468,11 @@ row0 = next(iter(app._phrase_rows.values()))
 ctk.set_appearance_mode("dark")
 app._set_dark(True)
 pump(300)
-assert row0["dele"].cget("bg") == row0["frame"].cget("bg") == row0["edit"].cget("bg"), "темна тема: фон значків = фон рядка"
+assert row0["more"].cget("bg") == row0["frame"].cget("bg"), "темна тема: фон значка = фон рядка"
 ctk.set_appearance_mode("light")
 app._set_dark(False)
 pump(300)
-assert row0["dele"].cget("bg") == row0["frame"].cget("bg")
+assert row0["more"].cget("bg") == row0["frame"].cget("bg")
 assert app.phrase_list.pack_info()["padx"] in (2, "2")
 print("36d/e QA fixes (auto-collapse phrases, themed icons, panel borders) OK")
 settings["autohide"] = True
@@ -3622,6 +3622,165 @@ assert app.left.winfo_width() < app.mid.winfo_width() + 600
 root.geometry("1180x660+0+0")
 pump(400)
 print("37 folder-first mode OK")
+
+# ---- 38. раунд 15: DPI не повертає сховану панель, гаряча клавіша → вибір папки, ✕ чистить історію, меню стежать
+#          за курсором, фрази «⋯» (колір, користувач), розмір назв папок, сітка клітинок записів ---------------------
+settings["autohide"] = False
+app.hotkey_ok = False
+root.geometry("1500x800+0+0")
+pump(400)
+app.show_window()
+g_cats = [cat_named(n) for n in ("Сітка А", "Сітка Б")]
+for c_ in g_cats:
+    for n_ in range(3):
+        app.preset.add_snippet(c_["id"], f"{c_['name']} плитка {n_}")
+app.set_folder_first(True)
+app.set_rec_view("tiles")
+app.flush_render()
+pump(300)
+# (a) зміна масштабу (DPI): ctk повторює останній grid() віджета — схована панель записів не має повертатись
+assert app.page == "folders" and not app.mid.winfo_ismapped()
+assert app.mid._last_geometry_manager_call is None
+app.mid._set_scaling(1.0, 1.0)
+app.left._set_scaling(1.0, 1.0)
+pump(200)
+assert not app.mid.winfo_ismapped() and app.left.winfo_ismapped(), "після зміни DPI — лише папки"
+assert cm.DPI_HOOKS.get(root) is not None
+# (b) вікно лишилось відкритим у папці (без автоховання) — гаряча клавіша однаково веде до вибору папки
+app.select_category(g_cats[0]["id"])
+app.flush_render()
+pump(200)
+assert app.page == "records"
+app.show_window()
+pump(100)
+assert app.page == "folders"
+# (c) ✕ вікна (закриття, не згортання): історія очищується
+app.hotkey_ok = True
+app.history.add("перед закриттям")
+saved_hide_ = app.hide_window
+app.hide_window = lambda: None
+app.on_close()
+assert app.history.items == [], "✕ очищує історію"
+app.hide_window = saved_hide_
+app.hotkey_ok = False
+# (d) меню стежать за курсором: підменю відкривається/закривається, вихід за межі — меню закривається
+app.select_category(g_cats[0]["id"])
+app.flush_render()
+pump(200)
+iid_ = app.shown[0]["id"]
+ptr_ = [(5, 5)]
+root.winfo_pointerxy = lambda: ptr_[0]            # курсор — під контролем тесту (справжній десь на екрані)
+fake_show_ = cm.PopupMenu.show
+cm.PopupMenu.show = REAL_POPUP_SHOW                # справжнє меню (вище в смоуку його підмінено на запис моделі)
+app.show_menu(300, 200, iid_)
+assert app._popups, "меню відкрилось"
+pop_ = app._popups[0]
+pump(200)
+assert app._popups, ("меню не закрилось саме", app._recent_log()[-5:] if hasattr(app, "_recent_log") else "")
+casc_ = next(i for i, (it, _, _) in enumerate(pop_.rows) if it.kind == "cascade")
+plain_ = next(i for i, (it, _, _) in enumerate(pop_.rows) if it.kind != "cascade")
+def row_xy(p, i):
+    r = p.rows[i][1]
+    return r.winfo_rootx() + 20, r.winfo_rooty() + r.winfo_height() // 2
+ptr_[0] = row_xy(pop_, casc_)
+pump(450)
+assert pop_.child is not None, "наведення на «Перемістити…» відкриває підменю"
+ptr_[0] = row_xy(pop_, plain_)
+pump(450)
+assert pop_.child is None, "курсор на іншому пункті — підменю закрилось"
+ptr_[0] = (pop_.top.winfo_rootx() + pop_.top.winfo_width() + 200, pop_.top.winfo_rooty() + 5)
+pump(600)
+assert not app._popups, "курсор за межами меню — меню закрилось"
+del root.winfo_pointerxy
+cm.PopupMenu.show = fake_show_
+# (e) фрази: «⋯» замість ✎/✕, колір, користувач з історії
+row_ = app._phrase_rows["ph-noactive"]
+assert "more" in row_ and "dele" not in row_ and row_["more"].cget("text") == "⋯"
+labels_ = app._build_phrase_menu("ph-noactive").labels()
+assert labels_[0] == "Редагувати…" and "Колір фрази…" in labels_ and labels_[-1] == "Видалити фразу", labels_
+assert any("Додавати користувача з історії" in l for l in labels_)
+app._clear_refunds()
+row_["cb"].toggle()
+app.history.add("User #4321")
+app.on_phrase_user_link("ph-noactive", True)
+row_ = app._phrase_rows["ph-noactive"]
+assert row_["var"].get(), "галочка лишилась після перемалювання рядка"
+assert row_["user"] is not None
+assert app._phrase_text() == "No active subscriptions in {LINK:USER:4321:E}.", app._phrase_text()
+assert app.preset.set_phrase_color("ph-noactive", "#107c10")
+app._render_phrases()
+row_ = app._phrase_rows["ph-noactive"]
+assert row_["frame"].cget("bg") == app.col(cm.card_colors("#107c10")[0])
+from store import Preset as _P
+again_ = _P.open_or_create(app.preset.path)
+ph_ = next(p for p in again_.phrases if p["id"] == "ph-noactive")
+assert ph_.get("color") == "#107c10" and ph_.get("user_link") is True
+app.on_phrase_user_link("ph-noactive", False)
+app.preset.set_phrase_color("ph-noactive", None)
+app._render_phrases()
+app._clear_refunds()
+# (f) розмір назв папок на сторінці вибору папки
+app.back_to_folders()
+pump(200)
+app.set_pick_font(20)
+pump(200)
+tile_ = app._row_objs[g_cats[0]["id"]]
+assert tile_.label.cget("font") == str(app.pf.pick) and abs(app.pf.pick.cget("size")) == round(20 * app.scaling())
+assert settings["pick_font"] == 20.0 and app.v_pick_font.get() == "20"
+app.set_pick_font(16.5)
+# (g) сітка клітинок: вільне місце плитки, перетягування в порожню клітинку, збереження між режимами й запусками
+app.select_category(g_cats[1]["id"])
+app.flush_render()
+pump(400)
+assert app._cells_on() and app._cell_ph, "порожні клітинки видно"
+ids_ = [i["id"] for i in app.shown]
+assert [app._cell_of[i] for i in ids_] == [(0, 0), (0, 1), (0, 2)], app._cell_of
+ph_cell = app._cell_ph[(1, 1)]
+assert ph_cell.cget("highlightthickness") == 1
+x0_, y0_ = app._card_objs[ids_[0]].frame.winfo_rootx() + 30, app._card_objs[ids_[0]].frame.winfo_rooty() + 60
+x1_, y1_ = ph_cell.winfo_rootx() + 30, ph_cell.winfo_rooty() + 30
+app._drag_press(SimpleNamespace(x_root=x0_, y_root=y0_, state=0, widget=root), ids_[0])
+app._drag_motion(SimpleNamespace(x_root=x0_ + 20, y_root=y0_ + 20, state=0, widget=root))
+app._drag_motion(SimpleNamespace(x_root=x1_, y_root=y1_, state=0, widget=root))
+assert app._drag.get("cell") == (1, 1), app._drag.get("cell")
+app._drag_release(SimpleNamespace(x_root=x1_, y_root=y1_, state=0, widget=root))
+app.flush_render()
+pump(300)
+assert app._cell_of[ids_[0]] == (1, 1), app._cell_of
+assert (0, 0) in app._cell_ph and (1, 1) not in app._cell_ph
+disk_ = {s["id"]: s.get("cell") for s in _P.open_or_create(app.preset.path).category(g_cats[1]["id"])["snippets"]}
+assert disk_[ids_[0]] == [1, 1], disk_
+# зайнята клітинка — плитки міняються місцями
+assert app._move_to_cell(ids_[1], (1, 1))
+app.render()
+app.flush_render()
+assert app._cell_of[ids_[1]] == (1, 1) and app._cell_of[ids_[0]] == (0, 1), app._cell_of
+# Alt+S / Alt+W — до найближчої плитки в напрямку
+app.sel_id = ids_[0]
+app.nav_move("s")
+assert app.sel_id == ids_[1]
+app.nav_move("w")
+assert app.sel_id in (ids_[0], ids_[2])
+# класичний вигляд — звичайний порядок без клітинок; назад — розкладка та сама
+app.set_folder_first(False)
+app.flush_render()
+pump(300)
+assert not app._cell_ph and not app._cells_on()
+app.set_folder_first(True)
+app.select_category(g_cats[1]["id"])
+app.flush_render()
+pump(300)
+assert app._cell_of[ids_[1]] == (1, 1) and app._cell_ph
+# список замість плиток — без клітинок (і без конфлікту pack/grid)
+app.set_rec_view("list")
+app.flush_render()
+pump(200)
+assert not app._cell_ph
+app.set_rec_view("tiles")
+app.back_to_folders()
+root.geometry("1180x660+0+0")
+pump(400)
+print("38 DPI/hotkey page/close/menus/phrases/font/cells OK")
 
 # ---- 25. справжнє розгортання під віконним менеджером (лише якщо є openbox) -------------------------------------------------------------
 import shutil  # noqa: E402

@@ -851,5 +851,53 @@ class FolderFirstSettingTest(unittest.TestCase):
         self.assertIs(Settings(path)["folder_first"], False)
 
 
+class Round15StoreTest(unittest.TestCase):
+    def _preset(self):
+        import tempfile
+        from store import Preset
+        d = tempfile.mkdtemp()
+        return Preset.open_or_create(os.path.join(d, "t.preset.json")), Preset
+
+    def test_phrase_color_and_user_link_persist(self):
+        p, Preset = self._preset()
+        self.assertTrue(p.set_phrase_color("ph-noactive", "#10AA20"))
+        self.assertTrue(p.set_phrase_user_link("ph-noactive", True))
+        self.assertFalse(p.set_phrase_color("ph-noactive", "red"))
+        again = Preset.open_or_create(p.path)
+        ph = next(x for x in again.phrases if x["id"] == "ph-noactive")
+        self.assertEqual((ph.get("color"), ph.get("user_link")), ("#10aa20", True))
+        again.set_phrase_color("ph-noactive", None)
+        again.set_phrase_user_link("ph-noactive", False)
+        ph = next(x for x in Preset.open_or_create(p.path).phrases if x["id"] == "ph-noactive")
+        self.assertNotIn("color", ph)
+        self.assertNotIn("user_link", ph)
+
+    def test_snippet_cells_saved_and_validated(self):
+        p, Preset = self._preset()
+        c = p.add_category("Сітка")
+        a = p.add_snippet(c["id"], "a")
+        b = p.add_snippet(c["id"], "b")
+        self.assertTrue(p.set_snippet_cells({a["id"]: (2, 1), b["id"]: (0, 0)}))
+        self.assertFalse(p.set_snippet_cells({a["id"]: (2, 1)}))           # без змін — без запису
+        again = Preset.open_or_create(p.path)
+        cells = {s["id"]: s.get("cell") for s in again.category(c["id"])["snippets"]}
+        self.assertEqual(cells, {a["id"]: [2, 1], b["id"]: [0, 0]})
+        import json
+        with open(p.path, encoding="utf-8") as f:
+            data = json.load(f)
+        data["categories"][0]["snippets"][0]["cell"] = [1, 99]               # поза межами — відкидається
+        data["categories"][0]["snippets"][1]["cell"] = "x"
+        with open(p.path, "w", encoding="utf-8") as f:
+            json.dump(data, f)
+        bad = Preset.open_or_create(p.path)
+        self.assertTrue(all("cell" not in s for s in bad.category(c["id"])["snippets"]))
+
+    def test_pick_font_default(self):
+        import tempfile
+        from store import Settings
+        st = Settings(os.path.join(tempfile.mkdtemp(), "s.json"))
+        self.assertEqual(st["pick_font"], 16.5)
+
+
 if __name__ == "__main__":
     unittest.main()
