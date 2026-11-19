@@ -229,7 +229,7 @@ app.select_category(work["id"])
 snip_id = app.shown[0]["id"]
 app.show_menu(10, 10, snip_id)
 m = popups[-1]
-assert labels(m) == ["Копіювати", "Редагувати…", "Додати аппенди…", "Конструктор…", "Додавати користувача з історії (in {LINK:USER:…:E})", "Колір запису…", "Перемістити в категорію", "Вгору", "Вниз",
+assert labels(m) == ["Копіювати", "Редагувати…", "Додати аппенди…", "Конструктор…", "Додавати користувача з історії (in {LINK:USER:…:E})", "Колір запису…", "Колір рамки…", "Перемістити в категорію", "Вгору", "Вниз",
                      "Видалити"], labels(m)
 sub = submenu(m, "Перемістити в категорію")
 assert labels(sub) == ["Робота", "Особисте", "＋ Нова категорія…"], labels(sub)
@@ -255,7 +255,7 @@ invoke(popups[-1], "Вгору")
 assert preset.snippets(work["id"])[0]["text"] == "Другий запис"
 # меню категорії
 app.show_category_menu(5, 5, work["id"])
-assert labels(popups[-1]) == ["Перейменувати…", "Колір…", "Фігура…", "Перемістити вгору", "Перемістити вниз",
+assert labels(popups[-1]) == ["Перейменувати…", "Колір…", "Фігура…", "Колір рамки…", "Перемістити вгору", "Перемістити вниз",
                               "Видалити категорію…"], labels(popups[-1])
 answers[:] = ["Робота 2"]
 invoke(popups[-1], "Перейменувати…")
@@ -865,9 +865,11 @@ for mode, ci in (("light", 0), ("dark", 1)):
     assert contrast(cm.TEXT[ci], cm.CARD[ci]) >= 7, (mode, "text")
     for color in cm.SWATCHES:                       # навіть на найсильнішому відтінку текст лишається читабельним
         for lv_ in range(len(cm.COLOR_LEVELS)):      # усі рівні насиченості (⚙ → «Насиченість кольорів»)
-            bg = cm.tint(color, *cm.COLOR_LEVELS[lv_][1])[ci]
-            assert contrast(cm.TEXT[ci], bg) >= 4.5, (mode, color, lv_)
-            assert contrast(cm.META[ci], bg) >= (3.2 if lv_ <= 1 else 2.8), (mode, color, lv_)
+            for t_ in (0, 1):                         # фон і фон при наведенні; текст — під фон (cm.ink)
+                bgt = cm.tint(color, *cm.COLOR_LEVELS[lv_][t_])
+                bg = bgt[ci]
+                assert contrast(cm.ink(bgt)[ci], bg) >= 4.5, (mode, color, lv_)
+                assert contrast(cm.ink(bgt, "meta")[ci], bg) >= 2.95, (mode, color, lv_)
 for w, h in ((1180, 660), (1040, 520)):
     root.geometry(f"{w}x{h}+0+0")
     pump(500)
@@ -977,7 +979,8 @@ assert app.preset.category(cB["id"])["color"] == "#00b294"
 assert Preset.open(app.preset.path).category(cB["id"])["color"] == "#00b294", "колір записано у файл"
 fill, hover, sel_fill, border = cm.row_colors("#00b294")
 assert app._rows[cB["id"]].cget("fg_color") == fill and fill != "transparent", "рядок категорії підфарбовано її кольором"
-assert app._rows[cA["id"]].cget("border_width") == 2 and app._rows[cB["id"]].cget("border_width") == 1, "вибрана категорія виділена"
+assert app._rows[cA["id"]].cget("border_width") == cm.border_width(True) and \
+    app._rows[cB["id"]].cget("border_width") == cm.border_width(), "вибрана категорія виділена"
 assert app._rows[cA["id"]].cget("fg_color") == cm.row_colors(cA["color"])[2], "вибраний рядок має сильніший відтінок"
 asked.clear()
 fsw = app._swatches["fmt:builtin-user"]
@@ -1400,7 +1403,7 @@ app.show_menu(root.winfo_rootx() + 500, root.winfo_rooty() + 300, sid)
 pop = app._popups[-1]
 pump(150)
 assert pop.top.winfo_viewable() and pop.top.winfo_width() >= 250 * sc - 2
-assert [i.label for i, _, _ in pop.rows] == ["Копіювати", "Редагувати…", "Додати аппенди…", "Конструктор…", "Додавати користувача з історії (in {LINK:USER:…:E})", "Колір запису…", "Перемістити в категорію",
+assert [i.label for i, _, _ in pop.rows] == ["Копіювати", "Редагувати…", "Додати аппенди…", "Конструктор…", "Додавати користувача з історії (in {LINK:USER:…:E})", "Колір запису…", "Колір рамки…", "Перемістити в категорію",
                                               "Вгору", "Вниз", "Видалити"]
 for item, row, parts in pop.rows:
     assert row.winfo_height() >= 40 * sc - 1, (item.label, row.winfo_height())
@@ -2738,8 +2741,8 @@ app.flush_render()
 pump(200)
 app.hotkey_ok = True
 c0 = app._card_objs[snips32[0]["id"]]
-c0.body.event_generate("<ButtonPress-1>", x=8, y=8, state=0x4)
-c0.body.event_generate("<ButtonRelease-1>", x=8, y=8, state=0x4)
+c0.body.event_generate("<ButtonPress-1>", x=8, y=8, state=cm.ALT_MASK)
+c0.body.event_generate("<ButtonRelease-1>", x=8, y=8, state=cm.ALT_MASK)
 pump(300)
 assert root.clipboard_get() == "ctrl-запис 0" and app._hidden and root.state() == "withdrawn", "Ctrl+клік копіює й згортає"
 app.show_window()
@@ -2762,7 +2765,7 @@ tx, ty = fr2.winfo_rootx() + fr2.winfo_width() // 2, fr2.winfo_rooty() + fr2.win
 app._drag_press(ev(sx, sy), ids0[0])
 app._drag_motion(ev(sx + 20, sy + 20))
 app._drag_motion(ev(tx, ty))
-assert app._drag["reorder"] == 2 and app._card_objs[ids0[2]].frame.cget("border_width") == 3, "плитка-ціль підсвічена"
+assert app._drag["reorder"] == 2 and app._card_objs[ids0[2]].frame.cget("border_width") == cm.border_width(True) + 1, "плитка-ціль підсвічена"
 app._drag_release(ev(tx, ty))
 pump(300)
 ids1 = [i["id"] for i in app.preset.snippets(ctrl_cat["id"])]
@@ -2949,7 +2952,7 @@ assert not app._hidden and root.state() != "withdrawn", "кінцевий апп
 assert card33.flash_lbl is None or True
 # Ctrl + клік по кінцевому — копіює і ховає вікно програми
 app.hotkey_ok = True
-root.after(500, guard(lambda: opt(v2dlg(), "зелений").event_generate("<Button-1>", x=5, y=5, state=0x4)))
+root.after(500, guard(lambda: opt(v2dlg(), "зелений").event_generate("<Button-1>", x=5, y=5, state=cm.ALT_MASK)))
 real_click(card33.body)
 pump(300)
 assert root.clipboard_get() == "Основний текст зелений" and app._hidden, "Ctrl+клік по кінцевому ховає вікно"
@@ -2986,8 +2989,8 @@ assert not err33, err33
 assert log33b == ["Основний 2 завжди", "Основний 2 завжди"], log33b
 assert root.clipboard_get() == "Основний 2 кінець завжди", root.clipboard_get()
 # Ctrl + клік по самій картці v.2 — лише основний текст, і вікно ховається
-card33.body.event_generate("<ButtonPress-1>", x=8, y=8, state=0x4)
-card33.body.event_generate("<ButtonRelease-1>", x=8, y=8, state=0x4)
+card33.body.event_generate("<ButtonPress-1>", x=8, y=8, state=cm.ALT_MASK)
+card33.body.event_generate("<ButtonRelease-1>", x=8, y=8, state=cm.ALT_MASK)
 pump(300)
 assert root.clipboard_get() == "Основний текст" and app._hidden
 app.show_window()
@@ -4378,7 +4381,7 @@ sd42._sync_v2("none")
 assert sd42.ctor_btn.cget("text") == "Конструкти… (1)"
 sd42.ok()
 assert sd42.result[3] == {"options": [{"id": sd42.result[3]["options"][0]["id"], "text": "abc d"}]}, sd42.result
-# Ctrl+клік по конструктору — лише стовбур (без вікна)
+# Alt+клік по конструктору — лише стовбур (без вікна)
 app.copy_item(sn42["id"], hide=True)
 assert root.clipboard_get() == ROOT42
 app.show_window()
@@ -4440,24 +4443,28 @@ app.render()
 app.flush_render()
 pump(200)
 c43 = app._card_objs[sn43["id"]]
-assert c43.body.cget("text").startswith(cm.shape_for_color(f43["color"]) + "  "), c43.body.cget("text")
+assert c43.icon.cget("text") == cm.shape_for_color(f43["color"]) and c43.icon.winfo_ismapped(), c43.icon.cget("text")
+assert c43.body.cget("text") == "Запис 43" and abs(app.pf.card_shape.cget("size")) < abs(app.pf.shape.cget("size"))
 app.preset.set_snippet_color(sn43["id"], "#e81123")
 app.render()
 app.flush_render()
-assert app._card_objs[sn43["id"]].body.cget("text").startswith("✚  "), "фігура змінюється разом з кольором"
+assert app._card_objs[sn43["id"]].icon.cget("text") == "✚", "фігура змінюється разом з кольором"
 cc43 = app._card_objs[ct43["id"]]
 assert cc43.badge is not None and cc43.badge.winfo_ismapped() and "КОНСТРУКТОР" in cc43.badge.cget("text")
 assert "конструктор" not in cc43.body.cget("text")
 assert c43.badge is None
 # насиченість кольорів
 f1 = tup(app._cards[sn43["id"]].cget("fg_color"))
-app.set_color_level(3)
+assert f1 == tup(cm.tint("#e81123", *cm.COLOR_LEVELS[2][0])), "типова насиченість — «Сильна»"
+app.set_color_level(4)
 pump(100)
 f3 = tup(app._cards[sn43["id"]].cget("fg_color"))
-assert f3 == tup(cm.tint("#e81123", *cm.COLOR_LEVELS[3][0])) and f3 != f1, (f1, f3)
-assert settings["color_level"] == 3
+assert f3 == tup(cm.tint("#e81123", *cm.COLOR_LEVELS[4][0])) and f3 != f1, (f1, f3)
+assert settings["color_sat"] == 4
+c43m = app._card_objs[sn43["id"]]
+assert c43m.body.cget("fg") == app.col(cm.ink(cm.tint("#e81123", *cm.COLOR_LEVELS[4][0]))) == "#ffffff", "на насиченому — білий текст"
 assert tup(app._rows[f43["id"]].cget("fg_color")) in (tup(cm.row_colors(f43["color"])[0]), tup(cm.row_colors(f43["color"])[2]))
-app.set_color_level(1)
+app.set_color_level(2)
 pump(100)
 assert tup(app._cards[sn43["id"]].cget("fg_color")) == f1
 # кількість користувачів для запису; «___» — попередня механіка (лише записи з одним користувачем)
@@ -4488,7 +4495,8 @@ def tiles_script():
     assert abs(fr0.winfo_width() - fr0.winfo_height()) <= 4, (fr0.winfo_width(), fr0.winfo_height())
     assert [int(r[0].grid_info()["column"]) for r in d.rows] == [0, 1, 2, 0, 1], "сітка 3 в ряд"
     assert "✚" in lbl0.cget("text"), "фігура кольору конструкту"
-    assert str(fr0.cget("bg")) == app.col(cm.tint("#e81123", *cm.COLOR_LEVELS[1][0]))
+    assert str(fr0.cget("bg")) == app.col(cm.tint("#e81123", *cm.COLOR_LEVELS[2][0]))
+    assert str(lbl0.cget("font")) == str(app.pf.card) and lbl0.cget("anchor") == "w", "жирний, по центру"
     d._hl(3)
     assert d.hl == 3
     d._hl(3)
@@ -4543,6 +4551,94 @@ assert app._resolve_tags("{{id43}} {{id43:1}} {{user:3}}")[0] == ("ID 7, 8 ID 7 
 app.set_folder_first(True)
 pump(200)
 print("43 shapes + constructor badge + color level + pull counts + square construct tiles OK")
+
+# ---- 44. рамки (товщина + власний колір), Alt + клік, конструктор → назад до папок, плитки папок, насиченість у кольорі ---
+err42.clear()
+assert len(cm.SHAPES) == 40 and len(set(cm.SHAPES)) == 40, "20 нових фігур"
+app.set_folder_first(False)
+app.select_category(f43["id"])
+app.flush_render()
+pump(150)
+c44 = app._card_objs[sn43["id"]]
+assert cm.border_width() == 2 and c44.frame.cget("border_width") == cm.border_width(c44.selected), "типова рамка — «Помітна» (2)"
+assert str(c44.border[0]) == "#e81123", c44.border
+app.set_border_level(3)
+pump(100)
+c44 = app._card_objs[sn43["id"]]
+assert c44.frame.cget("border_width") == cm.border_width(c44.selected) and cm.border_width() == 4 and settings["border_level"] == 3
+assert app._rows[f43["id"]].cget("border_width") == cm.border_width(app.view == f43["id"])
+# власний колір рамки запису й папки
+saved_cd = cm.ColorDialog.run
+cm.ColorDialog.run = lambda self: (self.destroy(), ("set", "#00b294"))[1]
+app.on_snippet_border(sn43["id"])
+assert app.preset.find_snippet(sn43["id"])[1]["border"] == "#00b294"
+assert tup(app._card_objs[sn43["id"]].frame.cget("border_color")) in (("#00b294", "#00b294"), tup(cm.ACCENT))
+cm.ColorDialog.run = lambda self: (self.destroy(), ("set", "#ffb900"))[1]
+app.on_category_border(f43["id"])
+assert app.preset.category(f43["id"])["border"] == "#ffb900"
+assert app._row_objs[f43["id"]].border == ("#ffb900", "#ffb900") or app.view == f43["id"]
+other44 = next(i for i in app.shown if i["id"] == ph43["id"])
+assert other44["border"] == "#ffb900", "запис без власної рамки бере рамку папки"
+cm.ColorDialog.run = lambda self: (self.destroy(), ("reset", None))[1]
+app.on_snippet_border(sn43["id"])
+assert "border" not in app.preset.find_snippet(sn43["id"])[1]
+cm.ColorDialog.run = saved_cd
+assert Preset.open(app.preset.path).category(f43["id"])["border"] == "#ffb900", "рамка папки записана у файл"
+app.set_border_level(1)
+# насиченість — і у вікні вибору кольору
+cd44 = cm.ColorDialog(app, "Колір", None)
+assert cd44.level.get() == cm.COLOR_LEVEL_SHORT[2]
+cd44._set_level(cm.COLOR_LEVEL_SHORT[3])
+assert cm._COLOR_LEVEL[0] == 3
+cd44.destroy()
+app.set_color_level(2)
+# конструктор: звичайний вибір — повідомлення і назад до папок; Alt + клік — ще й згорнути
+
+
+def leaf_click():
+    d = open_dlg(cm.CtorDialog)
+    lbl = d.rows[0][1]
+    lbl.event_generate("<Button-1>", x=5, y=5)
+
+
+app.set_folder_first(True)
+pump(200)
+app.select_category(f43["id"])
+app._set_page("records")
+pump(200)
+root.after(300, guard42(leaf_click))
+app.copy_item(ct43["id"])
+assert not err42, err42
+assert root.clipboard_get() == "Стовбур 43 червоний"
+assert app.page == "folders" and not app._hidden, "після вибору — назад до папок, програма лишається"
+assert app._toast is not None and app._toast.winfo_exists() and "Скопійовано" in app._toast.cget("text")
+
+
+def leaf_alt_click():
+    d = open_dlg(cm.CtorDialog)
+    d.rows[0][1].event_generate("<Button-1>", x=5, y=5, state=cm.ALT_MASK)
+
+
+settings["autohide"], app.hotkey_ok = True, True
+app._set_page("records")
+root.after(300, guard42(leaf_alt_click))
+app.copy_item(ct43["id"])
+assert not err42, err42
+assert app._hidden, "Alt + клік — скопіювати й згорнути"
+app.show_window()
+pump(200)
+settings["autohide"], app.hotkey_ok = False, False
+# плитки папок: фігура ліворуч від назви, назва по центру по висоті
+app._set_page("folders")
+app.flush_render()
+pump(300)
+t44 = app._row_objs[f43["id"]]
+assert t44.tile and int(t44.dot_box.grid_info()["row"]) == 1 and int(t44.label.grid_info()["row"]) == 1
+assert t44.label.cget("anchor") == "w" and t44.dot.cget("font") == str(app.pf.shape_big)
+assert t44.dot_box.winfo_rootx() < t44.label.winfo_rootx()
+app.set_folder_first(False)
+pump(200)
+print("44 borders + Alt click + ctor back to folders + folder tile shapes + saturation in color dialog OK")
 
 # ---- 25. справжнє розгортання під віконним менеджером (лише якщо є openbox) -------------------------------------------------------------
 import shutil  # noqa: E402

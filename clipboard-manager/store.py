@@ -165,6 +165,8 @@ class Preset:
                             "ts": float(s.get("ts", time.time()))}
                     if _color_ok(s.get("color")):
                         snip["color"] = s["color"]       # власний колір запису (має пріоритет над кольором папки)
+                    if _color_ok(s.get("border")):
+                        snip["border"] = s["border"]     # власний колір рамки запису
                     v2 = clean_v2(s.get("v2"))
                     if v2:
                         snip["v2"] = v2                  # копіпаста v.2: основний текст + дерево аппендів
@@ -180,10 +182,13 @@ class Preset:
                             and 0 <= cell[0] < MAX_CELL_ROW and 0 <= cell[1] < MAX_CELL_COL):
                         snip["cell"] = list(cell)            # місце плитки в сітці папки (режим «спочатку папка»)
                     snippets.append(snip)
-            cats.append({"id": cid, "name": str(c["name"])[:MAX_CATEGORY_NAME],
-                         "color": c["color"] if _color_ok(c.get("color")) else PALETTE[n % len(PALETTE)],
-                         "shape": c.get("shape") if c.get("shape") in SHAPES else None,
-                         "snippets": snippets})
+            cat = {"id": cid, "name": str(c["name"])[:MAX_CATEGORY_NAME],
+                   "color": c["color"] if _color_ok(c.get("color")) else PALETTE[n % len(PALETTE)],
+                   "shape": c.get("shape") if c.get("shape") in SHAPES else None,
+                   "snippets": snippets}
+            if _color_ok(c.get("border")):
+                cat["border"] = c["border"]               # колір рамки папки (і її записів без власної рамки)
+            cats.append(cat)
         self.categories = cats
         shaped = self._assign_shapes()
         self.formats = [dict(f, color=f["color"] if _color_ok(f.get("color")) else PALETTE[0])
@@ -589,7 +594,8 @@ class Preset:
         out = []
         for c in self.categories:
             if cat_id is None or c["id"] == cat_id:
-                out += [dict(s, category=c["id"], own_color=s.get("color"), color=s.get("color") or c["color"])
+                out += [dict(s, category=c["id"], own_color=s.get("color"), color=s.get("color") or c["color"],
+                             own_border=s.get("border"), border=s.get("border") or c.get("border"))
                         for s in c["snippets"] if not q or q in s["text"].lower()]
         return out
 
@@ -662,6 +668,30 @@ class Preset:
             found[1].pop("color", None)
         else:
             found[1]["color"] = color.lower()
+        self.save()
+        return True
+
+    def set_snippet_border(self, snippet_id: str, color: str | None) -> bool:
+        """Власний колір рамки запису. None — як у папки (або від кольору запису)."""
+        found = self.find_snippet(snippet_id)
+        if not found or (color is not None and not _color_ok(color)):
+            return False
+        if color is None:
+            found[1].pop("border", None)
+        else:
+            found[1]["border"] = color.lower()
+        self.save()
+        return True
+
+    def set_category_border(self, cat_id: str, color: str | None) -> bool:
+        """Колір рамки папки (і її записів без власної рамки). None — від кольору папки."""
+        cat = self.category(cat_id)
+        if not cat or (color is not None and not _color_ok(color)):
+            return False
+        if color is None:
+            cat.pop("border", None)
+        else:
+            cat["border"] = color.lower()
         self.save()
         return True
 
@@ -838,7 +868,8 @@ DEFAULT_SETTINGS = {
     "folder_first": True,   # режим «спочатку папка»: при відкритті — лише вибір папки, записи після вибору (Esc — назад)
     "colors_saved": [],     # власні збережені кольори (вікно вибору кольору)
     "colors_recent": [],    # історія кольорів: останні обрані, найновіший першим
-    "color_level": 1,       # насиченість кольорів карток і папок: 0 — слабка … 3 — дуже сильна
+    "color_sat": 2,         # насиченість кольорів карток і папок: 0 — слабка … 4 — максимальна
+    "border_level": 1,      # рамки карток і папок: 0 — тонка … 3 — дуже жирна
 }
 MAX_SAVED_COLORS = 24
 MAX_RECENT_COLORS = 12
