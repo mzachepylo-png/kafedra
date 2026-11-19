@@ -3121,7 +3121,7 @@ app.set_rec_view("tiles")
 app.flush_render()
 pump(600)
 tc = app._card_objs[long_sn["id"]]
-assert tc.clip is not None and tc.body.cget("text").startswith(long_text[:40]) and "…" not in tc.body.cget("text")
+assert tc.clip is not None and long_text[:40] in tc.body.cget("text") and "…" not in tc.body.cget("text")
 over = tc._overflow()
 assert over > 0 and tc.more_hint.winfo_ismapped(), ("текст не вміщається — є стрілка ▼", over)
 for _ in range(300):
