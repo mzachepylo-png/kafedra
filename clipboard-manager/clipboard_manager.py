@@ -2173,8 +2173,13 @@ class SideRow:
             self.row.grid_columnconfigure(0, weight=1)
             self.row.grid_rowconfigure(1, weight=1)
             self.bar = tk.Frame(self.row, width=0, height=0)            # не показується; потрібна лише для colorize()
-            self.dot = app._shape_button(self.row, key, big=True)
-            self.dot.grid(row=0, column=0, sticky="w", padx=(10, 0), pady=(6, 0))
+            # велика фігура — у рамці фіксованої висоти (як був кружечок): рядок не вищає й не з'їдає місце назви
+            sc = app.scaling()
+            self.dot_box = tk.Frame(self.row, width=int(34 * sc), height=int(21 * sc), bd=0, highlightthickness=0,
+                                    cursor="hand2")
+            self.dot_box.grid(row=0, column=0, sticky="w", padx=(8, 0), pady=(6, 0))
+            self.dot = app._shape_button(self.dot_box, key, big=True)
+            self.dot.place(relx=0.5, rely=0.5, anchor="center", y=int(1 * sc))
             self.more = app._icon_button(self.row, "⋯", lambda e: app.show_category_menu(e.x_root, e.y_root, key),
                                          bg_fn=lambda: app.col(_eff(self.cur)))
             self.more.grid(row=0, column=1, sticky="ne", padx=(0, 4), pady=(4, 0))
@@ -2183,14 +2188,15 @@ class SideRow:
             self.label.grid(row=1, column=0, columnspan=2, sticky="nsew", padx=(10, 6), pady=(4, 0))
             self.num = tk.Label(self.row, font=pf.meta, cursor="hand2", anchor="w")
             self.num.grid(row=2, column=0, columnspan=2, sticky="w", padx=(10, 6), pady=(0, 8))
-            self.plain = [self.label, self.num, self.more, self.dot]
+            self.plain = [self.label, self.num, self.more, self.dot, self.dot_box]
             parts = [self.row, self.label, self.num]
             app._bind_all(parts, "<ButtonPress-1>", lambda e: app._reorder_press("cat", key, e))   # клік — вибір,
             app._bind_all(parts, "<B1-Motion>", lambda e: app._reorder_motion(e))               # перетягування —
             app._bind_all(parts, "<ButtonRelease-1>", lambda e: app._reorder_release(e))        # перестановка
-            app._bind_all(parts + [self.dot, self.more], "<Button-3>",
+            app._bind_all(parts + [self.dot, self.dot_box, self.more], "<Button-3>",
                           lambda e: app.show_category_menu(e.x_root, e.y_root, key))
-            app._hoverable(self.row, parts + [self.dot, self.more], self._enter, self._leave)
+            self.dot_box.bind("<Button-1>", lambda e: (app.on_category_color(key), "break")[1])
+            app._hoverable(self.row, parts + [self.dot, self.dot_box, self.more], self._enter, self._leave)
             return
         self.row = ctk.CTkFrame(parent, corner_radius=12, fg_color="transparent", border_width=0,
                                 border_color=PANEL_BORDER, cursor="hand2", height=ROW_H)
@@ -2258,7 +2264,7 @@ class SideRow:
         # назв папок») другий рядок обрізався навпіл — тоді лише один рядок і «…»
         try:
             sc = self.app.scaling()
-            top = max(self.dot.winfo_reqheight() + 6 * sc, self.more.winfo_reqheight() + 4 * sc)   # фігура і «⋯»
+            top = max(int(self.dot_box.cget("height")) + 6 * sc, self.more.winfo_reqheight() + 4 * sc)   # фігура, «⋯»
             room = size[0] * sc - top - 15 * sc - self.num.winfo_reqheight()
             lines = max(1, min(2, int((room + 2) // max(1, font.metrics("linespace")))))
         except tk.TclError:
@@ -2751,7 +2757,7 @@ class App:
         spec = dict(body=(13, "normal"), small=(11, "normal"), tiny=(10, "normal"), bold=(13, "bold"),
                     caps=(10, "bold"), icon=(15, "bold"), card=(15, "bold"), meta=(12, "normal"), phrase=(14, "normal"),
                     title=(17, "bold"), menu=(14, "normal"), pick=(self._pick_font_size(), "bold"),
-                    shape=(19, "normal"), shape_big=(23, "normal"), badge=(11, "bold"))
+                    shape=(19, "normal"), shape_big=(21, "normal"), badge=(11, "bold"))
         old = getattr(self, "pf", None)
         if old is not None:             # зміна масштабу: розмір шрифтів міняється НА МІСЦІ — усі віджети оновлюються самі
             for name, (size, _) in spec.items():
