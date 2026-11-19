@@ -1138,7 +1138,7 @@ class CtorEditDialog(_Dialog):
     конструкторів) або None (скасовано)."""
 
     def __init__(self, app: "App", root_text: str, ctor: dict | None):
-        super().__init__(app, "Конструктор копіпасти", 860, 720)
+        super().__init__(app, "Конструктор копіпасти", 1040, 760)
         self.root_text = (root_text or "").strip()
         self.root_opts: list[dict] = copy.deepcopy((ctor or {}).get("options", []))
         self.path: list[dict] = []
@@ -1151,7 +1151,7 @@ class CtorEditDialog(_Dialog):
         self.crumb = ctk.CTkLabel(top, text="", anchor="w", text_color=TEXT, font=app.f.dlg_bold)
         self.crumb.pack(side="left", fill="x", expand=True)
         self.parent_lbl = ctk.CTkLabel(card, text="", anchor="w", justify="left", text_color=MUTED, font=app.f.body,
-                                       wraplength=780)
+                                       wraplength=960)
         self.parent_lbl.pack(fill="x", padx=20, pady=(2, 4))
         self.list = ctk.CTkScrollableFrame(card, fg_color="transparent", corner_radius=0,
                                            scrollbar_button_color=SCROLL, scrollbar_button_hover_color=SCROLL_HOVER)
@@ -1228,27 +1228,37 @@ class CtorEditDialog(_Dialog):
                                   "у виборі буде видно лише нову частину. «None» додається автоматично.")
         items = self.current()
         last = None
-        for node in items:
-            last = self._row(items, node, base)
+        for c in range(self.COLS):
+            self.list.grid_columnconfigure(c, weight=1, uniform="tile")
+        for i, node in enumerate(items):
+            last = self._row(items, node, base, i)
         if not items:
             ctk.CTkLabel(self.list, text="Поки порожньо. Натисніть «＋ Додати конструкт».", text_color=MUTED,
-                         font=self.app.f.body).pack(pady=40)
+                         font=self.app.f.body).grid(row=0, column=0, columnspan=self.COLS, pady=40)
         if focus_last and last is not None:
             self.after(60, lambda: (last.focus_set(), last.mark_set("insert", "end-1c")))
 
-    def _row(self, items: list[dict], node: dict, base: str):
+    COLS = 3              # конструкти — квадратні плитки (як копіпасти), по 3 в ряд
+    TILE = 310
+
+    def _row(self, items: list[dict], node: dict, base: str, index: int = 0):
         app = self.app
         color = "#8764b8"
-        row = ctk.CTkFrame(self.list, corner_radius=12, fg_color=tint(color, 0.10, 0.20), border_width=1,
-                           border_color=(blend(color, CARD_BORDER[0], 0.45), blend(color, CARD_BORDER[1], 0.55)))
-        row.pack(fill="x", padx=4, pady=5)
-        row.grid_columnconfigure(0, weight=1)
-        box = ctk.CTkTextbox(row, height=66, wrap="word", corner_radius=10, border_width=1, border_color=PANEL_BORDER,
+        row = ctk.CTkFrame(self.list, corner_radius=14, fg_color=tint(color, 0.10, 0.20), border_width=1,
+                           border_color=(blend(color, CARD_BORDER[0], 0.45), blend(color, CARD_BORDER[1], 0.55)),
+                           width=self.TILE, height=self.TILE)
+        row.grid(row=index // self.COLS, column=index % self.COLS, padx=6, pady=6, sticky="nsew")
+        row.grid_propagate(False)
+        row.grid_rowconfigure(0, weight=1)
+        for c in range(4):
+            row.grid_columnconfigure(c, weight=1)
+        box = ctk.CTkTextbox(row, wrap="word", corner_radius=10, border_width=1, border_color=PANEL_BORDER,
                              fg_color=INPUT, text_color=TEXT, font=app.f.dlg, undo=True)
-        box.grid(row=0, column=0, columnspan=6, sticky="ew", padx=10, pady=(10, 4))
+        box.grid(row=0, column=0, columnspan=4, sticky="nsew", padx=10, pady=(10, 4))
         box.insert("1.0", node.get("text", ""))
-        hint = ctk.CTkLabel(row, text="", anchor="w", justify="left", text_color=MUTED, font=app.f.body, wraplength=560)
-        hint.grid(row=1, column=0, sticky="ew", padx=12, pady=(0, 8))
+        hint = ctk.CTkLabel(row, text="", anchor="w", justify="left", text_color=MUTED, font=app.f.body,
+                            wraplength=self.TILE - 30, height=40)
+        hint.grid(row=1, column=0, columnspan=4, sticky="ew", padx=12, pady=(0, 4))
 
         def sync(_e=None, n=node, b=box, h=hint):
             n["text"] = b.get("1.0", "end-1c")
@@ -1270,26 +1280,22 @@ class CtorEditDialog(_Dialog):
             b.insert("insert", ref)
             f()
             b.focus_set()
-        col = 1
-        tag_btn = ctk.CTkButton(row, text="{ } Тег", width=84, height=34, corner_radius=9, fg_color=BTN2,
+        n_ch = len(node.get("children", []))
+        ctk.CTkButton(row, text=f"Продовження ▸ ({n_ch})", height=34, corner_radius=9, fg_color=ACCENT,
+                      hover_color=ACCENT_HOVER, font=app.f.body, command=lambda n=node: self.open_node(n)
+                      ).grid(row=2, column=0, columnspan=4, sticky="ew", padx=10, pady=(0, 6))
+        tag_btn = ctk.CTkButton(row, text="{ } Тег", width=80, height=34, corner_radius=9, fg_color=BTN2,
                                 hover_color=BTN2_HOVER, text_color=TEXT, font=app.f.body)
         tag_btn.configure(command=lambda i=insert, w=tag_btn: _tag_menu(self, app, i, lambda: self.new_tag(i)).tk_popup(
             w.winfo_rootx(), w.winfo_rooty() + w.winfo_height()))
-        tag_btn.grid(row=1, column=col, padx=3, pady=(0, 8))
-        col += 1
-        n_ch = len(node.get("children", []))
-        ctk.CTkButton(row, text=f"Продовження ▸ ({n_ch})", width=150, height=34, corner_radius=9, fg_color=ACCENT,
-                      hover_color=ACCENT_HOVER, font=app.f.body, command=lambda n=node: self.open_node(n)
-                      ).grid(row=1, column=col, padx=3, pady=(0, 8))
-        col += 1
-        for text, delta in (("▲", -1), ("▼", 1)):
+        tag_btn.grid(row=3, column=0, sticky="w", padx=(10, 2), pady=(0, 10))
+        for col, (text, delta) in enumerate((("◀", -1), ("▶", 1)), start=1):     # порядок плиток: лівіше / правіше
             ctk.CTkButton(row, text=text, width=34, height=34, corner_radius=9, fg_color=BTN2, hover_color=BTN2_HOVER,
                           text_color=TEXT, font=app.f.body, command=lambda d=delta, n=node: self._move(n, d)
-                          ).grid(row=1, column=col, padx=2, pady=(0, 8))
-            col += 1
+                          ).grid(row=3, column=col, padx=2, pady=(0, 10))
         ctk.CTkButton(row, text="✕", width=34, height=34, corner_radius=9, fg_color="transparent", hover_color=DANGER_SOFT,
                       text_color=DANGER, font=app.f.body, command=lambda n=node: self._delete(n)
-                      ).grid(row=1, column=col, padx=(2, 10), pady=(0, 8))
+                      ).grid(row=3, column=3, sticky="e", padx=(2, 10), pady=(0, 10))
         return box
 
     def _move(self, node: dict, delta: int) -> None:

@@ -4276,6 +4276,10 @@ pump(200)
 def edit_script():
     d = open_dlg(cm.CtorEditDialog)
     assert len(d.current()) == 2
+    d.update()
+    t0_ = d.list.winfo_children()[0]
+    assert abs(t0_.winfo_width() - t0_.winfo_height()) <= 0.15 * t0_.winfo_height(), "конструкти — квадратні плитки"
+    assert int(d.list.winfo_children()[1].grid_info()["column"]) == 1, "плитки — в ряд, а не стовпчиком"
     d.add()
     new = d.current()[-1]
     assert new["text"] == ROOT42 + " ", new
