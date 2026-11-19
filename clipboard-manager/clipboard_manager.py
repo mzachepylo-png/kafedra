@@ -2258,7 +2258,8 @@ class SideRow:
         # назв папок») другий рядок обрізався навпіл — тоді лише один рядок і «…»
         try:
             sc = self.app.scaling()
-            room = size[0] * sc - 41 * sc - self.num.winfo_reqheight()
+            top = max(self.dot.winfo_reqheight() + 6 * sc, self.more.winfo_reqheight() + 4 * sc)   # фігура і «⋯»
+            room = size[0] * sc - top - 15 * sc - self.num.winfo_reqheight()
             lines = max(1, min(2, int((room + 2) // max(1, font.metrics("linespace")))))
         except tk.TclError:
             lines = 2
