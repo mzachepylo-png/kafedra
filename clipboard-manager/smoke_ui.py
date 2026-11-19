@@ -4270,7 +4270,7 @@ def edit_script():
     box = [w for w in d.list.winfo_children()][-1].winfo_children()
     tb = next(w for w in box if isinstance(w, ctk.CTkTextbox))
     tb.insert("end", "Third")
-    tb.event_generate("<KeyRelease>")
+    tb._textbox.event_generate("<KeyRelease>")
     assert new["text"] == ROOT42 + " Third", new
     d.open_node(new)
     assert d.parent_text() == ROOT42 + " Third" and d.current() == []
