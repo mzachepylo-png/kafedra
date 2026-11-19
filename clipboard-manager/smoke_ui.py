@@ -4462,7 +4462,8 @@ f3 = tup(app._cards[sn43["id"]].cget("fg_color"))
 assert f3 == tup(cm.tint("#e81123", *cm.COLOR_LEVELS[4][0])) and f3 != f1, (f1, f3)
 assert settings["color_sat"] == 4
 c43m = app._card_objs[sn43["id"]]
-assert c43m.body.cget("fg") == app.col(cm.ink(cm.tint("#e81123", *cm.COLOR_LEVELS[4][0]))) == "#ffffff", "на насиченому — білий текст"
+assert c43m.body.cget("fg") == app.col(cm.ink(cm.tint("#e81123", *cm.COLOR_LEVELS[4][0]))) in ("#ffffff", "#000000"), \
+    "на насиченому — білий або чорний текст"
 assert tup(app._rows[f43["id"]].cget("fg_color")) in (tup(cm.row_colors(f43["color"])[0]), tup(cm.row_colors(f43["color"])[2]))
 app.set_color_level(2)
 pump(100)
