@@ -44,7 +44,7 @@ from types import SimpleNamespace
 import customtkinter as ctk
 
 from formats import (APPENDERS, AUTO_HISTORY_FORMATS, FORMATTERS, MERGE_ACTIONS, append_result, apply_format,
-                     USER_TAG, apply_merge, apply_user_link, clean_ctor, clean_v2, compose_phrases, ctor_count, ctor_label,
+                     SHAPES, USER_TAG, apply_merge, clean_count, shape_for_color, take, apply_user_link, clean_ctor, clean_v2, compose_phrases, ctor_count, ctor_label,
                      fill_email, infer_tag, render_tag, resolve_tags, tag_ref, fill_placeholders, format_actions,
                      has_user_placeholder, join_values, last_email, last_user_id, numbers_from_history, recent_numbers,
                      user_ids_from_history,
@@ -145,7 +145,10 @@ MENU_BG = ("#ffffff", "#25272c")
 MENU_BORDER = ("#cfd5de", "#454a53")
 MENU_HOVER = ("#e6f0fc", "#2f4560")
 MENU_SEP = ("#e3e6eb", "#3a3e45")
-COPIED = ("#2e9e57", "#2f9e5a")          # плашка «✓ Скопійовано» на картці
+COPIED = ("#2e9e57", "#2f9e5a")
+BADGE = ("#7a3fd1", "#8e5ae0")            # плашка «⧉ КОНСТРУКТОР» на картці
+CTOR_DEFAULT = "#8764b8"                   # колір конструкту без власного кольору
+CTOR_LEAF = "#22a559"                      # у вікні вибору: кінцевий конструкт без кольору          # плашка «✓ Скопійовано» на картці
 PAIR = ("#fff3c4", "#4b4220")             # жовтуватий фон пари об'єднуваних швидких фраз (Active subscriptions + Internal charges)
 ARMED = ("#d97706", "#f59e0b")           # режим Append: «заряджена» кнопка й банер
 ARMED_SOFT = ("#fdf0dc", "#473412")
@@ -183,6 +186,24 @@ def tint(color: str, t_light: float = 0.11, t_dark: float = 0.19) -> tuple[str, 
     return blend(color, CARD[0], t_light), blend(color, CARD[1], t_dark)
 
 
+# Насиченість кольорів карток і папок (⚙ → «Насиченість кольорів»): частка кольору у фоні
+# (світла тема, темна тема) для фону, фону при наведенні й вибраної папки, і вага кольору в рамці
+COLOR_LEVELS = [((0.11, 0.19), (0.20, 0.28), (0.27, 0.40), 0.40),
+                ((0.20, 0.25), (0.29, 0.32), (0.37, 0.42), 0.55),
+                ((0.31, 0.30), (0.40, 0.36), (0.48, 0.46), 0.70),
+                ((0.44, 0.36), (0.54, 0.42), (0.62, 0.52), 0.85)]
+COLOR_LEVEL_NAMES = ["Слабка", "Середня", "Сильна", "Дуже сильна"]
+_COLOR_LEVEL = [1]
+
+
+def set_color_level(level: int) -> None:
+    _COLOR_LEVEL[0] = max(0, min(len(COLOR_LEVELS) - 1, int(level)))
+
+
+def _level():
+    return COLOR_LEVELS[_COLOR_LEVEL[0]]
+
+
 def row_colors(color: str | None) -> tuple[tuple, tuple, tuple, tuple]:
     """(фон, фон при наведенні, фон вибраного, рамка) для рядка категорії в бічній колонці.
     З кольором — ТА САМА рецептура, що й у карток записів (card_colors/tint), тож папка залита кольором
@@ -190,15 +211,16 @@ def row_colors(color: str | None) -> tuple[tuple, tuple, tuple, tuple]:
     if not color:
         return ("transparent", ROW_HOVER, ROW_SEL, PANEL_BORDER)
     fill, hover, border = card_colors(color)
-    return fill, hover, tint(color, 0.27, 0.40), border
+    return fill, hover, tint(color, *_level()[2]), border
 
 
 def card_colors(color: str | None) -> tuple[tuple, tuple, tuple]:
     """(фон, фон при наведенні, рамка) для картки з кольором; без кольору — нейтральні."""
     if not color:
         return CARD, CARD_HOVER, CARD_BORDER
-    fill, hover = tint(color), tint(color, 0.20, 0.28)
-    border = (blend(color, CARD_BORDER[0], 0.40), blend(color, CARD_BORDER[1], 0.55))
+    lv = _level()
+    fill, hover = tint(color, *lv[0]), tint(color, *lv[1])
+    border = (blend(color, CARD_BORDER[0], lv[3]), blend(color, CARD_BORDER[1], min(1.0, lv[3] + 0.15)))
     return fill, hover, border
 
 
@@ -1051,12 +1073,21 @@ class V2Dialog(_Dialog):
 def _tag_menu(dlg, app: "App", insert, on_new) -> tk.Menu:
     """Меню вставки тегу: {{user}} (користувачі з буфера), власні теги пресета, «Новий тег…»."""
     m = tk.Menu(dlg, tearoff=0, font=app.f.dlg)
-    m.add_command(label=f"{tag_ref(USER_TAG)}   — користувачі з буфера ({{LINK:USER:…:E}}, …)",
-                  command=lambda: insert(tag_ref(USER_TAG)))
+
+    def counts(name: str, default: int) -> tk.Menu:
+        """Підменю: скільки номерів підтягувати саме тут ({{назва:N}}); «як у тезі» — {{назва}}."""
+        sub = tk.Menu(m, tearoff=0, font=app.f.dlg)
+        sub.add_command(label=("Як у тезі (" + (str(default) if default else "усі") + ")") if name != USER_TAG
+                        else "Усі з останніх записів", command=lambda: insert(tag_ref(name)))
+        for n in (1, 2, 3, 4, 5, 6, 8, 10):
+            sub.add_command(label=f"{n}   →  {tag_ref(name, n)}", command=lambda n=n: insert(tag_ref(name, n)))
+        return sub
+    m.add_cascade(label=f"{tag_ref(USER_TAG)}   — користувачі з буфера ({{LINK:USER:…:E}}, …)",
+                  menu=counts(USER_TAG, 0))
     for t in app.preset.tags:
         tpl = infer_tag(t["ex_in"], t["ex_out"])
-        m.add_command(label=f"{tag_ref(t['name'])}   — напр. {clip(render_tag(tpl, ['111', '222']), 40)}",
-                      command=lambda n=t["name"]: insert(tag_ref(n)))
+        m.add_cascade(label=f"{tag_ref(t['name'])}   — напр. {clip(render_tag(tpl, ['111', '222']), 40)}",
+                      menu=counts(t["name"], t.get("count", 0)))
     m.add_separator()
     m.add_command(label="＋ Новий тег…", command=on_new)
     return m
@@ -1067,7 +1098,7 @@ class TagDialog(_Dialog):
     номери у виході замінюються на номери з буфера, решта тексту лишається. Результат: збережений тег або None."""
 
     def __init__(self, app: "App", tag: dict | None = None):
-        super().__init__(app, "Тег" if tag else "Новий тег", 620, 520)
+        super().__init__(app, "Тег" if tag else "Новий тег", 620, 580)
         self.tag = tag
         card = ctk.CTkFrame(self, corner_radius=16, fg_color=PANEL, border_width=1, border_color=PANEL_BORDER)
         card.pack(fill="both", expand=True, padx=14, pady=14)
@@ -1085,6 +1116,16 @@ class TagDialog(_Dialog):
                 e.insert(0, val)
             e.bind("<KeyRelease>", lambda ev: self.refresh(), add="+")
             self.fields[key] = e
+        crow = ctk.CTkFrame(card, fg_color="transparent")
+        crow.pack(fill="x", padx=20, pady=(14, 0))
+        ctk.CTkLabel(crow, text="Скільки номерів брати з буфера:", text_color=MUTED, font=app.f.body).pack(side="left")
+        self.count_values = ["Усі з останніх записів"] + [str(n) for n in (1, 2, 3, 4, 5, 6, 8, 10)]
+        cur = (tag or {}).get("count", 0)
+        self.count_var = tk.StringVar(value=str(cur) if str(cur) in self.count_values else self.count_values[0])
+        ctk.CTkOptionMenu(crow, variable=self.count_var, values=self.count_values, width=210, height=34,
+                          corner_radius=10, fg_color=BTN2, button_color=BTN2_HOVER, button_hover_color=BTN2_HOVER,
+                          text_color=TEXT, dropdown_font=app.f.dlg, font=app.f.dlg,
+                          command=lambda v: self.refresh()).pack(side="left", padx=10)
         self.preview = ctk.CTkLabel(card, text="", anchor="w", justify="left", text_color=TEXT, font=app.f.dlg,
                                     wraplength=540)
         self.preview.pack(fill="x", padx=20, pady=(14, 0))
@@ -1106,11 +1147,15 @@ class TagDialog(_Dialog):
     def values(self) -> tuple[str, str, str]:
         return tuple(self.fields[k].get() for k in ("name", "ex_in", "ex_out"))
 
+    def count(self) -> int:
+        return clean_count(self.count_var.get()) if self.count_var.get().isdigit() else 0
+
     def refresh(self) -> None:
         name, ex_in, ex_out = self.values()
         tpl = infer_tag(ex_in, ex_out)
         if tpl:
-            self.preview.configure(text=f"Номери в буфері «111, 222» → {render_tag(tpl, ['111', '222'])}\n"
+            nums = take(["111", "222", "333"], self.count())
+            self.preview.configure(text=f"Номери в буфері «111, 222, 333» → {render_tag(tpl, nums)}\n"
                                         f"Номер «111» → {render_tag(tpl, ['111'])}")
         else:
             self.preview.configure(text="Перегляд з'явиться, коли номери з входу знайдуться у виході.")
@@ -1122,7 +1167,7 @@ class TagDialog(_Dialog):
         if problem:
             self.err.configure(text=problem)
             return
-        self.result = self.app.preset.save_tag(name, ex_in, ex_out, (self.tag or {}).get("id"))
+        self.result = self.app.preset.save_tag(name, ex_in, ex_out, (self.tag or {}).get("id"), self.count())
         self.destroy()
 
     def delete(self) -> None:
@@ -1243,10 +1288,10 @@ class CtorEditDialog(_Dialog):
 
     def _row(self, items: list[dict], node: dict, base: str, index: int = 0):
         app = self.app
-        color = "#8764b8"
-        row = ctk.CTkFrame(self.list, corner_radius=14, fg_color=tint(color, 0.10, 0.20), border_width=1,
-                           border_color=(blend(color, CARD_BORDER[0], 0.45), blend(color, CARD_BORDER[1], 0.55)),
-                           width=self.TILE, height=self.TILE)
+        own = node.get("color")
+        fill, _hover, border = card_colors(own or CTOR_DEFAULT)
+        row = ctk.CTkFrame(self.list, corner_radius=14, fg_color=fill, border_width=2 if own else 1,
+                           border_color=border, width=self.TILE, height=self.TILE)
         row.grid(row=index // self.COLS, column=index % self.COLS, padx=6, pady=6, sticky="nsew")
         row.grid_propagate(False)
         row.grid_rowconfigure(0, weight=1)
@@ -1281,9 +1326,14 @@ class CtorEditDialog(_Dialog):
             f()
             b.focus_set()
         n_ch = len(node.get("children", []))
+        sh = shape_for_color(own) if own else "●"
+        ctk.CTkButton(row, text=sh, width=40, height=34, corner_radius=9, text_color="#ffffff" if own else TEXT,
+                      fg_color=own or BTN2, hover_color=blend(own, "#000000", 0.2) if own else BTN2_HOVER,
+                      font=app.f.icon, command=lambda n=node: self.pick_color(n)
+                      ).grid(row=2, column=0, sticky="w", padx=(10, 4), pady=(0, 6))
         ctk.CTkButton(row, text=f"Продовження ▸ ({n_ch})", height=34, corner_radius=9, fg_color=ACCENT,
                       hover_color=ACCENT_HOVER, font=app.f.body, command=lambda n=node: self.open_node(n)
-                      ).grid(row=2, column=0, columnspan=4, sticky="ew", padx=10, pady=(0, 6))
+                      ).grid(row=2, column=1, columnspan=3, sticky="ew", padx=(0, 10), pady=(0, 6))
         tag_btn = ctk.CTkButton(row, text="{ } Тег", width=80, height=34, corner_radius=9, fg_color=BTN2,
                                 hover_color=BTN2_HOVER, text_color=TEXT, font=app.f.body)
         tag_btn.configure(command=lambda i=insert, w=tag_btn: _tag_menu(self, app, i, lambda: self.new_tag(i)).tk_popup(
@@ -1306,6 +1356,19 @@ class CtorEditDialog(_Dialog):
             items[i], items[j] = items[j], items[i]
             self.rebuild()
 
+    def pick_color(self, node: dict) -> None:
+        """Колір конструкту (кнопка з фігурою в плитці): від кольору залежить і фігура."""
+        res = ColorDialog(self.app, "Колір конструкту", node.get("color"), allow_reset=True,
+                          reset_label="Без кольору").run()
+        self._regrab()
+        if not res:
+            return
+        if res[0] == "set":
+            node["color"] = res[1]
+        else:
+            node.pop("color", None)
+        self.rebuild()
+
     def _delete(self, node: dict) -> None:
         self.current().remove(node)
         self.rebuild()
@@ -1318,11 +1381,12 @@ class CtorEditDialog(_Dialog):
 class CtorDialog(_Dialog):
     """Вибір конструкта: зверху — уже побудований текст, нижче — продовження поточного кроку (лише нова частина)
     і завжди останнім «None» — скопіювати побудоване й сховати програму. Конструкт без продовжень одразу копіюється;
-    з продовженнями — відкриває наступний крок. Клавіші: ↑/↓ + Enter, цифри 1–9, 0 — None, Backspace — назад.
+    з продовженнями — відкриває наступний крок. Продовження — квадратні плитки свого кольору (з фігурою кольору).
+    Клавіші: стрілки — по плитках, Enter — обрати, цифри 1–9, 0 — None, Backspace / Esc — назад.
     Результат: {"text": готовий текст} або None."""
 
     def __init__(self, app: "App", root_text: str, ctor: dict, finalize, on_edit=None):
-        super().__init__(app, "Конструктор", 680, 720)
+        super().__init__(app, "Конструктор", 800, 760)
         self.finalize = finalize               # текст → (готовий текст з тегами/користувачами, попередження або "")
         self.on_edit = on_edit
         self.root_text = root_text
@@ -1356,12 +1420,12 @@ class CtorDialog(_Dialog):
                       hover_color=BTN2_HOVER, text_color=TEXT, font=app.f.dlg, command=self.cancel).pack(side="right")
         self.bind("<Escape>", lambda e: self.back() if len(self.stack) > 1 else self.cancel())
         self.bind("<BackSpace>", lambda e: self.back())
-        self.bind("<Left>", lambda e: self.back())
-        self.bind("<Up>", lambda e: self._hl(-1))
-        self.bind("<Down>", lambda e: self._hl(1))
+        self.bind("<Left>", lambda e: self._hl(-1))                 # плитки: стрілки ходять по сітці
+        self.bind("<Right>", lambda e: self._hl(1))
+        self.bind("<Up>", lambda e: self._hl(-self.COLS))
+        self.bind("<Down>", lambda e: self._hl(self.COLS))
         self.bind("<Return>", lambda e: self._activate(self.hl))
         self.bind("<KP_Enter>", lambda e: self._activate(self.hl))
-        self.bind("<Right>", lambda e: self._activate(self.hl, enter_only=True))
         self.bind("<Key>", self._digit)
         self.render_level()
         self.after(120, self.focus_set)
@@ -1380,10 +1444,14 @@ class CtorDialog(_Dialog):
         self.back_btn.configure(state="normal" if depth else "disabled")
         self.level.configure(text="Оберіть продовження:" if not depth else f"Крок {depth + 1} — оберіть продовження:")
         base = self.current_text()
+        for c in range(self.COLS):
+            self.list.grid_columnconfigure(c, weight=1, uniform="tile")
         for i, node in enumerate(self.options()):
             more = bool(node.get("children"))
-            self._option(i, f"{i + 1 if i < 9 else '•'}   {ctor_label(base, node['text'])}" + ("   ▸" if more else ""),
-                         "#8764b8" if more else "#22a559")
+            color = node.get("color")
+            sh = shape_for_color(color)
+            self._option(i, f"{i + 1 if i < 9 else '•'}   " + (sh + "  " if sh else "") + ctor_label(base, node["text"])
+                         + ("   ▸" if more else ""), color or (CTOR_DEFAULT if more else CTOR_LEAF))
         self._option(len(self.options()), "0   None — залишити як є і скопіювати", None)
         self.hl = 0
         self._paint()
@@ -1394,16 +1462,23 @@ class CtorDialog(_Dialog):
         self.preview.configure(state="disabled")
         self.warn.configure(text=warn or "")
 
+    COLS = 3              # продовження — квадратні плитки (як копіпасти в режимі плиток)
+    TILE = 228
+
     def _option(self, i: int, label: str, color: str | None) -> None:
-        base = tint(color, 0.18, 0.30) if color else BTN2
-        hover = tint(color, 0.36, 0.48) if color else BTN2_HOVER
-        fr = tk.Frame(self.list, bg=self.app.col(base), cursor="hand2", highlightthickness=2,
-                      highlightbackground=self.app.col(base), highlightcolor=self.app.col(base))
-        fr.pack(fill="x", padx=6, pady=5)
-        lbl = tk.Label(fr, text=label, font=self.app.pf.phrase, anchor="w", justify="left", bg=self.app.col(base),
-                       fg=self.app.col(TEXT if color else MUTED), wraplength=int(560 * self.app.scaling()),
-                       padx=14, pady=13, cursor="hand2")
-        lbl.pack(fill="x")
+        lv = max(_COLOR_LEVEL[0], 1)                  # плитки вибору — щонайменше «середньо» насичені
+        base = tint(color, *COLOR_LEVELS[lv][0]) if color else BTN2
+        hover = tint(color, *COLOR_LEVELS[lv][2]) if color else BTN2_HOVER
+        size = int(self.TILE * self.app.scaling())
+        fr = tk.Frame(self.list, bg=self.app.col(base), cursor="hand2", highlightthickness=3,
+                      highlightbackground=self.app.col(base), highlightcolor=self.app.col(base),
+                      width=size, height=size)
+        fr.grid(row=i // self.COLS, column=i % self.COLS, padx=6, pady=6)
+        fr.pack_propagate(False)
+        lbl = tk.Label(fr, text=label, font=self.app.pf.phrase, anchor="nw", justify="left", bg=self.app.col(base),
+                       fg=self.app.col(TEXT if color else MUTED), wraplength=size - int(30 * self.app.scaling()),
+                       padx=12, pady=12, cursor="hand2")
+        lbl.pack(fill="both", expand=True)
         for w in (fr, lbl):
             w.bind("<Button-1>", lambda e, n=i: self._activate(n))
             w.bind("<Enter>", lambda e, n=i: self._hover(n, True))
@@ -1424,7 +1499,12 @@ class CtorDialog(_Dialog):
 
     def _hl(self, d: int) -> str:
         if self.rows:
-            self.hl = (self.hl + d) % len(self.rows)
+            n = self.hl + d
+            if abs(d) == 1:
+                n %= len(self.rows)                  # ←/→ — по колу
+            elif not 0 <= n < len(self.rows):
+                n = self.hl if d < 0 else len(self.rows) - 1    # ↑/↓ — рядом вище/нижче (униз — до останньої)
+            self.hl = n
             self._paint()
         return "break"
 
@@ -1469,6 +1549,82 @@ class CtorDialog(_Dialog):
     def finish(self, text: str) -> None:
         self.result = {"text": self.finalize(text)[0]}
         self.destroy()
+
+
+class ShapeDialog(_Dialog):
+    """Вибір фігури (чорного значка) для папки. Результат: фігура або None."""
+
+    COLUMNS = 5
+
+    def __init__(self, app: "App", title: str, current: str | None):
+        rows = (len(SHAPES) + self.COLUMNS - 1) // self.COLUMNS
+        super().__init__(app, title, 420, 150 + rows * 66)
+        card = ctk.CTkFrame(self, corner_radius=16, fg_color=PANEL, border_width=1, border_color=PANEL_BORDER)
+        card.pack(fill="both", expand=True, padx=14, pady=14)
+        ctk.CTkLabel(card, text="Оберіть фігуру", anchor="w", text_color=MUTED, font=app.f.body).pack(
+            fill="x", padx=22, pady=(16, 8))
+        grid = ctk.CTkFrame(card, fg_color="transparent")
+        grid.pack(padx=18)
+        self.buttons = {}
+        for n, sh in enumerate(SHAPES):
+            b = ctk.CTkButton(grid, text=sh, width=56, height=56, corner_radius=12, text_color=TEXT,
+                              fg_color=ACCENT_SOFT if sh == current else BTN2, hover_color=BTN2_HOVER,
+                              border_width=2 if sh == current else 0, border_color=ACCENT,
+                              font=ctk.CTkFont(family=FONT, size=24), command=lambda v=sh: self.choose(v))
+            b.grid(row=n // self.COLUMNS, column=n % self.COLUMNS, padx=4, pady=4)
+            self.buttons[sh] = b
+        ctk.CTkButton(card, text="Скасувати", width=100, height=38, corner_radius=12, fg_color="transparent",
+                      hover_color=BTN2, text_color=MUTED, font=app.f.dlg, command=self.cancel).pack(
+            side="bottom", anchor="e", padx=22, pady=(8, 14))
+
+    def choose(self, shape: str) -> None:
+        self.result = shape
+        self.destroy()
+
+
+class FolderShapesDialog(_Dialog):
+    """⚙ → «Фігури папок…»: усі папки з їхніми фігурами; клік по фігурі — замінити."""
+
+    def __init__(self, app: "App"):
+        super().__init__(app, "Фігури папок", 520, 560)
+        card = ctk.CTkFrame(self, corner_radius=16, fg_color=PANEL, border_width=1, border_color=PANEL_BORDER)
+        card.pack(fill="both", expand=True, padx=14, pady=14)
+        ctk.CTkLabel(card, text="Клік по фігурі — обрати іншу", anchor="w", text_color=MUTED, font=app.f.body).pack(
+            fill="x", padx=22, pady=(16, 6))
+        self.list = ctk.CTkScrollableFrame(card, fg_color="transparent", corner_radius=0,
+                                           scrollbar_button_color=SCROLL, scrollbar_button_hover_color=SCROLL_HOVER)
+        self.list.pack(fill="both", expand=True, padx=10, pady=4)
+        ctk.CTkButton(card, text="Готово", width=112, height=40, corner_radius=12, fg_color=ACCENT,
+                      hover_color=ACCENT_HOVER, font=app.f.dlg_bold, command=self.cancel).pack(
+            side="bottom", anchor="e", padx=18, pady=(6, 14))
+        self.rebuild()
+
+    def rebuild(self) -> None:
+        for w in self.list.winfo_children():
+            w.destroy()
+        self.buttons = {}
+        for c in self.app.preset.categories:
+            fill = row_colors(c["color"])[0]
+            row = ctk.CTkFrame(self.list, corner_radius=12, fg_color=fill, border_width=1,
+                               border_color=row_colors(c["color"])[3])
+            row.pack(fill="x", padx=4, pady=4)
+            b = ctk.CTkButton(row, text=c.get("shape") or "●", width=48, height=44, corner_radius=10, fg_color=BTN2,
+                              hover_color=BTN2_HOVER, text_color=TEXT, font=ctk.CTkFont(family=FONT, size=22),
+                              command=lambda cid=c["id"]: self.change(cid))
+            b.pack(side="left", padx=10, pady=8)
+            ctk.CTkLabel(row, text=c["name"], anchor="w", text_color=TEXT, font=self.app.f.dlg_bold).pack(
+                side="left", fill="x", expand=True)
+            self.buttons[c["id"]] = b
+
+    def change(self, cat_id: str) -> None:
+        cat = self.app.preset.category(cat_id)
+        shape = ShapeDialog(self.app, f"Фігура папки «{clip(cat['name'], 20)}»", cat.get("shape")).run()
+        try:
+            self.grab_set()
+        except tk.TclError:
+            pass
+        if shape and self.app.preset.set_category_shape(cat_id, shape):
+            self.rebuild()
 
 
 class ColorDialog(_Dialog):
@@ -1782,6 +1938,8 @@ class Card:
             ((self.clip, self.more_hint) if self.clip is not None else ())
         self.flash_job = None
         self.flash_lbl = None
+        self.badge = None
+        self._sync_badge()
         # одна пара «bindtag» на всі картки замість ~25 прив'язок на кожну (див. App._init_tags);
         # клік у правій зоні ігнорується в App._drag_press (порівняння з лівим краєм self.zone)
         for w in (f._canvas, self.bar, self.body) + ((self.clip, self.more_hint) if self.clip is not None else ()):
@@ -1824,8 +1982,27 @@ class Card:
         """Текст картки (у плитці — повністю, з прокруткою); позначки: «▶ v.2» — клік відкриває вибір аппендів,
         «@ user» — підставляється користувач з історії (in {LINK:USER:…:E})."""
         body = self.text.strip() if self.tile else preview(self.text)
-        mark = "   ⧉ конструктор" if self.v2 == "ctor" else ("   ▶ v.2" if self.v2 else "")
-        return body + mark + ("   @ user" if self.ulink else "")
+        mark = "" if self.v2 == "ctor" else ("   ▶ v.2" if self.v2 else "")     # конструктор — окрема плашка
+        shape = shape_for_color(self.color)
+        return (shape + "  " if shape else "") + body + mark + ("   @ user" if self.ulink else "")
+
+    def _sync_badge(self) -> None:
+        """Яскрава плашка «⧉ КОНСТРУКТОР» у службовій зоні картки (клік — відкрити вибір)."""
+        want = self.v2 == "ctor"
+        badge = getattr(self, "badge", None)
+        if want and badge is None:
+            a = self.app
+            self.badge = tk.Label(self.zone, text="⧉ КОНСТРУКТОР", font=a.pf.badge, fg="#ffffff", bg=a.col(BADGE),
+                                  padx=7, pady=3, cursor="hand2")
+            if self.tile:
+                self.badge.grid(row=0, column=0, sticky="w", padx=(4, 0), pady=(2, 0))
+            else:
+                self.badge.grid(row=1, column=0, columnspan=3, sticky="sw", padx=(0, 0), pady=(0, 8))
+            self.badge.bind("<Button-1>", lambda e: (a.copy_item(self.iid), "break")[1])
+            self.badge.bind("<Button-3>", lambda e: a.show_menu(e.x_root, e.y_root, self.iid))
+        elif not want and badge is not None:
+            badge.destroy()
+            self.badge = None
 
     # -- прокрутка довгого тексту в плитці --------------------------------------------------------
     def _overflow(self) -> int:
@@ -1908,12 +2085,13 @@ class Card:
         """Оновлює картку на місці, якщо змінились текст, час або колір (інакше нічого не робить)."""
         text, ts, color = it["text"], it["ts"], it.get("color")
         v2, ulink = "ctor" if it.get("ctor") else bool(it.get("v2")), card_user_link(it)
-        if text != self.text or ts != self.ts or v2 != self.v2 or ulink != self.ulink:
-            self.text, self.ts, self.v2, self.ulink = text, ts, v2, ulink
-            self.body.configure(text=self.shown_text())
-        if color != self.color:
-            self.color = color
-            self.fill, self.hover, self.border = card_colors(color)
+        if text != self.text or ts != self.ts or v2 != self.v2 or ulink != self.ulink or color != self.color:
+            self.text, self.ts, self.v2, self.ulink, self.color = text, ts, v2, ulink, color
+            self.body.configure(text=self.shown_text())       # фігура залежить від кольору
+            self._sync_badge()
+        colors = card_colors(color)
+        if colors[0] != self.fill:                             # змінився колір або насиченість кольорів
+            self.fill, self.hover, self.border = colors
             self.frame.configure(border_color=ACCENT if self.selected else self.border)
             self.colorize()
 
@@ -1936,6 +2114,8 @@ class Card:
         if self.check is not None:
             self.check.configure(bg=bg)
             self._draw_check()
+        if getattr(self, "badge", None) is not None:
+            self.badge.configure(bg=a.col(BADGE))
 
     def paint(self, fill) -> None:
         self.cur = fill
@@ -1993,8 +2173,8 @@ class SideRow:
             self.row.grid_columnconfigure(0, weight=1)
             self.row.grid_rowconfigure(1, weight=1)
             self.bar = tk.Frame(self.row, width=0, height=0)            # не показується; потрібна лише для colorize()
-            self.dot = app._swatch(self.row, "#888888", lambda k=key: app.on_category_color(k))
-            self.dot.grid(row=0, column=0, sticky="w", padx=(10, 0), pady=(10, 0))
+            self.dot = app._shape_button(self.row, key, big=True)
+            self.dot.grid(row=0, column=0, sticky="w", padx=(10, 0), pady=(6, 0))
             self.more = app._icon_button(self.row, "⋯", lambda e: app.show_category_menu(e.x_root, e.y_root, key),
                                          bg_fn=lambda: app.col(_eff(self.cur)))
             self.more.grid(row=0, column=1, sticky="ne", padx=(0, 4), pady=(4, 0))
@@ -2003,7 +2183,7 @@ class SideRow:
             self.label.grid(row=1, column=0, columnspan=2, sticky="nsew", padx=(10, 6), pady=(4, 0))
             self.num = tk.Label(self.row, font=pf.meta, cursor="hand2", anchor="w")
             self.num.grid(row=2, column=0, columnspan=2, sticky="w", padx=(10, 6), pady=(0, 8))
-            self.plain = [self.label, self.num, self.more]
+            self.plain = [self.label, self.num, self.more, self.dot]
             parts = [self.row, self.label, self.num]
             app._bind_all(parts, "<ButtonPress-1>", lambda e: app._reorder_press("cat", key, e))   # клік — вибір,
             app._bind_all(parts, "<B1-Motion>", lambda e: app._reorder_motion(e))               # перетягування —
@@ -2020,10 +2200,10 @@ class SideRow:
         self.bar = tk.Frame(self.row, width=6, height=8, cursor="hand2")
         self.bar.grid(row=0, column=0, sticky="ns", padx=(9, 0), pady=10)
         if real:
-            self.dot = app._swatch(self.row, "#888888", lambda k=key: app.on_category_color(k))
+            self.dot = app._shape_button(self.row, key)
         else:
             self.dot = tk.Label(self.row, text="●", font=pf.body, width=2, cursor="hand2")
-        self.dot.grid(row=0, column=1, padx=(9, 8), pady=9)
+        self.dot.grid(row=0, column=1, padx=(7, 6), pady=6)
         self.label = tk.Label(self.row, anchor="w", cursor="hand2", font=pf.card)
         self.label.grid(row=0, column=2, sticky="we", pady=7)
         self.num = tk.Label(self.row, font=pf.meta, cursor="hand2")
@@ -2034,8 +2214,7 @@ class SideRow:
                                          bg_fn=lambda: app.col(_eff(self.cur)))
             self.more.grid(row=0, column=4, padx=(0, 6))
         self.plain = [w for w in (self.label, self.num, self.more) if w is not None]
-        if not real:
-            self.plain.append(self.dot)
+        self.plain.append(self.dot)
         parts = [self.row, self.bar, self.label, self.num]
         if real:                                       # клік — вибір, перетягування — перестановка
             app._bind_all(parts, "<ButtonPress-1>", lambda e: app._reorder_press("cat", key, e))
@@ -2110,9 +2289,9 @@ class SideRow:
         for w in self.plain:
             w.configure(bg=bg)
 
-    def update(self, name: str, color: str, count: int, selected: bool) -> None:
+    def update(self, name: str, color: str, count: int, selected: bool, shape: str = "") -> None:
         a = self.app
-        sig = (name, color, count, selected, a._name_chars)
+        sig = (name, color, count, selected, a._name_chars, shape)
         if sig == self.sig:
             return
         old = self.sig
@@ -2121,8 +2300,8 @@ class SideRow:
             self.color = color
             self.fill, self.hover, self.sel_fill, self.border = row_colors(color if self.real else None)
             a._row_fills[self.key] = (self.fill, self.sel_fill)
-            if self.real:
-                self.dot.configure(fg_color=color)
+        if self.real and (old is None or old[5] != shape):
+            self.dot.configure(text=shape or "●")
         if old is None or old[0] != name or old[4] != a._name_chars:
             self._name = name
             self.label.configure(text=self._tile_text() if self.tile else clip(name, a._name_chars))
@@ -2146,8 +2325,7 @@ class SideRow:
         self.bar.configure(bg=a.col(self.color if self.real else NEUTRAL))
         self.label.configure(fg=a.col(TEXT))
         self.num.configure(fg=a.col(META))
-        if not self.real:
-            self.dot.configure(fg=a.col(self.color))
+        self.dot.configure(fg=a.col(TEXT if self.real else self.color))     # фігура папки — чорна (у темній темі — світла)
         for w in self.plain:
             w.configure(bg=bg)
         if self.more is not None:
@@ -2334,6 +2512,7 @@ class App:
         self.preset = preset
         self.history = history
         self.settings = settings
+        set_color_level(settings["color_level"])
         self.events = events
         self.view: str = HISTORY            # HISTORY або id категорії
         self.sel_id: str | None = None
@@ -2570,7 +2749,8 @@ class App:
         s = self._pf_scale = self.scaling()
         spec = dict(body=(13, "normal"), small=(11, "normal"), tiny=(10, "normal"), bold=(13, "bold"),
                     caps=(10, "bold"), icon=(15, "bold"), card=(15, "bold"), meta=(12, "normal"), phrase=(14, "normal"),
-                    title=(17, "bold"), menu=(14, "normal"), pick=(self._pick_font_size(), "bold"))
+                    title=(17, "bold"), menu=(14, "normal"), pick=(self._pick_font_size(), "bold"),
+                    shape=(19, "normal"), shape_big=(23, "normal"), badge=(11, "bold"))
         old = getattr(self, "pf", None)
         if old is not None:             # зміна масштабу: розмір шрифтів міняється НА МІСЦІ — усі віджети оновлюються самі
             for name, (size, _) in spec.items():
@@ -2578,6 +2758,32 @@ class App:
             return
         self.pf = SimpleNamespace(**{n: tkfont.Font(root=self.root, family=FONT, size=-max(1, round(sz * s)),
                                                     weight=w) for n, (sz, w) in spec.items()})
+
+    def set_color_level(self, level: int) -> None:
+        """⚙ → «Насиченість кольорів»: наскільки сильно картки, папки й фрази залиті своїм кольором."""
+        set_color_level(level)
+        self.settings["color_level"] = _COLOR_LEVEL[0]
+        for obj in self._row_objs.values():
+            obj.sig = None                                  # рядки папок перерахують кольори
+        self.render()
+        self.flush_render()
+        self._render_phrases()
+        self.set_status(f"Насиченість кольорів: {COLOR_LEVEL_NAMES[_COLOR_LEVEL[0]].lower()}", 3000)
+
+    def on_folder_shapes(self) -> None:
+        FolderShapesDialog(self).run()
+        for obj in self._row_objs.values():
+            obj.sig = None
+        self.render()
+
+    def on_category_shape(self, cat_id: str) -> None:
+        cat = self.preset.category(cat_id)
+        if not cat:
+            return
+        shape = ShapeDialog(self, f"Фігура папки «{clip(cat['name'], 20)}»", cat.get("shape")).run()
+        if shape and self.preset.set_category_shape(cat_id, shape):
+            self.render()
+            self.set_status(f"✓ Фігура папки: {shape}", 3000)
 
     def _pick_font_size(self) -> float:
         try:
@@ -3083,9 +3289,29 @@ class App:
         on = bool(ph.get("user_link"))
         m.add_command(("✓ " if on else "") + "Додавати користувача з історії (in {LINK:USER:…:E})",
                       lambda: self.on_phrase_user_link(pid, not on), icon="@")
+        if on:
+            m.add_cascade("Скільки користувачів брати", self._count_menu(
+                ph.get("user_count", 0), lambda n: self._set_phrase_count(pid, n)), icon="#")
         m.add_separator()
         m.add_command("Видалити фразу", lambda: self.on_remove_phrase(pid), danger=True, icon="✕")
         return m
+
+    def _count_menu(self, current: int, apply) -> "MenuModel":
+        """Підменю «скільки значень підтягувати»: усі з останньої серії номерних записів буфера або 1…10."""
+        sub = self._new_menu()
+        sub.add_command("Усі з останніх записів", lambda: apply(0), checked=not current)
+        for n in (1, 2, 3, 4, 5, 6, 8, 10):
+            sub.add_command(str(n), lambda n=n: apply(n), checked=current == n)
+        return sub
+
+    def _set_phrase_count(self, pid: str, n: int) -> None:
+        if self.preset.set_phrase_user_count(pid, n):
+            self.set_status(f"Фраза братиме користувачів: {n or 'усіх з останніх записів'}", 3000)
+
+    def _set_snippet_count(self, item_id: str, n: int) -> None:
+        if self.preset.set_snippet_user_count(item_id, n):
+            self.render()
+            self.set_status(f"Запис братиме користувачів: {n or 'усіх з останніх записів'}", 3000)
 
     def on_phrase_color(self, pid: str) -> None:
         ph = next((p for p in self.preset.phrases if p["id"] == pid), None)
@@ -3221,7 +3447,8 @@ class App:
         if any(p.get("user_link") for p in chosen):
             # «… subscriptions.» → «… subscriptions in {LINK:USER:…:E}.» (крапка лишається в кінці)
             dot = out.endswith(".") and not has_user_placeholder(out)
-            out = self._fill_snippet(out[:-1] if dot else out, True)
+            cnt = next((p.get("user_count", 0) for p in chosen if p.get("user_link")), 0)
+            out = self._fill_snippet(out[:-1] if dot else out, True, count=cnt)
             return out + "." if dot else out
         return fill_placeholders(out, self._history_texts())
 
@@ -3548,7 +3775,7 @@ class App:
                 self._swatches[c["id"]] = obj.dot
                 self._row_keys[obj.row] = c["id"]
                 created = True
-            obj.update(c["name"], c["color"], self.preset.count(c["id"]), c["id"] == self.view)
+            obj.update(c["name"], c["color"], self.preset.count(c["id"]), c["id"] == self.view, c.get("shape") or "")
         if created or self._row_order != wanted:
             self._row_order = wanted
             self._cat_sig = None
@@ -3735,6 +3962,19 @@ class App:
     def _sync_view_buttons(self) -> None:
         self.cat_view_btn.configure(text="☰" if self.cat_tiles else "▦")
         self.rec_view_btn.configure(text="☰ Список" if self.rec_tiles else "▦ Плитки")
+
+    def _shape_button(self, parent, cat_id: str, big: bool = False) -> tk.Label:
+        """Чорна фігура папки (замість кружечка): клік — колір папки, правий клік — меню (там і «Фігура…»)."""
+        lbl = tk.Label(parent, text="●", font=self.pf.shape_big if big else self.pf.shape, cursor="hand2",
+                       fg=self.col(TEXT), bg=self.col(PANEL), padx=2, pady=0)
+
+        def click(e):
+            self.on_category_color(cat_id)
+            return "break"
+        lbl.bind("<Button-1>", click)
+        lbl.bind("<Enter>", lambda e: self.set_status("Клік по фігурі — колір папки · правий клік → «Фігура…»", 2500),
+                 add="+")
+        return lbl
 
     def _swatch(self, parent, color: str, on_click=None) -> ctk.CTkFrame:
         """Кружечок кольору. З on_click — це видима кнопка «змінити колір» (рамка при наведенні, рука)."""
@@ -5509,7 +5749,7 @@ class App:
             self._open_v2(item)                # копіпаста v.2: клік відкриває вікно вибору аппендів (Ctrl+клік — лише основний текст)
             return
         if item and not self._is_history():
-            text = self._fill_snippet(text, card_user_link(item))
+            text = self._fill_snippet(text, card_user_link(item), count=item.get("user_count", 0))
         self.copy_to_clipboard(text)
 
         def after() -> None:      # піднімаємо запис в історії вже ПІСЛЯ ховання вікна
@@ -5521,10 +5761,11 @@ class App:
 
     def _open_v2(self, item: dict) -> None:
         """Вікно вибору аппендів для копіпасти v.2. Результат копіюється; вікно програми ховається лише при Ctrl + клік."""
-        res = V2Dialog(self, item["text"], item["v2"], uid=recent_numbers(self._history_texts()) or None,
+        cnt = clean_count(item.get("user_count", 0))
+        res = V2Dialog(self, item["text"], item["v2"], uid=take(recent_numbers(self._history_texts()), cnt) or None,
                        link_on=card_user_link(item),
                        on_edit=lambda: self._edit_appends_inline(item["id"]),
-                       filler=lambda txt, on: self._fill_snippet(txt, on, warn=False)).run()
+                       filler=lambda txt, on: self._fill_snippet(txt, on, warn=False, count=cnt)).run()
         if not res or not res["text"].strip():
             return
         self.copy_to_clipboard(res["text"])
@@ -5536,7 +5777,7 @@ class App:
 
         def finalize(text: str) -> tuple[str, str]:
             out, missing = self._resolve_tags(text)
-            out = self._fill_snippet(out, link_on, warn=False, tags=False)
+            out = self._fill_snippet(out, link_on, warn=False, tags=False, count=item.get("user_count", 0))
             warn = ("У буфері немає номерів для: " + ", ".join(tag_ref(m) for m in missing)) if missing else ""
             return out, warn
         res = CtorDialog(self, item["text"], item["ctor"], finalize,
@@ -5585,7 +5826,7 @@ class App:
     def _history_texts(self) -> list[str]:
         return [i["text"] for i in self.history.items]
 
-    def _fill_snippet(self, text: str, link_on: bool, warn: bool = True, tags: bool = True) -> str:
+    def _fill_snippet(self, text: str, link_on: bool, warn: bool = True, tags: bool = True, count: int = 0) -> str:
         """Заповнення тексту з історії буфера: теги {{user}} / {{назва}} → номери з останніх записів; «Email ___» →
         останній email; «___» → користувачі ПО ЧЕРЗІ; без заглушки й з увімкненою підстановкою — « in {LINK:USER:…:E},
         …» (усі користувачі з останніх записів буфера) у кінці."""
@@ -5597,7 +5838,7 @@ class App:
         out = fill_email(text, last_email(texts))
         if link_on:
             users = user_ids_from_history(texts)              # заглушки «___» — по черзі з усієї історії
-            tail = recent_numbers(texts)                      # « in …» — усі з останньої серії номерних записів
+            tail = take(recent_numbers(texts), clean_count(count))   # « in …» — з останньої серії (count — скільки)
             needed = users if has_user_placeholder(out) else tail
             out = apply_user_link(out, users, tail)
             if warn and not needed:
@@ -5880,6 +6121,8 @@ class App:
         m = self._new_menu()
         m.add_command("Перейменувати…", lambda: self.on_rename_category(cat_id), icon="✎")
         m.add_command("Колір…", lambda: self.on_category_color(cat_id), icon="●")
+        m.add_command("Фігура…", lambda: self.on_category_shape(cat_id),
+                      icon=(self.preset.category(cat_id) or {}).get("shape") or "★")
         m.add_command("Перемістити вгору", lambda: self.on_move_category(cat_id, -1), icon="↑")
         m.add_command("Перемістити вниз", lambda: self.on_move_category(cat_id, 1), icon="↓")
         m.add_separator()
@@ -5911,6 +6154,10 @@ class App:
             on = card_user_link(item)
             m.add_command(("✓ " if on else "") + "Додавати користувача з історії (in {LINK:USER:…:E})",
                           lambda: self.on_toggle_user_link(item_id, not on), icon="@")
+            if on:
+                cnt = (self.preset.find_snippet(item_id) or (None, {}))[1].get("user_count", 0)
+                m.add_cascade("Скільки користувачів брати", self._count_menu(
+                    cnt, lambda n: self._set_snippet_count(item_id, n)), icon="#")
             m.add_command("Колір запису…", lambda: self.on_snippet_color(item_id), icon="●")
         sub = self._new_menu()
         cur = None if hist else (self.preset.find_snippet(item_id) or ({"id": None},))[0]["id"]
@@ -6073,6 +6320,12 @@ class App:
             sizes.add_radio(f"{v:g}" + ("  (типовий)" if v == 16.5 else ""), self.v_pick_font, f"{v:g}",
                             lambda v=v: self.set_pick_font(v))
         m.add_cascade("Розмір назв папок (режим папок)", sizes, icon="A")
+        lv = self._new_menu()
+        for n, name in enumerate(COLOR_LEVEL_NAMES):
+            lv.add_command(name + ("  (як раніше)" if n == 0 else ""), lambda n=n: self.set_color_level(n),
+                           checked=n == _COLOR_LEVEL[0])
+        m.add_cascade("Насиченість кольорів (записи й папки)", lv, icon="◐")
+        m.add_command("Фігури папок…", self.on_folder_shapes, icon="★")
         hot = self._new_menu()
         for spec, label in HOTKEY_PRESETS:
             hot.add_radio(label, self.v_hotkey, spec, self._on_hotkey_choice)

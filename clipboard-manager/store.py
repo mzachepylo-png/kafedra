@@ -16,7 +16,10 @@ import shutil
 import time
 import uuid
 
-from formats import clean_ctor, clean_tags, clean_v2, tag_name_ok, infer_tag, USER_TAG, MAX_TAG_EXAMPLE
+import random
+
+from formats import (MAX_TAG_EXAMPLE, SHAPES, USER_TAG, clean_count, clean_ctor, clean_tags, clean_v2, infer_tag,
+                     tag_name_ok)
 
 MAX_CHARS = 100_000          # довші тексти пропускаємо
 MAX_HISTORY = 15             # скільки останніх копіювань тримає історія; старіші видаляються автоматично
@@ -170,6 +173,8 @@ class Preset:
                         snip["ctor"] = ctor              # копіпаста-конструктор: стовбур + дерево повних продовжень
                     if isinstance(s.get("user_link"), bool):
                         snip["user_link"] = s["user_link"]   # підставляти користувача з історії (in {LINK:USER:…:E})
+                    if clean_count(s.get("user_count")):
+                        snip["user_count"] = clean_count(s.get("user_count"))   # скільки користувачів дописувати
                     cell = s.get("cell")
                     if (isinstance(cell, list) and len(cell) == 2 and all(type(v) is int for v in cell)
                             and 0 <= cell[0] < MAX_CELL_ROW and 0 <= cell[1] < MAX_CELL_COL):
@@ -177,8 +182,10 @@ class Preset:
                     snippets.append(snip)
             cats.append({"id": cid, "name": str(c["name"])[:MAX_CATEGORY_NAME],
                          "color": c["color"] if _color_ok(c.get("color")) else PALETTE[n % len(PALETTE)],
+                         "shape": c.get("shape") if c.get("shape") in SHAPES else None,
                          "snippets": snippets})
         self.categories = cats
+        shaped = self._assign_shapes()
         self.formats = [dict(f, color=f["color"] if _color_ok(f.get("color")) else PALETTE[0])
                         for f in data.get("formats", [])
                         if isinstance(f, dict) and f.get("id") and f.get("name")
@@ -201,13 +208,57 @@ class Preset:
                         ph["color"] = p["color"]                 # власний колір фрази
                     if isinstance(p.get("user_link"), bool) and p["user_link"]:
                         ph["user_link"] = True                   # дописувати користувача з історії
+                    if clean_count(p.get("user_count")):
+                        ph["user_count"] = clean_count(p.get("user_count"))
                     self.phrases.append(ph)
         else:
             self.phrases = [dict(p) for p in DEFAULT_PHRASES]
         self.name = str(data.get("name") or _stem(self.path))[:MAX_PRESET_NAME]
-        if self._migrate_tos():
+        if self._migrate_tos() or shaped:
             self.save()
         self._mtime = self._disk_mtime()
+
+    def _assign_shapes(self) -> bool:
+        """Папкам без фігури — випадкова фігура (по можливості — ще не зайнята іншими папками)."""
+        changed = False
+        for c in self.categories:
+            if c.get("shape") not in SHAPES:
+                used = {x.get("shape") for x in self.categories}
+                free = [sh for sh in SHAPES if sh not in used] or SHAPES
+                c["shape"] = random.choice(free)
+                changed = True
+        return changed
+
+    def set_category_shape(self, cat_id: str, shape: str) -> bool:
+        cat = self.category(cat_id)
+        if not cat or shape not in SHAPES or cat.get("shape") == shape:
+            return False
+        cat["shape"] = shape
+        self.save()
+        return True
+
+    def set_snippet_user_count(self, snippet_id: str, count: int) -> bool:
+        """Скільки користувачів з буфера дописувати (in …); 0 — усіх з останньої серії."""
+        found = self.find_snippet(snippet_id)
+        if not found:
+            return False
+        if clean_count(count):
+            found[1]["user_count"] = clean_count(count)
+        else:
+            found[1].pop("user_count", None)
+        self.save()
+        return True
+
+    def set_phrase_user_count(self, phrase_id: str, count: int) -> bool:
+        ph = self._phrase(phrase_id)
+        if not ph:
+            return False
+        if clean_count(count):
+            ph["user_count"] = clean_count(count)
+        else:
+            ph.pop("user_count", None)
+        self.save()
+        return True
 
     def save(self) -> None:
         _write_json(self.path, {"format": PRESET_FORMAT, "version": PRESET_VERSION, "name": self.name,
@@ -337,12 +388,16 @@ class Preset:
             return "У прикладі входу немає номерів або їх немає в прикладі виходу"
         return None
 
-    def save_tag(self, name: str, ex_in: str, ex_out: str, tag_id: str | None = None) -> dict | None:
+    def save_tag(self, name: str, ex_in: str, ex_out: str, tag_id: str | None = None, count: int = 0) -> dict | None:
         """Новий тег (tag_id=None) або зміна наявного. None — якщо дані невалідні (див. tag_problem)."""
         if self.tag_problem(name, ex_in, ex_out, tag_id):
             return None
         vals = {"name": name.strip(), "ex_in": ex_in[:MAX_TAG_EXAMPLE], "ex_out": ex_out[:MAX_TAG_EXAMPLE]}
         tag = self.tag(tag_id) if tag_id else None
+        if clean_count(count):
+            vals["count"] = clean_count(count)
+        elif tag:
+            tag.pop("count", None)
         if tag:
             tag.update(vals)
         else:
@@ -414,8 +469,9 @@ class Preset:
             return None
         used = [c["color"] for c in self.categories]
         cat = {"id": uuid.uuid4().hex, "name": name,
-               "color": min(PALETTE, key=lambda col: used.count(col)), "snippets": []}
+               "color": min(PALETTE, key=lambda col: used.count(col)), "shape": None, "snippets": []}
         self.categories.append(cat)
+        self._assign_shapes()
         self.save()
         return cat
 
@@ -782,6 +838,7 @@ DEFAULT_SETTINGS = {
     "folder_first": True,   # режим «спочатку папка»: при відкритті — лише вибір папки, записи після вибору (Esc — назад)
     "colors_saved": [],     # власні збережені кольори (вікно вибору кольору)
     "colors_recent": [],    # історія кольорів: останні обрані, найновіший першим
+    "color_level": 1,       # насиченість кольорів карток і папок: 0 — слабка … 3 — дуже сильна
 }
 MAX_SAVED_COLORS = 24
 MAX_RECENT_COLORS = 12

@@ -260,16 +260,22 @@ def recent_numbers(texts, limit: int = MAX_RECENT_NUMBERS) -> list[str]:
     return out
 
 
+_USER_ENTRY = re.compile(r"^\s*(?:\{LINK:USER:([0-9]+):E\}|(?:user\s*#\s*)?([0-9]+))\s*$", re.IGNORECASE)
+
+
 def user_ids_from_history(texts, limit: int = 8) -> list[str]:
-    """Користувачі для заглушок «___» по черзі: усі «номерні» записи історії (записи з текстом пропускаються),
-    найновіший першим, у записі — зліва направо, без повторів, до ``limit``."""
+    """Користувачі для заглушок «___» по черзі (попередня механіка): записи історії, що є ОДНИМ користувачем
+    (``{LINK:USER:1236:E}``, «User #1236» або просто число), найновіший першим, без повторів, до ``limit``;
+    решта записів пропускається."""
     out: list[str] = []
     for t in texts:
-        for n in numbers_of_entry(t) or ():
-            if n not in out:
-                out.append(n)
+        m = _USER_ENTRY.match(t or "")
+        if m:
+            uid = m.group(1) or m.group(2)
+            if uid not in out:
+                out.append(uid)
                 if len(out) >= limit:
-                    return out
+                    break
     return out
 
 
@@ -360,12 +366,29 @@ def fill_placeholders(text: str, history_texts) -> str:
 USER_TAG = "user"
 MAX_TAG_NAME = 30
 MAX_TAG_EXAMPLE = 300
-_TAG_REF = re.compile(r"\{\{\s*([^{}]{1,%d}?)\s*\}\}" % MAX_TAG_NAME)
-_TAG_NAME = re.compile(r"^[^{}\s][^{}]{0,%d}$" % (MAX_TAG_NAME - 1))
+MAX_PULL = 30            # найбільша кількість значень, яку можна задати для підтягування
+_TAG_REF = re.compile(r"\{\{\s*([^{}:]{1,%d}?)\s*(?::\s*([0-9]{1,2})\s*)?\}\}" % MAX_TAG_NAME)
+_TAG_NAME = re.compile(r"^[^{}:\s][^{}:]{0,%d}$" % (MAX_TAG_NAME - 1))
 
 
-def tag_ref(name: str) -> str:
-    return "{{%s}}" % name
+def tag_ref(name: str, count: int = 0) -> str:
+    """``{{name}}`` — усі значення (або скільки задано в самому тезі); ``{{name:2}}`` — лише 2 найновіші."""
+    return "{{%s:%d}}" % (name, count) if count else "{{%s}}" % name
+
+
+def clean_count(value) -> int:
+    """Кількість значень для підтягування: 0 — усі, інакше 1…MAX_PULL."""
+    try:
+        n = int(value)
+    except (TypeError, ValueError):
+        return 0
+    return n if 0 < n <= MAX_PULL else 0
+
+
+def take(values, count: int):
+    """Перші ``count`` значень (0 — усі)."""
+    values = list(values)
+    return values[:count] if count else values
 
 
 def tag_name_ok(name: str) -> bool:
@@ -426,7 +449,10 @@ def clean_tags(raw) -> list[dict]:
         if not tag_name_ok(name) or name.casefold() in seen or not infer_tag(ex_in, ex_out):
             continue
         seen.add(name.casefold())
-        out.append({"id": str(t.get("id") or uuid.uuid4().hex), "name": name, "ex_in": ex_in, "ex_out": ex_out})
+        tag = {"id": str(t.get("id") or uuid.uuid4().hex), "name": name, "ex_in": ex_in, "ex_out": ex_out}
+        if clean_count(t.get("count")):
+            tag["count"] = clean_count(t.get("count"))     # скільки номерів брати за замовчуванням (немає — усі)
+        out.append(tag)
     return out
 
 
@@ -436,7 +462,8 @@ def has_tags(text: str) -> bool:
 
 def resolve_tags(text: str, tags, history_texts) -> tuple[str, list[str]]:
     """Підставляє теги: {{user}} → користувачі з останніх записів буфера, власні — номери з тих самих записів
-    за шаблоном тегу. Повертає (текст, назви тегів, для яких у буфері не знайшлось номерів — вони лишаються як є)."""
+    за шаблоном тегу. ``{{назва:N}}`` — лише N найновіших номерів (без числа — скільки задано в тезі, інакше всі).
+    Повертає (текст, назви тегів, для яких у буфері не знайшлось номерів — вони лишаються як є)."""
     if not has_tags(text):
         return text, []
     nums = recent_numbers(list(history_texts))
@@ -446,10 +473,12 @@ def resolve_tags(text: str, tags, history_texts) -> tuple[str, list[str]]:
     def sub(m):
         name = m.group(1).strip()
         key = name.casefold()
+        count = clean_count(m.group(2))
         if key == USER_TAG:
-            val = user_links(nums)
+            val = user_links(take(nums, count))
         elif key in by_name:
-            val = render_tag(infer_tag(by_name[key]["ex_in"], by_name[key]["ex_out"]), nums)
+            tag = by_name[key]
+            val = render_tag(infer_tag(tag["ex_in"], tag["ex_out"]), take(nums, count or clean_count(tag.get("count"))))
         else:
             return m.group(0)                  # невідомий тег — текст як є
         if not val:
@@ -463,6 +492,7 @@ def resolve_tags(text: str, tags, history_texts) -> tuple[str, list[str]]:
 #  Копіпаста-конструктор: основний текст («стовбур») + дерево конструктів. Кожен конструкт — ПОВНИЙ текст
 #  (продовження тексту батька); у вікні вибору показується лише нова частина. «None» — копіювати вже побудоване.
 # --------------------------------------------------------------------------- #
+_HEX = re.compile(r"^#[0-9a-fA-F]{6}$")
 CTOR_MAX_DEPTH = 8
 CTOR_MAX_NODES = 80
 CTOR_MAX_TEXT = 3000
@@ -480,6 +510,8 @@ def clean_ctor(raw) -> dict | None:
             if not isinstance(n, dict) or not isinstance(n.get("text"), str) or not n["text"].strip():
                 continue
             node = {"id": str(n.get("id") or uuid.uuid4().hex), "text": n["text"].strip()[:CTOR_MAX_TEXT]}
+            if isinstance(n.get("color"), str) and _HEX.match(n["color"]):
+                node["color"] = n["color"].lower()            # власний колір конструкту
             kids = clean_list(n.get("children"), depth + 1)
             if kids:
                 node["children"] = kids
@@ -505,3 +537,22 @@ def ctor_count(ctor: dict | None) -> int:
     def cnt(items):
         return sum(1 + cnt(n.get("children", [])) for n in items or [])
     return cnt((ctor or {}).get("options"))
+
+
+# --------------------------------------------------------------------------- #
+#  Фігури-позначки (чорні значки замість кружечка кольору): у папок — своя (випадкова, змінюється вручну),
+#  у записів і конструктів — залежить від кольору
+# --------------------------------------------------------------------------- #
+SHAPES = ["●", "■", "▲", "◆", "★", "♥", "♠", "♣", "✚", "▼", "⬟", "⬢", "☀", "☂", "✿", "❖", "♪", "⚑", "☾", "✖"]
+_COLOR_SHAPES = {"#0f6cbd": "●", "#107c10": "■", "#c239b3": "♥", "#d83b01": "▲", "#8764b8": "◆", "#038387": "♣",
+                 "#986f0b": "★", "#e3008c": "✿", "#e81123": "✚", "#ffb900": "☀", "#00b294": "♠", "#69797e": "⬢"}
+
+
+def shape_for_color(color: str | None) -> str:
+    """Фігура для кольору: для стандартних кольорів — фіксована, для інших — стабільно за самим кольором."""
+    if not color or not _HEX.match(color):
+        return ""
+    c = color.lower()
+    if c in _COLOR_SHAPES:
+        return _COLOR_SHAPES[c]
+    return SHAPES[int(c[1:], 16) % len(SHAPES)]

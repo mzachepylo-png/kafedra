@@ -743,8 +743,8 @@ class HistoryAutofillAndUserLinkTests(unittest.TestCase):
     def test_several_placeholders_take_users_in_turn(self):
         from formats import apply_user_link, fill_placeholders, user_ids_from_history
         hist = ["{LINK:USER:3:E}", "текст", "214", "3", "User #9", "12, 13", "{LINK:USER:5:E}"]
-        self.assertEqual(user_ids_from_history(hist), ["3", "214", "9", "12", "13", "5"],
-                         "для заглушок — уся історія (текст пропускається), найновіший першим, без повторів")
+        self.assertEqual(user_ids_from_history(hist), ["3", "214", "9", "5"],
+                         "для заглушок — попередня механіка: записи з ОДНИМ користувачем, найновіший першим, без повторів")
         self.assertEqual(apply_user_link("A ___ and B ___.", user_ids_from_history(hist)),
                          "A {LINK:USER:3:E} and B {LINK:USER:214:E}.")
         ids = [str(n) for n in range(1, 11)]
@@ -789,6 +789,48 @@ class HistoryAutofillAndUserLinkTests(unittest.TestCase):
         self.assertEqual(missing, [])
         out, missing = resolve_tags("U {{user}}", tags, ["текст"])
         self.assertEqual((out, missing), ("U {{user}}", ["user"]))
+
+    def test_pull_counts_and_shapes(self):
+        from formats import SHAPES, clean_count, clean_ctor, resolve_tags, shape_for_color, tag_ref
+        tags = [{"name": "card", "ex_in": "1", "ex_out": "C1", "count": 1}]
+        hist = ["5 6 7", "текст"]
+        self.assertEqual(resolve_tags("{{user:2}}", [], hist)[0], "{LINK:USER:5:E}, {LINK:USER:6:E}")
+        self.assertEqual(resolve_tags("{{user}}", [], hist)[0], "{LINK:USER:5:E}, {LINK:USER:6:E}, {LINK:USER:7:E}")
+        self.assertEqual(resolve_tags("{{card}}", tags, hist)[0], "C5", "кількість із самого тегу")
+        self.assertEqual(resolve_tags("{{ card : 3 }}", tags, hist)[0], "C5, C6, C7", "кількість у тексті важливіша")
+        self.assertEqual(tag_ref("user", 2), "{{user:2}}")
+        self.assertEqual(tag_ref("user"), "{{user}}")
+        self.assertEqual([clean_count(v) for v in (0, "3", 99, "x", -1)], [0, 3, 0, 0, 0])
+        self.assertEqual(shape_for_color("#0f6cbd"), "●")
+        self.assertIn(shape_for_color("#123456"), SHAPES)
+        self.assertEqual(shape_for_color("#123456"), shape_for_color("#123456"))
+        self.assertEqual(shape_for_color(None), "")
+        c = clean_ctor({"options": [{"text": "a", "color": "#ABCDEF"}, {"text": "b", "color": "red"}]})
+        self.assertEqual(c["options"][0]["color"], "#abcdef")
+        self.assertNotIn("color", c["options"][1])
+
+    def test_category_shapes_and_counts_persist(self):
+        import tempfile, os
+        from formats import SHAPES
+        path = os.path.join(tempfile.mkdtemp(), "s.preset.json")
+        p = Preset(path)
+        a, b = p.add_category("A"), p.add_category("B")
+        self.assertIn(a["shape"], SHAPES)
+        self.assertNotEqual(a["shape"], b["shape"], "нова папка — ще не зайнята фігура")
+        self.assertTrue(p.set_category_shape(a["id"], "★"))
+        self.assertFalse(p.set_category_shape(a["id"], "x"))
+        sn = p.add_snippet(a["id"], "t")
+        p.set_snippet_user_count(sn["id"], 2)
+        ph = p.add_phrase("phrase")
+        p.set_phrase_user_count(ph["id"], 3)
+        p.save_tag("card", "1", "C1", count=2)
+        q = Preset.open(path)
+        self.assertEqual(q.category(a["id"])["shape"], "★")
+        self.assertEqual(q.find_snippet(sn["id"])[1]["user_count"], 2)
+        self.assertEqual(next(x for x in q.phrases if x["id"] == ph["id"])["user_count"], 3)
+        self.assertEqual(q.tags[0]["count"], 2)
+        p.set_snippet_user_count(sn["id"], 0)
+        self.assertNotIn("user_count", Preset.open(path).find_snippet(sn["id"])[1])
 
     def test_constructor_tree(self):
         from formats import clean_ctor, ctor_count, ctor_label
