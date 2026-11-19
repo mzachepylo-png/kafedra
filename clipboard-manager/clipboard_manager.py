@@ -3748,7 +3748,8 @@ class App:
         return True
 
     def _nav_cells(self, k: str, edges: bool = True) -> None:
-        """Alt+W/A/S/D у сітці клітинок: до найближчої плитки в напрямку (порожні клітинки пропускаються).
+        """Alt+W/A/S/D у сітці клітинок: до найближчої заповненої клітинки в тому ж стовпчику (W/S) чи ряду (A/D);
+        порожні клітинки пропускаються, а якщо в напрямку плиток немає — курсор лишається на місці.
         edges=False (стрілки) — з краю нікуди не переходимо (ні до папок, ні в праву колонку)."""
         cur = self._cell_of.get(self.sel_id)
         if cur is None and edges and k in ("a", "d"):
@@ -3762,8 +3763,10 @@ class App:
             return
         cr, cc = cur
         if k in ("w", "s"):
-            cand = [(abs(r - cr), abs(c - cc), iid) for iid, (r, c) in self._cell_of.items()
-                    if (r < cr if k == "w" else r > cr)]
+            # строго в тому ж стовпчику: найближча заповнена клітинка вище/нижче (порожні пропускаються);
+            # немає — лишаємось на місці (у сусідній стовпчик — лише Alt+A / Alt+D)
+            cand = [(abs(r - cr), 0, iid) for iid, (r, c) in self._cell_of.items()
+                    if c == cc and (r < cr if k == "w" else r > cr)]
         else:
             cand = [(abs(c - cc), 0, iid) for iid, (r, c) in self._cell_of.items()
                     if r == cr and (c < cc if k == "a" else c > cc)]

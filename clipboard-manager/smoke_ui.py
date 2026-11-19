@@ -4073,7 +4073,10 @@ assert app._move_to_cell(ids_[0], (1, 2))
 app.render()
 app.flush_render()
 pump(200)
-app.sel_id = ids_[1]                               # (0, 1); у списку наступний — ids_[2] (0, 2), нижче — ids_[0] (1, 2)
+app.sel_id = ids_[1]                               # (0, 1): під ним у стовпчику порожньо — стрілка вниз лишає на місці
+app._arrow_v(1)
+assert app.sel_id == ids_[1], app._cell_of
+app.sel_id = ids_[2]                               # (0, 2); у списку наступний — ids_[0], на екрані під ним — теж ids_[0] (1, 2)
 app._arrow_v(1)
 assert app.sel_id == ids_[0], app._cell_of
 app._arrow_v(1)                                    # нижче нікого — стрілка нікуди не веде
@@ -4113,6 +4116,43 @@ app.back_to_folders()
 root.geometry("1180x660+0+0")
 pump(400)
 print("40 folder-first QA (scrollbar/history, menus at pointer, picker keys, right column, cells, names) OK")
+
+# ---- 41. сітка клітинок: Alt+W/S — лише свій стовпчик (порожні пропускаються), немає плитки — стоїмо ----------------
+settings["autohide"] = False
+app.hotkey_ok = False
+root.geometry("1500x800+0+0")
+pump(300)
+app.show_window()
+nv_cat = cat_named("Нав сітка")
+nv_ids = [app.preset.add_snippet(nv_cat["id"], f"нав сітка {n_}")["id"] for n_ in range(4)]
+app.set_folder_first(True)
+app.set_rec_view("tiles")
+app.preset.set_snippet_cells({nv_ids[0]: (0, 0), nv_ids[1]: (0, 1), nv_ids[2]: (1, 2), nv_ids[3]: (3, 0)})
+app.select_category(nv_cat["id"])
+app.flush_render()
+pump(300)
+assert app._cells_on() and app._cell_of[nv_ids[3]] == (3, 0), app._cell_of
+app._select_card(nv_ids[0])
+app.nav_move("s")
+assert app.sel_id == nv_ids[3], "вниз — та сама колонка, через порожні клітинки (не навскіс до (1,2))"
+app.nav_move("s")
+assert app.sel_id == nv_ids[3], "нижче нічого — стоїмо"
+app.nav_move("w")
+assert app.sel_id == nv_ids[0]
+app.nav_move("w")
+assert app.sel_id == nv_ids[0], "вище нічого — стоїмо"
+app.nav_move("d")
+assert app.sel_id == nv_ids[1]
+app.nav_move("s")
+assert app.sel_id == nv_ids[1], "у стовпчику (0,1) нижче порожньо — не стрибаємо в сусідній стовпчик"
+app.nav_move("d")
+assert app.nav_zone == "right", "праворуч у ряду нічого — Alt+D веде в праву колонку (як і раніше)"
+app.nav_move("a")
+assert app.nav_zone == "cards" and app.sel_id == nv_ids[1]
+app.back_to_folders()
+root.geometry("1180x660+0+0")
+pump(400)
+print("41 cell grid keyboard nav: same column/row only OK")
 
 # ---- 25. справжнє розгортання під віконним менеджером (лише якщо є openbox) -------------------------------------------------------------
 import shutil  # noqa: E402
