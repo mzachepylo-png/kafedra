@@ -4081,8 +4081,10 @@ app._arrow_v(1)
 assert app.sel_id == ids_[0], app._cell_of
 app._arrow_v(1)                                    # нижче нікого — стрілка нікуди не веде
 assert app.sel_id == ids_[0] and app.page == "records"
-app._arrow_h(SimpleNamespace(widget=root), -1)     # ліворуч у ряду 1 нікого — лишаємось (не «Назад»)
-assert app.sel_id == ids_[0] and app.page == "records"
+app._arrow_h(SimpleNamespace(widget=root), -1)     # ліворуч у ряду 1 нікого — найближча лівіше в іншому ряду (0, 1)
+assert app.sel_id == ids_[1] and app.page == "records", app._cell_of
+app._arrow_h(SimpleNamespace(widget=root), -1)     # (0, 0) порожня, лівіше нікого — лишаємось (стрілка — не «Назад»)
+assert app.sel_id == ids_[1] and app.page == "records"
 app.sel_id = None
 app.nav_move("a")
 assert app.page == "folders", "Alt+A без вибраної плитки — до вибору папки (як у списку)"
@@ -4146,13 +4148,23 @@ assert app.sel_id == nv_ids[1]
 app.nav_move("s")
 assert app.sel_id == nv_ids[1], "у стовпчику (0,1) нижче порожньо — не стрибаємо в сусідній стовпчик"
 app.nav_move("d")
-assert app.nav_zone == "right", "праворуч у ряду нічого — Alt+D веде в праву колонку (як і раніше)"
+assert app.sel_id == nv_ids[2] and app.nav_zone == "cards", "праворуч у ряду порожньо — до плитки правіше в іншому ряду"
+app.nav_move("d")
+assert app.nav_zone == "right", "правіше плиток немає зовсім — лише тепер у праву колонку"
 app.nav_move("a")
-assert app.nav_zone == "cards" and app.sel_id == nv_ids[1]
+assert app.nav_zone == "cards" and app.sel_id == nv_ids[2]
+app.nav_move("a")
+assert app.sel_id == nv_ids[1], "ліворуч у ряду порожньо — найближча лівіше в іншому ряду"
+app._select_card(nv_ids[3])
+app.nav_move("d")
+assert app.sel_id == nv_ids[1], "з (3,0): найближчий стовпчик правіше — 1 (ряд 0), а не 2"
+app._select_card(nv_ids[3])
+app.nav_move("a")
+assert app.page == "folders", "лівіше плиток немає — до вибору папки"
 app.back_to_folders()
 root.geometry("1180x660+0+0")
 pump(400)
-print("41 cell grid keyboard nav: same column/row only OK")
+print("41 cell grid keyboard nav: W/S same column, A/D same row then nearest in other rows OK")
 
 # ---- 42. копіпаста-конструктор, теги, користувачі з кількох записів, збережені кольори --------------------------------
 err42 = []

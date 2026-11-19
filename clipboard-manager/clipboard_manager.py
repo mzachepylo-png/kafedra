@@ -4258,8 +4258,8 @@ class App:
         return True
 
     def _nav_cells(self, k: str, edges: bool = True) -> None:
-        """Alt+W/A/S/D у сітці клітинок: до найближчої заповненої клітинки в тому ж стовпчику (W/S) чи ряду (A/D);
-        порожні клітинки пропускаються, а якщо в напрямку плиток немає — курсор лишається на місці.
+        """Alt+W/A/S/D у сітці клітинок: W/S — до найближчої заповненої клітинки в тому ж стовпчику (немає — стоїмо);
+        A/D — у тому ж ряду, а якщо там порожньо — до найближчої плитки лівіше/правіше в інших рядах.
         edges=False (стрілки) — з краю нікуди не переходимо (ні до папок, ні в праву колонку)."""
         cur = self._cell_of.get(self.sel_id)
         if cur is None and edges and k in ("a", "d"):
@@ -4278,8 +4278,12 @@ class App:
             cand = [(abs(r - cr), 0, iid) for iid, (r, c) in self._cell_of.items()
                     if c == cc and (r < cr if k == "w" else r > cr)]
         else:
-            cand = [(abs(c - cc), 0, iid) for iid, (r, c) in self._cell_of.items()
-                    if r == cr and (c < cc if k == "a" else c > cc)]
+            # A/D: спершу той самий ряд; якщо там порожньо — найближча плитка лівіше/правіше в БУДЬ-ЯКОМУ ряду
+            # (найменша різниця стовпчиків, потім рядків); лише якщо в цьому напрямку плиток немає зовсім —
+            # до папок (A) чи у швидкі фрази (D)
+            side = [(r, c, iid) for iid, (r, c) in self._cell_of.items() if (c < cc if k == "a" else c > cc)]
+            cand = [(abs(c - cc), 0, iid) for r, c, iid in side if r == cr] or \
+                   [(abs(c - cc), abs(r - cr), iid) for r, c, iid in side]
         if cand:
             self._select_card(min(cand)[2])
         elif k == "a" and edges:
