@@ -724,7 +724,8 @@ class HistoryAutofillAndUserLinkTests(unittest.TestCase):
         self.assertEqual(last_user_id(["текст", "{LINK:USER:1236:E}", "214"]), "1236")
         self.assertEqual(last_user_id(["214", "{LINK:USER:1236:E}"]), "214")
         self.assertEqual(last_user_id(["User #77"]), "77")
-        self.assertIsNone(last_user_id(["12, 13", "текст"]))
+        self.assertEqual(last_user_id(["12, 13", "текст"]), "12", "кілька номерів у записі — теж користувачі")
+        self.assertIsNone(last_user_id(["текст", "ще текст"]))
         t1 = "User was blacklisted due to suspicious cards` usage in ___________"
         self.assertTrue(has_user_placeholder(t1))
         self.assertEqual(apply_user_link(t1, "214"), "User was blacklisted due to suspicious cards` usage in {LINK:USER:214:E}")
@@ -741,8 +742,8 @@ class HistoryAutofillAndUserLinkTests(unittest.TestCase):
 
     def test_several_placeholders_take_users_in_turn(self):
         from formats import apply_user_link, fill_placeholders, user_ids_from_history
-        hist = ["{LINK:USER:3:E}", "текст", "214", "3", "User #9", "12, 13", "{LINK:USER:5:E}"]
-        self.assertEqual(user_ids_from_history(hist), ["3", "214", "9", "5"], "найновіший першим, без повторів")
+        hist = ["текст", "{LINK:USER:3:E}", "214", "3", "User #9", "текст", "{LINK:USER:5:E}"]
+        self.assertEqual(user_ids_from_history(hist), ["3", "214", "9"], "серія останніх записів, найновіший першим, без повторів")
         self.assertEqual(apply_user_link("A ___ and B ___.", user_ids_from_history(hist)),
                          "A {LINK:USER:3:E} and B {LINK:USER:214:E}.")
         ids = [str(n) for n in range(1, 11)]
@@ -751,6 +752,51 @@ class HistoryAutofillAndUserLinkTests(unittest.TestCase):
         self.assertEqual(out.split(" ")[:8], ["{LINK:USER:%d:E}" % n for n in range(1, 9)])
         self.assertEqual(out.split(" ")[8:], ["___", "___"], "не більше 8 користувачів")
         self.assertEqual(fill_placeholders("Users ___ and ___", ["7"]), "Users {LINK:USER:7:E} and ___")
+
+    def test_users_from_several_numbers_in_recent_entries(self):
+        from formats import apply_user_link, recent_numbers, user_ids_from_history
+        hist = ["214512 66413241, #124521", "2141", "якийсь текст", "777"]
+        self.assertEqual(user_ids_from_history(hist), ["214512", "66413241", "124521", "2141"])
+        self.assertEqual(apply_user_link("Blacklisted", user_ids_from_history(hist)),
+                         "Blacklisted in {LINK:USER:214512:E}, {LINK:USER:66413241:E}, {LINK:USER:124521:E}, "
+                         "{LINK:USER:2141:E}")
+        self.assertEqual(recent_numbers(["User123; #User45. User #6", "{LINK:USER:7:E}, 8"]), ["123", "45", "6", "7", "8"])
+        self.assertEqual(recent_numbers(["Cards 1, 2 were added"]), [], "речення — не номери")
+        self.assertEqual(recent_numbers(["5, 5", "5"]), ["5"], "без повторів")
+
+    def test_custom_tags(self):
+        from formats import clean_tags, infer_tag, render_tag, resolve_tags
+        t = infer_tag("1234", "Card #1234 was blocked.")
+        self.assertEqual(render_tag(t, ["11", "22"]), "Card #11, #22 was blocked.")
+        t = infer_tag("12", "{LINK:CARD:12:E}.")
+        self.assertEqual(render_tag(t, ["1", "2"]), "{LINK:CARD:1:E}, {LINK:CARD:2:E}.")
+        t = infer_tag("1 2", "IDs 1; 2")
+        self.assertEqual(render_tag(t, ["7", "8", "9"]), "IDs 7; 8; 9")
+        self.assertIsNone(infer_tag("abc", "abc"))
+        self.assertIsNone(infer_tag("12", "no number"))
+        tags = clean_tags([{"name": "card", "ex_in": "1", "ex_out": "{LINK:CARD:1:E}"},
+                           {"name": "bad", "ex_in": "x", "ex_out": "y"}, {"name": "user", "ex_in": "1", "ex_out": "1"},
+                           {"name": "CARD", "ex_in": "1", "ex_out": "1"}])
+        self.assertEqual([t["name"] for t in tags], ["card"], "невалідні, зарезервовані й дублікати відкидаються")
+        out, missing = resolve_tags("U {{user}} C {{ card }} X {{nope}}", tags, ["3 4", "текст"])
+        self.assertEqual(out, "U {LINK:USER:3:E}, {LINK:USER:4:E} C {LINK:CARD:3:E}, {LINK:CARD:4:E} X {{nope}}")
+        self.assertEqual(missing, [])
+        out, missing = resolve_tags("U {{user}}", tags, ["текст"])
+        self.assertEqual((out, missing), ("U {{user}}", ["user"]))
+
+    def test_constructor_tree(self):
+        from formats import clean_ctor, ctor_count, ctor_label
+        base = "Suspicious cards were added."
+        self.assertEqual(ctor_label(base, base + " Blacklisted, unsolicited charges refunded"),
+                         "Blacklisted, unsolicited charges refunded")
+        self.assertEqual(ctor_label(base, "Other text"), "Other text", "не продовження — повний текст")
+        self.assertEqual(ctor_label(base, base), base)
+        c = clean_ctor({"options": [{"text": " a "}, {"text": ""}, {"text": "b", "children": [{"text": "b c"}, 5]}]})
+        self.assertEqual([n["text"] for n in c["options"]], ["a", "b"])
+        self.assertEqual(c["options"][1]["children"][0]["text"], "b c")
+        self.assertNotIn("children", c["options"][0])
+        self.assertEqual(ctor_count(c), 3)
+        self.assertIsNone(clean_ctor({"options": [{"text": " "}]}))
 
     def test_email_from_history(self):
         from formats import fill_placeholders, has_user_placeholder, last_email

@@ -229,7 +229,7 @@ app.select_category(work["id"])
 snip_id = app.shown[0]["id"]
 app.show_menu(10, 10, snip_id)
 m = popups[-1]
-assert labels(m) == ["Копіювати", "Редагувати…", "Додати аппенди…", "Додавати користувача з історії (in {LINK:USER:…:E})", "Колір запису…", "Перемістити в категорію", "Вгору", "Вниз",
+assert labels(m) == ["Копіювати", "Редагувати…", "Додати аппенди…", "Конструктор…", "Додавати користувача з історії (in {LINK:USER:…:E})", "Колір запису…", "Перемістити в категорію", "Вгору", "Вниз",
                      "Видалити"], labels(m)
 sub = submenu(m, "Перемістити в категорію")
 assert labels(sub) == ["Робота", "Особисте", "＋ Нова категорія…"], labels(sub)
@@ -412,7 +412,7 @@ assert cm._Dialog.run(dlg) is None
 cats = app.preset.categories
 dlg = cm.SnippetDialog(app, "Новий", "", cats[0]["id"])
 root.after(400, lambda: (dlg.text.insert("1.0", "через справжній діалог"), dlg.cat_var.set(cats[1]["name"]), dlg.ok()))
-assert cm._Dialog.run(dlg) == ("через справжній діалог", cats[1]["id"], None)
+assert cm._Dialog.run(dlg) == ("через справжній діалог", cats[1]["id"], None, None)
 dlg = cm.SnippetDialog(app, "Порожній", "", cats[0]["id"])
 root.after(400, lambda: (dlg.ok(), dlg.cancel()))             # порожній текст не приймається
 assert cm._Dialog.run(dlg) is None
@@ -1397,7 +1397,7 @@ app.show_menu(root.winfo_rootx() + 500, root.winfo_rooty() + 300, sid)
 pop = app._popups[-1]
 pump(150)
 assert pop.top.winfo_viewable() and pop.top.winfo_width() >= 250 * sc - 2
-assert [i.label for i, _, _ in pop.rows] == ["Копіювати", "Редагувати…", "Додати аппенди…", "Додавати користувача з історії (in {LINK:USER:…:E})", "Колір запису…", "Перемістити в категорію",
+assert [i.label for i, _, _ in pop.rows] == ["Копіювати", "Редагувати…", "Додати аппенди…", "Конструктор…", "Додавати користувача з історії (in {LINK:USER:…:E})", "Колір запису…", "Перемістити в категорію",
                                               "Вгору", "Вниз", "Видалити"]
 for item, row, parts in pop.rows:
     assert row.winfo_height() >= 40 * sc - 1, (item.label, row.winfo_height())
@@ -4153,6 +4153,238 @@ app.back_to_folders()
 root.geometry("1180x660+0+0")
 pump(400)
 print("41 cell grid keyboard nav: same column/row only OK")
+
+# ---- 42. копіпаста-конструктор, теги, користувачі з кількох записів, збережені кольори --------------------------------
+err42 = []
+
+
+def guard42(fn):
+    def run():
+        try:
+            fn()
+        except Exception as ex:                   # noqa: BLE001
+            err42.append(traceback.format_exc())
+            for w in root.winfo_children():
+                if isinstance(w, (cm.CtorDialog, cm.CtorEditDialog, cm.TagDialog, cm.ColorDialog)):
+                    w.destroy()
+    return run
+
+
+def open_dlg(cls):
+    return [w for w in root.winfo_children() if isinstance(w, cls) and w.winfo_exists()][-1]
+
+
+import traceback  # noqa: E402
+settings["autohide"] = False
+app.hotkey_ok = True
+app.set_folder_first(False)
+app.history = History(os.path.join(tmp, "h42.json"))
+app.history.add("2141")
+app.history.add("214512 66413241, #124521")
+ct_cat = cat_named("Suspicious cards")
+ROOT42 = "Suspicious cards were added."
+ctor42 = {"options": [
+    {"text": ROOT42 + " Blacklisted, unsolicited charges refunded"},
+    {"text": ROOT42 + " Blacklisted, no unsolicited charges",
+     "children": [{"text": ROOT42 + " Blacklisted, no unsolicited charges. Users {{user}} checked"}]}]}
+sn42 = app.preset.add_snippet(ct_cat["id"], ROOT42, ctor=ctor42)
+assert sn42.get("ctor") and len(sn42["ctor"]["options"]) == 2
+app.select_category(ct_cat["id"])
+app.flush_render()
+pump(200)
+card42 = app._card_objs[sn42["id"]]
+assert "⧉ конструктор" in card42.shown_text(), card42.shown_text()
+
+
+def pick_branch():
+    d = open_dlg(cm.CtorDialog)
+    labels = [lbl.cget("text") for _fr, lbl, _b, _h in d.rows]
+    assert len(labels) == 3 and labels[-1].startswith("0   None"), labels
+    assert "Blacklisted, unsolicited charges refunded" in labels[0] and "Suspicious" not in labels[0], labels
+    assert labels[1].endswith("▸"), "конструкт із продовженнями позначено ▸"
+    d._activate(1)                                 # з продовженнями — відкривається наступний крок
+    assert len(d.stack) == 2 and len(d.rows) == 2
+    assert d.preview.get("1.0", "end-1c") == ROOT42 + " Blacklisted, no unsolicited charges"
+    labels = [lbl.cget("text") for _fr, lbl, _b, _h in d.rows]
+    assert "Users {{user}} checked" in labels[0] and "no unsolicited" not in labels[0], labels
+    d.back()
+    assert len(d.stack) == 1
+    d._activate(1)
+    d._activate(0)                                 # кінцевий — копіюється з підставленими користувачами
+
+
+root.after(300, guard42(pick_branch))
+app.copy_item(sn42["id"])
+assert not err42, err42
+got42 = root.clipboard_get()
+assert got42 == (ROOT42 + " Blacklisted, no unsolicited charges. Users {LINK:USER:214512:E}, {LINK:USER:66413241:E}, "
+                 "{LINK:USER:124521:E}, {LINK:USER:2141:E} checked"), got42
+app.show_window()
+pump(200)
+
+
+def pick_none():
+    d = open_dlg(cm.CtorDialog)
+    d._digit(SimpleNamespace(char="0"))            # «0» — None: лише стовбур
+
+
+root.after(300, guard42(pick_none))
+app.copy_item(sn42["id"])
+assert not err42, err42
+assert root.clipboard_get() == ROOT42
+app.show_window()
+pump(200)
+
+
+def pick_none_deeper():
+    d = open_dlg(cm.CtorDialog)
+    d._hl(1)
+    d._activate(d.hl)                              # ↓ + Enter — у гілку з продовженнями
+    d._activate(len(d.options()))                  # None на другому кроці — побудоване до цього кроку
+root.after(300, guard42(pick_none_deeper))
+app.copy_item(sn42["id"])
+assert not err42, err42
+assert root.clipboard_get() == ROOT42 + " Blacklisted, no unsolicited charges"
+app.show_window()
+pump(200)
+
+# «in {LINK:USER:…}» для звичайного запису — теж усі користувачі з останніх записів
+plain42 = app.preset.add_snippet(ct_cat["id"], "Blacklisted")
+app.preset.set_snippet_user_link(plain42["id"], True)
+app.render()
+app.flush_render()
+app.copy_item(plain42["id"])
+assert root.clipboard_get() == ("Blacklisted in {LINK:USER:214512:E}, {LINK:USER:66413241:E}, {LINK:USER:124521:E}, "
+                                "{LINK:USER:2141:E}"), root.clipboard_get()
+app.show_window()
+pump(200)
+
+
+# редактор: новий конструкт уже містить текст батька; «Продовження ▸» — наступний крок
+def edit_script():
+    d = open_dlg(cm.CtorEditDialog)
+    assert len(d.current()) == 2
+    d.add()
+    new = d.current()[-1]
+    assert new["text"] == ROOT42 + " ", new
+    box = [w for w in d.list.winfo_children()][-1].winfo_children()
+    tb = next(w for w in box if isinstance(w, ctk.CTkTextbox))
+    tb.insert("end", "Third")
+    tb.event_generate("<KeyRelease>")
+    assert new["text"] == ROOT42 + " Third", new
+    d.open_node(new)
+    assert d.parent_text() == ROOT42 + " Third" and d.current() == []
+    d.add()
+    assert d.current()[0]["text"] == ROOT42 + " Third "
+    d.current()[0]["text"] = ROOT42 + " Third {{card}}"
+    d.up()
+    d.accept()
+
+
+root.after(300, guard42(edit_script))
+app.on_edit_ctor(sn42["id"])
+assert not err42, err42
+s42 = app.preset.find_snippet(sn42["id"])[1]
+assert [n["text"] for n in s42["ctor"]["options"]][-1] == ROOT42 + " Third"
+assert s42["ctor"]["options"][-1]["children"][0]["text"] == ROOT42 + " Third {{card}}"
+
+
+# власний тег: приклад входу → приклад виходу
+def tag_script():
+    d = open_dlg(cm.TagDialog)
+    d.fields["name"].insert(0, "card")
+    d.fields["ex_in"].insert(0, "1234")
+    d.fields["ex_out"].insert(0, "{LINK:CARD:1234:E}")
+    d.refresh()
+    assert "{LINK:CARD:111:E}, {LINK:CARD:222:E}" in d.preview.cget("text"), d.preview.cget("text")
+    d.ok()
+
+
+root.after(300, guard42(tag_script))
+tag42 = cm._Dialog.run(cm.TagDialog(app))
+assert not err42, err42
+assert tag42 and [t["name"] for t in app.preset.tags] == ["card"]
+bad = cm.TagDialog(app)
+bad.fields["name"].insert(0, "user")
+bad.fields["ex_in"].insert(0, "1")
+bad.fields["ex_out"].insert(0, "1")
+bad.ok()
+assert bad.winfo_exists() and "user" in bad.err.cget("text"), "зарезервована назва не приймається"
+bad.destroy()
+
+
+def pick_tag():
+    d = open_dlg(cm.CtorDialog)
+    d._activate(2)
+    assert d.preview.get("1.0", "end-1c") == ROOT42 + " Third"
+    d._activate(0)
+
+
+app.render()
+app.flush_render()
+root.after(300, guard42(pick_tag))
+app.copy_item(sn42["id"])
+assert not err42, err42
+assert root.clipboard_get() == (ROOT42 + " Third {LINK:CARD:214512:E}, {LINK:CARD:66413241:E}, {LINK:CARD:124521:E}, "
+                                "{LINK:CARD:2141:E}"), root.clipboard_get()
+app.show_window()
+pump(200)
+
+# немає номерів у буфері — тег лишається, у вікні попередження
+app.history.clear()
+app.history.add("просто текст")
+
+
+def warn_script():
+    d = open_dlg(cm.CtorDialog)
+    d.stack.append((ROOT42 + " {{user}}", []))
+    d.render_level()
+    assert "{{user}}" in d.warn.cget("text"), d.warn.cget("text")
+    d.cancel()
+
+
+root.after(300, guard42(warn_script))
+app.copy_item(sn42["id"])
+assert not err42, err42
+
+# SnippetDialog: галочка «Конструктор» вимикає v.2 і навпаки
+sd42 = cm.SnippetDialog(app, "Новий", "abc", ct_cat["id"])
+sd42.v2_var.set(True)
+sd42._sync_v2("v2")
+sd42.ctor_var.set(True)
+sd42._sync_v2("ctor")
+assert not sd42.v2_var.get() and sd42.ctor_btn.cget("state") == "normal"
+sd42.ctor = {"options": [{"text": "abc d"}]}
+sd42._sync_v2("none")
+assert sd42.ctor_btn.cget("text") == "Конструкти… (1)"
+sd42.ok()
+assert sd42.result[3] == {"options": [{"id": sd42.result[3]["options"][0]["id"], "text": "abc d"}]}, sd42.result
+# Ctrl+клік по конструктору — лише стовбур (без вікна)
+app.copy_item(sn42["id"], hide=True)
+assert root.clipboard_get() == ROOT42
+app.show_window()
+pump(200)
+app.on_remove_ctor(sn42["id"])
+assert "ctor" not in app.preset.find_snippet(sn42["id"])[1]
+
+# кольори: збережені й історія
+settings["colors_saved"], settings["colors_recent"] = [], []
+settings.save_color("#123456")
+cd = cm.ColorDialog(app, "Колір", None)
+pump(100)
+assert "#123456" in cd.swatches
+cd.forget("#123456")
+assert settings["colors_saved"] == [] and "#123456" not in cd.swatches
+cd.choose("#abcdef")
+assert settings["colors_recent"][0] == "#abcdef"
+cd = cm.ColorDialog(app, "Колір", None)
+pump(100)
+assert "#abcdef" in cd.swatches, "останній колір видно в «ОСТАННІ»"
+cd.choose("#0f6cbd")
+assert settings["colors_recent"][:2] == ["#0f6cbd", "#abcdef"]
+app.set_folder_first(True)
+pump(200)
+print("42 constructor + tags + multi-user + colors OK")
 
 # ---- 25. справжнє розгортання під віконним менеджером (лише якщо є openbox) -------------------------------------------------------------
 import shutil  # noqa: E402

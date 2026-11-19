@@ -16,7 +16,7 @@ import shutil
 import time
 import uuid
 
-from formats import clean_v2
+from formats import clean_ctor, clean_tags, clean_v2, tag_name_ok, infer_tag, USER_TAG, MAX_TAG_EXAMPLE
 
 MAX_CHARS = 100_000          # довші тексти пропускаємо
 MAX_HISTORY = 15             # скільки останніх копіювань тримає історія; старіші видаляються автоматично
@@ -107,6 +107,7 @@ class Preset:
         self.categories: list[dict] = []
         self.formats: list[dict] = []
         self.phrases: list[dict] = [dict(p) for p in DEFAULT_PHRASES]
+        self.tags: list[dict] = []
         self.migrations: list[str] = [TOS_MIGRATION]      # новому пресету одноразові налаштування не потрібні
         self._mtime: int | None = None
         self._ensure_builtin_formats()
@@ -164,6 +165,9 @@ class Preset:
                     v2 = clean_v2(s.get("v2"))
                     if v2:
                         snip["v2"] = v2                  # копіпаста v.2: основний текст + дерево аппендів
+                    ctor = clean_ctor(s.get("ctor"))
+                    if ctor:
+                        snip["ctor"] = ctor              # копіпаста-конструктор: стовбур + дерево повних продовжень
                     if isinstance(s.get("user_link"), bool):
                         snip["user_link"] = s["user_link"]   # підставляти користувача з історії (in {LINK:USER:…:E})
                     cell = s.get("cell")
@@ -184,6 +188,7 @@ class Preset:
             if f.get("id") == "builtin-user2" and f.get("name") == "User2":
                 f["name"] = "USER 2"
         self.migrations = [m for m in data.get("migrations", []) if isinstance(m, str)]
+        self.tags = clean_tags(data.get("tags"))      # власні теги {{назва}}: приклад входу → приклад виходу
         raw = data.get("phrases")
         if isinstance(raw, list):                      # власні фрази; без ключа — типові
             self.phrases = []
@@ -207,7 +212,7 @@ class Preset:
     def save(self) -> None:
         _write_json(self.path, {"format": PRESET_FORMAT, "version": PRESET_VERSION, "name": self.name,
                                 "categories": self.categories, "formats": self.formats,
-                                "phrases": self.phrases, "migrations": self.migrations})
+                                "phrases": self.phrases, "tags": self.tags, "migrations": self.migrations})
         self._mtime = self._disk_mtime()
 
     # -- одноразові налаштування даних -------------------------------------------
@@ -315,6 +320,45 @@ class Preset:
             self.save()
         return changed
 
+    # -- власні теги {{назва}} -------------------------------------------------------
+    def tag(self, tag_id: str | None) -> dict | None:
+        return next((t for t in self.tags if t["id"] == tag_id), None)
+
+    def tag_problem(self, name: str, ex_in: str, ex_out: str, ignore_id: str | None = None) -> str | None:
+        """Чому тег не можна зберегти (текст для користувача) або None."""
+        name = (name or "").strip()
+        if not tag_name_ok(name):
+            return "Назва: 1–30 символів, без фігурних дужок"
+        if name.casefold() == USER_TAG:
+            return "Назва «user» зайнята вбудованим тегом користувачів"
+        if any(t["name"].casefold() == name.casefold() and t["id"] != ignore_id for t in self.tags):
+            return "Тег з такою назвою вже є"
+        if not infer_tag(ex_in, ex_out):
+            return "У прикладі входу немає номерів або їх немає в прикладі виходу"
+        return None
+
+    def save_tag(self, name: str, ex_in: str, ex_out: str, tag_id: str | None = None) -> dict | None:
+        """Новий тег (tag_id=None) або зміна наявного. None — якщо дані невалідні (див. tag_problem)."""
+        if self.tag_problem(name, ex_in, ex_out, tag_id):
+            return None
+        vals = {"name": name.strip(), "ex_in": ex_in[:MAX_TAG_EXAMPLE], "ex_out": ex_out[:MAX_TAG_EXAMPLE]}
+        tag = self.tag(tag_id) if tag_id else None
+        if tag:
+            tag.update(vals)
+        else:
+            tag = dict(vals, id=uuid.uuid4().hex)
+            self.tags.append(tag)
+        self.save()
+        return tag
+
+    def remove_tag(self, tag_id: str) -> bool:
+        tag = self.tag(tag_id)
+        if not tag:
+            return False
+        self.tags.remove(tag)
+        self.save()
+        return True
+
     def remove_phrase(self, phrase_id: str) -> bool:
         before = len(self.phrases)
         self.phrases = [p for p in self.phrases if p["id"] != phrase_id]
@@ -409,7 +453,7 @@ class Preset:
                     return c, s
         return None
 
-    def add_snippet(self, cat_id: str, text: str, v2: dict | None = None) -> dict | None:
+    def add_snippet(self, cat_id: str, text: str, v2: dict | None = None, ctor: dict | None = None) -> dict | None:
         """Додає запис у категорію. Однаковий текст у тій самій категорії не дублюється.
         v2 — аппенди копіпасти v.2 ({"options": [...]}), або None для звичайної."""
         cat = self.category(cat_id)
@@ -422,12 +466,15 @@ class Preset:
         v2 = clean_v2(v2)
         if v2:
             snip["v2"] = v2
+        ctor = clean_ctor(ctor)
+        if ctor:
+            snip["ctor"] = ctor
         cat["snippets"].append(snip)
         self.save()
         return snip
 
-    def update_snippet(self, snippet_id: str, text: str, cat_id: str | None = None, v2="keep") -> bool:
-        """v2: "keep" — не чіпати аппенди; None — зробити запис звичайним; dict — нові аппенди."""
+    def update_snippet(self, snippet_id: str, text: str, cat_id: str | None = None, v2="keep", ctor="keep") -> bool:
+        """v2 / ctor: "keep" — не чіпати аппенди / конструктор; None — прибрати; dict — нові."""
         found = self.find_snippet(snippet_id)
         if not found or not _clean_text(text):
             return False
@@ -439,6 +486,12 @@ class Preset:
                 snip["v2"] = new
             else:
                 snip.pop("v2", None)
+        if ctor != "keep":
+            new = clean_ctor(ctor)
+            if new:
+                snip["ctor"] = new
+            else:
+                snip.pop("ctor", None)
         if cat_id and cat_id != cat["id"] and self.category(cat_id):
             cat["snippets"].remove(snip)
             snip.pop("cell", None)            # місце в сітці — від старої папки; у новій — перша вільна клітинка
@@ -727,7 +780,11 @@ DEFAULT_SETTINGS = {
     "clear_on_exit": True,  # очищати історію буфера при закритті (виході) програми; згортання історію не чіпає
     "pick_font": 16.5,      # розмір назв папок на сторінці вибору папки (режим «спочатку папка»)
     "folder_first": True,   # режим «спочатку папка»: при відкритті — лише вибір папки, записи після вибору (Esc — назад)
+    "colors_saved": [],     # власні збережені кольори (вікно вибору кольору)
+    "colors_recent": [],    # історія кольорів: останні обрані, найновіший першим
 }
+MAX_SAVED_COLORS = 24
+MAX_RECENT_COLORS = 12
 
 
 class Settings:
@@ -751,6 +808,24 @@ class Settings:
             return
         self.data[key] = value
         self.save()
+
+    def colors(self, key: str) -> list[str]:
+        """Збережені (colors_saved) або останні (colors_recent) кольори — лише коректні #rrggbb, без повторів."""
+        return list(dict.fromkeys(c.lower() for c in self.data.get(key, []) if _color_ok(c)))
+
+    def save_color(self, color: str) -> None:
+        saved = self.colors("colors_saved")
+        if _color_ok(color) and color.lower() not in saved:
+            self["colors_saved"] = (saved + [color.lower()])[-MAX_SAVED_COLORS:]
+
+    def forget_color(self, color: str) -> None:
+        self["colors_saved"] = [c for c in self.colors("colors_saved") if c != (color or "").lower()]
+
+    def note_color(self, color: str) -> None:
+        """Обраний колір — на початок історії кольорів."""
+        if _color_ok(color):
+            c = color.lower()
+            self["colors_recent"] = ([c] + [x for x in self.colors("colors_recent") if x != c])[:MAX_RECENT_COLORS]
 
     def remember_preset(self, path: str) -> None:
         recent = [p for p in self.data["recent_presets"] if p != path]

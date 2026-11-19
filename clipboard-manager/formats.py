@@ -215,21 +215,54 @@ def numbers_from_history(texts) -> str:
     return ", ".join(nums)
 
 
-_USER_ENTRY = re.compile(r"^\s*(?:\{LINK:USER:([0-9]+):E\}|(?:user\s*#\s*)?([0-9]+))\s*$", re.IGNORECASE)
+# Запис історії, що складається лише з номерів (користувачі, картки, …): «214512 66413241, #124521», «User123»,
+# «#User123», «User #5», «{LINK:USER:7:E}»; номери розділяються пробілами, «,», «.» або «;».
+_NUM_TOKEN = re.compile(r"\{LINK:[A-Z_]+:([0-9]+):E\}|#?\s*(?:[A-Za-z]+\s*)?#?\s*([0-9]+)|[\s,.;]+")
+MAX_RECENT_NUMBERS = 30
 
 
-def user_ids_from_history(texts, limit: int = 8) -> list[str]:
-    """Користувачі з історії, найновіший першим, без повторів (до ``limit``): останній, передостанній, …"""
+def numbers_of_entry(text: str) -> list[str] | None:
+    """Номери з одного запису історії (у порядку тексту) або None, якщо в записі є ще щось, крім номерів і розділювачів."""
+    s = (text or "").strip()
+    if not s:
+        return None
+    pos, out = 0, []
+    while pos < len(s):
+        m = _NUM_TOKEN.match(s, pos)
+        if not m or m.end() == pos:
+            return None
+        num = m.group(1) or m.group(2)
+        if num:
+            out.append(num)
+        pos = m.end()
+    return out or None
+
+
+def recent_numbers(texts, limit: int = MAX_RECENT_NUMBERS) -> list[str]:
+    """Номери з ОСТАННІХ записів історії (найновіший запис першим): записи з текстом на початку пропускаються,
+    далі береться неперервна серія «номерних» записів (до першого запису з текстом). Без повторів, до ``limit``.
+
+    ``["214512 66413241, #124521", "2141"]`` → ``["214512", "66413241", "124521", "2141"]``"""
     out: list[str] = []
+    started = False
     for t in texts:
-        m = _USER_ENTRY.match(t or "")
-        if m:
-            uid = m.group(1) or m.group(2)
-            if uid not in out:
-                out.append(uid)
+        nums = numbers_of_entry(t)
+        if nums is None:
+            if started:
+                break
+            continue
+        started = True
+        for n in nums:
+            if n not in out:
+                out.append(n)
                 if len(out) >= limit:
-                    break
+                    return out
     return out
+
+
+def user_ids_from_history(texts, limit: int = MAX_RECENT_NUMBERS) -> list[str]:
+    """Користувачі з останніх записів історії, найновіший першим, без повторів (див. ``recent_numbers``)."""
+    return recent_numbers(texts, limit)
 
 
 _EMAIL = re.compile(r"[A-Za-z0-9._%+-]+@[A-Za-z0-9-]+(?:\.[A-Za-z0-9-]+)+")
@@ -245,12 +278,14 @@ def last_email(texts) -> str | None:
 
 
 def last_user_id(texts) -> str | None:
-    """Найновіший запис історії, що є користувачем: ``{LINK:USER:1236:E}``, «User #1236» або просто число «214»."""
-    for t in texts:
-        m = _USER_ENTRY.match(t or "")
-        if m:
-            return m.group(1) or m.group(2)
-    return None
+    """Найновіший користувач з історії: ``{LINK:USER:1236:E}``, «User #1236», «#User12» або просто число «214»."""
+    users = recent_numbers(texts, 1)
+    return users[0] if users else None
+
+
+def user_links(uids) -> str:
+    """``["1", "2"]`` → ``{LINK:USER:1:E}, {LINK:USER:2:E}``."""
+    return ", ".join(user_link(u) for u in uids if u)
 
 
 def user_link(uid: str) -> str:
@@ -279,7 +314,8 @@ def fill_email(text: str, email: str | None) -> str:
 def apply_user_link(text: str, uids) -> str:
     """Заглушки «___» (3+ підкреслення) → користувачі з історії ПО ЧЕРЗІ: перша — останній користувач,
     друга — передостанній … (до 8). Якщо користувачів менше, ніж заглушок, решта лишається «___».
-    Без заглушки — дописує « in {LINK:USER:<останній>:E}» у кінець. ``uids`` — рядок або список (найновіший першим)."""
+    Без заглушки — дописує « in {LINK:USER:…:E}, {LINK:USER:…:E}» (усі користувачі з останніх записів) у кінець.
+    ``uids`` — рядок або список (найновіший першим)."""
     if isinstance(uids, str):
         uids = [uids]
     uids = [u for u in (uids or []) if u]
@@ -296,7 +332,7 @@ def apply_user_link(text: str, uids) -> str:
                 return user_link(users[used - 1])
             return m.group(0)
         return _PLACEHOLDER.sub(sub, text)
-    return f"{(text or '').rstrip()} in {user_link(uids[0])}"
+    return f"{(text or '').rstrip()} in {user_links(uids)}"
 
 
 def fill_placeholders(text: str, history_texts) -> str:
@@ -305,3 +341,156 @@ def fill_placeholders(text: str, history_texts) -> str:
     out = fill_email(text, last_email(texts))
     return apply_user_link(out, user_ids_from_history(texts)) if _PLACEHOLDER.search(out) else out
 
+
+
+# --------------------------------------------------------------------------- #
+#  Теги в тексті: {{user}} — користувачі з буфера; власні теги {{назва}} — за прикладом «вхід → вихід»
+# --------------------------------------------------------------------------- #
+USER_TAG = "user"
+MAX_TAG_NAME = 30
+MAX_TAG_EXAMPLE = 300
+_TAG_REF = re.compile(r"\{\{\s*([^{}]{1,%d}?)\s*\}\}" % MAX_TAG_NAME)
+_TAG_NAME = re.compile(r"^[^{}\s][^{}]{0,%d}$" % (MAX_TAG_NAME - 1))
+
+
+def tag_ref(name: str) -> str:
+    return "{{%s}}" % name
+
+
+def tag_name_ok(name: str) -> bool:
+    return bool(_TAG_NAME.match((name or "").strip()))
+
+
+def _num_spans(out: str, nums) -> list[tuple[int, int]]:
+    """Позиції номерів ``nums`` у тексті ``out`` по черзі (номер не може бути частиною довшого числа)."""
+    spans, pos = [], 0
+    for n in nums:
+        m = re.compile(r"(?<![0-9])%s(?![0-9])" % re.escape(n)).search(out, pos)
+        if not m:
+            break
+        spans.append((m.start(), m.end()))
+        pos = m.end()
+    return spans
+
+
+def infer_tag(example_in: str, example_out: str) -> dict | None:
+    """Шаблон тегу з прикладу: номери з входу шукаються у виході, решта виходу стає шаблоном.
+
+    ``"1234"`` → ``"Card #1234 was blocked."``: для «11, 22» буде ``Card #11, #22 was blocked.``
+    ``"1, 2"`` → ``"{LINK:CARD:1:E}; {LINK:CARD:2:E}"``: роздільник між номерами береться з прикладу.
+    None — якщо у вході немає номерів або їх немає у виході."""
+    nums = _NUMBERS.findall(example_in or "")
+    out = example_out or ""
+    spans = _num_spans(out, nums)
+    if not spans:
+        return None
+    if len(spans) >= 2:
+        return {"prefix": out[:spans[0][0]], "item_pre": "", "item_post": "",
+                "sep": out[spans[0][1]:spans[1][0]], "suffix": out[spans[-1][1]:]}
+    s, e = spans[0]
+    before, after = out[:s], out[e:]
+    pre = re.search(r"[^\s,;(\"']*$", before).group(0)
+    post = re.match(r"[^\s,;]*", after).group(0).rstrip(".!?)\"'")
+    return {"prefix": before[:len(before) - len(pre)], "item_pre": pre, "item_post": post,
+            "sep": ", ", "suffix": after[len(post):]}
+
+
+def render_tag(tpl: dict, nums) -> str:
+    nums = [n for n in nums if n]
+    if not nums or not tpl:
+        return ""
+    items = [tpl["item_pre"] + n + tpl["item_post"] for n in nums]
+    return tpl["prefix"] + tpl["sep"].join(items) + tpl["suffix"]
+
+
+def clean_tags(raw) -> list[dict]:
+    """Власні теги пресета: [{id, name, ex_in, ex_out}] — лише ті, для яких вдається вивести шаблон."""
+    import uuid
+    out, seen = [], {USER_TAG}
+    for t in raw if isinstance(raw, list) else []:
+        if not isinstance(t, dict):
+            continue
+        name = str(t.get("name") or "").strip()
+        ex_in, ex_out = str(t.get("ex_in") or "")[:MAX_TAG_EXAMPLE], str(t.get("ex_out") or "")[:MAX_TAG_EXAMPLE]
+        if not tag_name_ok(name) or name.casefold() in seen or not infer_tag(ex_in, ex_out):
+            continue
+        seen.add(name.casefold())
+        out.append({"id": str(t.get("id") or uuid.uuid4().hex), "name": name, "ex_in": ex_in, "ex_out": ex_out})
+    return out
+
+
+def has_tags(text: str) -> bool:
+    return bool(_TAG_REF.search(text or ""))
+
+
+def resolve_tags(text: str, tags, history_texts) -> tuple[str, list[str]]:
+    """Підставляє теги: {{user}} → користувачі з останніх записів буфера, власні — номери з тих самих записів
+    за шаблоном тегу. Повертає (текст, назви тегів, для яких у буфері не знайшлось номерів — вони лишаються як є)."""
+    if not has_tags(text):
+        return text, []
+    nums = recent_numbers(list(history_texts))
+    by_name = {t["name"].casefold(): t for t in tags or ()}
+    missing: list[str] = []
+
+    def sub(m):
+        name = m.group(1).strip()
+        key = name.casefold()
+        if key == USER_TAG:
+            val = user_links(nums)
+        elif key in by_name:
+            val = render_tag(infer_tag(by_name[key]["ex_in"], by_name[key]["ex_out"]), nums)
+        else:
+            return m.group(0)                  # невідомий тег — текст як є
+        if not val:
+            missing.append(name)
+            return m.group(0)
+        return val
+    return _TAG_REF.sub(sub, text), missing
+
+
+# --------------------------------------------------------------------------- #
+#  Копіпаста-конструктор: основний текст («стовбур») + дерево конструктів. Кожен конструкт — ПОВНИЙ текст
+#  (продовження тексту батька); у вікні вибору показується лише нова частина. «None» — копіювати вже побудоване.
+# --------------------------------------------------------------------------- #
+CTOR_MAX_DEPTH = 8
+CTOR_MAX_NODES = 80
+CTOR_MAX_TEXT = 3000
+
+
+def clean_ctor(raw) -> dict | None:
+    """``{"options": [{id, text, children?}]}`` або None, якщо конструктів немає."""
+    import uuid
+
+    def clean_list(items, depth: int) -> list[dict]:
+        out = []
+        if not isinstance(items, list) or depth > CTOR_MAX_DEPTH:
+            return out
+        for n in items[:CTOR_MAX_NODES]:
+            if not isinstance(n, dict) or not isinstance(n.get("text"), str) or not n["text"].strip():
+                continue
+            node = {"id": str(n.get("id") or uuid.uuid4().hex), "text": n["text"].strip()[:CTOR_MAX_TEXT]}
+            kids = clean_list(n.get("children"), depth + 1)
+            if kids:
+                node["children"] = kids
+            out.append(node)
+        return out
+
+    opts = clean_list(raw.get("options") if isinstance(raw, dict) else None, 0)
+    return {"options": opts} if opts else None
+
+
+def ctor_label(parent: str, text: str) -> str:
+    """Нова частина конструкту: текст без початку, що повторює текст батька (без урахування регістру й пробілів
+    на межі). Якщо конструкт не починається з тексту батька — повний текст."""
+    p, t = (parent or "").strip(), (text or "").strip()
+    if p and t.casefold().startswith(p.casefold()):
+        rest = t[len(p):].lstrip()
+        if rest:
+            return rest
+    return t
+
+
+def ctor_count(ctor: dict | None) -> int:
+    def cnt(items):
+        return sum(1 + cnt(n.get("children", [])) for n in items or [])
+    return cnt((ctor or {}).get("options"))

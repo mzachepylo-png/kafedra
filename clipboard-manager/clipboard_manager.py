@@ -44,9 +44,10 @@ from types import SimpleNamespace
 import customtkinter as ctk
 
 from formats import (APPENDERS, AUTO_HISTORY_FORMATS, FORMATTERS, MERGE_ACTIONS, append_result, apply_format,
-                     apply_merge, apply_user_link, clean_v2, compose_phrases, fill_email, fill_placeholders, format_actions,
+                     USER_TAG, apply_merge, apply_user_link, clean_ctor, clean_v2, compose_phrases, ctor_count, ctor_label,
+                     fill_email, infer_tag, render_tag, resolve_tags, tag_ref, fill_placeholders, format_actions,
                      has_user_placeholder, join_values, last_email, last_user_id, numbers_from_history, user_ids_from_history,
-                     user_link, v2_compose)
+                     user_link, user_links, v2_compose)
 from store import (HISTORY, PALETTE, PRESET_SUFFIX, History, Preset, PresetError, Settings,
                    default_data_dir, history_path, open_startup_preset)
 from winsys import (work_area_at, HOTKEY_PRESETS, HotkeyListener, acquire_single_instance, clipboard_sequence, hotkey_label,
@@ -641,9 +642,11 @@ class TextDialog(_Dialog):
 
 
 class SnippetDialog(_Dialog):
-    def __init__(self, app: "App", title: str, text: str = "", category: str | None = None, v2: dict | None = None):
-        super().__init__(app, title, 640, 560)
+    def __init__(self, app: "App", title: str, text: str = "", category: str | None = None, v2: dict | None = None,
+                 ctor: dict | None = None):
+        super().__init__(app, title, 640, 610)
         self.v2 = copy.deepcopy(v2) if v2 else None
+        self.ctor = copy.deepcopy(ctor) if ctor else None
         self.names = {c["name"]: c["id"] for c in app.preset.categories}
         card = ctk.CTkFrame(self, corner_radius=16, fg_color=PANEL, border_width=1, border_color=PANEL_BORDER)
         card.pack(fill="both", expand=True, padx=14, pady=14)
@@ -663,6 +666,15 @@ class SnippetDialog(_Dialog):
         self.v2_btn = ctk.CTkButton(v2row, text="Аппенди…", width=130, height=36, corner_radius=10, fg_color=BTN2,
                                     hover_color=BTN2_HOVER, text_color=TEXT, font=app.f.dlg, command=self.edit_v2)
         self.v2_btn.pack(side="right")
+        crow = ctk.CTkFrame(card, fg_color="transparent")
+        crow.pack(fill="x", padx=20, pady=(10, 0))
+        self.ctor_var = tk.BooleanVar(value=bool(self.ctor) and not self.v2)
+        ctk.CTkCheckBox(crow, text="Конструктор (дерево продовжень)", variable=self.ctor_var, font=app.f.dlg,
+                        text_color=TEXT, checkbox_width=24, checkbox_height=24, corner_radius=7, border_width=2,
+                        fg_color=ACCENT, hover_color=ACCENT_HOVER, command=lambda: self._sync_v2("ctor")).pack(side="left")
+        self.ctor_btn = ctk.CTkButton(crow, text="Конструкти…", width=130, height=36, corner_radius=10, fg_color=BTN2,
+                                      hover_color=BTN2_HOVER, text_color=TEXT, font=app.f.dlg, command=self.edit_ctor)
+        self.ctor_btn.pack(side="right")
         self._sync_v2()
         self.text.bind("<Control-Return>", lambda e: (self.ok(), "break")[1])
         self.text.bind("<Control-a>", lambda e: (self.text.tag_add("sel", "1.0", "end-1c"), "break")[1])
@@ -681,11 +693,30 @@ class SnippetDialog(_Dialog):
                       font=app.f.dlg).pack(side="right", padx=10)
         self.after(120, self._focus)
 
-    def _sync_v2(self) -> None:
+    def _sync_v2(self, changed: str = "v2") -> None:
+        """Аппенди v.2 і конструктор — взаємовиключні: увімкнення одного вимикає інше."""
+        if changed == "v2" and self.v2_var.get():
+            self.ctor_var.set(False)
+        elif changed == "ctor" and self.ctor_var.get():
+            self.v2_var.set(False)
         on = self.v2_var.get()
         n = len((self.v2 or {}).get("options", []))
         self.v2_btn.configure(state="normal" if on else "disabled",
                               text=f"Аппенди… ({n})" if on and n else "Аппенди…")
+        on = self.ctor_var.get()
+        n = ctor_count(self.ctor)
+        self.ctor_btn.configure(state="normal" if on else "disabled",
+                                text=f"Конструкти… ({n})" if on and n else "Конструкти…")
+
+    def edit_ctor(self) -> None:
+        res = CtorEditDialog(self.app, self.text.get("1.0", "end-1c"), self.ctor).run()
+        try:
+            self.grab_set()
+        except tk.TclError:
+            pass
+        if res is not None:
+            self.ctor = res or None
+        self._sync_v2("none")
 
     def edit_v2(self) -> None:
         res = V2OptionsDialog(self.app, self.v2).run()
@@ -708,7 +739,8 @@ class SnippetDialog(_Dialog):
         cat_id = self.names.get(self.cat_var.get())
         if not text.strip() or not cat_id:
             return
-        self.result = (text, cat_id, clean_v2(self.v2) if self.v2_var.get() else None)
+        self.result = (text, cat_id, clean_v2(self.v2) if self.v2_var.get() else None,
+                       clean_ctor(self.ctor) if self.ctor_var.get() else None)
         self.destroy()
 
 
@@ -889,7 +921,7 @@ class V2Dialog(_Dialog):
         extra.pack(fill="x", padx=18, pady=(6, 0))
         self.link_var = tk.BooleanVar(value=bool(link_on and uid))
         self.link_cb = ctk.CTkCheckBox(
-            extra, text=f"Append  in {user_link(uid)}" if uid else "Append  in {LINK:USER:…:E} — у історії немає користувача",
+            extra, text=f"Append  in {clip(user_links(uid) if isinstance(uid, list) else user_link(uid), 70)}" if uid else "Append  in {LINK:USER:…:E} — у історії немає користувача",
             variable=self.link_var, font=app.f.dlg, text_color=TEXT, checkbox_width=24, checkbox_height=24,
             corner_radius=7, border_width=2, fg_color=ACCENT, hover_color=ACCENT_HOVER,
             state="normal" if uid else "disabled", command=self.refresh_preview)
@@ -1015,48 +1047,509 @@ class V2Dialog(_Dialog):
         self.destroy()
 
 
+def _tag_menu(dlg, app: "App", insert, on_new) -> tk.Menu:
+    """Меню вставки тегу: {{user}} (користувачі з буфера), власні теги пресета, «Новий тег…»."""
+    m = tk.Menu(dlg, tearoff=0, font=app.f.dlg)
+    m.add_command(label=f"{tag_ref(USER_TAG)}   — користувачі з буфера ({{LINK:USER:…:E}}, …)",
+                  command=lambda: insert(tag_ref(USER_TAG)))
+    for t in app.preset.tags:
+        tpl = infer_tag(t["ex_in"], t["ex_out"])
+        m.add_command(label=f"{tag_ref(t['name'])}   — напр. {clip(render_tag(tpl, ['111', '222']), 40)}",
+                      command=lambda n=t["name"]: insert(tag_ref(n)))
+    m.add_separator()
+    m.add_command(label="＋ Новий тег…", command=on_new)
+    return m
+
+
+class TagDialog(_Dialog):
+    """Власний тег {{назва}}: приклад входу (номери з буфера) і приклад виходу. З прикладу виводиться шаблон:
+    номери у виході замінюються на номери з буфера, решта тексту лишається. Результат: збережений тег або None."""
+
+    def __init__(self, app: "App", tag: dict | None = None):
+        super().__init__(app, "Тег" if tag else "Новий тег", 620, 520)
+        self.tag = tag
+        card = ctk.CTkFrame(self, corner_radius=16, fg_color=PANEL, border_width=1, border_color=PANEL_BORDER)
+        card.pack(fill="both", expand=True, padx=14, pady=14)
+        self.fields = {}
+        for key, label, val, ph in (
+                ("name", "Назва тегу (у тексті буде {{назва}})", (tag or {}).get("name", ""), "card"),
+                ("ex_in", "Приклад входу — як номери лежать у буфері", (tag or {}).get("ex_in", ""), "1234"),
+                ("ex_out", "Приклад виходу — що з них має вийти", (tag or {}).get("ex_out", ""), "{LINK:CARD:1234:E}")):
+            ctk.CTkLabel(card, text=label, anchor="w", text_color=MUTED, font=app.f.body).pack(
+                fill="x", padx=20, pady=(14, 4))
+            e = ctk.CTkEntry(card, height=38, corner_radius=10, fg_color=INPUT, border_color=PANEL_BORDER,
+                             text_color=TEXT, font=app.f.dlg, placeholder_text=ph)
+            e.pack(fill="x", padx=20)
+            if val:
+                e.insert(0, val)
+            e.bind("<KeyRelease>", lambda ev: self.refresh(), add="+")
+            self.fields[key] = e
+        self.preview = ctk.CTkLabel(card, text="", anchor="w", justify="left", text_color=TEXT, font=app.f.dlg,
+                                    wraplength=540)
+        self.preview.pack(fill="x", padx=20, pady=(14, 0))
+        self.err = ctk.CTkLabel(card, text="", anchor="w", text_color=DANGER, font=app.f.body)
+        self.err.pack(fill="x", padx=20, pady=(4, 0))
+        row = ctk.CTkFrame(card, fg_color="transparent")
+        row.pack(fill="x", padx=20, pady=16, side="bottom")
+        ctk.CTkButton(row, text="Зберегти", width=112, height=40, corner_radius=12, fg_color=ACCENT,
+                      hover_color=ACCENT_HOVER, command=self.ok, font=app.f.dlg_bold).pack(side="right")
+        ctk.CTkButton(row, text="Скасувати", width=112, height=40, corner_radius=12, fg_color=BTN2,
+                      hover_color=BTN2_HOVER, text_color=TEXT, command=self.cancel, font=app.f.dlg).pack(side="right", padx=10)
+        if tag:
+            ctk.CTkButton(row, text="Видалити тег", width=130, height=40, corner_radius=12, fg_color="transparent",
+                          hover_color=DANGER_SOFT, text_color=DANGER, command=self.delete, font=app.f.dlg).pack(side="left")
+        self.bind("<Return>", lambda e: self.ok())
+        self.refresh()
+        self.after(120, lambda: self.fields["name"].focus_set())
+
+    def values(self) -> tuple[str, str, str]:
+        return tuple(self.fields[k].get() for k in ("name", "ex_in", "ex_out"))
+
+    def refresh(self) -> None:
+        name, ex_in, ex_out = self.values()
+        tpl = infer_tag(ex_in, ex_out)
+        if tpl:
+            self.preview.configure(text=f"Номери в буфері «111, 222» → {render_tag(tpl, ['111', '222'])}\n"
+                                        f"Номер «111» → {render_tag(tpl, ['111'])}")
+        else:
+            self.preview.configure(text="Перегляд з'явиться, коли номери з входу знайдуться у виході.")
+        self.err.configure(text="")
+
+    def ok(self) -> None:
+        name, ex_in, ex_out = self.values()
+        problem = self.app.preset.tag_problem(name, ex_in, ex_out, (self.tag or {}).get("id"))
+        if problem:
+            self.err.configure(text=problem)
+            return
+        self.result = self.app.preset.save_tag(name, ex_in, ex_out, (self.tag or {}).get("id"))
+        self.destroy()
+
+    def delete(self) -> None:
+        self.app.preset.remove_tag(self.tag["id"])
+        self.result = {"deleted": True}
+        self.destroy()
+
+
+class CtorEditDialog(_Dialog):
+    """Редактор конструктора: дерево продовжень. Кожен конструкт — ПОВНИЙ текст (новий одразу містить текст батька),
+    у вікні вибору показується лише нова частина. «Продовження ▸» — конструкти наступного кроку для цього конструкту.
+    «{ } Тег» вставляє тег ({{user}} — користувачі з буфера, або власний). Результат: {"options": [...]} ({} — без
+    конструкторів) або None (скасовано)."""
+
+    def __init__(self, app: "App", root_text: str, ctor: dict | None):
+        super().__init__(app, "Конструктор копіпасти", 860, 720)
+        self.root_text = (root_text or "").strip()
+        self.root_opts: list[dict] = copy.deepcopy((ctor or {}).get("options", []))
+        self.path: list[dict] = []
+        card = ctk.CTkFrame(self, corner_radius=16, fg_color=PANEL, border_width=1, border_color=PANEL_BORDER)
+        card.pack(fill="both", expand=True, padx=14, pady=14)
+        top = ctk.CTkFrame(card, fg_color="transparent")
+        top.pack(fill="x", padx=18, pady=(14, 2))
+        self.back_btn = ctk.CTkButton(top, text="◀ Назад", width=96, height=34, corner_radius=10, fg_color=BTN2,
+                                      hover_color=BTN2_HOVER, text_color=TEXT, font=app.f.dlg, command=self.up)
+        self.crumb = ctk.CTkLabel(top, text="", anchor="w", text_color=TEXT, font=app.f.dlg_bold)
+        self.crumb.pack(side="left", fill="x", expand=True)
+        self.parent_lbl = ctk.CTkLabel(card, text="", anchor="w", justify="left", text_color=MUTED, font=app.f.body,
+                                       wraplength=780)
+        self.parent_lbl.pack(fill="x", padx=20, pady=(2, 4))
+        self.list = ctk.CTkScrollableFrame(card, fg_color="transparent", corner_radius=0,
+                                           scrollbar_button_color=SCROLL, scrollbar_button_hover_color=SCROLL_HOVER)
+        self.list.pack(fill="both", expand=True, padx=10, pady=4)
+        bottom = ctk.CTkFrame(card, fg_color="transparent")
+        bottom.pack(fill="x", padx=18, pady=(6, 16))
+        ctk.CTkButton(bottom, text="＋ Додати конструкт", width=190, height=40, corner_radius=12, fg_color=BTN2,
+                      hover_color=BTN2_HOVER, text_color=TEXT, font=app.f.dlg_bold, command=self.add).pack(side="left")
+        ctk.CTkButton(bottom, text="Теги…", width=96, height=40, corner_radius=12, fg_color=BTN2,
+                      hover_color=BTN2_HOVER, text_color=TEXT, font=app.f.dlg, command=self.manage_tags
+                      ).pack(side="left", padx=10)
+        ctk.CTkButton(bottom, text="Готово", width=112, height=40, corner_radius=12, fg_color=ACCENT,
+                      hover_color=ACCENT_HOVER, font=app.f.dlg_bold, command=self.accept).pack(side="right")
+        ctk.CTkButton(bottom, text="Скасувати", width=112, height=40, corner_radius=12, fg_color=BTN2,
+                      hover_color=BTN2_HOVER, text_color=TEXT, font=app.f.dlg, command=self.cancel).pack(side="right", padx=10)
+        self.rebuild()
+
+    def parent_text(self) -> str:
+        return (self.path[-1]["text"] if self.path else self.root_text).strip()
+
+    def current(self) -> list[dict]:
+        return self.path[-1].setdefault("children", []) if self.path else self.root_opts
+
+    def add(self) -> None:
+        base = self.parent_text()
+        self.current().append({"id": uuid.uuid4().hex, "text": base + " " if base else ""})
+        self.rebuild(focus_last=True)
+
+    def up(self) -> None:
+        if self.path:
+            self.path.pop()
+            self.rebuild()
+
+    def open_node(self, node: dict) -> None:
+        if not node.get("text", "").strip():
+            return
+        self.path.append(node)
+        self.rebuild()
+
+    def _regrab(self) -> None:
+        try:
+            self.grab_set()
+        except tk.TclError:
+            pass
+
+    def new_tag(self, insert=None) -> None:
+        tag = TagDialog(self.app, None).run()
+        self._regrab()
+        if tag and insert is not None and tag.get("name"):
+            insert(tag_ref(tag["name"]))
+
+    def manage_tags(self) -> None:
+        m = tk.Menu(self, tearoff=0, font=self.app.f.dlg)
+        for t in self.app.preset.tags:
+            m.add_command(label=f"✎  {tag_ref(t['name'])}", command=lambda t=t: (TagDialog(self.app, t).run(), self._regrab()))
+        if self.app.preset.tags:
+            m.add_separator()
+        m.add_command(label="＋ Новий тег…", command=self.new_tag)
+        m.tk_popup(self.winfo_pointerx(), self.winfo_pointery())
+
+    def rebuild(self, focus_last: bool = False) -> None:
+        for w in self.list.winfo_children():
+            w.destroy()
+        if self.path:
+            self.back_btn.pack(side="left", padx=(0, 10), before=self.crumb)
+        else:
+            self.back_btn.pack_forget()
+        parents = [self.root_text] + [n["text"] for n in self.path]
+        names = ["Стовбур"] + [clip(ctor_label(parents[i], n["text"]), 22) for i, n in enumerate(self.path)]
+        self.crumb.configure(text="  ›  ".join(names) + (f"   — крок {len(self.path) + 1}"))
+        base = self.parent_text()
+        self.parent_lbl.configure(text=("Попередній текст: «" + clip(base, 300) + "»\n" if base else "") +
+                                  "Кожен конструкт пишіть ПОВНІСТЮ (новий уже починається з попереднього тексту); "
+                                  "у виборі буде видно лише нову частину. «None» додається автоматично.")
+        items = self.current()
+        last = None
+        for node in items:
+            last = self._row(items, node, base)
+        if not items:
+            ctk.CTkLabel(self.list, text="Поки порожньо. Натисніть «＋ Додати конструкт».", text_color=MUTED,
+                         font=self.app.f.body).pack(pady=40)
+        if focus_last and last is not None:
+            self.after(60, lambda: (last.focus_set(), last.mark_set("insert", "end-1c")))
+
+    def _row(self, items: list[dict], node: dict, base: str):
+        app = self.app
+        color = "#8764b8"
+        row = ctk.CTkFrame(self.list, corner_radius=12, fg_color=tint(color, 0.10, 0.20), border_width=1,
+                           border_color=(blend(color, CARD_BORDER[0], 0.45), blend(color, CARD_BORDER[1], 0.55)))
+        row.pack(fill="x", padx=4, pady=5)
+        row.grid_columnconfigure(0, weight=1)
+        box = ctk.CTkTextbox(row, height=66, wrap="word", corner_radius=10, border_width=1, border_color=PANEL_BORDER,
+                             fg_color=INPUT, text_color=TEXT, font=app.f.dlg, undo=True)
+        box.grid(row=0, column=0, columnspan=6, sticky="ew", padx=10, pady=(10, 4))
+        box.insert("1.0", node.get("text", ""))
+        hint = ctk.CTkLabel(row, text="", anchor="w", justify="left", text_color=MUTED, font=app.f.body, wraplength=560)
+        hint.grid(row=1, column=0, sticky="ew", padx=12, pady=(0, 8))
+
+        def sync(_e=None, n=node, b=box, h=hint):
+            n["text"] = b.get("1.0", "end-1c")
+            t = n["text"].strip()
+            if not t:
+                h.configure(text="Порожній конструкт не збережеться", text_color=MUTED)
+            elif base and not t.casefold().startswith(base.casefold()):
+                h.configure(text="⚠ Не починається з попереднього тексту — у виборі буде видно весь текст",
+                            text_color=DANGER)
+            else:
+                h.configure(text="У виборі: «" + clip(ctor_label(base, t), 90) + "»", text_color=MUTED)
+        box.bind("<KeyRelease>", sync, add="+")
+        for ev in ("<<Paste>>", "<<Cut>>", "<<Undo>>", "<<Redo>>"):
+            box.bind(ev, lambda e, f=sync: self.after(20, f), add="+")
+        sync()
+
+        def insert(ref, b=box, f=sync):
+            b.insert("insert", ref)
+            f()
+            b.focus_set()
+        col = 1
+        tag_btn = ctk.CTkButton(row, text="{ } Тег", width=84, height=34, corner_radius=9, fg_color=BTN2,
+                                hover_color=BTN2_HOVER, text_color=TEXT, font=app.f.body)
+        tag_btn.configure(command=lambda i=insert, w=tag_btn: _tag_menu(self, app, i, lambda: self.new_tag(i)).tk_popup(
+            w.winfo_rootx(), w.winfo_rooty() + w.winfo_height()))
+        tag_btn.grid(row=1, column=col, padx=3, pady=(0, 8))
+        col += 1
+        n_ch = len(node.get("children", []))
+        ctk.CTkButton(row, text=f"Продовження ▸ ({n_ch})", width=150, height=34, corner_radius=9, fg_color=ACCENT,
+                      hover_color=ACCENT_HOVER, font=app.f.body, command=lambda n=node: self.open_node(n)
+                      ).grid(row=1, column=col, padx=3, pady=(0, 8))
+        col += 1
+        for text, delta in (("▲", -1), ("▼", 1)):
+            ctk.CTkButton(row, text=text, width=34, height=34, corner_radius=9, fg_color=BTN2, hover_color=BTN2_HOVER,
+                          text_color=TEXT, font=app.f.body, command=lambda d=delta, n=node: self._move(n, d)
+                          ).grid(row=1, column=col, padx=2, pady=(0, 8))
+            col += 1
+        ctk.CTkButton(row, text="✕", width=34, height=34, corner_radius=9, fg_color="transparent", hover_color=DANGER_SOFT,
+                      text_color=DANGER, font=app.f.body, command=lambda n=node: self._delete(n)
+                      ).grid(row=1, column=col, padx=(2, 10), pady=(0, 8))
+        return box
+
+    def _move(self, node: dict, delta: int) -> None:
+        items = self.current()
+        i = items.index(node)
+        j = i + delta
+        if 0 <= j < len(items):
+            items[i], items[j] = items[j], items[i]
+            self.rebuild()
+
+    def _delete(self, node: dict) -> None:
+        self.current().remove(node)
+        self.rebuild()
+
+    def accept(self) -> None:
+        self.result = clean_ctor({"options": self.root_opts}) or {}
+        self.destroy()
+
+
+class CtorDialog(_Dialog):
+    """Вибір конструкта: зверху — уже побудований текст, нижче — продовження поточного кроку (лише нова частина)
+    і завжди останнім «None» — скопіювати побудоване й сховати програму. Конструкт без продовжень одразу копіюється;
+    з продовженнями — відкриває наступний крок. Клавіші: ↑/↓ + Enter, цифри 1–9, 0 — None, Backspace — назад.
+    Результат: {"text": готовий текст} або None."""
+
+    def __init__(self, app: "App", root_text: str, ctor: dict, finalize, on_edit=None):
+        super().__init__(app, "Конструктор", 680, 720)
+        self.finalize = finalize               # текст → (готовий текст з тегами/користувачами, попередження або "")
+        self.on_edit = on_edit
+        self.root_text = root_text
+        self.stack: list[tuple[str, list[dict]]] = [(root_text, ctor["options"])]
+        self.hl = 0
+        self.rows: list[tuple[tk.Frame, tk.Label, tuple, tuple]] = []
+        card = ctk.CTkFrame(self, corner_radius=16, fg_color=PANEL, border_width=1, border_color=PANEL_BORDER)
+        card.pack(fill="both", expand=True, padx=14, pady=14)
+        ctk.CTkLabel(card, text="ПОБУДОВАНО", anchor="w", text_color=MUTED, font=app.f.caps).pack(
+            fill="x", padx=20, pady=(14, 2))
+        self.preview = ctk.CTkTextbox(card, height=120, wrap="word", corner_radius=12, border_width=1,
+                                      border_color=PANEL_BORDER, fg_color=INPUT, text_color=TEXT, font=app.f.dlg_bold)
+        self.preview.pack(fill="x", padx=18)
+        self.warn = ctk.CTkLabel(card, text="", anchor="w", text_color=DANGER, font=app.f.body)
+        self.warn.pack(fill="x", padx=20)
+        self.level = ctk.CTkLabel(card, text="", anchor="w", text_color=MUTED, font=app.f.body)
+        self.level.pack(fill="x", padx=20, pady=(4, 2))
+        self.list = ctk.CTkScrollableFrame(card, fg_color="transparent", corner_radius=0,
+                                           scrollbar_button_color=SCROLL, scrollbar_button_hover_color=SCROLL_HOVER)
+        self.list.pack(fill="both", expand=True, padx=10, pady=2)
+        bottom = ctk.CTkFrame(card, fg_color="transparent")
+        bottom.pack(fill="x", padx=18, pady=(10, 16))
+        self.back_btn = ctk.CTkButton(bottom, text="◀ Назад", width=104, height=42, corner_radius=12, fg_color=BTN2,
+                                      hover_color=BTN2_HOVER, text_color=TEXT, font=app.f.dlg, command=self.back)
+        self.back_btn.pack(side="left")
+        if on_edit is not None:
+            ctk.CTkButton(bottom, text="✎ Конструкти…", width=150, height=42, corner_radius=12, fg_color=BTN2,
+                          hover_color=BTN2_HOVER, text_color=TEXT, font=app.f.dlg, command=self.edit
+                          ).pack(side="left", padx=10)
+        ctk.CTkButton(bottom, text="Скасувати", width=104, height=42, corner_radius=12, fg_color=BTN2,
+                      hover_color=BTN2_HOVER, text_color=TEXT, font=app.f.dlg, command=self.cancel).pack(side="right")
+        self.bind("<Escape>", lambda e: self.back() if len(self.stack) > 1 else self.cancel())
+        self.bind("<BackSpace>", lambda e: self.back())
+        self.bind("<Left>", lambda e: self.back())
+        self.bind("<Up>", lambda e: self._hl(-1))
+        self.bind("<Down>", lambda e: self._hl(1))
+        self.bind("<Return>", lambda e: self._activate(self.hl))
+        self.bind("<KP_Enter>", lambda e: self._activate(self.hl))
+        self.bind("<Right>", lambda e: self._activate(self.hl, enter_only=True))
+        self.bind("<Key>", self._digit)
+        self.render_level()
+        self.after(120, self.focus_set)
+
+    def current_text(self) -> str:
+        return self.stack[-1][0]
+
+    def options(self) -> list[dict]:
+        return self.stack[-1][1]
+
+    def render_level(self) -> None:
+        for w in self.list.winfo_children():
+            w.destroy()
+        self.rows = []
+        depth = len(self.stack) - 1
+        self.back_btn.configure(state="normal" if depth else "disabled")
+        self.level.configure(text="Оберіть продовження:" if not depth else f"Крок {depth + 1} — оберіть продовження:")
+        base = self.current_text()
+        for i, node in enumerate(self.options()):
+            more = bool(node.get("children"))
+            self._option(i, f"{i + 1 if i < 9 else '•'}   {ctor_label(base, node['text'])}" + ("   ▸" if more else ""),
+                         "#8764b8" if more else "#22a559")
+        self._option(len(self.options()), "0   None — залишити як є і скопіювати", None)
+        self.hl = 0
+        self._paint()
+        text, warn = self.finalize(base)
+        self.preview.configure(state="normal")
+        self.preview.delete("1.0", "end")
+        self.preview.insert("1.0", text)
+        self.preview.configure(state="disabled")
+        self.warn.configure(text=warn or "")
+
+    def _option(self, i: int, label: str, color: str | None) -> None:
+        base = tint(color, 0.18, 0.30) if color else BTN2
+        hover = tint(color, 0.36, 0.48) if color else BTN2_HOVER
+        fr = tk.Frame(self.list, bg=self.app.col(base), cursor="hand2", highlightthickness=2,
+                      highlightbackground=self.app.col(base), highlightcolor=self.app.col(base))
+        fr.pack(fill="x", padx=6, pady=5)
+        lbl = tk.Label(fr, text=label, font=self.app.pf.phrase, anchor="w", justify="left", bg=self.app.col(base),
+                       fg=self.app.col(TEXT if color else MUTED), wraplength=int(560 * self.app.scaling()),
+                       padx=14, pady=13, cursor="hand2")
+        lbl.pack(fill="x")
+        for w in (fr, lbl):
+            w.bind("<Button-1>", lambda e, n=i: self._activate(n))
+            w.bind("<Enter>", lambda e, n=i: self._hover(n, True))
+            w.bind("<Leave>", lambda e, n=i: self._hover(n, False))
+        self.rows.append((fr, lbl, base, hover))
+
+    def _hover(self, i: int, on: bool) -> None:
+        if 0 <= i < len(self.rows):
+            fr, lbl, base, hover = self.rows[i]
+            c = self.app.col(hover if on else base)
+            fr.configure(bg=c)
+            lbl.configure(bg=c)
+
+    def _paint(self) -> None:
+        for n, (fr, lbl, base, hover) in enumerate(self.rows):
+            edge = self.app.col(ACCENT) if n == self.hl else self.app.col(base)
+            fr.configure(highlightbackground=edge, highlightcolor=edge)
+
+    def _hl(self, d: int) -> str:
+        if self.rows:
+            self.hl = (self.hl + d) % len(self.rows)
+            self._paint()
+        return "break"
+
+    def _digit(self, e) -> None:
+        if e.char and e.char.isdigit():
+            n = int(e.char)
+            self._activate(len(self.options()) if n == 0 else n - 1)
+
+    def _activate(self, i: int, enter_only: bool = False) -> None:
+        opts = self.options()
+        if i == len(opts):                         # None — копіюємо вже побудоване
+            if not enter_only:
+                self.finish(self.current_text())
+            return
+        if not 0 <= i < len(opts):
+            return
+        node = opts[i]
+        if node.get("children"):
+            self.stack.append((node["text"], node["children"]))
+            self.render_level()
+        elif not enter_only:
+            self.finish(node["text"])
+
+    def back(self) -> None:
+        if len(self.stack) > 1:
+            self.stack.pop()
+            self.render_level()
+
+    def edit(self) -> None:
+        new = self.on_edit()
+        try:
+            self.grab_set()
+        except tk.TclError:
+            pass
+        if not new or not new.get("options"):
+            if new is not None:
+                self.cancel()
+            return
+        self.stack = [(self.root_text, new["options"])]
+        self.render_level()
+
+    def finish(self, text: str) -> None:
+        self.result = {"text": self.finalize(text)[0]}
+        self.destroy()
+
+
 class ColorDialog(_Dialog):
-    """Вибір кольору: сітка плашок + «Інший колір…» (+ «Як у папки» для запису).
-    Результат: None (скасовано) | ("set", "#rrggbb") | ("reset", None)."""
+    """Вибір кольору: сітка плашок, «МОЇ КОЛЬОРИ» (збережені власні; правий клік — прибрати), «ОСТАННІ» (історія
+    обраних кольорів) + «Інший колір…» / «＋ Зберегти свій…» (+ «Як у папки» для запису).
+    Результат: None (скасовано) | ("set", "#rrggbb") | ("reset", None). Кожен обраний колір потрапляє в історію."""
 
     COLUMNS = 6
 
     def __init__(self, app: "App", title: str, current: str | None, allow_reset: bool = False,
                  reset_label: str = "Як у папки"):
-        rows = (len(SWATCHES) + self.COLUMNS - 1) // self.COLUMNS
-        super().__init__(app, title, 470, 160 + rows * 58)
+        self.saved = app.settings.colors("colors_saved")
+        self.recent = [c for c in app.settings.colors("colors_recent") if c not in {x.lower() for x in SWATCHES}]
+        super().__init__(app, title, 470, self._height())
         self.current = (current or "").lower()
-        card = ctk.CTkFrame(self, corner_radius=16, fg_color=PANEL, border_width=1, border_color=PANEL_BORDER)
-        card.pack(fill="both", expand=True, padx=14, pady=14)
-        ctk.CTkLabel(card, text="Оберіть колір", anchor="w", text_color=MUTED, font=app.f.body).pack(
+        self.allow_reset, self.reset_label = allow_reset, reset_label
+        self.card = ctk.CTkFrame(self, corner_radius=16, fg_color=PANEL, border_width=1, border_color=PANEL_BORDER)
+        self.card.pack(fill="both", expand=True, padx=14, pady=14)
+        self.build()
+
+    def _rows(self, n: int) -> int:
+        return (n + self.COLUMNS - 1) // self.COLUMNS
+
+    def _height(self) -> int:
+        h = 160 + self._rows(len(SWATCHES)) * 58
+        h += 34 + max(1, self._rows(len(self.saved) + 1)) * 58          # «Мої кольори» + плашка «＋»
+        if self.recent:
+            h += 34 + self._rows(len(self.recent)) * 58
+        return h
+
+    def build(self) -> None:
+        app = self.app
+        for w in self.card.winfo_children():
+            w.destroy()
+        ctk.CTkLabel(self.card, text="Оберіть колір", anchor="w", text_color=MUTED, font=app.f.body).pack(
             fill="x", padx=22, pady=(18, 8))
-        grid = ctk.CTkFrame(card, fg_color="transparent")
-        grid.pack(padx=18)
         self.swatches: dict[str, ctk.CTkButton] = {}
-        for n, color in enumerate(SWATCHES):
-            mark = "✓" if color.lower() == self.current else ""
-            r_, g_, b_ = _rgb(color)
-            light = (0.299 * r_ + 0.587 * g_ + 0.114 * b_) > 170          # на світлих кольорах — темна галочка
-            b = ctk.CTkButton(grid, text=mark, width=48, height=48, corner_radius=24, fg_color=color,
-                              hover_color=blend(color, "#000000", 0.18), text_color="#1b1b1b" if light else "#ffffff",
-                              font=app.f.icon,
-                              command=lambda c=color: self.choose(c))
-            b.grid(row=n // self.COLUMNS, column=n % self.COLUMNS, padx=5, pady=5)
-            self.swatches[color] = b
-        row = ctk.CTkFrame(card, fg_color="transparent")
-        row.pack(fill="x", padx=22, pady=(12, 18))
+        self._grid(SWATCHES)
+        ctk.CTkLabel(self.card, text="МОЇ КОЛЬОРИ   (правий клік — прибрати)", anchor="w", text_color=MUTED,
+                     font=app.f.caps).pack(fill="x", padx=22, pady=(10, 2))
+        self._grid(self.saved, add_btn=True, removable=True)
+        if self.recent:
+            ctk.CTkLabel(self.card, text="ОСТАННІ", anchor="w", text_color=MUTED, font=app.f.caps).pack(
+                fill="x", padx=22, pady=(10, 2))
+            self._grid(self.recent)
+        row = ctk.CTkFrame(self.card, fg_color="transparent")
+        row.pack(fill="x", padx=22, pady=(12, 18), side="bottom")
         ctk.CTkButton(row, text="Інший колір…", width=124, height=40, corner_radius=12, fg_color=BTN2,
                       hover_color=BTN2_HOVER, text_color=TEXT, font=app.f.dlg,
                       command=self.custom).pack(side="left")
-        if allow_reset:
-            ctk.CTkButton(row, text=reset_label, width=110, height=40, corner_radius=12, fg_color=BTN2,
+        if self.allow_reset:
+            ctk.CTkButton(row, text=self.reset_label, width=110, height=40, corner_radius=12, fg_color=BTN2,
                           hover_color=BTN2_HOVER, text_color=TEXT, font=app.f.dlg,
                           command=self.reset).pack(side="left", padx=(8, 0))
         ctk.CTkButton(row, text="Скасувати", width=100, height=40, corner_radius=12, fg_color="transparent",
                       hover_color=BTN2, text_color=MUTED, font=app.f.dlg,
                       command=self.cancel).pack(side="right")
 
+    def _grid(self, colors, add_btn: bool = False, removable: bool = False) -> None:
+        app = self.app
+        grid = ctk.CTkFrame(self.card, fg_color="transparent")
+        grid.pack(padx=18, anchor="center" if colors is SWATCHES else "w")
+        n = -1
+        for n, color in enumerate(colors):
+            mark = "✓" if color.lower() == self.current else ""
+            r_, g_, b_ = _rgb(color)
+            light = (0.299 * r_ + 0.587 * g_ + 0.114 * b_) > 170          # на світлих кольорах — темна галочка
+            b = ctk.CTkButton(grid, text=mark, width=48, height=48, corner_radius=24, fg_color=color,
+                              hover_color=blend(color, "#000000", 0.18), text_color="#1b1b1b" if light else "#ffffff",
+                              font=app.f.icon, command=lambda c=color: self.choose(c))
+            b.grid(row=n // self.COLUMNS, column=n % self.COLUMNS, padx=5, pady=5)
+            if removable:
+                for w in (b, getattr(b, "_canvas", None), getattr(b, "_text_label", None)):
+                    if w is not None:
+                        w.bind("<Button-3>", lambda e, c=color: self.forget(c))
+            self.swatches.setdefault(color, b)
+        if add_btn:
+            n += 1
+            ctk.CTkButton(grid, text="＋", width=48, height=48, corner_radius=24, fg_color=BTN2, hover_color=BTN2_HOVER,
+                          text_color=TEXT, font=app.f.icon, command=self.save_new
+                          ).grid(row=n // self.COLUMNS, column=n % self.COLUMNS, padx=5, pady=5)
+
+    def _relayout(self) -> None:
+        self.saved = self.app.settings.colors("colors_saved")
+        self.build()
+        self.geometry(f"470x{self._height()}")             # ctk сам масштабує розміри вікна
+
     def choose(self, color: str) -> None:
+        self.app.settings.note_color(color)
         self.result = ("set", color.lower())
         self.destroy()
 
@@ -1064,14 +1557,29 @@ class ColorDialog(_Dialog):
         self.result = ("reset", None)
         self.destroy()
 
-    def custom(self) -> None:
-        hex_color = RGBDialog(self.app, self.current or None).run()
+    def _regrab(self) -> None:
         try:
             self.grab_set()                       # після вкладеного діалогу повертаємо захоплення собі
         except tk.TclError:
             pass
+
+    def custom(self) -> None:
+        hex_color = RGBDialog(self.app, self.current or None).run()
+        self._regrab()
         if hex_color:
             self.choose(hex_color)
+
+    def save_new(self) -> None:
+        """«＋» у «Мої кольори»: свій колір зберігається (і його одразу видно серед збережених)."""
+        hex_color = RGBDialog(self.app, self.current or None).run()
+        self._regrab()
+        if hex_color:
+            self.app.settings.save_color(hex_color)
+            self._relayout()
+
+    def forget(self, color: str) -> None:
+        self.app.settings.forget_color(color)
+        self._relayout()
 
 
 class RGBDialog(_Dialog):
@@ -1196,7 +1704,7 @@ class Card:
                  checkable: bool = False, checked: bool = False, tile: bool = False):
         self.app, self.iid, self.tile = app, it["id"], tile
         self.text, self.ts, self.color = it["text"], it["ts"], it.get("color")
-        self.v2 = bool(it.get("v2"))
+        self.v2 = "ctor" if it.get("ctor") else bool(it.get("v2"))
         self.ulink = card_user_link(it)
         self.fill, self.hover, self.border = card_colors(self.color)
         self.cur = self.fill
@@ -1308,7 +1816,8 @@ class Card:
         """Текст картки (у плитці — повністю, з прокруткою); позначки: «▶ v.2» — клік відкриває вибір аппендів,
         «@ user» — підставляється користувач з історії (in {LINK:USER:…:E})."""
         body = self.text.strip() if self.tile else preview(self.text)
-        return body + ("   ▶ v.2" if self.v2 else "") + ("   @ user" if self.ulink else "")
+        mark = "   ⧉ конструктор" if self.v2 == "ctor" else ("   ▶ v.2" if self.v2 else "")
+        return body + mark + ("   @ user" if self.ulink else "")
 
     # -- прокрутка довгого тексту в плитці --------------------------------------------------------
     def _overflow(self) -> int:
@@ -1390,7 +1899,7 @@ class Card:
     def sync(self, it: dict) -> None:
         """Оновлює картку на місці, якщо змінились текст, час або колір (інакше нічого не робить)."""
         text, ts, color = it["text"], it["ts"], it.get("color")
-        v2, ulink = bool(it.get("v2")), card_user_link(it)
+        v2, ulink = "ctor" if it.get("ctor") else bool(it.get("v2")), card_user_link(it)
         if text != self.text or ts != self.ts or v2 != self.v2 or ulink != self.ulink:
             self.text, self.ts, self.v2, self.ulink = text, ts, v2, ulink
             self.body.configure(text=self.shown_text())
@@ -4614,7 +5123,7 @@ class App:
         card = self._card_objs.get(self.sel_id)
         if card is not None:
             item = next((i for i in self.shown if i["id"] == self.sel_id), {})
-            if not (item.get("v2") and not hide and not self.append_armed):
+            if not ((item.get("v2") or item.get("ctor")) and not hide and not self.append_armed):
                 card.flash()
         self.copy_item(self.sel_id, hide=True if hide else None)
 
@@ -4981,6 +5490,9 @@ class App:
             self._append_to(text, True if hide else None)
             return
         item = next((i for i in self.shown if i["id"] == item_id), None)
+        if item and item.get("ctor") and not self._is_history() and not hide:
+            self._open_ctor(item)              # конструктор: клік відкриває вибір продовжень (Ctrl+клік — лише стовбур)
+            return
         if item and item.get("v2") and not self._is_history() and not hide:
             self._open_v2(item)                # копіпаста v.2: клік відкриває вікно вибору аппендів (Ctrl+клік — лише основний текст)
             return
@@ -4997,7 +5509,8 @@ class App:
 
     def _open_v2(self, item: dict) -> None:
         """Вікно вибору аппендів для копіпасти v.2. Результат копіюється; вікно програми ховається лише при Ctrl + клік."""
-        res = V2Dialog(self, item["text"], item["v2"], uid=self._last_user(), link_on=card_user_link(item),
+        res = V2Dialog(self, item["text"], item["v2"], uid=user_ids_from_history(self._history_texts()) or None,
+                       link_on=card_user_link(item),
                        on_edit=lambda: self._edit_appends_inline(item["id"]),
                        filler=lambda txt, on: self._fill_snippet(txt, on, warn=False)).run()
         if not res or not res["text"].strip():
@@ -5005,13 +5518,70 @@ class App:
         self.copy_to_clipboard(res["text"])
         self._finish_pick("✓ Скопійовано: " + clip(res["text"].replace("\n", " "), 60), hide=bool(res["hide"]))
 
+    def _open_ctor(self, item: dict) -> None:
+        """Вікно вибору конструкта; обраний текст (з тегами й користувачами з буфера) копіюється, програма ховається."""
+        link_on = card_user_link(item)
+
+        def finalize(text: str) -> tuple[str, str]:
+            out, missing = self._resolve_tags(text)
+            out = self._fill_snippet(out, link_on, warn=False, tags=False)
+            warn = ("У буфері немає номерів для: " + ", ".join(tag_ref(m) for m in missing)) if missing else ""
+            return out, warn
+        res = CtorDialog(self, item["text"], item["ctor"], finalize,
+                         on_edit=lambda: self._edit_ctor_inline(item["id"])).run()
+        if not res or not res["text"].strip():
+            return
+        self.copy_to_clipboard(res["text"])
+        self._finish_pick("✓ Скопійовано: " + clip(res["text"].replace("\n", " "), 60), hide=True)
+
+    def _edit_ctor_inline(self, item_id: str) -> dict | None:
+        found = self.preset.find_snippet(item_id)
+        if not found:
+            return None
+        res = CtorEditDialog(self, found[1]["text"], found[1].get("ctor")).run()
+        if res is None:
+            return None
+        self.preset.update_snippet(item_id, found[1]["text"], found[0]["id"], ctor=res or None)
+        self.render()
+        return res
+
+    def on_edit_ctor(self, item_id: str) -> None:
+        """«⋯» → «Конструктор…»: існуючий запис стає копіпастою-конструктором (аппенди v.2, якщо були, прибираються)."""
+        found = self.preset.find_snippet(item_id)
+        if not found:
+            return
+        cat, snip = found
+        res = CtorEditDialog(self, snip["text"], snip.get("ctor")).run()
+        if res is None:
+            return
+        v2 = None if res else "keep"
+        if self.preset.update_snippet(item_id, snip["text"], cat["id"], v2=v2, ctor=res or None):
+            self.render()
+            self.set_status("✓ Конструктор збережено — клік по запису відкриє вибір продовжень" if res
+                            else "Конструктів немає — запис знову звичайний")
+
+    def on_remove_ctor(self, item_id: str) -> None:
+        found = self.preset.find_snippet(item_id)
+        if found and self.preset.update_snippet(item_id, found[1]["text"], found[0]["id"], ctor=None):
+            self.render()
+            self.set_status("Конструктор прибрано — запис знову звичайний")
+
+    def _resolve_tags(self, text: str) -> tuple[str, list[str]]:
+        """Теги {{user}} і власні {{назва}} → значення з останніх номерів у буфері."""
+        return resolve_tags(text, self.preset.tags, self._history_texts())
+
     def _history_texts(self) -> list[str]:
         return [i["text"] for i in self.history.items]
 
-    def _fill_snippet(self, text: str, link_on: bool, warn: bool = True) -> str:
-        """Заповнення тексту з історії буфера: «Email ___» → останній email; «___» → користувачі ПО ЧЕРЗІ (останній,
-        передостанній … до 8); без заглушки й з увімкненою підстановкою — « in {LINK:USER:<останній>:E}» у кінці."""
+    def _fill_snippet(self, text: str, link_on: bool, warn: bool = True, tags: bool = True) -> str:
+        """Заповнення тексту з історії буфера: теги {{user}} / {{назва}} → номери з останніх записів; «Email ___» →
+        останній email; «___» → користувачі ПО ЧЕРЗІ; без заглушки й з увімкненою підстановкою — « in {LINK:USER:…:E},
+        …» (усі користувачі з останніх записів буфера) у кінці."""
         texts = self._history_texts()
+        if tags:
+            text, missing = self._resolve_tags(text)
+            if warn and missing:
+                self.set_status("У буфері немає номерів для: " + ", ".join(tag_ref(m) for m in missing), 6000)
         out = fill_email(text, last_email(texts))
         if link_on:
             users = user_ids_from_history(texts)
@@ -5123,7 +5693,7 @@ class App:
         if not result:
             return
         text, cat_id, *rest = result
-        snip = self.preset.add_snippet(cat_id, text, rest[0] if rest else None)
+        snip = self.preset.add_snippet(cat_id, text, rest[0] if rest else None, rest[1] if len(rest) > 1 else None)
         if snip:
             self.view, self._last_cat, self.sel_id = cat_id, cat_id, snip["id"]
             if self._query():
@@ -5138,8 +5708,10 @@ class App:
         found = self.preset.find_snippet(item_id)
         if not found:
             return
-        result = SnippetDialog(self, "Редагування", found[1]["text"], found[0]["id"], found[1].get("v2")).run()
-        if result and self.preset.update_snippet(item_id, result[0], result[1], result[2] if len(result) > 2 else "keep"):
+        result = SnippetDialog(self, "Редагування", found[1]["text"], found[0]["id"], found[1].get("v2"),
+                               found[1].get("ctor")).run()
+        if result and self.preset.update_snippet(item_id, result[0], result[1], result[2] if len(result) > 2 else "keep",
+                                                 result[3] if len(result) > 3 else "keep"):
             self.render()
             self.set_status("✓ Запис оновлено")
 
@@ -5316,6 +5888,11 @@ class App:
                           icon="▶")
             if has_v2:
                 m.add_command("Прибрати аппенди", lambda: self.on_remove_appends(item_id), icon="○")
+            has_ctor = bool((self.preset.find_snippet(item_id) or (None, {}))[1].get("ctor"))
+            m.add_command("Редагувати конструктор…" if has_ctor else "Конструктор…", lambda: self.on_edit_ctor(item_id),
+                          icon="⧉")
+            if has_ctor:
+                m.add_command("Прибрати конструктор", lambda: self.on_remove_ctor(item_id), icon="○")
             item = next((i for i in self.shown if i["id"] == item_id), {})
             on = card_user_link(item)
             m.add_command(("✓ " if on else "") + "Додавати користувача з історії (in {LINK:USER:…:E})",
