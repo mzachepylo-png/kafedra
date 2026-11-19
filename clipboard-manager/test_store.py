@@ -742,8 +742,9 @@ class HistoryAutofillAndUserLinkTests(unittest.TestCase):
 
     def test_several_placeholders_take_users_in_turn(self):
         from formats import apply_user_link, fill_placeholders, user_ids_from_history
-        hist = ["текст", "{LINK:USER:3:E}", "214", "3", "User #9", "текст", "{LINK:USER:5:E}"]
-        self.assertEqual(user_ids_from_history(hist), ["3", "214", "9"], "серія останніх записів, найновіший першим, без повторів")
+        hist = ["{LINK:USER:3:E}", "текст", "214", "3", "User #9", "12, 13", "{LINK:USER:5:E}"]
+        self.assertEqual(user_ids_from_history(hist), ["3", "214", "9", "12", "13", "5"],
+                         "для заглушок — уся історія (текст пропускається), найновіший першим, без повторів")
         self.assertEqual(apply_user_link("A ___ and B ___.", user_ids_from_history(hist)),
                          "A {LINK:USER:3:E} and B {LINK:USER:214:E}.")
         ids = [str(n) for n in range(1, 11)]
@@ -756,13 +757,18 @@ class HistoryAutofillAndUserLinkTests(unittest.TestCase):
     def test_users_from_several_numbers_in_recent_entries(self):
         from formats import apply_user_link, recent_numbers, user_ids_from_history
         hist = ["214512 66413241, #124521", "2141", "якийсь текст", "777"]
-        self.assertEqual(user_ids_from_history(hist), ["214512", "66413241", "124521", "2141"])
-        self.assertEqual(apply_user_link("Blacklisted", user_ids_from_history(hist)),
+        self.assertEqual(recent_numbers(hist), ["214512", "66413241", "124521", "2141"])
+        self.assertEqual(apply_user_link("Blacklisted", user_ids_from_history(hist), recent_numbers(hist)),
                          "Blacklisted in {LINK:USER:214512:E}, {LINK:USER:66413241:E}, {LINK:USER:124521:E}, "
                          "{LINK:USER:2141:E}")
         self.assertEqual(recent_numbers(["User123; #User45. User #6", "{LINK:USER:7:E}, 8"]), ["123", "45", "6", "7", "8"])
         self.assertEqual(recent_numbers(["Cards 1, 2 were added"]), [], "речення — не номери")
         self.assertEqual(recent_numbers(["5, 5", "5"]), ["5"], "без повторів")
+        mixed = ["7", "текст", "8"]
+        self.assertEqual(apply_user_link("A in", user_ids_from_history(mixed), recent_numbers(mixed)),
+                         "A in in {LINK:USER:7:E}", "« in …» — лише остання серія; старіші за текстом не додаються")
+        self.assertEqual(apply_user_link("A ___ B ___", user_ids_from_history(mixed), recent_numbers(mixed)),
+                         "A {LINK:USER:7:E} B {LINK:USER:8:E}")
 
     def test_custom_tags(self):
         from formats import clean_tags, infer_tag, render_tag, resolve_tags

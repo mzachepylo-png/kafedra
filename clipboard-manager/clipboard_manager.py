@@ -46,7 +46,8 @@ import customtkinter as ctk
 from formats import (APPENDERS, AUTO_HISTORY_FORMATS, FORMATTERS, MERGE_ACTIONS, append_result, apply_format,
                      USER_TAG, apply_merge, apply_user_link, clean_ctor, clean_v2, compose_phrases, ctor_count, ctor_label,
                      fill_email, infer_tag, render_tag, resolve_tags, tag_ref, fill_placeholders, format_actions,
-                     has_user_placeholder, join_values, last_email, last_user_id, numbers_from_history, user_ids_from_history,
+                     has_user_placeholder, join_values, last_email, last_user_id, numbers_from_history, recent_numbers,
+                     user_ids_from_history,
                      user_link, user_links, v2_compose)
 from store import (HISTORY, PALETTE, PRESET_SUFFIX, History, Preset, PresetError, Settings,
                    default_data_dir, history_path, open_startup_preset)
@@ -5509,7 +5510,7 @@ class App:
 
     def _open_v2(self, item: dict) -> None:
         """Вікно вибору аппендів для копіпасти v.2. Результат копіюється; вікно програми ховається лише при Ctrl + клік."""
-        res = V2Dialog(self, item["text"], item["v2"], uid=user_ids_from_history(self._history_texts()) or None,
+        res = V2Dialog(self, item["text"], item["v2"], uid=recent_numbers(self._history_texts()) or None,
                        link_on=card_user_link(item),
                        on_edit=lambda: self._edit_appends_inline(item["id"]),
                        filler=lambda txt, on: self._fill_snippet(txt, on, warn=False)).run()
@@ -5584,9 +5585,11 @@ class App:
                 self.set_status("У буфері немає номерів для: " + ", ".join(tag_ref(m) for m in missing), 6000)
         out = fill_email(text, last_email(texts))
         if link_on:
-            users = user_ids_from_history(texts)
-            out = apply_user_link(out, users)
-            if warn and not users:
+            users = user_ids_from_history(texts)              # заглушки «___» — по черзі з усієї історії
+            tail = recent_numbers(texts)                      # « in …» — усі з останньої серії номерних записів
+            needed = users if has_user_placeholder(out) else tail
+            out = apply_user_link(out, users, tail)
+            if warn and not needed:
                 self.set_status("У історії буфера немає користувача — скопійовано без {LINK:USER:…:E}", 6000)
         if warn and has_user_placeholder(out) and link_on:
             self.set_status("Користувачів в історії менше, ніж заглушок «___» — решта лишилась порожньою", 6000)

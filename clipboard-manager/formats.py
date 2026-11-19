@@ -260,9 +260,17 @@ def recent_numbers(texts, limit: int = MAX_RECENT_NUMBERS) -> list[str]:
     return out
 
 
-def user_ids_from_history(texts, limit: int = MAX_RECENT_NUMBERS) -> list[str]:
-    """Користувачі з останніх записів історії, найновіший першим, без повторів (див. ``recent_numbers``)."""
-    return recent_numbers(texts, limit)
+def user_ids_from_history(texts, limit: int = 8) -> list[str]:
+    """Користувачі для заглушок «___» по черзі: усі «номерні» записи історії (записи з текстом пропускаються),
+    найновіший першим, у записі — зліва направо, без повторів, до ``limit``."""
+    out: list[str] = []
+    for t in texts:
+        for n in numbers_of_entry(t) or ():
+            if n not in out:
+                out.append(n)
+                if len(out) >= limit:
+                    return out
+    return out
 
 
 _EMAIL = re.compile(r"[A-Za-z0-9._%+-]+@[A-Za-z0-9-]+(?:\.[A-Za-z0-9-]+)+")
@@ -311,17 +319,17 @@ def fill_email(text: str, email: str | None) -> str:
     return _EMAIL_PLACEHOLDER.sub(lambda m: m.group(1) + email, text or "")
 
 
-def apply_user_link(text: str, uids) -> str:
+def apply_user_link(text: str, uids, tail_uids=None) -> str:
     """Заглушки «___» (3+ підкреслення) → користувачі з історії ПО ЧЕРЗІ: перша — останній користувач,
     друга — передостанній … (до 8). Якщо користувачів менше, ніж заглушок, решта лишається «___».
     Без заглушки — дописує « in {LINK:USER:…:E}, {LINK:USER:…:E}» (усі користувачі з останніх записів) у кінець.
-    ``uids`` — рядок або список (найновіший першим)."""
+    ``uids`` — рядок або список (найновіший першим); ``tail_uids`` — користувачі для « in …» (типово — ``uids``)."""
     if isinstance(uids, str):
         uids = [uids]
     uids = [u for u in (uids or []) if u]
-    if not uids:
-        return text
     if _PLACEHOLDER.search(text or ""):
+        if not uids:
+            return text
         users = uids[:MAX_USER_PLACEHOLDERS]
         used = 0
 
@@ -332,7 +340,10 @@ def apply_user_link(text: str, uids) -> str:
                 return user_link(users[used - 1])
             return m.group(0)
         return _PLACEHOLDER.sub(sub, text)
-    return f"{(text or '').rstrip()} in {user_links(uids)}"
+    tail = [u for u in (uids if tail_uids is None else tail_uids) or [] if u]
+    if not tail:
+        return text
+    return f"{(text or '').rstrip()} in {user_links(tail)}"
 
 
 def fill_placeholders(text: str, history_texts) -> str:
