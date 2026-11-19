@@ -247,7 +247,7 @@ def ink(fill, kind: str = "text") -> tuple[str, str]:
         if contrast(b, f) >= need:
             out.append(b)
             continue
-        alt = max(("#ffffff", "#111317"), key=lambda c: contrast(c, f))
+        alt = max(("#ffffff", "#000000"), key=lambda c: contrast(c, f))   # одне з двох завжди ≥ 4.58
         out.append(alt if kind == "text" else blend(alt, f, 0.82))
     return tuple(out)
 
