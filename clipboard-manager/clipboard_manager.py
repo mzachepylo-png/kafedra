@@ -1261,6 +1261,7 @@ class CtorEditDialog(_Dialog):
             else:
                 h.configure(text="У виборі: «" + clip(ctor_label(base, t), 90) + "»", text_color=MUTED)
         box.bind("<KeyRelease>", sync, add="+")
+        box.sync_node = sync                      # для тестів / вставки тегів
         for ev in ("<<Paste>>", "<<Cut>>", "<<Undo>>", "<<Redo>>"):
             box.bind(ev, lambda e, f=sync: self.after(20, f), add="+")
         sync()
