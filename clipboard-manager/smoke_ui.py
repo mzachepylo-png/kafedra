@@ -2362,7 +2362,7 @@ app.fmt_input.insert("1.0", "77")
 app._update_format_preview()
 app.arm_append()
 real_click(next(c for c in app._card_objs.values() if c.text == t_no).body)
-assert root.clipboard_get() == "Suspicious cards 77 were added. Blacklisted, no unsolicited charges to refund", root.clipboard_get()
+assert root.clipboard_get() == "Suspicious card 77 was added. Blacklisted, no unsolicited charges to refund", root.clipboard_get()
 app.select_format("builtin-suspicious-cards")        # згорнути
 print("29a Suspicious cards format + Append OK")
 
@@ -2593,7 +2593,7 @@ app.submit_format()
 assert app.fmt_input.get("1.0", "end-1c") == ""
 # (9) formats: ASCII-цифри і пробіл після префікса
 from formats import append_suspicious_cards, format_suspicious_cards
-assert format_suspicious_cards("١٢٣ 5") == "Suspicious cards 5 were added."
+assert format_suspicious_cards("١٢٣ 5") == "Suspicious card 5 was added."
 assert append_suspicious_cards("Suspicious cards were added.Blacklisted", "Suspicious cards 1 were added.") == "Suspicious cards 1 were added. Blacklisted"
 # (8) RGB: короткий HEX і підсвітка помилки
 dlg30 = cm.RGBDialog(app, "#112233")
