@@ -4499,7 +4499,13 @@ ph43 = app.preset.add_snippet(f43["id"], "A ___ B ___")
 app.render()
 app.flush_render()
 app.copy_item(ph43["id"])
+# раунд 23: галочка «Кілька чисел в одному записі — окремі користувачі» (типово увімкнена): «7 8 9» — троє
+assert root.clipboard_get() == "A {LINK:USER:7:E} B {LINK:USER:8:E}", root.clipboard_get()
+app.show_window()
+app.set_split_numbers(False)                       # вимкнено — попередня механіка: лише записи з одним користувачем
+app.copy_item(ph43["id"])
 assert root.clipboard_get() == "A {LINK:USER:5:E} B ___", root.clipboard_get()
+app.set_split_numbers(True)
 app.show_window()
 pump(100)
 # вибір конструкта: квадратні плитки по 3 в ряд, колір і фігура конструкту, стрілки по сітці
