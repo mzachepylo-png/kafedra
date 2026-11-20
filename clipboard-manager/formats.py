@@ -51,16 +51,21 @@ def format_user_text(text: str) -> str:
 
 
 SUSPICIOUS_PREFIX = "Suspicious cards were added."
-_SUSPICIOUS_PREFIX_RE = re.compile(r"^\s*suspicious\s+cards\s+were\s+added\s*\.?", re.IGNORECASE)
+_SUSPICIOUS_PREFIX_RE = re.compile(r"^\s*suspicious\s+(?:cards\s+were|card\s+was)\s+added\s*\.?", re.IGNORECASE)
 
 
 def format_suspicious_cards(text: str) -> str:
     """Числа (ID карток) → ``Suspicious cards 1245, 1254, 2365 were added.``
 
     ``1246, 13254, 123, 124 13531`` → ``Suspicious cards 1246, 13254, 123, 124, 13531 were added.``
+    ``1234`` (одне значення) → ``Suspicious card 1234 was added.``
     Порожній результат — якщо чисел немає."""
     nums = _NUMBERS.findall(text or "")
-    return f"Suspicious cards {', '.join(nums)} were added." if nums else ""
+    if not nums:
+        return ""
+    if len(nums) == 1:
+        return f"Suspicious card {nums[0]} was added."
+    return f"Suspicious cards {', '.join(nums)} were added."
 
 
 def append_suspicious_cards(base: str, result: str) -> str:
@@ -69,6 +74,7 @@ def append_suspicious_cards(base: str, result: str) -> str:
 
     ``Suspicious cards were added. Blacklisted, unsolicited charges refunded`` + ``Suspicious cards 1245, 1254 were added.``
     → ``Suspicious cards 1245, 1254 were added. Blacklisted, unsolicited charges refunded``
+    ``Suspicious cards were added. Blacklisted`` + ``Suspicious card 1245 was added.`` → ``Suspicious card 1245 was added. Blacklisted``
     Якщо запис починається інакше — результат просто дописується в кінець."""
     base = (base or "").strip()
     m = _SUSPICIOUS_PREFIX_RE.match(base)
@@ -149,6 +155,8 @@ def apply_merge(action_id: str, values) -> str:
     joined = join_values(values)
     if not joined:
         return ""
+    if action_id == "suspicious" and len([v for v in re.split(r"[,\s]+", joined) if v]) == 1:
+        return f"Suspicious card {joined} was added."      # одне значення — однина
     for aid, _label, template in MERGE_ACTIONS:
         if aid == action_id:
             return template.format(values=joined) if template else joined
@@ -263,19 +271,25 @@ def recent_numbers(texts, limit: int = MAX_RECENT_NUMBERS) -> list[str]:
 _USER_ENTRY = re.compile(r"^\s*(?:\{LINK:USER:([0-9]+):E\}|(?:user\s*#\s*)?([0-9]+))\s*$", re.IGNORECASE)
 
 
-def user_ids_from_history(texts, limit: int = 8) -> list[str]:
+def user_ids_from_history(texts, limit: int = 8, split: bool = False) -> list[str]:
     """Користувачі для заглушок «___» по черзі (попередня механіка): записи історії, що є ОДНИМ користувачем
     (``{LINK:USER:1236:E}``, «User #1236» або просто число), найновіший першим, без повторів, до ``limit``;
-    решта записів пропускається."""
+    решта записів пропускається.
+
+    ``split=True`` (галочка «Кілька чисел в одному записі — окремі користувачі»): запис лише з номерів
+    («1245, 235636 135») дає кількох користувачів — у порядку тексту: 1245, 235636, 135."""
     out: list[str] = []
     for t in texts:
-        m = _USER_ENTRY.match(t or "")
-        if m:
-            uid = m.group(1) or m.group(2)
+        if split:
+            uids = numbers_of_entry(t) or []
+        else:
+            m = _USER_ENTRY.match(t or "")
+            uids = [m.group(1) or m.group(2)] if m else []
+        for uid in uids:
             if uid not in out:
                 out.append(uid)
                 if len(out) >= limit:
-                    break
+                    return out
     return out
 
 
@@ -352,11 +366,11 @@ def apply_user_link(text: str, uids, tail_uids=None) -> str:
     return f"{(text or '').rstrip()} in {user_links(tail)}"
 
 
-def fill_placeholders(text: str, history_texts) -> str:
+def fill_placeholders(text: str, history_texts, split: bool = False) -> str:
     """Повне заповнення тексту з історії: спершу «Email ___» — останній email, потім «___» — користувачі по черзі."""
     texts = list(history_texts)
     out = fill_email(text, last_email(texts))
-    return apply_user_link(out, user_ids_from_history(texts)) if _PLACEHOLDER.search(out) else out
+    return apply_user_link(out, user_ids_from_history(texts, split=split)) if _PLACEHOLDER.search(out) else out
 
 
 

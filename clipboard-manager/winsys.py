@@ -13,7 +13,7 @@ import time
 APP_ID = "ClipboardMemory"
 SINGLE_PORT = int(os.environ.get("CLIPBOARD_MEMORY_PORT", "47653"))
 # Номер версії для заміни старої копії новою (збільшувати при кожному релізі; v2 і раніше цього не вміють)
-APP_VERSION = os.environ.get("CLIPBOARD_MEMORY_VERSION", "27")
+APP_VERSION = os.environ.get("CLIPBOARD_MEMORY_VERSION", "28")
 
 HOTKEY_PRESETS = [
     ("ctrl+x", "Ctrl+X  (перехоплює «Вирізати» в усіх програмах)"),
@@ -105,6 +105,86 @@ class HotkeyListener:
             import ctypes
             WM_QUIT = 0x0012
             ctypes.windll.user32.PostThreadMessageW(self._tid, WM_QUIT, 0, 0)
+            self._thread.join(1)
+        self._thread, self._tid = None, 0
+
+
+class LocalKeys:
+    """Клавіші, які Windows забирає раніше за вікно: Alt+Space відкриває системне меню вікна (Згорнути / Закрити…),
+    і Tk його навіть не бачить. Поки на передньому плані вікно ЦІЄЇ програми, такі клавіші реєструються через
+    RegisterHotKey і приходять у чергу подіями ("alt_space"); щойно активним стає інше вікно — знімаються
+    (в інших програмах Alt+Space працює як завжди). Без опитування: зміну активного вікна повідомляє система."""
+
+    KEYS = ((0xC11, 0x0001, 0x20, "alt_space"),)      # (id, MOD_ALT, VK_SPACE, подія)
+
+    def __init__(self, events: "queue.Queue[str]"):
+        self.events = events
+        self._thread: threading.Thread | None = None
+        self._tid = 0
+        self.registered = False
+
+    def start(self) -> bool:
+        if os.name != "nt" or self._thread is not None:
+            return False
+        import ctypes
+        from ctypes import wintypes
+
+        user32, kernel32 = ctypes.windll.user32, ctypes.windll.kernel32
+        user32.GetForegroundWindow.restype = wintypes.HWND
+        user32.SetWinEventHook.restype = wintypes.HANDLE
+        user32.SetWinEventHook.argtypes = [wintypes.DWORD, wintypes.DWORD, wintypes.HMODULE, ctypes.c_void_p,
+                                           wintypes.DWORD, wintypes.DWORD, wintypes.DWORD]
+        user32.UnhookWinEvent.argtypes = [wintypes.HANDLE]
+        user32.GetWindowThreadProcessId.argtypes = [wintypes.HWND, ctypes.POINTER(wintypes.DWORD)]
+        proc_type = ctypes.WINFUNCTYPE(None, wintypes.HANDLE, wintypes.DWORD, wintypes.HWND, wintypes.LONG,
+                                       wintypes.LONG, wintypes.DWORD, wintypes.DWORD)
+        pid = os.getpid()
+        ready = threading.Event()
+
+        def worker() -> None:
+            MOD_NOREPEAT, WM_HOTKEY, EVENT_SYSTEM_FOREGROUND = 0x4000, 0x0312, 3
+            msg = wintypes.MSG()
+            user32.PeekMessageW(ctypes.byref(msg), None, 0, 0, 0)  # черга повідомлень потоку
+            self._tid = kernel32.GetCurrentThreadId()
+
+            def update(hwnd) -> None:
+                owner = wintypes.DWORD(0)
+                if hwnd:
+                    user32.GetWindowThreadProcessId(hwnd, ctypes.byref(owner))
+                mine = owner.value == pid
+                if mine and not self.registered:
+                    self.registered = all([bool(user32.RegisterHotKey(None, kid, mods | MOD_NOREPEAT, vk))
+                                           for kid, mods, vk, _ev in self.KEYS])
+                elif not mine and self.registered:
+                    for kid, *_rest in self.KEYS:
+                        user32.UnregisterHotKey(None, kid)
+                    self.registered = False
+
+            cb = proc_type(lambda _h, _e, hwnd, _o, _c, _t, _ms: update(hwnd))
+            hook = user32.SetWinEventHook(EVENT_SYSTEM_FOREGROUND, EVENT_SYSTEM_FOREGROUND, None,
+                                          ctypes.cast(cb, ctypes.c_void_p), 0, 0, 0)   # WINEVENT_OUTOFCONTEXT
+            update(user32.GetForegroundWindow())
+            ready.set()
+            events = {kid: ev for kid, _m, _v, ev in self.KEYS}
+            while user32.GetMessageW(ctypes.byref(msg), None, 0, 0) > 0:
+                if msg.message == WM_HOTKEY and msg.wParam in events:
+                    self.events.put(events[msg.wParam])
+                else:
+                    user32.TranslateMessage(ctypes.byref(msg))
+                    user32.DispatchMessageW(ctypes.byref(msg))
+            if hook:
+                user32.UnhookWinEvent(hook)
+            update(None)
+
+        self._thread = threading.Thread(target=worker, name="local-keys", daemon=True)
+        self._thread.start()
+        ready.wait(2)
+        return True
+
+    def stop(self) -> None:
+        if self._thread and self._tid and os.name == "nt":
+            import ctypes
+            ctypes.windll.user32.PostThreadMessageW(self._tid, 0x0012, 0, 0)   # WM_QUIT
             self._thread.join(1)
         self._thread, self._tid = None, 0
 

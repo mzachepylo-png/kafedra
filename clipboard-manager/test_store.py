@@ -770,6 +770,24 @@ class HistoryAutofillAndUserLinkTests(unittest.TestCase):
         self.assertEqual(apply_user_link("A ___ B ___", user_ids_from_history(mixed), recent_numbers(mixed)),
                          "A {LINK:USER:7:E} B {LINK:USER:8:E}")
 
+    def test_round23_singular_and_split_numbers(self):
+        from formats import (append_suspicious_cards, apply_format, apply_merge, apply_user_link, fill_placeholders,
+                             user_ids_from_history)
+        self.assertEqual(apply_format("suspicious_cards", "1234"), "Suspicious card 1234 was added.")
+        self.assertEqual(apply_format("suspicious_cards", "1234, 5"), "Suspicious cards 1234, 5 were added.")
+        self.assertEqual(apply_merge("suspicious", ["1234"]), "Suspicious card 1234 was added.")
+        self.assertEqual(apply_merge("suspicious", ["1234", "5"]), "Suspicious cards 1234, 5 were added.")
+        self.assertEqual(append_suspicious_cards("Suspicious cards were added. Blacklisted, unsolicited charges refunded",
+                                                 "Suspicious card 1234 was added."),
+                         "Suspicious card 1234 was added. Blacklisted, unsolicited charges refunded")
+        hist = ["1245, 235636 135", "текст", "77"]
+        self.assertEqual(user_ids_from_history(hist), ["77"], "без галочки — лише записи з одним користувачем")
+        self.assertEqual(user_ids_from_history(hist, split=True), ["1245", "235636", "135", "77"])
+        self.assertEqual(apply_user_link("A ___ B ___ C ___", user_ids_from_history(hist, split=True)),
+                         "A {LINK:USER:1245:E} B {LINK:USER:235636:E} C {LINK:USER:135:E}")
+        self.assertEqual(fill_placeholders("U ___ ___", hist, split=True), "U {LINK:USER:1245:E} {LINK:USER:235636:E}")
+        self.assertEqual(user_ids_from_history(["Cards 1, 2 were added"], split=True), [], "речення — не номери")
+
     def test_custom_tags(self):
         from formats import clean_tags, infer_tag, render_tag, resolve_tags
         t = infer_tag("1234", "Card #1234 was blocked.")

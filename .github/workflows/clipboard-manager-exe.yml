@@ -137,6 +137,28 @@ jobs:
           Get-Process -Name $name -ErrorAction SilentlyContinue | Stop-Process -Force
           if (-not ($hiddenAtStart -and $showMs -ge 0 -and $hideMs -ge 0)) { throw "hotkey e2e failed" }
 
+      # Alt+Space у вікні програми: Windows віддає його системному меню вікна, тож програма реєструє його сама,
+      # поки її вікно активне (LocalKeys) — у журналі має з'явитись «alt+space», а меню вікна не відкриватись
+      - name: Alt+Space end-to-end
+        continue-on-error: true
+        run: |
+          $env:CLIPBOARD_MEMORY_DIR = Join-Path $env:RUNNER_TEMP ("cm-altspace-" + [guid]::NewGuid())
+          Add-Type -AssemblyName System.Windows.Forms
+          $exe = (Resolve-Path dist/ClipboardMemoryDir/ClipboardMemoryDir.exe).Path
+          $p = Start-Process -FilePath $exe -ArgumentList "--no-hotkey","--no-tray" -PassThru
+          Start-Sleep -Seconds 7
+          $ws = New-Object -ComObject WScript.Shell
+          [void]$ws.AppActivate($p.Id)
+          Start-Sleep -Milliseconds 600
+          [System.Windows.Forms.SendKeys]::SendWait("% ")
+          Start-Sleep -Seconds 2
+          Get-Process -Name $p.ProcessName -ErrorAction SilentlyContinue | Stop-Process -Force
+          $log = Join-Path $env:CLIPBOARD_MEMORY_DIR "app.log"
+          $hit = (Test-Path $log) -and (Select-String -Path $log -Pattern "alt\+space" -Quiet)
+          Write-Host "ALTSPACE event reached the app: $hit"
+          if (Test-Path $log) { Get-Content $log -Tail 8 | ForEach-Object { Write-Host "  $_" } }
+          if (-not $hit) { throw "Alt+Space e2e failed" }
+
       - uses: actions/upload-artifact@v4
         with:
           name: ClipboardMemory-exe

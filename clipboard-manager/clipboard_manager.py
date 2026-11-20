@@ -51,7 +51,7 @@ from formats import (APPENDERS, AUTO_HISTORY_FORMATS, FORMATTERS, MERGE_ACTIONS,
                      user_link, user_links, v2_compose)
 from store import (HISTORY, PALETTE, PRESET_SUFFIX, History, Preset, PresetError, Settings,
                    default_data_dir, history_path, open_startup_preset)
-from winsys import (work_area_at, HOTKEY_PRESETS, HotkeyListener, acquire_single_instance, clipboard_sequence, hotkey_label,
+from winsys import (work_area_at, HOTKEY_PRESETS, HotkeyListener, LocalKeys, acquire_single_instance, clipboard_sequence, hotkey_label,
                     icon_ico_path, icon_png_base64, notify, start_tray)
 
 class _LazyModule:
@@ -66,6 +66,23 @@ class _LazyModule:
             import importlib
             self._mod = importlib.import_module(self._name)
         return getattr(self._mod, attr)
+
+
+SCROLL_FACTOR = 2               # прокрутка колесом миші в усіх списках — у 2 рази швидша, ніж типова в ctk
+
+
+class ScrollFrame(ctk.CTkScrollableFrame):
+    """CTkScrollableFrame з удвічі швидшою прокруткою колесом: ctk гортає на N «одиниць», одиниця — yscrollincrement
+    полотна (Windows 1 px, macOS 8, Linux 30), тож більша одиниця = швидше (зокрема в діалогах і «Посиланнях»)."""
+
+    def _set_scroll_increments(self):
+        super()._set_scroll_increments()
+        try:
+            c = self._parent_canvas
+            c.configure(xscrollincrement=int(float(c.cget("xscrollincrement")) or 1) * SCROLL_FACTOR,
+                        yscrollincrement=int(float(c.cget("yscrollincrement")) or 1) * SCROLL_FACTOR)
+        except (tk.TclError, ValueError):
+            pass
 
 
 colorchooser = _LazyModule("tkinter.colorchooser")
@@ -126,6 +143,8 @@ CARD_BORDER = ("#e1e4ea", "#3a3e46")
 ROW_HOVER = ("#e8ecf2", "#2a2d34")
 ROW_SEL = ("#d9e9fb", "#243b57")
 DROP = ("#b9d9f8", "#2f5d8f")
+NAV_MARK = ("#0a7cff", "#47b0ff")         # рамка папки під клавіатурним «курсором» / цілі перетягування (замість заливки)
+NAV_MARK_W = 5
 TEXT = ("#15171b", "#f3f4f6")
 MUTED = ("#6a717c", "#9aa1ab")
 META = ("#4d5561", "#bcc3cd")            # дата/довжина під записом: помітно темніша/світліша за MUTED
@@ -715,6 +734,9 @@ class _Dialog(ctk.CTkToplevel):
 
     def run(self):
         self.app._modal += 1
+        prev = getattr(self.app, "_picker", None)
+        if hasattr(self, "alt_space"):
+            self.app._picker = self            # вікно вибору: йому Alt+Space (Windows — через LocalKeys)
         try:
             try:
                 self.wait_visibility()
@@ -724,6 +746,7 @@ class _Dialog(ctk.CTkToplevel):
             self.wait_window()
         finally:
             self.app._modal -= 1
+            self.app._picker = prev
         return self.result
 
     def cancel(self) -> None:
@@ -898,7 +921,7 @@ class V2OptionsDialog(_Dialog):
                                       hover_color=BTN2_HOVER, text_color=TEXT, font=app.f.dlg, command=self.up)
         self.crumb = ctk.CTkLabel(top, text="", anchor="w", text_color=TEXT, font=app.f.dlg_bold)
         self.crumb.pack(side="left", fill="x", expand=True)
-        self.list = ctk.CTkScrollableFrame(card, fg_color="transparent", corner_radius=0,
+        self.list = ScrollFrame(card, fg_color="transparent", corner_radius=0,
                                            scrollbar_button_color=SCROLL, scrollbar_button_hover_color=SCROLL_HOVER)
         self.list.pack(fill="both", expand=True, padx=10, pady=4)
         bottom = ctk.CTkFrame(card, fg_color="transparent")
@@ -1044,7 +1067,7 @@ class V2Dialog(_Dialog):
         self.preview.pack(fill="x", padx=18)
         self.level = ctk.CTkLabel(card, text="", anchor="w", text_color=MUTED, font=app.f.body)
         self.level.pack(fill="x", padx=20, pady=(10, 2))
-        self.list = ctk.CTkScrollableFrame(card, fg_color="transparent", corner_radius=0,
+        self.list = ScrollFrame(card, fg_color="transparent", corner_radius=0,
                                            scrollbar_button_color=SCROLL, scrollbar_button_hover_color=SCROLL_HOVER)
         self.list.pack(fill="both", expand=True, padx=10, pady=2)
         # нижче — галочка «in {LINK:USER:…:E}» (останній користувач з історії буфера) і редагування пунктів
@@ -1076,7 +1099,30 @@ class V2Dialog(_Dialog):
         ctk.CTkButton(bottom, text="Скасувати", width=104, height=42, corner_radius=12, fg_color=BTN2,
                       hover_color=BTN2_HOVER, text_color=TEXT, font=app.f.dlg, command=self.cancel).pack(side="right")
         self._ctrl = False
+        self.bind("<Escape>", lambda e: self.step_back())
+        self.bind("<Alt-KeyPress>", self._alt_key)
         self.render_level()
+        self.after(120, self.focus_set)
+
+    def _alt_key(self, e):
+        k = self.app._nav_key(e)
+        if k == "a":
+            self.step_back()
+        elif k == "space":
+            self.alt_space()
+        else:
+            return None
+        return "break"
+
+    def alt_space(self) -> None:
+        """Alt+Space — «Копіювати зараз» і сховати програму."""
+        self.finish(self.compose(), True)
+
+    def step_back(self) -> None:
+        if len(self.stack) > 1:
+            self.back()
+        else:
+            self.cancel()
 
     def compose(self) -> str:
         extras = [a["text"] for a in self.addons if self.ticked.get(a["id"])]
@@ -1306,7 +1352,7 @@ class CtorEditDialog(_Dialog):
         self.parent_lbl = ctk.CTkLabel(card, text="", anchor="w", justify="left", text_color=MUTED, font=app.f.body,
                                        wraplength=960)
         self.parent_lbl.pack(fill="x", padx=20, pady=(2, 4))
-        self.list = ctk.CTkScrollableFrame(card, fg_color="transparent", corner_radius=0,
+        self.list = ScrollFrame(card, fg_color="transparent", corner_radius=0,
                                            scrollbar_button_color=SCROLL, scrollbar_button_hover_color=SCROLL_HOVER)
         self.list.pack(fill="both", expand=True, padx=10, pady=4)
         bottom = ctk.CTkFrame(card, fg_color="transparent")
@@ -1491,7 +1537,8 @@ class CtorDialog(_Dialog):
     """Вибір конструкта: зверху — уже побудований текст, нижче — продовження поточного кроку (лише нова частина)
     і завжди останнім «None» — скопіювати побудоване й сховати програму. Конструкт без продовжень одразу копіюється;
     з продовженнями — відкриває наступний крок. Продовження — квадратні плитки свого кольору (з фігурою кольору).
-    Клавіші: стрілки — по плитках, Enter — обрати, цифри 1–9, 0 — None, Backspace / Esc — назад.
+    Клавіші: стрілки або Alt+W/S/D — по плитках, Enter / Space — обрати, Alt+Space / Alt+Enter — обрати й сховати,
+    цифри 1–9, 0 — None, Alt+A / Backspace / Esc — крок назад (з першого кроку — закрити).
     Результат: {"text": готовий текст} або None."""
 
     def __init__(self, app: "App", root_text: str, ctor: dict, finalize, on_edit=None):
@@ -1513,7 +1560,7 @@ class CtorDialog(_Dialog):
         self.warn.pack(fill="x", padx=20)
         self.level = ctk.CTkLabel(card, text="", anchor="w", text_color=MUTED, font=app.f.body)
         self.level.pack(fill="x", padx=20, pady=(4, 2))
-        self.list = ctk.CTkScrollableFrame(card, fg_color="transparent", corner_radius=0,
+        self.list = ScrollFrame(card, fg_color="transparent", corner_radius=0,
                                            scrollbar_button_color=SCROLL, scrollbar_button_hover_color=SCROLL_HOVER)
         self.list.pack(fill="both", expand=True, padx=10, pady=2)
         bottom = ctk.CTkFrame(card, fg_color="transparent")
@@ -1527,7 +1574,7 @@ class CtorDialog(_Dialog):
                           ).pack(side="left", padx=10)
         ctk.CTkButton(bottom, text="Скасувати", width=104, height=42, corner_radius=12, fg_color=BTN2,
                       hover_color=BTN2_HOVER, text_color=TEXT, font=app.f.dlg, command=self.cancel).pack(side="right")
-        self.bind("<Escape>", lambda e: self.back() if len(self.stack) > 1 else self.cancel())
+        self.bind("<Escape>", lambda e: self.step_back())
         self.bind("<BackSpace>", lambda e: self.back())
         self.bind("<Left>", lambda e: self._hl(-1))                 # плитки: стрілки ходять по сітці
         self.bind("<Right>", lambda e: self._hl(1))
@@ -1536,8 +1583,45 @@ class CtorDialog(_Dialog):
         self.bind("<Return>", lambda e: self._activate(self.hl, hide=bool(e.state & ALT_MASK)))
         self.bind("<KP_Enter>", lambda e: self._activate(self.hl, hide=bool(e.state & ALT_MASK)))
         self.bind("<Key>", self._digit)
+        # як у головному вікні: Alt+W/S/D — по плитках, Alt+A — крок назад (з першого кроку — закрити вікно),
+        # Space — обрати, Alt+Space — обрати й сховати програму (незалежно від розкладки)
+        self.bind("<Alt-KeyPress>", self._alt_key)
+        self.bind("<KeyPress-space>", self._space)
         self.render_level()
         self.after(120, self.focus_set)
+
+    def _alt_key(self, e):
+        k = self.app._nav_key(e)
+        if k == "a":
+            self.step_back()
+        elif k == "w":
+            self._hl(-self.COLS)
+        elif k == "s":
+            self._hl(self.COLS)
+        elif k == "d":
+            self._hl(1)
+        elif k == "space":
+            self.alt_space()
+        else:
+            return None
+        return "break"
+
+    def _space(self, e):
+        if e.state & ALT_MASK:
+            self.alt_space()
+        else:
+            self._activate(self.hl)
+        return "break"
+
+    def alt_space(self) -> None:
+        self._activate(self.hl, hide=True)
+
+    def step_back(self) -> None:
+        """Крок назад: попередній крок конструктора; з першого — закрити вибір (назад до папки)."""
+        if len(self.stack) > 1:
+            self.back()
+        else:
+            self.cancel()
 
     def current_text(self) -> str:
         return self.stack[-1][0]
@@ -1796,7 +1880,7 @@ class FolderShapesDialog(_Dialog):
         card.pack(fill="both", expand=True, padx=14, pady=14)
         ctk.CTkLabel(card, text="Клік по фігурі — обрати іншу", anchor="w", text_color=MUTED, font=app.f.body).pack(
             fill="x", padx=22, pady=(16, 6))
-        self.list = ctk.CTkScrollableFrame(card, fg_color="transparent", corner_radius=0,
+        self.list = ScrollFrame(card, fg_color="transparent", corner_radius=0,
                                            scrollbar_button_color=SCROLL, scrollbar_button_hover_color=SCROLL_HOVER)
         self.list.pack(fill="both", expand=True, padx=10, pady=4)
         ctk.CTkButton(card, text="Готово", width=112, height=40, corner_radius=12, fg_color=ACCENT,
@@ -2259,7 +2343,7 @@ class Card:
         if over <= 0:
             return None
         up = getattr(e, "num", 0) == 4 or getattr(e, "delta", 0) > 0
-        step = max(1, int(36 * self.app.scaling()))
+        step = max(1, int(36 * SCROLL_FACTOR * self.app.scaling()))
         new = max(0, min(over, self._off + (-step if up else step)))
         if new == self._off:
             return None                                 # край тексту — колесо далі гортає список
@@ -2575,6 +2659,18 @@ class SideRow:
             w.configure(bg=bg)
         self._ink(fill)
 
+    def mark(self, on: bool) -> None:
+        """Клавіатурний «курсор» / ціль перетягування: жирна яскрава рамка, колір папки лишається свій
+        (раніше вся папка заливалась синім — плутало)."""
+        self.marked = bool(on)
+        if on:
+            self.row.configure(border_width=NAV_MARK_W, border_color=NAV_MARK)
+        elif self.real:
+            self.row.configure(border_width=border_width(self.selected),
+                               border_color=ACCENT if self.selected else self.border)
+        else:
+            self.row.configure(border_width=0)
+
     def update(self, name: str, color: str, count: int, selected: bool, shape: str = "", border: str | None = None) -> None:
         a = self.app
         sig = (name, color, count, selected, a._name_chars, shape, border)
@@ -2603,6 +2699,8 @@ class SideRow:
                                    border_color=ACCENT if selected else self.border)
             else:
                 self.row.configure(fg_color=fill)
+            if getattr(self, "marked", False):
+                self.mark(True)                # перемальований рядок не губить рамку «курсора»
         self.colorize()
 
     def colorize(self) -> None:
@@ -2745,7 +2843,7 @@ class LibraryDialog(_Dialog):
                          placeholder_text="Пошук: автор, назва, журнал, рік, DOI…")
         e.pack(fill="x", padx=18, pady=(16, 8))
         self.query.trace_add("write", lambda *a: self.fill())
-        self.list = ctk.CTkScrollableFrame(card, fg_color="transparent", corner_radius=0,
+        self.list = ScrollFrame(card, fg_color="transparent", corner_radius=0,
                                            scrollbar_button_color=SCROLL, scrollbar_button_hover_color=SCROLL_HOVER)
         self.list.pack(fill="both", expand=True, padx=10)
         bottom = ctk.CTkFrame(card, fg_color="transparent")
@@ -2817,7 +2915,7 @@ class LinksPage:
                                      hover_color=ACCENT_HOVER, font=f.bold, command=self.add)
         self.hint = ctk.CTkLabel(self.frame, text="", anchor="w", justify="left", text_color=MUTED, font=f.body)
         self.hint.pack(fill="x", padx=20, pady=(2, 4))
-        self.body = ctk.CTkScrollableFrame(self.frame, fg_color="transparent", corner_radius=0,
+        self.body = ScrollFrame(self.frame, fg_color="transparent", corner_radius=0,
                                            scrollbar_button_color=SCROLL, scrollbar_button_hover_color=SCROLL_HOVER)
         self.body.pack(fill="both", expand=True, padx=8, pady=(0, 10))
         self.items: list = []                     # (тип, id, фрейм) показаних плиток/карток — для тестів і меню
@@ -3319,6 +3417,8 @@ class App:
         _mark("first_render")
 
         self.hotkeys = HotkeyListener(events)
+        self.local_keys = LocalKeys(events)  # Alt+Space, поки вікно програми активне (інакше Windows відкриває меню вікна)
+        self._picker = None                 # відкрите вікно вибору (конструктор / аппенди) — йому Alt+Space та Alt+A
         history.lazy = True                 # запис історії — з таймера, а не на кожне копіювання
         if isinstance(events, WakeQueue):
             events.root = root
@@ -3392,6 +3492,10 @@ class App:
         """Усе, що не потрібне для першого малювання: гаряча клавіша, трей (у фоновому потоці), іконка."""
         if self._use_hotkey:
             self.apply_hotkey(announce=False)
+        try:
+            self.local_keys.start()
+        except Exception as ex:             # без цього Alt+Space просто лишиться за Tk (як раніше)
+            self.log(f"local keys failed: {ex!r}")
         if self._use_tray:
             if sync_tray:
                 self.tray = start_tray(self.events, APP_NAME)
@@ -3713,6 +3817,7 @@ class App:
         self.v_fullscreen = tk.BooleanVar(value=self.settings["fullscreen"])
         self.v_clear_exit = tk.BooleanVar(value=self.settings["clear_on_exit"])
         self.v_folder_first = tk.BooleanVar(value=self.settings["folder_first"])
+        self.v_split_numbers = tk.BooleanVar(value=self.settings["split_numbers"])
         self.v_pick_font = tk.StringVar(value=f"{self._pick_font_size():g}")
         self.v_hotkey = tk.StringVar(value=self.settings["hotkey"])
         self.v_theme = tk.StringVar(value=self.settings["theme"])
@@ -3796,7 +3901,7 @@ class App:
         self.history_slot = ctk.CTkFrame(left, fg_color="transparent")
         self.history_slot.pack(fill="x", padx=2)
         ctk.CTkFrame(left, height=1, fg_color=PANEL_BORDER).pack(fill="x", padx=14, pady=(4, 4))
-        self.cat_list = ctk.CTkScrollableFrame(left, fg_color="transparent", corner_radius=0,
+        self.cat_list = ScrollFrame(left, fg_color="transparent", corner_radius=0,
                                                scrollbar_button_color=SCROLL, scrollbar_button_hover_color=SCROLL_HOVER)
         self.cat_list.pack(fill="both", expand=True, padx=(2, 2), pady=(0, 8))
         self._speed_up_scroll(self.cat_list, CAT_SCROLL_FACTOR)
@@ -3884,7 +3989,7 @@ class App:
         self.armed_label = self._label(self.armed_banner, "", ARMED_SOFT, TEXT, self.pf.body, anchor="w",
                                        justify="left")
         self.armed_label.pack(fill="x", padx=14, pady=8)
-        self.cards = ctk.CTkScrollableFrame(mid, fg_color="transparent", corner_radius=0,
+        self.cards = ScrollFrame(mid, fg_color="transparent", corner_radius=0,
                                             scrollbar_button_color=SCROLL, scrollbar_button_hover_color=SCROLL_HOVER)
         self.cards.pack(fill="both", expand=True, padx=(8, 4), pady=(0, 10))
         mid.bind("<Configure>", self._on_mid_resize, add="+")
@@ -4214,7 +4319,7 @@ class App:
             cnt = next((p.get("user_count", 0) for p in chosen if p.get("user_link")), 0)
             out = self._fill_snippet(out[:-1] if dot else out, True, count=cnt)
             return out + "." if dot else out
-        return fill_placeholders(out, self._history_texts())
+        return fill_placeholders(out, self._history_texts(), split=self.settings["split_numbers"])
 
     def submit_refund(self) -> None:
         out = self._phrase_text()
@@ -5712,7 +5817,7 @@ class App:
         if k is None:
             return None
         if k == "space":
-            self.nav_activate(hide=True)
+            self.on_alt_space()
         else:
             self.nav_move(k)
         return "break"                         # не віддаємо Alt+… системі (меню вікна) і полям введення
@@ -5863,9 +5968,10 @@ class App:
             keys = "Alt+W/A/S/D — навігація · Space — відкрити папку · Esc — сховати"
         else:
             title, count = self._view_name(), str(len(self.shown))
-            keys = ("Alt+W/A/S/D — навігація · Space — копіювати · " +
-                    ("Esc — до папок" if self.folder_first else "Alt+Space — копіювати й сховати") +
-                    " · Alt+Enter — формат + фрази")
+            keys = ("Alt+W/S/D — навігація · Alt+A / Esc — назад · Space — копіювати · Alt+Space — копіювати й сховати"
+                    if self.folder_first else
+                    "Alt+W/A/S/D — навігація · Space — копіювати · Alt+Space — копіювати й сховати · "
+                    "Alt+Enter — формат + фрази")
         # викликається на кожен render і перехід між сторінками: той самий текст — без configure (і без
         # перерахунку розміру міток та перемальовування банера)
         for lbl, text in ((self.title_lbl, title), (self.count_lbl, count), (self.keys_lbl, keys)):
@@ -6095,6 +6201,9 @@ class App:
                 self._nav_folders_right()
 
     def _nav_move_cards(self, k: str) -> None:
+        if k == "a" and self.folder_first:
+            self.back_to_folders()                 # Alt+A у відкритій папці — крок назад (до вибору папки);
+            return                                 # ліворуч по плитках — стрілка ←
         if self._cells_on() and self._cell_of:
             self._nav_cells(k)
             return
@@ -6489,7 +6598,7 @@ class App:
     def _mark_target(self, key: str | None, on: bool) -> None:
         obj = self._row_objs.get(key) if key else None
         if obj:
-            obj.paint(DROP if on else (obj.sel_fill if key == self.view else obj.fill))
+            obj.mark(on)
 
     # -- дії над записами -----------------------------------------------------
     def copy_to_clipboard(self, text: str) -> None:
@@ -6612,7 +6721,7 @@ class App:
                 self.set_status("У буфері немає номерів для: " + ", ".join(tag_ref(m) for m in missing), 6000)
         out = fill_email(text, last_email(texts))
         if link_on:
-            users = user_ids_from_history(texts)              # заглушки «___» — по черзі з усієї історії
+            users = user_ids_from_history(texts, split=self.settings["split_numbers"])   # «___» — по черзі з історії
             tail = take(recent_numbers(texts), clean_count(count))   # « in …» — з останньої серії (count — скільки)
             needed = users if has_user_placeholder(out) else tail
             out = apply_user_link(out, users, tail)
@@ -7136,6 +7245,8 @@ class App:
         m.add_check("Ховати вікно після вибору запису", self.v_autohide, self._on_autohide)
         m.add_check("Відкривати на весь екран", self.v_fullscreen, self._on_fullscreen)
         m.add_check("Очищати історію при закритті (✕) і виході", self.v_clear_exit, self._on_clear_exit)
+        m.add_check("Кілька чисел в одному записі буфера — окремі користувачі", self.v_split_numbers,
+                    lambda: self.set_split_numbers(self.v_split_numbers.get()))
         m.add_check("Режим «спочатку папка» (вибір папки → записи)", self.v_folder_first,
                     lambda: self.set_folder_first(self.v_folder_first.get()))
         sizes = self._new_menu()
@@ -7177,6 +7288,15 @@ class App:
     def _on_autohide(self) -> None:
         self.settings["autohide"] = self.v_autohide.get()
         self._sync_submit_label()
+
+    def set_split_numbers(self, on: bool) -> None:
+        """⚙ → «Кілька чисел в одному записі буфера — окремі користувачі»: «1245, 235636 135» → 1245, 235636, 135
+        і для заглушок «___» (по черзі), а не лише для « in …» і {{user}}."""
+        on = bool(on)
+        self.v_split_numbers.set(on)
+        self.settings["split_numbers"] = on
+        self.set_status("Кілька чисел в одному записі — окремі користувачі: «1245, 235636 135» → три" if on else
+                        "Для заглушок «___» береться лише запис з одним користувачем", 5000)
 
     def _on_clear_exit(self) -> None:
         self.settings["clear_on_exit"] = self.v_clear_exit.get()
@@ -7558,6 +7678,7 @@ class App:
             pass
         self.settings.save()                           # вигляд (список/плитки), ширина колонки й решта — на диск
         self.hotkeys.stop()
+        self.local_keys.stop()
         if self.tray:
             try:
                 self.tray.stop()
@@ -7592,6 +7713,26 @@ class App:
             self.show_window()
         elif batch.count("toggle") % 2:
             self.toggle_window()
+        if "alt_space" in batch:
+            self.on_alt_space()
+
+    def on_alt_space(self) -> None:
+        """Alt+Space (на Windows — через LocalKeys, бо інакше відкривається системне меню вікна): у вікні вибору
+        конструкта / аппендів — обрати підсвічений пункт, скопіювати й сховати; у головному вікні — скопіювати
+        вибраний запис і сховати вікно (на сторінці папок — відкрити папку)."""
+        self.log(f"alt+space picker={self._picker is not None} zone={self.nav_zone}")
+        picker = self._picker
+        if picker is not None:
+            try:
+                if picker.winfo_exists():
+                    picker.alt_space()
+                    return
+            except tk.TclError:
+                pass
+            self._picker = None
+        if self._modal or self.tab != "clip":
+            return
+        self.nav_activate(hide=True)
 
     def _tick(self) -> None:
         try:

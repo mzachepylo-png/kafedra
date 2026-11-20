@@ -3069,7 +3069,13 @@ pump(200)
 probe = ctk.CTkScrollableFrame(root)
 base_inc = int(float(probe._parent_canvas.cget("yscrollincrement")))
 probe.destroy()
-assert int(float(app.cat_list._parent_canvas.cget("yscrollincrement"))) == base_inc * cm.CAT_SCROLL_FACTOR == base_inc * 2
+assert int(float(app.cat_list._parent_canvas.cget("yscrollincrement"))) == \
+    base_inc * cm.SCROLL_FACTOR * cm.CAT_SCROLL_FACTOR == base_inc * 4
+# раунд 23: прокрутка всюди вдвічі швидша — записи, діалоги (усі ScrollFrame)
+assert int(float(app.cards._parent_canvas.cget("yscrollincrement"))) == base_inc * 2
+probe = cm.ScrollFrame(root)
+assert int(float(probe._parent_canvas.cget("yscrollincrement"))) == base_inc * 2
+probe.destroy()
 # «⋯» звичайного запису → «Додати аппенди…»; після збереження запис стає v.2, текст не змінюється
 ap_cat = app.preset.add_category("Аппенди меню")
 plain = app.preset.add_snippet(ap_cat["id"], "Звичайна копіпаста")
@@ -3354,7 +3360,10 @@ key("Cyrillic_tse")                                             # Alt+Ц (укр
 assert app.sel_id == ids_b[0], "Alt+W — вище"
 key("a")                                                        # лівий край записів → папки
 assert app.nav_zone == "folders" and app.nav_cat == nav_cats[1]["id"]
-assert tup(app._row_objs[nav_cats[1]["id"]].row.cget("fg_color")) == tup(cm.DROP), "курсор на папці підсвічено"
+r_nav_ = app._row_objs[nav_cats[1]["id"]]
+assert r_nav_.row.cget("border_width") == cm.NAV_MARK_W and tup(r_nav_.row.cget("border_color")) == tup(cm.NAV_MARK), \
+    "курсор на папці — жирна яскрава рамка"
+assert tup(r_nav_.row.cget("fg_color")) != tup(cm.DROP), "без синьої заливки"
 key("s")
 order = app._nav_folders()
 assert app.nav_cat == order[order.index(nav_cats[1]["id"]) + 1]
@@ -4160,8 +4169,13 @@ app.nav_move("d")
 assert app.nav_zone == "right", "правіше плиток немає зовсім — лише тепер у праву колонку"
 app.nav_move("a")
 assert app.nav_zone == "cards" and app.sel_id == nv_ids[2]
-app.nav_move("a")
+app._arrow_h(SimpleNamespace(widget=root), -1)     # ліворуч по плитках — стрілка (Alt+A у папці — крок назад)
 assert app.sel_id == nv_ids[1], "ліворуч у ряду порожньо — найближча лівіше в іншому ряду"
+app.nav_move("a")
+assert app.page == "folders", "Alt+A у відкритій папці — завжди крок назад, навіть не з лівого краю"
+app.select_category(nv_cat["id"])
+app.flush_render()
+pump(200)
 app._select_card(nv_ids[3])
 app.nav_move("d")
 assert app.sel_id == nv_ids[1], "з (3,0): найближчий стовпчик правіше — 1 (ряд 0), а не 2"
@@ -4747,6 +4761,109 @@ lp.escape()                                        # з кореня «Поси�
 pump(200)
 assert app.tab == "clip" and app.cols.winfo_ismapped() and not lp.frame.winfo_ismapped()
 print("45 links tab: folders → subfolders, DSTU citations, library dialog, bibliography, browser server OK")
+
+# ---- 46. раунд 23: Alt+A — крок назад, клавіші в конструкторі, Alt+Space, рамка замість синьої заливки, однина, галочка чисел --
+err42.clear()
+assert app.tab == "clip"
+settings["autohide"], app.hotkey_ok = False, False
+app.set_folder_first(True)
+pump(200)
+
+
+def open43():
+    app.select_category(f43["id"])
+    app._set_page("records")
+    app.flush_render()
+    pump(200)
+
+
+def alt46(d, ks, kc):
+    return d._alt_key(SimpleNamespace(keysym=ks, keycode=kc, state=cm.ALT_MASK))
+
+
+seen46 = {}
+
+
+def ctor_keys():
+    d = open_dlg(cm.CtorDialog)
+    assert app._picker is d, "вікно вибору отримує Alt+Space"
+    assert d.hl == 0 and len(d.rows) == 5                # 4 продовження + None
+    alt46(d, "d", 68)
+    assert d.hl == 1, "Alt+D — праворуч"
+    alt46(d, "s", 83)
+    assert d.hl == 4, "Alt+S — рядом нижче (COLS=3)"
+    alt46(d, "w", 87)
+    assert d.hl == 1, "Alt+W — рядом вище"
+    d._space(SimpleNamespace(state=0))                   # Space — обрати: «далі» має продовження → наступний крок
+    assert len(d.stack) == 2 and d.hl == 0
+    alt46(d, "Cyrillic_ef", 0)                           # Alt+А (укр. розкладка) = Alt+A — крок назад
+    assert len(d.stack) == 1
+    seen46["back"] = True
+    alt46(d, "a", 65)                                    # з першого кроку — закрити вибір (назад у папку)
+
+
+open43()
+root.after(300, guard42(ctor_keys))
+clip_before = root.clipboard_get()
+app.copy_item(ct43["id"])
+assert not err42, err42
+assert seen46.get("back") and app._picker is None
+assert app.page == "records" and root.clipboard_get() == clip_before, "Alt+A з першого кроку — назад у папку, без копіювання"
+
+
+def ctor_alt_space():
+    d = open_dlg(cm.CtorDialog)
+    alt46(d, "d", 68)
+    alt46(d, "d", 68)                                    # «Стовбур 43 c»
+    events.put("alt_space")                              # як LocalKeys на Windows (RegisterHotKey → черга)
+    app._drain_events()
+
+
+settings["autohide"], app.hotkey_ok = True, True
+root.after(300, guard42(ctor_alt_space))
+app.copy_item(ct43["id"])
+assert not err42, err42
+assert root.clipboard_get() == "Стовбур 43 c" and app._hidden, "Alt+Space у конструкторі — обрати, скопіювати й сховати"
+app.show_window()
+pump(200)
+# головне вікно: Alt+Space — скопіювати вибраний запис і сховати
+open43()
+app._select_card(sn43["id"])
+events.put("alt_space")
+pump(400)
+assert root.clipboard_get() == "Запис 43" and app._hidden, "Alt+Space — скопіювати й сховати"
+app.show_window()
+pump(200)
+settings["autohide"], app.hotkey_ok = False, False
+# Alt+A у відкритій папці — крок назад (до вибору папки), і з українською розкладкою
+open43()
+app._select_card(sn43["id"])
+app._on_alt_key(SimpleNamespace(keysym="Cyrillic_ef", keycode=0, widget=root, state=cm.ALT_MASK))
+assert app.page == "folders"
+assert "Alt+A" in app.keys_lbl.cget("text") or app._picking()
+# курсор на папці — рамка, не синя заливка
+app._nav_mark(f43["id"])
+r46 = app._row_objs[f43["id"]]
+assert r46.row.cget("border_width") == cm.NAV_MARK_W and tup(r46.row.cget("fg_color")) == tup(r46.cur)
+app._nav_mark(None)
+assert r46.row.cget("border_width") == cm.border_width(r46.selected), "рамка курсора знімається"
+# галочка «Кілька чисел в одному записі — окремі користувачі»
+assert settings["split_numbers"] is True
+app.history = History(os.path.join(tmp, "h46.json"))
+app.history.add("77")
+app.history.add("1245, 235636 135")
+out46 = app._fill_snippet("A ___ B ___ C ___ D ___", True, warn=False)
+assert out46 == "A {LINK:USER:1245:E} B {LINK:USER:235636:E} C {LINK:USER:135:E} D {LINK:USER:77:E}", out46
+app.set_split_numbers(False)
+assert settings["split_numbers"] is False and app.v_split_numbers.get() is False
+out46 = app._fill_snippet("A ___ B ___", True, warn=False)
+assert out46 == "A {LINK:USER:77:E} B ___", out46
+app.set_split_numbers(True)
+# Suspicious cards: одне значення — однина
+assert cm.apply_format("suspicious_cards", "1234") == "Suspicious card 1234 was added."
+# LocalKeys поза Windows нічого не реєструє
+assert cm.LocalKeys(queue.Queue()).start() is False
+print("46 Alt+A back, ctor keys (Alt+W/A/S/D, Space, Alt+Space), Alt+Space event, nav border, singular card, split numbers OK")
 
 # ---- 25. справжнє розгортання під віконним менеджером (лише якщо є openbox) -------------------------------------------------------------
 import shutil  # noqa: E402
