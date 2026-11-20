@@ -1102,7 +1102,14 @@ class V2Dialog(_Dialog):
         self.bind("<Escape>", lambda e: self.step_back())
         self.bind("<Alt-KeyPress>", self._alt_key)
         self.render_level()
-        self.after(120, self.focus_set)
+        self.after(120, self._focus_self)
+
+    def _focus_self(self) -> None:
+        try:
+            if self.winfo_exists():
+                self.focus_set()
+        except tk.TclError:
+            pass
 
     def _alt_key(self, e):
         k = self.app._nav_key(e)
