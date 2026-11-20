@@ -1,0 +1,310 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>BioBib — Бібліографія для дисертації</title>
+  <link rel="stylesheet" href="/static/styles.css" />
+</head>
+<body>
+  <header class="topbar">
+    <div class="brand">
+      <span class="brand-logo">🧬</span>
+      <div>
+        <div class="brand-title" data-i18n="app_name">BioBib</div>
+        <div class="brand-sub" data-i18n="app_subtitle">Бібліографія для дисертації</div>
+      </div>
+    </div>
+
+    <div class="search-wrap">
+      <input
+        id="searchInput"
+        type="search"
+        class="search-input"
+        autocomplete="off"
+        placeholder="Пошук… (Ctrl+K)"
+      />
+    </div>
+
+    <div class="topbar-actions">
+      <label class="sort-wrap">
+        <span>Розділ:</span>
+        <select id="sectionFilter"><option value="">Усі джерела</option></select>
+      </label>
+      <label class="sort-wrap">
+        <span data-i18n="sort_label">Сортування:</span>
+        <select id="sortSelect">
+          <option value="updated_desc" data-i18n="sort_updated_desc">Останні зміни</option>
+          <option value="created_desc" data-i18n="sort_created_desc">Нещодавно додані</option>
+          <option value="year_desc" data-i18n="sort_year_desc">Рік (новіші)</option>
+          <option value="year_asc" data-i18n="sort_year_asc">Рік (старіші)</option>
+          <option value="rating_desc" data-i18n="sort_rating_desc">Важливість</option>
+          <option value="title_asc" data-i18n="sort_title_asc">Назва (А–Я)</option>
+        </select>
+      </label>
+      <button id="btnSettings" class="btn btn-secondary" type="button" data-i18n="btn_settings">Налаштування</button>
+      <button id="btnAddSource" class="btn btn-primary" type="button" data-i18n="btn_add_source">+ Додати джерело</button>
+    </div>
+  </header>
+
+  <main class="workspace">
+    <section class="list-pane">
+      <div class="list-header">
+        <span id="sourceCount">Джерел: 0</span>
+      </div>
+      <div id="sourceList" class="source-list"></div>
+    </section>
+
+    <section id="detailPane" class="detail-pane">
+      <div class="empty-detail" data-i18n="select_source_hint">
+        Оберіть джерело зі списку ліворуч, щоб переглянути картку, файли та нотатки.
+      </div>
+    </section>
+  </main>
+
+  <!-- Модальне вікно створення / редагування джерела -->
+  <div id="sourceModal" class="modal hidden" role="dialog" aria-modal="true">
+    <div class="modal-backdrop" data-close-modal="sourceModal"></div>
+    <div class="modal-dialog modal-lg">
+      <div class="modal-header">
+        <h2 id="sourceModalTitle">Нове джерело</h2>
+        <button type="button" class="icon-btn" data-close-modal="sourceModal">✕</button>
+      </div>
+      <form id="sourceForm" class="modal-body">
+        <input type="hidden" id="fId" />
+
+        <div class="field">
+          <label for="fSection">Папка / підпапка (сторінка «Посилання» у Clipboard Memory)</label>
+          <select id="fSection"><option value="">— без розділу —</option></select>
+        </div>
+
+        <div class="form-grid-2">
+          <div class="field">
+            <label for="fType" data-i18n="field_type">Тип джерела</label>
+            <select id="fType"></select>
+          </div>
+          <div class="field">
+            <label for="fLanguage" data-i18n="field_language">Мова джерела</label>
+            <select id="fLanguage"></select>
+          </div>
+        </div>
+
+        <div class="field">
+          <label for="fTitle" data-i18n="field_title">Назва *</label>
+          <input id="fTitle" type="text" required />
+        </div>
+
+        <div class="field" data-types="book,book_chapter,thesis,abstract,standard,normative,other">
+          <label for="fSubtitle" data-i18n="field_subtitle">Підзаголовок / тип видання</label>
+          <input id="fSubtitle" type="text" />
+        </div>
+
+        <div class="field">
+          <div class="field-row-header">
+            <label data-i18n="field_authors">Автори та редактори</label>
+            <button type="button" id="btnAddAuthorRow" class="btn btn-sm btn-secondary" data-i18n="btn_add_author">+ Додати автора</button>
+          </div>
+          <div id="authorsContainer" class="authors-editor"></div>
+        </div>
+
+        <div class="field" data-types="article,book_chapter,conference,web,database,standard,normative,other">
+          <label id="lblContainer" for="fContainer">Назва журналу</label>
+          <input id="fContainer" type="text" />
+        </div>
+
+        <div class="form-grid-3">
+          <div class="field" data-types="article,book,book_chapter,conference,thesis,abstract,patent,standard,normative,web,database,other">
+            <label for="fYear" data-i18n="field_year">Рік</label>
+            <input id="fYear" type="number" min="1800" max="2100" />
+          </div>
+          <div class="field" data-types="article,book_chapter,conference,other">
+            <label for="fVolume" data-i18n="field_volume">Том</label>
+            <input id="fVolume" type="text" />
+          </div>
+          <div class="field" data-types="article,conference,other">
+            <label for="fIssue" data-i18n="field_issue">Номер / випуск</label>
+            <input id="fIssue" type="text" />
+          </div>
+        </div>
+
+        <div class="form-grid-2">
+          <div class="field" data-types="book,book_chapter,conference,thesis,abstract,standard,normative,other">
+            <label for="fPlace" data-i18n="field_place">Місто</label>
+            <input id="fPlace" type="text" />
+          </div>
+          <div class="field" data-types="book,book_chapter,conference,thesis,abstract,patent,standard,normative,other">
+            <label for="fPublisher" data-i18n="field_publisher">Видавництво / установа</label>
+            <input id="fPublisher" type="text" />
+          </div>
+        </div>
+
+        <div class="form-grid-2">
+          <div class="field" data-types="article,book_chapter,conference,patent,standard,normative,other">
+            <label for="fPages" data-i18n="field_pages">Сторінки або номер статті</label>
+            <input id="fPages" type="text" placeholder="15–20" />
+          </div>
+          <div class="field" data-types="book,thesis,abstract,standard,normative,other">
+            <label for="fPageCount" data-i18n="field_page_count">Кількість сторінок</label>
+            <input id="fPageCount" type="number" min="1" />
+          </div>
+        </div>
+
+        <div class="form-grid-2">
+          <div class="field" data-types="article,book,book_chapter,conference,thesis,database,other">
+            <label for="fDoi" data-i18n="field_doi">DOI</label>
+            <input id="fDoi" type="text" placeholder="10.xxxx/xxxxx" />
+          </div>
+          <div class="field" data-types="article,other">
+            <label for="fPmid" data-i18n="field_pmid">PMID</label>
+            <input id="fPmid" type="text" />
+          </div>
+        </div>
+
+        <div class="form-grid-2">
+          <div class="field" data-types="book,book_chapter,conference,other">
+            <label for="fIsbn" data-i18n="field_isbn">ISBN</label>
+            <input id="fIsbn" type="text" />
+          </div>
+          <div class="field" data-types="article,conference,other">
+            <label for="fIssn" data-i18n="field_issn">ISSN</label>
+            <input id="fIssn" type="text" />
+          </div>
+        </div>
+
+        <div class="form-grid-2">
+          <div class="field">
+            <label for="fUrl" data-i18n="field_url">URL</label>
+            <input id="fUrl" type="url" placeholder="https://..." />
+          </div>
+          <div class="field" data-types="web,database,standard,normative,other,article,book">
+            <label for="fAccessedDate" data-i18n="field_accessed_date">Дата звернення</label>
+            <input id="fAccessedDate" type="date" />
+          </div>
+        </div>
+
+        <div class="form-grid-2">
+          <div class="field">
+            <label for="fStatus" data-i18n="field_status">Статус</label>
+            <select id="fStatus"></select>
+          </div>
+          <div class="field">
+            <label for="fRating" data-i18n="field_rating">Важливість</label>
+            <select id="fRating">
+              <option value="0">Без оцінки</option>
+              <option value="1">★ (1)</option>
+              <option value="2">★★ (2)</option>
+              <option value="3">★★★ (3)</option>
+              <option value="4">★★★★ (4)</option>
+              <option value="5">★★★★★ (5)</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="form-grid-2">
+          <div class="field">
+            <label for="fTags" data-i18n="field_tags">Теги (через кому)</label>
+            <input id="fTags" type="text" placeholder="Solanum nigrum, ендофіти, важкі метали" />
+          </div>
+          <div class="field">
+            <label for="fKeywords" data-i18n="field_keywords">Ключові слова</label>
+            <input id="fKeywords" type="text" />
+          </div>
+        </div>
+
+        <hr class="divider" />
+
+        <div class="field">
+          <label for="fDescription" data-i18n="field_description">Мій опис</label>
+          <textarea id="fDescription" rows="3"></textarea>
+        </div>
+
+        <div class="form-grid-2">
+          <div class="field">
+            <label for="fStudyObject" data-i18n="field_study_object">Об'єкт дослідження</label>
+            <textarea id="fStudyObject" rows="2"></textarea>
+          </div>
+          <div class="field">
+            <label for="fMethods" data-i18n="field_methods">Методи</label>
+            <textarea id="fMethods" rows="2"></textarea>
+          </div>
+        </div>
+
+        <div class="form-grid-2">
+          <div class="field">
+            <label for="fMainResults" data-i18n="field_main_results">Основні результати</label>
+            <textarea id="fMainResults" rows="2"></textarea>
+          </div>
+          <div class="field">
+            <label for="fForDissertation" data-i18n="field_for_dissertation">Що взяти в дисертацію</label>
+            <textarea id="fForDissertation" rows="2"></textarea>
+          </div>
+        </div>
+
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-close-modal="sourceModal" data-i18n="btn_cancel">Скасувати</button>
+          <button type="submit" class="btn btn-primary" data-i18n="btn_save">Зберегти</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- Модальне вікно налаштувань -->
+  <div id="settingsModal" class="modal hidden" role="dialog" aria-modal="true">
+    <div class="modal-backdrop" data-close-modal="settingsModal"></div>
+    <div class="modal-dialog modal-sm">
+      <div class="modal-header">
+        <h2 data-i18n="modal_settings_title">Налаштування цитування</h2>
+        <button type="button" class="icon-btn" data-close-modal="settingsModal">✕</button>
+      </div>
+      <form id="settingsForm" class="modal-body">
+        <div class="field">
+          <label for="sFourPlus" data-i18n="setting_dstu_4plus">Правило ДСТУ 8302:2015 для 4 і більше авторів</label>
+          <select id="sFourPlus"></select>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-close-modal="settingsModal" data-i18n="btn_cancel">Скасувати</button>
+          <button type="submit" class="btn btn-primary" data-i18n="btn_save">Зберегти</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- Модальне вікно підтвердження видалення -->
+  <div id="deleteModal" class="modal hidden" role="dialog" aria-modal="true">
+    <div class="modal-backdrop" data-close-modal="deleteModal"></div>
+    <div class="modal-dialog modal-sm">
+      <div class="modal-header">
+        <h2 data-i18n="modal_delete_title">Видалити джерело?</h2>
+        <button type="button" class="icon-btn" data-close-modal="deleteModal">✕</button>
+      </div>
+      <div class="modal-body">
+        <p data-i18n="modal_delete_body">Запис буде видалено з бази даних.</p>
+        <label class="checkbox-row">
+          <input type="checkbox" id="chkDeleteFiles" />
+          <span data-i18n="modal_delete_files_checkbox">Також видалити всі прикріплені файли з диска</span>
+        </label>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-close-modal="deleteModal" data-i18n="btn_cancel">Скасувати</button>
+          <button type="button" id="btnConfirmDelete" class="btn btn-danger" data-i18n="btn_delete">Видалити</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Модальне вікно перегляду PDF / зображення -->
+  <div id="previewModal" class="modal hidden" role="dialog" aria-modal="true">
+    <div class="modal-backdrop" data-close-modal="previewModal"></div>
+    <div class="modal-dialog modal-xl">
+      <div class="modal-header">
+        <h2 id="previewTitle">Перегляд файлу</h2>
+        <button type="button" class="icon-btn" data-close-modal="previewModal">✕</button>
+      </div>
+      <div id="previewBody" class="preview-body"></div>
+    </div>
+  </div>
+
+  <div id="toast" class="toast hidden"></div>
+
+  <script src="/static/app.js"></script>
+</body>
+</html>
