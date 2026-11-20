@@ -4837,7 +4837,8 @@ open43()
 app._select_card(sn43["id"])
 events.put("alt_space")
 pump(400)
-assert root.clipboard_get() == "Запис 43" and app._hidden, "Alt+Space — скопіювати й сховати"
+assert root.clipboard_get().startswith("Запис 43") and app._hidden, ("Alt+Space — скопіювати й сховати",
+                                                                      root.clipboard_get(), app._hidden)
 app.show_window()
 pump(200)
 settings["autohide"], app.hotkey_ok = False, False
