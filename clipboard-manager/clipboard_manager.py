@@ -754,6 +754,12 @@ class _Dialog(ctk.CTkToplevel):
         self.destroy()
 
     def destroy(self) -> None:
+        try:                  # фокус — назад головному вікну ДО знищення: Tk падав (segfault) на focus_force після
+            f = self.focus_get()          # закриття діалогу, що тримав фокус (вікна вибору тепер беруть фокус для клавіш)
+            if f is not None and str(f).startswith(str(self)):
+                self.app.root.focus_set()
+        except (tk.TclError, KeyError):
+            pass
         try:                  # ctk тримає посилання на знищені вікна в ScalingTracker — інакше кожен діалог «тече»
             from customtkinter.windows.widgets.scaling import ScalingTracker
             ScalingTracker.window_dpi_scaling_dict.pop(self, None)
