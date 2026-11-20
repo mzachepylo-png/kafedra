@@ -3506,7 +3506,8 @@ app.flush_render()
 pump(500)
 assert settings["folder_first"] is True and app.page == "folders" and app.cat_tiles
 assert app.left.winfo_ismapped() and not app.mid.winfo_ismapped() and not app.splitter.winfo_ismapped()
-assert app.title_lbl.cget("text") == "Оберіть папку", app.title_lbl.cget("text")
+assert app.title_lbl.cget("text") == "" and app.count_lbl.cget("text") == "", "без напису «Оберіть папку»"
+assert app.keys_lbl.winfo_ismapped() and "відкрити папку" in app.keys_lbl.cget("text")
 assert app.left.winfo_rootx() + app.left.winfo_width() > app.right.winfo_rootx() - 40, "папки — на всю ширину зліва"
 assert app._tile_dims()[0] >= 3, app._tile_dims()
 assert not app.cat_view_btn.winfo_ismapped()
@@ -4217,9 +4218,10 @@ assert card42.badge is not None, "плашка конструктора"
 def pick_branch():
     d = open_dlg(cm.CtorDialog)
     labels = [lbl.cget("text") for _fr, lbl, _b, _h in d.rows]
-    assert len(labels) == 3 and labels[-1].startswith("0   None"), labels
+    assert len(labels) == 3 and labels[-1].startswith("None"), labels
     assert "Blacklisted, unsolicited charges refunded" in labels[0] and "Suspicious" not in labels[0], labels
-    assert labels[1].endswith("▸"), "конструкт із продовженнями позначено ▸"
+    assert not any(ch in "".join(labels) for ch in "▸●■▲◆★✚"), "без номерів і значків"
+    assert not labels[0][:1].isdigit(), labels
     d._activate(1)                                 # з продовженнями — відкривається наступний крок
     assert len(d.stack) == 2 and len(d.rows) == 2
     assert d.preview.get("1.0", "end-1c") == ROOT42 + " Blacklisted, no unsolicited charges"
@@ -4460,7 +4462,7 @@ app.set_color_level(4)
 pump(100)
 f3 = tup(app._cards[sn43["id"]].cget("fg_color"))
 assert f3 == tup(cm.tint("#e81123", *cm.COLOR_LEVELS[4][0])) and f3 != f1, (f1, f3)
-assert settings["color_sat"] == 4
+assert settings["sat_cards"] == settings["sat_folders"] == 100
 c43m = app._card_objs[sn43["id"]]
 assert c43m.body.cget("fg") == app.col(cm.ink(cm.tint("#e81123", *cm.COLOR_LEVELS[4][0]))) in ("#ffffff", "#000000"), \
     "на насиченому — білий або чорний текст"
@@ -4495,8 +4497,9 @@ def tiles_script():
     fr0, lbl0, _b, _h = d.rows[0]
     assert abs(fr0.winfo_width() - fr0.winfo_height()) <= 4, (fr0.winfo_width(), fr0.winfo_height())
     assert [int(r[0].grid_info()["column"]) for r in d.rows] == [0, 1, 2, 0, 1], "сітка 3 в ряд"
-    assert "✚" in lbl0.cget("text"), "фігура кольору конструкту"
-    assert str(fr0.cget("bg")) == app.col(cm.tint("#e81123", *cm.COLOR_LEVELS[2][0]))
+    assert lbl0.cget("text") == "червоний", lbl0.cget("text")
+    assert tup(fr0.cget("fg_color")) == tup(cm.tint("#e81123", *cm.COLOR_LEVELS[2][0]))
+    assert fr0.cget("corner_radius") >= 20, "заокруглені плитки"
     assert str(lbl0.cget("font")) == str(app.pf.card) and lbl0.cget("anchor") == "w", "жирний, по центру"
     d._hl(3)
     assert d.hl == 3
@@ -4566,7 +4569,7 @@ assert str(c44.border[0]) == "#e81123", c44.border
 app.set_border_level(3)
 pump(100)
 c44 = app._card_objs[sn43["id"]]
-assert c44.frame.cget("border_width") == cm.border_width(c44.selected) and cm.border_width() == 4 and settings["border_level"] == 3
+assert c44.frame.cget("border_width") == cm.border_width(c44.selected) and cm.border_width() == 4 and settings["border_w"] == 4
 assert app._rows[f43["id"]].cget("border_width") == cm.border_width(app.view == f43["id"])
 # власний колір рамки запису й папки
 saved_cd = cm.ColorDialog.run
@@ -4639,7 +4642,111 @@ assert t44.label.cget("anchor") == "w" and t44.dot.cget("font") == str(app.pf.sh
 assert t44.dot_box.winfo_rootx() < t44.label.winfo_rootx()
 app.set_folder_first(False)
 pump(200)
+# точні повзунки: насиченість папок окремо від записів, рамка; «Скасувати» повертає як було
+cdlg = cm.ColorsDialog(app)
+cdlg.sliders["folders"].set(90)
+cdlg.moved("folders", 90)
+cdlg.sliders["width"].set(5)
+cdlg.apply()
+assert abs(cm._SAT[1] - 0.9) < 0.01 and abs(cm._SAT[0] - 0.4) < 0.01 and cm.border_width() == 5
+assert settings["sat_folders"] == 90 and settings["sat_cards"] == 40 and settings["border_w"] == 5
+fr44 = app._row_objs[f43["id"]]
+assert fr44.fill == cm.tint(f43["color"], *cm.sat_params(0.9)[0]), "папки — своя насиченість"
+cdlg.revert()
+assert abs(cm._SAT[1] - 0.4) < 0.01 and cm.border_width() == 2 and settings["sat_folders"] == 40
 print("44 borders + Alt click + ctor back to folders + folder tile shapes + saturation in color dialog OK")
+
+# ---- 45. вкладка «Посилання»: BioBib — папки → підпапки, джерела з ДСТУ 8302, бібліотека в браузері ------------
+err42.clear()
+assert [b.cget("text") for b in app.tab_btns.values()] == ["Копіпасти", "Посилання"]
+assert app.tabs.winfo_rootx() < app.banner.winfo_rootx(), "вкладки — зліва від банера"
+app.set_tab("links")
+pump(300)
+lp = app.links
+assert app.tab == "links" and lp.frame.winfo_ismapped() and not app.cols.winfo_ismapped()
+assert app.title_lbl.cget("text") == "Посилання"
+assert os.path.exists(os.path.join(data_dir, "biobib", "biobib.db")), "БД бібліотеки — у теці даних програми"
+assert [k for k, _i, _f in lp.items] == ["section"]
+with lp.conn() as c45:
+    top45 = lp.sec.list_sections(c45)[0]
+    sub45 = lp.sec.list_sections(c45, top45["id"])[0]
+assert (top45["title"], sub45["title"]) == ("Дисертація", "Актуальність")
+# клік по плитці — у папку; там «＋ Підпапка»; глибше підпапок не буває
+lp.items[0][2]._canvas.event_generate("<Button-1>", x=20, y=20)
+pump(200)
+assert lp.path == [top45["id"]] and lp.btn_new.cget("text") == "＋ Підпапка"
+assert app.title_lbl.cget("text") == "Дисертація"
+saved_td = cm.TextDialog.run
+cm.TextDialog.run = lambda self: (self.destroy(), "Методи дослідження")[1]
+app.on_add()                                      # «＋ Додати» на вкладці «Посилання» = додати в поточному розділі
+cm.TextDialog.run = saved_td
+assert [i for k, i, _f in lp.items if k == "section"] and len(lp.items) == 2
+lp.go([top45["id"], sub45["id"]])
+assert lp.btn_new.cget("text") == "＋ Джерело" and lp.items == [] and "Джерел ще немає" in lp.hint.cget("text")
+with lp.conn() as c45:
+    ids45 = []
+    for t45, fam45, y45 in (("Endophytic Bacillus subtilis promotes growth", "Kovalenko", 2023),
+                            ("Ендофітні бактерії пасльону", "Іваненко", 2021)):
+        cur45 = c45.execute("INSERT INTO sources (type, title, container_title, year, language, created_at, updated_at) "
+                            "VALUES ('article', ?, 'Journal', ?, 'uk', 'x', 'x')", (t45, y45))
+        c45.execute("INSERT INTO authors (source_id, family, given_initials) VALUES (?, ?, 'O. V.')",
+                    (cur45.lastrowid, fam45))
+        ids45.append(cur45.lastrowid)
+    c45.commit()
+    lp.sec.attach(c45, ids45[0], sub45["id"])
+lp.refresh()
+pump(300)
+assert [k for k, _i, _f in lp.items] == ["source"]
+cite45 = "Kovalenko O. V. Endophytic Bacillus subtilis promotes growth. Journal. 2023."
+fr45 = lp.items[0][2]
+lbl45 = [w for w in fr45.winfo_children() if isinstance(w, tk.Label) and w.cget("text").startswith("Kovalenko")][0]
+lbl45.event_generate("<Button-1>", x=5, y=5)
+assert root.clipboard_get() == cite45 and not app._hidden, "клік — копіює посилання за ДСТУ"
+# «Додати з бібліотеки…»: друге джерело
+saved_lib = cm.LibraryDialog.run
+cm.LibraryDialog.run = lambda self: (self.vars.__setitem__(ids45[1], tk.BooleanVar(value=True)), self.ok(),
+                                     self.result)[2]
+lp.attach_from_library()
+cm.LibraryDialog.run = saved_lib
+assert [i for k, i, _f in lp.items] == ids45
+lp.copy_bibliography()
+assert root.clipboard_get().splitlines() == ["1. " + cite45, "2. Іваненко O. V. Ендофітні бактерії пасльону. Journal. 2021."]
+lp.move_source({"id": ids45[1]}, -1)
+assert [i for k, i, _f in lp.items] == ids45[::-1]
+# Alt + клік — ще й ховає програму
+settings["autohide"], app.hotkey_ok = True, True
+pump(300)
+lbl45 = [w for w in lp.items[0][2].winfo_children() if isinstance(w, tk.Label) and w.cget("text").startswith("Іван")][0]
+lbl45.event_generate("<Button-1>", x=5, y=5, state=cm.ALT_MASK)
+assert app._hidden
+app.show_window()
+pump(200)
+settings["autohide"], app.hotkey_ok = False, False
+assert app.tab == "links", "після показу вікна вкладка та сама"
+# клавіші сторінки копіпастів тут не діють; Esc — на рівень вище, з кореня — до копіпастів
+app.root.event_generate("<Down>")
+app.links.escape()
+assert lp.path == [top45["id"]]
+# повна бібліотека в браузері: вбудований сервер (без справжнього браузера в тесті)
+app._no_browser = True
+lp.go([top45["id"], sub45["id"]])
+lp.open_browser(new=True)
+import json as _json  # noqa: E402
+import urllib.request as _ur  # noqa: E402
+assert lp.last_url.endswith(f"?section={sub45['id']}&new=1"), lp.last_url
+base45 = lp.last_url.split("?")[0]
+got45 = _json.loads(_ur.urlopen(base45 + f"api/sources?section={sub45['id']}", timeout=10).read())
+assert sorted(s_["id"] for s_ in got45) == sorted(ids45)
+assert "BioBib" in _ur.urlopen(base45, timeout=10).read().decode("utf-8")
+from biobib import server as _bb_server  # noqa: E402
+_bb_server.stop()
+lp.escape()
+lp.escape()
+assert app.tab == "links" and lp.path == []
+lp.escape()                                        # з кореня «Посилань» — назад до копіпастів
+pump(200)
+assert app.tab == "clip" and app.cols.winfo_ismapped() and not lp.frame.winfo_ismapped()
+print("45 links tab: folders → subfolders, DSTU citations, library dialog, bibliography, browser server OK")
 
 # ---- 25. справжнє розгортання під віконним менеджером (лише якщо є openbox) -------------------------------------------------------------
 import shutil  # noqa: E402

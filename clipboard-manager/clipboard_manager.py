@@ -186,38 +186,77 @@ def tint(color: str, t_light: float = 0.11, t_dark: float = 0.19) -> tuple[str, 
     return blend(color, CARD[0], t_light), blend(color, CARD[1], t_dark)
 
 
-# Насиченість кольорів карток і папок (⚙ → «Насиченість кольорів»): частка кольору у фоні
-# (світла тема, темна тема) для фону, фону при наведенні й вибраної папки, і вага кольору в тонкій рамці
-COLOR_LEVELS = [((0.11, 0.19), (0.20, 0.28), (0.27, 0.40), 0.40),
-                ((0.24, 0.28), (0.33, 0.35), (0.42, 0.45), 0.60),
-                ((0.42, 0.42), (0.52, 0.50), (0.62, 0.58), 0.80),
-                ((0.66, 0.62), (0.76, 0.70), (0.86, 0.78), 1.00),
-                ((0.92, 0.88), (1.00, 0.97), (1.00, 1.00), 1.00)]
+# Насиченість кольорів карток і папок: s = 0…1 (окремо для записів і для папок, ⚙ → «Кольори й рамки…»).
+# sat_params(s) → частка кольору у фоні (світла, темна тема) для фону, фону при наведенні, вибраної папки і вага
+# кольору в блідій рамці. Іменовані рівні — точки на цій шкалі.
+def sat_params(s: float) -> tuple:
+    s = max(0.0, min(1.0, float(s)))
+    fl, fd = 0.11 + 0.81 * s, 0.19 + 0.69 * s
+    return ((round(fl, 3), round(fd, 3)), (round(min(1.0, fl + 0.09), 3), round(min(1.0, fd + 0.08), 3)),
+            (round(min(1.0, fl + 0.17), 3), round(min(1.0, fd + 0.15), 3)), round(min(1.0, 0.40 + 0.6 * s), 3))
+
+
+LEVEL_SAT = [0.0, 0.18, 0.40, 0.68, 1.0]
+COLOR_LEVELS = [sat_params(v) for v in LEVEL_SAT]
 COLOR_LEVEL_NAMES = ["Слабка", "Середня", "Сильна", "Дуже сильна", "Максимальна"]
 COLOR_LEVEL_SHORT = ["Слабка", "Середня", "Сильна", "Дуже", "Макс."]
-_COLOR_LEVEL = [2]
-# Рамки карток і папок (⚙ → «Рамки»): товщина; від «Помітної» рамка — насиченого кольору запису/папки (або власного)
+_SAT = [0.40, 0.40]               # насиченість: [записи (і фрази, формати), папки]
+_COLOR_LEVEL = [2]                # найближчий іменований рівень (позначка в меню; -1 — власне значення)
+# Рамки карток і папок: товщина 1…6 px і яскравість 0…1 (0 — блідий відтінок кольору, 1 — соковитий колір)
 BORDER_WIDTHS = [1, 2, 3, 4]
+BORDER_GLOWS = [0.0, 1.0, 1.0, 1.0]
 BORDER_LEVEL_NAMES = ["Тонка", "Помітна", "Жирна", "Дуже жирна"]
+_BORDER = [2, 1.0]                # [товщина, яскравість]
 _BORDER_LEVEL = [1]
 
 
+def _sync_named_levels() -> None:
+    _COLOR_LEVEL[0] = next((n for n, v in enumerate(LEVEL_SAT)
+                            if abs(v - _SAT[0]) < 0.005 and abs(v - _SAT[1]) < 0.005), -1)
+    _BORDER_LEVEL[0] = next((n for n, (w, g) in enumerate(zip(BORDER_WIDTHS, BORDER_GLOWS))
+                             if w == _BORDER[0] and abs(g - _BORDER[1]) < 0.005), -1)
+
+
 def set_color_level(level: int) -> None:
-    _COLOR_LEVEL[0] = max(0, min(len(COLOR_LEVELS) - 1, int(level)))
+    """Іменований рівень насиченості — для записів і папок разом."""
+    n = max(0, min(len(LEVEL_SAT) - 1, int(level)))
+    _SAT[0] = _SAT[1] = LEVEL_SAT[n]
+    _sync_named_levels()
+
+
+def set_saturation(cards: float | None = None, folders: float | None = None) -> None:
+    """Точна насиченість (0…1): окремо для записів і для папок."""
+    if cards is not None:
+        _SAT[0] = max(0.0, min(1.0, float(cards)))
+    if folders is not None:
+        _SAT[1] = max(0.0, min(1.0, float(folders)))
+    _sync_named_levels()
 
 
 def set_border_level(level: int) -> None:
-    _BORDER_LEVEL[0] = max(0, min(len(BORDER_WIDTHS) - 1, int(level)))
+    n = max(0, min(len(BORDER_WIDTHS) - 1, int(level)))
+    _BORDER[0], _BORDER[1] = BORDER_WIDTHS[n], BORDER_GLOWS[n]
+    _sync_named_levels()
+
+
+def set_border(width: int | None = None, glow: float | None = None) -> None:
+    """Точні рамки: товщина 1…6 px, яскравість 0…1."""
+    if width is not None:
+        _BORDER[0] = max(1, min(6, int(width)))
+    if glow is not None:
+        _BORDER[1] = max(0.0, min(1.0, float(glow)))
+    _sync_named_levels()
 
 
 def border_width(selected: bool = False) -> int:
     """Товщина рамки картки/папки (вибрана — на 1 товща, щонайменше 2)."""
-    w = BORDER_WIDTHS[_BORDER_LEVEL[0]]
+    w = _BORDER[0]
     return max(2, w + 1) if selected else w
 
 
-def _level():
-    return COLOR_LEVELS[_COLOR_LEVEL[0]]
+def _level(which: int = 0):
+    """Параметри насиченості: which=0 — записи, 1 — папки."""
+    return sat_params(_SAT[which])
 
 
 def _luminance(h: str) -> float:
@@ -252,36 +291,44 @@ def ink(fill, kind: str = "text") -> tuple[str, str]:
     return tuple(out)
 
 
-def border_color(color: str | None, custom: str | None = None) -> tuple[str, str]:
-    """Рамка картки/папки: власний колір рамки, або від кольору запису/папки. «Тонка» — блідий відтінок (як було);
-    від «Помітної» — насичений колір (на дуже насиченому фоні — темніший, щоб рамку було видно)."""
-    lv = _BORDER_LEVEL[0]
+def border_color(color: str | None, custom: str | None = None, which: int = 0) -> tuple[str, str]:
+    """Рамка картки/папки: власний колір рамки, або від кольору запису/папки. Яскравість рамки (0…1) змішує
+    блідий відтінок кольору (як було) з соковитим кольором; на дуже насиченому фоні соковитий — темніший."""
+    glow = _BORDER[1]
     src = custom or color
     if not src:
-        return CARD_BORDER if lv == 0 else (("#aab2bf", "#5c636e") if lv == 1 else ("#7d8695", "#8a93a1"))
-    if lv == 0 and not custom:
-        w = _level()[3]
-        return blend(color, CARD_BORDER[0], w), blend(color, CARD_BORDER[1], min(1.0, w + 0.15))
-    if _COLOR_LEVEL[0] >= 3 and not custom:
-        return blend("#000000", src, 0.30), blend("#ffffff", src, 0.35)
-    return src.lower(), src.lower()
+        strong = ("#7d8695", "#8a93a1")
+        return blend(strong[0], CARD_BORDER[0], glow), blend(strong[1], CARD_BORDER[1], glow)
+    if custom:
+        full = (custom.lower(), custom.lower())
+    elif _SAT[which] >= 0.6:
+        full = (blend("#000000", src, 0.30), blend("#ffffff", src, 0.35))
+    else:
+        full = (src.lower(), src.lower())
+    w = _level(which)[3]
+    pale = (blend(src, CARD_BORDER[0], w), blend(src, CARD_BORDER[1], min(1.0, w + 0.15)))
+    if glow >= 0.999:
+        return full
+    if glow <= 0.001:
+        return pale
+    return blend(full[0], pale[0], glow), blend(full[1], pale[1], glow)
 
 
 def row_colors(color: str | None, border: str | None = None) -> tuple[tuple, tuple, tuple, tuple]:
     """(фон, фон при наведенні, фон вибраного, рамка) для рядка категорії в бічній колонці.
-    З кольором — ТА САМА рецептура, що й у карток записів (card_colors/tint), тож папка залита кольором
-    повністю, а не лише крапкою; вибраний рядок — із сильнішим відтінком. Без кольору (історія) — нейтральний."""
+    З кольором — та сама рецептура, що й у карток записів, але зі своєю насиченістю папок (⚙ → «Кольори й
+    рамки…»); вибраний рядок — із сильнішим відтінком. Без кольору (історія) — нейтральний."""
     if not color:
         return ("transparent", ROW_HOVER, ROW_SEL, PANEL_BORDER)
-    fill, hover, bord = card_colors(color, border)
-    return fill, hover, tint(color, *_level()[2]), bord
+    lv = _level(1)
+    return tint(color, *lv[0]), tint(color, *lv[1]), tint(color, *lv[2]), border_color(color, border, 1)
 
 
 def card_colors(color: str | None, border: str | None = None) -> tuple[tuple, tuple, tuple]:
     """(фон, фон при наведенні, рамка) для картки з кольором; без кольору — нейтральні."""
     if not color:
         return CARD, CARD_HOVER, border_color(None, border)
-    lv = _level()
+    lv = _level(0)
     return tint(color, *lv[0]), tint(color, *lv[1]), border_color(color, border)
 
 
@@ -1508,13 +1555,11 @@ class CtorDialog(_Dialog):
         base = self.current_text()
         for c in range(self.COLS):
             self.list.grid_columnconfigure(c, weight=1, uniform="tile")
-        for i, node in enumerate(self.options()):
+        for i, node in enumerate(self.options()):              # лише текст продовження — без номерів і значків
             more = bool(node.get("children"))
             color = node.get("color")
-            sh = shape_for_color(color)
-            self._option(i, f"{i + 1 if i < 9 else '•'}   " + (sh + "  " if sh else "") + ctor_label(base, node["text"])
-                         + ("   ▸" if more else ""), color or (CTOR_DEFAULT if more else CTOR_LEAF))
-        self._option(len(self.options()), "0   None — залишити як є і скопіювати", None)
+            self._option(i, ctor_label(base, node["text"]), color or (CTOR_DEFAULT if more else CTOR_LEAF))
+        self._option(len(self.options()), "None — залишити як є і скопіювати", None)
         self.hl = 0
         self._paint()
         text, warn = self.finalize(base)
@@ -1527,20 +1572,21 @@ class CtorDialog(_Dialog):
     COLS = 3              # продовження — квадратні плитки (як копіпасти в режимі плиток)
     TILE = 228
 
+    RADIUS = 24           # заокруглені плитки
+
     def _option(self, i: int, label: str, color: str | None) -> None:
-        lv = max(_COLOR_LEVEL[0], 1)                  # плитки вибору — щонайменше «середньо» насичені
-        base = tint(color, *COLOR_LEVELS[lv][0]) if color else BTN2
-        hover = tint(color, *COLOR_LEVELS[lv][2]) if color else BTN2_HOVER
-        size = int(self.TILE * self.app.scaling())
-        fr = tk.Frame(self.list, bg=self.app.col(base), cursor="hand2", highlightthickness=3,
-                      highlightbackground=self.app.col(base), highlightcolor=self.app.col(base),
-                      width=size, height=size)
+        lv = sat_params(max(_SAT[0], LEVEL_SAT[1]))     # плитки вибору — щонайменше «середньо» насичені
+        base = tint(color, *lv[0]) if color else BTN2
+        hover = tint(color, *lv[2]) if color else BTN2_HOVER
+        sc = self.app.scaling()
+        fr = ctk.CTkFrame(self.list, width=self.TILE, height=self.TILE, corner_radius=self.RADIUS, fg_color=base,
+                          border_width=3, border_color=base, cursor="hand2")
         fr.grid(row=i // self.COLS, column=i % self.COLS, padx=6, pady=6)
         fr.pack_propagate(False)
         lbl = tk.Label(fr, text=label, font=self.app.pf.card, anchor="w", justify="left", bg=self.app.col(base),
-                       fg=self.app.col(ink(base) if color else MUTED), wraplength=size - int(30 * self.app.scaling()),
-                       padx=12, pady=12, cursor="hand2")          # жирний, як у копіпастах; по центру по висоті
-        lbl.pack(fill="both", expand=True)
+                       fg=self.app.col(ink(base) if color else MUTED),
+                       wraplength=int((self.TILE - 44) * sc), padx=4, pady=4, cursor="hand2")
+        lbl.pack(fill="both", expand=True, padx=int(14 * sc), pady=int(14 * sc))   # жирний; по центру по висоті
         for w in (fr, lbl):
             w.bind("<Button-1>", lambda e, n=i: self._activate(n, hide=bool(e.state & ALT_MASK)))
             w.bind("<Enter>", lambda e, n=i: self._hover(n, True))
@@ -1551,14 +1597,19 @@ class CtorDialog(_Dialog):
         if 0 <= i < len(self.rows):
             fr, lbl, base, hover = self.rows[i]
             fill = hover if on else base
-            c = self.app.col(fill)
-            fr.configure(bg=c)
-            lbl.configure(bg=c, fg=self.app.col(ink(fill) if fill not in (BTN2, BTN2_HOVER) else MUTED))
+            if getattr(fr, "_cm_fill", None) == fill:
+                return
+            fr._cm_fill = fill
+            fr._cm_edge = ACCENT if i == self.hl else fill
+            fr.configure(fg_color=fill, border_color=fr._cm_edge)
+            lbl.configure(bg=self.app.col(fill), fg=self.app.col(ink(fill) if fill not in (BTN2, BTN2_HOVER) else MUTED))
 
     def _paint(self) -> None:
         for n, (fr, lbl, base, hover) in enumerate(self.rows):
-            edge = self.app.col(ACCENT) if n == self.hl else self.app.col(base)
-            fr.configure(highlightbackground=edge, highlightcolor=edge)
+            edge = ACCENT if n == self.hl else getattr(fr, "_cm_fill", base)
+            if getattr(fr, "_cm_edge", None) != edge:
+                fr._cm_edge = edge
+                fr.configure(border_color=edge)
 
     def _hl(self, d: int) -> str:
         if self.rows:
@@ -1613,6 +1664,96 @@ class CtorDialog(_Dialog):
     def finish(self, text: str, hide: bool = False) -> None:
         self.result = {"text": self.finalize(text)[0], "hide": bool(hide)}
         self.destroy()
+
+
+class ColorsDialog(_Dialog):
+    """⚙ → «Кольори й рамки — точно…»: повзунки насиченості записів і папок окремо, товщини та яскравості рамок.
+    Зміни видно одразу у вікні програми; «Скасувати» повертає як було."""
+
+    def __init__(self, app: "App"):
+        super().__init__(app, "Кольори й рамки", 560, 560)
+        self.before = (tuple(_SAT), tuple(_BORDER))
+        card = ctk.CTkFrame(self, corner_radius=16, fg_color=PANEL, border_width=1, border_color=PANEL_BORDER)
+        card.pack(fill="both", expand=True, padx=14, pady=14)
+        ctk.CTkLabel(card, text="ШВИДКО: НАСИЧЕНІСТЬ УСЬОГО", anchor="w", text_color=MUTED, font=app.f.caps).pack(
+            fill="x", padx=22, pady=(16, 4))
+        quick = ctk.CTkFrame(card, fg_color="transparent")
+        quick.pack(fill="x", padx=18)
+        for n, name in enumerate(COLOR_LEVEL_SHORT):
+            ctk.CTkButton(quick, text=name, height=34, width=80, corner_radius=10, fg_color=BTN2,
+                          hover_color=BTN2_HOVER, text_color=TEXT, font=app.f.body,
+                          command=lambda n=n: self.quick(n)).pack(side="left", padx=3, expand=True, fill="x")
+        self.sliders = {}
+        self.values = {}
+        self._job = None
+        for key, label, lo, hi, steps, cur in (
+                ("cards", "Насиченість записів (і фраз)", 0, 100, 100, _SAT[0] * 100),
+                ("folders", "Насиченість папок", 0, 100, 100, _SAT[1] * 100),
+                ("width", "Товщина рамки, px", 1, 6, 5, _BORDER[0]),
+                ("glow", "Яскравість рамки", 0, 100, 100, _BORDER[1] * 100)):
+            row = ctk.CTkFrame(card, fg_color="transparent")
+            row.pack(fill="x", padx=22, pady=(14, 0))
+            ctk.CTkLabel(row, text=label, anchor="w", text_color=TEXT, font=app.f.dlg).pack(side="left")
+            val = ctk.CTkLabel(row, text="", anchor="e", text_color=MUTED, font=app.f.dlg, width=60)
+            val.pack(side="right")
+            sl = ctk.CTkSlider(card, from_=lo, to=hi, number_of_steps=steps, height=20, button_color=ACCENT,
+                               button_hover_color=ACCENT_HOVER, progress_color=ACCENT,
+                               command=lambda v, k=key: self.moved(k, v))
+            sl.pack(fill="x", padx=22, pady=(6, 0))
+            sl.set(cur)
+            self.sliders[key], self.values[key] = sl, val
+            self._show(key, cur)
+        bottom = ctk.CTkFrame(card, fg_color="transparent")
+        bottom.pack(fill="x", side="bottom", padx=18, pady=(10, 16))
+        ctk.CTkButton(bottom, text="Готово", width=112, height=40, corner_radius=12, fg_color=ACCENT,
+                      hover_color=ACCENT_HOVER, font=app.f.dlg_bold, command=self.ok).pack(side="right")
+        ctk.CTkButton(bottom, text="Скасувати", width=112, height=40, corner_radius=12, fg_color=BTN2,
+                      hover_color=BTN2_HOVER, text_color=TEXT, font=app.f.dlg, command=self.revert
+                      ).pack(side="right", padx=10)
+        self.protocol("WM_DELETE_WINDOW", self.revert)
+        self.bind("<Escape>", lambda e: self.revert())
+
+    def _show(self, key: str, v: float) -> None:
+        self.values[key].configure(text=f"{int(round(v))} px" if key == "width" else f"{int(round(v))} %")
+
+    def moved(self, key: str, v: float) -> None:
+        self._show(key, v)
+        if self._job is not None:
+            self.after_cancel(self._job)
+        self._job = self.after(120, self.apply)               # під час руху повзунка — не частіше ніж раз на 120 мс
+
+    def apply(self) -> None:
+        self._job = None
+        g = {k: s.get() for k, s in self.sliders.items()}
+        set_saturation(g["cards"] / 100, g["folders"] / 100)
+        set_border(round(g["width"]), g["glow"] / 100)
+        self.app._save_colors()
+        self.app._recolor()
+
+    def quick(self, n: int) -> None:
+        self.sliders["cards"].set(LEVEL_SAT[n] * 100)
+        self.sliders["folders"].set(LEVEL_SAT[n] * 100)
+        for k in ("cards", "folders"):
+            self._show(k, LEVEL_SAT[n] * 100)
+        self.apply()
+
+    def ok(self) -> None:
+        if self._job is not None:
+            self.after_cancel(self._job)
+        self.apply()
+        self.result = True
+        self.destroy()
+
+    def revert(self) -> None:
+        if self._job is not None:
+            self.after_cancel(self._job)
+            self._job = None
+        (c, f), (w, gl) = self.before
+        set_saturation(c, f)
+        set_border(w, gl)
+        self.app._save_colors()
+        self.app._recolor()
+        self.cancel()
 
 
 class ShapeDialog(_Dialog):
@@ -1741,7 +1882,8 @@ class ColorDialog(_Dialog):
         self.level = ctk.CTkSegmentedButton(self.card, values=COLOR_LEVEL_SHORT,
                                             command=self._set_level, font=app.f.body, height=34)
         self.level.pack(fill="x", padx=20)
-        self.level.set(self.level._value_list[_COLOR_LEVEL[0]])
+        if _COLOR_LEVEL[0] >= 0:
+            self.level.set(self.level._value_list[_COLOR_LEVEL[0]])
         ctk.CTkButton(row, text="Інший колір…", width=124, height=40, corner_radius=12, fg_color=BTN2,
                       hover_color=BTN2_HOVER, text_color=TEXT, font=app.f.dlg,
                       command=self.custom).pack(side="left")
@@ -2587,6 +2729,393 @@ class FormatRow:
         self.row.destroy()
 
 
+class LibraryDialog(_Dialog):
+    """«Додати з бібліотеки…»: усі джерела BioBib з пошуком; позначені додаються в підпапку.
+    Результат: список id джерел або None."""
+
+    def __init__(self, app: "App", sources: list[dict], already: set[int], title: str):
+        super().__init__(app, title, 860, 640)
+        self.sources, self.already = sources, already
+        self.vars: dict[int, tk.BooleanVar] = {}
+        card = ctk.CTkFrame(self, corner_radius=16, fg_color=PANEL, border_width=1, border_color=PANEL_BORDER)
+        card.pack(fill="both", expand=True, padx=14, pady=14)
+        self.query = tk.StringVar()
+        e = ctk.CTkEntry(card, textvariable=self.query, height=40, corner_radius=12, fg_color=INPUT,
+                         border_color=PANEL_BORDER, font=app.f.dlg,
+                         placeholder_text="Пошук: автор, назва, журнал, рік, DOI…")
+        e.pack(fill="x", padx=18, pady=(16, 8))
+        self.query.trace_add("write", lambda *a: self.fill())
+        self.list = ctk.CTkScrollableFrame(card, fg_color="transparent", corner_radius=0,
+                                           scrollbar_button_color=SCROLL, scrollbar_button_hover_color=SCROLL_HOVER)
+        self.list.pack(fill="both", expand=True, padx=10)
+        bottom = ctk.CTkFrame(card, fg_color="transparent")
+        bottom.pack(fill="x", padx=18, pady=(8, 16))
+        self.count = ctk.CTkLabel(bottom, text="", text_color=MUTED, font=app.f.body)
+        self.count.pack(side="left")
+        ctk.CTkButton(bottom, text="Додати позначені", width=170, height=40, corner_radius=12, fg_color=ACCENT,
+                      hover_color=ACCENT_HOVER, font=app.f.dlg_bold, command=self.ok).pack(side="right")
+        ctk.CTkButton(bottom, text="Скасувати", width=112, height=40, corner_radius=12, fg_color=BTN2,
+                      hover_color=BTN2_HOVER, text_color=TEXT, font=app.f.dlg, command=self.cancel
+                      ).pack(side="right", padx=10)
+        self.fill()
+        self.after(120, e.focus_set)
+
+    def fill(self) -> None:
+        for w in self.list.winfo_children():
+            w.destroy()
+        q = self.query.get().strip().casefold()
+        shown = [s_ for s_ in self.sources if not q or q in (s_["citation_dstu"] + " " + (s_.get("doi") or "")).casefold()]
+        for s_ in shown:
+            var = self.vars.setdefault(s_["id"], tk.BooleanVar(value=False))
+            have = s_["id"] in self.already
+            ctk.CTkCheckBox(self.list, text=("✓ уже в підпапці · " if have else "") + s_["citation_dstu"],
+                            variable=var, font=self.app.f.body, text_color=MUTED if have else TEXT,
+                            state="disabled" if have else "normal", checkbox_width=22, checkbox_height=22,
+                            fg_color=ACCENT, hover_color=ACCENT_HOVER).pack(fill="x", anchor="w", padx=8, pady=4)
+        self.count.configure(text=f"Джерел у бібліотеці: {len(self.sources)}" + (f" · знайдено {len(shown)}" if q else ""))
+
+    def ok(self) -> None:
+        self.result = [sid for sid, v in self.vars.items() if v.get() and sid not in self.already]
+        self.destroy()
+
+
+class LinksPage:
+    """Вкладка «Посилання»: бібліотека джерел для дисертації (BioBib) — папки → підпапки (поки що два рівні)
+    і джерела з готовими посиланнями за ДСТУ 8302:2015. Клік по джерелу копіює посилання (Alt + клік — ще й
+    ховає програму). Повна бібліотека (форма джерела, PDF, нотатки, пошук) — у браузері: «Бібліотека в браузері»."""
+
+    TILE_W, TILE_H = 250, 128
+
+    def __init__(self, app: "App", parent):
+        self.app = app
+        self.path: list[int] = []                 # [] — корінь, [папка], [папка, підпапка]
+        from biobib import config as bb_config, database as bb_db, sections as bb_sec
+        self.sec, self.db = bb_sec, bb_db
+        bb_config.configure(os.path.join(app.log_dir, "biobib"))
+        self.error = ""
+        try:
+            bb_db.init_db()                      # «Дисертація» → «Актуальність» на першому запуску
+        except Exception as ex:                  # noqa: BLE001 — показуємо на сторінці
+            self.error = f"Не вдалося відкрити бібліотеку: {ex}"
+        f = app.f
+        self.frame = ctk.CTkFrame(parent, corner_radius=16, fg_color=PANEL, border_width=1, border_color=PANEL_BORDER)
+        bar = ctk.CTkFrame(self.frame, fg_color="transparent")
+        bar.pack(fill="x", padx=16, pady=(14, 4))
+        self.crumbs = ctk.CTkFrame(bar, fg_color="transparent")
+        self.crumbs.pack(side="left", fill="x", expand=True)
+        self.btn_browser = ctk.CTkButton(bar, text="Бібліотека в браузері ↗", height=38, corner_radius=12,
+                                         fg_color=BTN2, hover_color=BTN2_HOVER, text_color=TEXT, font=f.body,
+                                         command=self.open_browser)
+        self.btn_browser.pack(side="right")
+        self.btn_bib = ctk.CTkButton(bar, text="Копіювати список літератури", height=38, corner_radius=12,
+                                     fg_color=BTN2, hover_color=BTN2_HOVER, text_color=TEXT, font=f.body,
+                                     command=self.copy_bibliography)
+        self.btn_lib = ctk.CTkButton(bar, text="Додати з бібліотеки…", height=38, corner_radius=12, fg_color=BTN2,
+                                     hover_color=BTN2_HOVER, text_color=TEXT, font=f.body,
+                                     command=self.attach_from_library)
+        self.btn_new = ctk.CTkButton(bar, text="＋ Папка", height=38, corner_radius=12, fg_color=ACCENT,
+                                     hover_color=ACCENT_HOVER, font=f.bold, command=self.add)
+        self.hint = ctk.CTkLabel(self.frame, text="", anchor="w", justify="left", text_color=MUTED, font=f.body)
+        self.hint.pack(fill="x", padx=20, pady=(2, 4))
+        self.body = ctk.CTkScrollableFrame(self.frame, fg_color="transparent", corner_radius=0,
+                                           scrollbar_button_color=SCROLL, scrollbar_button_hover_color=SCROLL_HOVER)
+        self.body.pack(fill="both", expand=True, padx=8, pady=(0, 10))
+        self.items: list = []                     # (тип, id, фрейм) показаних плиток/карток — для тестів і меню
+        self.root_frame_focus = app.root.bind("<FocusIn>", lambda e: self._maybe_refresh(e), add="+")
+
+    # -- дані --------------------------------------------------------------------------------------------
+    def conn(self):
+        """Підключення до БД бібліотеки, що закривається після with-блоку (зміни комітять самі функції)."""
+        from contextlib import closing
+        return closing(self.db.get_connection())
+
+    def _maybe_refresh(self, e) -> None:
+        """Повернулись у вікно (наприклад, після браузера) — перечитуємо поточний розділ."""
+        if self.app.tab == "links" and e.widget is self.app.root and \
+                time.monotonic() - getattr(self, "_last_refresh", 0.0) > 1.5:
+            self.refresh()
+
+    def level(self) -> int:
+        return len(self.path)
+
+    def current(self) -> dict | None:
+        if not self.path:
+            return None
+        with self.conn() as c:
+            return self.sec.get_section(c, self.path[-1])
+
+    def title(self) -> str:
+        cur = self.current()
+        return cur["title"] if cur else "Посилання"
+
+    def count_text(self) -> str:
+        return str(len(self.items))
+
+    def go(self, path: list[int]) -> None:
+        self.path = list(path)
+        self.refresh()
+
+    def escape(self):
+        if self.path:
+            self.go(self.path[:-1])
+        else:
+            self.app.set_tab("clip")
+        return "break"
+
+    # -- побудова сторінки ------------------------------------------------------------------------------
+    def refresh(self) -> None:
+        a = self.app
+        self._last_refresh = time.monotonic()
+        try:
+            with self.conn() as c:
+                path_secs = [self.sec.get_section(c, sid) for sid in self.path]
+                if any(p is None for p in path_secs):              # розділ видалили (наприклад, у браузері)
+                    self.path, path_secs = [], []
+                subs = self.sec.list_sections(c, self.path[-1] if self.path else None) if self.level() < 2 else []
+                srcs = self.sec.sources_in(c, self.path[-1]) if self.path else []
+        except Exception as ex:                                       # noqa: BLE001
+            subs, srcs, path_secs = [], [], []
+            self.error = self.error or f"Помилка бібліотеки: {ex}"
+        for w in self.crumbs.winfo_children():
+            w.destroy()
+        trail = [("Посилання", [])] + [(p["title"], self.path[:n + 1]) for n, p in enumerate(path_secs)]
+        for n, (name, path) in enumerate(trail):
+            if n:
+                tk.Label(self.crumbs, text="›", font=a.pf.title, bg=a.col(PANEL), fg=a.col(MUTED)).pack(side="left",
+                                                                                                    padx=4)
+            last = n == len(trail) - 1
+            ctk.CTkButton(self.crumbs, text=name, height=36, corner_radius=10, font=a.f.bold,
+                          fg_color=ACCENT_SOFT if last else "transparent", hover_color=BTN2,
+                          text_color=TEXT, width=40, command=lambda p=path: self.go(p)).pack(side="left")
+        lvl = self.level()
+        for b in (self.btn_new, self.btn_lib, self.btn_bib):
+            b.pack_forget()
+        if lvl < 2:
+            self.btn_new.configure(text="＋ Папка" if lvl == 0 else "＋ Підпапка")
+            self.btn_new.pack(side="right", padx=(0, 8))
+        if lvl >= 1:
+            if srcs:
+                self.btn_bib.pack(side="right", padx=(0, 8))
+            self.btn_lib.pack(side="right", padx=(0, 8))
+        if lvl == 2:
+            self.btn_new.configure(text="＋ Джерело")
+            self.btn_new.pack(side="right", padx=(0, 8))
+        for w in self.body.winfo_children():
+            w.destroy()
+        self.items = []
+        cols = 4
+        for c_ in range(cols):
+            self.body.grid_columnconfigure(c_, weight=1, uniform="lt")
+        row = 0
+        for n, sec in enumerate(subs):
+            self._tile(sec, n, row + n // cols, n % cols)
+        row += (len(subs) + cols - 1) // cols
+        for n, src in enumerate(srcs, 1):
+            self._source_card(src, n, row)
+            row += 1
+        if self.error:
+            hint = self.error
+        elif lvl == 0:
+            hint = "Папки бібліотеки. Клік — відкрити папку · правий клік — перейменувати, порядок, видалити."
+        elif lvl == 1:
+            hint = ("Підпапки (поки що можна створювати лише їх). Клік — відкрити підпапку." +
+                    (" Нижче — джерела, додані прямо в папку." if srcs else ""))
+        else:
+            hint = ("Клік по джерелу — копіювати посилання за ДСТУ 8302:2015 · Alt + клік — копіювати й сховати · "
+                    "правий клік — ще дії." if srcs else
+                    "Джерел ще немає: «＋ Джерело» відкриває форму в браузері (з цією підпапкою), «Додати з "
+                    "бібліотеки…» — вибрати з уже доданих.")
+        self.hint.configure(text=hint)
+        a._sync_title()
+
+    def _tile(self, sec: dict, n: int, r: int, c_: int) -> None:
+        a = self.app
+        color = PALETTE[n % len(PALETTE)] if self.level() == 0 else PALETTE[(n + 3) % len(PALETTE)]
+        fill, hover, _sel, border = row_colors(color)
+        fr = ctk.CTkFrame(self.body, width=self.TILE_W, height=self.TILE_H, corner_radius=18, fg_color=fill,
+                          border_width=border_width(), border_color=border, cursor="hand2")
+        fr.grid(row=r, column=c_, padx=6, pady=6, sticky="ew")
+        fr.pack_propagate(False)
+        bg = a.col(fill)
+        inner = tk.Frame(fr, bg=bg)
+        inner.place(relx=0, rely=0.5, anchor="w", x=int(16 * a.scaling()), relwidth=0.86)
+        shape = tk.Label(inner, text=SHAPES[(sec["id"] * 7) % len(SHAPES)], font=a.pf.shape_big, bg=bg,
+                         fg=a.col(ink(fill)))
+        shape.pack(side="left", padx=(0, 10))
+        txt = tk.Frame(inner, bg=bg)
+        txt.pack(side="left", fill="x", expand=True)
+        name = tk.Label(txt, text=sec["title"], font=a.pf.card, bg=bg, fg=a.col(ink(fill)), anchor="w", justify="left",
+                        wraplength=int((self.TILE_W - 90) * a.scaling()))
+        name.pack(fill="x")
+        with self.conn() as c:
+            n_sub = len(self.sec.list_sections(c, sec["id"])) if self.level() == 0 else 0
+        meta = (f"підпапок: {n_sub} · " if self.level() == 0 else "") + f"джерел: {sec['count']}"
+        info = tk.Label(txt, text=meta, font=a.pf.meta, bg=bg, fg=a.col(ink(fill, "meta")), anchor="w")
+        info.pack(fill="x")
+        parts = [fr, inner, shape, txt, name, info]
+        for w in parts:
+            w.bind("<Button-1>", lambda e, sid=sec["id"]: self.go(self.path + [sid]))
+            w.bind("<Button-3>", lambda e, s_=sec: self._section_menu(e, s_))
+        self.items.append(("section", sec["id"], fr))
+
+    def _source_card(self, src: dict, n: int, r: int) -> None:
+        a = self.app
+        fill, hover, border = card_colors(None)
+        fr = ctk.CTkFrame(self.body, corner_radius=14, fg_color=fill, border_width=border_width(),
+                          border_color=border, cursor="hand2")
+        fr.grid(row=r, column=0, columnspan=4, padx=6, pady=4, sticky="ew")
+        bg = a.col(fill)
+        num = tk.Label(fr, text=f"{n}.", font=a.pf.card, bg=bg, fg=a.col(MUTED), width=3, anchor="e")
+        num.pack(side="left", padx=(12, 6), pady=12)
+        lbl = tk.Label(fr, text=src["citation_dstu"], font=a.pf.phrase, bg=bg, fg=a.col(TEXT), anchor="w",
+                       justify="left", wraplength=int(900 * a.scaling()), cursor="hand2")
+        lbl.pack(side="left", fill="x", expand=True, padx=(0, 14), pady=12)
+        for w in (fr, num, lbl):
+            w.bind("<Button-1>", lambda e, s_=src, f_=fr: self.copy_source(s_, bool(e.state & ALT_MASK), f_))
+            w.bind("<Button-3>", lambda e, s_=src, i=n: self._source_menu(e, s_, i))
+        self.items.append(("source", src["id"], fr))
+
+    # -- дії -----------------------------------------------------------------------------------------------
+    def copy_source(self, src: dict, hide: bool = False, frame=None) -> None:
+        text = src["citation_dstu"]
+        self.app.copy_to_clipboard(text)
+        if frame is not None:
+            try:
+                fl = tk.Label(frame, text="✓  Скопійовано", font=self.app.pf.bold, fg="#ffffff",
+                              bg=self.app.col(COPIED))
+                fl.place(relx=0, rely=0, relwidth=1, relheight=1)
+                fl.after(550, fl.destroy)
+            except tk.TclError:
+                pass
+        self.app._finish_pick("✓ Скопійовано посилання: " + clip(text, 70), hide=hide)
+
+    def add(self) -> None:
+        """Кнопка «＋» / «＋ Додати»: на корені — папка, у папці — підпапка, у підпапці — джерело (браузер)."""
+        lvl = self.level()
+        if lvl == 2:
+            self.open_browser(new=True)
+            return
+        name = TextDialog(self.app, "Нова папка" if lvl == 0 else "Нова підпапка",
+                          "Назва папки:" if lvl == 0 else "Назва підпапки:").run()
+        if not name or not name.strip():
+            return
+        with self.conn() as c:
+            made = self.sec.create_section(c, name, self.path[-1] if self.path else None)
+        if made:
+            self.app.set_status(f"✓ Створено: {made['path']}", 3000)
+        self.refresh()
+
+    def _section_menu(self, e, sec: dict) -> None:
+        a = self.app
+        m = a._new_menu()
+        m.add_command("Відкрити", lambda: self.go(self.path + [sec["id"]]), icon="▸")
+        m.add_command("Перейменувати…", lambda: self.rename(sec), icon="✎")
+        m.add_command("Перемістити вгору", lambda: self.move(sec, -1), icon="↑")
+        m.add_command("Перемістити вниз", lambda: self.move(sec, 1), icon="↓")
+        m.add_command("Відкрити в браузері", lambda: self.open_browser(section=sec["id"]), icon="↗")
+        m.add_separator()
+        m.add_command("Видалити…", lambda: self.delete(sec), danger=True, icon="✕")
+        a._popup(m, e.x_root, e.y_root)
+
+    def rename(self, sec: dict) -> None:
+        name = TextDialog(self.app, "Перейменувати", "Нова назва:", sec["title"]).run()
+        if name and name.strip():
+            with self.conn() as c:
+                self.sec.rename_section(c, sec["id"], name)
+            self.refresh()
+
+    def move(self, sec: dict, delta: int) -> None:
+        with self.conn() as c:
+            self.sec.move_section(c, sec["id"], delta)
+        self.refresh()
+
+    def delete(self, sec: dict) -> None:
+        if messagebox.askyesno(APP_NAME, f"Видалити «{sec['title']}» разом із підпапками?\n"
+                                         "Самі джерела лишаться в бібліотеці.", parent=self.app.root):
+            with self.conn() as c:
+                self.sec.delete_section(c, sec["id"])
+            self.refresh()
+
+    def _source_menu(self, e, src: dict, n: int) -> None:
+        a = self.app
+        m = a._new_menu()
+        m.add_command("Копіювати посилання (ДСТУ 8302)", lambda: self.copy_source(src), icon="⧉")
+        m.add_command(f"Копіювати посилання в тексті [{n}]", lambda: self._copy_plain(f"[{n}]"), icon="#")
+        m.add_command("Відкрити в бібліотеці (браузер)", lambda: self.open_browser(section=self.path[-1]), icon="↗")
+        m.add_command("Вгору", lambda: self.move_source(src, -1), icon="↑")
+        m.add_command("Вниз", lambda: self.move_source(src, 1), icon="↓")
+        m.add_separator()
+        m.add_command("Прибрати з підпапки", lambda: self.detach(src), danger=True, icon="✕")
+        a._popup(m, e.x_root, e.y_root)
+
+    def _copy_plain(self, text: str) -> None:
+        self.app.copy_to_clipboard(text)
+        self.app.set_status(f"✓ Скопійовано: {text}", 3000)
+
+    def move_source(self, src: dict, delta: int) -> None:
+        with self.conn() as c:
+            self.sec.move_source(c, src["id"], self.path[-1], delta)
+        self.refresh()
+
+    def detach(self, src: dict) -> None:
+        with self.conn() as c:
+            self.sec.detach(c, src["id"], self.path[-1])
+        self.refresh()
+        self.app.set_status("Джерело прибрано з підпапки (у бібліотеці воно лишилось)", 4000)
+
+    def attach_from_library(self) -> None:
+        if not self.path:
+            return
+        with self.conn() as c:
+            allsrc = self.sec.all_sources(c)
+            have = {s_["id"] for s_ in self.sec.sources_in(c, self.path[-1])}
+        if not allsrc:
+            self.app.set_status("Бібліотека порожня — додайте джерело («＋ Джерело» або «Бібліотека в браузері»)", 6000)
+            return
+        ids = LibraryDialog(self.app, allsrc, have, f"Додати в «{self.title()}»").run()
+        if ids:
+            with self.conn() as c:
+                for sid in ids:
+                    self.sec.attach(c, sid, self.path[-1])
+            self.app.set_status(f"✓ Додано джерел: {len(ids)}", 3000)
+        self.refresh()
+
+    def copy_bibliography(self) -> None:
+        if not self.path:
+            return
+        with self.conn() as c:
+            text = self.sec.bibliography(c, self.path[-1])
+        if text:
+            self.app.copy_to_clipboard(text)
+            self.app.show_toast(f"✓ Скопійовано список літератури ({len(text.splitlines())})")
+
+    def open_browser(self, new: bool = False, section: int | None = None) -> None:
+        """Повна бібліотека BioBib у браузері (сервер стартує тут, у фоні, лише на вимогу)."""
+        import webbrowser
+        a = self.app
+        a.set_status("Запускаю бібліотеку…", 3000)
+        a.root.update_idletasks()
+        try:
+            from biobib import server as bb_server
+            url = bb_server.ensure_running()
+        except Exception as ex:                                       # noqa: BLE001
+            a._report_exception(*sys.exc_info())
+            messagebox.showerror(APP_NAME, f"Не вдалося запустити бібліотеку в браузері:\n{ex}", parent=a.root)
+            return
+        sid = section if section is not None else (self.path[-1] if self.path else None)
+        q = []
+        if sid is not None:
+            q.append(f"section={sid}")
+        if new:
+            q.append("new=1")
+        full = url + ("?" + "&".join(q) if q else "")
+        self.last_url = full
+        if not getattr(a, "_no_browser", False):
+            webbrowser.open(full)
+        a.set_status("Бібліотека відкрита в браузері: " + url + "  ·  після змін поверніться сюди — сторінка оновиться",
+                     8000)
+
+
 class WakeQueue(queue.Queue):
     """Черга подій, що будить цикл Tk відразу після put() з іншого потоку (гаряча клавіша, трей,
     друга копія програми). Жодного постійного опитування: у фоні немає зайвих пробуджень, а реакція
@@ -2662,8 +3191,8 @@ class App:
         self.preset = preset
         self.history = history
         self.settings = settings
-        set_color_level(settings["color_sat"])
-        set_border_level(settings["border_level"])
+        set_saturation(settings["sat_cards"] / 100, settings["sat_folders"] / 100)
+        set_border(settings["border_w"], settings["border_glow"] / 100)
         self.events = events
         self.view: str = HISTORY            # HISTORY або id категорії
         self.sel_id: str | None = None
@@ -2913,16 +3442,37 @@ class App:
     def set_color_level(self, level: int) -> None:
         """⚙ → «Насиченість кольорів»: наскільки сильно картки, папки й фрази залиті своїм кольором."""
         set_color_level(level)
-        self.settings["color_sat"] = _COLOR_LEVEL[0]
+        self._save_colors()
         self._recolor()
         self.set_status(f"Насиченість кольорів: {COLOR_LEVEL_NAMES[_COLOR_LEVEL[0]].lower()}", 3000)
 
     def set_border_level(self, level: int) -> None:
         """⚙ → «Рамки»: товщина й соковитість рамок карток і папок."""
         set_border_level(level)
-        self.settings["border_level"] = _BORDER_LEVEL[0]
+        self._save_colors()
         self._recolor()
         self.set_status(f"Рамки: {BORDER_LEVEL_NAMES[_BORDER_LEVEL[0]].lower()}", 3000)
+
+    def set_saturation(self, cards: float | None = None, folders: float | None = None) -> None:
+        """Точна насиченість (0…1) записів і/або папок (⚙ → «Кольори й рамки…»)."""
+        set_saturation(cards, folders)
+        self._save_colors()
+        self._recolor()
+
+    def set_border(self, width: int | None = None, glow: float | None = None) -> None:
+        """Точні рамки: товщина 1…6 px і яскравість 0…1 (⚙ → «Кольори й рамки…»)."""
+        set_border(width, glow)
+        self._save_colors()
+        self._recolor()
+
+    def _save_colors(self) -> None:
+        self.settings["sat_cards"] = round(_SAT[0] * 100)
+        self.settings["sat_folders"] = round(_SAT[1] * 100)
+        self.settings["border_w"] = int(_BORDER[0])
+        self.settings["border_glow"] = round(_BORDER[1] * 100)
+
+    def on_colors_dialog(self) -> None:
+        ColorsDialog(self).run()
 
     def _recolor(self) -> None:
         for obj in self._row_objs.values():
@@ -3079,11 +3629,23 @@ class App:
         # верхня панель: пошук · додати · налаштування
         top = ctk.CTkFrame(root, fg_color="transparent")
         top.grid(row=0, column=0, sticky="ew", padx=14, pady=(14, 8))
-        top.grid_columnconfigure(0, weight=1)
+        top.grid_columnconfigure(1, weight=1)
+        # вкладки зліва: «Копіпасти» (папки й записи) і «Посилання» (бібліотека джерел для дисертації)
+        self.tabs = ctk.CTkFrame(top, fg_color="transparent")
+        self.tabs.grid(row=0, column=0, padx=(0, 10))
+        self.tab = "clip"
+        self.links = None
+        self.tab_btns = {}
+        for key, label in (("clip", "Копіпасти"), ("links", "Посилання")):
+            b = ctk.CTkButton(self.tabs, text=label, height=42, width=118, corner_radius=14, font=self.f.bold,
+                              command=lambda k=key: self.set_tab(k))
+            b.pack(side="left", padx=(0, 6))
+            self.tab_btns[key] = b
+        self._style_tabs()
         # банер відкритої папки (замість пошуку): назва, кількість записів, фон — колір папки
         self.banner = ctk.CTkFrame(top, height=42, corner_radius=14, fg_color=ROW_SEL, border_width=1,
                                    border_color=PANEL_BORDER)
-        self.banner.grid(row=0, column=0, sticky="ew")
+        self.banner.grid(row=0, column=1, sticky="ew")
         self.banner.grid_propagate(False)
         self.banner.grid_rowconfigure(0, weight=1)
         self.banner.grid_columnconfigure(1, weight=1)
@@ -3103,15 +3665,16 @@ class App:
         self.add_btn = ctk.CTkButton(top, text="＋  Додати", height=42, width=120, corner_radius=14,
                                      fg_color=ACCENT, hover_color=ACCENT_HOVER, font=self.f.bold,
                                      command=self.on_add)
-        self.add_btn.grid(row=0, column=1, padx=(10, 0))
+        self.add_btn.grid(row=0, column=2, padx=(10, 0))
         self.gear = ctk.CTkButton(top, text="⚙", height=42, width=42, corner_radius=14, fg_color=BTN2,
                                   hover_color=BTN2_HOVER, text_color=TEXT, font=self.f.icon,
                                   command=self._popup_settings)
-        self.gear.grid(row=0, column=2, padx=(8, 0))
+        self.gear.grid(row=0, column=3, padx=(8, 0))
 
         # три колонки
         cols = ctk.CTkFrame(root, fg_color="transparent")
         cols.grid(row=1, column=0, sticky="nsew", padx=14)
+        self.cols = cols
         cols.grid_rowconfigure(0, weight=1)
         cols.grid_columnconfigure(0, weight=0)
         cols.grid_columnconfigure(1, weight=0)
@@ -3127,20 +3690,21 @@ class App:
         self.status.grid(row=2, column=0, sticky="ew", padx=20, pady=(6, 8))
 
         # клавіатура
-        root.bind("<Down>", lambda e: None if self._in_format_input(e) else self._arrow_v(1))
-        root.bind("<Up>", lambda e: None if self._in_format_input(e) else self._arrow_v(-1))
-        root.bind("<Right>", lambda e: self._arrow_h(e, 1))
-        root.bind("<Left>", lambda e: self._arrow_h(e, -1))
-        root.bind("<Return>", self._on_return)
-        root.bind("<Alt-Return>", lambda e: (self.submit_with_phrases(), "break")[1])
-        root.bind("<Alt-KP_Enter>", lambda e: (self.submit_with_phrases(), "break")[1])
+        tab = self._clip_only                       # на вкладці «Посилання» клавіші сторінки копіпастів не діють
+        root.bind("<Down>", tab(lambda e: None if self._in_format_input(e) else self._arrow_v(1)))
+        root.bind("<Up>", tab(lambda e: None if self._in_format_input(e) else self._arrow_v(-1)))
+        root.bind("<Right>", tab(lambda e: self._arrow_h(e, 1)))
+        root.bind("<Left>", tab(lambda e: self._arrow_h(e, -1)))
+        root.bind("<Return>", tab(self._on_return))
+        root.bind("<Alt-Return>", tab(lambda e: (self.submit_with_phrases(), "break")[1]))
+        root.bind("<Alt-KP_Enter>", tab(lambda e: (self.submit_with_phrases(), "break")[1]))
         # навігація: Alt+W/S — вище/нижче, Alt+A/D — ліворуч/праворуч (між папками й записами), Space — відкрити папку
         # або скопіювати запис, Alt+Space — скопіювати й сховати вікно. Працює і з українською/російською розкладкою.
-        root.bind("<Alt-KeyPress>", self._on_alt_key)
-        root.bind("<KeyPress-space>", self._on_space)
+        root.bind("<Alt-KeyPress>", tab(self._on_alt_key))
+        root.bind("<KeyPress-space>", tab(self._on_space))
         root.bind_all("<ButtonPress-1>", self._nav_focus, add="+")
-        root.bind("<Escape>", self._on_escape)
-        root.bind("<Delete>", self._on_delete_key)
+        root.bind("<Escape>", lambda e: self.links.escape() if self.tab == "links" else self._on_escape(e))
+        root.bind("<Delete>", tab(self._on_delete_key))
         root.bind("<Control-n>", lambda e: self.on_add())
 
         self.v_paused = tk.BooleanVar(value=self.settings["paused"])
@@ -3152,6 +3716,43 @@ class App:
         self.v_pick_font = tk.StringVar(value=f"{self._pick_font_size():g}")
         self.v_hotkey = tk.StringVar(value=self.settings["hotkey"])
         self.v_theme = tk.StringVar(value=self.settings["theme"])
+
+    def _clip_only(self, fn):
+        """Обгортка для клавіш сторінки копіпастів: на вкладці «Посилання» вони нічого не роблять."""
+        def run(e, *a):
+            if self.tab == "links":
+                return None
+            return fn(e, *a)
+        return run
+
+    # -- вкладки: «Копіпасти» / «Посилання» ------------------------------------------------------------
+    def _style_tabs(self) -> None:
+        for key, b in self.tab_btns.items():
+            on = key == self.tab
+            b.configure(fg_color=ACCENT if on else BTN2, hover_color=ACCENT_HOVER if on else BTN2_HOVER,
+                        text_color="#ffffff" if on else TEXT)
+
+    def set_tab(self, tab: str) -> None:
+        """«Копіпасти» ↔ «Посилання» (сторінка бібліотеки джерел BioBib: папки → підпапки → посилання)."""
+        if tab == self.tab:
+            if tab == "links" and self.links is not None:
+                self.links.go([])                     # повторний клік — до кореня «Посилань»
+            return
+        self.tab = tab
+        self._style_tabs()
+        if tab == "links":
+            if self.links is None:
+                self.links = LinksPage(self, self.root)
+            self.cols.grid_remove()
+            self.links.frame.grid(row=1, column=0, sticky="nsew", padx=14)
+            self.links.refresh()
+        else:
+            if self.links is not None:
+                self.links.frame.grid_remove()
+            self.cols.grid()
+        self._banner_sig = None
+        self._sync_title()
+        self._sync_banner()
 
     def _build_left(self, cols) -> None:
         left = self._panel(cols, width=self._left_w)
@@ -3371,11 +3972,11 @@ class App:
     def _render_phrases(self) -> None:
         """Малює рядки фраз за preset.phrases (лише коли список змінився); стан галочок збережених фраз лишається."""
         phrases = self.preset.phrases
-        sig = tuple((p["id"], p["text"], p.get("color"), bool(p.get("user_link"))) for p in phrases) + (_COLOR_LEVEL[0],)
+        sig = tuple((p["id"], p["text"], p.get("color"), bool(p.get("user_link"))) for p in phrases) + (_SAT[0],)
         if sig == self._phrase_sig:
             return
         self._phrase_sig = sig
-        style = {p["id"]: (p.get("color"), bool(p.get("part")), bool(p.get("user_link")), _COLOR_LEVEL[0])
+        style = {p["id"]: (p.get("color"), bool(p.get("part")), bool(p.get("user_link")), _SAT[0])
                  for p in phrases}
         for pid in [k for k in self._phrase_rows if style.get(k) != self._phrase_rows[k]["style"]]:
             gone = self._phrase_rows.pop(pid)          # видалена фраза або змінився колір / «@ користувач» — рядок наново
@@ -3437,7 +4038,7 @@ class App:
         for w in [label, frame, more] + ([user] if user else []):
             w.bind("<Button-3>", lambda e, pid=p["id"]: self.show_phrase_menu(e.x_root, e.y_root, pid))
         return {"frame": frame, "var": var, "cb": cb, "label": label, "more": more, "user": user, "phrase": p,
-                "style": (p.get("color"), bool(p.get("part")), bool(p.get("user_link")), _COLOR_LEVEL[0])}
+                "style": (p.get("color"), bool(p.get("part")), bool(p.get("user_link")), _SAT[0])}
 
     def show_phrase_menu(self, x: int, y: int, pid: str) -> None:
         self._popup(self._build_phrase_menu(pid), x, y)
@@ -4414,7 +5015,8 @@ class App:
 
     def _sync_banner(self) -> None:
         """Банер угорі: колір відкритої папки (як у її рядку ліворуч), для історії — нейтральний."""
-        cat = None if (self._is_history() or self._picking()) else self.preset.category(self.view)
+        cat = None if (self._is_history() or self._picking() or self.tab == "links") else \
+            self.preset.category(self.view)
         color = cat["color"] if cat else None
         _fill, _hover, sel, border = row_colors(color)
         sig = (color, self._dark)
@@ -5253,8 +5855,11 @@ class App:
 
     def _sync_title(self) -> None:
         """Назва в банері: на сторінці вибору папки — «Оберіть папку» й кількість папок."""
-        if self._picking():
-            title, count = "Оберіть папку", str(len(self.preset.categories))
+        if self.tab == "links" and self.links is not None:
+            title, count = self.links.title(), self.links.count_text()
+            keys = "Клік — копіювати посилання (ДСТУ 8302) · Alt + клік — копіювати й сховати · Esc — вище"
+        elif self._picking():
+            title, count = "", ""                    # сторінка вибору папки — без напису «Оберіть папку»
             keys = "Alt+W/A/S/D — навігація · Space — відкрити папку · Esc — сховати"
         else:
             title, count = self._view_name(), str(len(self.shown))
@@ -6128,6 +6733,9 @@ class App:
         self.render()
 
     def on_add(self) -> None:
+        if self.tab == "links" and self.links is not None:
+            self.links.add()
+            return
         if not self.preset.categories and not self.on_new_category(select=False):
             return
         cat = self.view if self.preset.category(self.view) else (
@@ -6545,6 +7153,7 @@ class App:
             bl.add_command(name + ("  (типова)" if n == 1 else ""), lambda n=n: self.set_border_level(n),
                            checked=n == _BORDER_LEVEL[0])
         m.add_cascade("Рамки (записи й папки)", bl, icon="▢")
+        m.add_command("Кольори й рамки — точно…", self.on_colors_dialog, icon="◑")
         m.add_command("Фігури папок…", self.on_folder_shapes, icon="★")
         hot = self._new_menu()
         for spec, label in HOTKEY_PRESETS:
@@ -7184,6 +7793,32 @@ def _write_timing(path: str, app: "App | None", root) -> None:
 _T0_EPOCH = time.time()
 
 
+def _biobib_check(data_dir: str) -> int:
+    """--biobib-check: запускає вбудований сервер бібліотеки, читає розділи й головну сторінку, пише
+    результат у <data-dir>/biobib-check.txt (CI перевіряє, що FastAPI/uvicorn і статика потрапили в .exe)."""
+    import json
+    import urllib.request
+    out = os.path.join(data_dir, "biobib-check.txt")
+    os.makedirs(data_dir, exist_ok=True)
+    try:
+        from biobib import config as bb_config, server as bb_server
+        bb_config.configure(os.path.join(data_dir, "biobib"))
+        url = bb_server.ensure_running()
+        secs = json.loads(urllib.request.urlopen(url + "api/sections", timeout=10).read())
+        page = urllib.request.urlopen(url, timeout=10).read().decode("utf-8")
+        js = urllib.request.urlopen(url + "static/app.js", timeout=10).read()
+        ok = "BioBib" in page and len(js) > 1000 and [s_["path"] for s_ in secs][:2] == \
+            ["Дисертація", "Дисертація › Актуальність"]
+        text = ("OK " if ok else "FAIL ") + json.dumps([s_["path"] for s_ in secs], ensure_ascii=False)
+        bb_server.stop()
+    except Exception:
+        text = "FAIL " + traceback.format_exc()
+        ok = False
+    with open(out, "w", encoding="utf-8") as f:
+        f.write(text)
+    return 0 if ok else 1
+
+
 def main(argv: list[str] | None = None) -> int:
     global _TIMING
     parser = argparse.ArgumentParser(description=APP_NAME)
@@ -7194,10 +7829,14 @@ def main(argv: list[str] | None = None) -> int:
     parser.add_argument("--minimized", action="store_true", help="запуститись одразу у фоні (без вікна)")
     parser.add_argument("--timing", action="store_true",
                         help="записати стадії запуску в <data-dir>/startup-timing.log (для діагностики швидкості)")
+    parser.add_argument("--biobib-check", action="store_true",
+                        help="перевірити вбудовану бібліотеку «Посилання» (сервер + API) і вийти (для CI)")
     args = parser.parse_args(argv)
     if args.timing:
         _TIMING = True
     _mark("args_parsed")
+    if args.biobib_check:
+        return _biobib_check(os.path.abspath(args.data_dir))
 
     events = WakeQueue()
     lock, status = acquire_single_instance(lambda: events.put("show"), lambda: events.put("quit"))
