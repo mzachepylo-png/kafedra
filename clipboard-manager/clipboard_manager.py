@@ -47,6 +47,7 @@ from formats import (APPENDERS, AUTO_HISTORY_FORMATS, FORMATTERS, MERGE_ACTIONS,
                      SHAPES, USER_TAG, apply_merge, clean_count, shape_for_color, take, apply_user_link, clean_ctor, clean_v2, compose_phrases, ctor_count, ctor_label,
                      fill_email, infer_tag, render_tag, resolve_tags, tag_ref, fill_placeholders, format_actions,
                      has_user_placeholder, join_values, last_email, last_user_id, numbers_from_history, recent_numbers,
+                     SINGLE_RESULT_FORMATS, recent_four_digit_entries,
                      MAX_RECENT_NUMBERS,
                      user_ids_from_history,
                      user_link, user_links, v2_compose)
@@ -3336,6 +3337,9 @@ class App:
         self._lens = None                   # SideRow-копія плитки; сама плитка в сітці не змінюється
         self._lens_geo = None
         self._grow_job = None
+        self._clens = None                  # Card-копія вибраного запису (на 15 % більша, поверх списку)
+        self._clens_geo = None
+        self._clens_job = None
         self.root = root
         self.preset = preset
         self.history = history
@@ -3698,6 +3702,11 @@ class App:
         self._themed = alive
         for obj in self._card_objs.values():
             obj.colorize(frame=False)
+        if self._clens is not None:
+            try:
+                self._clens.colorize(frame=False)
+            except tk.TclError:
+                pass
         for obj in (*self._row_objs.values(), *self._fmt_rows.values()):
             obj.colorize()
         if self._cat_hint is not None:
@@ -4550,6 +4559,7 @@ class App:
                     lbl.configure(wraplength=wrap_px)
                 except tk.TclError:
                     pass
+        self._sync_card_lens()                         # ширина списку змінилась — копія вибраного запису за карткою
 
     def _init_tags(self) -> None:
         """Один набір прив'язок на ВСІ картки (через bindtags), а не ~25 прив'язок на кожну картку."""
@@ -4562,7 +4572,7 @@ class App:
         r.bind_class("CMCardHover", "<Leave>", self._card_leave)
 
     def _card_enter(self, e) -> None:
-        card = self._card_objs.get(getattr(e.widget, "_cm_iid", None))
+        card = self._card_for(e.widget, getattr(e.widget, "_cm_iid", None))
         if card:
             card.hover_on()
 
@@ -4572,17 +4582,18 @@ class App:
             self.root.after(15, self._hover_check, iid)     # Leave з дитини ≠ курсор вийшов із картки
 
     def _hover_check(self, iid: str) -> None:
-        card = self._card_objs.get(iid)
-        if not card:
-            return
-        try:
-            x, y = card.frame.winfo_pointerxy()
-            f = card.frame
-            if not (f.winfo_rootx() <= x < f.winfo_rootx() + f.winfo_width()
-                    and f.winfo_rooty() <= y < f.winfo_rooty() + f.winfo_height()):
-                card.hover_off()
-        except tk.TclError:
-            pass
+        lens = self._clens if self._clens is not None and self._clens.iid == iid else None
+        for card in (self._card_objs.get(iid), lens):     # картка і її збільшена копія — кожна за своїм місцем
+            if not card:
+                continue
+            try:
+                x, y = card.frame.winfo_pointerxy()
+                f = card.frame
+                if not (f.winfo_rootx() <= x < f.winfo_rootx() + f.winfo_width()
+                        and f.winfo_rooty() <= y < f.winfo_rooty() + f.winfo_height()):
+                    card.hover_off()
+            except tk.TclError:
+                pass
 
     # -- відображення -----------------------------------------------------
     def _update_title(self) -> None:
@@ -4977,10 +4988,24 @@ class App:
         if fmt and fmt.get("type") in FORMATTERS:
             self.fmt_title.configure(text=fmt["name"])
             self._show_actions("append" in format_actions(fmt["type"]))
+            self._show_result2(fmt["type"] not in SINGLE_RESULT_FORMATS)
             if not self.fmt_box.winfo_manager():
                 self.fmt_box.pack(fill="x", padx=2, after=self.formats_slot)
         elif self._fmt_built:
             self._fmt_box.pack_forget()
+
+    def _show_result2(self, on: bool) -> None:
+        """Друге вікно результату («усі останні значення»): у «Added cards» його немає — там одне вікно."""
+        parts = (self._fmt_lbl2, self._fmt_preview2, self._fmt_actions2)
+        if on == bool(self._fmt_lbl2.winfo_manager()):
+            return
+        if not on:
+            for w in parts:
+                w.pack_forget()
+            return
+        self._fmt_lbl2.pack(fill="x", padx=16, pady=(6, 2), after=self._fmt_actions)
+        self._fmt_preview2.pack(fill="x", padx=14, after=self._fmt_lbl2)
+        self._fmt_actions2.pack(fill="x", padx=14, pady=(10, 4), after=self._fmt_preview2)
 
     def _show_actions(self, two: bool) -> None:
         """Одна кнопка (USER) або пара «Copy» / «Append» залежно від дій формату (і так само під другим вікном)."""
@@ -5022,8 +5047,9 @@ class App:
             right_h = self.right.winfo_height() / s
             if right_h < 200:                       # колонку ще не розкладено
                 return
+            n_out = 2 if self._fmt_preview2.winfo_manager() else 1
             overhead = (self._fmt_box.winfo_reqheight() / s - self._fmt_heights[0]
-                        - 2 * self._fmt_heights[1])           # усе в блоці, крім трьох полів (введення + 2 результати)
+                        - n_out * self._fmt_heights[1])       # усе в блоці, крім полів (введення + 1–2 результати)
             room = (right_h - 52 - self.formats_slot.winfo_reqheight() / s - self.refund_box.winfo_reqheight() / s
                     - overhead - 22 - (28 if self.append_armed else 0))
             auto = getattr(self, "_phr_auto", False)
@@ -5036,8 +5062,8 @@ class App:
                 self._phr_auto = False
                 self._apply_phrases_collapse()
                 return
-            h_in = int(max(30, min(72, room / 3)))
-            h_out = int(max(30, min(74, (room - h_in) / 2)))
+            h_in = int(max(30, min(72, room / (1 + n_out))))
+            h_out = int(max(30, min(74, (room - h_in) / n_out)))
             if (h_in, h_out) != self._fmt_heights:
                 self._fmt_heights = (h_in, h_out)
                 self.fmt_input.configure(height=h_in)
@@ -5106,6 +5132,8 @@ class App:
         raw = self._typed()
         if raw.strip():
             return raw if which == 1 else ""
+        if fmt.get("type") in SINGLE_RESULT_FORMATS:     # «Added cards»: усі останні записи з 4 цифр, вікно одне
+            return ", ".join(recent_four_digit_entries(self._history_texts())) if which == 1 else ""
         nums = recent_numbers(self._history_texts(), 1 if which == 1 else MAX_RECENT_NUMBERS)
         return ", ".join(nums)
 
@@ -5406,6 +5434,7 @@ class App:
             r, c = self._cell_of[iid] if cells and iid in self._cell_of else (i // cols, i % cols)
             card.frame.grid(row=r, column=c, padx=6, pady=6, sticky="nsew")
         self._sync_cells()
+        self._sync_card_lens()
 
     # -- сітка клітинок: плитки записів стоять на своїх місцях (режим «спочатку папка») --------------------
     def _cells_on(self) -> bool:
@@ -5661,6 +5690,8 @@ class App:
         card = self._card_objs.get(iid)
         if card:
             card.set_checked(iid in self.checked)
+        if self._clens is not None and self._clens.iid == iid:
+            self._clens.set_checked(iid in self.checked)
         self._layout_header()
 
     def toggle_check_all(self) -> None:
@@ -5887,6 +5918,113 @@ class App:
     def _highlight_selection(self) -> None:
         for iid, card in self._card_objs.items():
             card.set_selected(iid == self.sel_id)      # змінюється рамка лише в тих, у кого змінився стан
+        self._sync_card_lens()
+
+    # -- вибраний запис — збільшена копія поверх списку (як папка під «курсором»); самі картки не змінюються ----------
+    def _sync_card_lens(self) -> None:
+        if getattr(self, "_clens_job", None) is None:
+            try:
+                self._clens_job = self.root.after_idle(self._card_lens_now)
+            except tk.TclError:
+                self._clens_job = None
+
+    def _card_lens_target(self) -> str | None:
+        iid = self.sel_id
+        if not iid or iid not in self._card_objs or self._picking() or self.page != "records" and self.folder_first:
+            return None
+        return iid
+
+    def _card_lens_now(self) -> None:
+        """Вибраний запис (клавіатурний «курсор» або клік) — його копія на 15 % більша, з яскравою рамкою, поверх
+        сусідніх карток. Картка в списку/сітці лишається на своєму місці й свого розміру."""
+        self._clens_job = None
+        iid = self._card_lens_target()
+        card = self._card_objs.get(iid) if iid else None
+        item = next((i for i in self.shown if i["id"] == iid), None) if card is not None else None
+        if card is None or item is None:
+            self._hide_card_lens()
+            return
+        f = card.frame
+        try:
+            self.root.update_idletasks()
+            if not f.winfo_manager() or not f.winfo_ismapped():
+                self._hide_card_lens()
+                return
+            w, h, x, y = f.winfo_width(), f.winfo_height(), f.winfo_x(), f.winfo_y()
+            if w < 20 or h < 20:
+                self._hide_card_lens()
+                return
+            sc = self.scaling()
+            lens = self._clens
+            if (lens is None or lens.iid != iid or lens.tile != card.tile or not lens.frame.winfo_exists()
+                    or lens.frame.master is not f.master or bool(lens.check) != bool(card.check)):
+                self._drop_card_lens()
+                lens = self._clens = Card(self, f.master, item, self._card_pad, int(card.body.cget("wraplength")),
+                                          selected=True, checkable=card.check is not None,
+                                          checked=iid in self.checked, tile=card.tile)
+                lens.lens = True
+                lens.frame.configure(bg_color=NAV_MARK, corner_radius=8)
+                # службова смужка (⋯, ✕) і текст — усередині товстої рамки (інакше налазять на неї в кутку)
+                v = int((NAV_MARK_W + 1) * sc)
+                if card.tile:
+                    lens.zone.grid_configure(padx=(0, int((NAV_MARK_W + 3) * sc)), pady=(v, 0))
+                    lens.clip.grid_configure(pady=(0, max(8, v + 2)))
+                else:
+                    lens.zone.grid_configure(padx=(0, int((NAV_MARK_W + 3) * sc)), pady=v)
+                    lens.body.grid_configure(pady=v)
+                self._clens_geo = None
+            else:
+                lens.sync(item)
+                lens.set_checked(iid in self.checked)
+            if lens.frame.cget("border_width") != NAV_MARK_W or lens.frame.cget("border_color") != NAV_MARK:
+                lens.frame.configure(border_width=NAV_MARK_W, border_color=NAV_MARK)
+            if card.tile:
+                gw, gh = round(w * TILE_GROW), round(h * TILE_GROW)
+            else:                              # список — на всю ширину: убік лише в поля, решта — у висоту
+                gw = min(round(w * TILE_GROW), w + 2 * int(self._card_pad * sc))
+                gh = round(h * TILE_GROW)
+            mw, mh = f.master.winfo_width(), f.master.winfo_height()
+            gx = min(max(0.0, x - (gw - w) / 2), max(0.0, mw - gw))      # не вилазить за краї списку
+            gy = min(max(0.0, y - (gh - h) / 2), max(0.0, mh - gh))
+            geo = (x, y, w, h, gw, gh, gx, gy)
+            if geo != self._clens_geo:
+                lens.body.configure(wraplength=max(40, int(card.body.cget("wraplength")) + gw - w))
+                _ctk_resize(lens.frame, int(gw / sc), int(gh / sc))
+                lens.frame.place(x=gx / sc, y=gy / sc)
+                lens.frame.grid_propagate(False)           # розмір — заданий, а не «за вмістом»
+                lens.frame.pack_propagate(False)
+                self._clens_geo = geo
+            lens.frame.lift()
+        except (tk.TclError, ValueError, AttributeError):
+            self._hide_card_lens()
+
+    def _hide_card_lens(self) -> None:
+        self._clens_geo = None
+        lens = self._clens
+        if lens is not None:
+            try:
+                if lens.frame.winfo_manager():
+                    lens.frame.place_forget()
+            except tk.TclError:
+                self._clens = None
+
+    def _drop_card_lens(self) -> None:
+        lens, self._clens = self._clens, None
+        self._clens_geo = None
+        if lens is not None:
+            lens.destroy()
+
+    def _card_for(self, widget, iid: str | None):
+        """Картка, якій належить віджет: збільшена копія вибраного запису або сама картка."""
+        lens = self._clens
+        if lens is not None and lens.iid == iid and str(widget).startswith(str(lens.frame)):
+            return lens
+        return self._card_objs.get(iid) if iid else None
+
+    def _flash_card(self, iid: str) -> None:
+        for c in (self._card_objs.get(iid), self._clens if self._clens is not None and self._clens.iid == iid else None):
+            if c is not None:
+                c.flash()
 
     def _arrow_h(self, e, delta: int):
         """← / → у режимі плиток рухають виділення по ряду (у полях введення — звичайний рух курсора)."""
@@ -6003,6 +6141,7 @@ class App:
             self._right_mark(None)             # підсвітка формату / фрази не лишається на новій сторінці
         self.page = page
         self._apply_page()
+        self._sync_card_lens()                 # збільшена копія вибраного запису — лише на сторінці записів
         if not self.folder_first:
             return
         if page == "folders":
@@ -6468,7 +6607,7 @@ class App:
         if card is not None:
             item = next((i for i in self.shown if i["id"] == self.sel_id), {})
             if not ((item.get("v2") or item.get("ctor")) and not hide and not self.append_armed):
-                card.flash()
+                self._flash_card(self.sel_id)
         self.copy_item(self.sel_id, hide=True if hide else None)
 
     def _move_sel(self, delta: int) -> str:
@@ -6611,7 +6750,7 @@ class App:
 
     def _drag_press(self, e: tk.Event, iid: str) -> None:
         self._nav_focus(e)
-        card = self._card_objs.get(iid)
+        card = self._card_for(e.widget, iid)          # збільшена копія — своя геометрія службової зони
         try:
             if card is not None and card.inert(e.x_root, e.y_root):
                 self._drag = None               # права зона картки: клік нічого не робить
@@ -6683,7 +6822,7 @@ class App:
             card = self._card_objs.get(d["id"])
             alt = d.get("alt") or bool(getattr(e, "state", 0) & ALT_MASK)
             if card is not None and not (card.v2 and not alt and not self.append_armed):
-                card.flash()                    # видно, що скопійовано (для v.2 без Alt відкривається вікно аппендів)
+                self._flash_card(d["id"])       # видно, що скопійовано (для v.2 без Alt відкривається вікно аппендів)
             self.copy_item(d["id"], hide=True if alt else None)      # Alt + клік: скопіювати й згорнути вікно
             return
         d["ghost"].destroy()

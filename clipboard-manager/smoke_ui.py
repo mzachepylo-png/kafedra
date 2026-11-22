@@ -3189,22 +3189,43 @@ assert app._fmt_copy2.cget("state") == "disabled" and "Неактивне" in ap
 app.arm_append()
 real_click(app._card_objs[sc_ref["id"]].body)
 assert root.clipboard_get() == "Suspicious cards 1234, 2365, 4562 were added. Blacklisted, unsolicited charges refunded"
+# раунд 26: «Added cards» (папка «Suspicious login») — попередня логіка: УСІ останні поспіль записи рівно з 4 цифр,
+# перший запис, що не є просто 4 цифрами, — стоп; вікно результату одне
+h35_keep = app.history
+app.history = History(os.path.join(tmp, "h35c.json"))
+for t_ in ("4444", "текст", "4321", "12345", "3333", "2222", "2222", " 1111 "):
+    app.history.add(t_)
 app.select_category(sl35["id"])
 app.flush_render()
 app.select_format("builtin-added-cards")
 pump(150)
-assert app.fmt_preview.get("1.0", "end-1c") == "Card 123 was added during suspicious login."
-assert app.fmt_preview2.get("1.0", "end-1c") == "Cards 123, 542, 1234, 2365, 4562 were added during suspicious login."
-app.submit_format(2)
-assert root.clipboard_get() == "Cards 123, 542, 1234, 2365, 4562 were added during suspicious login."
-app.history.add("7.5; 8:9")                                    # «.», «;», «:» — теж роздільники значень
-assert app.sel_format == "builtin-added-cards"
-app._update_format_preview()
-pump(100)
-assert app.fmt_preview.get("1.0", "end-1c") == "Card 7 was added during suspicious login."
-assert app.fmt_preview2.get("1.0", "end-1c").startswith("Cards 7, 5, 8, 9, 123, 542"), app.fmt_preview2.get("1.0", "end-1c")
+assert app.fmt_preview.get("1.0", "end-1c") == "Cards 1111, 2222, 3333 were added during suspicious login.", \
+    app.fmt_preview.get("1.0", "end-1c")
+assert not app._fmt_preview2.winfo_manager() and not app._fmt_lbl2.winfo_manager() and \
+    not app._fmt_actions2.winfo_manager(), "у «Added cards» — одне вікно результату"
 app.submit_format()
-assert root.clipboard_get() == "Card 7 was added during suspicious login."
+assert root.clipboard_get() == "Cards 1111, 2222, 3333 were added during suspicious login."
+assert app.sel_format == "builtin-added-cards"
+app.history.add("5555")
+app._update_format_preview()
+assert app.fmt_preview.get("1.0", "end-1c") == "Cards 5555, 1111, 2222, 3333 were added during suspicious login."
+app.history.add("1234, 5678")                                 # не «просто 4 цифри» — і він найновіший: нічого
+app._update_format_preview()
+assert app.fmt_preview.get("1.0", "end-1c") == "", app.fmt_preview.get("1.0", "end-1c")
+app.history.add("9876")
+app._update_format_preview()
+assert app.fmt_preview.get("1.0", "end-1c") == "Card 9876 was added during suspicious login."
+app.fmt_input.insert("1.0", "1245 1231, 236532")             # введене в поле — як і раніше
+app._update_format_preview()
+assert app.fmt_preview.get("1.0", "end-1c") == "Cards 1245, 1231, 236532 were added during suspicious login."
+app._clear_format_input()
+app.select_format("builtin-user")                             # інші формати — знову два вікна результату
+pump(100)
+assert app._fmt_preview2.winfo_manager() and app._fmt_lbl2.winfo_manager() and app._fmt_actions2.winfo_manager()
+order35 = [w for w in app._fmt_box.pack_slaves() if w in (app._fmt_actions, app._fmt_lbl2, app._fmt_preview2,
+                                                         app._fmt_actions2)]
+assert order35 == [app._fmt_actions, app._fmt_lbl2, app._fmt_preview2, app._fmt_actions2], order35
+app.history = h35_keep
 app._collapse_format()
 print("35b formats take numbers from history OK")
 
@@ -4974,6 +4995,63 @@ app.back_to_folders()
 root.geometry("1180x660+0+0")
 pump(400)
 print("47 tile content inset, grown cursor tile (15%), two format results (last one / all recent) OK")
+
+# ---- 48. раунд 26: вибраний запис — збільшена копія (+15 %) поверх списку/сітки; самі картки не рухаються -----------
+app._collapse_format()
+settings["autohide"] = False
+app.set_folder_first(True)
+root.geometry("1400x800+0+0")
+pump(300)
+cat48 = app.preset.add_category("Lens 48")
+for i48 in range(7):
+    app.preset.add_snippet(cat48["id"], f"Lens record {i48} " + "text " * (3 + 2 * i48))
+app.render()
+app.flush_render()
+geo48 = lambda: {k: (o.frame.winfo_x(), o.frame.winfo_y(), o.frame.winfo_width(), o.frame.winfo_height())  # noqa: E731
+                 for k, o in app._card_objs.items()}
+for mode48 in ("list", "tiles"):
+    app.set_rec_view(mode48)
+    app.select_category(cat48["id"])
+    app.flush_render()
+    pump(300)
+    app.nav_zone = "cards"
+    id48 = app._order[1]
+    app._select_card(id48)
+    pump(300)
+    lens48, card48 = app._clens, app._card_objs[id48]
+    assert lens48 is not None and lens48.iid == id48 and lens48.frame.winfo_manager() == "place", mode48
+    assert lens48.frame.cget("border_width") == cm.NAV_MARK_W and lens48.body.cget("text") == card48.body.cget("text")
+    assert card48.frame.winfo_manager() in ("pack", "grid"), "сама картка — на своєму місці"
+    assert abs(lens48.frame.winfo_height() - card48.frame.winfo_height() * cm.TILE_GROW) <= 3, \
+        (mode48, lens48.frame.winfo_height(), card48.frame.winfo_height())
+    if mode48 == "tiles":
+        assert abs(lens48.frame.winfo_width() - card48.frame.winfo_width() * cm.TILE_GROW) <= 3
+    else:
+        assert card48.frame.winfo_width() <= lens48.frame.winfo_width() <= card48.frame.winfo_width() * cm.TILE_GROW + 2
+    # курсор ходить по записах: картки не зсуваються й не змінюють розміру, копія — на вибраному записі
+    base48 = geo48()
+    for k48 in ("s", "s", "w", "s", "w", "w"):
+        app.nav_move(k48)
+        pump(120)
+        assert geo48() == base48, ("картки зсунулись", mode48)
+        assert app._clens is not None and app._clens.iid == app.sel_id and app._clens.frame.winfo_manager() == "place"
+    # клік по копії — копіює саме цей запис
+    app._select_card(id48)
+    pump(250)
+    root.clipboard_clear()
+    real_click(app._clens.body)
+    assert root.clipboard_get() == app._text_of(id48), (mode48, root.clipboard_get())
+    # наведення на копію підсвічує копію
+    app._clens.hover_off()
+    app._card_enter(SimpleNamespace(widget=app._clens.body))
+    assert app._clens.hovering
+    app._clens.hover_off()
+# сторінка вибору папки — копії вибраного запису не видно
+app.back_to_folders()
+pump(300)
+assert app._clens is None or not app._clens.frame.winfo_manager()
+app.set_rec_view("list")
+print("48 Added cards: last run of 4-digit entries (one result); selected record — 15% bigger copy over the list OK")
 
 # ---- 25. справжнє розгортання під віконним менеджером (лише якщо є openbox) -------------------------------------------------------------
 import shutil  # noqa: E402

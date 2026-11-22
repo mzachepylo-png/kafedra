@@ -788,6 +788,16 @@ class HistoryAutofillAndUserLinkTests(unittest.TestCase):
         self.assertEqual(fill_placeholders("U ___ ___", hist, split=True), "U {LINK:USER:1245:E} {LINK:USER:235636:E}")
         self.assertEqual(user_ids_from_history(["Cards 1, 2 were added"], split=True), [], "речення — не номери")
 
+    def test_round26_added_cards_four_digit_run(self):
+        from formats import SINGLE_RESULT_FORMATS, recent_four_digit_entries
+        self.assertIn("cards_added", SINGLE_RESULT_FORMATS)
+        self.assertEqual(recent_four_digit_entries(["1111", " 2222 ", "2222", "3333", "12345", "4444"]),
+                         ["1111", "2222", "3333"])
+        self.assertEqual(recent_four_digit_entries(["text", "1111"]), [])
+        self.assertEqual(recent_four_digit_entries(["1234, 5678", "1111"]), [])
+        self.assertEqual(recent_four_digit_entries(["123", "1111"]), [])
+        self.assertEqual(recent_four_digit_entries([]), [])
+
     def test_recent_numbers_colon_semicolon_dot(self):
         from formats import recent_numbers
         self.assertEqual(recent_numbers(["11: 22; 33", "44.55", "текст", "9"]), ["11", "22", "33", "44", "55"])

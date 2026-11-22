@@ -223,6 +223,26 @@ def numbers_from_history(texts) -> str:
     return ", ".join(nums)
 
 
+# «Added cards» (папка «Suspicious login») — попередня логіка: лише останні поспіль записи, що є РІВНО 4 цифрами
+# (останні цифри картки); перший запис, що не є просто 4 цифрами, — стоп. Одне вікно результату.
+SINGLE_RESULT_FORMATS = {"cards_added"}
+_FOUR_DIGITS = re.compile(r"^[0-9]{4}$")
+
+
+def recent_four_digit_entries(texts) -> list[str]:
+    """Останні поспіль записи історії з рівно 4 цифр (найновіший першим, без повторів); перший інший запис — стоп.
+
+    ``["1234", "5678", "text", "9999"]`` → ``["1234", "5678"]``;  ``["12345", "1234"]`` → ``[]``"""
+    out: list[str] = []
+    for t in texts:
+        s = (t or "").strip()
+        if not _FOUR_DIGITS.match(s):
+            break
+        if s not in out:
+            out.append(s)
+    return out
+
+
 # Запис історії, що складається лише з номерів (користувачі, картки, …): «214512 66413241, #124521», «User123»,
 # «#User123», «User #5», «{LINK:USER:7:E}»; номери розділяються пробілами, «,», «.», «;» або «:».
 _NUM_TOKEN = re.compile(r"\{LINK:[A-Z_]+:([0-9]+):E\}|#?\s*(?:[A-Za-z]+\s*)?#?\s*([0-9]+)|[\s,.;:]+")
