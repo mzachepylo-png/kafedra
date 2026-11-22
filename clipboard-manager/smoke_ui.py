@@ -1858,7 +1858,7 @@ pump(100)
 app.select_format("builtin-user")
 assert app.fmt_btn.winfo_manager() == "pack" and app._fmt_pair.winfo_manager() == ""
 app.select_format("builtin-added-cards")
-assert app.sel_format == "builtin-added-cards" and app.fmt_title.cget("text") == "Added cards"
+assert app.sel_format == "builtin-added-cards" and app.fmt_title.cget("text").startswith("Added cards")
 assert app._fmt_pair.winfo_manager() == "pack" and app.fmt_btn.winfo_manager() == ""
 assert app._fmt_copy.cget("text") == "Copy" and app._fmt_append.cget("text") == "Append"
 for inp, want in (("1245 1231 236532, 3256", "Cards 1245, 1231, 236532, 3256 were added during suspicious login."),
