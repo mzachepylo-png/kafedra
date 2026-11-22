@@ -3855,9 +3855,7 @@ cm.SideRow.set_size = saved_set_size_
 # (b) плитки папок: ширина й висота — як розраховано, без перемальовування за старим розміром
 cols_, tw_, th_ = app._tile_dims()
 s_ = app.scaling()
-for c_ in p_cats:
-    if app._grown and app._grown[0] == c_["id"]:
-        continue                                   # плитка під «курсором» — на 15 % більша (розділ 47)
+for c_ in p_cats:                                  # і плитка під «курсором» — теж (збільшена — окрема копія)
     row_ = app._row_objs[c_["id"]].row
     assert abs(row_.cget("width") - tw_) <= 10 and row_.cget("height") == th_, (row_.cget("width"), row_.cget("height"), tw_, th_)
     assert abs(row_.winfo_height() - th_ * s_) <= 2, (row_.winfo_height(), th_)
@@ -3947,8 +3945,7 @@ pump(500)
 
 def q_align():
     cols_ = app._tile_dims()[0]
-    g_ = app._grown                                # збільшена плитка — за її місцем у сітці («заступником»)
-    tl_ = [(g_[1] if g_ and g_[0] == c["id"] else app._row_objs[c["id"]].row) for c in app.preset.categories]
+    tl_ = [app._row_objs[c["id"]].row for c in app.preset.categories]
     h_ = app._row_objs[HISTORY].row
     return (abs(h_.winfo_rootx() - tl_[0].winfo_rootx()),
             abs(h_.winfo_rootx() + h_.winfo_width() - tl_[cols_ - 1].winfo_rootx() - tl_[cols_ - 1].winfo_width()))
@@ -3982,8 +3979,8 @@ root.geometry("1900x1000+0+0")
 pump(600)
 cols_, tw_, th_ = app._tile_dims()
 assert cols_ == 4 and abs(tw_ - min(cm.PICK_TILE_MAX, (app._pick_w - 30 - 8 * 3 - 14) / 4)) < 1, (cols_, tw_, app._pick_w)
-q_plain_ = next(c_ for c_ in q_cats if not (app._grown and app._grown[0] == c_["id"]))   # не збільшена плитка
-assert abs(app._row_objs[q_plain_["id"]].row.winfo_width() - tw_ * app.scaling()) <= 3
+for c_ in q_cats:                                  # усі плитки — однакові (збільшена — окрема копія поверх)
+    assert abs(app._row_objs[c_["id"]].row.winfo_width() - tw_ * app.scaling()) <= 3
 app.preset.categories = saved_cats_
 app.render()
 app.flush_render()
@@ -4905,12 +4902,31 @@ pump(200)
 app.back_to_folders()
 pump(400)
 assert app._grown is not None and app._grown[0] == f43["id"], app._grown
-g47 = app._row_objs[f43["id"]]
-ph47 = app._grown[1]
-assert g47.row.winfo_manager() == "place" and ph47.winfo_manager() == "grid"
-assert abs(g47.row.winfo_width() - ph47.winfo_width() * cm.TILE_GROW) <= 3, (g47.row.winfo_width(), ph47.winfo_width())
-assert abs(g47.row.winfo_height() - ph47.winfo_height() * cm.TILE_GROW) <= 3
-assert g47.row.cget("border_width") == cm.NAV_MARK_W
+g47 = app._row_objs[f43["id"]]                    # сама плитка — у сітці, звичайного розміру
+lens47 = app._grown[1]                             # збільшена копія — поверх сітки
+assert g47.row.winfo_manager() == "grid" and lens47.row.winfo_manager() == "place" and lens47.key == f43["id"]
+assert abs(lens47.row.winfo_width() - g47.row.winfo_width() * cm.TILE_GROW) <= 3, \
+    (lens47.row.winfo_width(), g47.row.winfo_width())
+assert abs(lens47.row.winfo_height() - g47.row.winfo_height() * cm.TILE_GROW) <= 3
+# копія — по центру плитки (накладається на сусідів рівномірно)
+cx47 = lambda w: (w.winfo_rootx() + w.winfo_width() / 2, w.winfo_rooty() + w.winfo_height() / 2)  # noqa: E731
+c1_, c2_ = cx47(lens47.row), cx47(g47.row)        # верхній ряд — копія не вилазить за верх списку (зсунута вниз)
+assert abs(c1_[0] - c2_[0]) <= 2 and (abs(c1_[1] - c2_[1]) <= 2 or lens47.row.winfo_y() == 0), (c1_, c2_)
+assert lens47.row.cget("border_width") == cm.NAV_MARK_W and lens47.label.cget("text") == g47.label.cget("text")
+assert lens47.num.cget("text") == g47.num.cget("text") and lens47.dot.cget("text") == g47.dot.cget("text")
+assert app._target_at(*[int(v) for v in cx47(lens47.row)]) == f43["id"], "запис, кинутий на копію, — у цю папку"
+# ходіння курсором туди-сюди: плитки в сітці НЕ змінюють ні місця, ні розміру (раніше «їхали»)
+geo47 = lambda: {k: (o.row.winfo_x(), o.row.winfo_y(), o.row.winfo_width(), o.row.winfo_height())  # noqa: E731
+                 for k, o in app._row_objs.items() if k != HISTORY}
+base47 = geo47()
+for k47 in "dsdwasdwaasddw":
+    app.nav_move(k47)
+    pump(80)
+    assert geo47() == base47, "плитки зсунулись при переході курсора"
+    if app.nav_cat and app.nav_cat != HISTORY:
+        assert app._grown and app._grown[0] == app.nav_cat and app._grown[1].row.winfo_manager() == "place"
+app._nav_mark(f43["id"])
+pump(200)
 # вміст — усередині рамки: відступ під найтовщу рамку
 sc47 = app.scaling()
 in47 = int((max(cm.NAV_MARK_W, cm.border_width(True)) + 4) * sc47)
@@ -4919,12 +4935,12 @@ import re  # noqa: E402
 nums47 = lambda v: [int(x) for x in re.findall(r"[0-9]+", str(v))]   # noqa: E731 — padx/pady: число або пара
 assert g47._inset == in47 and nums47(g47.more.grid_info()["pady"])[0] == v47, g47.more.grid_info()
 assert nums47(g47.more.grid_info()["padx"])[-1] >= int(16 * sc47), "«⋯» — далі за заокруглення кута"
-# курсор на іншу папку — збільшується вона, попередня повертається в сітку
+# курсор на іншу папку — копія переходить на неї
 app.nav_move("d" if app._nav_folders().index(f43["id"]) % 2 else "s")
 pump(300)
 if app.nav_cat != f43["id"] and app.nav_cat != cm.HISTORY:
-    assert app._grown and app._grown[0] == app.nav_cat
-    assert g47.row.winfo_manager() == "grid" and not ph47.winfo_exists()
+    assert app._grown and app._grown[0] == app.nav_cat and app._grown[1].key == app.nav_cat
+    assert g47.row.winfo_manager() == "grid" and not lens47.row.winfo_exists()
 # сторінка записів — плитки папок не чіпаються; повернення — збільшена та папка, яку щойно відкривали
 app.select_category(f43["id"])
 app.flush_render()

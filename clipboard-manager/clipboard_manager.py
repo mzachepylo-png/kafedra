@@ -3332,7 +3332,9 @@ class App:
                  events: "queue.Queue[str]", use_hotkey: bool = True, use_tray: bool = True,
                  start_hidden: bool = False, relaunch_ok: bool = False):
         _mark("app_init_start")
-        self._grown = None                  # (папка, заступник у сітці) — збільшена плитка під «курсором»
+        self._grown = None                  # (папка, лінза) — збільшена копія плитки під «курсором» (поверх сітки)
+        self._lens = None                   # SideRow-копія плитки; сама плитка в сітці не змінюється
+        self._lens_geo = None
         self._grow_job = None
         self.root = root
         self.preset = preset
@@ -4726,6 +4728,8 @@ class App:
             self._cat_hint.destroy()
             self._cat_hint = None
         self._arrange_cats()
+        if self._lens is not None:
+            self._sync_grow()                            # назва / колір / лічильник збільшеної копії — як у плитки
         if not wanted:
             if self._cat_hint is None:
                 self._cat_hint = tk.Label(
@@ -4796,10 +4800,11 @@ class App:
         else:
             sig = (False, 1, 0, tuple(wanted), 0)
         if sig == self._cat_sig:
+            if picking and self.cat_tiles:
+                self._sync_grow()                        # блок плиток міг зсунутись (центрування) — лінза за ним
             return
         self._cat_sig = sig
-        if getattr(self, "_grown", None) is not None:
-            self._ungrow_tile(relayout=False)          # розкладка — заново; збільшення — після неї
+        self._lens_geo = None                          # розкладка — заново; лінза — на нове місце після неї
         for key in wanted:
             obj = self._row_objs.get(key)
             if obj is not None and not obj.tile:
@@ -4823,8 +4828,7 @@ class App:
                 obj.set_size(th, wrap, font, int(tile_w) if picking else None)
                 obj.row.grid(row=i // cols, column=off + i % cols, padx=3, pady=3, sticky="nsew")
                 obj.row.grid_propagate(False)               # висота плитки фіксована
-            if picking:
-                self._sync_grow()
+            self._sync_grow()                            # не сторінка вибору — лінза ховається
         else:
             for key in wanted:
                 self._row_objs[key].row.pack(fill="x", padx=6, pady=2)
@@ -4845,8 +4849,7 @@ class App:
         """Сторінка вибору папки: рядок «Історія буфера» — рівно над блоком плиток (за їхнім фактичним місцем)."""
         self._hist_job = None
         hist = self._row_objs.get(HISTORY)
-        g = self._grown                                  # збільшена плитка — міряємо за її місцем у сітці
-        tiles = [(g[1] if g and g[0] == k else self._row_objs[k].row) for k in self._row_order if k in self._row_objs]
+        tiles = [self._row_objs[k].row for k in self._row_order if k in self._row_objs]
         if hist is None or not tiles or not self._picking() or not self.cat_tiles:
             return
         try:
@@ -4874,7 +4877,7 @@ class App:
         self._rebuild_cat_rows(tiles)
 
     def _rebuild_cat_rows(self, tiles: bool) -> None:
-        self._ungrow_tile(relayout=False)
+        self._drop_lens()
         self.cat_tiles = tiles
         for key in [k for k in self._row_objs if k != HISTORY]:     # рядки іншого вигляду — знищуємо, створяться заново
             obj = self._row_objs.pop(key)
@@ -6283,70 +6286,72 @@ class App:
         return None
 
     def _grow_now(self) -> None:
+        """Збільшена плитка — це ОКРЕМА копія плитки («лінза»), покладена поверх сітки. Самі плитки в сітці не
+        чіпаються взагалі (раніше збільшувалась і переставлялась сама плитка, і після кількох переходів курсора
+        плитки «їхали» — різні розміри й зсуви). Тепер сітка завжди та сама, рухається лише лінза."""
         self._grow_job = None
-        if self.folder_first and not self._picking():
-            return                                 # сторінка записів: папок не видно — нічого не чіпаємо
         key = self._grow_target()
-        g = getattr(self, "_grown", None)
-        if g is not None and g[0] == key:
+        obj = self._row_objs.get(key) if key else None
+        if obj is None or not obj.tile or obj.sig is None:
+            self._hide_lens()
             return
-        self._ungrow_tile()
-        if key is None:
-            return
-        obj = self._row_objs[key]
         r = obj.row
         try:
             self.root.update_idletasks()
-            info = r.grid_info()
-            w, h, x, y = r.winfo_width(), r.winfo_height(), r.winfo_x(), r.winfo_y()
-            if not info or w < 20 or h < 20 or not getattr(obj, "_height", None):
+            if r.winfo_manager() != "grid":
+                self._hide_lens()
                 return
-            master = r.nametowidget(r.winfo_parent())
-            # на місці плитки в сітці — порожній «заступник» того ж розміру: сітка не зсувається
-            bg = master.tk.call(master._w, "cget", "-background")      # ctk-cget не знає «bg»
-            ph = tk.Frame(master, width=w, height=h, bg=bg, bd=0, highlightthickness=0)
-            ph.grid(row=info["row"], column=info["column"], padx=info["padx"], pady=info["pady"],
-                    sticky=info["sticky"])
-            ph.lower(r)
+            w, h, x, y = r.winfo_width(), r.winfo_height(), r.winfo_x(), r.winfo_y()
+            if w < 20 or h < 20:
+                self._hide_lens()
+                return
+            lens = self._lens
+            if lens is None or lens.key != key or not lens.row.winfo_exists() or lens.row.master is not r.master:
+                self._drop_lens()
+                lens = self._lens = SideRow(self, r.master, key, real=True, tile=True)
+                self._row_keys[lens.row] = key            # перетягнутий запис, кинутий на лінзу, — у цю папку
+                # кути поза заокругленням ctk малює кольором bg_color — колір рамки «курсора»: охайна рамка
+                lens.row.configure(bg_color=NAV_MARK, corner_radius=8)
+                self._lens_geo = None
+            s = obj.sig
+            lens.update(s[0], s[1], s[2], s[3], s[5], s[6])
+            if not getattr(lens, "marked", False):
+                lens.mark(True)
             sc = self.scaling()
-            gw, gh = w * TILE_GROW, h * TILE_GROW
-            self._grown = (key, ph, dict(info), (obj._height, getattr(obj, "_width", None)))
-            r.grid_forget()
-            obj.set_size(int(gh / sc), int(max(40, gw / sc - 24) * sc), getattr(obj, "_font", None), int(gw / sc))
-            r.place(x=max(0.0, (x - (gw - w) / 2) / sc), y=max(0.0, (y - (gh - h) / 2) / sc))
-            r.grid_propagate(False)            # розмір — заданий, а не «за вмістом» (інакше плитка стискалась)
-            # кути поза заокругленням ctk малює кольором фону (bg_color) — над сусідніми плитками це були світлі
-            # квадратики; тепер кути — кольору рамки «курсора», а заокруглення трохи менше: охайна рамка
-            r.configure(bg_color=NAV_MARK, corner_radius=8)
-            r.lift()
-        except (tk.TclError, ValueError):
-            self._grown = None
+            gw, gh = round(w * TILE_GROW), round(h * TILE_GROW)
+            font = getattr(obj, "_font", None)
+            geo = (x, y, w, h, gw, gh, id(font))
+            if geo != self._lens_geo:
+                lens.set_size(int(gh / sc), int(max(40, gw / sc - 24) * sc), font, int(gw / sc))
+                lens.row.place(x=max(0.0, x - (gw - w) / 2) / sc, y=max(0.0, y - (gh - h) / 2) / sc)
+                lens.row.grid_propagate(False)        # розмір — заданий, а не «за вмістом»
+                self._lens_geo = geo
+            lens.row.lift()
+            self._grown = (key, lens)
+        except (tk.TclError, ValueError, AttributeError):
+            self._hide_lens()
 
-    def _ungrow_tile(self, relayout: bool = True) -> None:
-        """Повертає збільшену плитку в сітку (розмір — як у всіх)."""
-        g = getattr(self, "_grown", None)
-        if g is None:
-            return
+    def _hide_lens(self) -> None:
         self._grown = None
-        key, ph, info, (h0, w0) = g
-        try:
-            ph.destroy()
-        except tk.TclError:
-            pass
-        obj = self._row_objs.get(key)
-        if obj is None:
-            return
-        try:
-            obj.row.place_forget()
-            obj.row.configure(bg_color="transparent", corner_radius=14)
-            if relayout:                       # лише ця плитка — назад у свою клітинку зі звичайним розміром
-                sc = self.scaling()
-                obj.set_size(h0, int(max(40, (w0 or 0) - 24) * sc), getattr(obj, "_font", None), w0)
-                obj.row.grid(row=info["row"], column=info["column"], padx=info["padx"], pady=info["pady"],
-                             sticky=info["sticky"])
-                obj.row.grid_propagate(False)
-        except (tk.TclError, ValueError, TypeError):
-            self._cat_sig = None
+        self._lens_geo = None
+        lens = self._lens
+        if lens is not None:
+            try:
+                if lens.row.winfo_manager():
+                    lens.row.place_forget()
+            except tk.TclError:
+                self._lens = None
+
+    def _drop_lens(self) -> None:
+        lens, self._lens = self._lens, None
+        self._grown = None
+        self._lens_geo = None
+        if lens is not None:
+            self._row_keys.pop(lens.row, None)
+            try:
+                lens.destroy()
+            except tk.TclError:
+                pass
 
     def _ensure_visible_in(self, sf, widget) -> None:
         try:
