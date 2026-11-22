@@ -2615,15 +2615,20 @@ class SideRow:
         вони налазили на рамку та її кути («два квадрати й рамка»). Відступ — під найтовщу можливу рамку
         (курсор / вибрана папка), тож при підсвітці нічого не зсувається."""
         sc = self.app.scaling()
-        i = int((max(NAV_MARK_W, border_width(True)) + 4) * sc)
+        bw = max(NAV_MARK_W, border_width(True))
+        i = int((bw + 4) * sc)
         if i == getattr(self, "_inset", None):
             return
         self._inset = i
         if self.tile:
-            self.dot_box.grid_configure(padx=(i, 0))
-            self.more.grid_configure(padx=(0, i), pady=(i, 0))
-            self.label.grid_configure(padx=(int(6 * sc), i))
-            self.num.grid_configure(padx=(i + int(4 * sc), int(6 * sc)), pady=(0, i))
+            # кути: заокруглення 14 px — «⋯» і лічильник відсунуті від бічного краю далі за радіус, тоді зверху/знизу
+            # досить відступу на товщину рамки (висота плитки лишається для назви)
+            v = self._inset_v = int((bw + 1) * sc)
+            corner = int(max(bw + 4, 16) * sc)
+            self.dot_box.grid_configure(padx=(v + int(3 * sc), 0))
+            self.more.grid_configure(padx=(0, corner), pady=(v, 0))
+            self.label.grid_configure(padx=(int(6 * sc), v + int(2 * sc)))
+            self.num.grid_configure(padx=(corner, int(6 * sc)), pady=(0, v))
         else:
             self.bar.grid_configure(padx=(i, 0), pady=max(10, i))
             self.dot.grid_configure(pady=max(6, i))
@@ -2666,8 +2671,9 @@ class SideRow:
         # назв папок») другий рядок обрізався навпіл — тоді лише один рядок і «…»
         try:
             sc = self.app.scaling()
-            top = self.more.winfo_reqheight() + 4 * sc                    # зверху лише «⋯» (фігура — біля назви)
-            room = size[0] * sc - top - 10 * sc - self.num.winfo_reqheight()
+            inset = getattr(self, "_inset_v", int(4 * sc))                # відступ від рамки (apply_inset)
+            top = self.more.winfo_reqheight() + inset                     # зверху лише «⋯» (фігура — біля назви)
+            room = size[0] * sc - top - inset - 2 * sc - self.num.winfo_reqheight()
             lines = max(1, min(2, int((room + 2) // max(1, font.metrics("linespace")))))
         except tk.TclError:
             lines = 2
@@ -4839,7 +4845,8 @@ class App:
         """Сторінка вибору папки: рядок «Історія буфера» — рівно над блоком плиток (за їхнім фактичним місцем)."""
         self._hist_job = None
         hist = self._row_objs.get(HISTORY)
-        tiles = [self._row_objs[k].row for k in self._row_order if k in self._row_objs]
+        g = self._grown                                  # збільшена плитка — міряємо за її місцем у сітці
+        tiles = [(g[1] if g and g[0] == k else self._row_objs[k].row) for k in self._row_order if k in self._row_objs]
         if hist is None or not tiles or not self._picking() or not self.cat_tiles:
             return
         try:

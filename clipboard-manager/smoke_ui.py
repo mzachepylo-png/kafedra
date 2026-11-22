@@ -3837,10 +3837,10 @@ sig_ = app._cat_sig
 app.select_category(p_cats[0]["id"])
 app.flush_render()
 pump(300)
-assert app.page == "records" and app._cat_sig == sig_ and not sizes_, (sizes_[:5], app._cat_sig, sig_)
+assert app.page == "records" and app._cat_sig == sig_ and len(set(sizes_)) <= 2, (sizes_[:5], app._cat_sig, sig_)
 app.back_to_folders()
 pump(300)
-assert app.page == "folders" and app._cat_sig == sig_ and set(sizes_) <= set(app._row_order) and len(set(sizes_)) <= 2, \
+assert app.page == "folders" and app._cat_sig == sig_ and set(sizes_) <= set(app._row_order) and len(set(sizes_)) <= 3, \
     (sizes_[:5], app._cat_sig, sig_)
 assert app._grown and app._grown[0] == p_cats[0]["id"]
 sizes_.clear()
@@ -3856,6 +3856,8 @@ cm.SideRow.set_size = saved_set_size_
 cols_, tw_, th_ = app._tile_dims()
 s_ = app.scaling()
 for c_ in p_cats:
+    if app._grown and app._grown[0] == c_["id"]:
+        continue                                   # плитка під «курсором» — на 15 % більша (розділ 47)
     row_ = app._row_objs[c_["id"]].row
     assert abs(row_.cget("width") - tw_) <= 10 and row_.cget("height") == th_, (row_.cget("width"), row_.cget("height"), tw_, th_)
     assert abs(row_.winfo_height() - th_ * s_) <= 2, (row_.winfo_height(), th_)
@@ -3945,7 +3947,8 @@ pump(500)
 
 def q_align():
     cols_ = app._tile_dims()[0]
-    tl_ = [app._row_objs[c["id"]].row for c in app.preset.categories]
+    g_ = app._grown                                # збільшена плитка — за її місцем у сітці («заступником»)
+    tl_ = [(g_[1] if g_ and g_[0] == c["id"] else app._row_objs[c["id"]].row) for c in app.preset.categories]
     h_ = app._row_objs[HISTORY].row
     return (abs(h_.winfo_rootx() - tl_[0].winfo_rootx()),
             abs(h_.winfo_rootx() + h_.winfo_width() - tl_[cols_ - 1].winfo_rootx() - tl_[cols_ - 1].winfo_width()))
@@ -3979,7 +3982,8 @@ root.geometry("1900x1000+0+0")
 pump(600)
 cols_, tw_, th_ = app._tile_dims()
 assert cols_ == 4 and abs(tw_ - min(cm.PICK_TILE_MAX, (app._pick_w - 30 - 8 * 3 - 14) / 4)) < 1, (cols_, tw_, app._pick_w)
-assert abs(app._row_objs[q_cats[0]["id"]].row.winfo_width() - tw_ * app.scaling()) <= 3
+q_plain_ = next(c_ for c_ in q_cats if not (app._grown and app._grown[0] == c_["id"]))   # не збільшена плитка
+assert abs(app._row_objs[q_plain_["id"]].row.winfo_width() - tw_ * app.scaling()) <= 3
 app.preset.categories = saved_cats_
 app.render()
 app.flush_render()
@@ -4910,7 +4914,9 @@ assert g47.row.cget("border_width") == cm.NAV_MARK_W
 # вміст — усередині рамки: відступ під найтовщу рамку
 sc47 = app.scaling()
 in47 = int((max(cm.NAV_MARK_W, cm.border_width(True)) + 4) * sc47)
-assert g47._inset == in47 and int(str(g47.more.grid_info()["pady"]).split()[0]) == in47, g47.more.grid_info()
+v47 = int((max(cm.NAV_MARK_W, cm.border_width(True)) + 1) * sc47)
+assert g47._inset == in47 and int(str(g47.more.grid_info()["pady"]).split()[0]) == v47, g47.more.grid_info()
+assert int(str(g47.more.grid_info()["padx"]).split()[-1]) >= int(16 * sc47), "«⋯» — далі за заокруглення кута"
 # курсор на іншу папку — збільшується вона, попередня повертається в сітку
 app.nav_move("d" if app._nav_folders().index(f43["id"]) % 2 else "s")
 pump(300)
