@@ -6277,6 +6277,8 @@ class App:
 
     def _grow_now(self) -> None:
         self._grow_job = None
+        if self.folder_first and not self._picking():
+            return                                 # сторінка записів: папок не видно — нічого не чіпаємо
         key = self._grow_target()
         g = getattr(self, "_grown", None)
         if g is not None and g[0] == key:
@@ -6301,7 +6303,7 @@ class App:
             ph.lower(r)
             sc = self.scaling()
             gw, gh = w * TILE_GROW, h * TILE_GROW
-            self._grown = (key, ph)
+            self._grown = (key, ph, dict(info), (obj._height, getattr(obj, "_width", None)))
             r.grid_forget()
             obj.set_size(int(gh / sc), int(max(40, gw / sc - 24) * sc), getattr(obj, "_font", None), int(gw / sc))
             r.place(x=max(0.0, (x - (gw - w) / 2) / sc), y=max(0.0, (y - (gh - h) / 2) / sc))
@@ -6319,21 +6321,25 @@ class App:
         if g is None:
             return
         self._grown = None
-        key, ph = g
+        key, ph, info, (h0, w0) = g
         try:
             ph.destroy()
         except tk.TclError:
             pass
         obj = self._row_objs.get(key)
-        if obj is not None:
-            try:
-                obj.row.place_forget()
-                obj.row.configure(bg_color="transparent", corner_radius=14)
-            except (tk.TclError, ValueError):
-                pass
-        if relayout:
+        if obj is None:
+            return
+        try:
+            obj.row.place_forget()
+            obj.row.configure(bg_color="transparent", corner_radius=14)
+            if relayout:                       # лише ця плитка — назад у свою клітинку зі звичайним розміром
+                sc = self.scaling()
+                obj.set_size(h0, int(max(40, (w0 or 0) - 24) * sc), getattr(obj, "_font", None), w0)
+                obj.row.grid(row=info["row"], column=info["column"], padx=info["padx"], pady=info["pady"],
+                             sticky=info["sticky"])
+                obj.row.grid_propagate(False)
+        except (tk.TclError, ValueError, TypeError):
             self._cat_sig = None
-            self._arrange_cats()               # плитка — назад у свою клітинку зі звичайним розміром
 
     def _ensure_visible_in(self, sf, widget) -> None:
         try:

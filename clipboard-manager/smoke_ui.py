@@ -3833,19 +3833,24 @@ saved_set_size_ = cm.SideRow.set_size
 cm.SideRow.set_size = lambda self, *a, **k: (sizes_.append(self.key), saved_set_size_(self, *a, **k))[1]
 sig_ = app._cat_sig
 # (a) записи папки: ліва колонка схована — плитки папок не перекладаються; повернення — без жодної роботи
+# (раунд 24: змінюють розмір лише плитка, що збільшується під «курсором», і та, що повертається до звичайного)
 app.select_category(p_cats[0]["id"])
 app.flush_render()
 pump(300)
 assert app.page == "records" and app._cat_sig == sig_ and not sizes_, (sizes_[:5], app._cat_sig, sig_)
 app.back_to_folders()
 pump(300)
-assert app.page == "folders" and app._cat_sig == sig_ and not sizes_, (sizes_[:5], app._cat_sig, sig_)
+assert app.page == "folders" and app._cat_sig == sig_ and set(sizes_) <= set(app._row_order) and len(set(sizes_)) <= 2, \
+    (sizes_[:5], app._cat_sig, sig_)
+assert app._grown and app._grown[0] == p_cats[0]["id"]
+sizes_.clear()
 app.select_category(p_cats[1]["id"])
 app.flush_render()
 app._hidden = True                                 # ховання з папки → сторінка вибору (без перекладання плиток)
 app._reset_when_hidden()
 app._hidden = False
-assert app.page == "folders" and not sizes_, sizes_[:5]
+pump(300)
+assert app.page == "folders" and len(set(sizes_)) <= 2 and app._cat_sig == sig_, sizes_[:5]
 cm.SideRow.set_size = saved_set_size_
 # (b) плитки папок: ширина й висота — як розраховано, без перемальовування за старим розміром
 cols_, tw_, th_ = app._tile_dims()
