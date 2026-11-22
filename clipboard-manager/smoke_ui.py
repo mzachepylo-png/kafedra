@@ -1946,6 +1946,8 @@ app.select_format("builtin-added-cards")
 app.fmt_input.insert("1.0", "77")
 app._update_format_preview()
 app._fmt_append.invoke()
+h_keep = app.history                     # раунд 24: порожнє поле бере значення з буфера — тут буфер без чисел
+app.history = History(os.path.join(tmp, "h_nonum.json"))
 app._clear_format_input()
 app._update_format_preview()
 app.copy_to_clipboard("недоторканий буфер")
@@ -1953,6 +1955,7 @@ click(next(s["id"] for s in r4.snippets(sl["id"]) if s["text"] == "a"))
 assert root.clipboard_get() == "недоторканий буфер" and app.append_armed and root.state() != "withdrawn"
 assert "порожнє" in app.status.cget("text")
 app._on_escape(None)
+app.history = h_keep
 # USER-форматування не зачеплене
 app.select_format("builtin-user")
 app.fmt_input.insert("1.0", "User#99")
