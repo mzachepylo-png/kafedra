@@ -4915,19 +4915,20 @@ assert g47.row.cget("border_width") == cm.NAV_MARK_W
 sc47 = app.scaling()
 in47 = int((max(cm.NAV_MARK_W, cm.border_width(True)) + 4) * sc47)
 v47 = int((max(cm.NAV_MARK_W, cm.border_width(True)) + 1) * sc47)
-assert g47._inset == in47 and int(str(g47.more.grid_info()["pady"]).split()[0]) == v47, g47.more.grid_info()
-assert int(str(g47.more.grid_info()["padx"]).split()[-1]) >= int(16 * sc47), "«⋯» — далі за заокруглення кута"
+import re  # noqa: E402
+nums47 = lambda v: [int(x) for x in re.findall(r"[0-9]+", str(v))]   # noqa: E731 — padx/pady: число або пара
+assert g47._inset == in47 and nums47(g47.more.grid_info()["pady"])[0] == v47, g47.more.grid_info()
+assert nums47(g47.more.grid_info()["padx"])[-1] >= int(16 * sc47), "«⋯» — далі за заокруглення кута"
 # курсор на іншу папку — збільшується вона, попередня повертається в сітку
 app.nav_move("d" if app._nav_folders().index(f43["id"]) % 2 else "s")
 pump(300)
 if app.nav_cat != f43["id"] and app.nav_cat != cm.HISTORY:
     assert app._grown and app._grown[0] == app.nav_cat
     assert g47.row.winfo_manager() == "grid" and not ph47.winfo_exists()
-# у записах збільшення немає
+# сторінка записів — плитки папок не чіпаються; повернення — збільшена та папка, яку щойно відкривали
 app.select_category(f43["id"])
 app.flush_render()
 pump(300)
-assert app._grown is None
 app.back_to_folders()
 pump(300)
 assert app._grown and app._grown[0] == f43["id"]
@@ -4946,7 +4947,8 @@ assert app.fmt_preview2.get("1.0", "end-1c") == ("{LINK:USER:77:E}, {LINK:USER:4
 assert app._fmt_copy2.cget("state") == "normal" and not app._fmt_append2.winfo_ismapped(), "USER — лише копіювання"
 app.submit_format(2)
 assert root.clipboard_get().startswith("{LINK:USER:77:E}, {LINK:USER:44:E}")
-app.select_format("builtin-user")
+if app.sel_format != "builtin-user":               # повторний клік по відкритому формату згортає його
+    app.select_format("builtin-user")
 pump(100)
 app.fmt_input.insert("1.0", "5")
 app._update_format_preview()
