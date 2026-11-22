@@ -5058,6 +5058,8 @@ app.back_to_folders()
 pump(300)
 assert app._clens is None or not app._clens.frame.winfo_manager()
 app.set_rec_view("list")
+root.geometry("1180x660+0+0")                      # розмір, від якого рахує розділ 25 (як наприкінці 47)
+pump(300)
 print("48 Added cards: last run of 4-digit entries (one result); selected record — 15% bigger copy over the list OK")
 
 # ---- 25. справжнє розгортання під віконним менеджером (лише якщо є openbox) -------------------------------------------------------------
