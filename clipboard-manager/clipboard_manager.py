@@ -2513,6 +2513,9 @@ class Card:
             self.frame.configure(border_color=ACCENT if sel else self.border, border_width=border_width(sel))
 
     def destroy(self) -> None:
+        lens = getattr(self.app, "_clens", None)
+        if lens is not None and lens is not self and lens.iid == self.iid:
+            self.app._drop_card_lens()                 # збільшена копія цього запису зникає разом із ним
         try:
             self.unflash()
             self.frame.destroy()
@@ -5942,7 +5945,10 @@ class App:
         card = self._card_objs.get(iid) if iid else None
         item = next((i for i in self.shown if i["id"] == iid), None) if card is not None else None
         if card is None or item is None:
-            self._hide_card_lens()
+            if self._clens is not None and self._clens.iid not in self._card_objs:
+                self._drop_card_lens()             # запису в списку вже немає — копію знищуємо (не лише ховаємо)
+            else:
+                self._hide_card_lens()
             return
         f = card.frame
         try:
