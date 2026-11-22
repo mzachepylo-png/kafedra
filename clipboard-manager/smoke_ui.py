@@ -3632,7 +3632,8 @@ app._on_format_return(SimpleNamespace(state=cm.ALT_MASK, widget=app.fmt_input._t
 pump(200)
 assert root.clipboard_get() == fmt_out_ + " " + target_["text"].strip(), root.clipboard_get()
 assert not app._phrase_rows[target_["id"]]["var"].get() and not app.fmt_input.get("1.0", "end-1c")
-# лише фрази (без формату) — теж Alt+Enter
+# лише фрази (без формату) — теж Alt+Enter (формат закрито: відкритий з порожнім полем бере значення з буфера)
+app._collapse_format()
 app._phrase_rows[target_["id"]]["cb"].toggle()
 app.submit_with_phrases()
 assert root.clipboard_get() == target_["text"].strip()
