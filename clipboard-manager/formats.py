@@ -546,6 +546,8 @@ def clean_ctor(raw) -> dict | None:
             node = {"id": str(n.get("id") or uuid.uuid4().hex), "text": n["text"].strip()[:CTOR_MAX_TEXT]}
             if isinstance(n.get("color"), str) and _HEX.match(n["color"]):
                 node["color"] = n["color"].lower()            # власний колір конструкту
+            if isinstance(n.get("label"), str) and n["label"].strip():
+                node["label"] = n["label"].strip()[:CTOR_MAX_TEXT]   # як показувати у виборі (замість авто)
             kids = clean_list(n.get("children"), depth + 1)
             if kids:
                 node["children"] = kids
@@ -565,6 +567,13 @@ def ctor_label(parent: str, text: str) -> str:
         if rest:
             return rest
     return t
+
+
+def ctor_display(parent: str, node: dict) -> str:
+    """Що показати на плитці у виборі конструкта: власний підпис (якщо задано в редакторі) або нова частина тексту
+    (ctor_label — повний текст, якщо попередню частину в цьому конструкті змінено)."""
+    own = (node.get("label") or "").strip()
+    return own or ctor_label(parent, node.get("text", ""))
 
 
 def ctor_count(ctor: dict | None) -> int:

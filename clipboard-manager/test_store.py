@@ -788,6 +788,17 @@ class HistoryAutofillAndUserLinkTests(unittest.TestCase):
         self.assertEqual(fill_placeholders("U ___ ___", hist, split=True), "U {LINK:USER:1245:E} {LINK:USER:235636:E}")
         self.assertEqual(user_ids_from_history(["Cards 1, 2 were added"], split=True), [], "речення — не номери")
 
+    def test_round27_ctor_own_label(self):
+        from formats import clean_ctor, ctor_display
+        c = clean_ctor({"options": [{"text": "A b", "label": "  short  "}, {"text": "A c", "label": "   "},
+                                    {"text": "A d", "label": 5}]})
+        self.assertEqual(c["options"][0]["label"], "short")
+        self.assertNotIn("label", c["options"][1])
+        self.assertNotIn("label", c["options"][2])
+        self.assertEqual(ctor_display("A", c["options"][0]), "short")
+        self.assertEqual(ctor_display("A", c["options"][1]), "c")
+        self.assertEqual(ctor_display("X", {"text": "Y z"}), "Y z")
+
     def test_round26_added_cards_four_digit_run(self):
         from formats import SINGLE_RESULT_FORMATS, recent_four_digit_entries
         self.assertIn("cards_added", SINGLE_RESULT_FORMATS)

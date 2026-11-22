@@ -600,16 +600,26 @@ def drive_rgb():
     top.hex.delete(0, "end")
     top.hex.insert(0, "#123456")
     top._from_hex()
-    assert (top.vars["R"].get(), top.vars["G"].get(), top.vars["B"].get()) == (0x12, 0x34, 0x56)
-    top.vars["B"].set(0x99)
-    top._from_sliders()
-    assert top.color() == "#123499" and top.hex.get() == "#123499"
+    assert top.color() == "#123456"
+    # раунд 27: спектр замість повзунків — квадрат (x — насиченість, y — яскравість) і смуга відтінків
+    top._pick_sv(SimpleNamespace(x=top.W - 1, y=0))               # праворуч угорі — чистий колір цього відтінку
+    assert top.s == 1 and top.v == 1 and top.hex.get() == top.color() != "#123456"
+    top._pick_hue(SimpleNamespace(x=0, y=1))                       # лівий край спектра — червоний
+    assert top.color() == "#ff0000" and top.hex.get() == "#ff0000", top.color()
+    top._pick_sv(SimpleNamespace(x=0, y=top.H - 1))                # ліворуч унизу — чорний
+    assert top.color() == "#000000"
+    top._pick_sv(SimpleNamespace(x=0, y=0))                        # ліворуч угорі — білий
+    assert top.color() == "#ffffff"
+    top._pick_hue(SimpleNamespace(x=top.W // 3, y=1))              # зміна відтінку на білому — одразу видно колір
+    assert top.s == 1 and top.color() != "#ffffff"
+    top._pick_sv(SimpleNamespace(x=top.W - 1, y=0))
     top.accept()
 
 
 root.after(300, dlg.custom)
 root.after(900, drive_rgb)
-assert cm._Dialog.run(dlg) == ("set", "#123499")
+res_rgb = cm._Dialog.run(dlg)
+assert res_rgb[0] == "set" and res_rgb[1].startswith("#") and res_rgb[1] not in ("#ffffff", "#ff0000"), res_rgb
 dlg = cm.ColorDialog(app, "Колір", None)
 root.after(300, dlg.custom)
 root.after(900, lambda: [w for w in root.winfo_children() if isinstance(w, cm.RGBDialog)][-1].cancel())
@@ -5061,6 +5071,47 @@ app.set_rec_view("list")
 root.geometry("1180x660+0+0")                      # розмір, від якого рахує розділ 25 (як наприкінці 47)
 pump(300)
 print("48 Added cards: last run of 4-digit entries (one result); selected record — 15% bigger copy over the list OK")
+
+# ---- 49. раунд 27: свій підпис конструкта у виборі (замість повного тексту, якщо попередню частину змінено) ------------
+base49 = "Refund was done."
+ctor49 = {"options": [{"text": "Refund was done. For 3 months."},
+                      {"text": "Refund was NOT done because of fraud."}]}
+ed49 = cm.CtorEditDialog(app, base49, ctor49)
+ed49.update()
+boxes49 = [next(w for w in t.winfo_children() if isinstance(w, ctk.CTkTextbox)) for t in ed49.list.winfo_children()
+           if isinstance(t, ctk.CTkFrame)]
+assert len(boxes49) == 2
+hint49 = lambda b: next(w for w in b.master.winfo_children()  # noqa: E731
+                        if isinstance(w, ctk.CTkLabel) and w.cget("text")).cget("text")
+assert "Попередню частину змінено" in hint49(boxes49[1]), hint49(boxes49[1])
+boxes49[1].label_entry.insert(0, "NOT done — fraud")
+boxes49[1].sync_node()
+assert ed49.current()[1]["label"] == "NOT done — fraud" and "свій підпис" in hint49(boxes49[1])
+assert "For 3 months." in hint49(boxes49[0])
+ed49.accept()
+res49 = ed49.result
+assert res49["options"][1]["label"] == "NOT done — fraud" and "label" not in res49["options"][0], res49
+from formats import clean_ctor, ctor_display  # noqa: E402
+assert clean_ctor(res49) == res49, "підпис зберігається в пресеті"
+assert ctor_display(base49, res49["options"][0]) == "For 3 months."
+assert ctor_display(base49, res49["options"][1]) == "NOT done — fraud"
+pk49 = cm.CtorDialog(app, base49, res49, finalize=lambda t: (t, ""))
+pk49.update()
+tiles49 = [lbl.cget("text") for _fr, lbl, _b, _h in pk49.rows]
+assert tiles49[:2] == ["For 3 months.", "NOT done — fraud"], tiles49
+pk49._activate(1)                                  # обрано — копіюється ПОВНИЙ текст конструкта, не підпис
+assert pk49.result["text"] == "Refund was NOT done because of fraud.", pk49.result
+# підпис можна прибрати — знову авто (повний текст)
+ed49b = cm.CtorEditDialog(app, base49, res49)
+ed49b.update()
+b49 = [next(w for w in t.winfo_children() if isinstance(w, ctk.CTkTextbox)) for t in ed49b.list.winfo_children()
+       if isinstance(t, ctk.CTkFrame)][1]
+assert b49.label_entry.get() == "NOT done — fraud"
+b49.label_entry.delete(0, "end")
+b49.sync_node()
+ed49b.accept()
+assert "label" not in ed49b.result["options"][1]
+print("49 ctor: own label in picker; color picker — spectrum (hue strip + saturation/brightness square) OK")
 
 # ---- 25. справжнє розгортання під віконним менеджером (лише якщо є openbox) -------------------------------------------------------------
 import shutil  # noqa: E402

@@ -14,6 +14,7 @@
 
 from __future__ import annotations
 
+import colorsys
 import copy
 import os
 import re
@@ -44,7 +45,7 @@ from types import SimpleNamespace
 import customtkinter as ctk
 
 from formats import (APPENDERS, AUTO_HISTORY_FORMATS, FORMATTERS, MERGE_ACTIONS, append_result, apply_format,
-                     SHAPES, USER_TAG, apply_merge, clean_count, shape_for_color, take, apply_user_link, clean_ctor, clean_v2, compose_phrases, ctor_count, ctor_label,
+                     SHAPES, USER_TAG, apply_merge, clean_count, shape_for_color, take, apply_user_link, clean_ctor, clean_v2, compose_phrases, ctor_count, ctor_label, ctor_display,
                      fill_email, infer_tag, render_tag, resolve_tags, tag_ref, fill_placeholders, format_actions,
                      has_user_placeholder, join_values, last_email, last_user_id, numbers_from_history, recent_numbers,
                      SINGLE_RESULT_FORMATS, recent_four_digit_entries,
@@ -1435,12 +1436,13 @@ class CtorEditDialog(_Dialog):
         else:
             self.back_btn.pack_forget()
         parents = [self.root_text] + [n["text"] for n in self.path]
-        names = ["Стовбур"] + [clip(ctor_label(parents[i], n["text"]), 22) for i, n in enumerate(self.path)]
+        names = ["Стовбур"] + [clip(ctor_display(parents[i], n), 22) for i, n in enumerate(self.path)]
         self.crumb.configure(text="  ›  ".join(names) + (f"   — крок {len(self.path) + 1}"))
         base = self.parent_text()
         self.parent_lbl.configure(text=("Попередній текст: «" + clip(base, 300) + "»\n" if base else "") +
                                   "Кожен конструкт пишіть ПОВНІСТЮ (новий уже починається з попереднього тексту); "
-                                  "у виборі буде видно лише нову частину. «None» додається автоматично.")
+                                  "у виборі буде видно лише нову частину — або те, що впишете в поле «У виборі» "
+                                  "під текстом. «None» додається автоматично.")
         items = self.current()
         last = None
         for c in range(self.COLS):
@@ -1461,7 +1463,7 @@ class CtorEditDialog(_Dialog):
         own = node.get("color")
         fill, _hover, border = card_colors(own or CTOR_DEFAULT)
         row = ctk.CTkFrame(self.list, corner_radius=14, fg_color=fill, border_width=border_width(bool(own)),
-                           border_color=border, width=self.TILE, height=self.TILE)
+                           border_color=border, width=self.TILE, height=self.TILE + 40)   # + поле «У виборі»
         muted = ink(fill, "muted")
         row.grid(row=index // self.COLS, column=index % self.COLS, padx=6, pady=6, sticky="nsew")
         row.grid_propagate(False)
@@ -1474,19 +1476,37 @@ class CtorEditDialog(_Dialog):
         box.insert("1.0", node.get("text", ""))
         hint = ctk.CTkLabel(row, text="", anchor="w", justify="left", text_color=muted, font=app.f.body,
                             wraplength=self.TILE - 30, height=40)
-        hint.grid(row=1, column=0, columnspan=4, sticky="ew", padx=12, pady=(0, 4))
+        hint.grid(row=1, column=0, columnspan=4, sticky="ew", padx=12, pady=(0, 2))
+        # як показувати плитку у вікні вибору: порожньо — авто (нова частина тексту), або свій підпис
+        lab = ctk.CTkEntry(row, height=32, corner_radius=9, border_width=1, border_color=PANEL_BORDER,
+                           fg_color=INPUT, text_color=TEXT, font=app.f.body,
+                           placeholder_text="У виборі: як показувати (порожньо — авто)")
+        lab.grid(row=2, column=0, columnspan=4, sticky="ew", padx=10, pady=(0, 6))
+        if node.get("label"):
+            lab.insert(0, node["label"])
 
-        def sync(_e=None, n=node, b=box, h=hint):
+        def sync(_e=None, n=node, b=box, h=hint, e=lab):
             n["text"] = b.get("1.0", "end-1c")
+            own = e.get().strip()
+            if own:
+                n["label"] = own
+            else:
+                n.pop("label", None)
             t = n["text"].strip()
             if not t:
                 h.configure(text="Порожній конструкт не збережеться", text_color=muted)
+            elif own:
+                h.configure(text="У виборі (свій підпис): «" + clip(own, 80) + "»", text_color=muted)
             elif base and not t.casefold().startswith(base.casefold()):
-                h.configure(text="⚠ Не починається з попереднього тексту — у виборі буде видно весь текст",
-                            text_color=DANGER)
+                h.configure(text="⚠ Попередню частину змінено — у виборі буде видно весь текст. "
+                                 "Впишіть нижче, як показувати", text_color=DANGER)
             else:
                 h.configure(text="У виборі: «" + clip(ctor_label(base, t), 90) + "»", text_color=muted)
         box.bind("<KeyRelease>", sync, add="+")
+        lab.bind("<KeyRelease>", sync, add="+")
+        for ev in ("<<Paste>>", "<<Cut>>"):
+            lab.bind(ev, lambda e, f=sync: self.after(20, f), add="+")
+        box.label_entry = lab                     # для тестів
         box.sync_node = sync                      # для тестів / вставки тегів
         for ev in ("<<Paste>>", "<<Cut>>", "<<Undo>>", "<<Redo>>"):
             box.bind(ev, lambda e, f=sync: self.after(20, f), add="+")
@@ -1501,22 +1521,22 @@ class CtorEditDialog(_Dialog):
         ctk.CTkButton(row, text=sh, width=40, height=34, corner_radius=9, text_color="#ffffff" if own else TEXT,
                       fg_color=own or BTN2, hover_color=blend(own, "#000000", 0.2) if own else BTN2_HOVER,
                       font=app.f.icon, command=lambda n=node: self.pick_color(n)
-                      ).grid(row=2, column=0, sticky="w", padx=(10, 4), pady=(0, 6))
+                      ).grid(row=3, column=0, sticky="w", padx=(10, 4), pady=(0, 6))
         ctk.CTkButton(row, text=f"Продовження ▸ ({n_ch})", height=34, corner_radius=9, fg_color=ACCENT,
                       hover_color=ACCENT_HOVER, font=app.f.body, command=lambda n=node: self.open_node(n)
-                      ).grid(row=2, column=1, columnspan=3, sticky="ew", padx=(0, 10), pady=(0, 6))
+                      ).grid(row=3, column=1, columnspan=3, sticky="ew", padx=(0, 10), pady=(0, 6))
         tag_btn = ctk.CTkButton(row, text="{ } Тег", width=80, height=34, corner_radius=9, fg_color=BTN2,
                                 hover_color=BTN2_HOVER, text_color=TEXT, font=app.f.body)
         tag_btn.configure(command=lambda i=insert, w=tag_btn: _tag_menu(self, app, i, lambda: self.new_tag(i)).tk_popup(
             w.winfo_rootx(), w.winfo_rooty() + w.winfo_height()))
-        tag_btn.grid(row=3, column=0, sticky="w", padx=(10, 2), pady=(0, 10))
+        tag_btn.grid(row=4, column=0, sticky="w", padx=(10, 2), pady=(0, 10))
         for col, (text, delta) in enumerate((("◀", -1), ("▶", 1)), start=1):     # порядок плиток: лівіше / правіше
             ctk.CTkButton(row, text=text, width=34, height=34, corner_radius=9, fg_color=BTN2, hover_color=BTN2_HOVER,
                           text_color=TEXT, font=app.f.body, command=lambda d=delta, n=node: self._move(n, d)
-                          ).grid(row=3, column=col, padx=2, pady=(0, 10))
+                          ).grid(row=4, column=col, padx=2, pady=(0, 10))
         ctk.CTkButton(row, text="✕", width=34, height=34, corner_radius=9, fg_color="transparent", hover_color=DANGER_SOFT,
                       text_color=DANGER, font=app.f.body, command=lambda n=node: self._delete(n)
-                      ).grid(row=3, column=3, sticky="e", padx=(2, 10), pady=(0, 10))
+                      ).grid(row=4, column=3, sticky="e", padx=(2, 10), pady=(0, 10))
         return box
 
     def _move(self, node: dict, delta: int) -> None:
@@ -1658,7 +1678,7 @@ class CtorDialog(_Dialog):
         for i, node in enumerate(self.options()):              # лише текст продовження — без номерів і значків
             more = bool(node.get("children"))
             color = node.get("color")
-            self._option(i, ctor_label(base, node["text"]), color or (CTOR_DEFAULT if more else CTOR_LEAF))
+            self._option(i, ctor_display(base, node), color or (CTOR_DEFAULT if more else CTOR_LEAF))
         self._option(len(self.options()), "None — залишити як є і скопіювати", None)
         self.hl = 0
         self._paint()
@@ -2065,35 +2085,57 @@ class ColorDialog(_Dialog):
 
 
 class RGBDialog(_Dialog):
-    """Власний вибір довільного кольору (замість рідного вікна Windows, яке відкривалось на першому моніторі
-    й ламалось поверх модальних вікон): три повзунки R/G/B, поле HEX і попередній перегляд.
+    """Свій колір — на спектрі, без повзунків: зверху смуга відтінків (клік або перетягування — відтінок), нижче
+    квадрат цього відтінку — координати x / y: ліворуч → праворуч насиченість (від білого до чистого кольору),
+    згори → вниз яскравість (до чорного). Поле HEX — для точного значення, попередній перегляд.
     Результат: "#rrggbb" або None."""
 
+    SQ = (420, 230)            # квадрат насиченість × яскравість, px до масштабу
+    HUE_H = 30                 # смуга відтінків
+
     def __init__(self, app: "App", current: str | None):
-        super().__init__(app, "Свій колір (RGB)", 470, 390)
+        super().__init__(app, "Свій колір", 490, 560)
         start = (current or "#0f6cbd").lower()
         if not COLOR_RE.match(start):
             start = "#0f6cbd"
-        r, g, b = _rgb(start)
+        self.h, self.s, self.v = colorsys.rgb_to_hsv(*(c / 255 for c in _rgb(start)))
+        sc = app.scaling()
+        self.W, self.H, self.HH = int(self.SQ[0] * sc), int(self.SQ[1] * sc), int(self.HUE_H * sc)
         card = ctk.CTkFrame(self, corner_radius=16, fg_color=PANEL, border_width=1, border_color=PANEL_BORDER)
         card.pack(fill="both", expand=True, padx=14, pady=14)
-        self.preview = ctk.CTkFrame(card, height=64, corner_radius=14, fg_color=start, border_width=1,
+        self.preview = ctk.CTkFrame(card, height=48, corner_radius=14, fg_color=start, border_width=1,
                                     border_color=PANEL_BORDER)
-        self.preview.pack(fill="x", padx=22, pady=(20, 10))
-        self.vars, self.labels = {}, {}
-        for name, val in (("R", r), ("G", g), ("B", b)):
-            row = ctk.CTkFrame(card, fg_color="transparent")
-            row.pack(fill="x", padx=22, pady=3)
-            ctk.CTkLabel(row, text=name, width=22, text_color=MUTED, font=app.f.dlg_bold).pack(side="left")
-            var = tk.IntVar(value=val)
-            sl = ctk.CTkSlider(row, from_=0, to=255, number_of_steps=255, variable=var,
-                               command=lambda v: self._from_sliders())
-            sl.pack(side="left", fill="x", expand=True, padx=8)
-            lab = ctk.CTkLabel(row, text=str(val), width=36, text_color=TEXT, font=app.f.dlg)
-            lab.pack(side="left")
-            self.vars[name], self.labels[name] = var, lab
+        self.preview.pack(fill="x", padx=22, pady=(18, 10))
+        bg = app.col(PANEL)
+        ctk.CTkLabel(card, text="ВІДТІНОК — клік або перетягніть по спектру", anchor="w", text_color=MUTED,
+                     font=app.f.caps).pack(fill="x", padx=22, pady=(0, 2))
+        self.hue = tk.Canvas(card, width=self.W, height=self.HH, highlightthickness=0, bd=0, bg=bg, cursor="hand2")
+        self.hue.pack(padx=22)
+        ctk.CTkLabel(card, text="НАСИЧЕНІСТЬ (← →)  ·  ЯСКРАВІСТЬ (↑ ↓)", anchor="w", text_color=MUTED,
+                     font=app.f.caps).pack(fill="x", padx=22, pady=(10, 2))
+        self.sq = tk.Canvas(card, width=self.W, height=self.H, highlightthickness=0, bd=0, bg=bg, cursor="crosshair")
+        self.sq.pack(padx=22)
+        from PIL import Image                          # pillow — уже в збірці (іконка програми)
+        self._Image = Image
+        grad = Image.linear_gradient("L")              # 256×256: згори 0 → униз 255
+        self._grad_v = grad.resize((self.W, self.H))                           # чорне — унизу
+        self._grad_h = grad.rotate(-90).resize((self.W, self.H))               # біле — ліворуч
+        full = Image.new("L", (self.W, self.HH), 255)
+        hue_img = Image.merge("HSV", (grad.rotate(90).resize((self.W, self.HH)), full, full)).convert("RGB")
+        self._hue_img = self._photo(hue_img, self.hue)
+        self.hue.create_image(0, 0, anchor="nw", image=self._hue_img)
+        self._sq_img = None
+        self._sq_hue = None
+        self._sq_item = self.sq.create_image(0, 0, anchor="nw")
+        r = int(8 * sc)
+        self._mark_o = self.sq.create_oval(0, 0, 2 * r, 2 * r, outline="#ffffff", width=max(2, int(2 * sc)))
+        self._mark_i = self.sq.create_oval(0, 0, 2 * r - 4, 2 * r - 4, outline="#000000", width=1)
+        self._hue_mark = self.hue.create_rectangle(0, 0, 1, self.HH, outline="#ffffff", width=max(2, int(3 * sc)))
+        for w, fn in ((self.sq, self._pick_sv), (self.hue, self._pick_hue)):
+            w.bind("<Button-1>", fn)
+            w.bind("<B1-Motion>", fn)
         hexrow = ctk.CTkFrame(card, fg_color="transparent")
-        hexrow.pack(fill="x", padx=22, pady=(10, 4))
+        hexrow.pack(fill="x", padx=22, pady=(12, 4))
         ctk.CTkLabel(hexrow, text="HEX", width=40, text_color=MUTED, font=app.f.dlg_bold).pack(side="left")
         self.hex = ctk.CTkEntry(hexrow, width=130, height=36, corner_radius=10, fg_color=INPUT,
                                 border_color=PANEL_BORDER, font=app.f.dlg, text_color=TEXT)
@@ -2110,21 +2152,60 @@ class RGBDialog(_Dialog):
                       command=self.accept).pack(side="left")
         ctk.CTkButton(btns, text="Скасувати", width=100, height=40, corner_radius=12, fg_color="transparent",
                       hover_color=BTN2, text_color=MUTED, font=app.f.dlg, command=self.cancel).pack(side="right")
+        self._refresh()
 
     def color(self) -> str:
-        return "#%02x%02x%02x" % tuple(int(self.vars[n].get()) for n in "RGB")
+        return "#%02x%02x%02x" % tuple(int(round(c * 255)) for c in colorsys.hsv_to_rgb(self.h, self.s, self.v))
 
-    def _show(self, color: str) -> None:
-        self.preview.configure(fg_color=color)
-        for n in "RGB":
-            self.labels[n].configure(text=str(int(self.vars[n].get())))
+    @staticmethod
+    def _photo(img, master) -> tk.PhotoImage:
+        """PIL-зображення → tk.PhotoImage через PNG (Tk 8.6 читає його сам; без PIL.ImageTk)."""
+        import base64
+        import io
+        buf = io.BytesIO()
+        img.save(buf, "PNG", compress_level=0)
+        return tk.PhotoImage(master=master, data=base64.b64encode(buf.getvalue()).decode("ascii"))
 
-    def _from_sliders(self) -> None:
+    def _draw_square(self) -> None:
+        """Квадрат поточного відтінку: колір → білий ліворуч, → чорний донизу (точно HSV, без попіксельного циклу)."""
+        if self._sq_hue == self.h:
+            return
+        self._sq_hue = self.h
+        Image = self._Image
+        rgb = tuple(int(round(c * 255)) for c in colorsys.hsv_to_rgb(self.h, 1, 1))
+        img = Image.composite(Image.new("RGB", (self.W, self.H), (255, 255, 255)),
+                              Image.new("RGB", (self.W, self.H), rgb), self._grad_h)
+        img = Image.composite(Image.new("RGB", (self.W, self.H), (0, 0, 0)), img, self._grad_v)
+        self._sq_img = self._photo(img, self.sq)
+        self.sq.itemconfigure(self._sq_item, image=self._sq_img)
+
+    def _refresh(self, hex_too: bool = True) -> None:
+        self._draw_square()
+        x, y = self.s * (self.W - 1), (1 - self.v) * (self.H - 1)
+        x1, y1, x2, y2 = self.sq.coords(self._mark_o)
+        r = (x2 - x1) / 2
+        self.sq.coords(self._mark_o, x - r, y - r, x + r, y + r)
+        self.sq.coords(self._mark_i, x - r + 2, y - r + 2, x + r - 2, y + r - 2)
+        hx = self.h * (self.W - 1)
+        w = max(3, int(4 * self.app.scaling()))
+        self.hue.coords(self._hue_mark, hx - w, 1, hx + w, self.HH - 1)
         c = self.color()
-        self._show(c)
-        if self.hex.get().lower() != c:
+        self.preview.configure(fg_color=c)
+        if hex_too and self.hex.get().lower() != c:
             self.hex.delete(0, "end")
             self.hex.insert(0, c)
+            self.hex.configure(border_color=PANEL_BORDER)
+
+    def _pick_sv(self, e) -> None:
+        self.s = min(1.0, max(0.0, e.x / max(1, self.W - 1)))
+        self.v = 1 - min(1.0, max(0.0, e.y / max(1, self.H - 1)))
+        self._refresh()
+
+    def _pick_hue(self, e) -> None:
+        self.h = min(0.9999, max(0.0, e.x / max(1, self.W - 1)))
+        if self.s < 0.05 and self.v > 0.95:          # білий/сірий — інакше зміна відтінку нічого б не показала
+            self.s = 1.0
+        self._refresh()
 
     def _from_hex(self) -> None:
         text = self.hex.get().strip().lower()
@@ -2135,9 +2216,10 @@ class RGBDialog(_Dialog):
         ok = bool(COLOR_RE.match(text))
         self.hex.configure(border_color=PANEL_BORDER if ok or len(text) <= 1 else DANGER)
         if ok:
-            for n, v in zip("RGB", _rgb(text)):
-                self.vars[n].set(v)
-            self._show(text)
+            h, s_, v = colorsys.rgb_to_hsv(*(c / 255 for c in _rgb(text)))
+            self.h = h if s_ > 0 else self.h               # сірий — відтінок лишається попередній
+            self.s, self.v = s_, v
+            self._refresh(hex_too=False)
 
     def accept(self) -> None:
         self.result = self.color()
