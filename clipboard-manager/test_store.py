@@ -788,6 +788,11 @@ class HistoryAutofillAndUserLinkTests(unittest.TestCase):
         self.assertEqual(fill_placeholders("U ___ ___", hist, split=True), "U {LINK:USER:1245:E} {LINK:USER:235636:E}")
         self.assertEqual(user_ids_from_history(["Cards 1, 2 were added"], split=True), [], "речення — не номери")
 
+    def test_recent_numbers_colon_semicolon_dot(self):
+        from formats import recent_numbers
+        self.assertEqual(recent_numbers(["11: 22; 33", "44.55", "текст", "9"]), ["11", "22", "33", "44", "55"])
+        self.assertEqual(recent_numbers(["{LINK:USER:7:E}: 8"]), ["7", "8"])
+
     def test_custom_tags(self):
         from formats import clean_tags, infer_tag, render_tag, resolve_tags
         t = infer_tag("1234", "Card #1234 was blocked.")

@@ -47,6 +47,7 @@ from formats import (APPENDERS, AUTO_HISTORY_FORMATS, FORMATTERS, MERGE_ACTIONS,
                      SHAPES, USER_TAG, apply_merge, clean_count, shape_for_color, take, apply_user_link, clean_ctor, clean_v2, compose_phrases, ctor_count, ctor_label,
                      fill_email, infer_tag, render_tag, resolve_tags, tag_ref, fill_placeholders, format_actions,
                      has_user_placeholder, join_values, last_email, last_user_id, numbers_from_history, recent_numbers,
+                     MAX_RECENT_NUMBERS,
                      user_ids_from_history,
                      user_link, user_links, v2_compose)
 from store import (HISTORY, PALETTE, PRESET_SUFFIX, History, Preset, PresetError, Settings,
@@ -120,6 +121,7 @@ LOG_LIMIT = 200_000            # app.log / error.log: при перевищен�
 CHECK_SIZE = 48                # галочка вибору запису в історії (у 2 рази більша за звичайну)
 # біт Alt у event.state: на Windows — 0x20000 (0x8 там означає увімкнений NumLock!), на Linux/X11 — 0x8
 ALT_MASK = 0x20000 if os.name == "nt" else 0x8
+TILE_GROW = 1.15             # плитка папки під «курсором» (остання відкрита) — на 15 % більша, поверх сусідів
 PICK_TILE_MIN = 230          # мінімальна ширина плитки папки на сторінці вибору папки (режим «спочатку папка»)
 CELL_LINE = ("#e1e5eb", "#2c3038")   # ледь помітні рамки порожніх клітинок сітки записів (режим «спочатку папка»)
 CELL_EXTRA_ROWS = 2          # порожніх рядів клітинок під останньою плиткою — щоб було куди перетягнути
@@ -2570,6 +2572,7 @@ class SideRow:
                           lambda e: app.show_category_menu(e.x_root, e.y_root, key))
             self.dot_box.bind("<Button-1>", lambda e: (app.on_category_color(key), "break")[1])
             app._hoverable(self.row, parts + [self.dot, self.dot_box, self.more], self._enter, self._leave)
+            self.apply_inset()
             return
         self.row = ctk.CTkFrame(parent, corner_radius=12, fg_color="transparent", border_width=0,
                                 border_color=PANEL_BORDER, cursor="hand2", height=ROW_H)
@@ -2605,6 +2608,30 @@ class SideRow:
         else:
             app._bind_all(parts + [self.dot], "<Button-1>", lambda e: app.select_category(key))
         app._hoverable(self.row, parts + [self.dot] + ([self.more] if self.more else []), self._enter, self._leave)
+        self.apply_inset()
+
+    def apply_inset(self) -> None:
+        """Вміст — УСЕРЕДИНІ заокругленої рамки. Мітки й «⋯» — прості прямокутні tk-віджети: з малими відступами
+        вони налазили на рамку та її кути («два квадрати й рамка»). Відступ — під найтовщу можливу рамку
+        (курсор / вибрана папка), тож при підсвітці нічого не зсувається."""
+        sc = self.app.scaling()
+        i = int((max(NAV_MARK_W, border_width(True)) + 4) * sc)
+        if i == getattr(self, "_inset", None):
+            return
+        self._inset = i
+        if self.tile:
+            self.dot_box.grid_configure(padx=(i, 0))
+            self.more.grid_configure(padx=(0, i), pady=(i, 0))
+            self.label.grid_configure(padx=(int(6 * sc), i))
+            self.num.grid_configure(padx=(i + int(4 * sc), int(6 * sc)), pady=(0, i))
+        else:
+            self.bar.grid_configure(padx=(i, 0), pady=max(10, i))
+            self.dot.grid_configure(pady=max(6, i))
+            self.label.grid_configure(pady=max(7, i))
+            if self.more is not None:
+                self.more.grid_configure(padx=(0, i))
+            else:
+                self.num.grid_configure(padx=(4, i))
 
     def set_size(self, height: int, wrap_px: int, font=None, width: int | None = None) -> None:
         """Лише для плиток: висота «квадрата», ширина переносу назви й шрифт (на сторінці вибору папки — більший).
@@ -2686,6 +2713,7 @@ class SideRow:
 
     def update(self, name: str, color: str, count: int, selected: bool, shape: str = "", border: str | None = None) -> None:
         a = self.app
+        self.apply_inset()                     # товщину рамок могли змінити (⚙ → «Рамки»)
         sig = (name, color, count, selected, a._name_chars, shape, border)
         if sig == self.sig:
             return
@@ -3298,6 +3326,8 @@ class App:
                  events: "queue.Queue[str]", use_hotkey: bool = True, use_tray: bool = True,
                  start_hidden: bool = False, relaunch_ok: bool = False):
         _mark("app_init_start")
+        self._grown = None                  # (папка, заступник у сітці) — збільшена плитка під «курсором»
+        self._grow_job = None
         self.root = root
         self.preset = preset
         self.history = history
@@ -4359,7 +4389,7 @@ class App:
         """Що дописується в режимі Append: результат вибраного формату або обрана швидка фраза."""
         if self.armed_src == "refund":
             return self._phrase_text()
-        return self._format_result()
+        return self._format_result(2 if self.armed_src == "format_all" else 1)
 
     def _ensure_fmt(self) -> None:
         """Будує область введення форматування (заголовок, підказка, поле, перегляд, кнопки)."""
@@ -4397,6 +4427,27 @@ class App:
                                          hover_color=BTN2_HOVER, text_color=TEXT, border_width=2,
                                          border_color=BTN2, font=self.f.bold, command=self.arm_append)
         self._fmt_append.grid(row=0, column=1, sticky="ew", padx=(5, 0))
+        # друге вікно результату: УСІ останні числові значення з буфера (через «,», «.», «;», «:» чи пробіл);
+        # неактивне, коли в поле введення щось вставлено (тоді результат — лише в першому вікні)
+        self._fmt_lbl2 = self._label(box, "Результат 2 — усі останні значення з буфера", PANEL, MUTED, pf.caps,
+                                     anchor="w")
+        self._fmt_lbl2.pack(fill="x", padx=16, pady=(6, 2))
+        self._fmt_preview2 = ctk.CTkTextbox(box, height=self._fmt_heights[1], wrap="word", corner_radius=10,
+                                            border_width=1, border_color=PANEL_BORDER, fg_color=INPUT,
+                                            text_color=TEXT, font=self.f.mono)
+        self._fmt_preview2.pack(fill="x", padx=14)
+        self._fmt_preview2.configure(state="disabled")
+        self._fmt_actions2 = ctk.CTkFrame(box, fg_color="transparent")
+        self._fmt_actions2.pack(fill="x", padx=14, pady=(10, 4))
+        self._fmt_actions2.grid_columnconfigure((0, 1), weight=1, uniform="fmtpair2")
+        self._fmt_copy2 = ctk.CTkButton(self._fmt_actions2, text="Copy усі", height=38, corner_radius=12,
+                                        fg_color=ACCENT, hover_color=ACCENT_HOVER, font=self.f.bold,
+                                        command=lambda: self.submit_format(2))
+        self._fmt_copy2.grid(row=0, column=0, sticky="ew", padx=(0, 5))
+        self._fmt_append2 = ctk.CTkButton(self._fmt_actions2, text="Append усі", height=38, corner_radius=12,
+                                          fg_color=BTN2, hover_color=BTN2_HOVER, text_color=TEXT, border_width=2,
+                                          border_color=BTN2, font=self.f.bold, command=lambda: self.arm_append(2))
+        self._fmt_append2.grid(row=0, column=1, sticky="ew", padx=(5, 0))
         self._fmt_armed_hint = self._label(box, "Оберіть запис у папці — результат буде дописано в кінець",
                                            PANEL, ARMED, pf.small, anchor="w", justify="left",
                                            wraplength=int((self._right_w - 40) * self.scaling()))
@@ -4413,6 +4464,7 @@ class App:
     fmt_title = _lazy_fmt("fmt_title")
     fmt_input = _lazy_fmt("fmt_input")
     fmt_preview = _lazy_fmt("fmt_preview")
+    fmt_preview2 = _lazy_fmt("fmt_preview2")
     fmt_btn = _lazy_fmt("fmt_btn")
 
     def _plan_layout(self, width_px: int) -> None:
@@ -4740,6 +4792,8 @@ class App:
         if sig == self._cat_sig:
             return
         self._cat_sig = sig
+        if getattr(self, "_grown", None) is not None:
+            self._ungrow_tile(relayout=False)          # розкладка — заново; збільшення — після неї
         for key in wanted:
             obj = self._row_objs.get(key)
             if obj is not None and not obj.tile:
@@ -4763,6 +4817,8 @@ class App:
                 obj.set_size(th, wrap, font, int(tile_w) if picking else None)
                 obj.row.grid(row=i // cols, column=off + i % cols, padx=3, pady=3, sticky="nsew")
                 obj.row.grid_propagate(False)               # висота плитки фіксована
+            if picking:
+                self._sync_grow()
         else:
             for key in wanted:
                 self._row_objs[key].row.pack(fill="x", padx=6, pady=2)
@@ -4811,6 +4867,7 @@ class App:
         self._rebuild_cat_rows(tiles)
 
     def _rebuild_cat_rows(self, tiles: bool) -> None:
+        self._ungrow_tile(relayout=False)
         self.cat_tiles = tiles
         for key in [k for k in self._row_objs if k != HISTORY]:     # рядки іншого вигляду — знищуємо, створяться заново
             obj = self._row_objs.pop(key)
@@ -4916,7 +4973,17 @@ class App:
             self._fmt_box.pack_forget()
 
     def _show_actions(self, two: bool) -> None:
-        """Одна кнопка (USER) або пара «Copy» / «Append» залежно від дій формату."""
+        """Одна кнопка (USER) або пара «Copy» / «Append» залежно від дій формату (і так само під другим вікном)."""
+        self._fmt_copy2.configure(text="Copy усі" if two else
+                                  ("Копіювати всі і сховати" if self.settings["autohide"] else "Копіювати всі"))
+        if two:
+            self._fmt_copy2.grid_configure(columnspan=1, padx=(0, 5))
+            if not self._fmt_append2.winfo_manager():
+                self._fmt_append2.grid(row=0, column=1, sticky="ew", padx=(5, 0))
+        else:
+            if self._fmt_append2.winfo_manager():
+                self._fmt_append2.grid_remove()
+            self._fmt_copy2.grid_configure(columnspan=2, padx=0)
         if two:
             if self._fmt_btn.winfo_manager():
                 self._fmt_btn.pack_forget()
@@ -4945,7 +5012,8 @@ class App:
             right_h = self.right.winfo_height() / s
             if right_h < 200:                       # колонку ще не розкладено
                 return
-            overhead = self._fmt_box.winfo_reqheight() / s - sum(self._fmt_heights)    # усе в блоці, крім двох полів
+            overhead = (self._fmt_box.winfo_reqheight() / s - self._fmt_heights[0]
+                        - 2 * self._fmt_heights[1])           # усе в блоці, крім трьох полів (введення + 2 результати)
             room = (right_h - 52 - self.formats_slot.winfo_reqheight() / s - self.refund_box.winfo_reqheight() / s
                     - overhead - 22 - (28 if self.append_armed else 0))
             auto = getattr(self, "_phr_auto", False)
@@ -4958,12 +5026,13 @@ class App:
                 self._phr_auto = False
                 self._apply_phrases_collapse()
                 return
-            h_in = int(max(30, min(72, room / 2)))
-            h_out = int(max(30, min(74, room - h_in)))
+            h_in = int(max(30, min(72, room / 3)))
+            h_out = int(max(30, min(74, (room - h_in) / 2)))
             if (h_in, h_out) != self._fmt_heights:
                 self._fmt_heights = (h_in, h_out)
                 self.fmt_input.configure(height=h_in)
                 self.fmt_preview.configure(height=h_out)
+                self.fmt_preview2.configure(height=h_out)
         except tk.TclError:
             pass
 
@@ -5017,29 +5086,38 @@ class App:
         if self.sel_id:
             self.copy_item(self.sel_id)
 
-    def _format_input(self, fmt: dict) -> str:
-        """Що форматувати: введене в поле, а якщо поле порожнє — для Suspicious cards / Added cards — останні
-        поспіль числові записи історії буфера (лише цифри, коми й пробіли; перший інший запис — стоп)."""
-        raw = self.fmt_input.get("1.0", "end-1c")
-        if not raw.strip() and fmt.get("type") in AUTO_HISTORY_FORMATS:
-            return numbers_from_history(i["text"] for i in self.history.items)
-        return raw
+    def _typed(self) -> str:
+        return self.fmt_input.get("1.0", "end-1c") if self._fmt_built else ""
 
-    def _format_result(self) -> str:
+    def _format_input(self, fmt: dict, which: int = 1) -> str:
+        """Що форматувати. Є текст у полі — він (і лише для першого вікна результату; друге тоді неактивне).
+        Поле порожнє: перше вікно — ОДНЕ останнє числове значення з буфера, друге — УСІ останні числові значення
+        (кілька записів поспіль і кілька чисел в одному записі через «,», «.», «;», «:» чи пробіл)."""
+        raw = self._typed()
+        if raw.strip():
+            return raw if which == 1 else ""
+        nums = recent_numbers(self._history_texts(), 1 if which == 1 else MAX_RECENT_NUMBERS)
+        return ", ".join(nums)
+
+    def _format_result(self, which: int = 1) -> str:
         fmt = self.preset.format(self.sel_format) if self.sel_format else None
         if not fmt or not self._fmt_built:
             return ""
-        return apply_format(fmt["type"], self._format_input(fmt))
+        return apply_format(fmt["type"], self._format_input(fmt, which))
 
     def _update_format_preview(self) -> None:
         out = self._format_result()
         self._set_preview(out)
+        typed = bool(self._typed().strip())
+        self._set_preview2("" if typed else self._format_result(2), active=not typed)
         fmt = self.preset.format(self.sel_format) if self.sel_format else None
         if fmt and self._fmt_built:
-            auto = fmt.get("type") in AUTO_HISTORY_FORMATS and not self.fmt_input.get("1.0", "end-1c").strip()
-            self.fmt_title.configure(text=fmt["name"] + ("   ·  значення з історії буфера" if auto and out else ""))
+            self.fmt_title.configure(text=fmt["name"] + ("   ·  значення з історії буфера" if not typed and out else ""))
         if self.append_armed and self.armed_src != "refund":
-            self._refresh_banner(out)
+            if typed and self.armed_src == "format_all":
+                self._set_armed(False)                  # друге вікно стало неактивним — його Append знімається
+            else:
+                self._refresh_banner(self._armed_result())
 
     def _set_preview(self, text: str) -> None:
         self.fmt_preview.configure(state="normal")
@@ -5048,19 +5126,42 @@ class App:
             self.fmt_preview.insert("1.0", text)
         self.fmt_preview.configure(state="disabled")
 
+    def _set_preview2(self, text: str, active: bool = True) -> None:
+        """Друге вікно результату: неактивне (сіре, кнопки вимкнено), коли в поле введення щось вставлено."""
+        if not self._fmt_built:
+            return
+        box = self._fmt_preview2
+        box.configure(state="normal")
+        box.delete("1.0", "end")
+        if text:
+            box.insert("1.0", text)
+        elif not active:
+            box.insert("1.0", "Неактивне — використовується текст із поля введення (результат — у першому вікні)")
+        box.configure(state="disabled", text_color=TEXT if active else FAINT,
+                      fg_color=INPUT if active else PANEL)
+        self._fmt_lbl2.configure(fg=self.col(MUTED if active else FAINT))
+        ready = active and bool(text)
+        for b in (self._fmt_copy2, self._fmt_append2):
+            b.configure(state="normal" if ready else "disabled")
+        self._fmt_copy2.configure(fg_color=ACCENT if ready else BTN2, text_color="#ffffff" if ready else FAINT)
+        if not (self.append_armed and self.armed_src == "format_all"):
+            self._fmt_append2.configure(text_color=TEXT if ready else FAINT)
+
     def _clear_format_input(self) -> None:
         if not self._fmt_built:
             return
         if self.fmt_input.get("1.0", "end-1c"):
             self.fmt_input.delete("1.0", "end")
         self._set_preview("")
+        self._set_preview2("")
 
-    def submit_format(self) -> None:
-        """Copy: результат форматування → буфер обміну; поле вводу очищується; вікно ховається."""
+    def submit_format(self, which: int = 1) -> None:
+        """Copy: результат форматування (перше вікно; which=2 — друге, «усі останні значення») → буфер обміну;
+        поле вводу очищується; вікно ховається."""
         fmt = self.preset.format(self.sel_format) if self.sel_format else None
         if not fmt:
             return
-        out = self._format_result()
+        out = self._format_result(which)
         if not out:
             self.set_status("Не знайдено жодного числа — нічого копіювати")
             return
@@ -5077,21 +5178,22 @@ class App:
             self._clear_format_input()
 
     # -- режим Append: допис результату форматування до вибраного запису -----------------------------
-    def arm_append(self) -> None:
-        """Кнопка «Append»: вмикає режим «заряджено» (повторне натискання — скасовує). Далі клік по запису
-        копіює «текст запису + результат» (сам запис не змінюється) і ховає вікно."""
-        if self.append_armed and self.armed_src == "format":
+    def arm_append(self, which: int = 1) -> None:
+        """Кнопка «Append» (which=2 — «Append усі» під другим вікном): вмикає режим «заряджено» (повторне натискання
+        — скасовує). Далі клік по запису копіює «текст запису + результат» (сам запис не змінюється) і ховає вікно."""
+        src = "format_all" if which == 2 else "format"
+        if self.append_armed and self.armed_src == src:
             self._set_armed(False)
             self.set_status("Режим Append скасовано")
             return
         fmt = self.preset.format(self.sel_format) if self.sel_format else None
         if not fmt or "append" not in format_actions(fmt["type"]):
             return
-        out = self._format_result()
+        out = self._format_result(which)
         if not out:
             self.set_status("Введіть номери карток — поки немає що дописувати")
             return
-        self._set_armed(True, "format")
+        self._set_armed(True, src)
         self._refresh_banner(out)
         self.set_status("Append: клікніть запис — результат буде дописано в його кінець (Esc — скасувати)", 9000)
 
@@ -5111,15 +5213,19 @@ class App:
             else:
                 self.refund_append.configure(fg_color=BTN2, border_color=BTN2)
         if self._fmt_built:
+            for btn, bsrc in ((self._fmt_append, "format"), (self._fmt_append2, "format_all")):
+                if on_fmt and src == bsrc:
+                    btn.configure(fg_color=ARMED, hover_color=ARMED, border_color=ARMED,
+                                  text_color=("#ffffff", "#1b1b1b"))
+                else:
+                    btn.configure(fg_color=BTN2, hover_color=BTN2_HOVER, border_color=BTN2,
+                                  text_color=TEXT if (btn is self._fmt_append or btn.cget("state") == "normal")
+                                  else FAINT)
             if on_fmt:
-                self._fmt_append.configure(fg_color=ARMED, hover_color=ARMED, border_color=ARMED,
-                                           text_color=("#ffffff", "#1b1b1b"))
                 if not self._fmt_armed_hint.winfo_manager():
                     self._fmt_armed_hint.pack(fill="x", padx=16, pady=(0, 8))
-            else:
-                self._fmt_append.configure(fg_color=BTN2, hover_color=BTN2_HOVER, border_color=BTN2, text_color=TEXT)
-                if self._fmt_armed_hint.winfo_manager():
-                    self._fmt_armed_hint.pack_forget()
+            elif self._fmt_armed_hint.winfo_manager():
+                self._fmt_armed_hint.pack_forget()
         if on:
             if not self.armed_banner.winfo_manager():
                 self.armed_banner.pack(fill="x", padx=18, pady=(0, 6), before=self.cards._parent_frame)
@@ -6151,6 +6257,83 @@ class App:
         if key and key in self._row_objs:
             self._mark_target(key, True)
             self._ensure_visible_in(self.cat_list, self._row_objs[key].row)
+        self._sync_grow()
+
+    # -- плитка під «курсором» — на 15 % більша (накладається на сусідні; сітка не змінюється) ------------------
+    def _sync_grow(self) -> None:
+        """Сторінка вибору папки, плитки: папка під клавіатурним «курсором» (після повернення — щойно відкрита)
+        збільшується, щоб одразу було видно, яка вона. Робиться після розкладки (потрібні справжні розміри)."""
+        if getattr(self, "_grow_job", None) is None:
+            try:
+                self._grow_job = self.root.after_idle(self._grow_now)
+            except tk.TclError:
+                self._grow_job = None
+
+    def _grow_target(self) -> str | None:
+        key = self.nav_cat if self.nav_zone == "folders" else None
+        if key and key != HISTORY and self.cat_tiles and self._picking() and key in self._row_objs:
+            return key
+        return None
+
+    def _grow_now(self) -> None:
+        self._grow_job = None
+        key = self._grow_target()
+        g = getattr(self, "_grown", None)
+        if g is not None and g[0] == key:
+            return
+        self._ungrow_tile()
+        if key is None:
+            return
+        obj = self._row_objs[key]
+        r = obj.row
+        try:
+            self.root.update_idletasks()
+            info = r.grid_info()
+            w, h, x, y = r.winfo_width(), r.winfo_height(), r.winfo_x(), r.winfo_y()
+            if not info or w < 20 or h < 20 or not getattr(obj, "_height", None):
+                return
+            master = r.nametowidget(r.winfo_parent())
+            # на місці плитки в сітці — порожній «заступник» того ж розміру: сітка не зсувається
+            bg = master.tk.call(master._w, "cget", "-background")      # ctk-cget не знає «bg»
+            ph = tk.Frame(master, width=w, height=h, bg=bg, bd=0, highlightthickness=0)
+            ph.grid(row=info["row"], column=info["column"], padx=info["padx"], pady=info["pady"],
+                    sticky=info["sticky"])
+            ph.lower(r)
+            sc = self.scaling()
+            gw, gh = w * TILE_GROW, h * TILE_GROW
+            self._grown = (key, ph)
+            r.grid_forget()
+            obj.set_size(int(gh / sc), int(max(40, gw / sc - 24) * sc), getattr(obj, "_font", None), int(gw / sc))
+            r.place(x=max(0.0, (x - (gw - w) / 2) / sc), y=max(0.0, (y - (gh - h) / 2) / sc))
+            r.grid_propagate(False)            # розмір — заданий, а не «за вмістом» (інакше плитка стискалась)
+            # кути поза заокругленням ctk малює кольором фону (bg_color) — над сусідніми плитками це були світлі
+            # квадратики; тепер кути — кольору рамки «курсора», а заокруглення трохи менше: охайна рамка
+            r.configure(bg_color=NAV_MARK, corner_radius=8)
+            r.lift()
+        except (tk.TclError, ValueError):
+            self._grown = None
+
+    def _ungrow_tile(self, relayout: bool = True) -> None:
+        """Повертає збільшену плитку в сітку (розмір — як у всіх)."""
+        g = getattr(self, "_grown", None)
+        if g is None:
+            return
+        self._grown = None
+        key, ph = g
+        try:
+            ph.destroy()
+        except tk.TclError:
+            pass
+        obj = self._row_objs.get(key)
+        if obj is not None:
+            try:
+                obj.row.place_forget()
+                obj.row.configure(bg_color="transparent", corner_radius=14)
+            except (tk.TclError, ValueError):
+                pass
+        if relayout:
+            self._cat_sig = None
+            self._arrange_cats()               # плитка — назад у свою клітинку зі звичайним розміром
 
     def _ensure_visible_in(self, sf, widget) -> None:
         try:

@@ -3169,15 +3169,20 @@ app.flush_render()
 app.select_format("builtin-suspicious-cards")
 pump(200)
 assert app.fmt_input.get("1.0", "end-1c") == ""
-assert app.fmt_preview.get("1.0", "end-1c") == "Suspicious cards 123, 542, 1234, 2365, 4562 were added."
+# раунд 24: перше вікно — ОДНЕ останнє значення, друге — усі останні значення
+assert app.fmt_preview.get("1.0", "end-1c") == "Suspicious card 123 was added.", app.fmt_preview.get("1.0", "end-1c")
+assert app.fmt_preview2.get("1.0", "end-1c") == "Suspicious cards 123, 542, 1234, 2365, 4562 were added."
 assert "історії" in app.fmt_title.cget("text")
-app.arm_append()
+app.arm_append(2)
+assert app.armed_src == "format_all" and tup(app._fmt_append2.cget("fg_color")) == tup(cm.ARMED)
 real_click(app._card_objs[sc_3m["id"]].body)
 assert root.clipboard_get() == ("Suspicious cards 123, 542, 1234, 2365, 4562 were added. Blacklisted, unsolicited charges "
                                 "refunded for the last 3 months."), root.clipboard_get()
 assert app.sel_format == "builtin-suspicious-cards"
 app.fmt_input.insert("1.0", "1234, 2365 4562")                # введене має пріоритет
 app._update_format_preview()
+assert app._fmt_copy2.cget("state") == "disabled" and "Неактивне" in app.fmt_preview2.get("1.0", "end-1c"), \
+    "вставлено в поле — друге вікно неактивне"
 app.arm_append()
 real_click(app._card_objs[sc_ref["id"]].body)
 assert root.clipboard_get() == "Suspicious cards 1234, 2365, 4562 were added. Blacklisted, unsolicited charges refunded"
@@ -3185,14 +3190,18 @@ app.select_category(sl35["id"])
 app.flush_render()
 app.select_format("builtin-added-cards")
 pump(150)
-assert app.fmt_preview.get("1.0", "end-1c") == "Cards 123, 542, 1234, 2365, 4562 were added during suspicious login."
-app.submit_format()
+assert app.fmt_preview.get("1.0", "end-1c") == "Card 123 was added during suspicious login."
+assert app.fmt_preview2.get("1.0", "end-1c") == "Cards 123, 542, 1234, 2365, 4562 were added during suspicious login."
+app.submit_format(2)
 assert root.clipboard_get() == "Cards 123, 542, 1234, 2365, 4562 were added during suspicious login."
-app.history.add("7.5")                                         # нечисловий найновіший запис — значень немає
+app.history.add("7.5; 8:9")                                    # «.», «;», «:» — теж роздільники значень
 assert app.sel_format == "builtin-added-cards"
 app._update_format_preview()
 pump(100)
-assert app.fmt_preview.get("1.0", "end-1c") == ""
+assert app.fmt_preview.get("1.0", "end-1c") == "Card 7 was added during suspicious login."
+assert app.fmt_preview2.get("1.0", "end-1c").startswith("Cards 7, 5, 8, 9, 123, 542"), app.fmt_preview2.get("1.0", "end-1c")
+app.submit_format()
+assert root.clipboard_get() == "Card 7 was added during suspicious login."
 app._collapse_format()
 print("35b formats take numbers from history OK")
 
@@ -4871,6 +4880,67 @@ assert cm.apply_format("suspicious_cards", "1234") == "Suspicious card 1234 was 
 # LocalKeys поза Windows нічого не реєструє
 assert cm.LocalKeys(queue.Queue()).start() is False
 print("46 Alt+A back, ctor keys (Alt+W/A/S/D, Space, Alt+Space), Alt+Space event, nav border, singular card, split numbers OK")
+
+# ---- 47. раунд 24: вміст плиток — усередині рамки; плитка під «курсором» на 15 % більша; два вікна результату ---------
+settings["autohide"], app.hotkey_ok = False, False
+app.set_folder_first(True)
+root.geometry("1400x800+0+0")
+pump(400)
+app.select_category(f43["id"])
+app.flush_render()
+pump(200)
+app.back_to_folders()
+pump(400)
+assert app._grown is not None and app._grown[0] == f43["id"], app._grown
+g47 = app._row_objs[f43["id"]]
+ph47 = app._grown[1]
+assert g47.row.winfo_manager() == "place" and ph47.winfo_manager() == "grid"
+assert abs(g47.row.winfo_width() - ph47.winfo_width() * cm.TILE_GROW) <= 3, (g47.row.winfo_width(), ph47.winfo_width())
+assert abs(g47.row.winfo_height() - ph47.winfo_height() * cm.TILE_GROW) <= 3
+assert g47.row.cget("border_width") == cm.NAV_MARK_W
+# вміст — усередині рамки: відступ під найтовщу рамку
+sc47 = app.scaling()
+in47 = int((max(cm.NAV_MARK_W, cm.border_width(True)) + 4) * sc47)
+assert g47._inset == in47 and int(str(g47.more.grid_info()["pady"]).split()[0]) == in47, g47.more.grid_info()
+# курсор на іншу папку — збільшується вона, попередня повертається в сітку
+app.nav_move("d" if app._nav_folders().index(f43["id"]) % 2 else "s")
+pump(300)
+if app.nav_cat != f43["id"] and app.nav_cat != cm.HISTORY:
+    assert app._grown and app._grown[0] == app.nav_cat
+    assert g47.row.winfo_manager() == "grid" and not ph47.winfo_exists()
+# у записах збільшення немає
+app.select_category(f43["id"])
+app.flush_render()
+pump(300)
+assert app._grown is None
+app.back_to_folders()
+pump(300)
+assert app._grown and app._grown[0] == f43["id"]
+# два вікна результату: перше — одне останнє значення, друге — усі; вставлене в поле — лише в першому
+app.select_category(f43["id"])
+app.flush_render()
+pump(200)
+app.history = History(os.path.join(tmp, "h47.json"))
+for t_ in ("старий текст", "11: 22; 33", "44.55", "77"):
+    app.history.add(t_)
+app.select_format("builtin-user")
+pump(200)
+assert app.fmt_preview.get("1.0", "end-1c") == "{LINK:USER:77:E}"
+assert app.fmt_preview2.get("1.0", "end-1c") == ("{LINK:USER:77:E}, {LINK:USER:44:E}, {LINK:USER:55:E}, {LINK:USER:11:E}, "
+                                                "{LINK:USER:22:E}, {LINK:USER:33:E}")
+assert app._fmt_copy2.cget("state") == "normal" and not app._fmt_append2.winfo_ismapped(), "USER — лише копіювання"
+app.submit_format(2)
+assert root.clipboard_get().startswith("{LINK:USER:77:E}, {LINK:USER:44:E}")
+app.select_format("builtin-user")
+pump(100)
+app.fmt_input.insert("1.0", "5")
+app._update_format_preview()
+assert app.fmt_preview.get("1.0", "end-1c") == "{LINK:USER:5:E}" and app._fmt_copy2.cget("state") == "disabled"
+app._collapse_format()
+app.back_to_folders()
+root.geometry("1180x660+0+0")
+pump(400)
+print("47 tile content inset, grown cursor tile (15%), two format results (last one / all recent) OK")
 
 # ---- 25. справжнє розгортання під віконним менеджером (лише якщо є openbox) -------------------------------------------------------------
 import shutil  # noqa: E402
