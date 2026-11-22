@@ -1219,6 +1219,7 @@ for i in range(20):
     app.set_search("")
     app.select_category(c1["id"])
     app.flush_render()
+    pump(60)                                       # збільшена копія вибраного запису — відкладено (after_idle)
     counts.append(n_widgets(root))
 assert len(set(counts)) == 1 and counts[0] == base_widgets, (base_widgets, counts)
 assert len(app._card_objs) == len(app._cards) == base_cards and len(app._row_objs) == base_rows
