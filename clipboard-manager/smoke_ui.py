@@ -2317,12 +2317,18 @@ ctk.set_window_scaling(1.5)
 pump(1500)
 assert abs(app.scaling() - app._pf_scale) < 0.01, ("масштаб підхоплено", app.scaling(), app._pf_scale)
 assert abs(app.pf.card.cget("size")) > abs(f0), ("шрифти зросли на місці", f0, app.pf.card.cget("size"))
-real_cards = [w for w in app.cards.winfo_children() if isinstance(w, ctk.CTkFrame)]
+real_cards = [w for w in app.cards.winfo_children() if isinstance(w, ctk.CTkFrame)
+              and w is not getattr(app._clens, "frame", None)]   # збільшена копія вибраного запису — не дублікат
 assert len(app._card_objs) == n_cards and len(real_cards) == n_cards, ("без дублікатів", n_cards, len(real_cards))
+if app._clens is not None and app._clens.frame.winfo_manager():   # копія вибраного запису — за новим масштабом
+    c_ = app._card_objs[app._clens.iid].frame
+    assert abs(app._clens.frame.winfo_height() - c_.winfo_height() * cm.TILE_GROW) <= 4, \
+        (app._clens.frame.winfo_height(), c_.winfo_height())
 ctk.set_widget_scaling(1.0)
 ctk.set_window_scaling(1.0)
 pump(1500)
-real_cards = [w for w in app.cards.winfo_children() if isinstance(w, ctk.CTkFrame)]
+real_cards = [w for w in app.cards.winfo_children() if isinstance(w, ctk.CTkFrame)
+              and w is not getattr(app._clens, "frame", None)]   # збільшена копія вибраного запису — не дублікат
 assert abs(app.pf.card.cget("size")) == abs(f0) and len(real_cards) == n_cards, "повернення на перший монітор"
 assert root.winfo_width() <= root.winfo_screenwidth() and root.winfo_height() <= root.winfo_screenheight()
 settings["autohide"] = True
