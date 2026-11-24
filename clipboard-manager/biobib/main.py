@@ -82,7 +82,10 @@ def api_open_file(file_id: int, reveal: bool = Query(default=False),
 
 @app.get("/api/health")
 def health() -> dict[str, str]:
-    return {"status": "ok"}
+    """Для другої копії BioBib.exe: та сама програма й тека даних — тоді лише відкрити бібліотеку."""
+    from . import __version__
+    return {"status": "ok", "app": "biobib", "version": __version__,
+            "data_dir": str(Path(config.DATA_DIR).resolve())}
 
 
 @app.get("/api/settings")
@@ -136,6 +139,38 @@ def api_delete_section(section_id: int, conn=Depends(get_db)) -> dict[str, bool]
     if not sections.delete_section(conn, section_id):
         raise HTTPException(status_code=404, detail="Розділ не знайдено")
     return {"deleted": True}
+
+
+@app.post("/api/sections/{section_id}/move")
+def api_move_section(section_id: int, delta: int = Query(...), conn=Depends(get_db)) -> dict[str, bool]:
+    return {"moved": sections.move_section(conn, section_id, delta)}
+
+
+@app.post("/api/attach-pdfs")
+async def api_attach_pdfs(files: list[UploadFile] = File(...), source_id: int | None = Form(default=None),
+                          conn=Depends(get_db)) -> dict:
+    """«Прикріпити PDF…»: кілька PDF або ZIP — кожен файл сам знаходить своє джерело (вміст, DOI, назва)."""
+    import tempfile
+
+    with tempfile.TemporaryDirectory() as tmp:
+        paths = []
+        for n, f in enumerate(files):
+            name = Path(f.filename or f"file{n}.pdf").name or f"file{n}.pdf"
+            sub = Path(tmp) / str(n)
+            sub.mkdir()
+            (sub / name).write_bytes(await f.read())
+            paths.append(str(sub / name))
+        rep = library.attach_pdfs(conn, paths, storage_dir=config.STORAGE_DIR, source_id=source_id)
+    return {"attached": [{"file": n, "source_id": sid, "title": t, "how": how} for n, sid, t, how in rep["attached"]],
+            "duplicate": [{"file": n, "reason": why} for n, why in rep["duplicate"]],
+            "not_pdf": rep["not_pdf"], "unmatched": rep["unmatched"]}
+
+
+@app.post("/api/dedupe")
+def api_dedupe(conn=Depends(get_db)) -> dict:
+    merged = library.dedupe_sources(conn, storage_dir=config.STORAGE_DIR)
+    return {"sources_removed": sum(len(m["removed"]) for m in merged),
+            "files_removed": sum(1 for m in merged if m.get("file_removed")), "merged": merged}
 
 
 @app.post("/api/sections/{section_id}/sources/{source_id}")

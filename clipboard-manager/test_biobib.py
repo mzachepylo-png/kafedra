@@ -531,3 +531,91 @@ class LibraryTests(_TmpData):
         finally:
             self.lib.OPENER = saved
         self.assertEqual(len(calls), 1)
+
+
+# ---- раунд 30: BioBib — окрема програма (BioBib.exe): тека даних, перенесення, одна копія, нові API -----------
+class DesktopTests(unittest.TestCase):
+    def setUp(self):
+        self.tmp = tempfile.mkdtemp()
+        self.saved = (config.DATA_DIR, config.DB_PATH, config.STORAGE_DIR)
+
+    def tearDown(self):
+        config.DATA_DIR, config.DB_PATH, config.STORAGE_DIR = self.saved
+        shutil.rmtree(self.tmp, ignore_errors=True)
+
+    def test_data_dir_and_migration_from_clipboard_memory(self):
+        from pathlib import Path
+
+        from biobib import desktop
+        os.environ["BIOBIB_DIR"] = os.path.join(self.tmp, "bb")
+        os.environ["CLIPBOARD_MEMORY_DIR"] = os.path.join(self.tmp, "cm")
+        try:
+            self.assertEqual(desktop.default_data_dir(), Path(self.tmp) / "bb")
+            self.assertEqual(desktop.legacy_data_dir(), Path(self.tmp) / "cm" / "biobib")
+        finally:
+            del os.environ["BIOBIB_DIR"], os.environ["CLIPBOARD_MEMORY_DIR"]
+        old, new = Path(self.tmp) / "cm" / "biobib", Path(self.tmp) / "bb"
+        self.assertFalse(desktop.migrate(new, old), "нема старої бібліотеки — нічого")
+        (old / "storage" / "3").mkdir(parents=True)
+        (old / "biobib.db").write_bytes(b"db")
+        (old / "storage" / "3" / "a.pdf").write_bytes(b"%PDF-1.4")
+        self.assertTrue(desktop.migrate(new, old))
+        self.assertEqual((new / "biobib.db").read_bytes(), b"db")
+        self.assertEqual((new / "storage" / "3" / "a.pdf").read_bytes(), b"%PDF-1.4")
+        self.assertTrue((old / "biobib.db").exists(), "стара копія лишається")
+        (new / "biobib.db").write_bytes(b"newer")
+        self.assertFalse(desktop.migrate(new, old), "уже перенесено — не перезаписує")
+        self.assertEqual((new / "biobib.db").read_bytes(), b"newer")
+
+    @unittest.skipUnless(HAVE_API, "FastAPI/httpx не встановлено")
+    def test_single_instance_and_run(self):
+        from pathlib import Path
+
+        from biobib import desktop, server
+        d = Path(self.tmp) / "lib"
+        config.configure(d)
+        url = server.ensure_running()
+        try:
+            self.assertEqual(desktop.find_running(d), url)
+            self.assertIsNone(desktop.find_running(Path(self.tmp) / "other"), "інша тека — інша бібліотека")
+            # друга копія: не запускає сервер, лише повертає адресу першої
+            self.assertEqual(desktop.main(["--data-dir", str(d), "--no-browser"]), 0)
+        finally:
+            server.stop()
+        self.assertEqual(desktop.main(["--data-dir", str(Path(self.tmp) / "run"), "--no-browser", "--no-tray",
+                                       "--exit-after", "0.5"]), 0)
+        self.assertTrue((Path(self.tmp) / "run" / "biobib.db").exists())
+
+
+@unittest.skipUnless(HAVE_API and HAVE_PDF, "FastAPI/httpx/pypdf не встановлено")
+class WebLibraryTests(_TmpData):
+    def test_attach_pdfs_dedupe_sections_description(self):
+        from fastapi.testclient import TestClient
+
+        from biobib import library
+        from biobib.main import app
+        library.import_seed(self.conn)
+        sid = library.find_source(self.conn, "10.3389/fpls.2022.858804")
+        pdf = make_pdf(["Frontiers in Plant Science", "doi: 10.3389/fpls.2022.858804", "INTRODUCTION", "Text."])
+        with TestClient(app) as c:
+            self.assertEqual(c.get("/api/health").json()["app"], "biobib")
+            files = [("files", ("a.pdf", pdf, "application/pdf")), ("files", ("a copy.pdf", pdf, "application/pdf")),
+                     ("files", ("page.pdf", b"<html>404</html>", "application/pdf"))]
+            rep = c.post("/api/attach-pdfs", files=files).json()
+            self.assertEqual([a["source_id"] for a in rep["attached"]], [sid])
+            self.assertEqual(len(rep["duplicate"]), 1)
+            self.assertEqual(rep["not_pdf"], ["page.pdf"])
+            listed = {s["id"]: s for s in c.get("/api/sources").json()}
+            self.assertTrue(listed[sid]["description"].startswith("Метааналіз ефективності PSB"))
+            self.assertEqual(listed[sid]["file_count"], 1)
+            # дублікат джерела — зливається
+            r = c.post("/api/sources", json={"title": "Копія", "doi": "https://doi.org/10.3389/FPLS.2022.858804"})
+            self.assertEqual(r.status_code, 201)
+            self.assertEqual(c.post("/api/dedupe").json()["sources_removed"], 1)
+            self.assertEqual(len(c.get("/api/sources").json()), 27)
+            # розділи: порядок
+            tops = [s for s in c.get("/api/sections").json() if s["parent_id"] is None]
+            self.assertEqual([t["title"] for t in tops], ["Дисертація", "Метааналіз ендофітів"])
+            self.assertTrue(c.post(f"/api/sections/{tops[1]['id']}/move?delta=-1").json()["moved"])
+            self.assertEqual([s["title"] for s in c.get("/api/sections").json() if s["parent_id"] is None],
+                             ["Метааналіз ендофітів", "Дисертація"])

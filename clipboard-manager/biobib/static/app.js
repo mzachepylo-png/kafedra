@@ -30,6 +30,104 @@ async function loadSections() {
   }
 }
 
+/* ---------- Розділи: керування, список літератури ---------- */
+
+function syncBibButton() {
+  document.getElementById("btnBib").classList.toggle("hidden", !document.getElementById("sectionFilter").value);
+}
+
+function renderSectionsTree() {
+  const box = document.getElementById("sectionsTree");
+  const tops = state.sections.filter((s) => s.parent_id === null);
+  box.innerHTML = tops.length
+    ? tops
+        .map((top) => {
+          const subs = state.sections.filter((s) => s.parent_id === top.id);
+          const row = (s, sub) => `
+            <div class="sec-row ${sub ? "sub" : ""}" data-id="${s.id}">
+              <span class="sec-title">${sub ? "└ " : "📁 "}${escapeHtml(s.title)}</span>
+              <span class="card-meta-line">${s.count ? `джерел: ${s.count}` : ""}</span>
+              <span class="sec-actions">
+                <button type="button" class="btn btn-sm btn-secondary js-sec-up" title="Вгору">↑</button>
+                <button type="button" class="btn btn-sm btn-secondary js-sec-down" title="Вниз">↓</button>
+                <button type="button" class="btn btn-sm btn-secondary js-sec-rename" title="Перейменувати">✎</button>
+                <button type="button" class="btn btn-sm btn-danger js-sec-del" title="Видалити">✕</button>
+              </span>
+            </div>`;
+          return `<div class="sec-group">${row(top, false)}${subs.map((s) => row(s, true)).join("")}
+            <form class="sections-new sub js-new-sub" data-parent="${top.id}">
+              <input type="text" maxlength="80" placeholder="Нова підпапка в «${escapeHtml(top.title)}»" />
+              <button type="submit" class="btn btn-secondary btn-sm">+ Підпапка</button>
+            </form></div>`;
+        })
+        .join("")
+    : `<p class="card-meta-line">Розділів ще немає.</p>`;
+  const idOf = (el) => Number(el.closest(".sec-row").dataset.id);
+  const after = async () => { await loadSections(); renderSectionsTree(); await loadSources(); };
+  box.querySelectorAll(".js-sec-up, .js-sec-down").forEach((b) =>
+    b.addEventListener("click", async () => {
+      await api(`/api/sections/${idOf(b)}/move?delta=${b.classList.contains("js-sec-up") ? -1 : 1}`, { method: "POST" });
+      await after();
+    }));
+  box.querySelectorAll(".js-sec-rename").forEach((b) =>
+    b.addEventListener("click", async () => {
+      const sec = state.sections.find((s) => s.id === idOf(b));
+      const title = prompt("Нова назва:", sec.title);
+      if (!title || !title.trim()) return;
+      await api(`/api/sections/${sec.id}`, { method: "PATCH", headers: { "Content-Type": "application/json" }, body: JSON.stringify({ title }) });
+      await after();
+    }));
+  box.querySelectorAll(".js-sec-del").forEach((b) =>
+    b.addEventListener("click", async () => {
+      const sec = state.sections.find((s) => s.id === idOf(b));
+      if (!confirm(`Видалити «${sec.path}»${sec.parent_id ? "" : " разом із підпапками"}?\nСамі джерела лишаться в бібліотеці.`)) return;
+      await api(`/api/sections/${sec.id}`, { method: "DELETE" });
+      const f = document.getElementById("sectionFilter");
+      if (f.value === String(sec.id)) f.value = "";
+      await after();
+    }));
+  box.querySelectorAll(".js-new-sub").forEach((form) =>
+    form.addEventListener("submit", async (e) => {
+      e.preventDefault();
+      const title = form.querySelector("input").value.trim();
+      if (!title) return;
+      await api("/api/sections", { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify({ title, parent_id: Number(form.dataset.parent) }) });
+      await after();
+    }));
+}
+
+async function copyBibliography() {
+  const id = document.getElementById("sectionFilter").value;
+  if (!id) return;
+  const { text } = await api(`/api/sections/${id}/bibliography`);
+  if (!text) { showToast("У розділі немає джерел"); return; }
+  try { await navigator.clipboard.writeText(text); showToast(`Скопійовано список літератури (${text.split("\n").length})`); }
+  catch { showInfo("Список літератури", `<textarea class="bib-text" readonly>${escapeHtml(text)}</textarea>`); }
+}
+
+function showInfo(title, html) {
+  document.getElementById("infoTitle").textContent = title;
+  document.getElementById("infoBody").innerHTML = html;
+  openModal("infoModal");
+}
+
+async function attachPdfs(files) {
+  if (!files.length) return;
+  const fd = new FormData();
+  [...files].forEach((f) => fd.append("files", f, f.name));
+  showToast("Прикріплюю PDF і читаю їхній текст…");
+  const rep = await api("/api/attach-pdfs", { method: "POST", body: fd });
+  const li = (items) => `<ul>${items.join("")}</ul>`;
+  let html = `<p><strong>Прикріплено: ${rep.attached.length}</strong></p>`;
+  if (rep.attached.length) html += li(rep.attached.map((a) => `<li>${escapeHtml(a.title)} <span class="card-meta-line">(${escapeHtml(a.file)})</span></li>`));
+  if (rep.duplicate.length) html += `<p><strong>Пропущено дублікатів: ${rep.duplicate.length}</strong></p>` + li(rep.duplicate.map((d) => `<li>${escapeHtml(d.file)} — ${escapeHtml(d.reason)}</li>`));
+  if (rep.not_pdf.length) html += `<p><strong>Не PDF (пропущено):</strong> ${escapeHtml(rep.not_pdf.join(", "))}</p>`;
+  if (rep.unmatched.length) html += `<p><strong>Не знайшлося джерело:</strong> ${escapeHtml(rep.unmatched.join(", "))}<br><span class="card-meta-line">Додайте джерело й прикріпіть файл у його картці (вкладка «Файли»).</span></p>`;
+  showInfo("Прикріпити PDF", html);
+  await loadSources();
+  if (state.selectedId) await selectSource(state.selectedId);
+}
+
 function t(key, fallback = "") {
   const parts = key.split(".");
   let cur = state.i18n;
@@ -193,8 +291,8 @@ function renderSourceList() {
           ${withSources.length ? `<p>${withSources.map((x) => `<button type="button" class="btn btn-secondary btn-sm js-goto-sec" data-id="${x.id}">${escapeHtml(x.path)} (${x.count})</button>`).join(" ")}</p>` : ""}
         </div>
       `;
-      container.querySelector(".js-all-sources").addEventListener("click", () => { secSel.value = ""; loadSources(); });
-      container.querySelectorAll(".js-goto-sec").forEach((b) => b.addEventListener("click", () => { secSel.value = b.dataset.id; loadSources(); }));
+      container.querySelector(".js-all-sources").addEventListener("click", () => { secSel.value = ""; syncBibButton(); loadSources(); });
+      container.querySelectorAll(".js-goto-sec").forEach((b) => b.addEventListener("click", () => { secSel.value = b.dataset.id; syncBibButton(); loadSources(); }));
       return;
     }
     container.innerHTML = `
@@ -232,6 +330,7 @@ function renderSourceList() {
           <div class="card-authors">${escapeHtml(formatAuthorsShort(s.authors))}${
         s.container_title ? " — <em>" + escapeHtml(s.container_title) + "</em>" : ""
       }</div>
+          ${s.description && !snippetHtml ? `<div class="card-desc">${escapeHtml(s.description.length > 220 ? s.description.slice(0, 220) + "…" : s.description)}</div>` : ""}
           ${snippetHtml}
           ${tagsHtml ? `<div class="card-tags">${tagsHtml}</div>` : ""}
           <div class="card-footer">
@@ -815,7 +914,29 @@ async function init() {
   });
 
   document.getElementById("sortSelect").addEventListener("change", () => loadSources());
-  document.getElementById("sectionFilter").addEventListener("change", () => loadSources());
+  document.getElementById("sectionFilter").addEventListener("change", () => { syncBibButton(); loadSources(); });
+  document.getElementById("btnBib").addEventListener("click", copyBibliography);
+  document.getElementById("btnSections").addEventListener("click", () => { renderSectionsTree(); openModal("sectionsModal"); });
+  document.getElementById("newTopForm").addEventListener("submit", async (e) => {
+    e.preventDefault();
+    const inp = document.getElementById("newTopTitle");
+    if (!inp.value.trim()) return;
+    await api("/api/sections", { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify({ title: inp.value.trim() }) });
+    inp.value = "";
+    await loadSections();
+    renderSectionsTree();
+  });
+  document.getElementById("btnAttachPdf").addEventListener("click", () => document.getElementById("pdfInput").click());
+  document.getElementById("pdfInput").addEventListener("change", async (e) => {
+    const files = e.target.files;
+    try { await attachPdfs(files); } finally { e.target.value = ""; }
+  });
+  document.getElementById("btnDedupe").addEventListener("click", async () => {
+    const r = await api("/api/dedupe", { method: "POST" });
+    showToast(r.sources_removed || r.files_removed ? `Прибрано дублікатів: джерел ${r.sources_removed}, файлів ${r.files_removed}` : "Дублікатів не знайдено");
+    await loadSections();
+    await loadSources();
+  });
 
   document.querySelectorAll("[data-close-modal]").forEach((el) => {
     el.addEventListener("click", () => closeModal(el.getAttribute("data-close-modal")));
@@ -829,7 +950,7 @@ async function init() {
       e.preventDefault();
       openSourceModal();
     } else if (e.key === "Escape") {
-      ["sourceModal", "settingsModal", "deleteModal", "previewModal"].forEach(closeModal);
+      ["sourceModal", "settingsModal", "deleteModal", "previewModal", "sectionsModal", "infoModal"].forEach(closeModal);
     }
   });
 
@@ -837,6 +958,7 @@ async function init() {
   // з програми: /?section=ID — показати розділ; &new=1 — одразу форма нового джерела в цьому розділі
   const qs = new URLSearchParams(location.search);
   if (qs.get("section")) document.getElementById("sectionFilter").value = qs.get("section");
+  syncBibButton();
   await loadSources();
   if (qs.get("new")) openSourceModal();
 }

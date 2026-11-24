@@ -679,3 +679,20 @@ body {
 }
 
 a.btn { text-decoration: none; display: inline-flex; align-items: center; }
+
+/* Розділи, звіти, опис у картці (BioBib як окрема програма) */
+.topbar-actions { flex-wrap: wrap; }
+.card-desc { color: var(--text-muted, #667085); font-size: 13px; margin: 6px 0 2px; line-height: 1.4; }
+.sections-tree { display: flex; flex-direction: column; gap: 10px; margin: 12px 0; max-height: 55vh; overflow: auto; }
+.sec-group { border: 1px solid var(--border, #e4e7ec); border-radius: 10px; padding: 6px 8px; }
+.sec-row { display: flex; align-items: center; gap: 10px; padding: 4px 2px; }
+.sec-row.sub { padding-left: 22px; }
+.sec-row .sec-title { flex: 1; font-weight: 600; }
+.sec-row.sub .sec-title { font-weight: 400; }
+.sec-actions { display: flex; gap: 4px; }
+.sections-new { display: flex; gap: 8px; margin-top: 6px; }
+.sections-new.sub { padding-left: 22px; }
+.sections-new input { flex: 1; min-width: 0; padding: 6px 10px; border: 1px solid var(--border, #d0d5dd); border-radius: 8px; font: inherit; }
+.bib-text { width: 100%; min-height: 260px; font: 13px/1.45 inherit; }
+#infoBody ul { margin: 4px 0 12px; padding-left: 20px; }
+.btn.hidden { display: none; }

@@ -34,25 +34,33 @@ jobs:
       - name: Build exe
         run: |
           python -c "from winsys import make_icon_image; make_icon_image(256).save('app.ico', sizes=[(16,16),(32,32),(48,48),(64,64),(128,128),(256,256)])"
-          pyinstaller --onefile --windowed --name ClipboardMemory --icon app.ico --collect-all customtkinter --collect-submodules pystray --add-data "biobib/static;biobib/static" --add-data "biobib/seed;biobib/seed" --collect-submodules uvicorn --collect-submodules biobib --hidden-import python_multipart --exclude-module httpx clipboard_manager.py
+          pyinstaller --onefile --windowed --name ClipboardMemory --icon app.ico --collect-all customtkinter --collect-submodules pystray --exclude-module biobib --exclude-module fastapi --exclude-module uvicorn --exclude-module starlette --exclude-module pydantic --exclude-module pypdf --exclude-module httpx clipboard_manager.py
 
       # Для порівняння швидкості старту: той самий код, але «тека» без розпакування при кожному запуску
       - name: Build onedir variant
         run: |
-          pyinstaller --onedir --windowed --name ClipboardMemoryDir --icon app.ico --collect-all customtkinter --collect-submodules pystray --add-data "biobib/static;biobib/static" --add-data "biobib/seed;biobib/seed" --collect-submodules uvicorn --collect-submodules biobib --hidden-import python_multipart --exclude-module httpx clipboard_manager.py
+          pyinstaller --onedir --windowed --name ClipboardMemoryDir --icon app.ico --collect-all customtkinter --collect-submodules pystray --exclude-module biobib --exclude-module fastapi --exclude-module uvicorn --exclude-module starlette --exclude-module pydantic --exclude-module pypdf --exclude-module httpx clipboard_manager.py
           Compress-Archive -Path dist/ClipboardMemoryDir -DestinationPath dist/ClipboardMemory-folder.zip
+
+      # BioBib — окрема програма: бібліотека джерел у браузері + значок у треї
+      - name: Build BioBib exe
+        run: |
+          python -c "from biobib.desktop import tray_image; tray_image(256).save('biobib.ico', sizes=[(16,16),(32,32),(48,48),(64,64),(128,128),(256,256)])"
+          pyinstaller --onefile --windowed --name BioBib --icon biobib.ico --collect-submodules pystray --add-data "biobib/static;biobib/static" --add-data "biobib/seed;biobib/seed" --collect-submodules uvicorn --collect-submodules biobib --hidden-import python_multipart --exclude-module httpx --exclude-module customtkinter biobib_app.py
+          pyinstaller --onedir --windowed --name BioBibDir --icon biobib.ico --collect-submodules pystray --add-data "biobib/static;biobib/static" --add-data "biobib/seed;biobib/seed" --collect-submodules uvicorn --collect-submodules biobib --hidden-import python_multipart --exclude-module httpx --exclude-module customtkinter biobib_app.py
+          Compress-Archive -Path dist/BioBibDir -DestinationPath dist/BioBib-folder.zip
 
       - name: Check exe exists
         run: |
           if (-not (Test-Path dist/ClipboardMemory.exe)) { throw "exe not built" }
           Get-Item dist/ClipboardMemory.exe | Select-Object Name, Length
 
-      # Вбудована бібліотека «Посилання»: сервер FastAPI/uvicorn і статика мають бути всередині exe
+      # BioBib.exe: сервер FastAPI/uvicorn, статика, набір джерел і pypdf мають бути всередині exe
       - name: BioBib check (exe)
         run: |
-          $dir = Join-Path $env:RUNNER_TEMP "cm-biobib"
-          $exe = (Resolve-Path dist/ClipboardMemory.exe).Path
-          $p = Start-Process -FilePath $exe -ArgumentList "--biobib-check","--data-dir",$dir -PassThru -Wait
+          $dir = Join-Path $env:RUNNER_TEMP "bb-check"
+          $exe = (Resolve-Path dist/BioBib.exe).Path
+          $p = Start-Process -FilePath $exe -ArgumentList "--check","--data-dir",$dir -PassThru -Wait
           $out = Get-Content (Join-Path $dir "biobib-check.txt") -Raw -Encoding UTF8
           Write-Host "BIOBIB: $out"
           if (-not $out.StartsWith("OK")) { throw "biobib check failed" }
@@ -169,6 +177,18 @@ jobs:
         with:
           name: ClipboardMemory-folder
           path: clipboard-manager/dist/ClipboardMemory-folder.zip
+          if-no-files-found: error
+
+      - uses: actions/upload-artifact@v4
+        with:
+          name: BioBib-exe
+          path: clipboard-manager/dist/BioBib.exe
+          if-no-files-found: error
+
+      - uses: actions/upload-artifact@v4
+        with:
+          name: BioBib-folder
+          path: clipboard-manager/dist/BioBib-folder.zip
           if-no-files-found: error
 
       - uses: actions/upload-artifact@v4

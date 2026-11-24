@@ -2960,535 +2960,6 @@ class FormatRow:
         self.row.destroy()
 
 
-class LibraryDialog(_Dialog):
-    """«Додати з бібліотеки…»: усі джерела BioBib з пошуком; позначені додаються в підпапку.
-    Результат: список id джерел або None."""
-
-    def __init__(self, app: "App", sources: list[dict], already: set[int], title: str):
-        super().__init__(app, title, 860, 640)
-        self.sources, self.already = sources, already
-        self.vars: dict[int, tk.BooleanVar] = {}
-        card = ctk.CTkFrame(self, corner_radius=16, fg_color=PANEL, border_width=1, border_color=PANEL_BORDER)
-        card.pack(fill="both", expand=True, padx=14, pady=14)
-        self.query = tk.StringVar()
-        e = ctk.CTkEntry(card, textvariable=self.query, height=40, corner_radius=12, fg_color=INPUT,
-                         border_color=PANEL_BORDER, font=app.f.dlg,
-                         placeholder_text="Пошук: автор, назва, журнал, рік, DOI…")
-        e.pack(fill="x", padx=18, pady=(16, 8))
-        self.query.trace_add("write", lambda *a: self.fill())
-        self.list = ScrollFrame(card, fg_color="transparent", corner_radius=0,
-                                           scrollbar_button_color=SCROLL, scrollbar_button_hover_color=SCROLL_HOVER)
-        self.list.pack(fill="both", expand=True, padx=10)
-        bottom = ctk.CTkFrame(card, fg_color="transparent")
-        bottom.pack(fill="x", padx=18, pady=(8, 16))
-        self.count = ctk.CTkLabel(bottom, text="", text_color=MUTED, font=app.f.body)
-        self.count.pack(side="left")
-        ctk.CTkButton(bottom, text="Додати позначені", width=170, height=40, corner_radius=12, fg_color=ACCENT,
-                      hover_color=ACCENT_HOVER, font=app.f.dlg_bold, command=self.ok).pack(side="right")
-        ctk.CTkButton(bottom, text="Скасувати", width=112, height=40, corner_radius=12, fg_color=BTN2,
-                      hover_color=BTN2_HOVER, text_color=TEXT, font=app.f.dlg, command=self.cancel
-                      ).pack(side="right", padx=10)
-        self.fill()
-        self.after(120, e.focus_set)
-
-    def fill(self) -> None:
-        for w in self.list.winfo_children():
-            w.destroy()
-        q = self.query.get().strip().casefold()
-        shown = [s_ for s_ in self.sources if not q or q in (s_["citation_dstu"] + " " + (s_.get("doi") or "")).casefold()]
-        for s_ in shown:
-            var = self.vars.setdefault(s_["id"], tk.BooleanVar(value=False))
-            have = s_["id"] in self.already
-            ctk.CTkCheckBox(self.list, text=("✓ уже в підпапці · " if have else "") + s_["citation_dstu"],
-                            variable=var, font=self.app.f.body, text_color=MUTED if have else TEXT,
-                            state="disabled" if have else "normal", checkbox_width=22, checkbox_height=22,
-                            fg_color=ACCENT, hover_color=ACCENT_HOVER).pack(fill="x", anchor="w", padx=8, pady=4)
-        self.count.configure(text=f"Джерел у бібліотеці: {len(self.sources)}" + (f" · знайдено {len(shown)}" if q else ""))
-
-    def ok(self) -> None:
-        self.result = [sid for sid, v in self.vars.items() if v.get() and sid not in self.already]
-        self.destroy()
-
-
-class LinksPage:
-    """Вкладка «Посилання»: бібліотека джерел для дисертації (BioBib) — папки → підпапки (поки що два рівні)
-    і джерела з готовими посиланнями за ДСТУ 8302:2015. Клік по джерелу копіює посилання (Alt + клік — ще й
-    ховає програму). Повна бібліотека (форма джерела, PDF, нотатки, пошук) — у браузері: «Бібліотека в браузері»."""
-
-    TILE_W, TILE_H = 250, 128
-
-    def __init__(self, app: "App", parent):
-        self.app = app
-        self.path: list[int] = []                 # [] — корінь, [папка], [папка, підпапка]
-        from biobib import config as bb_config, database as bb_db, library as bb_lib, sections as bb_sec
-        self.sec, self.db, self.lib = bb_sec, bb_db, bb_lib
-        bb_config.configure(os.path.join(app.log_dir, "biobib"))
-        self.error = ""
-        self.seed_report: dict = {}
-        self._attach_job = None                   # фонове прикріплення PDF: (потік, результат)
-        try:
-            bb_db.init_db()                      # «Дисертація» → «Актуальність» на першому запуску
-            with self.conn() as c:               # джерела дисертації з описами — один раз (далі лише позначка)
-                self.seed_report = bb_lib.import_seed(c)
-        except Exception as ex:                  # noqa: BLE001 — показуємо на сторінці
-            self.error = f"Не вдалося відкрити бібліотеку: {ex}"
-        f = app.f
-        self.frame = ctk.CTkFrame(parent, corner_radius=16, fg_color=PANEL, border_width=1, border_color=PANEL_BORDER)
-        bar = ctk.CTkFrame(self.frame, fg_color="transparent")
-        bar.pack(fill="x", padx=16, pady=(14, 4))
-        self.crumbs = ctk.CTkFrame(bar, fg_color="transparent")
-        self.crumbs.pack(side="left", fill="x", expand=True)
-        self.btn_browser = ctk.CTkButton(bar, text="Бібліотека в браузері ↗", height=38, corner_radius=12,
-                                         fg_color=BTN2, hover_color=BTN2_HOVER, text_color=TEXT, font=f.body,
-                                         command=self.open_browser)
-        self.btn_browser.pack(side="right")
-        self.btn_bib = ctk.CTkButton(bar, text="Копіювати список літератури", height=38, corner_radius=12,
-                                     fg_color=BTN2, hover_color=BTN2_HOVER, text_color=TEXT, font=f.body,
-                                     command=self.copy_bibliography)
-        self.btn_lib = ctk.CTkButton(bar, text="Додати з бібліотеки…", height=38, corner_radius=12, fg_color=BTN2,
-                                     hover_color=BTN2_HOVER, text_color=TEXT, font=f.body,
-                                     command=self.attach_from_library)
-        self.btn_new = ctk.CTkButton(bar, text="＋ Папка", height=38, corner_radius=12, fg_color=ACCENT,
-                                     hover_color=ACCENT_HOVER, font=f.bold, command=self.add)
-        self.btn_pdf = ctk.CTkButton(bar, text="Прикріпити PDF…", height=38, corner_radius=12, fg_color=BTN2,
-                                     hover_color=BTN2_HOVER, text_color=TEXT, font=f.body,
-                                     command=lambda: self.attach_pdfs_dialog())
-        self.btn_dups = ctk.CTkButton(bar, text="Прибрати дублікати", height=38, corner_radius=12, fg_color=BTN2,
-                                      hover_color=BTN2_HOVER, text_color=TEXT, font=f.body, command=self.dedupe)
-        self.hint = ctk.CTkLabel(self.frame, text="", anchor="w", justify="left", text_color=MUTED, font=f.body)
-        self.hint.pack(fill="x", padx=20, pady=(2, 4))
-        self.body = ScrollFrame(self.frame, fg_color="transparent", corner_radius=0,
-                                           scrollbar_button_color=SCROLL, scrollbar_button_hover_color=SCROLL_HOVER)
-        self.body.pack(fill="both", expand=True, padx=8, pady=(0, 10))
-        self.items: list = []                     # (тип, id, фрейм) показаних плиток/карток — для тестів і меню
-        self.root_frame_focus = app.root.bind("<FocusIn>", lambda e: self._maybe_refresh(e), add="+")
-
-    # -- дані --------------------------------------------------------------------------------------------
-    def conn(self):
-        """Підключення до БД бібліотеки, що закривається після with-блоку (зміни комітять самі функції)."""
-        from contextlib import closing
-        return closing(self.db.get_connection())
-
-    def _maybe_refresh(self, e) -> None:
-        """Повернулись у вікно (наприклад, після браузера) — перечитуємо поточний розділ."""
-        if self.app.tab == "links" and e.widget is self.app.root and \
-                time.monotonic() - getattr(self, "_last_refresh", 0.0) > 1.5:
-            self.refresh()
-
-    def level(self) -> int:
-        return len(self.path)
-
-    def current(self) -> dict | None:
-        if not self.path:
-            return None
-        with self.conn() as c:
-            return self.sec.get_section(c, self.path[-1])
-
-    def title(self) -> str:
-        cur = self.current()
-        return cur["title"] if cur else "Посилання"
-
-    def count_text(self) -> str:
-        return str(len(self.items))
-
-    def go(self, path: list[int]) -> None:
-        self.path = list(path)
-        self.refresh()
-
-    def escape(self):
-        if self.path:
-            self.go(self.path[:-1])
-        else:
-            self.app.set_tab("clip")
-        return "break"
-
-    # -- побудова сторінки ------------------------------------------------------------------------------
-    def refresh(self) -> None:
-        a = self.app
-        self._last_refresh = time.monotonic()
-        try:
-            with self.conn() as c:
-                path_secs = [self.sec.get_section(c, sid) for sid in self.path]
-                if any(p is None for p in path_secs):              # розділ видалили (наприклад, у браузері)
-                    self.path, path_secs = [], []
-                subs = self.sec.list_sections(c, self.path[-1] if self.path else None) if self.level() < 2 else []
-                srcs = self.sec.sources_in(c, self.path[-1]) if self.path else []
-                nfiles = self.lib.file_counts(c)
-                descs = self.lib.descriptions(c)
-                for s_ in srcs:
-                    s_["n_files"] = nfiles.get(s_["id"], 0)
-                    s_["description"] = descs.get(s_["id"], "")
-        except Exception as ex:                                       # noqa: BLE001
-            subs, srcs, path_secs = [], [], []
-            self.error = self.error or f"Помилка бібліотеки: {ex}"
-        for w in self.crumbs.winfo_children():
-            w.destroy()
-        trail = [("Посилання", [])] + [(p["title"], self.path[:n + 1]) for n, p in enumerate(path_secs)]
-        for n, (name, path) in enumerate(trail):
-            if n:
-                tk.Label(self.crumbs, text="›", font=a.pf.title, bg=a.col(PANEL), fg=a.col(MUTED)).pack(side="left",
-                                                                                                    padx=4)
-            last = n == len(trail) - 1
-            ctk.CTkButton(self.crumbs, text=name, height=36, corner_radius=10, font=a.f.bold,
-                          fg_color=ACCENT_SOFT if last else "transparent", hover_color=BTN2,
-                          text_color=TEXT, width=40, command=lambda p=path: self.go(p)).pack(side="left")
-        lvl = self.level()
-        for b in (self.btn_new, self.btn_lib, self.btn_bib, self.btn_pdf, self.btn_dups):
-            b.pack_forget()
-        if lvl == 0:
-            self.btn_pdf.pack(side="right", padx=(0, 8))
-            self.btn_dups.pack(side="right", padx=(0, 8))
-        if lvl < 2:
-            self.btn_new.configure(text="＋ Папка" if lvl == 0 else "＋ Підпапка")
-            self.btn_new.pack(side="right", padx=(0, 8))
-        if lvl >= 1:
-            if srcs:
-                self.btn_bib.pack(side="right", padx=(0, 8))
-            self.btn_lib.pack(side="right", padx=(0, 8))
-        if lvl == 2:
-            self.btn_new.configure(text="＋ Джерело")
-            self.btn_new.pack(side="right", padx=(0, 8))
-        for w in self.body.winfo_children():
-            w.destroy()
-        self.items = []
-        cols = 4
-        for c_ in range(cols):
-            self.body.grid_columnconfigure(c_, weight=1, uniform="lt")
-        row = 0
-        for n, sec in enumerate(subs):
-            self._tile(sec, n, row + n // cols, n % cols)
-        row += (len(subs) + cols - 1) // cols
-        for n, src in enumerate(srcs, 1):
-            self._source_card(src, n, row)
-            row += 1
-        if self.error:
-            hint = self.error
-        elif self._attach_job is not None:
-            hint = "Прикріплюю PDF і читаю їхній текст… (можна працювати далі)"
-        elif lvl == 0:
-            hint = ("Папки бібліотеки. Клік — відкрити папку · правий клік — перейменувати, порядок, видалити. "
-                    "«Прикріпити PDF…» — файли, ZIP або тека: кожен PDF сам знайде своє джерело.")
-        elif lvl == 1:
-            hint = ("Підпапки (поки що можна створювати лише їх). Клік — відкрити підпапку." +
-                    (" Нижче — джерела, додані прямо в папку." if srcs else ""))
-        else:
-            hint = ("Клік по джерелу — копіювати посилання за ДСТУ 8302:2015 · Alt + клік — копіювати й сховати · "
-                    "«Читати» — повний текст дослідження · правий клік — ще дії (PDF на диску, прикріпити PDF)."
-                    if srcs else
-                    "Джерел ще немає: «＋ Джерело» відкриває форму в браузері (з цією підпапкою), «Додати з "
-                    "бібліотеки…» — вибрати з уже доданих.")
-        self.hint.configure(text=hint)
-        a._sync_title()
-
-    def _tile(self, sec: dict, n: int, r: int, c_: int) -> None:
-        a = self.app
-        color = PALETTE[n % len(PALETTE)] if self.level() == 0 else PALETTE[(n + 3) % len(PALETTE)]
-        fill, hover, _sel, border = row_colors(color)
-        fr = ctk.CTkFrame(self.body, width=self.TILE_W, height=self.TILE_H, corner_radius=18, fg_color=fill,
-                          border_width=border_width(), border_color=border, cursor="hand2")
-        fr.grid(row=r, column=c_, padx=6, pady=6, sticky="ew")
-        fr.pack_propagate(False)
-        bg = a.col(fill)
-        inner = tk.Frame(fr, bg=bg)
-        inner.place(relx=0, rely=0.5, anchor="w", x=int(16 * a.scaling()), relwidth=0.86)
-        shape = tk.Label(inner, text=SHAPES[(sec["id"] * 7) % len(SHAPES)], font=a.pf.shape_big, bg=bg,
-                         fg=a.col(ink(fill)))
-        shape.pack(side="left", padx=(0, 10))
-        txt = tk.Frame(inner, bg=bg)
-        txt.pack(side="left", fill="x", expand=True)
-        name = tk.Label(txt, text=sec["title"], font=a.pf.card, bg=bg, fg=a.col(ink(fill)), anchor="w", justify="left",
-                        wraplength=int((self.TILE_W - 90) * a.scaling()))
-        name.pack(fill="x")
-        with self.conn() as c:
-            n_sub = len(self.sec.list_sections(c, sec["id"])) if self.level() == 0 else 0
-        meta = (f"підпапок: {n_sub} · " if self.level() == 0 else "") + f"джерел: {sec['count']}"
-        info = tk.Label(txt, text=meta, font=a.pf.meta, bg=bg, fg=a.col(ink(fill, "meta")), anchor="w")
-        info.pack(fill="x")
-        parts = [fr, inner, shape, txt, name, info]
-        for w in parts:
-            w.bind("<Button-1>", lambda e, sid=sec["id"]: self.go(self.path + [sid]))
-            w.bind("<Button-3>", lambda e, s_=sec: self._section_menu(e, s_))
-        self.items.append(("section", sec["id"], fr))
-
-    def _source_card(self, src: dict, n: int, r: int) -> None:
-        a = self.app
-        fill, hover, border = card_colors(None)
-        fr = ctk.CTkFrame(self.body, corner_radius=14, fg_color=fill, border_width=border_width(),
-                          border_color=border, cursor="hand2")
-        fr.grid(row=r, column=0, columnspan=4, padx=6, pady=4, sticky="ew")
-        bg = a.col(fill)
-        num = tk.Label(fr, text=f"{n}.", font=a.pf.card, bg=bg, fg=a.col(MUTED), width=3, anchor="ne")
-        num.pack(side="left", anchor="n", padx=(12, 6), pady=12)
-        acts = tk.Frame(fr, bg=bg)                        # «Читати» / «PDF» — праворуч, лише якщо є файл
-        acts.pack(side="right", anchor="n", padx=(0, 12), pady=10)
-        if src.get("n_files"):
-            for text_, cmd in (("Читати", lambda s_=src: self.read_source(s_)),
-                               ("PDF ↗", lambda s_=src: self.open_file(s_))):
-                ctk.CTkButton(acts, text=text_, width=78, height=30, corner_radius=10, fg_color=BTN2,
-                              hover_color=BTN2_HOVER, text_color=TEXT, font=a.f.body, command=cmd).pack(pady=(0, 4))
-        body = tk.Frame(fr, bg=bg)
-        body.pack(side="left", fill="x", expand=True, padx=(0, 10), pady=10)
-        wrap = int((860 if src.get("n_files") else 940) * a.scaling())
-        lbl = tk.Label(body, text=src["citation_dstu"], font=a.pf.phrase, bg=bg, fg=a.col(TEXT), anchor="w",
-                       justify="left", wraplength=wrap, cursor="hand2")
-        lbl.pack(fill="x")
-        parts = [fr, num, body, lbl, acts]
-        if src.get("description"):
-            desc = tk.Label(body, text=clip(src["description"], 260), font=a.pf.meta, bg=bg, fg=a.col(MUTED),
-                            anchor="w", justify="left", wraplength=wrap, cursor="hand2")
-            desc.pack(fill="x", pady=(4, 0))
-            parts.append(desc)
-        for w in parts:
-            w.bind("<Button-1>", lambda e, s_=src, f_=fr: self.copy_source(s_, bool(e.state & ALT_MASK), f_))
-            w.bind("<Button-3>", lambda e, s_=src, i=n: self._source_menu(e, s_, i))
-        self.items.append(("source", src["id"], fr))
-
-    # -- дії -----------------------------------------------------------------------------------------------
-    def copy_source(self, src: dict, hide: bool = False, frame=None) -> None:
-        text = src["citation_dstu"]
-        self.app.copy_to_clipboard(text)
-        if frame is not None:
-            try:
-                fl = tk.Label(frame, text="✓  Скопійовано", font=self.app.pf.bold, fg="#ffffff",
-                              bg=self.app.col(COPIED))
-                fl.place(relx=0, rely=0, relwidth=1, relheight=1)
-                fl.after(550, fl.destroy)
-            except tk.TclError:
-                pass
-        self.app._finish_pick("✓ Скопійовано посилання: " + clip(text, 70), hide=hide)
-
-    def add(self) -> None:
-        """Кнопка «＋» / «＋ Додати»: на корені — папка, у папці — підпапка, у підпапці — джерело (браузер)."""
-        lvl = self.level()
-        if lvl == 2:
-            self.open_browser(new=True)
-            return
-        name = TextDialog(self.app, "Нова папка" if lvl == 0 else "Нова підпапка",
-                          "Назва папки:" if lvl == 0 else "Назва підпапки:").run()
-        if not name or not name.strip():
-            return
-        with self.conn() as c:
-            made = self.sec.create_section(c, name, self.path[-1] if self.path else None)
-        if made:
-            self.app.set_status(f"✓ Створено: {made['path']}", 3000)
-        self.refresh()
-
-    def _section_menu(self, e, sec: dict) -> None:
-        a = self.app
-        m = a._new_menu()
-        m.add_command("Відкрити", lambda: self.go(self.path + [sec["id"]]), icon="▸")
-        m.add_command("Перейменувати…", lambda: self.rename(sec), icon="✎")
-        m.add_command("Перемістити вгору", lambda: self.move(sec, -1), icon="↑")
-        m.add_command("Перемістити вниз", lambda: self.move(sec, 1), icon="↓")
-        m.add_command("Відкрити в браузері", lambda: self.open_browser(section=sec["id"]), icon="↗")
-        m.add_separator()
-        m.add_command("Видалити…", lambda: self.delete(sec), danger=True, icon="✕")
-        a._popup(m, e.x_root, e.y_root)
-
-    def rename(self, sec: dict) -> None:
-        name = TextDialog(self.app, "Перейменувати", "Нова назва:", sec["title"]).run()
-        if name and name.strip():
-            with self.conn() as c:
-                self.sec.rename_section(c, sec["id"], name)
-            self.refresh()
-
-    def move(self, sec: dict, delta: int) -> None:
-        with self.conn() as c:
-            self.sec.move_section(c, sec["id"], delta)
-        self.refresh()
-
-    def delete(self, sec: dict) -> None:
-        if messagebox.askyesno(APP_NAME, f"Видалити «{sec['title']}» разом із підпапками?\n"
-                                         "Самі джерела лишаться в бібліотеці.", parent=self.app.root):
-            with self.conn() as c:
-                self.sec.delete_section(c, sec["id"])
-            self.refresh()
-
-    def _source_menu(self, e, src: dict, n: int) -> None:
-        a = self.app
-        m = a._new_menu()
-        m.add_command("Копіювати посилання (ДСТУ 8302)", lambda: self.copy_source(src), icon="⧉")
-        m.add_command(f"Копіювати посилання в тексті [{n}]", lambda: self._copy_plain(f"[{n}]"), icon="#")
-        if src.get("n_files"):
-            m.add_command("Читати повний текст", lambda: self.read_source(src), icon="📖")
-            m.add_command("Відкрити PDF на диску", lambda: self.open_file(src), icon="↗")
-            m.add_command("Показати файл у папці", lambda: self.open_file(src, reveal=True), icon="📁")
-        m.add_command("Прикріпити PDF…", lambda: self.attach_pdfs_dialog(src), icon="📎")
-        m.add_command("Відкрити в бібліотеці (браузер)", lambda: self.open_browser(section=self.path[-1]), icon="↗")
-        m.add_command("Вгору", lambda: self.move_source(src, -1), icon="↑")
-        m.add_command("Вниз", lambda: self.move_source(src, 1), icon="↓")
-        m.add_separator()
-        m.add_command("Прибрати з підпапки", lambda: self.detach(src), danger=True, icon="✕")
-        a._popup(m, e.x_root, e.y_root)
-
-    def _copy_plain(self, text: str) -> None:
-        self.app.copy_to_clipboard(text)
-        self.app.set_status(f"✓ Скопійовано: {text}", 3000)
-
-    def move_source(self, src: dict, delta: int) -> None:
-        with self.conn() as c:
-            self.sec.move_source(c, src["id"], self.path[-1], delta)
-        self.refresh()
-
-    def detach(self, src: dict) -> None:
-        with self.conn() as c:
-            self.sec.detach(c, src["id"], self.path[-1])
-        self.refresh()
-        self.app.set_status("Джерело прибрано з підпапки (у бібліотеці воно лишилось)", 4000)
-
-    def attach_from_library(self) -> None:
-        if not self.path:
-            return
-        with self.conn() as c:
-            allsrc = self.sec.all_sources(c)
-            have = {s_["id"] for s_ in self.sec.sources_in(c, self.path[-1])}
-        if not allsrc:
-            self.app.set_status("Бібліотека порожня — додайте джерело («＋ Джерело» або «Бібліотека в браузері»)", 6000)
-            return
-        ids = LibraryDialog(self.app, allsrc, have, f"Додати в «{self.title()}»").run()
-        if ids:
-            with self.conn() as c:
-                for sid in ids:
-                    self.sec.attach(c, sid, self.path[-1])
-            self.app.set_status(f"✓ Додано джерел: {len(ids)}", 3000)
-        self.refresh()
-
-    def copy_bibliography(self) -> None:
-        if not self.path:
-            return
-        with self.conn() as c:
-            text = self.sec.bibliography(c, self.path[-1])
-        if text:
-            self.app.copy_to_clipboard(text)
-            self.app.show_toast(f"✓ Скопійовано список літератури ({len(text.splitlines())})")
-
-    # -- файли: відкрити на диску, читати, прикріпити ---------------------------------------------------------
-    def _first_file(self, src: dict):
-        with self.conn() as c:
-            files = self.lib.files_of(c, src["id"])
-            pdfs = [f for f in files if f["mime"] == "application/pdf"] or files
-            return (pdfs[0], self.lib.file_path(c, pdfs[0]["id"])) if pdfs else (None, None)
-
-    def open_file(self, src: dict, reveal: bool = False) -> bool:
-        """PDF джерела — у програмі за замовчуванням (переглядач PDF) або показати у Провіднику."""
-        f, path = self._first_file(src)
-        if f is None:
-            self.app.set_status("До цього джерела ще не прикріплено файл — «Прикріпити PDF…»", 5000)
-            return False
-        ok = self.lib.open_on_disk(path, reveal=reveal)
-        self.app.set_status(("✓ Відкрито папку з файлом: " if reveal else "✓ Відкрито: ") + f["original_name"]
-                            if ok else "Не вдалося відкрити файл: " + str(path), 5000)
-        return ok
-
-    def read_source(self, src: dict) -> None:
-        """Повний текст дослідження в читалці (браузер): абзаци, зміст, пошук, розмір шрифту, теми."""
-        f, _path = self._first_file(src)
-        self.open_browser(path=f"reader/{src['id']}" + (f"?file={f['id']}" if f else ""))
-
-    def attach_pdfs_dialog(self, src: dict | None = None) -> None:
-        """«Прикріпити PDF…»: вибрати PDF / ZIP (src — до цього джерела, інакше кожен файл шукає своє джерело)."""
-        paths = filedialog.askopenfilenames(
-            parent=self.app.root, title="PDF досліджень (можна кілька, або ZIP-архів)",
-            filetypes=[("PDF або ZIP", "*.pdf *.zip"), ("Усі файли", "*.*")])
-        if paths:
-            self.attach_pdfs(list(paths), src["id"] if src else None)
-
-    def attach_pdfs(self, paths: list, source_id: int | None = None, wait: bool = False) -> None:
-        """Прикріплює PDF у фоні (текст великих PDF читається секунди), потім показує звіт."""
-        if self._attach_job is not None:
-            self.app.set_status("Ще прикріплюю попередні файли…", 3000)
-            return
-        result: dict = {}
-
-        def work() -> None:
-            from contextlib import closing
-            try:
-                with closing(self.db.get_connection()) as c:
-                    result["rep"] = self.lib.attach_pdfs(c, paths, source_id=source_id)
-            except Exception as ex:                                   # noqa: BLE001
-                result["error"] = ex
-
-        th = threading.Thread(target=work, name="biobib-attach", daemon=True)
-        self._attach_job = (th, result)
-        th.start()
-        self.app.set_status("Прикріплюю PDF…", 4000)
-        self.refresh()
-        if wait:
-            th.join()
-        self._poll_attach()
-
-    def _poll_attach(self) -> None:
-        th, result = self._attach_job
-        if th.is_alive():
-            self.app.root.after(150, self._poll_attach)
-            return
-        self._attach_job = None
-        self.last_attach = result
-        self.refresh()
-        if "error" in result:
-            messagebox.showerror(APP_NAME, f"Не вдалося прикріпити PDF:\n{result['error']}", parent=self.app.root)
-            return
-        rep = result["rep"]
-        lines = [f"Прикріплено: {len(rep['attached'])}"]
-        lines += [f"  • {clip(t, 70)}" for _n, _sid, t, _how in rep["attached"][:12]]
-        if len(rep["attached"]) > 12:
-            lines.append(f"  … і ще {len(rep['attached']) - 12}")
-        if rep["duplicate"]:
-            lines.append(f"\nПропущено дублікатів: {len(rep['duplicate'])}")
-            lines += [f"  • {clip(n, 40)} — {clip(why, 80)}" for n, why in rep["duplicate"][:10]]
-        if rep["not_pdf"]:
-            lines.append("\nНе PDF (пропущено): " + ", ".join(clip(n, 40) for n in rep["not_pdf"][:8]))
-        if rep["unmatched"]:
-            lines.append("\nНе знайшлося джерело (додайте його й прикріпіть файл через правий клік по джерелу): "
-                         + ", ".join(clip(n, 40) for n in rep["unmatched"][:8]))
-        self.app.set_status(f"✓ Прикріплено PDF: {len(rep['attached'])}", 5000)
-        if not getattr(self.app, "_no_dialogs", False):
-            messagebox.showinfo(APP_NAME, "\n".join(lines), parent=self.app.root)
-
-    def dedupe(self) -> list:
-        """«Прибрати дублікати»: однакові джерела (DOI або назва + рік) зливаються в одне, однакові файли — теж."""
-        with self.conn() as c:
-            merged = self.lib.dedupe_sources(c)
-        n_src = sum(len(m["removed"]) for m in merged)
-        n_files = sum(1 for m in merged if m.get("file_removed"))
-        self.refresh()
-        self.app.show_toast(f"✓ Дублікатів джерел: {n_src}, однакових файлів: {n_files}" if merged
-                            else "Дублікатів не знайдено")
-        return merged
-
-    def open_browser(self, new: bool = False, section: int | None = None, path: str = "") -> None:
-        """Повна бібліотека BioBib у браузері (сервер стартує тут, у фоні, лише на вимогу)."""
-        import webbrowser
-        a = self.app
-        a.set_status("Запускаю бібліотеку…", 3000)
-        a.root.update_idletasks()
-        try:
-            from biobib import server as bb_server
-            url = bb_server.ensure_running()
-        except Exception as ex:                                       # noqa: BLE001
-            a._report_exception(*sys.exc_info())
-            messagebox.showerror(APP_NAME, f"Не вдалося запустити бібліотеку в браузері:\n{ex}", parent=a.root)
-            return
-        if path:                                                      # читалка тощо
-            self.last_url = url + path
-            if not getattr(a, "_no_browser", False):
-                webbrowser.open(self.last_url)
-            a.set_status("Відкрито в браузері: " + self.last_url, 6000)
-            return
-        sid = section if section is not None else (self.path[-1] if self.path else None)
-        q = []
-        if sid is not None:
-            q.append(f"section={sid}")
-        if new:
-            q.append("new=1")
-        full = url + ("?" + "&".join(q) if q else "")
-        self.last_url = full
-        if not getattr(a, "_no_browser", False):
-            webbrowser.open(full)
-        a.set_status("Бібліотека відкрита в браузері: " + url + "  ·  після змін поверніться сюди — сторінка оновиться",
-                     8000)
-
-
 class WakeQueue(queue.Queue):
     """Черга подій, що будить цикл Tk відразу після put() з іншого потоку (гаряча клавіша, трей,
     друга копія програми). Жодного постійного опитування: у фоні немає зайвих пробуджень, а реакція
@@ -4021,18 +3492,6 @@ class App:
         top = ctk.CTkFrame(root, fg_color="transparent")
         top.grid(row=0, column=0, sticky="ew", padx=14, pady=(14, 8))
         top.grid_columnconfigure(1, weight=1)
-        # вкладки зліва: «Копіпасти» (папки й записи) і «Посилання» (бібліотека джерел для дисертації)
-        self.tabs = ctk.CTkFrame(top, fg_color="transparent")
-        self.tabs.grid(row=0, column=0, padx=(0, 10))
-        self.tab = "clip"
-        self.links = None
-        self.tab_btns = {}
-        for key, label in (("clip", "Копіпасти"), ("links", "Посилання")):
-            b = ctk.CTkButton(self.tabs, text=label, height=42, width=118, corner_radius=14, font=self.f.bold,
-                              command=lambda k=key: self.set_tab(k))
-            b.pack(side="left", padx=(0, 6))
-            self.tab_btns[key] = b
-        self._style_tabs()
         # банер відкритої папки (замість пошуку): назва, кількість записів, фон — колір папки
         self.banner = ctk.CTkFrame(top, height=42, corner_radius=14, fg_color=ROW_SEL, border_width=1,
                                    border_color=PANEL_BORDER)
@@ -4081,21 +3540,20 @@ class App:
         self.status.grid(row=2, column=0, sticky="ew", padx=20, pady=(6, 8))
 
         # клавіатура
-        tab = self._clip_only                       # на вкладці «Посилання» клавіші сторінки копіпастів не діють
-        root.bind("<Down>", tab(lambda e: None if self._in_format_input(e) else self._arrow_v(1)))
-        root.bind("<Up>", tab(lambda e: None if self._in_format_input(e) else self._arrow_v(-1)))
-        root.bind("<Right>", tab(lambda e: self._arrow_h(e, 1)))
-        root.bind("<Left>", tab(lambda e: self._arrow_h(e, -1)))
-        root.bind("<Return>", tab(self._on_return))
-        root.bind("<Alt-Return>", tab(lambda e: (self.submit_with_phrases(), "break")[1]))
-        root.bind("<Alt-KP_Enter>", tab(lambda e: (self.submit_with_phrases(), "break")[1]))
+        root.bind("<Down>", lambda e: None if self._in_format_input(e) else self._arrow_v(1))
+        root.bind("<Up>", lambda e: None if self._in_format_input(e) else self._arrow_v(-1))
+        root.bind("<Right>", lambda e: self._arrow_h(e, 1))
+        root.bind("<Left>", lambda e: self._arrow_h(e, -1))
+        root.bind("<Return>", self._on_return)
+        root.bind("<Alt-Return>", lambda e: (self.submit_with_phrases(), "break")[1])
+        root.bind("<Alt-KP_Enter>", lambda e: (self.submit_with_phrases(), "break")[1])
         # навігація: Alt+W/S — вище/нижче, Alt+A/D — ліворуч/праворуч (між папками й записами), Space — відкрити папку
         # або скопіювати запис, Alt+Space — скопіювати й сховати вікно. Працює і з українською/російською розкладкою.
-        root.bind("<Alt-KeyPress>", tab(self._on_alt_key))
-        root.bind("<KeyPress-space>", tab(self._on_space))
+        root.bind("<Alt-KeyPress>", self._on_alt_key)
+        root.bind("<KeyPress-space>", self._on_space)
         root.bind_all("<ButtonPress-1>", self._nav_focus, add="+")
-        root.bind("<Escape>", lambda e: self.links.escape() if self.tab == "links" else self._on_escape(e))
-        root.bind("<Delete>", tab(self._on_delete_key))
+        root.bind("<Escape>", self._on_escape)
+        root.bind("<Delete>", self._on_delete_key)
         root.bind("<Control-n>", lambda e: self.on_add())
 
         self.v_paused = tk.BooleanVar(value=self.settings["paused"])
@@ -4108,43 +3566,6 @@ class App:
         self.v_pick_font = tk.StringVar(value=f"{self._pick_font_size():g}")
         self.v_hotkey = tk.StringVar(value=self.settings["hotkey"])
         self.v_theme = tk.StringVar(value=self.settings["theme"])
-
-    def _clip_only(self, fn):
-        """Обгортка для клавіш сторінки копіпастів: на вкладці «Посилання» вони нічого не роблять."""
-        def run(e, *a):
-            if self.tab == "links":
-                return None
-            return fn(e, *a)
-        return run
-
-    # -- вкладки: «Копіпасти» / «Посилання» ------------------------------------------------------------
-    def _style_tabs(self) -> None:
-        for key, b in self.tab_btns.items():
-            on = key == self.tab
-            b.configure(fg_color=ACCENT if on else BTN2, hover_color=ACCENT_HOVER if on else BTN2_HOVER,
-                        text_color="#ffffff" if on else TEXT)
-
-    def set_tab(self, tab: str) -> None:
-        """«Копіпасти» ↔ «Посилання» (сторінка бібліотеки джерел BioBib: папки → підпапки → посилання)."""
-        if tab == self.tab:
-            if tab == "links" and self.links is not None:
-                self.links.go([])                     # повторний клік — до кореня «Посилань»
-            return
-        self.tab = tab
-        self._style_tabs()
-        if tab == "links":
-            if self.links is None:
-                self.links = LinksPage(self, self.root)
-            self.cols.grid_remove()
-            self.links.frame.grid(row=1, column=0, sticky="nsew", padx=14)
-            self.links.refresh()
-        else:
-            if self.links is not None:
-                self.links.frame.grid_remove()
-            self.cols.grid()
-        self._banner_sig = None
-        self._sync_title()
-        self._sync_banner()
 
     def _build_left(self, cols) -> None:
         left = self._panel(cols, width=self._left_w)
@@ -5504,7 +4925,7 @@ class App:
 
     def _sync_banner(self) -> None:
         """Банер угорі: колір відкритої папки (як у її рядку ліворуч), для історії — нейтральний."""
-        cat = None if (self._is_history() or self._picking() or self.tab == "links") else \
+        cat = None if (self._is_history() or self._picking()) else \
             self.preset.category(self.view)
         color = cat["color"] if cat else None
         _fill, _hover, sel, border = row_colors(color)
@@ -6458,10 +5879,7 @@ class App:
 
     def _sync_title(self) -> None:
         """Назва в банері: на сторінці вибору папки — «Оберіть папку» й кількість папок."""
-        if self.tab == "links" and self.links is not None:
-            title, count = self.links.title(), self.links.count_text()
-            keys = "Клік — копіювати посилання (ДСТУ 8302) · Alt + клік — копіювати й сховати · Esc — вище"
-        elif self._picking():
+        if self._picking():
             title, count = "", ""                    # сторінка вибору папки — без напису «Оберіть папку»
             keys = "Alt+W/A/S/D — навігація · Space — відкрити папку · Esc — сховати"
         else:
@@ -7425,9 +6843,6 @@ class App:
         self.render()
 
     def on_add(self) -> None:
-        if self.tab == "links" and self.links is not None:
-            self.links.add()
-            return
         if not self.preset.categories and not self.on_new_category(select=False):
             return
         cat = self.view if self.preset.category(self.view) else (
@@ -8313,7 +7728,7 @@ class App:
             except tk.TclError:
                 pass
             self._picker = None
-        if self._modal or self.tab != "clip":
+        if self._modal:
             return
         self.nav_activate(hide=True)
 
@@ -8517,43 +7932,6 @@ def _write_timing(path: str, app: "App | None", root) -> None:
 _T0_EPOCH = time.time()
 
 
-def _biobib_check(data_dir: str) -> int:
-    """--biobib-check: запускає вбудований сервер бібліотеки, читає розділи й головну сторінку, пише
-    результат у <data-dir>/biobib-check.txt (CI перевіряє, що FastAPI/uvicorn і статика потрапили в .exe)."""
-    import json
-    import urllib.request
-    out = os.path.join(data_dir, "biobib-check.txt")
-    os.makedirs(data_dir, exist_ok=True)
-    try:
-        from contextlib import closing
-
-        from biobib import config as bb_config, database as bb_db, library as bb_lib, server as bb_server
-        bb_config.configure(os.path.join(data_dir, "biobib"))
-        url = bb_server.ensure_running()
-        with closing(bb_db.get_connection()) as c:          # набір джерел дисертації (biobib/seed) — у exe
-            bb_lib.import_seed(c)                           # сервер уже додав набір — тут лише позначка
-            added = c.execute("SELECT COUNT(*) FROM sources").fetchone()[0]
-            sid = c.execute("SELECT MIN(id) FROM sources").fetchone()[0]
-        import pypdf  # noqa: F401 — текст PDF для читалки й пошуку
-        secs = json.loads(urllib.request.urlopen(url + "api/sections", timeout=10).read())
-        page = urllib.request.urlopen(url, timeout=10).read().decode("utf-8")
-        js = urllib.request.urlopen(url + "static/app.js", timeout=10).read()
-        reader = urllib.request.urlopen(url + f"reader/{sid}", timeout=10).read().decode("utf-8")
-        read = json.loads(urllib.request.urlopen(url + f"api/read/{sid}", timeout=10).read())
-        ok = "BioBib" in page and len(js) > 1000 and [s_["path"] for s_ in secs][:2] == \
-            ["Дисертація", "Дисертація › Актуальність"] and added == 27 and "Читалка" in reader and \
-            bool(read["source"]["description"])
-        text = ("OK " if ok else "FAIL ") + f"seed={added} " + \
-            json.dumps([s_["path"] for s_ in secs], ensure_ascii=False)
-        bb_server.stop()
-    except Exception:
-        text = "FAIL " + traceback.format_exc()
-        ok = False
-    with open(out, "w", encoding="utf-8") as f:
-        f.write(text)
-    return 0 if ok else 1
-
-
 def main(argv: list[str] | None = None) -> int:
     global _TIMING
     parser = argparse.ArgumentParser(description=APP_NAME)
@@ -8564,14 +7942,10 @@ def main(argv: list[str] | None = None) -> int:
     parser.add_argument("--minimized", action="store_true", help="запуститись одразу у фоні (без вікна)")
     parser.add_argument("--timing", action="store_true",
                         help="записати стадії запуску в <data-dir>/startup-timing.log (для діагностики швидкості)")
-    parser.add_argument("--biobib-check", action="store_true",
-                        help="перевірити вбудовану бібліотеку «Посилання» (сервер + API) і вийти (для CI)")
     args = parser.parse_args(argv)
     if args.timing:
         _TIMING = True
     _mark("args_parsed")
-    if args.biobib_check:
-        return _biobib_check(os.path.abspath(args.data_dir))
 
     events = WakeQueue()
     lock, status = acquire_single_instance(lambda: events.put("show"), lambda: events.put("quit"))

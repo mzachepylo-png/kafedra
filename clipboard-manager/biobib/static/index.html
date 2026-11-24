@@ -31,6 +31,10 @@
         <span>Розділ:</span>
         <select id="sectionFilter"><option value="">Усі джерела</option></select>
       </label>
+      <button id="btnSections" class="btn btn-secondary" type="button" title="Папки й підпапки: створити, перейменувати, порядок, видалити">Розділи…</button>
+      <button id="btnBib" class="btn btn-secondary hidden" type="button" title="Нумерований список літератури вибраного розділу за ДСТУ 8302:2015">Список літератури</button>
+      <button id="btnAttachPdf" class="btn btn-secondary" type="button" title="Кілька PDF або ZIP: кожен файл сам знайде своє джерело (за вмістом, DOI або назвою)">Прикріпити PDF…</button>
+      <input id="pdfInput" type="file" accept=".pdf,.zip,application/pdf,application/zip" multiple hidden />
       <label class="sort-wrap">
         <span data-i18n="sort_label">Сортування:</span>
         <select id="sortSelect">
@@ -261,11 +265,47 @@
           <label for="sFourPlus" data-i18n="setting_dstu_4plus">Правило ДСТУ 8302:2015 для 4 і більше авторів</label>
           <select id="sFourPlus"></select>
         </div>
+        <div class="field">
+          <label>Дублікати</label>
+          <button type="button" id="btnDedupe" class="btn btn-secondary btn-sm">Прибрати дублікати</button>
+          <p class="card-meta-line">Однакові джерела (той самий DOI або назва й рік) зливаються в одне разом із нотатками, файлами й розділами; однакові файли видаляються.</p>
+        </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-secondary" data-close-modal="settingsModal" data-i18n="btn_cancel">Скасувати</button>
           <button type="submit" class="btn btn-primary" data-i18n="btn_save">Зберегти</button>
         </div>
       </form>
+    </div>
+  </div>
+
+  <!-- Розділи: папки → підпапки -->
+  <div id="sectionsModal" class="modal hidden" role="dialog" aria-modal="true">
+    <div class="modal-backdrop" data-close-modal="sectionsModal"></div>
+    <div class="modal-dialog">
+      <div class="modal-header">
+        <h2>Розділи</h2>
+        <button type="button" class="icon-btn" data-close-modal="sectionsModal">✕</button>
+      </div>
+      <div class="modal-body">
+        <p class="card-meta-line">Папки й підпапки (два рівні). Джерело додається в розділ у його картці («Редагувати» → «Розділ»). Видалення розділу не видаляє самих джерел.</p>
+        <div id="sectionsTree" class="sections-tree"></div>
+        <form id="newTopForm" class="sections-new">
+          <input id="newTopTitle" type="text" maxlength="80" placeholder="Назва нової папки" />
+          <button type="submit" class="btn btn-primary btn-sm">+ Папка</button>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <!-- Звіт / повідомлення -->
+  <div id="infoModal" class="modal hidden" role="dialog" aria-modal="true">
+    <div class="modal-backdrop" data-close-modal="infoModal"></div>
+    <div class="modal-dialog">
+      <div class="modal-header">
+        <h2 id="infoTitle">BioBib</h2>
+        <button type="button" class="icon-btn" data-close-modal="infoModal">✕</button>
+      </div>
+      <div class="modal-body" id="infoBody"></div>
     </div>
   </div>
 

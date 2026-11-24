@@ -177,6 +177,9 @@ def _build_source_dict(
             "SELECT COUNT(*) FROM notes WHERE source_id = ?", (source_id,)
         ).fetchone()[0]
 
+    desc = conn.execute("SELECT text FROM notes WHERE source_id = ? AND kind = 'description' AND trim(text) != '' "
+                        "ORDER BY id LIMIT 1", (source_id,)).fetchone()
+    data["description"] = desc[0] if desc else ""
     data["match_snippet"] = match_snippet
     data["match_field"] = match_field
     data["section_ids"] = section_ids_of(conn, source_id)
