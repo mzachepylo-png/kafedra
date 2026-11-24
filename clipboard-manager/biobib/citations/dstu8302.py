@@ -277,8 +277,11 @@ def format_dstu8302(
         parts.append(f"{vol_issue}.")
 
     if pages:
-        p_prefix = "P." if is_en else "С."
-        parts.append(f"{p_prefix} {pages}.")
+        if re.match(r"(?i)^(art\.|article\b|ст\.|стаття\b)", pages):     # номер статті: «Art. 1861»
+            parts.append(_ensure_period(pages))
+        else:
+            p_prefix = "P." if is_en else "С."
+            parts.append(f"{p_prefix} {pages}.")
 
     if doi:
         parts.append(f"DOI: {doi}.")

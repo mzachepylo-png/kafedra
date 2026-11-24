@@ -1,0 +1,1568 @@
+{
+ "version": 1,
+ "id": "dissertation-2026-11",
+ "parent_section": "Дисертація",
+ "sections": [
+  "Метааналізи ефективності PGPB",
+  "Ендофіти пасльонових (Solanum)",
+  "Методи відбору PGP-штамів",
+  "Важкі метали та біоремедіація",
+  "Інше"
+ ],
+ "sources": [
+  {
+   "files": [
+    {
+     "name": "a2/Physiologia Plantarum - 2022 - Tufail - Endophytic bacteria perform better than endophytic fungi in improving plant growth.pdf",
+     "sha256": "2feebc71f1b9099e4c40a251ce040b2483d4148358bb1f548beb37bf49ab08dd"
+    }
+   ],
+   "file_name": "Tufail 2022 - Endophytic bacteria vs fungi under drought (meta-analysis).pdf",
+   "sections": [
+    "Метааналізи ефективності PGPB"
+   ],
+   "source": {
+    "title": "Endophytic bacteria perform better than endophytic fungi in improving plant growth under drought stress: a meta-comparison spanning 12 years (2010–2021)",
+    "authors": [
+     {
+      "family": "Tufail",
+      "given_initials": "M. A."
+     },
+     {
+      "family": "Ayyub",
+      "given_initials": "M."
+     },
+     {
+      "family": "Irfan",
+      "given_initials": "M."
+     },
+     {
+      "family": "Shakoor",
+      "given_initials": "A."
+     },
+     {
+      "family": "Chibani",
+      "given_initials": "C. M."
+     },
+     {
+      "family": "Schmitz",
+      "given_initials": "R. A."
+     }
+    ],
+    "container_title": "Physiologia Plantarum",
+    "year": 2022,
+    "volume": "174",
+    "issue": "6",
+    "pages": "Art. e13806",
+    "doi": "10.1111/ppl.13806",
+    "keywords": "endophytic bacteria; endophytic fungi; drought stress; meta-analysis",
+    "tags": [
+     "метааналіз",
+     "посуха",
+     "ендофіти"
+    ],
+    "study_object": "Рослини (C3/C4, одно- та дводольні), інокульовані ендофітними бактеріями або грибами за посухи.",
+    "methods": "Глобальний метааналіз: 75 рецензованих публікацій, 170 експериментів, 20 родів бактерій і 8 класів грибів; порівняння за типом культури, умовами досліду (in vitro / вегетаційні / польові) і способом інокуляції.",
+    "main_results": "Обидві групи ендофітів підвищують суху й сиру біомасу за посухи, але ефект бактерій на суху біомасу, довжину кореня, фотосинтез, площу листка та синтез гіберелінів щонайменше вдвічі більший, ніж у грибів.",
+    "for_dissertation": "Обґрунтування вибору саме бактеріальних ендофітів як інокулянтів; кількісні оцінки ефекту для розділу «Актуальність».",
+    "description": "Метапорівняння ендофітних бактерій і грибів як стимуляторів росту рослин за посухи (2010–2021). Показано суттєву перевагу бактерій за більшістю ростових і фізіологічних показників.",
+    "type": "article",
+    "language": "en",
+    "status": "unread"
+   }
+  },
+  {
+   "files": [
+    {
+     "name": "a2/SIJTCM_52_33-37_FT.pdf",
+     "sha256": "fe799a32863158d3022a544fa3b4dc91ead3bca10f74c0c3c451999fa9256ccc"
+    }
+   ],
+   "file_name": "Ngoule 2022 - Endophytic bacteria of Solanum torvum.pdf",
+   "sections": [
+    "Ендофіти пасльонових (Solanum)"
+   ],
+   "source": {
+    "title": "Evaluation of the antibacterial activity and cytotoxicity of extracts of endophytic bacteria isolated from Solanum torvum Sw (Solanaceae)",
+    "authors": [
+     {
+      "family": "Ngoule",
+      "given_initials": "C. C."
+     },
+     {
+      "family": "Ngene",
+      "given_initials": "J. P."
+     },
+     {
+      "family": "Ladoh-Yemeda",
+      "given_initials": "C. F."
+     },
+     {
+      "family": "Yinyang",
+      "given_initials": "J."
+     },
+     {
+      "family": "Kidik Pouka",
+      "given_initials": "C."
+     },
+     {
+      "family": "Heudeu Ngofanki",
+      "given_initials": "E. L."
+     },
+     {
+      "family": "Azo'o",
+      "given_initials": "J. N."
+     },
+     {
+      "family": "Etame-Loe",
+      "given_initials": "G."
+     }
+    ],
+    "container_title": "Scholars International Journal of Traditional and Complementary Medicine",
+    "year": 2022,
+    "volume": "5",
+    "issue": "2",
+    "pages": "33-37",
+    "doi": "10.36348/sijtcm.2022.v05i02.003",
+    "keywords": "Solanum torvum; endophytic bacteria; antibacterial activity; cytotoxicity",
+    "tags": [
+     "Solanum",
+     "ендофіти",
+     "антимікробна активність"
+    ],
+    "study_object": "Ендофітні бактерії лікарської рослини Solanum torvum (Камерун).",
+    "methods": "Ізоляція на збагачених і звичайних середовищах, ферментація в бульйоні Мюллера–Хінтона, скринінг антибактеріальної активності екстрактів (4 патогени), МІК, цитотоксичність на клітинах Raw 264.7 і Vero.",
+    "main_results": "Виділено 41 ізолят; 8 екстрактів проявили антибактеріальну дію; більшість екстрактів не була токсичною для здорових клітин.",
+    "for_dissertation": "Приклад біоактивності ендофітів роду Solanum — порівняння з ендофітами S. nigrum.",
+    "description": "Ендофітні бактерії Solanum torvum як джерело антибактеріальних метаболітів із низькою цитотоксичністю.",
+    "type": "article",
+    "language": "en",
+    "status": "unread"
+   }
+  },
+  {
+   "files": [
+    {
+     "name": "a2/k13BioFertSoils-TCP-v494.pdf",
+     "sha256": "32845d1f00f498456d72aff62d40a340c6d26ae7df475928d9a580056982d981"
+    }
+   ],
+   "file_name": "Bashan 2013 - TCP is inappropriate for PSB selection.pdf",
+   "sections": [
+    "Методи відбору PGP-штамів"
+   ],
+   "source": {
+    "title": "Tricalcium phosphate is inappropriate as a universal selection factor for isolating and testing phosphate-solubilizing bacteria that enhance plant growth: a proposal for an alternative procedure",
+    "authors": [
+     {
+      "family": "Bashan",
+      "given_initials": "Y."
+     },
+     {
+      "family": "Kamnev",
+      "given_initials": "A. A."
+     },
+     {
+      "family": "de-Bashan",
+      "given_initials": "L. E."
+     }
+    ],
+    "container_title": "Biology and Fertility of Soils",
+    "year": 2013,
+    "volume": "49",
+    "issue": "4",
+    "pages": "465-479",
+    "doi": "10.1007/s00374-012-0737-7",
+    "keywords": "phosphate-solubilizing bacteria; tricalcium phosphate; selection",
+    "tags": [
+     "фосфатмобілізація",
+     "методика"
+    ],
+    "study_object": "Методика відбору фосфатмобілізувальних бактерій (PSB).",
+    "methods": "Аналіз літератури та хімічні міркування щодо розчинності фосфатів металів (Ca-P, Fe-P, Al-P, фітати).",
+    "main_results": "Трикальційфосфат (ТКФ) — слабкий і ненадійний універсальний критерій: дає тисячі «нібито PSB», з яких справжніх лише кілька. Запропоновано використовувати 2–3 сполуки фосфору залежно від pH ґрунту (Ca-P для лужних, Fe-P та Al-P для кислих, фітати для ґрунтів з органічним P).",
+    "for_dissertation": "Методичне обґрунтування тестів на фосфатмобілізацію (не лише ТКФ) у розділі «Матеріали і методи».",
+    "description": "Критика ТКФ як єдиного критерію відбору PSB і пропозиція альтернативної процедури з кількома фосфатами.",
+    "type": "article",
+    "language": "en",
+    "status": "unread"
+   }
+  },
+  {
+   "files": [
+    {
+     "name": "a2/krinsky2001.pdf",
+     "sha256": "74b50181b50e4db3d1a35229645c8f7d43b71d60939184d57e7b8293ad4d7873"
+    }
+   ],
+   "file_name": "Krinsky 2001 - Carotenoids as antioxidants.pdf",
+   "sections": [
+    "Інше"
+   ],
+   "source": {
+    "title": "Carotenoids as antioxidants",
+    "authors": [
+     {
+      "family": "Krinsky",
+      "given_initials": "N. I."
+     }
+    ],
+    "container_title": "Nutrition",
+    "year": 2001,
+    "volume": "17",
+    "issue": "10",
+    "pages": "815-817",
+    "doi": "10.1016/S0899-9007(01)00651-7",
+    "keywords": "carotenoids; antioxidant; prooxidant",
+    "tags": [
+     "антиоксиданти",
+     "каротиноїди"
+    ],
+    "study_object": "Каротиноїди (β-каротин та ін.) як антиоксиданти.",
+    "methods": "Огляд літератури.",
+    "main_results": "Прооксидантна дія β-каротину проявляється лише за нефізіологічно високого парціального тиску кисню і концентрацій; за фізіологічних умов каротиноїди — ефективні антиоксиданти (захист LDL, ДНК).",
+    "for_dissertation": "Довідкове джерело щодо антиоксидантних механізмів (каротиноїди) — для обговорення антиоксидантної активності метаболітів ендофітів.",
+    "description": "Короткий огляд антиоксидантних і прооксидантних властивостей каротиноїдів. Тематично стоїть окремо від решти джерел (мікробіологія) — лишено в папці «Інше».",
+    "type": "article",
+    "language": "en",
+    "status": "unread"
+   }
+  },
+  {
+   "files": [
+    {
+     "name": "a2/microorganisms-09-01861.pdf",
+     "sha256": "b1b1a8c7f9109ed2a8b706799fdeb1165c5f81d0fb371f3af90287e6c7856df1"
+    }
+   ],
+   "file_name": "Tufail 2021 - Bacterial endophytes vs salinity (meta-analysis).pdf",
+   "sections": [
+    "Метааналізи ефективності PGPB"
+   ],
+   "source": {
+    "title": "Can bacterial endophytes be used as a promising bio-inoculant for the mitigation of salinity stress in crop plants? A global meta-analysis of the last decade (2011–2020)",
+    "authors": [
+     {
+      "family": "Tufail",
+      "given_initials": "M. A."
+     },
+     {
+      "family": "Bejarano",
+      "given_initials": "A."
+     },
+     {
+      "family": "Shakoor",
+      "given_initials": "A."
+     },
+     {
+      "family": "Naeem",
+      "given_initials": "A."
+     },
+     {
+      "family": "Arif",
+      "given_initials": "M. S."
+     },
+     {
+      "family": "Dar",
+      "given_initials": "A. A."
+     },
+     {
+      "family": "Farooq",
+      "given_initials": "T. H."
+     },
+     {
+      "family": "Pertot",
+      "given_initials": "I."
+     },
+     {
+      "family": "Puopolo",
+      "given_initials": "G."
+     }
+    ],
+    "container_title": "Microorganisms",
+    "year": 2021,
+    "volume": "9",
+    "issue": "9",
+    "pages": "Art. 1861",
+    "doi": "10.3390/microorganisms9091861",
+    "keywords": "bacterial endophytes; salinity stress; meta-analysis",
+    "tags": [
+     "метааналіз",
+     "засолення",
+     "ендофіти"
+    ],
+    "study_object": "Сільськогосподарські культури, інокульовані ендофітними бактеріями за засолення.",
+    "methods": "Глобальний метааналіз публікацій 2011–2020 рр. (ростові, фізіологічні, біохімічні показники).",
+    "main_results": "Бактеріальні ендофіти достовірно пом'якшують сольовий стрес: зростають біомаса, вміст хлорофілу, активність антиоксидантних ферментів, знижується накопичення Na⁺ і маркерів окисного стресу.",
+    "for_dissertation": "Кількісні дані про ефективність ендофітів за абіотичного стресу — для огляду літератури й актуальності.",
+    "description": "Метааналіз за 10 років: ендофітні бактерії як біоінокулянти для зменшення сольового стресу культур.",
+    "type": "article",
+    "language": "en",
+    "status": "unread"
+   }
+  },
+  {
+   "files": [
+    {
+     "name": "a2/out.pdf",
+     "sha256": "03f6598cda2d934ae06f211d5315124502b689bdd0bb52e8f7411f3327c80b93"
+    }
+   ],
+   "file_name": "Magida 2024 - Bacterial endophytes of Solanum nigrum (MSc).pdf",
+   "sections": [
+    "Ендофіти пасльонових (Solanum)",
+    "Важкі метали та біоремедіація"
+   ],
+   "source": {
+    "type": "book",
+    "title": "Evaluation of multi-metal tolerance and plant-promotion characteristics of bacterial endophytes isolated from Solanum nigrum",
+    "subtitle": "MSc dissertation (Biotechnology)",
+    "authors": [
+     {
+      "family": "Magida",
+      "given_initials": "S."
+     }
+    ],
+    "place": "Johannesburg",
+    "publisher": "University of Johannesburg",
+    "year": 2024,
+    "keywords": "Solanum nigrum; bacterial endophytes; heavy metals; bioremediation; MIC",
+    "tags": [
+     "Solanum nigrum",
+     "ендофіти",
+     "важкі метали",
+     "дисертація"
+    ],
+    "study_object": "Бактеріальні ендофіти листків гіперакумулятора Solanum nigrum.",
+    "methods": "Ізоляція й ідентифікація (16S рРНК), PGP-тести (ІОК, фосфатмобілізація, сидерофори, АЦК-деаміназа, азотфіксація), МІК для Pb, Zn, Cu, біосорбція металів за різних температури та pH.",
+    "main_results": "Охарактеризовано 5 штамів Bacillus sp. (34–38); штами 36 і 37 мали PGP-властивості, високу толерантність до Pb і здатність сорбувати метали, що залежала від pH і температури.",
+    "for_dissertation": "Найближче за об'єктом джерело (ендофіти S. nigrum, Bacillus): порівняння штамів і методик PGP-тестів. Файл — ознайомча версія (PREVIEW) магістерської роботи.",
+    "description": "Магістерська дисертація (Університет Йоганнесбурга, 2024) про металотолерантні PGP-ендофіти Bacillus з Solanum nigrum.",
+    "language": "en",
+    "status": "unread"
+   }
+  },
+  {
+   "files": [
+    {
+     "name": "a2/plants-11-01605-v3.pdf",
+     "sha256": "f635261368984243ea2670ada1f11c71e4147d9c07c8399bdb6797ea8bd3e776"
+    }
+   ],
+   "file_name": "El-Hasan 2022 - Root fungal endophytes vs Phytophthora infestans.pdf",
+   "sections": [
+    "Ендофіти пасльонових (Solanum)"
+   ],
+   "source": {
+    "title": "Isolation, identification, and biocontrol potential of root fungal endophytes associated with solanaceous plants against potato late blight (Phytophthora infestans)",
+    "authors": [
+     {
+      "family": "El-Hasan",
+      "given_initials": "A."
+     },
+     {
+      "family": "Ngatia",
+      "given_initials": "G."
+     },
+     {
+      "family": "Link",
+      "given_initials": "T. I."
+     },
+     {
+      "family": "Voegele",
+      "given_initials": "R. T."
+     }
+    ],
+    "container_title": "Plants",
+    "year": 2022,
+    "volume": "11",
+    "issue": "12",
+    "pages": "Art. 1605",
+    "doi": "10.3390/plants11121605",
+    "keywords": "fungal endophytes; Solanaceae; Phytophthora infestans; biocontrol",
+    "tags": [
+     "пасльонові",
+     "біоконтроль",
+     "ендофіти"
+    ],
+    "study_object": "357 кореневих грибних ендофітів чотирьох видів пасльонових (Кенія).",
+    "methods": "Скринінг антагонізму in vitro, ідентифікація за ITS, тести на леткі й дифузійні сполуки, обробка листочків картоплі екстрактами.",
+    "main_results": "46 ізолятів активні in vitro; три (KB1S1-4, KA2S1-42, KB2S2-15) виділяють леткі сполуки, що гальмують міцелій P. infestans до 48,9 %; 5 % екстракти повністю пригнічують проростання спорангіїв і симптоми фітофторозу на листочках.",
+    "for_dissertation": "Біоконтрольний потенціал ендофітів пасльонових — для обговорення антипатогенної дії ізолятів.",
+    "description": "Кореневі грибні ендофіти пасльонових як кандидати для біоконтролю фітофторозу картоплі.",
+    "type": "article",
+    "language": "en",
+    "status": "unread"
+   }
+  },
+  {
+   "files": [
+    {
+     "name": "a2/rubin2017.pdf",
+     "sha256": "920dc32b869b7ed02e456893af7d856cfc53b97e06c54ea08870ab57c546457e"
+    }
+   ],
+   "file_name": "Rubin 2017 - PGPR more effective under drought (meta-analysis).pdf",
+   "sections": [
+    "Метааналізи ефективності PGPB"
+   ],
+   "source": {
+    "title": "Plant growth promoting rhizobacteria are more effective under drought: a meta-analysis",
+    "authors": [
+     {
+      "family": "Rubin",
+      "given_initials": "R. L."
+     },
+     {
+      "family": "van Groenigen",
+      "given_initials": "K. J."
+     },
+     {
+      "family": "Hungate",
+      "given_initials": "B. A."
+     }
+    ],
+    "container_title": "Plant and Soil",
+    "year": 2017,
+    "volume": "416",
+    "issue": "1-2",
+    "pages": "309-323",
+    "doi": "10.1007/s11104-017-3199-8",
+    "keywords": "PGPR; drought; meta-analysis; yield",
+    "tags": [
+     "метааналіз",
+     "посуха",
+     "PGPR"
+    ],
+    "study_object": "Рослини, інокульовані PGPR, за нормального зволоження і посухи.",
+    "methods": "Метааналіз 52 статей (маса кореня, пагона, урожай); модератори — удобрення, умови досліду, склад інокуляту, функціональна група рослин, спосіб внесення.",
+    "main_results": "За нормального зволоження PGPR збільшують масу кореня на 35 %, пагона на 28 %, урожай на 19 %; за посухи ефект більший — корінь +43 % і більше.",
+    "for_dissertation": "Класичне кількісне підтвердження, що PGPR ефективніші за стресу — аргумент для актуальності.",
+    "description": "Метааналіз 52 досліджень: позитивний ефект PGPR на ріст і врожай посилюється за посухи.",
+    "type": "article",
+    "language": "en",
+    "status": "unread"
+   }
+  },
+  {
+   "files": [
+    {
+     "name": "a2/veresoglou2010.pdf",
+     "sha256": "e6ddc67611f76f3d1526f8d7ebf90798e7c03f71528a3f306c5cde0cfa298d2b"
+    }
+   ],
+   "file_name": "Veresoglou 2010 - Azospirillum and wheat (meta-analysis).pdf",
+   "sections": [
+    "Метааналізи ефективності PGPB"
+   ],
+   "source": {
+    "title": "Impact of inoculation with Azospirillum spp. on growth properties and seed yield of wheat: a meta-analysis of studies in the ISI Web of Science from 1981 to 2008",
+    "authors": [
+     {
+      "family": "Veresoglou",
+      "given_initials": "S. D."
+     },
+     {
+      "family": "Menexes",
+      "given_initials": "G."
+     }
+    ],
+    "container_title": "Plant and Soil",
+    "year": 2010,
+    "volume": "337",
+    "issue": "1-2",
+    "pages": "469-480",
+    "doi": "10.1007/s11104-010-0543-7",
+    "keywords": "Azospirillum; wheat; meta-analysis; nitrogen fertilization",
+    "tags": [
+     "метааналіз",
+     "Azospirillum",
+     "пшениця"
+    ],
+    "study_object": "Пшениця, інокульована Azospirillum spp.",
+    "methods": "Метааналіз 59 статей (1981–2008) з ISI Web of Science.",
+    "main_results": "Інокуляція підвищує врожай зерна в середньому на 8,9 %, надземну суху масу — на 17,8 %; ефект найбільший без азотних добрив, у T. aestivum і з A. lipoferum; спільна інокуляція з Azotobacter посилює дію. Результати вегетаційних дослідів не завжди відтворюються в полі.",
+    "for_dissertation": "Історично перший великий метааналіз PGPB — для огляду розвитку напряму.",
+    "description": "Метааналіз впливу Azospirillum на ріст і врожай пшениці за 1981–2008 рр.",
+    "type": "article",
+    "language": "en",
+    "status": "unread"
+   }
+  },
+  {
+   "files": [
+    {
+     "name": "a2/ycae122.pdf",
+     "sha256": "db6e096c486f7d40aadbea8cabc1e1f98fc11de01bece86cee42c42c39dd5250"
+    }
+   ],
+   "file_name": "Azarbad 2024 - Factors of microbial inoculation effectiveness (meta-analysis).pdf",
+   "sections": [
+    "Метааналізи ефективності PGPB"
+   ],
+   "source": {
+    "title": "Biological and experimental factors that define the effectiveness of microbial inoculation on plant traits: a meta-analysis",
+    "authors": [
+     {
+      "family": "Azarbad",
+      "given_initials": "H."
+     },
+     {
+      "family": "Junker",
+      "given_initials": "R. R."
+     }
+    ],
+    "container_title": "ISME Communications",
+    "year": 2024,
+    "volume": "4",
+    "issue": "1",
+    "pages": "Art. ycae122",
+    "doi": "10.1093/ismeco/ycae122",
+    "keywords": "bacteria; fungi; inoculation; experimental setting; plant traits",
+    "tags": [
+     "метааналіз",
+     "дизайн експерименту"
+    ],
+    "study_object": "Рослини, інокульовані бактеріями та/або грибами.",
+    "methods": "Метааналіз біологічних (модель рослини, ознака, таксон мікроба) та експериментальних (стерильність, тривалість, тип досліду) чинників.",
+    "main_results": "Сила ефекту залежить від ознаки рослини й таксону інокулянта; у стерильних і короткотривалих дослідах ефекти більші, ніж у нестерильних і довготривалих.",
+    "for_dissertation": "Аргумент для планування дослідів (нестерильний ґрунт, довші строки, консорціуми бактерій і грибів).",
+    "description": "Метааналіз чинників, що визначають ефективність мікробної інокуляції рослин.",
+    "type": "article",
+    "language": "en",
+    "status": "unread"
+   }
+  },
+  {
+   "files": [
+    {
+     "name": "b2/International Journal of Microbiology - 2018 - Akinrinlola - Evaluation of Bacillus Strains for Plant Growth Promotion and.pdf",
+     "sha256": "59cebabbe3ba2394b6c928a9f1ee215ebb46d40e98d4f9e2b91f86dda5061e35"
+    }
+   ],
+   "file_name": "Akinrinlola 2018 - Bacillus strains, in vitro traits vs efficacy.pdf",
+   "sections": [
+    "Методи відбору PGP-штамів"
+   ],
+   "source": {
+    "title": "Evaluation of Bacillus strains for plant growth promotion and predictability of efficacy by in vitro physiological traits",
+    "authors": [
+     {
+      "family": "Akinrinlola",
+      "given_initials": "R. J."
+     },
+     {
+      "family": "Yuen",
+      "given_initials": "G. Y."
+     },
+     {
+      "family": "Drijber",
+      "given_initials": "R. A."
+     },
+     {
+      "family": "Adesemoye",
+      "given_initials": "A. O."
+     }
+    ],
+    "container_title": "International Journal of Microbiology",
+    "year": 2018,
+    "volume": "2018",
+    "pages": "Art. 5686874",
+    "doi": "10.1155/2018/5686874",
+    "keywords": "Bacillus; plant growth promotion; in vitro traits",
+    "tags": [
+     "Bacillus",
+     "методика",
+     "PGP-ознаки"
+    ],
+    "study_object": "12 штамів Bacillus з ризосфери пшениці; кукурудза, соя, пшениця.",
+    "methods": "Вегетаційні досліди в нестерильному ґрунті + оцінка фізіологічних PGP-ознак in vitro.",
+    "main_results": "Усі 12 штамів стимулювали ріст кукурудзи; найкращі (B. megaterium R181, B. safensis R173, B. simplex R180, Paenibacillus graminis R200) — також сої та пшениці. Жоден набір in vitro-ознак не передбачав ефективність; штам з однією ознакою був серед найкращих.",
+    "for_dissertation": "Аргумент, що відбір штамів має включати тести in planta, а не лише in vitro-ознаки.",
+    "description": "Порівняння PGP-ефекту штамів Bacillus і перевірка прогностичності in vitro-ознак.",
+    "type": "article",
+    "language": "en",
+    "status": "unread"
+   }
+  },
+  {
+   "files": [
+    {
+     "name": "b2/fenvs-08-603668.pdf",
+     "sha256": "f0b8f234241da80a6a2e26c6836f298938fdb1292013adec89ca8ecf75950ebb"
+    }
+   ],
+   "file_name": "Franco-Franklin 2021 - Endophytes and heavy metal tolerance (meta-analysis).pdf",
+   "sections": [
+    "Метааналізи ефективності PGPB",
+    "Важкі метали та біоремедіація"
+   ],
+   "source": {
+    "title": "Are endophytic bacteria an option for increasing heavy metal tolerance of plants? A meta-analysis of the effect size",
+    "authors": [
+     {
+      "family": "Franco-Franklin",
+      "given_initials": "V."
+     },
+     {
+      "family": "Moreno-Riascos",
+      "given_initials": "S."
+     },
+     {
+      "family": "Ghneim-Herrera",
+      "given_initials": "T."
+     }
+    ],
+    "container_title": "Frontiers in Environmental Science",
+    "year": 2021,
+    "volume": "8",
+    "pages": "Art. 603668",
+    "doi": "10.3389/fenvs.2020.603668",
+    "keywords": "endophytic bacteria; heavy metals; meta-analysis",
+    "tags": [
+     "метааналіз",
+     "важкі метали",
+     "ендофіти"
+    ],
+    "study_object": "19 рослин-господарів і 20 родів ендофітних бактерій за стресу від Al, As, Cd, Cu, Cr, Mn, Ni, Pb, Zn.",
+    "methods": "Метааналіз розміру ефекту (27 з 76 досліджень за 10 років, контрольовані умови).",
+    "main_results": "Ендофіти збільшують біомасу рослин за дії різних металів; найбільше виграють неакумулюючі рослини; бактеріальні консорціуми дають найбільший ефект.",
+    "for_dissertation": "Обґрунтування використання ендофітів для фіторемедіації та захисту рослин від металів.",
+    "description": "Метааналіз: ендофітні бактерії підвищують толерантність рослин до важких металів.",
+    "type": "article",
+    "language": "en",
+    "status": "unread"
+   }
+  },
+  {
+   "files": [
+    {
+     "name": "b2/fiy094.pdf",
+     "sha256": "f8067465b51010323aa951a04174628d10fc25e08ec0e45104225ac411a4e2e6"
+    }
+   ],
+   "file_name": "Schmidt 2018 - Biofertilizers for maize (meta-analysis).pdf",
+   "sections": [
+    "Метааналізи ефективності PGPB"
+   ],
+   "source": {
+    "title": "What is the agronomic potential of biofertilizers for maize? A meta-analysis",
+    "authors": [
+     {
+      "family": "Schmidt",
+      "given_initials": "J. E."
+     },
+     {
+      "family": "Gaudin",
+      "given_initials": "A. C. M."
+     }
+    ],
+    "container_title": "FEMS Microbiology Ecology",
+    "year": 2018,
+    "volume": "94",
+    "issue": "7",
+    "pages": "Art. fiy094",
+    "doi": "10.1093/femsec/fiy094",
+    "keywords": "biofertilizers; maize; greenhouse vs field; meta-analysis",
+    "tags": [
+     "метааналіз",
+     "кукурудза",
+     "біодобрива"
+    ],
+    "study_object": "Бактеріальні біодобрива для кукурудзи.",
+    "methods": "Метааналіз з підходом, специфічним для культури-господаря; порівняння вегетаційних і польових дослідів.",
+    "main_results": "Вегетаційні досліди погано передбачають польовий ефект; у полі Azospirillum ефективніший, Bacillus та Enterobacter — менш ефективні; штами з підтвердженими in vitro PGP-ознаками давали навіть нижчі врожаї.",
+    "for_dissertation": "Застереження щодо перенесення результатів вегетаційних дослідів у поле.",
+    "description": "Метааналіз агрономічного потенціалу бактеріальних біодобрив для кукурудзи.",
+    "type": "article",
+    "language": "en",
+    "status": "unread"
+   }
+  },
+  {
+   "files": [
+    {
+     "name": "b2/fmicb-13-1106254.pdf",
+     "sha256": "c93aecd309adeeb1d4473a1ef938209ba8c5187a1b5723dd2ae1b23693404fa1"
+    }
+   ],
+   "file_name": "You 2023 - Microbial agents and Cd uptake by Solanum nigrum.pdf",
+   "sections": [
+    "Ендофіти пасльонових (Solanum)",
+    "Важкі метали та біоремедіація"
+   ],
+   "source": {
+    "title": "Effects of microbial agents on cadmium uptake in Solanum nigrum L. and rhizosphere microbial communities in cadmium-contaminated soil",
+    "authors": [
+     {
+      "family": "You",
+      "given_initials": "M."
+     },
+     {
+      "family": "Wang",
+      "given_initials": "L."
+     },
+     {
+      "family": "Zhou",
+      "given_initials": "G."
+     },
+     {
+      "family": "Wang",
+      "given_initials": "Y."
+     },
+     {
+      "family": "Wang",
+      "given_initials": "K."
+     },
+     {
+      "family": "Zou",
+      "given_initials": "R."
+     },
+     {
+      "family": "Cao",
+      "given_initials": "W."
+     },
+     {
+      "family": "Fan",
+      "given_initials": "H."
+     }
+    ],
+    "container_title": "Frontiers in Microbiology",
+    "year": 2023,
+    "volume": "13",
+    "pages": "Art. 1106254",
+    "doi": "10.3389/fmicb.2022.1106254",
+    "keywords": "Solanum nigrum; cadmium; phytoremediation; Bacillus megaterium",
+    "tags": [
+     "Solanum nigrum",
+     "кадмій",
+     "фіторемедіація"
+    ],
+    "study_object": "Solanum nigrum на ґрунті, забрудненому кадмієм; ризосферні мікробні угруповання.",
+    "methods": "Вегетаційні досліди з Bacillus megaterium + лимонна кислота / Glomus mosseae / Piriformospora indica; аналіз ґрунтових ферментів, мікробних мереж.",
+    "main_results": "BM+GM підвищила накопичення Cd рослиною на 104 %; мікробні препарати змінили склад угруповань ризосфери; ключові чинники — каталаза, уреаза, органічна речовина, доступний N, загальний Cd.",
+    "for_dissertation": "Пряме джерело про S. nigrum і мікробну стимуляцію фіторемедіації кадмію.",
+    "description": "Мікробні препарати (Bacillus megaterium з АМГ або P. indica) посилюють поглинання Cd паслином чорним.",
+    "type": "article",
+    "language": "en",
+    "status": "unread"
+   }
+  },
+  {
+   "files": [
+    {
+     "name": "b2/fpls-08-02204.pdf",
+     "sha256": "96884aab1a2058c1b3c17922e31216572965d7327d8a3e5e994abb01fc57565c"
+    }
+   ],
+   "file_name": "Schutz 2018 - Biofertilization global meta-analysis.pdf",
+   "sections": [
+    "Метааналізи ефективності PGPB"
+   ],
+   "source": {
+    "title": "Improving crop yield and nutrient use efficiency via biofertilization — a global meta-analysis",
+    "authors": [
+     {
+      "family": "Schütz",
+      "given_initials": "L."
+     },
+     {
+      "family": "Gattinger",
+      "given_initials": "A."
+     },
+     {
+      "family": "Meier",
+      "given_initials": "M."
+     },
+     {
+      "family": "Müller",
+      "given_initials": "A."
+     },
+     {
+      "family": "Boller",
+      "given_initials": "T."
+     },
+     {
+      "family": "Mäder",
+      "given_initials": "P."
+     },
+     {
+      "family": "Mathimaran",
+      "given_initials": "N."
+     }
+    ],
+    "container_title": "Frontiers in Plant Science",
+    "year": 2018,
+    "volume": "8",
+    "pages": "Art. 2204",
+    "doi": "10.3389/fpls.2017.02204",
+    "keywords": "biofertilizer; meta-analysis; nutrient use efficiency; AMF",
+    "tags": [
+     "метааналіз",
+     "біодобрива"
+    ],
+    "study_object": "Біодобрива (АМГ, фосфатмобілізатори, азотфіксатори) на різних культурах у світі.",
+    "methods": "Метааналіз 171 рецензованої публікації; метарегресії за кліматом, P ґрунту, органічною речовиною, pH.",
+    "main_results": "Найбільший приріст урожаю в сухому кліматі (+20 %), менший — у тропічному (+14,9 %), океанічному (+10 %) і континентальному (+8,5 %); ефективність зростає з рівнем доступного P.",
+    "for_dissertation": "Глобальна оцінка ефективності біодобрив і чинників, що на неї впливають.",
+    "description": "Глобальний метааналіз впливу біодобрив на врожай та ефективність використання N і P.",
+    "type": "article",
+    "language": "en",
+    "status": "unread"
+   }
+  },
+  {
+   "files": [
+    {
+     "name": "b2/fpls-13-858804.pdf",
+     "sha256": "f74e2355b9ee5c750c869c4b65485aed8bd8ae1b6e9f911314deee57f4fa4215"
+    }
+   ],
+   "file_name": "De Zutter 2022 - Phosphate solubilizing rhizobacteria (meta-analysis).pdf",
+   "sections": [
+    "Метааналізи ефективності PGPB",
+    "Методи відбору PGP-штамів"
+   ],
+   "source": {
+    "title": "Uncovering new insights and misconceptions on the effectiveness of phosphate solubilizing rhizobacteria in plants: a meta-analysis",
+    "authors": [
+     {
+      "family": "De Zutter",
+      "given_initials": "N."
+     },
+     {
+      "family": "Ameye",
+      "given_initials": "M."
+     },
+     {
+      "family": "Bekaert",
+      "given_initials": "B."
+     },
+     {
+      "family": "Verwaeren",
+      "given_initials": "J."
+     },
+     {
+      "family": "De Gelder",
+      "given_initials": "L."
+     },
+     {
+      "family": "Audenaert",
+      "given_initials": "K."
+     }
+    ],
+    "container_title": "Frontiers in Plant Science",
+    "year": 2022,
+    "volume": "13",
+    "pages": "Art. 858804",
+    "doi": "10.3389/fpls.2022.858804",
+    "keywords": "phosphate solubilizing bacteria; meta-analysis; P uptake",
+    "tags": [
+     "метааналіз",
+     "фосфатмобілізація"
+    ],
+    "study_object": "Фосфатмобілізувальні ризобактерії (PSB) і рослини.",
+    "methods": "Огляд механізмів + метааналіз впливу PSB на біомасу й поглинання P.",
+    "main_results": "Краще поглинання P не завжди дає більшу висоту та біомасу; консорціуми не мають переваги над окремими штамами; рідко застосовувані Burkholderia ефективніші за поширені Bacillus і Pseudomonas.",
+    "for_dissertation": "Аргументи щодо вибору штамів-фосфатмобілізаторів і очікуваних ефектів.",
+    "description": "Метааналіз ефективності PSB: нові висновки й поширені хибні уявлення.",
+    "type": "article",
+    "language": "en",
+    "status": "unread"
+   }
+  },
+  {
+   "files": [
+    {
+     "name": "b2/fpls-14-1282553.pdf",
+     "sha256": "45618ede3d97d35014226f453ee093eae790f811b0091ee602ef3bcabc40d8a3"
+    }
+   ],
+   "file_name": "Ferrante 2024 - PGPR and drought gene expression (meta-analysis).pdf",
+   "sections": [
+    "Метааналізи ефективності PGPB"
+   ],
+   "source": {
+    "title": "Meta-analysis of plant growth-promoting rhizobacteria interaction with host plants: implications for drought stress response gene expression",
+    "authors": [
+     {
+      "family": "Ferrante",
+      "given_initials": "R."
+     },
+     {
+      "family": "Campagni",
+      "given_initials": "C."
+     },
+     {
+      "family": "Vettori",
+      "given_initials": "C."
+     },
+     {
+      "family": "Checcucci",
+      "given_initials": "A."
+     },
+     {
+      "family": "Garosi",
+      "given_initials": "C."
+     },
+     {
+      "family": "Paffetti",
+      "given_initials": "D."
+     }
+    ],
+    "container_title": "Frontiers in Plant Science",
+    "year": 2024,
+    "volume": "14",
+    "pages": "Art. 1282553",
+    "doi": "10.3389/fpls.2023.1282553",
+    "keywords": "PGPR; drought; gene expression; PRISMA",
+    "tags": [
+     "метааналіз",
+     "посуха",
+     "експресія генів"
+    ],
+    "study_object": "Експресія генів посухостійкості рослин (ACO, APX, ACS, DREB2 та ін.) після інокуляції PGPR.",
+    "methods": "Метааналіз за PRISMA: 3338 звітів, 41 включено.",
+    "main_results": "Надекспресія ACO, APX, ACS і DREB2 за наявності PGPR статистично не значуща; висока гетерогенність (I² > 75 %) і сильне упередження публікацій.",
+    "for_dissertation": "Показує межі доказовості молекулярних механізмів дії PGPR — для дискусії.",
+    "description": "Метааналіз впливу PGPR на експресію генів відповіді на посуху.",
+    "type": "article",
+    "language": "en",
+    "status": "unread"
+   }
+  },
+  {
+   "files": [
+    {
+     "name": "c2/121.pdf",
+     "sha256": "c0681fe2c5d4abe7b978549530a32b3a1229c4bd1f19cc982a64bd2144aeb609"
+    }
+   ],
+   "file_name": "Hadavani 2026 - In vitro shoot culture of Solanum nigrum.pdf",
+   "sections": [
+    "Ендофіти пасльонових (Solanum)"
+   ],
+   "source": {
+    "title": "Optimisation of plant growth regulator mediated in vitro shoot culture of Solanum nigrum by managing endophytic bacterial infection",
+    "authors": [
+     {
+      "family": "Hadavani",
+      "given_initials": "R."
+     },
+     {
+      "family": "Kumar",
+      "given_initials": "P."
+     },
+     {
+      "family": "Dayaramani",
+      "given_initials": "R."
+     }
+    ],
+    "container_title": "Journal of Animal Environment",
+    "year": 2026,
+    "volume": "18",
+    "issue": "4s",
+    "doi": "10.70102/AEJ.2026.18.4s.120",
+    "keywords": "Solanum nigrum; micropropagation; endophytic bacteria; contamination",
+    "tags": [
+     "Solanum nigrum",
+     "in vitro"
+    ],
+    "study_object": "Мікроклональне розмноження Solanum nigrum і латентна ендофітна контамінація.",
+    "methods": "Стерилізація бавістином (різна тривалість), середовище Гамборга B5 з 6-БАП та ІМК, антибіотики.",
+    "main_results": "10 хв бавістину — найкращий баланс асептики (88 %) і виживання (59 %); 6-БАП 0,5 мг/л індукує листки, 6-БАП 0,5 + ІМК 1,0 мг/л — корені (81 %), 6-БАП 2,0 + ІМК 2,0 мг/л — калус; ендофіти проявлялися після встановлення культури.",
+    "for_dissertation": "Свідчення поширеності ендофітних бактерій у тканинах S. nigrum.",
+    "description": "Оптимізація культури пагонів S. nigrum in vitro з контролем ендофітної бактеріальної інфекції.",
+    "type": "article",
+    "language": "en",
+    "status": "unread"
+   }
+  },
+  {
+   "files": [
+    {
+     "name": "c2/4942d539-fd04-4bf2-b057-6106eab096af.pdf",
+     "sha256": "ad7c9e6b05a9cc17aa63b1b84840a47c9300f1d793a49851e7e825e082331c43"
+    },
+    {
+     "name": "c2/4942d539-fd04-4bf2-b057-6106eab096af (1).pdf",
+     "sha256": "ad7c9e6b05a9cc17aa63b1b84840a47c9300f1d793a49851e7e825e082331c43"
+    }
+   ],
+   "file_name": "Jia 2025 - Phosphorus solubilizing bacteria and soil nutrients (meta-analysis, preprint).pdf",
+   "sections": [
+    "Метааналізи ефективності PGPB"
+   ],
+   "source": {
+    "type": "other",
+    "title": "Phosphorus solubilizing bacteria regulate soil phosphorus activation mechanisms and impact on available nutrients: a meta-analysis",
+    "authors": [
+     {
+      "family": "Jia",
+      "given_initials": "Y."
+     },
+     {
+      "family": "Li",
+      "given_initials": "X."
+     },
+     {
+      "family": "Zhu",
+      "given_initials": "Y."
+     },
+     {
+      "family": "Ma",
+      "given_initials": "J."
+     },
+     {
+      "family": "Fan",
+      "given_initials": "X."
+     },
+     {
+      "family": "Du",
+      "given_initials": "P."
+     },
+     {
+      "family": "Liu",
+      "given_initials": "R."
+     }
+    ],
+    "container_title": "Research Square : preprint",
+    "year": 2025,
+    "doi": "10.21203/rs.3.rs-7033664/v1",
+    "keywords": "phosphorus solubilizing bacteria; soil nutrients; meta-analysis",
+    "tags": [
+     "метааналіз",
+     "фосфатмобілізація",
+     "препринт"
+    ],
+    "study_object": "Вплив PSB на доступні P, N і K ґрунту.",
+    "methods": "Метааналіз з підгруповим аналізом за pH, органічною речовиною, типом PSB і культурою.",
+    "main_results": "Інокуляція PSB підвищує доступний P на 86,8 %, N — на 64,9 %, K — на 41,9 %; ефект на P негативно корелює з pH і позитивно — з органічною речовиною.",
+    "for_dissertation": "Кількісні дані про вплив PSB на родючість ґрунту. Препринт — перевірити, чи вийшла рецензована версія.",
+    "description": "Препринт метааналізу: фосфатмобілізувальні бактерії підвищують доступні P, N і K ґрунту.",
+    "language": "en",
+    "status": "unread"
+   }
+  },
+  {
+   "files": [
+    {
+     "name": "c2/Baietal2024meta.pdf",
+     "sha256": "f777de90ebe42a5b023696f36cd63536a1202f9281e48e20e6c1a70fa71f7367"
+    }
+   ],
+   "file_name": "Bai 2024 - PGPB in heavy metal contaminated soils (meta-analysis).pdf",
+   "sections": [
+    "Метааналізи ефективності PGPB",
+    "Важкі метали та біоремедіація"
+   ],
+   "source": {
+    "type": "other",
+    "title": "A meta-analysis on crop growth and heavy metals accumulation with PGPB inoculation in contaminated soils",
+    "authors": [
+     {
+      "family": "Bai",
+      "given_initials": "X."
+     },
+     {
+      "family": "Bol",
+      "given_initials": "R."
+     },
+     {
+      "family": "Chen",
+      "given_initials": "H."
+     },
+     {
+      "family": "Cui",
+      "given_initials": "Q."
+     },
+     {
+      "family": "Qiu",
+      "given_initials": "T."
+     },
+     {
+      "family": "Zhao",
+      "given_initials": "S."
+     },
+     {
+      "family": "Fang",
+      "given_initials": "L."
+     }
+    ],
+    "container_title": "Manuscript",
+    "year": 2024,
+    "keywords": "PGPB; heavy metals; crops; meta-analysis",
+    "tags": [
+     "метааналіз",
+     "важкі метали",
+     "рукопис"
+    ],
+    "study_object": "Культури (рис, кукурудза, пшениця, соя, сорго) на ґрунтах, забруднених важкими металами.",
+    "methods": "Метааналіз 2037 спостережень.",
+    "main_results": "Інокуляція PGPB збільшує біомасу пагонів і коренів усіх культур і зменшує накопичення металів у рисі й пшениці; ключовий таксон — Proteobacteria; важливі органічна речовина і NPK.",
+    "for_dissertation": "Кількісні дані щодо PGPB на забруднених ґрунтах. Файл — рукопис (вихідні дані журналу уточнити).",
+    "description": "Метааналіз впливу PGPB на ріст культур і накопичення важких металів на забруднених ґрунтах.",
+    "language": "en",
+    "status": "unread"
+   }
+  },
+  {
+   "files": [
+    {
+     "name": "c2/agronomy-13-00883.pdf",
+     "sha256": "627e3606a9ea895357d627484d2d4a36b56cd27c721e71f92b4257375d058a9e"
+    }
+   ],
+   "file_name": "Musa 2023 - Paecilomyces lilacinus and tomato under heavy metals.pdf",
+   "sections": [
+    "Важкі метали та біоремедіація"
+   ],
+   "source": {
+    "title": "An endophytic fungal isolate Paecilomyces lilacinus produces bioactive secondary metabolites and promotes growth of Solanum lycopersicum under heavy metal stress",
+    "authors": [
+     {
+      "family": "Musa",
+      "given_initials": "M."
+     },
+     {
+      "family": "Jan",
+      "given_initials": "F. G."
+     },
+     {
+      "family": "Hamayun",
+      "given_initials": "M."
+     },
+     {
+      "family": "Jan",
+      "given_initials": "G."
+     },
+     {
+      "family": "Khan",
+      "given_initials": "S. A."
+     },
+     {
+      "family": "Rehman",
+      "given_initials": "G."
+     },
+     {
+      "family": "Ali",
+      "given_initials": "S."
+     },
+     {
+      "family": "Lee",
+      "given_initials": "I.-J."
+     }
+    ],
+    "container_title": "Agronomy",
+    "year": 2023,
+    "volume": "13",
+    "issue": "3",
+    "pages": "Art. 883",
+    "doi": "10.3390/agronomy13030883",
+    "keywords": "Paecilomyces lilacinus; endophytic fungi; tomato; lead; cobalt",
+    "tags": [
+     "томат",
+     "важкі метали",
+     "ендофіти"
+    ],
+    "study_object": "Ендофітний гриб Paecilomyces lilacinus (з коренів Justicia adathoda) і томат за стресу Pb та Co.",
+    "methods": "Аналіз культурального фільтрату (ІОК, феноли, флавоноїди, пролін), DPPH, антибактеріальна дія, вегетаційний дослід з металами.",
+    "main_results": "Фільтрат містить ІОК (68,2 мкг/мл), феноли, флавоноїди; має антиоксидантну та антибактеріальну дію; гриб покращує ріст томата за стресу Pb і Co.",
+    "for_dissertation": "Приклад ендофіта, що стимулює ріст пасльонової культури (томат) за дії металів.",
+    "description": "Ендофітний гриб P. lilacinus продукує біоактивні метаболіти й стимулює ріст томата за стресу металів.",
+    "type": "article",
+    "language": "en",
+    "status": "unread"
+   }
+  },
+  {
+   "files": [
+    {
+     "name": "c2/applmicrobiol-06-00044.pdf",
+     "sha256": "fcc6c3fef6fdc9b50786454019df2dc80ef66115f8cc832ab21b971012871b09"
+    },
+    {
+     "name": "c2/10a3d9d5-e482-4fac-8003-cc7949ff9ed5.pdf",
+     "sha256": "41e9c3cea8b5df2d1749ae81b1f9f875a09baf1e76415374e665391b6ba1ed1b"
+    }
+   ],
+   "file_name": "Ndou 2026 - Cd and H2O2 effects on metabolites of Bacillus from Solanum nigrum.pdf",
+   "sections": [
+    "Ендофіти пасльонових (Solanum)"
+   ],
+   "source": {
+    "title": "The effect of cadmium and hydrogen peroxide on bioactive metabolite production in endophytic Bacillus isolates from Solanum nigrum",
+    "authors": [
+     {
+      "family": "Ndou",
+      "given_initials": "B."
+     },
+     {
+      "family": "Baloyi",
+      "given_initials": "B.-B."
+     },
+     {
+      "family": "Mabona",
+      "given_initials": "N. M."
+     },
+     {
+      "family": "Masilela",
+      "given_initials": "C."
+     },
+     {
+      "family": "Bhiya",
+      "given_initials": "B."
+     },
+     {
+      "family": "Tlou",
+      "given_initials": "M. G."
+     }
+    ],
+    "container_title": "Applied Microbiology",
+    "year": 2026,
+    "volume": "6",
+    "pages": "Art. 44",
+    "doi": "10.3390/applmicrobiol6030044",
+    "keywords": "Solanum nigrum; Bacillus; cadmium; antioxidant; LC-MS",
+    "tags": [
+     "Solanum nigrum",
+     "Bacillus",
+     "метаболіти"
+    ],
+    "study_object": "Ендофітні Bacillus sp. NV35 і NV1 із Solanum nigrum.",
+    "methods": "Філогенія 16S рРНК, сублетальні концентрації Cd і H₂O₂ (0,5 мг/мл), фітохімічний скринінг, DPPH, МІК, LC-MS.",
+    "main_results": "Ізоляти близькі до B. cereus і B. mycoides; за стресу з'являються таніни та стероїди, антирадикальна активність зростає (IC₅₀ з ~3 до ~1,5 мг/мл); МІК проти патогенів 62,5–125 мкг/мл.",
+    "for_dissertation": "Прямо стосується ендофітів S. nigrum і їхніх метаболітів. Препринт цієї ж роботи (Research Square, 2025) — дублікат, вилучено.",
+    "description": "Стрес (Cd, H₂O₂) змінює спектр і посилює антиоксидантну активність метаболітів ендофітних Bacillus з паслину чорного. Опубліковану версію лишено, препринт — як дублікат прибрано.",
+    "type": "article",
+    "language": "en",
+    "status": "unread"
+   }
+  },
+  {
+   "files": [
+    {
+     "name": "c2/barbosa2021.pdf",
+     "sha256": "3a2aad04ad1f4af1c4d4cf0db8b0df41d8dd7406c2fb83fb93ceb0b9ae68b11c"
+    }
+   ],
+   "file_name": "Barbosa 2021 - Co-inoculation of soybean (meta-analysis).pdf",
+   "sections": [
+    "Метааналізи ефективності PGPB"
+   ],
+   "source": {
+    "title": "Meta-analysis reveals benefits of co-inoculation of soybean with Azospirillum brasilense and Bradyrhizobium spp. in Brazil",
+    "authors": [
+     {
+      "family": "Barbosa",
+      "given_initials": "J. Z."
+     },
+     {
+      "family": "Hungria",
+      "given_initials": "M."
+     },
+     {
+      "family": "Sena",
+      "given_initials": "J. V. S."
+     },
+     {
+      "family": "Poggere",
+      "given_initials": "G."
+     },
+     {
+      "family": "dos Reis",
+      "given_initials": "A. R."
+     },
+     {
+      "family": "Corrêa",
+      "given_initials": "R. S."
+     }
+    ],
+    "container_title": "Applied Soil Ecology",
+    "year": 2021,
+    "volume": "163",
+    "pages": "Art. 103913",
+    "doi": "10.1016/j.apsoil.2021.103913",
+    "keywords": "co-inoculation; soybean; Azospirillum; Bradyrhizobium",
+    "tags": [
+     "метааналіз",
+     "соя",
+     "коінокуляція"
+    ],
+    "study_object": "Соя, коінокульована A. brasilense і Bradyrhizobium spp. (польові досліди в Бразилії, 2009–2020).",
+    "methods": "Метааналіз польових дослідів.",
+    "main_results": "Порівняно з одинарною інокуляцією: маса коренів +11 %, кількість бульбочок +5,4 %, маса бульбочок +10,6 %, урожай зерна +3,2 %; найбільший ефект — на піщаних ґрунтах, no-till, у тропіках.",
+    "for_dissertation": "Приклад переваг комбінованих інокулянтів.",
+    "description": "Метааналіз польових дослідів: коінокуляція сої Azospirillum і Bradyrhizobium підвищує врожай.",
+    "type": "article",
+    "language": "en",
+    "status": "unread"
+   }
+  },
+  {
+   "files": [
+    {
+     "name": "c2/borah2021.pdf",
+     "sha256": "ec198aa3c8d93a9415e7fb0223e27da6a44c4149fb60b09c58ed888216691e3a"
+    }
+   ],
+   "file_name": "Borah 2021 - PGP endophytes of cultivated and wild rice.pdf",
+   "sections": [
+    "Методи відбору PGP-штамів"
+   ],
+   "source": {
+    "title": "Comparative assessment of multi-trait plant growth-promoting endophytes associated with cultivated and wild Oryza germplasm of Assam, India",
+    "authors": [
+     {
+      "family": "Borah",
+      "given_initials": "M."
+     },
+     {
+      "family": "Das",
+      "given_initials": "S."
+     },
+     {
+      "family": "Bora",
+      "given_initials": "S. S."
+     },
+     {
+      "family": "Boro",
+      "given_initials": "R. C."
+     },
+     {
+      "family": "Barooah",
+      "given_initials": "M."
+     }
+    ],
+    "container_title": "Archives of Microbiology",
+    "year": 2021,
+    "volume": "203",
+    "doi": "10.1007/s00203-020-02153-x",
+    "keywords": "endophytes; rice; phytohormone; mineral solubilization; siderophore",
+    "tags": [
+     "ендофіти",
+     "рис",
+     "PGP-ознаки"
+    ],
+    "study_object": "70 ендофітних бактерій культурного (Oryza sativa) і дикого (O. rufipogon) рису.",
+    "methods": "Біохімічна та молекулярна ідентифікація; in vitro PGP-тести (ІОК, ГК, P-, K-, Zn-мобілізація, сидерофори); вегетаційний дослід.",
+    "main_results": "Переважають Firmicutes (57 %); Microbacterium laevaniformans RS0111 — найвища продукція ІОК і ГК; найкращі ізоляти підвищили врожай зерна в 3,4 раза.",
+    "for_dissertation": "Набір PGP-тестів і порівняння ендофітів культурних і диких рослин. Сторінки статті уточнити.",
+    "description": "Порівняльна оцінка багатофункціональних PGP-ендофітів культурного й дикого рису.",
+    "type": "article",
+    "language": "en",
+    "status": "unread"
+   }
+  },
+  {
+   "files": [
+    {
+     "name": "c2/e187433152208180.pdf",
+     "sha256": "af2d401e6fcce68d2781f678c79bc24e6a5b2f0ea70584d462ba4d339b0d1425"
+    }
+   ],
+   "file_name": "Borodai 2022 - Endophytes of Solanum nigrum on tomato.pdf",
+   "sections": [
+    "Ендофіти пасльонових (Solanum)"
+   ],
+   "source": {
+    "title": "The growth-promoting and antipathogenic effects of microorganisms isolated from Solanum nigrum L. and inoculated in Solanum lycopersicum L.",
+    "authors": [
+     {
+      "family": "Borodai",
+      "given_initials": "V. V."
+     },
+     {
+      "family": "Kolomiiets",
+      "given_initials": "Yu. V."
+     },
+     {
+      "family": "Likhanov",
+      "given_initials": "A. F."
+     },
+     {
+      "family": "Zelena",
+      "given_initials": "L. B."
+     },
+     {
+      "family": "Butsenko",
+      "given_initials": "L. M."
+     },
+     {
+      "family": "Shemetun",
+      "given_initials": "K. I."
+     },
+     {
+      "family": "Churilov",
+      "given_initials": "A. M."
+     },
+     {
+      "family": "Blume",
+      "given_initials": "Ya. B."
+     }
+    ],
+    "container_title": "The Open Agriculture Journal",
+    "year": 2022,
+    "volume": "16",
+    "pages": "Art. e187433152208180",
+    "doi": "10.2174/18743315-v16-e2208180",
+    "keywords": "Solanum nigrum; endophytes; Bacillus amyloliquefaciens; tomato",
+    "tags": [
+     "Solanum nigrum",
+     "томат",
+     "ендофіти",
+     "Україна"
+    ],
+    "study_object": "14 ендофітів генеративних органів паслину чорного (S. nigrum); томат.",
+    "methods": "Фізіолого-біохімічна характеристика, 16S рРНК / ITS, тести антагонізму проти патогенів томата, інокуляція томата.",
+    "main_results": "Ізоляти BA1s-OSN-0820 і BAXS-OSN-0820 близькі до B. amyloliquefaciens (99,65 %), RHC-OSN-0820 — до Rhodotorula kratochvilovae; виражена бактеріостатична дія проти Xanthomonas campestris і Clavibacter michiganensis; стимуляція росту томата.",
+    "for_dissertation": "Ключове вітчизняне джерело (НУБіП України): ендофіти S. nigrum як стимулятори росту й антагоністи патогенів томата.",
+    "description": "Ендофіти генеративних органів паслину чорного стимулюють ріст томата й пригнічують його патогени.",
+    "type": "article",
+    "language": "en",
+    "status": "unread"
+   }
+  },
+  {
+   "files": [
+    {
+     "name": "c2/erac228.pdf",
+     "sha256": "dcdf23c4c1502c561c3b1dab4996deb5d165ee01ae08ce6e2e73061e77231380"
+    }
+   ],
+   "file_name": "Tran 2022 - In vitro traits predict root endophyte impact (tomato).pdf",
+   "sections": [
+    "Методи відбору PGP-штамів"
+   ],
+   "source": {
+    "title": "In vitro functional characterization predicts the impact of bacterial root endophytes on plant growth",
+    "authors": [
+     {
+      "family": "Tran",
+      "given_initials": "T."
+     },
+     {
+      "family": "French",
+      "given_initials": "E."
+     },
+     {
+      "family": "Iyer-Pascuzzi",
+      "given_initials": "A. S."
+     }
+    ],
+    "container_title": "Journal of Experimental Botany",
+    "year": 2022,
+    "volume": "73",
+    "issue": "16",
+    "pages": "5758-5772",
+    "doi": "10.1093/jxb/erac228",
+    "keywords": "root endophytes; tomato; functional traits; plant growth promotion",
+    "tags": [
+     "томат",
+     "ендофіти",
+     "PGP-ознаки",
+     "методика"
+    ],
+    "study_object": "183 кореневі бактеріальні ендофіти томата (S. lycopersicum і S. pimpinellifolium).",
+    "methods": "6 функціональних ознак in vitro (ауксини, сидерофори, P-мобілізація, антагонізм, гени антимікробних метаболітів), ієрархічна кластеризація, інокуляція сіянців.",
+    "main_results": "Ізоляти з однієї «функціональної групи» стимулюють ріст однаково, незалежно від таксономії та рослини-господаря — функції прогностичніші за таксономію.",
+    "for_dissertation": "Аргумент на користь функціонального (а не лише таксономічного) скринінгу ендофітів пасльонових.",
+    "description": "Функціональні ознаки in vitro передбачають вплив кореневих ендофітів на ріст томата.",
+    "type": "article",
+    "language": "en",
+    "status": "unread"
+   }
+  },
+  {
+   "files": [
+    {
+     "name": "a2/Plant Cell Environment - 2022 - Zhao - A meta",
+     "sha256": "020433b86aec1a93e7825e313fa0556073e83e475398dcc141dd567e0efc63e0"
+    }
+   ],
+   "file_name": "Zhao 2023 - PGPR under drought, morphology and physiology (meta-analysis).pdf",
+   "sections": [
+    "Метааналізи ефективності PGPB"
+   ],
+   "source": {
+    "title": "A meta-analysis on morphological, physiological and biochemical responses of plants with PGPR inoculation under drought stress",
+    "authors": [
+     {
+      "family": "Zhao",
+      "given_initials": "X."
+     },
+     {
+      "family": "Yuan",
+      "given_initials": "X."
+     },
+     {
+      "family": "Xing",
+      "given_initials": "Y."
+     },
+     {
+      "family": "Zhao",
+      "given_initials": "D."
+     },
+     {
+      "family": "Li",
+      "given_initials": "Y."
+     },
+     {
+      "family": "Li",
+      "given_initials": "W."
+     },
+     {
+      "family": "Wang",
+      "given_initials": "Z."
+     },
+     {
+      "family": "Dao",
+      "given_initials": "J."
+     }
+    ],
+    "container_title": "Plant, Cell & Environment",
+    "year": 2023,
+    "volume": "46",
+    "issue": "1",
+    "pages": "199-214",
+    "doi": "10.1111/pce.14466",
+    "keywords": "PGPR; drought; meta-analysis; photosynthesis",
+    "tags": [
+     "метааналіз",
+     "посуха",
+     "PGPR"
+    ],
+    "study_object": "Морфологічні, фізіологічні й біохімічні показники рослин з PGPR за посухи.",
+    "methods": "Метааналіз 57 досліджень, 2387 парних спостережень.",
+    "main_results": "PGPR повертають рослини з посушливого стану майже до стану достатнього зволоження; C4-рослини відновлюються краще за C3; ефект на біомасу й фотосинтез більший за посухи.",
+    "for_dissertation": "Узагальнення фізіологічних механізмів дії PGPR за посухи.",
+    "description": "Метааналіз морфологічних, фізіологічних і біохімічних відповідей рослин на PGPR за посухи.",
+    "type": "article",
+    "language": "en",
+    "status": "unread"
+   }
+  }
+ ],
+ "dropped": [
+  {
+   "file": "b2/fiy094 (1).pdf",
+   "reason": "дублікат fiy094.pdf (та сама стаття, DOI 10.1093/femsec/fiy094)",
+   "sha256": "7121a87266445d7204065e71e814b282419ccae869d9ff7bfb705cb426dd511f"
+  },
+  {
+   "file": "c2/4942d539-fd04-4bf2-b057-6106eab096af (1).pdf",
+   "reason": "побайтова копія 4942d539….pdf",
+   "sha256": "ad7c9e6b05a9cc17aa63b1b84840a47c9300f1d793a49851e7e825e082331c43"
+  },
+  {
+   "file": "c2/10a3d9d5-e482-4fac-8003-cc7949ff9ed5.pdf",
+   "reason": "препринт (Research Square, 2025) тієї ж роботи, що й applmicrobiol-06-00044.pdf (Ndou et al., 2026)",
+   "sha256": "41e9c3cea8b5df2d1749ae81b1f9f875a09baf1e76415374e665391b6ba1ed1b"
+  },
+  {
+   "file": "a2/mili2023.pdf",
+   "reason": "не PDF — збережена вебсторінка «404 Not Found»",
+   "sha256": "766c1d6bcb81d3e983fb7adbc19c616d7fc01dafb7893738edc242e2adc59c07"
+  }
+ ]
+}

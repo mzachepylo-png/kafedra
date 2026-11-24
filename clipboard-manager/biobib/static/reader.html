@@ -1,0 +1,277 @@
+<!doctype html>
+<html lang="uk">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Читалка — BioBib</title>
+<style>
+  :root {
+    --bg: #f7f7f4; --paper: #ffffff; --ink: #1f2328; --muted: #667085; --line: #e4e4de; --accent: #2f6fde;
+    --mark: #ffe58a; --mark-cur: #ffb648; --side: #f0f0eb; --fs: 19px; --measure: 720px;
+    --font: Georgia, "Iowan Old Style", "Times New Roman", serif;
+  }
+  body.sepia { --bg: #f1e7d0; --paper: #fbf3e0; --ink: #3b2f20; --muted: #7d6a50; --line: #e2d4b4; --side: #ecdfc2;
+    --accent: #9a5b13; }
+  body.dark { --bg: #15171a; --paper: #1d2024; --ink: #dfe2e6; --muted: #98a0aa; --line: #2e3238; --side: #191b1f;
+    --accent: #7fb0ff; --mark: #6b5a12; --mark-cur: #a8661a; }
+  body.sans { --font: "Segoe UI", system-ui, -apple-system, Roboto, Arial, sans-serif; }
+  * { box-sizing: border-box; }
+  html { scroll-padding-top: 76px; }
+  body { margin: 0; background: var(--bg); color: var(--ink); font: 15px/1.45 "Segoe UI", system-ui, sans-serif; }
+  #progress { position: fixed; top: 0; left: 0; height: 3px; background: var(--accent); width: 0; z-index: 30; }
+  header { position: sticky; top: 0; z-index: 20; display: flex; flex-wrap: wrap; gap: 8px; align-items: center;
+    padding: 10px 16px; background: var(--paper); border-bottom: 1px solid var(--line); }
+  header .ttl { flex: 1 1 240px; min-width: 0; font-weight: 600; white-space: nowrap; overflow: hidden;
+    text-overflow: ellipsis; }
+  header .ttl small { display: block; font-weight: 400; color: var(--muted); }
+  .grp { display: flex; gap: 4px; align-items: center; }
+  button, select, .btn { font: inherit; color: var(--ink); background: var(--side); border: 1px solid var(--line);
+    border-radius: 8px; padding: 6px 10px; cursor: pointer; text-decoration: none; white-space: nowrap; }
+  button:hover, .btn:hover { border-color: var(--accent); }
+  button.on { background: var(--accent); color: #fff; border-color: var(--accent); }
+  button.dot { width: 30px; height: 30px; padding: 0; border-radius: 50%; background: var(--c); border: 2px solid var(--line); }
+  button.dot.on { border-color: var(--accent); box-shadow: 0 0 0 2px var(--accent); }
+  input[type=search] { font: inherit; color: var(--ink); background: var(--bg); border: 1px solid var(--line);
+    border-radius: 8px; padding: 6px 10px; width: 190px; }
+  #hits { color: var(--muted); min-width: 52px; text-align: center; font-size: 13px; }
+  .wrap { display: flex; gap: 0; }
+  nav#toc { position: sticky; top: 58px; align-self: flex-start; width: 290px; flex: none; max-height: calc(100vh - 58px);
+    overflow: auto; padding: 16px 10px 40px 16px; border-right: 1px solid var(--line); background: var(--side); }
+  nav#toc h4 { margin: 4px 6px 10px; color: var(--muted); font-size: 12px; text-transform: uppercase;
+    letter-spacing: .06em; }
+  nav#toc a { display: block; padding: 5px 8px; border-radius: 6px; color: var(--ink); text-decoration: none;
+    font-size: 14px; line-height: 1.3; }
+  nav#toc a.sub { padding-left: 20px; color: var(--muted); }
+  nav#toc a:hover { background: var(--paper); }
+  nav#toc a.cur { background: var(--paper); color: var(--accent); font-weight: 600; }
+  body.notoc nav#toc { display: none; }
+  main { flex: 1; min-width: 0; padding: 26px 20px 120px; }
+  .page { max-width: var(--measure); margin: 0 auto; }
+  .about { background: var(--paper); border: 1px solid var(--line); border-radius: 14px; padding: 18px 20px;
+    margin-bottom: 28px; }
+  .about .cite { font-size: 15px; }
+  .about .desc { font-size: 16px; margin: 12px 0 4px; }
+  .about dl { display: grid; grid-template-columns: 150px 1fr; gap: 6px 14px; margin: 12px 0 0; font-size: 14px; }
+  .about dt { color: var(--muted); }
+  .about dd { margin: 0; }
+  .tags span { display: inline-block; margin: 8px 6px 0 0; padding: 2px 9px; border-radius: 99px;
+    background: var(--side); color: var(--muted); font-size: 12px; }
+  .meta { color: var(--muted); font-size: 13px; margin: 0 0 18px; }
+  article { font-family: var(--font); font-size: var(--fs); line-height: 1.65; }
+  article h2 { font-family: "Segoe UI", system-ui, sans-serif; font-size: 1.12em; line-height: 1.3; margin: 1.8em 0 .5em; }
+  article p { margin: 0 0 .85em; text-align: justify; hyphens: auto; overflow-wrap: anywhere; }
+  article p.ref { font-size: .8em; line-height: 1.45; text-align: left; margin-bottom: .5em; padding-left: 1.2em;
+    text-indent: -1.2em; }
+  .pg { display: block; font: 12px "Segoe UI", system-ui, sans-serif; color: var(--muted); margin: 1.2em 0 .6em;
+    border-top: 1px dashed var(--line); padding-top: 4px; text-align: right; }
+  mark { background: var(--mark); color: inherit; border-radius: 3px; }
+  mark.cur { background: var(--mark-cur); }
+  .empty { background: var(--paper); border: 1px dashed var(--line); border-radius: 14px; padding: 26px; text-align: center;
+    color: var(--muted); font-size: 16px; }
+  #toast { position: fixed; bottom: 22px; left: 50%; transform: translateX(-50%); background: #222; color: #fff;
+    padding: 9px 16px; border-radius: 10px; opacity: 0; transition: opacity .2s; pointer-events: none; z-index: 40; }
+  #toast.show { opacity: .95; }
+  @media (max-width: 900px) { nav#toc { display: none; } body.showtoc nav#toc { display: block; position: fixed;
+    left: 0; top: 58px; bottom: 0; z-index: 25; box-shadow: 0 0 30px rgba(0,0,0,.25); } main { padding: 18px 16px 100px; }
+    .about dl { grid-template-columns: 1fr; } input[type=search] { width: 140px; } }
+  @media print { header, nav#toc, #progress { display: none; } main { padding: 0; } }
+</style>
+</head>
+<body>
+<div id="progress"></div>
+<header>
+  <button id="bToc" title="Зміст (показати/сховати)">☰</button>
+  <div class="ttl" id="ttl">Читалка<small>завантаження…</small></div>
+  <div class="grp">
+    <input id="q" type="search" placeholder="Пошук у тексті ( / )" autocomplete="off">
+    <span id="hits"></span>
+    <button id="bPrev" title="Попередній збіг (Shift+Enter)">↑</button>
+    <button id="bNext" title="Наступний збіг (Enter)">↓</button>
+  </div>
+  <div class="grp" title="Розмір шрифту">
+    <button id="bSmaller">A−</button><button id="bBigger">A+</button>
+  </div>
+  <button id="bWidth" title="Ширина рядка (вузько / звичайно / широко)">↔</button>
+  <div class="grp" title="Тема">
+    <button class="dot" data-theme="" title="Світла" style="--c:#ffffff"></button><button class="dot" data-theme="sepia" title="Сепія" style="--c:#f1e2bf"></button><button class="dot" data-theme="dark" title="Темна" style="--c:#24272c"></button>
+  </div>
+  <button id="bFont" title="Шрифт з засічками / без">Aa</button>
+  <select id="fileSel" title="Файл" hidden></select>
+  <a class="btn" id="bPdf" target="_blank" rel="noopener" hidden>PDF ↗</a>
+  <button id="bDisk" title="Відкрити файл на диску (у програмі за замовчуванням)" hidden>На диску</button>
+  <button id="bReveal" title="Показати файл у папці" hidden>📁</button>
+</header>
+<div class="wrap">
+  <nav id="toc"><h4>Зміст</h4><div id="tocList"></div></nav>
+  <main><div class="page" id="page"></div></main>
+</div>
+<div id="toast"></div>
+<script>
+"use strict";
+const sid = Number(location.pathname.split("/").filter(Boolean).pop());
+const params = new URLSearchParams(location.search);
+const store = {
+  get(k, d) { try { const v = localStorage.getItem("biobib.reader." + k); return v === null ? d : JSON.parse(v); } catch { return d; } },
+  set(k, v) { try { localStorage.setItem("biobib.reader." + k, JSON.stringify(v)); } catch {} },
+};
+const esc = (s) => String(s ?? "").replace(/[&<>"']/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c]));
+const $ = (id) => document.getElementById(id);
+let data = null, hits = [], hitIdx = -1, posKey = "";
+
+function toast(msg) { const t = $("toast"); t.textContent = msg; t.classList.add("show"); clearTimeout(toast.h); toast.h = setTimeout(() => t.classList.remove("show"), 1800); }
+
+/* ---- вигляд ---- */
+function applyView() {
+  const v = store.get("view", { fs: 19, measure: "720px", theme: "", sans: false, toc: true });
+  document.documentElement.style.setProperty("--fs", v.fs + "px");
+  document.documentElement.style.setProperty("--measure", v.measure);
+  document.body.classList.toggle("sepia", v.theme === "sepia");
+  document.body.classList.toggle("dark", v.theme === "dark");
+  document.body.classList.toggle("sans", !!v.sans);
+  document.body.classList.toggle("notoc", !v.toc);
+  $("bWidth").textContent = { "600px": "↔ вузько", "720px": "↔ звичайно", "920px": "↔ широко" }[v.measure] || "↔";
+  document.querySelectorAll("[data-theme]").forEach((b) => b.classList.toggle("on", b.dataset.theme === v.theme));
+  $("bFont").classList.toggle("on", !!v.sans);
+  return v;
+}
+function setView(patch) { store.set("view", Object.assign(applyView(), patch)); applyView(); }
+$("bSmaller").onclick = () => setView({ fs: Math.max(13, applyView().fs - 1) });
+$("bBigger").onclick = () => setView({ fs: Math.min(30, applyView().fs + 1) });
+const WIDTHS = ["600px", "720px", "920px"];
+$("bWidth").onclick = () => setView({ measure: WIDTHS[(WIDTHS.indexOf(applyView().measure) + 1) % WIDTHS.length] });
+document.querySelectorAll("[data-theme]").forEach((b) => (b.onclick = () => setView({ theme: b.dataset.theme })));
+$("bFont").onclick = () => setView({ sans: !applyView().sans });
+$("bToc").onclick = () => {
+  if (matchMedia("(max-width: 900px)").matches) document.body.classList.toggle("showtoc");
+  else setView({ toc: !applyView().toc });
+};
+applyView();
+
+/* ---- дані ---- */
+async function load(fileId) {
+  const url = `/api/read/${sid}` + (fileId ? `?file=${fileId}` : "");
+  const r = await fetch(url);
+  if (!r.ok) { $("page").innerHTML = `<div class="empty">Джерело не знайдено.</div>`; return; }
+  data = await r.json();
+  render();
+}
+
+function render() {
+  const s = data.source;
+  document.title = (s.title || "Читалка") + " — BioBib";
+  const authors = (s.authors || []).map((a) => a.family).slice(0, 3).join(", ") + ((s.authors || []).length > 3 ? " та ін." : "");
+  $("ttl").innerHTML = esc(s.title) + `<small>${esc(authors)}${s.year ? " · " + s.year : ""}${s.container_title ? " · " + esc(s.container_title) : ""}</small>`;
+  const sel = $("fileSel");
+  sel.innerHTML = data.files.map((f) => `<option value="${f.id}" ${f.id === data.file_id ? "selected" : ""}>${esc(f.label || f.original_name)}</option>`).join("");
+  sel.hidden = data.files.length < 2;
+  for (const id of ["bPdf", "bDisk", "bReveal"]) $(id).hidden = !data.file_id;
+  if (data.file_id) $("bPdf").href = `/api/files/${data.file_id}`;
+
+  const rows = [["Об'єкт дослідження", s.study_object], ["Методи", s.methods], ["Основні результати", s.main_results],
+    ["Для дисертації", s.for_dissertation], ["Ключові слова", s.keywords]].filter((r) => r[1]);
+  let html = `<section class="about">
+      <div class="cite">${esc(s.citation_dstu)} <button id="bCopy" title="Копіювати посилання за ДСТУ 8302:2015">⧉</button></div>
+      ${s.description ? `<div class="desc">${esc(s.description)}</div>` : ""}
+      ${rows.length ? `<dl>${rows.map((r) => `<dt>${esc(r[0])}</dt><dd>${esc(r[1])}</dd>`).join("")}</dl>` : ""}
+      ${(s.tags || []).length ? `<div class="tags">${s.tags.map((t) => `<span>${esc(t)}</span>`).join("")}</div>` : ""}
+    </section>`;
+  if (!data.file_id) {
+    html += `<div class="empty">До цього джерела ще не прикріплено PDF.<br>Прикріпіть його в програмі (сторінка «Посилання» → правий клік по джерелу → «Прикріпити PDF…») або в бібліотеці.</div>`;
+  } else if (!data.blocks.length) {
+    html += `<div class="empty">Не вдалося дістати текст із цього PDF (можливо, це скан без текстового шару).<br>Відкрийте його як PDF: кнопка «PDF ↗» або «Відкрити на диску».</div>`;
+  } else {
+    const mins = Math.max(1, Math.round(data.words / 200));
+    html += `<p class="meta">${data.pages} стор. · ≈ ${data.words.toLocaleString("uk-UA")} слів · ≈ ${mins} хв читання</p><article id="art">`;
+    let page = 1;
+    data.blocks.forEach((b, i) => {
+      if (b.page > page) { page = b.page; html += `<span class="pg">стор. ${page}</span>`; }
+      if (b.t === "h") html += `<h2 id="b${i}">${esc(b.text)}</h2>`;
+      else html += `<p id="b${i}"${b.t === "r" ? ' class="ref"' : ""}>${esc(b.text)}</p>`;
+    });
+    html += `</article>`;
+  }
+  $("page").innerHTML = html;
+  $("bCopy").onclick = async () => { try { await navigator.clipboard.writeText(s.citation_dstu); toast("Посилання скопійовано"); } catch { toast("Не вдалося скопіювати"); } };
+  $("tocList").innerHTML = data.toc.length
+    ? data.toc.map((t) => `<a href="#b${t.i}" data-i="${t.i}" class="${/^\d+\.\d/.test(t.text) ? "sub" : ""}">${esc(t.text)}</a>`).join("")
+    : `<p style="color:var(--muted);font-size:13px;margin:6px">Заголовків не знайдено.</p>`;
+  posKey = `pos.${sid}.${data.file_id || 0}`;
+  const pos = store.get(posKey, 0);
+  if (pos > 0) requestAnimationFrame(() => { window.scrollTo(0, pos * (document.documentElement.scrollHeight - innerHeight)); });
+  if ($("q").value) search();
+  onScroll();
+}
+
+$("fileSel").onchange = (e) => load(Number(e.target.value));
+async function openDisk(reveal) {
+  const r = await fetch(`/api/files/${data.file_id}/open?reveal=${reveal ? 1 : 0}`, { method: "POST", headers: { "X-BioBib": "1" } });
+  toast(r.ok ? (reveal ? "Відкрито папку з файлом" : "Файл відкрито") : "Не вдалося відкрити файл");
+}
+$("bDisk").onclick = () => openDisk(false);
+$("bReveal").onclick = () => openDisk(true);
+
+/* ---- прогрес, поточний розділ, позиція ---- */
+let scrollTimer = 0;
+function onScroll() {
+  const h = document.documentElement.scrollHeight - innerHeight;
+  const frac = h > 0 ? scrollY / h : 0;
+  $("progress").style.width = (frac * 100).toFixed(1) + "%";
+  clearTimeout(scrollTimer);
+  scrollTimer = setTimeout(() => { if (posKey) store.set(posKey, frac); }, 250);
+  if (!data || !data.toc.length) return;
+  let cur = null;
+  for (const t of data.toc) { const el = $("b" + t.i); if (el && el.getBoundingClientRect().top < 120) cur = t.i; else break; }
+  document.querySelectorAll("#tocList a").forEach((a) => a.classList.toggle("cur", Number(a.dataset.i) === cur));
+}
+addEventListener("scroll", onScroll, { passive: true });
+$("tocList").addEventListener("click", () => document.body.classList.remove("showtoc"));
+
+/* ---- пошук ---- */
+function clearMarks() {
+  document.querySelectorAll("#art mark").forEach((m) => m.replaceWith(document.createTextNode(m.textContent)));
+  document.querySelectorAll("#art p, #art h2").forEach((el) => el.normalize());
+}
+function search() {
+  clearMarks(); hits = []; hitIdx = -1;
+  const q = $("q").value.trim();
+  if (!q || !$("art")) { $("hits").textContent = ""; return; }
+  const re = new RegExp(q.replace(/[.*+?^${}()|[\]\\]/g, "\\$&"), "gi");
+  const walker = document.createTreeWalker($("art"), NodeFilter.SHOW_TEXT);
+  const nodes = []; while (walker.nextNode()) nodes.push(walker.currentNode);
+  for (const node of nodes) {
+    const text = node.nodeValue; let m, last = 0; const frag = document.createDocumentFragment(); re.lastIndex = 0;
+    while ((m = re.exec(text))) {
+      frag.append(text.slice(last, m.index));
+      const mk = document.createElement("mark"); mk.textContent = m[0]; frag.append(mk); hits.push(mk);
+      last = m.index + m[0].length;
+      if (hits.length > 2000) break;
+    }
+    if (last) { frag.append(text.slice(last)); node.replaceWith(frag); }
+  }
+  $("hits").textContent = hits.length ? `0/${hits.length}` : "0";
+  if (hits.length) go(1);
+}
+function go(d) {
+  if (!hits.length) return;
+  if (hitIdx >= 0) hits[hitIdx].classList.remove("cur");
+  hitIdx = (hitIdx + d + hits.length) % hits.length;
+  hits[hitIdx].classList.add("cur");
+  hits[hitIdx].scrollIntoView({ block: "center" });
+  $("hits").textContent = `${hitIdx + 1}/${hits.length}`;
+}
+let qTimer = 0;
+$("q").addEventListener("input", () => { clearTimeout(qTimer); qTimer = setTimeout(search, 250); });
+$("q").addEventListener("keydown", (e) => {
+  if (e.key === "Enter") { e.preventDefault(); go(e.shiftKey ? -1 : 1); }
+  if (e.key === "Escape") { $("q").value = ""; search(); $("q").blur(); }
+});
+$("bNext").onclick = () => go(1);
+$("bPrev").onclick = () => go(-1);
+addEventListener("keydown", (e) => {
+  if (e.key === "/" && document.activeElement !== $("q")) { e.preventDefault(); $("q").focus(); $("q").select(); }
+});
+
+load(Number(params.get("file")) || null);
+</script>
+</body>
+</html>

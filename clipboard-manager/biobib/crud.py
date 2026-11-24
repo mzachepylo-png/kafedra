@@ -357,11 +357,12 @@ def delete_source(
         ).fetchall()
         for frow in file_rows:
             fpath = base_storage / frow["path"]
-            if fpath.exists() and fpath.is_file():
-                try:
-                    fpath.unlink()
-                except OSError:
-                    pass
+            for p in (fpath, fpath.with_name(fpath.name + ".reader.json")):
+                if p.exists() and p.is_file():
+                    try:
+                        p.unlink()
+                    except OSError:
+                        pass
 
     conn.execute("DELETE FROM search_index WHERE source_id = ?", (source_id,))
     conn.execute("DELETE FROM sources WHERE id = ?", (source_id,))
@@ -542,11 +543,12 @@ def delete_file_record(
 
     base_storage = storage_dir or config.STORAGE_DIR
     fpath = base_storage / row["path"]
-    if fpath.exists() and fpath.is_file():
-        try:
-            fpath.unlink()
-        except OSError:
-            pass
+    for p in (fpath, fpath.with_name(fpath.name + ".reader.json")):      # + кеш тексту читалки
+        if p.exists() and p.is_file():
+            try:
+                p.unlink()
+            except OSError:
+                pass
 
     source_id = row["source_id"]
     conn.execute("DELETE FROM files WHERE id = ?", (file_id,))

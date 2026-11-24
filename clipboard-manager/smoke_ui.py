@@ -4752,12 +4752,14 @@ assert (top45["title"], sub45["title"]) == ("Дисертація", "Актуа�
 lp.items[0][2]._canvas.event_generate("<Button-1>", x=20, y=20)
 pump(200)
 assert lp.path == [top45["id"]] and lp.btn_new.cget("text") == "＋ Підпапка"
+n45 = len(lp.items)
+assert n45 == 6, ("Актуальність + 5 підпапок набору джерел", n45)
 assert app.title_lbl.cget("text") == "Дисертація"
 saved_td = cm.TextDialog.run
 cm.TextDialog.run = lambda self: (self.destroy(), "Методи дослідження")[1]
 app.on_add()                                      # «＋ Додати» на вкладці «Посилання» = додати в поточному розділі
 cm.TextDialog.run = saved_td
-assert [i for k, i, _f in lp.items if k == "section"] and len(lp.items) == 2
+assert [i for k, i, _f in lp.items if k == "section"] and len(lp.items) == n45 + 1
 lp.go([top45["id"], sub45["id"]])
 assert lp.btn_new.cget("text") == "＋ Джерело" and lp.items == [] and "Джерел ще немає" in lp.hint.cget("text")
 with lp.conn() as c45:
@@ -4776,7 +4778,18 @@ pump(300)
 assert [k for k, _i, _f in lp.items] == ["source"]
 cite45 = "Kovalenko O. V. Endophytic Bacillus subtilis promotes growth. Journal. 2023."
 fr45 = lp.items[0][2]
-lbl45 = [w for w in fr45.winfo_children() if isinstance(w, tk.Label) and w.cget("text").startswith("Kovalenko")][0]
+
+
+def labels_in(w):
+    out = []
+    for ch in w.winfo_children():
+        if isinstance(ch, tk.Label):
+            out.append(ch)
+        out += labels_in(ch)
+    return out
+
+
+lbl45 = [w for w in labels_in(fr45) if w.cget("text").startswith("Kovalenko")][0]
 lbl45.event_generate("<Button-1>", x=5, y=5)
 assert root.clipboard_get() == cite45 and not app._hidden, "клік — копіює посилання за ДСТУ"
 # «Додати з бібліотеки…»: друге джерело
@@ -4793,7 +4806,7 @@ assert [i for k, i, _f in lp.items] == ids45[::-1]
 # Alt + клік — ще й ховає програму
 settings["autohide"], app.hotkey_ok = True, True
 pump(300)
-lbl45 = [w for w in lp.items[0][2].winfo_children() if isinstance(w, tk.Label) and w.cget("text").startswith("Іван")][0]
+lbl45 = [w for w in labels_in(lp.items[0][2]) if w.cget("text").startswith("Іван")][0]
 lbl45.event_generate("<Button-1>", x=5, y=5, state=cm.ALT_MASK)
 assert app._hidden
 app.show_window()
@@ -5112,6 +5125,94 @@ b49.sync_node()
 ed49b.accept()
 assert "label" not in ed49b.result["options"][1]
 print("49 ctor: own label in picker; color picker — spectrum (hue strip + saturation/brightness square) OK")
+
+# ---- 50. раунд 28: джерела дисертації з описами, PDF «пачкою», відкрити на диску, читалка ----------------------------
+err42.clear()
+import types  # noqa: E402
+import zipfile as _zip50  # noqa: E402
+from test_biobib import make_pdf  # noqa: E402
+app.set_tab("links")
+pump(300)
+lp = app.links
+lp.go([])
+pump(200)
+assert lp.btn_pdf.winfo_ismapped() and lp.btn_dups.winfo_ismapped(), "на корені — «Прикріпити PDF…» і «Прибрати дублікати»"
+assert len(lp.seed_report.get("added", [])) == 27, lp.seed_report
+with lp.conn() as c50:
+    all50 = {s_["path"]: s_ for s_ in lp.sec.list_sections(c50, all_levels=True)}
+    sol50 = all50["Дисертація › Ендофіти пасльонових (Solanum)"]
+    bor50 = lp.lib.find_source(c50, "10.2174/18743315-v16-e2208180")
+assert sol50["count"] == 7
+lp.go([sol50["parent_id"], sol50["id"]])
+pump(300)
+assert len(lp.items) == 7 and lp.btn_new.cget("text") == "＋ Джерело"
+texts50 = [w.cget("text") for w in labels_in(lp.items[0][2])]
+assert any(t.startswith("Borodai V. V.") for t in texts50) and any("паслину" in t for t in texts50), \
+    ("картка: посилання + опис", texts50)
+fr50 = dict((i, f) for _k, i, f in lp.items)[bor50]
+assert not [w for w in fr50.winfo_children() for b in w.winfo_children() if isinstance(b, ctk.CTkButton)], \
+    "без PDF — без «Читати»"
+# PDF: файл + ZIP-копія + не-PDF → прикріплюється один, решта — звіт
+d50 = os.path.join(data_dir, "pdf50")
+os.makedirs(d50, exist_ok=True)
+pdf50 = make_pdf(["The Open Agriculture Journal", "DOI: 10.2174/18743315-v16-e2208180", "Abstract",
+                  "Endophytes of Solanum nigrum promote tomato growth."])
+with open(os.path.join(d50, "borodai.pdf"), "wb") as fh50:
+    fh50.write(pdf50)
+with open(os.path.join(d50, "page.pdf"), "wb") as fh50:
+    fh50.write(b"<html>404 Not Found</html>")
+with _zip50.ZipFile(os.path.join(data_dir, "pdf50.zip"), "w") as zf50:
+    zf50.writestr("borodai (1).pdf", pdf50)
+app._no_dialogs = True
+lp.attach_pdfs([d50, os.path.join(data_dir, "pdf50.zip")], wait=True)
+pump(300)
+rep50 = lp.last_attach["rep"]
+assert [x[1] for x in rep50["attached"]] == [bor50] and rep50["not_pdf"] == ["page.pdf"] and \
+    len(rep50["duplicate"]) == 1, rep50
+fr50 = dict((i, f) for _k, i, f in lp.items)[bor50]
+btns50 = [b.cget("text") for w in fr50.winfo_children() for b in w.winfo_children() if isinstance(b, ctk.CTkButton)]
+assert btns50 == ["Читати", "PDF ↗"], btns50
+# відкрити на диску / показати в папці — без справжнього Провідника
+opened50 = []
+lp.lib.OPENER = opened50.append
+assert lp.open_file({"id": bor50}) and lp.open_file({"id": bor50}, reveal=True)
+assert len(opened50) == 2 and opened50[0][-1].endswith(".pdf"), opened50
+lp.lib.OPENER = None
+# меню джерела: читати / PDF / папка / прикріпити
+src50 = {"id": bor50, "n_files": 1, "citation_dstu": "x"}
+menus50 = []
+saved_popup50 = app._popup
+app._popup = lambda m, x, y: menus50.append([it.label for it in m.items if it.kind == "command"])
+lp._source_menu(types.SimpleNamespace(x_root=10, y_root=10), src50, 1)
+lp._source_menu(types.SimpleNamespace(x_root=10, y_root=10), dict(src50, n_files=0), 1)
+app._popup = saved_popup50
+assert {"Читати повний текст", "Відкрити PDF на диску", "Показати файл у папці", "Прикріпити PDF…"} <= set(menus50[0])
+assert "Читати повний текст" not in menus50[1] and "Прикріпити PDF…" in menus50[1], menus50
+# читалка: сервер + /api/read
+app._no_browser = True
+lp.read_source({"id": bor50})
+assert "/reader/%d?file=" % bor50 in lp.last_url, lp.last_url
+base50 = lp.last_url.split("reader/")[0]
+read50 = _json.loads(_ur.urlopen(base50 + f"api/read/{bor50}", timeout=10).read())
+assert read50["source"]["description"] and [t["text"] for t in read50["toc"]] == ["Abstract"], read50["toc"]
+assert "promote tomato growth" in " ".join(b["text"] for b in read50["blocks"])
+assert "Читалка" in _ur.urlopen(lp.last_url, timeout=10).read().decode("utf-8")
+_bb_server.stop()
+# дублікати: копія джерела зливається в оригінал
+with lp.conn() as c50:
+    c50.execute("INSERT INTO sources (type, title, doi, language, created_at, updated_at) VALUES "
+                "('article', 'Копія', 'https://doi.org/10.2174/18743315-V16-E2208180', 'en', 'x', 'x')")
+    c50.commit()
+merged50 = lp.dedupe()
+assert [m["kept"] for m in merged50] == [bor50], merged50
+assert lp.dedupe() == []
+app._no_dialogs = False
+lp.go([])
+app.set_tab("clip")
+pump(200)
+assert not err42, err42
+print("50 BioBib: 27 dissertation sources with descriptions, PDFs attach by content (zip/folder, dups skipped), "
+      "open on disk, reader, dedupe OK")
 
 # ---- 25. справжнє розгортання під віконним менеджером (лише якщо є openbox) -------------------------------------------------------------
 import shutil  # noqa: E402

@@ -6,11 +6,11 @@ from contextlib import asynccontextmanager
 from pathlib import Path
 from typing import Iterator
 
-from fastapi import Depends, FastAPI, File, Form, HTTPException, Query, UploadFile
+from fastapi import Depends, FastAPI, File, Form, Header, HTTPException, Query, UploadFile
 from fastapi.responses import FileResponse, HTMLResponse
 from fastapi.staticfiles import StaticFiles
 
-from . import config, crud, sections
+from . import config, crud, library, sections
 from .database import get_connection, init_db
 from .schemas import NoteIn, SectionIn, SettingsUpdate, SourceCreate, SourceUpdate
 
@@ -46,6 +46,38 @@ def index_page() -> FileResponse:
     if not index_file.exists():
         raise HTTPException(status_code=404, detail="Файл інтерфейсу не знайдено")
     return FileResponse(str(index_file))
+
+
+@app.get("/reader/{source_id}", response_class=HTMLResponse)
+def reader_page(source_id: int) -> FileResponse:
+    """Читалка повного тексту дослідження (дані — з /api/read/{source_id})."""
+    page = config.STATIC_DIR / "reader.html"
+    if not page.exists():
+        raise HTTPException(status_code=404, detail="Файл читалки не знайдено")
+    return FileResponse(str(page))
+
+
+@app.get("/api/read/{source_id}")
+def api_read(source_id: int, file: int | None = Query(default=None), conn=Depends(get_db)) -> dict:
+    data = library.reader_data(conn, source_id, file, storage_dir=config.STORAGE_DIR)
+    if data is None:
+        raise HTTPException(status_code=404, detail="Джерело не знайдено")
+    return data
+
+
+@app.post("/api/files/{file_id}/open")
+def api_open_file(file_id: int, reveal: bool = Query(default=False),
+                  x_biobib: str | None = Header(default=None), conn=Depends(get_db)) -> dict[str, bool]:
+    """Відкриває прикріплений файл на цьому комп'ютері (або показує його в Провіднику). Лише із заголовком
+    X-BioBib: інші сайти в браузері не можуть надіслати такий запит на 127.0.0.1 без дозволу CORS."""
+    if x_biobib != "1":
+        raise HTTPException(status_code=403, detail="Потрібен заголовок X-BioBib")
+    path = library.file_path(conn, file_id, storage_dir=config.STORAGE_DIR)
+    if path is None or not path.exists():
+        raise HTTPException(status_code=404, detail="Файл не знайдено")
+    if not library.open_on_disk(path, reveal=reveal):
+        raise HTTPException(status_code=500, detail="Не вдалося відкрити файл")
+    return {"opened": True}
 
 
 @app.get("/api/health")

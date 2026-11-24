@@ -135,5 +135,11 @@
   "toast_deleted": "Видалено",
   "toast_file_uploaded": "Файл прикріплено",
   "toast_error": "Помилка виконання запиту",
-  "validation_title_required": "Вкажіть назву джерела"
+  "validation_title_required": "Вкажіть назву джерела",
+  "btn_read": "Читати",
+  "btn_open_disk": "Відкрити на диску",
+  "btn_open_disk_hint": "Відкрити файл у програмі за замовчуванням (PDF-переглядач)",
+  "btn_reveal_disk": "Показати файл у папці",
+  "toast_opened": "Файл відкрито",
+  "toast_revealed": "Відкрито папку з файлом"
 }

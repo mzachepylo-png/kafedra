@@ -96,6 +96,13 @@ async function api(url, options = {}) {
   return resp.json();
 }
 
+/* Відкрити прикріплений файл у програмі за замовчуванням (PDF-переглядач) або показати його в Провіднику.
+   Заголовок X-BioBib не дає стороннім сайтам викликати це через браузер (запит без нього відхиляється). */
+async function openOnDisk(fileId, reveal) {
+  await api(`/api/files/${fileId}/open?reveal=${reveal ? 1 : 0}`, { method: "POST", headers: { "X-BioBib": "1" } });
+  showToast(t(reveal ? "toast_revealed" : "toast_opened"));
+}
+
 function formatAuthorsShort(authors) {
   if (!authors || !authors.length) return "—";
   const list = authors.map((a) => `${a.family} ${a.given_initials || ""}`.trim());
@@ -216,6 +223,7 @@ function renderSourceList() {
               📎 ${s.file_count} · 📝 ${s.note_count}
             </div>
             <div>
+              ${s.file_count ? `<a class="btn btn-sm btn-secondary" href="/reader/${s.id}" target="_blank" rel="noopener">${escapeHtml(t("btn_read"))}</a>` : ""}
               <button class="btn btn-sm btn-secondary js-copy-dstu" data-id="${s.id}" type="button">${escapeHtml(t("btn_copy_dstu"))}</button>
             </div>
           </div>
@@ -226,7 +234,7 @@ function renderSourceList() {
 
   container.querySelectorAll(".source-card").forEach((card) => {
     card.addEventListener("click", (e) => {
-      if (e.target.closest(".js-copy-dstu")) return;
+      if (e.target.closest(".js-copy-dstu") || e.target.closest("a")) return;
       selectSource(Number(card.dataset.id));
     });
   });
@@ -470,6 +478,13 @@ function renderDetailPane() {
                               ? `<button type="button" class="btn btn-sm btn-secondary js-preview-file" data-file-id="${f.id}" data-mime="${escapeHtml(f.mime)}" data-name="${escapeHtml(f.original_name)}">${escapeHtml(t("btn_open_preview"))}</button>`
                               : ""
                           }
+                          ${
+                            f.mime === "application/pdf"
+                              ? `<a class="btn btn-sm btn-primary" href="/reader/${s.id}?file=${f.id}" target="_blank" rel="noopener">${escapeHtml(t("btn_read"))}</a>`
+                              : ""
+                          }
+                          <button type="button" class="btn btn-sm btn-secondary js-open-disk" data-file-id="${f.id}" title="${escapeHtml(t("btn_open_disk_hint"))}">${escapeHtml(t("btn_open_disk"))}</button>
+                          <button type="button" class="btn btn-sm btn-secondary js-reveal-disk" data-file-id="${f.id}" title="${escapeHtml(t("btn_reveal_disk"))}">📁</button>
                           <a class="btn btn-sm btn-secondary" href="/api/files/${f.id}?download=1">${escapeHtml(t("btn_download"))}</a>
                           <button type="button" class="btn btn-sm btn-danger js-del-file" data-file-id="${f.id}">✕</button>
                         </div>
@@ -498,6 +513,13 @@ function renderDetailPane() {
     tabContent.querySelectorAll(".js-preview-file").forEach((btn) => {
       btn.addEventListener("click", () => {
         openPreviewModal(btn.dataset.fileId, btn.dataset.mime, btn.dataset.name);
+      });
+    });
+
+    tabContent.querySelectorAll(".js-open-disk, .js-reveal-disk").forEach((btn) => {
+      btn.addEventListener("click", async () => {
+        const reveal = btn.classList.contains("js-reveal-disk") ? 1 : 0;
+        await openOnDisk(btn.dataset.fileId, reveal);
       });
     });
 

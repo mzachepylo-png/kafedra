@@ -338,3 +338,194 @@ def _api_flow(client, config):
 
 if __name__ == "__main__":
     unittest.main()
+
+
+# ---- раунд 28: набір джерел дисертації, дублікати, PDF «пачкою», відкриття на диску, читалка -----------------
+try:
+    import pypdf  # noqa: F401
+    HAVE_PDF = True
+except ImportError:
+    HAVE_PDF = False
+
+
+def make_pdf(lines):
+    """Найпростіший PDF з текстом (рядки — Helvetica) — для тестів без справжніх статей."""
+    ops = ["BT /F1 11 Tf 50 780 Td 14 TL"] + ["(%s) Tj T*" % ln.replace("\\", "\\\\").replace("(", "\\(")
+                                                .replace(")", "\\)") for ln in lines] + ["ET"]
+    stream = "\n".join(ops).encode("latin-1")
+    objs = [b"<< /Type /Catalog /Pages 2 0 R >>", b"<< /Type /Pages /Kids [3 0 R] /Count 1 >>",
+            b"<< /Type /Page /Parent 2 0 R /MediaBox [0 0 595 842] /Contents 4 0 R "
+            b"/Resources << /Font << /F1 5 0 R >> >> >>",
+            b"<< /Length %d >>\nstream\n" % len(stream) + stream + b"\nendstream",
+            b"<< /Type /Font /Subtype /Type1 /BaseFont /Helvetica >>"]
+    out = bytearray(b"%PDF-1.4\n")
+    offs = []
+    for n, o in enumerate(objs, 1):
+        offs.append(len(out))
+        out += b"%d 0 obj\n" % n + o + b"\nendobj\n"
+    xref = len(out)
+    out += b"xref\n0 %d\n0000000000 65535 f \n" % (len(objs) + 1)
+    out += b"".join(b"%010d 00000 n \n" % o for o in offs)
+    out += b"trailer\n<< /Size %d /Root 1 0 R >>\nstartxref\n%d\n%%%%EOF\n" % (len(objs) + 1, xref)
+    return bytes(out)
+
+
+class LibraryTests(_TmpData):
+    def setUp(self):
+        super().setUp()
+        from biobib import library
+        self.lib = library
+
+    def test_seed_sources_sections_descriptions_idempotent(self):
+        data = self.lib.load_seed()
+        self.assertEqual(len(data["sources"]), 27)
+        self.assertEqual(len({s["source"].get("doi") or s["source"]["title"] for s in data["sources"]}), 27,
+                         "у наборі немає дублікатів")
+        rep = self.lib.import_seed(self.conn)
+        self.assertEqual(len(rep["added"]), 27)
+        self.assertTrue(self.lib.import_seed(self.conn)["skipped"], "вдруге автоматично не імпортується")
+        rep2 = self.lib.import_seed(self.conn, force=True)
+        self.assertEqual((len(rep2["added"]), len(rep2["existing"])), (0, 27), "примусово — без дублікатів")
+        self.assertEqual(self.conn.execute("SELECT COUNT(*) FROM sources").fetchone()[0], 27)
+        paths = {s["path"]: s["count"] for s in sections.list_sections(self.conn, all_levels=True)}
+        self.assertEqual(paths["Дисертація › Актуальність"], 0)
+        self.assertEqual(paths["Дисертація › Метааналізи ефективності PGPB"], 14)
+        self.assertEqual(paths["Дисертація › Ендофіти пасльонових (Solanum)"], 7)
+        self.assertEqual(len(self.lib.descriptions(self.conn)), 27, "у кожного джерела — опис")
+        sid = self.lib.find_source(self.conn, "https://doi.org/10.1093/JXB/erac228")
+        src = sections.source_brief(self.conn, self.conn.execute("SELECT * FROM sources WHERE id = ?",
+                                                                (sid,)).fetchone())
+        self.assertEqual(src["citation_dstu"], "Tran T., French E., Iyer-Pascuzzi A. S. In vitro functional "
+                         "characterization predicts the impact of bacterial root endophytes on plant growth. Journal of "
+                         "Experimental Botany. 2022. Vol. 73, no. 16. P. 5758–5772. DOI: 10.1093/jxb/erac228.")
+        sec = [s for s in sections.list_sections(self.conn, all_levels=True) if s["title"].startswith("Метаан")][0]
+        bib = sections.bibliography(self.conn, sec["id"]).splitlines()
+        self.assertTrue(bib[0].startswith("1. Azarbad H., Junker R. R."), "за абеткою")
+        self.assertIn("Art. 858804", "\n".join(bib), "номер статті замість сторінок")
+
+    def test_seed_fills_existing_source_and_dedupe_merges(self):
+        own = self.add_source("Carotenoids as antioxidants", 2001, "Krinsky")      # уже було, без DOI й опису
+        sub = sections.list_sections(self.conn, sections.list_sections(self.conn)[0]["id"])[0]
+        sections.attach(self.conn, own, sub["id"])
+        self.lib.import_seed(self.conn)
+        self.assertEqual(self.conn.execute("SELECT COUNT(*) FROM sources").fetchone()[0], 27)
+        row = self.conn.execute("SELECT doi, container_title FROM sources WHERE id = ?", (own,)).fetchone()
+        self.assertEqual(row["doi"], "10.1016/S0899-9007(01)00651-7")
+        self.assertEqual(row["container_title"], "Назва журналу", "своє, заповнене, не переписується")
+        # дублікат з іншим записом DOI: зливається в старіше джерело разом із розділами й нотатками
+        dup = self.add_source("Інша назва того самого", 2001, "Krinsky")
+        self.conn.execute("UPDATE sources SET doi = 'https://doi.org/10.1016/s0899-9007(01)00651-7' WHERE id = ?",
+                          (dup,))
+        self.conn.execute("INSERT INTO notes (source_id, kind, text, created_at, updated_at) "
+                          "VALUES (?, 'quote', 'Цитата з дубліката', 'x', 'x')", (dup,))
+        other = sections.create_section(self.conn, "Розділ 3", sections.list_sections(self.conn)[0]["id"])
+        sections.attach(self.conn, dup, other["id"])
+        merged = self.lib.dedupe_sources(self.conn)
+        self.assertEqual([(m["kept"], m["removed"]) for m in merged], [(own, [dup])])
+        self.assertIsNone(self.conn.execute("SELECT 1 FROM sources WHERE id = ?", (dup,)).fetchone())
+        self.assertIn(other["id"], sections.section_ids_of(self.conn, own))
+        self.assertEqual(self.conn.execute("SELECT COUNT(*) FROM notes WHERE source_id = ? AND kind = 'quote'",
+                                           (own,)).fetchone()[0], 1)
+        self.assertEqual(self.lib.dedupe_sources(self.conn), [])
+
+    def test_attach_pdfs_files_zip_duplicates(self):
+        import zipfile
+        self.lib.import_seed(self.conn)
+        sid = self.lib.find_source(self.conn, "10.1111/ppl.13806")
+        pdf = make_pdf(["Physiologia Plantarum 2022", "DOI: 10.1111/ppl.13806", "Introduction", "Text."])
+        d = os.path.join(self.tmp, "in")
+        os.makedirs(d)
+        with open(os.path.join(d, "a.pdf"), "wb") as fh:
+            fh.write(pdf)
+        with open(os.path.join(d, "mili2023.pdf"), "wb") as fh:
+            fh.write(b"<html><title>404 Not Found</title></html>")
+        rep = self.lib.attach_pdfs(self.conn, [os.path.join(d, "a.pdf"), os.path.join(d, "mili2023.pdf")],
+                                   source_id=None if HAVE_PDF else sid)
+        self.assertEqual([(n, s_) for n, s_, _t, _h in rep["attached"]], [("a.pdf", sid)])
+        self.assertEqual(rep["not_pdf"], ["mili2023.pdf"])
+        zpath = os.path.join(self.tmp, "pdfs.zip")
+        with zipfile.ZipFile(zpath, "w") as zf:
+            zf.writestr("a (1).pdf", pdf)
+        rep2 = self.lib.attach_pdfs(self.conn, [zpath, d])
+        self.assertEqual(rep2["attached"], [])
+        self.assertEqual(len(rep2["duplicate"]), 2, "той самий файл — з ZIP і з теки")
+        files = self.lib.files_of(self.conn, sid)
+        self.assertEqual(len(files), 1)
+        path = self.lib.file_path(self.conn, files[0]["id"])
+        self.assertTrue(path.exists() and path.read_bytes() == pdf)
+        if HAVE_PDF:
+            self.assertIn("10.1111/ppl.13806", self.conn.execute("SELECT extracted_text FROM files").fetchone()[0])
+
+    def test_open_on_disk(self):
+        calls = []
+        saved = self.lib.OPENER
+        self.lib.OPENER = calls.append
+        try:
+            p = os.path.join(self.tmp, "x.pdf")
+            with open(p, "wb") as fh:
+                fh.write(make_pdf(["x"]))
+            self.assertTrue(self.lib.open_on_disk(p))
+            self.assertTrue(self.lib.open_on_disk(p, reveal=True))
+            self.assertFalse(self.lib.open_on_disk(p + ".missing"))
+        finally:
+            self.lib.OPENER = saved
+        self.assertEqual(len(calls), 2)
+        self.assertTrue(calls[0][-1].endswith("x.pdf"))
+
+    def test_reflow_paragraphs_headings_headers_refs(self):
+        body = ("Plant growth promoting bacteria are widely studied as biofertilizers in many crops and "
+                "regions of the world today")
+        pages = []
+        for n in range(1, 5):
+            lines = [f"Journal of Things {n} (2022) 1-10", "Smith et al. Bacteria and plants"]
+            if n == 1:
+                lines += ["Abstract", body, "and they help plants under drought.", "1. Introduction"]
+            lines += [body + f" (page {n})", "with some hyphen-", "ated words and com-", "pound P-", "uptake terms here.", "Short end.",
+                      body + f" again {n}", "final sentence of the page."]
+            if n == 4:
+                lines += ["References", "Smith, A. (2020). First paper title. Journal 1, 1-2.",
+                          "Brown, B. (2019). Second paper. Journal 2, 3-4."]
+            lines.append(str(n))
+            pages.append("\n".join(lines))
+        blocks = self.lib.reflow(pages)
+        texts = [b["text"] for b in blocks]
+        self.assertFalse([t for t in texts if t.startswith(("Journal of Things", "Smith et al."))], "колонтитули")
+        heads = [b["text"] for b in blocks if b["t"] == "h"]
+        self.assertEqual(heads, ["Abstract", "1. Introduction", "References"])
+        joined = " ".join(texts)
+        self.assertIn("hyphenated words and compound P-uptake terms here.", joined)
+        refs = [b["text"] for b in blocks if b["t"] == "r"]
+        self.assertEqual(len(refs), 2)
+        self.assertTrue(refs[1].startswith("Brown, B."))
+        self.assertNotIn("4", [t.strip() for t in texts], "номери сторінок прибрано")
+
+    @unittest.skipUnless(HAVE_API and HAVE_PDF, "FastAPI/httpx/pypdf не встановлено")
+    def test_api_reader_and_open(self):
+        from fastapi.testclient import TestClient
+
+        from biobib.main import app
+        self.lib.import_seed(self.conn)
+        sid = self.lib.find_source(self.conn, "10.1111/ppl.13806")
+        d = os.path.join(self.tmp, "p.pdf")
+        with open(d, "wb") as fh:
+            fh.write(make_pdf(["DOI 10.1111/ppl.13806", "Introduction", "Bacteria help plants under drought."]))
+        self.lib.attach_pdfs(self.conn, [d])
+        calls = []
+        saved = self.lib.OPENER
+        self.lib.OPENER = calls.append
+        try:
+            with TestClient(app) as c:
+                data = c.get(f"/api/read/{sid}").json()
+                self.assertIn("Tufail", data["source"]["citation_dstu"])
+                self.assertTrue(data["source"]["description"])
+                self.assertIn("Introduction", [t["text"] for t in data["toc"]])
+                self.assertIn("Bacteria help plants", " ".join(b["text"] for b in data["blocks"]))
+                self.assertEqual(c.get(f"/reader/{sid}").status_code, 200)
+                fid = data["file_id"]
+                self.assertEqual(c.post(f"/api/files/{fid}/open").status_code, 403, "без X-BioBib — ні")
+                self.assertEqual(c.post(f"/api/files/{fid}/open?reveal=1", headers={"X-BioBib": "1"}).status_code,
+                                 200)
+                self.assertEqual(c.get("/api/read/99999").status_code, 404)
+        finally:
+            self.lib.OPENER = saved
+        self.assertEqual(len(calls), 1)

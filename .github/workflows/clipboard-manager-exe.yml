@@ -34,12 +34,12 @@ jobs:
       - name: Build exe
         run: |
           python -c "from winsys import make_icon_image; make_icon_image(256).save('app.ico', sizes=[(16,16),(32,32),(48,48),(64,64),(128,128),(256,256)])"
-          pyinstaller --onefile --windowed --name ClipboardMemory --icon app.ico --collect-all customtkinter --collect-submodules pystray --add-data "biobib/static;biobib/static" --collect-submodules uvicorn --collect-submodules biobib --hidden-import python_multipart --exclude-module httpx clipboard_manager.py
+          pyinstaller --onefile --windowed --name ClipboardMemory --icon app.ico --collect-all customtkinter --collect-submodules pystray --add-data "biobib/static;biobib/static" --add-data "biobib/seed;biobib/seed" --collect-submodules uvicorn --collect-submodules biobib --hidden-import python_multipart --exclude-module httpx clipboard_manager.py
 
       # Для порівняння швидкості старту: той самий код, але «тека» без розпакування при кожному запуску
       - name: Build onedir variant
         run: |
-          pyinstaller --onedir --windowed --name ClipboardMemoryDir --icon app.ico --collect-all customtkinter --collect-submodules pystray --add-data "biobib/static;biobib/static" --collect-submodules uvicorn --collect-submodules biobib --hidden-import python_multipart --exclude-module httpx clipboard_manager.py
+          pyinstaller --onedir --windowed --name ClipboardMemoryDir --icon app.ico --collect-all customtkinter --collect-submodules pystray --add-data "biobib/static;biobib/static" --add-data "biobib/seed;biobib/seed" --collect-submodules uvicorn --collect-submodules biobib --hidden-import python_multipart --exclude-module httpx clipboard_manager.py
           Compress-Archive -Path dist/ClipboardMemoryDir -DestinationPath dist/ClipboardMemory-folder.zip
 
       - name: Check exe exists

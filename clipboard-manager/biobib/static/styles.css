@@ -677,3 +677,5 @@ body {
     grid-template-columns: 1fr 1fr;
   }
 }
+
+a.btn { text-decoration: none; display: inline-flex; align-items: center; }
