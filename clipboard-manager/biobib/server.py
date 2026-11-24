@@ -44,6 +44,15 @@ def ensure_running(timeout: float = 10.0) -> str:
         from .main import app
 
         init_db()
+        try:                                            # набір джерел (з описами) — і для браузерної бібліотеки
+            from contextlib import closing
+
+            from .database import get_connection
+            from .library import import_seed
+            with closing(get_connection()) as c:
+                import_seed(c)
+        except Exception:                               # noqa: BLE001 — бібліотека працює й без набору
+            pass
         for name in ("uvicorn", "uvicorn.error", "uvicorn.access"):   # у програмі без консолі — без логів
             lg = logging.getLogger(name)
             lg.handlers = [logging.NullHandler()]

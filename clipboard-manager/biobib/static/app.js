@@ -180,6 +180,23 @@ function renderSourceList() {
 
   if (!state.sources.length) {
     const hasQuery = document.getElementById("searchInput").value.trim().length > 0;
+    const secSel = document.getElementById("sectionFilter");
+    const sec = secSel.value ? state.sections.find((x) => String(x.id) === secSel.value) : null;
+    if (sec && !hasQuery) {
+      // вибрано розділ без джерел — показуємо, де вони є, і кнопку «Усі джерела»
+      const withSources = state.sections.filter((x) => x.count > 0);
+      container.innerHTML = `
+        <div class="empty-state">
+          <h3>${escapeHtml(t("empty_section_title").replace("{name}", sec.path))}</h3>
+          <p>${escapeHtml(t("empty_section_hint"))}</p>
+          <p><button type="button" class="btn btn-primary btn-sm js-all-sources">${escapeHtml(t("btn_all_sources"))}</button></p>
+          ${withSources.length ? `<p>${withSources.map((x) => `<button type="button" class="btn btn-secondary btn-sm js-goto-sec" data-id="${x.id}">${escapeHtml(x.path)} (${x.count})</button>`).join(" ")}</p>` : ""}
+        </div>
+      `;
+      container.querySelector(".js-all-sources").addEventListener("click", () => { secSel.value = ""; loadSources(); });
+      container.querySelectorAll(".js-goto-sec").forEach((b) => b.addEventListener("click", () => { secSel.value = b.dataset.id; loadSources(); }));
+      return;
+    }
     container.innerHTML = `
       <div class="empty-state">
         <h3>${escapeHtml(hasQuery ? t("empty_search_title") : t("empty_list_title"))}</h3>
