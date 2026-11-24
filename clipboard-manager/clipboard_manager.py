@@ -8531,7 +8531,8 @@ def _biobib_check(data_dir: str) -> int:
         bb_config.configure(os.path.join(data_dir, "biobib"))
         url = bb_server.ensure_running()
         with closing(bb_db.get_connection()) as c:          # набір джерел дисертації (biobib/seed) — у exe
-            added = len(bb_lib.import_seed(c)["added"])
+            bb_lib.import_seed(c)                           # сервер уже додав набір — тут лише позначка
+            added = c.execute("SELECT COUNT(*) FROM sources").fetchone()[0]
             sid = c.execute("SELECT MIN(id) FROM sources").fetchone()[0]
         import pypdf  # noqa: F401 — текст PDF для читалки й пошуку
         secs = json.loads(urllib.request.urlopen(url + "api/sections", timeout=10).read())
