@@ -4743,7 +4743,7 @@ lp = app.links
 assert app.tab == "links" and lp.frame.winfo_ismapped() and not app.cols.winfo_ismapped()
 assert app.title_lbl.cget("text") == "Посилання"
 assert os.path.exists(os.path.join(data_dir, "biobib", "biobib.db")), "БД бібліотеки — у теці даних програми"
-assert [k for k, _i, _f in lp.items] == ["section"]
+assert [k for k, _i, _f in lp.items] == ["section", "section"], "Дисертація + Метааналіз ендофітів"
 with lp.conn() as c45:
     top45 = lp.sec.list_sections(c45)[0]
     sub45 = lp.sec.list_sections(c45, top45["id"])[0]
@@ -4753,7 +4753,7 @@ lp.items[0][2]._canvas.event_generate("<Button-1>", x=20, y=20)
 pump(200)
 assert lp.path == [top45["id"]] and lp.btn_new.cget("text") == "＋ Підпапка"
 n45 = len(lp.items)
-assert n45 == 6, ("Актуальність + 5 підпапок набору джерел", n45)
+assert n45 == 1, ("лише Актуальність: набір джерел — в окремій папці", n45)
 assert app.title_lbl.cget("text") == "Дисертація"
 saved_td = cm.TextDialog.run
 cm.TextDialog.run = lambda self: (self.destroy(), "Методи дослідження")[1]
@@ -5139,8 +5139,10 @@ pump(200)
 assert lp.btn_pdf.winfo_ismapped() and lp.btn_dups.winfo_ismapped(), "на корені — «Прикріпити PDF…» і «Прибрати дублікати»"
 assert len(lp.seed_report.get("added", [])) == 27, lp.seed_report
 with lp.conn() as c50:
+    assert [t_["title"] for t_ in lp.sec.list_sections(c50)] == ["Дисертація", "Метааналіз ендофітів"]
+with lp.conn() as c50:
     all50 = {s_["path"]: s_ for s_ in lp.sec.list_sections(c50, all_levels=True)}
-    sol50 = all50["Дисертація › Ендофіти пасльонових (Solanum)"]
+    sol50 = all50["Метааналіз ендофітів › Ендофіти пасльонових (Solanum)"]
     bor50 = lp.lib.find_source(c50, "10.2174/18743315-v16-e2208180")
 assert sol50["count"] == 7
 lp.go([sol50["parent_id"], sol50["id"]])

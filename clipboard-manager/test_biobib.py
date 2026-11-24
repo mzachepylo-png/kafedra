@@ -387,10 +387,12 @@ class LibraryTests(_TmpData):
         rep2 = self.lib.import_seed(self.conn, force=True)
         self.assertEqual((len(rep2["added"]), len(rep2["existing"])), (0, 27), "примусово — без дублікатів")
         self.assertEqual(self.conn.execute("SELECT COUNT(*) FROM sources").fetchone()[0], 27)
+        self.assertEqual([t["title"] for t in sections.list_sections(self.conn)],
+                         ["Дисертація", "Метааналіз ендофітів"], "окрема папка для набору")
         paths = {s["path"]: s["count"] for s in sections.list_sections(self.conn, all_levels=True)}
         self.assertEqual(paths["Дисертація › Актуальність"], 0)
-        self.assertEqual(paths["Дисертація › Метааналізи ефективності PGPB"], 14)
-        self.assertEqual(paths["Дисертація › Ендофіти пасльонових (Solanum)"], 7)
+        self.assertEqual(paths["Метааналіз ендофітів › Метааналізи ефективності PGPB"], 14)
+        self.assertEqual(paths["Метааналіз ендофітів › Ендофіти пасльонових (Solanum)"], 7)
         self.assertEqual(len(self.lib.descriptions(self.conn)), 27, "у кожного джерела — опис")
         sid = self.lib.find_source(self.conn, "https://doi.org/10.1093/JXB/erac228")
         src = sections.source_brief(self.conn, self.conn.execute("SELECT * FROM sources WHERE id = ?",
@@ -398,7 +400,7 @@ class LibraryTests(_TmpData):
         self.assertEqual(src["citation_dstu"], "Tran T., French E., Iyer-Pascuzzi A. S. In vitro functional "
                          "characterization predicts the impact of bacterial root endophytes on plant growth. Journal of "
                          "Experimental Botany. 2022. Vol. 73, no. 16. P. 5758–5772. DOI: 10.1093/jxb/erac228.")
-        sec = [s for s in sections.list_sections(self.conn, all_levels=True) if s["title"].startswith("Метаан")][0]
+        sec = [s for s in sections.list_sections(self.conn, all_levels=True) if s["title"] == "Метааналізи ефективності PGPB"][0]
         bib = sections.bibliography(self.conn, sec["id"]).splitlines()
         self.assertTrue(bib[0].startswith("1. Azarbad H., Junker R. R."), "за абеткою")
         self.assertIn("Art. 858804", "\n".join(bib), "номер статті замість сторінок")
