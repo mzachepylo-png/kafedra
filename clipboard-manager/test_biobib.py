@@ -468,10 +468,16 @@ class LibraryTests(_TmpData):
         rep = self.lib.import_all_seeds(self.conn)
         self.assertEqual(len(rep["biopesticides-article-2026-11"]["added"]), 115)
         self.assertTrue(all(r["skipped"] for r in self.lib.import_all_seeds(self.conn).values()), "вдруге — ні")
-        self.assertEqual(self.conn.execute("SELECT COUNT(*) FROM sources").fetchone()[0], 27 + 115)
+        self.assertIn("biopesticides_article_sources_2.json", names)
+        art2 = self.lib.load_seed("biopesticides_article_sources_2.json")
+        self.assertEqual(len(art2["sources"]), 50)
+        self.assertEqual(art2["parent_section"], art["parent_section"], "друга порція — у ту саму папку статті")
+        self.assertEqual(len(rep["biopesticides-article-2026-11-part2"]["added"]), 50)
+        self.assertEqual(self.conn.execute("SELECT COUNT(*) FROM sources").fetchone()[0], 27 + 115 + 50)
         paths = {s["path"]: s["count"] for s in sections.list_sections(self.conn, all_levels=True)}
-        self.assertEqual(paths["Стаття: препаративні форми біопестицидів › Тверді та полімерні форми"], 7)
+        self.assertEqual(paths["Стаття: препаративні форми біопестицидів › Тверді та полімерні форми"], 8)
         self.assertIn("Метааналіз ендофітів › Інше", paths, "старий набір на місці")
+        self.assertEqual(paths["Стаття: препаративні форми біопестицидів › Інокуляція насіння (вітчизняні дослідження)"], 6)
         sid = self.lib.find_source(self.conn, "10.3390/pr14121996")
         src = sections.source_brief(self.conn, self.conn.execute("SELECT * FROM sources WHERE id = ?",
                                                                 (sid,)).fetchone())
