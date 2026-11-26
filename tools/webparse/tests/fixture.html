@@ -1,0 +1,74 @@
+<!doctype html>
+<html lang="uk">
+<head>
+<meta charset="utf-8">
+<title>Фотосинтез у C₄-рослин — Тестовий журнал</title>
+<meta property="og:site_name" content="Тестовий журнал">
+<meta name="author" content="Іваненко О. П.">
+<meta property="article:published_time" content="2025-03-14T10:00:00+02:00">
+<style>.x{color:red}</style>
+<script>window.tracker = 1;</script>
+</head>
+<body class="page has-sidebar">
+<header class="site-header"><a href="/"><img src="/logo.png" alt="Логотип"></a>
+  <nav><ul><li><a href="/">Головна</a></li><li><a href="/news">Новини</a></li><li><a href="/about">Про нас</a></li></ul></nav>
+</header>
+<div class="cookie-banner">Ми використовуємо cookie. <button>Згоден</button></div>
+<div class="layout">
+<aside class="sidebar"><h3>Популярне</h3><ul><li><a href="/a">Стаття А</a></li><li><a href="/b">Стаття Б</a></li></ul></aside>
+<article>
+  <h1>Фотосинтез у C₄-рослин</h1>
+  <p class="lead">C<sub>4</sub>-шлях (фіксація CO<sub>2</sub> у чотиривуглецеві кислоти) характерний для <em>Zea mays</em> L., сорго й цукрової тростини, і дає перевагу в спеку.</p>
+  <h2>Кранц-анатомія</h2>
+  <p>Клітини обкладки провідного пучка оточені шаром мезофілу. Детальніше — у <a href="https://example.org/kranz">огляді</a>, а також у <a href="#ref1">[1]</a>.
+  Фермент <strong>ФЕП-карбоксилаза</strong> (фосфоенолпіруваткарбоксилаза) працює в мезофілі.</p>
+  <figure>
+    <img src="/img/leaf.png" alt="Поперечний зріз листка" width="600" height="400">
+    <figcaption>Поперечний зріз листка кукурудзи</figcaption>
+  </figure>
+  <h3>Підтипи</h3>
+  <ol>
+    <li>NADP-ME — <b>кукурудза</b>
+      <ul><li>декарбоксилювання в хлоропластах</li></ul></li>
+    <li>NAD-ME — просо</li>
+    <li><p>PEPCK</p><p>— гвінейська трава</p></li>
+  </ol>
+  <table>
+    <caption>Порівняння C₃ і C₄</caption>
+    <thead><tr><th rowspan="2">Ознака</th><th colspan="2">Тип</th></tr>
+    <tr><th>C₃</th><th>C₄</th></tr></thead>
+    <tbody>
+    <tr><td>Перший продукт</td><td>3-ФГК</td><td>ЩОК</td></tr>
+    <tr><td>Фотодихання</td><td colspan="2">Значне / майже відсутнє</td></tr>
+    </tbody>
+  </table>
+  <h2>Залежність від температури</h2>
+  <p>Графік нижче показує швидкість фотосинтезу.</p>
+  <figure class="chart">
+    <svg width="400" height="240" viewBox="0 0 400 240"><title>Швидкість фотосинтезу</title>
+      <rect x="0" y="0" width="400" height="240" fill="#fff"/>
+      <line x1="40" y1="200" x2="380" y2="200" stroke="#000"/><line x1="40" y1="20" x2="40" y2="200" stroke="#000"/>
+      <polyline points="40,190 100,150 160,100 220,60 280,50 340,90" fill="none" stroke="#c00" stroke-width="3"/>
+      <text x="200" y="230">Температура, °C</text>
+    </svg>
+    <figcaption>Рис. 2. Залежність швидкості фотосинтезу від температури</figcaption>
+  </figure>
+  <div class="chart-container"><canvas id="c" width="400" height="200"></canvas></div>
+  <script>
+    const c = document.getElementById('c').getContext('2d');
+    c.fillStyle = '#fff'; c.fillRect(0,0,400,200);
+    c.fillStyle = '#2a7'; [60,120,90,160].forEach((h,i)=>c.fillRect(40+i*80, 190-h, 50, h));
+  </script>
+  <p>Ліниве зображення:</p>
+  <img data-src="/img/lazy.webp" src="data:image/gif;base64,R0lGODlhAQABAAAAACw=" alt="Діаграма врожайності">
+  <blockquote><p>C₄-рослини — «відповідь» еволюції на низький вміст CO₂.</p></blockquote>
+  <pre>Vc = Vcmax · Ci / (Ci + Kc)</pre>
+  <p>Формула: <math alttext="A = V_c - R_d"><mi>A</mi></math>.</p>
+  <img src="/img/pixel.gif" width="1" height="1" alt="">
+  <div class="share-buttons"><a href="https://facebook.com/share">Поділитися</a></div>
+</article>
+</div>
+<div id="comments"><h3>Коментарі</h3><p>Чудова стаття, дякую! Дуже корисно, обов'язково покажу студентам.</p></div>
+<footer><p>© 2025 Тестовий журнал. Усі права захищено.</p></footer>
+</body>
+</html>

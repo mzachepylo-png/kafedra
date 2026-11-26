@@ -1,0 +1,242 @@
+<!doctype html>
+<html lang="uk">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Парсер вебсторінок → DOCX</title>
+<style>
+:root{
+  --green-900:#0E2F18;--green-800:#1B5E20;--green-700:#2E7D32;--green-200:#CFE8D0;--green-100:#E8F3E8;--green-50:#F3F8F2;
+  --gold-500:#C9A227;--gold-100:#FBF3D9;--cream:#FBFAF5;--ink:#13241A;--ink-soft:#46584C;--muted:#6B7C70;
+  --line:#DCE6DC;--line-strong:#C3D3C4;--berry:#8E3B5B;--white:#fff;
+  --radius:14px;--radius-sm:8px;
+  --shadow:0 10px 30px -12px rgba(10,40,18,.22),0 2px 6px rgba(10,40,18,.06);
+  --sans:system-ui,-apple-system,"Segoe UI",Roboto,"Helvetica Neue",Arial,"Noto Sans",sans-serif;
+  --serif:"Iowan Old Style","Palatino Linotype",Palatino,"Book Antiqua",Cambria,Georgia,"Noto Serif",serif;
+  --mono:ui-monospace,"SF Mono","Cascadia Mono",Consolas,"Liberation Mono",monospace;
+}
+*{box-sizing:border-box}
+body{margin:0;background:var(--cream);color:var(--ink);font:16px/1.5 var(--sans)}
+a{color:var(--green-700)}
+header.top{background:var(--green-900);color:#fff;padding:18px 16px}
+header.top .in{max-width:1240px;margin:0 auto;display:flex;gap:14px;align-items:baseline;flex-wrap:wrap}
+header.top h1{margin:0;font:600 22px/1.2 var(--serif)}
+header.top p{margin:0;color:var(--green-200);font-size:14px}
+main{max-width:1240px;margin:0 auto;padding:20px 16px 60px}
+.card{background:var(--white);border:1px solid var(--line);border-radius:var(--radius);box-shadow:var(--shadow);padding:18px}
+.tabs{display:flex;gap:6px;margin-bottom:12px;border-bottom:1px solid var(--line)}
+.tabs button{border:0;background:none;padding:8px 12px;font:600 15px var(--sans);color:var(--muted);cursor:pointer;border-bottom:3px solid transparent;margin-bottom:-1px}
+.tabs button[aria-selected=true]{color:var(--green-800);border-color:var(--gold-500)}
+textarea{width:100%;min-height:120px;resize:vertical;border:1px solid var(--line-strong);border-radius:var(--radius-sm);padding:10px 12px;font:14px/1.5 var(--mono);color:var(--ink)}
+textarea:focus,.drop:focus-within{outline:3px solid var(--green-200);border-color:var(--green-700)}
+.drop{display:block;position:relative;border:2px dashed var(--line-strong);border-radius:var(--radius);padding:26px 16px;text-align:center;color:var(--ink-soft);cursor:pointer;background:var(--green-50);transition:.15s}
+.drop.over{border-color:var(--green-700);background:var(--green-100)}
+.drop b{color:var(--green-800)}
+.drop input{position:absolute;opacity:0;width:1px;height:1px}
+.drop .fname{margin-top:8px;font-weight:600;color:var(--ink)}
+.hint{color:var(--muted);font-size:13px;margin:6px 0 0}
+.opts{display:flex;flex-wrap:wrap;gap:10px 22px;margin:14px 0 4px;align-items:center}
+.opts label{display:flex;gap:8px;align-items:flex-start;font-size:15px;cursor:pointer}
+.opts label small{display:block;color:var(--muted);font-size:12.5px}
+.opts input{margin-top:4px;accent-color:var(--green-700)}
+.opts label.off{opacity:.55;cursor:not-allowed}
+.row{display:flex;gap:10px;align-items:center;flex-wrap:wrap;margin-top:14px}
+.btn{display:inline-flex;align-items:center;gap:8px;border:1px solid var(--green-800);background:var(--green-800);color:#fff;border-radius:999px;padding:9px 18px;font:600 15px var(--sans);cursor:pointer;text-decoration:none}
+.btn:hover{background:var(--green-700)}
+.btn[disabled]{opacity:.5;cursor:wait}
+.btn.ghost{background:var(--white);color:var(--green-800)}
+.btn.ghost:hover{background:var(--green-50)}
+.btn.sm{padding:5px 12px;font-size:13.5px}
+.err{color:var(--berry);font-weight:600}
+#results{display:none;margin-top:20px}
+.res-head{display:flex;gap:12px;align-items:center;flex-wrap:wrap;justify-content:space-between;margin-bottom:12px}
+.res-head h2{margin:0;font:600 20px var(--serif)}
+.bar{height:6px;background:var(--green-100);border-radius:6px;overflow:hidden;margin:8px 0 14px}
+.bar i{display:block;height:100%;width:0;background:var(--green-700);transition:width .3s}
+.grid{display:grid;grid-template-columns:minmax(260px,360px) 1fr;gap:18px;align-items:start}
+@media (max-width:860px){.grid{grid-template-columns:1fr}.list{position:static;max-height:none}}
+.list{display:flex;flex-direction:column;gap:8px;max-height:calc(100vh - 140px);overflow:auto;position:sticky;top:12px}
+.item{background:var(--white);border:1px solid var(--line);border-radius:var(--radius-sm);padding:10px 12px;cursor:pointer;text-align:left;font:inherit;color:inherit;width:100%}
+.item:hover{border-color:var(--line-strong)}
+.item.sel{border-color:var(--green-700);box-shadow:0 0 0 2px var(--green-200)}
+.item .t{font-weight:600;font-size:14.5px;line-height:1.35;overflow-wrap:anywhere}
+.item .u{font-size:12px;color:var(--muted);overflow-wrap:anywhere;margin-top:2px}
+.item .s{font-size:12.5px;color:var(--ink-soft);margin-top:4px;display:flex;gap:10px;flex-wrap:wrap}
+.item.error .t{color:var(--berry)}
+.item.pending{opacity:.6;cursor:default}
+.dot{display:inline-block;width:8px;height:8px;border-radius:50%;margin-right:6px;background:var(--line-strong);vertical-align:1px}
+.ok .dot{background:var(--green-700)}.error .dot{background:var(--berry)}.pending .dot{animation:pulse 1s infinite}
+@keyframes pulse{50%{background:var(--gold-500)}}
+.reader{background:var(--white);border:1px solid var(--line);border-radius:var(--radius);padding:28px clamp(16px,4vw,48px);min-height:300px}
+.reader .meta{font-size:13.5px;color:var(--muted);margin-bottom:6px;overflow-wrap:anywhere}
+.reader .acts{display:flex;gap:8px;flex-wrap:wrap;margin:10px 0 18px}
+.warn{background:var(--gold-100);border-left:4px solid var(--gold-500);padding:8px 12px;border-radius:6px;font-size:14px;margin:8px 0}
+.doc{font:18px/1.65 var(--serif);max-width:72ch}
+.doc h1{font:600 30px/1.2 var(--serif);margin:0 0 8px}
+.doc h2{font:600 24px/1.25 var(--serif);margin:1.4em 0 .4em;color:var(--green-900)}
+.doc h3{font:600 20px/1.3 var(--serif);margin:1.2em 0 .3em;color:var(--green-900)}
+.doc h4,.doc h5,.doc h6{font:600 18px var(--serif);margin:1em 0 .3em}
+.doc p{margin:.55em 0}
+.doc ul,.doc ol{padding-left:1.5em}
+.doc li{margin:.2em 0}
+.doc blockquote{margin:1em 0;padding:.3em 1em;border-left:4px solid var(--green-200);color:var(--ink-soft);font-style:italic}
+.doc pre{background:var(--green-50);border:1px solid var(--line);border-radius:8px;padding:10px 12px;overflow:auto;font:14px/1.5 var(--mono)}
+.doc code{font:.88em var(--mono);background:var(--green-50);padding:0 .25em;border-radius:4px}
+.doc figure{margin:1.4em 0;text-align:center}
+.doc figure img{max-width:100%;height:auto;border-radius:6px;border:1px solid var(--line)}
+.doc figcaption{font:14px/1.4 var(--sans);color:var(--ink-soft);margin-top:6px}
+.wp-kind{display:inline-block;font-size:11px;text-transform:uppercase;letter-spacing:.04em;background:var(--green-100);color:var(--green-800);border-radius:4px;padding:0 5px;margin-left:4px}
+.wp-miss{font:italic 14px var(--sans);color:var(--muted)}
+.wp-table{overflow-x:auto;margin:1.2em 0}
+.doc table{border-collapse:collapse;font:14px/1.4 var(--sans);min-width:50%}
+.doc caption{text-align:left;padding-bottom:6px;font-size:14px}
+.doc th,.doc td{border:1px solid var(--line-strong);padding:5px 8px;vertical-align:top;text-align:left}
+.doc th{background:var(--green-100)}
+.empty{color:var(--muted);text-align:center;padding:60px 10px}
+</style>
+</head>
+<body>
+<header class="top"><div class="in">
+  <h1>Парсер вебсторінок → DOCX</h1>
+  <p>Основний текст сторінки без меню й реклами, таблиці, рисунки й графіки</p>
+</div></header>
+
+<main>
+<form class="card" id="f">
+  <div class="tabs" role="tablist">
+    <button type="button" role="tab" aria-selected="true" data-tab="t-urls">Адреси сторінок</button>
+    <button type="button" role="tab" aria-selected="false" data-tab="t-file">Файл із посиланнями</button>
+  </div>
+  <div id="t-urls" role="tabpanel">
+    <textarea name="urls" placeholder="https://example.org/article&#10;https://…  (по одній адресі в рядку або будь-який текст, що містить посилання)"></textarea>
+    <p class="hint">До {{ max_urls }} адрес за раз. Можна вставити цілий абзац чи список літератури — посилання знайдуться самі.</p>
+  </div>
+  <div id="t-file" role="tabpanel" hidden>
+    <label class="drop" id="drop">
+      <input type="file" name="file" id="file" accept=".txt,.csv,.tsv,.md,.docx,.xlsx,.html,.htm,.pdf,.json">
+      <div><b>Оберіть файл</b> або перетягніть його сюди</div>
+      <div class="hint">.txt, .csv, .md, .docx, .xlsx, .html, .pdf — парсер візьме з нього всі посилання http(s)://</div>
+      <div class="fname" id="fname"></div>
+    </label>
+  </div>
+
+  <div class="opts">
+    <label><input type="checkbox" id="o-img" checked>
+      <span>Рисунки й графіки<small>завантажувати зображення, SVG-діаграми</small></span></label>
+    <label class="{{ '' if render_ok else 'off' }}" title="{{ '' if render_ok else 'Встановіть: pip install playwright && playwright install chromium' }}">
+      <input type="checkbox" id="o-render" {{ '' if render_ok else 'disabled' }}>
+      <span>Рендеринг JavaScript<small>{{ 'для динамічних сайтів і графіків (Chart.js, Highcharts, canvas…) — повільніше' if render_ok else 'потрібен Playwright — див. README' }}</small></span></label>
+  </div>
+  <div class="row">
+    <button class="btn" id="go" type="submit">Обробити</button>
+    <span id="msg" role="status"></span>
+  </div>
+</form>
+
+<section id="results" aria-live="polite">
+  <div class="res-head">
+    <h2 id="r-title">Результати</h2>
+    <div class="row" style="margin:0">
+      <a class="btn" id="dl-all" href="#">Завантажити DOCX</a>
+      <a class="btn ghost" id="dl-zip" href="#" hidden>Окремими файлами (ZIP)</a>
+    </div>
+  </div>
+  <div class="bar"><i id="bar"></i></div>
+  <div class="grid">
+    <div class="list" id="list"></div>
+    <article class="reader" id="reader"><div class="empty">Оберіть сторінку ліворуч, щоб переглянути текст.</div></article>
+  </div>
+</section>
+</main>
+
+<script>
+const $ = s => document.querySelector(s);
+const esc = s => String(s ?? '').replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+let tab = 't-urls', job = null, sel = null, timer = null, items = [];
+
+document.querySelectorAll('[data-tab]').forEach(b => b.onclick = () => {
+  tab = b.dataset.tab;
+  document.querySelectorAll('[data-tab]').forEach(x => x.setAttribute('aria-selected', x === b));
+  document.querySelectorAll('[role=tabpanel]').forEach(p => p.hidden = p.id !== tab);
+});
+
+const drop = $('#drop'), file = $('#file');
+file.onchange = () => $('#fname').textContent = file.files[0] ? file.files[0].name : '';
+['dragenter','dragover'].forEach(e => drop.addEventListener(e, ev => { ev.preventDefault(); drop.classList.add('over'); }));
+['dragleave','drop'].forEach(e => drop.addEventListener(e, ev => { ev.preventDefault(); drop.classList.remove('over'); }));
+drop.addEventListener('drop', ev => {
+  if (ev.dataTransfer.files.length) { file.files = ev.dataTransfer.files; file.onchange(); }
+});
+
+$('#f').onsubmit = async ev => {
+  ev.preventDefault();
+  const fd = new FormData();
+  if (tab === 't-urls') fd.append('urls', $('textarea').value);
+  else if (file.files[0]) fd.append('file', file.files[0]);
+  fd.append('images', $('#o-img').checked ? '1' : '0');
+  fd.append('render', $('#o-render').checked ? '1' : '0');
+  $('#go').disabled = true; $('#msg').className = ''; $('#msg').textContent = 'Надсилаю…';
+  try {
+    const r = await fetch('/api/jobs', {method: 'POST', body: fd});
+    const j = await r.json();
+    if (!r.ok) throw new Error(j.error || r.statusText);
+    job = j.id; sel = null; items = [];
+    $('#msg').textContent = (j.note ? j.note + ' ' : '') + `Знайдено адрес: ${j.total}.`;
+    $('#results').style.display = 'block';
+    $('#reader').innerHTML = '<div class="empty">Обробляю сторінки…</div>';
+    $('#dl-all').href = `/download/${job}.docx`;
+    $('#dl-zip').href = `/download/${job}.zip`;
+    $('#dl-zip').hidden = j.total < 2;
+    $('#dl-all').textContent = j.total > 1 ? 'Усе одним DOCX' : 'Завантажити DOCX';
+    poll();
+  } catch (e) {
+    $('#msg').className = 'err'; $('#msg').textContent = e.message; $('#go').disabled = false;
+  }
+};
+
+async function poll() {
+  clearTimeout(timer);
+  const r = await fetch(`/api/jobs/${job}`);
+  if (!r.ok) { $('#msg').textContent = 'Завдання втрачено — спробуйте ще раз.'; $('#go').disabled = false; return; }
+  const j = await r.json();
+  items = j.items;
+  $('#bar').style.width = (100 * j.done / j.total) + '%';
+  $('#r-title').textContent = j.finished ? `Готово: ${j.items.filter(x => x.status === 'ok').length} з ${j.total}`
+                                         : `Обробка: ${j.done} з ${j.total}`;
+  drawList();
+  const firstOk = items.find(x => x.status === 'ok');
+  if (sel === null && firstOk) show(firstOk.i);
+  if (!j.finished) timer = setTimeout(poll, 700);
+  else {
+    $('#go').disabled = false;
+    if (!firstOk) $('#reader').innerHTML = '<div class="empty">Жодну сторінку не вдалося обробити.</div>';
+  }
+}
+
+function drawList() {
+  $('#list').innerHTML = items.map(it => {
+    const s = it.stats && it.status === 'ok' ? `<div class="s"><span>${it.stats.words} сл.</span><span>табл.: ${it.stats.tables}</span>` +
+      `<span>рис.: ${it.stats.figures}${it.stats.charts ? ` (графіків ${it.stats.charts})` : ''}</span>` +
+      (it.warnings && it.warnings.length ? '<span title="Є зауваження">⚠</span>' : '') + '</div>' : '';
+    const t = it.status === 'pending' ? 'Очікує…' : it.status === 'error' ? 'Помилка: ' + it.error : it.title;
+    return `<button type="button" class="item ${it.status}${it.i === sel ? ' sel' : ''}" data-i="${it.i}" ${it.status === 'pending' ? 'disabled' : ''}>
+      <div class="t"><span class="dot"></span>${esc(t)}</div><div class="u">${esc(it.url)}</div>${s}</button>`;
+  }).join('');
+  $('#list').querySelectorAll('.item.ok').forEach(b => b.onclick = () => show(+b.dataset.i));
+}
+
+async function show(i) {
+  sel = i; drawList();
+  const r = await fetch(`/api/jobs/${job}/doc/${i}`);
+  const d = await r.json();
+  const meta = [d.site, d.author, d.published].filter(Boolean).map(esc).join(' · ');
+  $('#reader').innerHTML =
+    `<div class="meta">${meta ? meta + ' · ' : ''}<a href="${esc(d.url)}" target="_blank" rel="noopener">${esc(d.url)}</a></div>` +
+    (d.warnings || []).map(w => `<div class="warn">${esc(w)}</div>`).join('') +
+    `<div class="acts"><a class="btn sm" href="/download/${job}/${i}.docx">DOCX цієї сторінки</a></div>` +
+    `<div class="doc"><h1>${esc(d.title)}</h1>${d.html}</div>`;
+  if (innerWidth <= 860) $('#reader').scrollIntoView({behavior: 'smooth'});
+}
+</script>
+</body>
+</html>
