@@ -48,9 +48,9 @@ def ensure_running(timeout: float = 10.0) -> str:
             from contextlib import closing
 
             from .database import get_connection
-            from .library import import_seed
+            from .library import import_all_seeds
             with closing(get_connection()) as c:
-                import_seed(c)
+                import_all_seeds(c)
         except Exception:                               # noqa: BLE001 — бібліотека працює й без набору
             pass
         for name in ("uvicorn", "uvicorn.error", "uvicorn.access"):   # у програмі без консолі — без логів

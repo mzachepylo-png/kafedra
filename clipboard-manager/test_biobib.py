@@ -458,6 +458,39 @@ class LibraryTests(_TmpData):
         if HAVE_PDF:
             self.assertIn("10.1111/ppl.13806", self.conn.execute("SELECT extracted_text FROM files").fetchone()[0])
 
+    def test_all_seeds_biopesticides_article_and_non_pdf_files(self):
+        names = self.lib.seed_names()
+        self.assertEqual(names[0], self.lib.SEED_FILE, "основний набір — першим")
+        self.assertIn("biopesticides_article_sources.json", names)
+        art = self.lib.load_seed("biopesticides_article_sources.json")
+        self.assertEqual(len(art["sources"]), 115)
+        self.assertEqual(len({s["files"][0]["sha256"] for s in art["sources"]}), 115, "файли набору не повторюються")
+        rep = self.lib.import_all_seeds(self.conn)
+        self.assertEqual(len(rep["biopesticides-article-2026-11"]["added"]), 115)
+        self.assertTrue(all(r["skipped"] for r in self.lib.import_all_seeds(self.conn).values()), "вдруге — ні")
+        self.assertEqual(self.conn.execute("SELECT COUNT(*) FROM sources").fetchone()[0], 27 + 115)
+        paths = {s["path"]: s["count"] for s in sections.list_sections(self.conn, all_levels=True)}
+        self.assertEqual(paths["Стаття: препаративні форми біопестицидів › Тверді та полімерні форми"], 7)
+        self.assertIn("Метааналіз ендофітів › Інше", paths, "старий набір на місці")
+        sid = self.lib.find_source(self.conn, "10.3390/pr14121996")
+        src = sections.source_brief(self.conn, self.conn.execute("SELECT * FROM sources WHERE id = ?",
+                                                                (sid,)).fetchone())
+        self.assertTrue(src["citation_dstu"].startswith("Luft L., Tonato D., Valente I. L. et al. Development of"))
+        # не-PDF файл набору (вивантаження реєстру .xlsx) прикріплюється до свого джерела за вмістом
+        item = [s for s in art["sources"] if s["file_name"].endswith(".xlsx") and "Derzhreiestr" in s["file_name"]][0]
+        fake = os.path.join(self.tmp, "reg.xlsx")
+        with open(fake, "wb") as fh:
+            fh.write(b"PK\x03\x04 not really a workbook")
+        saved = self.lib.sha256
+        self.lib.sha256 = lambda b: item["files"][0]["sha256"] if b.startswith(b"PK\x03\x04 not") else saved(b)
+        try:
+            rep = self.lib.attach_pdfs(self.conn, [fake])
+        finally:
+            self.lib.sha256 = saved
+        reg = self.lib.find_source(self.conn, "", item["source"]["title"], item["source"].get("year"))
+        self.assertEqual([(s_, how) for _n, s_, _t, how in rep["attached"]], [(reg, "файл набору")])
+        self.assertTrue(self.lib.files_of(self.conn, reg)[0]["original_name"].endswith(".xlsx"))
+
     def test_open_on_disk(self):
         calls = []
         saved = self.lib.OPENER

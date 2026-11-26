@@ -29,7 +29,7 @@ from . import config
 from .database import rebuild_search_entry
 
 SEED_DIR = Path(__file__).resolve().parent / "seed"
-SEED_FILE = "dissertation_sources.json"
+SEED_FILE = "dissertation_sources.json"           # перший (основний) набір; інші *.json у seed/ — додаткові
 READER_VERSION = 6                       # змінили алгоритм читалки → кеш тексту перебудовується
 
 TEXT_FIELDS = ("subtitle", "container_title", "publisher", "place", "volume", "issue", "pages", "doi", "pmid",
@@ -174,6 +174,27 @@ def load_seed(name: str = SEED_FILE) -> dict[str, Any]:
         return json.load(fh)
 
 
+def seed_names() -> list[str]:
+    """Усі готові набори з теки seed/: спершу основний (дисертація), далі решта за абеткою."""
+    names = sorted(p.name for p in SEED_DIR.glob("*.json"))
+    return sorted(names, key=lambda n: (n != SEED_FILE, n))
+
+
+def load_seeds() -> list[dict[str, Any]]:
+    out = []
+    for n in seed_names():
+        try:
+            out.append(load_seed(n))
+        except (OSError, ValueError):                    # зіпсований набір не заважає іншим
+            pass
+    return out
+
+
+def import_all_seeds(conn: sqlite3.Connection, force: bool = False) -> dict[str, dict[str, Any]]:
+    """Імпортує всі готові набори (кожен — у свою папку); ідемпотентно, як import_seed."""
+    return {d.get("id", "seed"): import_seed(conn, d, force=force) for d in load_seeds()}
+
+
 def _sort_key(item: dict) -> tuple:
     s = item["source"]
     first = (s.get("authors") or [{}])[0].get("family", "") or s.get("title", "")
@@ -212,9 +233,16 @@ def import_seed(conn: sqlite3.Connection, data: Optional[dict] = None, force: bo
 
 
 def seed_file_map(data: Optional[dict] = None) -> dict[str, dict[str, Any]]:
-    """sha256 файлу → що це: основний PDF джерела набору, інша версія (дублікат) або відкинутий файл."""
-    data = data or load_seed()
+    """sha256 файлу → що це: основний PDF джерела набору, інша версія (дублікат) або відкинутий файл.
+    Без data — за всіма наборами з теки seed/."""
+    datasets = [data] if data else load_seeds()
     out: dict[str, dict[str, Any]] = {}
+    for data in datasets:
+        _seed_file_map_one(data, out)
+    return out
+
+
+def _seed_file_map_one(data: dict, out: dict[str, dict[str, Any]]) -> None:
     for item in data.get("sources", []):
         src = item["source"]
         for n, f in enumerate(item.get("files", [])):
@@ -228,7 +256,6 @@ def seed_file_map(data: Optional[dict] = None) -> dict[str, dict[str, Any]]:
             out[d["sha256"]]["reason"] = d.get("reason", "")
         elif d.get("sha256") and d["sha256"] not in out:        # побайтова копія основного файлу — не «відкинута»
             out[d["sha256"]] = {"kind": "dropped", "reason": d.get("reason", "")}
-    return out
 
 
 # -- дублікати ------------------------------------------------------------------------------------------------
@@ -350,6 +377,9 @@ def is_pdf(content: bytes) -> bool:
     return b"%PDF-" in content[:1024]
 
 
+OFFICE_EXT = {".docx", ".xlsx", ".pptx", ".odt", ".ods", ".odp"}
+
+
 def iter_inputs(paths: Iterable[str]) -> Iterable[tuple[str, bytes]]:
     """(ім'я, вміст) усіх файлів зі шляхів: окремі файли, ZIP-архіви (усі файли всередині), теки (рекурсивно)."""
     for p in paths:
@@ -363,7 +393,8 @@ def iter_inputs(paths: Iterable[str]) -> Iterable[tuple[str, bytes]]:
             content = p.read_bytes()
         except OSError:
             continue
-        if p.suffix.lower() == ".zip" or (content[:4] == b"PK\x03\x04" and not is_pdf(content)):
+        office = p.suffix.lower() in OFFICE_EXT                   # .docx/.xlsx теж ZIP усередині — це один файл
+        if p.suffix.lower() == ".zip" or (content[:4] == b"PK\x03\x04" and not is_pdf(content) and not office):
             try:
                 with zipfile.ZipFile(io.BytesIO(content)) as zf:
                     for info in zf.infolist():
@@ -454,6 +485,15 @@ def attach_pdfs(conn: sqlite3.Connection, paths: Iterable[str], storage_dir: Opt
             have[h] = f["source_id"]
     rep: dict[str, list] = {"attached": [], "duplicate": [], "not_pdf": [], "unmatched": []}
     for name, content in iter_inputs(paths):
+        known = seed_map.get(sha256(content), {})
+        if not is_pdf(content) and known.get("kind") == "main" and source_id is None:
+            # не-PDF файл із набору (таблиця, .docx, підписаний .p7s) — прикріплюємо до свого джерела за вмістом
+            sid = find_source(conn, known.get("doi", ""), known.get("title", ""), known.get("year"))
+            if sid is not None and sha256(content) not in have:
+                store_file(conn, sid, known.get("name") or name, content, storage)
+                have[sha256(content)] = sid
+                rep["attached"].append((name, sid, known.get("title", ""), "файл набору"))
+                continue
         if not is_pdf(content):
             if not name.startswith(".") and not name.lower().endswith((".txt", ".ini", ".db")):
                 rep["not_pdf"].append(name)

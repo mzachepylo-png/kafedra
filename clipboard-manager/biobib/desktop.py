@@ -137,14 +137,14 @@ def check(data_dir: Path) -> int:
         config.configure(data_dir)
         url = server.ensure_running()
         with closing(database.get_connection()) as c:
-            library.import_seed(c)
+            library.import_all_seeds(c)
             n = c.execute("SELECT COUNT(*) FROM sources").fetchone()[0]
             sid = c.execute("SELECT MIN(id) FROM sources").fetchone()[0]
         import pypdf  # noqa: F401 — текст PDF для читалки й пошуку
         get = lambda p: urllib.request.urlopen(url + p, timeout=10).read()   # noqa: E731
         secs = [s["path"] for s in json.loads(get("api/sections"))]
         health = json.loads(get("api/health"))
-        ok = ("BioBib" in get("").decode("utf-8") and len(get("static/app.js")) > 1000 and n == 27 and
+        ok = ("BioBib" in get("").decode("utf-8") and len(get("static/app.js")) > 1000 and n >= 27 and
               "Читалка" in get(f"reader/{sid}").decode("utf-8") and
               bool(json.loads(get(f"api/read/{sid}"))["source"]["description"]) and
               "Метааналіз ендофітів" in secs and health.get("app") == "biobib" and

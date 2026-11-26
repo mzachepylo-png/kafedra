@@ -1,0 +1,4646 @@
+{
+ "version": 1,
+ "id": "biopesticides-article-2026-11",
+ "parent_section": "Стаття: препаративні форми біопестицидів",
+ "sections": [
+  "Біопестициди: значення, безпека, огляди",
+  "Препаративні форми: огляди",
+  "Тверді та полімерні форми",
+  "Інкапсуляція, нано- та новітні носії",
+  "Стабільність, УФ-захист, зберігання",
+  "Ринок і регулювання",
+  "Ринок: етикетки, інструкції, брошури",
+  "Хімічні препарати (для порівняння)",
+  "Інше"
+ ],
+ "sources": [
+  {
+   "files": [
+    {
+     "name": "01_Наукові статті та огляди/1-s2.0-S0147651325019359-main.pdf",
+     "sha256": "1b48939db39c4ede24207bb82181249ef1777439666274120ea182725ffa99e1"
+    }
+   ],
+   "file_name": "1-s2.0-S0147651325019359-main.pdf",
+   "sections": [
+    "Біопестициди: значення, безпека, огляди"
+   ],
+   "source": {
+    "type": "article",
+    "title": "Using amplicon sequencing in an ecotoxicological context: Applying species sensitivity distributions to assess the toxicity of biopesticides and a synthetic pesticide on soil microbiota",
+    "authors": [
+     {
+      "family": "Pedrinho",
+      "given_initials": "A."
+     },
+     {
+      "family": "Kanellopoulos",
+      "given_initials": "A."
+     },
+     {
+      "family": "Karas",
+      "given_initials": "P. A."
+     },
+     {
+      "family": "Ramot",
+      "given_initials": "O."
+     },
+     {
+      "family": "Vasileiadis",
+      "given_initials": "S."
+     },
+     {
+      "family": "Karpouzas",
+      "given_initials": "D. G."
+     }
+    ],
+    "container_title": "Ecotoxicology and Environmental Safety",
+    "year": 2026,
+    "volume": "309",
+    "pages": "Art. 119590",
+    "doi": "10.1016/j.ecoenv.2025.119590",
+    "keywords": "species sensitivity distributions; biopesticides; chlorothalonil; amplicon sequencing; soil microbiota",
+    "tags": [
+     "безпека",
+     "ґрунтова мікробіота",
+     "екотоксикологія"
+    ],
+    "study_object": "Бактерії, гриби й протисти ґрунту за дії п'яти біопестицидів (дигідрохалкон, ізофлавон, аліфатичний фенол, спінозад, піретрини) і хлороталонілу.",
+    "methods": "Мікрокосмні досліди; ампліконне секвенування; побудова кривих чутливості видів (SSD) і розрахунок HC5; порівняння з тестом OECD 216.",
+    "main_results": "Біопестициди мало впливали на мікробіоту, найсильніший вплив мав хлороталоніл (HC5 2,8–18,6 мкг/г для бактерій), далі піретрини. Запропоновано ампліконне секвенування як новий інструмент оцінки ризику.",
+    "for_dissertation": "Розділ про безпеку: біопестициди теж потребують екотоксикологічної оцінки; аргумент щодо меншого впливу на ґрунтову біоту порівняно із синтетичними фунгіцидами.",
+    "description": "Ампліконне секвенування й криві чутливості видів для оцінки токсичності біопестицидів і хлороталонілу на ґрунтову мікробіоту. Біопестициди безпечніші, але не нейтральні.",
+    "language": "en",
+    "status": "unread"
+   }
+  },
+  {
+   "files": [
+    {
+     "name": "01_Наукові статті та огляди/1-s2.0-S235277142400288X-main.pdf",
+     "sha256": "6c2909f60c12629e130c24e7ace20d52b27c4452ce9307ce29cf513ead9417cf"
+    }
+   ],
+   "file_name": "1-s2.0-S235277142400288X-main.pdf",
+   "sections": [
+    "Біопестициди: значення, безпека, огляди"
+   ],
+   "source": {
+    "type": "article",
+    "title": "Microbial biopesticides: A one health perspective on benefits and risks",
+    "authors": [
+     {
+      "family": "Cai",
+      "given_initials": "P."
+     },
+     {
+      "family": "Dimopoulos",
+      "given_initials": "G."
+     }
+    ],
+    "container_title": "One Health",
+    "year": 2025,
+    "volume": "20",
+    "pages": "Art. 100962",
+    "doi": "10.1016/j.onehlt.2024.100962",
+    "keywords": "biopesticides; biological control agents; One Health; integrated pest management; food security",
+    "tags": [
+     "огляд",
+     "One Health",
+     "безпека"
+    ],
+    "study_object": "Мікробні біопестициди (бактерії, віруси, гриби, найпростіші, нематоди) в Америці та Європі.",
+    "methods": "Наративний огляд у рамках концепції One Health та Цілей сталого розвитку ООН.",
+    "main_results": "Мікробні біопестициди сприяють продовольчій безпеці й зменшують шкоду людям і довкіллю порівняно із синтетичними, але потребують виваженого застосування, контролю ризиків і належної регуляції.",
+    "for_dissertation": "Вступ: значення й масштаби застосування мікробних біопестицидів; баланс користі та ризиків (якість і безпека).",
+    "description": "Огляд користі й ризиків мікробних біопестицидів з погляду One Health: продовольча безпека, довкілля, здоров'я людей і тварин.",
+    "language": "en",
+    "status": "unread"
+   }
+  },
+  {
+   "files": [
+    {
+     "name": "01_Наукові статті та огляди/Handayani_2025_Citronella oil encapsulation gum arabic.pdf",
+     "sha256": "38e514974a947235f5570e37b35e0510f6eba2ff10ee6579fc3b8b2755d9a476"
+    }
+   ],
+   "file_name": "Handayani_2025_Citronella oil encapsulation gum arabic.pdf",
+   "sections": [
+    "Інкапсуляція, нано- та новітні носії"
+   ],
+   "source": {
+    "type": "article",
+    "title": "Response Surface Optimization of Citronella Oil Encapsulation using Gum Arabic as Biopesticide",
+    "authors": [
+     {
+      "family": "Handayani",
+      "given_initials": "P. A."
+     },
+     {
+      "family": "Imani",
+      "given_initials": "N. A. C."
+     },
+     {
+      "family": "Kusumaningrum",
+      "given_initials": "M."
+     },
+     {
+      "family": "Ardhiansyah",
+      "given_initials": "H."
+     },
+     {
+      "family": "Wikandaru",
+      "given_initials": "A."
+     },
+     {
+      "family": "Pikrihaikal",
+      "given_initials": "T."
+     },
+     {
+      "family": "Cahyani",
+      "given_initials": "E. D."
+     },
+     {
+      "family": "Lismawati",
+      "given_initials": "S. M."
+     }
+    ],
+    "container_title": "Trends in Sciences",
+    "year": 2025,
+    "volume": "22",
+    "issue": "10",
+    "pages": "Art. 10329",
+    "doi": "10.48048/tis.2025.10329",
+    "keywords": "biopesticide; citronella oil; encapsulation; coacervation",
+    "tags": [
+     "інкапсуляція",
+     "гуміарабік",
+     "ефірна олія"
+    ],
+    "study_object": "Олія цитронели, капсульована в гуміарабіку; Spodoptera exigua.",
+    "methods": "Коацерваційна інкапсуляція; оптимізація pH, температури та співвідношення оболонка/олія методом поверхні відгуку (RSM); біотест на гусеницях.",
+    "main_results": "Оптимум: pH 5, 55 °C, гуміарабік : олія = 1,159 : 1. Капсульований препарат знищив 77,85 % S. exigua на 3-тю добу проти 55,85 % у контролі.",
+    "for_dissertation": "Приклад полімерного природного носія (гуміарабік) для інкапсуляції; методика оптимізації складу препаративної форми.",
+    "description": "Інкапсуляція олії цитронели гуміарабіком (коацервація) з RSM-оптимізацією; капсули ефективні проти S. exigua.",
+    "language": "en",
+    "status": "unread"
+   }
+  },
+  {
+   "files": [
+    {
+     "name": "01_Наукові статті та огляди/Tiwari_2026_Biopesticides production formulation applications.pdf",
+     "sha256": "3ea544d07afe5022cf8bc4a64e00c5fc2b02cd045301c3e2810f7badd1428a32"
+    }
+   ],
+   "file_name": "Tiwari_2026_Biopesticides production formulation applications.pdf",
+   "sections": [
+    "Препаративні форми: огляди",
+    "Біопестициди: значення, безпека, огляди"
+   ],
+   "source": {
+    "type": "article",
+    "title": "Biopesticides Production, Formulation and Applications: A Short Review",
+    "authors": [
+     {
+      "family": "Tiwari",
+      "given_initials": "J. B."
+     },
+     {
+      "family": "Panday",
+      "given_initials": "V. K."
+     },
+     {
+      "family": "Kumar",
+      "given_initials": "P."
+     },
+     {
+      "family": "Kumar",
+      "given_initials": "S."
+     }
+    ],
+    "container_title": "Journal of Drug Discovery and Health Sciences",
+    "year": 2026,
+    "volume": "3",
+    "issue": "1",
+    "pages": "9–24",
+    "doi": "10.21590/jddhs.03.01.02",
+    "keywords": "biopesticides; production; formulation; application; IPM",
+    "tags": [
+     "огляд",
+     "препаративні форми"
+    ],
+    "study_object": "Біопестициди мікробного, рослинного й біохімічного походження, PIPs.",
+    "methods": "Короткий оглядовий аналіз літератури.",
+    "main_results": "Описано виробництво, основні типи препаративних форм (тверді, рідкі) і способи застосування біопестицидів, їхні переваги (біодеградація, селективність) та обмеження.",
+    "for_dissertation": "Загальна характеристика препаративних форм для п. 3.1; класифікація біопестицидів.",
+    "description": "Короткий огляд виробництва, препаративних форм і застосування біопестицидів.",
+    "language": "en",
+    "status": "unread"
+   }
+  },
+  {
+   "files": [
+    {
+     "name": "01_Наукові статті та огляди/Kariyanna_2024_Formulations of biopesticides.pdf",
+     "sha256": "036b13e84e3fc66f1371845cd4d75a6532f3ad3641e3d0d1430bf0051f5287a2"
+    }
+   ],
+   "file_name": "Kariyanna_2024_Formulations of biopesticides.pdf",
+   "sections": [
+    "Препаративні форми: огляди"
+   ],
+   "source": {
+    "type": "article",
+    "title": "Formulations of Biopesticides: Techniques, Applications, Challenges and Future Prospects",
+    "authors": [
+     {
+      "family": "Kariyanna",
+      "given_initials": "B."
+     },
+     {
+      "family": "Ratnala",
+      "given_initials": "S."
+     },
+     {
+      "family": "Panda",
+      "given_initials": "S."
+     },
+     {
+      "family": "Sainath",
+      "given_initials": "G."
+     }
+    ],
+    "container_title": "Hexapoda, Insecta Indica",
+    "year": 2024,
+    "volume": "31",
+    "issue": "1–2",
+    "pages": "97–113",
+    "doi": "10.55446/hexa.2024.51",
+    "keywords": "active ingredient; application; biopesticides; formulations; regulatory considerations",
+    "tags": [
+     "огляд",
+     "препаративні форми",
+     "носії"
+    ],
+    "study_object": "Препаративні форми біоінсектицидів, біофунгіцидів, біонематицидів і біогербіцидів.",
+    "methods": "Оглядова стаття.",
+    "main_results": "Розглянуто вибір діючого агента, носіїв і стабілізаторів, тверді й рідкі форми (порошки, гранули, флоабельні та емульсійні концентрати), позакореневе застосування, обробку ґрунту й насіння, вимоги до реєстрації.",
+    "for_dissertation": "Основне джерело для п. 3.1 (традиційні форми та їхні складові) і для схеми «форми – носії – допоміжні речовини».",
+    "description": "Огляд технік створення препаративних форм біопестицидів: носії, стабілізатори, способи застосування, регуляторні вимоги та виклики.",
+    "language": "en",
+    "status": "unread"
+   }
+  },
+  {
+   "files": [
+    {
+     "name": "01_Наукові статті та огляди/Haq_2026_Nano-biopesticides and IPM.pdf",
+     "sha256": "255b933113fb5deefb816b47530742ed35e560635667f0c7b5a7d44e221cd48a"
+    }
+   ],
+   "file_name": "Haq_2026_Nano-biopesticides and IPM.pdf",
+   "sections": [
+    "Інкапсуляція, нано- та новітні носії"
+   ],
+   "source": {
+    "type": "article",
+    "title": "Nano-Biopesticides and Integrated Pest Management: Emerging Technologies, Mechanisms, and Pathways to Sustainable Agriculture",
+    "authors": [
+     {
+      "family": "Haq",
+      "given_initials": "A. U."
+     },
+     {
+      "family": "Majeed",
+      "given_initials": "A."
+     },
+     {
+      "family": "Ilahi",
+      "given_initials": "F."
+     },
+     {
+      "family": "Kareem",
+      "given_initials": "A."
+     },
+     {
+      "family": "Murtaza",
+      "given_initials": "A."
+     }
+    ],
+    "container_title": "Plant and Crop Letters",
+    "year": 2026,
+    "volume": "6",
+    "pages": "61–77",
+    "doi": "10.65822/j.pcl/2026.14",
+    "keywords": "nano-biopesticides; nanoencapsulation; IPM; controlled release",
+    "tags": [
+     "нанотехнології",
+     "інкапсуляція",
+     "огляд"
+    ],
+    "study_object": "Нанобіопестициди: полімерні, ліпідні та неорганічні наноносії мікробних і рослинних агентів.",
+    "methods": "Оглядова стаття.",
+    "main_results": "Наноінкапсуляція (мезопористий кремнезем, хітозан, зеїн, наноемульсії, тверді ліпідні наночастинки) захищає агенти від фото- та гідролізу, забезпечує контрольоване вивільнення; LC50 знижується на 40–60 % порівняно з неінкапсульованими формами.",
+    "for_dissertation": "П. 3.4 (новітні форми, нові полімерні носії) і перспективи.",
+    "description": "Огляд нанобіопестицидів і їхнього місця в інтегрованому захисті: типи наноносіїв, механізми, переваги й ризики.",
+    "language": "en",
+    "status": "unread"
+   }
+  },
+  {
+   "files": [
+    {
+     "name": "01_Наукові статті та огляди/Agrotech_2025_Biopesticides formulations mechanisms regulations market.pdf",
+     "sha256": "75fac2e7511ab9a6f7d0fed035a5b4fdb09cff31d237babc64f7bd05785cd570"
+    }
+   ],
+   "file_name": "Agrotech_2025_Biopesticides formulations mechanisms regulations market.pdf",
+   "sections": [
+    "Препаративні форми: огляди",
+    "Ринок і регулювання"
+   ],
+   "source": {
+    "type": "article",
+    "title": "Biopesticides for Sustainable Agriculture: Formulations, Mechanisms, Regulations, and Market Trends",
+    "authors": [
+     {
+      "family": "Niazi",
+      "given_initials": "P."
+     },
+     {
+      "family": "Hejran",
+      "given_initials": "A. B."
+     }
+    ],
+    "container_title": "AGROTECH – Food Science, Technology and Environment",
+    "year": 2025,
+    "volume": "4",
+    "issue": "2",
+    "pages": "7–36",
+    "doi": "10.53797/agrotech.v4i2.2.2025",
+    "keywords": "biopesticides; formulations; nanoencapsulation; regulation; market",
+    "tags": [
+     "огляд",
+     "препаративні форми",
+     "ринок"
+    ],
+    "study_object": "Мікробні (бактерії, гриби, віруси, нематоди), рослинні та сигнальні біопестициди.",
+    "methods": "Оглядова стаття.",
+    "main_results": "Описано нано- та мікроінкапсуляцію, емульсійні концентрати, біоносії, що подовжують стійкість і покращують покриття; узагальнено регуляторні підходи й ринкові тенденції.",
+    "for_dissertation": "П. 3.1 та 3.4; дані про ринок і регуляцію для вступу.",
+    "description": "Огляд препаративних форм, механізмів дії, регуляції та ринку біопестицидів.",
+    "language": "en",
+    "status": "unread"
+   }
+  },
+  {
+   "files": [
+    {
+     "name": "01_Наукові статті та огляди/Mbachu_2026_Biopesticide formulation registration norms.pdf",
+     "sha256": "3418842ed7fb30a3a57179d83adfe03b11de75349d7cb235a092b65418611098"
+    }
+   ],
+   "file_name": "Mbachu_2026_Biopesticide formulation registration norms.pdf",
+   "sections": [
+    "Препаративні форми: огляди",
+    "Ринок і регулювання"
+   ],
+   "source": {
+    "type": "article",
+    "title": "Biopesticide formulation, registration norms, and application for sustainable agriculture",
+    "authors": [
+     {
+      "family": "Mbachu",
+      "given_initials": "A. E."
+     },
+     {
+      "family": "Mbachu",
+      "given_initials": "N. A."
+     }
+    ],
+    "container_title": "Critical Insights in Agriculture",
+    "year": 2026,
+    "volume": "1",
+    "issue": "1",
+    "pages": "Art. 2670889",
+    "doi": "10.1080/29932106.2026.2670889",
+    "keywords": "agriculture; Bacillus thuringiensis; biopesticides; pests; plants",
+    "tags": [
+     "огляд",
+     "реєстрація",
+     "Bt"
+    ],
+    "study_object": "Мікробні, біохімічні біопестициди та PIPs; насамперед Bacillus thuringiensis.",
+    "methods": "Оглядова стаття; порівняння норм реєстрації США, ЄС, Індії, ПАР, Кенії, Нігерії.",
+    "main_results": "Біопестициди випускають у сухих і рідких формах; способи застосування — обробка насіння, обприскування листя, занурення розсади, обробка ґрунту. Узагальнено вимоги до реєстрації в різних країнах.",
+    "for_dissertation": "Класифікація форм (сухі/рідкі) для п. 3.1; регуляторні вимоги для п. 3.3.",
+    "description": "Огляд препаративних форм біопестицидів, способів застосування та норм реєстрації в різних країнах.",
+    "language": "en",
+    "status": "unread"
+   }
+  },
+  {
+   "files": [
+    {
+     "name": "01_Наукові статті та огляди/Gundreddy_2024_Recent advances in biopesticide formulations.pdf",
+     "sha256": "086a8701c89efabef981918d4c50e1fecfe41e798128f1125961cb5140d8376e"
+    }
+   ],
+   "file_name": "Gundreddy_2024_Recent advances in biopesticide formulations.pdf",
+   "sections": [
+    "Препаративні форми: огляди",
+    "Тверді та полімерні форми",
+    "Інкапсуляція, нано- та новітні носії"
+   ],
+   "source": {
+    "type": "article",
+    "title": "Recent Advances in Biopesticide Formulations for Targeted Insect Pest Management: A Review",
+    "authors": [
+     {
+      "family": "Gundreddy",
+      "given_initials": "R. R."
+     },
+     {
+      "family": "Jayanth",
+      "given_initials": "B. V."
+     },
+     {
+      "family": "Shashikala",
+      "given_initials": "M."
+     },
+     {
+      "family": "Darjee",
+      "given_initials": "S."
+     },
+     {
+      "family": "Alekhya",
+      "given_initials": "G."
+     }
+    ],
+    "container_title": "Journal of Experimental Agriculture International",
+    "year": 2024,
+    "volume": "46",
+    "issue": "9",
+    "pages": "876–889",
+    "doi": "10.9734/jeai/2024/v46i92885",
+    "keywords": "biopesticides; controlled release formulations; nanotechnology; tablet",
+    "tags": [
+     "огляд",
+     "контрольоване вивільнення",
+     "гідрогелі"
+    ],
+    "study_object": "Препаративні форми біоінсектицидів.",
+    "methods": "Оглядова стаття.",
+    "main_results": "Описано нанопестициди, форми з контрольованим вивільненням, гідрогелі, гранули з полімерним покриттям і таблетки; наведено їхні переваги й недоліки.",
+    "for_dissertation": "П. 3.2 (полімерні тверді форми) і 3.4 (новітні форми).",
+    "description": "Огляд новітніх препаративних форм біопестицидів: наноформи, CRF, гідрогелі, полімерні гранули, таблетки.",
+    "language": "en",
+    "status": "unread"
+   }
+  },
+  {
+   "files": [
+    {
+     "name": "01_Наукові статті та огляди/Trinh_Metarhizium anisopliae soluble tablet formulation.pdf",
+     "sha256": "d9488aeee1f6f023afef26f04d9153015139341ccbee96869a86fc6407f2f93d"
+    }
+   ],
+   "file_name": "Trinh_Metarhizium anisopliae soluble tablet formulation.pdf",
+   "sections": [
+    "Тверді та полімерні форми",
+    "Стабільність, УФ-захист, зберігання"
+   ],
+   "source": {
+    "type": "article",
+    "title": "Optimizing the soluble tablet formulation of Metarhizium anisopliae for effective biological pest control",
+    "authors": [
+     {
+      "family": "Trinh",
+      "given_initials": "X. T."
+     },
+     {
+      "family": "Huynh",
+      "given_initials": "N. N. T."
+     },
+     {
+      "family": "Gia",
+      "given_initials": "M. P."
+     },
+     {
+      "family": "Uyen",
+      "given_initials": "N. H. L."
+     },
+     {
+      "family": "Lam",
+      "given_initials": "M. T. X."
+     },
+     {
+      "family": "Van",
+      "given_initials": "H. P."
+     },
+     {
+      "family": "Thi",
+      "given_initials": "O. N."
+     },
+     {
+      "family": "Pham",
+      "given_initials": "S. K."
+     }
+    ],
+    "container_title": "Caspian Journal of Environmental Sciences",
+    "year": 2026,
+    "volume": "24",
+    "issue": "1",
+    "pages": "203–212",
+    "doi": "10.22124/cjes.2025.8856",
+    "keywords": "soluble tablet; entomopathogenic fungi; Metarhizium anisopliae; storage viability",
+    "tags": [
+     "таблетки",
+     "мікроміцети",
+     "зберігання"
+    ],
+    "study_object": "Розчинні таблетки з конідіями Metarhizium anisopliae.",
+    "methods": "Порівняння кількох рецептур таблеток: час розпаду, вивільнення конідій, життєздатність під час зберігання.",
+    "main_results": "Найкраща рецептура розпадалася за 258 с, вивільняла 16,24×10⁸ спор/г і зберігала ефективність 12 тижнів; гірша — 529 с і найнижча життєздатність.",
+    "for_dissertation": "Приклад твердої (таблетованої) форми на основі мікроміцета з даними про термін зберігання (таблиця п. 3.2). Рік тому — за номером тому журналу (2026), DOI 2025.",
+    "description": "Оптимізація розчинних таблеток Metarhizium anisopliae: швидкий розпад, високий вихід конідій, стабільність 12 тижнів.",
+    "language": "en",
+    "status": "unread"
+   }
+  },
+  {
+   "files": [
+    {
+     "name": "01_Наукові статті та огляди/Singh_2026_Formulation technologies and commercial translation.pdf",
+     "sha256": "794196680f1a7b8446c0649f0b9269ddeb46ffca2bdcf73dcc309c971effefca"
+    }
+   ],
+   "file_name": "Singh_2026_Formulation technologies and commercial translation.pdf",
+   "sections": [
+    "Препаративні форми: огляди",
+    "Стабільність, УФ-захист, зберігання"
+   ],
+   "source": {
+    "type": "article",
+    "title": "Formulation Technologies and Commercial Translation of Biological Agricultural Products: An Integrated Framework from Product Design to Market Readiness",
+    "authors": [
+     {
+      "family": "Singh",
+      "given_initials": "A. K."
+     },
+     {
+      "family": "Pandey",
+      "given_initials": "A. K."
+     }
+    ],
+    "container_title": "International Journal of Advanced Multidisciplinary Research and Educational Development",
+    "year": 2026,
+    "volume": "2",
+    "issue": "5",
+    "pages": "762–774",
+    "keywords": "formulation; EC; OD; SC; WP; WG; quality by design; scale-up; registration",
+    "tags": [
+     "огляд",
+     "якість",
+     "масштабування"
+    ],
+    "study_object": "Біопестициди, біодобрива й біостимулятори; форми EC, OD, SC, WP, WG.",
+    "methods": "Критичний огляд (формуляційна наука, quality-by-design, аналітичний контроль, регуляція, техніко-економіка).",
+    "main_results": "Показано, що живі мікробні агенти накладають особливі обмеження: активність води, кисень, вологість, вибір носія, консерванти, пакування визначають стабільність. Масштабування розглянуто як задачу розробки продукту.",
+    "for_dissertation": "П. 3.3: вимоги до якості, що забезпечує препаративна форма (стабільність, відтворюваність, життєздатність).",
+    "description": "Інтегрований огляд технологій препаративних форм біологічних продуктів: від дизайну рецептури й контролю якості до виходу на ринок.",
+    "language": "en",
+    "status": "unread"
+   }
+  },
+  {
+   "files": [
+    {
+     "name": "01_Наукові статті та огляди/Tiwari_2024_Microbial biopesticides ecofriendly.pdf",
+     "sha256": "2cad669bb5c0bdf99230ca2a8bbb69991c6a7cdf2ed72d97e248e1df6159d96b"
+    }
+   ],
+   "file_name": "Tiwari_2024_Microbial biopesticides ecofriendly.pdf",
+   "sections": [
+    "Біопестициди: значення, безпека, огляди"
+   ],
+   "source": {
+    "type": "article",
+    "title": "Microbial Biopesticides: An Ecofriendly Plant Protection Measures",
+    "authors": [
+     {
+      "family": "Tiwari",
+      "given_initials": "R. K. S."
+     },
+     {
+      "family": "Chandra",
+      "given_initials": "K. K."
+     },
+     {
+      "family": "Kumar",
+      "given_initials": "R."
+     },
+     {
+      "family": "Bhardwaj",
+      "given_initials": "A. K."
+     },
+     {
+      "family": "Pandey",
+      "given_initials": "S. K."
+     },
+     {
+      "family": "Dixit",
+      "given_initials": "B."
+     }
+    ],
+    "container_title": "Environment and Ecology",
+    "year": 2024,
+    "volume": "42",
+    "issue": "4",
+    "pages": "1590–1598",
+    "doi": "10.60151/envec/RHZZ8746",
+    "keywords": "microbial biopesticides; agroecosystem; biocontrol",
+    "tags": [
+     "огляд",
+     "мікробні біопестициди"
+    ],
+    "study_object": "Мікробні біопестициди проти шкідників і хвороб рослин.",
+    "methods": "Огляд літератури за понад 50 років.",
+    "main_results": "Узагальнено механізми дії мікробних біопестицидів і чинники зростання ринку (попит на органічну продукцію).",
+    "for_dissertation": "Вступ: значення мікробних біопестицидів.",
+    "description": "Огляд мікробних біопестицидів як екологічно безпечного засобу захисту рослин.",
+    "language": "en",
+    "status": "unread"
+   }
+  },
+  {
+   "files": [
+    {
+     "name": "01_Наукові статті та огляди/Pavan_2024_Biopesticides in Indian agriculture.pdf",
+     "sha256": "c4bde3d84413404e095ac9b174a193f41de07ce1f7926b5e139d4712a99c96e2"
+    }
+   ],
+   "file_name": "Pavan_2024_Biopesticides in Indian agriculture.pdf",
+   "sections": [
+    "Біопестициди: значення, безпека, огляди",
+    "Ринок і регулювання"
+   ],
+   "source": {
+    "type": "article",
+    "title": "Biopesticides in Indian agriculture: Advances, challenges, and pathways to sustainable crop protection",
+    "authors": [
+     {
+      "family": "Pavan",
+      "given_initials": "J. S."
+     },
+     {
+      "family": "Vireesha",
+      "given_initials": "P."
+     },
+     {
+      "family": "Chaitanya",
+      "given_initials": "M."
+     },
+     {
+      "family": "Raja",
+      "given_initials": "G. P."
+     },
+     {
+      "family": "Priya",
+      "given_initials": "M. K."
+     }
+    ],
+    "container_title": "International Journal of Advanced Biochemistry Research",
+    "year": 2024,
+    "volume": "8",
+    "issue": "8 (Spl. S)",
+    "pages": "936–943",
+    "doi": "10.33545/26174693.2024.v8.i8Sm.1966",
+    "keywords": "biopesticides; Bacillus thuringiensis; Trichoderma; NPV; India",
+    "tags": [
+     "огляд",
+     "ринок",
+     "Індія"
+    ],
+    "study_object": "Бактеріальні (Bt, B. subtilis, P. fluorescens), грибні та вірусні біопестициди в Індії.",
+    "methods": "Оглядова стаття.",
+    "main_results": "Описано основні агенти, комерціалізацію та бар'єри поширення біопестицидів в Індії (ефективність, термін придатності, обізнаність).",
+    "for_dissertation": "Порівняння з ринком України (п. 3.5); приклади бактеріальних агентів.",
+    "description": "Огляд стану, досягнень і проблем застосування біопестицидів в Індії.",
+    "language": "en",
+    "status": "unread"
+   }
+  },
+  {
+   "files": [
+    {
+     "name": "01_Наукові статті та огляди/Soetopo_2023_IOP_Conf._Ser.__Earth_Environ._Sci._1179_012003.pdf",
+     "sha256": "ae50901496b0bd5bfa427fb0c49b1e08e8213797cc715a2cffd8e197ff8a99ee"
+    }
+   ],
+   "file_name": "Soetopo_2023_IOP_Conf._Ser.__Earth_Environ._Sci._1179_012003.pdf",
+   "sections": [
+    "Ринок і регулювання"
+   ],
+   "source": {
+    "type": "article",
+    "title": "Biopesticide development & registration: challenges & strategies",
+    "authors": [
+     {
+      "family": "Soetopo",
+      "given_initials": "D."
+     },
+     {
+      "family": "Alouw",
+      "given_initials": "J. C."
+     }
+    ],
+    "container_title": "IOP Conference Series: Earth and Environmental Science",
+    "year": 2023,
+    "volume": "1179",
+    "pages": "Art. 012003",
+    "doi": "10.1088/1755-1315/1179/1/012003",
+    "keywords": "biopesticides; registration; regulation; IPM",
+    "tags": [
+     "реєстрація",
+     "ринок"
+    ],
+    "study_object": "Розробка й реєстрація біопестицидів у світі та Індонезії.",
+    "methods": "Аналітичний огляд.",
+    "main_results": "Біопестициди становлять лише 1–5 % світового ринку пестицидів (≈1400 продуктів); бар'єри — мінливість ефективності, короткий термін придатності, регуляція, розрахована на хімічні засоби.",
+    "for_dissertation": "Вступ (частка біопестицидів на ринку) і п. 3.3 (якість як умова реєстрації).",
+    "description": "Виклики та стратегії розробки й реєстрації біопестицидів.",
+    "language": "en",
+    "status": "unread"
+   }
+  },
+  {
+   "files": [
+    {
+     "name": "01_Наукові статті та огляди/acsomega.8b02225.pdf",
+     "sha256": "664362fb43691dc51f5a093d9cccc73d46d9d76df507e2522acc47b562948639"
+    }
+   ],
+   "file_name": "acsomega.8b02225.pdf",
+   "sections": [
+    "Інкапсуляція, нано- та новітні носії"
+   ],
+   "source": {
+    "type": "article",
+    "title": "Single Cell Encapsulation via Pickering Emulsion for Biopesticide Applications",
+    "authors": [
+     {
+      "family": "Yaakov",
+      "given_initials": "N."
+     },
+     {
+      "family": "Mani",
+      "given_initials": "K. A."
+     },
+     {
+      "family": "Felfbaum",
+      "given_initials": "R."
+     },
+     {
+      "family": "Lahat",
+      "given_initials": "M."
+     },
+     {
+      "family": "Da Costa",
+      "given_initials": "N."
+     },
+     {
+      "family": "Belausov",
+      "given_initials": "E."
+     },
+     {
+      "family": "Ment",
+      "given_initials": "D."
+     },
+     {
+      "family": "Mechrez",
+      "given_initials": "G."
+     }
+    ],
+    "container_title": "ACS Omega",
+    "year": 2018,
+    "volume": "3",
+    "pages": "14294–14301",
+    "doi": "10.1021/acsomega.8b02225",
+    "keywords": "Pickering emulsion; microencapsulation; silica nanoparticles; Metarhizium brunneum",
+    "tags": [
+     "інкапсуляція",
+     "емульсія Пікерінга",
+     "мікроміцети"
+    ],
+    "study_object": "Конідії Metarhizium brunneum в емульсіях вода/парафін, стабілізованих амінофункціоналізованим кремнеземом; Spodoptera littoralis.",
+    "methods": "Отримання емульсій Пікерінга (краплі 1–30 мкм), конфокальна мікроскопія, обприскування листя рицини, біотест.",
+    "main_results": "Досягнуто інкапсуляції поодиноких клітин; після висихання на листі утворюється пориста кремнеземна структура, конідії рівномірно розподілені; ефективність проти S. littoralis значно вища за контроль.",
+    "for_dissertation": "Новітня рідка форма для обробки «по зеленому листу» з неорганічним наноносієм (п. 3.4).",
+    "description": "Інкапсуляція поодиноких конідій у емульсії Пікерінга з наночастинками кремнезему — нова форма біопестициду для листкового обприскування.",
+    "language": "en",
+    "status": "unread"
+   }
+  },
+  {
+   "files": [
+    {
+     "name": "01_Наукові статті та огляди/agriculture-12-00338.pdf",
+     "sha256": "4759f71bc04440fd0e311e371141e59a4a8dd62abef0a00bb704e05d6b31f2ca"
+    }
+   ],
+   "file_name": "agriculture-12-00338.pdf",
+   "sections": [
+    "Інкапсуляція, нано- та новітні носії"
+   ],
+   "source": {
+    "type": "article",
+    "title": "Encapsulated Clove Bud Essential Oil: A New Perspective as an Eco-Friendly Biopesticide",
+    "authors": [
+     {
+      "family": "Milićević",
+      "given_initials": "Z."
+     },
+     {
+      "family": "Krnjajić",
+      "given_initials": "S."
+     },
+     {
+      "family": "Stević",
+      "given_initials": "M."
+     },
+     {
+      "family": "Ćirković",
+      "given_initials": "J."
+     },
+     {
+      "family": "Jelušić",
+      "given_initials": "A."
+     },
+     {
+      "family": "Pucarević",
+      "given_initials": "M."
+     },
+     {
+      "family": "Popović",
+      "given_initials": "T."
+     }
+    ],
+    "container_title": "Agriculture",
+    "year": 2022,
+    "volume": "12",
+    "issue": "3",
+    "pages": "Art. 338",
+    "doi": "10.3390/agriculture12030338",
+    "keywords": "clove essential oil; encapsulation; zeolite; gelatin; emulsifiable concentrate",
+    "tags": [
+     "інкапсуляція",
+     "цеоліт",
+     "ефірна олія"
+    ],
+    "study_object": "Емульсійні концентрати олії бутонів гвоздики на синтетичному/природному цеоліті та желатині.",
+    "methods": "Синтез трьох EC-форм; біотести на Phthorimaea operculella, Botrytis cinerea, Pectobacterium і Dickeya.",
+    "main_results": "Капсульовані форми діяли довше; найкраща — на синтетичному цеоліті (активність 14 діб).",
+    "for_dissertation": "Приклади носіїв (цеоліт, желатин) для п. 3.2/3.4; хоча агент рослинний, підхід переноситься на мікробні препарати.",
+    "description": "Інкапсуляція олії гвоздики на цеолітах і желатині: подовжена інсектицидна й антимікробна дія.",
+    "language": "en",
+    "status": "unread"
+   }
+  },
+  {
+   "files": [
+    {
+     "name": "01_Наукові статті та огляди/agronomy-12-02665-v2.pdf",
+     "sha256": "d5800cc3d8e578a8cb38a8208fad80969629f737de7c4be8883f8feca07c959f"
+    }
+   ],
+   "file_name": "agronomy-12-02665-v2.pdf",
+   "sections": [
+    "Препаративні форми: огляди",
+    "Інкапсуляція, нано- та новітні носії"
+   ],
+   "source": {
+    "type": "article",
+    "title": "Potential Strategies in the Biopesticide Formulations: A Bibliometric Analysis",
+    "authors": [
+     {
+      "family": "Hernandez-Tenorio",
+      "given_initials": "F."
+     },
+     {
+      "family": "Miranda",
+      "given_initials": "A. M."
+     },
+     {
+      "family": "Rodríguez",
+      "given_initials": "C. A."
+     },
+     {
+      "family": "Giraldo-Estrada",
+      "given_initials": "C."
+     },
+     {
+      "family": "Sáez",
+      "given_initials": "A. A."
+     }
+    ],
+    "container_title": "Agronomy",
+    "year": 2022,
+    "volume": "12",
+    "issue": "11",
+    "pages": "Art. 2665",
+    "doi": "10.3390/agronomy12112665",
+    "keywords": "biopesticides; formulation; bibliometrics; nanotechnology; Scopus",
+    "tags": [
+     "бібліометрія",
+     "препаративні форми",
+     "методологія"
+    ],
+    "study_object": "Публікації про препаративні форми біопестицидів у Scopus (2010–2021).",
+    "methods": "Систематичний пошук у Scopus, наукометричний аналіз, аналіз часових потоків тематик.",
+    "main_results": "Кількість публікацій про біопестициди за 2011–2021 рр. зросла на 71,24 %; дослідження зміщуються до нанотехнологій для захисту й посилення біоефективності.",
+    "for_dissertation": "Розділ «Матеріали і методи» (приклад методології пошуку) і обґрунтування актуальності новітніх форм.",
+    "description": "Бібліометричний аналіз стратегій створення препаративних форм біопестицидів; тренд — нанотехнології.",
+    "language": "en",
+    "status": "unread"
+   }
+  },
+  {
+   "files": [
+    {
+     "name": "01_Наукові статті та огляди/IJBCS_2025_Bacterial biopesticide formulation vegetables Cote d'Ivoire.pdf",
+     "sha256": "c0784f99c7b44b6b97f830d1be83033d00e50bc48836f525511043fbe2ebf942"
+    }
+   ],
+   "file_name": "IJBCS_2025_Bacterial biopesticide formulation vegetables Cote d'Ivoire.pdf",
+   "sections": [
+    "Препаративні форми: огляди"
+   ],
+   "source": {
+    "type": "article",
+    "title": "Efficacity of a bacterial biopesticide formulation on the agronomic parameters of two vegetable crops in Côte d'Ivoire: case of lettuce and tomato",
+    "authors": [
+     {
+      "family": "Koffi",
+      "given_initials": "Y. F."
+     },
+     {
+      "family": "Kouame",
+      "given_initials": "M. L."
+     },
+     {
+      "family": "Traore",
+      "given_initials": "M."
+     },
+     {
+      "family": "M'Bro",
+      "given_initials": "K. A. L."
+     },
+     {
+      "family": "Tehua",
+      "given_initials": "A. A."
+     },
+     {
+      "family": "Alloue-Boraud",
+      "given_initials": "M."
+     }
+    ],
+    "container_title": "International Journal of Biological and Chemical Sciences",
+    "year": 2025,
+    "volume": "19",
+    "issue": "4",
+    "pages": "1377–1385",
+    "doi": "10.4314/ijbcs.v19i4.5",
+    "keywords": "Bacillus velezensis; liquid formulation; lettuce; tomato",
+    "tags": [
+     "рідка форма",
+     "Bacillus velezensis",
+     "бактерії"
+    ],
+    "study_object": "Рідка форма біопестициду на основі Bacillus velezensis; салат і томат у теплиці.",
+    "methods": "Обробка в концентраціях 25, 50, 75 %; облік листків, цвітіння, ураження, росту.",
+    "main_results": "Препарат покращив агрономічні показники; за 50–75 % ураження салату не було.",
+    "for_dissertation": "Приклад рідкої бактеріальної форми (п. 3.1).",
+    "description": "Ефективність рідкої форми біопестициду на основі B. velezensis на салаті й томаті.",
+    "language": "en",
+    "status": "unread"
+   }
+  },
+  {
+   "files": [
+    {
+     "name": "01_Наукові статті та огляди/applsci-16-00644.pdf",
+     "sha256": "3da5c6594588dac565ebb5d666dee77887b9048f58deec8deb9a89eb68182d30"
+    }
+   ],
+   "file_name": "applsci-16-00644.pdf",
+   "sections": [
+    "Біопестициди: значення, безпека, огляди",
+    "Ринок і регулювання"
+   ],
+   "source": {
+    "type": "article",
+    "title": "Enhancing Food Safety, Quality and Sustainability Through Biopesticide Production Under the Concept of Process Intensification",
+    "authors": [
+     {
+      "family": "Ramírez-Guzmán",
+      "given_initials": "N."
+     },
+     {
+      "family": "Chávez-González",
+      "given_initials": "M. L."
+     },
+     {
+      "family": "Hernández-Almanza",
+      "given_initials": "A. Y."
+     },
+     {
+      "family": "Verma",
+      "given_initials": "D. K."
+     },
+     {
+      "family": "Aguilar",
+      "given_initials": "C. N."
+     }
+    ],
+    "container_title": "Applied Sciences",
+    "year": 2026,
+    "volume": "16",
+    "issue": "2",
+    "pages": "Art. 644",
+    "doi": "10.3390/app16020644",
+    "keywords": "biopesticides; process intensification; solid-state fermentation; agro-industrial byproducts; market",
+    "tags": [
+     "огляд",
+     "виробництво",
+     "ринок"
+    ],
+    "study_object": "Виробництво мікробних (Bt, Trichoderma) і рослинних біопестицидів.",
+    "methods": "Оглядова стаття.",
+    "main_results": "Світовий ринок біопестицидів оцінено у 8–10 млрд дол. (2025), 3–4 % ринку пестицидів, CAGR 12–16 %; агропромислові відходи знижують вартість виробництва.",
+    "for_dissertation": "Вступ: масштаби ринку; зв'язок виробництва з якістю препарату.",
+    "description": "Огляд виробництва біопестицидів з інтенсифікацією процесів; дані про ринок.",
+    "language": "en",
+    "status": "unread"
+   }
+  },
+  {
+   "files": [
+    {
+     "name": "01_Наукові статті та огляди/b-d-ghodake-nanotechnological-approaches-for-the.pdf",
+     "sha256": "b7ff41db566bc885d36d57b49c00736112eb8d7054167e26f758a1e186d7b2c7"
+    }
+   ],
+   "file_name": "b-d-ghodake-nanotechnological-approaches-for-the.pdf",
+   "sections": [
+    "Інкапсуляція, нано- та новітні носії",
+    "Стабільність, УФ-захист, зберігання"
+   ],
+   "source": {
+    "type": "article",
+    "title": "Nanotechnological approaches for the improvement of field efficacy of Bacillus thuringiensis-based biopesticides",
+    "authors": [
+     {
+      "family": "Ghodake",
+      "given_initials": "B. D."
+     },
+     {
+      "family": "Saxena",
+      "given_initials": "S."
+     },
+     {
+      "family": "Chinche",
+      "given_initials": "A. V."
+     },
+     {
+      "family": "Ingle",
+      "given_initials": "A. P."
+     },
+     {
+      "family": "Gade",
+      "given_initials": "A. K."
+     },
+     {
+      "family": "Moharil",
+      "given_initials": "M. P."
+     }
+    ],
+    "container_title": "Archives of Microbiology",
+    "year": 2026,
+    "volume": "208",
+    "pages": "Art. 256",
+    "doi": "10.1007/s00203-026-04806-9",
+    "keywords": "Bacillus thuringiensis; nanoformulation; encapsulation; UV protection; controlled release",
+    "tags": [
+     "Bt",
+     "нанотехнології",
+     "УФ-захист"
+    ],
+    "study_object": "Препаративні форми на основі Bacillus thuringiensis.",
+    "methods": "Оглядова стаття.",
+    "main_results": "Розглянуто інкапсуляцію, покриття, наноемульсії, наносуспензії, наноносії й форми з контрольованим вивільненням, що захищають Cry-білки від УФ і підвищують польову ефективність.",
+    "for_dissertation": "П. 3.4 і перспективи (УФ-протектори) саме для бактеріальних препаратів. Порядок авторів після першого перевірте за PDF.",
+    "description": "Огляд нанотехнологічних підходів до підвищення польової ефективності Bt-біопестицидів.",
+    "language": "en",
+    "status": "unread"
+   }
+  },
+  {
+   "files": [
+    {
+     "name": "01_Наукові статті та огляди/biomolecules-14-00353-v2.pdf",
+     "sha256": "32ac3ebdd9ed88b9203caf86b583d6c99b649638828fbd6410090cd5c0c32e66"
+    }
+   ],
+   "file_name": "biomolecules-14-00353-v2.pdf",
+   "sections": [
+    "Інкапсуляція, нано- та новітні носії"
+   ],
+   "source": {
+    "type": "article",
+    "title": "Encapsulation of Fennel and Basil Essential Oils in β-Cyclodextrin for Novel Biopesticide Formulation",
+    "authors": [
+     {
+      "family": "Devrnja",
+      "given_initials": "N."
+     },
+     {
+      "family": "Anđelković",
+      "given_initials": "B."
+     },
+     {
+      "family": "Ljujić",
+      "given_initials": "J."
+     },
+     {
+      "family": "Ćosić",
+      "given_initials": "T."
+     },
+     {
+      "family": "Stupar",
+      "given_initials": "S."
+     },
+     {
+      "family": "Milutinović",
+      "given_initials": "M."
+     },
+     {
+      "family": "Savić",
+      "given_initials": "J."
+     }
+    ],
+    "container_title": "Biomolecules",
+    "year": 2024,
+    "volume": "14",
+    "issue": "3",
+    "pages": "Art. 353",
+    "doi": "10.3390/biom14030353",
+    "keywords": "β-cyclodextrin; inclusion complex; essential oils; Colorado potato beetle",
+    "tags": [
+     "інкапсуляція",
+     "циклодекстрин"
+    ],
+    "study_object": "Комплекси включення ефірних олій фенхелю й базиліку з β-циклодекстрином; колорадський жук.",
+    "methods": "Співосадження, GC/MS, FT-IR, SEM, SPME; біотести на личинках.",
+    "main_results": "Комплекси поступово виділяють леткі речовини 24 год; комплекс з олією фенхелю змінював розвиток і масу личинок.",
+    "for_dissertation": "β-циклодекстрин як новий носій (п. 3.4).",
+    "description": "β-циклодекстрин як носій ефірних олій для нової форми біопестициду.",
+    "language": "en",
+    "status": "unread"
+   }
+  },
+  {
+   "files": [
+    {
+     "name": "01_Наукові статті та огляди/Soyel_2022_Biopesticides as eco-friendly substitutes.pdf",
+     "sha256": "f286c39893452e857bdddb9595e32e690daab853fd7b782001fd2303588a4560"
+    }
+   ],
+   "file_name": "Soyel_2022_Biopesticides as eco-friendly substitutes.pdf",
+   "sections": [
+    "Препаративні форми: огляди",
+    "Стабільність, УФ-захист, зберігання"
+   ],
+   "source": {
+    "type": "article",
+    "title": "Biopesticides as Eco-friendly Substitutes to Synthetic Pesticides: An Insight of Present Status and Future Prospects with Improved Bio-effectiveness, Self-lives, and Climate Resilience",
+    "authors": [
+     {
+      "family": "Soyel",
+      "given_initials": "S. A."
+     },
+     {
+      "family": "Ruidas",
+      "given_initials": "S."
+     },
+     {
+      "family": "Roy",
+      "given_initials": "P."
+     },
+     {
+      "family": "Mondal",
+      "given_initials": "S."
+     },
+     {
+      "family": "Bhattacharyya",
+      "given_initials": "S."
+     },
+     {
+      "family": "Hazra",
+      "given_initials": "D. K."
+     }
+    ],
+    "container_title": "International Journal of Environmental Sustainability and Protection",
+    "year": 2022,
+    "volume": "2",
+    "issue": "2",
+    "pages": "1–12",
+    "doi": "10.35745/ijesp2022v02.02.0001",
+    "keywords": "biopesticides; formulation; shelf life; registration; India",
+    "tags": [
+     "огляд",
+     "термін придатності",
+     "препаративні форми"
+    ],
+    "study_object": "Біопестициди та їхні препаративні форми (дусти, гранули, порошки, емульсії, суспензійні концентрати).",
+    "methods": "Оглядова стаття.",
+    "main_results": "Біопестициди ≈2,5 % ринку; в Індії зареєстровано 970 продуктів; головні бар'єри — нижча ефективність і короткий термін придатності, які можна подолати новими формами.",
+    "for_dissertation": "П. 3.3: термін придатності як ключовий показник якості, що залежить від форми.",
+    "description": "Огляд стану біопестицидів і шляхів підвищення їхньої ефективності, терміну придатності та кліматичної стійкості через нові форми.",
+    "language": "en",
+    "status": "unread"
+   }
+  },
+  {
+   "files": [
+    {
+     "name": "01_Наукові статті та огляди/deoliveira2021.pdf",
+     "sha256": "9c68525ff17d2e3f10be7297a9afade6bd1b703a65d4282704ffaa3cb2d137f7"
+    }
+   ],
+   "file_name": "deoliveira2021.pdf",
+   "sections": [
+    "Інкапсуляція, нано- та новітні носії",
+    "Стабільність, УФ-захист, зберігання"
+   ],
+   "source": {
+    "type": "article",
+    "title": "Encapsulation Strategies for Bacillus thuringiensis: From Now to the Future",
+    "authors": [
+     {
+      "family": "de Oliveira",
+      "given_initials": "J. L."
+     },
+     {
+      "family": "Fraceto",
+      "given_initials": "L. F."
+     },
+     {
+      "family": "Bravo",
+      "given_initials": "A."
+     },
+     {
+      "family": "Polanczyk",
+      "given_initials": "R. A."
+     }
+    ],
+    "container_title": "Journal of Agricultural and Food Chemistry",
+    "year": 2021,
+    "volume": "69",
+    "issue": "16",
+    "pages": "4564–4577",
+    "doi": "10.1021/acs.jafc.0c07118",
+    "keywords": "Bacillus thuringiensis; Cry proteins; encapsulation; spray drying; UV protection",
+    "tags": [
+     "Bt",
+     "інкапсуляція",
+     "УФ-захист"
+    ],
+    "study_object": "Bacillus thuringiensis та його Cry-білки.",
+    "methods": "Оглядова стаття.",
+    "main_results": "Описано екструзію, емульсії, розпилювальне сушіння й охолодження, псевдозріджений шар, ліофілізацію, коацервацію, електророзпилення для отримання мікро- й наночастинок; наголошено на потребі оцінки ризиків нових форм.",
+    "for_dissertation": "Ключове джерело для п. 3.4 (іммобілізація/інкапсуляція бактерій) і схеми технологій.",
+    "description": "Огляд стратегій інкапсуляції Bt для захисту від УФ та підвищення стабільності.",
+    "language": "en",
+    "status": "unread"
+   }
+  },
+  {
+   "files": [
+    {
+     "name": "01_Наукові статті та огляди/f1000research-13-178872.pdf",
+     "sha256": "33e2b92677f55a4599d1bb1e22f760facf603cd029f6b3045fb63f83c9dbfe8b"
+    }
+   ],
+   "file_name": "f1000research-13-178872.pdf",
+   "sections": [
+    "Препаративні форми: огляди",
+    "Біопестициди: значення, безпека, огляди"
+   ],
+   "source": {
+    "type": "article",
+    "title": "Recent Advances in Biopesticide Research and Development with a Focus on Microbials",
+    "authors": [
+     {
+      "family": "Mawcha",
+      "given_initials": "K. T."
+     },
+     {
+      "family": "Malinga",
+      "given_initials": "L."
+     },
+     {
+      "family": "Muir",
+      "given_initials": "D."
+     },
+     {
+      "family": "Ge",
+      "given_initials": "J."
+     },
+     {
+      "family": "Ndolo",
+      "given_initials": "D."
+     }
+    ],
+    "container_title": "F1000Research",
+    "year": 2024,
+    "volume": "13",
+    "pages": "Art. 1071",
+    "doi": "10.12688/f1000research.154392.5",
+    "keywords": "microbial biopesticides; formulation; mode of action; climate-smart agriculture",
+    "tags": [
+     "огляд",
+     "мікробні біопестициди",
+     "препаративні форми"
+    ],
+    "study_object": "Мікробні біопестициди (гриби, бактерії, віруси, нематоди).",
+    "methods": "Огляд (версія 5, після рецензування).",
+    "main_results": "Розглянуто препаративні форми, механізми дії, чинники ефективності й бар'єри впровадження мікробних біопестицидів.",
+    "for_dissertation": "П. 3.1 і вступ. Цитуйте версію 5 (2025) або вказану версію.",
+    "description": "Огляд досягнень у дослідженні мікробних біопестицидів: форми, механізми, чинники ефективності.",
+    "language": "en",
+    "status": "unread"
+   }
+  },
+  {
+   "files": [
+    {
+     "name": "01_Наукові статті та огляди/feng2020.pdf",
+     "sha256": "19a7962556414fda32fc1134eef60e1a27f5ce81c3d0b1286d26640ff8935a27"
+    }
+   ],
+   "file_name": "feng2020.pdf",
+   "sections": [
+    "Інкапсуляція, нано- та новітні носії",
+    "Стабільність, УФ-захист, зберігання"
+   ],
+   "source": {
+    "type": "article",
+    "title": "Formulation optimization of D-limonene-loaded nanoemulsions as a natural and efficient biopesticide",
+    "authors": [
+     {
+      "family": "Feng",
+      "given_initials": "J."
+     },
+     {
+      "family": "Wang",
+      "given_initials": "R."
+     },
+     {
+      "family": "Chen",
+      "given_initials": "Z."
+     },
+     {
+      "family": "Zhang",
+      "given_initials": "S."
+     },
+     {
+      "family": "Yuan",
+      "given_initials": "S."
+     },
+     {
+      "family": "Cao",
+      "given_initials": "H."
+     },
+     {
+      "family": "Jafari",
+      "given_initials": "S. M."
+     },
+     {
+      "family": "Yang",
+      "given_initials": "W."
+     }
+    ],
+    "container_title": "Colloids and Surfaces A: Physicochemical and Engineering Aspects",
+    "year": 2020,
+    "volume": "596",
+    "pages": "Art. 124746",
+    "doi": "10.1016/j.colsurfa.2020.124746",
+    "keywords": "D-limonene; nanoemulsions; stability; antifungal activity",
+    "tags": [
+     "наноемульсії",
+     "стабільність"
+    ],
+    "study_object": "Наноемульсії D-лімонену.",
+    "methods": "Підбір емульгатора, дози й способу емульгування; мікроструктура, розмір крапель, багаторазове світлорозсіювання.",
+    "main_results": "Найстабільніша форма: 10 % D-лімонену, 6 % EL-40 (HLB 13,5), 84 % води.",
+    "for_dissertation": "Методика оцінки фізичної стабільності рідких форм (п. 3.3).",
+    "description": "Оптимізація наноемульсій D-лімонену як біопестициду.",
+    "language": "en",
+    "status": "unread"
+   }
+  },
+  {
+   "files": [
+    {
+     "name": "01_Наукові статті та огляди/fsufs-9-1657000.pdf",
+     "sha256": "efd6a477004aba9eaac078dd5cc84aa5f9439c89b3c2286e30ff975866d65f13"
+    }
+   ],
+   "file_name": "fsufs-9-1657000.pdf",
+   "sections": [
+    "Біопестициди: значення, безпека, огляди"
+   ],
+   "source": {
+    "type": "article",
+    "title": "Biopesticides for sustainable agriculture: feasible options for adopting cost-effective strategies",
+    "authors": [
+     {
+      "family": "Fenibo",
+      "given_initials": "E. O."
+     },
+     {
+      "family": "Matambo",
+      "given_initials": "T."
+     }
+    ],
+    "container_title": "Frontiers in Sustainable Food Systems",
+    "year": 2025,
+    "volume": "9",
+    "pages": "Art. 1657000",
+    "doi": "10.3389/fsufs.2025.1657000",
+    "keywords": "biopesticides; cost-effectiveness; sustainable agriculture",
+    "tags": [
+     "огляд",
+     "економіка"
+    ],
+    "study_object": "Біопестициди та стратегії їх економічно ефективного впровадження.",
+    "methods": "Оглядова стаття.",
+    "main_results": "Розглянуто шляхи здешевлення виробництва й підвищення конкурентоспроможності біопестицидів.",
+    "for_dissertation": "Вступ і перспективи.",
+    "description": "Огляд економічно доцільних стратегій виробництва та впровадження біопестицидів.",
+    "language": "en",
+    "status": "unread"
+   }
+  },
+  {
+   "files": [
+    {
+     "name": "01_Наукові статті та огляди/jof-12-00007.pdf",
+     "sha256": "4d6b562b0e23fb93e047f5770bcccfda03e3610023623c94c1d8f3a822abdead"
+    }
+   ],
+   "file_name": "jof-12-00007.pdf",
+   "sections": [
+    "Препаративні форми: огляди",
+    "Стабільність, УФ-захист, зберігання"
+   ],
+   "source": {
+    "type": "article",
+    "title": "Development of Mycoinsecticides: Advances in Formulation, Regulatory Challenges and Market Trends for Entomopathogenic Fungi",
+    "authors": [
+     {
+      "family": "Couceiro",
+      "given_initials": "J. C."
+     },
+     {
+      "family": "Wood",
+      "given_initials": "M. J."
+     },
+     {
+      "family": "Papadopoulos",
+      "given_initials": "A."
+     },
+     {
+      "family": "Silva",
+      "given_initials": "J. J."
+     },
+     {
+      "family": "Vontas",
+      "given_initials": "J."
+     },
+     {
+      "family": "Dimopoulos",
+      "given_initials": "G."
+     }
+    ],
+    "container_title": "Journal of Fungi",
+    "year": 2026,
+    "volume": "12",
+    "issue": "1",
+    "pages": "Art. 7",
+    "doi": "10.3390/jof12010007",
+    "keywords": "entomopathogenic fungi; formulation; conidia; blastospores; regulation; market",
+    "tags": [
+     "мікроміцети",
+     "огляд",
+     "зберігання"
+    ],
+    "study_object": "Препаративні форми ентомопатогенних грибів (конідії, бластоспори, мікросклероції).",
+    "methods": "Оглядова стаття.",
+    "main_results": "Сучасні форми — змочувані порошки, масляні дисперсії тощо; головні проблеми — збереження життєздатності під час зберігання й захист пропагул після нанесення.",
+    "for_dissertation": "Розділ про мікроміцети (якщо їх залишать у статті) і п. 3.3.",
+    "description": "Огляд препаративних форм мікоінсектицидів, регуляторних бар'єрів і ринку.",
+    "language": "en",
+    "status": "unread"
+   }
+  },
+  {
+   "files": [
+    {
+     "name": "01_Наукові статті та огляди/Shchetyna_2024_Efektyvnist bioinsektytsydiv_redyska.pdf",
+     "sha256": "ad9c9a838e5675ebc292b9e2bfc97d1c659c245787656c14c381bfc48dcc9609"
+    }
+   ],
+   "file_name": "Shchetyna_2024_Efektyvnist bioinsektytsydiv_redyska.pdf",
+   "sections": [
+    "Ринок і регулювання"
+   ],
+   "source": {
+    "type": "article",
+    "title": "Ефективність біоінсектицидів за різного застосування проти основних шкідників редиски",
+    "authors": [
+     {
+      "family": "Щетина",
+      "given_initials": "С. В."
+     },
+     {
+      "family": "Мостов'як",
+      "given_initials": "І. І."
+     },
+     {
+      "family": "Федоренко",
+      "given_initials": "В. П."
+     }
+    ],
+    "container_title": "Карантин і захист рослин",
+    "year": 2024,
+    "issue": "2 (277)",
+    "pages": "14–20",
+    "doi": "10.36495/2312-0614.2024.2.14-20",
+    "keywords": "біоінсектициди; Bacillus thuringiensis; редиска; технічна ефективність",
+    "tags": [
+     "Україна",
+     "Bt",
+     "польовий дослід"
+    ],
+    "study_object": "Біоінсектициди на основі Bacillus thuringiensis та авермектинів на редисці (гібриди Адель, Еліза, Стеллар).",
+    "methods": "Польові досліди 2020–2022 рр. у відкритому ґрунті, обприскування рослин.",
+    "main_results": "Визначено технічну ефективність біоінсектицидів проти основних шкідників редиски та їхній вплив на урожайність і якість коренеплодів.",
+    "for_dissertation": "Українські дані про бактеріальні препарати для листкового застосування (п. 3.5).",
+    "description": "Ефективність біоінсектицидів на основі B. thuringiensis проти шкідників редиски в Україні.",
+    "language": "uk",
+    "status": "unread"
+   }
+  },
+  {
+   "files": [
+    {
+     "name": "01_Наукові статті та огляди/lalit-r-kumar-production-of-bacillus-thuringiensis.pdf",
+     "sha256": "c0658b2d6069ee2b9479d1b8c6e68c40250783cbf155572a86ac6df3ab56bffa"
+    }
+   ],
+   "file_name": "lalit-r-kumar-production-of-bacillus-thuringiensis.pdf",
+   "sections": [
+    "Інше"
+   ],
+   "source": {
+    "type": "article",
+    "title": "Production of Bacillus thuringiensis based biopesticide formulation using starch industry wastewater (SIW) as substrate: A techno-economic evaluation",
+    "authors": [
+     {
+      "family": "Kumar",
+      "given_initials": "L. R."
+     },
+     {
+      "family": "Ndao",
+      "given_initials": "A."
+     },
+     {
+      "family": "Valéro",
+      "given_initials": "J."
+     },
+     {
+      "family": "Tyagi",
+      "given_initials": "R. D."
+     }
+    ],
+    "container_title": "Bioresource Technology",
+    "year": 2019,
+    "volume": "294",
+    "pages": "Art. 122144",
+    "doi": "10.1016/j.biortech.2019.122144",
+    "keywords": "biopesticide; Bacillus thuringiensis; starch industry wastewater; economic evaluation",
+    "tags": [
+     "Bt",
+     "виробництво",
+     "економіка"
+    ],
+    "study_object": "Виробництво препаративної форми Bt на стічних водах крохмального виробництва.",
+    "methods": "Пілотний ферментер 2000 л; техніко-економічне моделювання.",
+    "main_results": "Собівартість 2,54 дол./л (20,2 млрд МО/л) за 5 млн л на рік; окупність менше 5 років за ціни 15 дол./л.",
+    "for_dissertation": "Вступ/перспективи: здешевлення виробництва бактеріальних препаратів.",
+    "description": "Техніко-економічна оцінка виробництва Bt-препарату на стічних водах крохмального виробництва.",
+    "language": "en",
+    "status": "unread"
+   }
+  },
+  {
+   "files": [
+    {
+     "name": "01_Наукові статті та огляди/lucas-guedes-silva-innovative-sustainable-bioreactor.pdf",
+     "sha256": "914ef832a0000d36917acfe73f9d493f16a96330ce90276e88047483d6563b8e"
+    }
+   ],
+   "file_name": "lucas-guedes-silva-innovative-sustainable-bioreactor.pdf",
+   "sections": [
+    "Тверді та полімерні форми",
+    "Стабільність, УФ-захист, зберігання"
+   ],
+   "source": {
+    "type": "article",
+    "title": "Innovative sustainable bioreactor-in-a-granule formulation of Trichoderma asperelloides",
+    "authors": [
+     {
+      "family": "Silva",
+      "given_initials": "L. G."
+     },
+     {
+      "family": "Camargo",
+      "given_initials": "R. C."
+     },
+     {
+      "family": "Mascarin",
+      "given_initials": "G. M."
+     },
+     {
+      "family": "Favaro",
+      "given_initials": "C. P."
+     },
+     {
+      "family": "Nunes",
+      "given_initials": "P. S. O."
+     },
+     {
+      "family": "Farinas",
+      "given_initials": "C. S."
+     },
+     {
+      "family": "Ribeiro",
+      "given_initials": "C."
+     },
+     {
+      "family": "Bettiol",
+      "given_initials": "W."
+     }
+    ],
+    "container_title": "Applied Microbiology and Biotechnology",
+    "year": 2024,
+    "volume": "108",
+    "pages": "Art. 458",
+    "doi": "10.1007/s00253-024-13261-9",
+    "keywords": "Trichoderma; granule; rice flour; bentonite; shelf life",
+    "tags": [
+     "гранули",
+     "бентоніт",
+     "мікроміцети"
+    ],
+    "study_object": "Гранульовані форми Trichoderma asperelloides CMAA1584 на рисовому борошні; Sclerotinia sclerotiorum.",
+    "methods": "Ферментація, екструзія та сушіння гранул з добавками (лецитин, Break-Thru, бентоніт, компост).",
+    "main_results": "Гранули працюють як «мікробіореактор»: вторинна споруляція in situ, подовжений термін зберігання, контроль S. sclerotiorum; вихід 2,6×10⁹ КУО/г.",
+    "for_dissertation": "Приклад твердої гранульованої форми з бентонітом (п. 3.2, таблиця).",
+    "description": "Гранули «біореактор у гранулі» з Trichoderma: споруляція в ґрунті та подовжена стабільність.",
+    "language": "en",
+    "status": "unread"
+   }
+  },
+  {
+   "files": [
+    {
+     "name": "01_Наукові статті та огляди/md-saddam-hossain-bacillus-altitudinis-a-sustainable.pdf",
+     "sha256": "6ef12a6875967f4879ad5eeb9066a7ed72421d4bd91b589bed35034c04d4af34"
+    }
+   ],
+   "file_name": "md-saddam-hossain-bacillus-altitudinis-a-sustainable.pdf",
+   "sections": [
+    "Інше"
+   ],
+   "source": {
+    "type": "article",
+    "title": "Bacillus altitudinis: a sustainable mosquito controlling biopesticide isolated from the rhizospheric soil of Nypa fruticans in mangrove forest",
+    "authors": [
+     {
+      "family": "Hossain",
+      "given_initials": "M. S."
+     },
+     {
+      "family": "Anjum",
+      "given_initials": "M. F."
+     },
+     {
+      "family": "Rabbani",
+      "given_initials": "M. A."
+     },
+     {
+      "family": "Hasan",
+      "given_initials": "M. R."
+     },
+     {
+      "family": "Sohag",
+      "given_initials": "M. M. H."
+     },
+     {
+      "family": "Tasnim",
+      "given_initials": "N."
+     },
+     {
+      "family": "Karmakar",
+      "given_initials": "D."
+     },
+     {
+      "family": "Akter",
+      "given_initials": "S."
+     },
+     {
+      "family": "Rahman",
+      "given_initials": "M. M."
+     },
+     {
+      "family": "Karim",
+      "given_initials": "M. R."
+     }
+    ],
+    "container_title": "BMC Microbiology",
+    "year": 2025,
+    "volume": "25",
+    "pages": "Art. 733",
+    "doi": "10.1186/s12866-025-04168-0",
+    "keywords": "Bacillus altitudinis; larvicidal activity; mosquitoes",
+    "tags": [
+     "Bacillus",
+     "ларвіцид"
+    ],
+    "study_object": "Штами Bacillus з мангрових ґрунтів Бангладеш; личинки Aedes aegypti і Culex quinquefasciatus.",
+    "methods": "Ізоляція, 16S rRNA, біохімічні тести, ларвіцидні біотести, тест на Artemia salina, WGS.",
+    "main_results": "Найкращий ларвіцидний агент — B. altitudinis, нетоксичний для A. salina.",
+    "for_dissertation": "Поза предметом статті (захист від комарів); лише як приклад нового бактеріального агента.",
+    "description": "B. altitudinis як новий бактеріальний ларвіцид проти комарів.",
+    "language": "en",
+    "status": "unread"
+   }
+  },
+  {
+   "files": [
+    {
+     "name": "01_Наукові статті та огляди/molecules-26-03873-v2.pdf",
+     "sha256": "be145efc3669f720728d21fcc61bd9c94db4623363c50ab1278b2983e307b162"
+    }
+   ],
+   "file_name": "molecules-26-03873-v2.pdf",
+   "sections": [
+    "Тверді та полімерні форми",
+    "Інкапсуляція, нано- та новітні носії"
+   ],
+   "source": {
+    "type": "article",
+    "title": "Polysaccharide Matrices for the Encapsulation of Tetrahydrocurcumin—Potential Application as Biopesticide against Fusarium graminearum",
+    "authors": [
+     {
+      "family": "Loron",
+      "given_initials": "A."
+     },
+     {
+      "family": "Navikaitė-Šnipaitienė",
+      "given_initials": "V."
+     },
+     {
+      "family": "Rosliuk",
+      "given_initials": "D."
+     },
+     {
+      "family": "Rutkaitė",
+      "given_initials": "R."
+     },
+     {
+      "family": "Gardrat",
+      "given_initials": "C."
+     },
+     {
+      "family": "Coma",
+      "given_initials": "V."
+     }
+    ],
+    "container_title": "Molecules",
+    "year": 2021,
+    "volume": "26",
+    "issue": "13",
+    "pages": "Art. 3873",
+    "doi": "10.3390/molecules26133873",
+    "keywords": "chitosan; OSA-starch; spray-drying; freeze-drying; Fusarium graminearum",
+    "tags": [
+     "полісахариди",
+     "хітозан",
+     "інкапсуляція"
+    ],
+    "study_object": "Тетрагідрокуркумін у матрицях хітозану та OSA-крохмалю; Fusarium graminearum.",
+    "methods": "Розпилювальне та ліофільне сушіння; SEM, кінетика вивільнення, антифунгальні тести.",
+    "main_results": "Хітозанові частинки (обох типів сушіння) мали найкращу антифунгальну дію; ліофілізований OSA-крохмаль краще утримував, але гірше захищав сполуку.",
+    "for_dissertation": "Полісахаридні носії (хітозан, модифікований крохмаль) для п. 3.2/3.4.",
+    "description": "Полісахаридні матриці (хітозан, OSA-крохмаль) для інкапсуляції біофунгіциду.",
+    "language": "en",
+    "status": "unread"
+   }
+  },
+  {
+   "files": [
+    {
+     "name": "01_Наукові статті та огляди/molecules-26-04003-v2.pdf",
+     "sha256": "5d25b0ac18afa8570447410501986ae23445bf390a77f9fb552e4bfeb33ea630"
+    }
+   ],
+   "file_name": "molecules-26-04003-v2.pdf",
+   "sections": [
+    "Інкапсуляція, нано- та новітні носії"
+   ],
+   "source": {
+    "type": "article",
+    "title": "Biopesticide Encapsulation Using Supercritical CO2: A Comprehensive Review and Potential Applications",
+    "authors": [
+     {
+      "family": "do Nascimento Junior",
+      "given_initials": "D. R."
+     },
+     {
+      "family": "Tabernero",
+      "given_initials": "A."
+     },
+     {
+      "family": "Cabral Albuquerque",
+      "given_initials": "E. C. M."
+     },
+     {
+      "family": "Vieira de Melo",
+      "given_initials": "S. A. B."
+     }
+    ],
+    "container_title": "Molecules",
+    "year": 2021,
+    "volume": "26",
+    "issue": "13",
+    "pages": "Art. 4003",
+    "doi": "10.3390/molecules26134003",
+    "keywords": "encapsulation techniques; controlled release; supercritical fluid technology",
+    "tags": [
+     "інкапсуляція",
+     "надкритичний CO2",
+     "огляд"
+    ],
+    "study_object": "Процеси інкапсуляції біопестицидів.",
+    "methods": "Оглядова стаття.",
+    "main_results": "Порівняно переваги й недоліки поширених методів інкапсуляції; показано потенціал надкритичного CO2 (без органічних розчинників, висока чистота частинок).",
+    "for_dissertation": "П. 3.4: технології іммобілізації та інкапсуляції.",
+    "description": "Огляд методів інкапсуляції біопестицидів з акцентом на надкритичний CO2.",
+    "language": "en",
+    "status": "unread"
+   }
+  },
+  {
+   "files": [
+    {
+     "name": "01_Наукові статті та огляди/Anusha_2024_Bioinoculant formulation technologies.pdf",
+     "sha256": "5f9ee16bc832310b62f26d57229206d5533c0fda2d33e03de0f47bdd81c3499a"
+    }
+   ],
+   "file_name": "Anusha_2024_Bioinoculant formulation technologies.pdf",
+   "sections": [
+    "Препаративні форми: огляди",
+    "Стабільність, УФ-захист, зберігання"
+   ],
+   "source": {
+    "type": "article",
+    "title": "Revolutionizing agriculture: Innovative bioinoculant formulation technologies for sustainability",
+    "authors": [
+     {
+      "family": "Anusha",
+      "given_initials": "Y. K."
+     },
+     {
+      "family": "Sivakumar",
+      "given_initials": "U."
+     },
+     {
+      "family": "Manoranjitham",
+      "given_initials": "S. K."
+     },
+     {
+      "family": "Senthilkumar",
+      "given_initials": "M."
+     }
+    ],
+    "container_title": "Plant Science Today",
+    "year": 2024,
+    "volume": "11",
+    "issue": "sp4",
+    "pages": "1–12",
+    "doi": "10.14719/pst.5356",
+    "keywords": "bioformulation; carriers; shelf life; bioinoculants",
+    "tags": [
+     "огляд",
+     "носії",
+     "термін придатності"
+    ],
+    "study_object": "Біоформуляції біоконтрольних агентів і біодобрив.",
+    "methods": "Оглядова стаття.",
+    "main_results": "Описано процес створення біоформуляції від виділення штаму до виробництва, види форм і носіїв, інноваційні стратегії подовження терміну придатності.",
+    "for_dissertation": "П. 3.1–3.2: носії та їхній вплив на термін придатності.",
+    "description": "Огляд інноваційних технологій біоформуляцій мікробних препаратів.",
+    "language": "en",
+    "status": "unread"
+   }
+  },
+  {
+   "files": [
+    {
+     "name": "01_Наукові статті та огляди/p-s-vimala-devi-development-of-a-water-dispersible.pdf",
+     "sha256": "13ef724956d689c18687f734cde1a8cde9ab19a1d3540ef25c18503f2cc3db7a"
+    }
+   ],
+   "file_name": "p-s-vimala-devi-development-of-a-water-dispersible.pdf",
+   "sections": [
+    "Тверді та полімерні форми"
+   ],
+   "source": {
+    "type": "article",
+    "title": "Development of a water dispersible granule (WDG) formulation of Bacillus thuringiensis for the management of Spodoptera litura (Fab.)",
+    "authors": [
+     {
+      "family": "Vimala Devi",
+      "given_initials": "P. S."
+     },
+     {
+      "family": "Duraimurugan",
+      "given_initials": "P."
+     },
+     {
+      "family": "Chandrika",
+      "given_initials": "K. S. V. P."
+     },
+     {
+      "family": "Vineela",
+      "given_initials": "V."
+     }
+    ],
+    "container_title": "Biocontrol Science and Technology",
+    "year": 2021,
+    "doi": "10.1080/09583157.2021.1895073",
+    "keywords": "Bacillus thuringiensis; water dispersible granules; starch; guar gum",
+    "tags": [
+     "Bt",
+     "WDG",
+     "крохмаль"
+    ],
+    "study_object": "Вододиспергована гранульована форма штаму DOR Bt-127 (B. thuringiensis var. kurstaki); Spodoptera litura.",
+    "methods": "Агломерація й сушіння з гуаровою камедью (зв'язувач), Tween-80 (змочувач), крохмалем (носій); XRD, FTIR, біотести.",
+    "main_results": "WDG добре змочується, вміст білка 134,7 мг/г, активність 74 200 SU/мг; ефективна проти S. litura.",
+    "for_dissertation": "Ключовий приклад сипкої полімерної форми бактеріального препарату для таблиці п. 3.2. У PDF — онлайн-версія без тому й сторінок; допишіть їх.",
+    "description": "Вододиспергована гранульована форма Bt на крохмалі та гуаровій камеді.",
+    "language": "en",
+    "status": "unread"
+   }
+  },
+  {
+   "files": [
+    {
+     "name": "01_Наукові статті та огляди/plants-11-03172.pdf",
+     "sha256": "fcfa811ca68a19bae6834a6df017afcbfc78f862d48eb54293c0aa5e64024728"
+    }
+   ],
+   "file_name": "plants-11-03172.pdf",
+   "sections": [
+    "Препаративні форми: огляди"
+   ],
+   "source": {
+    "type": "article",
+    "title": "An Alternative Source of Biopesticides and Improvement in Their Formulation—Recent Advances",
+    "authors": [
+     {
+      "family": "Šunjka",
+      "given_initials": "D."
+     },
+     {
+      "family": "Mechora",
+      "given_initials": "Š."
+     }
+    ],
+    "container_title": "Plants",
+    "year": 2022,
+    "volume": "11",
+    "issue": "22",
+    "pages": "Art. 3172",
+    "doi": "10.3390/plants11223172",
+    "keywords": "biopesticides; organic waste; formulation; improvement",
+    "tags": [
+     "огляд",
+     "препаративні форми"
+    ],
+    "study_object": "Нові діючі речовини біопестицидів і вдосконалення форм.",
+    "methods": "Оглядова стаття.",
+    "main_results": "Показано можливості нових джерел активних речовин (зокрема відходи) та покращення ефективності й стабільності за рахунок форми.",
+    "for_dissertation": "П. 3.1 і 3.4.",
+    "description": "Огляд альтернативних джерел біопестицидів і вдосконалення їхніх препаративних форм.",
+    "language": "en",
+    "status": "unread"
+   }
+  },
+  {
+   "files": [
+    {
+     "name": "01_Наукові статті та огляди/plants-13-02762-v2.pdf",
+     "sha256": "19b60aa69872d80f879d401722991d3f2b31d8c7728699d2ad4c9ef5a1ab59a0"
+    }
+   ],
+   "file_name": "plants-13-02762-v2.pdf",
+   "sections": [
+    "Біопестициди: значення, безпека, огляди"
+   ],
+   "source": {
+    "type": "article",
+    "title": "Agricultural Pest Management: The Role of Microorganisms in Biopesticides and Soil Bioremediation",
+    "authors": [
+     {
+      "family": "Vermelho",
+      "given_initials": "A. B."
+     },
+     {
+      "family": "Moreira",
+      "given_initials": "J. V."
+     },
+     {
+      "family": "Akamine",
+      "given_initials": "I. T."
+     },
+     {
+      "family": "Cardoso",
+      "given_initials": "V. S."
+     },
+     {
+      "family": "Mansoldo",
+      "given_initials": "F. R. P."
+     }
+    ],
+    "container_title": "Plants",
+    "year": 2024,
+    "volume": "13",
+    "issue": "19",
+    "pages": "Art. 2762",
+    "doi": "10.3390/plants13192762",
+    "keywords": "microbial biopesticides; bioremediation; Bacillus; baculoviruses",
+    "tags": [
+     "огляд",
+     "мікробні біопестициди"
+    ],
+    "study_object": "Мікробні біопестициди (бактерії, гриби, бакуловіруси) та біоремедіація ґрунтів.",
+    "methods": "Оглядова стаття.",
+    "main_results": "Узагальнено роль мікроорганізмів у захисті рослин і способи застосування (у ґрунт, обприскування тощо).",
+    "for_dissertation": "Вступ: біологічні агенти та мета їх застосування (схема).",
+    "description": "Огляд ролі мікроорганізмів у біопестицидах і біоремедіації ґрунтів.",
+    "language": "en",
+    "status": "unread"
+   }
+  },
+  {
+   "files": [
+    {
+     "name": "01_Наукові статті та огляди/processes-14-01996.pdf",
+     "sha256": "0b3616e4eed2de370d56600e6882a6ef49677bfdb9bd0049f0a0076cffb1f654"
+    }
+   ],
+   "file_name": "processes-14-01996.pdf",
+   "sections": [
+    "Тверді та полімерні форми",
+    "Стабільність, УФ-захист, зберігання"
+   ],
+   "source": {
+    "type": "article",
+    "title": "Development of Wettable Powder Formulation of Bacillus subtilis and Its Biological Control Against Fungal Phytopathogens",
+    "authors": [
+     {
+      "family": "Luft",
+      "given_initials": "L."
+     },
+     {
+      "family": "Tonato",
+      "given_initials": "D."
+     },
+     {
+      "family": "Valente",
+      "given_initials": "I. L."
+     },
+     {
+      "family": "Rother",
+      "given_initials": "L. W."
+     },
+     {
+      "family": "Escobar",
+      "given_initials": "L. A. S."
+     },
+     {
+      "family": "Mazutti",
+      "given_initials": "M. A."
+     }
+    ],
+    "container_title": "Processes",
+    "year": 2026,
+    "volume": "14",
+    "issue": "12",
+    "pages": "Art. 1996",
+    "doi": "10.3390/pr14121996",
+    "keywords": "Bacillus subtilis; wettable powder; freeze-drying; maltodextrin",
+    "tags": [
+     "B. subtilis",
+     "WP",
+     "мальтодекстрин"
+    ],
+    "study_object": "Змочуваний порошок на основі культуральної рідини Bacillus subtilis з мальтодекстрином.",
+    "methods": "Ліофільна мікроінкапсуляція; розчинність, змочуваність, гігроскопічність, SEM, FTIR; антифунгальні тести (Fusarium, Rhizoctonia, Sclerotinia).",
+    "main_results": "100 % розчинність, змочування 2 с, гігроскопічність 3,86 %; порошок і його леткі сполуки пригнічували фітопатогени.",
+    "for_dissertation": "Ключовий приклад сипкої полімерної форми бактеріального препарату (таблиця п. 3.2).",
+    "description": "Змочуваний порошок B. subtilis з мальтодекстрином (ліофілізація) проти грибних фітопатогенів.",
+    "language": "en",
+    "status": "unread"
+   }
+  },
+  {
+   "files": [
+    {
+     "name": "01_Наукові статті та огляди/s00253-023-12687-x.pdf",
+     "sha256": "fa54f8e970e4c97beaaa09581b97a3cb175d98b99a0e4faccc958be4464fb119"
+    }
+   ],
+   "file_name": "s00253-023-12687-x.pdf",
+   "sections": [
+    "Тверді та полімерні форми",
+    "Інкапсуляція, нано- та новітні носії"
+   ],
+   "source": {
+    "type": "article",
+    "title": "Biotechnological development of Trichoderma-based formulations for biological control",
+    "authors": [
+     {
+      "family": "Martinez",
+      "given_initials": "Y."
+     },
+     {
+      "family": "Ribera",
+      "given_initials": "J."
+     },
+     {
+      "family": "Schwarze",
+      "given_initials": "F. W. M. R."
+     },
+     {
+      "family": "De France",
+      "given_initials": "K."
+     }
+    ],
+    "container_title": "Applied Microbiology and Biotechnology",
+    "year": 2023,
+    "volume": "107",
+    "pages": "5595–5612",
+    "doi": "10.1007/s00253-023-12687-x",
+    "keywords": "Trichoderma; carriers; freeze drying; spray drying; microencapsulation",
+    "tags": [
+     "мікроміцети",
+     "носії",
+     "інкапсуляція"
+    ],
+    "study_object": "Препаративні форми Trichoderma spp.",
+    "methods": "Міні-огляд.",
+    "main_results": "Розглянуто носії, що подовжують термін придатності й життєздатність, ліофільне, розпилювальне сушіння та псевдозріджений шар, мікроінкапсуляцію для форм нового покоління.",
+    "for_dissertation": "Носії та технології сушіння (п. 3.2, 3.4).",
+    "description": "Огляд біотехнологічної розробки препаративних форм на основі Trichoderma.",
+    "language": "en",
+    "status": "unread"
+   }
+  },
+  {
+   "files": [
+    {
+     "name": "01_Наукові статті та огляди/s41522-026-01155-9_reference.pdf",
+     "sha256": "1c7dddd2b82b3dfa9e7ec7e172bf16f813d135b8bc72aa237631b0be9ccd9ed2"
+    }
+   ],
+   "file_name": "s41522-026-01155-9_reference.pdf",
+   "sections": [
+    "Інше"
+   ],
+   "source": {
+    "type": "article",
+    "title": "The gut bacterium Stenotrophomonas maltophilia enhances insect resistance to RNA biopesticides and baculoviruses via secreted nucleases",
+    "authors": [
+     {
+      "family": "Guan",
+      "given_initials": "R."
+     },
+     {
+      "family": "Xu",
+      "given_initials": "S."
+     },
+     {
+      "family": "Han",
+      "given_initials": "R."
+     },
+     {
+      "family": "Fu",
+      "given_initials": "X."
+     },
+     {
+      "family": "Li",
+      "given_initials": "X."
+     },
+     {
+      "family": "Miao",
+      "given_initials": "X."
+     },
+     {
+      "family": "An",
+      "given_initials": "S."
+     },
+     {
+      "family": "Wei",
+      "given_initials": "Y."
+     },
+     {
+      "family": "Li",
+      "given_initials": "H."
+     }
+    ],
+    "container_title": "npj Biofilms and Microbiomes",
+    "year": 2026,
+    "doi": "10.1038/s41522-026-01155-9",
+    "keywords": "RNA biopesticides; baculovirus; gut microbiota; nucleases",
+    "tags": [
+     "РНК-біопестициди",
+     "резистентність"
+    ],
+    "study_object": "Кишкова бактерія бавовняної совки Stenotrophomonas maltophilia Sma2.",
+    "methods": "Ізоляція, біотести, аналіз секретованих нуклеаз.",
+    "main_results": "Sma2 підвищує стійкість комах до РНК-біопестицидів і бакуловірусів через нуклеази EN1–EN3.",
+    "for_dissertation": "Поза основним предметом; аргумент на користь захисних компонентів у формі. Стаття в друці — сторінок ще немає.",
+    "description": "Кишкова бактерія комах знижує ефективність РНК-біопестицидів і бакуловірусів.",
+    "language": "en",
+    "status": "unread"
+   }
+  },
+  {
+   "files": [
+    {
+     "name": "01_Наукові статті та огляди/s41598-018-28626-0.pdf",
+     "sha256": "761572eab14f90e74914d6d92c58d4e69b08d816a99972eae6bf3a1448b94ba2"
+    }
+   ],
+   "file_name": "s41598-018-28626-0.pdf",
+   "sections": [
+    "Препаративні форми: огляди",
+    "Стабільність, УФ-захист, зберігання"
+   ],
+   "source": {
+    "type": "article",
+    "title": "Microemulsion formulation of a new biopesticide to control the diamondback moth (Lepidoptera: Plutellidae)",
+    "authors": [
+     {
+      "family": "Shao",
+      "given_initials": "H."
+     },
+     {
+      "family": "Xi",
+      "given_initials": "N."
+     },
+     {
+      "family": "Zhang",
+      "given_initials": "Y."
+     }
+    ],
+    "container_title": "Scientific Reports",
+    "year": 2018,
+    "volume": "8",
+    "pages": "Art. 10565",
+    "doi": "10.1038/s41598-018-28626-0",
+    "keywords": "microemulsion; norcantharidin; Plutella xylostella",
+    "tags": [
+     "мікроемульсія",
+     "рідка форма"
+    ],
+    "study_object": "Мікроемульсія норкантаридину; капустяна міль.",
+    "methods": "Псевдотернарні фазові діаграми, фізико-хімічна стабільність, біотести.",
+    "main_results": "Стабільна мікроемульсія (точка помутніння > 72 °C), LC50 12,477 мг/л.",
+    "for_dissertation": "Приклад рідкої форми (мікроемульсія) і показників її стабільності.",
+    "description": "Мікроемульсійна форма норкантаридину проти капустяної молі.",
+    "language": "en",
+    "status": "unread"
+   }
+  },
+  {
+   "files": [
+    {
+     "name": "01_Наукові статті та огляди/s41598-020-70293-7.pdf",
+     "sha256": "0b6316876f7b18b7c4ca683bfa23f7f3f2e8936bfd21b1b776bc46fa6dda3cb9"
+    }
+   ],
+   "file_name": "s41598-020-70293-7.pdf",
+   "sections": [
+    "Стабільність, УФ-захист, зберігання",
+    "Інкапсуляція, нано- та новітні носії"
+   ],
+   "source": {
+    "type": "article",
+    "title": "A novel formulation technology for baculoviruses protects biopesticide from degradation by ultraviolet radiation",
+    "authors": [
+     {
+      "family": "Wilson",
+      "given_initials": "K."
+     },
+     {
+      "family": "Grzywacz",
+      "given_initials": "D."
+     },
+     {
+      "family": "Curcic",
+      "given_initials": "I."
+     },
+     {
+      "family": "Scoates",
+      "given_initials": "F."
+     },
+     {
+      "family": "Harper",
+      "given_initials": "K."
+     },
+     {
+      "family": "Rice",
+      "given_initials": "A."
+     },
+     {
+      "family": "Paul",
+      "given_initials": "N."
+     },
+     {
+      "family": "Dillon",
+      "given_initials": "A."
+     }
+    ],
+    "container_title": "Scientific Reports",
+    "year": 2020,
+    "volume": "10",
+    "pages": "Art. 13301",
+    "doi": "10.1038/s41598-020-70293-7",
+    "keywords": "baculovirus; microencapsulation; ENTOSTAT wax; titanium dioxide; UV protection",
+    "tags": [
+     "УФ-захист",
+     "TiO2",
+     "мікроінкапсуляція"
+    ],
+    "study_object": "Бакуловірус, мікрокапсульований у віску ENTOSTAT з TiO2.",
+    "methods": "Імітоване сонячне світло; лабораторні біотести й польові досліди на капусті.",
+    "main_results": "Капсула захищає ДНК вірусу від УФ і розчиняється в лужному кишечнику комахи; активність зберігалася значно довше за неформульований вірус.",
+    "for_dissertation": "Ключовий приклад УФ-протектора у формі для обробки по листу (розділ «Перспективи»).",
+    "description": "Мікрокапсули з воску й TiO2 захищають біопестицид від УФ-деградації.",
+    "language": "en",
+    "status": "unread"
+   }
+  },
+  {
+   "files": [
+    {
+     "name": "01_Наукові статті та огляди/sayed2017.pdf",
+     "sha256": "06b335d2474e5ffd3c1908c005c80bc068251c5c433ba7bb93dc3f0f8049d439"
+    }
+   ],
+   "file_name": "sayed2017.pdf",
+   "sections": [
+    "Стабільність, УФ-захист, зберігання",
+    "Препаративні форми: огляди"
+   ],
+   "source": {
+    "type": "article",
+    "title": "Comparing formulations for a mixed-microbial biopesticide with Bacillus thuringiensis var. kurstaki and Beauveria bassiana blastospores",
+    "authors": [
+     {
+      "family": "Sayed",
+      "given_initials": "A. M. M."
+     },
+     {
+      "family": "Behle",
+      "given_initials": "R. W."
+     }
+    ],
+    "container_title": "Archives of Phytopathology and Plant Protection",
+    "year": 2017,
+    "doi": "10.1080/03235408.2017.1372942",
+    "keywords": "Bacillus thuringiensis; Beauveria bassiana; spray drying; UV protection; biochar; chitosan",
+    "tags": [
+     "Bt",
+     "УФ-захист",
+     "сумішеві форми"
+    ],
+    "study_object": "Змішана форма Bt kurstaki та бластоспор Beauveria bassiana (1:1); Trichoplusia ni на капусті.",
+    "methods": "Скринінг 12 інгредієнтів у формах розпилювального сушіння: активність, життєздатність, УФ-стійкість, суспендованість.",
+    "main_results": "Найкращу ефективність і стійкість до сонячного світла дали форми з біовугіллям, хітозаном і сухим знежиреним молоком.",
+    "for_dissertation": "Компоненти-протектори (хітозан, біовугілля) для схеми п. 3.1 і розділу «Перспективи». У PDF — онлайн-версія без тому й сторінок; допишіть їх.",
+    "description": "Порівняння допоміжних речовин для сумісної форми Bt і B. bassiana: УФ-стійкість і суспендованість.",
+    "language": "en",
+    "status": "unread"
+   }
+  },
+  {
+   "files": [
+    {
+     "name": "01_Наукові статті та огляди/Ishchenko_2025_Resursnyi potentsial nepryidatnykh pestytsydiv.pdf",
+     "sha256": "e8bfaba645fdfb513095f51564db50d65346c7d27ab20f32c945cfcab90cd454"
+    }
+   ],
+   "file_name": "Ishchenko_2025_Resursnyi potentsial nepryidatnykh pestytsydiv.pdf",
+   "sections": [
+    "Інше"
+   ],
+   "source": {
+    "type": "article",
+    "title": "Ресурсний потенціал непридатних пестицидів",
+    "authors": [
+     {
+      "family": "Іщенко",
+      "given_initials": "В. А."
+     },
+     {
+      "family": "Петрук",
+      "given_initials": "Р. В."
+     },
+     {
+      "family": "Тітов",
+      "given_initials": "Т. С."
+     }
+    ],
+    "container_title": "Вісник Вінницького політехнічного інституту",
+    "year": 2025,
+    "issue": "1",
+    "pages": "35–42",
+    "doi": "10.31649/1997-9266-2025-178-1-35-42",
+    "keywords": "непридатні пестициди; утилізація; Україна",
+    "tags": [
+     "Україна",
+     "хімічні пестициди"
+    ],
+    "study_object": "Непридатні хімічні пестициди в Україні.",
+    "methods": "Аналіз статистики використання пестицидів і способів утилізації.",
+    "main_results": "Обсяг пестицидів в Україні ≈105 тис. т/рік (гербіциди 60, фунгіциди 17, інсектициди 10); найбільша частка — ацетохлор; 4–5 тис. т потрапляє у відходи.",
+    "for_dissertation": "Вступ: масштаби використання хімічних пестицидів в Україні (контраст із біопрепаратами).",
+    "description": "Обсяги й ресурсний потенціал непридатних пестицидів в Україні.",
+    "language": "uk",
+    "status": "unread"
+   }
+  },
+  {
+   "files": [
+    {
+     "name": "01_Наукові статті та огляди/Quiroga-Cubides_2022_Virus-based biopesticide formulation Tuta absoluta.pdf",
+     "sha256": "ef18b0d0622cfbf6a88126c401dfdd3391d2f7d1078d61c9bdfa53114c1710e1"
+    }
+   ],
+   "file_name": "Quiroga-Cubides_2022_Virus-based biopesticide formulation Tuta absoluta.pdf",
+   "sections": [
+    "Стабільність, УФ-захист, зберігання"
+   ],
+   "source": {
+    "type": "article",
+    "title": "Formulation Process Analysis of a Virus-based Biopesticide to Control the Tomato leafminer Tuta absoluta",
+    "authors": [
+     {
+      "family": "Quiroga-Cubides",
+      "given_initials": "G."
+     },
+     {
+      "family": "Araque-Echeverry",
+      "given_initials": "G."
+     },
+     {
+      "family": "Ruíz Moreno",
+      "given_initials": "C."
+     },
+     {
+      "family": "Barrera Cubillos",
+      "given_initials": "G. P."
+     },
+     {
+      "family": "Gómez-Valderrama",
+      "given_initials": "J."
+     },
+     {
+      "family": "Cuartas-Otálora",
+      "given_initials": "P. E."
+     },
+     {
+      "family": "Gómez Álvarez",
+      "given_initials": "M. I."
+     },
+     {
+      "family": "Cortés-Rojas",
+      "given_initials": "D."
+     }
+    ],
+    "container_title": "Brazilian Archives of Biology and Technology",
+    "year": 2022,
+    "volume": "65",
+    "pages": "Art. e22210342",
+    "doi": "10.1590/1678-4324-2022210342",
+    "keywords": "granulovirus; formulation; scale-up; quality control; Q-PCR",
+    "tags": [
+     "віруси",
+     "контроль якості",
+     "масштабування"
+    ],
+    "study_object": "Біопестицид на основі гранульовірусу Phthorimaea operculella проти Tuta absoluta.",
+    "methods": "Аналіз одиничних операцій виробництва; Q-PCR для кількісного визначення вірусу; змішування, сушіння, масштабування.",
+    "main_results": "Q-PCR дозволив контролювати концентрацію вірусу в діючій речовині (5,34×10⁹ ОТ/мл) і готовому продукті (>1,6×10⁹ ОТ/мл), визначити час змішування (8 хв) і режим сушіння.",
+    "for_dissertation": "Приклад контролю якості препаративної форми під час виробництва (п. 3.3).",
+    "description": "Аналіз технологічного процесу створення препаративної форми вірусного біопестициду й контроль якості.",
+    "language": "en",
+    "status": "unread"
+   }
+  },
+  {
+   "files": [
+    {
+     "name": "01_Наукові статті та огляди/Opara_Pestytsydy - shkoda chy korist.pdf",
+     "sha256": "991ac20a4d920dd831b0b96729c66302f8dcc9cee7321c3b1b4d89244457a664"
+    }
+   ],
+   "file_name": "Opara_Pestytsydy - shkoda chy korist.pdf",
+   "sections": [
+    "Інше"
+   ],
+   "source": {
+    "type": "other",
+    "title": "Пестициди – шкода чи користь?",
+    "authors": [
+     {
+      "family": "Опара",
+      "given_initials": "Н. М."
+     }
+    ],
+    "publisher": "Полтавська державна аграрна академія",
+    "place": "Полтава",
+    "keywords": "пестициди; безпека; довкілля",
+    "tags": [
+     "Україна",
+     "хімічні пестициди"
+    ],
+    "study_object": "Застосування хімічних пестицидів і їхній вплив на довкілля.",
+    "methods": "Науково-популярна стаття.",
+    "main_results": "Розглянуто користь і шкоду пестицидів, заходи профілактики негативних наслідків.",
+    "for_dissertation": "Вступ (контекст). Вихідних даних у PDF немає — уточніть рік і видання.",
+    "description": "Науково-популярна стаття про користь і шкоду пестицидів.",
+    "language": "uk",
+    "status": "unread"
+   }
+  },
+  {
+   "files": [
+    {
+     "name": "02_Книги, посібники, збірники/Zbirnyk_Suchasni tendentsii vykorystannia pestytsydiv.pdf",
+     "sha256": "746182ede7590975235ad261c26d798e388a0c46731c7b96ef0d4707bfef51c9"
+    }
+   ],
+   "file_name": "Zbirnyk_Suchasni tendentsii vykorystannia pestytsydiv.pdf",
+   "sections": [
+    "Інше"
+   ],
+   "source": {
+    "type": "conference",
+    "title": "Сучасні тенденції використання пестицидів",
+    "authors": [
+     {
+      "family": "Бунякіна",
+      "given_initials": "Н. В."
+     },
+     {
+      "family": "Дрючко",
+      "given_initials": "О. Г."
+     },
+     {
+      "family": "Бурда",
+      "given_initials": "А. Ю."
+     }
+    ],
+    "container_title": "Збірник наукових праць Всеукраїнської науково-практичної конференції «XVIII Полтавські хімічні читання» (м. Полтава, 12–13 березня 2025 р.)",
+    "place": "Полтава",
+    "year": 2025,
+    "pages": "13–16",
+    "keywords": "пестициди; Україна; утилізація",
+    "tags": [
+     "Україна",
+     "тези"
+    ],
+    "study_object": "Використання пестицидів в Україні.",
+    "methods": "Тези доповіді.",
+    "main_results": "Розглянуто структуру використання пестицидів за діючими речовинами та методи утилізації.",
+    "for_dissertation": "Вступ (контекст хімічного захисту в Україні). Сторінки перевірте за збірником.",
+    "description": "Тези про сучасні тенденції використання пестицидів в Україні.",
+    "language": "uk",
+    "status": "unread"
+   }
+  },
+  {
+   "files": [
+    {
+     "name": "02_Книги, посібники, збірники/Zbirnyk_Pestytsydy ikh vplyv na dovkillia ta zdorovia.pdf",
+     "sha256": "3447e0a4ba1c6834d01c5d1b05a0e91386a838426773ddc3bb6ece463ba3fa59"
+    }
+   ],
+   "file_name": "Zbirnyk_Pestytsydy ikh vplyv na dovkillia ta zdorovia.pdf",
+   "sections": [
+    "Біопестициди: значення, безпека, огляди"
+   ],
+   "source": {
+    "type": "conference",
+    "title": "Пестициди, їх вплив на довкілля та здоров'я людини",
+    "authors": [
+     {
+      "family": "Бурда",
+      "given_initials": "А. Ю."
+     },
+     {
+      "family": "Бунякіна",
+      "given_initials": "Н. В."
+     },
+     {
+      "family": "Дрючко",
+      "given_initials": "О. Г."
+     }
+    ],
+    "container_title": "Екологія. Довкілля. Енергозбереження : матеріали V Міжнар. наук.-практ. конф. (м. Полтава, 19 грудня 2024 р.)",
+    "publisher": "НУПП",
+    "place": "Полтава",
+    "year": 2024,
+    "pages": "78–80",
+    "keywords": "пестициди; біопестициди; здоров'я; довкілля",
+    "tags": [
+     "Україна",
+     "тези",
+     "безпека"
+    ],
+    "study_object": "Пестициди (зокрема біологічні) та їхній вплив.",
+    "methods": "Тези доповіді.",
+    "main_results": "Наведено класифікацію пестицидів за походженням, поділ біопестицидів на живі організми та біологічно активні речовини, гігієнічну класифікацію.",
+    "for_dissertation": "Вступ і розділ про безпеку.",
+    "description": "Тези про вплив пестицидів на довкілля й здоров'я людини.",
+    "language": "uk",
+    "status": "unread"
+   }
+  },
+  {
+   "files": [
+    {
+     "name": "02_Книги, посібники, збірники/Bejarano_Puopolo_2020_Bioformulation of microbial biocontrol agents (chapter).pdf",
+     "sha256": "be4163d3005e5ae87dbfc95d0cd1df64225f2784ee4433c20d2fabe459b4c54d"
+    }
+   ],
+   "file_name": "Bejarano_Puopolo_2020_Bioformulation of microbial biocontrol agents (chapter).pdf",
+   "sections": [
+    "Препаративні форми: огляди"
+   ],
+   "source": {
+    "type": "book_chapter",
+    "title": "Bioformulation of Microbial Biocontrol Agents for a Sustainable Agriculture",
+    "authors": [
+     {
+      "family": "Bejarano",
+      "given_initials": "A."
+     },
+     {
+      "family": "Puopolo",
+      "given_initials": "G."
+     }
+    ],
+    "container_title": "How Research Can Stimulate the Development of Commercial Biological Control Against Plant Diseases / ed. by A. De Cal, P. Melgarejo, N. Magan. (Progress in Biological Control; vol. 21)",
+    "publisher": "Springer",
+    "place": "Cham",
+    "year": 2020,
+    "pages": "275–293",
+    "doi": "10.1007/978-3-030-53238-3_16",
+    "keywords": "bioformulation; biocontrol agents; carriers; shelf life",
+    "tags": [
+     "розділ книги",
+     "препаративні форми",
+     "носії"
+    ],
+    "study_object": "Біоформуляції мікробних агентів біоконтролю хвороб рослин.",
+    "methods": "Розділ монографії (огляд).",
+    "main_results": "Описано типи твердих і рідких форм, носії, допоміжні речовини, вимоги до стабільності й терміну придатності комерційних біоконтрольних препаратів.",
+    "for_dissertation": "Одне з базових джерел для п. 3.1 і схеми «форми – носії – допоміжні речовини».",
+    "description": "Розділ про біоформуляції мікробних агентів біоконтролю: форми, носії, стабільність.",
+    "language": "en",
+    "status": "unread"
+   }
+  },
+  {
+   "files": [
+    {
+     "name": "02_Книги, посібники, збірники/NP_pestytsydy_ tekhnichni zasoby _23.pdf",
+     "sha256": "24c090b38e6ee896a11deef53760dee94d3519b9335c78c592439921ecc163c1"
+    }
+   ],
+   "file_name": "NP_pestytsydy_ tekhnichni zasoby _23.pdf",
+   "sections": [
+    "Препаративні форми: огляди"
+   ],
+   "source": {
+    "type": "book",
+    "title": "Сучасні пестициди і технічні засоби їх застосування : навч. посіб.",
+    "authors": [
+     {
+      "family": "Туренко",
+      "given_initials": "В. П."
+     },
+     {
+      "family": "Білик",
+      "given_initials": "М. О."
+     },
+     {
+      "family": "Станкевич",
+      "given_initials": "С. В."
+     },
+     {
+      "family": "Забродіна",
+      "given_initials": "І. В."
+     }
+    ],
+    "publisher": "ПП «Рута»",
+    "place": "Житомир",
+    "year": 2023,
+    "isbn": "978-617-581-573-1",
+    "keywords": "пестициди; фітофармакологія; препаративні форми; біологічні засоби",
+    "tags": [
+     "Україна",
+     "посібник",
+     "препаративні форми"
+    ],
+    "study_object": "Хімічні й біологічні засоби захисту рослин, їхні препаративні форми та техніка застосування.",
+    "methods": "Навчальний посібник.",
+    "main_results": "Висвітлено фітофармакологію, токсиколого-гігієнічні та фізико-хімічні властивості препаратів, класифікацію препаративних форм.",
+    "for_dissertation": "Українська термінологія препаративних форм (КС, Р, ЗП, ВГ тощо) для п. 3.1.",
+    "description": "Навчальний посібник про сучасні пестициди, їхні препаративні форми й техніку застосування.",
+    "language": "uk",
+    "status": "unread",
+    "page_count": 564
+   }
+  },
+  {
+   "files": [
+    {
+     "name": "02_Книги, посібники, збірники/ajay-kumar-microbial-biocontrol-techniques-importance.pdf",
+     "sha256": "0a2824df88ded28db01c929b656af7d71811891e35abd400937543edc84ef047"
+    }
+   ],
+   "file_name": "ajay-kumar-microbial-biocontrol-techniques-importance.pdf",
+   "sections": [
+    "Біопестициди: значення, безпека, огляди"
+   ],
+   "source": {
+    "type": "book",
+    "title": "Microbial Biocontrol Techniques : Importance in Ensuring Food Security",
+    "authors": [
+     {
+      "family": "Kumar",
+      "given_initials": "A.",
+      "role": "editor"
+     },
+     {
+      "family": "Solanki",
+      "given_initials": "M. K.",
+      "role": "editor"
+     }
+    ],
+    "container_title": "Microorganisms for Sustainability; vol. 54",
+    "publisher": "Springer",
+    "place": "Singapore",
+    "year": 2024,
+    "doi": "10.1007/978-981-97-8739-5",
+    "isbn": "978-981-97-8738-8",
+    "keywords": "microbial biocontrol; food security",
+    "tags": [
+     "монографія"
+    ],
+    "study_object": "Мікробні техніки біоконтролю.",
+    "methods": "Колективна монографія.",
+    "main_results": "Збірка розділів про мікробні агенти біоконтролю, їхні механізми, виробництво та застосування.",
+    "for_dissertation": "Довідкове джерело; цитувати окремі розділи.",
+    "description": "Колективна монографія про мікробні методи біоконтролю для продовольчої безпеки.",
+    "language": "en",
+    "status": "unread",
+    "page_count": 386
+   }
+  },
+  {
+   "files": [
+    {
+     "name": "02_Книги, посібники, збірники/n-k-singh-sustainable-agriculture-reviews-60-microbial.pdf",
+     "sha256": "7c7cd291e71841051c1052b7b32b25c156ac2d67698672d8b32b61c7d672c222"
+    }
+   ],
+   "file_name": "n-k-singh-sustainable-agriculture-reviews-60-microbial.pdf",
+   "sections": [
+    "Біопестициди: значення, безпека, огляди"
+   ],
+   "source": {
+    "type": "book",
+    "title": "Sustainable Agriculture Reviews 60 : Microbial Processes in Agriculture",
+    "authors": [
+     {
+      "family": "Singh",
+      "given_initials": "N. K.",
+      "role": "editor"
+     },
+     {
+      "family": "Chattopadhyay",
+      "given_initials": "A.",
+      "role": "editor"
+     },
+     {
+      "family": "Lichtfouse",
+      "given_initials": "E.",
+      "role": "editor"
+     }
+    ],
+    "container_title": "Sustainable Agriculture Reviews; vol. 60",
+    "publisher": "Springer",
+    "place": "Cham",
+    "year": 2023,
+    "doi": "10.1007/978-3-031-24181-9",
+    "isbn": "978-3-031-24180-2",
+    "keywords": "microbial processes; agriculture",
+    "tags": [
+     "монографія"
+    ],
+    "study_object": "Мікробні процеси в сільському господарстві.",
+    "methods": "Колективна монографія.",
+    "main_results": "Розділи про мікробні препарати, біоконтроль і біодобрива.",
+    "for_dissertation": "Довідкове джерело; цитувати окремі розділи.",
+    "description": "Колективна монографія про мікробні процеси в сільському господарстві.",
+    "language": "en",
+    "status": "unread",
+    "page_count": 467
+   }
+  },
+  {
+   "files": [
+    {
+     "name": "02_Книги, посібники, збірники/pankaj-kumar-arora-microbial-technology-for-the.pdf",
+     "sha256": "f8c9feadb92fe3ae59b63026a2882e5c1bfcd5ad05b251c7cf764323ae5cc5d9"
+    }
+   ],
+   "file_name": "pankaj-kumar-arora-microbial-technology-for-the.pdf",
+   "sections": [
+    "Інше"
+   ],
+   "source": {
+    "type": "book",
+    "title": "Microbial Technology for the Welfare of Society",
+    "authors": [
+     {
+      "family": "Arora",
+      "given_initials": "P. K.",
+      "role": "editor"
+     }
+    ],
+    "container_title": "Microorganisms for Sustainability; vol. 17",
+    "publisher": "Springer",
+    "place": "Singapore",
+    "year": 2019,
+    "doi": "10.1007/978-981-13-8844-6",
+    "isbn": "978-981-13-8843-9",
+    "keywords": "microbial technology",
+    "tags": [
+     "монографія"
+    ],
+    "study_object": "Мікробні технології.",
+    "methods": "Колективна монографія.",
+    "main_results": "Розділи про застосування мікроорганізмів, зокрема в захисті рослин.",
+    "for_dissertation": "Довідкове джерело; цитувати окремі розділи.",
+    "description": "Колективна монографія про мікробні технології.",
+    "language": "en",
+    "status": "unread",
+    "page_count": 342
+   }
+  },
+  {
+   "files": [
+    {
+     "name": "02_Книги, посібники, збірники/Збірник міжнародної науково-практичної конференції 16-17 травня 2019.pdf",
+     "sha256": "0f7a200b6ad18cb11244a7022dab4754506e9b60ddb46e24a65042d8935b16df"
+    }
+   ],
+   "file_name": "Збірник міжнародної науково-практичної конференції 16-17 травня 2019.pdf",
+   "sections": [
+    "Ринок і регулювання"
+   ],
+   "source": {
+    "type": "conference",
+    "title": "Вплив на урожайність сої сучасних біопрепаратів комплексної дії",
+    "authors": [
+     {
+      "family": "Чинчик",
+      "given_initials": "О. С."
+     },
+     {
+      "family": "Сідлецька",
+      "given_initials": "О. М."
+     }
+    ],
+    "container_title": "Наука і освіта в інтелектуально-інноваційному розвитку суспільства : матеріали Міжнар. наук.-практ. конф. (м. Бережани, 16–17 травня 2019 р.)",
+    "place": "Бережани",
+    "year": 2019,
+    "pages": "196–199",
+    "keywords": "соя; біопрепарати; урожайність",
+    "tags": [
+     "Україна",
+     "тези"
+    ],
+    "study_object": "Біопрепарати комплексної дії на сої.",
+    "methods": "Тези доповіді (польовий дослід).",
+    "main_results": "Оцінено вплив комплексних мікробних препаратів на урожайність сої.",
+    "for_dissertation": "Український контекст застосування біопрепаратів. У PDF — увесь збірник; сторінки перевірте.",
+    "description": "Тези про вплив біопрепаратів комплексної дії на урожайність сої (збірник конференції, Бережани, 2019).",
+    "language": "uk",
+    "status": "unread"
+   }
+  },
+  {
+   "files": [
+    {
+     "name": "02_Книги, посібники, збірники/Тези конференція_Харків_2024_Кривуцький.pdf",
+     "sha256": "8a2d7583eb42ef198d7a60cccb3fbf7695ec8b2a42d336bd06dc1e3d131d6a5b"
+    }
+   ],
+   "file_name": "Тези конференція_Харків_2024_Кривуцький.pdf",
+   "sections": [
+    "Ринок і регулювання"
+   ],
+   "source": {
+    "type": "conference",
+    "title": "Продуктивність сортів гороху за використання біоінокулянтів та біопестицидів",
+    "authors": [
+     {
+      "family": "Марковська",
+      "given_initials": "О. Є."
+     },
+     {
+      "family": "Дудченко",
+      "given_initials": "В. В."
+     },
+     {
+      "family": "Кривуцький",
+      "given_initials": "Р. М."
+     }
+    ],
+    "container_title": "Захист і карантин рослин у ХХІ столітті: проблеми і перспективи : матеріали III Міжнар. наук.-практ. конф. (м. Харків, 17–18 жовтня 2024 р.)",
+    "publisher": "Рута",
+    "place": "Житомир",
+    "year": 2024,
+    "pages": "223–226",
+    "isbn": "978-617-581-644-8",
+    "keywords": "горох; біопестициди; біоінокулянти",
+    "tags": [
+     "Україна",
+     "тези"
+    ],
+    "study_object": "Сорти гороху Оплот і Царевич за обробки біоінокулянтами та біопестицидами.",
+    "methods": "Польовий дослід (тези).",
+    "main_results": "Біопрепарати підвищили урожайність гороху (до 2,74–2,88 т/га).",
+    "for_dissertation": "Українські дані про ефективність біопрепаратів (п. 3.5). У тому ж PDF є зміст збірника з тезами Matviienko et al. про структуру ринку ЗЗР України.",
+    "description": "Тези про продуктивність гороху за використання біоінокулянтів і біопестицидів (Харків, 2024).",
+    "language": "uk",
+    "status": "unread"
+   }
+  },
+  {
+   "files": [
+    {
+     "name": "03_Нормативка та ринок/Postanova KMU 758_Poriadok reiestru pestytsydiv.pdf",
+     "sha256": "e3f7b07c4eb70aad317017d9f32207524bc000d20f7e1cfcd755a95229b4ed10"
+    }
+   ],
+   "file_name": "Postanova KMU 758_Poriadok reiestru pestytsydiv.pdf",
+   "sections": [
+    "Ринок і регулювання"
+   ],
+   "source": {
+    "type": "normative",
+    "title": "Про затвердження Порядку ведення Державного реєстру пестицидів і агрохімікатів, дозволених до використання в Україні : постанова Кабінету Міністрів України № 758",
+    "year": 2025,
+    "keywords": "державний реєстр; пестициди; реєстрація",
+    "tags": [
+     "Україна",
+     "нормативка"
+    ],
+    "study_object": "Порядок ведення Державного реєстру пестицидів і агрохімікатів.",
+    "methods": "Нормативно-правовий акт.",
+    "main_results": "Визначає порядок внесення препаратів до Держреєстру.",
+    "for_dissertation": "«Матеріали і методи»/п. 3.5: джерело даних про зареєстровані біопрепарати. Дату постанови уточніть (PDF — скан).",
+    "description": "Постанова КМУ № 758 про Порядок ведення Державного реєстру пестицидів і агрохімікатів.",
+    "language": "uk",
+    "status": "unread"
+   }
+  },
+  {
+   "files": [
+    {
+     "name": "03_Нормативка та ринок/Poriadok reiestru pestytsydiv (dodatok do postanovy 758).p7s",
+     "sha256": "757f04d39beaed47858682a9acf7d260204cd14bbe5b870ac5a88127a5b7c51b"
+    }
+   ],
+   "file_name": "Poriadok reiestru pestytsydiv (dodatok do postanovy 758).p7s",
+   "sections": [
+    "Ринок і регулювання"
+   ],
+   "source": {
+    "type": "normative",
+    "title": "Порядок ведення Державного реєстру пестицидів і агрохімікатів, дозволених до використання в Україні (додаток до постанови КМУ № 758)",
+    "year": 2025,
+    "keywords": "державний реєстр; пестициди",
+    "tags": [
+     "Україна",
+     "нормативка"
+    ],
+    "study_object": "Текст Порядку (файл з електронним підписом .p7s).",
+    "methods": "Нормативно-правовий акт.",
+    "main_results": "Повний текст Порядку ведення Держреєстру.",
+    "for_dissertation": "Прикріпіть файл .p7s вручну («＋ Файл»): автоматичне прикріплення бере лише PDF.",
+    "description": "Порядок ведення Держреєстру пестицидів і агрохімікатів (підписаний файл).",
+    "language": "uk",
+    "status": "unread"
+   }
+  },
+  {
+   "files": [
+    {
+     "name": "03_Нормативка та ринок/Cavallaro_2024_Evoluzione dei biopesticidi in Italia e UE.pdf",
+     "sha256": "61b39658f51fff0249b327ff24b7fd48ceb29bd7fb656a731419f1792425b911"
+    }
+   ],
+   "file_name": "Cavallaro_2024_Evoluzione dei biopesticidi in Italia e UE.pdf",
+   "sections": [
+    "Ринок і регулювання"
+   ],
+   "source": {
+    "type": "article",
+    "title": "L'evoluzione dei biopesticidi in Italia e in Unione Europea",
+    "container_title": "GIT",
+    "year": 2024,
+    "volume": "3",
+    "issue": "1",
+    "pages": "4–8",
+    "keywords": "biopesticidi; Unione Europea; registrazione",
+    "tags": [
+     "ЄС",
+     "реєстрація",
+     "ринок"
+    ],
+    "study_object": "Біопестициди в Італії та ЄС: визначення, реєстрація.",
+    "methods": "Аналітична стаття (італійською).",
+    "main_results": "У ЄС зареєстровано 73 мікроорганізми як діючі речовини, з них 24 — ентомоцидні; розглянуто критерії оцінки ефективності, токсикологічного й екотоксикологічного ризику.",
+    "for_dissertation": "П. 3.3 і 3.5 (порівняння з ЄС). Автора в PDF не видно (у назві файлу — Cavallaro), уточніть.",
+    "description": "Розвиток регулювання й асортименту біопестицидів в Італії та ЄС.",
+    "language": "it",
+    "status": "unread"
+   }
+  },
+  {
+   "files": [
+    {
+     "name": "03_Нормативка та ринок/Tassani_2024_Panoramica sul mercato dei biopesticidi.pdf",
+     "sha256": "1144ac0492ef439435d9dd3fba9435772fddfe6c1992cf59fbebd530cb57c718"
+    }
+   ],
+   "file_name": "Tassani_2024_Panoramica sul mercato dei biopesticidi.pdf",
+   "sections": [
+    "Ринок і регулювання"
+   ],
+   "source": {
+    "type": "article",
+    "title": "Panoramica sul mercato dei biopesticidi: la visione dell'Industria",
+    "container_title": "GIT",
+    "year": 2024,
+    "volume": "3",
+    "issue": "1",
+    "pages": "9–10",
+    "keywords": "biopesticidi; mercato",
+    "tags": [
+     "ЄС",
+     "ринок"
+    ],
+    "study_object": "Ринок біопестицидів у світі та Італії.",
+    "methods": "Оглядова стаття (італійською).",
+    "main_results": "Світовий ринок біопестицидів у 2020 р. — 3,5 млрд € (проти 62,5 млрд € агрохімії), прогноз до 2031 р. — 17,1 млрд €; ринок Італії 2022 р. > 215 млн €.",
+    "for_dissertation": "Вступ: масштаби ринку. Автора/сторінки уточніть (у назві файлу — Tassani).",
+    "description": "Огляд ринку біопестицидів з погляду індустрії (Італія, світ).",
+    "language": "it",
+    "status": "unread"
+   }
+  },
+  {
+   "files": [
+    {
+     "name": "03_Нормативка та ринок/Derzhreiestr pestytsydiv (vyvantazhennia).xlsx",
+     "sha256": "d9bdd36708994ce2d8e6b955d7c5db357d4a3ee926162ae45a9ced05174650e2"
+    }
+   ],
+   "file_name": "Derzhreiestr pestytsydiv (vyvantazhennia).xlsx",
+   "sections": [
+    "Ринок і регулювання"
+   ],
+   "source": {
+    "type": "database",
+    "title": "Державний реєстр пестицидів і агрохімікатів, дозволених до використання в Україні (вивантаження)",
+    "year": 2026,
+    "keywords": "державний реєстр; біопрепарати",
+    "tags": [
+     "Україна",
+     "реєстр"
+    ],
+    "study_object": "Перелік зареєстрованих пестицидів і агрохімікатів.",
+    "methods": "Вивантаження бази даних (.xlsx).",
+    "main_results": "Дані для узагальненого аналізу препаративних форм біопестицидів на ринку України.",
+    "for_dissertation": "Головне джерело для п. 3.5 (узагальнено, без назв фірм і препаратів). Прикріпіть .xlsx вручну.",
+    "description": "Вивантаження Державного реєстру пестицидів і агрохімікатів.",
+    "language": "uk",
+    "status": "unread"
+   }
+  },
+  {
+   "files": [
+    {
+     "name": "03_Нормативка та ринок/Krutiakova_2022_Rynok biolohichnykh ZZR v Ukraini.pdf",
+     "sha256": "db17b8b052c17ccbb3427a1f9afc597c425d46f63201caf72a56911f14d43f1f"
+    }
+   ],
+   "file_name": "Krutiakova_2022_Rynok biolohichnykh ZZR v Ukraini.pdf",
+   "sections": [
+    "Ринок і регулювання"
+   ],
+   "source": {
+    "type": "article",
+    "title": "Стан і проблеми ринку біологічних засобів захисту рослин в Україні",
+    "authors": [
+     {
+      "family": "Крутякова",
+      "given_initials": "В. І."
+     },
+     {
+      "family": "Гулич",
+      "given_initials": "О. І."
+     },
+     {
+      "family": "Янсе",
+      "given_initials": "Л. А."
+     }
+    ],
+    "container_title": "Вісник аграрної науки",
+    "year": 2023,
+    "issue": "1 (838)",
+    "pages": "30–39",
+    "doi": "10.31073/agrovisnyk202212-04",
+    "keywords": "біологічні засоби захисту рослин; ринок; Україна",
+    "tags": [
+     "Україна",
+     "ринок"
+    ],
+    "study_object": "Ринок біологічних засобів захисту рослин в Україні.",
+    "methods": "Аналітичні, економіко-статистичні й порівняльні методи (дані Держстату, Держпродспоживслужби).",
+    "main_results": "Визначено особливості й проблеми формування ринку біологічних ЗЗР в Україні в контексті розвитку екологічного землеробства.",
+    "for_dissertation": "Ключове джерело для п. 3.5 і вступу. Рік видання — 2023 (№ 1), DOI має позначку 2022.",
+    "description": "Аналіз стану й проблем ринку біологічних засобів захисту рослин в Україні.",
+    "language": "uk",
+    "status": "unread"
+   }
+  },
+  {
+   "files": [
+    {
+     "name": "03_Нормативка та ринок/2024_Svitova praktyka zastosuvannia biokontroliu.pdf",
+     "sha256": "aa7630f898e8f1ebda1bc59ab58d5f2c82061f4e9996f25610caf11467bc130f"
+    }
+   ],
+   "file_name": "2024_Svitova praktyka zastosuvannia biokontroliu.pdf",
+   "sections": [
+    "Ринок і регулювання",
+    "Біопестициди: значення, безпека, огляди"
+   ],
+   "source": {
+    "type": "article",
+    "title": "Світова практика застосування біоконтролю",
+    "authors": [
+     {
+      "family": "Гулич",
+      "given_initials": "О. І."
+     }
+    ],
+    "container_title": "Вісник аграрної науки",
+    "year": 2024,
+    "issue": "2 (851)",
+    "pages": "63–72",
+    "doi": "10.31073/agrovisnyk202402-10",
+    "keywords": "біоконтроль; біопестициди; ринок",
+    "tags": [
+     "Україна",
+     "ринок",
+     "світ"
+    ],
+    "study_object": "Світова практика біологічного захисту рослин і ринок біопестицидів.",
+    "methods": "Аналіз і синтез, економіко-статистичні методи, індекси темпів розвитку.",
+    "main_results": "Біометод розвивається значно швидше за хімічний; чинники — державна політика екологізації, органічне землеробство, скорочення хімічних пестицидів, правове поле.",
+    "for_dissertation": "Вступ (масштаби застосування) і п. 3.5.",
+    "description": "Узагальнення світової практики біоконтролю й тенденцій ринку біопестицидів.",
+    "language": "uk",
+    "status": "unread"
+   }
+  },
+  {
+   "files": [
+    {
+     "name": "04_Біопрепарати - етикетки, SDS, інструкції/20007_06.22_Actinovate_LG_510g_booklet_2621_164_JUN24.pdf",
+     "sha256": "7bb9816125ab942728e516e2a0875f866a7c3d808397e0f691b5c4aba6f7f30f"
+    }
+   ],
+   "file_name": "20007_06.22_Actinovate_LG_510g_booklet_2621_164_JUN24.pdf",
+   "sections": [
+    "Ринок: етикетки, інструкції, брошури"
+   ],
+   "source": {
+    "type": "other",
+    "title": "Actinovate L&G: етикетка (буклет)",
+    "language": "en",
+    "description": "Біофунгіцид на основі Streptomyces lydicus WYEC 108 (актинобактерія); вказано вміст КУО/г, умови зберігання і утилізації.",
+    "main_results": "Біофунгіцид на основі Streptomyces lydicus WYEC 108 (актинобактерія); вказано вміст КУО/г, умови зберігання і утилізації.",
+    "tags": [
+     "етикетка",
+     "актиноміцети"
+    ],
+    "status": "unread"
+   }
+  },
+  {
+   "files": [
+    {
+     "name": "04_Біопрепарати - етикетки, SDS, інструкції/70051-47 Agree WG_SDS_Third Party Auth_Final 20240514.pdf",
+     "sha256": "9460e56309813b15a98acbd4008930516889012a789a27d145d4d1c6f6fc8197"
+    }
+   ],
+   "file_name": "70051-47 Agree WG_SDS_Third Party Auth_Final 20240514.pdf",
+   "sections": [
+    "Ринок: етикетки, інструкції, брошури"
+   ],
+   "source": {
+    "type": "other",
+    "title": "Agree WG: паспорт безпеки (SDS)",
+    "language": "en",
+    "description": "SDS вододиспергованих гранул на основі Bacillus thuringiensis subsp. aizawai GC-91: склад, умови зберігання (сухо, прохолодно), заходи безпеки.",
+    "main_results": "SDS вододиспергованих гранул на основі Bacillus thuringiensis subsp. aizawai GC-91: склад, умови зберігання (сухо, прохолодно), заходи безпеки.",
+    "tags": [
+     "SDS",
+     "Bt",
+     "WG"
+    ],
+    "status": "unread"
+   }
+  },
+  {
+   "files": [
+    {
+     "name": "04_Біопрепарати - етикетки, SDS, інструкції/Agree_WG_label.pdf",
+     "sha256": "43262ea8ee2ed9e42c70dbec8e578f449a44872e48a38eeb12fae7c9b205e16f"
+    }
+   ],
+   "file_name": "Agree_WG_label.pdf",
+   "sections": [
+    "Ринок: етикетки, інструкції, брошури"
+   ],
+   "source": {
+    "type": "other",
+    "title": "Agree WG: етикетка",
+    "language": "en",
+    "description": "Біоінсектицид у формі вододиспергованих гранул (WG) на основі B. thuringiensis subsp. aizawai GC-91 проти лускокрилих; допущений для органічного виробництва.",
+    "main_results": "Біоінсектицид у формі вододиспергованих гранул (WG) на основі B. thuringiensis subsp. aizawai GC-91 проти лускокрилих; допущений для органічного виробництва.",
+    "tags": [
+     "етикетка",
+     "Bt",
+     "WG"
+    ],
+    "status": "unread"
+   }
+  },
+  {
+   "files": [
+    {
+     "name": "04_Біопрепарати - етикетки, SDS, інструкції/NZBWI_903_Actinovate_Lawn___Garden_EN_v5__US_.pdf",
+     "sha256": "7e4172240c5bbfa95abc6d5127487faa98a42dd5b0888ef07b94ad5d08eba739"
+    }
+   ],
+   "file_name": "NZBWI_903_Actinovate_Lawn___Garden_EN_v5__US_.pdf",
+   "sections": [
+    "Ринок: етикетки, інструкції, брошури"
+   ],
+   "source": {
+    "type": "other",
+    "title": "Actinovate Lawn & Garden: паспорт безпеки (SDS)",
+    "language": "en",
+    "description": "SDS препарату на основі Streptomyces lydicus WYEC 108: склад, зберігання в оригінальній тарі в прохолодному місці без прямого сонця.",
+    "main_results": "SDS препарату на основі Streptomyces lydicus WYEC 108: склад, зберігання в оригінальній тарі в прохолодному місці без прямого сонця.",
+    "tags": [
+     "SDS",
+     "актиноміцети"
+    ],
+    "status": "unread"
+   }
+  },
+  {
+   "files": [
+    {
+     "name": "04_Біопрепарати - етикетки, SDS, інструкції/Serenade ASO Label – MAPP 16139.pdf",
+     "sha256": "7574abd05d02b0d3e10bf08e567a81e683696bb83117a51311ce64777290c75a"
+    }
+   ],
+   "file_name": "Serenade ASO Label – MAPP 16139.pdf",
+   "sections": [
+    "Ринок: етикетки, інструкції, брошури"
+   ],
+   "source": {
+    "type": "other",
+    "title": "Serenade ASO: етикетка (MAPP 16139)",
+    "language": "en",
+    "description": "Суспензійний концентрат (SC): 1015,1 г/л Bacillus amyloliquefaciens QST 713 (з продуктами ферментації), не менше 1,05×10¹² КУО/л; листковий фунгіцид і обробка бульб картоплі.",
+    "main_results": "Суспензійний концентрат (SC): 1015,1 г/л Bacillus amyloliquefaciens QST 713 (з продуктами ферментації), не менше 1,05×10¹² КУО/л; листковий фунгіцид і обробка бульб картоплі.",
+    "tags": [
+     "етикетка",
+     "SC",
+     "Bacillus"
+    ],
+    "status": "unread"
+   }
+  },
+  {
+   "files": [
+    {
+     "name": "04_Біопрепарати - етикетки, SDS, інструкції/Serenade ASO Label – MAPP 21020.pdf",
+     "sha256": "9dd0410931d1ea991b7c8defb90c7638268e973854c8107c02d6ac64c98a13b5"
+    }
+   ],
+   "file_name": "Serenade ASO Label – MAPP 21020.pdf",
+   "sections": [
+    "Ринок: етикетки, інструкції, брошури"
+   ],
+   "source": {
+    "type": "other",
+    "title": "Serenade ASO: етикетка (MAPP 21020)",
+    "language": "en",
+    "description": "Нова редакція етикетки того самого SC на основі B. amyloliquefaciens QST 713 (≥1,05×10¹² КУО/л) для Великої Британії.",
+    "main_results": "Нова редакція етикетки того самого SC на основі B. amyloliquefaciens QST 713 (≥1,05×10¹² КУО/л) для Великої Британії.",
+    "tags": [
+     "етикетка",
+     "SC",
+     "Bacillus"
+    ],
+    "status": "unread"
+   }
+  },
+  {
+   "files": [
+    {
+     "name": "04_Біопрепарати - етикетки, SDS, інструкції/Serenade ASO MSDS.pdf",
+     "sha256": "339216be13146f9d8bd70fddf7016e1fec2c59c239d80ec8b0184ecbe339b570"
+    }
+   ],
+   "file_name": "Serenade ASO MSDS.pdf",
+   "sections": [
+    "Ринок: етикетки, інструкції, брошури"
+   ],
+   "source": {
+    "type": "other",
+    "title": "Serenade ASO: паспорт безпеки (SDS)",
+    "language": "en",
+    "description": "SDS суспензійного концентрату на основі B. amyloliquefaciens QST 713: склад, небезпечні компоненти, зберігання.",
+    "main_results": "SDS суспензійного концентрату на основі B. amyloliquefaciens QST 713: склад, небезпечні компоненти, зберігання.",
+    "tags": [
+     "SDS",
+     "SC",
+     "Bacillus"
+    ],
+    "status": "unread"
+   }
+  },
+  {
+   "files": [
+    {
+     "name": "04_Біопрепарати - етикетки, SDS, інструкції/instrukciia-aktoverm-02-ke.pdf",
+     "sha256": "4b7d2cc06f4f87cad5f3cb9dae0df7c3eda4f7692810819c8715ac401f15661b"
+    }
+   ],
+   "file_name": "instrukciia-aktoverm-02-ke.pdf",
+   "sections": [
+    "Ринок: етикетки, інструкції, брошури"
+   ],
+   "source": {
+    "type": "other",
+    "title": "Актоверм 0,2 % КЕ: інструкція",
+    "language": "uk",
+    "description": "Інструкція з застосування біопрепарату (виробник — український). Концентрат емульсії; діюча речовина — природні авермектини (аверсектин С 0,2 %), продукт Streptomyces avermitilis.",
+    "main_results": "Інструкція з застосування біопрепарату (виробник — український). Концентрат емульсії; діюча речовина — природні авермектини (аверсектин С 0,2 %), продукт Streptomyces avermitilis.",
+    "tags": [
+     "інструкція",
+     "КЕ",
+     "Україна"
+    ],
+    "status": "unread"
+   }
+  },
+  {
+   "files": [
+    {
+     "name": "04_Біопрепарати - етикетки, SDS, інструкції/instrukciia-aktoverm-formula.pdf",
+     "sha256": "a7417a43bef8936c4a761a4480fc2e21b65cfd18dd30cb05e3474c478179ade6"
+    }
+   ],
+   "file_name": "instrukciia-aktoverm-formula.pdf",
+   "sections": [
+    "Ринок: етикетки, інструкції, брошури"
+   ],
+   "source": {
+    "type": "other",
+    "title": "Актоверм Формула: інструкція",
+    "language": "uk",
+    "description": "Інструкція з застосування біопрепарату (виробник — український). Живі клітини та ендоспори Bacillus thuringiensis (титр 2×10⁹ КУО/см³) з біологічно активними продуктами життєдіяльності.",
+    "main_results": "Інструкція з застосування біопрепарату (виробник — український). Живі клітини та ендоспори Bacillus thuringiensis (титр 2×10⁹ КУО/см³) з біологічно активними продуктами життєдіяльності.",
+    "tags": [
+     "інструкція",
+     "Bt",
+     "Україна"
+    ],
+    "status": "unread"
+   }
+  },
+  {
+   "files": [
+    {
+     "name": "04_Біопрепарати - етикетки, SDS, інструкції/instrukciia-anderiz-p.pdf",
+     "sha256": "5143ca9b371b80d7d822d7ba229773d8b4179b0aa65209a846d6f4ee577da460"
+    }
+   ],
+   "file_name": "instrukciia-anderiz-p.pdf",
+   "sections": [
+    "Ринок: етикетки, інструкції, брошури"
+   ],
+   "source": {
+    "type": "other",
+    "title": "Андеріз П: інструкція",
+    "language": "uk",
+    "description": "Інструкція з застосування біопрепарату (виробник — український). Порошкоподібний інокулянт: бульбочкові бактерії Bradyrhizobium japonicum, Rhizobium leguminosarum (КУО/г). Не біопестицид у вузькому сенсі.",
+    "main_results": "Інструкція з застосування біопрепарату (виробник — український). Порошкоподібний інокулянт: бульбочкові бактерії Bradyrhizobium japonicum, Rhizobium leguminosarum (КУО/г). Не біопестицид у вузькому сенсі.",
+    "tags": [
+     "інструкція",
+     "інокулянт",
+     "Україна"
+    ],
+    "status": "unread"
+   }
+  },
+  {
+   "files": [
+    {
+     "name": "04_Біопрепарати - етикетки, SDS, інструкції/instrukciia-anderiz-r.pdf",
+     "sha256": "c778c8c697be2cfb58fc4830e389637745e338e864bab5a3ed615459922efd26"
+    }
+   ],
+   "file_name": "instrukciia-anderiz-r.pdf",
+   "sections": [
+    "Ринок: етикетки, інструкції, брошури"
+   ],
+   "source": {
+    "type": "other",
+    "title": "Андеріз Р: інструкція",
+    "language": "uk",
+    "description": "Інструкція з застосування біопрепарату (виробник — український). Рідкий двокомпонентний інокулянт на основі бульбочкових бактерій (КУО/см³). Не біопестицид у вузькому сенсі.",
+    "main_results": "Інструкція з застосування біопрепарату (виробник — український). Рідкий двокомпонентний інокулянт на основі бульбочкових бактерій (КУО/см³). Не біопестицид у вузькому сенсі.",
+    "tags": [
+     "інструкція",
+     "інокулянт",
+     "Україна"
+    ],
+    "status": "unread"
+   }
+  },
+  {
+   "files": [
+    {
+     "name": "04_Біопрепарати - етикетки, SDS, інструкції/instrukciia-azotoxelp-azotohelp-ks-sc.pdf",
+     "sha256": "2e12079e02732d8435412d0dbba7d78ccd70603a6db428ffd3134a2b9306f9a7"
+    }
+   ],
+   "file_name": "instrukciia-azotoxelp-azotohelp-ks-sc.pdf",
+   "sections": [
+    "Ринок: етикетки, інструкції, брошури"
+   ],
+   "source": {
+    "type": "other",
+    "title": "Азотохелп КС: інструкція",
+    "language": "uk",
+    "description": "Інструкція з застосування біопрепарату (виробник — український). Концентрат суспензії Azotobacter chroococcum з продуктами життєдіяльності; гарантійний термін зберігання 12 місяців.",
+    "main_results": "Інструкція з застосування біопрепарату (виробник — український). Концентрат суспензії Azotobacter chroococcum з продуктами життєдіяльності; гарантійний термін зберігання 12 місяців.",
+    "tags": [
+     "інструкція",
+     "КС",
+     "Україна"
+    ],
+    "status": "unread"
+   }
+  },
+  {
+   "files": [
+    {
+     "name": "04_Біопрепарати - етикетки, SDS, інструкції/instrukciia-bionokuliant-btu-kp-soia-ta-bobovi.pdf",
+     "sha256": "8416d7e9b45c02b47d3db28126fb9296d27bdc774245836e2c4e526ba32f84f8"
+    }
+   ],
+   "file_name": "instrukciia-bionokuliant-btu-kp-soia-ta-bobovi.pdf",
+   "sections": [
+    "Ринок: етикетки, інструкції, брошури"
+   ],
+   "source": {
+    "type": "other",
+    "title": "Біоінокулянт-БТУ КП (соя та бобові): інструкція",
+    "language": "uk",
+    "description": "Інструкція з застосування біопрепарату (виробник — український). Інокулянт: Bradyrhizobium japonicum (від 2,5×10⁹ КУО/г) і Rhizobium leguminosarum. Не біопестицид у вузькому сенсі.",
+    "main_results": "Інструкція з застосування біопрепарату (виробник — український). Інокулянт: Bradyrhizobium japonicum (від 2,5×10⁹ КУО/г) і Rhizobium leguminosarum. Не біопестицид у вузькому сенсі.",
+    "tags": [
+     "інструкція",
+     "інокулянт",
+     "Україна"
+    ],
+    "status": "unread"
+   }
+  },
+  {
+   "files": [
+    {
+     "name": "04_Біопрепарати - етикетки, SDS, інструкції/instrukciia-bitoksibacilin-btu-ks.docx",
+     "sha256": "e4e2806f97fd0b62561fc0a33113b1929d5138a79521c5e0f55cd33ee51d63ad"
+    }
+   ],
+   "file_name": "instrukciia-bitoksibacilin-btu-ks.docx",
+   "sections": [
+    "Ринок: етикетки, інструкції, брошури"
+   ],
+   "source": {
+    "type": "other",
+    "title": "Бітоксибацилін-БТУ КС: інструкція",
+    "language": "uk",
+    "description": "Інструкція з застосування біопрепарату (виробник — український). Біоінсектицид на основі Bacillus thuringiensis у формі концентрату суспензії (файл .docx — прикріпіть вручну).",
+    "main_results": "Інструкція з застосування біопрепарату (виробник — український). Біоінсектицид на основі Bacillus thuringiensis у формі концентрату суспензії (файл .docx — прикріпіть вручну).",
+    "tags": [
+     "інструкція",
+     "Bt",
+     "КС",
+     "Україна"
+    ],
+    "status": "unread"
+   }
+  },
+  {
+   "files": [
+    {
+     "name": "04_Біопрепарати - етикетки, SDS, інструкції/instrukciia-ekostern-bakterialnii-ks.pdf",
+     "sha256": "cc015db0afa9411cae9188c86164a639deda5e6016dacbd23543d4e79f86f6c2"
+    }
+   ],
+   "file_name": "instrukciia-ekostern-bakterialnii-ks.pdf",
+   "sections": [
+    "Ринок: етикетки, інструкції, брошури"
+   ],
+   "source": {
+    "type": "other",
+    "title": "Екостерн Бактеріальний КС: інструкція",
+    "language": "uk",
+    "description": "Інструкція з застосування біопрепарату (виробник — український). Концентрат суспензії: Bacillus, Paenibacillus polymyxa, Azotobacter chroococcum, Enterobacter sp.; зберігання 24 міс. за 2–6 °C або 12 міс. за вищої температури.",
+    "main_results": "Інструкція з застосування біопрепарату (виробник — український). Концентрат суспензії: Bacillus, Paenibacillus polymyxa, Azotobacter chroococcum, Enterobacter sp.; зберігання 24 міс. за 2–6 °C або 12 міс. за вищої температури.",
+    "tags": [
+     "інструкція",
+     "КС",
+     "Україна",
+     "зберігання"
+    ],
+    "status": "unread"
+   }
+  },
+  {
+   "files": [
+    {
+     "name": "04_Біопрепарати - етикетки, SDS, інструкції/instrukciia-ekostern-detoksikant-ks.pdf",
+     "sha256": "63f1f46ecd46bda70fb3c14355185854f368de0592b4b4e6aeb059e96fb0fc42"
+    }
+   ],
+   "file_name": "instrukciia-ekostern-detoksikant-ks.pdf",
+   "sections": [
+    "Ринок: етикетки, інструкції, брошури"
+   ],
+   "source": {
+    "type": "other",
+    "title": "Екостерн Детоксикант КС: інструкція",
+    "language": "uk",
+    "description": "Інструкція з застосування біопрепарату (виробник — український). Концентрат суспензії мікроорганізмів-деструкторів пестицидних і рослинних решток.",
+    "main_results": "Інструкція з застосування біопрепарату (виробник — український). Концентрат суспензії мікроорганізмів-деструкторів пестицидних і рослинних решток.",
+    "tags": [
+     "інструкція",
+     "КС",
+     "Україна"
+    ],
+    "status": "unread"
+   }
+  },
+  {
+   "files": [
+    {
+     "name": "04_Біопрепарати - етикетки, SDS, інструкції/instrukciia-ekostern-klasicnii-ks.pdf",
+     "sha256": "62adec1820350f2638a8e12a8766c8fd8b4236daeec9ddf3fba2b91bae848043"
+    }
+   ],
+   "file_name": "instrukciia-ekostern-klasicnii-ks.pdf",
+   "sections": [
+    "Ринок: етикетки, інструкції, брошури"
+   ],
+   "source": {
+    "type": "other",
+    "title": "Екостерн Класичний КС: інструкція",
+    "language": "uk",
+    "description": "Інструкція з застосування біопрепарату (виробник — український). Концентрат суспензії бактерій (Bacillus, Paenibacillus, Azotobacter, Enterobacter тощо) і Trichoderma; 12 міс. за 2–6 °C або 6 міс. за вищої температури.",
+    "main_results": "Інструкція з застосування біопрепарату (виробник — український). Концентрат суспензії бактерій (Bacillus, Paenibacillus, Azotobacter, Enterobacter тощо) і Trichoderma; 12 міс. за 2–6 °C або 6 міс. за вищої температури.",
+    "tags": [
+     "інструкція",
+     "КС",
+     "Україна",
+     "зберігання"
+    ],
+    "status": "unread"
+   }
+  },
+  {
+   "files": [
+    {
+     "name": "04_Біопрепарати - етикетки, SDS, інструкції/instrukciia-ekostern-lait-ks.pdf",
+     "sha256": "e3c4267d61e269568b5d184d51069e4522dec9d25adbf2ab818df112403a9bb4"
+    }
+   ],
+   "file_name": "instrukciia-ekostern-lait-ks.pdf",
+   "sections": [
+    "Ринок: етикетки, інструкції, брошури"
+   ],
+   "source": {
+    "type": "other",
+    "title": "Екостерн Лайт КС: інструкція",
+    "language": "uk",
+    "description": "Інструкція з застосування біопрепарату (виробник — український). Концентрат суспензії бактерій і Trichoderma; 12 міс. за 2–6 °C або 6 міс. за 6–10 °C.",
+    "main_results": "Інструкція з застосування біопрепарату (виробник — український). Концентрат суспензії бактерій і Trichoderma; 12 міс. за 2–6 °C або 6 міс. за 6–10 °C.",
+    "tags": [
+     "інструкція",
+     "КС",
+     "Україна",
+     "зберігання"
+    ],
+    "status": "unread"
+   }
+  },
+  {
+   "files": [
+    {
+     "name": "04_Біопрепарати - етикетки, SDS, інструкції/instrukciia-ekostern-nou-till-ks.pdf",
+     "sha256": "a9cf29869920548ef22840f086cd12f8c8b4955257af50deb25f7abb50d9931f"
+    }
+   ],
+   "file_name": "instrukciia-ekostern-nou-till-ks.pdf",
+   "sections": [
+    "Ринок: етикетки, інструкції, брошури"
+   ],
+   "source": {
+    "type": "other",
+    "title": "Екостерн No-till КС: інструкція",
+    "language": "uk",
+    "description": "Інструкція з застосування біопрепарату (виробник — український). Концентрат суспензії бактерій (Bacillus, Paenibacillus, Enterobacter) і Trichoderma для деструкції решток; 12 міс. за 2–6 °C.",
+    "main_results": "Інструкція з застосування біопрепарату (виробник — український). Концентрат суспензії бактерій (Bacillus, Paenibacillus, Enterobacter) і Trichoderma для деструкції решток; 12 міс. за 2–6 °C.",
+    "tags": [
+     "інструкція",
+     "КС",
+     "Україна",
+     "зберігання"
+    ],
+    "status": "unread"
+   }
+  },
+  {
+   "files": [
+    {
+     "name": "04_Біопрепарати - етикетки, SDS, інструкції/instrukciia-ekostern-trixoderma-ks-gel.pdf",
+     "sha256": "9348039f85fd176e180f9e08b21d7d8016c4865ca648a650de5e2166befbdae3"
+    }
+   ],
+   "file_name": "instrukciia-ekostern-trixoderma-ks-gel.pdf",
+   "sections": [
+    "Ринок: етикетки, інструкції, брошури"
+   ],
+   "source": {
+    "type": "other",
+    "title": "Екостерн Триходерма КС (гелева форма): інструкція",
+    "language": "uk",
+    "description": "Інструкція з застосування біопрепарату (виробник — український). Гелева форма: спори та міцелій Trichoderma з метаболітами; зберігання 6 міс. за 2–10 °C.",
+    "main_results": "Інструкція з застосування біопрепарату (виробник — український). Гелева форма: спори та міцелій Trichoderma з метаболітами; зберігання 6 міс. за 2–10 °C.",
+    "tags": [
+     "інструкція",
+     "гель",
+     "мікроміцети",
+     "Україна",
+     "зберігання"
+    ],
+    "status": "unread"
+   }
+  },
+  {
+   "files": [
+    {
+     "name": "04_Біопрепарати - етикетки, SDS, інструкції/instrukciia-ekostern-trixoderma-ks.pdf",
+     "sha256": "fe4aeb5c31143658af272f0a7119b4654aa1e886c271ff593aff40836fe28fd5"
+    }
+   ],
+   "file_name": "instrukciia-ekostern-trixoderma-ks.pdf",
+   "sections": [
+    "Ринок: етикетки, інструкції, брошури"
+   ],
+   "source": {
+    "type": "other",
+    "title": "Екостерн Триходерма КС: інструкція",
+    "language": "uk",
+    "description": "Інструкція з застосування біопрепарату (виробник — український). Концентрат суспензії спор і міцелію Trichoderma; 6 міс. за 2–6 °C або 3 міс. за 6–10 °C.",
+    "main_results": "Інструкція з застосування біопрепарату (виробник — український). Концентрат суспензії спор і міцелію Trichoderma; 6 міс. за 2–6 °C або 3 міс. за 6–10 °C.",
+    "tags": [
+     "інструкція",
+     "КС",
+     "мікроміцети",
+     "Україна",
+     "зберігання"
+    ],
+    "status": "unread"
+   }
+  },
+  {
+   "files": [
+    {
+     "name": "04_Біопрепарати - етикетки, SDS, інструкції/instrukciia-ekostern-trixoderma-zp.pdf",
+     "sha256": "0a8bf8c32ee4fbf55ec3821c09d42928710760d8e7ea662f0826f08c5993f96e"
+    }
+   ],
+   "file_name": "instrukciia-ekostern-trixoderma-zp.pdf",
+   "sections": [
+    "Ринок: етикетки, інструкції, брошури"
+   ],
+   "source": {
+    "type": "other",
+    "title": "Екостерн Триходерма ЗП: інструкція",
+    "language": "uk",
+    "description": "Інструкція з застосування біопрепарату (виробник — український). Змочуваний порошок: спори й міцелій Trichoderma (КУО/г); 6 міс. за 2–6 °C або 3 міс. за 6–10 °C.",
+    "main_results": "Інструкція з застосування біопрепарату (виробник — український). Змочуваний порошок: спори й міцелій Trichoderma (КУО/г); 6 міс. за 2–6 °C або 3 міс. за 6–10 °C.",
+    "tags": [
+     "інструкція",
+     "ЗП",
+     "мікроміцети",
+     "Україна",
+     "зберігання"
+    ],
+    "status": "unread"
+   }
+  },
+  {
+   "files": [
+    {
+     "name": "04_Біопрепарати - етикетки, SDS, інструкції/instrukciia-graundfiks-ekstrim-ks.pdf",
+     "sha256": "7d31686ece4a12f264da9c90380363f6d5cd5c77281034a2f53c02001b14180f"
+    }
+   ],
+   "file_name": "instrukciia-graundfiks-ekstrim-ks.pdf",
+   "sections": [
+    "Ринок: етикетки, інструкції, брошури"
+   ],
+   "source": {
+    "type": "other",
+    "title": "Граундфікс Екстрім КС: інструкція",
+    "language": "uk",
+    "description": "Інструкція з застосування біопрепарату (виробник — український). Концентрат суспензії Bacillus subtilis (velezensis), B. licheniformis, Paenibacillus polymyxa, B. megaterium та ін.",
+    "main_results": "Інструкція з застосування біопрепарату (виробник — український). Концентрат суспензії Bacillus subtilis (velezensis), B. licheniformis, Paenibacillus polymyxa, B. megaterium та ін.",
+    "tags": [
+     "інструкція",
+     "КС",
+     "Україна"
+    ],
+    "status": "unread"
+   }
+  },
+  {
+   "files": [
+    {
+     "name": "04_Біопрепарати - етикетки, SDS, інструкції/instrukciia-graundfiks-r.pdf",
+     "sha256": "06eea6d6fb67e4627edb250a8ef9cf2192baa1101058752283520a1e2653fa59"
+    }
+   ],
+   "file_name": "instrukciia-graundfiks-r.pdf",
+   "sections": [
+    "Ринок: етикетки, інструкції, брошури"
+   ],
+   "source": {
+    "type": "other",
+    "title": "Граундфікс Р: інструкція",
+    "language": "uk",
+    "description": "Інструкція з застосування біопрепарату (виробник — український). Рідка форма: Bacillus subtilis, B. megaterium та ін. (мобілізація фосфору й калію). Біодобриво.",
+    "main_results": "Інструкція з застосування біопрепарату (виробник — український). Рідка форма: Bacillus subtilis, B. megaterium та ін. (мобілізація фосфору й калію). Біодобриво.",
+    "tags": [
+     "інструкція",
+     "рідка форма",
+     "Україна"
+    ],
+    "status": "unread"
+   }
+  },
+  {
+   "files": [
+    {
+     "name": "04_Біопрепарати - етикетки, SDS, інструкції/instrukciia-lepidocid-btu-ks.pdf",
+     "sha256": "d02c4d3aadd315a4cbee7bd9a3c5c726a385db03dad1d7488618dc84f9eee6e3"
+    }
+   ],
+   "file_name": "instrukciia-lepidocid-btu-ks.pdf",
+   "sections": [
+    "Ринок: етикетки, інструкції, брошури"
+   ],
+   "source": {
+    "type": "other",
+    "title": "Лепідоцид-БТУ КС: інструкція",
+    "language": "uk",
+    "description": "Інструкція з застосування біопрепарату (виробник — український). Концентрат суспензії Bacillus thuringiensis var. kurstaki з продуктами життєдіяльності; 12 міс. за 4–10 °C або 6 міс. за 10–15 °C.",
+    "main_results": "Інструкція з застосування біопрепарату (виробник — український). Концентрат суспензії Bacillus thuringiensis var. kurstaki з продуктами життєдіяльності; 12 міс. за 4–10 °C або 6 міс. за 10–15 °C.",
+    "tags": [
+     "інструкція",
+     "Bt",
+     "КС",
+     "Україна",
+     "зберігання"
+    ],
+    "status": "unread"
+   }
+  },
+  {
+   "files": [
+    {
+     "name": "04_Біопрепарати - етикетки, SDS, інструкції/instrukciia-metavait-intensiv-r.pdf",
+     "sha256": "a6d5afb811a1d7858ff72319265a44c26e65b19a4c2061359f0331436e8185c3"
+    }
+   ],
+   "file_name": "instrukciia-metavait-intensiv-r.pdf",
+   "sections": [
+    "Ринок: етикетки, інструкції, брошури"
+   ],
+   "source": {
+    "type": "other",
+    "title": "Метавайт Інтенсив Р: інструкція",
+    "language": "uk",
+    "description": "Інструкція з застосування біопрепарату (виробник — український). Рідка форма: гриби Metarhizium anisopliae, Beauveria bassiana і бактерії Bacillus (КУО/мл).",
+    "main_results": "Інструкція з застосування біопрепарату (виробник — український). Рідка форма: гриби Metarhizium anisopliae, Beauveria bassiana і бактерії Bacillus (КУО/мл).",
+    "tags": [
+     "інструкція",
+     "рідка форма",
+     "мікроміцети",
+     "Україна"
+    ],
+    "status": "unread"
+   }
+  },
+  {
+   "files": [
+    {
+     "name": "04_Біопрепарати - етикетки, SDS, інструкції/instrukciia-mikoxelp.pdf",
+     "sha256": "cb72dc46902e1f1cb5fb5d3ba25b6dd341739ce67fde257ad84c23c5fef8e261"
+    }
+   ],
+   "file_name": "instrukciia-mikoxelp.pdf",
+   "sections": [
+    "Ринок: етикетки, інструкції, брошури"
+   ],
+   "source": {
+    "type": "other",
+    "title": "Мікохелп: інструкція",
+    "language": "uk",
+    "description": "Інструкція з застосування біопрепарату (виробник — український). Trichoderma, Bacillus subtilis, Azotobacter chroococcum з біологічно активними продуктами (КУО/см³).",
+    "main_results": "Інструкція з застосування біопрепарату (виробник — український). Trichoderma, Bacillus subtilis, Azotobacter chroococcum з біологічно активними продуктами (КУО/см³).",
+    "tags": [
+     "інструкція",
+     "Україна"
+    ],
+    "status": "unread"
+   }
+  },
+  {
+   "files": [
+    {
+     "name": "04_Біопрепарати - етикетки, SDS, інструкції/instrukciia-organik-balans-ks.pdf",
+     "sha256": "7bcd7b6109e21e5aa84a596bdd9e2c4b812c84eef76a16999df3a400ae0926fd"
+    }
+   ],
+   "file_name": "instrukciia-organik-balans-ks.pdf",
+   "sections": [
+    "Ринок: етикетки, інструкції, брошури"
+   ],
+   "source": {
+    "type": "other",
+    "title": "Органік Баланс КС: інструкція",
+    "language": "uk",
+    "description": "Інструкція з застосування біопрепарату (виробник — український). Концентрат суспензії азотфіксувальних, фосфор- і каліймобілізувальних бактерій; 12 міс. за 4–10 °C або 6 міс. за 10–15 °C.",
+    "main_results": "Інструкція з застосування біопрепарату (виробник — український). Концентрат суспензії азотфіксувальних, фосфор- і каліймобілізувальних бактерій; 12 міс. за 4–10 °C або 6 міс. за 10–15 °C.",
+    "tags": [
+     "інструкція",
+     "КС",
+     "Україна",
+     "зберігання"
+    ],
+    "status": "unread"
+   }
+  },
+  {
+   "files": [
+    {
+     "name": "04_Біопрепарати - етикетки, SDS, інструкції/instrukciia-organik-balans-monofosfor-ks.pdf",
+     "sha256": "ac550a9b77b50c97b89de12e308a48b52cfedb0ade2430d2dabbdaced51c1544"
+    }
+   ],
+   "file_name": "instrukciia-organik-balans-monofosfor-ks.pdf",
+   "sections": [
+    "Ринок: етикетки, інструкції, брошури"
+   ],
+   "source": {
+    "type": "other",
+    "title": "Органік Баланс Монофосфор КС: інструкція",
+    "language": "uk",
+    "description": "Інструкція з застосування біопрепарату (виробник — український). Концентрат суспензії фосформобілізувальних бактерій і бактерій з фунгіцидними властивостями; 12 міс. за 4–10 °C.",
+    "main_results": "Інструкція з застосування біопрепарату (виробник — український). Концентрат суспензії фосформобілізувальних бактерій і бактерій з фунгіцидними властивостями; 12 міс. за 4–10 °C.",
+    "tags": [
+     "інструкція",
+     "КС",
+     "Україна",
+     "зберігання"
+    ],
+    "status": "unread"
+   }
+  },
+  {
+   "files": [
+    {
+     "name": "04_Біопрепарати - етикетки, SDS, інструкції/instrukciia-rizolain-r-bobovi-ta-soia.pdf",
+     "sha256": "047f15f32208ed3d9a9bd3943c0d23e3fb6da6fa7d49424fd48c0e395c8109d4"
+    }
+   ],
+   "file_name": "instrukciia-rizolain-r-bobovi-ta-soia.pdf",
+   "sections": [
+    "Ринок: етикетки, інструкції, брошури"
+   ],
+   "source": {
+    "type": "other",
+    "title": "Різолайн Р (бобові та соя): інструкція",
+    "language": "uk",
+    "description": "Інструкція з застосування біопрепарату (виробник — український). Рідкий інокулянт: Bradyrhizobium japonicum (2–6×10⁹ КУО/см³), Rhizobium leguminosarum. Не біопестицид у вузькому сенсі.",
+    "main_results": "Інструкція з застосування біопрепарату (виробник — український). Рідкий інокулянт: Bradyrhizobium japonicum (2–6×10⁹ КУО/см³), Rhizobium leguminosarum. Не біопестицид у вузькому сенсі.",
+    "tags": [
+     "інструкція",
+     "інокулянт",
+     "Україна"
+    ],
+    "status": "unread"
+   }
+  },
+  {
+   "files": [
+    {
+     "name": "04_Біопрепарати - етикетки, SDS, інструкції/instrukciia-sklerocid-r.pdf",
+     "sha256": "5d07e07b6f91c91d57204ee6fdecadf2f7aee3e897ce9d21c07062baf5873ab3"
+    }
+   ],
+   "file_name": "instrukciia-sklerocid-r.pdf",
+   "sections": [
+    "Ринок: етикетки, інструкції, брошури"
+   ],
+   "source": {
+    "type": "other",
+    "title": "Склероцид Р: інструкція",
+    "language": "uk",
+    "description": "Інструкція з застосування біопрепарату (виробник — український). Рідка форма: мікопаразит Coniothyrium minitans, Trichoderma harzianum, Bacillus licheniformis, B. subtilis (КУО/мл).",
+    "main_results": "Інструкція з застосування біопрепарату (виробник — український). Рідка форма: мікопаразит Coniothyrium minitans, Trichoderma harzianum, Bacillus licheniformis, B. subtilis (КУО/мл).",
+    "tags": [
+     "інструкція",
+     "рідка форма",
+     "Україна"
+    ],
+    "status": "unread"
+   }
+  },
+  {
+   "files": [
+    {
+     "name": "04_Біопрепарати - етикетки, SDS, інструкції/sdb-andermatt-delfin-de-fr.pdf",
+     "sha256": "bd0759580757ff55eecb831bc9c609c8427ea6e8b61278ed0ad52f9d2ac6a3a4"
+    }
+   ],
+   "file_name": "sdb-andermatt-delfin-de-fr.pdf",
+   "sections": [
+    "Ринок: етикетки, інструкції, брошури"
+   ],
+   "source": {
+    "type": "other",
+    "title": "Delfin: паспорт безпеки (SDS, DE/FR)",
+    "language": "de",
+    "description": "SDS біоінсектициду на основі Bacillus thuringiensis (вододисперговані гранули) за Регламентом (ЄС) 1907/2006, редакція 10.08.2023.",
+    "main_results": "SDS біоінсектициду на основі Bacillus thuringiensis (вододисперговані гранули) за Регламентом (ЄС) 1907/2006, редакція 10.08.2023.",
+    "tags": [
+     "SDS",
+     "Bt",
+     "WG"
+    ],
+    "status": "unread"
+   }
+  },
+  {
+   "files": [
+    {
+     "name": "04_Біопрепарати - етикетки, SDS, інструкції/instrukciia-rodent-off.pdf",
+     "sha256": "12970e8ff83c0d5132dc65e0f71b54f90aa09417e62f969dcf421a6c9245abfb"
+    }
+   ],
+   "file_name": "instrukciia-rodent-off.pdf",
+   "sections": [
+    "Ринок: етикетки, інструкції, брошури"
+   ],
+   "source": {
+    "type": "other",
+    "title": "Родент Офф: інструкція",
+    "language": "uk",
+    "description": "Інструкція з застосування біопрепарату (виробник — український). Родентицид на основі Salmonella enteritidis (КУО/мл). Поза предметом статті.",
+    "main_results": "Інструкція з застосування біопрепарату (виробник — український). Родентицид на основі Salmonella enteritidis (КУО/мл). Поза предметом статті.",
+    "tags": [
+     "інструкція",
+     "Україна"
+    ],
+    "status": "unread"
+   }
+  },
+  {
+   "files": [
+    {
+     "name": "05_Хімічні пестициди - етикетки та SDS (для порівняння)/Bayer CropScience Tank Mix Database - All Products V5.6.xlsx",
+     "sha256": "4a5ff6aa6ff9119a5c3f86ad8c20afdeee8b59d9d7d52f612cdaca5b1f4a4cfc"
+    }
+   ],
+   "file_name": "Bayer CropScience Tank Mix Database - All Products V5.6.xlsx",
+   "sections": [
+    "Хімічні препарати (для порівняння)"
+   ],
+   "source": {
+    "type": "other",
+    "title": "Bayer CropScience Tank Mix Database V5.6",
+    "language": "en",
+    "description": "База сумісності бакових сумішей препаратів (.xlsx). Прикріпіть вручну.",
+    "main_results": "База сумісності бакових сумішей препаратів (.xlsx). Прикріпіть вручну.",
+    "tags": [
+     "бакові суміші"
+    ],
+    "status": "unread"
+   }
+  },
+  {
+   "files": [
+    {
+     "name": "05_Хімічні пестициди - етикетки та SDS (для порівняння)/Cello SDS.pdf",
+     "sha256": "d26caf1cb1e1ebbfb0ad95be891ad37bcabdc52ef2e99404e2b4d7a0bf955632"
+    }
+   ],
+   "file_name": "Cello SDS.pdf",
+   "sections": [
+    "Хімічні препарати (для порівняння)"
+   ],
+   "source": {
+    "type": "other",
+    "title": "Cello: паспорт безпеки (SDS)",
+    "language": "en",
+    "description": "SDS хімічного засобу захисту рослин; для порівняння форм і вимог безпеки.",
+    "main_results": "SDS хімічного засобу захисту рослин; для порівняння форм і вимог безпеки.",
+    "tags": [
+     "SDS",
+     "хімічні"
+    ],
+    "status": "unread"
+   }
+  },
+  {
+   "files": [
+    {
+     "name": "05_Хімічні пестициди - етикетки та SDS (для порівняння)/Cello label.pdf",
+     "sha256": "74b7a9becfea1deae3c6e445be5b9044fae272fb7390ada3321b2789e15a7dab"
+    }
+   ],
+   "file_name": "Cello label.pdf",
+   "sections": [
+    "Хімічні препарати (для порівняння)"
+   ],
+   "source": {
+    "type": "other",
+    "title": "Cello: етикетка",
+    "language": "en",
+    "description": "Етикетка хімічного засобу захисту рослин; для порівняння.",
+    "main_results": "Етикетка хімічного засобу захисту рослин; для порівняння.",
+    "tags": [
+     "етикетка",
+     "хімічні"
+    ],
+    "status": "unread"
+   }
+  },
+  {
+   "files": [
+    {
+     "name": "05_Хімічні пестициди - етикетки та SDS (для порівняння)/Corinth label.pdf",
+     "sha256": "69263bff4e35855b63a1e5f20e7b0dbb90a4579723e423d71731d47e5b3d368c"
+    }
+   ],
+   "file_name": "Corinth label.pdf",
+   "sections": [
+    "Хімічні препарати (для порівняння)"
+   ],
+   "source": {
+    "type": "other",
+    "title": "Corinth: етикетка",
+    "language": "en",
+    "description": "Етикетка хімічного фунгіциду; для порівняння.",
+    "main_results": "Етикетка хімічного фунгіциду; для порівняння.",
+    "tags": [
+     "етикетка",
+     "хімічні"
+    ],
+    "status": "unread"
+   }
+  },
+  {
+   "files": [
+    {
+     "name": "05_Хімічні пестициди - етикетки та SDS (для порівняння)/Firefly 155 Label.pdf",
+     "sha256": "d4135aaf7755e756a2ee0234e968508266fd340022878651c82a810bbb14b78c"
+    }
+   ],
+   "file_name": "Firefly 155 Label.pdf",
+   "sections": [
+    "Хімічні препарати (для порівняння)"
+   ],
+   "source": {
+    "type": "other",
+    "title": "Firefly 155: етикетка",
+    "language": "en",
+    "description": "Етикетка хімічного фунгіциду; для порівняння.",
+    "main_results": "Етикетка хімічного фунгіциду; для порівняння.",
+    "tags": [
+     "етикетка",
+     "хімічні"
+    ],
+    "status": "unread"
+   }
+  },
+  {
+   "files": [
+    {
+     "name": "05_Хімічні пестициди - етикетки та SDS (для порівняння)/Firefly 155 SDS.pdf",
+     "sha256": "46a8fdb269a32ade094715529848095d08fa23b8ac7c2861ed0e6b1dab08e0a1"
+    }
+   ],
+   "file_name": "Firefly 155 SDS.pdf",
+   "sections": [
+    "Хімічні препарати (для порівняння)"
+   ],
+   "source": {
+    "type": "other",
+    "title": "Firefly 155: паспорт безпеки (SDS)",
+    "language": "en",
+    "description": "SDS хімічного фунгіциду; для порівняння.",
+    "main_results": "SDS хімічного фунгіциду; для порівняння.",
+    "tags": [
+     "SDS",
+     "хімічні"
+    ],
+    "status": "unread"
+   }
+  },
+  {
+   "files": [
+    {
+     "name": "05_Хімічні пестициди - етикетки та SDS (для порівняння)/Flint GB A3g-1-.pdf",
+     "sha256": "925924fb3178647dff4665e880a7f9108bac373e25da2ab14d3ee5ef4f286166"
+    }
+   ],
+   "file_name": "Flint GB A3g-1-.pdf",
+   "sections": [
+    "Хімічні препарати (для порівняння)"
+   ],
+   "source": {
+    "type": "other",
+    "title": "Flint: етикетка",
+    "language": "en",
+    "description": "Етикетка хімічного фунгіциду; для порівняння.",
+    "main_results": "Етикетка хімічного фунгіциду; для порівняння.",
+    "tags": [
+     "етикетка",
+     "хімічні"
+    ],
+    "status": "unread"
+   }
+  },
+  {
+   "files": [
+    {
+     "name": "05_Хімічні пестициди - етикетки та SDS (для порівняння)/Raxil Star MSDS.pdf",
+     "sha256": "6a268d76d6e81d427564ed9beafb3c536773669ad535cc45911d3de3f6c120da"
+    }
+   ],
+   "file_name": "Raxil Star MSDS.pdf",
+   "sections": [
+    "Хімічні препарати (для порівняння)"
+   ],
+   "source": {
+    "type": "other",
+    "title": "Raxil Star: паспорт безпеки (SDS)",
+    "language": "en",
+    "description": "SDS хімічного протруйника; для порівняння.",
+    "main_results": "SDS хімічного протруйника; для порівняння.",
+    "tags": [
+     "SDS",
+     "хімічні"
+    ],
+    "status": "unread"
+   }
+  },
+  {
+   "files": [
+    {
+     "name": "05_Хімічні пестициди - етикетки та SDS (для порівняння)/Raxil Star label.pdf",
+     "sha256": "74fc950449e265308a6e24024b4fa21158a71e3df58c23340cda9649d862de6b"
+    }
+   ],
+   "file_name": "Raxil Star label.pdf",
+   "sections": [
+    "Хімічні препарати (для порівняння)"
+   ],
+   "source": {
+    "type": "other",
+    "title": "Raxil Star: етикетка",
+    "language": "en",
+    "description": "Етикетка хімічного протруйника; для порівняння.",
+    "main_results": "Етикетка хімічного протруйника; для порівняння.",
+    "tags": [
+     "етикетка",
+     "хімічні"
+    ],
+    "status": "unread"
+   }
+  },
+  {
+   "files": [
+    {
+     "name": "05_Хімічні пестициди - етикетки та SDS (для порівняння)/Redigo Pro SDS.pdf",
+     "sha256": "8c0be0ada2501198862a3004c253b86af49fa4d0c5b372f2815e62349c2cee1d"
+    }
+   ],
+   "file_name": "Redigo Pro SDS.pdf",
+   "sections": [
+    "Хімічні препарати (для порівняння)"
+   ],
+   "source": {
+    "type": "other",
+    "title": "Redigo Pro: паспорт безпеки (SDS)",
+    "language": "en",
+    "description": "SDS хімічного протруйника; для порівняння.",
+    "main_results": "SDS хімічного протруйника; для порівняння.",
+    "tags": [
+     "SDS",
+     "хімічні"
+    ],
+    "status": "unread"
+   }
+  },
+  {
+   "files": [
+    {
+     "name": "05_Хімічні пестициди - етикетки та SDS (для порівняння)/Redigo Pro label.pdf",
+     "sha256": "d58e679f3d57caf5af4499b2a435e13675abe64ddf1f9ecba522379e14f06173"
+    }
+   ],
+   "file_name": "Redigo Pro label.pdf",
+   "sections": [
+    "Хімічні препарати (для порівняння)"
+   ],
+   "source": {
+    "type": "other",
+    "title": "Redigo Pro: етикетка",
+    "language": "en",
+    "description": "Етикетка хімічного протруйника; для порівняння.",
+    "main_results": "Етикетка хімічного протруйника; для порівняння.",
+    "tags": [
+     "етикетка",
+     "хімічні"
+    ],
+    "status": "unread"
+   }
+  },
+  {
+   "files": [
+    {
+     "name": "06_Комерційні матеріали та брошури/Andermatt-Biocontrol-Suisse-Pflanzengesundheit-Pflanzenbau-Schädlingsbekämpfung_2026.pdf",
+     "sha256": "50dbb0557e85fa874c037031aab1ed257471acc362c783bd34a6453a6b66e285"
+    }
+   ],
+   "file_name": "Andermatt-Biocontrol-Suisse-Pflanzengesundheit-Pflanzenbau-Schädlingsbekämpfung_2026.pdf",
+   "sections": [
+    "Ринок: етикетки, інструкції, брошури"
+   ],
+   "source": {
+    "type": "other",
+    "title": "Andermatt Biocontrol Suisse: каталог «Pflanzengesundheit» 2026",
+    "language": "de",
+    "description": "Каталог біопрепаратів (75 с.); містить таблиці умов і термінів зберігання препаратів (Lagerung und Haltbarkeit).",
+    "main_results": "Каталог біопрепаратів (75 с.); містить таблиці умов і термінів зберігання препаратів (Lagerung und Haltbarkeit).",
+    "tags": [
+     "каталог",
+     "зберігання"
+    ],
+    "status": "unread"
+   }
+  },
+  {
+   "files": [
+    {
+     "name": "06_Комерційні матеріали та брошури/BASF_Serifel_Brochure.pdf",
+     "sha256": "172f50212147ea28f2bcece522d1f2cf0e989bc38f2e664356aad1e5705636a0"
+    }
+   ],
+   "file_name": "BASF_Serifel_Brochure.pdf",
+   "sections": [
+    "Ринок: етикетки, інструкції, брошури"
+   ],
+   "source": {
+    "type": "other",
+    "title": "Serifel: брошура",
+    "language": "en",
+    "description": "Брошура біофунгіциду на основі Bacillus amyloliquefaciens MBI600 (змочуваний порошок): профіль продукту, механізм дії, культури.",
+    "main_results": "Брошура біофунгіциду на основі Bacillus amyloliquefaciens MBI600 (змочуваний порошок): профіль продукту, механізм дії, культури.",
+    "tags": [
+     "брошура",
+     "Bacillus"
+    ],
+    "status": "unread"
+   }
+  },
+  {
+   "files": [
+    {
+     "name": "06_Комерційні матеріали та брошури/BiNitro Горох (інокулянт) - сторінка магазину.docx",
+     "sha256": "8e5db51a33a02ed6a3acedcf4399b79e85ddb13e6faf88afadefcc8d433d201e"
+    }
+   ],
+   "file_name": "BiNitro Горох (інокулянт) - сторінка магазину.docx",
+   "sections": [
+    "Ринок: етикетки, інструкції, брошури"
+   ],
+   "source": {
+    "type": "other",
+    "title": "BiNitro Горох (інокулянт): сторінка магазину",
+    "language": "uk",
+    "description": "Збережена сторінка інтернет-магазину (.docx) з описом інокулянту. Прикріпіть вручну.",
+    "main_results": "Збережена сторінка інтернет-магазину (.docx) з описом інокулянту. Прикріпіть вручну.",
+    "tags": [
+     "магазин",
+     "інокулянт"
+    ],
+    "status": "unread"
+   }
+  },
+  {
+   "files": [
+    {
+     "name": "06_Комерційні матеріали та брошури/Punctum-Journal-Andermatt-Biocontrol-Suisse_2026_DE.pdf",
+     "sha256": "851dd78fa088882d3b4103adb3051e850d344d5697b06c3bb4772d983170cffe"
+    }
+   ],
+   "file_name": "Punctum-Journal-Andermatt-Biocontrol-Suisse_2026_DE.pdf",
+   "sections": [
+    "Ринок: етикетки, інструкції, брошури"
+   ],
+   "source": {
+    "type": "other",
+    "title": "Punctum: журнал Andermatt Biocontrol Suisse 2026",
+    "language": "de",
+    "description": "Корпоративний журнал компанії (переважно про команду). Тематично на межі.",
+    "main_results": "Корпоративний журнал компанії (переважно про команду). Тематично на межі.",
+    "tags": [
+     "брошура"
+    ],
+    "status": "unread"
+   }
+  },
+  {
+   "files": [
+    {
+     "name": "06_Комерційні матеріали та брошури/ST_MPF_OnePager.pdf",
+     "sha256": "81a8d958af5c21dc8480e06e948aa4baa57bbf0762d6be5be11d9b452dae37a6"
+    }
+   ],
+   "file_name": "ST_MPF_OnePager.pdf",
+   "sections": [
+    "Ринок: етикетки, інструкції, брошури"
+   ],
+   "source": {
+    "type": "other",
+    "title": "Sepiret: покриття насіння без мікропластику (one-pager)",
+    "language": "en",
+    "description": "Опис нового покоління полімерних покриттів для насіння без мікропластику; приклад тенденції до біорозкладних носіїв.",
+    "main_results": "Опис нового покоління полімерних покриттів для насіння без мікропластику; приклад тенденції до біорозкладних носіїв.",
+    "tags": [
+     "брошура",
+     "полімери"
+    ],
+    "status": "unread"
+   }
+  },
+  {
+   "files": [
+    {
+     "name": "06_Комерційні матеріали та брошури/ecostern-broshure.pdf",
+     "sha256": "3635dc66788461eb5de4f17ebc173eaebca4e94a867b332542bbf12d69d42ebf"
+    }
+   ],
+   "file_name": "ecostern-broshure.pdf",
+   "sections": [
+    "Ринок: етикетки, інструкції, брошури"
+   ],
+   "source": {
+    "type": "other",
+    "title": "Екостерн: брошура",
+    "language": "uk",
+    "description": "Брошура лінійки мікробних препаратів Екостерн: склад, препаративні форми, застосування.",
+    "main_results": "Брошура лінійки мікробних препаратів Екостерн: склад, препаративні форми, застосування.",
+    "tags": [
+     "брошура",
+     "Україна"
+    ],
+    "status": "unread"
+   }
+  },
+  {
+   "files": [
+    {
+     "name": "06_Комерційні матеріали та брошури/graundfiks.pdf",
+     "sha256": "3b9f456eb2699c84e4fef0f6bfaf698cd15b6d979036563f87afcaffe1a9e85b"
+    }
+   ],
+   "file_name": "graundfiks.pdf",
+   "sections": [
+    "Ринок: етикетки, інструкції, брошури"
+   ],
+   "source": {
+    "type": "other",
+    "title": "Граундфікс: брошура",
+    "language": "uk",
+    "description": "Брошура біодобрива на основі Bacillus subtilis та ін.: мобілізація фосфору й калію.",
+    "main_results": "Брошура біодобрива на основі Bacillus subtilis та ін.: мобілізація фосфору й калію.",
+    "tags": [
+     "брошура",
+     "Україна"
+    ],
+    "status": "unread"
+   }
+  },
+  {
+   "files": [
+    {
+     "name": "06_Комерційні матеріали та брошури/sclerocid.pdf",
+     "sha256": "bd1d8ec84c71c72ac7b5197c13116da427c3438da003c0a53b74825393fa19f5"
+    }
+   ],
+   "file_name": "sclerocid.pdf",
+   "sections": [
+    "Ринок: етикетки, інструкції, брошури"
+   ],
+   "source": {
+    "type": "other",
+    "title": "Склероцид: брошура",
+    "language": "uk",
+    "description": "Брошура біофунгіциду на основі Coniothyrium minitans, Trichoderma та Bacillus.",
+    "main_results": "Брошура біофунгіциду на основі Coniothyrium minitans, Trichoderma та Bacillus.",
+    "tags": [
+     "брошура",
+     "Україна"
+    ],
+    "status": "unread"
+   }
+  },
+  {
+   "files": [
+    {
+     "name": "06_Комерційні матеріали та брошури/Сторінки магазину біопрепаратів (7 шт).zip",
+     "sha256": "4e69b28d78a9f6bf931b5f719c92615db875ab27dc4bab534e949134d25a6607"
+    }
+   ],
+   "file_name": "Сторінки магазину біопрепаратів (7 шт).zip",
+   "sections": [
+    "Ринок: етикетки, інструкції, брошури"
+   ],
+   "source": {
+    "type": "other",
+    "title": "Сторінки магазину біопрепаратів (7 шт.)",
+    "language": "uk",
+    "description": "Архів .zip із 7 збереженими сторінками інтернет-магазину біопрепаратів. Прикріпіть вручну.",
+    "main_results": "Архів .zip із 7 збереженими сторінками інтернет-магазину біопрепаратів. Прикріпіть вручну.",
+    "tags": [
+     "магазин"
+    ],
+    "status": "unread"
+   }
+  }
+ ],
+ "dropped": [
+  {
+   "file": "1-s2.0-089043329190070K-main.pdf",
+   "reason": "не за темою: теплопровідність мармуру",
+   "sha256": "7176fa47b7f76b78cd79ec1990f185f09a8d3a58ee845ab767c3c6172bf1ed10"
+  },
+  {
+   "file": "10.1016.j.jretconser.2020.102136.pdf",
+   "reason": "не за темою: маркетинг",
+   "sha256": "d3dce871a8fec7d3b8524b57144aa1636a67692ab4aeb657cb1befc22d37d7c4"
+  },
+  {
+   "file": "10.1016_j.jece.2026.123186_pg6p.pdf",
+   "reason": "не за темою: рідкісноземельні елементи",
+   "sha256": "236b8cf68448e653047401318cfd5716b0f8adcf39c04e4c7fd94e60a419041b"
+  },
+  {
+   "file": "NEJMoa2507874.pdf",
+   "reason": "не за темою: онкологія",
+   "sha256": "3a8a69b5954521e91416bf590cf1d123c2d6b413bd2deb7459eb4b2788488af8"
+  },
+  {
+   "file": "hvab063.pdf",
+   "reason": "не за темою: кардіобіомаркери",
+   "sha256": "f562ca6968ba345e691219517f80370f0419fd3053112f407b7b6db11fbb3e80"
+  },
+  {
+   "file": "jsapo-2026-9p_pb7_2).pdf",
+   "reason": "не за темою: фотоніка",
+   "sha256": "b39783edee71daa546f6bf6eac5654583068a41b945c781323312f5208d6275d"
+  },
+  {
+   "file": "The_Heterodimeric_Sweet_Taste_Receptor….pdf",
+   "reason": "не за темою: рецептор смаку",
+   "sha256": "b35a3e65032b26f0e13229ce9db4e0e422b0a3e6f9cd9651d92fc2b9d5653526"
+  },
+  {
+   "file": "The_Wagner_Group_in_Africa….pdf",
+   "reason": "не за темою: політологія",
+   "sha256": "cc148904a5f5d96a7aed3d12ff07e85e54668d40f25fcd8628927ba8c8e97075"
+  },
+  {
+   "file": "Vertical and Horizontal Ridge augmentation.pdf",
+   "reason": "не за темою: стоматологія",
+   "sha256": "93ba8cdc24c20516ea8e0d368811003e906991547efb837e94bd3e824cbdeb78"
+  },
+  {
+   "file": "Читати інструкцію.pdf",
+   "reason": "дублікат інструкції Різолайн Р (інше форматування)",
+   "sha256": "b0329f64fa6077d31f13abb4205cf0ed20d94cb4c6f91c2e181a7c18dcf6f7b2"
+  }
+ ]
+}
