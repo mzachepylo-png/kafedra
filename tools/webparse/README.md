@@ -10,7 +10,32 @@ cookie, кнопки «поділитися», коментарі й підва�
 .docx, .xlsx, .html, .pdf. Парсер сам знайде в ньому всі адреси `http(s)://…`, прибере повтори
 й обробить кожну сторінку.
 
-## Встановлення
+## Windows: готовий webparse.exe
+
+Python встановлювати не треба.
+
+1. Завантажте **webparse.exe** зі сторінки релізу
+   [«webparse-latest»](https://github.com/mzachepylo-png/kafedra/releases/tag/webparse-latest).
+   Його автоматично збирає GitHub Actions (`.github/workflows/webparse-exe.yml`) після кожної зміни
+   в `tools/webparse/`.
+2. Запустіть подвійним кліком. Відкриється чорне вікно-консоль, а за кілька секунд — вебінтерфейс
+   у браузері (http://127.0.0.1:8000). Щоб завершити роботу, закрийте вікно-консоль.
+3. Під час першого запуску Windows може показати «Windows захистив ваш ПК»: файл не має цифрового
+   підпису. Натисніть «Докладніше» → «Однаково запустити». Перший запуск триває 5–15 с, бо exe
+   розпаковує себе в тимчасову теку.
+
+«Рендеринг JavaScript» в exe-версії працює через Microsoft Edge, який є в кожній Windows 10/11,
+тож окремий браузер не потрібен.
+
+exe працює й як командний рядок (параметри ті самі, що в `python3 -m webparse`):
+
+```bat
+webparse.exe -f посилання.docx -o збірка.docx
+```
+
+Зібрати exe самостійно у Windows: запустіть `build_exe.bat`, результат з'явиться в `dist\webparse.exe`.
+
+## Встановлення (Python)
 
 Потрібен Python 3.10 або новіший.
 
@@ -146,5 +171,7 @@ webparse/docx_out.py    — блоки → DOCX (python-docx)
 webparse/preview.py     — блоки → HTML для перегляду
 webparse/links.py       — адреси з файлів (.txt, .csv, .docx, .xlsx, .html, .pdf)
 webparse/__main__.py    — командний рядок
+launcher.py             — точка входу exe: без параметрів — інтерфейс у браузері, з параметрами — командний рядок
+build_exe.bat           — локальна збірка webparse.exe (PyInstaller)
 tests/                  — тести й локальна тестова сторінка
 ```

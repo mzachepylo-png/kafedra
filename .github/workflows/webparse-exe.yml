@@ -1,0 +1,92 @@
+# Збирає Windows-версію парсера вебсторінок (tools/webparse) — один файл webparse.exe.
+# Результат: артефакт запуску «webparse-windows» і реліз «webparse-latest» (вкладка Releases).
+name: Build webparse.exe
+
+on:
+  push:
+    paths: ['tools/webparse/**', '.github/workflows/webparse-exe.yml']
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: webparse-exe-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  build:
+    runs-on: windows-latest
+    timeout-minutes: 30
+    env:
+      PYTHONUTF8: "1"
+      PYTHONIOENCODING: utf-8
+    defaults:
+      run:
+        working-directory: tools/webparse
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Install
+        run: |
+          python -m pip install --upgrade pip
+          pip install -r requirements.txt pytest==8.3.4 pyinstaller==6.11.1 playwright==1.49.1 pypdf==5.1.0
+
+      - name: Tests
+        run: python -m pytest tests -q -p no:cacheprovider
+
+      - name: Build exe
+        run: >
+          pyinstaller --noconfirm --clean --onefile --name webparse
+          --add-data "templates;templates"
+          --collect-all playwright
+          --collect-submodules webparse
+          launcher.py
+
+      - name: Smoke test (exe)
+        shell: pwsh
+        run: |
+          $srv = Start-Process python -ArgumentList "tests/serve.py" -PassThru -WindowStyle Hidden
+          Start-Sleep -Seconds 3
+          try {
+            .\dist\webparse.exe --version
+            if ($LASTEXITCODE -ne 0) { throw "exe не запускається" }
+            cmd /c ".\dist\webparse.exe http://127.0.0.1:8765/article -o smoke.docx 2>&1"
+            if ($LASTEXITCODE -ne 0) { throw "звичайний режим не спрацював" }
+            # рендеринг JavaScript через Microsoft Edge, який є в кожній Windows
+            cmd /c ".\dist\webparse.exe http://127.0.0.1:8765/article --render -o smoke-render.docx 2>&1"
+            if ($LASTEXITCODE -ne 0) { throw "режим рендерингу не спрацював" }
+            # без рендерингу — 3 рисунки, з рендерингом додається графік на <canvas>
+            python -c "import docx; a=len(docx.Document('smoke.docx').inline_shapes); b=len(docx.Document('smoke-render.docx').inline_shapes); print('рисунків:', a, b); assert a >= 3 and b > a"
+            if ($LASTEXITCODE -ne 0) { throw "у DOCX не вистачає рисунків" }
+            "Розмір exe: {0:N1} МБ" -f ((Get-Item dist\webparse.exe).Length / 1MB)
+          } finally {
+            Stop-Process -Id $srv.Id -ErrorAction SilentlyContinue
+          }
+
+      - uses: actions/upload-artifact@v4
+        with:
+          name: webparse-windows
+          path: tools/webparse/dist/webparse.exe
+          retention-days: 90
+
+      - name: Publish release «webparse-latest»
+        shell: pwsh
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          $tag = "webparse-latest"
+          $notes = "Парсер вебсторінок у DOCX для Windows: завантажте webparse.exe і запустіть подвійним кліком. " +
+                   "Інструкція: tools/webparse/README.md. Зібрано з коміту ${{ github.sha }} (гілка ${{ github.ref_name }})."
+          gh release view $tag --repo ${{ github.repository }} *> $null
+          if ($LASTEXITCODE -ne 0) {
+            gh release create $tag --repo ${{ github.repository }} --prerelease --target ${{ github.sha }} `
+              --title "Парсер вебсторінок → DOCX (Windows)" --notes $notes
+          } else {
+            gh release edit $tag --repo ${{ github.repository }} --notes $notes
+          }
+          gh release upload $tag dist/webparse.exe --repo ${{ github.repository }} --clobber

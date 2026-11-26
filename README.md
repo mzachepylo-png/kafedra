@@ -116,7 +116,7 @@ tools/mgen/                        — генератор сторінки: sour
                                      відповідність розділів і джерел), refs.json (література), captions/credits.json (фото)
 tools/webparse/                    — парсер вебсторінок у читабельний текст і DOCX (таблиці, рисунки, графіки;
                                      адреси вручну або файлом .txt/.csv/.docx/.xlsx/.pdf); вебінтерфейс: python3 app.py,
-                                     див. tools/webparse/README.md (не публікується на сайті)
+                                     Windows-версія webparse.exe — у релізі «webparse-latest»; див. tools/webparse/README.md (не публікується на сайті)
 assets/js/lab/ion-transport.js, assets/css/ion.css — навігація й ~30 інтерактивних моделей конспекту «Транспорт іонів»
 assets/js/lab/plot.js              — графіки на Canvas (HiDPI, підказки, легенда)
 assets/js/lab/ui.js                — повзунки, перемикачі, CSV-експорт, генератор варіантів

@@ -15,6 +15,7 @@ import argparse
 import io
 import os
 import re
+import sys
 import threading
 import time
 import uuid
@@ -32,7 +33,12 @@ from webparse.pipeline import Options, parse_many
 MAX_URLS = 200
 KEEP_JOBS = 30
 
-app = Flask(__name__)
+def _resource_dir() -> str:
+    """Тека з templates/: поруч із app.py або всередині exe (PyInstaller розпаковує в sys._MEIPASS)."""
+    return getattr(sys, "_MEIPASS", os.path.dirname(os.path.abspath(__file__)))
+
+
+app = Flask(__name__, template_folder=os.path.join(_resource_dir(), "templates"))
 app.config["MAX_CONTENT_LENGTH"] = 15 * 1024 * 1024
 
 

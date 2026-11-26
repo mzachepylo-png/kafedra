@@ -83,13 +83,23 @@ class Renderer:
         self.timeout = timeout_ms
         self._pw = sync_playwright().start()
         try:
-            try:
-                self._browser = self._pw.chromium.launch()
-            except Exception:
-                path = _chromium_path()
-                if not path:
-                    raise
-                self._browser = self._pw.chromium.launch(executable_path=path)
+            # 1) Chromium, встановлений командою «playwright install chromium»;
+            # 2) шлях із WEBPARSE_CHROMIUM; 3) Microsoft Edge або Google Chrome, що вже є в системі
+            #    (у Windows Edge є завжди — тому exe-версії окремий браузер не потрібен)
+            attempts: list[dict] = [{}]
+            path = _chromium_path()
+            if path:
+                attempts.append({"executable_path": path})
+            attempts += [{"channel": "msedge"}, {"channel": "chrome"}]
+            last: Exception | None = None
+            for kw in attempts:
+                try:
+                    self._browser = self._pw.chromium.launch(**kw)
+                    break
+                except Exception as e:
+                    last = e
+            else:
+                raise last or RuntimeError("браузер не знайдено")
             self._ctx = self._browser.new_context(user_agent=UA, device_scale_factor=2,
                                                   viewport={"width": 1280, "height": 900},
                                                   locale="uk-UA")
