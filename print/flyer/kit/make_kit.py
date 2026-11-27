@@ -74,6 +74,12 @@ symbols = [
     f'<symbol id="nubip-shield" viewBox="0 0 644 884"><image href="{b64(KIT / "nubip-shield.png", "image/png")}" width="644" height="884"/></symbol>',
     ICO_IG, ICO_FB, ICO_WEB,
 ] + [qr_symbol(k, *v) for k, v in LINKS.items()]
+
+# ---------- фото (квадратні кадри для круглих рамок; джерела — kit/photos/CREDITS.md) ----------
+for name in ("elodea", "fp-tubes", "invitro", "callus"):
+    symbols.append(f'<symbol id="photo-{name}" viewBox="0 0 1000 1000">'
+                   f'<image href="{b64(KIT / "photos" / (name + ".jpg"), "image/jpeg")}" width="1000" height="1000" '
+                   f'preserveAspectRatio="xMidYMid slice"/></symbol>')
 (KIT / "symbols.svg").write_text("\n".join(symbols), encoding="utf-8")
 
 # ---------- шрифти ----------
