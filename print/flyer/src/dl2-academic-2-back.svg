@@ -1,0 +1,137 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="99mm" height="210mm" viewBox="0 0 990 2100">
+<defs>
+<linearGradient id="enamel" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#FFFFFF"/><stop offset="0.55" stop-color="#E9EEF2"/><stop offset="1" stop-color="#B7C3CD"/></linearGradient>
+<linearGradient id="enamelV" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#FFFFFF"/><stop offset="0.5" stop-color="#E6ECF1"/><stop offset="1" stop-color="#AEBBC6"/></linearGradient>
+<linearGradient id="blackM" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#151A20"/><stop offset="0.3" stop-color="#4A535D"/><stop offset="0.45" stop-color="#7E8994"/><stop offset="0.6" stop-color="#3A424B"/><stop offset="1" stop-color="#12161B"/></linearGradient>
+<linearGradient id="blackV" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#5A646E"/><stop offset="0.25" stop-color="#2A3038"/><stop offset="1" stop-color="#0F1317"/></linearGradient>
+<linearGradient id="chromeM" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#5E6872"/><stop offset="0.18" stop-color="#C9D1D8"/><stop offset="0.32" stop-color="#F7F9FA"/><stop offset="0.5" stop-color="#B8C2CA"/><stop offset="0.75" stop-color="#7D8892"/><stop offset="1" stop-color="#4B545D"/></linearGradient>
+<radialGradient id="shadowE" cx="0.5" cy="0.5" r="0.5"><stop offset="0" stop-color="#0a1a2a" stop-opacity="1"/><stop offset="0.55" stop-color="#0a1a2a" stop-opacity="0.45"/><stop offset="1" stop-color="#0a1a2a" stop-opacity="0"/></radialGradient>
+<radialGradient id="lampGlow" cx="0.5" cy="0.5" r="0.5"><stop offset="0" stop-color="#FFF7C2"/><stop offset="0.4" stop-color="#FFE066" stop-opacity="0.9"/><stop offset="1" stop-color="#FFD200" stop-opacity="0"/></radialGradient>
+<radialGradient id="knob" cx="0.38" cy="0.35" r="0.7"><stop offset="0" stop-color="#F4F6F8"/><stop offset="0.45" stop-color="#AEB8C1"/><stop offset="0.8" stop-color="#59636D"/><stop offset="1" stop-color="#2F363D"/></radialGradient>
+</defs>
+<rect width="990" height="2100" fill="#FBFCFD"/>
+<rect width="990" height="14" fill="#0B3D6B"/><rect y="14" width="990" height="5" fill="#FFD200"/>
+<text x="50" y="84" font-family="'Inter'" font-size="24" font-weight="600" fill="#2E8B3E" letter-spacing="2">ОСВІТНЬО-ПРОФЕСІЙНА ПРОГРАМА БАКАЛАВРА</text>
+<text x="50" y="146" font-family="'Inter Display'" font-size="50" font-weight="800" fill="#0B3D6B">Біотехнології та біоінженерія</text>
+<rect x="50" y="180" width="288.7" height="108" rx="14" fill="#0B3D6B"/>
+<rect x="50" y="180" width="288.7" height="7" rx="3.5" fill="#FFD200"/>
+<text x="70" y="224" font-family="'Inter'" font-size="24" font-weight="600" fill="#A9C6E4" letter-spacing="1">СТУПІНЬ</text>
+<text x="70" y="268" font-family="'Inter Display'" font-size="34" font-weight="800" fill="#fff">Бакалавр</text>
+<rect x="350.7" y="180" width="288.7" height="108" rx="14" fill="#0B3D6B"/>
+<rect x="350.7" y="180" width="288.7" height="7" rx="3.5" fill="#FFD200"/>
+<text x="370.7" y="224" font-family="'Inter'" font-size="24" font-weight="600" fill="#A9C6E4" letter-spacing="1">СПЕЦІАЛЬНІСТЬ</text>
+<text x="370.7" y="268" font-family="'Inter Display'" font-size="34" font-weight="800" fill="#fff">162 (G21)</text>
+<rect x="651.3" y="180" width="288.7" height="108" rx="14" fill="#0B3D6B"/>
+<rect x="651.3" y="180" width="288.7" height="7" rx="3.5" fill="#FFD200"/>
+<text x="671.3" y="224" font-family="'Inter'" font-size="24" font-weight="600" fill="#A9C6E4" letter-spacing="1">ФОРМА</text>
+<text x="671.3" y="268" font-family="'Inter Display'" font-size="34" font-weight="800" fill="#fff">Денна</text>
+<rect x="50" y="300" width="439" height="108" rx="14" fill="#0B3D6B"/>
+<rect x="50" y="300" width="439" height="7" rx="3.5" fill="#FFD200"/>
+<text x="70" y="344" font-family="'Inter'" font-size="24" font-weight="600" fill="#A9C6E4" letter-spacing="1">ТРИВАЛІСТЬ</text>
+<text x="70" y="388" font-family="'Inter Display'" font-size="34" font-weight="800" fill="#fff">3 роки 10 місяців</text>
+<rect x="501" y="300" width="439" height="108" rx="14" fill="#0B3D6B"/>
+<rect x="501" y="300" width="439" height="7" rx="3.5" fill="#FFD200"/>
+<text x="521" y="344" font-family="'Inter'" font-size="24" font-weight="600" fill="#A9C6E4" letter-spacing="1">ОБСЯГ</text>
+<text x="521" y="388" font-family="'Inter Display'" font-size="34" font-weight="800" fill="#fff">240 кредитів ЄКТС</text>
+<text x="50" y="454" font-family="'Inter'" font-size="25" font-weight="400" fill="#1B2A3A">Перший (бакалаврський) рівень · галузь знань 16 «Хімічна та</text>
+<text x="50" y="488" font-family="'Inter'" font-size="25" font-weight="400" fill="#1B2A3A">біоінженерія» · кваліфікація — бакалавр з біотехнологій та біоінженерії ·</text>
+<text x="50" y="522" font-family="'Inter'" font-size="25" font-weight="400" fill="#1B2A3A">вступ на основі повної загальної середньої освіти.</text>
+<text x="50" y="570" font-family="'Inter'" font-size="25" font-weight="600" fill="#0B3D6B">Вибіркові блоки:</text>
+<rect x="271.8" y="540" width="374.6" height="46" rx="23.0" fill="#EEF5EA" stroke="#BFDDB0" stroke-width="2"/><text x="285.8" y="571.6" font-family="'Inter'" font-size="24" font-weight="500" fill="#1E6A2E">«Промислова біотехнологія»</text>
+<rect x="654.4" y="540" width="269.6" height="46" rx="23.0" fill="#EEF5EA" stroke="#BFDDB0" stroke-width="2"/><text x="668.4" y="571.6" font-family="'Inter'" font-size="24" font-weight="500" fill="#1E6A2E">«Фітобіотехнологія»</text>
+<text x="50" y="646" font-family="'Inter'" font-size="26" font-weight="600" fill="#1E6A2E">Обов’язкові дисципліни</text>
+<rect x="50" y="660" width="430" height="3" fill="#7CC242"/>
+<circle cx="58" cy="694" r="6.5" fill="#FFD200" stroke="#0B3D6B" stroke-width="2.5"/>
+<text x="76" y="702" font-family="'Inter'" font-size="25" font-weight="400" fill="#1B2A3A">Біохімія</text>
+<circle cx="58" cy="731.5" r="6.5" fill="#FFD200" stroke="#0B3D6B" stroke-width="2.5"/>
+<text x="76" y="739.5" font-family="'Inter'" font-size="25" font-weight="400" fill="#1B2A3A">Біологія клітини</text>
+<circle cx="58" cy="769" r="6.5" fill="#FFD200" stroke="#0B3D6B" stroke-width="2.5"/>
+<text x="76" y="777" font-family="'Inter'" font-size="25" font-weight="400" fill="#1B2A3A">Фізіологія рослин</text>
+<circle cx="58" cy="806.5" r="6.5" fill="#FFD200" stroke="#0B3D6B" stroke-width="2.5"/>
+<text x="76" y="814.5" font-family="'Inter'" font-size="25" font-weight="400" fill="#1B2A3A">Загальна біотехнологія</text>
+<circle cx="58" cy="844" r="6.5" fill="#FFD200" stroke="#0B3D6B" stroke-width="2.5"/>
+<text x="76" y="852" font-family="'Inter'" font-size="25" font-weight="400" fill="#1B2A3A">Молекулярна біотехнологія</text>
+<circle cx="58" cy="881.5" r="6.5" fill="#FFD200" stroke="#0B3D6B" stroke-width="2.5"/>
+<text x="76" y="889.5" font-family="'Inter'" font-size="25" font-weight="400" fill="#1B2A3A">Біоінженерія</text>
+<text x="510" y="646" font-family="'Inter'" font-size="26" font-weight="600" fill="#1E6A2E">Блок «Фітобіотехнологія»</text>
+<rect x="510" y="660" width="430" height="3" fill="#7CC242"/>
+<circle cx="518" cy="694" r="6.5" fill="#FFD200" stroke="#0B3D6B" stroke-width="2.5"/>
+<text x="536" y="702" font-family="'Inter'" font-size="25" font-weight="400" fill="#1B2A3A">Клітинна біоенергетика</text>
+<circle cx="518" cy="731.5" r="6.5" fill="#FFD200" stroke="#0B3D6B" stroke-width="2.5"/>
+<text x="536" y="739.5" font-family="'Inter'" font-size="25" font-weight="400" fill="#1B2A3A">Біологія лікарських рослин</text>
+<circle cx="518" cy="769" r="6.5" fill="#FFD200" stroke="#0B3D6B" stroke-width="2.5"/>
+<text x="536" y="777" font-family="'Inter'" font-size="25" font-weight="400" fill="#1B2A3A">Промислове культивування</text>
+<text x="536" y="808.5" font-family="'Inter'" font-size="25" font-weight="400" fill="#1B2A3A">грибів та водоростей</text>
+<circle cx="518" cy="838" r="6.5" fill="#FFD200" stroke="#0B3D6B" stroke-width="2.5"/>
+<text x="536" y="846" font-family="'Inter'" font-size="25" font-weight="400" fill="#1B2A3A">Біометрія</text>
+<text x="50" y="943" font-family="'Inter'" font-size="25" font-weight="400" fill="#1B2A3A"><tspan font-weight="600" fill="#0B3D6B">Практика: </tspan>три навчальні практики й виробнича практика.</text>
+<text x="50" y="981" font-family="'Inter'" font-size="25" font-weight="400" fill="#1B2A3A"><tspan font-weight="600" fill="#0B3D6B">Далі: </tspan>магістратура (освітньо-професійна програма «Екологічна</text>
+<text x="50" y="1015" font-family="'Inter'" font-size="25" font-weight="400" fill="#1B2A3A">біотехнологія та біоенергетика») і PhD.</text>
+<line x1="50" y1="1049" x2="940" y2="1049" stroke="#D5DEE7" stroke-width="2"/>
+<text x="50" y="1099" font-family="'Inter Display'" font-size="40" font-weight="800" fill="#0B3D6B">Лабораторії кафедри</text>
+<text x="50" y="1135" font-family="'Inter'" font-size="24" font-weight="500" fill="#556677">навчальний корпус № 4</text>
+<rect x="50" y="1155" width="7" height="98" rx="3.5" fill="#FFD200"/>
+<text x="74" y="1179" font-family="'Inter'" font-size="25" font-weight="600" fill="#1B2A3A">Навчально-наукова лабораторія біохімії та</text>
+<text x="74" y="1211" font-family="'Inter'" font-size="25" font-weight="600" fill="#1B2A3A">фітобіотехнології</text>
+<text x="74" y="1245" font-family="'Inter'" font-size="24" font-weight="500" fill="#1E6A2E">з 2021 р. · ауд. 14</text>
+<rect x="50" y="1271" width="7" height="66" rx="3.5" fill="#FFD200"/>
+<text x="74" y="1295" font-family="'Inter'" font-size="25" font-weight="600" fill="#1B2A3A">Навчальна лабораторія біохімії рослин</text>
+<text x="74" y="1329" font-family="'Inter'" font-size="24" font-weight="500" fill="#1E6A2E">з 2008 р. · ауд. 38</text>
+<rect x="50" y="1355" width="7" height="66" rx="3.5" fill="#FFD200"/>
+<text x="74" y="1379" font-family="'Inter'" font-size="25" font-weight="600" fill="#1B2A3A">Навчальна лабораторія фізіології рослин</text>
+<text x="74" y="1413" font-family="'Inter'" font-size="24" font-weight="500" fill="#1E6A2E">з 2008 р. · ауд. 56</text>
+<g transform="translate(735 1423) scale(0.5)">
+<ellipse cx="200" cy="4" rx="250" ry="26" fill="url(#shadowE)" opacity="0.6"/>
+<path d="M0,0 L0,-46 Q0,-70 26,-72 L360,-80 Q400,-80 404,-50 L410,0 Z" fill="url(#enamelV)" stroke="#9AA8B4" stroke-width="2"/>
+<path d="M8,-58 Q10,-68 30,-68 L356,-76" stroke="#fff" stroke-width="4" fill="none" opacity="0.9"/>
+<rect x="0" y="-12" width="410" height="12" fill="#8E9CA8" opacity="0.5"/>
+<ellipse cx="270" cy="-82" rx="70" ry="26" fill="url(#lampGlow)"/>
+<ellipse cx="270" cy="-80" rx="34" ry="9" fill="#2A3038"/>
+<ellipse cx="270" cy="-82" rx="26" ry="6" fill="#FFF3B0"/>
+<path d="M40,-70 L40,-330 Q40,-470 120,-540 L200,-590 L232,-548 L168,-500 Q126,-466 126,-380 L130,-74 Z" fill="url(#enamel)" stroke="#9AA8B4" stroke-width="2"/>
+<path d="M50,-80 L50,-330 Q50,-460 122,-526" stroke="#fff" stroke-width="5" fill="none" opacity="0.85"/>
+<path d="M124,-90 L120,-380 Q120,-450 160,-492" stroke="#8C9AA6" stroke-width="3" fill="none" opacity="0.6"/>
+<path d="M42,-250 L128,-250 L128,-226 L42,-226Z" fill="#0B3D6B"/>
+<path d="M42,-250 L128,-250 L128,-245 L42,-245Z" fill="#4C8BCF"/>
+<rect x="246" y="-238" width="48" height="56" rx="4" fill="url(#blackM)"/>
+<rect x="240" y="-246" width="60" height="12" rx="3" fill="url(#chromeM)"/>
+<rect x="232" y="-196" width="26" height="8" rx="3" fill="url(#chromeM)"/>
+<path d="M110,-270 L392,-270 L400,-252 L118,-252 Z" fill="#1E242B"/>
+<path d="M110,-276 L390,-276 L392,-270 L110,-270 Z" fill="#59636D"/>
+<rect x="118" y="-252" width="282" height="12" fill="url(#blackV)"/>
+<path d="M190,-282 L350,-282 L356,-276 L196,-276 Z" fill="#DDEFFA" stroke="#9BC1D8" stroke-width="1.5"/>
+<ellipse cx="272" cy="-279" rx="18" ry="3" fill="#7B3FA0" opacity="0.8"/>
+<path d="M150,-284 L220,-280" stroke="url(#chromeM)" stroke-width="5" stroke-linecap="round"/>
+<path d="M330,-280 L384,-284" stroke="url(#chromeM)" stroke-width="5" stroke-linecap="round"/>
+<circle cx="84" cy="-168" r="52" fill="url(#knob)"/>
+<circle cx="84" cy="-168" r="46" fill="none" stroke="#39414A" stroke-width="6" stroke-dasharray="3 5" opacity="0.7"/>
+<circle cx="84" cy="-168" r="27" fill="url(#knob)" stroke="#2F363D" stroke-width="2"/>
+<circle cx="76" cy="-178" r="7" fill="#fff" opacity="0.8"/>
+<path d="M150,-556 L330,-556 Q352,-556 352,-534 L352,-472 Q352,-452 330,-452 L176,-452 Z" fill="url(#enamelV)" stroke="#9AA8B4" stroke-width="2"/>
+<path d="M168,-548 L328,-548" stroke="#fff" stroke-width="4" opacity="0.9"/>
+<g transform="rotate(-38 236 -556)"><rect x="206" y="-720" width="60" height="170" fill="url(#blackM)"/><rect x="200" y="-742" width="72" height="30" rx="5" fill="url(#chromeM)"/><rect x="210" y="-790" width="52" height="52" rx="8" fill="url(#blackM)"/><rect x="206" y="-800" width="60" height="18" rx="7" fill="#181C21"/><rect x="214" y="-712" width="6" height="150" fill="#fff" opacity="0.35"/></g>
+<path d="M210,-452 L330,-452 L318,-412 Q270,-398 222,-412 Z" fill="url(#chromeM)"/>
+<path d="M222,-412 Q270,-398 318,-412" stroke="#4B545D" stroke-width="2" fill="none"/>
+<g transform="rotate(-26 270 -410)"><rect x="253" y="-410" width="34" height="59.5" fill="url(#chromeM)"/><rect x="253" y="-381.1" width="34" height="6.8" fill="#E53935"/><path d="M256.4,-350.5 L283.6,-350.5 L277.6,-325 L262.4,-325 Z" fill="url(#chromeM)"/><rect x="262.4" y="-325" width="15.3" height="6" rx="2" fill="#2A3038"/></g>
+<g transform="rotate(24 270 -410)"><rect x="253" y="-410" width="34" height="59.5" fill="url(#chromeM)"/><rect x="253" y="-381.1" width="34" height="6.8" fill="#1E88E5"/><path d="M256.4,-350.5 L283.6,-350.5 L277.6,-325 L262.4,-325 Z" fill="url(#chromeM)"/><rect x="262.4" y="-325" width="15.3" height="6" rx="2" fill="#2A3038"/></g>
+<g transform="rotate(0 270 -410)"><rect x="250" y="-410" width="40" height="70" fill="url(#chromeM)"/><rect x="250" y="-376" width="40" height="8" fill="#FBC02D"/><path d="M254,-340 L286,-340 L279,-310 L261,-310 Z" fill="url(#chromeM)"/><rect x="261" y="-310" width="18" height="6" rx="2" fill="#2A3038"/></g>
+</g>
+<rect x="46" y="1469" width="288" height="288" rx="10" fill="#fff" stroke="#D5DEE7" stroke-width="2"/>
+<use href="#qr-instagram" x="50" y="1473" width="280" height="280" color="#072A4B"/>
+<text x="190" y="1791" font-family="'Inter'" font-size="24" font-weight="600" fill="#0B3D6B" text-anchor="middle">Instagram</text>
+<text x="190" y="1823" font-family="'Inter'" font-size="24" font-weight="400" fill="#1B2A3A" text-anchor="middle">@plant_physio_chair</text>
+<rect x="351" y="1469" width="288" height="288" rx="10" fill="#fff" stroke="#D5DEE7" stroke-width="2"/>
+<use href="#qr-facebook" x="355" y="1473" width="280" height="280" color="#072A4B"/>
+<text x="495" y="1791" font-family="'Inter'" font-size="24" font-weight="600" fill="#0B3D6B" text-anchor="middle">Facebook</text>
+<text x="495" y="1823" font-family="'Inter'" font-size="24" font-weight="400" fill="#1B2A3A" text-anchor="middle">Ми у Facebook</text>
+<rect x="656" y="1469" width="288" height="288" rx="10" fill="#fff" stroke="#D5DEE7" stroke-width="2"/>
+<use href="#qr-nubip" x="660" y="1473" width="280" height="280" color="#072A4B"/>
+<text x="800" y="1791" font-family="'Inter'" font-size="24" font-weight="600" fill="#0B3D6B" text-anchor="middle">Сторінка кафедри</text>
+<text x="800" y="1823" font-family="'Inter'" font-size="24" font-weight="400" fill="#1B2A3A" text-anchor="middle">на сайті НУБіП</text>
+<rect x="0" y="1853" width="990" height="247" fill="#0B3D6B"/>
+<rect x="0" y="1853" width="990" height="6" fill="#FFD200"/>
+<text x="50" y="1905" font-family="'Inter'" font-size="24" font-weight="500" fill="#fff">03041, м. Київ, вул. Героїв Оборони, 13, навч. корпус № 4, кімн. 13</text>
+<text x="50" y="1941" font-family="'Inter'" font-size="24" font-weight="500" fill="#fff">(044) 527-89-66 · 096-977-80-58 · physiol.biochem2021@gmail.com</text>
+<text x="50" y="1989" font-family="'Inter'" font-size="22" font-weight="400" fill="#A9C6E4">Фото: J. C. Fonseca Mata; E. Rodriguez; S. S. Islam —</text>
+<text x="50" y="2019" font-family="'Inter'" font-size="22" font-weight="400" fill="#A9C6E4">Wikimedia Commons, CC BY-SA 4.0</text>
+</svg>
