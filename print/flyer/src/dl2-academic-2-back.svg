@@ -13,74 +13,70 @@
 <rect width="990" height="14" fill="#0B3D6B"/><rect y="14" width="990" height="5" fill="#FFD200"/>
 <text x="50" y="84" font-family="'Inter'" font-size="24" font-weight="600" fill="#2E8B3E" letter-spacing="2">ОСВІТНЬО-ПРОФЕСІЙНА ПРОГРАМА БАКАЛАВРА</text>
 <text x="50" y="146" font-family="'Inter Display'" font-size="50" font-weight="800" fill="#0B3D6B">Біотехнології та біоінженерія</text>
-<rect x="50" y="180" width="288.7" height="108" rx="14" fill="#0B3D6B"/>
-<rect x="50" y="180" width="288.7" height="7" rx="3.5" fill="#FFD200"/>
+<rect x="50" y="180" width="439" height="112" rx="14" fill="#0B3D6B"/>
+<rect x="50" y="180" width="439" height="7" rx="3.5" fill="#FFD200"/>
 <text x="70" y="224" font-family="'Inter'" font-size="24" font-weight="600" fill="#A9C6E4" letter-spacing="1">СТУПІНЬ</text>
-<text x="70" y="268" font-family="'Inter Display'" font-size="34" font-weight="800" fill="#fff">Бакалавр</text>
-<rect x="350.7" y="180" width="288.7" height="108" rx="14" fill="#0B3D6B"/>
-<rect x="350.7" y="180" width="288.7" height="7" rx="3.5" fill="#FFD200"/>
-<text x="370.7" y="224" font-family="'Inter'" font-size="24" font-weight="600" fill="#A9C6E4" letter-spacing="1">СПЕЦІАЛЬНІСТЬ</text>
-<text x="370.7" y="268" font-family="'Inter Display'" font-size="34" font-weight="800" fill="#fff">162 (G21)</text>
-<rect x="651.3" y="180" width="288.7" height="108" rx="14" fill="#0B3D6B"/>
-<rect x="651.3" y="180" width="288.7" height="7" rx="3.5" fill="#FFD200"/>
-<text x="671.3" y="224" font-family="'Inter'" font-size="24" font-weight="600" fill="#A9C6E4" letter-spacing="1">ФОРМА</text>
-<text x="671.3" y="268" font-family="'Inter Display'" font-size="34" font-weight="800" fill="#fff">Денна</text>
-<rect x="50" y="300" width="439" height="108" rx="14" fill="#0B3D6B"/>
-<rect x="50" y="300" width="439" height="7" rx="3.5" fill="#FFD200"/>
-<text x="70" y="344" font-family="'Inter'" font-size="24" font-weight="600" fill="#A9C6E4" letter-spacing="1">ТРИВАЛІСТЬ</text>
-<text x="70" y="388" font-family="'Inter Display'" font-size="34" font-weight="800" fill="#fff">3 роки 10 місяців</text>
-<rect x="501" y="300" width="439" height="108" rx="14" fill="#0B3D6B"/>
-<rect x="501" y="300" width="439" height="7" rx="3.5" fill="#FFD200"/>
-<text x="521" y="344" font-family="'Inter'" font-size="24" font-weight="600" fill="#A9C6E4" letter-spacing="1">ОБСЯГ</text>
-<text x="521" y="388" font-family="'Inter Display'" font-size="34" font-weight="800" fill="#fff">240 кредитів ЄКТС</text>
-<text x="50" y="454" font-family="'Inter'" font-size="25" font-weight="400" fill="#1B2A3A">Перший (бакалаврський) рівень · галузь знань 16 «Хімічна та</text>
-<text x="50" y="488" font-family="'Inter'" font-size="25" font-weight="400" fill="#1B2A3A">біоінженерія» · кваліфікація — бакалавр з біотехнологій та біоінженерії ·</text>
-<text x="50" y="522" font-family="'Inter'" font-size="25" font-weight="400" fill="#1B2A3A">вступ на основі повної загальної середньої освіти.</text>
-<text x="50" y="570" font-family="'Inter'" font-size="25" font-weight="600" fill="#0B3D6B">Вибіркові блоки:</text>
-<rect x="271.8" y="540" width="374.6" height="46" rx="23.0" fill="#EEF5EA" stroke="#BFDDB0" stroke-width="2"/><text x="285.8" y="571.6" font-family="'Inter'" font-size="24" font-weight="500" fill="#1E6A2E">«Промислова біотехнологія»</text>
-<rect x="654.4" y="540" width="269.6" height="46" rx="23.0" fill="#EEF5EA" stroke="#BFDDB0" stroke-width="2"/><text x="668.4" y="571.6" font-family="'Inter'" font-size="24" font-weight="500" fill="#1E6A2E">«Фітобіотехнологія»</text>
-<text x="50" y="646" font-family="'Inter'" font-size="26" font-weight="600" fill="#1E6A2E">Обов’язкові дисципліни</text>
-<rect x="50" y="660" width="430" height="3" fill="#7CC242"/>
-<circle cx="58" cy="694" r="6.5" fill="#FFD200" stroke="#0B3D6B" stroke-width="2.5"/>
-<text x="76" y="702" font-family="'Inter'" font-size="25" font-weight="400" fill="#1B2A3A">Біохімія</text>
-<circle cx="58" cy="731.5" r="6.5" fill="#FFD200" stroke="#0B3D6B" stroke-width="2.5"/>
-<text x="76" y="739.5" font-family="'Inter'" font-size="25" font-weight="400" fill="#1B2A3A">Біологія клітини</text>
-<circle cx="58" cy="769" r="6.5" fill="#FFD200" stroke="#0B3D6B" stroke-width="2.5"/>
-<text x="76" y="777" font-family="'Inter'" font-size="25" font-weight="400" fill="#1B2A3A">Фізіологія рослин</text>
-<circle cx="58" cy="806.5" r="6.5" fill="#FFD200" stroke="#0B3D6B" stroke-width="2.5"/>
-<text x="76" y="814.5" font-family="'Inter'" font-size="25" font-weight="400" fill="#1B2A3A">Загальна біотехнологія</text>
-<circle cx="58" cy="844" r="6.5" fill="#FFD200" stroke="#0B3D6B" stroke-width="2.5"/>
-<text x="76" y="852" font-family="'Inter'" font-size="25" font-weight="400" fill="#1B2A3A">Молекулярна біотехнологія</text>
-<circle cx="58" cy="881.5" r="6.5" fill="#FFD200" stroke="#0B3D6B" stroke-width="2.5"/>
-<text x="76" y="889.5" font-family="'Inter'" font-size="25" font-weight="400" fill="#1B2A3A">Біоінженерія</text>
-<text x="510" y="646" font-family="'Inter'" font-size="26" font-weight="600" fill="#1E6A2E">Блок «Фітобіотехнологія»</text>
-<rect x="510" y="660" width="430" height="3" fill="#7CC242"/>
-<circle cx="518" cy="694" r="6.5" fill="#FFD200" stroke="#0B3D6B" stroke-width="2.5"/>
-<text x="536" y="702" font-family="'Inter'" font-size="25" font-weight="400" fill="#1B2A3A">Клітинна біоенергетика</text>
-<circle cx="518" cy="731.5" r="6.5" fill="#FFD200" stroke="#0B3D6B" stroke-width="2.5"/>
-<text x="536" y="739.5" font-family="'Inter'" font-size="25" font-weight="400" fill="#1B2A3A">Біологія лікарських рослин</text>
-<circle cx="518" cy="769" r="6.5" fill="#FFD200" stroke="#0B3D6B" stroke-width="2.5"/>
-<text x="536" y="777" font-family="'Inter'" font-size="25" font-weight="400" fill="#1B2A3A">Промислове культивування</text>
-<text x="536" y="808.5" font-family="'Inter'" font-size="25" font-weight="400" fill="#1B2A3A">грибів та водоростей</text>
-<circle cx="518" cy="838" r="6.5" fill="#FFD200" stroke="#0B3D6B" stroke-width="2.5"/>
-<text x="536" y="846" font-family="'Inter'" font-size="25" font-weight="400" fill="#1B2A3A">Біометрія</text>
-<text x="50" y="943" font-family="'Inter'" font-size="25" font-weight="400" fill="#1B2A3A"><tspan font-weight="600" fill="#0B3D6B">Практика: </tspan>три навчальні практики й виробнича практика.</text>
-<text x="50" y="981" font-family="'Inter'" font-size="25" font-weight="400" fill="#1B2A3A"><tspan font-weight="600" fill="#0B3D6B">Далі: </tspan>магістратура (освітньо-професійна програма «Екологічна</text>
-<text x="50" y="1015" font-family="'Inter'" font-size="25" font-weight="400" fill="#1B2A3A">біотехнологія та біоенергетика») і PhD.</text>
-<line x1="50" y1="1049" x2="940" y2="1049" stroke="#D5DEE7" stroke-width="2"/>
-<text x="50" y="1099" font-family="'Inter Display'" font-size="40" font-weight="800" fill="#0B3D6B">Лабораторії кафедри</text>
-<text x="50" y="1135" font-family="'Inter'" font-size="24" font-weight="500" fill="#556677">навчальний корпус № 4</text>
-<rect x="50" y="1155" width="7" height="98" rx="3.5" fill="#FFD200"/>
-<text x="74" y="1179" font-family="'Inter'" font-size="25" font-weight="600" fill="#1B2A3A">Навчально-наукова лабораторія біохімії та</text>
-<text x="74" y="1211" font-family="'Inter'" font-size="25" font-weight="600" fill="#1B2A3A">фітобіотехнології</text>
-<text x="74" y="1245" font-family="'Inter'" font-size="24" font-weight="500" fill="#1E6A2E">з 2021 р. · ауд. 14</text>
-<rect x="50" y="1271" width="7" height="66" rx="3.5" fill="#FFD200"/>
-<text x="74" y="1295" font-family="'Inter'" font-size="25" font-weight="600" fill="#1B2A3A">Навчальна лабораторія біохімії рослин</text>
-<text x="74" y="1329" font-family="'Inter'" font-size="24" font-weight="500" fill="#1E6A2E">з 2008 р. · ауд. 38</text>
-<rect x="50" y="1355" width="7" height="66" rx="3.5" fill="#FFD200"/>
-<text x="74" y="1379" font-family="'Inter'" font-size="25" font-weight="600" fill="#1B2A3A">Навчальна лабораторія фізіології рослин</text>
-<text x="74" y="1413" font-family="'Inter'" font-size="24" font-weight="500" fill="#1E6A2E">з 2008 р. · ауд. 56</text>
-<g transform="translate(735 1423) scale(0.5)">
+<text x="70" y="270" font-family="'Inter Display'" font-size="36" font-weight="800" fill="#fff">Бакалавр</text>
+<rect x="501" y="180" width="439" height="112" rx="14" fill="#0B3D6B"/>
+<rect x="501" y="180" width="439" height="7" rx="3.5" fill="#FFD200"/>
+<text x="521" y="224" font-family="'Inter'" font-size="24" font-weight="600" fill="#A9C6E4" letter-spacing="1">СПЕЦІАЛЬНІСТЬ</text>
+<text x="521" y="270" font-family="'Inter Display'" font-size="36" font-weight="800" fill="#fff">162 (G21)</text>
+<rect x="50" y="306" width="439" height="112" rx="14" fill="#0B3D6B"/>
+<rect x="50" y="306" width="439" height="7" rx="3.5" fill="#FFD200"/>
+<text x="70" y="350" font-family="'Inter'" font-size="24" font-weight="600" fill="#A9C6E4" letter-spacing="1">ФОРМА НАВЧАННЯ</text>
+<text x="70" y="396" font-family="'Inter Display'" font-size="36" font-weight="800" fill="#fff">Денна</text>
+<rect x="501" y="306" width="439" height="112" rx="14" fill="#0B3D6B"/>
+<rect x="501" y="306" width="439" height="7" rx="3.5" fill="#FFD200"/>
+<text x="521" y="350" font-family="'Inter'" font-size="24" font-weight="600" fill="#A9C6E4" letter-spacing="1">ТРИВАЛІСТЬ</text>
+<text x="521" y="396" font-family="'Inter Display'" font-size="36" font-weight="800" fill="#fff">3 роки 10 місяців</text>
+<text x="50" y="466" font-family="'Inter'" font-size="25" font-weight="400" fill="#1B2A3A">Перший (бакалаврський) рівень · галузь знань 16 «Хімічна та</text>
+<text x="50" y="500" font-family="'Inter'" font-size="25" font-weight="400" fill="#1B2A3A">біоінженерія» · кваліфікація — бакалавр з біотехнологій та біоінженерії ·</text>
+<text x="50" y="534" font-family="'Inter'" font-size="25" font-weight="400" fill="#1B2A3A">вступ на основі повної загальної середньої освіти.</text>
+<text x="50" y="582" font-family="'Inter'" font-size="25" font-weight="600" fill="#0B3D6B">Вибіркові блоки:</text>
+<rect x="271.8" y="552" width="374.6" height="46" rx="23.0" fill="#EEF5EA" stroke="#BFDDB0" stroke-width="2"/><text x="285.8" y="583.6" font-family="'Inter'" font-size="24" font-weight="500" fill="#1E6A2E">«Промислова біотехнологія»</text>
+<rect x="654.4" y="552" width="269.6" height="46" rx="23.0" fill="#EEF5EA" stroke="#BFDDB0" stroke-width="2"/><text x="668.4" y="583.6" font-family="'Inter'" font-size="24" font-weight="500" fill="#1E6A2E">«Фітобіотехнологія»</text>
+<text x="50" y="668" font-family="'Inter'" font-size="26" font-weight="600" fill="#1E6A2E">Обов’язкові дисципліни</text>
+<rect x="50" y="682" width="430" height="3" fill="#7CC242"/>
+<circle cx="58" cy="716" r="6.5" fill="#FFD200" stroke="#0B3D6B" stroke-width="2.5"/>
+<text x="76" y="724" font-family="'Inter'" font-size="25" font-weight="400" fill="#1B2A3A">Біохімія</text>
+<circle cx="58" cy="753.5" r="6.5" fill="#FFD200" stroke="#0B3D6B" stroke-width="2.5"/>
+<text x="76" y="761.5" font-family="'Inter'" font-size="25" font-weight="400" fill="#1B2A3A">Біологія клітини</text>
+<circle cx="58" cy="791" r="6.5" fill="#FFD200" stroke="#0B3D6B" stroke-width="2.5"/>
+<text x="76" y="799" font-family="'Inter'" font-size="25" font-weight="400" fill="#1B2A3A">Фізіологія рослин</text>
+<circle cx="58" cy="828.5" r="6.5" fill="#FFD200" stroke="#0B3D6B" stroke-width="2.5"/>
+<text x="76" y="836.5" font-family="'Inter'" font-size="25" font-weight="400" fill="#1B2A3A">Загальна біотехнологія</text>
+<circle cx="58" cy="866" r="6.5" fill="#FFD200" stroke="#0B3D6B" stroke-width="2.5"/>
+<text x="76" y="874" font-family="'Inter'" font-size="25" font-weight="400" fill="#1B2A3A">Молекулярна біотехнологія</text>
+<circle cx="58" cy="903.5" r="6.5" fill="#FFD200" stroke="#0B3D6B" stroke-width="2.5"/>
+<text x="76" y="911.5" font-family="'Inter'" font-size="25" font-weight="400" fill="#1B2A3A">Біоінженерія</text>
+<text x="510" y="668" font-family="'Inter'" font-size="26" font-weight="600" fill="#1E6A2E">Блок «Фітобіотехнологія»</text>
+<rect x="510" y="682" width="430" height="3" fill="#7CC242"/>
+<circle cx="518" cy="716" r="6.5" fill="#FFD200" stroke="#0B3D6B" stroke-width="2.5"/>
+<text x="536" y="724" font-family="'Inter'" font-size="25" font-weight="400" fill="#1B2A3A">Клітинна біоенергетика</text>
+<circle cx="518" cy="753.5" r="6.5" fill="#FFD200" stroke="#0B3D6B" stroke-width="2.5"/>
+<text x="536" y="761.5" font-family="'Inter'" font-size="25" font-weight="400" fill="#1B2A3A">Біологія лікарських рослин</text>
+<circle cx="518" cy="791" r="6.5" fill="#FFD200" stroke="#0B3D6B" stroke-width="2.5"/>
+<text x="536" y="799" font-family="'Inter'" font-size="25" font-weight="400" fill="#1B2A3A">Промислове культивування</text>
+<text x="536" y="830.5" font-family="'Inter'" font-size="25" font-weight="400" fill="#1B2A3A">грибів та водоростей</text>
+<circle cx="518" cy="860" r="6.5" fill="#FFD200" stroke="#0B3D6B" stroke-width="2.5"/>
+<text x="536" y="868" font-family="'Inter'" font-size="25" font-weight="400" fill="#1B2A3A">Біометрія</text>
+<text x="50" y="975" font-family="'Inter'" font-size="25" font-weight="400" fill="#1B2A3A"><tspan font-weight="600" fill="#0B3D6B">Практика: </tspan>три навчальні практики й виробнича практика.</text>
+<text x="50" y="1013" font-family="'Inter'" font-size="25" font-weight="400" fill="#1B2A3A"><tspan font-weight="600" fill="#0B3D6B">Далі: </tspan>магістратура (освітньо-професійна програма «Екологічна</text>
+<text x="50" y="1047" font-family="'Inter'" font-size="25" font-weight="400" fill="#1B2A3A">біотехнологія та біоенергетика») і PhD.</text>
+<line x1="50" y1="1087" x2="940" y2="1087" stroke="#D5DEE7" stroke-width="2"/>
+<text x="50" y="1141" font-family="'Inter Display'" font-size="40" font-weight="800" fill="#0B3D6B">Лабораторії кафедри</text>
+<text x="50" y="1177" font-family="'Inter'" font-size="24" font-weight="500" fill="#556677">навчальний корпус № 4</text>
+<rect x="50" y="1197" width="7" height="98" rx="3.5" fill="#FFD200"/>
+<text x="74" y="1221" font-family="'Inter'" font-size="25" font-weight="600" fill="#1B2A3A">Навчально-наукова лабораторія біохімії та</text>
+<text x="74" y="1253" font-family="'Inter'" font-size="25" font-weight="600" fill="#1B2A3A">фітобіотехнології</text>
+<text x="74" y="1287" font-family="'Inter'" font-size="24" font-weight="500" fill="#1E6A2E">ауд. 14</text>
+<rect x="50" y="1315" width="7" height="66" rx="3.5" fill="#FFD200"/>
+<text x="74" y="1339" font-family="'Inter'" font-size="25" font-weight="600" fill="#1B2A3A">Навчальна лабораторія біохімії рослин</text>
+<text x="74" y="1373" font-family="'Inter'" font-size="24" font-weight="500" fill="#1E6A2E">ауд. 38</text>
+<rect x="50" y="1401" width="7" height="66" rx="3.5" fill="#FFD200"/>
+<text x="74" y="1425" font-family="'Inter'" font-size="25" font-weight="600" fill="#1B2A3A">Навчальна лабораторія фізіології рослин</text>
+<text x="74" y="1459" font-family="'Inter'" font-size="24" font-weight="500" fill="#1E6A2E">ауд. 56</text>
+<g transform="translate(735 1471) scale(0.5)">
 <ellipse cx="200" cy="4" rx="250" ry="26" fill="url(#shadowE)" opacity="0.6"/>
 <path d="M0,0 L0,-46 Q0,-70 26,-72 L360,-80 Q400,-80 404,-50 L410,0 Z" fill="url(#enamelV)" stroke="#9AA8B4" stroke-width="2"/>
 <path d="M8,-58 Q10,-68 30,-68 L356,-76" stroke="#fff" stroke-width="4" fill="none" opacity="0.9"/>
@@ -116,22 +112,27 @@
 <g transform="rotate(24 270 -410)"><rect x="253" y="-410" width="34" height="59.5" fill="url(#chromeM)"/><rect x="253" y="-381.1" width="34" height="6.8" fill="#1E88E5"/><path d="M256.4,-350.5 L283.6,-350.5 L277.6,-325 L262.4,-325 Z" fill="url(#chromeM)"/><rect x="262.4" y="-325" width="15.3" height="6" rx="2" fill="#2A3038"/></g>
 <g transform="rotate(0 270 -410)"><rect x="250" y="-410" width="40" height="70" fill="url(#chromeM)"/><rect x="250" y="-376" width="40" height="8" fill="#FBC02D"/><path d="M254,-340 L286,-340 L279,-310 L261,-310 Z" fill="url(#chromeM)"/><rect x="261" y="-310" width="18" height="6" rx="2" fill="#2A3038"/></g>
 </g>
-<rect x="46" y="1469" width="288" height="288" rx="10" fill="#fff" stroke="#D5DEE7" stroke-width="2"/>
-<use href="#qr-instagram" x="50" y="1473" width="280" height="280" color="#072A4B"/>
-<text x="190" y="1791" font-family="'Inter'" font-size="24" font-weight="600" fill="#0B3D6B" text-anchor="middle">Instagram</text>
-<text x="190" y="1823" font-family="'Inter'" font-size="24" font-weight="400" fill="#1B2A3A" text-anchor="middle">@plant_physio_chair</text>
-<rect x="351" y="1469" width="288" height="288" rx="10" fill="#fff" stroke="#D5DEE7" stroke-width="2"/>
-<use href="#qr-facebook" x="355" y="1473" width="280" height="280" color="#072A4B"/>
-<text x="495" y="1791" font-family="'Inter'" font-size="24" font-weight="600" fill="#0B3D6B" text-anchor="middle">Facebook</text>
-<text x="495" y="1823" font-family="'Inter'" font-size="24" font-weight="400" fill="#1B2A3A" text-anchor="middle">Ми у Facebook</text>
-<rect x="656" y="1469" width="288" height="288" rx="10" fill="#fff" stroke="#D5DEE7" stroke-width="2"/>
-<use href="#qr-nubip" x="660" y="1473" width="280" height="280" color="#072A4B"/>
-<text x="800" y="1791" font-family="'Inter'" font-size="24" font-weight="600" fill="#0B3D6B" text-anchor="middle">Сторінка кафедри</text>
-<text x="800" y="1823" font-family="'Inter'" font-size="24" font-weight="400" fill="#1B2A3A" text-anchor="middle">на сайті НУБіП</text>
-<rect x="0" y="1853" width="990" height="247" fill="#0B3D6B"/>
-<rect x="0" y="1853" width="990" height="6" fill="#FFD200"/>
-<text x="50" y="1905" font-family="'Inter'" font-size="24" font-weight="500" fill="#fff">03041, м. Київ, вул. Героїв Оборони, 13, навч. корпус № 4, кімн. 13</text>
-<text x="50" y="1941" font-family="'Inter'" font-size="24" font-weight="500" fill="#fff">(044) 527-89-66 · 096-977-80-58 · physiol.biochem2021@gmail.com</text>
-<text x="50" y="1989" font-family="'Inter'" font-size="22" font-weight="400" fill="#A9C6E4">Фото: J. C. Fonseca Mata; E. Rodriguez; S. S. Islam —</text>
-<text x="50" y="2019" font-family="'Inter'" font-size="22" font-weight="400" fill="#A9C6E4">Wikimedia Commons, CC BY-SA 4.0</text>
+<rect x="46" y="1523" width="288" height="288" rx="10" fill="#fff" stroke="#D5DEE7" stroke-width="2"/>
+<use href="#qr-instagram" x="50" y="1527" width="280" height="280" color="#072A4B"/>
+<text x="190" y="1845" font-family="'Inter'" font-size="24" font-weight="600" fill="#0B3D6B" text-anchor="middle">Instagram</text>
+<text x="190" y="1877" font-family="'Inter'" font-size="24" font-weight="400" fill="#1B2A3A" text-anchor="middle">@plant_physio_chair</text>
+<rect x="351" y="1523" width="288" height="288" rx="10" fill="#fff" stroke="#D5DEE7" stroke-width="2"/>
+<use href="#qr-facebook" x="355" y="1527" width="280" height="280" color="#072A4B"/>
+<text x="495" y="1845" font-family="'Inter'" font-size="24" font-weight="600" fill="#0B3D6B" text-anchor="middle">Facebook</text>
+<text x="495" y="1877" font-family="'Inter'" font-size="24" font-weight="400" fill="#1B2A3A" text-anchor="middle">Ми у Facebook</text>
+<rect x="656" y="1523" width="288" height="288" rx="10" fill="#fff" stroke="#D5DEE7" stroke-width="2"/>
+<use href="#qr-nubip" x="660" y="1527" width="280" height="280" color="#072A4B"/>
+<text x="800" y="1845" font-family="'Inter'" font-size="24" font-weight="600" fill="#0B3D6B" text-anchor="middle">Сторінка кафедри</text>
+<text x="800" y="1877" font-family="'Inter'" font-size="24" font-weight="400" fill="#1B2A3A" text-anchor="middle">на сайті НУБіП</text>
+<rect x="0" y="1899" width="990" height="201" fill="#0B3D6B"/>
+<rect x="0" y="1899" width="990" height="6" fill="#FFD200"/>
+<circle cx="68" cy="1959" r="18" fill="#ffffff"/>
+<g transform="translate(68 1959) scale(0.6)" fill="none" stroke="#0B3D6B" stroke-width="3.4" stroke-linecap="round" stroke-linejoin="round"><path d="M0,15 C-10,3 -12,-3 -12,-7 a12,12 0 0 1 24,0 c0,4 -2,10 -12,22Z"/><circle cx="0" cy="-7" r="4"/></g>
+<text x="98" y="1967" font-family="'Inter'" font-size="24" font-weight="500" fill="#fff">03041, м. Київ, вул. Героїв Оборони, 13, навч. корпус № 4, кімн. 13</text>
+<circle cx="68" cy="2005" r="18" fill="#ffffff"/>
+<g transform="translate(68 2005) scale(0.6)" fill="none" stroke="#0B3D6B" stroke-width="3.4" stroke-linecap="round" stroke-linejoin="round"><path d="M-11,-13 l6,-2 l5,9 l-4,4 q3,7 10,10 l4,-4 l9,5 l-2,6 q-2,4 -8,3 q-14,-3 -21,-21 q-1,-6 1,-10Z"/></g>
+<text x="98" y="2013" font-family="'Inter'" font-size="26" font-weight="600" fill="#fff">(099) 532-31-86</text>
+<circle cx="376.3" cy="2005" r="18" fill="#ffffff"/>
+<g transform="translate(376.3 2005) scale(0.6)" fill="none" stroke="#0B3D6B" stroke-width="3.4" stroke-linecap="round" stroke-linejoin="round"><rect x="-14" y="-10" width="28" height="20" rx="3"/><path d="M-13,-8 L0,3 L13,-8"/></g>
+<text x="406.3" y="2013" font-family="'Inter'" font-size="26" font-weight="500" fill="#fff">physiol.biochem2021@gmail.com</text>
 </svg>

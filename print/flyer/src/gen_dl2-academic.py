@@ -786,6 +786,267 @@ def hrule(x1, x2, y, color=LINE, w=2):
 
 
 
+# ================================================================ РЕАЛІСТИЧНИЙ ЛИСТОК (раунд 3)
+def _delaunay(pts):
+    """Bowyer–Watson: повертає трикутники (індекси) для pts."""
+    xs = [p[0] for p in pts]; ys = [p[1] for p in pts]
+    mx, my = min(xs), min(ys)
+    d = max(max(xs) - mx, max(ys) - my) * 20
+    P = list(pts) + [(mx - d, my - d), (mx + d * 2, my - d), (mx - d, my + d * 2)]
+    n = len(pts)
+
+    def cc(a, b, c):
+        ax, ay = P[a]; bx, by = P[b]; cx, cy = P[c]
+        dd = 2 * (ax * (by - cy) + bx * (cy - ay) + cx * (ay - by))
+        if abs(dd) < 1e-9:
+            return (0, 0, 1e30)
+        ux = ((ax * ax + ay * ay) * (by - cy) + (bx * bx + by * by) * (cy - ay) + (cx * cx + cy * cy) * (ay - by)) / dd
+        uy = ((ax * ax + ay * ay) * (cx - bx) + (bx * bx + by * by) * (ax - cx) + (cx * cx + cy * cy) * (bx - ax)) / dd
+        return (ux, uy, (ax - ux) ** 2 + (ay - uy) ** 2)
+    tris = {(n, n + 1, n + 2): cc(n, n + 1, n + 2)}
+    for i in range(n):
+        x, y = P[i]
+        bad = [t for t, (ux, uy, r2) in tris.items() if (x - ux) ** 2 + (y - uy) ** 2 < r2]
+        edges = {}
+        for t in bad:
+            for e in ((t[0], t[1]), (t[1], t[2]), (t[2], t[0])):
+                k = tuple(sorted(e))
+                edges[k] = edges.get(k, 0) + 1
+            del tris[t]
+        for (a, b), c in edges.items():
+            if c == 1:
+                tris[(a, b, i)] = cc(a, b, i)
+    return [(t, v) for t, v in tris.items() if max(t) < n]
+
+
+def leaf_real(bx, by, L, W, ang, seed=3, idp='lr', dim=0.0, detail=True, bend=40, glow=(0.62, -0.35)):
+    """Реалістичний листок на просвіт (без підписів).
+    Локально: основа (0,0) → верхівка (L, bend-зміщення); потім поворот на ang° і зсув у (bx,by).
+    dim — затемнення (для заднього плану), detail — дрібна сітка жилок."""
+    rnd = random.Random(seed)
+    ca, sa = math.cos(math.radians(ang)), math.sin(math.radians(ang))
+
+    def P(x, y):
+        return bx + x * ca - y * sa, by + x * sa + y * ca
+
+    def pth(pts, close=False):
+        return 'M' + ' L'.join(f'{f(a)},{f(b)}' for a, b in (P(*q) for q in pts)) + ('Z' if close else '')
+
+    ph1, ph2 = rnd.uniform(0, 6), rnd.uniform(0, 6)
+
+    def shape(t):
+        if t <= 0 or t >= 1:
+            return 0.0
+        s = math.sin(math.pi * t ** 0.72) ** 0.92
+        tip = (1 - t) ** 0.08 if t > 0.85 else 1
+        return s * tip
+
+    def mid(t):
+        return bend * (t * t - 0.35 * t) + 6 * math.sin(2.2 * math.pi * t + ph1)
+
+    def wu(t):
+        return W * shape(t) * (1 + 0.05 * math.sin(5.5 * t + ph1))
+
+    def wl(t):
+        return W * 0.9 * shape(t) * (1 + 0.06 * math.sin(4.3 * t + ph2))
+
+    # зубчастий (двоякозубчастий) край
+    N = 520
+    teeth = [rnd.uniform(0.55, 1.3) for _ in range(80)]
+    import bisect
+    edges_t = {}
+    for sd in (-1, 1):
+        acc, lst = rnd.uniform(0, 0.02), []
+        while acc < 1.05:
+            lst.append(acc); acc += rnd.uniform(0.7, 1.35) / 38
+        edges_t[sd] = lst
+
+    def tooth(t, side):
+        lst = edges_t[side]
+        i = max(0, bisect.bisect_right(lst, t) - 1)
+        fr = (t - lst[i]) / (lst[i + 1] - lst[i]) if i + 1 < len(lst) else 0
+        fr = min(1.0, max(0.0, fr))
+        k = i + fr
+        a = teeth[(i * 7 + (3 if side > 0 else 0)) % 80]
+        prof = fr ** 1.6 if fr < 0.85 else (1 - fr) / 0.15 * 0.85 ** 1.6
+        small = 0.35 * (((k * 2) % 1) ** 2)
+        fade = min(1, max(0, (t - 0.05) / 0.12)) * min(1, (1 - t) / 0.06)
+        return (prof * a + small) * 7.5 * fade
+    up, lo = [], []
+    for i in range(N + 1):
+        t = i / N
+        up.append((t * L, mid(t) - wu(t) - tooth(t, -1)))
+        lo.append((t * L, mid(t) + wl(t) + tooth(t, 1)))
+    outline = up + lo[::-1]
+    dleaf = pth(outline, True)
+    base, tipp = P(0, 0), P(L, mid(1))
+    gx, gy = P(glow[0] * L, mid(glow[0]) + glow[1] * W)
+    o = [f'<clipPath id="{idp}C"><path d="{dleaf}"/></clipPath>']
+    # черешок з об'ємом
+    pw = 15
+    pet = [(-230 + i * 23, 0) for i in range(11)]
+    pu = [(x, y - pw * (0.75 + 0.25 * (x + 230) / 230) + 0.0006 * (x + 230) ** 2 * 0.2) for x, y in pet]
+    pl = [(x, y + pw * (0.75 + 0.25 * (x + 230) / 230) + 0.0006 * (x + 230) ** 2 * 0.2) for x, y in pet]
+    pg = D.lin(idp + 'Pg', [(0, '#2F6B1D'), (0.45, '#9ACD4E'), (0.6, '#7DB73E'), (1, '#2A5E19')],
+               f(P(-100, -pw)[0]), f(P(-100, -pw)[1]), f(P(-100, pw)[0]), f(P(-100, pw)[1]), 'userSpaceOnUse')
+    o.append(f'<path d="{pth(pu + pl[::-1], True)}" fill="{pg}"/>')
+    # 1. базова заливка вздовж осі (старіша основа темніша, молодий кінчик жовтуватіший)
+    g1 = D.lin(idp + 'G1', [(0, '#2F7424'), (0.35, '#5FA332'), (0.75, '#93C83F'), (1, '#BCDC57')],
+               f(base[0]), f(base[1]), f(tipp[0]), f(tipp[1]), 'userSpaceOnUse')
+    o.append(f'<path d="{dleaf}" fill="{g1}"/>')
+    g = [f'<g clip-path="url(#{idp}C)">']
+    # 2. просвічування сонцем
+    g2 = D.rad(idp + 'G2', [(0, '#F6FB9A', 0.85), (0.35, '#D9EF6A', 0.45), (0.75, '#A6D447', 0.08), (1, '#A6D447', 0)],
+               cx=f(gx), cy=f(gy), r=f(L * 0.62), units='userSpaceOnUse')
+    g.append(f'<rect x="{f(min(base[0], tipp[0]) - L)}" y="{f(min(base[1], tipp[1]) - L)}" width="{f(3 * L)}" height="{f(3 * L)}" fill="{g2}"/>')
+    # 3. нижня половина листка трохи в тіні (листок зігнутий по жилці)
+    half = [(t * L, mid(t)) for t in [i / 60 for i in range(61)]] + lo[::-1]
+    g.append(f'<path d="{pth(half, True)}" fill="#0F3A12" opacity="0.16"/>')
+    # 4. м'яка світла смуга вздовж головної жилки
+    midl = [(t * L, mid(t)) for t in [i / 60 for i in range(61)]]
+    g.append(f'<path d="{pth(midl)}" stroke="#E9F7A0" stroke-width="{f(W * 0.5)}" fill="none" opacity="0.10" stroke-linecap="round"/>')
+    g.append(f'<path d="{pth(midl)}" stroke="#F2FBB8" stroke-width="{f(W * 0.18)}" fill="none" opacity="0.12" stroke-linecap="round"/>')
+    # 5. легка плямистість (нерівномірна товщина пластинки)
+    for _ in range(46):
+        t = rnd.uniform(0.05, 0.95)
+        v = rnd.uniform(-0.9, 0.9)
+        x, y = t * L, mid(t) + v * (wu(t) if v < 0 else wl(t))
+        cx_, cy_ = P(x, y)
+        r_ = rnd.uniform(14, 46)
+        col = '#F4FBB0' if rnd.random() < 0.55 else '#1F5A16'
+        g.append(f'<ellipse cx="{f(cx_)}" cy="{f(cy_)}" rx="{f(r_)}" ry="{f(r_ * 0.6)}" fill="{col}" opacity="{rnd.uniform(0.04, 0.09):.3f}" transform="rotate({f(ang + rnd.uniform(-30, 30))} {f(cx_)} {f(cy_)})"/>')
+    # 6. сітка дрібних жилок (ареоли): два рівні діаграми Вороного — крупніші й дрібніші комірки
+    def voronoi(sp, maxe):
+        pts = []
+        for ix in range(int(L / sp) + 2):
+            for iy in range(-int(W / sp) - 3, int(W / sp) + 3):
+                x = ix * sp + rnd.uniform(-0.45, 0.45) * sp
+                t = x / L
+                if not 0.0 < t < 1:
+                    continue
+                y = mid(t) + iy * sp * 0.9 + rnd.uniform(-0.45, 0.45) * sp
+                if -wu(t) - sp < y - mid(t) < wl(t) + sp:
+                    pts.append((x, y))
+        tris = _delaunay(pts)
+        emap = {}
+        for t, (ux, uy, _) in tris:
+            for e in ((t[0], t[1]), (t[1], t[2]), (t[2], t[0])):
+                emap.setdefault(tuple(sorted(e)), []).append((ux, uy))
+        dd = []
+        for k, cs in emap.items():
+            if len(cs) == 2:
+                (x1_, y1_), (x2_, y2_) = cs
+                if (x1_ - x2_) ** 2 + (y1_ - y2_) ** 2 < maxe ** 2:
+                    # легкий вигин ребра
+                    mx_, my_ = (x1_ + x2_) / 2 + rnd.uniform(-0.12, 0.12) * sp, (y1_ + y2_) / 2 + rnd.uniform(-0.12, 0.12) * sp
+                    a_, m_, b_ = P(x1_, y1_), P(mx_, my_), P(x2_, y2_)
+                    dd.append(f'M{f(a_[0])},{f(a_[1])}Q{f(m_[0])},{f(m_[1])} {f(b_[0])},{f(b_[1])}')
+        return ''.join(dd)
+    if detail:
+        d1 = voronoi(44, 110)
+        if detail is True:
+            d2 = voronoi(17, 45)
+            g.append(f'<path d="{d2}" stroke="#E6F59E" stroke-width="0.9" opacity="0.26" fill="none"/>')
+        g.append(f'<path d="{d1}" stroke="#2A6519" stroke-width="2.6" opacity="0.12" fill="none" transform="translate(1 1.5)"/>')
+        g.append(f'<path d="{d1}" stroke="#EAF7A8" stroke-width="1.5" opacity="0.42" fill="none" stroke-linejoin="round"/>')
+    # 7. бічні жилки (звужуються, дугоподібно з'єднуються біля краю) + третинні перемички
+    sec = []
+    for side, wf in ((-1, wu), (1, wl)):
+        prev = None
+        nk = 9
+        for k in range(nk):
+            t0 = 0.07 + k * 0.094 + rnd.uniform(-0.012, 0.012) + (0.035 if side > 0 else 0)
+            if t0 > 0.9:
+                continue
+            t1 = min(t0 + 0.15 + rnd.uniform(-0.02, 0.02), 0.975)
+            a = (t0 * L, mid(t0))
+            c = ((t0 + 0.045 + rnd.uniform(-0.01, 0.015)) * L, mid(t0 + 0.05) + side * wf(t0 + 0.05) * rnd.uniform(0.5, 0.66))
+            b = (t1 * L, mid(t1) + side * wf(t1) * 0.84)
+            bez = [((1 - s) ** 2 * a[0] + 2 * (1 - s) * s * c[0] + s * s * b[0],
+                    (1 - s) ** 2 * a[1] + 2 * (1 - s) * s * c[1] + s * s * b[1]) for s in [i / 24 for i in range(25)]]
+            w0 = 7.0 - k * 0.45
+            sec.append((bez, w0, side))
+            if prev is not None:
+                # дуга біля краю (брохідодромне жилкування)
+                pe, ce = prev[-1], bez[17]
+                mxp = ((pe[0] + ce[0]) / 2, (pe[1] + ce[1]) / 2 + side * 12)
+                A, B, C = P(*pe), P(*mxp), P(*ce)
+                g.append(f'<path d="M{f(A[0])},{f(A[1])} Q{f(B[0])},{f(B[1])} {f(C[0])},{f(C[1])}" stroke="#EAF8AE" stroke-width="2.2" opacity="0.6" fill="none"/>')
+                # перпендикулярні третинні жилки, хвилясті, з розгалуженням
+                for m in range(3, 22, 3):
+                    s = m / 24
+                    pa = prev[min(24, int(s * 24))]
+                    pb = bez[max(0, int(s * 24) - 3)]
+                    mx_ = (pa[0] + pb[0]) / 2 + rnd.uniform(-7, 7)
+                    my_ = (pa[1] + pb[1]) / 2 + rnd.uniform(-7, 7)
+                    q1 = (pa[0] + (pb[0] - pa[0]) * 0.33 + rnd.uniform(-12, 12), pa[1] + (pb[1] - pa[1]) * 0.33 + rnd.uniform(-10, 10))
+                    q2 = (pa[0] + (pb[0] - pa[0]) * 0.66 + rnd.uniform(-12, 12), pa[1] + (pb[1] - pa[1]) * 0.66 + rnd.uniform(-10, 10))
+                    A, Q1, Q2, C = P(*pa), P(*q1), P(*q2), P(*pb)
+                    B = P(mx_, my_)
+                    g.append(f'<path d="M{f(A[0])},{f(A[1])} C{f(Q1[0])},{f(Q1[1])} {f(Q2[0])},{f(Q2[1])} {f(C[0])},{f(C[1])}" stroke="#E8F7A6" stroke-width="{rnd.uniform(1.4, 2.3):.1f}" opacity="0.5" fill="none"/>')
+                    if rnd.random() < 0.6:
+                        bx2, by2 = mx_ + rnd.uniform(-18, 18), my_ + side * rnd.uniform(10, 22)
+                        B2 = P(bx2, by2)
+                        g.append(f'<path d="M{f(B[0])},{f(B[1])} L{f(B2[0])},{f(B2[1])}" stroke="#E8F7A6" stroke-width="1.3" opacity="0.45"/>')
+            prev = bez
+    for bez, w0, side in sec:
+        n = len(bez)
+        L1, L2 = [], []
+        for i, (x, y) in enumerate(bez):
+            hw = (w0 * (1 - i / n) + 1.0) / 2
+            if 0 < i < n - 1:
+                dx, dy = bez[i + 1][0] - bez[i - 1][0], bez[i + 1][1] - bez[i - 1][1]
+            else:
+                dx, dy = (bez[1][0] - bez[0][0], bez[1][1] - bez[0][1]) if i == 0 else (bez[-1][0] - bez[-2][0], bez[-1][1] - bez[-2][1])
+            ln = math.hypot(dx, dy) or 1
+            nx, ny = -dy / ln, dx / ln
+            L1.append((x + nx * hw, y + ny * hw)); L2.append((x - nx * hw, y - ny * hw))
+        poly = pth(L1 + L2[::-1], True)
+        g.append(f'<path d="{pth(bez)}" stroke="#E2F39A" stroke-width="{f(w0 * 3.2)}" opacity="0.10" fill="none" stroke-linecap="round"/>')
+        g.append(f'<path d="{poly}" fill="#2D6A1C" opacity="0.26" transform="translate(1.8 2.6)"/>')
+        g.append(f'<path d="{poly}" fill="#F0FABD" opacity="0.8"/>')
+    # 8. затемнення краю (товщина пластинки на просвіт) без фільтрів
+    for wv, op in ((96, 0.08), (64, 0.10), (38, 0.12), (18, 0.16), (7, 0.2)):
+        g.append(f'<path d="{dleaf}" fill="none" stroke="#123A0E" stroke-width="{wv}" opacity="{op}"/>')
+    # 9. глянцевий відблиск
+    sh = D.lin(idp + 'Sh', [(0, '#ffffff', 0), (0.42, '#ffffff', 0.0), (0.5, '#ffffff', 0.13), (0.58, '#ffffff', 0)],
+               f(base[0]), f(base[1] - W), f(tipp[0]), f(tipp[1] + W), 'userSpaceOnUse')
+    g.append(f'<path d="{dleaf}" fill="{sh}"/>')
+    if dim:
+        g.append(f'<path d="{dleaf}" fill="#06213B" opacity="{dim}"/>')
+    g.append('</g>')
+    o += g
+    # 10. головна жилка: конусна, з тінню і бліком
+    mu, ml, mm = [], [], []
+    for i in range(61):
+        t = i / 60 * 0.985
+        hw = 10.5 * (1 - t) ** 0.9 + 1.0
+        mu.append((t * L, mid(t) - hw)); ml.append((t * L, mid(t) + hw)); mm.append((t * L, mid(t) - hw * 0.35))
+    o.append(f'<path d="{pth(mu + ml[::-1], True)}" fill="#24601A" opacity="{0.35 if not dim else 0.2}" transform="translate(2 3)"/>')
+    mr = D.lin(idp + 'Mr', [(0, '#E4F4A0'), (0.5, '#FBFFE2'), (1, '#CFE68A')],
+               f(P(0, -12)[0]), f(P(0, -12)[1]), f(P(0, 12)[0]), f(P(0, 12)[1]), 'userSpaceOnUse')
+    o.append(f'<path d="{pth(mu + ml[::-1], True)}" fill="{mr}" opacity="{0.95 if not dim else 0.5}"/>')
+    o.append(f'<path d="{pth(mm[:52])}" stroke="#ffffff" stroke-width="1.6" opacity="{0.7 if not dim else 0.3}" fill="none"/>')
+    # 11. контрове світло по краю
+    o.append(f'<path d="{dleaf}" fill="none" stroke="#EAF79A" stroke-width="2.4" opacity="{0.8 if not dim else 0.35}"/>')
+    return '\n'.join(o), P, (lambda t: (t * L, mid(t))), wu, wl
+
+
+def dew(P, at, wu, wl, items, idp='dw'):
+    """Краплі роси на листку: (t, v, r)."""
+    o = []
+    dg = D.rad(idp + 'G', [(0, '#FFFFFF', 0.15), (0.55, '#E8F8B8', 0.12), (0.82, '#2D6B1A', 0.4), (1, '#1D4A10', 0.65)], cx=0.42, cy=0.38, r=0.62)
+    for t, v, r in items:
+        x, y = at(t)
+        y += v * (wu(t) if v < 0 else wl(t))
+        cx, cy = P(x, y)
+        o.append(f'<ellipse cx="{f(cx + 3)}" cy="{f(cy + r * 0.6)}" rx="{f(r * 1.1)}" ry="{f(r * 0.55)}" fill="#163F0D" opacity="0.32"/>')
+        o.append(f'<circle cx="{f(cx)}" cy="{f(cy)}" r="{f(r)}" fill="{dg}"/>')
+        o.append(f'<path d="M{f(cx - r * 0.62)},{f(cy - r * 0.1)} A{f(r * 0.66)},{f(r * 0.66)} 0 0 1 {f(cx - r * 0.05)},{f(cy - r * 0.64)}" stroke="#fff" stroke-width="{f(max(1.4, r * 0.16))}" fill="none" stroke-linecap="round" opacity="0.95"/>')
+        o.append(f'<ellipse cx="{f(cx + r * 0.3)}" cy="{f(cy + r * 0.42)}" rx="{f(r * 0.3)}" ry="{f(r * 0.16)}" fill="#FAFFD6" opacity="0.75"/>')
+    return '\n'.join(o)
+
+
 # ================================================================ DL: спільне
 W, H = 990, 2100
 M = 50  # безпечне поле
@@ -816,14 +1077,16 @@ def front():
     x0, x1 = M, W - M
     bg = D.lin('frBg', [(0, '#0E4C86'), (0.5, BLUE), (1, '#051E36')], 0, 0, 0, 1)
     o.append(f'<rect width="{W}" height="{H}" fill="{bg}"/>')
-    # декор: сонце + листок на просвіт унизу
+    # декор: сонце + листки на просвіт унизу (без підписів)
     o.append(f'<clipPath id="pageClip"><rect width="{W}" height="{H}"/></clipPath><g clip-path="url(#pageClip)">')
     sg = D.rad('sunGlow', [(0, '#FFF6B0', 1), (0.18, YEL, 0.8), (0.45, '#FFB800', 0.22), (1, '#FFB800', 0)])
-    o.append(sun_rays(900, 1560, 50, 760, 30, 9, 0.14))
-    o.append(f'<circle cx="900" cy="1560" r="470" fill="{sg}"/>')
-    o.append(f'<g opacity="0.95">{leaf(-40, 2240, 1150, 330, -32, seed=4, idp="fl")}</g>')
-    shade = D.lin('btmShade', [(0, '#051E36', 0), (1, '#051E36', 0.7)], 0, 0, 0, 1)
-    o.append(f'<rect x="0" y="1880" width="{W}" height="220" fill="{shade}"/>')
+    o.append(sun_rays(930, 1640, 50, 820, 30, 9, 0.13))
+    o.append(f'<circle cx="930" cy="1640" r="520" fill="{sg}"/>')
+    lb, *_ = leaf_real(1130, 2240, 900, 260, -148, seed=21, idp='lb', dim=0.42, detail='coarse', bend=-50, glow=(0.3, 0.2))
+    o.append(lb)
+    lf, P_, at_, wu_, wl_ = leaf_real(-120, 2200, 1180, 330, -28, seed=4, idp='lf', bend=46)
+    o.append(lf)
+    o.append(dew(P_, at_, wu_, wl_, [(0.52, -0.42, 15), (0.71, 0.3, 10), (0.6, 0.62, 7), (0.84, -0.25, 8), (0.42, 0.25, 6)]))
     o.append('</g>')
     # шапка з гербом
     o.append(f'<rect width="{W}" height="300" fill="#fff"/>')
@@ -856,28 +1119,21 @@ def front():
     o.append(s)
     s, y = para(x0, y + 10, 'Викладаємо українською та англійською. Готуємо бакалаврів, магістрів і докторів філософії (PhD). Студентський науковий гурток **«ФІТОЛАБ»**.', x1 - x0, 26, 1.38, 400, 600, '#DCE8F4', '#ffffff')
     o.append(s)
-    # фото в кружечках
-    r = 128
-    cy = y + 150
-    caps = [('photo-fp-tubes', 'Флуоресцентні білки', None), ('photo-invitro', 'Культура ', 'in vitro'), ('photo-elodea', 'Клітини елодеї', None)]
-    for i, (sym, c1, c2) in enumerate(caps):
-        cx = x0 + 145 + i * 300
-        o.append(photo(cx, cy, r, sym, f'ph{i}'))
-        cw_ = tw(c1 + (c2 or ''), 24, 600) + 36
-        o.append(f'<rect x="{f(cx - cw_ / 2)}" y="{f(cy + r + 24)}" width="{f(cw_)}" height="46" rx="23" fill="{BLUE_D}" fill-opacity="0.88"/>')
-        t = (f'<text x="{f(cx)}" y="{f(cy + r + 56)}" font-family="\'Inter\'" font-size="24" font-weight="600" fill="#fff" text-anchor="middle">{esc(c1)}'
-             + (f'<tspan font-family="\'Lora\'" font-style="italic" font-weight="500">{esc(c2)}</tspan>' if c2 else '') + '</text>')
-        o.append(t)
-    y = cy + r + 110
-    # кафедра в цифрах
-    stats = [('2', 'доктори біологічних наук'), ('5', 'кандидатів наук'), ('1', 'професор'), ('6', 'доцентів')]
-    tw_ = (x1 - x0 - 3 * 12) / 4
-    for i, (n, cap) in enumerate(stats):
-        sx = x0 + i * (tw_ + 12)
-        o.append(f'<rect x="{f(sx)}" y="{f(y)}" width="{f(tw_)}" height="176" rx="14" fill="#ffffff" fill-opacity="0.94"/>')
-        o.append(T(sx + 18, y + 62, n, 54, 800, BLUE, 'Inter Display'))
-        s, _ = para(sx + 18, y + 96, cap, tw_ - 26, 24, 1.2, 500, 600, INK)
-        o.append(s)
+    # фото в кружечках: велике + два менші, підписи — абстрактні
+    def cap(cx, cy, text):
+        cw_ = tw(text, 25, 600) + 40
+        return (f'<rect x="{f(cx - cw_ / 2)}" y="{f(cy - 25)}" width="{f(cw_)}" height="50" rx="25" fill="{YEL}"/>'
+                + T(cx, cy + 9, text, 25, 600, BLUE_D, 'Inter', 'middle'))
+    top = y + 40
+    big = (262, top + 196, 192)
+    s1 = (736, top + 120, 130)
+    s2 = (736, top + 452, 130)
+    o.append(photo(*big, 'photo-lab-students', 'phA'))
+    o.append(photo(*s1, 'photo-invitro-jars', 'phB'))
+    o.append(photo(*s2, 'photo-fusarium', 'phC'))
+    o.append(cap(big[0], big[1] + big[2] + 8, 'Дослідження'))
+    o.append(cap(s1[0], s1[1] + s1[2] + 8, 'Біотехнології'))
+    o.append(cap(s2[0], s2[1] + s2[2] + 8, 'Життя рослин'))
     return o
 
 
@@ -892,18 +1148,18 @@ def back():
     o.append(T(x0, 84, 'ОСВІТНЬО-ПРОФЕСІЙНА ПРОГРАМА БАКАЛАВРА', 24, 600, GREEN, ls=2))
     o.append(T(x0, 146, 'Біотехнології та біоінженерія', 50, 800, BLUE, 'Inter Display'))
     y = 180
-    row1 = [('Ступінь', 'Бакалавр'), ('Спеціальність', '162 (G21)'), ('Форма', 'Денна')]
-    row2 = [('Тривалість', '3 роки 10 місяців'), ('Обсяг', '240 кредитів ЄКТС')]
+    row1 = [('Ступінь', 'Бакалавр'), ('Спеціальність', '162 (G21)')]
+    row2 = [('Форма навчання', 'Денна'), ('Тривалість', '3 роки 10 місяців')]
     for row in (row1, row2):
         n = len(row)
         tw_ = (x1 - x0 - (n - 1) * 12) / n
         for i, (k, v) in enumerate(row):
             fx = x0 + i * (tw_ + 12)
-            o.append(f'<rect x="{f(fx)}" y="{f(y)}" width="{f(tw_)}" height="108" rx="14" fill="{BLUE}"/>')
+            o.append(f'<rect x="{f(fx)}" y="{f(y)}" width="{f(tw_)}" height="112" rx="14" fill="{BLUE}"/>')
             o.append(f'<rect x="{f(fx)}" y="{f(y)}" width="{f(tw_)}" height="7" rx="3.5" fill="{YEL}"/>')
             o.append(T(fx + 20, y + 44, k.upper(), 24, 600, '#A9C6E4', ls=1))
-            o.append(T(fx + 20, y + 88, v, 34, 800, '#fff', 'Inter Display'))
-        y += 120
+            o.append(T(fx + 20, y + 90, v, 36, 800, '#fff', 'Inter Display'))
+        y += 126
     s, y = para(x0, y + 34, 'Перший (бакалаврський) рівень · галузь знань 16 «Хімічна та біоінженерія» · кваліфікація — бакалавр з біотехнологій та біоінженерії · вступ на основі повної загальної середньої освіти.', x1 - x0, 25, 1.36, 400, 600, INK, BLUE)
     o.append(s)
     # вибіркові блоки
@@ -917,7 +1173,7 @@ def back():
         s, wd = chip(cx_, y - 22, c, 24, '#EEF5EA', '#BFDDB0', GREEN_D, 500, pad=14)
         o.append(s)
         cx_ += wd + 8
-    y += 84
+    y += 94
     # дисципліни у дві колонки
     cw = (x1 - x0 - 30) / 2
     cols = [('Обов’язкові дисципліни', ['Біохімія', 'Біологія клітини', 'Фізіологія рослин', 'Загальна біотехнологія', 'Молекулярна біотехнологія', 'Біоінженерія']),
@@ -934,32 +1190,32 @@ def back():
             o.append(s)
             yy += 6
         ys.append(yy)
-    y = max(ys) + 16
+    y = max(ys) + 26
     s, y = para(x0, y, '**Практика:** три навчальні практики й виробнича практика.', x1 - x0, 25, 1.36, 400, 600, INK, BLUE)
     o.append(s)
     s, y = para(x0, y + 4, '**Далі:** магістратура (освітньо-професійна програма «Екологічна біотехнологія та біоенергетика») і PhD.', x1 - x0, 25, 1.36, 400, 600, INK, BLUE)
     o.append(s)
     # лабораторії
-    y += 30
-    o.append(hrule(x0, x1, y - 30, LINE, 2))
+    y += 40
+    o.append(hrule(x0, x1, y - 34, LINE, 2))
     o.append(T(x0, y + 20, 'Лабораторії кафедри', 40, 800, BLUE, 'Inter Display'))
     o.append(T(x0, y + 56, 'навчальний корпус № 4', 24, 500, GRAY))
     y += 100
-    labs = [('Навчально-наукова лабораторія біохімії та фітобіотехнології', 'з 2021 р. · ауд. 14'),
-            ('Навчальна лабораторія біохімії рослин', 'з 2008 р. · ауд. 38'),
-            ('Навчальна лабораторія фізіології рослин', 'з 2008 р. · ауд. 56')]
+    labs = [('Навчально-наукова лабораторія біохімії та фітобіотехнології', 'ауд. 14'),
+            ('Навчальна лабораторія біохімії рослин', 'ауд. 38'),
+            ('Навчальна лабораторія фізіології рослин', 'ауд. 56')]
     lw = x1 - x0 - 230
     for name, meta in labs:
         s, yy = para(x0 + 24, y, name, lw - 24, 25, 1.28, 600, 600, INK)
         o.append(f'<rect x="{f(x0)}" y="{f(y - 24)}" width="7" height="{f(yy + 10 - (y - 24))}" rx="3.5" fill="{YEL}"/>')
         o.append(s)
         o.append(T(x0 + 24, yy + 2, meta, 24, 500, GREEN_D))
-        y = yy + 52
+        y = yy + 54
     # декор: мікроскоп праворуч
     mic_y = y - 40
     o.append(microscope(x1 - 205, mic_y, 0.5))
     # QR
-    y += 10
+    y += 16
     qs, gap = 280, (x1 - x0 - 3 * 280) / 2
     qrs = [('qr-instagram', 'Instagram', '@plant_physio_chair'), ('qr-facebook', 'Facebook', 'Ми у Facebook'),
            ('qr-nubip', 'Сторінка кафедри', 'на сайті НУБіП')]
@@ -969,15 +1225,19 @@ def back():
         o.append(f'<use href="#{q}" x="{f(qx)}" y="{f(y)}" width="{qs}" height="{qs}" color="{BLUE_D}"/>')
         o.append(T(qx + qs / 2, y + qs + 38, a, 24, 600, BLUE, 'Inter', 'middle'))
         o.append(T(qx + qs / 2, y + qs + 70, b, 24, 400, INK, 'Inter', 'middle'))
-    y += qs + 100
+    y += qs + 92
     # контакти
     o.append(f'<rect x="0" y="{f(y)}" width="{W}" height="{f(H - y)}" fill="{BLUE}"/>')
     o.append(f'<rect x="0" y="{f(y)}" width="{W}" height="6" fill="{YEL}"/>')
-    yy = y + 52
-    o.append(T(x0, yy, '03041, м. Київ, вул. Героїв Оборони, 13, навч. корпус № 4, кімн. 13', 24, 500, '#fff'))
-    o.append(T(x0, yy + 36, '(044) 527-89-66 · 096-977-80-58 · physiol.biochem2021@gmail.com', 24, 500, '#fff'))
-    o.append(T(x0, yy + 84, 'Фото: J. C. Fonseca Mata; E. Rodriguez; S. S. Islam —', 22, 400, '#A9C6E4'))
-    o.append(T(x0, yy + 114, 'Wikimedia Commons, CC BY-SA 4.0', 22, 400, '#A9C6E4'))
+    yy = y + 68
+    o.append(icon('pin', x0 + 18, yy - 8, 18, '#ffffff', BLUE))
+    o.append(T(x0 + 48, yy, '03041, м. Київ, вул. Героїв Оборони, 13, навч. корпус № 4, кімн. 13', 24, 500, '#fff'))
+    yy += 46
+    o.append(icon('phone', x0 + 18, yy - 8, 18, '#ffffff', BLUE))
+    o.append(T(x0 + 48, yy, '(099) 532-31-86', 26, 600, '#fff'))
+    ex = x0 + 48 + tw('(099) 532-31-86', 26, 600) + 50
+    o.append(icon('mail', ex + 18, yy - 8, 18, '#ffffff', BLUE))
+    o.append(T(ex + 48, yy, 'physiol.biochem2021@gmail.com', 26, 500, '#fff'))
     return o
 
 
