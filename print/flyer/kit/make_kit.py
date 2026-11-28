@@ -76,7 +76,7 @@ symbols = [
 ] + [qr_symbol(k, *v) for k, v in LINKS.items()]
 
 # ---------- фото (квадратні кадри для круглих рамок; джерела — kit/photos/CREDITS.md) ----------
-for name in ("elodea", "fp-tubes", "invitro", "callus"):
+for name in ("elodea", "fp-tubes", "invitro", "callus", "fusarium", "lab-students", "invitro-jars"):
     symbols.append(f'<symbol id="photo-{name}" viewBox="0 0 1000 1000">'
                    f'<image href="{b64(KIT / "photos" / (name + ".jpg"), "image/jpeg")}" width="1000" height="1000" '
                    f'preserveAspectRatio="xMidYMid slice"/></symbol>')
