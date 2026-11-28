@@ -473,7 +473,8 @@ class LibraryTests(_TmpData):
         self.assertEqual(len(art2["sources"]), 50)
         self.assertEqual(art2["parent_section"], art["parent_section"], "друга порція — у ту саму папку статті")
         self.assertEqual(len(rep["biopesticides-article-2026-11-part2"]["added"]), 50)
-        self.assertEqual(self.conn.execute("SELECT COUNT(*) FROM sources").fetchone()[0], 27 + 115 + 50)
+        self.assertEqual(len(rep["biopesticides-article-2026-11-part3"]["added"]), 2)
+        self.assertEqual(self.conn.execute("SELECT COUNT(*) FROM sources").fetchone()[0], 27 + 115 + 50 + 2)
         paths = {s["path"]: s["count"] for s in sections.list_sections(self.conn, all_levels=True)}
         self.assertEqual(paths["Стаття: препаративні форми біопестицидів › Тверді та полімерні форми"], 8)
         self.assertIn("Метааналіз ендофітів › Інше", paths, "старий набір на місці")

@@ -1,0 +1,107 @@
+{
+ "version": 1,
+ "id": "biopesticides-article-2026-11-part3",
+ "parent_section": "Стаття: препаративні форми біопестицидів",
+ "sections": [
+  "Біопестициди: значення, безпека, огляди",
+  "Препаративні форми: огляди",
+  "Ринок і регулювання"
+ ],
+ "sources": [
+  {
+   "files": [],
+   "file_name": "bhupendra-koul-advances-in-microbial-based.pdf",
+   "sections": [
+    "Препаративні форми: огляди",
+    "Біопестициди: значення, безпека, огляди"
+   ],
+   "source": {
+    "type": "book",
+    "title": "Advances in Microbial-Based Biopesticides and Biofertilizers : From Laboratory to Field Applications",
+    "authors": [
+     {
+      "family": "Koul",
+      "given_initials": "B.",
+      "role": "editor"
+     },
+     {
+      "family": "Kumar",
+      "given_initials": "V.",
+      "role": "editor"
+     }
+    ],
+    "publisher": "Springer Nature",
+    "place": "Cham",
+    "year": 2027,
+    "isbn": "978-3-032-38965-7",
+    "doi": "10.1007/978-3-032-38966-4",
+    "language": "en",
+    "status": "unread",
+    "tags": [
+     "монографія",
+     "препаративні форми",
+     "термін зберігання",
+     "регулювання",
+     "Bt"
+    ],
+    "keywords": "biopesticides; biofertilizers; biocontrol agents; formulation; shelf life; regulation; Bacillus thuringiensis",
+    "study_object": "Мікробні біопестициди й біодобрива: ендофіти, агенти біоконтролю, їх виробництво, формуляція, польове застосування, регулювання.",
+    "methods": "Колективна монографія (16 розділів).",
+    "main_results": "Розд. 10 (Singh N., Jagadeesan K., с. 207–230) класифікує тверді форми (торф, вермикуліт, лігніт, тальк, змочувані порошки, гранули) і рідкі. Тальк — поширений носій для бактерій, але погано захищає при тривалому зберіганні (< 4 міс. для T. harzianum); зв'язувальні добавки (силікагель, камеді, крохмаль, метилцелюлоза) покращують прикріплення агентів до носія. Термін зберігання залежить від температури, вологості й складу (ПАР, консерванти); герметичне пакування подовжує його з 6 міс. до ≈2 років. Розд. 13 — регуляторні вимоги й стандарти якості, розд. 16 — Bt-технології, розд. 8 — технологія виробництва агентів біоконтролю.",
+    "for_dissertation": "Для статті: розд. 10 — пп. 3.1–3.3 (носії, термін зберігання, пакування); розд. 13 — вимоги до якості; розд. 16 — Bt. Цитувати окремі розділи. На книзі © 2027 (Springer видає з датою наступного року). У BioBib — лише текст, PDF прикріпіть, коли буде.",
+    "description": "Монографія Springer про мікробні біопестициди й біодобрива від лабораторії до поля; є розділи про формуляцію й термін зберігання, стандарти якості та Bt."
+   }
+  },
+  {
+   "files": [],
+   "file_name": "natarajan-amaresan-agricultural-microbiology-based.pdf",
+   "sections": [
+    "Ринок і регулювання",
+    "Препаративні форми: огляди"
+   ],
+   "source": {
+    "type": "book",
+    "title": "Agricultural Microbiology Based Entrepreneurship : Making Money from Microbes",
+    "authors": [
+     {
+      "family": "Amaresan",
+      "given_initials": "N.",
+      "role": "editor"
+     },
+     {
+      "family": "Dharumadurai",
+      "given_initials": "D.",
+      "role": "editor"
+     },
+     {
+      "family": "Babalola",
+      "given_initials": "O. O.",
+      "role": "editor"
+     }
+    ],
+    "publisher": "Springer Nature Singapore",
+    "place": "Singapore",
+    "year": 2023,
+    "container_title": "Microorganisms for Sustainability",
+    "volume": "39",
+    "isbn": "978-981-19-5746-8",
+    "doi": "10.1007/978-981-19-5747-5",
+    "language": "en",
+    "status": "unread",
+    "tags": [
+     "монографія",
+     "виробництво",
+     "економіка",
+     "підприємництво"
+    ],
+    "keywords": "biofertilizers; biopesticides; mass production; cost-benefit analysis; entrepreneurship; Bacillus thuringiensis; Trichoderma",
+    "study_object": "Масове виробництво, вартість і маркетинг мікробних препаратів: біодобрива (Rhizobium, Azospirillum, Azotobacter, Pseudomonas, VAM, Frankia), біопестициди (B. thuringiensis, Trichoderma, Metarhizium, Beauveria, Chaetomium), компости.",
+    "methods": "Колективна монографія (20 розділів): технологічні схеми, розрахунки собівартості й співвідношення вигод і витрат.",
+    "main_results": "Для кожного агента наведено схему масового культивування, формуляцію та економічний розрахунок. Розд. 13 (Chandarana K. A. et al., с. 209–222): Bt вирощують на стічних водах крохмального виробництва у ферментері 1000 л (30 °C, 48 год, pH 7,0); форми поділено на тверді (змочувані порошки, гранули) й рідкі (водні або масляні емульсії), рідкі форми витіснили змочувані порошки; розрахунковий чистий прибуток ≈76,4 лакха рупій. Окремо — державні програми, інтелектуальна власність і правові питання в Індії.",
+    "for_dissertation": "Для статті: розд. 13 (Bt) і 14–16 (Trichoderma, Metarhizium, Beauveria) — технологія й економіка виробництва, класифікація форм (п. 3.1, вступ — економічність). Цитувати окремі розділи. У BioBib — лише текст, PDF прикріпіть, коли буде.",
+    "description": "Монографія Springer про масове виробництво, формуляцію й економіку мікробних біодобрив і біопестицидів (Bt, Trichoderma, Metarhizium, Beauveria)."
+   }
+  }
+ ],
+ "dropped": []
+}

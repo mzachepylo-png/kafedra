@@ -180,7 +180,7 @@ def format_dstu8302(
         if authors_prefix:
             parts.append(authors_prefix)
         if title_block:
-            parts.append(title_block)
+            parts.append(title_block[:-1] if editors and title_block.endswith(".") else title_block)
         if editors:
             ed_label = "ed. by" if is_en else "за ред."
             ed_names = ", ".join(_format_author_inverted_for_slash(e) for e in editors)
