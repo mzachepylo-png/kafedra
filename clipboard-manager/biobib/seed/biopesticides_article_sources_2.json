@@ -1,0 +1,3029 @@
+{
+ "version": 1,
+ "id": "biopesticides-article-2026-11-part2",
+ "parent_section": "Стаття: препаративні форми біопестицидів",
+ "sections": [
+  "Біопестициди: значення, безпека, огляди",
+  "Безпека для нетаргетних організмів",
+  "Препаративні форми: огляди",
+  "Рідкі форми, суспензії, покриття насіння",
+  "Тверді та полімерні форми",
+  "Інкапсуляція, нано- та новітні носії",
+  "Стабільність, УФ-захист, зберігання",
+  "Інокуляція насіння (вітчизняні дослідження)",
+  "Інше"
+ ],
+ "sources": [
+  {
+   "files": [
+    {
+     "name": "01_Наукові статті та огляди/Kedves_2026_PGPM as biocontrol agents (Acta Biol Szeged).pdf",
+     "sha256": "ace47fa748fea8f0cfae2debc9a3017d3999cbe78abe2883036354072cb00ddc"
+    }
+   ],
+   "file_name": "Kedves_2026_PGPM as biocontrol agents (Acta Biol Szeged).pdf",
+   "sections": [
+    "Біопестициди: значення, безпека, огляди"
+   ],
+   "source": {
+    "type": "article",
+    "title": "Plant Growth-Promoting Microorganisms as agents of biological control: Mechanisms and perspectives for sustainable plant protection",
+    "authors": [
+     {
+      "family": "Kedves",
+      "given_initials": "O."
+     },
+     {
+      "family": "Balázs",
+      "given_initials": "D."
+     },
+     {
+      "family": "Živančev",
+      "given_initials": "J."
+     },
+     {
+      "family": "Antić",
+      "given_initials": "I."
+     },
+     {
+      "family": "Đurišić-Mladenović",
+      "given_initials": "N."
+     },
+     {
+      "family": "Büchner",
+      "given_initials": "R."
+     },
+     {
+      "family": "Szekeres",
+      "given_initials": "A."
+     },
+     {
+      "family": "Marik",
+      "given_initials": "T."
+     },
+     {
+      "family": "Vágvölgyi",
+      "given_initials": "C."
+     },
+     {
+      "family": "Kredics",
+      "given_initials": "L."
+     }
+    ],
+    "container_title": "Acta Biologica Szegediensis",
+    "year": 2026,
+    "volume": "70",
+    "issue": "1",
+    "pages": "11–22",
+    "doi": "10.14232/abs.2026.1.11-22",
+    "tags": [
+     "огляд",
+     "PGPM",
+     "механізми"
+    ],
+    "study_object": "Ростостимулювальні бактерії та гриби (PGPB, PGPF) як агенти біоконтролю.",
+    "methods": "Міні-огляд літератури.",
+    "main_results": "Узагальнено механізми пригнічення патогенів: антимікробні вторинні метаболіти, сидерофори, гідролітичні ферменти, мікопаразитизм, індукована системна стійкість; окреслено перспективи застосування.",
+    "for_dissertation": "Вступ: механізми дії бактеріальних агентів (схема «агент → мета»).",
+    "description": "Міні-огляд механізмів біоконтролю ростостимулювальних мікроорганізмів і перспектив їх використання в захисті рослин.",
+    "language": "en",
+    "status": "unread"
+   }
+  },
+  {
+   "files": [
+    {
+     "name": "01_Наукові статті та огляди/Han_2024_WDG with biocontrol Bacillus on cotton.pdf",
+     "sha256": "7e97a26e665851838cff260270098042fb8ae5ba18598a0823cedb13581a7306"
+    }
+   ],
+   "file_name": "Han_2024_WDG with biocontrol Bacillus on cotton.pdf",
+   "sections": [
+    "Тверді та полімерні форми"
+   ],
+   "source": {
+    "type": "article",
+    "title": "Optimization of water dispersible granules containing biocontrol bacteria and stress alleviation on cotton",
+    "authors": [
+     {
+      "family": "Han",
+      "given_initials": "S."
+     },
+     {
+      "family": "Wu",
+      "given_initials": "C."
+     },
+     {
+      "family": "Fan",
+      "given_initials": "Y."
+     },
+     {
+      "family": "Cao",
+      "given_initials": "J."
+     },
+     {
+      "family": "Wang",
+      "given_initials": "A."
+     }
+    ],
+    "container_title": "Chilean Journal of Agricultural Research",
+    "year": 2024,
+    "volume": "84",
+    "issue": "2",
+    "pages": "195–210",
+    "doi": "10.4067/S0718-58392024000200195",
+    "tags": [
+     "WDG",
+     "Bacillus",
+     "носій",
+     "діатоміт"
+    ],
+    "study_object": "Bacillus tequilensis C-9 і B. sphingosporium A1 проти Verticillium dahliae на бавовнику.",
+    "methods": "Добір носія й допоміжних речовин за виживанням клітин; оптимізація вододиспергованих гранул; вегетаційні досліди за біотичного та абіотичного (сольового, посушливого) стресу.",
+    "main_results": "Найкращим носієм став діатоміт; змочувач — додецилбензолсульфонат натрію. Гранули збільшили надземну й кореневу масу на 20,06 і 22,71 %, біоконтроль — на 46,55 %, активність каталази за сольового й посушливого стресу — на 14,61 і 15,52 %.",
+    "for_dissertation": "П. 3.1/3.2: приклад твердої форми WDG на основі Bacillus, склад (носій, змочувач, диспергатор, дезінтегрант, зв'язувальне, протектор).",
+    "description": "Розробка вододиспергованих гранул із двома штамами Bacillus: добір носія (діатоміт) і допоміжних речовин, ефективність на бавовнику.",
+    "language": "en",
+    "status": "unread"
+   }
+  },
+  {
+   "files": [
+    {
+     "name": "01_Наукові статті та огляди/Dunan_2023_Essential oil formulation biopesticide activity.pdf",
+     "sha256": "4c9d173e712bd1ed4c13b864a587dc1ee180704079737ffb53fe9f8ea3735408"
+    }
+   ],
+   "file_name": "Dunan_2023_Essential oil formulation biopesticide activity.pdf",
+   "sections": [
+    "Інкапсуляція, нано- та новітні носії"
+   ],
+   "source": {
+    "type": "article",
+    "title": "Effects of essential oil-based formulation on biopesticide activity",
+    "authors": [
+     {
+      "family": "Dunan",
+      "given_initials": "L."
+     },
+     {
+      "family": "Malanga",
+      "given_initials": "T."
+     },
+     {
+      "family": "Benhamou",
+      "given_initials": "S."
+     },
+     {
+      "family": "Papaiconomou",
+      "given_initials": "N."
+     },
+     {
+      "family": "Desneux",
+      "given_initials": "N."
+     },
+     {
+      "family": "Lavoir A.-V.",
+      "given_initials": ""
+     },
+     {
+      "family": "Michel",
+      "given_initials": "T."
+     }
+    ],
+    "container_title": "Industrial Crops and Products",
+    "year": 2023,
+    "volume": "202",
+    "pages": "Art. 117006",
+    "doi": "10.1016/j.indcrop.2023.117006",
+    "tags": [
+     "ефірні олії",
+     "наноемульсія",
+     "NaDES",
+     "порошок"
+    ],
+    "study_object": "Ефірні олії полину та розмарину; Bemisia tabaci на томатах.",
+    "methods": "Порівняння чистих олій із наноемульсіями, атомізованими порошками та природними глибокими евтектичними розчинниками (NaDES); ентомо- і фітотоксичність; GC-MS/GC-FID летких сполук.",
+    "main_results": "Наноемульсії найбільш ентомотоксичні, далі NaDES і чисті олії; порошки не відрізнялися від контролю. Усі форми, крім NaDES, фітотоксичні; NaDES з олією розмарину давав високу смертність B. tabaci і зменшував пошкодження рослин.",
+    "for_dissertation": "Ілюстрація тези, що препаративна форма визначає активність і фітотоксичність (вступ, п. 3.4).",
+    "description": "Як тип препаративної форми (наноемульсія, порошок, NaDES) змінює активність і фітотоксичність біопестицидів на основі ефірних олій.",
+    "language": "en",
+    "status": "unread"
+   }
+  },
+  {
+   "files": [
+    {
+     "name": "01_Наукові статті та огляди/Rousset_2025_Bt unintended effects on non-target organisms.pdf",
+     "sha256": "602eb1cfc9d94a9ea1009a97a1f80f32d6996a2bcd560d4fe5c1900972873e1c"
+    }
+   ],
+   "file_name": "Rousset_2025_Bt unintended effects on non-target organisms.pdf",
+   "sections": [
+    "Безпека для нетаргетних організмів"
+   ],
+   "source": {
+    "type": "article",
+    "title": "Unintended effects of Bacillus thuringiensis spores and Cry toxins used as microbial insecticides on non-target organisms",
+    "authors": [
+     {
+      "family": "Rousset",
+      "given_initials": "R."
+     },
+     {
+      "family": "Gallet",
+      "given_initials": "A."
+     }
+    ],
+    "container_title": "Current Opinion in Environmental Science & Health",
+    "year": 2025,
+    "volume": "43",
+    "pages": "Art. 100598",
+    "doi": "10.1016/j.coesh.2025.100598",
+    "tags": [
+     "Bt",
+     "нетаргетні організми",
+     "огляд"
+    ],
+    "study_object": "Спори, вегетативні клітини й Cry-токсини B. thuringiensis у складі мікробних інсектицидів.",
+    "methods": "Огляд досліджень останніх років щодо персистентності та побічних ефектів компонентів Bt-препаратів.",
+    "main_results": "Дані про довготривалі ефекти Bt обмежені; описано персистентність спор і токсинів, вплив на нецільових організмів; потрібні дослідження для вдосконалення Bt-продуктів і способів застосування.",
+    "for_dissertation": "Вступ і п. 3.3: безпечність як вимога до якості, яку забезпечує склад і форма препарату.",
+    "description": "Огляд побічних ефектів спор і Cry-токсинів Bt-інсектицидів на нецільові організми.",
+    "language": "en",
+    "status": "unread"
+   }
+  },
+  {
+   "files": [
+    {
+     "name": "01_Наукові статті та огляди/Lisi_2025_Bioinsecticides non-target effects on natural enemies.pdf",
+     "sha256": "c09730ea82ff8397adf1012239b95259e46ddde32cd790711b6db130bf78992a"
+    }
+   ],
+   "file_name": "Lisi_2025_Bioinsecticides non-target effects on natural enemies.pdf",
+   "sections": [
+    "Безпека для нетаргетних організмів"
+   ],
+   "source": {
+    "type": "article",
+    "title": "Non-target effects of bioinsecticides on natural enemies of arthropod pests",
+    "authors": [
+     {
+      "family": "Lisi",
+      "given_initials": "F."
+     },
+     {
+      "family": "Siscaro",
+      "given_initials": "G."
+     },
+     {
+      "family": "Biondi",
+      "given_initials": "A."
+     },
+     {
+      "family": "Zappalà",
+      "given_initials": "L."
+     },
+     {
+      "family": "Ricupero",
+      "given_initials": "M."
+     }
+    ],
+    "container_title": "Current Opinion in Environmental Science & Health",
+    "year": 2025,
+    "volume": "45",
+    "pages": "Art. 100624",
+    "doi": "10.1016/j.coesh.2025.100624",
+    "tags": [
+     "ентомофаги",
+     "нетаргетні організми",
+     "огляд"
+    ],
+    "study_object": "Рослинні та мікробні біоінсектициди; хижаки й паразитоїди.",
+    "methods": "Огляд публікацій за два роки щодо летальної та сублетальної токсичності.",
+    "main_results": "Ефірні олії загалом сумісні з паразитоїдами, вплив на хижаків змінний. Мікробні препарати (переважно гриби, бактерії, віруси) загалом сумісні з агентами біоконтролю, але частина результатів суперечлива.",
+    "for_dissertation": "Вступ: біопестициди не є автоматично безпечними; потреба оцінювати препарат, а не лише агент.",
+    "description": "Огляд летальних і сублетальних ефектів біоінсектицидів на природних ворогів шкідників.",
+    "language": "en",
+    "status": "unread"
+   }
+  },
+  {
+   "files": [
+    {
+     "name": "01_Наукові статті та огляди/Islek_2025_pH and shelf life of liquid B. subtilis formulations.pdf",
+     "sha256": "ddbda7775ee77432244303cd2c77bc4e64e714bc58c96186b11eaaaf8c3f510e"
+    }
+   ],
+   "file_name": "Islek_2025_pH and shelf life of liquid B. subtilis formulations.pdf",
+   "sections": [
+    "Рідкі форми, суспензії, покриття насіння",
+    "Стабільність, УФ-захист, зберігання"
+   ],
+   "source": {
+    "type": "article",
+    "title": "pH influence on shelf life of liquid PGPR formulations with Bacillus subtilis strains",
+    "authors": [
+     {
+      "family": "İşlek",
+      "given_initials": "S."
+     },
+     {
+      "family": "Karaca",
+      "given_initials": "K."
+     },
+     {
+      "family": "Eltem",
+      "given_initials": "R."
+     }
+    ],
+    "container_title": "Estuscience – Life (Eskişehir Technical University Journal of Science and Technology C)",
+    "year": 2025,
+    "volume": "14",
+    "issue": "1",
+    "pages": "14–24",
+    "doi": "10.18036/estubtdc.1413386",
+    "tags": [
+     "рідка форма",
+     "pH",
+     "термін зберігання",
+     "B. subtilis"
+    ],
+    "study_object": "Штами B. subtilis EGE-B-36.5 і EGE-B-1.19 у рідких формах.",
+    "methods": "Кислі (оцтова кислота) та лужні (ацетат кальцію – гідроксид кальцію) рідкі форми; підрахунок життєздатних клітин протягом 12 місяців.",
+    "main_results": "Статистично значущі зміни кількості життєздатних клітин за pH 4,0 через 12 місяців для обох штамів і за pH 9,5 для EGE-B-1.19 порівняно з контролем; pH — важливий чинник стабільності рідкої форми.",
+    "for_dissertation": "П. 3.1/3.3: pH як параметр якості та тривалості зберігання рідкої бактеріальної форми.",
+    "description": "Вплив pH рідкої препаративної форми на життєздатність B. subtilis упродовж 12 місяців зберігання.",
+    "language": "en",
+    "status": "unread"
+   }
+  },
+  {
+   "files": [
+    {
+     "name": "01_Наукові статті та огляди/Asrul_2023_Liquid organic waste carrier Bacillus DB12.pdf",
+     "sha256": "03e81ddb1bd0596e1b06f6a880fe41cc2c46d79fb328a7e10c4043cf84c5e2e8"
+    }
+   ],
+   "file_name": "Asrul_2023_Liquid organic waste carrier Bacillus DB12.pdf",
+   "sections": [
+    "Рідкі форми, суспензії, покриття насіння"
+   ],
+   "source": {
+    "type": "article",
+    "title": "Utilization of Liquid Organic Waste as a Formulation of Biopesticide with Bacillus sp. DB12 for Controlling Fusarium oxysporum f.sp. cepae",
+    "authors": [
+     {
+      "family": "Asrul",
+      "given_initials": ""
+     },
+     {
+      "family": "Rosmini",
+      "given_initials": ""
+     },
+     {
+      "family": "Nurafifah",
+      "given_initials": ""
+     },
+     {
+      "family": "Suryani",
+      "given_initials": "L."
+     }
+    ],
+    "container_title": "Proceedings of the 2nd International Interdisciplinary Conference on Environmental Sciences and Sustainable Developments 2022 (IICESSD-ESD 2022)",
+    "publisher": "Atlantis Press",
+    "year": 2023,
+    "pages": "199–204",
+    "doi": "10.2991/978-94-6463-334-4_34",
+    "tags": [
+     "рідка форма",
+     "носій",
+     "відходи",
+     "Bacillus"
+    ],
+    "study_object": "Bacillus sp. DB12 проти Fusarium oxysporum f. sp. cepae.",
+    "methods": "Дев'ять варіантів рідкого носія з відходів (стічні води виробництва тофу, кокосова вода, вода після промивання рису); 12 тижнів зберігання; in vitro антагонізм.",
+    "main_results": "Найкраща щільність популяції та пригнічення патогену після 12 тижнів — суміш 75 % відходів тофу + 25 % кокосової води.",
+    "for_dissertation": "П. 3.1: дешеві органічні рідкі носії для бактеріальних форм. Сторінки 199–204 визначено за PDF (останню сторінку видно, першу виведено з обсягу) — звірити.",
+    "description": "Рідкі органічні відходи як дешевий носій біопестициду на основі Bacillus sp. DB12; найкраща суміш зберігала активність 12 тижнів.",
+    "language": "en",
+    "status": "unread"
+   }
+  },
+  {
+   "files": [
+    {
+     "name": "01_Наукові статті та огляди/Фурман_2022_Інокуляція та удобрення сої.pdf",
+     "sha256": "a23981aaddad3dc882284f5979c040c322f086d294cf764e2a136bf62f52ae11"
+    }
+   ],
+   "file_name": "Фурман_2022_Інокуляція та удобрення сої.pdf",
+   "sections": [
+    "Інокуляція насіння (вітчизняні дослідження)"
+   ],
+   "source": {
+    "type": "article",
+    "title": "Вплив інокуляції та удобрення на формування симбіотичної та насіннєвої продуктивності сої",
+    "authors": [
+     {
+      "family": "Фурман",
+      "given_initials": "В. А."
+     },
+     {
+      "family": "Фурман",
+      "given_initials": "О. В."
+     },
+     {
+      "family": "Губар",
+      "given_initials": "М. І."
+     },
+     {
+      "family": "Свистунова",
+      "given_initials": "І. В."
+     }
+    ],
+    "container_title": "Таврійський науковий вісник",
+    "year": 2022,
+    "issue": "123",
+    "pages": "137–145",
+    "doi": "10.32851/2226-0099.2022.123.19",
+    "tags": [
+     "інокуляція",
+     "соя",
+     "Україна"
+    ],
+    "study_object": "Соя сортів Вільшанка і Сузір'я; препарат на основі Bradyrhizobium japonicum і Bacillus mucilaginosus.",
+    "methods": "Польові досліди 2013–2015 рр. на чорноземі типовому, правобережний Лісостеп.",
+    "main_results": "Інокуляція в поєднанні з удобренням підвищувала симбіотичну та насіннєву продуктивність сої.",
+    "for_dissertation": "Вітчизняний контекст застосування бактеріальних препаратів (п. 3.5, вступ).",
+    "description": "Польові дані про вплив інокуляції насіння й удобрення на симбіоз і врожайність сої.",
+    "language": "uk",
+    "status": "unread"
+   }
+  },
+  {
+   "files": [
+    {
+     "name": "01_Наукові статті та огляди/Papp_2026_Biopesticides advantages limitations ecotoxicology.pdf",
+     "sha256": "bb17944461dd83a859f5c63e8632d4ccecee0ba6551c0d509f8bc930bdf5c72b"
+    }
+   ],
+   "file_name": "Papp_2026_Biopesticides advantages limitations ecotoxicology.pdf",
+   "sections": [
+    "Біопестициди: значення, безпека, огляди",
+    "Безпека для нетаргетних організмів"
+   ],
+   "source": {
+    "type": "article",
+    "title": "Biopesticides in sustainable agriculture: advantages, limitations and ecotoxicological implications",
+    "authors": [
+     {
+      "family": "Papp",
+      "given_initials": "R. R."
+     }
+    ],
+    "container_title": "AES Bioflux",
+    "year": 2026,
+    "volume": "18",
+    "issue": "1",
+    "pages": "30–38",
+    "tags": [
+     "огляд",
+     "екотоксикологія",
+     "обмеження"
+    ],
+    "study_object": "Біопестициди в сталому землеробстві.",
+    "methods": "Огляд літератури.",
+    "main_results": "Розглянуто класифікацію, переваги й обмеження біопестицидів та їх вплив на нецільові організми, ґрунтові мікроорганізми й водні екосистеми.",
+    "for_dissertation": "Вступ: обмеження біопестицидів (нестабільність, коротший строк дії), які долає препаративна форма. DOI у PDF не знайдено.",
+    "description": "Огляд переваг, обмежень і екотоксикологічних наслідків застосування біопестицидів.",
+    "language": "en",
+    "status": "unread"
+   }
+  },
+  {
+   "files": [
+    {
+     "name": "01_Наукові статті та огляди/Шкатула_2026_Обробіток ґрунту і бактеризація сої.pdf",
+     "sha256": "73e702a2ed2832ca4135fe158b82ea1c907246d5637895c4fb83fc862bbe92fa"
+    }
+   ],
+   "file_name": "Шкатула_2026_Обробіток ґрунту і бактеризація сої.pdf",
+   "sections": [
+    "Інокуляція насіння (вітчизняні дослідження)"
+   ],
+   "source": {
+    "type": "article",
+    "title": "Вплив обробітку ґрунту та бактеризації насіння на врожайність сої",
+    "authors": [
+     {
+      "family": "Шкатула",
+      "given_initials": "Ю. М."
+     },
+     {
+      "family": "Пелех",
+      "given_initials": "Л. В."
+     },
+     {
+      "family": "Дрозда",
+      "given_initials": "О. В."
+     }
+    ],
+    "container_title": "Таврійський науковий вісник. Серія: Сільськогосподарські науки",
+    "year": 2026,
+    "issue": "148, ч. 3",
+    "pages": "190–196",
+    "doi": "10.32782/2226-0099.2026.148.3.22",
+    "tags": [
+     "інокуляція",
+     "соя",
+     "Україна"
+    ],
+    "study_object": "Соя у Вінницькій області; бактеризація насіння за різних способів основного обробітку ґрунту.",
+    "methods": "Польовий дослід; щільність і пористість ґрунту, урожайність.",
+    "main_results": "Визначено вплив способу обробітку ґрунту та передпосівної бактеризації на агрофізичні властивості ґрунту й урожайність сої.",
+    "for_dissertation": "Вітчизняні дані про бактеризацію насіння (п. 3.5).",
+    "description": "Бактеризація насіння сої на тлі різних систем обробітку ґрунту: вплив на ґрунт і врожай.",
+    "language": "uk",
+    "status": "unread"
+   }
+  },
+  {
+   "files": [
+    {
+     "name": "01_Наукові статті та огляди/Селінний_2025_Інокуляція пшениці біометрія.pdf",
+     "sha256": "d558c50de5cd32a199e03beb16db7df16288c11934507ba8378d29d71d2b703e"
+    }
+   ],
+   "file_name": "Селінний_2025_Інокуляція пшениці біометрія.pdf",
+   "sections": [
+    "Інокуляція насіння (вітчизняні дослідження)"
+   ],
+   "source": {
+    "type": "article",
+    "title": "Вплив інокуляції насіння пшениці агрономічно корисними бактеріями на біометричні та фізіологічні показники рослин",
+    "authors": [
+     {
+      "family": "Селінний",
+      "given_initials": "М. М."
+     },
+     {
+      "family": "Шевченко",
+      "given_initials": "Л. А."
+     },
+     {
+      "family": "Рябуха",
+      "given_initials": "Г. І."
+     },
+     {
+      "family": "Пархоменко",
+      "given_initials": "М. М."
+     }
+    ],
+    "container_title": "Український журнал природничих наук",
+    "year": 2025,
+    "issue": "13",
+    "pages": "302–309",
+    "doi": "10.32782/naturaljournal.13.2025.28",
+    "tags": [
+     "інокуляція",
+     "пшениця",
+     "Bacillus",
+     "Azospirillum"
+    ],
+    "study_object": "Пшениця сортів Тобак і Артіст; Bacillus sp. 4, Azospirillum sp.",
+    "methods": "Польовий дослід; біометричні та фізіологічні показники.",
+    "main_results": "Комплексна бактеризація Bacillus sp. 4 + Azospirillum sp. збільшувала висоту рослин на 13 %; монокультура Azospirillum sp. — на 7,5 % для сорту Артіст.",
+    "for_dissertation": "Вітчизняні дані щодо бактеризації (п. 3.5).",
+    "description": "Інокуляція насіння пшениці Bacillus і Azospirillum: приріст біометричних і фізіологічних показників.",
+    "language": "uk",
+    "status": "unread"
+   }
+  },
+  {
+   "files": [
+    {
+     "name": "01_Наукові статті та огляди/Bharadwaz_2024_Microbial biopesticides non-target insects.pdf",
+     "sha256": "fd7541ad8590d4e69e6ee3b20d355b26db5a0ef25b134240d3ba58457286cbd4"
+    }
+   ],
+   "file_name": "Bharadwaz_2024_Microbial biopesticides non-target insects.pdf",
+   "sections": [
+    "Безпека для нетаргетних організмів"
+   ],
+   "source": {
+    "type": "article",
+    "title": "Effects of microbial biopesticides against non-target insect pest",
+    "authors": [
+     {
+      "family": "Bharadwaz",
+      "given_initials": "P."
+     },
+     {
+      "family": "Nath",
+      "given_initials": "B. C."
+     },
+     {
+      "family": "Borkakati",
+      "given_initials": "R. N."
+     },
+     {
+      "family": "Chetia",
+      "given_initials": "R."
+     },
+     {
+      "family": "Saikia",
+      "given_initials": "S."
+     },
+     {
+      "family": "Bora",
+      "given_initials": "P."
+     },
+     {
+      "family": "Bhattacharyya",
+      "given_initials": "P. N."
+     },
+     {
+      "family": "Kashyap",
+      "given_initials": "A."
+     },
+     {
+      "family": "Sharma",
+      "given_initials": "S."
+     },
+     {
+      "family": "Mudoi",
+      "given_initials": "A."
+     }
+    ],
+    "container_title": "Annals of Plant and Soil Research",
+    "year": 2024,
+    "volume": "26",
+    "issue": "3",
+    "pages": "410–416",
+    "doi": "10.47815/apsr.2024.10378",
+    "tags": [
+     "нетаргетні організми",
+     "ентомофаги",
+     "польові досліди"
+    ],
+    "study_object": "Біопрепарати на основі Trichoderma, Pseudomonas fluorescens, Beauveria, Metarhizium, Lecanicillium, B. thuringiensis; паразити й хижаки.",
+    "methods": "Польові та вегетаційні досліди за рекомендованих концентрацій.",
+    "main_results": "Після 1-го і 2-го обприскування (томат у полі, бамія у вегетаційному досліді) чисельність кокцинелід на 3, 7 і 10 добу статистично не відрізнялася від контролю — негативного впливу не виявлено.",
+    "for_dissertation": "Вступ, безпечність бактеріальних препаратів для корисної ентомофауни.",
+    "description": "Польова оцінка впливу мікробних біопестицидів на паразитів і хижаків.",
+    "language": "en",
+    "status": "unread"
+   }
+  },
+  {
+   "files": [
+    {
+     "name": "01_Наукові статті та огляди/Локоть_2024_Інокуляція льону олійного.pdf",
+     "sha256": "58e84da478fd4e160d76b362f0d7f983fd1f3320d9c0147828a3c2a90c566ad8"
+    }
+   ],
+   "file_name": "Локоть_2024_Інокуляція льону олійного.pdf",
+   "sections": [
+    "Інокуляція насіння (вітчизняні дослідження)"
+   ],
+   "source": {
+    "type": "article",
+    "title": "Ефективність інокуляції насіння різних сортів льону олійного в умовах Лівобережного Полісся",
+    "authors": [
+     {
+      "family": "Локоть",
+      "given_initials": "О. Ю."
+     },
+     {
+      "family": "Селінний",
+      "given_initials": "С. М."
+     },
+     {
+      "family": "Пархоменко",
+      "given_initials": "М. М."
+     },
+     {
+      "family": "Логоша",
+      "given_initials": "О. В."
+     }
+    ],
+    "container_title": "Сільськогосподарська мікробіологія",
+    "year": 2024,
+    "issue": "39",
+    "pages": "60–70",
+    "doi": "10.35868/1997-3004.39.60-70",
+    "tags": [
+     "інокуляція",
+     "льон",
+     "Paenibacillus polymyxa"
+    ],
+    "study_object": "Сім сортів льону олійного; бактеризація препаратом на основі Paenibacillus polymyxa КВ.",
+    "methods": "Польовий дослід на дерново-середньопідзолистому ґрунті, чотириразова повторність, на фоні мінеральних добрив.",
+    "main_results": "У середньому за три роки бактеризація збільшувала висоту рослин на 5,5–11,1 %, кількість коробочок на 16,1 %, масу 1000 насінин на 2,3 %; ефект залежав від сорту.",
+    "for_dissertation": "Вітчизняні дані щодо бактеріальних препаратів (п. 3.5). Ініціали другого автора подано як у PDF.",
+    "description": "Бактеризація насіння льону олійного препаратом на основі P. polymyxa в умовах Полісся.",
+    "language": "uk",
+    "status": "unread"
+   }
+  },
+  {
+   "files": [
+    {
+     "name": "01_Наукові статті та огляди/Шевченко_2022_Інокуляція пшениці озимої.pdf",
+     "sha256": "50f9d6283a03175c4904996b76903cfef74eb04a55c823dbc727b132c0e2be94"
+    }
+   ],
+   "file_name": "Шевченко_2022_Інокуляція пшениці озимої.pdf",
+   "sections": [
+    "Інокуляція насіння (вітчизняні дослідження)"
+   ],
+   "source": {
+    "type": "article",
+    "title": "Вплив передпосівної інокуляції насіння на продуктивність різних сортів пшениці озимої",
+    "authors": [
+     {
+      "family": "Шевченко",
+      "given_initials": "Л. А."
+     },
+     {
+      "family": "Селінний",
+      "given_initials": "М. М."
+     },
+     {
+      "family": "Рябуха",
+      "given_initials": "Г. І."
+     },
+     {
+      "family": "Кудряшова",
+      "given_initials": "К. М."
+     }
+    ],
+    "container_title": "Вісник Сумського національного аграрного університету. Серія: Агрономія і біологія",
+    "year": 2022,
+    "issue": "1 (47)",
+    "pages": "138–143",
+    "doi": "10.32845/agrobio.2022.1.19",
+    "tags": [
+     "інокуляція",
+     "пшениця",
+     "Azospirillum",
+     "Bacillus"
+    ],
+    "study_object": "Пшениця озима; Azospirillum sp. і Bacillus sp. 4.",
+    "methods": "Польовий дослід; структура врожаю.",
+    "main_results": "Маса 1000 насінин за варіантами 32,8–37,9 г; інокуляція впливала на елементи структури врожаю залежно від сорту.",
+    "for_dissertation": "Вітчизняні дані щодо бактеризації (п. 3.5).",
+    "description": "Передпосівна інокуляція пшениці озимої азотфіксувальними й фосфатмобілізувальними бактеріями.",
+    "language": "uk",
+    "status": "unread"
+   }
+  },
+  {
+   "files": [
+    {
+     "name": "01_Наукові статті та огляди/Sohail_2025_Pickering emulsion PGPB viability.pdf",
+     "sha256": "be93111d2ecc9021194ba90163846048e3768076e36d07e9878e349719a81d35"
+    }
+   ],
+   "file_name": "Sohail_2025_Pickering emulsion PGPB viability.pdf",
+   "sections": [
+    "Інкапсуляція, нано- та новітні носії",
+    "Рідкі форми, суспензії, покриття насіння"
+   ],
+   "source": {
+    "type": "article",
+    "title": "Pickering Emulsion for Enhanced Viability of Plant Growth Promoting Bacteria and Combined Delivery of Agrochemicals and Biologics",
+    "authors": [
+     {
+      "family": "Sohail",
+      "given_initials": "M."
+     },
+     {
+      "family": "Cheadle",
+      "given_initials": "J."
+     },
+     {
+      "family": "Khan",
+      "given_initials": "R."
+     },
+     {
+      "family": "Mane",
+      "given_initials": "H."
+     },
+     {
+      "family": "Salem",
+      "given_initials": "K. S."
+     },
+     {
+      "family": "Ernst",
+      "given_initials": "K."
+     },
+     {
+      "family": "San Miguel",
+      "given_initials": "A."
+     },
+     {
+      "family": "Opperman",
+      "given_initials": "C. H."
+     },
+     {
+      "family": "Pirzada",
+      "given_initials": "T."
+     },
+     {
+      "family": "Crook",
+      "given_initials": "N."
+     },
+     {
+      "family": "Khan",
+      "given_initials": "S. A."
+     }
+    ],
+    "container_title": "Advanced Functional Materials",
+    "year": 2025,
+    "pages": "Art. 2418272",
+    "doi": "10.1002/adfm.202418272",
+    "tags": [
+     "емульсія Пікерінга",
+     "ацетат целюлози",
+     "неспороутворювальні бактерії"
+    ],
+    "study_object": "Pseudomonas simiae, Azospirillum brasilense; модельний пестицид флуопірам.",
+    "methods": "Емульсії Пікерінга, стабілізовані частинками ацетату целюлози; 4 тижні зберігання без живлення; транскриптоміка.",
+    "main_results": "Виживання P. simiae і A. brasilense зросло на 200 і 500 % відносно фізрозчину; лізовані клітини слугують джерелом живлення. Бактерії виживали разом із флуопірамом, ефективність пестициду зберігалась.",
+    "for_dissertation": "П. 3.4: новітні рідкі носії для неспороутворювальних бактерій. Том журналу в PDF не вказано — уточнити.",
+    "description": "Емульсії Пікерінга на ацетаті целюлози підвищують виживання неспороутворювальних PGPB і дозволяють сумісну доставку з пестицидом.",
+    "language": "en",
+    "status": "unread"
+   }
+  },
+  {
+   "files": [
+    {
+     "name": "01_Наукові статті та огляди/Shaheen_2022_Pseudomonas growth promotion biocontrol.pdf",
+     "sha256": "973d610a12338489d22631446ebb0d109daa055602bd17bab5d6fad9650b28d8"
+    }
+   ],
+   "file_name": "Shaheen_2022_Pseudomonas growth promotion biocontrol.pdf",
+   "sections": [
+    "Інше"
+   ],
+   "source": {
+    "type": "article",
+    "title": "Assessment of Pseudomonas spp. for Growth Promotion, Biocontrol and Stress Tolerance Applicability towards Organic and Inorganic Pollutants",
+    "authors": [
+     {
+      "family": "Shaheen",
+      "given_initials": "S."
+     },
+     {
+      "family": "Mishra",
+      "given_initials": "N."
+     },
+     {
+      "family": "Sundari",
+      "given_initials": "S. K."
+     }
+    ],
+    "container_title": "Ecology, Environment and Conservation",
+    "year": 2022,
+    "volume": "28",
+    "issue": "3 (suppl.)",
+    "pages": "S316–S329",
+    "doi": "10.53550/EEC.2022.v28i03s.047",
+    "tags": [
+     "Pseudomonas",
+     "PGPR",
+     "стрес"
+    ],
+    "study_object": "Ізоляти Pseudomonas spp.",
+    "methods": "Скринінг ростостимулювальних і антагоністичних властивостей, толерантності до забруднювачів.",
+    "main_results": "Ізоляти мали ростостимулювальні, антагоністичні властивості й толерантність до органічних і неорганічних забруднювачів.",
+    "for_dissertation": "Другорядне: Pseudomonas як агент біоконтролю.",
+    "description": "Ізоляти Pseudomonas: стимуляція росту, біоконтроль і стійкість до забруднювачів.",
+    "language": "en",
+    "status": "unread"
+   }
+  },
+  {
+   "files": [
+    {
+     "name": "01_Наукові статті та огляди/Fadiji_2024_Formulation challenges microbial biofertilizers.pdf",
+     "sha256": "964919eea3115fdd578b94da55b6a5456c8f820408530e1843a0396e921c871a"
+    }
+   ],
+   "file_name": "Fadiji_2024_Formulation challenges microbial biofertilizers.pdf",
+   "sections": [
+    "Препаративні форми: огляди"
+   ],
+   "source": {
+    "type": "article",
+    "title": "Formulation challenges associated with microbial biofertilizers in sustainable agriculture and paths forward",
+    "authors": [
+     {
+      "family": "Fadiji",
+      "given_initials": "A. E."
+     },
+     {
+      "family": "Xiong",
+      "given_initials": "C."
+     },
+     {
+      "family": "Egidi",
+      "given_initials": "E."
+     },
+     {
+      "family": "Singh",
+      "given_initials": "B. K."
+     }
+    ],
+    "container_title": "Journal of Sustainable Agriculture and Environment",
+    "year": 2024,
+    "volume": "3",
+    "issue": "3",
+    "pages": "Art. e70006",
+    "doi": "10.1002/sae2.70006",
+    "tags": [
+     "огляд",
+     "препаративні форми",
+     "носії",
+     "термін зберігання"
+    ],
+    "study_object": "Препаративні форми мікробних біодобрив (PGPM).",
+    "methods": "Огляд.",
+    "main_results": "Ринок біодобрив прогнозують на рівні 5,02 млрд дол. до 2030 р. Описано проблеми форм (виживання, строк зберігання, носії, сумісність, польова ефективність) і шляхи їх подолання.",
+    "for_dissertation": "Вступ і п. 3.1/3.3: виклики формуляції мікробних препаратів, вимоги до якості. Номер випуску (3) виведено з e-номера — звірити.",
+    "description": "Огляд проблем формуляції мікробних біодобрив і напрямів їх розв'язання.",
+    "language": "en",
+    "status": "unread"
+   }
+  },
+  {
+   "files": [
+    {
+     "name": "01_Наукові статті та огляди/Botelho_2026_Bt biopesticides invertebrate toxicity mutagenicity.pdf",
+     "sha256": "1b95d6b49221954fe46c2edfb5b83ecdd6fe0e1b6367ae04cf739d0ed569832d"
+    }
+   ],
+   "file_name": "Botelho_2026_Bt biopesticides invertebrate toxicity mutagenicity.pdf",
+   "sections": [
+    "Безпека для нетаргетних організмів"
+   ],
+   "source": {
+    "type": "article",
+    "title": "Testing Bacillus thuringiensis biopesticides for invertebrate toxicity, mutagenicity and non-target chemical analysis",
+    "authors": [
+     {
+      "family": "Botelho",
+      "given_initials": "M. T."
+     },
+     {
+      "family": "Oliveira",
+      "given_initials": "A. C."
+     },
+     {
+      "family": "Militão",
+      "given_initials": "G. F. G."
+     },
+     {
+      "family": "Silva",
+      "given_initials": "B. F."
+     },
+     {
+      "family": "Oliveira",
+      "given_initials": "E."
+     },
+     {
+      "family": "Hantao",
+      "given_initials": "L. W."
+     },
+     {
+      "family": "Umbuzeiro",
+      "given_initials": "G. A."
+     }
+    ],
+    "container_title": "Sustainable Environment",
+    "year": 2026,
+    "volume": "12",
+    "issue": "1",
+    "pages": "Art. 2693366",
+    "doi": "10.1080/27658511.2026.2693366",
+    "tags": [
+     "Bt",
+     "водні організми",
+     "мутагенність",
+     "допоміжні речовини"
+    ],
+    "study_object": "Три комерційні Bt-препарати; водні модельні безхребетні.",
+    "methods": "Гостра токсичність цілих препаратів і їх супернатантів; нецільовий хімічний скринінг; тести на мутагенність.",
+    "main_results": "Найчутливіша — дафнія: EC50 0,001 %, 0,013 % і 6,87 % для трьох препаратів. Нецільовий аналіз виявив у складі незадекларовані речовини, зокрема фунгіциди; мутагенність одного препарату пов'язана з незадекларованими ад'ювантами в супернатанті. Два з трьох препаратів можуть становити ризик за рекомендованої дози.",
+    "for_dissertation": "П. 3.3: безпечність визначає не лише агент, а й допоміжні речовини препаративної форми.",
+    "description": "Токсичність і мутагенність комерційних Bt-препаратів для водних безхребетних; роль інших компонентів форми.",
+    "language": "en",
+    "status": "unread"
+   }
+  },
+  {
+   "files": [
+    {
+     "name": "01_Наукові статті та огляди/Nekkanti_2024_Microbial bioagents pest management (popular).pdf",
+     "sha256": "91aff45626bd426247281ea64f536c134b81a08f0c7e6a31edb4945093dbeb2c"
+    }
+   ],
+   "file_name": "Nekkanti_2024_Microbial bioagents pest management (popular).pdf",
+   "sections": [
+    "Інше"
+   ],
+   "source": {
+    "type": "article",
+    "title": "The Future of Pest Management: Expanding the Role of Microbial Bioagents",
+    "authors": [
+     {
+      "family": "Nekkanti",
+      "given_initials": "A."
+     },
+     {
+      "family": "Kiran Kumar",
+      "given_initials": "G. N."
+     }
+    ],
+    "container_title": "Vigyan Varta",
+    "year": 2024,
+    "volume": "5",
+    "issue": "9",
+    "pages": "71–73",
+    "tags": [
+     "науково-популярне"
+    ],
+    "study_object": "Мікробні біоагенти у захисті рослин.",
+    "methods": "Науково-популярна стаття.",
+    "main_results": "Коротко описано переваги формуляцій на основі мікробних агентів як альтернативи хімічним пестицидам.",
+    "for_dissertation": "Другорядне; не рецензоване джерело, у статті краще не цитувати.",
+    "description": "Науково-популярна стаття про роль мікробних біоагентів у захисті рослин.",
+    "language": "en",
+    "status": "unread"
+   }
+  },
+  {
+   "files": [
+    {
+     "name": "02_Книги, посібники, збірники/Збірник_2026_Кормові ресурси (молоді вчені, Вінниця).pdf",
+     "sha256": "d8241ba05640ec9c83b0088c8cb389e0878721ec7bfeaf5aeda0dbeb3c9a4f74"
+    }
+   ],
+   "file_name": "Збірник_2026_Кормові ресурси (молоді вчені, Вінниця).pdf",
+   "sections": [
+    "Інокуляція насіння (вітчизняні дослідження)"
+   ],
+   "source": {
+    "type": "conference",
+    "title": "Кормові ресурси: селекція, технології виробництва, заготівля, збереження та безпека кормів: матеріали Всеукр. наук. конф. молодих вчених (17 вересня 2026 р.)",
+    "publisher": "Інститут кормів та сільського господарства Поділля НААН",
+    "place": "Вінниця",
+    "year": 2026,
+    "doi": "10.31073/kormovyrobnytstvo2026confMV",
+    "tags": [
+     "збірник",
+     "інокуляція",
+     "Україна"
+    ],
+    "study_object": "Тези молодих вчених з кормовиробництва.",
+    "methods": "Збірник тез.",
+    "main_results": "Окремі тези стосуються інокуляції сої та застосування біопрепаратів і біостимуляторів.",
+    "for_dissertation": "Другорядне: вітчизняні дані щодо інокуляції сої (напр., тези на с. 32). ISBN у PDF надруковано з помилкою, тому не внесено.",
+    "description": "Збірник тез конференції молодих вчених (Вінниця, 2026) з кормовиробництва; є тези про інокуляцію сої.",
+    "language": "uk",
+    "status": "unread",
+    "page_count": "101"
+   }
+  },
+  {
+   "files": [
+    {
+     "name": "01_Наукові статті та огляди/Dobrzynski_2026_PGPM for cool-season forage grasses.pdf",
+     "sha256": "17bd48eeac1c625b8d2a0433c7da2da36605af61bcabb6eb8281697c6452d0f6"
+    }
+   ],
+   "file_name": "Dobrzynski_2026_PGPM for cool-season forage grasses.pdf",
+   "sections": [
+    "Інше"
+   ],
+   "source": {
+    "type": "article",
+    "title": "Application of Plant Growth-Promoting Microorganisms (PGPM) to Enhance the Growth of Cool-Season Forage Grasses",
+    "authors": [
+     {
+      "family": "Dobrzyński",
+      "given_initials": "J."
+     },
+     {
+      "family": "Stopa",
+      "given_initials": "W."
+     },
+     {
+      "family": "Paszkiewicz-Jasińska",
+      "given_initials": "A."
+     },
+     {
+      "family": "Wróbel",
+      "given_initials": "B."
+     }
+    ],
+    "container_title": "Agriculture",
+    "year": 2026,
+    "volume": "16",
+    "issue": "5",
+    "pages": "Art. 629",
+    "doi": "10.3390/agriculture16050629",
+    "tags": [
+     "PGPM",
+     "кормові злаки",
+     "огляд"
+    ],
+    "study_object": "Кормові злаки C3 (переважно Lolium).",
+    "methods": "Огляд.",
+    "main_results": "PGPM підвищують ріст, ефективність використання поживних речовин і стресостійкість злаків.",
+    "for_dissertation": "Другорядне; не про захист рослин.",
+    "description": "Огляд застосування PGPM для кормових злаків помірного клімату.",
+    "language": "en",
+    "status": "unread"
+   }
+  },
+  {
+   "files": [
+    {
+     "name": "01_Наукові статті та огляди/AlRaish_2025_PGPM as biocontrol agents.pdf",
+     "sha256": "c7e2995941981b7ef94f4fc89cc759773ac17e10b9b8e535d43d17b0b76c783b"
+    }
+   ],
+   "file_name": "AlRaish_2025_PGPM as biocontrol agents.pdf",
+   "sections": [
+    "Біопестициди: значення, безпека, огляди"
+   ],
+   "source": {
+    "type": "article",
+    "title": "Plant Growth-Promoting Microorganisms as Biocontrol Agents: Mechanisms, Challenges, and Future Prospects",
+    "authors": [
+     {
+      "family": "Al Raish",
+      "given_initials": "S. M."
+     },
+     {
+      "family": "Sourani",
+      "given_initials": "O. M."
+     },
+     {
+      "family": "Abu-Elsaoud",
+      "given_initials": "A. M."
+     }
+    ],
+    "container_title": "Applied Microbiology",
+    "year": 2025,
+    "volume": "5",
+    "issue": "2",
+    "pages": "Art. 44",
+    "doi": "10.3390/applmicrobiol5020044",
+    "tags": [
+     "огляд",
+     "PGPM",
+     "біоконтроль"
+    ],
+    "study_object": "Бактерії, гриби, дріжджі — PGPM.",
+    "methods": "Огляд.",
+    "main_results": "Описано механізми дії PGPM і проблеми застосування: мінливість польової ефективності, виживання й колонізація, препаративні форми, регуляція.",
+    "for_dissertation": "Вступ: обмеження польової ефективності, які розв'язує препаративна форма.",
+    "description": "Огляд механізмів, викликів і перспектив PGPM як агентів біоконтролю.",
+    "language": "en",
+    "status": "unread"
+   }
+  },
+  {
+   "files": [
+    {
+     "name": "01_Наукові статті та огляди/Balla_2022_Encapsulation techniques PGPM.pdf",
+     "sha256": "6f5fc2fee33ace7d9a08d1dc66c42b7b73d91c061d3569a0c336cba1e7e5c69a"
+    }
+   ],
+   "file_name": "Balla_2022_Encapsulation techniques PGPM.pdf",
+   "sections": [
+    "Інкапсуляція, нано- та новітні носії"
+   ],
+   "source": {
+    "type": "article",
+    "title": "Recent Advances in Encapsulation Techniques of Plant Growth-Promoting Microorganisms and Their Prospects in the Sustainable Agriculture",
+    "authors": [
+     {
+      "family": "Balla",
+      "given_initials": "A."
+     },
+     {
+      "family": "Silini",
+      "given_initials": "A."
+     },
+     {
+      "family": "Cherif-Silini",
+      "given_initials": "H."
+     },
+     {
+      "family": "Chenari Bouket",
+      "given_initials": "A."
+     },
+     {
+      "family": "Alenezi",
+      "given_initials": "F. N."
+     },
+     {
+      "family": "Belbahri",
+      "given_initials": "L."
+     }
+    ],
+    "container_title": "Applied Sciences",
+    "year": 2022,
+    "volume": "12",
+    "issue": "18",
+    "pages": "Art. 9020",
+    "doi": "10.3390/app12189020",
+    "tags": [
+     "інкапсуляція",
+     "огляд",
+     "носії"
+    ],
+    "study_object": "Інкапсульовані біоформи PGPM.",
+    "methods": "Огляд технологій інкапсуляції, субстратів і добавок.",
+    "main_results": "Інкапсульовані форми переважають рідкі й тверді за строком зберігання, виживанням у середовищі й колонізацією ризосфери; розглянуто наноінкапсуляцію.",
+    "for_dissertation": "П. 3.4: класифікація технологій інкапсуляції та полімерів-носіїв.",
+    "description": "Огляд технологій інкапсуляції PGPM: матеріали, добавки, застосування як біопестицидів і біодобрив.",
+    "language": "en",
+    "status": "unread"
+   }
+  },
+  {
+   "files": [
+    {
+     "name": "01_Наукові статті та огляди/Dhaouadi_2024_Btk formulations aquatic non-target organisms.pdf",
+     "sha256": "b5237036fc2a64438684abdefcb1c38fb62331ca318a7276ca5d7c2d6cf70baf"
+    }
+   ],
+   "file_name": "Dhaouadi_2024_Btk formulations aquatic non-target organisms.pdf",
+   "sections": [
+    "Безпека для нетаргетних організмів"
+   ],
+   "source": {
+    "type": "article",
+    "title": "Effects of New Btk-Based Formulations BLB1 and Lip on Aquatic Non-Target Organisms",
+    "authors": [
+     {
+      "family": "Dhaouadi",
+      "given_initials": "S."
+     },
+     {
+      "family": "Jeni",
+      "given_initials": "R. E."
+     },
+     {
+      "family": "Kraiem",
+      "given_initials": "H."
+     },
+     {
+      "family": "Ayyildiz",
+      "given_initials": "G."
+     },
+     {
+      "family": "Filik-Iscen",
+      "given_initials": "C."
+     },
+     {
+      "family": "Yurtkuran-Ceterez",
+      "given_initials": "Z."
+     },
+     {
+      "family": "Bouhaouala-Zahar",
+      "given_initials": "B."
+     }
+    ],
+    "container_title": "Biology",
+    "year": 2024,
+    "volume": "13",
+    "issue": "10",
+    "pages": "Art. 824",
+    "doi": "10.3390/biology13100824",
+    "tags": [
+     "Btk",
+     "Daphnia magna",
+     "Aliivibrio fischeri",
+     "нетаргетні організми"
+    ],
+    "study_object": "Дві нові форми на основі B. thuringiensis subsp. kurstaki і комерційний Btk-препарат.",
+    "methods": "Екотоксикологічні тести на Daphnia magna і Aliivibrio fischeri.",
+    "main_results": "Нові форми не мали значущої токсичності для досліджених водних організмів, порівняно з комерційним продуктом.",
+    "for_dissertation": "П. 3.3: оцінка безпеки нових препаративних форм.",
+    "description": "Екотоксичність нових Btk-форм для водних нецільових організмів.",
+    "language": "en",
+    "status": "unread"
+   }
+  },
+  {
+   "files": [
+    {
+     "name": "01_Наукові статті та огляди/Ma_2025_Paenibacillus microcapsule suspension seed coating.pdf",
+     "sha256": "3d3ad957d33de6c11694ebe70e82b2545b56966212287e40d90846e03afeb8c2"
+    }
+   ],
+   "file_name": "Ma_2025_Paenibacillus microcapsule suspension seed coating.pdf",
+   "sections": [
+    "Інкапсуляція, нано- та новітні носії",
+    "Рідкі форми, суспензії, покриття насіння"
+   ],
+   "source": {
+    "type": "article",
+    "title": "Coating Seeds with Paenibacillus polymyxa ZF129 Microcapsule Suspension Enhanced Control Effect on Fusarium Root Rot and Promoted Seedling Growth in Cucumber",
+    "authors": [
+     {
+      "family": "Ma",
+      "given_initials": "J."
+     },
+     {
+      "family": "Liu",
+      "given_initials": "J."
+     },
+     {
+      "family": "Shi",
+      "given_initials": "Y."
+     },
+     {
+      "family": "Xie",
+      "given_initials": "X."
+     },
+     {
+      "family": "Chai",
+      "given_initials": "A."
+     },
+     {
+      "family": "Xiang",
+      "given_initials": "S."
+     },
+     {
+      "family": "Sun",
+      "given_initials": "X."
+     },
+     {
+      "family": "Li",
+      "given_initials": "L."
+     },
+     {
+      "family": "Li",
+      "given_initials": "B."
+     },
+     {
+      "family": "Fan",
+      "given_initials": "T."
+     }
+    ],
+    "container_title": "Biology",
+    "year": 2025,
+    "volume": "14",
+    "issue": "4",
+    "pages": "Art. 375",
+    "doi": "10.3390/biology14040375",
+    "tags": [
+     "мікрокапсули",
+     "гуміарабік",
+     "розпилювальне сушіння",
+     "покриття насіння"
+    ],
+    "study_object": "Paenibacillus polymyxa ZF129; фузаріозна коренева гниль огірка.",
+    "methods": "Мікроінкапсуляція гуміарабіком розпилювальним сушінням (порошок 10⁸ КУО/г) і суспензія мікрокапсул для покриття насіння; колонізація ризосфери; активність ферментів.",
+    "main_results": "Ефективність проти кореневої гнилі 46,30 %; маса коренів зросла до 47,16 %; покращено колонізацію коренів.",
+    "for_dissertation": "П. 3.2/3.4: гуміарабік як полімерний носій бактерій, суспензія мікрокапсул.",
+    "description": "Суспензія мікрокапсул P. polymyxa (гуміарабік, розпилювальне сушіння) для покриття насіння огірка.",
+    "language": "en",
+    "status": "unread"
+   }
+  },
+  {
+   "files": [
+    {
+     "name": "01_Наукові статті та огляди/Vero_2023_Microbial biopesticides diversity mechanisms.pdf",
+     "sha256": "baac1e63d26e8b66e6eec725ec2a287ec633bb5ffdbca5c2f4e1a825facc2256"
+    }
+   ],
+   "file_name": "Vero_2023_Microbial biopesticides diversity mechanisms.pdf",
+   "sections": [
+    "Біопестициди: значення, безпека, огляди"
+   ],
+   "source": {
+    "type": "article",
+    "title": "Microbial Biopesticides: Diversity, Scope, and Mechanisms Involved in Plant Disease Control",
+    "authors": [
+     {
+      "family": "Vero",
+      "given_initials": "S."
+     },
+     {
+      "family": "Garmendia",
+      "given_initials": "G."
+     },
+     {
+      "family": "Allori",
+      "given_initials": "E."
+     },
+     {
+      "family": "Sanz",
+      "given_initials": "J. M."
+     },
+     {
+      "family": "Gonda",
+      "given_initials": "M."
+     },
+     {
+      "family": "Alconada",
+      "given_initials": "T."
+     },
+     {
+      "family": "Cavello",
+      "given_initials": "I."
+     },
+     {
+      "family": "Dib",
+      "given_initials": "J. R."
+     },
+     {
+      "family": "Diaz",
+      "given_initials": "M. A."
+     },
+     {
+      "family": "Nally",
+      "given_initials": "C."
+     }
+    ],
+    "container_title": "Diversity",
+    "year": 2023,
+    "volume": "15",
+    "issue": "3",
+    "pages": "Art. 457",
+    "doi": "10.3390/d15030457",
+    "tags": [
+     "огляд",
+     "механізми",
+     "мікробні біопестициди"
+    ],
+    "study_object": "Мікробні біопестициди проти хвороб рослин.",
+    "methods": "Огляд.",
+    "main_results": "Описано різноманіття агентів, сфери застосування і механізми контролю хвороб, а також втрати врожаю від патогенів.",
+    "for_dissertation": "Вступ: значення мікробних біопестицидів, механізми дії. Авторів понад 10, у PDF наведено перших 10 + et al.",
+    "description": "Огляд різноманіття, сфер застосування та механізмів дії мікробних біопестицидів.",
+    "language": "en",
+    "status": "unread"
+   }
+  },
+  {
+   "files": [
+    {
+     "name": "01_Наукові статті та огляди/Lopez_2021_Solid and liquid formulations of essential oils.pdf",
+     "sha256": "b40b070a97adae0eabf9fb9b6d14fa26c7a926c4833735bae4d7a4eded55fab9"
+    }
+   ],
+   "file_name": "Lopez_2021_Solid and liquid formulations of essential oils.pdf",
+   "sections": [
+    "Препаративні форми: огляди"
+   ],
+   "source": {
+    "type": "article",
+    "title": "New Insights Into Biopesticides: Solid and Liquid Formulations of Essential Oils and Derivatives",
+    "authors": [
+     {
+      "family": "López",
+      "given_initials": "M. D."
+     },
+     {
+      "family": "Cantó-Tejero",
+      "given_initials": "M."
+     },
+     {
+      "family": "Pascual-Villalobos",
+      "given_initials": "M. J."
+     }
+    ],
+    "container_title": "Frontiers in Agronomy",
+    "year": 2021,
+    "volume": "3",
+    "pages": "Art. 763530",
+    "doi": "10.3389/fagro.2021.763530",
+    "tags": [
+     "ефірні олії",
+     "рідкі форми",
+     "тверді форми"
+    ],
+    "study_object": "Препаративні форми ефірних олій.",
+    "methods": "Міні-огляд.",
+    "main_results": "Розглянуто тверді й рідкі форми ефірних олій (емульсії, наноемульсії, інкапсульовані форми).",
+    "for_dissertation": "Для порівняння: класифікація рідких і твердих форм.",
+    "description": "Міні-огляд твердих і рідких препаративних форм ефірних олій.",
+    "language": "en",
+    "status": "unread"
+   }
+  },
+  {
+   "files": [
+    {
+     "name": "01_Наукові статті та огляди/Ren_2024_Suspension concentrate seed coating rice.pdf",
+     "sha256": "dd2cbce981f33fdf9f50052409629a086da990c032a8af4971daa962b0f2afc4"
+    }
+   ],
+   "file_name": "Ren_2024_Suspension concentrate seed coating rice.pdf",
+   "sections": [
+    "Рідкі форми, суспензії, покриття насіння"
+   ],
+   "source": {
+    "type": "article",
+    "title": "Development and application of a novel suspension concentrate for seed coating of rice for controlling bakanae disease and seedling rot disease",
+    "authors": [
+     {
+      "family": "Ren",
+      "given_initials": "X. X."
+     },
+     {
+      "family": "Chen",
+      "given_initials": "L."
+     },
+     {
+      "family": "Yu",
+      "given_initials": "C."
+     },
+     {
+      "family": "Zhao",
+      "given_initials": "L."
+     },
+     {
+      "family": "Su",
+      "given_initials": "X. Y."
+     },
+     {
+      "family": "He",
+      "given_initials": "S."
+     },
+     {
+      "family": "Ye",
+      "given_initials": "Z. H."
+     }
+    ],
+    "container_title": "Frontiers in Bioengineering and Biotechnology",
+    "year": 2024,
+    "volume": "12",
+    "pages": "Art. 1418313",
+    "doi": "10.3389/fbioe.2024.1418313",
+    "tags": [
+     "SC/FS",
+     "покриття насіння",
+     "хімічний"
+    ],
+    "study_object": "Хімічна суспензія для обробки насіння рису (феномакрил + флудиоксоніл).",
+    "methods": "Добір діючих речовин і ПАР; мокре помелювання; токсичність для риб; польові досліди.",
+    "main_results": "Розроблено 6 % FS; ПЕГ-2000 обрано як ПАР за позитивний вплив на проростки.",
+    "for_dissertation": "Для порівняння: технологія суспензійного концентрату (хімічний аналог). Імена співавторів у PDF записано нестандартно (Yu-Chi, Zhao-Li, Shun-He) — ініціали умовні.",
+    "description": "Розробка хімічного суспензійного концентрату для протруєння насіння рису; приклад технології SC.",
+    "language": "en",
+    "status": "unread"
+   }
+  },
+  {
+   "files": [
+    {
+     "name": "01_Наукові статті та огляди/Vidhyalakshmi_2026_Pseudomonas seed coating oilseeds.pdf",
+     "sha256": "fd52970bfd78e7a5fad9f690c100cc7fd0a0b106a6b8d8bf99b9f972656be89d"
+    }
+   ],
+   "file_name": "Vidhyalakshmi_2026_Pseudomonas seed coating oilseeds.pdf",
+   "sections": [
+    "Рідкі форми, суспензії, покриття насіння"
+   ],
+   "source": {
+    "type": "article",
+    "title": "Microbial seed coating using Pseudomonas fluorescens to enhance shelf life of oilseeds",
+    "authors": [
+     {
+      "family": "Vidhyalakshmi",
+      "given_initials": "R."
+     },
+     {
+      "family": "Dhanalakshmi",
+      "given_initials": "S."
+     },
+     {
+      "family": "Bhavani",
+      "given_initials": "K."
+     },
+     {
+      "family": "Divyadarshini",
+      "given_initials": "S."
+     },
+     {
+      "family": "Akalya",
+      "given_initials": "S."
+     },
+     {
+      "family": "Angel Rebeca",
+      "given_initials": "J."
+     },
+     {
+      "family": "Divya",
+      "given_initials": "H."
+     }
+    ],
+    "container_title": "JABAAS",
+    "year": 2026,
+    "volume": "4",
+    "issue": "1",
+    "pages": "196–207",
+    "doi": "10.5281/zenodo.19846503",
+    "tags": [
+     "Pseudomonas fluorescens",
+     "покриття насіння",
+     "соя"
+    ],
+    "study_object": "Насіння сої; P. fluorescens.",
+    "methods": "Покриття насіння бактерією; оцінка грибного ураження, схожості, енергії росту при зберіганні.",
+    "main_results": "Обробка знижувала грибне навантаження (Aspergillus, Fusarium), покращувала схожість і збереженість насіння.",
+    "for_dissertation": "Другорядне; журнал маловідомий. Повну назву журналу в PDF подано лише абревіатурою.",
+    "description": "Покриття насіння сої P. fluorescens для захисту від грибів зберігання.",
+    "language": "en",
+    "status": "unread"
+   }
+  },
+  {
+   "files": [
+    {
+     "name": "01_Наукові статті та огляди/Ayilara_2023_Biopesticides microbial phyto nano.pdf",
+     "sha256": "6b43a15dfb345a4e0b5e9b6cc73e3f90489d6d246d0b00f418123335eab6de98"
+    }
+   ],
+   "file_name": "Ayilara_2023_Biopesticides microbial phyto nano.pdf",
+   "sections": [
+    "Біопестициди: значення, безпека, огляди"
+   ],
+   "source": {
+    "type": "article",
+    "title": "Biopesticides as a promising alternative to synthetic pesticides: A case for microbial pesticides, phytopesticides, and nanobiopesticides",
+    "authors": [
+     {
+      "family": "Ayilara",
+      "given_initials": "M. S."
+     },
+     {
+      "family": "Adeleke",
+      "given_initials": "B. S."
+     },
+     {
+      "family": "Akinola",
+      "given_initials": "S. A."
+     },
+     {
+      "family": "Fayose",
+      "given_initials": "C. A."
+     },
+     {
+      "family": "Adeyemi",
+      "given_initials": "U. T."
+     },
+     {
+      "family": "Gbadegesin",
+      "given_initials": "L. A."
+     },
+     {
+      "family": "Omole",
+      "given_initials": "R. K."
+     },
+     {
+      "family": "Johnson",
+      "given_initials": "R. M."
+     },
+     {
+      "family": "Uthman",
+      "given_initials": "Q. O."
+     },
+     {
+      "family": "Babalola",
+      "given_initials": "O. O."
+     }
+    ],
+    "container_title": "Frontiers in Microbiology",
+    "year": 2023,
+    "volume": "14",
+    "pages": "Art. 1040901",
+    "doi": "10.3389/fmicb.2023.1040901",
+    "tags": [
+     "огляд",
+     "нанобіопестициди",
+     "значення"
+    ],
+    "study_object": "Мікробні, рослинні та нанобіопестициди.",
+    "methods": "Огляд.",
+    "main_results": "Обґрунтовано біопестициди як альтернативу синтетичним; описано типи, механізми, переваги, обмеження та наноформи.",
+    "for_dissertation": "Вступ: значення й масштаби, обмеження (коротка дія, нестабільність).",
+    "description": "Огляд мікробних, рослинних і нанобіопестицидів як альтернативи синтетичним пестицидам.",
+    "language": "en",
+    "status": "unread"
+   }
+  },
+  {
+   "files": [
+    {
+     "name": "01_Наукові статті та огляди/Khan_2023_Microbial bioformulation.pdf",
+     "sha256": "5425bb9cc2bbb4ac8125269102cc8838d423bda9be23855c60f8f58eb9f877cf"
+    }
+   ],
+   "file_name": "Khan_2023_Microbial bioformulation.pdf",
+   "sections": [
+    "Препаративні форми: огляди"
+   ],
+   "source": {
+    "type": "article",
+    "title": "Microbial bioformulation: a microbial assisted biostimulating fertilization technique for sustainable agriculture",
+    "authors": [
+     {
+      "family": "Khan",
+      "given_initials": "A."
+     },
+     {
+      "family": "Singh",
+      "given_initials": "A. V."
+     },
+     {
+      "family": "Gautam",
+      "given_initials": "S. S."
+     },
+     {
+      "family": "Agarwal",
+      "given_initials": "A."
+     },
+     {
+      "family": "Punetha",
+      "given_initials": "A."
+     },
+     {
+      "family": "Upadhayay",
+      "given_initials": "V. K."
+     },
+     {
+      "family": "Kukreti",
+      "given_initials": "B."
+     },
+     {
+      "family": "Bundela",
+      "given_initials": "V."
+     },
+     {
+      "family": "Jugran",
+      "given_initials": "A. K."
+     },
+     {
+      "family": "Goel",
+      "given_initials": "R."
+     }
+    ],
+    "container_title": "Frontiers in Plant Science",
+    "year": 2023,
+    "volume": "14",
+    "pages": "Art. 1270039",
+    "doi": "10.3389/fpls.2023.1270039",
+    "tags": [
+     "огляд",
+     "біоформуляція",
+     "носії"
+    ],
+    "study_object": "Мікробні біоформуляції (рідкі, тверді, інкапсульовані).",
+    "methods": "Огляд.",
+    "main_results": "Описано типи біоформуляцій, носії, добавки, методи нанесення і проблеми строку зберігання.",
+    "for_dissertation": "П. 3.1: класифікація форм і складників.",
+    "description": "Огляд технологій мікробних біоформуляцій для сталого землеробства.",
+    "language": "en",
+    "status": "unread"
+   }
+  },
+  {
+   "files": [
+    {
+     "name": "01_Наукові статті та огляди/Hezakiel_2024_Biopesticides green approach.pdf",
+     "sha256": "c1cb4ca2e22d66ab06a812f73bdea3cfacd7a88dbe0f994643bdc79bbf16ff15"
+    }
+   ],
+   "file_name": "Hezakiel_2024_Biopesticides green approach.pdf",
+   "sections": [
+    "Біопестициди: значення, безпека, огляди",
+    "Препаративні форми: огляди"
+   ],
+   "source": {
+    "type": "article",
+    "title": "Biopesticides: a Green Approach Towards Agricultural Pests",
+    "authors": [
+     {
+      "family": "Hezakiel",
+      "given_initials": "H. E."
+     },
+     {
+      "family": "Thampi",
+      "given_initials": "M."
+     },
+     {
+      "family": "Rebello",
+      "given_initials": "S."
+     },
+     {
+      "family": "Sheikhmoideen",
+      "given_initials": "J. M."
+     }
+    ],
+    "container_title": "Applied Biochemistry and Biotechnology",
+    "year": 2024,
+    "volume": "196",
+    "pages": "5533–5562",
+    "doi": "10.1007/s12010-023-04765-7",
+    "tags": [
+     "огляд",
+     "препаративні форми"
+    ],
+    "study_object": "Біопестициди: віруси, бактерії, гриби, хижаки, паразити, феромони.",
+    "methods": "Огляд.",
+    "main_results": "Препаративна форма — ключова ланка між виробництвом і застосуванням: визначає економічність, строк зберігання, зручність і польову ефективність.",
+    "for_dissertation": "Вступ: теза про роль форми як ланки «виробництво → застосування».",
+    "description": "Огляд біопестицидів з акцентом на роль препаративної форми.",
+    "language": "en",
+    "status": "unread"
+   }
+  },
+  {
+   "files": [
+    {
+     "name": "01_Наукові статті та огляди/Teixido_2022_Production formulation packaging shelf life BCAs.pdf",
+     "sha256": "5c2c2fa1952dc21eff57077d3b846237b101edb2b7b12d33f0263599c6b09b78"
+    }
+   ],
+   "file_name": "Teixido_2022_Production formulation packaging shelf life BCAs.pdf",
+   "sections": [
+    "Препаративні форми: огляди",
+    "Стабільність, УФ-захист, зберігання"
+   ],
+   "source": {
+    "type": "article",
+    "title": "Insight into a Successful Development of Biocontrol Agents: Production, Formulation, Packaging, and Shelf Life as Key Aspects",
+    "authors": [
+     {
+      "family": "Teixidó",
+      "given_initials": "N."
+     },
+     {
+      "family": "Usall",
+      "given_initials": "J."
+     },
+     {
+      "family": "Torres",
+      "given_initials": "R."
+     }
+    ],
+    "container_title": "Horticulturae",
+    "year": 2022,
+    "volume": "8",
+    "issue": "4",
+    "pages": "Art. 305",
+    "doi": "10.3390/horticulturae8040305",
+    "tags": [
+     "термін зберігання",
+     "пакування",
+     "протектори",
+     "сушіння"
+    ],
+    "study_object": "Агенти біоконтролю (BCAs) проти хвороб до та після збирання.",
+    "methods": "Огляд.",
+    "main_results": "Виробництво, форма (рідка/тверда), протектори й пакування визначають стабільність; бажаний строк зберігання — до двох років.",
+    "for_dissertation": "П. 3.3: вимоги до строку зберігання й умов пакування.",
+    "description": "Огляд ключових етапів розробки агентів біоконтролю: виробництво, форма, пакування, строк зберігання.",
+    "language": "en",
+    "status": "unread"
+   }
+  },
+  {
+   "files": [
+    {
+     "name": "01_Наукові статті та огляди/Umrah_2024_Liquid Trichoderma formulation cocoa.pdf",
+     "sha256": "a195c2f64641a44febd5cdaf50d7e2b02f7ca36d63280994231fa5c52fdda90c"
+    }
+   ],
+   "file_name": "Umrah_2024_Liquid Trichoderma formulation cocoa.pdf",
+   "sections": [
+    "Рідкі форми, суспензії, покриття насіння"
+   ],
+   "source": {
+    "type": "article",
+    "title": "Effectiveness of Liquid Trichoderma spp. Formulation as Biopesticides Against Phytophthora palmivora and Oncobasidium theobromae in Cocoa Plants (Theobroma cocoa L.)",
+    "authors": [
+     {
+      "family": "Umrah",
+      "given_initials": "U."
+     },
+     {
+      "family": "Yusran",
+      "given_initials": "Y."
+     },
+     {
+      "family": "Suwastika",
+      "given_initials": "I. N."
+     },
+     {
+      "family": "Asrul",
+      "given_initials": "A."
+     },
+     {
+      "family": "Yuliana",
+      "given_initials": "Y."
+     },
+     {
+      "family": "Anugrah",
+      "given_initials": "D. S."
+     }
+    ],
+    "container_title": "International Journal of Design & Nature and Ecodynamics",
+    "year": 2024,
+    "volume": "19",
+    "issue": "2",
+    "pages": "425–432",
+    "doi": "10.18280/ijdne.190208",
+    "tags": [
+     "рідка форма",
+     "Trichoderma",
+     "соєвий екстракт"
+    ],
+    "study_object": "Trichoderma spp.; хвороби какао.",
+    "methods": "Рідкі форми на суміші соєвого екстракту й кокосової води (7 варіантів); щільність спор; тест на плодах.",
+    "main_results": "Найкраща — 40 % соєвого екстракту + 60 % кокосової води (9,76 × 10⁸ спор за 48 год); ефективна проти P. palmivora і O. theobromae.",
+    "for_dissertation": "П. 3.1: рідкі форми на дешевих поживних середовищах (для порівняння з бактеріальними).",
+    "description": "Рідка форма Trichoderma на соєвому екстракті та кокосовій воді проти хвороб какао.",
+    "language": "en",
+    "status": "unread"
+   }
+  },
+  {
+   "files": [
+    {
+     "name": "02_Книги, посібники, збірники/Kala_2020_Biopesticides formulations and delivery (chapter).pdf",
+     "sha256": "34725db799f43a4163675b06896d4b98c8571a59abb74ae7e1bb4621a95ea44f"
+    }
+   ],
+   "file_name": "Kala_2020_Biopesticides formulations and delivery (chapter).pdf",
+   "sections": [
+    "Препаративні форми: огляди"
+   ],
+   "source": {
+    "type": "book_chapter",
+    "title": "Biopesticides: Formulations and Delivery Techniques",
+    "authors": [
+     {
+      "family": "Kala",
+      "given_initials": "S."
+     },
+     {
+      "family": "Sogan",
+      "given_initials": "N."
+     },
+     {
+      "family": "Agarwal",
+      "given_initials": "A."
+     },
+     {
+      "family": "Naik",
+      "given_initials": "S. N."
+     },
+     {
+      "family": "Patanjali",
+      "given_initials": "P. K."
+     },
+     {
+      "family": "Kumar",
+      "given_initials": "J."
+     }
+    ],
+    "container_title": "Natural Remedies for Pest, Disease and Weed Control",
+    "publisher": "Academic Press",
+    "year": 2020,
+    "pages": "209–220",
+    "doi": "10.1016/B978-0-12-819304-4.00018-X",
+    "tags": [
+     "препаративні форми",
+     "доставка",
+     "рослинні пестициди"
+    ],
+    "study_object": "Препаративні форми та способи доставки біопестицидів (переважно рослинних).",
+    "methods": "Розділ книги, огляд.",
+    "main_results": "Описано типи форм (порошки, гранули, емульсії, мікро- й наноформи, таблетки контрольованого вивільнення) і технології доставки.",
+    "for_dissertation": "П. 3.1: загальна класифікація препаративних форм. Редакторів збірника в PDF не вказано — додати перед цитуванням.",
+    "description": "Розділ про препаративні форми й технології доставки біопестицидів.",
+    "language": "en",
+    "status": "unread"
+   }
+  },
+  {
+   "files": [
+    {
+     "name": "01_Наукові статті та огляди/Zhang_2022_Biocontrol compound seed-coating agent tomato.pdf",
+     "sha256": "d972d548a41f6f7388d71bd3a501e99c57144b777a5627526d8f714be458b2f3"
+    }
+   ],
+   "file_name": "Zhang_2022_Biocontrol compound seed-coating agent tomato.pdf",
+   "sections": [
+    "Рідкі форми, суспензії, покриття насіння"
+   ],
+   "source": {
+    "type": "article",
+    "title": "Study on the Preparation and Effect of Tomato Seedling Disease Biocontrol Compound Seed-Coating Agent",
+    "authors": [
+     {
+      "family": "Zhang",
+      "given_initials": "Y."
+     },
+     {
+      "family": "Li",
+      "given_initials": "Y."
+     },
+     {
+      "family": "Liang",
+      "given_initials": "S."
+     },
+     {
+      "family": "Zheng",
+      "given_initials": "W."
+     },
+     {
+      "family": "Chen",
+      "given_initials": "X."
+     },
+     {
+      "family": "Liu",
+      "given_initials": "J."
+     },
+     {
+      "family": "Wang",
+      "given_initials": "A."
+     }
+    ],
+    "container_title": "Life",
+    "year": 2022,
+    "volume": "12",
+    "issue": "6",
+    "pages": "Art. 849",
+    "doi": "10.3390/life12060849",
+    "tags": [
+     "покриття насіння",
+     "Bacillus",
+     "гуміарабік",
+     "склад"
+    ],
+    "study_object": "П'ять бактерій-антагоністів (B. amyloliquefaciens, B. subtilis ×2, P. fluorescens, B. velezensis); хвороби розсади томата.",
+    "methods": "Ортогональний експеримент для добору складу; оцінка ефективності й строку зберігання.",
+    "main_results": "Склад: пірогенний кремнезем 1,3 г (загусник), гуміарабік 1 г (плівкоутворювач), додецилбензолсульфонат натрію 0,05 г (диспергатор), перламутровий пігмент 0,5 г. Смертність розсади від Pythium на 26,7 % нижча за контроль і на 20 % — за карбендазим; від Fusarium — на 44,31 і 22,36 %. Ефективність не знижувалась при зберіганні.",
+    "for_dissertation": "П. 3.1–3.2: конкретний склад рідкої форми з полісахаридним плівкоутворювачем.",
+    "description": "Комплексний біологічний протруйник із п'яти бактерій: склад (кремнезем, гуміарабік, ПАР) і ефективність на томатах.",
+    "language": "en",
+    "status": "unread"
+   }
+  },
+  {
+   "files": [
+    {
+     "name": "01_Наукові статті та огляди/Lin_2023_Green adjuvants for microbial pesticides.pdf",
+     "sha256": "0b6b0a4cf9e5ad383ef840244aea448d778b62962578837c4acadc8bf561e76d"
+    }
+   ],
+   "file_name": "Lin_2023_Green adjuvants for microbial pesticides.pdf",
+   "sections": [
+    "Препаративні форми: огляди",
+    "Стабільність, УФ-захист, зберігання"
+   ],
+   "source": {
+    "type": "article",
+    "title": "Towards Sustainable Green Adjuvants for Microbial Pesticides: Recent Progress, Upcoming Challenges, and Future Perspectives",
+    "authors": [
+     {
+      "family": "Lin",
+      "given_initials": "F."
+     },
+     {
+      "family": "Mao",
+      "given_initials": "Y."
+     },
+     {
+      "family": "Zhao",
+      "given_initials": "F."
+     },
+     {
+      "family": "Idris",
+      "given_initials": "A. L."
+     },
+     {
+      "family": "Liu",
+      "given_initials": "Q."
+     },
+     {
+      "family": "Zou",
+      "given_initials": "S."
+     },
+     {
+      "family": "Guan",
+      "given_initials": "X."
+     },
+     {
+      "family": "Huang",
+      "given_initials": "T."
+     }
+    ],
+    "container_title": "Microorganisms",
+    "year": 2023,
+    "volume": "11",
+    "issue": "2",
+    "pages": "Art. 364",
+    "doi": "10.3390/microorganisms11020364",
+    "tags": [
+     "ад'юванти",
+     "ПАР",
+     "носії",
+     "протектори",
+     "УФ"
+    ],
+    "study_object": "Допоміжні речовини мікробних пестицидів.",
+    "methods": "Огляд.",
+    "main_results": "Основні форми мікробних пестицидів — змочувані порошки та концентрати суспензій. Ад'юванти: ПАР, носії, протектори (зокрема УФ), поживні добавки; частина запозичена з хімічних пестицидів і може шкодити нецільовим організмам.",
+    "for_dissertation": "Ключове для п. 3.1, 3.3 і розділу 4 (УФ-протектори): класифікація складників форми.",
+    "description": "Огляд «зелених» ад'ювантів мікробних пестицидів: ПАР, носії, протектори, поживні добавки.",
+    "language": "en",
+    "status": "unread"
+   }
+  },
+  {
+   "files": [
+    {
+     "name": "01_Наукові статті та огляди/Sadanov_2026_Microbial products strain selection to production.pdf",
+     "sha256": "ac8761f7ff5f0c5b0c85a726d329053c4783f5131aa07b25132ce9037eebc605"
+    }
+   ],
+   "file_name": "Sadanov_2026_Microbial products strain selection to production.pdf",
+   "sections": [
+    "Препаративні форми: огляди",
+    "Біопестициди: значення, безпека, огляди"
+   ],
+   "source": {
+    "type": "article",
+    "title": "Microorganism-Based Biological Products for Agriculture: From Strain Selection to Production Organization",
+    "authors": [
+     {
+      "family": "Sadanov",
+      "given_initials": "A. K."
+     },
+     {
+      "family": "Baimakhanova",
+      "given_initials": "G."
+     },
+     {
+      "family": "Baimakhanova",
+      "given_initials": "B. B."
+     },
+     {
+      "family": "Orazymbet",
+      "given_initials": "S."
+     },
+     {
+      "family": "Ratnikova",
+      "given_initials": "I. A."
+     },
+     {
+      "family": "Smirnova",
+      "given_initials": "I."
+     },
+     {
+      "family": "Aitkaliyeva",
+      "given_initials": "G. S."
+     },
+     {
+      "family": "Belkozhayev",
+      "given_initials": "A. M."
+     },
+     {
+      "family": "Kossalbayev",
+      "given_initials": "B. D."
+     }
+    ],
+    "container_title": "Microorganisms",
+    "year": 2026,
+    "volume": "14",
+    "issue": "4",
+    "pages": "Art. 775",
+    "doi": "10.3390/microorganisms14040775",
+    "tags": [
+     "огляд",
+     "виробництво",
+     "якість"
+    ],
+    "study_object": "Біопрепарати на основі PGPM і агентів біоконтролю.",
+    "methods": "Огляд.",
+    "main_results": "Розглянуто чинники стабільної польової ефективності: добір штамів, ферментація, формуляція, контроль якості, організація виробництва.",
+    "for_dissertation": "Вступ і п. 3.3: ланцюг «штам → виробництво → форма → якість».",
+    "description": "Огляд шляху мікробного біопрепарату від добору штаму до організації виробництва.",
+    "language": "en",
+    "status": "unread"
+   }
+  },
+  {
+   "files": [
+    {
+     "name": "01_Наукові статті та огляди/Munnysha_2025_Solid and liquid formulation Trichoderma asperellum.pdf",
+     "sha256": "ea8d7ad75f354a9831581367d68d92290c84a686c4136fc70f48b0255e23ac14"
+    }
+   ],
+   "file_name": "Munnysha_2025_Solid and liquid formulation Trichoderma asperellum.pdf",
+   "sections": [
+    "Рідкі форми, суспензії, покриття насіння",
+    "Стабільність, УФ-захист, зберігання"
+   ],
+   "source": {
+    "type": "article",
+    "title": "Synthesis and optimization of agro-based solid and liquid formulation for enhanced shelf-life and biomass production of Trichoderma asperellum",
+    "authors": [
+     {
+      "family": "Munnysha",
+      "given_initials": "S."
+     },
+     {
+      "family": "Bunker",
+      "given_initials": "R. N."
+     },
+     {
+      "family": "Babu",
+      "given_initials": "S. R."
+     },
+     {
+      "family": "Mondal",
+      "given_initials": "K."
+     },
+     {
+      "family": "Abhi",
+      "given_initials": "R."
+     },
+     {
+      "family": "Akodiya",
+      "given_initials": "S."
+     },
+     {
+      "family": "Gahlot",
+      "given_initials": "N."
+     },
+     {
+      "family": "Sharma",
+      "given_initials": "D."
+     }
+    ],
+    "container_title": "Plant Science Today",
+    "year": 2025,
+    "volume": "12",
+    "issue": "sp2",
+    "pages": "1–9",
+    "doi": "10.14719/pst.4641",
+    "tags": [
+     "Trichoderma",
+     "рідка форма",
+     "тверда форма",
+     "термін зберігання"
+    ],
+    "study_object": "Trichoderma asperellum.",
+    "methods": "Порівняння 8 рідких середовищ і 7 твердих агросубстратів за біомасою та строком зберігання.",
+    "main_results": "Найбільша біомаса — на мелясно-дріжджовому середовищі (20,84 г сирої і 3,14 г сухої маси); оцінено строк зберігання форм.",
+    "for_dissertation": "Для порівняння: тверді й рідкі форми грибного агента, строк зберігання. Файл був названий out.pdf.",
+    "description": "Тверді (агросубстрати) і рідкі форми T. asperellum: біомаса і строк зберігання.",
+    "language": "en",
+    "status": "unread"
+   }
+  },
+  {
+   "files": [
+    {
+     "name": "02_Книги, посібники, збірники/Pavoni_2019_Green nanoemulsions as insecticides (chapter).pdf",
+     "sha256": "daed59cf19068a08a356497b67548ba7bfadb7256953ab1dac4ae621642e640d"
+    }
+   ],
+   "file_name": "Pavoni_2019_Green nanoemulsions as insecticides (chapter).pdf",
+   "sections": [
+    "Інкапсуляція, нано- та новітні носії"
+   ],
+   "source": {
+    "type": "book_chapter",
+    "title": "Green nanoemulsions as insecticides",
+    "authors": [
+     {
+      "family": "Pavoni",
+      "given_initials": "L."
+     },
+     {
+      "family": "Benelli",
+      "given_initials": "G."
+     },
+     {
+      "family": "Maggi",
+      "given_initials": "F."
+     },
+     {
+      "family": "Bonacucina",
+      "given_initials": "G."
+     }
+    ],
+    "container_title": "Nano-Biopesticides Today and Future Perspectives",
+    "publisher": "Academic Press",
+    "year": 2019,
+    "pages": "133–160",
+    "doi": "10.1016/B978-0-12-815829-6.00005-X",
+    "tags": [
+     "наноемульсії",
+     "ефірні олії"
+    ],
+    "study_object": "Наноемульсії рослинних інсектицидів.",
+    "methods": "Розділ книги, огляд.",
+    "main_results": "Описано склад, методи отримання, стабільність і ефективність «зелених» наноемульсій.",
+    "for_dissertation": "П. 3.4: наноемульсії як новітня рідка форма. Редактора книги в PDF не вказано — додати перед цитуванням.",
+    "description": "Розділ про «зелені» наноемульсії як інсектициди.",
+    "language": "en",
+    "status": "unread"
+   }
+  },
+  {
+   "files": [
+    {
+     "name": "01_Наукові статті та огляди/Fanai_2024_PGPB-induced plant adaptations to stresses.pdf",
+     "sha256": "c711b11b7f1fa8413d678545870c8e2b64a1c24a0d53adaf0f2d655b14bdc6ec"
+    }
+   ],
+   "file_name": "Fanai_2024_PGPB-induced plant adaptations to stresses.pdf",
+   "sections": [
+    "Інше"
+   ],
+   "source": {
+    "type": "article",
+    "title": "Plant growth promoting bacteria (PGPB)-induced plant adaptations to stresses: an updated review",
+    "authors": [
+     {
+      "family": "Fanai",
+      "given_initials": "A."
+     },
+     {
+      "family": "Bohia",
+      "given_initials": "B."
+     },
+     {
+      "family": "Lalremruati",
+      "given_initials": "F."
+     },
+     {
+      "family": "Lalhriatpuii",
+      "given_initials": "N."
+     },
+     {
+      "family": "Lalrokimi",
+      "given_initials": ""
+     },
+     {
+      "family": "Lalmuanpuii",
+      "given_initials": "R."
+     },
+     {
+      "family": "Singh",
+      "given_initials": "P. K."
+     },
+     {
+      "family": "Zothanpuia",
+      "given_initials": ""
+     }
+    ],
+    "container_title": "PeerJ",
+    "year": 2024,
+    "volume": "12",
+    "pages": "Art. e17882",
+    "doi": "10.7717/peerj.17882",
+    "tags": [
+     "PGPB",
+     "стрес",
+     "огляд"
+    ],
+    "study_object": "Ростостимулювальні бактерії.",
+    "methods": "Огляд.",
+    "main_results": "Описано прямі й непрямі механізми, якими PGPB підвищують стресостійкість і захищають рослини.",
+    "for_dissertation": "Другорядне: механізми дії бактерій.",
+    "description": "Огляд механізмів, якими PGPB допомагають рослинам переносити стреси.",
+    "language": "en",
+    "status": "unread"
+   }
+  },
+  {
+   "files": [
+    {
+     "name": "01_Наукові статті та огляди/Guardiola-Marquez_2023_Native PGPM for biofertilizers Mexico.pdf",
+     "sha256": "3c17afa1c06c447b2bf9b5cf20e6aad0efd05ad8cab410261f38f17dd4ad2959"
+    }
+   ],
+   "file_name": "Guardiola-Marquez_2023_Native PGPM for biofertilizers Mexico.pdf",
+   "sections": [
+    "Інше"
+   ],
+   "source": {
+    "type": "article",
+    "title": "Identification and Characterization of Beneficial Soil Microbial Strains for the Formulation of Biofertilizers Based on Native Plant Growth-Promoting Microorganisms Isolated from Northern Mexico",
+    "authors": [
+     {
+      "family": "Guardiola-Márquez",
+      "given_initials": "C. E."
+     },
+     {
+      "family": "Santos-Ramírez",
+      "given_initials": "M. T."
+     },
+     {
+      "family": "Figueroa-Montes",
+      "given_initials": "M. L."
+     },
+     {
+      "family": "Valencia-de los Cobos",
+      "given_initials": "E. O."
+     },
+     {
+      "family": "Stamatis-Félix",
+      "given_initials": "I. J."
+     },
+     {
+      "family": "Navarro-López",
+      "given_initials": "D. E."
+     },
+     {
+      "family": "Jacobo-Velázquez",
+      "given_initials": "D. A."
+     }
+    ],
+    "container_title": "Plants",
+    "year": 2023,
+    "volume": "12",
+    "issue": "18",
+    "pages": "Art. 3262",
+    "doi": "10.3390/plants12183262",
+    "tags": [
+     "PGPM",
+     "біодобрива",
+     "консорціуми"
+    ],
+    "study_object": "Аборигенні PGPM; редис, броколі.",
+    "methods": "Ізоляція, скринінг PGP-ознак, тест 19 ізолятів і 12 консорціумів на розсаді.",
+    "main_results": "Відібрано перспективні штами й консорціуми для біодобрив.",
+    "for_dissertation": "Другорядне.",
+    "description": "Добір аборигенних PGPM для біодобрив.",
+    "language": "en",
+    "status": "unread"
+   }
+  },
+  {
+   "files": [
+    {
+     "name": "01_Наукові статті та огляди/Soares_2026_Botanical pesticides non-target organisms.pdf",
+     "sha256": "f2c52038fad303a3d16c22750ff7676c319291a9fc7074e15895244dc3e15bfc"
+    }
+   ],
+   "file_name": "Soares_2026_Botanical pesticides non-target organisms.pdf",
+   "sections": [
+    "Безпека для нетаргетних організмів"
+   ],
+   "source": {
+    "type": "article",
+    "title": "The Overlooked Impact of Botanical Pesticides on Non-Target Organisms",
+    "authors": [
+     {
+      "family": "Soares",
+      "given_initials": "A. P."
+     },
+     {
+      "family": "Zocolo",
+      "given_initials": "G. J."
+     },
+     {
+      "family": "Bueno",
+      "given_initials": "A. F."
+     }
+    ],
+    "container_title": "Plants",
+    "year": 2026,
+    "volume": "15",
+    "issue": "6",
+    "pages": "Art. 917",
+    "doi": "10.3390/plants15060917",
+    "tags": [
+     "рослинні пестициди",
+     "нетаргетні організми",
+     "регулювання"
+    ],
+    "study_object": "Рослинні пестициди.",
+    "methods": "Огляд.",
+    "main_results": "Рослинні пестициди не є безпечними за замовчуванням; потрібні екотоксикологічні дослідження; огляд законодавства.",
+    "for_dissertation": "Вступ: потреба доказової оцінки безпеки біопестицидів.",
+    "description": "Огляд недооціненого впливу рослинних пестицидів на нецільові організми.",
+    "language": "en",
+    "status": "unread"
+   }
+  },
+  {
+   "files": [
+    {
+     "name": "01_Наукові статті та огляди/Luo_2024_Bacillus siamensis bacterial suspension bamboo.pdf",
+     "sha256": "b97832144df1cbdf1a8b1e56b9e06de3c9be53f69360e03c01e5a9873462a3c4"
+    }
+   ],
+   "file_name": "Luo_2024_Bacillus siamensis bacterial suspension bamboo.pdf",
+   "sections": [
+    "Рідкі форми, суспензії, покриття насіння"
+   ],
+   "source": {
+    "type": "article",
+    "title": "Fast Track Screening of Antagonistic Bacillus against Brown Rot in Dendrocalamus latiflorus and Preparation of Applying Bacterial Suspension",
+    "authors": [
+     {
+      "family": "Luo",
+      "given_initials": "F."
+     },
+     {
+      "family": "Chen",
+      "given_initials": "H."
+     },
+     {
+      "family": "Wei",
+      "given_initials": "W."
+     },
+     {
+      "family": "Liu",
+      "given_initials": "H."
+     },
+     {
+      "family": "Chen",
+      "given_initials": "Y."
+     },
+     {
+      "family": "Li",
+      "given_initials": "S."
+     }
+    ],
+    "container_title": "The Plant Pathology Journal",
+    "year": 2024,
+    "volume": "40",
+    "issue": "1",
+    "pages": "1–15",
+    "doi": "10.5423/PPJ.OA.07.2023.0107",
+    "tags": [
+     "бактеріальна суспензія",
+     "Bacillus",
+     "склад",
+     "ГПМЦ"
+    ],
+    "study_object": "Bacillus siamensis; бура гниль бамбука.",
+    "methods": "Ізоляція й ідентифікація; оптимізація середовища й умов культивування; добір складу суспензії; вегетаційний дослід.",
+    "main_results": "Оптимум культивування: 2 % сахарози, 1,5 % дріжджового екстракту, 0,7 % KCl; 48 год, 30 °C, pH 6. Склад суспензії: 14 % емульгатора (додецилбензолсульфонат натрію), 4 % Na₂HPO₄·2H₂O, 0,3 % гідроксипропілметилцелюлози (загусник), 20 % культури. Розведена в 1000 разів, ефективніша за хімічний фунгіцид.",
+    "for_dissertation": "П. 3.1: приклад рідкої бактеріальної форми з целюлозним загусником (таблиця складів).",
+    "description": "Рідка суспензія B. siamensis: оптимізація культивування й складу (ПАР, буфер, ГПМЦ) проти бурої гнилі бамбука.",
+    "language": "en",
+    "status": "unread"
+   }
+  },
+  {
+   "files": [
+    {
+     "name": "01_Наукові статті та огляди/Glare_2026_Rethinking microbial biopesticide development.pdf",
+     "sha256": "f593446e134d60b3efbc4dc79bd176572b046ccb536e03852f220962d9c1dbf8"
+    }
+   ],
+   "file_name": "Glare_2026_Rethinking microbial biopesticide development.pdf",
+   "sections": [
+    "Біопестициди: значення, безпека, огляди"
+   ],
+   "source": {
+    "type": "article",
+    "title": "Rethinking microbial biopesticide development and uptake",
+    "authors": [
+     {
+      "family": "Glare",
+      "given_initials": "T. R."
+     },
+     {
+      "family": "Sheppard",
+      "given_initials": "A."
+     },
+     {
+      "family": "Hurst",
+      "given_initials": "M. R. H."
+     },
+     {
+      "family": "Thatcher",
+      "given_initials": "L."
+     },
+     {
+      "family": "Gallart",
+      "given_initials": "M."
+     },
+     {
+      "family": "Macfadyen",
+      "given_initials": "S."
+     },
+     {
+      "family": "Law",
+      "given_initials": "S."
+     },
+     {
+      "family": "O'Callaghan",
+      "given_initials": "M."
+     }
+    ],
+    "container_title": "World Journal of Microbiology and Biotechnology",
+    "year": 2026,
+    "volume": "42",
+    "pages": "Art. 314",
+    "doi": "10.1007/s11274-026-05044-3",
+    "tags": [
+     "огляд",
+     "комерціалізація",
+     "регулювання",
+     "ринок"
+    ],
+    "study_object": "Розробка й упровадження мікробних біопестицидів.",
+    "methods": "Огляд; рамка підтримки рішень.",
+    "main_results": "Менше 10 % проєктів розробки біопестицидів доходять до успіху; описано характеристики успішних продуктів, бар'єри впровадження та регуляторні шляхи.",
+    "for_dissertation": "Вступ: масштаби й проблеми впровадження; аргумент про ключову роль формуляції.",
+    "description": "Огляд чинників успіху мікробних біопестицидів і бар'єрів їх упровадження.",
+    "language": "en",
+    "status": "unread"
+   }
+  },
+  {
+   "files": [
+    {
+     "name": "01_Наукові статті та огляди/Karaoglan_2024_Microbial pesticides non-target organism testing.pdf",
+     "sha256": "4c48595881bd60d4fbc2168b3d9ac104ed0f71a61a3b56253cf0a5bcc212873d"
+    }
+   ],
+   "file_name": "Karaoglan_2024_Microbial pesticides non-target organism testing.pdf",
+   "sections": [
+    "Безпека для нетаргетних організмів"
+   ],
+   "source": {
+    "type": "article",
+    "title": "Microbial pesticides: challenges and future perspectives for non-target organism testing",
+    "authors": [
+     {
+      "family": "Karaoğlan",
+      "given_initials": "B."
+     },
+     {
+      "family": "Alkassab",
+      "given_initials": "A. T."
+     },
+     {
+      "family": "Borges",
+      "given_initials": "S."
+     },
+     {
+      "family": "Fisher",
+      "given_initials": "T."
+     },
+     {
+      "family": "Link-Vrabie",
+      "given_initials": "C."
+     },
+     {
+      "family": "McVey",
+      "given_initials": "E."
+     },
+     {
+      "family": "Ortego",
+      "given_initials": "L."
+     },
+     {
+      "family": "Nuti",
+      "given_initials": "M."
+     }
+    ],
+    "container_title": "Environmental Sciences Europe",
+    "year": 2024,
+    "volume": "36",
+    "pages": "Art. 205",
+    "doi": "10.1186/s12302-024-01017-1",
+    "tags": [
+     "нетаргетні організми",
+     "реєстрація",
+     "методики"
+    ],
+    "study_object": "Методи тестування мікробних пестицидів на нецільових організмах.",
+    "methods": "Огляд, підсумки експертного семінару.",
+    "main_results": "Стандартні тести, розроблені для хімічних речовин, погано підходять для мікроорганізмів; результати складно інтерпретувати; запропоновано вдосконалення.",
+    "for_dissertation": "П. 3.3: оцінка безпеки при реєстрації.",
+    "description": "Проблеми й перспективи тестування мікробних пестицидів на нецільових організмах.",
+    "language": "en",
+    "status": "unread"
+   }
+  },
+  {
+   "files": [
+    {
+     "name": "01_Наукові статті та огляди/Wend_2024_Microbial pesticides human health safety.pdf",
+     "sha256": "3cb1a033a005ad09eaee1c07ceb840a0fac7f03d489e5fef48b9ffd8271b31d7"
+    }
+   ],
+   "file_name": "Wend_2024_Microbial pesticides human health safety.pdf",
+   "sections": [
+    "Безпека для нетаргетних організмів"
+   ],
+   "source": {
+    "type": "article",
+    "title": "Microbial pesticides – challenges and future perspectives for testing and safety assessment with respect to human health",
+    "authors": [
+     {
+      "family": "Wend",
+      "given_initials": "K."
+     },
+     {
+      "family": "Zorrilla",
+      "given_initials": "L."
+     },
+     {
+      "family": "Freimoser",
+      "given_initials": "F. M."
+     },
+     {
+      "family": "Gallet",
+      "given_initials": "A."
+     }
+    ],
+    "container_title": "Environmental Health",
+    "year": 2024,
+    "volume": "23",
+    "pages": "Art. 49",
+    "doi": "10.1186/s12940-024-01090-2",
+    "tags": [
+     "безпека людини",
+     "реєстрація"
+    ],
+    "study_object": "Оцінка безпеки мікробних пестицидів для людини.",
+    "methods": "Огляд.",
+    "main_results": "Біопестициди менш токсичні, специфічні, швидко розкладаються, але мають нижчу ефективність і вищу ціну; методики оцінки безпеки для людини потребують адаптації.",
+    "for_dissertation": "Вступ і п. 3.3: переваги й недоліки, безпека для людини.",
+    "description": "Виклики оцінки безпеки мікробних пестицидів для здоров'я людини.",
+    "language": "en",
+    "status": "unread"
+   }
+  },
+  {
+   "files": [
+    {
+     "name": "01_Наукові статті та огляди/Saad_2025_Adjuvants nanoemulsion against Sitophilus.pdf",
+     "sha256": "aa84d702e308d38ddcda16d91a6548b79969833deb2d393ccf088594b9109f49"
+    }
+   ],
+   "file_name": "Saad_2025_Adjuvants nanoemulsion against Sitophilus.pdf",
+   "sections": [
+    "Інкапсуляція, нано- та новітні носії"
+   ],
+   "source": {
+    "type": "article",
+    "title": "Environment friendly pesticide formulation by adding certain adjuvants and their biological performance against Sitophilus oryzae (L.)",
+    "authors": [
+     {
+      "family": "Saad",
+      "given_initials": "A. S. A."
+     },
+     {
+      "family": "Kordy",
+      "given_initials": "A. M. A."
+     },
+     {
+      "family": "Mackled",
+      "given_initials": "M. I."
+     },
+     {
+      "family": "Ahmed",
+      "given_initials": "A. E."
+     },
+     {
+      "family": "Abd El-Naby",
+      "given_initials": "S. S."
+     }
+    ],
+    "container_title": "Scientific Reports",
+    "year": 2025,
+    "volume": "15",
+    "pages": "Art. 1039",
+    "doi": "10.1038/s41598-024-83922-2",
+    "tags": [
+     "наноемульсії",
+     "ад'юванти",
+     "ефірні олії"
+    ],
+    "study_object": "Наноемульсії олій кунжуту, гвоздики, кориці з ад'ювантами; рисовий довгоносик.",
+    "methods": "Отримання й характеризація наноемульсій (розмір, SEM); біотести.",
+    "main_results": "Усі наноемульсії (кунжутна, гвоздикова, коричнева олії) мали нанометровий розмір; порівняно варіанти з ад'ювантами (аніонна ПАР, трисилоксан) і без них за дією на S. oryzae.",
+    "for_dissertation": "Для порівняння: роль ад'ювантів у рідкій формі.",
+    "description": "Наноемульсії рослинних олій з ад'ювантами проти рисового довгоносика.",
+    "language": "en",
+    "status": "unread"
+   }
+  },
+  {
+   "files": [
+    {
+     "name": "01_Наукові статті та огляди/Ramniwas_2026_Yeast bioformulations Bactrocera.pdf",
+     "sha256": "dacbe6be5dea94cc2c801d133312022e70d4d0e237faf23711f9929a2f2dbf50"
+    }
+   ],
+   "file_name": "Ramniwas_2026_Yeast bioformulations Bactrocera.pdf",
+   "sections": [
+    "Стабільність, УФ-захист, зберігання"
+   ],
+   "source": {
+    "type": "article",
+    "title": "Behavioral and lethal effects of yeast based bioformulations on Bactrocera dorsalis",
+    "authors": [
+     {
+      "family": "Ramniwas",
+      "given_initials": "S."
+     },
+     {
+      "family": "Sharma",
+      "given_initials": "A."
+     },
+     {
+      "family": "Singh",
+      "given_initials": "N. V."
+     },
+     {
+      "family": "Kumar",
+      "given_initials": "G."
+     }
+    ],
+    "container_title": "Scientific Reports",
+    "year": 2026,
+    "volume": "16",
+    "pages": "Art. 8778",
+    "doi": "10.1038/s41598-026-39684-0",
+    "tags": [
+     "дріжджі",
+     "стабільність",
+     "сумісність"
+    ],
+    "study_object": "Дріжджі Debaryomyces hansenii і Pichia kudriavzevii з цитралем; східна плодова муха.",
+    "methods": "Стабільність форм при 7, 25 і 35 °C; сумісність (T-фактор); поведінкові й інсектицидні тести.",
+    "main_results": "Обидві форми стабільні й сумісні з олією (≤1 %); D. hansenii-форма приваблювала, P. kudriavzevii — відлякувала дорослих мух.",
+    "for_dissertation": "Другорядне: оцінка стабільності форми за різних температур.",
+    "description": "Дріжджові біоформи з цитралем: стабільність і поведінкові ефекти на B. dorsalis.",
+    "language": "en",
+    "status": "unread"
+   }
+  },
+  {
+   "files": [
+    {
+     "name": "01_Наукові статті та огляди/Verma_2024_Microbial production of biopesticides.pdf",
+     "sha256": "29a6695e765956402489bb3084d425c4485fa3d90da74db2aa7c91f7605b45ed"
+    }
+   ],
+   "file_name": "Verma_2024_Microbial production of biopesticides.pdf",
+   "sections": [
+    "Препаративні форми: огляди",
+    "Біопестициди: значення, безпека, огляди"
+   ],
+   "source": {
+    "type": "article",
+    "title": "Microbial Production of Biopesticides for Sustainable Agriculture",
+    "authors": [
+     {
+      "family": "Verma",
+      "given_initials": "M. L."
+     },
+     {
+      "family": "Kumar",
+      "given_initials": "A."
+     },
+     {
+      "family": "Chintagunta",
+      "given_initials": "A. D."
+     },
+     {
+      "family": "Samudrala",
+      "given_initials": "P. J. K."
+     },
+     {
+      "family": "Bardin",
+      "given_initials": "M."
+     },
+     {
+      "family": "Lichtfouse",
+      "given_initials": "E."
+     }
+    ],
+    "container_title": "Sustainability",
+    "year": 2024,
+    "volume": "16",
+    "issue": "17",
+    "pages": "Art. 7496",
+    "doi": "10.3390/su16177496",
+    "tags": [
+     "виробництво",
+     "ферментація",
+     "огляд"
+    ],
+    "study_object": "Мікробне виробництво біопестицидів.",
+    "methods": "Огляд.",
+    "main_results": "Описано технології виробництва (ферментацію, виділення, формуляцію), а не лише види агентів.",
+    "for_dissertation": "Вступ і п. 3.1: технологічний ланцюг «ферментація → форма».",
+    "description": "Огляд технологій мікробного виробництва біопестицидів.",
+    "language": "en",
+    "status": "unread"
+   }
+  }
+ ],
+ "dropped": [
+  {
+   "file": "-8-10.05.22.pdf",
+   "reason": "не за темою: збірник Eurasian Scientific Discussions (Барселона, 2022), релевантних тез немає",
+   "sha256": "1c7bcb66e2a3d82f80d8aba9ea9460e0f69c7360a24bd994a94d882fe0a6c4cc"
+  },
+  {
+   "file": "1-s2.0-S0006320710002661-main.pdf",
+   "reason": "не за темою: прямокрилі й різноманіття оселищ",
+   "sha256": "8694890326b85a082e46069065f7cb19af23f27ea2ec1301efa885789be4782b"
+  },
+  {
+   "file": "1-s2.0-S2468584425000339-main (1).pdf",
+   "reason": "дублікат: Lisi et al., 2025 (той самий DOI, інший файл)",
+   "sha256": "5dc4732316aae83179558765ac486738fd6557f3222e14fa0df4125ceb1fa9c7"
+  },
+  {
+   "file": "acsomega.8b02225.pdf",
+   "reason": "інша версія статті ACS Omega 2018, яка вже є в наборі",
+   "sha256": "4faacd20ea18b1fa38b83f0662a5355a6a1a7fa84ef99c2b4b9a44272ea2b8c6"
+  },
+  {
+   "file": "858888582-Spy-the-Lie-Former-CIA-Officers-Teach-You-How-to-Detect-Deception-Updated-Edition-Download.pdf",
+   "reason": "не за темою: книга про розпізнавання брехні",
+   "sha256": "a625b8c3c3e5b826b15a72f7e85cc48734055e7ea784f407cd6197d3f66922d7"
+  },
+  {
+   "file": "spy-the-lie-how-to-spot-deception-the-cia-way-9781848314269-1848314264_compress.pdf",
+   "reason": "не за темою: книга про розпізнавання брехні",
+   "sha256": "3154dbeb59038bb257a8ee135aebd9849b3a3212253b3be0f8bcac5da7aa8213"
+  },
+  {
+   "file": "terence-tao-analysis-1-3ed-2016.pdf",
+   "reason": "не за темою: підручник з математичного аналізу",
+   "sha256": "d9b61136034d6006dc0b3793d55375a1a670c3ee8caf9b87ff4b6612080cdb0d"
+  },
+  {
+   "file": "terence-tao-analysis-2-3ed-2016.pdf",
+   "reason": "не за темою: підручник з математичного аналізу",
+   "sha256": "dc7d094a186dd3ef9e97f4ebe6d42a313e1158be0dc1225c498ee0dd644bf260"
+  },
+  {
+   "file": "Insights_into_Genus_Codonopsis_From_past_Achievements_to_Future.pdf",
+   "reason": "не за темою: огляд роду Codonopsis (лікарські рослини)",
+   "sha256": "d0a82fdab7c65151e9a670fdbd564936b41155b31892b703e5b932514adad0e2"
+  },
+  {
+   "file": "as2c00224_si_001.pdf",
+   "reason": "лише додаткові матеріали (SI) до статті про рідку форму B. siamensis; основного тексту немає",
+   "sha256": "e040c47ec5d4aec265346088b2838164b83ae2fecf85b7eafe8a4575059b96e6"
+  },
+  {
+   "file": "bhattacharjee2023.pdf",
+   "reason": "не PDF: сторінка помилки 404 (bhattacharjee2023 / nagrale2023)",
+   "sha256": "766c1d6bcb81d3e983fb7adbc19c616d7fc01dafb7893738edc242e2adc59c07"
+  },
+  {
+   "file": "Paper2published.pdf",
+   "reason": "битий файл (Paper2published.pdf)",
+   "sha256": "540ca1b4eff94a9b7152480959dc94137fa72ce97a0a3b402cf7fbdbd9d8e417"
+  },
+  {
+   "file": "s11671-026-04760-x.pdf",
+   "reason": "битий файл (s11671-026-04760-x.pdf, обрізаний)",
+   "sha256": "d8bd5da4cb260fec02200768d9710ab7c6da9dc17fef212dc1036b0cb7846af5"
+  },
+  {
+   "file": "ua_2024_02_10.pdf",
+   "reason": "битий файл (ua_2024_02_10.pdf); цілий примірник уже є в наборі",
+   "sha256": "2518140e640130ffb2bf2fb6d968bd6b87a397c790185750ad78e2b77194a3bf"
+  },
+  {
+   "file": "Не подтвержден 849493.crdownload",
+   "reason": "недокачаний файл (.crdownload)",
+   "sha256": "21558f6d08c8b725e4d6d746202111dd42a5067992ccdcb04c0b71aea4d85211"
+  },
+  {
+   "file": "Індивідуальний план наукової роботи  (1).pdf",
+   "reason": "особистий документ, не джерело",
+   "sha256": "906f2f7566133750d7eb9cbeb4ba256be741c2e46808df84787bae348276aad3"
+  }
+ ]
+}
