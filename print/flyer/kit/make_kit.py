@@ -80,6 +80,10 @@ for name in ("elodea", "fp-tubes", "invitro", "callus", "fusarium", "lab-student
     symbols.append(f'<symbol id="photo-{name}" viewBox="0 0 1000 1000">'
                    f'<image href="{b64(KIT / "photos" / (name + ".jpg"), "image/jpeg")}" width="1000" height="1000" '
                    f'preserveAspectRatio="xMidYMid slice"/></symbol>')
+
+# вирізане фото рослини (PNG з прозорістю): Waithamai, CC BY 4.0
+symbols.append(f'<symbol id="photo-plant" viewBox="0 0 500 588">'
+               f'<image href="{b64(KIT / "photos" / "plant-monstera.png", "image/png")}" width="500" height="588"/></symbol>')
 (KIT / "symbols.svg").write_text("\n".join(symbols), encoding="utf-8")
 
 # ---------- шрифти ----------

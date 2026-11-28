@@ -37,3 +37,10 @@ https://commons.wikimedia.org/wiki/File:CSIRO_ScienceImage_11243_Fusarium_head_b
 На флаєрах раунду 3 рядок авторства фото прибрано на вимогу замовника. Ліцензії CC BY і CC BY-SA вимагають
 вказувати автора там, де використано фото, тож для друку варто або повернути дрібний рядок авторства, або
 замінити фото з Wikimedia Commons на власні фото кафедри.
+
+## Додано в раунді 4
+
+`plant-monstera.png` (`#photo-plant`, viewBox 0 0 500 588, прозорий фон) — *Monstera adansonii* у вазоні, фон вирізано.
+
+Waithamai. (2020). *Monstera adansonii 202003* [Photograph]. Wikimedia Commons.
+https://commons.wikimedia.org/wiki/File:Monstera_adansonii_202003.jpg. Ліцензія CC BY 4.0.
